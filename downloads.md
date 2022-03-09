@@ -30,7 +30,6 @@ On the mirror, all recent releases are available, but are not
 guaranteed to be stable. For stable releases, look in the stable
 directory.
 
-
 ## News
 ### 9 June 2021: release 2.3.9 available
 This release works with Hadoop 2.x.y
