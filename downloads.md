@@ -32,6 +32,10 @@ directory.
 
 
 ## News
+### 17 January 2021: release 2.3.8 available
+This release works with Hadoop 2.x.y
+You can look at the complete [JIRA change log for this release][HIVE_2_3_8_CL].
+
 ### 18 April 2020: release 2.3.7 available
 This release works with Hadoop 2.x.y
 You can look at the complete [JIRA change log for this release][HIVE_2_3_7_CL].
@@ -179,6 +183,7 @@ You can look at the complete [JIRA change log for this release][HIVE_10_CL].
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
 [HIVE_3_1_2_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12344397&styleName=Html&projectId=12310843
+[HIVE_2_3_8_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12349428&styleName=Text&projectId=12310843
 [HIVE_2_3_7_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12346056&styleName=Text&projectId=12310843
 [HIVE_2_3_6_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12345603&styleName=Text&projectId=12310843
 [HIVE_2_3_5_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12345394&styleName=Text&projectId=12310843
