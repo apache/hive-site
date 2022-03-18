@@ -1,5 +1,5 @@
 publish:
-  whoami: main
+  whoami: asf-site
 
 jekyll:
   whoami: main
