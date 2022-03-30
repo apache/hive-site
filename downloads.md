@@ -31,6 +31,10 @@ guaranteed to be stable. For stable releases, look in the stable
 directory.
 
 ## News
+### 30 March 2022: release 4.0.0-alpha-1 available
+This release works with Hadoop 3.x.y
+You can look at the complete [JIRA change log for this release][HIVE_4_0_0_A_1_CL].
+
 ### 9 June 2021: release 2.3.9 available
 This release works with Hadoop 2.x.y
 You can look at the complete [JIRA change log for this release][HIVE_2_3_9_CL].
@@ -185,6 +189,7 @@ This release  works with Hadoop 0.20.x, 0.23.x.y, 1.x.y, 2.x.y
 You can look at the complete [JIRA change log for this release][HIVE_10_CL].
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
+[HIVE_4_0_0_A_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12351399&styleName=Html&projectId=12310843
 [HIVE_3_1_2_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12344397&styleName=Html&projectId=12310843
 [HIVE_2_3_9_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12350009&styleName=Text&projectId=12310843
 [HIVE_2_3_8_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12349428&styleName=Text&projectId=12310843
