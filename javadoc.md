@@ -22,6 +22,7 @@ layout: default
 
 ## Recent versions:
 
+  * [Hive 3.1.3 Javadocs]({{ site.old_javadoc }}/r3.1.3/api/index.html)
   * [Hive 4.0.0-alpha-1 Javadocs]({{ site.old_javadoc }}/r4.0.0-alpha-1/api/index.html)
   * [Hive 3.1.2 Javadocs]({{ site.old_javadoc }}/r3.1.2/api/index.html)
   * [Hive 3.0.0 Javadocs]({{ site.old_javadoc }}/r3.0.0/api/index.html)
