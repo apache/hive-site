@@ -97,6 +97,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | amareshwari     | Amareshwari Sriramadasu  | <a href="http://www.inmobi.com/">InMobi</a> |
 | apivovarov      | Alexander Pivovarov      | <a href="http://fostercitylab.crabdance.com/">Foster City Hadoop Lab LLC</a> |
 | asherman        | Andrew Sherman           | <a href="http://cloudera.com/">Cloudera</a> |
+| ayushsaxena     | Ayush Saxena             | <a href="http://cloudera.com/">Cloudera</a> |
 | bharos92        | Bharath Krishna          | <a href="http://cloudera.com/">Cloudera</a> |
 | chengxiang      | Chengxiang Li            | <a href="http://intel.com/">Intel</a> |
 | chinnaraol      | Chinna Rao Lalam         | <a href="http://intel.com/">Intel</a> |
