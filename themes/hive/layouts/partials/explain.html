@@ -1,0 +1,38 @@
+<!---
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License. -->
+
+<explain>
+    <div id="explain" data-termynal data-termynal data-ty-typeDelay="40" data-ty-lineDelay="70"><span data-ty="input">jdbc:hive2://localhost:10001/> explain cbo select  ss.ss_net_profit,  sr.sr_net_loss from  store_sales ss join store_returns sr  on (ss.ss_item_sk=sr.sr_item_sk) limit 5 ;</span>
+
+        <span data-ty>+---------------------------------------------+</span>
+        <span data-ty>                     Explain                      </span></span>
+        <span data-ty>+---------------------------------------------+</span>
+        <span data-ty>                   CBO PLAN:                   </span>
+        <span data-ty>  HiveSortLimit(fetch=[5])                             </span>
+        <span data-ty>    HiveProject(ss_net_profit=[$1], sr_net_loss=[$3])  </span>
+        <span data-ty>      HiveJoin(condition=[=($0, $2)], joinType=[inner])  </span>
+       <span data-ty>         HiveProject(ss_item_sk=[$2], ss_net_profit=[$22])  </span>
+        <span data-ty>          HiveFilter(condition=[IS NOT NULL($2)])     </span>
+        <span data-ty>            HiveTableScan(table=[[tpcds_text_10, store_sales]], table:alias=[ss])  </span>
+        <span data-ty>        HiveProject(sr_item_sk=[$2], sr_net_loss=[$19]) </span>
+        <span data-ty>         HiveFilter(condition=[IS NOT NULL($2)])     </span>
+          <span data-ty>           HiveTableScan(table=[[tpcds_text_10, store_returns]], table:alias=[sr])  </span>
+        <span data-ty>+---------------------------------------------+</span>
+    </div>
+    <script  src="{{ .Site.BaseURL }}/js/termynal.js" data-termynal-container="#explain"></script>
+</explain>

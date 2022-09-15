@@ -1,0 +1,115 @@
+<!---
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License. -->
+
+<menu style="background:black; margin:0rem">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container-fluid">
+           <a href="{{.Site.BaseURL}}"> <img src="{{.Site.BaseURL}}{{ .Site.Params.hiveLogo }}" width="60" height="35"  alt="Apache Software Foundation"></a>
+            <a class="header-text navbar-brand" href="{{.Site.BaseURL}}">Apache Hive</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/Release" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Release
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.release }}">Release</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.hcatalog }}">Hcatalog</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/Document" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Documentation
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.javaDocs }}">Javadocs</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.languageManual }}">Language Manual</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.wiki }}">Wiki</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/general" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            General
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.license2 }}">License</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.privacyPolicy }}">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Development
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.gettingStarted }}">Getting Started</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.designDocs }}">Design Docs</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.hiveJira }}">Hive JIRA</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.faq }}">Hive Developer FAQ</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.precommit }}">Precommit Patch Testing</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.vcs }}">Version Control</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Community
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.commiter }}">Becoming A Committer</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.contribute }}">How To Contribute</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.resourcesForDev }}">Resources for Contributors</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.mailinglists }}">Mailing Lists</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.issueTracking }}">Issue Tracking</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.people }}">People</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.bylaws }}">By Laws</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.howToRelease }}">How To Release</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            ASF
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.donate }}">Donations</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.sponsors }}">Sponsorship</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.thanks }}">Thanks</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.apacheUrl }}">Website</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</menu>
