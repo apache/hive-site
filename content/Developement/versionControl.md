@@ -1,7 +1,7 @@
 ---
 title: "VersionControl"
 date: 2022-09-14T00:34:39+05:30
-draft: true
+draft: false
 ---
 
 <!---

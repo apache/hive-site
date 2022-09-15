@@ -1,7 +1,7 @@
 ---
 title: "MailingList"
 date: 2022-09-14T01:01:04+05:30
-draft: true
+draft: false
 ---
 
 <!---

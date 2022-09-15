@@ -1,5 +1,4 @@
 .idea
-.hugo_build.lock
 .DS_Store
 themes/.DS_Store
 themes/hive/.DS_Store

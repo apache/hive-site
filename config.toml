@@ -1,4 +1,4 @@
-baseURL = 'https://simhadri-g.github.io/hive-site-hugo'
+baseURL = 'https://simhadri-g.github.io/hive-site'
 languageCode = 'en-us'
 title = 'Hive Site'
 theme = 'hive'

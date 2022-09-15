@@ -1,7 +1,7 @@
 ---
 title: "Privacy Policy"
 date: 2022-09-13T19:35:56+05:30
-draft: true
+draft: false
 ---
 
 <!---
