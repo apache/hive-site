@@ -1,0 +1,10 @@
+<hs2terminal class="col-md">
+    <div id="termynal" data-termynal data-termynal data-ty-typeDelay="40" data-ty-lineDelay="700">
+        <span data-ty="input">beeline -u "jdbc:hive2://host:10001/default"</span>
+        <span data-ty>Connected to: Apache Hive </span>
+        <span data-ty></span>
+        <span data-ty="input">jdbc:hive2://host:10001/>select count(*) from test_t1;</span>
+        <span data-ty></span>
+    </div>
+    <script  src="{{ .Site.BaseURL }}/js/termynal.js"></script>
+</hs2terminal>

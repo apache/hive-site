@@ -1,0 +1,149 @@
+<features class="container text-style white-background">
+
+    <div class="row feature-intro">
+        <h2 class="topic-text-style" style="text-align: center;">What is Hive?</h2>
+        <p>
+            Apache Hive is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale.
+            Hive Metastore(HMS) provides a central repository of metadata that can easily be analyzed to make informed,
+            data driven decisions and therefore it is a critical component of many data lake architectures.
+
+            Hive is built on top of Apache Hadoop and supports storage on S3, adls, gs etc though hdfs.
+            Hive allows users to read, write, and manage petabytes of data using SQL.
+        </p>
+    </div>
+    <div class="row divs">
+        {{- partial "hs2terminal.html" . -}}
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive-Server 2 (HS2)</h2>
+            <p>
+                HS2 supports multi-client concurrency and authentication.
+                It is designed to provide better support for open API clients like JDBC and ODBC.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/hive/hiveserver2" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="row divs">
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive Metastore Server (HMS)</h2>
+            <p>
+                The Hive Metastore (HMS) is a central repository of metadata for Hive tables and partitions in a relational database,
+                and provides clients (including Hive, Impala and Spark) access to this information using the metastore service API.
+                It has become a building block for data lakes that utilize the diverse world of open-source software, such as Apache Spark and Presto.
+                In fact, a whole ecosystem of tools, open-source and otherwise, are built around the Hive Metastore, some of which this diagram illustrates.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/hive/design" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+        <div class="col-md">
+            <a href="{{ .Site.Params.apache.apacheURL }}">
+                <img src="{{.Site.BaseURL}}/images/hms.jpg" width="600" height="300"  alt="Apache Software Foundation"></a>
+            </a>
+        </div>
+    </div>
+
+    <div class="row divs">
+        <div class="col-md ">
+            <a href="{{ .Site.Params.apache.apacheURL }}">
+                <img src="{{.Site.BaseURL}}/images/hive.svg" width="250" height="250"  alt="Apache Software Foundation"></a>
+            </a>
+            <a href="{{ .Site.Params.apache.apacheURL }}">
+                <img src="{{.Site.BaseURL}}/images/acid.png" width="250" height="300"  alt="Apache Software Foundation"></a>
+            </a>
+        </div>
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive ACID</h2>
+            <p>
+                Hive provides full acid support for ORC tables out and insert only support to all other formats.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/hive/hive+transactions" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="row divs">
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive Data Compaction</h2>
+            <p>
+                Query-based and MR-based data compactions are supported out-of-the-box.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/hive/languagemanual+ddl#LanguageManualDDL-AlterTable/PartitionCompact" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+        <div class="col-md">
+            {{- partial "compaction.html" . -}}
+        </div>
+    </div>
+
+
+    <div class="row divs">
+        <div class="col-md">
+        </div>
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive Replication</h2>
+            <p>
+                Hive supports bootstap and incremental replication of disaster backup and recovery.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/Hive/Replication" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="row divs">
+
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Security and Observability</h2>
+            <p>
+                Apache Hive supports kerberos auth and integrates with Apache Ranger and Apache Atlas for security and
+                observability.
+            </p>
+            <a href="https://atlas.apache.org/1.2.0/Hook-Hive.html" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+        <div  class="col-md">
+            <img src="{{.Site.BaseURL}}/images/ker.jpeg" width="200" height="150"  alt="Apache Software Foundation"></a>
+            <img src="{{.Site.BaseURL}}/images/atlas.png" width="400" height="100"  alt="Apache Software Foundation"></a>
+            <img src="{{.Site.BaseURL}}/images/ranger.png" width="400" height="100"  alt="Apache Software Foundation"></a>
+        </div>
+    </div>
+    <div class="row divs">
+        <div class="col-md">
+
+        </div>
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Hive LLAP</h2>
+            <p>
+                Apache Hive enables interactive and subsecond SQL through Low Latency Analytical Processing (LLAP),
+                introduced in Hive 2.0 that makes Hive faster by using persistent query infrastructure and optimized data caching
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/Hive/LLAP" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+
+    </div>
+    <div class="row divs">
+
+        <div class="col-md feature-border">
+            <h2 class="topic-text-style">Query planner and Cost based Optimizer</h2>
+            <p>
+                Hive used  Apache Calcite's cost based query optimizer (CBO) and query execution framework to optimize sql queries.
+            </p>
+            <a href="https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive" class="icon-block">
+                <button class="custom-button feature-button-style" role="button">Learn More</button>
+            </a>
+        </div>
+        <div class="col-md">
+            {{- partial "explain.html" . -}}
+        </div>
+    </div>
+</features>

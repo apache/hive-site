@@ -1,0 +1,88 @@
+<menu style="background:black; margin:0rem">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container-fluid">
+            <img src="{{.Site.BaseURL}}{{ .Site.Params.hiveLogo }}" width="60" height="35"  alt="Apache Software Foundation"></a>
+            <a class="header-text navbar-brand" href="{{.Site.BaseURL}}">Apache Hive</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.release }}">Release</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/Document" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Documentation
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.javaDocs }}">Javadocs</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.languageManual }}">Language Manual</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.wiki }}">Wiki</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/general" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            General
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.license2 }}">License</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.privacyPolicy }}">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Development
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.designDocs }}">Design Docs</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.hiveJira }}">Hive JIRA</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.faq }}">Hive Developer FAQ</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.precommit }}">Precommit Patch Testing</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.vcs }}">Version Control</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Community
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.commiter }}">Becoming A Committer</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.contribute }}">How To Contribute</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.resourcesForDev }}">Resources for Contributors</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.mailinglist }}">Mailing List</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.issueTracking }}">Issue Tracking</a></li>
+                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.people }}">People</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.bylaws }}">By Laws</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.navbar.howToRelease }}">How To Release</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            ASF
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.donate }}">Donations</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.sponsors }}">Sponsorship</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.thanks }}">Thanks</a></li>
+                            <li><a class="dropdown-item" href="{{ .Site.Params.apache.apacheUrl }}">Website</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</menu>
