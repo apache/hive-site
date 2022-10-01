@@ -40,3 +40,12 @@ theme = 'hive'
     people = "/community/people/"
     bylaws = "https://cwiki.apache.org/confluence/display/Hive/Bylaws"
     howToRelease = "https://cwiki.apache.org/confluence/display/Hive/HowToRelease"
+
+[params.features]
+    acidTxn = "https://cwiki.apache.org/confluence/display/hive/hive+transactions"
+    hs2 = "https://cwiki.apache.org/confluence/display/hive/hiveserver2"
+    hms = "https://cwiki.apache.org/confluence/display/hive/design"
+    compactions = "https://cwiki.apache.org/confluence/display/hive/languagemanual+ddl#LanguageManualDDL-AlterTable/PartitionCompact"
+    repl = "https://cwiki.apache.org/confluence/display/Hive/Replication"
+    cbo = "https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive"
+    llap = "https://cwiki.apache.org/confluence/display/Hive/LLAP"

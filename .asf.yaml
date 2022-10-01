@@ -1,3 +1,6 @@
+publish:
+  whoami: asf-site
+
 
 notifications:
   commits:      commits@hive.apache.org

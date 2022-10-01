@@ -3,7 +3,7 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - new-site  # Set a branch to deploy
+      - main  # Set a branch to deploy
   pull_request:
 
 jobs:
@@ -31,6 +31,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages
+          publish_branch: asf-site
           destination_dir: ./
           keep_files: true
