@@ -32,7 +32,7 @@ directory.
 
 ## News
 ### 16 November 2022: release 4.0.0-alpha-2 available
-This release works with Hadoop 3.x.y
+This release works with Hadoop 3.3.1
 You can look at the complete [JIRA change log for this release][HIVE_4_0_0_A_2_CL].
 
 ### 08 April 2022: release 3.1.3 available
