@@ -1,7 +1,6 @@
 publish:
   whoami: asf-site
 
-
 notifications:
   commits:      commits@hive.apache.org
   issues:       gitbox@hive.apache.org

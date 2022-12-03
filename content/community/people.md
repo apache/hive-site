@@ -39,6 +39,7 @@ at all contributors to our issue tracker, mailing list and version control.
 |-----------------|-------------------------|----------------------------------------------------|------|
 | aihuaxu         | Aihua Xu                | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | athusoo         | Ashish Thusoo           | <a href="http://qubole.com/">Qubole</a>            |      |
+| ayushsaxena     | Ayush Saxena            | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | brock           | Brock Noland            | <a href="http://streamsets.com/">StreamSets</a>    |      |
 | ctang           | Chaoyu Tang             | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | cws             | Carl Steinbach          | <a href="http://linkedin.com">LinkedIn</a>         |      |

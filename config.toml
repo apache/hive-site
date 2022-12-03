@@ -1,4 +1,4 @@
-baseURL = 'https://simhadri-g.github.io/hive-site'
+baseURL = 'https://hive.apache.org/'
 languageCode = 'en-us'
 title = 'Hive Site'
 theme = 'hive'
@@ -15,13 +15,14 @@ theme = 'hive'
     privacyPolicy = "https://privacy.apache.org/policies/privacy-policy-public.html"
     apacheEvents = "https://www.apache.org/events/current-event"
     security = "https://www.apache.org/security/"
-    sponsors = "https://www.apache.org/foundation/thanks.html"
-    donate = "https://www.apache.org/foundation/sponsorship.html"
-    copyright = "The contents of this website are © 2022 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation."
+    sponsors = "https://www.apache.org/foundation/sponsorship.html"
+    donate = "https://www.apache.org/foundation/contributing.html"
+    copyright = "The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation."
     thanks = "https://www.apache.org/foundation/thanks.html"
 
 [params.navbar]
     release = "/general/downloads"
+    hcatalog = "/general/hcatalogdownloads/"
     javaDocs = "/docs/javadocs/"
     languageManual = "https://cwiki.apache.org/confluence/display/Hive/LanguageManual"
     wiki = "https://cwiki.apache.org/confluence/display/Hive/"
@@ -35,15 +36,16 @@ theme = 'hive'
     commiter = "https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter"
     contribute = "https://cwiki.apache.org/confluence/display/Hive/HowToContribute"
     resourcesForDev = "https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors"
-    mailinglist = "/community/mailinglist/"
+    mailinglists = "/community/mailinglists/"
     issueTracking = "/community/issuetracking/"
     people = "/community/people/"
     bylaws = "https://cwiki.apache.org/confluence/display/Hive/Bylaws"
     howToRelease = "https://cwiki.apache.org/confluence/display/Hive/HowToRelease"
+    gettingStarted = "/developement/gettingstarted/"
 
 [params.features]
     acidTxn = "https://cwiki.apache.org/confluence/display/hive/hive+transactions"
-    hs2 = "https://cwiki.apache.org/confluence/display/hive/hiveserver2"
+    hs2 = "https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview"
     hms = "https://cwiki.apache.org/confluence/display/hive/design"
     compactions = "https://cwiki.apache.org/confluence/display/hive/languagemanual+ddl#LanguageManualDDL-AlterTable/PartitionCompact"
     repl = "https://cwiki.apache.org/confluence/display/Hive/Replication"

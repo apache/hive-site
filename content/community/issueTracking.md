@@ -26,10 +26,12 @@ draft: false
 ---
 
 Hive tracks both bugs and enhancement requests using [Apache
-JIRA]({{ site.jira }}/HIVE). We welcome input,
+JIRA][JIRA]. We welcome input,
 however, before filing a request, please make sure you do the
 following:
 
 * Search the JIRA database.
-* Check the [user mailing list](/mailing_lists.html), both by searching the archives and by asking questions.
+* Check the [user mailing list][mailingLists], both by searching the archives and by asking questions.
 
+[JIRA]:https://issues.apache.org/jira/browse/HIVE
+[mailingLists]: /community/mailinglists/

@@ -1,5 +1,5 @@
 ---
-title: "MailingList"
+title: "MailingLists"
 date: 2022-09-14T01:01:04+05:30
 draft: false
 ---
@@ -22,7 +22,7 @@ draft: false
   specific language governing permissions and limitations
   under the License. -->
 
-# Mailing List
+# Mailing Lists
 ---
 
 We welcome you to join our mailing lists and let us know about your thoughts or
