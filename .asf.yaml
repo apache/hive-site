@@ -1,6 +1,3 @@
 publish:
   whoami: asf-site
 
-jekyll:
-  whoami: main
-  target: asf-site
