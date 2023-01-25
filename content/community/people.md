@@ -2,6 +2,7 @@
 title: "People"
 date: 2022-09-14T01:23:03+05:30
 draft: false
+aliases: [/people.html]
 ---
 
 <!---

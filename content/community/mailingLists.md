@@ -2,6 +2,8 @@
 title: "MailingLists"
 date: 2022-09-14T01:01:04+05:30
 draft: false
+aliases: [/mailing_lists.html]
+
 ---
 
 <!---
