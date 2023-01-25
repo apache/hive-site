@@ -2,6 +2,7 @@
 title: "Downloads"
 date: 2022-09-13T19:16:15+05:30
 draft: false
+aliases: [/downloads.html]
 ---
 
 <!---
