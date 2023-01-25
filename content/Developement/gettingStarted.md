@@ -2,7 +2,6 @@
 title: "GettingStarted"
 date: 2023-01-10T12:35:11+05:30
 draft: false
-aliases: [/GettingStarted]
 ---
 
 <!---
