@@ -1,5 +1,5 @@
 ---
-title: "HcatalogDownloads"
+title: "Hcatalog Downloads"
 date: 2022-12-03T20:28:28+05:30
 draft: false
 ---

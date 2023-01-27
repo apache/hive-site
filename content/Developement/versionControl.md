@@ -1,5 +1,5 @@
 ---
-title: "VersionControl"
+title: "Version Control"
 date: 2022-09-14T00:34:39+05:30
 draft: false
 aliases: [/version_control.html]
@@ -26,7 +26,7 @@ aliases: [/version_control.html]
 # Version Control
 ---
 
-The Hive source code resides in Apache's [Hive GitHub]({{ site.repository }})
+The Hive source code resides in Apache's [Hive GitHub](https://github.com/apache/hive)
 
 * Anonymous clone via http - <https://github.com/apache/hive.git>
 * Authenticated clone via ssh - git@github.com:apache/hive.git

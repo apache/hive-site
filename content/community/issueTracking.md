@@ -1,5 +1,5 @@
 ---
-title: "IssueTracking"
+title: "Issue Tracking"
 date: 2022-09-14T01:05:14+05:30
 draft: false
 aliases: [/issue_tracking.html]
