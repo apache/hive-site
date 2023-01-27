@@ -1,3 +1,9 @@
+---
+title: "Apache Hive"
+date: 2023-01-27T19:16:15+05:30
+draft: false
+---
+
 <!---
   Licensed to the Apache Software Foundation (ASF) under one
   or more contributor license agreements.  See the NOTICE file
