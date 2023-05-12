@@ -24,14 +24,17 @@
             <h1 class="text-outline black-text">Apache  Hive </h1>
             <h4 class="thin"> The Apache Hive ™ is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale and
                 facilitates reading, writing, and managing petabytes of data residing in distributed storage using SQL.</h4>
-            <a href="https://github.com/apache/hive" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Github <i class="fa fa-github" style="font-size:35px"></i></button>
+            <a href="{{ .Site.Params.banner.github }}" class="icon-block">
+                <button class="custom-button banner-button-style" role="button">Github <i class="fab fa-github" style="font-size:35px"></i></button>
             </a>
             <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.mailinglists }}" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Mail <i class="fa fa-envelope" style="font-size:35px"></i></button>
+                <button class="custom-button banner-button-style" role="button">Mail <i class="fa-solid fa-envelope" style="font-size:35px"></i></button>
             </a>
-            <a href="https://lists.apache.org/list.html?dev@hive.apache.org" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Community <i class='fa fa-comments' style='font-size:35px'></i></button>
+            <a href="{{ .Site.Params.banner.docker }}" class="icon-block">
+                <button class="custom-button banner-button-style" role="button">Docker <i class="fab fa-docker" style='font-size:35px'></i></button>
+            </a>
+            <a href="{{ .Site.Params.banner.jira }}" class="icon-block">
+                <button class="custom-button banner-button-style" role="button">Community <i class='fa-solid fa-comments' style='font-size:35px'></i></button>
             </a>
         </div>
     </div>

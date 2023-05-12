@@ -262,9 +262,9 @@
 p,
 .splendor-p {
   font-size: 1.2rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.0rem;
   padding-top: 1rem;
-  padding-bottom:1rem;
+  padding-bottom:0rem;
 }
 
 /* https://github.com/mrmrs/fluidity */
@@ -303,6 +303,7 @@ pre {
   font-size: 1rem;
   overflow-x: scroll;
   padding: 1.125em;
+  display: inline-flex;
 }
 
 h1{
