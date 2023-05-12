@@ -8,6 +8,11 @@ theme = 'hive'
   apacheURL = 'https://www.apache.org'
   javaDocUrl = 'https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs'
 
+[params.banner]
+    github = "https://github.com/apache/hive"
+    docker = "https://hub.docker.com/r/apache/hive"
+    jira = "https://issues.apache.org/jira/projects/HIVE/issues"
+
 [params.apache]
     apacheUrl = "https://www.apache.org/"
     license = "https://www.apache.org/licenses/"
@@ -42,6 +47,7 @@ theme = 'hive'
     bylaws = "https://cwiki.apache.org/confluence/display/Hive/Bylaws"
     howToRelease = "https://cwiki.apache.org/confluence/display/Hive/HowToRelease"
     gettingStarted = "/developement/gettingstarted/"
+    docker = "/developement/quickstart/"
 
 [params.features]
     acidTxn = "https://cwiki.apache.org/confluence/display/hive/hive+transactions"

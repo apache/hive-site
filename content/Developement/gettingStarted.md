@@ -37,6 +37,9 @@ Hive.
 * Read the [Getting Started Guide][GETTING_STARTED] to learn how to install Hive
 * The [User and Hive SQL documentation][HIVE_QL] shows how to program Hive
 
+## Quick start with Docker
+---
+Checkout the quickstart with Docker here: [DOCKER_QUICKSTART]
 
 # Getting Involved With The Apache Hive Community
 ---
@@ -62,5 +65,6 @@ project and contribute your expertise.
 [COMMUNITY]: /community/people/
 [CONTRIBUTOR]: https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors
 [HIVE_TWITTER]: https://twitter.com/apachehive
+[DOCKER_QUICKSTART]: /developement/quickstart/
 
 
