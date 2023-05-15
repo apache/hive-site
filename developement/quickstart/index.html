@@ -1,0 +1,279 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>QuickStarted</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Release id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Release
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/general/downloads>Release</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/hcatalogdownloads/>Hcatalog</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/>Wiki</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/developement/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/developement/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/developement/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h3 id=introduction>Introduction</h3>
+<hr>
+<p>Run Apache Hive inside docker container in pseudo-distributed mode, inorder to provide the following Quick-start/Debugging/Prepare a test env for Hive</p>
+<h3 id=quickstart>Quickstart</h3>
+<hr>
+<h5 id=step-1-pull-the-image><strong>STEP 1: Pull the image</strong></h5>
+<ul>
+<li>Pull the image from DockerHub: <a href=https://hub.docker.com/r/apache/hive/tags>https://hub.docker.com/r/apache/hive/tags</a>. Currently, there are 3 images released:
+<ul>
+<li>4.0.0-alpha-2</li>
+<li>4.0.0-alpha-1</li>
+<li>3.1.3</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker pull apache/hive:4.0.0-alpha-2
+</code></pre></div><p><code> </code></p>
+<h5 id=step-2-export-the-hive-version><strong>STEP 2: Export the Hive version</strong></h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0-alpha-2
+</code></pre></div><p><code> </code></p>
+<h5 id=step-3--launch-the-hiveserver2-with-an-embedded-metastore><strong>STEP 3: Launch the HiveServer2 with an embedded Metastore.</strong></h5>
+<p>This is lightweight and for a quick setup, it uses Derby as metastore db.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME<span style=color:#f92672>=</span>hiveserver2 --name hive4 apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p><code> </code></p>
+<h5 id=step-4-connect-to-beeline><strong>STEP 4: Connect to beeline</strong></h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker exec -it hiveserver2 beeline -u <span style=color:#e6db74>&#39;jdbc:hive2://hiveserver2:10000/&#39;</span>
+</code></pre></div><p><code> </code></p>
+<h5 id=note-launch-standalone-metastore-to-use-standalone-metastore-with-derby>Note: Launch Standalone Metastore To use standalone Metastore with Derby,</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p><code> </code></p>
+<h2 id=detailed-setup>Detailed Setup</h2>
+<hr>
+<h5 id=--build-image>- Build image</h5>
+<p>Apache Hive relies on Hadoop, Tez and some others to facilitate reading, writing, and managing large datasets.
+The <a href=https://github.com/apache/hive/blob/master/packaging/src/docker/build.sh>/packaging/src/docker/build.sh</a> provides ways to build the image against specified version of the dependent, as well as build from source.</p>
+<h5 id=--build-from-source>- Build from source</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mvn clean package -pl packaging -DskipTests -Pdocker
+</code></pre></div><p><code> </code></p>
+<h5 id=--build-with-specified-version>- Build with specified version</h5>
+<p>There are some arguments to specify the component version:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>-hadoop &lt;hadoop version&gt;
+-tez &lt;tez version&gt;
+-hive &lt;hive version&gt; 
+</code></pre></div><p>If the version is not provided, it will read the version from current <code>pom.xml</code>:
+<code>project.version</code>, <code>hadoop.version</code> and <code>tez.version</code> for Hive, Hadoop and Tez respectively.
+For example, the following command uses Hive 4.0.0-alpha-2, Hadoop <code>hadoop.version</code> and Tez <code>tez.version</code> to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hive 4.0.0-alpha-2
+</code></pre></div><p>If the command does not specify the Hive version, it will use the local <code>apache-hive-${project.version}-bin.tar.gz</code>(will trigger a build if it doesn&rsquo;t exist),
+together with Hadoop 3.1.0 and Tez 0.10.1 to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hadoop 3.1.0 -tez 0.10.1
+</code></pre></div><p>After building successfully, we can get a Docker image named <code>apache/hive</code> by default, the image is tagged by the provided Hive version.</p>
+<h3 id=run-services>Run services</h3>
+<hr>
+<p>Before going further, we should define the environment variable <code>HIVE_VERSION</code> first.
+For example, if <code>-hive 4.0.0-alpha-2</code> is specified to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0-alpha-2
+</code></pre></div><p>or assuming that you&rsquo;re relying on current <code>project.version</code> from pom.xml,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mvn -f pom.xml -q help:evaluate -Dexpression<span style=color:#f92672>=</span>project.version -DforceStdout<span style=color:#66d9ef>)</span>
+</code></pre></div><p><code> </code></p>
+<h5 id=--metastore><strong>- Metastore</strong></h5>
+<p>For a quick start, launch the Metastore with Derby,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>Everything would be lost when the service is down. In order to save the Hive table&rsquo;s schema and data, start the container with an external Postgres and Volume to keep them,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>     --env DB_DRIVER<span style=color:#f92672>=</span>postgres <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>     --env SERVICE_OPTS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore_db -Djavax.jdo.option.ConnectionUserName=hive -Djavax.jdo.option.ConnectionPassword=password&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>     --mount source<span style=color:#f92672>=</span>warehouse,target<span style=color:#f92672>=</span>/opt/hive/data/warehouse <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>     --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>If you want to use your own <code>hdfs-site.xml</code> or <code>yarn-site.xml</code> for the service, you can provide the environment variable <code>HIVE_CUSTOM_CONF_DIR</code> for the command. For instance, put the custom configuration file under the directory <code>/opt/hive/conf</code>, then run,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>      --env DB_DRIVER<span style=color:#f92672>=</span>postgres -v /opt/hive/conf:/hive_custom_conf --env HIVE_CUSTOM_CONF_DIR<span style=color:#f92672>=</span>/hive_custom_conf <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>      --name metastore apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p><code> </code></p>
+<h5 id=--hiveserver2><strong>- HiveServer2</strong></h5>
+<p>Launch the HiveServer2 with an embedded Metastore,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME<span style=color:#f92672>=</span>hiveserver2 --name hiveserver2-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>or specify a remote Metastore if it&rsquo;s available,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME<span style=color:#f92672>=</span>hiveserver2 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>      --env SERVICE_OPTS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-Dhive.metastore.uris=thrift://metastore:9083&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>      --env IS_RESUME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>      --name hiveserver2-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>To save the data between container restarts, you can start the HiveServer2 with a Volume,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME<span style=color:#f92672>=</span>hiveserver2 <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --env SERVICE_OPTS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-Dhive.metastore.uris=thrift://metastore:9083&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --mount source<span style=color:#f92672>=</span>warehouse,target<span style=color:#f92672>=</span>/opt/hive/data/warehouse <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --env IS_RESUME<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;true&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --name hiveserver2 apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p><code> </code></p>
+<h5 id=--hiveserver2-metastore><strong>- HiveServer2, Metastore</strong></h5>
+<p>To get a quick overview of both HiveServer2 and Metastore, you can run:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>    cd packaging/src/docker
+    docker compose up -d
+</code></pre></div><p>Volumes are used to persist data generated by Hive inside Postgres and HiveServer2 containers:</p>
+<ul>
+<li>hive_db
+<ul>
+<li>The volume persists the metadata of Hive tables inside Postgres container.</li>
+</ul>
+</li>
+<li>warehouse
+<ul>
+<li>The volume stores tables' files inside HiveServer2 container.</li>
+</ul>
+</li>
+</ul>
+<h3 id=usage>Usage</h3>
+<hr>
+<ul>
+<li>HiveServer2 web
+<ul>
+<li>Accessed on browser at http://localhost:10002/</li>
+</ul>
+</li>
+<li>Beeline:
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker exec -it hiveserver2 beeline -u <span style=color:#e6db74>&#39;jdbc:hive2://hiveserver2:10000/&#39;</span>
+ <span style=color:#75715e># If beeline is installed on host machine, HiveServer2 can be simply reached via:</span>
+ beeline -u <span style=color:#e6db74>&#39;jdbc:hive2://localhost:10000/&#39;</span>
+</code></pre></div></li>
+<li>Run some queries
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>  <span style=color:#66d9ef>show</span> tables;
+  <span style=color:#66d9ef>create</span> <span style=color:#66d9ef>table</span> hive_example(a string, b int) partitioned <span style=color:#66d9ef>by</span>(<span style=color:#66d9ef>c</span> int);
+  <span style=color:#66d9ef>alter</span> <span style=color:#66d9ef>table</span> hive_example <span style=color:#66d9ef>add</span> partition(<span style=color:#66d9ef>c</span><span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>);
+  <span style=color:#66d9ef>insert</span> <span style=color:#66d9ef>into</span> hive_example partition(<span style=color:#66d9ef>c</span><span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>values</span>(<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>1</span>), (<span style=color:#e6db74>&#39;a&#39;</span>, <span style=color:#ae81ff>2</span>),(<span style=color:#e6db74>&#39;b&#39;</span>,<span style=color:#ae81ff>3</span>);
+  <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>count</span>(<span style=color:#66d9ef>distinct</span> a) <span style=color:#66d9ef>from</span> hive_example;
+  <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>sum</span>(b) <span style=color:#66d9ef>from</span> hive_example;
+</code></pre></div></li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>
