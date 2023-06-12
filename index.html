@@ -1,4 +1,5 @@
-<!doctype html><html><!doctype html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"><!doctype html>
 <html>
 <head>
     <meta name=generator content="Hugo 0.91.2">
@@ -20,6 +21,14 @@
     <link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
     <meta name=msapplication-TileColor content="#da532c">
     <meta name=theme-color content="#ffffff">
+    <style>
+        body {
+            background-image: url('hivebg.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <body>
@@ -112,17 +121,24 @@
     </menu>
 </header>
 <div class=content>
-    <banner>
-        <div id=large-header class=large-header>
-            <canvas id=canvas></canvas>
-            <div class=main-title>
-                <a href=https://hive.apache.org><img src=https://hive.apache.org/images/hive.svg width=550 height=300 alt="Apache Software Foundation"></a>
-                <h1 class="text-outline black-text">Apache Hive Blogs</h1>
-                <h4 class=thin> Blogs/Designs related to Apache Hive.</h4>
-            </div>
-        </div>
-        <script src=https://hive.apache.org/js/script.js></script>
-    </banner>
+      <h1 class="black-text" style="color:black; text-align: center;" >Apache Hive Blogs</h1>
+    <hr>
+
+    <ul>
+        <!--    Add links to blogs here at top, using same li element -->
+        <li>
+            <h3>
+                <a style="text-decoration:none"
+                   href="https://blog.cloudera.com/open-data-lakehouse-powered-by-iceberg-for-all-your-data-warehouse-needs/">
+                    Open Data Lakehouse powered by Iceberg for all your Data Warehouse needs</a></h3>
+                <p><strong>Authors</strong>:
+                <a style="text-decoration:none" href="https://www.linkedin.com/in/zolt%C3%A1n-bor%C3%B3k-nagy-7370a65b/">Zoltan Borok-Nagy</a>,
+                <a style="text-decoration:none" href="https://www.linkedin.com/in/ayush-saxena151/">Ayush Saxena</a>,
+                <a style="text-decoration:none" href="https://www.linkedin.com/in/tmater/">Tamas Mate</a>,
+                <a style="text-decoration:none" href="https://www.linkedin.com/in/simhadri-govindappa-1a7788148/">Simhadri Govindappa</a></p>
+        </li>
+    </ul>
+
 </div>
 <footer class="black-background static-bottom" style=padding:30px>
     <div class=row>
