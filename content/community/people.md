@@ -46,7 +46,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | cws             | Carl Steinbach          | <a href="http://linkedin.com">LinkedIn</a>         |      |
 | denys           | Denys Kuzmenko          | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | daijy           | Daniel Dai              | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
-| ecapriolo       | Edward Capriolo         | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
+| ecapriolo       | Edward Capriolo         |                                                    |      |
 | gates           | Alan Gates              | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | gopalv          | Gopal Vijayaraghavan    | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | gunther         | Gunther Hagleitner      | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
