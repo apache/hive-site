@@ -110,6 +110,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | rbalamohan      | Rajesh Balamohan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | remusr          | Remus Rusanu                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | sankarh         | Sankar Hariappan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
+| sbadhya         | Sourabh Badhya                    | <a href="http://cloudera.com/">Cloudera</a>                                  |
 | sdong           | Siying Dong                       | <a href="http://facebook.com/">Facebook</a>                                  |
 | sseth           | Siddharth Seth                    | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | szita           | Adam Szita                        | <a href="http://cloudera.com/">Cloudera</a>                                  |
