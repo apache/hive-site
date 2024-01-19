@@ -175,16 +175,19 @@ For example, if <code>-hive 4.0.0-alpha-2</code> is specified to build the image
 <p>For a quick start, launch the Metastore with Derby,</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
 </code></pre></div><p>Everything would be lost when the service is down. In order to save the Hive table&rsquo;s schema and data, start the container with an external Postgres and Volume to keep them,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>     --env DB_DRIVER<span style=color:#f92672>=</span>postgres <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>     --env SERVICE_OPTS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore_db -Djavax.jdo.option.ConnectionUserName=hive -Djavax.jdo.option.ConnectionPassword=password&#34;</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>     --mount source<span style=color:#f92672>=</span>warehouse,target<span style=color:#f92672>=</span>/opt/hive/data/warehouse <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>     --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
-</code></pre></div><p>If you want to use your own <code>hdfs-site.xml</code> or <code>yarn-site.xml</code> for the service, you can provide the environment variable <code>HIVE_CUSTOM_CONF_DIR</code> for the command. For instance, put the custom configuration file under the directory <code>/opt/hive/conf</code>, then run,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>      --env DB_DRIVER<span style=color:#f92672>=</span>postgres -v /opt/hive/conf:/hive_custom_conf --env HIVE_CUSTOM_CONF_DIR<span style=color:#f92672>=</span>/hive_custom_conf <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>      --name metastore apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
-</code></pre></div><p><code> </code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore --env DB_DRIVER<span style=color:#f92672>=</span>postgres <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --env SERVICE_OPTS<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore_db -Djavax.jdo.option.ConnectionUserName=hive -Djavax.jdo.option.ConnectionPassword=password&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --mount source<span style=color:#f92672>=</span>warehouse,target<span style=color:#f92672>=</span>/opt/hive/data/warehouse <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --mount type<span style=color:#f92672>=</span>bind,source<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>mvn help:evaluate -Dexpression<span style=color:#f92672>=</span>settings.localRepository -q -DforceStdout<span style=color:#e6db74>`</span>/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar,target<span style=color:#f92672>=</span>/opt/hive/lib/postgres.jar <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --name metastore-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>If you want to use your own <code>hdfs-site.xml</code> or <code>yarn-site.xml</code> for the service, you can provide the environment variable <code>HIVE_CUSTOM_CONF_DIR</code> for the command. For instance, put the custom configuration file under the directory <code>/opt/hive/conf</code>, then,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker run -d -p 9083:9083 --env SERVICE_NAME<span style=color:#f92672>=</span>metastore --env DB_DRIVER<span style=color:#f92672>=</span>postgres <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   -v /opt/hive/conf:/hive_custom_conf --env HIVE_CUSTOM_CONF_DIR<span style=color:#f92672>=</span>/hive_custom_conf <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --mount type<span style=color:#f92672>=</span>bind,source<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>mvn help:evaluate -Dexpression<span style=color:#f92672>=</span>settings.localRepository -q -DforceStdout<span style=color:#e6db74>`</span>/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar,target<span style=color:#f92672>=</span>/opt/hive/lib/postgres.jar <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>   --name metastore apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
+</code></pre></div><p>For Hive releases before 4.0, if you want to upgrade the existing external Metastore schema to the target version, then add &ndash;env SCHEMA_COMMAND=upgradeSchema to the command.
+To skip schematool initialisation or upgrade for metastore use &ndash;env IS_RESUME=&ldquo;true&rdquo;, and for verbose logging set &ndash;env VERBOSE=&ldquo;true&rdquo;.</p>
+<p><code> </code></p>
 <h5 id=--hiveserver2><strong>- HiveServer2</strong></h5>
 <p>Launch the HiveServer2 with an embedded Metastore,</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell> docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME<span style=color:#f92672>=</span>hiveserver2 --name hiveserver2-standalone apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
@@ -201,10 +204,17 @@ For example, if <code>-hive 4.0.0-alpha-2</code> is specified to build the image
 </span><span style=color:#ae81ff></span>   --name hiveserver2 apache/hive:<span style=color:#e6db74>${</span>HIVE_VERSION<span style=color:#e6db74>}</span>
 </code></pre></div><p><code> </code></p>
 <h5 id=--hiveserver2-metastore><strong>- HiveServer2, Metastore</strong></h5>
-<p>To get a quick overview of both HiveServer2 and Metastore, you can run:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>    cd packaging/src/docker
-    docker compose up -d
-</code></pre></div><p>Volumes are used to persist data generated by Hive inside Postgres and HiveServer2 containers:</p>
+<p>To get a quick overview of both HiveServer2 and Metastore, there is a <code>docker-compose.yml</code> placed under <code>packaging/src/docker</code> for this purpose,
+specify the <code>POSTGRES_LOCAL_PATH</code> first:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export POSTGRES_LOCAL_PATH<span style=color:#f92672>=</span>your_local_path_to_postgres_driver
+</code></pre></div><p>Example:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mvn dependency:copy -Dartifact<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;org.postgresql:postgresql:42.5.1&#34;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>export POSTGRES_LOCAL_PATH<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>mvn help:evaluate -Dexpression<span style=color:#f92672>=</span>settings.localRepository -q -DforceStdout<span style=color:#e6db74>`</span>/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar 
+</code></pre></div><p>If you don&rsquo;t install maven or have problem in resolving the postgres driver, you can always download this jar yourself,
+change the <code>POSTGRES_LOCAL_PATH</code> to the path of the downloaded jar.</p>
+<p>Then,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker compose up -d
+</code></pre></div><p>HiveServer2, Metastore and Postgres services will be started as a consequence. Volumes are used to persist data generated by Hive inside Postgres and HiveServer2 containers:</p>
 <ul>
 <li>hive_db
 <ul>
@@ -217,7 +227,9 @@ For example, if <code>-hive 4.0.0-alpha-2</code> is specified to build the image
 </ul>
 </li>
 </ul>
-<h3 id=usage>Usage</h3>
+<p>To stop/remove them all,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker compose down
+</code></pre></div><h3 id=usage>Usage</h3>
 <hr>
 <ul>
 <li>HiveServer2 web
