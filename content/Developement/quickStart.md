@@ -16,9 +16,8 @@ Run Apache Hive inside docker container in pseudo-distributed mode, inorder to p
 
 ##### **STEP 1: Pull the image** 
 
-- Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. Currently, there are 3 images released:  
-  - 4.0.0-alpha-2
-  - 4.0.0-alpha-1
+- Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. Here are the latest images:
+  - 4.0.0-beta-1
   - 3.1.3
 ```shell
 docker pull apache/hive:4.0.0-alpha-2
@@ -116,8 +115,8 @@ If you want to use your own `hdfs-site.xml` or `yarn-site.xml` for the service, 
      --mount type=bind,source=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar,target=/opt/hive/lib/postgres.jar \
      --name metastore apache/hive:${HIVE_VERSION}
   ```
-For Hive releases before 4.0, if you want to upgrade the existing external Metastore schema to the target version, then add --env SCHEMA_COMMAND=upgradeSchema to the command.
-To skip schematool initialisation or upgrade for metastore use --env IS_RESUME="true", and for verbose logging set --env VERBOSE="true".
+For Hive releases before 4.0, if you want to upgrade the existing external Metastore schema to the target version, then add `--env SCHEMA_COMMAND=upgradeSchema` to the command.
+To skip schematool initialisation or upgrade for metastore use `--env IS_RESUME="true"`, for verbose logging set `--env VERBOSE="true"`.
 
 ` `
 #####  **- HiveServer2**
@@ -155,9 +154,7 @@ mvn dependency:copy -Dartifact="org.postgresql:postgresql:42.5.1" && \
 export POSTGRES_LOCAL_PATH=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar 
 ```
 If you don't install maven or have problem in resolving the postgres driver, you can always download this jar yourself,
-change the `POSTGRES_LOCAL_PATH` to the path of the downloaded jar.
-
-Then,
+change the `POSTGRES_LOCAL_PATH` to the path of the downloaded jar. Then,
 ```shell
 docker compose up -d
 ```
