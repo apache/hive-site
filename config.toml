@@ -48,6 +48,7 @@ theme = 'hive'
     howToRelease = "https://cwiki.apache.org/confluence/display/Hive/HowToRelease"
     gettingStarted = "/developement/gettingstarted/"
     docker = "/developement/quickstart/"
+    blogs = "https://hive.blog.apache.org/"
 
 [params.features]
     acidTxn = "https://cwiki.apache.org/confluence/display/hive/hive+transactions"
