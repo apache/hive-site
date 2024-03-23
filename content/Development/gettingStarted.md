@@ -65,6 +65,6 @@ project and contribute your expertise.
 [COMMUNITY]: /community/people/
 [CONTRIBUTOR]: https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors
 [HIVE_TWITTER]: https://twitter.com/apachehive
-[DOCKER_QUICKSTART]: /developement/quickstart/
+[DOCKER_QUICKSTART]: /development/quickstart/
 
 

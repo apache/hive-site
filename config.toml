@@ -37,7 +37,7 @@ theme = 'hive'
     hiveJira = "https://issues.apache.org/jira/projects/HIVE/issues"
     precommit = "https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing"
     faq = "https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ"
-    vcs = "/developement/versioncontrol/"
+    vcs = "/development/versioncontrol/"
     commiter = "https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter"
     contribute = "https://cwiki.apache.org/confluence/display/Hive/HowToContribute"
     resourcesForDev = "https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors"
@@ -46,8 +46,8 @@ theme = 'hive'
     people = "/community/people/"
     bylaws = "https://cwiki.apache.org/confluence/display/Hive/Bylaws"
     howToRelease = "https://cwiki.apache.org/confluence/display/Hive/HowToRelease"
-    gettingStarted = "/developement/gettingstarted/"
-    docker = "/developement/quickstart/"
+    gettingStarted = "/development/gettingstarted/"
+    docker = "/development/quickstart/"
     blogs = "https://hive.blog.apache.org/"
 
 [params.features]
