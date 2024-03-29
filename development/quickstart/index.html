@@ -126,15 +126,15 @@ ASF
 <ul>
 <li>Pull the image from DockerHub: <a href=https://hub.docker.com/r/apache/hive/tags>https://hub.docker.com/r/apache/hive/tags</a>. Here are the latest images:
 <ul>
-<li>4.0.0-beta-1</li>
+<li>4.0.0</li>
 <li>3.1.3</li>
 </ul>
 </li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker pull apache/hive:4.0.0-alpha-2
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker pull apache/hive:4.0.0
 </code></pre></div><p><code> </code></p>
 <h5 id=step-2-export-the-hive-version><strong>STEP 2: Export the Hive version</strong></h5>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0-alpha-2
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0
 </code></pre></div><p><code> </code></p>
 <h5 id=step-3--launch-the-hiveserver2-with-an-embedded-metastore><strong>STEP 3: Launch the HiveServer2 with an embedded Metastore.</strong></h5>
 <p>This is lightweight and for a quick setup, it uses Derby as metastore db.</p>
@@ -161,17 +161,17 @@ The <a href=https://github.com/apache/hive/blob/master/packaging/src/docker/buil
 -hive &lt;hive version&gt; 
 </code></pre></div><p>If the version is not provided, it will read the version from current <code>pom.xml</code>:
 <code>project.version</code>, <code>hadoop.version</code> and <code>tez.version</code> for Hive, Hadoop and Tez respectively.
-For example, the following command uses Hive 4.0.0-alpha-2, Hadoop <code>hadoop.version</code> and Tez <code>tez.version</code> to build the image,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hive 4.0.0-alpha-2
+For example, the following command uses Hive 4.0.0, Hadoop <code>hadoop.version</code> and Tez <code>tez.version</code> to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hive 4.0.0
 </code></pre></div><p>If the command does not specify the Hive version, it will use the local <code>apache-hive-${project.version}-bin.tar.gz</code>(will trigger a build if it doesn&rsquo;t exist),
-together with Hadoop 3.1.0 and Tez 0.10.1 to build the image,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hadoop 3.1.0 -tez 0.10.1
+together with Hadoop 3.3.6 and Tez 0.10.3 to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>./build.sh -hadoop 3.3.6 -tez 0.10.3
 </code></pre></div><p>After building successfully, we can get a Docker image named <code>apache/hive</code> by default, the image is tagged by the provided Hive version.</p>
 <h3 id=run-services>Run services</h3>
 <hr>
 <p>Before going further, we should define the environment variable <code>HIVE_VERSION</code> first.
-For example, if <code>-hive 4.0.0-alpha-2</code> is specified to build the image,</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0-alpha-2
+For example, if <code>-hive 4.0.0</code> is specified to build the image,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.0.0
 </code></pre></div><p>or assuming that you&rsquo;re relying on current <code>project.version</code> from pom.xml,</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>mvn -f pom.xml -q help:evaluate -Dexpression<span style=color:#f92672>=</span>project.version -DforceStdout<span style=color:#66d9ef>)</span>
 </code></pre></div><p><code> </code></p>
