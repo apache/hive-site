@@ -33,6 +33,10 @@ directory.
 
 ## News
 ---
+* #### 29 March 2024: release 4.0.0 available
+    * This release works with Hadoop 3.3.6, Tez 0.10.3
+    * You can look at the complete [JIRA change log for this release][HIVE_4_0_0_CL].
+
 * #### 14 August 2023: release 4.0.0-beta-1 available
     * This release works with Hadoop 3.3.1
     * You can look at the complete [JIRA change log for this release][HIVE_4_0_0_B_1_CL].
@@ -195,6 +199,7 @@ Hive users for these two versions are encouraged to upgrade.
   * You can look at the complete [JIRA change log for this release][HIVE_10_CL].
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
+[HIVE_4_0_0_CL]:https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12343343&styleName=Text&projectId=12310843
 [HIVE_4_0_0_B_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353351&styleName=Text&projectId=12310843
 [HIVE_4_0_0_A_2_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12351489&styleName=Html&projectId=12310843
 [HIVE_3_1_3_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12346277&styleName=Html&projectId=12310843
