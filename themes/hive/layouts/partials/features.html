@@ -100,20 +100,22 @@
             </div>
         </div>
 
-
         <div class="row divs">
-            <div class="col-md">
+            <div class="col-md ">
+                <a href="{{ .Site.Params.features.iceberg }}">
+                    <img src="{{.Site.BaseURL}}/images/hiveIceberg.png" width="500" height="250"  alt="Apache Software Foundation"></a>
+                </a>
             </div>
             <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive Replication</h2>
+                <h2 class="topic-text-style">Hive Iceberg</h2>
                 <p>
-                    Hive supports bootstap and incremental replication for backup and recovery.
+                    Hive provides out of the box support for Apache Iceberg Tables, a cloud-native,
+                    high-performance open table format, via Hive StorageHandler.
                 </p>
-                <a href="{{ .Site.Params.features.repl }}" class="icon-block">
+                <a href="{{ .Site.Params.features.iceberg }}" class="icon-block">
                     <button class="custom-button feature-button-style" role="button">Learn More</button>
                 </a>
             </div>
-
         </div>
 
 
@@ -165,6 +167,21 @@
             <div class="col-md">
                 {{- partial "explain.html" . -}}
             </div>
+        </div>
+
+        <div class="row divs">
+            <div class="col-md">
+            </div>
+            <div class="col-md feature-border">
+                <h2 class="topic-text-style">Hive Replication</h2>
+                <p>
+                    Hive supports bootstap and incremental replication for backup and recovery.
+                </p>
+                <a href="{{ .Site.Params.features.repl }}" class="icon-block">
+                    <button class="custom-button feature-button-style" role="button">Learn More</button>
+                </a>
+            </div>
+
         </div>
     </div>
 </features>
