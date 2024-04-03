@@ -225,13 +225,13 @@ Query-based and MR-based data compactions are supported out-of-the-box.
 </a>
 </div>
 <div class=col-md>
-<compaction class=col-md>
-<div id=comp data-termynal data-termynal data-ty-typedelay=40 data-ty-linedelay=700>
-<span data-ty=input>jdbc:hive2://.../default>ALTER TABLE test COMPACT "MAJOR";</span>
+<compaction>
+<div id=comp data-termynal data-ty-typedelay=40 data-ty-linedelay=70>
+<span data-ty=input>jdbc:hive2://> alter table test_t1 compact "MAJOR";</span>
 <span data-ty>Done!</span>
-<span data-ty=input>jdbc:hive2://.../default>ALTER TABLE test COMPACT "MINOR";</span>
+<span data-ty=input>jdbc:hive2://> alter table test_t1 compact "MINOR";</span>
 <span data-ty>Done!</span>
-<span data-ty=input>jdbc:hive2://.../default> SHOW COMPACTIONS;</span>
+<span data-ty=input>jdbc:hive2://> show compactions;</span>
 </div>
 </compaction>
 </div>
@@ -297,20 +297,21 @@ Hive uses Apache Calcite's cost based query optimizer (CBO) and query execution 
 </div>
 <div class=col-md>
 <explain>
-<div id=explain data-termynal data-termynal data-ty-typedelay=40 data-ty-linedelay=70><span data-ty=input>jdbc:hive2://localhost:10001/> explain cbo select ss.ss_net_profit, sr.sr_net_loss from store_sales ss join store_returns sr on (ss.ss_item_sk=sr.sr_item_sk) limit 5 ;</span>
+<div id=explain data-termynal data-ty-typedelay=40 data-ty-linedelay=70 style=text-align:left>
+<span data-ty=input>jdbc:hive2://> explain cbo select ss.ss_net_profit, sr.sr_net_loss from store_sales ss join store_returns sr on (ss.ss_item_sk=sr.sr_item_sk) limit 5 ;</span>
 <span data-ty>+---------------------------------------------+</span>
 <span data-ty> Explain </span></span>
 <span data-ty>+---------------------------------------------+</span>
 <span data-ty> CBO PLAN: </span>
 <span data-ty> HiveSortLimit(fetch=[5]) </span>
 <span data-ty> HiveProject(ss_net_profit=[$1], sr_net_loss=[$3]) </span>
-<span data-ty> HiveJoin(condition=[=($0, $2)], joinType=[inner]) </span>
-<span data-ty> HiveProject(ss_item_sk=[$2], ss_net_profit=[$22]) </span>
-<span data-ty> HiveFilter(condition=[IS NOT NULL($2)]) </span>
-<span data-ty> HiveTableScan(table=[[tpcds_text_10, store_sales]], table:alias=[ss]) </span>
-<span data-ty> HiveProject(sr_item_sk=[$2], sr_net_loss=[$19]) </span>
-<span data-ty> HiveFilter(condition=[IS NOT NULL($2)]) </span>
-<span data-ty> HiveTableScan(table=[[tpcds_text_10, store_returns]], table:alias=[sr]) </span>
+<span data-ty> &ensp;&ensp;HiveJoin(condition=[=($0, $2)], joinType=[inner]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;HiveProject(ss_item_sk=[$2], ss_net_profit=[$22]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;HiveFilter(condition=[IS NOT NULL($2)]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;HiveTableScan(table=[[tpcds_text_10, store_sales]], table:alias=[ss]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;HiveProject(sr_item_sk=[$2], sr_net_loss=[$19]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;HiveFilter(condition=[IS NOT NULL($2)]) </span>
+<span data-ty> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;HiveTableScan(table=[[tpcds_text_10, store_returns]], table:alias=[sr]) </span>
 <span data-ty>+---------------------------------------------+</span>
 </div>
 <script src=https://hive.apache.org/js/termynal.js data-termynal-container=#explain></script>
@@ -319,6 +320,19 @@ Hive uses Apache Calcite's cost based query optimizer (CBO) and query execution 
 </div>
 <div class="row divs">
 <div class=col-md>
+<replication class=col-md>
+<div id=repl data-termynal data-ty-typedelay=40 data-ty-linedelay=70 style=width:830px>
+<span data-ty=input>jdbc:hive2://> repl dump src with (</span>
+<span data-ty=input>. . .> 'hive.repl.dump.version'= '2',</span>
+<span data-ty=input>. . .> 'hive.repl.rootdir'= 'hdfs://&lt;host>:&lt;port>/user/replDir/d1'</span>
+<span data-ty=input>. . .> );</span>
+<span data-ty>Done!</span>
+<span data-ty=input>jdbc:hive2://> repl load src into tgt with (</span>
+<span data-ty=input>. . .> 'hive.repl.rootdir'= 'hdfs://&lt;host>:&lt;port>/user/replDir/d1'</span>
+<span data-ty=input>. . .> );</span>
+<span data-ty>Done!</span>
+</div>
+</replication>
 </div>
 <div class="col-md feature-border">
 <h2 class=topic-text-style>Hive Replication</h2>

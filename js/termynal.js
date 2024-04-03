@@ -214,4 +214,5 @@ if (document.currentScript.hasAttribute('data-termynal-container')) {
 
 var termynal1 = new Termynal('#comp');
 var termynal2 = new Termynal('#hs2');
-var termynal3 = new Termynal('"#explain');
+var termynal3 = new Termynal('#explain');
+var termynal4 = new Termynal('#repl');
