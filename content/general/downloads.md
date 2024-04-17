@@ -33,6 +33,12 @@ directory.
 
 ## News
 ---
+* #### 11 April 2024: EOL for release 1.x line
+
+The Apache Hive Community has voted to declare the 1.x release line as End of Life (EOL). This means no further updates or releases will be made for this series.
+
+We urge all Hive 1.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.
+
 * #### 29 March 2024: release 4.0.0 available
     * This release works with Hadoop 3.3.6, Tez 0.10.3
     * You can look at the complete [JIRA change log for this release][HIVE_4_0_0_CL].
