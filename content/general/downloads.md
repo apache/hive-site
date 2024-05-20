@@ -33,10 +33,15 @@ directory.
 
 ## News
 ---
+
+* #### 20 May 2024: EOL for release 2.x line
+
+The Apache Hive Community has voted to declare the 2.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
+We urge all Hive 2.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.
+
 * #### 11 April 2024: EOL for release 1.x line
 
-The Apache Hive Community has voted to declare the 1.x release line as End of Life (EOL). This means no further updates or releases will be made for this series.
-
+The Apache Hive Community has voted to declare the 1.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
 We urge all Hive 1.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.
 
 * #### 29 March 2024: release 4.0.0 available
