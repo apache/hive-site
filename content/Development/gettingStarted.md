@@ -58,7 +58,7 @@ project and contribute your expertise.
 [GETTING_STARTED]: https://cwiki.apache.org/confluence/display/Hive/GettingStarted
 [APACHE_HADOOP]: http://hadoop.apache.org
 [ISSUE_TRACKING]: /community/issuetracking/
-[MAILING_LISTS]: "/community/mailinglists/"
+[MAILING_LISTS]: /community/mailinglists/
 [HIVE_FACEBOOK]: http://www.facebook.com/pages/Hive/43928506208
 [HIVE_DETAILS]: https://cwiki.apache.org/confluence/display/Hive/
 [HIVE_QL]: https://cwiki.apache.org/confluence/display/Hive/Home#Home-UserDocumentation
