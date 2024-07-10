@@ -39,6 +39,10 @@ directory.
 The Apache Hive Community has voted to declare the 2.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
 We urge all Hive 2.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.
 
+* #### 9 May 2024:  release 2.3.10 available
+    * This release works with Hadoop 2.x.y
+    * You can look at the complete [JIRA change log for this release][HIVE_2_3_10_CL].
+
 * #### 11 April 2024: EOL for release 1.x line
 
 The Apache Hive Community has voted to declare the 1.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
@@ -216,6 +220,7 @@ Hive users for these two versions are encouraged to upgrade.
 [HIVE_3_1_3_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12346277&styleName=Html&projectId=12310843
 [HIVE_4_0_0_A_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12351399&styleName=Html&projectId=12310843
 [HIVE_3_1_2_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12344397&styleName=Html&projectId=12310843
+[HIVE_2_3_10_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12350633&styleName=Text&projectId=12310843
 [HIVE_2_3_9_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12350009&styleName=Text&projectId=12310843
 [HIVE_2_3_8_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12349428&styleName=Text&projectId=12310843
 [HIVE_2_3_7_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12346056&styleName=Text&projectId=12310843
