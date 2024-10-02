@@ -34,6 +34,11 @@ directory.
 ## News
 ---
 
+* #### 2 October 2024:  release 4.0.1 available
+  * As from Hive 4.x, we encourage all users to move the workload to Tez to benefit from performance gain and support.
+  * This release works with Hadoop 3.3.6, Tez 0.10.4.
+  * You can look at the complete [JIRA change log for this release][HIVE_4_0_1_CL].
+
 * #### 20 May 2024: EOL for release 2.x line
 
 The Apache Hive Community has voted to declare the 2.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
@@ -214,6 +219,7 @@ Hive users for these two versions are encouraged to upgrade.
   * You can look at the complete [JIRA change log for this release][HIVE_10_CL].
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
+[HIVE_4_0_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12354786&styleName=Text&projectId=12310843
 [HIVE_4_0_0_CL]:https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12343343&styleName=Text&projectId=12310843
 [HIVE_4_0_0_B_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353351&styleName=Text&projectId=12310843
 [HIVE_4_0_0_A_2_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12351489&styleName=Html&projectId=12310843
