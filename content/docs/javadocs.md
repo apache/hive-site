@@ -26,6 +26,7 @@ aliases: [/javadoc.html]
 ## Recent versions:
 ---
 #### javadoc and sources jars for use in an IDE are also available via [Nexus](https://repository.apache.org/index.html#nexus-search;gav~org.apache.hive~~~~)
+* [Hive 4.0.1 Javadocs](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.0.1/api/index.html)
 * [Hive 4.0.0 Javadocs](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.0.0/api/index.html)
 * [Hive 4.0.0-beta-1 Javadocs](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.0.0-beta-1/api/index.html)
 * [Hive 4.0.0-alpha-2 Javadocs](https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.0.0-alpha-2/api/index.html)
