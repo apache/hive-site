@@ -25,11 +25,9 @@ aliases: [/downloads.html]
 
 # Downloads
 ---
-Releases may be downloaded from Apache mirrors:
+All recent supported releases may be downloaded from Apache mirrors:
 __[Download a release now!][HIVE_DL]__
-On the mirror, all recent releases are available, but are not
-guaranteed to be stable. For stable releases, look in the stable
-directory.
+Old releases can be found in the [archives][HIVE_ARCHIVES].
 
 ## News
 ---
@@ -219,6 +217,7 @@ Hive users for these two versions are encouraged to upgrade.
   * You can look at the complete [JIRA change log for this release][HIVE_10_CL].
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
+[HIVE_ARCHIVES]: https://archive.apache.org/dist/hive/
 [HIVE_4_0_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12354786&styleName=Text&projectId=12310843
 [HIVE_4_0_0_CL]:https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12343343&styleName=Text&projectId=12310843
 [HIVE_4_0_0_B_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353351&styleName=Text&projectId=12310843
