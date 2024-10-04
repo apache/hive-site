@@ -28,16 +28,10 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/Release" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Release
+                        <a class="nav-link" href="{{ .Site.Params.navbar.release }}" id="navbarDropdown" role="button" aria-expanded="false">
+                            Releases
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.release }}">Release</a></li>
-                            <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.hcatalog }}">Hcatalog</a></li>
-
-                        </ul>
                     </li>
-
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/Document" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

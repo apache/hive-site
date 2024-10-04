@@ -27,7 +27,6 @@ theme = 'hive'
 
 [params.navbar]
     release = "/general/downloads"
-    hcatalog = "/general/hcatalogdownloads/"
     javaDocs = "/docs/javadocs/"
     languageManual = "https://cwiki.apache.org/confluence/display/Hive/LanguageManual"
     wiki = "https://cwiki.apache.org/confluence/display/Hive/"
