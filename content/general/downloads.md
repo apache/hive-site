@@ -32,6 +32,11 @@ Old releases can be found in the [archives][HIVE_ARCHIVES].
 ## News
 ---
 
+* #### 08 October 2024: EOL for release 3.x line
+
+The Apache Hive Community has voted to declare the 3.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
+We urge all Hive 3.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.
+
 * #### 2 October 2024:  release 4.0.1 available
   * As from Hive 4.x, we encourage all users to move the workload to Tez to benefit from performance gain and support.
   * This release works with Hadoop 3.3.6, Tez 0.10.4.
