@@ -77,6 +77,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | vikram          | Vikram Dixit            | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | xuefu           | Xuefu Zhang             | <a href="https://www.alibaba.com/">Alibaba Inc</a> |      |
 | ychena          | Yongzhi Chen            | <a href="http://cloudera.com/">Cloudera</a>        |      |
+| zabetak         | Stamatis Zampetakis     | <a href="http://cloudera.com/">Cloudera</a>        |      |
 
 ---
 ## Hive Committers
