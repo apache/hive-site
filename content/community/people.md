@@ -47,7 +47,6 @@ at all contributors to our issue tracker, mailing list and version control.
 | denys           | Denys Kuzmenko          | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | daijy           | Daniel Dai              | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | ecapriolo       | Edward Capriolo         |                                                    |      |
-| gates           | Alan Gates              | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | gopalv          | Gopal Vijayaraghavan    | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | gunther         | Gunther Hagleitner      | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | hashutosh       | Ashutosh Chauhan        | <a href="http://hortonworks.com/">Hortonworks</a>  | VP   |
@@ -140,6 +139,7 @@ A list of Hive contributors and their contributions is available from
 
 ## Emeritus Hive PMC Members
 ---
+* Alan Gates
 * Dhruba Borthakur
 * Prasad Chakka
 * Johan Oskarsson
@@ -147,6 +147,3 @@ A list of Hive contributors and their contributions is available from
 * John Sichi
 * Sushanth Sowmyan
 * Paul Yang
-
-
-
