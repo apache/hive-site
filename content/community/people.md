@@ -49,7 +49,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | ecapriolo       | Edward Capriolo         |                                                    |      |
 | gopalv          | Gopal Vijayaraghavan    | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | gunther         | Gunther Hagleitner      | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
-| hashutosh       | Ashutosh Chauhan        | <a href="http://hortonworks.com/">Hortonworks</a>  | VP   |
+| hashutosh       | Ashutosh Chauhan        | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | heyongqiang     | Yongqiang He            | <a href="http://dropbox.com/">Dropbox</a>          |      |
 | jcamacho        | Jesus Camacho Rodriguez | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
 | jdere           | Jason Dere              | <a href="http://hortonworks.com/">Hortonworks</a>  |      |
@@ -60,6 +60,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | leftyl          | Lefty Leverenz          | <a href="https://www.ibm.com/">IBM</a>             |      |
 | namit           | Namit Jain              | <a href="http://www.nutanix.com/">Nutanix</a>      |      |
 | navis           | Navis Ryu               | <a href="http://nexr.com/">NexR</a>                |      |
+| ngangam         | Naveen Gangam           | <a href="http://cloudera.com/">Cloudera</a>        | VP   |
 | nzhang          | Ning Zhang              | <a href="http://facebook.com/">Facebook</a>        |      |
 | omalley         | Owen O'Malley           | <a href="http://linkedin.com/">LinkedIn</a>        |      |
 | prasadm         | Prasad Mujumdar         | <a href="http://cloudera.com/">Cloudera</a>        |      |
@@ -106,7 +107,6 @@ at all contributors to our issue tracker, mailing list and version control.
 | mithun          | Mithun Radhakrishnan              | <a href="https://www.oath.com/">Oath</a>                                     |
 | mmccline        | Matt McCline                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | mohits          | Mohit Sabharwal                   | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| ngangam         | Naveen Gangam                     | <a href="http://cloudera.com/">Cloudera</a>                                  |
 | rbalamohan      | Rajesh Balamohan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | remusr          | Remus Rusanu                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | sankarh         | Sankar Hariappan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
