@@ -107,6 +107,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | mithun          | Mithun Radhakrishnan              | <a href="https://www.oath.com/">Oath</a>                                     |
 | mmccline        | Matt McCline                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | mohits          | Mohit Sabharwal                   | <a href="http://cloudera.com/">Cloudera</a>                                  |
+| okumin          | Shohei Okumiya                    | <a href="https://www.treasuredata.com/">Treasure Data</a>                    |
 | rbalamohan      | Rajesh Balamohan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | remusr          | Remus Rusanu                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | sankarh         | Sankar Hariappan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
