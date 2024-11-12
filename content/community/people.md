@@ -93,6 +93,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | chengxiang      | Chengxiang Li                     | <a href="http://intel.com/">Intel</a>                                        |
 | chinnaraol      | Chinna Rao Lalam                  | <a href="http://intel.com/">Intel</a>                                        |
 | cdrome          | Chris Drome                       | <a href="https://www.oath.com/">Oath</a>                                     |
+| difin           | Dmitriy Fingerman                 | <a href="http://cloudera.com/">Cloudera</a>                                  |
 | djaiswal        | Deepak Jaiswal                    | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | dmtolpeko       | Dmitry Tolpeko                    | <a href="http://www.epam.com/">EPAM</a>                                      |
 | dongc           | Dong Chen                         | <a href="http://intel.com/">Intel</a>                                        |
