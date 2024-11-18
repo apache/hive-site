@@ -39,6 +39,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | Apache username | Name                    | Organization                                       | Role |
 |-----------------|-------------------------|----------------------------------------------------|------|
 | aihuaxu         | Aihua Xu                | <a href="http://cloudera.com/">Cloudera</a>        |      |
+| anishek         | Anishek Agarwal         |                                                    |      | 
 | athusoo         | Ashish Thusoo           | <a href="http://qubole.com/">Qubole</a>            |      |
 | ayushsaxena     | Ayush Saxena            | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | brock           | Brock Noland            | <a href="http://streamsets.com/">StreamSets</a>    |      |
