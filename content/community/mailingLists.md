@@ -38,9 +38,7 @@ developers monitor this list and provide assistance when needed.
 * Subscribe: <user-subscribe@hive.apache.org>
 * Post: <user@hive.apache.org>
 * Unsubscribe: <user-unsubscribe@hive.apache.org>
-* Archives:
-    * [Apache][user_apache]
-    * [Markmail][user_markmail]
+* Archives: [Apache][user_apache]
 
 ## Developer Mailing List
 ---
@@ -50,9 +48,16 @@ decisions, and vote on technical issues.
 * Subscribe: <dev-subscribe@hive.apache.org>
 * Post: <dev@hive.apache.org>
 * Unsubscribe: <dev-unsubscribe@hive.apache.org>
-* Archives:
-    * [Apache][dev_apache]
-    * [Markmail][dev_markmail]
+* Archives: [Apache][dev_apache]
+
+## Issues Mailing List
+---
+The issues list receives all notifications from the [JIRA] issue tracker.
+
+* Subscribe: <issues-subscribe@hive.apache.org>
+* Post: <issues@hive.apache.org>
+* Unsubscribe: <issues-unsubscribe@hive.apache.org>
+* Archives: [Apache][issues_apache]
 
 ## Commits Mailing List
 ---
@@ -61,9 +66,7 @@ to the Hive source tree.
 
 * Subscribe: <commits-subscribe@hive.apache.org>
 * Unsubscribe: <commits-unsubscribe@hive.apache.org>
-* Archives:
-    * [Apache][commits_apache]
-    * [Markmail][commits_markmail]
+* Archives: [Apache][commits_apache]
 
 ## Security Mailing List
 ---
@@ -76,10 +79,11 @@ The Hive security mailing list is : <security@hive.apache.org>.
 In order to post to the list, it is __NOT__ necessary to first subscribe to it.
 
 [user_apache]: http://mail-archives.apache.org/mod_mbox/hive-user
-[user_markmail]: http://markmail.org/search/+list:org.apache.incubator.hive-user
 
 [dev_apache]: http://mail-archives.apache.org/mod_mbox/hive-dev
-[dev_markmail]: http://markmail.org/search/+list:org.apache.incubator.hive-dev
+
+[JIRA]: https://issues.apache.org/jira/browse/HIVE
+
+[issues_apache]: http://mail-archives.apache.org/mod_mbox/hive-issues
 
 [commits_apache]: http://mail-archives.apache.org/mod_mbox/hive-commits
-[commits_markmail]: http://markmail.org/search/+list:org.apache.incubator.hive-commits
