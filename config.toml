@@ -28,8 +28,8 @@ theme = 'hive'
 [params.navbar]
     release = "/general/downloads"
     javaDocs = "/docs/javadocs/"
+    latest = "/docs/latest/"
     languageManual = "https://cwiki.apache.org/confluence/display/Hive/LanguageManual"
-    wiki = "https://cwiki.apache.org/confluence/display/Hive/"
     license2 = "https://www.apache.org/licenses/LICENSE-2.0.html"
     privacyPolicy = "/general/privacypolicy/"
     designDocs = "https://cwiki.apache.org/confluence/display/Hive/DesignDocs"
