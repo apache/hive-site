@@ -62,7 +62,7 @@ This is the Hive Language Manual.  For other Hive documentation, see the Hive w
 	+ [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "30151323" >}})
 	+ Procedural Language:  [Hive HPL/SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=59690156)
 	+ [Explain Execution Plan]({{< ref "languagemanual-explain_27362037" >}})
-* [Locks]({{< ref "languagemanual-locks_27362041" >}})
+* [Locks]({{< ref "locking_27362050" >}})
 * [Authorization]({{< ref "languagemanual-authorization_27362032" >}})
 	+ [Storage Based Authorization]({{< ref "storage-based-authorization-in-the-metastore-server_45876440" >}})
 	+ [SQL Standard Based Authorization]({{< ref "sql-standard-based-hive-authorization_40509928" >}})
