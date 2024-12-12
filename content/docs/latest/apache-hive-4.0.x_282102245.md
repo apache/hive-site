@@ -1,0 +1,56 @@
+---
+title: "Apache Hive : Apache Hive 4.0.X"
+date: 2024-12-12
+---
+
+
+
+
+
+
+
+
+
+# Apache Hive : Apache Hive 4.0.X
+
+
+
+
+
+
+* [Overview of Major Changes]({{< ref "overview-of-major-changes_283118379" >}})
+* [ChangeLog](https://cwiki.apache.org/confluence/display/Hive/ChangeLog)
+* [Introduction to Apache Hive]({{< ref "introduction-to-apache-hive_283118337" >}})
+* [Building from Source](https://cwiki.apache.org/confluence/display/Hive/Building+Hive+from+Source)
+* Installing Hive
+	+ [From Docker](https://cwiki.apache.org/confluence/display/Hive/Setting+Up+Hive+with+Docker)
+	+ [Manual Installation]({{< ref "manual-installation_283118363" >}})
+* [HiveServer2 Overview]({{< ref "hiveserver2-overview_65147648" >}})
+* [HiveServer2 Clients]({{< ref "hiveserver2-clients_30758725" >}})
+* [AdminManual Metastore 3.0+ Administration]({{< ref "adminmanual-metastore-3-0-administration_75978150" >}})
+	+ [SchemaTool]({{< ref "284790216" >}})
+* [Supported Features: Apache Hive 3.1]({{< ref "97551656" >}})+
+* [Hive Metrics]({{< ref "hive-metrics_65872987" >}})
+* [HiveCounters]({{< ref "hivecounters_67636835" >}})
+* [Hive APIs Overview]({{< ref "hive-apis-overview_61326349" >}})
+* [UDFs]({{< ref "hive-udfs_282102277" >}})
+* [Operators]({{< ref "hive-operators_283118406" >}})
+* [Hive-Iceberg Integration](https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration)
+* [Accumulo Integration]({{< ref "accumulointegration_46633569" >}})
+* [Druid Integration]({{< ref "druid-integration_65866491" >}})
+* [Kudu Integration]({{< ref "kudu-integration_133631955" >}})
+* [Hive Transactions (HIVE ACID)]({{< ref "283118453" >}})
+* [JDBC Storage Handler]({{< ref "jdbc-storage-handler_95651916" >}})
+* [Materialized Views]({{< ref "materialized-views-in-hive_283118346" >}})
+* [Hive Replication](https://cwiki.apache.org/confluence/display/Hive/HiveReplicationv2Development)
+* [Streaming Data Ingest V2]({{< ref "streaming-data-ingest-v2_85477610" >}})
+* [Configuration Defaults](https://cwiki.apache.org/confluence/display/Hive/Configuration+Defaults)
+* [HiveDeveloperFAQ]({{< ref "hivedeveloperfaq_27823747" >}})
+* [Books, Blogs & Talks](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=282102318)
+
+
+
+ 
+
+ 
+
