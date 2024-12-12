@@ -22,7 +22,6 @@ date: 2024-12-12
 
 
 * [Hive Configuration Properties]({{< ref "#hive-configuration-properties" >}})
-* [As of Hive 0.14.0 ( HIVE-7211 ), a configuration name that starts with "hive." is regarded as a Hive system property. With the hive.conf.validation option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.]({{< ref "#as-of-hive-0-14-0---hive-7211--,-a-configuration-name-that-starts-with-"hive-"-is-regarded-as-a-hive-system-property--with-the-hive-conf-validation-option-true--default-,-any-attempts-to-set-a-configuration-property-that-starts-with-"hive-"-which-is-not-registered-to-the-hive-system-will-throw-an-exception-" >}})
 	+ [Query and DDL Execution]({{< ref "#query-and-ddl-execution" >}})
 		- [Datetime]({{< ref "#datetime" >}})
 		- [SerDes and I/O]({{< ref "#serdes-and-i/o" >}})
@@ -89,7 +88,7 @@ For information about how to use these configuration properties, see [Configurin
 
 Version information
 
-# As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{< ref "#hive-conf-validation" >}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
+As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{< ref "#hive-conf-validation" >}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
 
 ## Query and DDL Execution
 

@@ -32,7 +32,7 @@ date: 2024-12-12
 		- [Show/Describe]({{< ref "#show/describe" >}})
 		- [Create/Drop Index]({{< ref "#create/drop-index" >}})
 		- [Create/Drop Function]({{< ref "#create/drop-function" >}})
-		- ["dfs" Command and "set" Command]({{< ref "#"dfs"-command-and-"set"-command" >}})
+		- ["dfs" Command and "set" Command]({{< ref "#dfs-set-cmd" >}})
 		- [Other Commands]({{< ref "#other-commands" >}})
 	+ [CLI Errors]({{< ref "#cli-errors" >}})
 		- [Authentication]({{< ref "#authentication" >}})
@@ -171,7 +171,7 @@ CREATE and DROP INDEX operations are supported.
 
 CREATE and DROP FUNCTION operations are supported, but created functions must still be registered in Pig and placed in CLASSPATH for MapReduce.
 
-### "dfs" Command and "set" Command
+### "dfs" Command and "set" Command {#dfs-set-cmd}
 
 Supported. Behavior same as Hive.
 
