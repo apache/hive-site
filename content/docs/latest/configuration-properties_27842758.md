@@ -3,23 +3,9 @@ title: "Apache Hive : Configuration Properties"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Configuration Properties
 
-
-
-
-
-
 # Hive Configuration Properties
-
 
 * [Hive Configuration Properties]({{< ref "#hive-configuration-properties" >}})
 	+ [Query and DDL Execution]({{< ref "#query-and-ddl-execution" >}})
@@ -76,9 +62,6 @@ date: 2024-12-12
 	+ [Test Properties]({{< ref "#test-properties" >}})
 * [HCatalog Configuration Properties]({{< ref "#hcatalog-configuration-properties" >}})
 * [WebHCat Configuration Properties]({{< ref "#webhcat-configuration-properties" >}})
-
-
-
 
 This document describes the Hive user configuration properties (sometimes called *parameters*, *variables*, or *options*), and notes which releases introduced new properties.
 
@@ -1542,8 +1525,6 @@ Users can explicitly say [CREATE TABLE]({{< ref "#create-table" >}})... STORED A
 
 Default file format for CREATE TABLE statement applied to managed tables only. External tables will be created with format specified by [hive.default.fileformat]({{< ref "#hive-default-fileformat" >}}). Options are none, TextFile, SequenceFile, RCfile, ORC, and Parquet (as of Hive 2.3.0). Leaving this null will result in using hive.default.fileformat for all native tables. For non-native tables the file format is determined by the storage handler, as shown below (see the  [StorageHandlers]({{< ref "#storagehandlers" >}})  section for more information on managed/external and native/non-native terminology).
 
-
-
 |  | Native | Non-Native |
 | --- | --- | --- |
 | Managed | hive.default.fileformat.managed (or fall back to hive.default.fileformat) | Not covered by default file-formats |
@@ -1768,7 +1749,6 @@ Value can be `SPEED` or `COMPRESSION`.
 
 Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later. See [Parquet]({{< ref "parquet_38570914" >}}) for details.  
 
-
 ##### hive.parquet.timestamp.skip.conversion
 
 * Default Value: `true`
@@ -1780,7 +1760,6 @@ Pre-3.1.2 Hive implementation of Parquet stores timestamps in UTC on-file, this 
 
 See [AvroSerDe](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe) for details.  
 
-
 ##### hive.avro.timestamp.skip.conversion
 
 * Default Value: false
@@ -1790,7 +1769,6 @@ Some older Hive implementations (pre-3.1.2) wrote Avro timestamps in a UTC-norma
 Setting this flag to true will treat legacy timestamps as time zone agnostic. Setting it to false will treat legacy timestamps as UTC-normalized.   
 This flag does not affect timestamps written starting with Hive 3.1.2, which are effectively time zone agnostic (see [HIVE-21002](https://issues.apache.org/jira/browse/HIVE-21002) for details).   
 NOTE: This property will influence how HBase files using the AvroSerDe and timestamps in Kafka tables (in the payload/Avro file, this is not about Kafka timestamps) are deserialized – keep in mind that timestamps serialized using the AvroSerDe will be UTC-normalized during serialization. So keep this property false if using HBase or Kafka.  
-
 
 ### Vectorization
 
@@ -1823,7 +1801,6 @@ This flag should be set to true to enable vectorized mode of the reduce-side GRO
 * Added In: Hive 2.0.0 with [HIVE-12290](https://issues.apache.org/jira/browse/HIVE-12290)
 
  This flag should be set to true to enable the new vectorization of queries using ReduceSink.   
-
 
 ##### hive.vectorized.execution.mapjoin.native.enabled
 
@@ -1860,7 +1837,6 @@ This flag should be set to true to enable native (i.e. non-pass through) vectori
 * Added In: Hive 1.2.0 with [HIVE-9824](https://issues.apache.org/jira/browse/HIVE-9824)
 
  This flag should be set to true to enable use of native fast vector map join hash tables in queries using MapJoin.  
-
 
 ##### hive.vectorized.groupby.checkinterval
 
@@ -3216,7 +3192,6 @@ Set this to true to to display statistics and log file for MapReduce tasks in th
 
    
 
-
 ## Spark
 
 [Apache Spark](http://spark.apache.org/) was added in Hive [1.1.0]({{< ref "#1-1-0" >}}) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292) and the merge-to-trunk JIRA's [HIVE-9257](https://issues.apache.org/jira/browse/HIVE-9257), [9352](https://issues.apache.org/jira/browse/HIVE-9352), [9448](https://issues.apache.org/jira/browse/HIVE-9448)). For information see the design document [Hive on Spark]({{< ref "hive-on-spark_42567714" >}}) and [Hive on Spark: Getting Started.]({{< ref "44302539" >}})
@@ -3344,7 +3319,6 @@ Setting this to false triggers an alternative algorithm for calculating the numb
 * Added in: Hive 2.3.0 with [HIVE-15489](http://HIVE-15489)
 
 If this is set to true, mapjoin optimization in Hive/Spark will use statistics from TableScan operators at the root of operator tree, instead of parent ReduceSink operators of the Join operator. Setting this to true is useful when the operator statistics used for a common join → map join conversion are inaccurate.  
-
 
 ##### hive.spark.use.groupby.shuffle
 
@@ -4141,10 +4115,8 @@ Number of failed compaction entries to retain in history (per partition).
 
 ##### metastore.compactor.history.retention.did.not.initiate
 
-
 ```
     
-
 
 ```
 * Default Value: `2`
@@ -4877,7 +4849,6 @@ The default partition name when ZooKeeperHiveLockManager is the  [**hive lock m
 
 The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2#SettingUpHiveServer2-WebUIforHiveServer2). For more information, see [Hive Metrics]({{< ref "hive-metrics_65872987" >}}).  
 
-
 ##### hive.metastore.metrics.enabled
 
 * Default Value: `false`
@@ -5182,60 +5153,41 @@ For WebHCat configuration, see [Configuration Variables]({{< ref "#configuration
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
-
   
 
-
   
-
-
-  
-
-
-  
-
-
-  
-
-
-  
-
-
-  
-
-
-  
-
-
-  
-
-
-  
-
 
 Save
 
@@ -5282,9 +5234,6 @@ Save
 Save
 
   
-
-
-
 
  
 

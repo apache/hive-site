@@ -3,24 +3,9 @@ title: "Apache Hive : Hive Operators"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive Operators
 
-
-
-
-
-
 ### Operators Precedences
-
-
 
 | **Example** | **Operators** | **Description** |
 | --- | --- | --- |
@@ -37,8 +22,6 @@ date: 2024-12-12
 ### Relational Operators
 
 The following operators compare the passed operands and generate a TRUE or FALSE value depending on whether the comparison between the operands holds.
-
-
 
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
@@ -63,8 +46,6 @@ The following operators compare the passed operands and generate a TRUE or FALSE
 
 The following operators support various common arithmetic operations on the operands. All return number types; if any of the operands are NULL, then the result is also NULL.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A + B | All number types | Gives the result of adding A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. For example, since every integer is a float, therefore float is a containing type of integer so the + operator on a float and an int will result in a float. |
@@ -82,8 +63,6 @@ The following operators support various common arithmetic operations on the oper
 
 The following operators provide support for creating logical expressions. All of them return a boolean TRUE, FALSE, or NULL depending upon the boolean values of the operands. NULL behaves as an "unknown" flag, so if the result depends on the state of an unknown, the result itself is unknown.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A AND B | boolean | TRUE if both A and B are TRUE, otherwise FALSE. NULL if A or B is NULL. |
@@ -96,8 +75,6 @@ The following operators provide support for creating logical expressions. All of
 
 ### String Operator
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A || B | strings  | Concatenates the operands - shorthand for `concat(A,B`. |
@@ -105,8 +82,6 @@ The following operators provide support for creating logical expressions. All of
 ### Complex Type Constructors
 
 The following functions construct instances of complex types.
-
-
 
 | Constructor Function | Operands | Description |
 | --- | --- | --- |
@@ -120,15 +95,11 @@ The following functions construct instances of complex types.
 
 The following operators provide mechanisms to access elements in Complex Types.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A[n] | A is an Array and n is an int | Returns the nth element in the array A. The first element has index 0. For example, if A is an array comprising of ['foo', 'bar'] then A[0] returns 'foo' and A[1] returns 'bar'. |
 | M[key] | M is a Map<K, V> and key has type K | Returns the value corresponding to the key in the map. For example, if M is a map comprising of {'f' -> 'foo', 'b' -> 'bar', 'all' -> 'foobar'} then M['all'] returns 'foobar'. |
 | S.x | S is a struct | Returns the x field of S. For example for the struct foobar {int foo, int bar}, foobar.foo returns the integer stored in the foo field of the struct. |
-
-
 
  
 

@@ -3,21 +3,7 @@ title: "Apache Hive : Hive on Spark"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive on Spark
-
-
-
-
-
-
 
 * [1. Introduction]({{< ref "#1--introduction" >}})
 	+ [1.1 Motivation]({{< ref "#1-1-motivation" >}})
@@ -51,9 +37,6 @@ date: 2024-12-12
 		- [Testing]({{< ref "#testing" >}})
 	+ [3.4 Potentially Required Work from Spark]({{< ref "#3-4-potentially-required-work-from-spark" >}})
 * [4. Summary]({{< ref "#4--summary" >}})
-
-
-
 
 # 1. Introduction
 
@@ -292,9 +275,6 @@ Secondly, we expect the integration between Hive and Spark will not be always sm
 Nevertheless, we believe that the impact on existing code path is minimal. While Spark execution engine may take some time to stabilize, MapReduce and Tez should continue working as it is.
 
   
-
-
-
 
  
 

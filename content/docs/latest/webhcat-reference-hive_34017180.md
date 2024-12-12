@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference Hive
 
-
-
-
-
-
 # Hive Job — POST hive
-
 
 * [Hive Job — POST hive]({{< ref "#hive-job-—-post-hive" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [Example Results]({{< ref "#example-results" >}})
-
-
-
 
 ## Description
 
@@ -47,8 +30,6 @@ As of Hive 0.13.0, [GET version/hive]({{< ref "webhcat-reference-versionhive_44
 `http://`*www.myserver.com*`/templeton/v1/hive`
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -65,8 +46,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
@@ -75,8 +54,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Curl Command
-
-
 
 ```
 % curl -s -d execute="select+*+from+pokes;" \
@@ -93,8 +70,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ### JSON Output
 
-
-
 ```
 {
  "id": "job\_201111111311\_0005",
@@ -109,8 +84,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 
 ### Example Results
-
-
 
 ```
 % hadoop fs -ls pokes.output
@@ -130,9 +103,6 @@ Previous: [POST pig]({{< ref "webhcat-reference-pig_34017169" >}})
  Next: [GET queue]({{< ref "webhcat-reference-jobids_34017187" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

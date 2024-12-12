@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual UDF"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual UDF
 
-
-
-
-
-
 # Hive Operators and User-Defined Functions (UDFs)
-
 
 * [Hive Operators and User-Defined Functions (UDFs)]({{< ref "#hive-operators-and-user-defined-functions--udfs-" >}})
 	+ [Built-in Operators]({{< ref "#built-in-operators" >}})
@@ -59,16 +45,11 @@ date: 2024-12-12
 	+ [UDF internals]({{< ref "#udf-internals" >}})
 	+ [Creating Custom UDFs]({{< ref "#creating-custom-udfs" >}})
 
-
-
-
 Case-insensitive
 
 All Hive keywords are case-insensitive, including the names of Hive operators and functions.
 
 In [Beeline]({{< ref "#beeline" >}}) or the [CLI]({{< ref "languagemanual-cli_27362033" >}}), use the commands below to show the latest documentation:
-
-
 
 ```
 SHOW FUNCTIONS;
@@ -87,8 +68,6 @@ The problem relates to the UDF's implementation of the getDisplayString method, 
 
 ### Operators Precedences
 
-
-
 | **Example** | **Operators** | **Description** |
 | --- | --- | --- |
 | A[B] , A.identifier | bracket\_op([]), dot(.) | element selector, dot |
@@ -104,8 +83,6 @@ The problem relates to the UDF's implementation of the getDisplayString method, 
 ### Relational Operators
 
 The following operators compare the passed operands and generate a TRUE or FALSE value depending on whether the comparison between the operands holds.
-
-
 
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
@@ -130,8 +107,6 @@ The following operators compare the passed operands and generate a TRUE or FALSE
 
 The following operators support various common arithmetic operations on the operands. All return number types; if any of the operands are NULL, then the result is also NULL.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A + B | All number types | Gives the result of adding A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. For example since every integer is a float, therefore float is a containing type of integer so the + operator on a float and an int will result in a float. |
@@ -149,8 +124,6 @@ The following operators support various common arithmetic operations on the oper
 
 The following operators provide support for creating logical expressions. All of them return boolean TRUE, FALSE, or NULL depending upon the boolean values of the operands. NULL behaves as an "unknown" flag, so if the result depends on the state of an unknown, the result itself is unknown.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A AND B | boolean | TRUE if both A and B are TRUE, otherwise FALSE. NULL if A or B is NULL. |
@@ -165,9 +138,6 @@ The following operators provide support for creating logical expressions. All of
 
   
 
-
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A || B | strings  | Concatenates the operands - shorthand for `concat(A,B)` . Supported as of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-14580). |
@@ -175,8 +145,6 @@ The following operators provide support for creating logical expressions. All of
 ### Complex Type Constructors
 
 The following functions construct instances of complex types.
-
-
 
 | Constructor Function | Operands | Description |
 | --- | --- | --- |
@@ -190,8 +158,6 @@ The following functions construct instances of complex types.
 
 The following operators provide mechanisms to access elements in Complex Types.
 
-
-
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A[n] | A is an Array and n is an int | Returns the nth element in the array A. The first element has index 0. For example, if A is an array comprising of ['foo', 'bar'] then A[0] returns 'foo' and A[1] returns 'bar'. |
@@ -203,8 +169,6 @@ The following operators provide mechanisms to access elements in Complex Types.
 ### Mathematical Functions
 
 The following built-in mathematical functions are supported in Hive; most return NULL when the argument(s) are NULL:
-
-
 
 | **Return Type** | **Name (Signature)** | **Description** |
 | --- | --- | --- |
@@ -262,8 +226,6 @@ All regular arithmetic operators (such as +, -, *, /) and relevant mathematical 
 
 The following built-in collection functions are supported in Hive:
 
-
-
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | int | size(Map<K.V>) | Returns the number of elements in the map type. |
@@ -277,8 +239,6 @@ The following built-in collection functions are supported in Hive:
 
 The following type conversion functions are supported in Hive:
 
-
-
 | Return Type | Name(Signature) | Description |
 | --- | --- | --- |
 | binary | binary(string|binary) | Casts the parameter into a binary. |
@@ -287,8 +247,6 @@ The following type conversion functions are supported in Hive:
 ### Date Functions
 
 The following built-in date functions are supported in Hive:
-
-
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
@@ -337,8 +295,6 @@ Closed
 
 ### Conditional Functions
 
-
-
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | T | if(boolean testCondition, T valueTrue, T valueFalseOrNull) | Returns valueTrue when testCondition is true, returns valueFalseOrNull otherwise. |
@@ -354,8 +310,6 @@ Closed
 ### String Functions
 
 The following built-in String functions are supported in Hive:
-
-
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
@@ -420,8 +374,6 @@ The following built-in String functions are supported in Hive:
 
 The following built-in data masking functions are supported in Hive:
 
-
-
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | string | mask(string str[, string upper[, string lower[, string number]]]) | Returns a masked version of str (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). By default, upper case letters are converted to "X", lower case letters are converted to "x" and numbers are converted to "n". For example mask("abcd-EFGH-8765-4321") results in xxxx-XXXX-nnnn-nnnn. You can override the characters used in the mask by supplying additional arguments: the second argument controls the mask character for upper case letters, the third argument for lower case letters and the fourth argument for numbers. For example, mask("abcd-EFGH-8765-4321", "U", "l", "#") results in llll-UUUU-####-####. |
@@ -432,8 +384,6 @@ The following built-in data masking functions are supported in Hive:
 | string | mask\_hash(string|char|varchar str) | Returns a hashed value based on str (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). The hash is consistent and can be used to join masked values together across tables. This function returns null for non-string types. |
 
 ### Misc. Functions
-
-
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
@@ -479,8 +429,6 @@ Syntax not supported that's worth noticing:
 
 Example: src\_json table is a single column (json), single row table:
 
-
-
 ```
 +----+
                                json
@@ -498,8 +446,6 @@ Example: src\_json table is a single column (json), single row table:
 
 The fields of the json object can be extracted using these queries:
 
-
-
 ```
 hive> SELECT get\_json\_object(src\_json.json, '$.owner') FROM src\_json;
 amy
@@ -515,8 +461,6 @@ NULL
 ## Built-in Aggregate Functions (UDAF)
 
 The following built-in aggregate functions are supported in Hive:
-
-
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
@@ -554,8 +498,6 @@ The following built-in aggregate functions are supported in Hive:
 
 Normal user-defined functions, such as concat(), take in a single input row and output a single output row. In contrast, table-generating functions transform a single input row to multiple output rows.
 
-
-
 | **Row-set columns types** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | T | explode(ARRAY<T> a) | Explodes an array to multiple rows. Returns a row-set with a single column (*col*), one row for each element from the array. |
@@ -569,12 +511,9 @@ Normal user-defined functions, such as concat(), take in a single input row and 
 
   
 
-
 ### Usage Examples
 
 #### **explode (array)**
-
-
 
 ```
 select explode(array('A','B','C'));
@@ -585,20 +524,14 @@ select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf as col
 
   
 
-
   
   
 
-
   
-
 
 #### **explode (map)**
 
   
-
-
-
 
 ```
 select explode(map('A',10,'B',20,'C',30));
@@ -609,26 +542,18 @@ select tf.* from (select 0) t lateral view explode(map('A',10,'B',20,'C',30)) tf
 
   
 
-
   
   
 
+  
 
   
 
-
   
-
-
-  
-
 
 #### **posexplode (array)**
 
   
-
-
-
 
 ```
 select posexplode(array('A','B','C'));
@@ -639,16 +564,11 @@ select tf.* from (select 0) t lateral view posexplode(array('A','B','C')) tf as 
 
   
 
-
    
-
 
   
 
-
 #### **inline (array of structs)**
-
-
 
 ```
 select inline(array(struct('A',10,date '2015-01-01'),struct('B',20,date '2016-02-02')));
@@ -659,20 +579,14 @@ select tf.* from (select 0) t lateral view inline(array(struct('A',10,date '2015
 
   
 
-
   
   
 
-
   
-
 
 #### **stack (values)**
 
   
-
-
-
 
 ```
 select stack(2,'A',10,date '2015-01-01','B',20,date '2016-01-01');
@@ -683,12 +597,9 @@ select tf.* from (select 0) t lateral view stack(2,'A',10,date '2015-01-01','B',
 
   
 
-
    
 
-
   
-
 
 Using the syntax "SELECT udtf(col) AS colAlias..." has a few limitations:
 
@@ -709,8 +620,6 @@ Also see [Writing UDTFs]({{< ref "developerguide-udtf_27362086" >}}) if you want
 
 As an example of using `explode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-
-
 | Array<int> myCol |
 | --- |
 | [100,200,300] |
@@ -718,16 +627,12 @@ As an example of using `explode()` in the SELECT expression list, consider a ta
 
 Then running the query:
 
-
-
 ```
 SELECT explode(myCol) AS myNewCol FROM myTable;
 
 ```
 
 will produce:
-
-
 
 | (int) myNewCol |
 | --- |
@@ -739,8 +644,6 @@ will produce:
 | 600 |
 
 The usage with Maps is similar:
-
-
 
 ```
 SELECT explode(myMap) AS (myMapKey, myMapValue) FROM myMapTable;
@@ -756,8 +659,6 @@ Available as of Hive 0.13.0. See [HIVE-4943](https://issues.apache.org/jira/brow
 
 As an example of using `posexplode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-
-
 | Array<int> myCol |
 | --- |
 | [100,200,300] |
@@ -765,16 +666,12 @@ As an example of using `posexplode()` in the SELECT expression list, consider a
 
 Then running the query:
 
-
-
 ```
 SELECT posexplode(myCol) AS pos, myNewCol FROM myTable;
 
 ```
 
 will produce:
-
-
 
 | (int) pos | (int) myNewCol |
 | --- | --- |
@@ -791,16 +688,12 @@ A new json\_tuple() UDTF is introduced in Hive 0.7. It takes a set of names (key
 
 For example,
 
-
-
 ```
 select a.timestamp, get\_json\_object(a.appevents, '$.eventid'), get\_json\_object(a.appenvets, '$.eventname') from log a;
 
 ```
 
 should be changed to:
-
-
 
 ```
 select a.timestamp, b.*
@@ -812,8 +705,6 @@ from log a lateral view json\_tuple(a.appevent, 'eventid', 'eventname') b as f1,
 
 The parse\_url\_tuple() UDTF is similar to parse\_url(), but can extract multiple parts of a given URL, returning the data in a tuple. Values for a particular key in QUERY can be extracted by appending a colon and the key to the partToExtract argument, for example, parse\_url\_tuple('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'QUERY:k1', 'QUERY:k2') returns a tuple with values of 'v1','v2'. This is more efficient than calling parse\_url() multiple times. All the input parameters and output column types are string.
 
-
-
 ```
 SELECT b.*
 FROM src LATERAL VIEW parse\_url\_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY:id') b as host, path, query, query\_id LIMIT 1;
@@ -824,8 +715,6 @@ FROM src LATERAL VIEW parse\_url\_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY
 
 A typical OLAP pattern is that you have a timestamp column and you want to group by daily or other less granular date windows than by second. So you might want to select concat(year(dt),month(dt)) and then group on that concat(). But if you attempt to GROUP BY or SORT BY a column on which you've applied a function and alias, like this:
 
-
-
 ```
 select f(col) as fc, count(*) from table\_name group by fc;
 
@@ -833,16 +722,12 @@ select f(col) as fc, count(*) from table\_name group by fc;
 
 you will get an error:
 
-
-
 ```
 FAILED: Error in semantic analysis: line 1:69 Invalid Table Alias or Column Reference fc
 
 ```
 
 because you are not able to GROUP BY or SORT BY a column alias on which a function has been applied. There are two workarounds. First, you can reformulate this query with subqueries, which is somewhat complicated:
-
-
 
 ```
 select sq.fc,col1,col2,...,colN,count(*) from
@@ -853,8 +738,6 @@ select sq.fc,col1,col2,...,colN,count(*) from
 
 Or you can make sure not to use a column alias, which is simpler:
 
-
-
 ```
 select f(col) as fc, count(*) from table\_name group by f(col);
 
@@ -863,8 +746,6 @@ select f(col) as fc, count(*) from table\_name group by f(col);
 Contact Tim Ellis (tellis) at RiotGames dot com if you would like to discuss this in further detail.
 
 ## Utility Functions
-
-
 
 | **Function Name** | **Return Type** | **Description** | To Run |
 | --- | --- | --- | --- |
@@ -875,8 +756,6 @@ Contact Tim Ellis (tellis) at RiotGames dot com if you would like to discuss thi
 
 The context of a UDF's evaluate method is one row at a time. A simple invocation of a UDF like
 
-
-
 ```
 SELECT length(string\_col) FROM table\_name;
 
@@ -885,8 +764,6 @@ SELECT length(string\_col) FROM table\_name;
 would evaluate the length of each of the string\_col's values in the map portion of the job. The side effect of the UDF being evaluated on the map-side is that you can't control the order of rows which get sent to the mapper. It is the same order in which the file split sent to the mapper gets deserialized. Any reduce side operation (such as SORT BY, ORDER BY, regular JOIN, etc.) would apply to the UDFs output as if it is just another column of the table. This is fine since the context of the UDF's evaluate method is meant to be one row at a time.
 
 If you would like to control which rows get sent to the same UDF (and possibly in what order), you will have the urge to make the UDF evaluate during the reduce phase. This is achievable by making use of [DISTRIBUTE BY, DISTRIBUTE BY + SORT BY, CLUSTER BY]({{< ref "languagemanual-sortby_27362045" >}}). An example query would be:
-
-
 
 ```
 SELECT reducer\_udf(my\_col, distribute\_col, sort\_col) FROM
@@ -902,23 +779,13 @@ For information about how to create a custom UDF, see [Hive Plugins]({{< ref "hi
 
   
 
-
 select explode(array('A','B','C'));select explode(array('A','B','C')) as col;select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf;select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf as col;
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362046/62696447-html](/attachments/27362046/62696447-html) (text/html)
    
-
-
 
  
 

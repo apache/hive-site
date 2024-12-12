@@ -3,21 +3,7 @@ title: "Apache Hive : HCatalog Configuration Properties"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog Configuration Properties
-
-
-
-
-
-
 
 * [Setup]({{< ref "#setup" >}})
 * [Storage Directives]({{< ref "#storage-directives" >}})
@@ -26,9 +12,6 @@ date: 2024-12-12
 * [Data Promotion Behaviour]({{< ref "#data-promotion-behaviour" >}})
 * [HCatRecordReader Error Tolerance Behaviour]({{< ref "#hcatrecordreader-error-tolerance-behaviour" >}})
 
-
-
-
 Apache HCatalog's behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish. 
 
 ## Setup
@@ -36,8 +19,6 @@ Apache HCatalog's behaviour can be modified through the use of a few configurati
 The properties described in this page are meant to be job-level properties set on HCatalog through the jobConf passed into it. This means that this page is relevant for Pig users of [HCatLoader/HCatStorer]({{< ref "hcatalog-loadstore_34013511" >}}), or MapReduce users of [HCatInputFormat/HCatOutputFormat]({{< ref "hcatalog-inputoutput_34013776" >}}). For a MapReduce user of HCatalog, these must be present as key-values in the Configuration (JobConf/Job/JobContext) used to instantiate HCatOutputFormat or HCatInputFormat. For Pig users of HCatStorer, these parameters are set using the Pig "set" command before instantiating an HCatLoader/HCatStorer.
 
 ## Storage Directives
-
-
 
 | Property | Default | Description |
 | --- | --- | --- |
@@ -50,8 +31,6 @@ The properties described in this page are meant to be job-level properties set o
 
 HCatalog maintains a cache of HiveClients to talk to the metastore, managing a cache of 1 metastore client per thread, defaulting to an expiry of 120 seconds. For people that wish to modify the behaviour of this cache, a few parameters are provided:
 
-
-
 | Property | Default | Description |
 | --- | --- | --- |
 | hcatalog.hive.client.cache.expiry.time | 120 | Allows users to override the expiry time specified – this is an int, and specifies the number of seconds until a cache entry expires. |
@@ -61,8 +40,6 @@ Note: The two above properties begin with "hcatalog." rather than "hcat."
 
 ## Input Split Generation Behaviour
 
-
-
 | Property | Default | Description |
 | --- | --- | --- |
 | hcat.desired.partition.num.splits | not set | This is a hint/guidance that can be provided to HCatalog to pass on to underlying InputFormats, to produce a "desired" number of splits per partition. This is useful for increasing parallelism by increasing the number of splits generated on a few large files. It is not as useful in cases where we would want to reduce the number of splits for a large number of files. It is not at all useful in cases where there are a large number of partitions that this job will read. Also note that this is merely an optimization hint, and it is not guaranteed that the underlying layer will be capable of using this optimization. Additionally, MapReduce parameters mapred.min.split.size and mapred.max.split.size can be used in conjunction with this parameter to tweak or optimize jobs. |
@@ -70,8 +47,6 @@ Note: The two above properties begin with "hcatalog." rather than "hcat."
 ## Data Promotion Behaviour
 
 In some cases (such as some older versions of Pig), users of HCatalog may not support all the datatypes supported by Hive. There are a few configuration parameters provided to handle data promotions and conversions which allow them to read data through HCatalog. On the write side, it is expected that the user pass in HCatRecords with valid datatypes that match the schema.
-
-
 
 | Property | Default | Description |
 | --- | --- | --- |
@@ -81,8 +56,6 @@ In some cases (such as some older versions of Pig), users of HCatalog may not su
 ## HCatRecordReader Error Tolerance Behaviour
 
 While reading, it is understandable that data might contain errors, but we may not want to completely abort a task due to a couple of errors. These parameters configure how many errors HCatalog can accept before failing the task.
-
-
 
 | Property | Default | Description |
 | --- | --- | --- |
@@ -94,9 +67,6 @@ Previous: [Installation from Tarball]({{< ref "hcatalog-installhcat_34013403" >}
 Next: [Load and Store Interfaces]({{< ref "hcatalog-loadstore_34013511" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

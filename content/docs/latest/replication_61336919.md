@@ -3,21 +3,7 @@ title: "Apache Hive : Replication"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Replication
-
-
-
-
-
-
 
 * [Overview]({{< ref "#overview" >}})
 * [Potential Uses]({{< ref "#potential-uses" >}})
@@ -26,9 +12,6 @@ date: 2024-12-12
 * [Configuration]({{< ref "#configuration" >}})
 * [Typical Mode of Operation]({{< ref "#typical-mode-of-operation" >}})
 * [Replication to AWS/EMR/S3]({{< ref "#replication-to-aws/emr/s3" >}})
-
-
-
 
 ## Overview
 
@@ -106,8 +89,6 @@ At this time it is not possible to replicate to tables on EMR that have a path l
  
 
 Save
-
-
 
  
 

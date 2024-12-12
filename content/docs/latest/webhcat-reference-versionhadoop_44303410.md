@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference VersionHadoop"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference VersionHadoop
 
-
-
-
-
-
 # Hadoop Version — GET version/hadoop
-
 
 * [Hadoop Version — GET version/hadoop]({{< ref "#hadoop-version-—-get-version/hadoop" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-
-
-
 
 ## Description
 
@@ -57,16 +40,12 @@ Returns the Hadoop version.
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/version/hadoop?user.name=ekoifman'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 [
@@ -88,9 +67,6 @@ Next: [POST ddl]({{< ref "webhcat-reference-ddl_34015990" >}})
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids_34017187" >}})
-
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : TipsForAddingNewTests"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : TipsForAddingNewTests
-
-
-
-
-
 
 # Tips for Adding New Tests in Hive
 
@@ -31,8 +18,6 @@ Following are a few rules of thumb that should be followed when adding new test 
 * Make sure that you name your query file appropriately with a descriptive name.
 
 [Adding new unit tests]({{< ref "#adding-new-unit-tests" >}}) describes how to create positive and negative client tests and their output files.
-
-
 
  
 

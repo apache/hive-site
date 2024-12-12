@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual Union"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Union
-
-
-
-
-
-
 
 * [Union Syntax]({{< ref "#union-syntax" >}})
 	+ [UNION within a FROM Clause]({{< ref "#union-within-a-from-clause" >}})
@@ -27,12 +13,7 @@ date: 2024-12-12
 	+ [Column Type Conversion]({{< ref "#column-type-conversion" >}})
 	+ [Version Information]({{< ref "#version-information" >}})
 
-
-
-
 ## Union Syntax
-
-
 
 ```
 select\_statement UNION [ALL | DISTINCT] select\_statement UNION [ALL | DISTINCT] select\_statement ...
@@ -52,8 +33,6 @@ The number and names of columns returned by each *select\_statement* have to be 
 
 If some additional processing has to be done on the result of the UNION, the entire statement expression can be embedded in a FROM clause like below:
 
-
-
 ```
 SELECT *
 FROM (
@@ -65,8 +44,6 @@ FROM (
 ```
 
 For example, if we suppose there are two different tables that track which user has published a video and which user has published a comment, the following query joins the results of a UNION ALL with the user table to create a single annotated stream for all the video publishing and comment publishing events:
-
-
 
 ```
     SELECT u.id, actions.date
@@ -90,8 +67,6 @@ Unions can be used in views, inserts, and CTAS (create table as select) statemen
 
 To apply ORDER BY, SORT BY, CLUSTER BY, DISTRIBUTE BY or LIMIT to an individual SELECT, place the clause inside the parentheses that enclose the SELECT:
 
-
-
 ```
 SELECT key FROM (SELECT key FROM src ORDER BY key LIMIT 10)subq1
 UNION
@@ -99,8 +74,6 @@ SELECT key FROM (SELECT key FROM src1 ORDER BY key LIMIT 10)subq2
 ```
 
 To apply an ORDER BY, SORT BY, CLUSTER BY, DISTRIBUTE BY or LIMIT clause to the entire UNION result, place the ORDER BY, SORT BY, CLUSTER BY, DISTRIBUTE BY or LIMIT after the last one. The following example uses both ORDER BY and LIMIT clauses:
-
-
 
 ```
 SELECT key FROM src
@@ -113,8 +86,6 @@ ORDER BY key LIMIT 10
 
 UNION expects the same schema on both sides of the expression list. As a result, the following query may fail with an error message such as "FAILED: SemanticException 4:47 Schema of both sides of union should match."
 
-
-
 ```
 INSERT OVERWRITE TABLE target\_table
   SELECT name, id, category FROM source\_table\_1
@@ -123,8 +94,6 @@ INSERT OVERWRITE TABLE target\_table
 ```
 
 In such cases, column aliases can be used to force equal schemas:
-
-
 
 ```
 INSERT OVERWRITE TABLE target\_table
@@ -136,8 +105,6 @@ INSERT OVERWRITE TABLE target\_table
 #### Column Type Conversion
 
 Before [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251) in release 2.2.0, Hive tries to perform implicit conversion across Hive type groups. With the change of [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251), Hive will only perform implicit conversion within each type group including string group, number group or date group, not across groups. In order to union the types from different groups such as a string type and a date type, an explicit cast from string to date or from date to string is needed in the query.
-
-
 
 ```
   SELECT name, id, cast('2001-01-01' as date) d FROM source\_table\_1
@@ -160,8 +127,6 @@ Before Hive 1.2.0, only UNION ALL (bag union) is supported. UNION (or UNION DIST
  
 
  
-
-
 
  
 

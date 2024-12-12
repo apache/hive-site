@@ -3,20 +3,7 @@ title: "Apache Hive : Hive Metadata Caching Proposal"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive Metadata Caching Proposal
-
-
-
-
-
 
 ## Why Metastore Cache
 
@@ -33,7 +20,6 @@ Here we show two HiveServer2 instances using a single remote metastore. The meta
 ![ms1.png](https://lh6.googleusercontent.com/yDtScj5Ls99DYNBW6Z5KAqxFQscGsnfSoT7o20TZkA4OYYoiaFdJjqKwBa437pmygEx72e7KWmkeqFm-0Z2I2c-sWeYYi8YdAU1oSiCIPVOPDPhB8yNpGepO1jbgH0kE7Bq8_8KR)
 
   
-
 
 On the other hand, Metastore client side lives in client JVM and will go away once the client is gone.
 
@@ -159,8 +145,6 @@ In our experiments, we adopted some memory optimizations discussed below, which 
 
  
 
-
-
 | object | count | Avg size (byte) |
 | table | 895 | 1576 |
 | partition | 97,863 | 591 |
@@ -242,7 +226,6 @@ There are maybe some potential issue or unimplemented featrue in the initial ver
 In our design, we sacrifice prewarm time and memory footprint in change of simplicity and better runtime performance. By monitoring event queue, and can solve the remote metastore consistency issue which is missing in Presto. Architecture level, CachedStore is a lightweight cache layer wrapping the real RawStore, with this design, there’s nothing prevent us to implement alternative cache strategy in addition to our current approach.
 
   
-
 
  
 

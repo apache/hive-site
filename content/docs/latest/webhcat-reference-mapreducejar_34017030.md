@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference MapReduceJar"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference MapReduceJar
 
-
-
-
-
-
 # MapReduce Job — POST mapreduce/jar
-
 
 * [MapReduce Job — POST mapreduce/jar]({{< ref "#mapreduce-job-—-post-mapreduce/jar" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Code and Data Setup]({{< ref "#code-and-data-setup" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-
-
-
 
 ## Description
 
@@ -47,8 +30,6 @@ As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop
 `http://`*www.myserver.com*`/templeton/v1/mapreduce/jar`
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -67,8 +48,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
@@ -77,8 +56,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Code and Data Setup
-
-
 
 ```
 % hadoop fs -put wordcount.jar .
@@ -92,8 +69,6 @@ Found 2 items
 ```
 
 ### Curl Command
-
-
 
 ```
 % curl -s -d jar=wordcount.jar \
@@ -113,8 +88,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ### JSON Output
 
-
-
 ```
 {
  "id": "job\_201111121211\_0001",
@@ -133,9 +106,6 @@ Previous: [POST mapreduce/streaming]({{< ref "webhcat-reference-mapreducestream_
  Next: [POST pig]({{< ref "webhcat-reference-pig_34017169" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

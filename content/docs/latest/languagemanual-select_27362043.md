@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual Select"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Select
-
-
-
-
-
-
 
 * [Select Syntax]({{< ref "#select-syntax" >}})
 	+ [WHERE Clause]({{< ref "#where-clause" >}})
@@ -28,14 +14,9 @@ date: 2024-12-12
 	+ [REGEX Column Specification]({{< ref "#regex-column-specification" >}})
 	+ [More Select Syntax]({{< ref "#more-select-syntax" >}})
 
-
-
-
 [GROUP BY]({{< ref "languagemanual-groupby_27362038" >}}); [SORT/ORDER/CLUSTER/DISTRIBUTE BY]({{< ref "languagemanual-sortby_27362045" >}}); [JOIN]({{< ref "languagemanual-joins_27362039" >}}) ([Hive Joins]({{< ref "languagemanual-joins_27362039" >}}), [Join Optimization]({{< ref "languagemanual-joinoptimization_33293167" >}}), [Outer Join Behavior]({{< ref "outerjoinbehavior_35749927" >}})); [UNION]({{< ref "languagemanual-union_27362049" >}}); [TABLESAMPLE]({{< ref "languagemanual-sampling_27362042" >}}); [Subqueries]({{< ref "languagemanual-subqueries_27362044" >}}); [Virtual Columns]({{< ref "languagemanual-virtualcolumns_27362048" >}}); [Operators and UDFs]({{< ref "languagemanual-udf_27362046" >}}); [LATERAL VIEW]({{< ref "languagemanual-lateralview_27362040" >}}); [Windowing, OVER, and Analytics]({{< ref "languagemanual-windowingandanalytics_31819589" >}}); [Common Table Expressions]({{< ref "common-table-expression_38572242" >}})
 
 ## Select Syntax
-
-
 
 ```
 [WITH CommonTableExpression (, CommonTableExpression)*]    (Note: Only available starting with Hive 0.13.0)
@@ -59,8 +40,6 @@ SELECT [ALL | DISTINCT] select\_expr, select\_expr, ...
 	+ To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html) (attached to [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Also see [REGEX Column Specification]({{< ref "#regex-column-specification" >}}) below.
 * Simple query. For example, the following query retrieves all columns and all rows from table t1.
 
-
-
 ```
 SELECT * FROM t1 
 ```
@@ -70,8 +49,6 @@ Note
 As of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144), FROM is optional (for example, `SELECT 1+1`).
 * To get the current database (as of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)), use the [current\_database() function]({{< ref "#current\_database---function" >}}):
 
-
-
 ```
 SELECT current\_database()
 ```
@@ -80,8 +57,6 @@ SELECT current\_database()
 "`db_name.table_name`" allows a query to access tables in different databases.
 
 USE sets the database for all subsequent HiveQL statements. Reissue it with the keyword "`default`" to reset to the default database.
-
-
 
 ```
 USE database\_name;
@@ -93,8 +68,6 @@ USE default;
 
 The WHERE condition is a [boolean]({{< ref "languagemanual-types_27838462" >}}) expression. For example, the following query returns only those sales records which have an amount greater than 10 from the US region. Hive supports a number of [operators and UDFs]({{< ref "languagemanual-udf_27362046" >}}) in the WHERE clause:
 
-
-
 ```
 SELECT * FROM sales WHERE amount > 10 AND region = "US"
 
@@ -105,8 +78,6 @@ As of Hive 0.13 some types of [subqueries]({{< ref "languagemanual-subqueries_27
 ### ALL and DISTINCT Clauses
 
 The ALL and DISTINCT options specify whether duplicate rows should be returned. If none of these options are given, the default is ALL (all matching rows are returned). DISTINCT specifies removal of duplicate rows from the result set. Note, Hive supports SELECT DISTINCT * starting in release 1.1.0 ([HIVE-9194](https://issues.apache.org/jira/browse/HIVE-9194)).
-
-
 
 ```
 hive> SELECT col1, col2 FROM t1
@@ -130,8 +101,6 @@ ALL and DISTINCT can also be used in a UNION clause – see [Union Syntax]({{< 
 
 In general, a SELECT query scans the entire table (other than for [sampling]({{< ref "languagemanual-sampling_27362042" >}})). If a table created using the [PARTITIONED BY]({{< ref "#partitioned-by" >}}) clause, a query can do **partition pruning** and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page\_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.
 
-
-
 ```
     SELECT page\_views.*
     FROM page\_views
@@ -140,8 +109,6 @@ In general, a SELECT query scans the entire table (other than for [sampling]({{<
 ```
 
 If a table page\_views is joined with another table dim\_users, you can specify a range of partitions in the ON clause as follows:
-
-
 
 ```
     SELECT page\_views.*
@@ -158,16 +125,12 @@ If a table page\_views is joined with another table dim\_users, you can specify 
 
 Hive added support for the HAVING clause in version 0.7.0. In older versions of Hive it is possible to achieve the same effect by using a subquery, e.g:
 
-
-
 ```
 SELECT col1 FROM t1 GROUP BY col1 HAVING SUM(col2) > 10
 
 ```
 
 can also be expressed as
-
-
 
 ```
 SELECT col1 FROM (SELECT col1, SUM(col2) AS col2sum FROM t1 GROUP BY col1) t2 WHERE t2.col2sum > 10
@@ -188,16 +151,12 @@ When a single argument is given, it stands for the maximum number of rows and th
 
 The following query returns 5 arbitrary customers
 
-
-
 ```
 SELECT * FROM customers LIMIT 5
 ```
 
   
 The following query returns the first 5 customers to be created
-
-
 
 ```
 SELECT * FROM customers ORDER BY create\_date LIMIT 5
@@ -206,8 +165,6 @@ SELECT * FROM customers ORDER BY create\_date LIMIT 5
  
 
 The following query returns the  3rd to the 7th customers to be created
-
-
 
 ```
 SELECT * FROM customers ORDER BY create\_date LIMIT 2,5
@@ -219,8 +176,6 @@ A SELECT statement can take regex-based column specification in Hive releases pr
 
 * We use Java regex syntax. Try <http://www.fileformat.info/tool/regex.htm> for testing purposes.
 * The following query selects all columns except ds and hr.
-
-
 
 ```
 SELECT `(ds|hr)?+.+` FROM sales
@@ -251,8 +206,6 @@ See the following documents for additional syntax and features of SELECT stateme
  
 
  
-
-
 
  
 

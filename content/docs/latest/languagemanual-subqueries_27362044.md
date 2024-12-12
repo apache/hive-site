@@ -3,31 +3,12 @@ title: "Apache Hive : LanguageManual SubQueries"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual SubQueries
-
-
-
-
-
-
 
 * [Subqueries in the FROM Clause]({{< ref "#subqueries-in-the-from-clause" >}})
 * [Subqueries in the WHERE Clause]({{< ref "#subqueries-in-the-where-clause" >}})
 
-
-
-
 # Subqueries in the FROM Clause
-
-
 
 ```
 SELECT ... FROM (subquery) name ...
@@ -40,8 +21,6 @@ The optional keyword "AS" can be included before the subquery name in Hive 0.13.
 
 Example with simple subquery:
 
-
-
 ```
 SELECT col 
 FROM (
@@ -52,8 +31,6 @@ FROM (
 ```
 
 Example with subquery containing a UNION ALL:
-
-
 
 ```
 SELECT t3.col
@@ -71,8 +48,6 @@ FROM (
 
 As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-784) some types of subqueries are supported in the WHERE clause. Those are queries where the result of the query can be treated as a constant for IN and NOT IN statements (called *uncorrelated subqueries* because the subquery does not reference columns from the parent query):
 
-
-
 ```
 SELECT *
 FROM A
@@ -81,8 +56,6 @@ WHERE A.a IN (SELECT foo FROM B);
 ```
 
 The other supported types are EXISTS and NOT EXISTS subqueries:
-
-
 
 ```
 SELECT A
@@ -97,8 +70,6 @@ There are a few limitations:
 * IN/NOT IN subqueries may only select a single column.
 * EXISTS/NOT EXISTS must have one or more correlated predicates.
 * References to the parent query are only supported in the WHERE clause of the subquery.
-
-
 
  
 

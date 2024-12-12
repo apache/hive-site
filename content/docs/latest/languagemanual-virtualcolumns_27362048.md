@@ -3,27 +3,10 @@ title: "Apache Hive : LanguageManual VirtualColumns"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual VirtualColumns
-
-
-
-
-
-
 
 * [Virtual Columns]({{< ref "#virtual-columns" >}})
 	+ [Simple Examples]({{< ref "#simple-examples" >}})
-
-
-
 
 ## Virtual Columns
 
@@ -51,8 +34,6 @@ select `INPUT__FILE__NAME`, key, `BLOCK__OFFSET__INSIDE__FILE` from src;
 select key, count(`INPUT__FILE__NAME`) from src group by key order by key;
 
 select * from src where `BLOCK__OFFSET__INSIDE__FILE` > 12000 order by key;
-
-
 
  
 

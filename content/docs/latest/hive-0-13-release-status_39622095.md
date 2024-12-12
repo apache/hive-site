@@ -3,30 +3,15 @@ title: "Apache Hive : Hive 0.13 release status"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive 0.13 release status
 
-
-
-
-
-
 ### JQL used to track issues
-
 
 > id in () ORDER BY status ASC, assignee
 > 
 > 
 
 ### JQL for jiras fixed for 0.13 after branch
-
 
 > 
 > ```
@@ -272,8 +257,6 @@ HIVE-6555 : Fix metastore version in mysql script(Ashutosh Chauhan via Prasad Mu
 HIVE-6537 NullPointerException when loading hashtable for MapJoin directly (Sergey Shelukhin and Navis, reviewed by Gunther Hagleitner)  
 HIVE-6548 : Missing owner name and type fields in schema script for DBS table (Ashutosh Chauhan via Thejas Nair)  
 HIVE-6325: Enable using multiple concurrent sessions in tez (Vikram Dixit, reviewed by Gunther Hagleitner)
-
-
 
  
 

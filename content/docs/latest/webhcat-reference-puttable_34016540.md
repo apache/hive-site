@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference PutTable"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference PutTable
 
-
-
-
-
-
 # Create Table — PUT ddl/database/:db/table/:table
-
 
 * [Create Table — PUT ddl/database/:db/table/:table]({{< ref "#create-table-—-put-ddl/database/:db/table/:table" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -32,9 +18,6 @@ date: 2024-12-12
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
 
-
-
-
 ## Description
 
 Create a new HCatalog table. For more information, please refer to the Hive documentation for [CREATE TABLE]({{< ref "#create-table" >}}).
@@ -44,8 +27,6 @@ Create a new HCatalog table. For more information, please refer to the Hive docu
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*`/table/`*:table*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -67,8 +48,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **table** | The new table name. |
@@ -77,8 +56,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Curl Command
-
-
 
 ```
 % curl -s -X PUT -HContent-type:application/json -d '{
@@ -94,8 +71,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 
 ### Curl Command (using clusteredBy)
-
-
 
 ```
 % curl -s -X PUT -HContent-type:application/json -d '{
@@ -125,8 +100,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### JSON Output
 
-
-
 ```
 {
  "table": "test\_table",
@@ -136,8 +109,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 
 ### JSON Output (error)
-
-
 
 ```
 {
@@ -162,14 +133,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table]({{< ref "webhcat-reference-gettable_34016519" >}}) Next: [POST ddl/database/:db/table/:table]({{< ref "webhcat-reference-posttable_34016548" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

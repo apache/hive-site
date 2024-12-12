@@ -3,20 +3,7 @@ title: "Apache Hive : Metastore TLP Proposal"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Metastore TLP Proposal
-
-
-
-
-
 
 ## Summary of the Proposal from the Email
 
@@ -75,8 +62,6 @@ The following have been suggested as a name for this project:
 * ZCatalog
 
  
-
-
 
  
 

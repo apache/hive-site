@@ -3,28 +3,13 @@ title: "Apache Hive : Committed jiras for 1.2.1"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Committed jiras for 1.2.1
-
-
-
-
-
 
 # List of JIRAs committed in branch-1.2 for 1.2.1
 
 This is a list of jiras that were initially intended for 1.2.1, but were not finished in time for 1.2.1. They might be included in 1.2.2 if they satisfy rules for inclusion into 1.2.2 (See parent page on Hive 1.2 Release Status), but otherwise, should be tracked for 1.3 onwards.
 
  
-
-
 
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -64,8 +49,6 @@ In general, now that 1.2.0 has been voted on and in the process of releasing, co
 3. It should have been added to this list
 
  
-
-
 
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -550,8 +533,6 @@ Resolved
  
 
  
-
-
 
  
 

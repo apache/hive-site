@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog UsingHCat"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog UsingHCat
 
-
-
-
-
-
 # Using HCatalog
-
 
 * [Using HCatalog]({{< ref "#using-hcatalog" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -31,9 +17,6 @@ date: 2024-12-12
 		- [Second: Prepare the Data]({{< ref "#second:-prepare-the-data" >}})
 		- [Third: Analyze the Data]({{< ref "#third:-analyze-the-data" >}})
 	+ [HCatalog Web API]({{< ref "#hcatalog-web-api" >}})
-
-
-
 
 Version information
 
@@ -76,8 +59,6 @@ This simple data flow example shows how HCatalog can help grid users share and a
 
 Joe in data acquisition uses `distcp` to get data onto the grid.
 
-
-
 ```
 hadoop distcp file:///file.dat hdfs://data/rawevents/20100819/data
 
@@ -91,8 +72,6 @@ Sally in data processing uses Pig to cleanse and prepare the data.
 
 Without HCatalog, Sally must be manually informed by Joe when data is available, or poll on HDFS.
 
-
-
 ```
 A = load '/data/rawevents/20100819/data' as (alpha:int, beta:chararray, ...);
 B = filter A by bot\_finder(zeta) = 0;
@@ -102,8 +81,6 @@ store Z into 'data/processedevents/20100819/data';
 ```
 
 With HCatalog, HCatalog will send a JMS message that data is available. The Pig job can then be started.
-
-
 
 ```
 A = load 'rawevents' using org.apache.hive.hcatalog.pig.HCatLoader();
@@ -119,8 +96,6 @@ Robert in client management uses Hive to analyze his clients' results.
 
 Without HCatalog, Robert must alter the table to add the required partition.
 
-
-
 ```
 alter table processedevents add partition 20100819 hdfs://data/processedevents/20100819/data
 
@@ -132,8 +107,6 @@ group by advertiser\_id;
 ```
 
 With HCatalog, Robert does not need to modify the table structure.
-
-
 
 ```
 select advertiser\_id, count(clicks)
@@ -154,15 +127,7 @@ Next: [HCatalog Installation]({{< ref "hcatalog-installhcat_34013403" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
-
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

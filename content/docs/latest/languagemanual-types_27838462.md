@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual Types"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Types
 
-
-
-
-
-
 # Hive Data Types
-
 
 * [Hive Data Types]({{< ref "#hive-data-types" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -52,9 +38,6 @@ date: 2024-12-12
 	+ [Handling of NULL Values]({{< ref "#handling-of-null-values" >}})
 	+ [Change Types]({{< ref "#change-types" >}})
 	+ [Allowed Implicit Conversions]({{< ref "#allowed-implicit-conversions" >}})
-
-
-
 
 ## Overview
 
@@ -116,8 +99,6 @@ DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0
 
 Integral literals are assumed to be `INT` by default, unless the number exceeds the range of `INT` in which case it is interpreted as a BIGINT, or if one of the following postfixes is present on the number.
 
-
-
 | Type | Postfix | Example |
 | --- | --- | --- |
 | TINYINT | Y | 100Y |
@@ -125,7 +106,6 @@ Integral literals are assumed to be `INT` by default, unless the number exceeds 
 | BIGINT | L | 100L  |
 
   
-
 
 Version
 
@@ -153,8 +133,6 @@ Varchar datatype was introduced in Hive 0.12.0 ([HIVE-4844](https://issues.apach
 ### Char
 
 Char types are similar to Varchar but they are fixed-length meaning that values shorter than the specified length value are padded with spaces but trailing spaces are not important during comparisons. The maximum length is fixed at 255.
-
-
 
 ```
 CREATE TABLE foo (bar CHAR(10))
@@ -200,8 +178,6 @@ Dates were introduced in Hive 0.12.0 ([HIVE-4055](https://issues.apache.org/jira
 
 Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{< ref "122917025" >}}).
 
-
-
 | Valid casts to/from Date type | Result |
 | --- | --- |
 | cast(date as date) | Same date value |
@@ -211,8 +187,6 @@ Date types can only be converted to/from Date, Timestamp, or String types. Casti
 | cast(date as string) | The year/month/day represented by the Date is formatted as a string in the form 'YYYY-MM-DD'. |
 
 ### Intervals
-
-
 
 | Supported Interval Description | Example | Meaning | Since |
 | --- | --- | --- | --- |
@@ -237,8 +211,6 @@ The `DECIMAL` type in Hive is based on Java's [BigDecimal](http://docs.oracle.co
 * Hive 0.11 and 0.12 have the precision of the `DECIMAL` type fixed and limited to 38 digits.
 * As of Hive [0.13](https://issues.apache.org/jira/browse/HIVE-3976) users can specify scale and precision when creating tables with the `DECIMAL` datatype using a `DECIMAL(precision, scale)` syntax.  If scale is not specified, it defaults to 0 (no fractional digits). If no precision is specified, it defaults to 10.
 
-
-
 ```
 CREATE TABLE foo (
   a DECIMAL, -- Defaults to decimal(10,0)
@@ -252,7 +224,6 @@ For usage, see [LanguageManual Types#Floating Point Types](https://cwiki.apache.
 #### Decimal Literals
 
 Integral literals larger than BIGINT must be handled with Decimal(38,0). The Postfix BD is required. Example:
-
 
 ```
 select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my\_table limit 1;
@@ -268,16 +239,12 @@ If the user was on Hive 0.12.0 or earlier and created tables with decimal column
 1. Determine what precision/scale you would like to set for the decimal column in the table.
 2. For each decimal column in the table, update the column definition to the desired precision/scale using the [ALTER TABLE]({{< ref "#alter-table" >}}) command:
 
-
-
 ```
 ALTER TABLE foo CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
 ```
 
 If the table is not a partitioned table, then you are done.  If the table has partitions, then go on to step 3.
 3. If the table is a partitioned table, then find the list of partitions for the table:
-
-
 
 ```
 SHOW PARTITIONS foo;
@@ -290,8 +257,6 @@ ds=2008-04-08/hr=12
 
 This can be done with a single [ALTER TABLE CHANGE COLUMN]({{< ref "#alter-table-change-column" >}}) by using dynamic partitioning (available for ALTER TABLE CHANGE COLUMN in Hive 0.14 or later, with [HIVE-8411](https://issues.apache.org/jira/browse/HIVE-8411)):
 
-
-
 ```
 SET hive.exec.dynamic.partition = true;
  
@@ -302,10 +267,7 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_
 
   
 
-
 Alternatively, this can be done one partition at a time using ALTER TABLE CHANGE COLUMN, by specifying one partition per statement (This is available in Hive 0.14 or later, with [HIVE-7971](https://issues.apache.org/jira/browse/HIVE-7971).):
-
-
 
 ```
 ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
@@ -322,8 +284,6 @@ UNIONTYPE support is incomplete
 The UNIONTYPE datatype was introduced in Hive 0.7.0 ([HIVE-537](https://issues.apache.org/jira/browse/HIVE-537)), but full support for this type in Hive remains incomplete. Queries that reference UNIONTYPE fields in JOIN ([HIVE-2508](https://issues.apache.org/jira/browse/HIVE-2508)), WHERE, and GROUP BY clauses will fail, and Hive does not define syntax to extract the tag or value fields of a UNIONTYPE. This means that UNIONTYPEs are effectively pass-through-only.
 
 Union types can at any one point hold exactly one of their specified data types. You can create an instance of this type using the `create_union` UDF:
-
-
 
 ```
 CREATE TABLE union\_test(foo UNIONTYPE<int, double, array<string>, struct<a:int,b:string>>);
@@ -343,8 +303,6 @@ SELECT foo FROM union\_test;
 The first part in the deserialized union is the *tag* which lets us know which part of the union is being used. In this example `0` means the first data\_type from the definition which is an `int` and so on.
 
 To create a union you have to provide this tag to the `create_union` UDF:
-
-
 
 ```
 SELECT create\_union(0, key), create\_union(if(key<100, 0, 1), 2.0, value), create\_union(1, "a", struct(2, "b")) FROM src LIMIT 2;
@@ -378,8 +336,6 @@ The precision of a Decimal type is limited to 38 digits in Hive. See [HIVE-4271]
 
 You can create a table in Hive that uses the Decimal type with the following syntax:
 
-
-
 ```
 create table decimal\_1 (t decimal);
 
@@ -389,8 +345,6 @@ The table `decimal_1` is a table having one field of type decimal which is basic
 
 You can read and write values in such a table using either the LazySimpleSerDe or the LazyBinarySerDe. For example:
 
-
-
 ```
 alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe';
 
@@ -398,16 +352,12 @@ alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleS
 
 or:
 
-
-
 ```
 alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazyBinarySerDe';
 
 ```
 
 You can use a cast to convert a Decimal value to any other primitive type such as a BOOLEAN. For example:
-
-
 
 ```
 select cast(t as boolean) from decimal\_2;
@@ -476,8 +426,6 @@ When [hive.metastore.disallow.incompatible.col.type.changes]({{< ref "#hive-meta
 
 ## Allowed Implicit Conversions
 
-
-
 |  | void | boolean | tinyint | smallint | int | bigint | float | double | decimal | string | varchar | timestamp | date | binary |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | void to | true | true | true | true | true | true | true | true | true | true | true | true | true | true |
@@ -497,10 +445,7 @@ When [hive.metastore.disallow.incompatible.col.type.changes]({{< ref "#hive-meta
 
   
 
-
 Save
-
-
 
  
 

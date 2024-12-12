@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog DynamicPartitions"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog DynamicPartitions
 
-
-
-
-
-
 # Dynamic Partitioning
-
 
 * [Dynamic Partitioning]({{< ref "#dynamic-partitioning" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -28,16 +14,11 @@ date: 2024-12-12
 	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
 	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
 
-
-
-
 ## Overview
 
 When writing data in HCatalog it is possible to write all records to a single partition. In this case the partition column(s) need not be in the output data.
 
 The following Pig script illustrates this:
-
-
 
 ```
 A = load 'raw' using HCatLoader(); 
@@ -50,8 +31,6 @@ store for\_asia into 'processed' using HCatStorer("ds=20110110, region=asia");
 ```
 
 In cases where you want to write data to multiple partitions simultaneously, this can be done by placing partition columns in the data and not specifying partition values when storing the data.
-
-
 
 ```
 A = load 'raw' using HCatLoader(); 
@@ -104,8 +83,6 @@ Usage from Pig is very simple! Instead of specifying all keys as one normally do
 
 So this statement...
 
-
-
 ```
 store A into 'mytable' using HCatStorer("a=1, b=1");
 
@@ -113,21 +90,15 @@ store A into 'mytable' using HCatStorer("a=1, b=1");
 
 ...is equivalent to any of the following statements, if the data has only values where a=1 and b=1:
 
-
-
 ```
 store A into 'mytable' using HCatStorer();
 
 ```
 
-
-
 ```
 store A into 'mytable' using HCatStorer("a=1");
 
 ```
-
-
 
 ```
 store A into 'mytable' using HCatStorer("b=1");
@@ -138,8 +109,6 @@ On the other hand, if there is data that spans more than one partition, then HCa
 
 For example, let's say a=1 for all values across our dataset and b takes the values 1 and 2. Then the following statement...
 
-
-
 ```
 store A into 'mytable' using HCatStorer();
 
@@ -147,14 +116,10 @@ store A into 'mytable' using HCatStorer();
 
 ...is equivalent to either of these statements:
 
-
-
 ```
 store A into 'mytable' using HCatStorer("a=1");
 
 ```
-
-
 
 ```
 split A into A1 if b='1', A2 if b='2';
@@ -168,8 +133,6 @@ store A2 into 'mytable' using HCatStorer("a=1, b=2");
 As with Pig, the only change in dynamic partitioning that a MapReduce programmer sees is that they don't have to specify all the partition key/value combinations.
 
 A current code example for writing out a specific partition for (a=1, b=1) would go something like this:
-
-
 
 ```
 Map<String, String> partitionValues = new HashMap<String, String>();
@@ -195,9 +158,6 @@ Hive design document: [Dynamic Partitions]({{< ref "dynamicpartitions_27823715" 
  Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

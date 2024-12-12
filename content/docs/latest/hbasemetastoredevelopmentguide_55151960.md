@@ -3,20 +3,7 @@ title: "Apache Hive : HBaseMetastoreDevelopmentGuide"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HBaseMetastoreDevelopmentGuide
-
-
-
-
-
 
  
 
@@ -26,14 +13,10 @@ This work is discontinued and the code is removed in release 3.0.0 ([HIVE-17234]
 
  
 
-
 * [Building]({{< ref "#building" >}})
 * [Setup for running hive against hbase metastore -]({{< ref "#setup-for-running-hive-against-hbase-metastore--" >}})
 * [Importing metadata from rdbms to hbase]({{< ref "#importing-metadata-from-rdbms-to-hbase" >}})
 * [Design Docs]({{< ref "#design-docs" >}})
-
-
-
 
 # Building
 
@@ -59,8 +42,6 @@ Once you’ve built the code from the HBase metastore branch (hbase-metastore), 
 
 8. Create the metastore tables in HBase: hive --service hbaseschematool --install
 9. Configure Hive to use HBase as its metastore, in hive-site.xml:
-
-
 
 ```
 <property>
@@ -95,7 +76,6 @@ hive --service hbaseimport 
 
   
 
-
 # Design Docs
 
 [Overall Approach](https://issues.apache.org/jira/secure/attachment/12697601/HBaseMetastoreApproach.pdf)
@@ -103,8 +83,6 @@ hive --service hbaseimport 
 [Hbase execution plans for RawStore partition filter condition]({{< ref "hbase-execution-plans-for-rawstore-partition-filter-condition_55151993" >}})
 
  
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : HowToRelease"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HowToRelease
-
-
-
-
-
 
 *This page is prepared for Hive committers. You need committer rights to create a new Hive release.*
 
@@ -60,8 +47,6 @@ Skip this section if this is NOT the first release in a series (i.e., release X.
 
 1. Check out the master branch
 
-
-
 ```
 git checkout master
 ```
@@ -77,8 +62,6 @@ Skip this section if this is NOT the first release in a series (i.e., release X.
 1. Notify developers on the #hive IRC channel and dev@hive mailing lists that you are about to branch a release.
 2. Create a branch for the release series: 
 
-
-
 ```
 git checkout -b storage-branch-X.Y origin/master
 ```
@@ -86,8 +69,6 @@ git checkout -b storage-branch-X.Y origin/master
 4. Verify that the build is working with changes.
 5. Commit these changes with a comment "Preparing for storage-api X.Y.Z release".
 6. Tag the release candidate (`R` is the release candidate number, and also starts from 0):
-
-
 
 ```
 git commit -a -m "Preparing for storage-api X.Y.Z release"
@@ -101,15 +82,11 @@ git push origin storage-release-X.Y.Z-rcR
 1. Make sure your release notes have been updated for any new commits, and go through the previous steps if necessary.
 2. Create and publish the tag:
 
-
-
 ```
 git tag storage-release-X.Y.Z-rcR -m "Hive Storage API X.Y.Z-rcR release."
 git push origin storage-release-X.Y.Z-rcR 
 ```
 3. Build the release (binary and source versions) after running unit tests. Manually create the sha file.
-
-
 
 ```
 % wget https://github.com/apache/hive/archive/storage-release-X.Y.Z-rcR.tar.gz
@@ -123,14 +100,10 @@ git push origin storage-release-X.Y.Z-rcR
 	1. See <https://www.apache.org/dev/release-signing.html>, <https://www.apache.org/dev/openpgp.html>.
 5. Sign the release (see [Step-By-Step Guide to Mirroring Releases](http://www.apache.org/dev/mirror-step-by-step.html?Step-By-Step) for more information).
 
-
-
 ```
 % gpg --armor --detach-sig hive-storage-X.Y.Z-rcR.tar.gz
 ```
 6. Check the signatures.
-
-
 
 ```
 % shasum -c hive-storage-X.Y.Z-rcR.tar.gz.sha256
@@ -142,8 +115,6 @@ gpg: Signature made Fri Apr 28 12:50:03 2017 PDT using RSA key ID YOUR-KEY-ID
 gpg: Good signature from "Your Name <YOUR-APACHE-ID@apache.org>"
 ```
 7. Copy release files to a public place.
-
-
 
 ```
 % sftp YOUR-APACHE-ID@home.apache.org
@@ -160,8 +131,6 @@ sftp> quit
 
 1. After the release vote passes, push the artifacts to Nexus.  (If you get an error `gpg: signing failed: Inappropriate ioctl for device` trying doing `export GPG_TTY=$(tty)` .)
 
-
-
 ```
 % git checkout storage-release-X.Y.Z-rcR
 % cd storage-api
@@ -169,8 +138,6 @@ sftp> quit
 ```
 2. Login to Nexus and close the repository. Mark the repository as released.
 3. Create the final tag (be very careful, tags in "rel/" are not changeable).
-
-
 
 ```
 % git checkout storage-release-X.Y.Z-rcR
@@ -185,8 +152,6 @@ sftp> quit
  
 
  solved the issue.
-
-
 
 ```
 % svn checkout https://dist.apache.org/repos/dist/release/hive hive-dist
@@ -203,8 +168,6 @@ sftp> quit
 1. Edit storage-api/pom.xml to change version to X.Y.Z+1-SNAPSHOT.
 2. Edit pom.xml to change storage-api.version to X.Y.Z+1-SNAPSHOT.
 3. Commit the changes back
-
-
 
 ```
 % git commit -a -s -m 'Preparing for development post-X.Y.Z.'
@@ -233,15 +196,11 @@ Skip this section if this is NOT the first release in a series (i.e., release X.
 1. Notify developers on the #hive IRC channel and dev@hive mailing lists that you are about to branch a release.
 2. Create a branch for the release series: 
 
-
-
 ```
 git checkout -b branch-X.Y origin/master
 git push -u origin branch-X.Y
 ```
 3. Increment the value of the `version` property in all pom.xml files. For example, if the current value is `0.7.0-SNAPSHOT`, the new value should be `0.8.0-SNAPSHOT`. Please note that the `SNAPSHOT` suffix is required in order to indicate that this is an unreleased development branch. This can be accomplished with a single command using [Maven's Versions plugin](http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html) as follows: 
-
-
 
 ```
 mvn versions:set -DnewVersion=X.Y.0-SNAPSHOT -DgenerateBackupPoms=false
@@ -256,16 +215,12 @@ These operations take place in the release branch.
 
 1. Check out the release branch with:
 
-
-
 ```
 git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive\_src\_dir>
 cd <hive\_src\_dir>
 git checkout branch-X.Y
 ```
 2. Update the `version` property value in all pom.xml files. You should remove the `SNAPSHOT` suffix and set `version` equal to `hive-X.Y.Z` where Z is the point release number in this release series (0 for the first one, in which case this step is a no-op since you already did this above when creating the branch). Use [Maven's Versions plugin](http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html) to do this as follows:
-
-
 
 ```
 mvn versions:set -DnewVersion=0.7.0 -DgenerateBackupPoms=false
@@ -283,8 +238,6 @@ Make sure to update the version property in standalone-metastore/pom.xml and upg
 	3. Update the release notes in trunk with the release notes in branch.
 9. Tag the release candidate (R is the release candidate number, and also starts from 0):
 
-
-
 ```
 git tag -a release-X.Y.Z-rcR -m "Hive X.Y.Z-rcR release."
 git push origin release-X.Y.Z-rcR 
@@ -294,8 +247,6 @@ git push origin release-X.Y.Z-rcR
 
 1. Make sure your release notes have been updated for any new commits, and go through the previous steps if necessary.
 2. Build the release (binary and source versions) after running unit tests. Manually create the sha256 files.
-
-
 
 ```
 % mvn install -Pdist,iceberg -DskipTests -Dmaven.javadoc.skip=true -DcreateChecksum=true
@@ -307,8 +258,6 @@ git push origin release-X.Y.Z-rcR
 
 Note: If you build from the existing project, make sure there are no empty directories or the "*.iml" files in the apache-hive-X.Y.Z-src.tar.gz.
 3. Verify that the SHA 256 checksums are valid:
-
-
 
 ```
 % shasum -a 256 -c apache-hive-X.Y.Z-bin.tar.gz.sha256
@@ -333,16 +282,12 @@ apache-hive-X.Y.Z-src.tar.gz: OK
 ```
 6. Sign the release (see [Step-By-Step Guide to Mirroring Releases](http://www.apache.org/dev/mirror-step-by-step.html?Step-By-Step) for more information).
 
-
-
 ```
 % gpg --armor --output apache-hive-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-X.Y.Z-bin.tar.gz
 % gpg --armor --output apache-hive-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-X.Y.Z-src.tar.gz
 
 ```
 7. Follow instructions in <https://www.apache.org/dev/release-publishing.html#distribution> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<https://dist.apache.org/repos/dist/dev/hive/>). Make sure to create a new directory for the release candidate. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
-
-
 
 ```
 svn co --depth empty https://dist.apache.org/repos/dist
@@ -362,11 +307,8 @@ svn commit -m "Hive X.Y.Z release"
 
 **Note**: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=<PRIV\_KEY>
 
-
-
 ```
 % mvn deploy -DskipTests -Papache-release,iceberg -Dmaven.javadoc.skip=true
-
 
 ```
 9. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and "close" the staged repository. This makes the artifacts available at a temporary URL.
@@ -374,8 +316,6 @@ svn commit -m "Hive X.Y.Z release"
 ### Voting
 
 1. Call a release vote on dev at hive.apache.org.
-
-
 
 ```
 From: you@apache.org
@@ -413,8 +353,6 @@ Thanks.
 
 1. Verifying the PGP signature:
 
-
-
 ```
 #get the hive committers keys file
 wget https://www.apache.org/dist/hive/KEYS 
@@ -425,7 +363,6 @@ gpg --import <keys file>
 gpg --verify hive-X.Y.Z-bin.tar.gz.asc  hive-X.Y.Z-bin.tar.gz
 gpg --verify hive-X.Y.Z.tar.gz.asc  hive-X.Y.Z.tar.gz
 
-
 ```
 2. Verifying the sha256 checksum:  
 See the step under Building.
@@ -435,8 +372,6 @@ See the step under Building.
 Once [three PMC members have voted for a release](http://www.apache.org/foundation/voting.html#ReleaseVotes), it may be published.
 
 1. Tag the release and delete the release candidate tag. Do it from the release branch:
-
-
 
 ```
 git tag -s rel/release-X.Y.Z -m "HiveX.Y.Z release."
@@ -455,15 +390,11 @@ If errors happen while "git tag -s", try to configure the git signing key by "gi
 
 )
 
-
-
 ```
 svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m "Move hive-X.Y.Z release from dev to release"
 ```
 3. Wait till the release propagates to the mirrors and appears under: <https://dlcdn.apache.org/hive/>
 4. In your base hive source directory, generate javadocs as follows:
-
-
 
 ```
 mvn clean install javadoc:javadoc javadoc:aggregate -DskipTests -Pjavadoc,iceberg
@@ -472,14 +403,10 @@ mvn clean install javadoc:javadoc javadoc:aggregate -DskipTests -Pjavadoc,iceber
 After you run this, you should have javadocs present in your <hive\_source\_dir>/target/site/apidocs
 5. Check out the javadocs svn repository as follows:
 
-
-
 ```
 svn co --depth empty https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs
 ```
 6. Copy the generated javadocs from the source repository to the javadocs repository, add and commit:
-
-
 
 ```
 mkdir <hive\_javadocs\_repo\_dir>/rX.Y.Z/
@@ -492,14 +419,10 @@ svn commit
 If this is a bugfix release, svn rm the obsoleted version. (For eg., when committing javadocs for r0.13.1, r0.13.0 would have been removed)
 7. Prepare to edit the website.
 
-
-
 ```
 git clone https://github.com/apache/hive-site.git
 ```
 8. Edit files content/downloads.mdtext and javadoc.mdtext to appropriately add entries for the new release in the appropriate location. For example, for 1.2.0, the entries made were as follows:
-
-
 
 ```
 ./downloads.md:### 18 May 2015 : release 1.2.0 available
@@ -519,8 +442,6 @@ As you can see, you will need a release note link for this release as created pr
 12. Add the release in [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?hive) for the next board report to pick that up automatically.
 13. Check whether the [Docker image](https://hub.docker.com/r/apache/hive) for the release is present or not.
 14. Send a release announcement to Hive `user` and `dev` lists as well as the Apache `announce` list. This email should be sent from your Apache email address:
-
-
 
 ```
 From: you@apache.org
@@ -565,14 +486,11 @@ The Apache Hive Team
 
 According to the [INFRA archival g](https://infra.apache.org/release-distribution.html#archival)[uidelines](https://infra.apache.org/release-distribution.html#archival) old releases should be removed from the main [download site of the project](https://downloads.apache.org/hive/) following. Check the respective guidelines and perform the necessary cleanup.
 
-
-
 ```
 svn del -m "Archiving release Apache Hive 4.0.0-beta-1" https://dist.apache.org/repos/dist/release/hive/hive-4.0.0-beta-1/ 
 ```
 
   
-
 
 ### Preparing Branch for Future Maintenance Release
 
@@ -580,16 +498,12 @@ After the release has been completed, prepare the branch for the next developmen
 
 1. Check out the release branch with:
 
-
-
 ```
 git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive\_src\_dir>
 cd <hive\_src\_dir>
 git checkout branch-X.Y
 ```
 2. Increment the `version` property value in all pom.xml files and add the `SNAPSHOT` suffix. For example, if the released version was `0.7.0`, the new value should be `0.7.1-SNAPSHOT`. Please note that the `SNAPSHOT` suffix is required in order to indicate that this is an unreleased development branch. Use [Maven's Versions plugin](http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html) to do this as follows:
-
-
 
 ```
 mvn versions:set -DnewVersion=0.7.1-SNAPSHOT -DgenerateBackupPoms=false
@@ -602,8 +516,6 @@ For example, if you are working on branch-3 and have just released Hive 3.2 and 
 ## See Also
 
 * [Apache Releases FAQ](http://www.apache.org/dev/release.html)
-
-
 
  
 

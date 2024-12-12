@@ -3,30 +3,13 @@ title: "Apache Hive : LanguageManual Indexing"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Indexing
-
-
-
-
-
-
 
 * [Indexing Is Removed since 3.0]({{< ref "#indexing-is-removed-since-3-0" >}})
 * [Overview of Hive Indexes]({{< ref "#overview-of-hive-indexes" >}})
 * [Indexing Resources]({{< ref "#indexing-resources" >}})
 	+ [Configuration Parameters for Hive Indexes]({{< ref "#configuration-parameters-for-hive-indexes" >}})
 * [Simple Examples]({{< ref "#simple-examples" >}})
-
-
-
 
 ## Indexing Is Removed since 3.0
 
@@ -74,8 +57,6 @@ In Hive 0.12.0 and earlier releases, the index name is case-sensitive for CREATE
 
 Create/build, show, and drop index:
 
-
-
 ```
 CREATE INDEX table01\_index ON TABLE table01 (column2) AS 'COMPACT';
 SHOW INDEX ON table01;
@@ -84,8 +65,6 @@ DROP INDEX table01\_index ON table01;
 ```
 
 Create then build, show formatted (with column names), and drop index:
-
-
 
 ```
 CREATE INDEX table02\_index ON TABLE table02 (column3) AS 'COMPACT' WITH DEFERRED REBUILD;
@@ -97,8 +76,6 @@ DROP INDEX table02\_index ON table02;
 
 Create bitmap index, build, show, and drop:
 
-
-
 ```
 CREATE INDEX table03\_index ON TABLE table03 (column4) AS 'BITMAP' WITH DEFERRED REBUILD;
 ALTER INDEX table03\_index ON table03 REBUILD;
@@ -109,16 +86,12 @@ DROP INDEX table03\_index ON table03;
 
 Create index in a new table:
 
-
-
 ```
 CREATE INDEX table04\_index ON TABLE table04 (column5) AS 'COMPACT' WITH DEFERRED REBUILD IN TABLE table04\_index\_table;
 
 ```
 
 Create index stored as RCFile:
-
-
 
 ```
 CREATE INDEX table05\_index ON TABLE table05 (column6) AS 'COMPACT' STORED AS RCFILE;
@@ -127,16 +100,12 @@ CREATE INDEX table05\_index ON TABLE table05 (column6) AS 'COMPACT' STORED AS RC
 
 Create index stored as text file:
 
-
-
 ```
 CREATE INDEX table06\_index ON TABLE table06 (column7) AS 'COMPACT' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE;
 
 ```
 
 Create index with index properties:
-
-
 
 ```
 CREATE INDEX table07\_index ON TABLE table07 (column8) AS 'COMPACT' IDXPROPERTIES ("prop1"="value1", "prop2"="value2");
@@ -145,16 +114,12 @@ CREATE INDEX table07\_index ON TABLE table07 (column8) AS 'COMPACT' IDXPROPERTIE
 
 Create index with table properties:
 
-
-
 ```
 CREATE INDEX table08\_index ON TABLE table08 (column9) AS 'COMPACT' TBLPROPERTIES ("prop3"="value3", "prop4"="value4");
 
 ```
 
 Drop index if exists:
-
-
 
 ```
 DROP INDEX IF EXISTS table09\_index ON table09;
@@ -163,13 +128,9 @@ DROP INDEX IF EXISTS table09\_index ON table09;
 
 Rebuild index on a partition:
 
-
-
 ```
 ALTER INDEX table10\_index ON table10 PARTITION (columnX='valueQ', columnY='valueR') REBUILD;
 ```
-
-
 
  
 

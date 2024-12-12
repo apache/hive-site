@@ -3,23 +3,9 @@ title: "Apache Hive : HowToCommit"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HowToCommit
 
-
-
-
-
-
 # Guide for Hive Committers
-
 
 * [Guide for Hive Committers]({{< ref "#guide-for-hive-committers" >}})
 	+ [New committers]({{< ref "#new-committers" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Committing Documentation]({{< ref "#committing-documentation" >}})
 	+ [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})
 	+ [Dialog]({{< ref "#dialog" >}})
-
-
-
 
 This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "becomingacommitter_27823300" >}}))
 
@@ -100,8 +83,6 @@ Committers/Contributors can hang out in the #hive channel in Apache Slack worksp
 Note: Committers or individuals with Apache Id can directly join the #hive slack channel on Apache Workspace, any other individual if interested should drop a mail to hive dev mailing list with his email id and any existing member of the #hive apache channel should be able to send him the invite to join the group.
 
 Instructions to add folks to ASF hive channel: <https://infra.apache.org/slack.html>
-
-
 
  
 

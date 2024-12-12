@@ -3,25 +3,9 @@ title: "Apache Hive : Transitivity on predicate pushdown"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Transitivity on predicate pushdown
 
-
-
-
-
-
 Before Hive 0.8.0, the query
-
-
-
 
 ```
 
@@ -32,11 +16,7 @@ select count(*) from invites join invites2 on invites.ds=invites2.ds where invit
 
 ```
 
-
 would give the error
-
-
-
 
 ```
 
@@ -44,11 +24,7 @@ Error in semantic analysis: No Partition Predicate Found for Alias "invites2" Ta
 
 ```
 
-
 Here, the filter is applied to the table invites as invites.ds='2011-01-01' but not invites2.ds='2011-01-01'.  This causes Hive to reject the query in strict mode to prevent scanning all the partitions of invites2.  This can be seen by using explain plan on the query without strict mode on:
-
-
-
 
 ```
 
@@ -150,14 +126,9 @@ STAGE PLANS:
 
 ```
 
-
 Note that there is no filter on the tablescan operation for invites2.
 
-
 In Hive 0.8.0, support will be added for recognizing transitivity on join conditions during predicate pushdown with [HIVE-1989|https://issues.apache.org/jira/browse/HIVE-1989].  With the above example, Hive will now infer the filter invites2.ds='2011-01-01' from the filter invites.ds='2011-01-01' and the join condition invites.ds=invites2.ds.  The explain plan now gives:
-
-
-
 
 ```
 
@@ -262,8 +233,6 @@ STAGE PLANS:
       limit: -1
 
 ```
-
-
 
  
 

@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual DML"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual DML
 
-
-
-
-
-
 # Hive Data Manipulation Language
-
 
 * [Hive Data Manipulation Language]({{< ref "#hive-data-manipulation-language" >}})
 	+ [Loading files into tables]({{< ref "#loading-files-into-tables" >}})
@@ -56,9 +42,6 @@ date: 2024-12-12
 		- [Notes]({{< ref "#notes" >}})
 		- [Examples]({{< ref "#examples" >}})
 
-
-
-
 There are multiple ways to modify data in Hive:
 
 * [LOAD](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Loadingfilesintotables)
@@ -77,8 +60,6 @@ There are multiple ways to modify data in Hive:
 Hive does not do any transformation while loading data into tables. Load operations are currently pure copy/move operations that move datafiles into locations corresponding to Hive tables.
 
 ##### Syntax
-
-
 
 ```
 LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]
@@ -119,8 +100,6 @@ Additional load operations are supported by Hive 3.0 onwards as Hive internally 
 
 Example of such a schema:
 
-
-
 ```
 CREATE TABLE tab1 (col1 int, col2 int) PARTITIONED BY (col3 int) STORED AS ORC;
 LOAD DATA LOCAL INPATH 'filepath' INTO TABLE tab1;
@@ -145,8 +124,6 @@ The uncompressed data should look like this:
 Query Results can be inserted into tables by using the insert clause.
 
 ##### Syntax
-
-
 
 ```
 Standard syntax:
@@ -201,8 +178,6 @@ In the dynamic partition inserts, users can give partial partition specification
 
 Dynamic partition inserts are disabled by default prior to Hive 0.9.0 and enabled by default in Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2835) and later. These are the relevant configuration properties for dynamic partition inserts:
 
-
-
 | Configuration property | Default | Note |
 | --- | --- | --- |
 | `hive.exec.dynamic.partition` | `true` | Needs to be set to `true` to enable dynamic partition inserts |
@@ -213,8 +188,6 @@ Dynamic partition inserts are disabled by default prior to Hive 0.9.0 and enabl
 | `hive.error.on.empty.partition` | `false` | Whether to throw an exception if dynamic partition insert generates empty results |
 
 ###### Example
-
-
 
 ```
 FROM page\_view\_stg pvs
@@ -240,8 +213,6 @@ Here the `country` partition will be dynamically created by the last column from
 Query results can be inserted into filesystem directories by using a slight variation of the syntax above:
 
 ##### Syntax
-
-
 
 ```
 Standard syntax:
@@ -285,8 +256,6 @@ INSERT...VALUES is available starting in [Hive 0.14](https://issues.apache.org/j
 
 ##### Syntax
 
-
-
 ```
 Standard Syntax:
 INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values\_row [, values\_row ...]
@@ -306,15 +275,12 @@ where a value is either null or any valid SQL literal
 
 ##### Examples
 
-
-
 ```
 CREATE TABLE students (name VARCHAR(64), age INT, gpa DECIMAL(3, 2))
   CLUSTERED BY (age) INTO 2 BUCKETS STORED AS ORC;
 
 INSERT INTO TABLE students
   VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
-
 
 CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came\_from STRING)
   PARTITIONED BY (datestamp STRING) CLUSTERED BY (userid) INTO 256 BUCKETS STORED AS ORC;
@@ -338,8 +304,6 @@ UPDATE is available starting in [Hive 0.14](https://issues.apache.org/jira/brows
 Updates can only be performed on tables that support ACID. See [Hive Transactions]({{< ref "hive-transactions_40509723" >}}) for details.
 
 ##### Syntax
-
-
 
 ```
 Standard Syntax:
@@ -370,8 +334,6 @@ Deletes can only be performed on tables that support ACID. See [Hive Transaction
 
 ##### Syntax
 
-
-
 ```
 Standard Syntax:
 DELETE FROM tablename [WHERE expression]
@@ -396,8 +358,6 @@ MERGE is available starting in [Hive 2.2](https://issues.apache.org/jira/browse/
 Merge can only be performed on tables that support ACID. See [Hive Transactions]({{< ref "hive-transactions_40509723" >}}) for details.
 
 ##### Syntax
-
-
 
 ```
 Standard Syntax:
@@ -430,11 +390,7 @@ SQL Standard requires that an error is raised if the ON clause is such that more
 
   
 
-
   
-
-
-
 
  
 

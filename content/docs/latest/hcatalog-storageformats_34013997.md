@@ -3,31 +3,14 @@ title: "Apache Hive : HCatalog StorageFormats"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog StorageFormats
 
-
-
-
-
-
 # Storage Formats
-
 
 * [Storage Formats]({{< ref "#storage-formats" >}})
 	+ [SerDes and Storage Formats]({{< ref "#serdes-and-storage-formats" >}})
 	+ [Usage from Hive]({{< ref "#usage-from-hive" >}})
 	+ [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}})
-
-
-
 
 ### SerDes and Storage Formats
 
@@ -69,9 +52,6 @@ SerDe general information: [Hive SerDe]({{< ref "#hive-serde" >}})
  SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

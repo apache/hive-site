@@ -3,20 +3,7 @@ title: "Apache Hive : Permission Inheritance in Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Permission Inheritance in Hive
-
-
-
-
-
 
 This document describes how attributes (permission, group, extended ACL's) of files representing Hive data are determined.
 
@@ -66,8 +53,6 @@ Most of this functionality was added as of Hive 0.14.  
 See umbrella JIRA [HIVE-6892](https://issues.apache.org/jira/browse/HIVE-6892) for details.
 
 [hive.warehouse.subdir.inherit.perms](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms) was removed in Hive 3.0.0. The feature is no longer needed in Hive as the traditional permission model has largely been replaced by external security systems such as Ranger and Sentry. A user may choose SQLStdAuth which ships with Hive if user doesn't want to use an external security system.
-
-
 
  
 

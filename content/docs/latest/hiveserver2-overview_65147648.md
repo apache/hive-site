@@ -3,21 +3,7 @@ title: "Apache Hive : HiveServer2 Overview"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveServer2 Overview
-
-
-
-
-
-
 
 * [Introduction]({{< ref "#introduction" >}})
 * [HS2 Architecture]({{< ref "#hs2-architecture" >}})
@@ -32,9 +18,6 @@ date: 2024-12-12
 	+ [Client Side]({{< ref "#client-side" >}})
 	+ [Interaction between Client and Server]({{< ref "#interaction-between-client-and-server" >}})
 * [Resources]({{< ref "#resources" >}})
-
-
-
 
 # Introduction
 
@@ -122,8 +105,6 @@ User interface:  [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}}
 Metrics:  [Hive Metrics]({{< ref "hive-metrics_65872987" >}})
 
 Cloudera blog on HS2: <http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/>
-
-
 
  
 

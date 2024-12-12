@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual ORC"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual ORC
 
-
-
-
-
-
 # ORC Files
-
 
 * [ORC Files]({{< ref "#orc-files" >}})
 	+ [ORC File Format]({{< ref "#orc-file-format" >}})
@@ -33,9 +19,6 @@ date: 2024-12-12
 	+ [ORC File Dump Utility]({{< ref "#orc-file-dump-utility" >}})
 	+ [ORC Configuration Parameters]({{< ref "#orc-configuration-parameters" >}})
 * [ORC Format Specification]({{< ref "#orc-format-specification" >}})
-
-
-
 
 ## ORC File Format
 
@@ -96,8 +79,6 @@ File formats are specified at the table (or partition) level. You can specify th
 
 The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{< ref "#create-table" >}})). They are:
 
-
-
 | Key | Default | Notes |
 | --- | --- | --- |
 | orc.compress | ZLIB | high level compression (one of NONE, ZLIB, SNAPPY) |
@@ -109,8 +90,6 @@ The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{< ref "
 | orc.bloom.filter.fpp | 0.05 | false positive probability for bloom filter (must >0.0 and <1.0) |
 
 For example, creating an ORC stored table without compression:
-
-
 
 ```
 create table Addresses (
@@ -180,8 +159,6 @@ The codec can be Snappy, Zlib, or *none*.
 
 The ORC file dump utility analyzes ORC files.  To invoke it, use this command:
 
-
-
 ```
 // Hive version 0.11 through 0.14:
 hive --orcfiledump <location-of-orc-file>
@@ -223,14 +200,7 @@ The ORC configuration parameters are described in [Hive Configuration Properties
 
 The ORC specification has moved to [ORC project](https://orc.apache.org/specification/).
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

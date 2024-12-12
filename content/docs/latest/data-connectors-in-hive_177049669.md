@@ -3,27 +3,13 @@ title: "Apache Hive : Data Connectors in Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Data Connectors in Hive
-
-
-
-
-
 
 ### What is a Data connector?
 
 Data connectors (referred to as "connector" in Hive Query Language) are top level objects in Hive where users can define a set of properties required to be able to connect to a datasource from hive. So a connector has a type (closed enumerated set) that allows Hive to determine the driver class (for JDBC) and other URL params, a URL and a set of properties that could include the default credentials for the remote datasource. Once defined, users can use the same connector object to map multiple databases from the remote datasource to local hive metastore.
 
   
-
 
 With [JDBC Storage Handlers](https://cwiki.apache.org/confluence/display/Hive/JDBC+Storage+Handler), users define a table in hive metastore for which data resides in a remote JDBC datastore. This hive table's metadata is persisted locally in hive metastore's backend. When Hiveserver2 runs a query against this table, data is retrieved from the remote JDBC table. While this is very powerful in itself, it has limitations.
 
@@ -33,9 +19,7 @@ With [JDBC Storage Handlers](https://cwiki.apache.org/confluence/display/Hive/JD
 
   
 
-
 Data connectors allow users to map a database/schema in the remote datasource to a Hive database. Such databases are referred to as REMOTE databases in hive.
-
 
 ```
        CREATE REMOTE DATABASE postgres\_db1 USING <connectorName> WITH DBPROPERTIES ('connector.remoteDbName'='db1');
@@ -55,7 +39,6 @@ Data connectors allow users to map a database/schema in the remote datasource to
 ```
 2. Create a database of type REMOTE in hive using the connector from Step1.   This maps a remote database named "`*hive\_hms\_testing*`" to a hive database named "*`pg_hive_testing`*" in hive.
 
-
 ```
          CREATE REMOTE DATABASE pg\_hive\_testing USING pg\_local WITH DBPROPERTIES ("connector.remoteDbName"="hive\_hms\_testing");  
   
@@ -70,7 +53,6 @@ Data connectors allow users to map a database/schema in the remote datasource to
          DESCRIBE [formatted] <tablename>;  
          SELECT <col1> from <tablename> where <filter1> and <filter2>;
 ```
-
 
  
 

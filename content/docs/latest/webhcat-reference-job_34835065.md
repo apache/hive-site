@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference Job"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference Job
 
-
-
-
-
-
 # Job Information — GET jobs/:jobid
-
 
 * [Job Information — GET jobs/:jobid]({{< ref "#job-information-—-get-jobs/:jobid" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-
-
-
 
 ## Description
 
@@ -48,8 +31,6 @@ Version: Hive 0.12.0 and later
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **:jobid** | The job ID to check. This is the ID received when the job was created. | Required | None |
@@ -57,8 +38,6 @@ Version: Hive 0.12.0 and later
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
-
-
 
 | Name | Description |
 | --- | --- |
@@ -77,16 +56,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/jobs/job\_201112212038\_0004?user.name=ctdean'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -145,9 +120,6 @@ Previous: [GET jobs]({{< ref "webhcat-reference-jobs_34835057" >}})
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaces deprecated resource: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo_34017194" >}})
-
-
-
 
  
 

@@ -3,23 +3,9 @@ title: "Apache Hive : HiveDerbyServerMode"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveDerbyServerMode
 
-
-
-
-
-
 # Hive Using Derby in Server Mode
-
 
 * [Hive Using Derby in Server Mode]({{< ref "#hive-using-derby-in-server-mode" >}})
 	+ [Download Derby]({{< ref "#download-derby" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Copy Derby Jar Files]({{< ref "#copy-derby-jar-files" >}})
 	+ [Start Up Hive]({{< ref "#start-up-hive" >}})
 	+ [The Result]({{< ref "#the-result" >}})
-
-
-
 
 Hive in embedded mode has a limitation of one active user at a time. You may want to run [Derby](http://db.apache.org/derby/) as a Network Server, this way multiple users can access it simultaneously from different systems.
 
@@ -43,16 +26,12 @@ It is suggested you download the version of Derby that ships with Hive. If you h
 
 My structure looks like this:
 
-
-
 ```
 /opt/hadoop/hadoop-0.17.2.1
 /opt/hadoop/db-derby-10.4.1.3-bin
 /opt/hadoop/hive
 
 ```
-
-
 
 ```
 cd /opt/hadoop
@@ -68,8 +47,6 @@ The variable to set has changed over the years. DERBY\_HOME is now the proper na
 
 `/etc/profile.d/derby.sh`
 
-
-
 ```
 DERBY\_INSTALL=/opt/hadoop/db-derby-10.4.1.3-bin
 DERBY\_HOME=/opt/hadoop/db-derby-10.4.1.3-bin
@@ -82,8 +59,6 @@ Hive also likes to know where Hadoop is installed:
 
 `/etc/profile.d/hive.sh`
 
-
-
 ```
 HADOOP=/opt/hadoop/hadoop-0.17.2.1/bin/hadoop
 export HADOOP
@@ -93,8 +68,6 @@ export HADOOP
 ### Starting Derby
 
 Likely you are going to want to run Derby when Hadoop starts up. An interesting place for this other than as an `lsb-init-script` might be alongside Hadoop scripts like `start-dfs`. By default Derby will create databases in the directory it was started from.
-
-
 
 ```
 cd /opt/hadoop/db-derby-10.4.1.3-bin/data
@@ -111,8 +84,6 @@ nohup /opt/hadoop/db-derby-10.4.1.3-bin/startNetworkServer -h 0.0.0.0 &
 Edit `/opt/hadoop/hive/conf/hive-site.xml` as follows. Note that "hadoop1" should be replaced with the hostname or IP address where the Derby network server can be found.
 
 `/opt/hadoop/hive/conf/hive-site.xml`
-
-
 
 ```
 <property>
@@ -133,8 +104,6 @@ Edit `/opt/hadoop/hive/conf/hive-site.xml` as follows. Note that "hadoop1" shoul
 
       **Version:** JPOX properties are *NOT* used in Hive 5.0 or later.  
        JPOX properties can be specified in `hive-site.xml`. Normally `jpox.properties` changes are not required.
-
-
 
 ```
 javax.jdo.PersistenceManagerFactoryClass=org.jpox.PersistenceManagerFactoryImpl
@@ -159,8 +128,6 @@ javax.jdo.option.ConnectionPassword=mine
 
 Now since there is a new client you *MUST* make sure Hive has these `jar` files in the `lib` directory or in the classpath. The same would be true if you used MySQL or some other DB.
 
-
-
 ```
 cp /opt/hadoop/db-derby-10.4.1.3-bin/lib/derbyclient.jar /opt/hadoop/hive/lib
 cp /opt/hadoop/db-derby-10.4.1.3-bin/lib/derbytools.jar /opt/hadoop/hive/lib
@@ -168,8 +135,6 @@ cp /opt/hadoop/db-derby-10.4.1.3-bin/lib/derbytools.jar /opt/hadoop/hive/lib
 ```
 
 If you receive the error "`javax.jdo.JDOFatalInternalException: Error creating transactional connection factory`" where the stack trace originates at "`org.datanucleus.exceptions.ClassNotResolvedException: Class 'org.apache.derby.jdbc.ClientDriver' was not found in the CLASSPATH. Please check your specification and your CLASSPATH`", you may benefit from putting the Derby `jar` files directly in the Hadoop `lib` directory:
-
-
 
 ```
 cp /opt/hadoop/db-derby-10.4.1.3-bin/lib/derbyclient.jar /opt/hadoop/hadoop-0.17.2.1/lib
@@ -180,8 +145,6 @@ cp /opt/hadoop/db-derby-10.4.1.3-bin/lib/derbytools.jar /opt/hadoop/hadoop-0.17.
 ### Start Up Hive
 
 The metastore will not be created until the first query hits it.
-
-
 
 ```
 cd /opt/hadoop/hive
@@ -195,8 +158,6 @@ A directory should be created: `/opt/hadoop/db-derby-10.4.1.3-bin/data/metastore
 ### The Result
 
 Now you can run multiple Hive instances working on the same data simultaneously and remotely.
-
-
 
  
 

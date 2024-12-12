@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference GetTable"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference GetTable
 
-
-
-
-
-
 # Describe Table — GET ddl/database/:db/table/:table
-
 
 * [Describe Table — GET ddl/database/:db/table/:table]({{< ref "#describe-table-—-get-ddl/database/:db/table/:table" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -33,9 +19,6 @@ date: 2024-12-12
 		- [JSON Output (extended)]({{< ref "#json-output--extended-" >}})
 		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
 
-
-
-
 ## Description
 
 Describe an HCatalog table. Normally returns a simple list of columns (using "desc table"), but the extended format will show more information (using "show table extended like").
@@ -48,8 +31,6 @@ Describe an HCatalog table. Normally returns a simple list of columns (using "de
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **:db** | The database name | Required | None |
@@ -59,8 +40,6 @@ Describe an HCatalog table. Normally returns a simple list of columns (using "de
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
-
-
 
 | Name | Description |
 | --- | --- |
@@ -78,16 +57,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command (simple)
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table?user.name=ctdean'
 
 ```
 
 ### JSON Output (simple)
-
-
 
 ```
 {
@@ -118,16 +93,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command (extended)
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ctdean&format=extended'
 
 ```
 
 ### JSON Output (extended)
-
-
 
 ```
 {
@@ -161,8 +132,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### JSON Output (error)
 
-
-
 ```
 {
   "error": "Table xtest\_table does not exist",
@@ -175,14 +144,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table]({{< ref "webhcat-reference-gettables_34016290" >}}) Next: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttable_34016540" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

@@ -3,45 +3,23 @@ title: "Apache Hive : LanguageManual XPathUDF"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual XPathUDF
-
-
-
-
-
 
 Documentation for Built-In User-Defined Functions Related To XPath
 
-
 ## UDFs
 
-
 ### xpath, xpath\_short, xpath\_int, xpath\_long, xpath\_float, xpath\_double, xpath\_number, xpath\_string
-
 
 * Functions for parsing XML data using XPath expressions.
 * Since version: 0.6.0
 #### Overview
 
-
 The *xpath* family of UDFs are wrappers around the Java XPath library `javax.xml.xpath` provided by the JDK. The library is based on the XPath 1.0 specification. Please refer to <http://java.sun.com/javase/6/docs/api/javax/xml/xpath/package-summary.html> for detailed information on the Java XPath library.
-
 
 All functions follow the form: `xpath_*(xml_string, xpath_expression_string)`. The XPath expression string is compiled and cached. It is reused if the expression in the next input row matches the previous. Otherwise, it is recompiled. So, the xml string is always parsed for every input row, but the xpath expression is precompiled and reused for the vast majority of use cases.
 
-
 Backward axes are supported. For example:
-
-
-
 
 ```
 
@@ -50,9 +28,7 @@ Backward axes are supported. For example:
 
 ```
 
-
 Each function returns a specific Hive type given the XPath expression:
-
 
 * `xpath` returns a Hive array of strings.
 * `xpath_string` returns a string.
@@ -63,26 +39,17 @@ Each function returns a specific Hive type given the XPath expression:
 * `xpath_float` returns a floating point number.
 * `xpath_double,xpath_number` returns a double-precision floating point number (`xpath_number` is an alias for `xpath_double`).
 
-
 The UDFs are schema agnostic - no XML validation is performed. However, malformed xml (e.g., `<a><b>1</b></aa>`) will result in a runtime exception being thrown.
-
 
 Following are specifics on each xpath UDF variant.
 
-
 #### xpath
-
 
 The `xpath()` function always returns a hive array of strings. If the expression results in a non-text value (e.g., another xml node) the function will return an empty array. There are 2 primary uses for this function: to get a list of node text values or to get a list of attribute values.
 
-
 Examples:
 
-
 Non-matching XPath expression:
-
-
-
 
 ```
 
@@ -91,11 +58,7 @@ Non-matching XPath expression:
 
 ```
 
-
 Get a list of node text values:
-
-
-
 
 ```
 
@@ -104,11 +67,7 @@ Get a list of node text values:
 
 ```
 
-
 Get a list of values for attribute 'id':
-
-
-
 
 ```
 
@@ -117,11 +76,7 @@ Get a list of values for attribute 'id':
 
 ```
 
-
 Get a list of node texts for nodes where the 'class' attribute equals 'bb':
-
-
-
 
 ```
 
@@ -130,17 +85,11 @@ Get a list of node texts for nodes where the 'class' attribute equals 'bb':
 
 ```
 
-
 #### xpath\_string
-
 
 The `xpath_string()` function returns the text of the first matching node.
 
-
 Get the text for node 'a/b':
-
-
-
 
 ```
 
@@ -149,11 +98,7 @@ bb
 
 ```
 
-
 Get the text for node 'a'. Because 'a' has children nodes with text, the result is a composite of text from the children.
-
-
-
 
 ```
 
@@ -162,24 +107,15 @@ bbcc
 
 ```
 
-
 Non-matching expression returns an empty string:
-
-
-
 
 ```
 
 > SELECT xpath\_string ('<a><b>bb</b><c>cc</c></a>', 'a/d') FROM src LIMIT 1 ;
 
-
 ```
 
-
 Gets the text of the first node that matches '//b':
-
-
-
 
 ```
 
@@ -188,11 +124,7 @@ b1
 
 ```
 
-
 Gets the second matching node:
-
-
-
 
 ```
 
@@ -201,11 +133,7 @@ b2
 
 ```
 
-
 Gets the text from the first node that has an attribute 'id' with value 'b\_2':
-
-
-
 
 ```
 
@@ -214,17 +142,11 @@ b2
 
 ```
 
-
 #### xpath\_boolean
-
 
 Returns true if the XPath expression evaluates to true, or if a matching node is found.
 
-
 Match found:
-
-
-
 
 ```
 
@@ -233,11 +155,7 @@ true
 
 ```
 
-
 No match found:
-
-
-
 
 ```
 
@@ -246,11 +164,7 @@ false
 
 ```
 
-
 Match found:
-
-
-
 
 ```
 
@@ -259,11 +173,7 @@ true
 
 ```
 
-
 No match found:
-
-
-
 
 ```
 
@@ -272,19 +182,13 @@ false
 
 ```
 
-
 #### xpath\_short, xpath\_int, xpath\_long
-
 
 These functions return an integer numeric value, or the value zero if no match is found, or a match is found but the value is non-numeric.  
 
 Mathematical operations are supported. In cases where the value overflows the return type, then the maximum value for the type is returned.
 
-
 No match:
-
-
-
 
 ```
 
@@ -293,11 +197,7 @@ No match:
 
 ```
 
-
 Non-numeric match:
-
-
-
 
 ```
 
@@ -308,11 +208,7 @@ Non-numeric match:
 
 ```
 
-
 Adding values:
-
-
-
 
 ```
 
@@ -325,11 +221,7 @@ Adding values:
 
 ```
 
-
 Overflow:
-
-
-
 
 ```
 
@@ -338,19 +230,13 @@ Overflow:
 
 ```
 
-
 #### xpath\_float, xpath\_double, xpath\_number
-
 
 Similar to xpath\_short, xpath\_int and xpath\_long but with floating point semantics. Non-matches result in zero. However,  
 
 non-numeric matches result in NaN. Note that `xpath_number()` is an alias for `xpath_double()`.
 
-
 No match:
-
-
-
 
 ```
 
@@ -359,11 +245,7 @@ No match:
 
 ```
 
-
 Non-numeric match:
-
-
-
 
 ```
 
@@ -372,11 +254,7 @@ NaN
 
 ```
 
-
 A very large number:
-
-
-
 
 ```
 
@@ -385,13 +263,9 @@ SELECT xpath\_double ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c')
 
 ```
 
-
 # UDAFs
 
-
 # UDTFs
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : Building Hive from Source"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Building Hive from Source
-
-
-
-
-
 
 * **Fetching the source code**
 	+ Using the source tar: Download the source tar from [TODO: Put link post release] and untar
@@ -29,8 +16,6 @@ date: 2024-12-12
 * **Running Integration Tests**
 	+ GoTo itests directory
 	+ Run: mvn clean test -pl itest -Piceberg
-
-
 
  
 

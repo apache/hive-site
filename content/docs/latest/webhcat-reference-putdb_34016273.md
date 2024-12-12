@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference PutDB"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference PutDB
 
-
-
-
-
-
 # Create Database — PUT ddl/database/:db
-
 
 * [Create Database — PUT ddl/database/:db]({{< ref "#create-database-—-put-ddl/database/:db" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 
-
-
-
 ## Description
 
 Create a database.
@@ -42,8 +25,6 @@ Create a database.
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -58,8 +39,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **database** | The database name |
@@ -67,8 +46,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Curl Command
-
-
 
 ```
 % curl -s -X PUT -HContent-type:application/json \
@@ -81,8 +58,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### JSON Output
 
-
-
 ```
 {
  "database":"newdb"
@@ -92,14 +67,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb_34016250" >}}) Next: [DELETE ddl/database/:db]({{< ref "webhcat-reference-deletedb_34016281" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

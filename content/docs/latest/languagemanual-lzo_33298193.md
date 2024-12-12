@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual LZO"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual LZO
 
-
-
-
-
-
 # LZO Compression
-
 
 * [LZO Compression]({{< ref "#lzo-compression" >}})
 	+ [General LZO Concepts]({{< ref "#general-lzo-concepts" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 	+ [Hive Queries]({{< ref "#hive-queries" >}})
 		- [Option 1: Directly Create LZO Files]({{< ref "#option-1:-directly-create-lzo-files" >}})
 		- [Option 2: Write Custom Java to Create LZO Files]({{< ref "#option-2:-write-custom-java-to-create-lzo-files" >}})
-
-
-
 
 ## General LZO Concepts
 
@@ -45,8 +28,6 @@ Imagine a simple data file that has three columns
 * last name
 
 Let's populate a data file containing 4 records:
-
-
 
 ```
 19630001     john          lennon
@@ -89,8 +70,6 @@ For example:
 
 Next we run the command to create an LZO index file:
 
-
-
 ```
 hadoop jar /path/to/jar/hadoop-lzo-cdh4-0.4.15-gplextras.jar com.hadoop.compression.lzo.LzoIndexer  /path/to/HDFS/dir/containing/lzo/files
 
@@ -101,8 +80,6 @@ This creates `names.txt.lzo` on HDFS.
 ### Table Definition
 
 The following `hive -e` command creates an LZO-compressed external table:
-
-
 
 ```
 hive -e "CREATE EXTERNAL TABLE IF NOT EXISTS hive\_table\_name (column\_1  datatype\_1......column\_N datatype\_N)
@@ -126,8 +103,6 @@ See [CREATE TABLE]({{< ref "#create-table" >}}) and [Hive CLI]({{< ref "language
 
 **Hive Query Parameters**
 
-
-
 ```
 SET mapreduce.output.fileoutputformat.compress.codec=com.hadoop.compression.lzo.LzoCodec
 SET hive.exec.compress.output=true
@@ -136,8 +111,6 @@ SET mapreduce.output.fileoutputformat.compress=true
 ```
 
 For example:
-
-
 
 ```
 hive -e "SET mapreduce.output.fileoutputformat.compress.codec=com.hadoop.compression.lzo.LzoCodec; SET hive.exec.compress.output=true;SET mapreduce.output.fileoutputformat.compress=true; <query-string>"
@@ -157,8 +130,6 @@ hive -e "SET mapreduce.output.fileoutputformat.compress.codec=com.hadoop.compres
 
 Prefix the query string with these parameters:
 
-
-
 ```
 SET hive.exec.compress.output=false
 SET mapreduce.output.fileoutputformat.compress=false
@@ -167,14 +138,10 @@ SET mapreduce.output.fileoutputformat.compress=false
 
 For example:
 
-
-
 ```
 hive -e "SET hive.exec.compress.output=false;SET mapreduce.output.fileoutputformat.compress=false;<query-string>"
 
 ```
-
-
 
  
 

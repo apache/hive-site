@@ -3,21 +3,7 @@ title: "Apache Hive : AdminManual Configuration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AdminManual Configuration
-
-
-
-
-
-
 
 * [Configuring Hive]({{< ref "#configuring-hive" >}})
 	+ [hive-site.xml and hive-default.xml.template]({{< ref "#hive-site-xml-and-hive-default-xml-template" >}})
@@ -30,16 +16,11 @@ date: 2024-12-12
 	+ [HCatalog]({{< ref "#hcatalog" >}})
 	+ [WebHCat]({{< ref "#webhcat" >}})
 
-
-
-
 ## Configuring Hive
 
 A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:
 
 * Using the **set command** in the [CLI]({{< ref "languagemanual-cli_27362033" >}}) or [Beeline]({{< ref "#beeline" >}}) for setting session level values for the configuration variable for all statements subsequent to the set command. For example, the following command sets the scratch directory (which is used by Hive to store temporary output and plans) to `/tmp/mydir` for all subsequent statements:
-
-
 
 ```
   set hive.exec.scratchdir=/tmp/mydir;
@@ -47,15 +28,11 @@ A number of configuration variables in Hive can be used by the administrator to 
 ```
 * Using the **`--hiveconf`** option of the `[hive]({{< ref "#hive" >}})` command (in the CLI) or `[beeline]({{< ref "#beeline" >}})` command for the entire session. For example:
 
-
-
 ```
   bin/hive --hiveconf hive.exec.scratchdir=/tmp/mydir
 
 ```
 * In **`hive-site.xml`**. This is used for setting values for the entire Hive configuration (see [hive-site.xml and hive-default.xml.template]({{< ref "#hive-site-xml-and-hive-default-xml-template" >}}) below). For example:
-
-
 
 ```
   <property>
@@ -114,12 +91,10 @@ For WebHCat logs, see [Log Files]({{< ref "#log-files" >}}) in the [WebHCat manu
 
 Broadly the configuration variables for Hive administration are categorized into:
 
-
 * [Hive Configuration Variables]({{< ref "#hive-configuration-variables" >}})
 * [Hive Metastore Configuration Variables]({{< ref "#hive-metastore-configuration-variables" >}})
 * [Configuration Variables Used to Interact with Hadoop]({{< ref "#configuration-variables-used-to-interact-with-hadoop" >}})
 * [Hive Variables Used to Pass Run Time Information]({{< ref "#hive-variables-used-to-pass-run-time-information" >}})
-
 
 Also see [Hive Configuration Properties]({{< ref "configuration-properties_27842758" >}}) in the [Language Manual]({{< ref "languagemanual_27362030" >}}) for non-administrative configuration variables.
 
@@ -128,8 +103,6 @@ Version information: Metrics
  A new Hive metrics system based on Codahale is introduced in releases 1.3.0 and 2.0.0 by [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761). To configure it or revert to the old metrics system, see the [Metrics section of Hive Configuration Properties]({{< ref "#metrics-section-of-hive-configuration-properties" >}}).
 
 #### Hive Configuration Variables
-
-
 
 | Variable Name | Description | Default Value |
 | --- | --- | --- |
@@ -177,8 +150,6 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 
 #### Configuration Variables Used to Interact with Hadoop
 
-
-
 | **Variable Name** | **Description** | **Default Value** |
 | hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP\_HOME/bin/hadoop |
 | hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP\_HOME/conf |
@@ -191,8 +162,6 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 | fs.trash.interval | The interval, in minutes, after which a trash checkpoint directory is deleted. (This is also the interval between checkpoints.) The checkpoint directory is located in `.Trash` under the user's home directory and contains files and directories that were removed since the previous checkpoint.Any setting greater than 0 enables the trash feature of HDFS.When using the Transparent Data Encryption (TDE) feature, set this to 0 in Hadoop core-site.xml as documented in [HIVE-10978](https://issues.apache.org/jira/browse/HIVE-10978). | 0 |
 
 #### Hive Variables Used to Pass Run Time Information
-
-
 
 | **Variable Name** | **Description** | **Default Value** |
 | hive.session.id | The id of the Hive Session. |   |
@@ -209,8 +178,6 @@ Support for this was added in Hive 0.14.0 with [HIVE-7634](https://issues.apache
 
 1. Set up the CredentialProvider to store the Hive Metastore password, using the key javax.jdo.option.ConnectionPassword (the same key as used in the Hive configuration). For example, the following command adds the metastore password to a JCEKS keystore file at /usr/lib/hive/conf/hive.jceks:
 
-
-
 ```
 $ hadoop credential create javax.jdo.option.ConnectionPassword -provider jceks://file/usr/lib/hive/conf/hive.jceks
 Enter password: 
@@ -223,8 +190,6 @@ org.apache.hadoop.security.alias.JavaKeyStoreProvider has been updated.
 Make sure to restrict access to this file to just the user running the Hive Metastore server/HiveServer2.  
 See <http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/CommandsManual.html#credential> for more information.
 2. Update the Hive configuration to use the designated CredentialProvider. For example to use our /usr/lib/hive/conf/hive.jceks file:
-
-
 
 ```
   <!-- Configure credential store for passwords-->
@@ -259,8 +224,6 @@ For information about configuring WebHCat, see [WebHCat Configuration]({{< ref "
  
 
 Save
-
-
 
  
 

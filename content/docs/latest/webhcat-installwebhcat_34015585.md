@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat InstallWebHCat"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat InstallWebHCat
 
-
-
-
-
-
 # WebHCat Installation
-
 
 * [WebHCat Installation]({{< ref "#webhcat-installation" >}})
 	+ [WebHCat Installed with Hive]({{< ref "#webhcat-installed-with-hive" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 	+ [Permissions]({{< ref "#permissions" >}})
 	+ [Secure Cluster]({{< ref "#secure-cluster" >}})
 	+ [Proxy User Support]({{< ref "#proxy-user-support" >}})
-
-
-
 
 ## WebHCat Installed with Hive
 
@@ -57,8 +40,6 @@ Hive installation is documented [here]({{< ref "adminmanual-installation_2736207
 7. Build HCatalog using the command `ant jar` from the top level HCatalog directory.
 8. Start the REST server with the command "`hcatalog/sbin/webhcat_server.sh start`" for Hive 0.11.0 releases and later, or "`sbin/webhcat_server.sh start`" for installations prior to HCatalog merging with Hive.
 9. Check that your local install works. Assuming that the server is running on port 50111, the following command would give output similar to that shown.
-
-
 
 ```
 % curl -i http://localhost:50111/templeton/v1/status
@@ -96,23 +77,17 @@ The server requires some files be accessible on the [Hadoop distributed cache](h
 
 * **Hive:** [Download](http://www.apache.org/dyn/closer.cgi/hive/) the Hive tar.gz file and place it in HDFS. For example, for Hive version 0.11.0:
 
-
-
 ```
 hadoop fs -put /tmp/hive-0.11.0.tar.gz /apps/templeton/hive-0.11.0.tar.gz
 
 ```
 * **Pig:** [Download](http://www.apache.org/dyn/closer.cgi/pig) the Pig tar.gz file and place it into HDFS. For example, for Pig version 0.11.1:
 
-
-
 ```
 hadoop fs -put /tmp/pig-0.11.1.tar.gz /apps/templeton/pig-0.11.1.tar.gz
 
 ```
 * **Hadoop Streaming:** Place `hadoop-streaming-*.jar` into HDFS. Use the following command:
-
-
 
 ```
 hadoop fs -put <hadoop streaming jar> \
@@ -121,7 +96,6 @@ hadoop fs -put <hadoop streaming jar> \
 ```
 
 where *<templeton.streaming.jar>* is a property value defined in `webhcat-default.xml` which can be overridden in the `webhcat-site.xml` file, and *<hadoop streaming jar>* is the Hadoop streaming jar in your Hadoop version:
-
 
 	+ `hadoop-1.*/contrib/streaming/hadoop-streaming-*.jar` in the Hadoop 1.x tar
 	+ `hadoop-2.*/share/hadoop/tools/lib/hadoop-streaming-*.jar` in the Hadoop 2.x tar  
@@ -136,16 +110,12 @@ where *<templeton.streaming.jar>* is a property value defined in `webhcat-defaul
 	```
 * **Override Jars:** Place override jars required (if any) into HDFS. *Note:* Hadoop versions prior to 1.0.3 required a patch ([HADOOP-7987](https://issues.apache.org/jira/browse/HADOOP-7987)) to properly run WebHCat. This patch is distributed with WebHCat (located at `templeton/src/hadoop_temp_fix/ugi.jar`) and should be placed into HDFS, as reflected in the current default configuration.
 
-
-
 ```
 hadoop fs -put ugi.jar /apps/templeton/ugi.jar
 
 ```
 
 The location of these files in the cache, and the location of the installations inside the archives, can be specified using the following WebHCat configuration variables. (See the [Configuration]({{< ref "webhcat-configure_34015738" >}}) documentation for more information on changing WebHCat configuration parameters.) Some default values vary depending on release number; defaults shown below are for the version of WebHCat that is included in Hive release 0.11.0. Defaults for the previous release are shown in the [HCatalog 0.5.0 documentation](http://hive.apache.org/docs/hcat_r0.5.0/rest_server_install.html#Hadoop+Distributed+Cache).
-
-
 
 | Name | Default (Hive 0.11.0) | Description |
 | --- | --- | --- |
@@ -163,8 +133,6 @@ Permission must be given for the user running the WebHCat executable to run job
 Create (or assign) a Unix user who will run the WebHCat server. Call this USER. See the [Secure Cluster]({{< ref "#secure-cluster" >}}) section below for choosing a user on a Kerberos cluster.
 
 Modify the Hadoop core-site.xml file and set these properties:
-
-
 
 | Variable | Value |
 | --- | --- |
@@ -187,8 +155,6 @@ To set up Proxy User Support, make the following edits in configuration files.
 
 In hive-site.xml, set:
 
-
-
 | Variable | Value |
 | --- | --- |
 | hive.security.metastore.authorization.manager | org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider |
@@ -198,16 +164,12 @@ In hive-site.xml, set:
 
 In webhcat-site.xml, set:
 
-
-
 | Variable | Value |
 | --- | --- |
 | webhcat.proxyuser.hue.groups | A comma-separated list of the Unix groups whose users may be impersonated by 'hue'. |
 | webhcat.proxyuser.hue.hosts | A comma-separated list of the hosts which are allowed to submit requests by 'hue'. In the canonical example, this would be the servers running Hue. |
 
 In core-site.xml, make sure the following are also set:
-
-
 
 | Variable | Value |
 | --- | --- |
@@ -222,9 +184,6 @@ Hive installation: [Installing Hive]({{< ref "adminmanual-installation_27362077"
  HCatalog installation: [Installation from Tarball]({{< ref "hcatalog-installhcat_34013403" >}})
 
 General: [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

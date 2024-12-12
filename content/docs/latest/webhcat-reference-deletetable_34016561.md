@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference DeleteTable"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference DeleteTable
 
-
-
-
-
-
 # Delete Table — DELETE ddl/database/:db/table/:table
-
 
 * [Delete Table — DELETE ddl/database/:db/table/:table]({{< ref "#delete-table-—-delete-ddl/database/:db/table/:table" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 
-
-
-
 ## Description
 
 Delete (drop) an HCatalog table.
@@ -42,8 +25,6 @@ Delete (drop) an HCatalog table.
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*`/table/`*:table*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -57,8 +38,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **table** | The table name |
@@ -68,16 +47,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s -X DELETE 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ctdean'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -89,14 +64,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [POST ddl/database/:db/table/:table]({{< ref "webhcat-reference-posttable_34016548" >}}) Next: [PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "webhcat-reference-puttablelike_34016572" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

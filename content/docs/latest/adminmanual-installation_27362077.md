@@ -3,21 +3,7 @@ title: "Apache Hive : AdminManual Installation"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AdminManual Installation
-
-
-
-
-
-
 
 * [Installing Hive]({{< ref "#installing-hive" >}})
 	+ [Installing from a Tarball]({{< ref "#installing-from-a-tarball" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 * [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
 	+ [HCatalog]({{< ref "#hcatalog" >}})
 	+ [WebHCat (Templeton)]({{< ref "#webhcat--templeton-" >}})
-
-
-
 
 # Installing Hive
 
@@ -52,16 +35,12 @@ Start by downloading the most recent stable release of Hive from one of the Apac
 
 Next you need to unpack the tarball. This will result in the creation of a subdirectory named `hive-x.y.z` (where `x.y.z` is the release number):
 
-
-
 ```
   $ tar -xzvf hive-x.y.z.tar.gz
 
 ```
 
 Set the environment variable `HIVE_HOME` to point to the installation directory:
-
-
 
 ```
   $ cd hive-x.y.z
@@ -70,8 +49,6 @@ Set the environment variable `HIVE_HOME` to point to the installation director
 ```
 
 Finally, add `$HIVE_HOME/bin` to your `PATH`:
-
-
 
 ```
   $ export PATH=$HIVE\_HOME/bin:$PATH
@@ -99,8 +76,6 @@ Installing Hive is simple and only requires having Java 1.6 and Ant installed o
 
 Hive is available via SVN at <http://svn.apache.org/repos/asf/hive/branches>. You can download it by running the following command.
 
-
-
 ```
 $ svn co http://svn.apache.org/repos/asf/hive/branches/branch-#.# hive
 
@@ -109,8 +84,6 @@ $ svn co http://svn.apache.org/repos/asf/hive/branches/branch-#.# hive
 where `#.#` is the Hive release number. For release 0.8.1, use "`branch-0.8-r2`".
 
 To build Hive, execute the following command on the base directory:
-
-
 
 ```
 $ ant package
@@ -139,8 +112,6 @@ You can begin using Hive as soon as it is installed, although you will probably 
 
 To use the Hive [command line interface]({{< ref "languagemanual-cli_27362033" >}}) (CLI) go to the Hive home directory and execute the following command:
 
-
-
 ```
 $ bin/hive
 
@@ -149,8 +120,6 @@ $ bin/hive
 The Hive home directory is the one with the contents of build/dist for Hive 0.12 and earlier; for Hive 0.13 and later it is packaging/target/apache-hive-*<release\_string>*-bin/apache-hive-*<release\_string>*-bin/.
 
 HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see [Beeline – New Command Line Shell](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell)). To use Beeline, execute the following command in the Hive home directory:
-
-
 
 ```
 $ bin/beeline
@@ -187,8 +156,6 @@ WebHCat is installed with Hive, starting with Hive release 0.11.0.
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the `hcatalog/sbin` directory.
 
 WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat_34015585" >}}).
-
-
 
  
 

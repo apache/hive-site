@@ -3,25 +3,11 @@ title: "Apache Hive : LanguageManual Archiving"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Archiving
-
-
-
-
-
 
 # Archiving for File Count Reduction
 
 Note: Archiving should be considered an advanced command due to the caveats involved.
-
 
 * [Archiving for File Count Reduction]({{< ref "#archiving-for-file-count-reduction" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -31,9 +17,6 @@ Note: Archiving should be considered an advanced command due to the caveats invo
 		- [Unarchive]({{< ref "#unarchive" >}})
 	+ [Cautions and Limitations]({{< ref "#cautions-and-limitations" >}})
 	+ [Under the Hood]({{< ref "#under-the-hood" >}})
-
-
-
 
 ## Overview
 
@@ -46,8 +29,6 @@ Note that archiving does NOT compress the files – HAR is analogous to the Uni
 ## Settings
 
 There are 3 settings that should be configured before archiving is used. (Example values are shown.)
-
-
 
 ```
 hive> set hive.archive.enabled=true;
@@ -68,16 +49,12 @@ hive> set har.partfile.size=1099511627776;
 
 Once the configuration values are set, a partition can be archived with the command:
 
-
-
 ```
 ALTER TABLE table\_name ARCHIVE PARTITION (partition\_col = partition\_col\_value, partition\_col = partiton\_col\_value, ...)
 
 ```
 
 For example:
-
-
 
 ```
 ALTER TABLE srcpart ARCHIVE PARTITION(ds='2008-04-08', hr='12')
@@ -89,8 +66,6 @@ Once the command is issued, a mapreduce job will perform the archiving. Unlike H
 ### Unarchive
 
 The partition can be reverted back to its original files with the unarchive command:
-
-
 
 ```
 ALTER TABLE srcpart UNARCHIVE PARTITION(ds='2008-04-08', hr='12')
@@ -122,8 +97,6 @@ Hive comes with the HiveHarFileSystem class that addresses some of these issues,
 ## Under the Hood
 
 Internally, when a partition is archived, a HAR is created using the files from the partition's original location (such as `/warehouse/table/ds=1`). The parent directory of the partition is specified to be the same as the original location and the resulting archive is named 'data.har'. The archive is moved under the original directory (such as `/warehouse/table/ds=1/data.har`), and the partition's location is changed to point to the archive.
-
-
 
  
 

@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference MapReduceStream"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference MapReduceStream
 
-
-
-
-
-
 # MapReduce Streaming Job — POST mapreduce/streaming
-
 
 * [MapReduce Streaming Job — POST mapreduce/streaming]({{< ref "#mapreduce-streaming-job-—-post-mapreduce/streaming" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -31,9 +17,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [Example Results]({{< ref "#example-results" >}})
-
-
-
 
 ## Description
 
@@ -48,8 +31,6 @@ As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop
 `http://`*www.myserver.com*`/templeton/v1/mapreduce/streaming`
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -69,8 +50,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
@@ -79,8 +58,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Code and Data Setup
-
-
 
 ```
 % cat mydata/file01 mydata/file02
@@ -98,8 +75,6 @@ Found 2 items
 
 ### Curl Command
 
-
-
 ```
 % curl -s -d input=mydata \
        -d output=mycounts \
@@ -116,8 +91,6 @@ Prior to Hive 0.13.0, user.name was specified in POST requests as a form paramet
 In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.name should be specified in the query string (as shown above): `'http://.../templeton/v1/mapreduce/streaming?user.name=*<name>*'`. Specifying user.name as a form parameter is deprecated.
 
 ### JSON Output
-
-
 
 ```
 {
@@ -137,8 +110,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ### Example Results
 
-
-
 ```
 % hadoop fs -ls mycounts
 Found 3 items
@@ -156,9 +127,6 @@ Previous: [PUT ddl/database/:db/table/:table/property/:property]({{< ref "webhca
  Next: [POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar_34017030" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : DesignDocs"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : DesignDocs
-
-
-
-
-
 
 # Hive Design Documents
 
@@ -100,14 +87,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Hive Outer Join Behavior]({{< ref "outerjoinbehavior_35749927" >}})
 * [Metastore ER Diagram](https://issues.apache.org/jira/secure/attachment/12471108/HiveMetaStore.pdf)
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/34177517.pdf](/attachments/27362075/34177517.pdf) (application/pdf)
@@ -144,8 +124,6 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/55476344.pdf](/attachments/27362075/55476344.pdf) (application/download)
    
-
-
 
  
 

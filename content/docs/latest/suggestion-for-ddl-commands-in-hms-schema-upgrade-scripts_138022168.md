@@ -3,20 +3,7 @@ title: "Apache Hive : Suggestion for DDL Commands in HMS schema upgrade scripts"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Suggestion for DDL Commands in HMS schema upgrade scripts
-
-
-
-
-
 
 In this page, I would like to share the information I learned from Braintree's Blog about how they handle DB schema migration while application is up and serving requests. I think this should benefits to developer who is working on HMS's schema upgrade scripts.  As for some DDL commands, they can lock out updates to a table for a long time and database operation that locks for more than a few seconds is indistinguishable from an outage for customers. Discussion here will be focused one using PostgreSQL as HMS DB and the following are the links for those useful articles:
 
@@ -26,11 +13,7 @@ In this page, I would like to share the information I learned from Braintree's B
 
   
 
-
   
-
-
-
 
  
 

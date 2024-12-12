@@ -3,20 +3,7 @@ title: "Apache Hive : PluginDeveloperKit"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : PluginDeveloperKit
-
-
-
-
-
 
 # Hive Plugin Developer Kit
 
@@ -30,8 +17,6 @@ Currently, the PDK is only targeted at user defined functions (including UDAF's 
 
 To demonstrate the PDK in action, the Hive release includes an `examples/test-plugin` directory. You can build the test plugin by changing to that directory and running
 
-
-
 ```
 ant -Dhive.install.dir=../..
 
@@ -41,16 +26,12 @@ This will create a `build` subdirectory containing the compiled plugin: `pdk-tes
 
 You can run the tests associated with the plugin via
 
-
-
 ```
 ant -Dhive.install.dir=../.. test
 
 ```
 
 If all is well, you should see output like
-
-
 
 ```
 Buildfile: /hive-0.8.0-SNAPSHOT/examples/test-plugin/build.xml
@@ -70,8 +51,6 @@ The example plugin is also built and tested as part of the main Hive build in or
 ## Your Own Plugin
 
 To create your own plugin, you can follow the patterns from the example plugin. Let's take a closer look at it. First, the `build.xml`:
-
-
 
 ```
 <project name="pdktest" default="package">
@@ -103,8 +82,6 @@ For the example plugin, a datafile onerow.txt contains a single row of data; set
 ## Annotations
 
 Now let's take a look at the source code for a UDF.
-
-
 
 ```
 package org.apache.hive.pdktest;
@@ -194,8 +171,6 @@ If you encounter problems during test execution, look in the file `TEST-org.apac
 * add Eclipse support
 * move Hive builtins to use PDK for more convenient testing ([HIVE-2523](https://issues.apache.org/jira/browse/HIVE-2523))
 * command-line option for invoking a single testcase
-
-
 
  
 

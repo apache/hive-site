@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual LateralView"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual LateralView
-
-
-
-
-
-
 
 * [Lateral View Syntax]({{< ref "#lateral-view-syntax" >}})
 * [Description]({{< ref "#description" >}})
@@ -25,17 +11,11 @@ date: 2024-12-12
 * [Multiple Lateral Views]({{< ref "#multiple-lateral-views" >}})
 * [Outer Lateral Views]({{< ref "#outer-lateral-views" >}})
 
-
-
-
 ## Lateral View Syntax
-
-
 
 ```
 lateralView: LATERAL VIEW udtf(expression) tableAlias AS columnAlias (',' columnAlias)*
 fromClause: FROM baseTable (lateralView)*
-
 
 ```
 
@@ -55,16 +35,12 @@ From Hive 0.12.0, column aliases can be omitted. In this case, aliases are inher
 
 Consider the following base table named `pageAds`. It has two columns: `pageid` (name of the page) and `adid_list` (an array of ads appearing on the page):
 
-
-
 | Column name | Column type |
 | --- | --- |
 | pageid | STRING |
 | adid\_list | Array<int> |
 
 An example table with two rows:
-
-
 
 | pageid | adid\_list |
 | --- | --- |
@@ -75,8 +51,6 @@ and the user would like to count the total number of times an ad appears across 
 
 A lateral view with [explode()]({{< ref "#explode--" >}}) can be used to convert `adid_list` into separate rows using the query:
 
-
-
 ```
 SELECT pageid, adid
 FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
@@ -84,8 +58,6 @@ FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
 ```
 
 The resulting output will be
-
-
 
 | pageid (string) | adid (int) |
 | --- | --- |
@@ -98,16 +70,12 @@ The resulting output will be
 
 Then in order to count the number of times a particular ad appears, count/group by can be used:
 
-
-
 ```
 SELECT adid, count(1)
 FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid
 GROUP BY adid;
 
 ```
-
-
 
 | int adid | count(1) |
 | 1 | 1 |
@@ -122,8 +90,6 @@ A FROM clause can have multiple LATERAL VIEW clauses. Subsequent LATERAL VIEWS c
 
 For example, the following could be a valid query:
 
-
-
 ```
 SELECT * FROM exampleTable
 LATERAL VIEW explode(col1) myTable1 AS myCol1
@@ -133,15 +99,11 @@ LATERAL VIEW explode(myCol1) myTable2 AS myCol2;
 
 LATERAL VIEW clauses are applied in the order that they appear. For example with the following base table:
 
-
-
 | Array<int> col1 | Array<string> col2 |
 | [1, 2] | [a", "b", "c"] |
 | [3, 4] | [d", "e", "f"] |
 
 The query:
-
-
 
 ```
 SELECT myCol1, col2 FROM baseTable
@@ -151,8 +113,6 @@ LATERAL VIEW explode(col1) myTable1 AS myCol1;
 
 Will produce:
 
-
-
 | int mycol1 | Array<string> col2 |
 | 1 | [a", "b", "c"] |
 | 2 | [a", "b", "c"] |
@@ -160,8 +120,6 @@ Will produce:
 | 4 | [d", "e", "f"] |
 
 A query that adds an additional LATERAL VIEW:
-
-
 
 ```
 SELECT myCol1, myCol2 FROM baseTable
@@ -171,8 +129,6 @@ LATERAL VIEW explode(col2) myTable2 AS myCol2;
 ```
 
 Will produce:
-
-
 
 | int myCol1 | string myCol2 |
 | 1 | "a" |
@@ -198,16 +154,12 @@ The user can specify the optional `OUTER` keyword to generate rows even when a 
 
 For example, the following query returns an empty result:
 
-
-
 ```
 SELEC * FROM src LATERAL VIEW explode(array()) C AS a limit 10;
 
 ```
 
 But with the `OUTER` keyword
-
-
 
 ```
 SELECT * FROM src LATERAL VIEW OUTER explode(array()) C AS a limit 10;
@@ -226,8 +178,6 @@ it will produce:
  278 val\_278 NULL  
  98 val\_98 NULL  
  ...
-
-
 
  
 

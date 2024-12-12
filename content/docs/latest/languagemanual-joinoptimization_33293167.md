@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual JoinOptimization"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual JoinOptimization
 
-
-
-
-
-
 # Join Optimization
-
 
 * [Join Optimization]({{< ref "#join-optimization" >}})
 	+ [Improvements to the Hive Optimizer]({{< ref "#improvements-to-the-hive-optimizer" >}})
@@ -38,9 +24,6 @@ date: 2024-12-12
 				+ [Pros and Cons of Client-Side Hash Tables]({{< ref "#pros-and-cons-of-client-side-hash-tables" >}})
 				+ [Task-Side Generation of Hash Tables]({{< ref "#task-side-generation-of-hash-tables" >}})
 					- [Further Options for Optimization]({{< ref "#further-options-for-optimization" >}})
-
-
-
 
 For a general discussion of Hive joins including syntax, examples, and restrictions, see the [Joins](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins) wiki doc.
 
@@ -70,8 +53,6 @@ The [TPC DS](http://www.tpc.org/tpcds/) is an example of such a schema. It model
 
 ### Star Schema Example
 
-
-
 ```
 Select count(*) cnt
 From store\_sales ss
@@ -90,8 +71,6 @@ order by cnt;
 
 Hive supports MAPJOINs, which are well suited for this scenario – at least for dimensions small enough to fit in memory. Before release 0.11, a MAPJOIN could be invoked either through an optimizer hint:
 
-
-
 ```
 select /*+ MAPJOIN(time\_dim) */ count(*) from
 store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
@@ -99,8 +78,6 @@ store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
 ```
 
 or via auto join conversion:
-
-
 
 ```
 set hive.auto.convert.join=true;
@@ -150,8 +127,6 @@ The following sections describe each of these optimizer enhancements.
 
 The following query will produce two separate map-only jobs when executed:
 
-
-
 ```
 select /*+ MAPJOIN(time\_dim, date\_dim) */ count(*) from
 store\_sales 
@@ -175,8 +150,6 @@ If `[hive.auto.convert.join]({{< ref "#hive-auto-convert-join" >}})` is set to t
 
 When auto join is enabled, there is no longer a need to provide the map-join hints in the query. The auto join option can be enabled with two configuration parameters:
 
-
-
 ```
 set hive.auto.convert.join.noconditionaltask = true;
 set hive.auto.convert.join.noconditionaltask.size = 10000000;
@@ -188,8 +161,6 @@ The default for `[hive.auto.convert.join.noconditionaltask]({{< ref "#hive-auto-
 The [size configuration]({{< ref "#size-configuration" >}}) enables the user to control what size table can fit in memory. This value represents the sum of the sizes of tables that can be converted to hashmaps that fit in memory. Currently, n-1 tables of the join have to fit in memory for the map-join optimization to take effect. There is no check to see if the table is a compressed one or not and what the potential size of the table can be. The effect of this assumption on the results is discussed in the next section.
 
 For example, the previous query just becomes:
-
-
 
 ```
 select count(*) from
@@ -224,8 +195,6 @@ Sort-Merge-Bucket (SMB) joins can be converted to SMB map joins as well. SMB joi
 
 The following configuration settings enable the conversion of an SMB to a map-join SMB:
 
-
-
 ```
 set hive.auto.convert.sortmerge.join=true;
 set hive.optimize.bucketmapjoin = true;
@@ -234,8 +203,6 @@ set hive.optimize.bucketmapjoin.sortedmerge = true;
 ```
 
 There is an option to set the big table selection policy using the following configuration:
-
-
 
 ```
 set hive.auto.convert.sortmerge.join.bigtable.selection.policy 
@@ -246,8 +213,6 @@ set hive.auto.convert.sortmerge.join.bigtable.selection.policy
 By default, the selection policy is average partition size. The big table selection policy helps determine which table to choose for only streaming, as compared to hashing and streaming.
 
 The available selection policies are:
-
-
 
 ```
 org.apache.hadoop.hive.ql.optimizer.AvgPartitionSizeBasedBigTableSelectorForAutoSMJ (default)
@@ -310,8 +275,6 @@ When the hashtables are generated completely on the task side, all task nodes ha
 
 1. Increase the replication factor on dimension tables.
 2. Use the distributed cache to hold dimension tables.
-
-
 
  
 

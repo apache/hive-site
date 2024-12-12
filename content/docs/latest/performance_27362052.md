@@ -3,20 +3,7 @@ title: "Apache Hive : Performance"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Performance
-
-
-
-
-
 
 ## YourKit Java Profiler Collaboration
 
@@ -36,8 +23,6 @@ Here are some JIRA issues about benchmarks for Hive:
  
 
  
-
-
 
  
 

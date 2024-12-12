@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference Jobs"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference Jobs
 
-
-
-
-
-
 # List JobIDs — GET jobs
-
 
 * [List JobIDs — GET jobs]({{< ref "#list-jobids-—-get-jobs" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -33,9 +19,6 @@ date: 2024-12-12
 		- [JSON Output (showall)]({{< ref "#json-output--showall-" >}})
 		- [Curl Command (fields)]({{< ref "#curl-command--fields-" >}})
 		- [JSON Output (fields)]({{< ref "#json-output--fields-" >}})
-
-
-
 
 ## Description
 
@@ -52,8 +35,6 @@ Version: Hive 0.12.0 and later
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **fields** | If **fields** set to "*", the request will return full details of the job. If **fields** is missing, will only return the job ID. Currently the value can only be "*", other values are not allowed and will throw exception. | Optional | None |
@@ -69,8 +50,6 @@ Returns an array of jobs either belonging to the user, or which the user has per
 
 Every element inside the array includes:
 
-
-
 | Name | Description |
 | --- | --- |
 | **id** | Job ID. |
@@ -80,16 +59,12 @@ Every element inside the array includes:
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 [
@@ -100,16 +75,12 @@ Every element inside the array includes:
 
 ### Curl Command (showall)
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy&showall=true'
 
 ```
 
 ### JSON Output (showall)
-
-
 
 ```
 [
@@ -121,8 +92,6 @@ Every element inside the array includes:
 
 ### Curl Command (fields)
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy&fields=*'
 
@@ -133,8 +102,6 @@ Every element inside the array includes:
 Hive 0.12.0 bug
 
 In release 0.12.0 the first line of JSON output for the fields parameter gives the parent jobid instead of the actual jobid ([HIVE-5510](https://issues.apache.org/jira/browse/HIVE-5510)). The example below shows the correct jobid, as displayed in release 0.13.0 and later.
-
-
 
 ```
 [{"id":"job\_201304291205\_0016",
@@ -194,9 +161,6 @@ Previous: [DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob_34017204" >
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids_34017187" >}})
-
-
-
 
  
 

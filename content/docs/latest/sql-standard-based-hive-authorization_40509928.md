@@ -3,20 +3,7 @@ title: "Apache Hive : SQL Standard Based Hive Authorization"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : SQL Standard Based Hive Authorization
-
-
-
-
-
 
   
 
@@ -41,9 +28,6 @@ date: 2024-12-12
 		- [Hive 0.13.1]({{< ref "#hive-0-13-1" >}})
 	+ [References]({{< ref "#references" >}})
 	+ [Troubleshooting]({{< ref "#troubleshooting" >}})
-
-
-
 
 # Status of Hive Authorization before Hive 0.13
 
@@ -136,8 +120,6 @@ As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-8083), user may be 
 
 #### Create Role
 
-
-
 ```
 CREATE ROLE role\_name;
 ```
@@ -148,8 +130,6 @@ The role names ALL, DEFAULT and NONE are reserved.
 
 #### Drop Role
 
-
-
 ```
 DROP ROLE role\_name;
 ```
@@ -157,8 +137,6 @@ DROP ROLE role\_name;
 Drops the given role. Only the **admin** role has privilege for this.
 
 #### Show Current Roles
-
-
 
 ```
 SHOW CURRENT ROLES;
@@ -171,8 +149,6 @@ The default current roles has all roles for the user except for the **admin** ro
 Any user can run this command.
 
 #### Set Role
-
-
 
 ```
 SET ROLE (role\_name|ALL|NONE);
@@ -188,8 +164,6 @@ If a role the user does not belong to is specified as the role\_name, it will re
 
 #### Show Roles
 
-
-
 ```
 SHOW ROLES;
 ```
@@ -199,8 +173,6 @@ List all currently existing roles.
 Only the **admin** role has privilege for this.
 
 #### Grant Role
-
-
 
 ```
 GRANT role\_name [, role\_name] ...
@@ -220,8 +192,6 @@ If the grant statement ends up creating a cycling relationship between roles, th
 
 #### Revoke Role
 
-
-
 ```
 REVOKE [ADMIN OPTION FOR] role\_name [, role\_name] ...
 FROM principal\_specification [, principal\_specification] ... ;
@@ -237,8 +207,6 @@ As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of RE
 
 #### Show Role Grant
 
-
-
 ```
 SHOW ROLE GRANT (USER|ROLE) principal\_name;
 ```
@@ -250,8 +218,6 @@ Lists all roles the given user or role has been granted.
 Currently any user can run this command. But this is likely to change in future to allow users to see only their own role grants, and additional privileges would be needed to see role grants of other users.
 
 ##### Example of Show Role Grant
-
-
 
 ```
 0: jdbc:hive2://localhost:10000> GRANT role1 TO USER user1;
@@ -268,8 +234,6 @@ No rows affected (0.058 seconds)
 
 #### Show Principals
 
-
-
 ```
 SHOW PRINCIPALS role\_name;
 ```
@@ -279,8 +243,6 @@ Lists all roles and users who belong to this role.
 Only the **admin** role has privilege for this.
 
 ##### Example of Show Principals
-
-
 
 ```
 0: jdbc:hive2://localhost:10000> SHOW PRINCIPALS role1;
@@ -299,8 +261,6 @@ Only the **admin** role has privilege for this.
 
 #### Grant
 
-
-
 ```
 GRANT
     priv\_type [, priv\_type ] ...
@@ -310,8 +270,6 @@ GRANT
 ```
 
 #### Revoke
-
-
 
 ```
 REVOKE [GRANT OPTION FOR]
@@ -333,8 +291,6 @@ Note that in case of the REVOKE statement, the DROP-BEHAVIOR option of CASCADE i
 
 Examples:
 
-
-
 ```
 0: jdbc:hive2://localhost:10000/default> grant select on table secured\_table to role my\_role;
 No rows affected (0.046 seconds)
@@ -346,8 +302,6 @@ No rows affected (0.028 seconds)
 Notice that in Hive, unlike in standard SQL, USER or ROLE must be specified in the principal\_specification.
 
 #### Show Grant
-
-
 
 ```
 SHOW GRANT [principal\_specification] ON (ALL | [TABLE] table\_or\_view\_name);
@@ -363,8 +317,6 @@ Currently any user can run this command. But this is likely to change in the fut
 
 Find out the privileges user ashutosh has on table hivejiratable:
 
-
-
 ```
 0: jdbc:hive2://localhost:10000> show grant user ashutosh on table hivejiratable;
 +-----------+----------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
@@ -378,8 +330,6 @@ Find out the privileges user ashutosh has on table hivejiratable:
  
 
 Find out the privileges user ashutosh has on all objects:
-
-
 
 ```
 0: jdbc:hive2://localhost:10000> show grant user ashutosh on all;                               
@@ -397,8 +347,6 @@ Find out the privileges user ashutosh has on all objects:
  
 
 Find out the privileges all users have on table hivejiratable:
-
-
 
 ```
 0: jdbc:hive2://localhost:10000> show grant on table hivejiratable;
@@ -424,8 +372,6 @@ Find out the privileges all users have on table hivejiratable:
 Y:  Privilege required.
 
 Y + G:  Privilege "WITH GRANT OPTION" required.
-
-
 
 | Action | Select | Insert | Update | Delete | Ownership | Admin | URI Privilege (RWX Permission + Ownership) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -539,20 +485,11 @@ For information on the SQL standard for security see:
 
 ***Do This:***  Ensure that you have run a '`[set role]({{< ref "#set-role" >}}) admin;`' command to get the **admin** role.
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 [attachments/40509928/42696874-txt](/attachments/40509928/42696874-txt) (text/plain)
    
-
-
 
  
 

@@ -3,21 +3,7 @@ title: "Apache Hive : TeradataBinarySerde"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : TeradataBinarySerde
-
-
-
-
-
-
 
 * [Availability]({{< ref "#availability" >}})
 * [Overview]({{< ref "#overview" >}})
@@ -32,9 +18,6 @@ date: 2024-12-12
 	+ [Table Properties]({{< ref "#table-properties" >}})
 	+ [Teradata to Hive Type Conversion]({{< ref "#teradata-to-hive-type-conversion" >}})
 	+ [Serde Restriction]({{< ref "#serde-restriction" >}})
-
-
-
 
 ### Availability
 
@@ -82,7 +65,6 @@ tbuild -C -f $td\_export\_template\_file -v ${tpt\_job\_var\_file} \
 The **td\_export\_template\_file** looks like below with proper **Format, MaxDecimalDigits,** and**DateForm** in place:
 
   
-
 
 **td\_export\_template\_file**
 
@@ -144,7 +126,6 @@ select * from foo.teradata\_binary\_table order by test\_int;
 ```
 
   
-
 
 ### How to import
 
@@ -208,7 +189,6 @@ Here is a bash script example for how to call TPT FastLoad.
 
   
 
-
 **TPT FastLoad script example**
 
 ```
@@ -228,11 +208,9 @@ tbuild -C -f $td\_import\_template\_file -v ${tpt\_job\_var\_file} \
 
   
 
-
 The **td\_import\_template\_file** looks like:
 
   
-
 
 **td\_import\_template\_file**
 
@@ -265,7 +243,6 @@ APPLY
 TO OPERATOR ($DDL);
 );
 
-
 STEP LOADING
 (
     APPLY $INSERT TO OPERATOR ($LOAD() [@LoadInstances])
@@ -276,11 +253,9 @@ STEP LOADING
 
   
 
-
 Please set the correct values in **tpt\_job\_var\_file**, such as **SourceFormat**, **DateForm**, **MaxDecimalDigits**. Here is an example:
 
   
-
 
 **tpt\_job\_var\_file**
 
@@ -308,7 +283,6 @@ Please set the correct values in **tpt\_job\_var\_file**, such as **SourceForm
 ```
 
   
-
 
 ### Usage
 
@@ -345,7 +319,6 @@ TBLPROPERTIES (
 
   
 
-
 **Default Teradata properties**
 
 ```
@@ -356,8 +329,6 @@ TBLPROPERTIES (
 
 #### Table Properties
 
-
-
 | Property Name | Property Value Set | Default Property Value | Note |
 | --- | --- | --- | --- |
 | teradata.row.length | (64KB, 1MB) | 64KB | **64KB** corresponds to **Formatted** mode**1MB** corresponds to **Formatted4** mode |
@@ -365,8 +336,6 @@ TBLPROPERTIES (
 | teradata.timestamp.precision | 0-6 | 6 | This decides how many bytes for TIMESTAMP data type. More details is [here](https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/index.html#page/SQL_Reference/B035-1143-160K/bjd1472241378006.html).All the fields with TIMESTAMP are controlled by this property (no separate specifying supported) |
 
 #### Teradata to Hive Type Conversion
-
-
 
 | Teradata Data Type | Teradata Data Type Definition | Hive Type | Hive Data Type Definition | Note |
 | --- | --- | --- | --- | --- |
@@ -384,15 +353,12 @@ TBLPROPERTIES (
 
   
 
-
 #### Serde Restriction
 
 The TeradataBinarySerde has several restrictions:
 
 * Only support simple data type listed above, other data type like INTERVAL, TIME, NUMBER, CLOB, BLOB in Teradata are not yet supported.
 * Doesn't support the complex data type such as ARRAY, MAP.
-
-
 
  
 

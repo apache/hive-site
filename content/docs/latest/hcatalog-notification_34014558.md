@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog Notification"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog Notification
 
-
-
-
-
-
 # Notification
-
 
 * [Notification]({{< ref "#notification" >}})
 	+ [Notification for a New Partition]({{< ref "#notification-for-a-new-partition" >}})
@@ -27,9 +13,6 @@ date: 2024-12-12
 	+ [Server Configuration]({{< ref "#server-configuration" >}})
 		- [Enable JMS Notifications]({{< ref "#enable-jms-notifications" >}})
 		- [Topic Names]({{< ref "#topic-names" >}})
-
-
-
 
 Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them. The current version of HCatalog supports two kinds of events:
 
@@ -43,8 +26,6 @@ No additional work is required to send a notification when a new partition is ad
 To receive notification that a new partition has been added, you need to follow these three steps.
 
 1. To start receiving messages, create a connection to a message bus as shown here:
-
-
 
 ```
 ConnectionFactory connFac = new ActiveMQConnectionFactory(amqurl);
@@ -78,8 +59,6 @@ conn.start();
 	```
 3. To start receiving messages you need to implement the JMS interface `MessageListener`, which, in turn, will make you implement the method `onMessage(Message msg)`. This method will be called whenever a new message arrives on the message bus. The message contains a partition object representing the corresponding partition, which can be retrieved as shown here:
 
-
-
 ```
 @Override
 public void onMessage(Message msg) {
@@ -102,8 +81,6 @@ The example code below illustrates how to send a notification when a set of part
 
 To signal, a data writer does this:
 
-
-
 ```
 HiveMetaStoreClient msc = new HiveMetaStoreClient(conf);
 
@@ -122,8 +99,6 @@ To receive this notification, the consumer needs to do the following:
 1. Repeat steps one and two from [above]({{< ref "#above" >}}) to establish the connection to the notification system and to subscribe to the topic.
 2. Receive the notification as shown in this example:
 
-
-
 ```
 HiveMetaStoreClient msc = new HiveMetaStoreClient(conf);
 
@@ -139,8 +114,6 @@ msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD\_DON
 
 If the consumer has registered with the message bus and is currently live, it will get the callback from the message bus once the producer marks the partition as "done". Alternatively, the consumer can ask explicitly for a particular partition from the metastore. The following code illustrates the usage from a consumer's perspective:
 
-
-
 ```
 // Enquire to metastore whether a particular partition has been marked or not.
 boolean marked = msc.isPartitionMarkedForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD\_DONE);
@@ -153,7 +126,6 @@ Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
 Destination hcatTopic = session.createTopic(topic);
 MessageConsumer consumer = session.createConsumer(hcatTopic);
 consumer.setMessageListener(this);
-
 
 public void onMessage(Message msg) {
 
@@ -183,8 +155,6 @@ To disable notification, you need to leave `hive.metastore.event.listeners` blan
 ### Enable JMS Notifications
 
 You need to make (add/modify) the following changes to the `hive-site.xml` file of your HCatalog server to turn on notifications.
-
-
 
 ```
 <property>
@@ -245,15 +215,11 @@ You then need to configure your ActiveMQ Consumer(s) to listen for messages on t
 
   
 
-
 **Navigation Links**
 Previous: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions_34014006" >}})  
 Next: [Storage Based Authorization]({{< ref "hcatalog-authorization_34014782" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

@@ -3,23 +3,9 @@ title: "Apache Hive : AdminManual Metastore Administration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AdminManual Metastore Administration
 
-
-
-
-
-
 ## Hive Metastore Administration
-
 
 * [Hive Metastore Administration]({{< ref "#hive-metastore-administration" >}})
 	+ [Introduction]({{< ref "#introduction" >}})
@@ -34,9 +20,6 @@ date: 2024-12-12
 		- [Client Configuration Parameters]({{< ref "#client-configuration-parameters" >}})
 	+ [Supported Backend Databases for Metastore]({{< ref "#supported-backend-databases-for-metastore" >}})
 	+ [Metastore Schema Consistency and Upgrades]({{< ref "#metastore-schema-consistency-and-upgrades" >}})
-
-
-
 
 This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see [AdminManual Metastore 3.0 Administration]({{< ref "adminmanual-metastore-3-0-administration_75978150" >}})
 
@@ -64,8 +47,6 @@ The relevant configuration parameters are shown here. (Non-metastore parameters 
 
 Also see hivemetastore-site.xml documentation under [Configuring Hive](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration).
 
-
-
 | Configuration Parameter | Description |
 | --- | --- |
 | javax.jdo.option.ConnectionURL | JDBC connection string for the data store which contains metadata |
@@ -79,8 +60,6 @@ The Hive metastore is stateless and thus there can be multiple instances to achi
 #### Additional Configuration Parameters
 
 The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the `HiveConf` Java class for current Hive configuration options, and see the [Metastore](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-MetaStore) and [Hive Metastore Security](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity) sections of the Language Manual's [Hive Configuration Properties](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties) for user-friendly descriptions of the metastore parameters.
-
-
 
 | Configuration Parameter | Description | Default Value |
 | --- | --- | --- |
@@ -103,8 +82,6 @@ Configuring datanucleus.autoStartMechanism is highly recommended
 
 Configuring auto start for data nucleus is highly recommended. See [HIVE-4762](https://issues.apache.org/jira/browse/HIVE-4762) for more details.
 
-
-
 ```
  <property>
     <name>datanucleus.autoStartMechanism</name>
@@ -124,8 +101,6 @@ For unit tests [Local/Embedded Metastore Server]({{< ref "#local/embedded-metas
 
 Derby is the default database for the embedded metastore.
 
-
-
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | javax.jdo.option.ConnectionURL | `jdbc:derby:;databaseName=../build/test/junit_metastore_db;create=true` | Derby database located at hive/trunk/build... |
@@ -138,8 +113,6 @@ If you want to run Derby as a network server so the metastore can be accessed fr
 
 In this configuration, you would use a traditional standalone RDBMS server. The following example configuration will set up a metastore in a MySQL server. This configuration of metastore database is recommended for any real use.
 
-
-
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | javax.jdo.option.ConnectionURL | `jdbc:mysql://<host name>/<database name>?createDatabaseIfNotExist=true` | metadata is stored in a MySQL server |
@@ -151,8 +124,6 @@ In this configuration, you would use a traditional standalone RDBMS server. The
 
 In local/embedded metastore setup, the metastore server component is used like a library within the Hive Client. Each Hive Client will open a connection to the database and make SQL queries against it. Make sure that the database is accessible from the machines where Hive queries are executed since this is a local store. Also make sure the JDBC client library is in the classpath of Hive Client. This configuration is often used with HiveServer2 (to use embedded metastore only with HiveServer2 add "--hiveconf hive.metastore.uris=' '" in command line parameters of the hiveserver2 start command or use hiveserver2-site.xml (available in Hive 0.14)).
 
-
-
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.uris | *not needed because this is local store* |   |
@@ -163,15 +134,11 @@ In local/embedded metastore setup, the metastore server component is used like a
 
 In remote metastore setup, all Hive Clients will make a connection to a metastore server which in turn queries the datastore (MySQL in this example) for metadata. Metastore server and client communicate using [Thrift](http://incubator.apache.org/thrift) Protocol. Starting with Hive 0.5.0, you can start a Thrift server by executing the following command:
 
-
-
 ```
 hive --service metastore
 ```
 
 In versions of Hive earlier than 0.5.0, it's instead necessary to run the Thrift server via direct execution of Java:
-
-
 
 ```
 $JAVA\_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE\_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP\_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
@@ -182,8 +149,6 @@ If you execute Java directly, then JAVA\_HOME, HIVE\_HOME, HADOOP\_HOME must be 
 **Server Configuration Parameters**
 
 The following example uses a[Remote Metastore Database]({{< ref "#remote-metastore-database" >}}).
-
-
 
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
@@ -198,8 +163,6 @@ From Hive 3.0.0 ([HIVE-16452](https://issues.apache.org/jira/browse/HIVE-16452))
 
 #### **Client Configuration Parameters**
 
-
-
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.uris | `thrift://<host_name>:<port>` | host and port for the Thrift metastore server. If hive.metastore.thrift.bind.host is specified,  host should be same as that configuration. Read more about this in dynamic service discovery configuration parameters. |
@@ -208,12 +171,9 @@ From Hive 3.0.0 ([HIVE-16452](https://issues.apache.org/jira/browse/HIVE-16452))
 
   
 
-
 **Dynamic Service Discovery Configuration Parameters**
 
 From Hive 4.0.0 ([HIVE-20794](https://issues.apache.org/jira/browse/HIVE-20794)) onwards, similar to HiveServer2, a ZooKeeper service can be used for dynamic service discovery of a remote metastore server. Following parameters are used by both metastore server and client.
-
-
 
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
@@ -228,20 +188,15 @@ From Hive 4.0.0 ([HIVE-20794](https://issues.apache.org/jira/browse/HIVE-20794))
 
   
 
-
 If you are using MySQL as the datastore for metadata, put MySQL jdbc libraries in HIVE\_HOME/lib before starting Hive Client or HiveMetastore Server.
 
 To change the metastore port, use this `hive` command:
-
-
 
 ```
 hive --service metastore -p <port\_num>
 ```
 
 ### Supported Backend Databases for Metastore
-
-
 
 | Database | Minimum Supported Version | Name for Parameter Values | See Also |
 | --- | --- | --- | --- |
@@ -267,8 +222,6 @@ To suppress the schema check and allow the metastore to implicitly modify the sc
 Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details [here]({{< ref "hive-schema-tool_34835119" >}}).
 
 Save
-
-
 
  
 

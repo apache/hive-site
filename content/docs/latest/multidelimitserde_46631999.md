@@ -3,20 +3,7 @@ title: "Apache Hive : MultiDelimitSerDe"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : MultiDelimitSerDe
-
-
-
-
-
 
 # Introduction
 
@@ -30,10 +17,7 @@ Hive 0.14.0 and later.
 
   
 
-
 You can use MultiDelimitSerDe in a create table statement like this:
-
-
 
 ```
 CREATE TABLE test (
@@ -56,32 +40,20 @@ where field.delim is the field delimiter, collection.delim and mapkey.delim
 
  
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
 | 
 Thank you [Lefty Leverenz](https://cwiki.apache.org/confluence/display/~leftyl)
 
-
  Posted by afan at Oct 05, 2018 06:18
   |
 | 
 And thanks for your contributions [Alice Fan](https://cwiki.apache.org/confluence/display/~afan).
 
-
  Posted by leftyl at Oct 05, 2018 06:27
   |
-
-
 
  
 

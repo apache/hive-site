@@ -3,23 +3,9 @@ title: "Apache Hive : AccumuloIntegration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AccumuloIntegration
 
-
-
-
-
-
 # Hive Accumulo Integration
-
 
 * [Hive Accumulo Integration]({{< ref "#hive-accumulo-integration" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -35,9 +21,6 @@ date: 2024-12-12
 		- [Register an external table]({{< ref "#register-an-external-table" >}})
 		- [Create an indexed table]({{< ref "#create-an-indexed-table" >}})
 	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
-
-
-
 
 ## Overview
 
@@ -57,8 +40,6 @@ To issue queries against Accumulo using Hive, four parameters must be provided b
 
  
 
-
-
 | Connection Parameters |
 | --- |
 | accumulo.instance.name |
@@ -70,8 +51,6 @@ To issue queries against Accumulo using Hive, four parameters must be provided b
 
 For those familiar with Accumulo, these four configurations are the normal configuration values necessary to connect to Accumulo: the Accumulo instance name, the ZooKeeper quorum (comma-separated list of hosts), and Accumulo username and password. The easiest way to provide these values is by using the `-hiveconf` option to the `hive` command. It is expected that the Accumulo user provided either has the ability to create new tables, or that the Hive queries will only be accessing existing Accumulo tables.
 
-
-
 ```
 hive -hiveconf accumulo.instance.name=accumulo -hiveconf accumulo.zookeepers=localhost -hiveconf accumulo.user.name=hive -hiveconf accumulo.user.pass=hive
 ```
@@ -79,8 +58,6 @@ hive -hiveconf accumulo.instance.name=accumulo -hiveconf accumulo.zookeepers=loc
 To access Accumulo tables, a Hive table must be created using the `CREATE` command with the `STORED BY` clause. If the `EXTERNAL` keyword is omitted from the `CREATE` call, the lifecycle of the Accumulo table is tied to the lifetime of the Hive table: if the Hive table is deleted, so is the Accumulo table. This is the default case. Providing the `EXTERNAL` keyword will create a Hive table that references an Accumulo table but will not remove the underlying Accumulo table if the Hive table is dropped.
 
 Each Hive row maps to a set of Accumulo keys with the same row ID. One column in the Hive row is designated as a "special" column which is used as the Accumulo row ID. All other Hive columns in the row have some mapping to Accumulo column (column family and qualifier) where the Hive column value is placed in the Accumulo value.
-
-
 
 ```
 CREATE TABLE accumulo\_table(rowid STRING, name STRING, age INT, weight DOUBLE, height INT)
@@ -92,16 +69,12 @@ In the above statement, normal Hive column name and type pairs are provided as i
 
 For the above schema in the "accumulo\_table", we could envision a single row in the table:
 
-
-
 ```
 hive> select * from accumulo\_table;
 row1	Steve	32	200	72
 ```
 
 The above record would be serialized into Accumulo Key-Value pairs in the following manner given the declared accumulo.columns.mapping:
-
-
 
 ```
 user@accumulo accumulo\_table> scan
@@ -141,8 +114,6 @@ Starting in Hive 3.0.0 with [HIVE-15795](https://issues.apache.org/jira/browse/H
 
 Using index tables greatly improve performance of non-rowId predicate queries by eliminating full table scans. Indexing works for both internally and externally managed tables using either the Tez or Map Reduce query engines. The following options control indexing behavior.
 
-
-
 | Option Name | Description |
 | --- | --- |
 | **accumulo.indextable.name** | **(Required) The name of the index table in Accumulo.** |
@@ -176,8 +147,6 @@ The following options are also valid to be used with SERDEPROPERTIES or TABLEPRO
 
  
 
-
-
 | Option Name | Description |
 | --- | --- |
 | accumulo.iterator.pushdown | Should filter predicates be satisfied within Accumulo using Iterators (default: true) |
@@ -195,8 +164,6 @@ The following options are also valid to be used with SERDEPROPERTIES or TABLEPRO
 
 Create a user table, consisting of some unique key for a user, a user ID, and a username. The Accumulo row ID is from the Hive column, the user ID column is written to the "f" column family and "userid" column qualifier, and the username column to the "f" column family and the "nickname" column qualifier. Instead of using the "users" Accumulo table, it is overridden in the TBLPROPERTIES to use the Accumulo table "hive\_users" instead.
 
-
-
 ```
 CREATE TABLE users(key int, userid int, username string) 
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
@@ -207,8 +174,6 @@ WITH TBLPROPERTIES ("accumulo.table.name" = "hive\_users");
 ### Store a Hive map with binary serialization
 
 Using an asterisk in the column mapping string, a Hive map can be expanded from a single Accumulo Key-Value pair to multiple Key-Value pairs. The Hive Map is a parameterized type: in the below case, the key is a string, and the value integer. The default serialization is overriden from 'string' to 'binary' which means that the integers in the value of the Hive map will be stored as a series of bytes instead of the UTF-8 string representation.
-
-
 
 ```
 CREATE TABLE hive\_map(key int, value map<string,int>) 
@@ -223,8 +188,6 @@ WITH SERDEPROPERTIES (
 
 Creating the Hive table with the external keyword decouples the lifecycle of the Accumulo table from that of the Hive table. Creating this table assumes that the Accumulo table "countries" already exists. This is a very useful way to use Hive to manage tables that are created and populated by some external tool (e.g. A MapReduce job). When the Hive table countries is deleted, the Accumulo table will not be deleted. Additionally, the external keyword can also be useful when creating multiple Hive tables with different options that operate on the same underlying Accumulo table.
 
-
-
 ```
 CREATE EXTERNAL TABLE countries(key string, name string, country string, country\_id int)
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
@@ -234,8 +197,6 @@ WITH SERDEPROPERTIES ("accumulo.columns.mapping" = ":rowID,info:name,info:countr
 ### Create an indexed table
 
 To take advantage of indexing, Hive uses another Accumulo table is used to create a lexicographically-sorted search term index for each field allowing for very efficient exact match and bounded range searches.
-
-
 
 ```
 CREATE TABLE company\_stats (
@@ -264,8 +225,6 @@ WITH SERDEPROPERTIES (
 ## Acknowledgements
 
 I would be remiss to not mention the efforts made by Brian Femiano that were the basis for this storage handler. His initial prototype for Accumulo-Hive integration was the base for this work.
-
-
 
  
 

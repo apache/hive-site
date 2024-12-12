@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference PostTable"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference PostTable
 
-
-
-
-
-
 # Rename Table — POST ddl/database/:db/table/:table
-
 
 * [Rename Table — POST ddl/database/:db/table/:table]({{< ref "#rename-table-—-post-ddl/database/:db/table/:table" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -31,9 +17,6 @@ date: 2024-12-12
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
 
-
-
-
 ## Description
 
 Rename an HCatalog table.
@@ -43,8 +26,6 @@ Rename an HCatalog table.
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*`/table/`*:table*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -58,8 +39,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **table** | The new table name |
@@ -68,8 +47,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Curl Command
-
-
 
 ```
 % curl -s -d rename=test\_table\_2 \
@@ -85,8 +62,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ### JSON Output
 
-
-
 ```
 {
  "table": "test\_table\_2",
@@ -96,8 +71,6 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 
 ### JSON Output (error)
-
-
 
 ```
 {
@@ -114,9 +87,6 @@ Previous: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttabl
  Next: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable_34016561" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

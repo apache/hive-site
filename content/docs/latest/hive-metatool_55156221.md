@@ -3,28 +3,11 @@ title: "Apache Hive : Hive MetaTool"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive MetaTool
-
-
-
-
-
-
 
 * [Hive MetaTool]({{< ref "#hive-metatool" >}})
 	+ [The metatool Command]({{< ref "#the-metatool-command" >}})
 	+ [Usage Example]({{< ref "#usage-example" >}})
-
-
-
 
 ## Hive MetaTool
 
@@ -40,8 +23,6 @@ The Hive MetaTool enables administrators to do bulk updates on the location fiel
 ### The `metatool` Command
 
 The `metatool` command invokes the Hive MetaTool with these options:
-
-
 
 | Option | Description |
 | --- | --- |
@@ -91,8 +72,6 @@ Note that `metatool` is a command for Hive administrators and it needs direct ac
 
 The following `metatool` command uses the **updateLocation**, **tablePropKey**, and **serdePropKey** options to update the NameNode location to hdfs://localhost:9000 from hdfs://namenode2:8020.
 
-
-
 ```
 ./hive --service metatool -updateLocation hdfs://localhost:9000 hdfs://namenode2:8020 -tablePropKey avro.schema.url -serdePropKey avro.schema.url
 Initializing HiveMetaTool..
@@ -129,8 +108,6 @@ Updated 0 records in SERDE\_PARAMS table
 Using metatool to read out table information (for all metastore backends).  
   
 
-
-
 ```
 HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MTableColumnStatistics';
 ```
@@ -140,8 +117,6 @@ HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQ
  HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"("+partitionName+")::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
 ```
  
-
-
 
  
 

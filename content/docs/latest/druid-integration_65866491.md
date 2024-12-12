@@ -3,21 +3,7 @@ title: "Apache Hive : Druid Integration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Druid Integration
-
-
-
-
-
-
 
 * [Introduction]({{< ref "#introduction" >}})
 	+ [Objectives]({{< ref "#objectives" >}})
@@ -37,9 +23,6 @@ date: 2024-12-12
 			* [GroupBy queries]({{< ref "#groupby-queries" >}})
 		- [Queries across Druid and Hive]({{< ref "#queries-across-druid-and-hive" >}})
 * [Open Issues (JIRA)]({{< ref "#open-issues--jira-" >}})
-
-
-
 
  
 
@@ -90,15 +73,11 @@ Assume that we have already stored the *wikiticker* dataset mentioned previousl
 
 First, you need to set the Hive property `hive.druid.broker.address.default` in your configuration to point to the broker address:
 
-
-
 ```
 SET hive.druid.broker.address.default=10.5.0.10:8082;
 ```
 
 Then, to create a table that we can query from Hive, we execute the following statement in Hive:
-
-
 
 ```
 CREATE EXTERNAL TABLE druid\_table\_1
@@ -109,8 +88,6 @@ TBLPROPERTIES ("druid.datasource" = "wikiticker");
 Observe that you need to specify the *datasource* as TBLPROPERTIES using the `druid.datasource` property. Further, observe that the table needs to be created as *EXTERNAL*, as data is stored in Druid. The table is just a logical entity that we will use to express our queries, but *there is no data movement when we create the table*. In fact, what happened under the hood when you execute that statement, is that Hive sends a *[segment metadata](http://druid.io/docs/0.9.1.1/querying/segmentmetadataquery.html)* query to Druid in order to discover the schema (columns and their types) of the data source. Retrieval of other information that might be useful such as statistics e.g. number of rows, is in our roadmap, but it is not supported yet. Finally, note that if we change the Hive property value for the default broker address, queries on this table will automatically run against the new broker address, as the address is not stored with the table.
 
 If we execute a *DESCRIBE* statement, we can actually see the information about the table:
-
-
 
 ```
 hive> DESCRIBE FORMATTED druid\_table\_1;
@@ -177,8 +154,6 @@ If we want to manage the data in the Druid datasources from Hive, there are mult
 
 For instance, we might want to create an empty table backed by Druid using a *CREATE TABLE* statement and then append and overwrite data using *INSERT* and *INSERT OVERWRITE* Hive statements, respectively.
 
-
-
 ```
 CREATE EXTERNAL TABLE druid\_table\_1
 (`\_\_time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
@@ -187,8 +162,6 @@ STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 ```
 
 Another possible scenario is that our data is stored in Hive tables and we want to preprocess it and create Druid datasources from Hive to accelerate our SQL query workload. We can do that by executing a *Create Table As Select* (CTAS) statement. For example:
-
-
 
 ```
 CREATE EXTERNAL TABLE druid\_table\_1
@@ -209,8 +182,6 @@ Version Info
 
   
 
-
-
 ```
 CREATE TABLE druid\_table\_1
 (`\_\_time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
@@ -218,14 +189,11 @@ STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 ```
   
 
-
  NOTE - Before Hive 3.0.0, we do not use *EXTERNAL* tables and do not specify the value for the `druid.datasource` property. 
 
 **For versions 3.0.0+, All Druid tables are EXTERNAL ([HIVE-20085](https://issues.apache.org/jira/browse/HIVE-20085)).**   
 
-
   
-
 
 ### Druid kafka ingestion from Hive
 
@@ -250,7 +218,6 @@ CREATE EXTERNAL TABLE druid\_kafka\_table\_1(`\_\_time` timestamp,`dimension1` s
         "druid.kafka.ingestion.consumer.retries" = "2"
         );
 
-
 ```
 
  
@@ -260,8 +227,6 @@ Observe that we specified kafka topic name and kafka bootstrap servers as part o
 ##### Start/Stop/Reset Druid Kafka ingestion
 
 We can Start/Stop/Reset druid kafka ingestion using sql statement shown below. 
-
-
 
 ```
 ALTER TABLE druid\_kafka\_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'START');
@@ -309,15 +274,11 @@ We start with the simplest type of Druid query: *[select](http://druid.io/docs/
 
 Consider the following query, a simple select query for 10 rows consisting of all the columns of the table:
 
-
-
 ```
 SELECT * FROM druid\_table\_1 LIMIT 10;
 ```
 
 The Hive plan for the query will be the following:
-
-
 
 ```
 hive> EXPLAIN
@@ -335,8 +296,6 @@ Time taken: 0.141 seconds, Fetched: 10 row(s)
 ```
 
 Observe that the Druid query is in the properties attached to the TableScan. For readability, we format it properly:
-
-
 
 ```
 {
@@ -361,8 +320,6 @@ Observe that we get to push the limit into the Druid query (`threshold`). Obser
 
 In Druid, the timestamp column plays a central role. In fact, Druid allows to filter on the time dimension using the `intervals` property for all those queries. This is very important, as the time intervals determine the nodes that store the Druid data. Thus, specifying a precise range minimizes the number of nodes hit by the broken for a certain query. Inspired by Druid [PR-2880](https://github.com/druid-io/druid/pull/2880), we implemented the intervals extraction from the filter conditions in the logical plan of a query. For instance, consider the following query:
 
-
-
 ```
 SELECT `\_\_time`
 FROM druid\_table\_1
@@ -371,8 +328,6 @@ LIMIT 10;
 ```
 
 The Druid query generated for the SQL query above is the following (we omit the plan, as it is a simple TableScan operator).
-
-
 
 ```
 {
@@ -388,8 +343,6 @@ The Druid query generated for the SQL query above is the following (we omit the 
 
 Observe that we infer correctly the interval for the specified dates, `2010-01-01T00:00:00.000Z/2011-01-01T00:00:00.001Z`, because in Druid the starting date of the interval is included, but the closing date is not. We also support recognition of multiple interval ranges, for instance in the following SQL query:
 
-
-
 ```
 SELECT `\_\_time`
 FROM druid\_table\_1
@@ -404,8 +357,6 @@ Furthermore we can infer overlapping intervals too. Finally, the filters that ar
 
 *[Timeseries](http://druid.io/docs/0.9.1.1/querying/timeseriesquery.html)* is one of the types of queries that Druid can execute very efficiently. The following SQL query translates directly into a Druid *timeseries* query:
 
-
-
 ```
 -- GRANULARITY: MONTH
 SELECT `floor\_month`(`\_\_time`), max(delta), sum(added)
@@ -416,8 +367,6 @@ GROUP BY `floor\_month`(`\_\_time`);
 Basically, we group by a given time granularity and calculate the aggregation results for each resulting group. In particular, the `floor_month` function over the timestamp dimension \_\_`time` represents the Druid month granularity format. Currently, we support `floor_year`, `floor_quarter`, `floor_month`, `floor_week`, `floor_day`, `floor_hour`, `floor_minute`, and `floor_second` granularities. In addition, we support two special types of granularities, `all` and `none`, which we describe below. We plan to extend our integration work to support other important Druid custom granularity constructs, such as [*duration* and *period* granularities](http://druid.io/docs/0.9.1.1/querying/granularities.html).
 
 The Hive plan for the query will be the following:
-
-
 
 ```
 hive> EXPLAIN
@@ -439,8 +388,6 @@ Time taken: 0.116 seconds, Fetched: 10 row(s)
 
 Observe that the Druid query is in the properties attached to the TableScan. For readability, we format it properly:
 
-
-
 ```
 {
   "queryType":"timeseries",
@@ -461,8 +408,6 @@ Observe that the granularity for the Druid query is `MONTH`.
 
 One rather special case is `all` granularity, which we introduce by example below. Consider the following query:
 
-
-
 ```
 -- GRANULARITY: ALL
 SELECT max(delta), sum(added)
@@ -470,8 +415,6 @@ FROM druid\_table\_1;
 ```
 
 As it will do an aggregation on the complete dataset, it translates into a *timeseries* query with granularity `all`. In particular, the equivalent Druid query attached to the TableScan operator is the following:
-
-
 
 ```
 {
@@ -493,15 +436,11 @@ The final type of queries we currently support is *[groupBy](http://druid.io/doc
 
 For instance, the following SQL query will generate a Druid *groupBy* query:
 
-
-
 ```
 SELECT max(delta), sum(added)
 FROM druid\_table\_1
 GROUP BY `channel`, `user`;
 ```
-
-
 
 ```
 {
@@ -520,16 +459,12 @@ GROUP BY `channel`, `user`;
 
 Finally, we provide an example of a query that runs across Druid and Hive. In particular, let us create a second table in Hive with some data:
 
-
-
 ```
 CREATE TABLE hive\_table\_1 (col1 INT, col2 STRING);
 INSERT INTO hive\_table\_1 VALUES(1, '#en.wikipedia');
 ```
 
 Assume we want to execute the following query:
-
-
 
 ```
 SELECT a.channel, b.col1
@@ -550,8 +485,6 @@ ON a.channel = b.col2;
 ```
 
 The query is a simple join on columns `channel` and `col2`. The subquery `a` is executed completely in Druid as a *groupBy* query. Then the results are joined in Hive with the results of results of subquery `b`. The query plan and execution in Tez is shown in the following:
-
-
 
 ```
 hive> explain
@@ -638,12 +571,6 @@ Time taken: 1.835 seconds, Fetched: 2 row(s)
  
 
 # Open Issues (JIRA)
-
-
-
-
-
-
 
 |
 |  |
@@ -932,27 +859,12 @@ Time taken: 1.835 seconds, Fetched: 2 row(s)
   |
 | 
 
-
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 
  |
 
-
-
-
-
 Showing 20 out of
 [28 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+12330863++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC+&src=confmacro) 
-
-
-
-
-
-
-
-
-
 
  
 

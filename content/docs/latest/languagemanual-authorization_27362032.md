@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual Authorization"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Authorization
 
-
-
-
-
-
 Hive Authorization
-
 
 * [Introduction]({{< ref "#introduction" >}})
 * [Hive Authorization Options]({{< ref "#hive-authorization-options" >}})
@@ -33,9 +19,6 @@ Hive Authorization
 	+ [Addressing Authorization Needs of Multiple Use Cases]({{< ref "#addressing-authorization-needs-of-multiple-use-cases" >}})
 * [Explain Authorization]({{< ref "#explain-authorization" >}})
 * [More Information]({{< ref "#more-information" >}})
-
-
-
 
 ## Introduction
 
@@ -68,7 +51,6 @@ Note, that through the use of [HDFS ACL](http://hadoop.apache.org/docs/r2.4.0/ha
 
 You need to use Hive 2.3.4 or 3.1.1 or later to use Fall Back Authorizer.
 
-
 ```
 Admin needs to specify the following entries in
 hiveserver2-site.xml:
@@ -93,7 +75,6 @@ FallbackHiveAuthorizerFactory will do the following to mitigate above mentioned 
 6. Disallow "TRANSFORM" statement
 
   
-
 
 #### 2 SQL Standards Based Authorization in HiveServer2
 
@@ -138,8 +119,6 @@ For detailed information about the Hive authorization modes, see:
 * [SQL Standard Based Hive Authorization]({{< ref "sql-standard-based-hive-authorization_40509928" >}})
 * [Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}})
 	+ also see the [design document]({{< ref "authdev_27362078" >}}) and [Security]({{< ref "security_27362056" >}})
-
-
 
  
 

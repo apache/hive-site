@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual Cli"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Cli
 
-
-
-
-
-
 # Hive CLI
-
 
 * [Hive CLI]({{< ref "#hive-cli" >}})
 * [Deprecation in favor of Beeline CLI]({{< ref "#deprecation-in-favor-of-beeline-cli" >}})
@@ -33,9 +19,6 @@ date: 2024-12-12
 		- [Hive Resources]({{< ref "#hive-resources" >}})
 * [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
 
-
-
-
 $HIVE\_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
 
 # Deprecation in favor of Beeline CLI
@@ -48,8 +31,6 @@ See [Replacing the Implementation of Hive CLI Using Beeline]({{< ref "replacing-
 
 To get help, run "`hive -H`" or "`hive --help`".  
  Usage (as it is in Hive 0.9.0):
-
-
 
 ```
 usage: hive
@@ -74,8 +55,6 @@ Version information
 
 As of Hive 0.10.0 there is one additional command line option:
 
-
-
 ```
 --database <dbname>      Specify the database to use
 
@@ -89,43 +68,31 @@ See [Variable Substitution]({{< ref "languagemanual-variablesubstitution_3075472
 
 * Example of running a query from the command line
 
-
-
 ```
 $HIVE\_HOME/bin/hive -e 'select a.col from tab1 a'
 ```
 * Example of setting Hive configuration variables
-
-
 
 ```
 $HIVE\_HOME/bin/hive -e 'select a.col from tab1 a' --hiveconf hive.exec.scratchdir=/home/my/hive\_scratch  --hiveconf mapred.reduce.tasks=32
 ```
 * Example of dumping data out from a query into a file using silent mode
 
-
-
 ```
 $HIVE\_HOME/bin/hive -S -e 'select a.col from tab1 a' > a.txt
 ```
 * Example of running a script non-interactively from local disk
-
-
 
 ```
 $HIVE\_HOME/bin/hive -f /home/my/hive-script.sql
 ```
 * Example of running a script non-interactively from a Hadoop supported filesystem (starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7136))
 
-
-
 ```
 $HIVE\_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql
 $HIVE\_HOME/bin/hive -f s3://mys3bucket/s3-script.sql 
 ```
 * Example of running an initialization script before entering interactive mode
-
-
 
 ```
 $HIVE\_HOME/bin/hive -i /home/my/hive-init.sql
@@ -140,8 +107,6 @@ The CLI when invoked without the `-i` option will attempt to load $HIVE\_HOME/bi
 Hive uses log4j for logging. These logs are not emitted to the standard output by default but are instead captured to a log file specified by Hive's log4j properties file. By default Hive will use `hive-log4j.default` in the `conf/` directory of the Hive installation which writes out logs to `/tmp/<userid>/hive.log` and uses the `WARN` level.
 
 It is often desirable to emit the logs to the standard output and/or change the logging level for debugging purposes. These can be done from the command line as follows:
-
-
 
 ```
  $HIVE\_HOME/bin/hive --hiveconf hive.root.logger=INFO,console
@@ -177,8 +142,6 @@ When `$HIVE_HOME/bin/hive` is run without either the `-e` or `-f` option, it ent
 
 Use ";" (semicolon) to terminate commands. Comments in scripts can be specified using the "--" prefix.
 
-
-
 | Command | Description |
 | --- | --- |
 | quit  exit | Use quit or exit to leave the interactive shell. |
@@ -199,8 +162,6 @@ Use ";" (semicolon) to terminate commands. Comments in scripts can be specified 
 
 Sample Usage:
 
-
-
 ```
   hive> set mapred.reduce.tasks=32;
   hive> set;
@@ -218,8 +179,6 @@ Once a resource is added to a session, Hive queries can refer to it by its name 
 
 Usage:
 
-
-
 ```
    ADD { FILE[S] | JAR[S] | ARCHIVE[S] } <filepath1> [<filepath2>]*
    LIST { FILE[S] | JAR[S] | ARCHIVE[S] } [<filepath1> <filepath2> ..]
@@ -231,8 +190,6 @@ Usage:
 * ARCHIVE resources are automatically unarchived as part of distributing them.
 
 Example:
-
-
 
 ```
   hive> add FILE /tmp/tt.py;
@@ -260,17 +217,12 @@ Various parameters can be passed in the *query\_string* to configure how and whi
 
 Usage:  
 
-
-
-
 ```
 ADD { FILE[S] | JAR[S] | ARCHIVE[S] } <ivy://org:module:version?key=value&key=value&...> <ivy://org:module:version?key=value&key1=value1&...>*
 DELETE { FILE[S] | JAR[S] | ARCHIVE[S] } <ivy://org:module:version> <ivy://org:module:version>*
 ```
 
 Also, we can mix <ivyurl> and <filepath> in the same ADD and DELETE commands.
-
-
 
 ```
 ADD { FILE[S] | JAR[S] | ARCHIVE[S] } { <ivyurl> | <filepath> } <ivyurl>* <filepath>* 
@@ -286,8 +238,6 @@ The different parameters that can be passed are:
 
 Examples:
 
-
-
 ```
 hive>ADD JAR ivy://org.apache.pig:pig:0.10.0?exclude=org.apache.hadoop:avro;
 hive>ADD JAR ivy://org.apache.pig:pig:0.10.0?exclude=org.apache.hadoop:avro&transitive=false;
@@ -296,8 +246,6 @@ hive>ADD JAR ivy://org.apache.pig:pig:0.10.0?exclude=org.apache.hadoop:avro&tran
 The DELETE command will delete the resource and all its transitive dependencies unless some dependencies are shared by other resources. If two resources share a set of transitive dependencies and one of the resources is deleted using the DELETE syntax, then all the transitive dependencies will be deleted for the resource except the ones which are shared.
 
 Examples:
-
-
 
 ```
 hive>ADD JAR ivy://org.apache.pig:pig:0.10.0
@@ -325,8 +273,6 @@ Version
 HCatalog is installed with Hive, starting with Hive release 0.11.0.
 
 Many (but not all) `hcat` commands can be issued as `hive` commands, and vice versa. See the HCatalog [Command Line Interface]({{< ref "hcatalog-cli_34013932" >}}) document in the [HCatalog manual]({{< ref "hcatalog_33299065" >}}) for more information.
-
-
 
  
 

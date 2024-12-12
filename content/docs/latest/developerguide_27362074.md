@@ -3,23 +3,9 @@ title: "Apache Hive : DeveloperGuide"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : DeveloperGuide
 
-
-
-
-
-
 # Developer Guide
-
 
 * [Developer Guide]({{< ref "#developer-guide" >}})
 	+ [Code Organization and a Brief Architecture]({{< ref "#code-organization-and-a-brief-architecture" >}})
@@ -57,9 +43,6 @@ date: 2024-12-12
 		- [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}})
 		- [Map-Reduce Scripts]({{< ref "#map-reduce-scripts" >}})
 		- [UDFs and UDAFs - how to add new UDFs and UDAFs]({{< ref "#udfs-and-udafs---how-to-add-new-udfs-and-udafs" >}})
-
-
-
 
 ## Code Organization and a Brief Architecture
 
@@ -113,8 +96,6 @@ Hive currently uses these SerDe classes to serialize and deserialize data:
 * MetadataTypedColumnsetSerDe: This SerDe is used to read/write delimited records like CSV, tab-separated control-A separated records (sorry, quote is not supported yet).
 * LazySimpleSerDe: This SerDe can be used to read the same data format as MetadataTypedColumnsetSerDe and TCTLSeparatedProtocol, however, it creates Objects in a lazy way which provides better performance. Starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7142) it also supports read/write data with a specified encode charset, for example:
 
-
-
 ```
 ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
 ```
@@ -165,8 +146,6 @@ NOTE: Apache Hive recommends that custom ObjectInspectors created for use with c
 As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5976)a registration mechanism has been introduced for native Hive SerDes.  This allows dynamic binding between a "STORED AS" keyword in place of a triplet of {SerDe, InputFormat, and OutputFormat} specification, in [CreateTable]({{< ref "#createtable" >}}) statements.
 
 The following mappings have been added through this registration mechanism:
-
-
 
 | Syntax | Equivalent |
 | --- | --- |
@@ -241,8 +220,6 @@ Hive can be made to compile against different versions of Hadoop.
 
 From the root of the source tree:
 
-
-
 ```
 ant package
 
@@ -257,8 +234,6 @@ will make Hive compile against Hadoop version 0.19.0. Note that:
 
 * One can specify a custom distribution directory by using:
 
-
-
 ```
 ant -Dtarget.dir=<my-install-dir> package
 
@@ -266,16 +241,12 @@ ant -Dtarget.dir=<my-install-dir> package
 
 * One can specify a version of Hadoop other than 0.19.0 by using (using 0.17.1 as an example):
 
-
-
 ```
 ant -Dhadoop.version=0.17.1 package
 
 ```
 
 * One can also compile against a custom version of the Hadoop tree (only release 0.4 and above). This is also useful if running Ivy is problematic (in disconnected mode for example) - but a Hadoop tree is available. This can be done by specifying the root of the Hadoop source tree to be used, for example:
-
-
 
 ```
 ant -Dhadoop.root=~/src/hadoop-19/build/hadoop-0.19.2-dev -Dhadoop.version=0.19.2-dev
@@ -291,8 +262,6 @@ In this particular example - `~/src/hadoop-19` is a checkout of the Hadoop 19 br
 
 Run Hive from the command line with '`$HIVE_HOME/bin/hive`', where `$HIVE_HOME` is typically `build/dist` under your Hive repository top-level directory.
 
-
-
 ```
 $ build/dist/bin/hive
 
@@ -303,8 +272,6 @@ If Hive fails at runtime, try '`ant very-clean package`' to delete the Ivy cache
 ### Running Hive Without a Hadoop Cluster
 
 From Thejas:
-
-
 
 ```
 export HIVE\_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
@@ -348,8 +315,6 @@ See the [Hive Developer FAQ]({{< ref "#hive-developer-faq" >}}) for updated inst
 
 Run all tests:
 
-
-
 ```
 ant package test
 
@@ -357,16 +322,12 @@ ant package test
 
 Run all positive test queries:
 
-
-
 ```
 ant test -Dtestcase=TestCliDriver
 
 ```
 
 Run a specific positive test query:
-
-
 
 ```
 ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q
@@ -379,8 +340,6 @@ The above test produces the following files:
 * `build/ql/test/logs/groupby1.q.out` - Actual query result for the test. This result is compared to the expected result as part of the test.
 
 Run the set of unit tests matching a regex, e.g. partition\_wise\_fileformat tests 10-16:
-
-
 
 ```
 ant test -Dtestcase=TestCliDriver -Dqfile\_regex=partition\_wise\_fileformat1[0-6]
@@ -403,16 +362,12 @@ First, write a new myname.q in ql/src/test/queries/clientpositive.
 
 Then, run the test with the query and overwrite the result (useful when you add a new test).
 
-
-
 ```
 ant test -Dtestcase=TestCliDriver -Dqfile=myname.q -Doverwrite=true
 
 ```
 
 Then we can create a patch by:
-
-
 
 ```
 svn add ql/src/test/queries/clientpositive/myname.q ql/src/test/results/clientpositive/myname.q.out
@@ -447,8 +402,6 @@ The server-side code is distributed and runs on the Hadoop cluster, so debugging
 
 * Compile Hive code with javac.debug=on. Under Hive checkout directory:
 
-
-
 ```
     > ant -Djavac.debug=on package
 
@@ -456,16 +409,12 @@ The server-side code is distributed and runs on the Hadoop cluster, so debugging
 
 If you have already built Hive without javac.debug=on, you can clean the build and then run the above command.
 
-
-
 ```
     > ant clean  # not necessary if the first time to compile
     > ant -Djavac.debug=on package
 
 ```
 * Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.
-
-
 
 ```
     > export HIVE\_DEBUG\_PORT=8000
@@ -475,8 +424,6 @@ If you have already built Hive without javac.debug=on, you can clean the build a
 
 In particular HIVE\_DEBUG\_PORT is the port number that the JVM is listening on and the debugger will attach to. Then run the unit test as follows:
 
-
-
 ```
     > export HADOOP\_OPTS=$HIVE\_DEBUG
     > ant test -Dtestcase=TestCliDriver -Dqfile=<mytest>.q
@@ -485,15 +432,11 @@ In particular HIVE\_DEBUG\_PORT is the port number that the JVM is listening on 
 
 The unit test will run until it shows:
 
-
-
 ```
      [junit] Listening for transport dt\_socket at address: 8000
 
 ```
 * Now, you can use jdb to attach to port 8000 to debug
-
-
 
 ```
     > jdb -attach 8000
@@ -501,7 +444,6 @@ The unit test will run until it shows:
 ```
 
 or if you are running Eclipse and the Hive projects are already imported, you can debug with Eclipse. Under Eclipse Run -> Debug Configurations, find "Remote Java Application" at the bottom of the left panel. There should be a MapRedTask configuration already. If there is no such configuration, you can create one with the following property:
-
 
 	+ Name: any task such as MapRedTask
 	+ Project: the Hive project that you imported.
@@ -516,16 +458,12 @@ or if you are running Eclipse and the Hive projects are already imported, you ca
 There is another way of debugging Hive code without going through Ant.  
  You need to install Hadoop and set the environment variable HADOOP\_HOME to that.
 
-
-
 ```
     > export HADOOP\_HOME=<your hadoop home>
  
 ```
 
 Then, start Hive:
-
-
 
 ```
     >  ./build/dist/bin/hive --debug
@@ -537,15 +475,11 @@ It will then act similar to the debugging steps outlines in Debugging Hive code.
 
 If you want to debug a particular query, start Hive and perform the steps needed before that query. Then start Hive again in debug to debug that query.
 
-
-
 ```
     >  ./build/dist/bin/hive
     >  perform steps before the query
  
 ```
-
-
 
 ```
     >  ./build/dist/bin/hive --debug
@@ -574,8 +508,6 @@ Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/
 Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook) Page 74-87.
 
  
-
-
 
  
 

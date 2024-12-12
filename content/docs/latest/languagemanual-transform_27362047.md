@@ -3,30 +3,13 @@ title: "Apache Hive : LanguageManual Transform"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Transform
-
-
-
-
-
-
 
 * [Transform/Map-Reduce Syntax]({{< ref "#transform/map-reduce-syntax" >}})
 	+ [SQL Standard Based Authorization Disallows TRANSFORM]({{< ref "#sql-standard-based-authorization-disallows-transform" >}})
 	+ [TRANSFORM Examples]({{< ref "#transform-examples" >}})
 * [Schema-less Map-reduce Scripts]({{< ref "#schema-less-map-reduce-scripts" >}})
 * [Typing the output of TRANSFORM]({{< ref "#typing-the-output-of-transform" >}})
-
-
-
 
 ## Transform/Map-Reduce Syntax
 
@@ -45,8 +28,6 @@ Warning
 Formally, *MAP ...* and *REDUCE ...* are syntactic transformations of *SELECT TRANSFORM ( ... )*. In other words, they serve as comments or notes to the reader of the query. BEWARE: Use of these keywords may be **dangerous** as (e.g.) typing "REDUCE" does not force a reduce phase to occur and typing "MAP" does not force a new map phase!
 
 Please also see [Sort By / Cluster By / Distribute By]({{< ref "languagemanual-sortby_27362045" >}}) and Larry Ogrodnek's [blog post](http://dev.bizo.com/2009/10/hive-map-reduce-in-java.html).
-
-
 
 ```
 clusterBy: CLUSTER BY colName (',' colName)*
@@ -110,8 +91,6 @@ The TRANSFORM clause is disallowed when [SQL standard based authorization]({{< r
 
 Example #1:
 
-
-
 ```
   FROM (
     FROM pv\_users
@@ -138,8 +117,6 @@ Example #1:
 
 Example #2
 
-
-
 ```
   FROM (
     FROM src
@@ -158,8 +135,6 @@ If there is no *AS* clause after *USING my\_script*, Hive assumes that the outpu
 
 Note that we can directly do *CLUSTER BY key* without specifying the output schema of the scripts.
 
-
-
 ```
   FROM (
     FROM pv\_users
@@ -177,8 +152,6 @@ Note that we can directly do *CLUSTER BY key* without specifying the output sche
 
 The output fields from a script are typed as strings by default; for example in
 
-
-
 ```
   SELECT TRANSFORM(stuff)
   USING 'script'
@@ -188,16 +161,12 @@ The output fields from a script are typed as strings by default; for example in
 
 They can be immediately casted with the syntax:
 
-
-
 ```
   SELECT TRANSFORM(stuff)
   USING 'script'
   AS (thing1 INT, thing2 INT)
 
 ```
-
-
 
  
 

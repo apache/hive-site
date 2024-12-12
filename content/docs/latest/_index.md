@@ -3,21 +3,7 @@ title: "Space Details:"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Space Details:
-
-
-
-
-
-
 
 |  |  |
 | --- | --- |
@@ -26,17 +12,11 @@ date: 2024-12-12
 | Description |  |
 | Created by | admin (Jun 24, 2011) |
 
-
-
   
 
   
-
-
 
 ## Available Pages:
-
-
 
 * [AdminManual]({{< ref "adminmanual_27362071" >}})
 * [AdminManual Configuration]({{< ref "adminmanual-configuration_27362070" >}})
@@ -344,8 +324,6 @@ date: 2024-12-12
 * [StorageHandlers]({{< ref "storagehandlers_27362063" >}})
 * [TipsForAddingNewTests]({{< ref "tipsforaddingnewtests_27362060" >}})
 * [Tutorial]({{< ref "tutorial_27362061" >}})
-
-
 
  
 

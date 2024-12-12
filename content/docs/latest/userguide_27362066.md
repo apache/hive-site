@@ -3,20 +3,7 @@ title: "Apache Hive : UserGuide"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : UserGuide
-
-
-
-
-
 
 NOTE: This page is deprecated and merged into [GettingStarted]({{< ref "gettingstarted_27362090" >}}).
 
@@ -32,8 +19,6 @@ The query language specification is available at [LanguageManual]({{< ref "langu
 
 #### MovieLens User Ratings
 
-
-
 ```
 CREATE TABLE u\_data (
   userid INT,
@@ -47,8 +32,6 @@ STORED AS TEXTFILE;
 ```
 
 #### Apache Access Log Tables
-
-
 
 ```
 add jar ../build/contrib/hive\_contrib.jar;
@@ -74,8 +57,6 @@ STORED AS TEXTFILE;
 
 #### Control Separated Tables
 
-
-
 ```
 CREATE TABLE mylog (
 name STRING, language STRING, groups ARRAY<STRING>, entities MAP<INT, STRING>)
@@ -93,8 +74,6 @@ STORED AS TEXTFILE;
 
 Download and extract the data:
 
-
-
 ```
 wget http://www.grouplens.org/system/files/ml-data.tar+0.gz
 tar xvzf ml-data.tar+0.gz
@@ -102,8 +81,6 @@ tar xvzf ml-data.tar+0.gz
 ```
 
 Load it in:
-
-
 
 ```
 LOAD DATA LOCAL INPATH 'ml-data/u.data'
@@ -115,8 +92,6 @@ OVERWRITE INTO TABLE u\_data;
 
 #### MovieLens User Ratings
 
-
-
 ```
 SELECT COUNT(1) FROM u\_data;
 
@@ -127,8 +102,6 @@ SELECT COUNT(1) FROM u\_data;
 #### MovieLens User Ratings
 
 Create weekday\_mapper.py:
-
-
 
 ```
 import sys
@@ -143,8 +116,6 @@ for line in sys.stdin:
 ```
 
 Use the mapper script:
-
-
 
 ```
 CREATE TABLE u\_data\_new (
@@ -173,8 +144,6 @@ GROUP BY weekday;
 ### Using sampling
 
 ## Known Issues/Bugs
-
-
 
  
 

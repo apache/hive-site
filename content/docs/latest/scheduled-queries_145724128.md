@@ -3,20 +3,7 @@ title: "Apache Hive : Scheduled Queries"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Scheduled Queries
-
-
-
-
-
 
  
 * [Maintaining scheduled queries]({{< ref "#maintaining-scheduled-queries" >}})
@@ -43,9 +30,6 @@ date: 2024-12-12
 	+ [Example 3 – materialized view rebuild]({{< ref "#example-3-–-materialized-view-rebuild" >}})
 	+ [Example 4 – Ingestion]({{< ref "#example-4-–-ingestion" >}})
 
-
-
-
 **Intro**
 
 Executing statements periodically can be usefull in
@@ -63,11 +47,9 @@ Overview
 
   
 
-
 Scheduled queries were added in Hive 4.0 (HIVE-21884)
 
   
-
 
 Hive has it’s scheduled query interface built into the language itself for easy access:
 
@@ -82,7 +64,6 @@ Hive has it’s scheduled query interface built into the language itself for eas
 **[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)**    
   
 
-
 ## Alter Scheduled query syntax
 
 **ALTER SCHEDULED QUERY <scheduled\_query\_name>** **([<scheduleSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec)|[<executedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec)|[<enableSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification)|[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)|[<executeSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executeSpec));**
@@ -91,14 +72,11 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
   
 
-
   
-
 
 **DROP SCHEDULED QUERY <scheduled\_query\_name>;**
 
   
-
 
 ##  scheduleSpecification syntax
 
@@ -128,9 +106,7 @@ EVERY DAY AT '11:35:30'**
 
   
 
-
   
-
 
 ##  ExecutedAs syntax
 
@@ -154,9 +130,7 @@ In case there are in-flight scheduled executions at the time when the correspon
 
 The “query” is a single statement expression to be scheduled for execution.  
 
-
   
-
 
 ## executeSpec syntax
 
@@ -172,7 +146,6 @@ Informations about scheduled queries/executions can be obtain by using the *info
 
   
 
-
 Suppose we have a scheduled query defined by:
 
 **create scheduled query sc1 cron '0 */10 * * * ? *' as select 1;**
@@ -182,8 +155,6 @@ Let’s take a look at it in the  **information\_schema.scheduled\_queries**  ta
 **select * from information\_schema.scheduled\_queries;**
 
 I will transpose the resultset to describe each column
-
-
 
 | **scheduled\_query\_id** | 1 | Internally, every scheduled query also has a numeric id |
 | **schedule\_name** | sc1 | The name of the schedule |
@@ -196,11 +167,9 @@ I will transpose the resultset to describe each column
 
   
 
-
 **(schedule\_name,cluster\_namespace)**  is unique
 
   
-
 
 ## information\_schema.scheduled\_executions
 
@@ -209,8 +178,6 @@ This view can be used to get information about recent scheduled query executions
 **select * from information\_schema.scheduled\_executions;**
 
 One record in this view has the following informations:
-
-
 
 | **scheduled\_execution\_id** | **13** | Every scheduled query execution has a unique numeric id |
 | **schedule\_name** | **sc1** | The schedule name to which this execution belongs |
@@ -224,8 +191,6 @@ One record in this view has the following informations:
 
 ### Execution states
 
-
-
 | **INITED** | The scheduled execution record is created at the time an executor is assigned to run it;The INITED state is retained until the first update from the executor comes in. |
 | **EXECUTING** | Queries in executing state are being processed by the executor; during this phase the executor reports the progress of the query in intervals defined by: **hive.scheduled.queries.executor.progress.report.interval** |
 | **FAILED** | The query execution stoped by an error code(or an exception) when this state is set the **error\_message** is also filled. |
@@ -234,13 +199,11 @@ One record in this view has the following informations:
 
   
 
-
 How long are execution informations are retained?
 
 The scheduled query maintenance task removes older than **metastore.scheduled.queries.execution.max.age** entries.
 
   
-
 
 # Configuration
 
@@ -268,18 +231,13 @@ Maximal age of a scheduled query execution entry before it is removed.
   
   
 
-
 # Examples
 
   
 
-
 ## Example 1 – basic example of using schedules
 
   
-
-
-
 
 ```
 create table t (a integer);
@@ -308,18 +266,13 @@ select * from information\_schema.scheduled\_executions s where schedule\_name='
 | 496                       | sc1              | dev\_20200203152025\_bdf3deac-0ca6-407f-b122-c637e50f99c8 | FINISHED  | 2020-02-03 15:20:23  | 2020-02-03 15:20:31  | 8          | NULL             | NULL                |
 +---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
 
-
-
 ```
 
   
 
-
 ## Example 2 – analyze external table periodically
 
 Suppose you have an external table - the contents of it is slowly changing...which will eventually lead that Hive will utilize outdated statistics during planning time
-
-
 
 ```
 -- create external table
@@ -348,7 +301,6 @@ create scheduled query t\_analyze cron '0 */1 * * * ? *' as analyze table t comp
 -- wait some time or execute by issuing:
 alter scheduled query t\_analyze execute;
 
-
 select * from information\_schema.scheduled\_executions s where schedule\_name='ex\_analyze' order by scheduled\_execution\_id desc limit 3;
 +---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
 | s.scheduled\_execution\_id  | s.schedule\_name  |                s.executor\_query\_id                 |  s.state   |     s.start\_time     |      s.end\_time      | s.elapsed  | s.error\_message  |  s.last\_update\_time  |
@@ -362,26 +314,19 @@ desc formatted t;
 |                               | numRows                                            | 10                                                 |
 [...]
 
-
 -- we don't want this running every minute anymore...
 alter scheduled query t\_analyze disable;
 ```
 
   
 
-
   
 
-
   
-
 
 ## Example 3 – materialized view rebuild
 
   
-
-
-
 
 ```
 -- some settings...they might be there already
@@ -431,7 +376,6 @@ WHERE hire\_date >= '2018-01-01';
 create scheduled query mv\_rebuild cron '0 */10 * * * ? *' defined as 
   alter materialized view mv1 rebuild;
 
-
 -- from this expalin it will be seen that the mv1 is being used
 EXPLAIN
 SELECT empid, deptname FROM emps
@@ -456,18 +400,13 @@ SELECT empid, deptname FROM emps
 JOIN depts ON (emps.deptno = depts.deptno)
 WHERE hire\_date >= '2018-01-01';
 
-
 ```
 
   
 
-
 ## Example 4 – Ingestion
 
   
-
-
-
 
 ```
 drop table if exists t;
@@ -504,34 +443,23 @@ insert into s values(2,2),(3,3);
 -- pretend that a timeout have happened
 alter scheduled query ingest execute;
 
-
 ```
 
   
 
+  
 
   
 
+  
 
   
 
+  
 
   
 
-
   
-
-
-  
-
-
-  
-
-
-  
-
-
-
 
  
 

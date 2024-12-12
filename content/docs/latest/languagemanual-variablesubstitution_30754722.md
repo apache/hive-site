@@ -3,20 +3,7 @@ title: "Apache Hive : LanguageManual VariableSubstitution"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual VariableSubstitution
-
-
-
-
-
 
 # 
 * 
@@ -33,8 +20,6 @@ The Hive variable substitution mechanism was designed to avoid some of the code 
 
 Examples such as the following shell commands may (inefficiently) be used to set variables within a script:
 
-
-
 ```
 $ a=b
 $ hive -e " describe $a "
@@ -47,8 +32,6 @@ Hive **Variables** combine the set capability you know and love with some limite
 
 The following example:
 
-
-
 ```
 $ bin/hive --hiveconf a=b -e 'set a; set hiveconf:a; \
 create table if not exists b (col int); describe ${hiveconf:a}'
@@ -56,8 +39,6 @@ create table if not exists b (col int); describe ${hiveconf:a}'
 ```
 
 results in:
-
-
 
 ```
 Hive history file=/tmp/edward/hive\_job\_log\_edward\_201011240906\_1463048967.txt
@@ -83,8 +64,6 @@ There are three namespaces for variables – hiveconf, system, and env. ([Custom
 
 The hiveconf variables are set as normal:
 
-
-
 ```
 set x=myvalue
 
@@ -92,16 +71,12 @@ set x=myvalue
 
 However they are retrieved using:
 
-
-
 ```
 ${hiveconf:x}
 
 ```
 
 Annotated examples of usage from the test case ql/src/test/queries/clientpositive/set\_processor\_namespaces.q:
-
-
 
 ```
 set zzz=5;
@@ -137,7 +112,6 @@ set c=${hiveconf:${hiveconf:b}};
 set c;
 --uses nested variables. 
 
-
 set jar=../lib/derby.jar;
 
 add file ${hiveconf:jar};
@@ -158,14 +132,10 @@ Hive substitutes the value for a variable when a query is constructed with the v
 
 Variable substitution is on by default ([hive.variable.substitute]({{< ref "#hive-variable-substitute" >}})=true). If this causes an issue with an already existing script, disable it using the following command:
 
-
-
 ```
 set hive.variable.substitute=false;
 
 ```
-
-
 
  
 

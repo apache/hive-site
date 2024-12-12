@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog LoadStore"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog LoadStore
 
-
-
-
-
-
 # Load and Store Interfaces
-
 
 * [Load and Store Interfaces]({{< ref "#load-and-store-interfaces" >}})
 	+ [Set Up]({{< ref "#set-up" >}})
@@ -47,9 +33,6 @@ date: 2024-12-12
 		- [Primitive Types]({{< ref "#primitive-types" >}})
 		- [Complex Types]({{< ref "#complex-types" >}})
 
-
-
-
 ## Set Up
 
 The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables. No HCatalog-specific setup is required for these interfaces.
@@ -62,8 +45,6 @@ The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and w
 
 To bring in the appropriate jars for working with HCatalog, simply include the following flag / parameters when running Pig from the shell, Hue, or other applications:
 
-
-
 ```
 pig -useHCatalog
 ```
@@ -75,8 +56,6 @@ Stale Content Warning
 The fully qualified package name changed from *org.apache.hcatalog.pig* to *org.apache.hive.hcatalog.pig* in Pig versions 0.14+. 
 
 In many older web site examples you may find references to the old syntax which no longer functions.
-
-
 
 | Previous Pig Versions | 0.14+ |
 | --- | --- |
@@ -92,8 +71,6 @@ HCatLoader is used with Pig scripts to read data from HCatalog-managed tables.
 HCatLoader is accessed via a Pig load statement.  
 
 *Using Pig 0.14+*
-
-
 
 ```
 A = LOAD 'tablename' USING org.apache.hive.hcatalog.pig.HCatLoader();
@@ -157,8 +134,6 @@ Pig does not automatically pick up HCatalog jars. To bring in the necessary jars
 
 To bring in the appropriate jars for working with HCatalog, simply include the following flag:
 
-
-
 ```
 pig -useHCatalog
 
@@ -171,8 +146,6 @@ For Pig commands that omit `-useHCatalog`, you need to tell Pig where to find yo
 HCatalog can tell you the jars it needs. In order to do this it needs to know where Hadoop and Hive are installed. Also, you need to tell Pig the URI for your metastore, in the PIG\_OPTS variable.
 
 In the case where you have installed Hadoop and Hive via tar, you can do this:
-
-
 
 ```
 export HADOOP\_HOME=<path\_to\_hadoop\_install>
@@ -193,8 +166,6 @@ export PIG\_OPTS=-Dhive.metastore.uris=thrift://<hostname>:<port>
 ```
 
 Or you can pass the jars in your command line:
-
-
 
 ```
 <path\_to\_pig\_install>/bin/pig -Dpig.additional.jars=\
@@ -221,15 +192,11 @@ The version number found in each filepath will be substituted for *. For example
 
 #### Authentication
 
-
 If you are using a secure cluster and a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
-
 
 ### Load Examples
 
 This load statement will load all partitions of the specified table.
-
-
 
 ```
 /* myscript.pig */
@@ -240,8 +207,6 @@ A = LOAD 'tablename' USING org.apache.hive.hcatalog.pig.HCatLoader();
 ```
 
 If only some partitions of the specified table are needed, include a partition filter statement ***immediately*** following the load statement in the data flow. (In the script, however, a filter statement might not immediately follow its load statement.) The filter statement can include conditions on partition as well as non-partition columns.
-
-
 
 ```
 /* myscript.pig */
@@ -259,8 +224,6 @@ C = filter A by date == '20100819' and country == 'US';
 
 To scan a whole table, for example:
 
-
-
 ```
 a = load 'student\_data' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = foreach a generate name, age;
@@ -271,8 +234,6 @@ Notice that the schema is automatically provided to Pig; there's no need to decl
 
 To scan a single partition of the table web\_logs partitioned by the column datestamp, for example:
 
-
-
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp == '20110924';
@@ -280,8 +241,6 @@ b = filter a by datestamp == '20110924';
 ```
 
 Pig will push the datestamp filter shown here to HCatalog, so that HCatalog knows to just scan the partition where datestamp = '20110924'. You can combine this filter with others via 'and':
-
-
 
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
@@ -297,8 +256,6 @@ A filter can contain the operators 'and', 'or', '()', '==', '!=', '<', '>', '<='
 
 For example:
 
-
-
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp > '20110924';
@@ -306,8 +263,6 @@ b = filter a by datestamp > '20110924';
 ```
 
 A complex filter can have various combinations of operators, such as:
-
-
 
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
@@ -317,15 +272,11 @@ b = filter a by datestamp == '20110924' or datestamp == '20110925';
 
 These two examples have the same effect:
 
-
-
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp >= '20110924' and datestamp <= '20110925';
 
 ```
-
-
 
 ```
 a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
@@ -340,8 +291,6 @@ HCatStorer is used with Pig scripts to write data to HCatalog-managed tables.
 ### Usage
 
 HCatStorer is accessed via a Pig store statement.
-
-
 
 ```
 A = LOAD ...
@@ -369,8 +318,6 @@ If partition columns are present in data they need not be specified as a STORE a
 
 You can write to a non-partitioned table simply by using HCatStorer. The contents of the table will be overwritten:
 
-
-
 ```
 store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
 
@@ -378,16 +325,12 @@ store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
 
 To add one new partition to a partitioned table, specify the partition value in the store function. Pay careful attention to the quoting, as the whole string must be single quoted and separated with an equals sign:
 
-
-
 ```
 store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer('datestamp=20110924');
 
 ```
 
 To write into multiple partitions at once, make sure that the partition column is present in your data, then call HCatStorer with no argument:
-
-
 
 ```
 store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
@@ -441,8 +384,6 @@ Any type mapping not listed here is not supported and will throw an exception. 
 
 ### Primitive Types
 
-
-
 | Hive Type/Value | Pig Type/Value | Hive → Pig | Pig → Hive | Available in Hive Release |
 | --- | --- | --- | --- | --- |
 | BOOLEAN/boolean | BOOLEAN/boolean | direct/lossless mapping | direct/lossless mapping |  |
@@ -469,8 +410,6 @@ Hive does not have a data type corresponding to the BIGINTEGER type in Pig (java
 
  
 
-
-
 | Hive Type | Pig Type |
 | --- | --- |
 | map  (key type should be string) | map |
@@ -484,9 +423,6 @@ Previous: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-pr
  Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput_34013776" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

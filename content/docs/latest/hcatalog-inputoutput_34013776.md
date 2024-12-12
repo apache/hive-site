@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog InputOutput"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog InputOutput
 
-
-
-
-
-
 # Input and Output Interfaces
-
 
 * [Input and Output Interfaces]({{< ref "#input-and-output-interfaces" >}})
 	+ [Set Up]({{< ref "#set-up" >}})
@@ -34,9 +20,6 @@ date: 2024-12-12
 		- [Filter Operators]({{< ref "#filter-operators" >}})
 		- [Scan Filter]({{< ref "#scan-filter" >}})
 		- [Write Filter]({{< ref "#write-filter" >}})
-
-
-
 
 ## Set Up
 
@@ -63,8 +46,6 @@ To use HCatInputFormat to read data, first instantiate an `InputJobInfo` with th
 You can use the `setOutputSchema` method to include a projection schema, to specify the output fields. If a schema is not specified, all the columns in the table will be returned.
 
 You can use the `getTableSchema` method to determine the table schema for a specified input table.
-
-
 
 ```
   /**
@@ -117,8 +98,6 @@ The API exposed by HCatOutputFormat is shown below. It includes:
 
 The first call on the HCatOutputFormat must be `setOutput`; any other call will throw an exception saying the output format is not initialized. The schema for the data being written out is specified by the `setSchema` method. You must call this method, providing the schema of data you are writing. If your data has the same schema as the table schema, you can use `HCatOutputFormat.getTableSchema()` to get the table schema and then pass that along to `setSchema()`.
 
-
-
 ```
   /**
    * Set the information about the output to write for the job. This queries the metadata
@@ -158,8 +137,6 @@ HCatRecord is the type supported for storing values in HCatalog tables.
 
 The types in an HCatalog table schema determine the types of objects returned for different fields in HCatRecord. This table shows the mappings between Java classes for MapReduce programs and HCatalog data types:
 
-
-
 | HCatalog Data Type | Java Class in MapReduce | Values |
 | --- | --- | --- |
 | TINYINT | java.lang.Byte | -128 to 127 |
@@ -181,8 +158,6 @@ For general information about Hive data types, see [Hive Data Types]({{< ref "la
 ## Running MapReduce with HCatalog
 
 Your MapReduce program needs to be told where the Thrift server is. The easiest way to do this is to pass the location as an argument to your Java program. You need to pass the Hive and HCatalog jars to MapReduce as well, via the -libjars argument.
-
-
 
 ```
 export HADOOP\_HOME=<path\_to\_hadoop\_install>
@@ -214,8 +189,6 @@ This works but Hadoop will ship libjars every time you run the MapReduce program
 
 Instead, you can optimize to ship libjars using HDFS locations. By doing this, Hadoop will reuse the entries in the distributed cache.
 
-
-
 ```
 bin/hadoop fs -copyFromLocal $HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar /tmp
 bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/hive-metastore-0.10.0.jar /tmp
@@ -239,9 +212,7 @@ hdfs:///tmp/slf4j-api-1.6.1.jar
 
 ### Authentication
 
-
 If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
-
 
 ### Read Example
 
@@ -252,8 +223,6 @@ For example, if the values in the second column are {`1,1,1,3,3,5`} the program
 `1, 3`  
 `3, 2`  
 `5, 1`
-
-
 
 ```
 public class GroupByAge extends Configured implements Tool {
@@ -277,7 +246,6 @@ public class GroupByAge extends Configured implements Tool {
 
     public static class Reduce extends Reducer<IntWritable, IntWritable,
     WritableComparable, HCatRecord> {
-
 
       @Override
       protected void reduce(
@@ -362,16 +330,12 @@ For example:
 
 Assume for example you have a web\_logs table that is partitioned by the column "`ds`". You could select one partition of the table by changing
 
-
-
 ```
 HCatInputFormat.setInput(job, InputJobInfo.create(dbName, inputTableName, null));
 
 ```
 
 to
-
-
 
 ```
 HCatInputFormat.setInput(job,
@@ -385,16 +349,12 @@ This filter must reference only partition columns. Values from other columns wil
 
 To write to a single partition you can change the above example to have a Map of key value pairs that describe all of the partition keys and values for that partition. In our example web\_logs table, there is only one partition column (`ds`), so our Map will have only one entry. Change
 
-
-
 ```
 HCatOutputFormat.setOutput(job, OutputJobInfo.create(dbName, outputTableName, null));
 
 ```
 
 to
-
-
 
 ```
 Map partitions = new HashMap<String, String>(1);
@@ -412,9 +372,6 @@ Previous: [Load and Store Interfaces]({{< ref "hcatalog-loadstore_34013511" >}})
  Next: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter_34013921" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

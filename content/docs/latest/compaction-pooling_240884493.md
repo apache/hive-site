@@ -3,20 +3,7 @@ title: "Apache Hive : Compaction pooling"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Compaction pooling
-
-
-
-
-
 
 ### Concept:
 
@@ -30,8 +17,6 @@ Compaction requests can be assigned to pools in three different ways.
 
 Databases, tables and partitions can be assigned to compaction pools through the
 
-
-
 ```
 hive.compactor.worker.pool={pool\_name}
 ```
@@ -42,8 +27,6 @@ If any of the above is set, it is used by the *Initiator* during the creation of
 #### Manual pool assignment
 
 The compaction request also can be assigned to a pool by using the ALTER TABLE COMPACT command (E.g. manual compaction). If provided, this value overrides the *hive.compactor.worker.pool* value on any level.
-
-
 
 ```
 ALTER TABLE COMPACT table\_name POOL 'pool\_name';
@@ -56,8 +39,6 @@ Tables, partitions and manual compaction requests without specified pool name ar
 ### Pool timeout
 
 If a compaction request is not processed by any of the labeled pools within a predefined period, it falls back to the default pool. The timeout can be set through the 
-
-
 
 ```
 hive.compactor.worker.pool.timeout
@@ -74,8 +55,6 @@ The timeout can be disabled by setting the configuration property to 0.
 ### Labeled worker pools
 
 The labeled worker pools can be defined through the 
-
-
 
 ```
 hive.compactor.worker.{poolname}.threads={thread\_count} 
@@ -98,8 +77,6 @@ The already existing *hive.compactor.worker.threads* configuration value holds t
 * All remaining workers not used up by the labeled pools, are assigned to the default pool.
 
 The worker allocation can be configured per HS2 instance.
-
-
 
  
 

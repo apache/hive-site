@@ -3,21 +3,7 @@ title: "Apache Hive : HiveReplicationDevelopment"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveReplicationDevelopment
-
-
-
-
-
-
 
 * [Introduction]({{< ref "#introduction" >}})
 	+ [Purposes of Replication]({{< ref "#purposes-of-replication" >}})
@@ -42,9 +28,6 @@ date: 2024-12-12
 	+ [Handling of Events]({{< ref "#handling-of-events" >}})
 * [Future Features]({{< ref "#future-features" >}})
 * [References]({{< ref "#references" >}})
-
-
-
 
 # Introduction
 
@@ -161,8 +144,6 @@ As mentioned above, each event is tagged with an event sequence ID. In addition 
 
 Each event is handled differently depending on its event type, which is a combination of the object (database, table, partition) and the operation (create, add, alter, insert, drop). Each event may include a source command, a copy, and a destination command. The following chart describes the ten event types and how they are handled with descriptions below.
 
-
-
 | Event | Source Command | Needs Copy? | Destination Command |
 | --- | --- | --- | --- |
 | CreateDatabase | No-op | No | No-op |
@@ -242,8 +223,6 @@ Save
 Save
 
 Save
-
-
 
  
 

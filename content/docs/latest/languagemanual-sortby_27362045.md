@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual SortBy"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual SortBy
-
-
-
-
-
-
 
 * [Order, Sort, Cluster, and Distribute By]({{< ref "#order,-sort,-cluster,-and-distribute-by" >}})
 	+ [Syntax of Order By]({{< ref "#syntax-of-order-by" >}})
@@ -26,9 +12,6 @@ date: 2024-12-12
 		- [Setting Types for Sort By]({{< ref "#setting-types-for-sort-by" >}})
 	+ [Syntax of Cluster By and Distribute By]({{< ref "#syntax-of-cluster-by-and-distribute-by" >}})
 
-
-
-
 # Order, Sort, Cluster, and Distribute By
 
 This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY.  See [Select Syntax]({{< ref "#select-syntax" >}}) for general information.
@@ -36,8 +19,6 @@ This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and D
 ## Syntax of Order By
 
 The *ORDER BY* syntax in Hive QL is similar to the syntax of *ORDER BY* in SQL language.
-
-
 
 ```
 colOrder: ( ASC | DESC )
@@ -64,8 +45,6 @@ In [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-6348) and later, orde
 
 The *SORT BY* syntax is similar to the syntax of *ORDER BY* in SQL language.
 
-
-
 ```
 colOrder: ( ASC | DESC )
 sortBy: SORT BY colName colOrder? (',' colName colOrder?)*
@@ -85,16 +64,12 @@ Note: It may be confusing as to the difference between SORT BY alone of a single
 
 Basically, the data in each reducer will be sorted according to the order that the user specified. The following example shows
 
-
-
 ```
 SELECT key, value FROM src SORT BY key ASC, value DESC
 
 ```
 
 The query had 2 reducers, and the output of each is:
-
-
 
 ```
 0   5
@@ -103,8 +78,6 @@ The query had 2 reducers, and the output of each is:
 9   1
 
 ```
-
-
 
 ```
 0   4
@@ -117,8 +90,6 @@ The query had 2 reducers, and the output of each is:
 ### Setting Types for Sort By
 
 After a transform, variable types are generally considered to be strings, meaning that numeric data will be sorted lexicographically. To overcome this, a second SELECT statement with casts can be used before using SORT BY.
-
-
 
 ```
 FROM (FROM (FROM src
@@ -143,8 +114,6 @@ Hive uses the columns in *Distribute By* to distribute the rows among reducers. 
 
 For example, we are *Distributing By x* on the following 5 rows to 2 reducer:
 
-
-
 ```
 x1
 x2
@@ -156,8 +125,6 @@ x1
 
 Reducer 1 got
 
-
-
 ```
 x1
 x2
@@ -166,8 +133,6 @@ x1
 ```
 
 Reducer 2 got
-
-
 
 ```
 x4
@@ -181,8 +146,6 @@ In contrast, if we use *Cluster By x*, the two reducers will further sort rows o
 
 Reducer 1 got
 
-
-
 ```
 x1
 x1
@@ -192,8 +155,6 @@ x2
 
 Reducer 2 got
 
-
-
 ```
 x3
 x4
@@ -202,14 +163,10 @@ x4
 
 Instead of specifying *Cluster By*, the user can specify *Distribute By* and *Sort By*, so the partition columns and sort columns can be different. The usual case is that the partition columns are a prefix of sort columns, but that is not required.
 
-
-
 ```
 SELECT col1, col2 FROM t1 CLUSTER BY col1
 
 ```
-
-
 
 ```
 SELECT col1, col2 FROM t1 DISTRIBUTE BY col1
@@ -217,8 +174,6 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1
 SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
 
 ```
-
-
 
 ```
   FROM (
@@ -234,8 +189,6 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
     AS date, count;
 
 ```
-
-
 
  
 

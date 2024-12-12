@@ -3,21 +3,7 @@ title: "Apache Hive : AvroSerDe"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AvroSerDe
-
-
-
-
-
-
 
 * [Availability]({{< ref "#availability" >}})
 * [Overview – Working with Avro from Hive]({{< ref "#overview-–-working-with-avro-from-hive" >}})
@@ -39,9 +25,6 @@ date: 2024-12-12
 * [HBase Integration]({{< ref "#hbase-integration" >}})
 * [If something goes wrong]({{< ref "#if-something-goes-wrong" >}})
 * [FAQ]({{< ref "#faq" >}})
-
-
-
 
 ### Availability
 
@@ -69,8 +52,6 @@ For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}}
 
 The AvroSerde has been built and tested against Hive 0.9.1 and later, and uses Avro 1.7.5 as of Hive 0.13 and 0.14.
 
-
-
 | Hive Versions | Avro Version |
 | --- | --- |
 | Hive 0.9.1 | Avro 1.5.3 |
@@ -80,8 +61,6 @@ The AvroSerde has been built and tested against Hive 0.9.1 and later, and uses A
 ### Avro to Hive type conversion
 
 While most Avro types convert directly to equivalent Hive types, there are some which do not exist in Hive and are converted to reasonable equivalents. Also, the AvroSerde special cases unions of null and another type, as described below:
-
-
 
 | Avro type | Becomes Hive type | Note |
 | --- | --- | --- |
@@ -108,8 +87,6 @@ Avro-backed tables can be created in Hive using AvroSerDe.
 
 To create an Avro-backed table, specify the serde as org.apache.hadoop.hive.serde2.avro.AvroSerDe, specify the inputformat as org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat, and the outputformat as org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat. Also provide a location from which the AvroSerde will pull the most current schema for the table. For example:
 
-
-
 ```
 CREATE TABLE kst
   PARTITIONED BY (ds string)
@@ -128,8 +105,6 @@ In this example we're pulling the source-of-truth reader schema from a webserver
 Add the Avro files to the database (or create an external table) using standard Hive operations ([http://wiki.apache.org/hadoop/Hive/LanguageManual/DML]({{< ref "languagemanual-dml_27362036" >}})).
 
 This table might result in a description as below:
-
-
 
 ```
 hive> describe kst;
@@ -161,8 +136,6 @@ Starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-6806), Avro-b
 
 For example:
 
-
-
 ```
 CREATE TABLE kst (
     string1 string,
@@ -186,8 +159,6 @@ CREATE TABLE kst (
 ```
 
 This table might result in a description as below:
-
-
 
 ```
 hive> describe kst;
@@ -228,8 +199,6 @@ Hive is very forgiving about types: it will attempt to store whatever value matc
 
 Consider the following Hive table, which covers all types of Hive data types, making it a good example:
 
-
-
 ```
 CREATE TABLE test\_serializer(string1 STRING,
                              int1 INT,
@@ -254,8 +223,6 @@ CREATE TABLE test\_serializer(string1 STRING,
 
 If the table were backed by a csv file such as:
 
-
-
 | why hello there | 42 | 3 | 100 | 1412341 | true | 42.43 | 85.23423424 | alpha:beta:gamma | Earth#42:Control#86:Bob#31 | 17:true:Abe Linkedin | 0:3.141459 | BLUE | 72 | ^A^B^C | ^A^B^C |
 | another record | 98 | 4 | 101 | 9999999 | false | 99.89 | 0.00000009 | beta | Earth#101 | 1134:false:wazzup | 1:true | RED | NULL | ^D^E^F^G | ^D^E^F |
 | third record | 45 | 5 | 102 | 999999999 | true | 89.99 | 0.00000000000009 | alpha:gamma | Earth#237:Bob#723 | 102:false:BNL | 2:Time to go home | GREEN | NULL | ^H | ^G^H^I |
@@ -265,8 +232,6 @@ then you could write it out to Avro as described below.
 #### All Hive versions
 
 To save this table as an Avro file, create an equivalent Avro schema (the namespace and actual name of the record are not important):
-
-
 
 ```
 {
@@ -296,8 +261,6 @@ To save this table as an Avro file, create an equivalent Avro schema (the namesp
 
 Then you can write it out to Avro with:
 
-
-
 ```
 CREATE TABLE as\_avro
   ROW FORMAT SERDE
@@ -316,8 +279,6 @@ INSERT OVERWRITE TABLE as\_avro SELECT * FROM test\_serializer;
 #### Hive 0.14 and later
 
 In Hive versions 0.14 and later, you do not need to create the Avro schema manually. The procedure shown above to save a table as an Avro file reduces to just a DDL statement followed by an insert into the table.
-
-
 
 ```
 CREATE TABLE as\_avro(string1 STRING,
@@ -359,8 +320,6 @@ The schema can also point to a location on HDFS, for instance: hdfs://your-nn:90
 
 You can embed the schema directly into the create statement. This works if the schema doesn't have any single quotes (or they are appropriately escaped), as Hive uses this to define the parameter value. For instance:
 
-
-
 ```
 CREATE TABLE embedded
   COMMENT "just drop the schema right into the HQL"
@@ -386,8 +345,6 @@ Note that the value is enclosed in single quotes and just pasted into the create
 
 Hive can do simple variable substitution and you can pass the schema embedded in a variable to the script. Note that to do this, the schema must be completely escaped (carriage returns converted to \n, tabs to \t, quotes escaped, etc). An example:
 
-
-
 ```
 set hiveconf:schema;
 DROP TABLE example;
@@ -404,8 +361,6 @@ CREATE TABLE example
 ```
 
 To execute this script file, assuming $SCHEMA has been defined to be the escaped schema value:
-
-
 
 ```
 hive --hiveconf schema="${SCHEMA}" -f your\_script\_file.sql
@@ -429,14 +384,11 @@ Hive tends to swallow exceptions from the AvroSerde that occur before job submis
 
 * Why do I get **error-error-error-error-error-error-error** and a message to check avro.schema.literal and avro.schema.url when describing a table or running a query against a table?
 
-
 > The AvroSerde returns this message when it has trouble finding or parsing the schema provided by either the avro.schema.literal or avro.avro.schema.url value. It is unable to be more specific because Hive expects all calls to the serde config methods to be successful, meaning we are unable to return an actual exception. By signaling an error via this message, the table is left in a good state and the incorrect value can be corrected with a call to **alter table T set TBLPROPERTIES**.
 > 
 > 
 
  
-
-
 
  
 

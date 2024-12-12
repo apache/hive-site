@@ -3,23 +3,9 @@ title: "Apache Hive : Streaming Data Ingest V2"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Streaming Data Ingest V2
 
-
-
-
-
-
 Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data-ingest_40509746" >}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
-
 
 * [Hive Streaming API]({{< ref "#hive-streaming-api" >}})
 	+ [Streaming Mutation API Deprecation and Removal]({{< ref "#streaming-mutation-api-deprecation-and-removal" >}})
@@ -38,9 +24,6 @@ Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data
 		- [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
 	+ [Error Handling]({{< ref "#error-handling" >}})
 * [Example]({{< ref "#example" >}})
-
-
-
 
 # Hive Streaming API
 
@@ -77,7 +60,6 @@ A few things are required to use streaming.
 
 Out of the box, currently, the streaming API only provides support for streaming delimited input data (such as CSV, tab separated, etc.), JSON and Regex formatted data. The records writers that are supported in Hive 3.0.0 release are
 
-
 ```
 StrictDelimitedInputWriter
 ```
@@ -102,7 +84,6 @@ Currently only ORC is supported for the format of the destination table.
 ### HiveStreamingConnection
 
 The class HiveStreamingConnection describes the streaming connection related information. This describes the database, table, partition names, metastore URI to connect to and record writer to use for streaming records into destination partition or table. All these information can be specified via Builder API which then establishes a connection to the Hive MetaStore for streaming purposes. Invoking connect on the Builder API returns a StreamingConnection object. StreamingConnection can then be used to initiate new transactions for performing I/O.
-
 
 ```
 * CONCURRENCY NOTE: The streaming connection APIs and record writer APIs are not thread-safe. Streaming connection creation,  
@@ -189,8 +170,6 @@ Its up to the clients to decide which exceptions can be retried (typically with 
 
 # Example
 
-
-
 ```
 ///// Stream five records in two transactions /////
  
@@ -237,8 +216,6 @@ connection.commitTransaction();
 // close the streaming connection
 connection.close();
 
-
-
 .. spin up thread 2 ..
 // dynamic partitioning
 // create delimited record writer whose schema exactly matches table schema
@@ -267,8 +244,6 @@ connection.commitTransaction();
 // close the streaming connection
 connection.close();
 ```
-
-
 
  
 

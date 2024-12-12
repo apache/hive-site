@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual Explain"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Explain
-
-
-
-
-
-
 
 * [EXPLAIN Syntax]({{< ref "#explain-syntax" >}})
 	+ [Example]({{< ref "#example" >}})
@@ -30,14 +16,9 @@ date: 2024-12-12
 	+ [The ANALYZE Clause]({{< ref "#the-analyze-clause" >}})
 	+ [User-level Explain Output]({{< ref "#user-level-explain-output" >}})
 
-
-
-
 ## EXPLAIN Syntax
 
 Hive provides an `EXPLAIN` command that shows the execution plan for a query. The syntax for this statement is as follows:
-
-
 
 ```
 EXPLAIN [EXTENDED|CBO|AST|DEPENDENCY|AUTHORIZATION|LOCKS|VECTORIZATION|ANALYZE] query
@@ -62,8 +43,6 @@ The description of the stages itself shows a sequence of operators with the meta
 
 As an example, consider the following `EXPLAIN` query:
 
-
-
 ```
 EXPLAIN
 FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
@@ -72,8 +51,6 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
 The output of this statement contains the following parts:
 
 * The Dependency Graph
-
-
 
 ```
 STAGE DEPENDENCIES:
@@ -85,8 +62,6 @@ STAGE DEPENDENCIES:
 
 This shows that Stage-1 is the root stage, Stage-2 is executed after Stage-1 is done and Stage-0 is executed after Stage-2 is done.
 * The plans of each Stage
-
-
 
 ```
 STAGE PLANS:
@@ -196,8 +171,6 @@ Syntax: EXPLAIN [FORMATTED] CBO [COST|JOINCOST]
 
 For example, we can execute the following statement:
 
-
-
 ```
 EXPLAIN CBO
 WITH customer\_total\_return AS
@@ -222,8 +195,6 @@ LIMIT 100
 ```
 
 The query will be optimized and Hive produces the following output:
-
-
 
 ```
 CBO PLAN:
@@ -263,8 +234,6 @@ HiveSortLimit(sort0=[$0], dir0=[ASC], fetch=[100])
   
 In turn, we can execute the following command:
 
-
-
 ```
 EXPLAIN CBO COST
 WITH customer\_total\_return AS
@@ -289,8 +258,6 @@ LIMIT 100
 ```
 
 It will produce a similar plan, but the cost for each operator will be embedded next to the operator descriptors:
-
-
 
 ```
 CBO PLAN:
@@ -333,8 +300,6 @@ Outputs the query's Abstract Syntax Tree.
 
 Example:
 
-
-
 ```
 EXPLAIN AST
 FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
@@ -342,8 +307,6 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
 
   
 Outputs:
-
-
 
 ```
 ABSTRACT SYNTAX TREE:
@@ -355,8 +318,6 @@ ABSTRACT SYNTAX TREE:
 
 The use of `DEPENDENCY` in the `EXPLAIN` statement produces extra information about the inputs in the plan. It shows various attributes for the inputs. For example, for a query like:
 
-
-
 ```
 EXPLAIN DEPENDENCY
   SELECT key, count(1) FROM srcpart WHERE ds IS NOT NULL GROUP BY key
@@ -365,19 +326,14 @@ EXPLAIN DEPENDENCY
 
 the following output is produced:
 
-
-
 ```
 {"input\_partitions":[{"partitionName":"default<at:var at:name="srcpart" />ds=2008-04-08/hr=11"},{"partitionName":"default<at:var at:name="srcpart" />ds=2008-04-08/hr=12"},{"partitionName":"default<at:var at:name="srcpart" />ds=2008-04-09/hr=11"},{"partitionName":"default<at:var at:name="srcpart" />ds=2008-04-09/hr=12"}],"input\_tables":[{"tablename":"default@srcpart","tabletype":"MANAGED\_TABLE"}]}
-
 
 ```
 
 The inputs contain both the tables and the partitions. Note that the table is present even if none of the partitions is accessed in the query.
 
 The dependencies show the parents in case a table is accessed via a view. Consider the following queries:
-
-
 
 ```
 CREATE VIEW V1 AS SELECT key, value from src;
@@ -387,8 +343,6 @@ EXPLAIN DEPENDENCY SELECT * FROM V1;
 
 The following output is produced:
 
-
-
 ```
 {"input\_partitions":[],"input\_tables":[{"tablename":"default@v1","tabletype":"VIRTUAL\_VIEW"},{"tablename":"default@src","tabletype":"MANAGED\_TABLE","tableParents":"[default@v1]"}]}
 
@@ -397,8 +351,6 @@ The following output is produced:
 As above, the inputs contain the view V1 and the table 'src' that the view V1 refers to.
 
 All the outputs are shown if a table is being accessed via multiple parents.
-
-
 
 ```
 CREATE VIEW V2 AS SELECT ds, key, value FROM srcpart WHERE ds IS NOT NULL;
@@ -411,8 +363,6 @@ EXPLAIN DEPENDENCY SELECT * FROM V4;
 
 The following output is produced.
 
-
-
 ```
 {"input\_partitions":[{"partitionParents":"[default@v2]","partitionName":"default<at:var at:name="srcpart" />ds=2008-04-08/hr=11"},{"partitionParents":"[default@v2]","partitionName":"default<at:var at:name="srcpart" />ds=2008-04-08/hr=12"},{"partitionParents":"[default@v2]","partitionName":"default<at:var at:name="srcpart" />ds=2008-04-09/hr=11"},{"partitionParents":"[default@v2]","partitionName":"default<at:var at:name="srcpart" />ds=2008-04-09/hr=12"}],"input\_tables":[{"tablename":"default@v4","tabletype":"VIRTUAL\_VIEW"},{"tablename":"default@v2","tabletype":"VIRTUAL\_VIEW","tableParents":"[default@v4]"},{"tablename":"default@v1","tabletype":"VIRTUAL\_VIEW","tableParents":"[default@v4]"},{"tablename":"default@src","tabletype":"MANAGED\_TABLE","tableParents":"[default@v4, default@v1]"},{"tablename":"default@srcpart","tabletype":"MANAGED\_TABLE","tableParents":"[default@v2]"}]}
 
@@ -424,8 +374,6 @@ As can be seen, src is being accessed via parents v1 and v4.
 
 The use of `AUTHORIZATION` in the `EXPLAIN` statement shows all entities needed to be authorized to execute the query and authorization failures if any exist. For example, for a query like:
 
-
-
 ```
 EXPLAIN AUTHORIZATION
   SELECT * FROM src JOIN srcpart;
@@ -433,8 +381,6 @@ EXPLAIN AUTHORIZATION
 ```
 
 the following output is produced:
-
-
 
 ```
 INPUTS: 
@@ -457,12 +403,10 @@ AUTHORIZATION\_FAILURES:
 
 With the `FORMATTED` keyword, it will be returned in JSON format.
 
-
 ```
   
 
 ```
-
 
 ```
 "OUTPUTS":["hdfs://localhost:9000/tmp/.../-mr-10000"],"INPUTS":["default@srcpart","default@src","default@srcpart@ds=2008-04-08/hr=11","default@srcpart@ds=2008-04-08/hr=12","default@srcpart@ds=2008-04-09/hr=11","default@srcpart@ds=2008-04-09/hr=12"],"OPERATION":"QUERY","CURRENT\_USER":"navis","AUTHORIZATION\_FAILURES":["Permission denied: Principal [name=navis, type=USER] does not have following privileges for operation QUERY [[SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.src], [SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.srcpart]]"]}
@@ -475,16 +419,12 @@ This is useful to understand what locks the system will acquire to run the speci
 
 For example
 
-
-
 ```
 EXPLAIN LOCKS UPDATE target SET b = 1 WHERE p IN (SELECT t.q1 FROM source t WHERE t.a1=5)
 
 ```
 
 Will produce output like this.
-
-
 
 ```
 LOCK INFORMATION:
@@ -497,12 +437,10 @@ default.target.p=1/q=3 -> SHARED\_WRITE
 default.target.p=1/q=2 -> SHARED\_WRITE
 ```
 
-
 ```
   
 
 ```
-
 
 ```
 EXPLAIN FORMATTED LOCKS <sql>
@@ -529,7 +467,6 @@ See [HIVE-11394](https://issues.apache.org/jira/browse/HIVE-11394) for more det
 
   
 
-
 ### The ANALYZE Clause
 
 Annotates the plan with actual row counts. Since in Hive 2.2.0 ([HIVE-14362](https://issues.apache.org/jira/browse/HIVE-14362))
@@ -539,8 +476,6 @@ Format is: (estimated row count) / (actual row count)
 Example:
 
 For the below tablescan; the estimation was 500 rows; but actually the scan only yielded 13 rows.
-
-
 
 ```
 [...]
@@ -559,13 +494,9 @@ Since [HIVE-9780](https://issues.apache.org/jira/browse/HIVE-9780) in Hive 1.2.0
 
 Since [HIVE-11133](https://issues.apache.org/jira/browse/HIVE-11133) in Hive 3.0.0, we support a user-level explain for Hive on Spark users. A separate configuration is used for Hive-on-Spark, **[hive.spark.explain.user]({{< ref "#hive-spark-explain-user" >}})** which is set to false by default.
 
-
-
 ```
 EXPLAIN select sum(hash(key)), sum(hash(value)) from src\_orc\_merge\_test\_part where ds='2012-01-03' and ts='2012-01-03+14:46:31'
 ```
-
-
 
 ```
 Plan optimized by CBO.
@@ -600,16 +531,11 @@ Stage-0
                            alias:src\_orc\_merge\_test\_part
                            Statistics:Num rows: 500 Data size: 47000 Basic stats: COMPLETE Column stats: NONE
 
-
 ```
 
   
 
-
   
-
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : Hive PTest2 Infrastructure"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive PTest2 Infrastructure
-
-
-
-
-
 
 ## Background
 
@@ -75,16 +62,12 @@ Code is located in the Hive git repo.  It is under /hive/testutils/ptest2.  As
 
 ### How do I stop, start, restart the Hive PTest2 WebServer, or have it use the latest test infra code?
 
-
-
 ```
 $ sudo /usr/local/hiveptest/bin/stop-server.sh 
 $ sudo /usr/local/hiveptest/bin/start-server.sh 
 $ sudo /usr/local/hiveptest/bin/restart-server.sh 
 $ sudo /usr/local/hiveptest/bin/update.sh 
 ```
-
-
 
  
 

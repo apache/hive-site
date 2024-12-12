@@ -3,20 +3,7 @@ title: "Apache Hive : Replacing the Implementation of Hive CLI Using Beeline"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Replacing the Implementation of Hive CLI Using Beeline
-
-
-
-
-
 
 ## 
 * 
@@ -38,8 +25,6 @@ Ideally, Hive CLI should be deprecated as the Hive community has long recommende
 
 We use a new Hive CLI on top of Beeline to implement the Hive CLI functionality. Since some existing Hive CLI features are not supported in the new Hive CLI, we are using the old Hive client implementation by default. Use the following command to specify the new Beeline-based Hive CLI tool:
 
-
-
 ```
 export USE\_DEPRECATED\_CLI=false
 ```
@@ -49,8 +34,6 @@ Note that the log4j configuration file has been changed to "beeline-log4j.proper
 ### Hive CLI Options Support
 
 To get help, run "`hive -H`" or "`hive --help`".
-
-
 
 ```
 usage: hive
@@ -73,35 +56,25 @@ usage: hive
 
 * Example of running a query from the command line
 
-
-
 ```
 $HIVE\_HOME/bin/hive -e 'select a.foo from pokes a'
 ```
 * Example of setting Hive configuration variables
-
-
 
 ```
 $HIVE\_HOME/bin/hive -e 'select a.foo from pokes a' --hiveconf hive.exec.scratchdir=/opt/my/hive\_scratch --hiveconf mapred.reduce.tasks=1
 ```
 * Example of dumping data out from a query into a file using silent mode
 
-
-
 ```
 $HIVE\_HOME/bin/hive -S -e 'select a.foo from pokes a' > a.txt
 ```
 * Example of running a script non-interactively from local disk
 
-
-
 ```
 $HIVE\_HOME/bin/hive -f /home/my/hive-script.sql
 ```
 * Example of running a script non-interactively from a Hadoop supported filesystem (starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7136))
-
-
 
 ```
 $HIVE\_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql
@@ -112,8 +85,6 @@ $HIVE\_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql
 When `$HIVE_HOME/bin/hive` is run without either the `-e` or `-f` option, it enters interactive shell mode.
 
 Use ";" (semicolon) to terminate commands. Comments in scripts can be specified using the "--" prefix.
-
-
 
 | Command | Description |
 | --- | --- |
@@ -134,8 +105,6 @@ Use ";" (semicolon) to terminate commands. Comments in scripts can be specified 
 | source FILE <filepath> | Executes a script file inside the CLI. |
 
 Examples of shell commands:
-
-
 
 ```
 hive> source /root/test.sql;
@@ -177,8 +146,6 @@ hive>source /opt/s.sql;
 
 ### Hive CLI Configuration Support
 
-
-
 | Configuration Name | Supported in New Hive CLI | Description |
 | --- | --- | --- |
 | hive.cli.print.header | Yes | Whether to print the names of the columns in query output. [HIVE-11624](https://issues.apache.org/jira/browse/HIVE-11624) |
@@ -191,8 +158,6 @@ hive>source /opt/s.sql;
 
 Using the JMH to measure the average time cost when retrieving a data set, we have the following results.
 
-
-
 ```
 Benchmark                                                       Mode  Samples           Score   Error  Units
 o.a.h.b.c.CliBench.BeeLineDriverBench.testSQLWithInitialFile    avgt        1  1713326099.000 ?  NaN  ns/op
@@ -204,8 +169,6 @@ The lower the score the better since we are evaluating the time cost. There is n
  
 
  
-
-
 
  
 

@@ -3,21 +3,7 @@ title: "Apache Hive : Hive on Tez"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive on Tez
-
-
-
-
-
-
 
 * [Overview]({{< ref "#overview" >}})
 	+ [Multiple reduce stages]({{< ref "#multiple-reduce-stages" >}})
@@ -52,9 +38,6 @@ date: 2024-12-12
 		- [Mini Tez Cluster]({{< ref "#mini-tez-cluster" >}})
 * [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
 	+ [Hive-Tez Compatibility]({{< ref "#hive-tez-compatibility" >}})
-
-
-
 
 # Overview
 
@@ -153,8 +136,6 @@ Note: It is possible to execute an MR plan against TEZ. In order to do so, one s
 Here’s a TPC-DS query and plans with and without Tez optimizations enabled:
 
 The query (rewritten for Hive):
-
-
 
 ```
 select
@@ -357,8 +338,6 @@ For information about how to configure Hive 0.13.0+ for Tez, see the release not
 ### Hive-Tez Compatibility
 
 For a list of Hive and Tez releases that are compatible with each other, see [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility_59689974" >}}).
-
-
 
  
 

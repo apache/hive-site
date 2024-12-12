@@ -3,20 +3,7 @@ title: "Apache Hive : Exchange Partition"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Exchange Partition
-
-
-
-
-
 
 The EXCHANGE PARTITION command will move a partition from a source table to target table and alter each table's metadata.  The Exchange Partition feature is implemented as part of [HIVE-4095](https://issues.apache.org/jira/browse/HIVE-4095). Exchanging multiple partitions is supported in Hive versions 1.2.2, 1.3.0, and 2.0.0+ as part of [HIVE-11745](https://issues.apache.org/jira/browse/HIVE-11745).
 
@@ -38,16 +25,12 @@ If the schemas are different, the following exception is thrown:
 `The tables have different schemas. Their partitions cannot be exchanged`
 #### Syntax
 
-
-
 ```
 ALTER TABLE <dest\_table> EXCHANGE PARTITION (<[partial] partition spec>) WITH TABLE <src\_table>
 
 ```
 
 #### Example Usage – Basic
-
-
 
 ```
 --Create two tables, partitioned by ds
@@ -60,8 +43,6 @@ ALTER TABLE T2 EXCHANGE PARTITION (ds='1') WITH TABLE T1;
 ```
 
 #### Example Usage – Partial Partition Spec (Exchanging Multiple Partitions)
-
-
 
 ```
 --Create two tables with multiple partition columns.
@@ -79,8 +60,6 @@ ALTER TABLE T2 EXCHANGE PARTITION (ds='1') WITH TABLE T1;
 
 #### Example Usage – Partition Spec With Multiple Partition Columns
 
-
-
 ```
 -- Create two tables with multiple partition columns.
 CREATE TABLE T1 (a int) PARTITIONED BY (d1 int, d2 int);
@@ -91,8 +70,6 @@ ALTER TABLE T1 ADD PARTITION (d1=1, d2=2);
 ALTER TABLE T2 EXCHANGE PARTITION (d1 = 1, d2 = 2) WITH TABLE T1;
 
 ```
-
-
 
  
 

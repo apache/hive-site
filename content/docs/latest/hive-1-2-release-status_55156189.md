@@ -3,24 +3,9 @@ title: "Apache Hive : Hive 1.2 Release Status"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive 1.2 Release Status
 
-
-
-
-
-
 # Intended Release Timeline
-
-
 
 | Status | Timeline item |
 | --- | --- |
@@ -32,7 +17,6 @@ date: 2024-12-12
 # Rules for inclusion into branch-1.2 targeting 1.2.2
 
   
-
 
 Now that 1.2.1 has been released, branch-1.2 now tracks an eventual 1.2.2 release. To commit any patch to branch-1.2 now, the following rules apply:
 
@@ -53,8 +37,6 @@ All commits that do not meet these criteria should be directed towards branch-1 
 
  
 
-
-
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
 | HS2/metastore | HIVE-11224 | committed | thejas |
@@ -69,8 +51,6 @@ All commits that do not meet these criteria should be directed towards branch-1 
 The following are jiras originally intended for branch-1.2, but at this time, should not be committed to branch-1.2, and should only go to master(1.3). These jiras were moved out of the above backlog list into this after a discussion between the RM and the committer asking for inclusion.
 
  
-
-
 
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -136,32 +116,20 @@ Open
 
  
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
 | 
 It seems if you just paste the JIRA URL to the ticket, it will automatically display number, title and status
 
-
  Posted by ekoifman at Apr 24, 2015 20:51
   |
 | 
 Very useful, Eugene!
 
-
  Posted by khorgath@gmail.com at Apr 24, 2015 20:54
   |
-
-
 
  
 

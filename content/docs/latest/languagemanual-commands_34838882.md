@@ -3,24 +3,9 @@ title: "Apache Hive : LanguageManual Commands"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Commands
 
-
-
-
-
-
 Commands are non-SQL statements such as setting a property or adding a resource. They can be used in HiveQL scripts or directly in the [CLI]({{< ref "languagemanual-cli_27362033" >}}) or [Beeline]({{< ref "#beeline" >}}).
-
-
 
 | Command | Description |
 | --- | --- |
@@ -43,8 +28,6 @@ Commands are non-SQL statements such as setting a property or adding a resource.
 
 Sample Usage:
 
-
-
 ```
   hive> set mapred.reduce.tasks=32;
   hive> set;
@@ -53,8 +36,6 @@ Sample Usage:
   hive> dfs -ls;
 
 ```
-
-
 
  
 

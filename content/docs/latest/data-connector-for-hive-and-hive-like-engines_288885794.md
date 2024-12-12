@@ -3,20 +3,7 @@ title: "Apache Hive : Data Connector for Hive and Hive-like engines"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Data Connector for Hive and Hive-like engines
-
-
-
-
-
 
 ### What is a Data connector?
 
@@ -24,13 +11,11 @@ Data connectors (referred to as "connector" in Hive Query Language) are top leve
 
   
 
-
 ### HIVEJDBC type Data connector
 
 Apache Hive now has a connector to plugin in multiple hive and hive like sources. [HIVE-27597](https://issues.apache.org/jira/browse/HIVE-27597) adds a JDBC based connector of type "***HIVEJDBC***". Similar to the other data connectors, this connector needs a URL, Driver name, credentials etc to be defined as part of the connector definition. Once defined, users can use the same connector object to map multiple databases from the remote datasource to local hive metastore.
 
   
-
 
 HIVEJDBC connector requires the following values
 
@@ -52,7 +37,6 @@ HIVEJDBC connector requires the following values
 ```
 2. Create a database of type REMOTE in hive using the connector from Step 1. This maps a remote database named "`*default*`" to a hive database named "*`hiveserver_remote`*" in hive.
 
-
 ```
          CREATE REMOTE DATABASE hiveserver\_remote USING hiveserver\_connector   
          WITH DBPROPERTIES ("connector.remoteDbName"="default");  
@@ -64,7 +48,6 @@ HIVEJDBC connector requires the following values
      0: jdbc:hive2://localhost:10000> USE hiveserver\_remote;
 ```
 `0: jdbc:hive2://localhost:10000> **describe formatted test\_emr\_tbl;**`
-
 
 ```
 +-------------------------------+-------------------------------------------------+----------------------------------------------------+  
@@ -109,8 +92,6 @@ HIVEJDBC connector requires the following values
 
   
 
-
-
 ```
     4. Offload the remote table to local cluster, run CTAS (example below pulls in all the data into the local table,   
        but you can pull in select columns and rows by applying predicates)
@@ -125,13 +106,11 @@ HIVEJDBC connector requires the following values
 
   
 
-
 **`0: jdbc:hive2://localhost:10000> select count(*) from default.emr\_clone;`**
 
 `INFO  : Completed executing command(queryId=ngangam\_20240129182647\_7544c9d1-c68b-4a34-b6b0-910945a1dba5); Time taken: 2.344 seconds`
 
 `INFO  : OK`
-
 
 ```
      +------+  
@@ -141,7 +120,6 @@ HIVEJDBC connector requires the following values
      +------+
 ```
 `1 row selected (8.795 seconds)` 
-
 
 ```
   
@@ -154,7 +132,6 @@ INFO  : Completed executing command(queryId=ngangam\_20240129191217\_79b9e874-1
 
 INFO  : OK
 
-
 ```
      +----------------------+---------------------+  
      | test\_emr\_tbl.tblkey  | test\_emr\_tbl.descr  |  
@@ -164,13 +141,11 @@ INFO  : OK
 ```
 1 row selected (8.238 seconds)
 
-
 ```
   
 6. Join with local hive tables, run SELECT queries joining multiple tables (local or remote) as you would   
    normally with any SQL tables.
 ```
-
 
  
 

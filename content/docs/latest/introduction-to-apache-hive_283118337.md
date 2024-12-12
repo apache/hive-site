@@ -3,20 +3,7 @@ title: "Apache Hive : Introduction to Apache Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Introduction to Apache Hive
-
-
-
-
-
 
 The **[Apache Hive™](http://hive.apache.org/)** data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage and queried using SQL syntax.  
   
@@ -42,8 +29,6 @@ Components of Hive include HCatalog and WebHCat.
 
 * **[HCatalog](https://cwiki.apache.org/confluence/display/Hive/HCatalog)** is a table and storage management layer for Hadoop that enables users with different data processing tools — including Pig and MapReduce — to more easily read and write data on the grid.
 * **[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat)** provides a service that you can use to run Hadoop MapReduce (or YARN), Pig, Hive jobs. You can also perform Hive metadata operations using an HTTP (REST style) interface.
-
-
 
  
 

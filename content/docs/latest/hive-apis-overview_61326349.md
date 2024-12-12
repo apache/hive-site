@@ -3,26 +3,11 @@ title: "Apache Hive : Hive APIs Overview"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive APIs Overview
-
-
-
-
-
 
   
 
-
 This page aims to catalogue and describe the various public facing APIs exposed by Hive in order to inform developers wishing to integrate their applications and frameworks with the Hive ecosystem. To date the following APIs have been identified in the Hive project that are either considered public, or widely used in the public domain:
-
 
 * [API categories]({{< ref "#api-categories" >}})
 	+ [Operation based APIs]({{< ref "#operation-based-apis" >}})
@@ -36,9 +21,6 @@ This page aims to catalogue and describe the various public facing APIs exposed 
 	+ [Streaming Data Ingest (Java)]({{< ref "#streaming-data-ingest--java-" >}})
 	+ [Streaming Mutation (Java)]({{< ref "#streaming-mutation--java-" >}})
 	+ [hive-jdbc (JDBC)]({{< ref "#hive-jdbc--jdbc-" >}})
-
-
-
 
 # API categories
 
@@ -98,26 +80,15 @@ Operation based Java API focused on mutating (insert/update/delete) records into
 
 JDBC API supported by Hive. It supports most of the functionality in JDBC spec.
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
 | 
 Page created after [an interesting discussion](https://issues.apache.org/jira/browse/HIVE-12285?focusedCommentId=14981551&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-14981551).
 
-
  Posted by teabot at Oct 30, 2015 17:09
   |
-
-
 
  
 

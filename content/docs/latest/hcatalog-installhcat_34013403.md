@@ -3,32 +3,15 @@ title: "Apache Hive : HCatalog InstallHCat"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog InstallHCat
 
-
-
-
-
-
 # Installation from Tarball
-
 
 * [Installation from Tarball]({{< ref "#installation-from-tarball" >}})
 	+ [HCatalog Installed with Hive]({{< ref "#hcatalog-installed-with-hive" >}})
 	+ [HCatalog Command Line]({{< ref "#hcatalog-command-line" >}})
 	+ [HCatalog Client Jars]({{< ref "#hcatalog-client-jars" >}})
 	+ [HCatalog Server]({{< ref "#hcatalog-server" >}})
-
-
-
 
 ## HCatalog Installed with Hive
 
@@ -65,9 +48,6 @@ Hive installation and configuration: [Installing Hive]({{< ref "adminmanual-inst
  WebHCat installation and configuration: [WebHCat Installation]({{< ref "webhcat-installwebhcat_34015585" >}}), [WebHCat Configuration]({{< ref "webhcat-configure_34015738" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

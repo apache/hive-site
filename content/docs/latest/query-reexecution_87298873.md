@@ -3,23 +3,9 @@ title: "Apache Hive : Query ReExecution"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Query ReExecution
 
-
-
-
-
-
 Query reexecution provides a facility to re-run the query multiple times in case of an unfortunate event happens.
-
 
 * [ReExecition strategies]({{< ref "#reexecition-strategies" >}})
 	+ [Overlay]({{< ref "#overlay" >}})
@@ -27,11 +13,7 @@ Query reexecution provides a facility to re-run the query multiple times in case
 	+ [Operator Matching]({{< ref "#operator-matching" >}})
 * [Configuration]({{< ref "#configuration" >}})
 
-
-
-
   
-
 
 Introduced in Hive 3.0 ([HIVE-17626](https://issues.apache.org/jira/browse/HIVE-17626))
 
@@ -59,8 +41,6 @@ Every hive setting which has a prefix of "reexec.overlay" will be set for all re
 
 A more real life example would be to disable join auto conversion for all reexecutions:
 
-
-
 ```
 set reexec.overlay.hive.auto.convert.join=false;
 ```
@@ -77,8 +57,6 @@ Situation in which this would be needed:
 
 It's not that easy to craft queries which will lead to OOM situations; but to enable it:
 
-
-
 ```
 set hive.query.reexecution.strategies=overlay,reoptimize;
 ```
@@ -90,9 +68,6 @@ Operator level statistics are matched to the new plan using operator subtree mat
 # Configuration
 
   
-
-
-
 
 | Configuration | default |  |
 | --- | --- | --- |
@@ -112,11 +87,7 @@ Operator level statistics are matched to the new plan using operator subtree mat
   
   
 
-
   
-
-
-
 
  
 

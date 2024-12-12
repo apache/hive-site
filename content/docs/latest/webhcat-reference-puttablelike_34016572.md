@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference PutTableLike"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference PutTableLike
 
-
-
-
-
-
 # Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable
-
 
 * [Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "#create-table-like-—-put-ddl/database/:db/table/:existingtable/like/:newtable" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 
-
-
-
 ## Description
 
 Create a new HCatalog table like an existing one.
@@ -42,8 +25,6 @@ Create a new HCatalog table like an existing one.
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*`/table/`*:existingtable*`/like/`*:newtable*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -60,8 +41,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **table** | The new table name |
@@ -71,8 +50,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s -X PUT -HContent-type:application/json -d {} \
  'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/like/test\_table\_2?user.name=ctdean'
@@ -80,8 +57,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -93,14 +68,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable_34016561" >}}) Next: [GET ddl/database/:db/table/:table/partition]({{< ref "webhcat-reference-getpartitions_34016583" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

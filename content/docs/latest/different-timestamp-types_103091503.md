@@ -3,20 +3,7 @@ title: "Apache Hive : Different TIMESTAMP types"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Different TIMESTAMP types
-
-
-
-
-
 
 # Overview
 
@@ -52,8 +39,6 @@ Let's summarize the example of how the different semantics described above apply
 
 If the timestamp literal '1969-07-20 16:17:39' is inserted in Washington D.C. and then queried from Paris, it might be shown in the following ways based on timestamp semantics:
 
-
-
 | SQL type | Semantics | Result | Explanation |
 | TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | 1969-07-20 16:17:39 | Displayed like the original timestamp literal. |
 | TIMESTAMP WITH LOCAL TIME ZONE | Instant | 1969-07-20 21:17:39 | Differs from the original timestamp literal, but refers to the same time instant. |
@@ -63,8 +48,6 @@ Of course, the different semantics do not only affect the textual representation
 
 In fact, even the implicit textual representations could be different than shown above, for example Instant could be displayed normalized to UTC or OffsetDateTime could be adjusted to the local time zone by default. The examples shown above are just common ways of creating an implicit textual representation for the different semantics, but the truly important difference lies in what details can and what details can not be reconstructed from the different semantics:
 
-
-
 |  | Reconstructible details |
 | SQL type | Semantics | Local clock reading | Time instant | Time zone offset |
 | TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | ✓ |  |  |
@@ -72,9 +55,6 @@ In fact, even the implicit textual representations could be different than shown
 | TIMESTAMP WITH TIME ZONE | OffsetDateTime | ✓ | ✓ | ✓ |
 
   
-
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : Hbase execution plans for RawStore partition filter condit
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hbase execution plans for RawStore partition filter condition
-
-
-
-
-
 
 (Apologies for this doc being organized properly, I thought something is better than nothing - Thejas)
 
@@ -32,7 +19,6 @@ Functionality needed
 
   
 
-
 RawStore functions that support partition filtering are the following - 
 
 * getPartitionsByExpr
@@ -40,16 +26,13 @@ RawStore functions that support partition filtering are the following -
 
   
 
-
 We need to generate a query execution plan in terms of Hbase scan api calls for a given filter condition.
 
   
 
-
 ## Notes about the api to be supported
 
   
-
 
 getPartitionsByExpr - Current partition expression evaluation path ExprNodeGenericFuncDesc represents the partition filter expression in the plan
 
@@ -61,16 +44,13 @@ getPartitionsByExpr - Current partition expression evaluation path ExprNodeGener
 
   
 
-
 getPartitionsByFilter - Evaluation of it is similar, it just skips the steps required to create the filter string. We certainly need the ability to work with filter string to support this function.
 
   
 
-
 Why do we convert from ExprNodeGenericFuncDesc to kryo serialized byte[] and not to the filter string ?
 
   
-
 
 Filter expressions supported currently
 
@@ -79,7 +59,6 @@ Filter expressions supported currently
  Logical Operators : AND, OR
 
   
-
 
 Partition table in hbase
 
@@ -97,16 +76,13 @@ The value contains rest of the partition information. (side note: do we need the
   
   
 
-
 # Implementation
 
   
 
-
 Serialization format of partition table key in hbase
 
   
-
 
 Desirable properties for key serialization format -
 
@@ -118,14 +94,12 @@ BinarySortableSerDe satisfies these requirements except for number 3. Meeting re
 
   
 
-
 Limitations with current storage format (no secondary keys)
 
 If there are multiple partition keys for a table, and partition filter condition does not have a condition on the first partition key, we would end up scanning all partitions for the table to find the matches. For this case, we need support for secondary indexes on the table. While we could implement this using a second table, the lack of support for atomic operations across rows/tables is a problem. We would need some level of transaction support in hbase to be able to create secondary indexes reliably. 
 
   
   
-
 
 Filtering the partitions
 
@@ -137,12 +111,10 @@ The hbase api’s used will depend on the filtering condition -
 
   
 
-
 Filters with top level “OR” conditions - Each of the conditions under OR should be evaluated to see which of the above api call pattern suits them. If any one of the conditions requires no 3 call pattern, it makes sense to represent the entire filter condition using api call pattern 3.
 
   
   
-
 
 Examples of conversion of query plan to hbase api calls
 
@@ -154,10 +126,7 @@ Examples of conversion of query plan to hbase api calls
   
   
 
-
  
-
-
 
 | Filter expression | HBase calls |
 | p1 > 10 and p1 < 20  | Scan(X10+, X20) |
@@ -181,18 +150,15 @@ Examples of conversion of query plan to hbase api calls
   
   
 
-
 Relevant classes :
 
   
-
 
 Input:
 
 ExpressionTree (existing) - TreeNodes for AND/OR expressions. Leaf Node for leaf expressions with  =,< ...
 
   
-
 
 Output:
 
@@ -208,14 +174,12 @@ Output:
 
   
 
-
 // represents a union of multiple ScanPlan
 
 MultiScanPlan extends FilterPlan
 
   
   
-
 
 ScanPlan extends FilterPlan
 
@@ -230,7 +194,6 @@ ScanPlan extends FilterPlan
     private ScanFilter filter;
 
   
-
 
 public FilterPlan and(FilterPlan other) {
 
@@ -253,7 +216,6 @@ public FilterPlan or(FilterPlan other) {
   
   
 
-
 PartitionFilterGenerator -
 
   /**
@@ -272,23 +234,17 @@ PartitionFilterGenerator -
   
   
 
-
 Initial implementation: Convert from from ExpressionTree to Hbase filter, thereby implementing both getPartitionsByFilter and getPartitionsByExpr
 
   
-
 
 A new custom Filter class implementation needs to be created. Filter class implements Writable, and the hbase expression to be evaluated is serialized 
 
   
 
-
 We can potentially create the filter directly from ExprNodeGenericFuncDesc in case of the new fastpath config is set.
 
   
-
-
-
 
  
 

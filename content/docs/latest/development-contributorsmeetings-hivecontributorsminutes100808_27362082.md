@@ -3,23 +3,9 @@ title: "Apache Hive : Development ContributorsMeetings HiveContributorsMinutes10
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100808
 
-
-
-
-
-
 August 8th, 2010
-
 
 * Yongqiang He gave a presentation about his work on index support in Hive.
 	+ Slides are available here: <http://files.meetup.com/1658206/Hive%20Index.pptx>
@@ -36,8 +22,6 @@ August 8th, 2010
 	+ It was agreed that feature patches should include updates to the docs, but it is also acceptable to file a doc ticket if there is time pressure to commit.j
 	+ Will maintain an errata page on the wiki for collecting updates/corrections from users. These notes will be rolled into the documentation in vcs on a monthly basis.
 * The next meeting will be held in September at Cloudera's office in Palo Alto.
-
-
 
  
 

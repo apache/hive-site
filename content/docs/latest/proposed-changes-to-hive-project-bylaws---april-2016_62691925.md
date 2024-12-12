@@ -3,25 +3,11 @@ title: "Apache Hive : Proposed Changes to Hive Project Bylaws - April 2016"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Proposed Changes to Hive Project Bylaws - April 2016
-
-
-
-
-
 
 # Apache Hive Project Bylaws
 
 **THIS IS A PROPOSED UPDATE TO THE HIVE BYLAWS REGARDING CODE CHANGES THAT IS ADOPTED BY HIVE. TEXT THAT IS PROPOSED TO BE REMOVED IS STRUCK THROUGH. CODE THAT IS PROPOSED TO BE ADDED IS IN *ITALICS*.**
-
 
 * [Apache Hive Project Bylaws]({{< ref "#apache-hive-project-bylaws" >}})
 	+ [Roles and Responsibilities]({{< ref "#roles-and-responsibilities" >}})
@@ -34,9 +20,6 @@ date: 2024-12-12
 		- [Approvals]({{< ref "#approvals" >}})
 		- [VetosVetoes]({{< ref "#vetosvetoes" >}})
 		- [Actions]({{< ref "#actions" >}})
-
-
-
 
 This document defines the bylaws under which the Apache Hive project operates. It defines the roles and responsibilities of the project, who may vote, how voting works, how conflicts are resolved, etc.
 
@@ -103,8 +86,6 @@ Within the Hive project, different types of decisions require different forms of
 
 Decisions regarding the project are made by votes on the primary project development mailing list ([user@hive.apache.org]({{< ref "mailto:user@pig-apache-org" >}})). Where necessary, PMC voting may take place on the private Hive PMC mailing list. Votes are clearly indicated by subject line starting with [VOTE]. Votes may contain multiple items for approval and these should be clearly separated. Voting is carried out by replying to the vote mail. Voting may take four flavors
 
-
-
 | Vote | Meaning |
 | --- | --- |
 | +1 | 'Yes,' 'Agree,' or 'the action should be performed.' In general, this vote also indicates a willingness on the behalf of the voter in 'making it happen'. |
@@ -119,8 +100,6 @@ Voting can also be applied to changes already made to the Hive codebase. These t
 ### Approvals
 
 These are the types of approvals that can be sought. Different actions require different types of approvals.
-
-
 
 | Approval Type | Definition |
 | --- | --- |
@@ -138,8 +117,6 @@ If you disagree with a valid veto, you must lobby the person casting the veto to
 
 ### Actions
 
-
-
 | Actions | Description | Approval | Binding Votes | Minimum Length | Mailing List |
 | --- | --- | --- | --- | --- | --- |
 | Code Change | A change made to a codebase of the project and committed by a committer. This includes source code, documentation, website content, etc. | one +1 from a committer who has not authored the patch followed by a Lazy approval (not counting the vote of the contributor), moving to lazy majority if a -1 is received.***Minor issues (e.g. typos, code style issues, JavaDoc changes. At committer's discretion) can be committed after soliciting feedback/review on the mailing list and not receiving feedback within 2 days.*** | Active committers | 1 | JIRA (dev@hive.apache.org) |
@@ -153,8 +130,6 @@ If you disagree with a valid veto, you must lobby the person casting the veto to
 | Modifying Bylaws | Modifying this document. | 2/3 majority | Active PMC members | 6 | user@hive.apache.org |
 | New Branch Committer | When a new branch committer is proposed for the project. | Lazy Consensus | Active PMC members | 3 | private@hive.apache.org |
 | Removal of Branch Committer | When a branch committer is removed from the project. | Consensus | Active PMC members excluding the committer in question if they are PMC members too. | 6 | private@hive.apache.org |
-
-
 
  
 

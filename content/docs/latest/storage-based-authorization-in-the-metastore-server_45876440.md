@@ -3,21 +3,7 @@ title: "Apache Hive : Storage Based Authorization in the Metastore Server"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Storage Based Authorization in the Metastore Server
-
-
-
-
-
-
 
 * [Storage Based Authorization in the Metastore Server]({{< ref "#storage-based-authorization-in-the-metastore-server" >}})
 	+ [The Need for Metastore Server Security]({{< ref "#the-need-for-metastore-server-security" >}})
@@ -25,9 +11,7 @@ date: 2024-12-12
 	+ [Configuration Parameters for Metastore Security]({{< ref "#configuration-parameters-for-metastore-security" >}})
 		- [Sample hive-site.xml: Default Settings]({{< ref "#sample-hive-site-xml:-default-settings" >}})
 
-
   
-
 
 # Storage Based Authorization in the Metastore Server
 
@@ -82,8 +66,6 @@ When this is set to true, Hive metastore authorization also checks for read acce
 
 The snippet below shows the keys as they are in a default state in `hive-site.xml` (metastore-side security set up to use the default authorization/authentication, but disabled). Please edit in information as above to get the desired authorization behaviour:
 
-
-
 ```
 <property>
   <name>hive.security.metastore.authorization.manager</name>
@@ -114,8 +96,6 @@ The snippet below shows the keys as they are in a default state in `hive-site.x
 </property>
 
 ```
-
-
 
  
 

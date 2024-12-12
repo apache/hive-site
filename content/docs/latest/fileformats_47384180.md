@@ -3,20 +3,7 @@ title: "Apache Hive : FileFormats"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : FileFormats
-
-
-
-
-
 
 ## File Formats and Compression
 
@@ -40,8 +27,6 @@ For more information, see the sections [Storage Formats]({{< ref "#storage-forma
 
 * [Compressed Data Storage]({{< ref "compressedstorage_27362073" >}})
 * [LZO Compression]({{< ref "languagemanual-lzo_33298193" >}})
-
-
 
  
 

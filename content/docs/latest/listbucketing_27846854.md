@@ -3,21 +3,7 @@ title: "Apache Hive : ListBucketing"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : ListBucketing
-
-
-
-
-
-
 
 * [Goal]({{< ref "#goal" >}})
 	+ [Basic Partitioning]({{< ref "#basic-partitioning" >}})
@@ -36,9 +22,6 @@ date: 2024-12-12
 			* [Alter Table Set Skewed Location]({{< ref "#alter-table-set-skewed-location" >}})
 		- [Design]({{< ref "#design" >}})
 * [Implementation]({{< ref "#implementation" >}})
-
-
-
 
 # Goal
 
@@ -153,8 +136,6 @@ Hive needs to be extended to support the following:
 
 ### Create Table
 
-
-
 ```
 CREATE TABLE <T> (SCHEMA) SKEWED BY (keys) ON ('c1', 'c2') [STORED AS DIRECTORIES];
 
@@ -172,8 +153,6 @@ For example:
 ### Alter Table
 
 #### Alter Table Skewed
-
-
 
 ```
 ALTER TABLE <T> (SCHEMA) SKEWED BY  (keys) ON ('c1', 'c2') [STORED AS DIRECTORIES];
@@ -194,8 +173,6 @@ It will impact
 
 #### Alter Table Not Skewed
 
-
-
 ```
 ALTER TABLE <T> (SCHEMA) NOT SKEWED;
 
@@ -214,8 +191,6 @@ It will impact
 
 #### Alter Table Not Stored as Directories
 
-
-
 ```
 ALTER TABLE <T> (SCHEMA) NOT STORED AS DIRECTORIES;
 
@@ -227,8 +202,6 @@ The above will
 * not turn off the "skewed" feature from table since a "skewed" table can be a normal "skewed" table without list bucketing.
 
 #### Alter Table Set Skewed Location
-
-
 
 ```
 ALTER TABLE <T> (SCHEMA) SET SKEWED LOCATION (key1="loc1", key2="loc2");
@@ -258,21 +231,12 @@ List bucketing was added in Hive 0.10.0 and 0.11.0.
 
 For more information, see [Skewed Tables in the DDL document]({{< ref "#skewed-tables-in-the-ddl-document" >}}).
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
 | 
 Does this feature require any changes to the metastore? If so can you please describe them? Thanks.
-
 
  Posted by cwsteinbach at Jun 11, 2012 15:13
   |
@@ -283,10 +247,8 @@ Please also describe any changes that will be made to public APIs including the 
 * New configuration properties.
 * Modifications to any of the public plugin APIs including SerDes and Hook/Listener interfaces,
 
-
 Also, if this feature requires any changes to the Metastore schema, those changes should be described in this document.
 Finally, please describe your plan for implementing this feature and getting it committed. Will it go in as a single patch or be split into several different patches.
-
 
  Posted by cwsteinbach at Jun 12, 2012 01:47
   |
@@ -298,7 +260,6 @@ We want to store the following information in metastore:
 3. mappings from skewed column value to directories.
 The above 3 will be added to MStorageDescriptor.java etc
 
-
  Posted by gangtimliu at Jun 14, 2012 12:47
   |
 | 
@@ -309,12 +270,10 @@ Here is plan:
 3. Implement follow-ups and go in as a single patch.
 The #3 is a slot for those not critical but nice to have and not in #1 & #2 due to resource constraints etc.
 
-
  Posted by gangtimliu at Jun 14, 2012 12:55
   |
 | 
 It wasn't clear to me from this wiki page what the benefit is of storing the skewed values "as directories" over just storing them as files as regular skew tables do? Tim, could you please elaborate on that?
-
 
  Posted by mgrover@oanda.com at Nov 07, 2012 11:23
   |
@@ -323,7 +282,6 @@ Different terms but refer to the same thing: create sub directory for skewed val
 Note that regular skew table doesn't create sub directory. It's different from non-skewed table because it has meta-data of skewed column name and values so that feature like skewed join can leverage it.
 Only list bucketing table creates sub directory for skewed-value. We use "stored as directories" to mark it.
 Hope it helps.
-
 
  Posted by gangtimliu at Nov 07, 2012 12:49
   |
@@ -345,7 +303,6 @@ will create the following files:
 Is that correct?
 In that case, why would a user ever choose to create sub-directories? Skewed joins would perform just well for regular skewed tables or list bucketing tables. Given that list bucketing introduces sub-directories it imposes restrictions on what other things users can and cannot do while regular skewed tables don't. So what would be someone's motivation to choose list bucketing over skewed tables?
 
-
  Posted by mgrover@oanda.com at Nov 09, 2012 00:11
   |
 | 
@@ -359,11 +316,8 @@ t1 doesn't have sub-directories but t2 has sub-directories. Directory structure 
 "stored as directories" tells hive to create sub-directories.
 what's use case of t1? t1 can be used for skewed join since t1 has skewed column and value information.
 
-
  Posted by gangtimliu at Nov 09, 2012 01:55
   |
-
-
 
  
 

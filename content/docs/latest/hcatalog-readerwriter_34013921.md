@@ -3,32 +3,15 @@ title: "Apache Hive : HCatalog ReaderWriter"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog ReaderWriter
 
-
-
-
-
-
 # Reader and Writer Interfaces
-
 
 * [Reader and Writer Interfaces]({{< ref "#reader-and-writer-interfaces" >}})
 	+ [Overview]({{< ref "#overview" >}})
 	+ [HCatReader]({{< ref "#hcatreader" >}})
 	+ [HCatWriter]({{< ref "#hcatwriter" >}})
 	+ [Complete Example Program]({{< ref "#complete-example-program" >}})
-
-
-
 
 ## Overview
 
@@ -57,8 +40,6 @@ Reading is a two-step process in which the first step occurs on the master node 
 
 Reads are done on a “ReadEntity”. Before you start to read, you need to define a ReadEntity from which to read. This can be done through ReadEntity.Builder. You can specify a database name, table name, partition, and filter string. For example:
 
-
-
 ```
 ReadEntity.Builder builder = new ReadEntity.Builder();
 ReadEntity entity = builder.withDatabase("mydb").withTable("mytbl").build();
@@ -69,8 +50,6 @@ The code snippet above defines a ReadEntity object (“`entity`”), comprising 
 
 After defining a ReadEntity, you obtain an instance of HCatReader using the ReadEntity and cluster configuration:
 
-
-
 ```
 HCatReader reader = DataTransferFactory.getHCatReader(entity, config);
 
@@ -78,16 +57,12 @@ HCatReader reader = DataTransferFactory.getHCatReader(entity, config);
 
 The next step is to obtain a ReaderContext from `reader` as follows:
 
-
-
 ```
 ReaderContext cntxt = reader.prepareRead();
 
 ```
 
 All of the above steps occur on the master node. The master node then serializes this ReaderContext object and sends it to all the slave nodes. Slave nodes then use this reader context to read data.
-
-
 
 ```
 for(InputSplit split : readCntxt.getSplits()){
@@ -107,8 +82,6 @@ Similar to reading, writing is also a two-step process in which the first step o
 
 Writes are done on a “WriteEntity” which can be constructed in a fashion similar to reads:
 
-
-
 ```
 WriteEntity.Builder builder = new WriteEntity.Builder();
 WriteEntity entity = builder.withDatabase("mydb").withTable("mytbl").build();
@@ -118,8 +91,6 @@ WriteEntity entity = builder.withDatabase("mydb").withTable("mytbl").build();
 The code above creates a WriteEntity object (“`entity`”) which can be used to write into a table named “mytbl” in the database “mydb”.
 
 After creating a WriteEntity, the next step is to obtain a WriterContext:
-
-
 
 ```
 HCatWriter writer = DataTransferFactory.getHCatWriter(entity, config);
@@ -131,16 +102,12 @@ All of the above steps occur on the master node. The master node then serializes
 
 On slave nodes, you need to obtain an HCatWriter using WriterContext as follows:
 
-
-
 ```
 HCatWriter writer = DataTransferFactory.getHCatWriter(context);
 
 ```
 
 Then, `writer` takes an iterator as the argument for the `write` method:
-
-
 
 ```
 writer.write(hCatRecordItr);
@@ -160,9 +127,6 @@ Previous: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput_34013776" 
  Next: [Command Line Interface]({{< ref "hcatalog-cli_34013932" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

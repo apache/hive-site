@@ -3,21 +3,7 @@ title: "Apache Hive : Datasketches Integration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Datasketches Integration
-
-
-
-
-
-
 
 * [Sketch functions]({{< ref "#sketch-functions" >}})
 	+ [Naming convention]({{< ref "#naming-convention" >}})
@@ -32,11 +18,7 @@ date: 2024-12-12
 * [Examples]({{< ref "#examples" >}})
 	+ [Simple distinct counting examples using HLL]({{< ref "#simple-distinct-counting-examples-using-hll" >}})
 
-
-
-
   
-
 
 Apache DataSketches (<https://datasketches.apache.org/>) is integrated into Hive via [HIVE-22939](https://issues.apache.org/jira/browse/HIVE-22939).  
 This enables various kind of sketch operations thru regular sql statement.
@@ -65,8 +47,6 @@ For detailed info about the sketches themself please refer to the datasketches s
 	+ kll
 
 ### functionName
-
-
 
 | name | description |
 | --- | --- |
@@ -104,8 +84,6 @@ The BI mode is about making rewrites automatically to sketch functions if possib
 
 The BI mode can be enabled using:
 
-
-
 ```
 set hive.optimize.bi.enabled=true;
 ```
@@ -118,15 +96,11 @@ The used distinct sketch family can be configured using: **hive.optimize.bi.rewr
 
 This feature could rewrite
 
-
-
 ```
 select category, count(distinct id) from sketch\_input group by category
 ```
 
 to use a distinct count sketch to answer the query by rewriting it to
-
-
 
 ```
 select category, round(ds\_hll\_estimate(ds\_hll\_sketch(id))) from sketch\_input
@@ -140,15 +114,11 @@ The used histogram sketch family can be configured using: **hive.optimize.bi.rew
 
 This feature could rewrite
 
-
-
 ```
 select percentile\_disc(0.3) within group(order by id) from sketch\_input
 ```
 
 to use a histogram sketch to answer the query by rewriting to
-
-
 
 ```
 select ds\_kll\_quantile(ds\_kll\_sketch(id), 0.3) from sketch\_input
@@ -160,15 +130,11 @@ This feature can be toggled using the**[hive.optimize.bi](http://hive.optimize.b
 
 The used histogram sketch family can be configured using: [hive.optimize.bi](http://hive.optimize.bi).rewrite.cume\_dist.sketch (currently only kll is available).
 
-
-
 ```
 select id,cume\_dist() over (order by id) from sketch\_input
 ```
 
 to use a histogram sketch to answer the query by rewriting to
-
-
 
 ```
 SELECT id, CAST(DS\_KLL\_RANK(t2.sketch, idVal) AS DOUBLE) 
@@ -184,8 +150,6 @@ The used histogram sketch family can be configured using: [hive.optimize.bi](htt
 
 This feature can rewrite
 
-
-
 ```
 select id,
        ntile(4) over (order by id
@@ -194,8 +158,6 @@ order by id
 ```
 
 To use a histogram sketch to calculate the NTILE's value:
-
-
 
 ```
 select id,
@@ -208,7 +170,6 @@ select id,
                 rank() over (order by id),
                 case when ds\_kll\_n(ds) < (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) then ds\_kll\_n(ds) else (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) end
 
-
 ```
 
 ## Rewrite RANK
@@ -216,8 +177,6 @@ select id,
 This feature can be toggled using the **hive.optimize.bi.rewrite.rank.enabled** conf key
 
 The used histogram sketch family can be configured using: **hive.optimize.bi.rewrite.rank.sketch** (currently only kll is available).
-
-
 
 ```
 select id,
@@ -227,8 +186,6 @@ order by id
 ```
 
 is rewritten to
-
-
 
 ```
 select id,
@@ -242,15 +199,11 @@ order by id
 
   
 
-
 ## Simple distinct counting examples using HLL
 
   
 
-
 * Prepare sample table
-
-
 
 ```
 create table sketch\_input (id int, category char(1))
@@ -263,8 +216,6 @@ insert into table sketch\_input values
 ; 
 ```
 * ### Use HLL to compute distinct values using an intermediate table
-
-
 
 ```
 -- build sketches per category
@@ -279,15 +230,11 @@ select ds\_hll\_estimate(ds\_hll\_union(sketch)) from sketch\_intermediate;
 ```
 * ### Use HLL to compute distinct values without intermediate table
 
-
-
 ```
 select category, ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input group by category;
 select ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input;
 ```
 * ### Use HLL to compute distinct values transparently thru BI mode
-
-
 
 ```
 set hive.optimize.bi.enabled=true;
@@ -295,8 +242,6 @@ select category,count(distinct id) from sketch\_input group by category;
 select count(distinct id) from sketch\_input;
 ```
 * ### Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
-
-
 
 ```
 -- create an MV to store precomputed HLL values
@@ -307,8 +252,6 @@ set hive.optimize.bi.enabled=true;
 select category,count(distinct id) from sketch\_input group by category;
 select count(distinct id) from sketch\_input;
 ```
-
-
 
  
 

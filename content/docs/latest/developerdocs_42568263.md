@@ -3,20 +3,7 @@ title: "Apache Hive : DeveloperDocs"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : DeveloperDocs
-
-
-
-
-
 
 # Hive Developer Documentation
 
@@ -36,8 +23,6 @@ Information for Hive developers is available in these documents:
 * [Plugin Developer Kit]({{< ref "plugindeveloperkit_27820324" >}})
 * [Writing UDTFs]({{< ref "developerguide-udtf_27362086" >}})
 * [Hive on Spark: Getting Started]({{< ref "44302539" >}})
-
-
 
  
 

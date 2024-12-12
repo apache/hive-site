@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual Joins"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual Joins
 
-
-
-
-
-
 # Hive Joins
-
 
 * [Hive Joins]({{< ref "#hive-joins" >}})
 	+ [Join Syntax]({{< ref "#join-syntax" >}})
@@ -29,14 +15,9 @@ date: 2024-12-12
 		- [Predicate Pushdown in Outer Joins]({{< ref "#predicate-pushdown-in-outer-joins" >}})
 		- [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-0-11" >}})
 
-
-
-
 ## Join Syntax
 
 Hive supports the following syntax for joining tables:
-
-
 
 ```
 join\_table:
@@ -87,7 +68,6 @@ Complex expressions in ON clause are supported, starting with Hive 2.2.0 (see [H
 
 In particular, syntax for join conditions was restricted as follows:
 
-
 ```
 join\_condition:  
     ON equality\_expression ( AND equality\_expression )*
@@ -103,19 +83,13 @@ Some salient points to consider when writing join queries are as follows:
 
 * Complex join expressions are allowed e.g.
 
-
-
 ```
   SELECT a.* FROM a JOIN b ON (a.id = b.id)
 ```
 
-
-
 ```
   SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
 ```
-
-
 
 ```
   SELECT a.* FROM a LEFT OUTER JOIN b ON (a.id <> b.id)
@@ -123,8 +97,6 @@ Some salient points to consider when writing join queries are as follows:
 
 are valid joins.
 * More than 2 tables can be joined in the same query e.g.
-
-
 
 ```
   SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
@@ -134,16 +106,12 @@ are valid joins.
 is a valid join.
 * Hive converts joins over multiple tables into a single map/reduce job if for every table the same column is used in the join clauses e.g.
 
-
-
 ```
   SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
 
 ```
 
 is converted into a single map/reduce job as only key1 column for b is involved in the join. On the other hand
-
-
 
 ```
   SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
@@ -153,16 +121,12 @@ is converted into a single map/reduce job as only key1 column for b is involved 
 is converted into two map/reduce jobs because key1 column from b is used in the first join condition and key2 column from b is used in the second one. The first map/reduce job joins a with b and the results are then joined with c in the second map/reduce job.
 * In every map/reduce stage of the join, the last table in the sequence is streamed through the reducers where as the others are buffered. Therefore, it helps to reduce the memory needed in the reducer for buffering the rows for a particular value of the join key by organizing the tables such that the largest tables appear last in the sequence. e.g. in
 
-
-
 ```
   SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
 
 ```
 
 all the three tables are joined in a single map/reduce job and the values for a particular value of the key for tables a and b are buffered in the memory in the reducers. Then for each row retrieved from c, the join is computed with the buffered rows. Similarly for
-
-
 
 ```
   SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
@@ -172,8 +136,6 @@ all the three tables are joined in a single map/reduce job and the values for a 
 there are two map/reduce jobs involved in computing the join. The first of these joins a with b and buffers the values of a while streaming the values of b in the reducers. The second of one of these jobs buffers the results of the first join while streaming the values of c through the reducers.
 * In every map/reduce stage of the join, the table to be streamed can be specified via a hint. e.g. in
 
-
-
 ```
   SELECT /*+ STREAMTABLE(a) */ a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
 
@@ -181,8 +143,6 @@ there are two map/reduce jobs involved in computing the join. The first of these
 
 all the three tables are joined in a single map/reduce job and the values for a particular value of the key for tables b and c are buffered in the memory in the reducers. Then for each row retrieved from a, the join is computed with the buffered rows. If the STREAMTABLE hint is omitted, Hive streams the rightmost table in the join.
 * LEFT, RIGHT, and FULL OUTER joins exist in order to provide more control over ON clauses for which there is no match. For example, this query:
-
-
 
 ```
   SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)
@@ -192,8 +152,6 @@ all the three tables are joined in a single map/reduce job and the values for a 
 will return a row for every row in a. This output row will be a.val,b.val when there is a b.key that equals a.key, and the output row will be a.val,NULL when there is no corresponding b.key. Rows from b which have no corresponding a.key will be dropped. The syntax "FROM a LEFT OUTER JOIN b" must be written on one line in order to understand how it works--a is to the LEFT of b in this query, and so all rows from a are kept; a RIGHT OUTER JOIN will keep all rows from b, and a FULL OUTER JOIN will keep all rows from a and all rows from b. OUTER JOIN semantics should conform to standard SQL specs.
 * Joins occur BEFORE WHERE CLAUSES. So, if you want to restrict the OUTPUT of a join, a requirement should be in the WHERE clause, otherwise it should be in the JOIN clause. A big point of confusion for this issue is partitioned tables:
 
-
-
 ```
   SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)
   WHERE a.ds='2009-07-07' AND b.ds='2009-07-07'
@@ -201,8 +159,6 @@ will return a row for every row in a. This output row will be a.val,b.val when t
 ```
 
 will join a on b, producing a list of a.val and b.val. The WHERE clause, however, can also reference other columns of a and b that are in the output of the join, and then filter them out. However, whenever a row from the JOIN has found a key for a and no key for b, all of the columns of b will be NULL, **including the ds column**. This is to say, you will filter out all rows of join output for which there was no valid b.key, and thus you have outsmarted your LEFT OUTER requirement. In other words, the LEFT OUTER part of the join is irrelevant if you reference any column of b in the WHERE clause. Instead, when OUTER JOINing, use this syntax:
-
-
 
 ```
   SELECT a.val, b.val FROM a LEFT OUTER JOIN b
@@ -212,8 +168,6 @@ will join a on b, producing a list of a.val and b.val. The WHERE clause, however
 
 ..the result is that the output of the join is pre-filtered, and you won't get post-filtering trouble for rows that have a valid a.key but no matching b.key. The same logic applies to RIGHT and FULL joins.
 * Joins are NOT commutative! Joins are left-associative regardless of whether they are LEFT or RIGHT joins.
-
-
 
 ```
   SELECT a.val1, a.val2, b.val, c.val
@@ -227,8 +181,6 @@ will join a on b, producing a list of a.val and b.val. The WHERE clause, however
  To achieve the more intuitive effect, we should instead do FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).
 * LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. As of Hive 0.13 the IN/NOT IN/EXISTS/NOT EXISTS operators are supported using [subqueries]({{< ref "languagemanual-subqueries_27362044" >}}) so most of these JOINs don't have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN are that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.
 
-
-
 ```
   SELECT a.key, a.value
   FROM a
@@ -240,16 +192,12 @@ will join a on b, producing a list of a.val and b.val. The WHERE clause, however
 
 can be rewritten to:
 
-
-
 ```
    SELECT a.key, a.val
    FROM a LEFT SEMI JOIN b ON (a.key = b.key)
 
 ```
 * If all but one of the tables being joined are small, the join can be performed as a map only job. The query
-
-
 
 ```
   SELECT /*+ MAPJOIN(b) */ a.key, a.value
@@ -260,8 +208,6 @@ can be rewritten to:
 does not need a reducer. For every mapper of A, B is read completely. The restriction is that **a FULL/RIGHT OUTER JOIN b** cannot be performed.
 * If the tables being joined are bucketized on the join columns, and the number of buckets in one table is a multiple of the number of buckets in the other table, the buckets can be joined with each other. If table A has 4 buckets and table B has 4 buckets, the following join
 
-
-
 ```
   SELECT /*+ MAPJOIN(b) */ a.key, a.value
   FROM a JOIN b ON a.key = b.key
@@ -270,15 +216,11 @@ does not need a reducer. For every mapper of A, B is read completely. The restri
 
 can be done on the mapper only. Instead of fetching B completely for each mapper of A, only the required buckets are fetched. For the query above, the mapper processing bucket 1 for A will only fetch bucket 1 of B. It is not the default behavior, and is governed by the following parameter
 
-
-
 ```
   set hive.optimize.bucketmapjoin = true
 
 ```
 * If the tables being joined are sorted and bucketized on the join columns, and they have the same number of buckets, a sort-merge join can be performed. The corresponding buckets are joined with each other at the mapper. If both A and B have 4 buckets,
-
-
 
 ```
   SELECT /*+ MAPJOIN(b) */ a.key, a.value
@@ -287,8 +229,6 @@ can be done on the mapper only. Instead of fetching B completely for each mapper
 ```
 
 can be done on the mapper only. The mapper for the bucket for A will traverse the corresponding bucket for B. This is not the default behavior, and the following parameters need to be set:
-
-
 
 ```
   set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
@@ -300,8 +240,6 @@ can be done on the mapper only. The mapper for the bucket for A will traverse th
 ## MapJoin Restrictions
 
 * If all but one of the tables being joined are small, the join can be performed as a map only job. The query
-
-
 
 ```
   SELECT /*+ MAPJOIN(b) */ a.key, a.value
@@ -321,8 +259,6 @@ does not need a reducer. For every mapper of A, B is read completely.
 	+ If all the inputs are bucketed or sorted, and the join should be converted to a bucketized map-side join or bucketized sort-merge join.
 * Consider the possibility of multiple mapjoins on different keys:
 
-
-
 ```
 select /*+MAPJOIN(smallTableTwo)*/ idOne, idTwo, value FROM
   ( select /*+MAPJOIN(smallTableOne)*/ idOne, idTwo, value FROM
@@ -334,7 +270,6 @@ select /*+MAPJOIN(smallTableTwo)*/ idOne, idTwo, value FROM
 ```
 
 The above query is not supported. Without the mapjoin hint, the above query would be executed as 2 map-only jobs. If the user knows in advance that the inputs are small enough to fit in memory, the following configurable parameters can be used to make sure that the query executes in a single map-reduce job.
-
 
 	+ hive.auto.convert.join.noconditionaltask - Whether Hive enable the optimization about converting common join into mapjoin based on the input file size. If this paramater is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the specified size, the join is directly converted to a mapjoin (there is no conditional task).
 	+ hive.auto.convert.join.noconditionaltask.size - If hive.auto.convert.join.noconditionaltask is off, this parameter does not take affect. However, if it is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than this size, the join is directly converted to a mapjoin(there is no conditional task). The default is 10MB.
@@ -348,8 +283,6 @@ See [Hive Outer Join Behavior]({{< ref "outerjoinbehavior_35749927" >}}) for inf
 ### Enhancements in Hive Version 0.11
 
 See [Join Optimization](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization) for information about enhancements to join optimization introduced in Hive version 0.11.0. The use of hints is de-emphasized in the enhanced optimizations ([HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) and related JIRAs).
-
-
 
  
 

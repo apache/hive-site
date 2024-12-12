@@ -3,23 +3,9 @@ title: "Apache Hive : Overview of Major Changes"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Overview of Major Changes
 
-
-
-
-
-
 * ### **Iceberg Integration**
-
 
 	+ Advanced Snapshot management
 	+ [Branches & Tags support](https://medium.com/@ayushtkn/apache-hive-4-x-with-iceberg-branches-tags-3d52293ac0bf)
@@ -33,9 +19,7 @@ date: 2024-12-12
 
   
 
-
 * ### **Hive ACID**
-
 
 	+ Use sequences for TXN\_ID generation (performance)
 	+ Read-only transactions optimization
@@ -45,9 +29,7 @@ date: 2024-12-12
 
   
 
-
 * ### **Compaction**
-
 
 	+ [Rebalance compaction](https://cwiki.apache.org/confluence/display/Hive/Rebalance+compaction) (Hive ACID)
 	+ Compaction requests prioritization ([compaction pooling](https://cwiki.apache.org/confluence/display/Hive/Compaction+pooling))
@@ -55,9 +37,7 @@ date: 2024-12-12
 
   
 
-
 * ### **Hive Metastore**
-
 
 	+ API optimization (performance)
 	+ Dynamic leader election
@@ -69,9 +49,7 @@ date: 2024-12-12
 
   
 
-
 * ### HiveServer2
-
 
 	+ Support [SAML 2.0](https://cwiki.apache.org/confluence/display/Hive/HIVE-24543%3A+Support+SAML+2.0+authentication+mode)/JWT authentication mode
 	+ Support both Kerberos and LDAP auth methods in parallel
@@ -80,9 +58,7 @@ date: 2024-12-12
 
   
 
-
 * ### **Hive Replication**
-
 
 	+ Optimised Bootstrap Solution
 	+ Support for Snapshot Based Replication for External Table
@@ -91,9 +67,7 @@ date: 2024-12-12
 
   
 
-
 * ### Security
-
 
 	+ Authorizations in alter table/view, UDFs, and Views created from Apache Spark.
 	+ Authorizations on tables created based on storage handlers.
@@ -101,9 +75,7 @@ date: 2024-12-12
 
   
 
-
 * ### **Compiler**
-
 
 	+ Materialized view support for Iceberg tables
 	+ Improvements to refresh materialized views
@@ -118,9 +90,7 @@ date: 2024-12-12
 
   
 
-
 * ### Miscl.
-
 
 	+ Support for ESRI GeopSpatial UDF's
 	+ Added support for Apache Ozone
@@ -132,9 +102,6 @@ date: 2024-12-12
 	+ Deprecated Hive CLI
 
   
-
-
-
 
  
 

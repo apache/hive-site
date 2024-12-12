@@ -3,23 +3,9 @@ title: "Apache Hive : Kudu Integration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Kudu Integration
 
-
-
-
-
-
 # Hive Kudu Integration
-
 
 * [Hive Kudu Integration]({{< ref "#hive-kudu-integration" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Impala Tables]({{< ref "#impala-tables" >}})
 	+ [Data Ingest]({{< ref "#data-ingest" >}})
 		- [Examples]({{< ref "#examples" >}})
-
-
-
 
 ## Overview
 
@@ -49,8 +32,6 @@ There are two main components which make up the implementation: the `KuduStorage
 
 To issue queries against Kudu using Hive, one optional parameter can be provided by the Hive configuration:
 
-
-
 | Hive Configuration |  |
 | --- | --- |
 | 
@@ -61,10 +42,7 @@ hive.kudu.master.addresses.default
 
   
 
-
 For those familiar with Kudu, the master addresses configuration is the normal configuration value necessary to connect to Kudu. The easiest way to provide this value is by using the `-hiveconf` option to the `hive` command. 
-
-
 
 ```
 hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
@@ -73,8 +51,6 @@ hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
 ## Table Creation
 
 To access Kudu tables, a Hive table must be created using the `CREATE` command with the `STORED BY` clause. Until [HIVE-22021](https://issues.apache.org/jira/browse/HIVE-22021) is completed, the `EXTERNAL` keyword is required and will create a Hive table that references an existing Kudu table. Dropping the external Hive table will not remove the underlying Kudu table.
-
-
 
 ```
 CREATE EXTERNAL TABLE kudu\_table (foo INT, bar STRING, baz DOUBLE)
@@ -97,8 +73,6 @@ Though it is a common practice to ingest the data into Kudu tables via tools li
 
 ### Examples
 
-
-
 ```
 INSERT INTO kudu\_table SELECT * FROM other\_table;
 
@@ -108,14 +82,9 @@ VALUES (1, 'test 1', 1.1), (2, 'test 2', 2.2);
 
   
 
-
   
 
-
   
-
-
-
 
  
 

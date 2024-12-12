@@ -3,23 +3,9 @@ title: "Apache Hive : HiveDeveloperFAQ"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveDeveloperFAQ
 
-
-
-
-
-
 # Hive Developer FAQ
-
 
 * [Hive Developer FAQ]({{< ref "#hive-developer-faq" >}})
 	+ [Developing]({{< ref "#developing" >}})
@@ -56,9 +42,6 @@ date: 2024-12-12
 		- [How do I debug into a single test in Eclipse?]({{< ref "#how-do-i-debug-into-a-single-test-in-eclipse?" >}})
 		- [How do I debug my queries in Hive?]({{< ref "#how-do-i-debug-my-queries-in-hive?" >}})
 
-
-
-
 Maven
 
 Run the test and generate the output file using the appropriate `-Dtest`Hive is using [Maven]({{< ref "#maven" >}}) as its build tool. Versions prior to 0.13 were using Ant.
@@ -74,8 +57,6 @@ Post a patch for testing purposes which simply does add and deletes. SVN will no
 3. A patch for testing purposes HIVE-XXX.patch
 
 The script should be a set of `svn mv` commands along with any `perl` commands required for find/replace. For example:
-
-
 
 ```
 $ svn mv MyCLass.java MyClass.java
@@ -106,8 +87,6 @@ In master, only Hadoop 2.x is supported, thus there is no need to specify a Mave
 
 In master:
 
-
-
 ```
 mvn clean install -DskipTests
 cd itests 
@@ -115,8 +94,6 @@ mvn clean install -DskipTests
 ```
 
 In branch-1, MVN:
-
-
 
 ```
 mvn clean install -DskipTests -Phadoop-2
@@ -135,8 +112,6 @@ Build and generate [Eclipse](https://www.eclipse.org/users/) files (the conserva
 
 For master – without using a local Maven repository: 
 
-
-
 ```
 $ mkdir workspace
 $ cd workspace
@@ -151,8 +126,6 @@ NOTE: The presence of the **package** target is crucial in successfully generat
 NOTE: It is recommended to wipe out or rename the *org/apache/hive* subtree of the local m2 repository prior to generating the project files; and you may want to check after its execution that it does not contain any files – if it does contain something, then your project files may not be fully independent of downloaded Maven artifacts.
 
 This will work on all branches; but keep in mind that in this case you are installing the Hive artifacts into your local repository.
-
-
 
 ```
 $ mkdir workspace
@@ -173,8 +146,6 @@ In Eclipse define M2\_REPO in Preferences -> Java -> Build Path -> Classpath Var
 
 **Mac Example**
 
-
-
 ```
 /Users/$USER/.m2/repository
 
@@ -182,16 +153,12 @@ In Eclipse define M2\_REPO in Preferences -> Java -> Build Path -> Classpath Var
 
 **Linux Example**
 
-
-
 ```
 /home/$USER/.m2/repository
 
 ```
 
 **Windows Example**
-
-
 
 ```
 C:/users/$USER/.m2/repository
@@ -204,8 +171,6 @@ Note that if you use the Hive git base directory as the Eclipse workspace, then 
 
 ### How to generate tarball?
 
-
-
 ```
 mvn clean package -DskipTests -Pdist
 
@@ -215,8 +180,6 @@ It will then be located in the packaging/target/ directory.
 
 ### How to generate protobuf code?
 
-
-
 ```
 cd ql
 mvn clean install -DskipTests -Pprotobuf
@@ -225,14 +188,11 @@ mvn clean install -DskipTests -Pprotobuf
 
 ### How to generate Thrift code?
 
-
-
 ```
 mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
 ```
 
   
-
 
 Don’t forget to update `hive_metastore.proto` when changing  `hive_metastore.thrift 
 
@@ -240,8 +200,6 @@ Don’t forget to update `hive_metastore.proto` when changing  `hive_metasto
  -
  [TRACKING] gRPC support for Hive metastore
 Open`### How to run findbugs after a change?
-
-
 
 ```
 mvn site -Pfindbugs 
@@ -251,8 +209,6 @@ Note:  Available in Hive 1.1.0 onward (see [HIVE-8327](https://issues.apache.or
 
 ### How to compile ODBC?
 
-
-
 ```
 cd odbc
 mvn compile -Podbc -Dthrift.home=/usr/local -Dboost.home=/usr/local
@@ -260,8 +216,6 @@ mvn compile -Podbc -Dthrift.home=/usr/local -Dboost.home=/usr/local
 ```
 
 ### How do I publish Hive artifacts to my local Maven repository?
-
-
 
 ```
 mvn clean install -DskipTests
@@ -293,16 +247,12 @@ ITests
 
 Note that any test in the itests directory needs to be executed from within the itests directory. The pom is disconnected from the parent project for technical reasons.Single test class:
 
-
-
 ```
 mvn test -Dtest=ClassName
 
 ```
 
 Single test method:
-
-
 
 ```
 mvn test -Dtest=ClassName#methodName
@@ -311,8 +261,6 @@ mvn test -Dtest=ClassName#methodName
 
 Note that a pattern can also be supplied to -Dtests to run multiple tests matching the pattern:
 
-
-
 ```
 mvn test -Dtest='org.apache.hive.beeline.*' 
 ```
@@ -320,8 +268,6 @@ mvn test -Dtest='org.apache.hive.beeline.*'
 For more usage see the documentation for the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/).
 
 ### How do I run all of the unit tests?
-
-
 
 ```
 mvn test 
@@ -332,8 +278,6 @@ mvn test
 
 Note that you need to have previously built and installed the jars:
 
-
-
 ```
 mvn clean install -DskipTests 
 cd itests 
@@ -343,12 +287,9 @@ mvn clean install -DskipTests
 
   
 
-
 ### How do I run all of the unit tests except for a certain few tests?
 
 Similar to running all tests, but define test.excludes.additional to specify a test/pattern to exclude from the test run. For example the following will run all tests except for the CliDriver tests:
-
-
 
 ```
 cd itests 
@@ -361,8 +302,6 @@ All of the below require that you have previously run `ant package`.
 
 To run clientpositive tests
 
-
-
 ```
 cd itests/qtest
 mvn test -Dtest=TestCliDriver 
@@ -370,16 +309,12 @@ mvn test -Dtest=TestCliDriver
 
 To run a single clientnegative test alter1.q
 
-
-
 ```
 cd itests/qtest
 mvn test -Dtest=TestNegativeCliDriver -Dqfile=alter1.q 
 ```
 
 To run all of the clientpositive tests that match a regex, for example the partition\_wise\_fileformat tests
-
-
 
 ```
 cd itests/qtest
@@ -391,8 +326,6 @@ mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile='vectorization\_0.q,vectoriza
 
 To run a single contrib test alter1.q and overwrite the result file
 
-
-
 ```
 cd itests/qtest
 mvn test -Dtest=TestContribCliDriver -Dqfile=alter1.q -Dtest.output.overwrite=true 
@@ -401,8 +334,6 @@ mvn test -Dtest=TestContribCliDriver -Dqfile=alter1.q -Dtest.output.overwrite=tr
 ### How do I run with Postgre/MySQL/Oracle?
 
 To run test test with a specified DB it is possible by adding "-Dtest.metastore.db" parameter like in the following commands:
-
-
 
 ```
 mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition\_params\_postgres.q -Dtest.metastore.db=postgres
@@ -416,8 +347,6 @@ Without specifying -Dqfile it will run all .q files .
 
 ### How do I remote debug a qtest?
 
-
-
 ```
 cd itests/qtest
 mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt\_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" test -Dtest=TestCliDriver -Dqfile=<test>.q
@@ -429,23 +358,17 @@ The option to skip the init script or supply a custom init script was added in H
 
 To skip initialization:
 
-
-
 ```
 mvn test -Dtest=TestCliDriver -Phadoop-2 -Dqfile=test\_to\_run.q  -DinitScript=
 ```
 
 To supply a custom script:
 
-
-
 ```
 mvn test -Dtest=TestCliDriver -Phadoop-2 -Dtest.output.overwrite=true -Dqfile=test\_to\_run.q  -DinitScript=custom\_script.sql
 ```
 
 ### How do I update the output of a CliDriver testcase?
-
-
 
 ```
 cd itests/qtest
@@ -455,12 +378,9 @@ mvn test -Dtest=TestCliDriver -Dqfile=alter1.q -Dtest.output.overwrite=true
 
   
 
-
 ### How do I update the results of many test cases?
 
 Assume that you have a file like below which you'd like to re-generate output files for. Such a file could be created by copying the output from the precommit tests.
-
-
 
 ```
 head -2 /tmp/failed-TestCliDriver-file-tests
@@ -470,15 +390,11 @@ org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_annotate\_stats\_join
 
 You can re-generate all those output files in batches of 20 with the command below
 
-
-
 ```
 egrep 'TestCliDriver' /tmp/failed-TestCliDriver-file-tests | perl -pe 's@.*testCliDriver\_@@g' | awk '{print $1 ".q"}' | xargs -n 30 | perl -pe 's@ @,@g' | xargs -I{} mvn test -Dtest=TestCliDriver -Dtest.output.overwrite=true -Dqfile={}
 ```
 
 To do the same from the output of a precommit result, with multiple drivers, you can do
-
-
 
 ```
 import re
@@ -492,7 +408,6 @@ PAT = re.compile("org.apache.hadoop.hive.cli.([^\.]*).*\[([^\]]*).*")
 l = [PAT.match(x.strip()) for x in s.split("\n") if x.strip()]
 for driver,q in groupby(sorted([a.groups() for a in l if a]), key=lambda a:a[0]):
 	print """mvn clean test -Dtest=%s '-Dqfile=%s' -Dtest.output.overwrite=true""" % (driver, ",".join(["%s.q" % a[1] for a in q]))
-
 
 ```
 
@@ -522,22 +437,16 @@ Next, generate the golden (output) file the first time you run the test case:
 
 * Compile the Hive source from the top level Hive directory:
 
-
-
 ```
 mvn clean install -DskipTests
 ```
 * Compile the itests:
-
-
 
 ```
 cd itests
 mvn clean install -DskipTests
 ```
 * Run the test and generate the output file using the appropriate `-Dtest` (ex. `TestCliDriver`; see `itests/qtest/pom.xml` for the names of other test suites):
-
-
 
 ```
 cd qtest
@@ -557,8 +466,6 @@ There are some good and bad sides using this, it's introduced as a profile to cl
 
 The good side is that you may freely use **-Pitests** to run integration tests from the root project without the need of **mvn install**.
 
-
-
 ```
 mvn test -q -Pitests -Dtest=TestCliDriver -Dqtest=sample2.q
 ```
@@ -568,8 +475,6 @@ The bad side is that a simple **mvn test -Pitests**will start executing all inte
 ### Why does a test fail with a NullPointerException in MiniDFSCluster?
 
 If any test fails with the error below it means you have an inappropriate umask setting. It should be set to 0022.
-
-
 
 ```
 java.lang.NullPointerException: null
@@ -583,14 +488,12 @@ java.lang.NullPointerException: null
 
 If you get the following errors in the unit tests:
 
-
 ```
 2016-01-07T09:51:49,365 ERROR [Driver[]]: spark.SparkContext (Logging.scala:logError(96)) - Error initializing SparkContext.
 java.lang.SecurityException: class "javax.servlet.FilterRegistration"'s signer information does not match signer information of other classes in the same package
 
 ```
 It happens because there are two conflicting versions of the same classes "javax.servlet:servlet-api" and "org.eclipse.jetty.orbit:javax-servlet". Spark requires the eclipse version, but most tools including Hadoop and Jetty depend on the javax one. To avoid this problem, we need to exclude the javax version everywhere it comes up. Fortunately, maven has a tool to do that with:
-
 
 ```
 mvn dependency:tree -Dverbose
@@ -605,8 +508,6 @@ You can debug into a single JUnit test in [Eclipse](https://www.eclipse.org/user
 
 Another useful method to debug these tests is to attach a remote debugger. When you run the test, enable the debug mode for surefire by passing in "`-Dmaven.surefire.debug`". Additional details on how to turning on debugging for surefire can be found [here](http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html). Now when you run the tests, it will wait with a message similar to
 
-
-
 ```
 Listening for transport dt\_socket at address: 5005
 ```
@@ -617,16 +518,12 @@ Note that this assumes that you are still using the default port 5005 for surefi
 
 You can also interactively debug your queries in Hive by attaching a remote debugger. To do so, start [Beeline]({{< ref "#beeline" >}}) with the "`--debug`" option.
 
-
-
 ```
 $ beeline --debug
 Listening for transport dt\_socket at address: 8000
 ```
 
 Once you see this message, in Eclipse right click on the project you want to debug, go to "Debug As -> Debug Configurations -> Remote Java Application" and hit the "+" sign on far left top. This should bring up a dialog box. Make sure that the host is the host on which the Beeline CLI is running and the port is "8000". Before you start debugging, make sure that you have set appropriate debug breakpoints in the code. Once ready, hit "Debug". The remote debugger should attach to Beeline and proceed.
-
-
 
 ```
 $ beeline --debug
@@ -641,15 +538,11 @@ This method should work great if your queries are simple fetch queries that do n
 
 **MRv1:**
 
-
-
 ```
 SET mapred.job.tracker=local
 ```
 
 **MRv2 (YARN):**
-
-
 
 ```
 SET mapreduce.framework.name=local
@@ -659,17 +552,11 @@ At this point, attach the remote debugger as mentioned before to start debugging
 
   
 
+  
 
   
 
-
   
-
-
-  
-
-
-
 
  
 

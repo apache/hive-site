@@ -3,25 +3,9 @@ title: "Apache Hive : Jenkins Script"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Jenkins Script
 
-
-
-
-
-
 I am a little worried about jenkins losing this script every once in a while I'll paste it here:
-
-
-
 
 ```
 env
@@ -128,8 +112,6 @@ fi
 exit $ret
 
 ```
-
-
 
  
 

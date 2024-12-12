@@ -3,40 +3,18 @@ title: "Apache Hive : DeveloperGuide UDTF"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : DeveloperGuide UDTF
 
-
-
-
-
-
 # Writing UDTF's
-
-
 
 * [Writing UDTF's]({{< ref "#writing-udtf's" >}})
 	+ [GenericUDTF Interface]({{< ref "#genericudtf-interface" >}})
 
-
-
 ## GenericUDTF Interface
-
 
 A custom UDTF can be created by extending the GenericUDTF abstract class and then implementing the `initialize`, `process`, and possibly `close` methods. The `initialize` method is called by Hive to notify the UDTF the argument types to expect. The UDTF must then return an object inspector corresponding to the row objects that the UDTF will generate. Once `initialize()` has been called, Hive will give rows to the UDTF using the `process()` method. While in `process()`, the UDTF can produce and forward rows to other operators by calling `forward()`. Lastly, Hive will call the `close()` method when all the rows have passed to the UDTF.
 
-
 UDTF Example:
-
-
-
 
 ```
 
@@ -51,7 +29,6 @@ import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorFactory;
 import org.apache.hadoop.hive.serde2.objectinspector.StructObjectInspector;
 import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
-
 
 /**
  * GenericUDTFCount2 outputs the number of rows seen, twice. It's output twice
@@ -87,17 +64,11 @@ public class GenericUDTFCount2 extends GenericUDTF {
 
 }
 
-
 ```
-
 
 For reference, here is the abstract class:
 
-
-
-
 ```
-
 
 package org.apache.hadoop.hive.ql.udf.generic;
 
@@ -166,10 +137,7 @@ public abstract class GenericUDTF {
 
 }
 
-
 ```
-
-
 
  
 

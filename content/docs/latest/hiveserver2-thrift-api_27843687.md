@@ -3,40 +3,19 @@ title: "Apache Hive : HiveServer2 Thrift API"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveServer2 Thrift API
-
-
-
-
-
 
 ### Introduction
 
-
 This document is a proposal for a new HiveServer2 Thrift API.
-
 
 ### Motivations
 
-
 ##### Concurrency
-
 
 Many users have reported that the current HiveServer implementation has concurrency bugs (for example, see [HIVE-80](https://issues.apache.org/jira/browse/HIVE-80)). In fact, it's impossible for HiveServer to support concurrent connections using the current Thrift API, a result of the fact that Thrift doesn't provide server-side access to connection handles. Since the current API does not provide explicit support for sessions or connections, HiveServer has no way of mapping incoming requests to client sessions, which makes it impossible for HiveServer to maintain session state in between calls.
 
-
 HiveServer currently attempts to maintain session state using thread-local variables and relies on Thrift to consistently map the same connection to the same Thrift worker thread, but this isn't a valid assumption to make. For example, if a client executes "set mapred.reduce.tasks=1" followed by "select .....", it is incorrect to assume that both of these statements will be executed by the same worker thread. Furthermore, the Thrift API doesn't provide any mechanism for detecting client disconnects (see [THRIFT-1195](https://issues.apache.org/jira/browse/THRIFT-1195)), which results in incorrect behavior like this:
-
-
-
 
 ```
 % hive -h localhost -p 10000
@@ -56,26 +35,17 @@ quit;
 
 ```
 
-
 In this example the user opened a connection to a HiveServer process, modified the connection's session state by setting x=1, and then closed the connection. The same user then created a new connection and printed the value of x. Since this statement was executed in a new connection/session we expect x to be undefined. However, we see that x actually has the value that was set in the previous session. This incorrect behavior occurs because Thrift has assigned the same worker thread to service the second connection, and since Thrift doesn't provide a mechanism for detecting client disconnects, HiveServer was unable to clear the thread-local session state associated with that worker thread before Thrift reassigned it to the second connection.
-
 
 While it's tempting to try to solve these problems by modifying Thrift to provide direct access to the connection handle (which would allow HiveServer to map client connection handles to session state), this approach makes it really hard to support HA since it depends on the physical connection lasting as long as the user session, which isn't a fair assumption to make in the context of queries that can take many hours to complete.
 
-
 Instead, the approach we're taking with HiveServer2 is to provide explicit support for sessions in the client API, e.g every RPC call references a session ID which the server then maps to persistent session state. This makes it possible for any worker thread to service any request from any client connection, and also the avoids the need to tightly couple physical connections to logical sessions.
-
 
 ##### Improved Support for ODBC/JDBC
 
-
 It has been a struggle to implement ODBC and JDBC drivers on top of the HiveServer Thrift API. This is largely a result of missing support for sessions, asynchronous query execution, the ability to cancel running queries, and methods for retrieving information about the capabilities of the remote server. We have attempted to address all of these issues with the HiveServer2 API.
 
-
 ### Proposed HiveServer2 Thrift API
-
-
-
 
 ```
 // Licensed to the Apache Software Foundation (ASF) under one
@@ -353,7 +323,6 @@ enum TOperationState {
   ERROR
 }
 
-
 // A string identifier. This is interpreted literally.
 typedef string TIdentifier
 
@@ -367,7 +336,6 @@ typedef string TIdentifier
 //      character it has no special meaning and is interpreted
 //      literally.
 typedef string TPattern
-
 
 // A search pattern or identifier. Used as input
 // parameter for many of the catalog functions.
@@ -410,7 +378,6 @@ struct TOperationHandle {
   2: required TOperationType op\_type
 }
 
-
 // OpenSession()
 //
 // Open a session (connection) on the server against
@@ -445,7 +412,6 @@ struct TOpenSessionResp {
   4: map<string, string> configuration
 }
 
-
 // CloseSession()
 //
 // Closes the specified session and frees any resources
@@ -458,7 +424,6 @@ struct TCloseSessionReq {
 struct TCloseSessionResp {
   1: required TStatus status
 }
-
 
 // GetInfo()
 //
@@ -481,7 +446,6 @@ struct TGetInfoResp {
   // key/value pairs representing Info values
   2: map<string, string> info
 }
-
 
 // ExecuteStatement()
 //
@@ -508,7 +472,6 @@ struct TExecuteStatementResp {
   2: TOperationHandle op\_handle
 }
 
-
 // GetTypeInfo()
 //
 // Get information about types supported by the HiveServer instance.
@@ -526,7 +489,6 @@ struct TGetTypeInfoResp {
   1: required TStatus status
   2: TOperationHandle op\_handle
 }  
-
 
 // GetTables()
 //
@@ -586,7 +548,6 @@ struct TGetTablesResp {
   2: TOperationHandle op\_handle
 }
 
-
 // GetColumns()
 //
 // Returns a list of columns in the specified tables.
@@ -617,7 +578,6 @@ struct TGetColumnsResp {
   1: required TStatus status
   2: optional TOperationHandle op\_handle
 }
-
 
 // GetFunctions()
 //
@@ -670,7 +630,6 @@ struct TGetOperationStatusResp {
   2: TOperationState op\_state
 }
 
-
 // CancelOperation()
 //
 // Cancels processing on the specified operation handle and
@@ -683,7 +642,6 @@ struct TCancelOperationReq {
 struct TCancelOperationResp {
   1: required TStatus status
 }
-
 
 // GetQueryPlan()
 //
@@ -699,7 +657,6 @@ struct TGetQueryPlanResp {
   2: optional queryplan.QueryPlan query\_plan
 }
 
-
 // CloseOperation()
 //
 // Given an operation in the FINISHED, CANCELED,
@@ -714,7 +671,6 @@ struct TCloseOperationResp {
   1: required TStatus status
 }
 
-
 // GetResultSetMetadata()
 //
 // Retrieves schema information for the specified operation
@@ -727,7 +683,6 @@ struct TGetResultSetMetadataResp {
   1: required TStatus status
   2: optional TTableSchema schema
 }
-
 
 enum TFetchOrientation {
   // Get the next rowset. The fetch offset is ignored.
@@ -813,10 +768,7 @@ service TSQLService {
   TFetchResultsResp FetchResults(1:TFetchResultsReq req);
 }
 
-
 ```
-
-
 
  
 

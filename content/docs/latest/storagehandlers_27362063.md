@@ -3,23 +3,9 @@ title: "Apache Hive : StorageHandlers"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : StorageHandlers
 
-
-
-
-
-
 # Hive Storage Handlers
-
 
 * [Hive Storage Handlers]({{< ref "#hive-storage-handlers" >}})
 	+ [Introduction]({{< ref "#introduction" >}})
@@ -28,9 +14,6 @@ date: 2024-12-12
 	+ [Storage Handler Interface]({{< ref "#storage-handler-interface" >}})
 	+ [HiveMetaHook Interface]({{< ref "#hivemetahook-interface" >}})
 	+ [Open Issues]({{< ref "#open-issues" >}})
-
-
-
 
 ## Introduction
 
@@ -65,8 +48,6 @@ Note that we avoid the term *file-based* in these definitions, since the form of
 
 Storage handlers are associated with a table when it is created via the new STORED BY clause, an alternative to the existing ROW FORMAT and STORED AS clause:
 
-
-
 ```
 CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table\_name
   [(col\_name data\_type [COMMENT col\_comment], ...)]
@@ -88,8 +69,6 @@ See [CREATE TABLE]({{< ref "#create-table" >}}) and [Row Format, Storage Format,
 
 Example:
 
-
-
 ```
 CREATE TABLE hbase\_table\_1(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -105,8 +84,6 @@ DROP TABLE works as usual, but ALTER TABLE is not yet supported for non-native t
 ## Storage Handler Interface
 
 The Java interface which must be implemented by a storage handler is reproduced below; for details, see the Javadoc in the code:
-
-
 
 ```
 package org.apache.hadoop.hive.ql.metadata;
@@ -141,8 +118,6 @@ See also [FilterPushdownDev]({{< ref "filterpushdowndev_27362092" >}}) to learn 
 ## HiveMetaHook Interface
 
 The `HiveMetaHook` interface is reproduced below; for details, see the Javadoc in the code:
-
-
 
 ```
 package org.apache.hadoop.hive.metastore;
@@ -181,8 +156,6 @@ Also note that there is no facility for two-phase commit in metadata transaction
 * It may be a good idea to support temporary disablement of metastore hooks as part of manual catalog repair operations
 * The CREATE TABLE grammar isn't quite as strict as the one given above; some changes are needed in order to prevent STORED BY and row\_format both being specified at once
 * CREATE TABLE AS SELECT is currently prohibited for creating a non-native table. It should be possible to support this, although it may not make sense for all storage handlers. For example, for HBase, it won't make sense until the storage handler is capable of automatically filling in column mappings.
-
-
 
  
 

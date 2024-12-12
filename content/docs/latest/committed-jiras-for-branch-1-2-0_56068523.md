@@ -3,20 +3,7 @@ title: "Apache Hive : Committed JIRAS for branch-1.2.0"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Committed JIRAS for branch-1.2.0
-
-
-
-
-
 
 # Last phase of JIRAs for inclusion to 1.2 release (list open for product outages, regressions and trivial patches)
 
@@ -27,8 +14,6 @@ date: 2024-12-12
 **Status** : Open for inclusion, but restricted on type of issue
 
  
-
-
 
 | Category | Outage/Regression/Trivial ? | JIRA | Current Statusfor 1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- | --- |
@@ -57,8 +42,6 @@ date: 2024-12-12
 This is to be a list of jiras that were initially intended for 1.2, but cannot be finished in time for 1.2.0, and are not blockers/outages but desired in 1.2 nonetheless. These will be accepted as part of the RC process if they get done by then, but will not be considered release blockers. If 1.2.0 releases without them, they'll be on track for 1.2.1.
 
  
-
-
 
 | Category | JIRA | Current Status | Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -96,8 +79,6 @@ Closed
 **Status** : List frozen
 
  
-
-
 
 | Category | JIRA | Current Statusfor 1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -318,8 +299,6 @@ Closed
 
  
 
-
-
 | Category | JIRA | Current Statusfor 1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
 | Transactions | 
@@ -448,8 +427,6 @@ Closed
 **Status**: List frozen, all jiras in this list will be honoured for inclusion to Hive 1.2 and are approved for commit to branch-1.2.
 
  
-
-
 
 | Category | JIRA | Current Statusfor 1.2 | Developer/Committerrequesting inclusion |
 | --- | --- | --- | --- |
@@ -597,8 +574,6 @@ Closed
  
 
  
-
-
 
  
 

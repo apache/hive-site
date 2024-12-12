@@ -3,23 +3,9 @@ title: "Apache Hive : FilterPushdownDev"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : FilterPushdownDev
 
-
-
-
-
-
 # Filter Pushdown
-
 
 * [Filter Pushdown]({{< ref "#filter-pushdown" >}})
 	+ [Introduction]({{< ref "#introduction" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 	+ [Filter Passing]({{< ref "#filter-passing" >}})
 	+ [Filter Collection]({{< ref "#filter-collection" >}})
 	+ [Filter Decomposition]({{< ref "#filter-decomposition" >}})
-
-
-
 
 ## Introduction
 
@@ -59,8 +42,6 @@ There are a number of different parts to the overall effort.
 
 To achieve the loosest possible coupling, we are going to use a string as the primary representation for the filter. In particular, the string will be in the form produced when Hive unparses an `ExprNodeDesc`, e.g.
 
-
-
 ```
 ((key >= 100) and (key < 200))
 
@@ -68,16 +49,12 @@ To achieve the loosest possible coupling, we are going to use a string as the pr
 
 In general, this comes out as valid SQL, although it may not always match the original SQL exactly, e.g.
 
-
-
 ```
 cast(x as int)
 
 ```
 
 becomes
-
-
 
 ```
 UDFToInteger(x)
@@ -92,8 +69,6 @@ As mentioned above, we want to avoid duplication in code which interprets the fi
 
 We will also provide an IndexPredicateAnalyzer class capable of detecting simple [sargable](http://en.wikipedia.org/wiki/Sargable)  
  subexpressions in an `ExprNodeDesc` tree. In followups, we will provide support for discriminating and combining more complex indexable subexpressions.
-
-
 
 ```
 public class IndexPredicateAnalyzer
@@ -172,8 +147,6 @@ public class IndexSearchCondition
     ExprNodeDesc comparisonExpr);
 }
 
-
-
 ```
 
 ## Filter Passing
@@ -209,8 +182,6 @@ We are starting with non-native tables only; we'll revisit this for pushing filt
 
 Consider a filter like
 
-
-
 ```
 x > 3 AND upper(y) = 'XYZ'
 
@@ -225,8 +196,6 @@ In order for this to be possible, the storage handler needs to be able to negoti
 
 In order to support this interaction, we will introduce a new (optional) interface to be implemented by storage handlers:
 
-
-
 ```
 public interface HiveStoragePredicateHandler {
   public DecomposedPredicate decomposePredicate(
@@ -240,7 +209,6 @@ public interface HiveStoragePredicateHandler {
   }
 }
 
-
 ```
 
 Hive's optimizer (during predicate pushdown) calls the decomposePredicate method, passing in the full expression and receiving back the decomposition (or null to indicate that no pushdown was possible). The `pushedPredicate` gets passed back to the storage handler's input format later, and the `residualPredicate` is attached to the `FilterOperator`.
@@ -248,8 +216,6 @@ Hive's optimizer (during predicate pushdown) calls the decomposePredicate method
 It is assumed that storage handlers which are sophisticated enough to implement this interface are suitable for tight coupling to the `ExprNodeDesc` representation.
 
 Again, this interface is optional, and pushdown is still possible even without it. If the storage handler does not implement this interface, Hive will always implement the entire expression in the `FilterOperator`, but it will still provide the expression to the storage handler's input format; the storage handler is free to implement as much or as little as it wants.
-
-
 
  
 

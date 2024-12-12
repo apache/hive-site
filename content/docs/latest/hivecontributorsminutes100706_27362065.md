@@ -3,23 +3,9 @@ title: "Apache Hive : HiveContributorsMinutes100706"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveContributorsMinutes100706
 
-
-
-
-
-
 Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yongqiang He, Basab Malik, Vinithra Varadharajan, bc Wong, Arvind Prabhakar, Carl Steinbach
-
 
 * bc Wong gave a live demo of Cloudera's Hue framework and the Beeswax Hive web interface.
 	+ Slides from this talk are available here: <http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax>
@@ -37,8 +23,6 @@ Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yo
 		- HTML documentation generated from the xdoc will be posted to the Hive webpage when the new release is posted.
 	+ Carl is going to investigate the feasibility of writing a tool that converts documentation directly from !MoinMoin wiki markup to xdoc.
 * John agreed to host the next contributors meeting at Facebook.
-
-
 
  
 

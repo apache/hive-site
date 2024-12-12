@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference Status"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference Status
 
-
-
-
-
-
 # Current Status — GET status
-
 
 * [Current Status — GET status]({{< ref "#current-status-—-get-status" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-
-
-
 
 ## Description
 
@@ -47,8 +30,6 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **status** | "ok" if the WebHCat server was contacted. |
@@ -58,16 +39,12 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/status'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -79,14 +56,10 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
   
 
-
 **Navigation Links**
 Previous: [Response Types (GET :version)]({{< ref "webhcat-reference-responsetypes_34015937" >}})Next: [GET version]({{< ref "webhcat-reference-version_34015986" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

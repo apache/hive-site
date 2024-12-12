@@ -3,21 +3,7 @@ title: "Apache Hive : Materialized views"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Materialized views
-
-
-
-
-
-
 
 * [Introduction]({{< ref "#introduction" >}})
 	+ [Objectives]({{< ref "#objectives" >}})
@@ -32,11 +18,7 @@ date: 2024-12-12
 * [Materialized view lifecycle]({{< ref "#materialized-view-lifecycle" >}})
 * [Open issues (JIRA)]({{< ref "#open-issues--jira-" >}})
 
-
-
-
   
-
 
 Version information
 
@@ -61,8 +43,6 @@ In this section, we present the main operations that are currently present in Hi
 ### Materialized views creation
 
 The syntax to create a materialized view in Hive is very similar to the [CTAS statement](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)) syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.
-
-
 
 ```
 CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db\_name.]materialized\_view\_name
@@ -103,8 +83,6 @@ FROM src;
 
 Currently we support the following operations that aid at managing the materialized views in Hive:
 
-
-
 ```
 -- Drops a materialized view
 DROP MATERIALIZED VIEW [db\_name.]materialized\_view\_name;
@@ -123,8 +101,6 @@ Once a materialized view has been created, the optimizer will be able to exploit
 
 The rewriting algorithm can be enabled and disabled globally using the `hive.materializedview.rewriting and hive.materializedview.rewriting.sql` configuration properties (default value is `true`). In addition, users can selectively enable/disable materialized views for rewriting. Recall that, by default, materialized views are enabled for rewriting at creation time. To alter that behavior, the following statement can be used:
 
-
-
 ```
 ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name ENABLE|DISABLE REWRITE;
 ```
@@ -136,8 +112,6 @@ Hive supports two types of rewriting algorithms:
 ### Example 1
 
 Consider the database schema created by the following DDL statements:
-
-
 
 ```
 CREATE TABLE emps (
@@ -159,8 +133,6 @@ TBLPROPERTIES ('transactional'='true');
 
 Assume we want to obtain frequently information about employees that were hired in different period granularities after 2016 and their departments. We may create the following materialized view:
 
-
-
 ```
 CREATE MATERIALIZED VIEW mv1
 AS
@@ -171,8 +143,6 @@ WHERE hire\_date >= '2016-01-01';
 ```
 
 Then, the following query extracting information about employees that were hired in Q1 2018 is issued to Hive:
-
-
 
 ```
 SELECT empid, deptname
@@ -185,8 +155,6 @@ WHERE hire\_date >= '2018-01-01'
 
 Hive will be able to rewrite the incoming query using the materialized view, including a compensation predicate on top of the scan over the materialization. Though the rewriting happens at the algebraic level, to illustrate this example, we include the SQL statement equivalent to the rewriting using the `mv` used by Hive to answer the incoming query:
 
-
-
 ```
 SELECT empid, deptname
 FROM mv1
@@ -197,8 +165,6 @@ WHERE hire\_date >= '2018-01-01'
 ### Example 2
 
 For the second example, consider the star schema based on the [SSB benchmark](https://www.cs.umb.edu/~poneil/StarSchemaB.PDF) created by the following DDL statements:
-
-
 
 ```
 CREATE TABLE `customer`(
@@ -291,8 +257,6 @@ TBLPROPERTIES ('transactional'='true');
 
 As you can observe, we declare multiple integrity constraints for the database, using the `RELY` keyword so they are visible to the optimizer. Now assume we want to create a materialization that denormalizes the database contents (consider `dims` to be the set of dimensions that we will be querying often):
 
-
-
 ```
 CREATE MATERIALIZED VIEW mv2
 AS
@@ -309,8 +273,6 @@ WHERE lo\_orderdate = d\_datekey
 
 The materialized view above may accelerate queries that execute joins among the different tables in the database. For instance, consider the following query:
 
-
-
 ```
 SELECT SUM(lo\_extendedprice * lo\_discount)
 FROM lineorder, dates
@@ -320,8 +282,6 @@ WHERE lo\_orderdate = d\_datekey
 ```
 
 Though the query does not use all tables present in the materialized view, it may be answered using the materialized view because the joins in `mv2` preserve all the rows in the `lineorder` table (we know this because of the integrity constraints). Hence, the materialized view-based rewriting produced by the algorithm would be the following:
-
-
 
 ```
 SELECT SUM(d\_price)
@@ -333,8 +293,6 @@ WHERE d\_year = 2013
 ### Example 3
 
 For the third example, consider the database schema with a single table that stores the edit events produced by a given website:
-
-
 
 ```
 CREATE TABLE `wiki` (
@@ -349,8 +307,6 @@ TBLPROPERTIES ('transactional'='true');
 
 For this example, we will use Druid to store the materialized view. Assume we want to execute queries over the table, however we are not interested on any information about the events at a higher time granularity level than a minute. We may create the following materialized view that rolls up the events by the minute:
 
-
-
 ```
 CREATE MATERIALIZED VIEW mv3
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
@@ -364,8 +320,6 @@ GROUP BY floor(time to minute), page;
 
 Then, assume we need to answer the following query that extracts the number of characters added per month:
 
-
-
 ```
 SELECT floor(time to month),
     SUM(characters\_added) AS c\_added
@@ -374,8 +328,6 @@ GROUP BY floor(time to month);
 ```
 
 Hive will be able to rewrite the incoming query using `mv3` by rolling up the data of the materialized view to month granularity and projecting the information needed for the query result:
-
-
 
 ```
 SELECT floor(time to month),
@@ -389,8 +341,6 @@ GROUP BY floor(time to month);
 ## Materialized view maintenance
 
 When data in the source tables used by a materialized view changes, e.g., new data is inserted or existing data is modified, we will need to refresh the contents of the materialized view to keep it up-to-date with those changes. Currently, the rebuild operation for a materialized view needs to be triggered by the user. In particular, the user should execute the following statement:
-
-
 
 ```
 ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name REBUILD;
@@ -423,8 +373,6 @@ By default, once a materialized view contents are stale, the materialized view w
 
 However, in some occasions it may be fine to accept stale data, e.g., if the materialized view uses non-transactional tables and hence we cannot verify whether its contents are outdated, however we still want to use the automatic rewriting. For those occasions, we can combine a rebuild operation run periodically, e.g., every 5minutes, and define the required freshness of the materialized view data using the `hive.materializedview.rewriting.time.window` configuration parameter, for instance:
 
-
-
 ```
 SET hive.materializedview.rewriting.time.window=10min;
 ```
@@ -432,12 +380,6 @@ SET hive.materializedview.rewriting.time.window=10min;
 The parameter value can be also overridden by a concrete materialized view just by setting it as a table property when the materialization is created.
 
 ## Open issues (JIRA)
-
-
-
-
-
-
 
 |
 |  |
@@ -724,30 +666,14 @@ The parameter value can be also overridden by a concrete materialized view just 
   |
 | 
 
-
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
 
-
  |
-
-
-
-
 
 Showing 20 out of
 [24 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+%22Materialized+views%22++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC++&src=confmacro) 
 
-
-
-
-
-
-
-
   
-
-
-
 
  
 

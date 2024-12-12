@@ -3,30 +3,13 @@ title: "Apache Hive : HiveJDBCInterface"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveJDBCInterface
 
-
-
-
-
-
 # Hive JDBC Driver
-
 
 * [Hive JDBC Driver]({{< ref "#hive-jdbc-driver" >}})
 	+ [Integration with Pentaho]({{< ref "#integration-with-pentaho" >}})
 	+ [Integration with SQuirrel SQL Client]({{< ref "#integration-with-squirrel-sql-client" >}})
-
-
-
 
 The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.
 
@@ -36,8 +19,6 @@ To see how the JDBC interface can be used, see [sample code]({{< ref "hiveclient
 
 1. Download pentaho report designer from the [pentaho website](http://sourceforge.net/project/showfiles.php?group_id=140317&package_id=192362).
 2. Overwrite report-designer.sh with the code provided below.
-
-
 
 ```
 #!/bin/sh
@@ -59,8 +40,6 @@ java -XX:MaxPermSize=512m -cp $CLASSPATH org.pentaho.commons.launcher.Launcher
 4. Compile and run the Hive JDBC client code to load some data (I haven't figured out how to do this in report designer yet). See [sample code]({{< ref "hiveclient_27362101" >}}) for loading the data.
 5. Run the report designer (note step 2).
 
-
-
 ```
 $ sh reporter-designer.sh
 
@@ -69,8 +48,6 @@ $ sh reporter-designer.sh
 7. Select a template - say 'fall template' - next.
 8. Create a new data source - JDBC (custom), Generic database.
 9. Provide Hive JDBC parameters. Give the connection a name 'hive'.
-
-
 
 ```
    URL: jdbc:hive://localhost:10000/default
@@ -99,15 +76,11 @@ $ sh reporter-designer.sh
 	```
 3. Select 'Extra Class Path -> Add' to add the following jars from your local Hive and Hadoop distribution.
 
-
-
 ```
    HIVE\_HOME/build/dist/lib/*.jar
    HADOOP\_HOME/hadoop-*-core.jar
 ```
 4. Select 'List Drivers'. This will cause SQuirrel to parse your jars for JDBC drivers and might take a few seconds. From the 'Class Name' input box select the Hive driver:
-
-
 
 ```
    org.apache.hadoop.hive.jdbc.HiveDriver
@@ -123,8 +96,6 @@ $ sh reporter-designer.sh
 When the connection is established you will see errors in the log console and might get a warning that the driver is not JDBC 3.0 compatible. These alerts are due to yet-to-be-implemented parts of the JDBC metadata API and can safely be ignored. To test the connection enter *SHOW TABLES* in the console and click the run icon.
 
 Also note that when a query is running, support for the 'Cancel' button is not yet available.
-
-
 
  
 

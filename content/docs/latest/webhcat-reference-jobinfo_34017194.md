@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference JobInfo"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference JobInfo
 
-
-
-
-
-
 # Job Information — GET queue/:jobid
-
 
 * [Job Information — GET queue/:jobid]({{< ref "#job-information-—-get-queue/:jobid" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [JSON Output (Hive 0.12.0 and later)]({{< ref "#json-output--hive-0-12-0-and-later-" >}})
-
-
-
 
 ## Description
 
@@ -54,8 +37,6 @@ Use `[GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})` instead.
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **:jobid** | The job ID to check. This is the ID received when the job was created. | Required | None |
@@ -63,8 +44,6 @@ Use `[GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})` instead.
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
-
-
 
 | Name | Description |
 | --- | --- |
@@ -82,16 +61,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/queue/job\_201112212038\_0004?user.name=ctdean'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -138,8 +113,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 Version: Hive 0.12.0 and later
 
 Starting in Hive release 0.12.0, `GET queue/:jobid` returns user arguments as well as status information ([HIVE-5031](https://issues.apache.org/jira/browse/HIVE-5031)).
-
-
 
 ```
 {
@@ -198,9 +171,6 @@ Previous: [GET queue]({{< ref "webhcat-reference-jobids_34017187" >}})
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaced in Hive 0.12.0 by: [GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})
-
-
-
 
  
 

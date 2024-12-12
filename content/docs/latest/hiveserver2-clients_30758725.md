@@ -3,21 +3,7 @@ title: "Apache Hive : HiveServer2 Clients"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveServer2 Clients
-
-
-
-
-
-
 
 * [Beeline – Command Line Shell]({{< ref "#beeline-–-command-line-shell" >}})
 	+ [Beeline Example]({{< ref "#beeline-example" >}})
@@ -69,9 +55,6 @@ date: 2024-12-12
 	+ [Passing HTTP Header Key/Value Pairs via JDBC Driver]({{< ref "#passing-http-header-key/value-pairs-via-jdbc-driver" >}})
 	+ [Passing Custom HTTP Cookie Key/Value Pairs via JDBC Driver]({{< ref "#passing-custom-http-cookie-key/value-pairs-via-jdbc-driver" >}})
 
-
-
-
 This page describes the different clients supported by [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}).  Other documentation for HiveServer2 includes:
 
 * [HiveServer2 Overview]({{< ref "hiveserver2-overview_65147648" >}})
@@ -93,8 +76,6 @@ The Beeline shell works in both embedded mode as well as remote mode. In the emb
 In remote mode HiveServer2 only accepts valid Thrift calls – even in HTTP mode, the message body contains Thrift payloads.
 
 ### Beeline Example
-
-
 
 ```
 % bin/beeline 
@@ -126,10 +107,7 @@ show tables;
 
   
 
-
 You can also specify the connection parameters on command line. This means you can find the command with the connection string from your UNIX shell history. 
-
-
 
 ```
 % beeline -u jdbc:hive2://localhost:10000/default -n scott -w password\_file
@@ -142,14 +120,11 @@ Beeline with NoSASL connection
 
 If you'd like to connect via NOSASL mode, you must specify the authentication mode explicitly:
 
-
 ```
 % bin/beeline  
 beeline> !connect jdbc:hive2://<host>:<port>/<db>;auth=noSasl hiveuser pass 
 ```
 ### Beeline Commands
-
-
 
 | Command | Description |
 | --- | --- |
@@ -157,8 +132,6 @@ beeline> !connect jdbc:hive2://<host>:<port>/<db>;auth=noSasl hiveuser pass
 | !delimiter | Set the delimiter for queries written in Beeline. Multi-character delimiters are allowed, but quotation marks, slashes, and -- are not allowed. Defaults to ;Usage: `!delimiter $$`Version: 3.0.0 ([HIVE-10865](https://issues.apache.org/jira/browse/HIVE-10865)) |
 
 ### Beeline Properties
-
-
 
 | Property | Description |
 | --- | --- |
@@ -173,8 +146,6 @@ Version: 4.0.0 ([HIVE-22853](https://issues.apache.org/jira/browse/HIVE-22853)) 
 Hive specific commands (same as [Hive CLI commands]({{< ref "#hive-cli-commands" >}})) can be run from Beeline, when the Hive JDBC driver is used.
 
 Use "`;`" (semicolon) to terminate commands. Comments in scripts can be specified using the "`--`" prefix.
-
-
 
 | Command | Description |
 | --- | --- |
@@ -196,8 +167,6 @@ Use "`;`" (semicolon) to terminate commands. Comments in scripts can be specifie
 ### Beeline Command Options
 
 The Beeline CLI supports these command line options:
-
-
 
 | Option | Description |
 | --- | --- |
@@ -262,8 +231,6 @@ This is the default format mode.
 
 ExampleResult of the query *`select id, value, comment from test_table`*
 
-
-
 ```
 +-----+---------+-----------------+
 | id  |  value  |     comment     |
@@ -279,8 +246,6 @@ ExampleResult of the query *`select id, value, comment from test_table`*
 Each row of the result is displayed in a block of key-value format, where the keys are the names of the columns.
 
 ExampleResult of the query *`select id, value, comment from test_table`*
-
-
 
 ```
 id       1
@@ -303,8 +268,6 @@ The values of a row are displayed as attributes on the "result" element. The nam
 
 ExampleResult of the query *`select id, value, comment from test_table`*
 
-
-
 ```
 <resultset>
   <result id="1" value="Value1" comment="Test comment 1"/>
@@ -318,8 +281,6 @@ ExampleResult of the query *`select id, value, comment from test_table`*
 The result is displayed in an XML format where each row is a "result" element in the XML. The values of a row are displayed as child elements of the result element.
 
 ExampleResult of the query *`select id, value, comment from test_table`*
-
-
 
 ```
 <resultset>
@@ -347,8 +308,6 @@ ExampleResult of the query *`select id, value, comment from test_table`*
 
 ExampleResult of the query *`select `String`, `Int`, `Decimal`, `Bool`, `Null`, `Binary` from test_table`*
 
-
-
 ```
 {"resultset":[{"String":"aaa","Int":1,"Decimal":3.14,"Bool":true,"Null":null,"Binary":"SGVsbG8sIFdvcmxkIQ"},{"String":"bbb","Int":2,"Decimal":2.718,"Bool":false,"Null":null,"Binary":"RWFzdGVyCgllZ2cu"}]}
 ```
@@ -358,8 +317,6 @@ ExampleResult of the query *`select `String`, `Int`, `Decimal`, `Bool`, `Null`, 
 (Hive 4.0) The result is displayed in JSON format where each row is a distinct JSON object.  This matches the expected format for a table created as JSONFILE format.
 
 ExampleResult of the query *`select `String`, `Int`, `Decimal`, `Bool`, `Null`, `Binary` from test_table`*
-
-
 
 ```
 {"String":"aaa","Int":1,"Decimal":3.14,"Bool":true,"Null":null,"Binary":"SGVsbG8sIFdvcmxkIQ"}
@@ -383,8 +340,6 @@ ExampleResult of the query *`select id, value, comment from test_table`*
 
 csv2
 
-
-
 ```
 id,value,comment
 1,Value1,Test comment 1
@@ -395,8 +350,6 @@ id,value,comment
 
 tsv2
 
-
-
 ```
 id	value	comment
 1	Value1	Test comment 1
@@ -405,8 +358,6 @@ id	value	comment
 ```
 
 dsv (the delimiter is |)
-
-
 
 ```
 id|value|comment
@@ -428,8 +379,6 @@ Example Result of the query *`select id, value, comment from test_table`*
 
 csv2, quoting is enabled
 
-
-
 ```
 id,value,comment
 1,"Value,1",Value contains comma
@@ -438,8 +387,6 @@ id,value,comment
 ```
 
 csv2, quoting is disabled
-
-
 
 ```
 id,value,comment
@@ -459,8 +406,6 @@ Example Result of the query *`select id, value, comment from test_table`*
 
 csv
 
-
-
 ```
 'id','value','comment'
 '1','Value1','Test comment 1'
@@ -469,8 +414,6 @@ csv
 ```
 
 tsv
-
-
 
 ```
 'id'	'value'	'comment'
@@ -504,15 +447,11 @@ Some versions of Beeline client may require a workaround to allow the *nohup* c
 
 The following environment variable can be updated:
 
-
-
 ```
 export HADOOP\_CLIENT\_OPTS="$HADOOP\_CLIENT\_OPTS -Djline.terminal=jline.UnsupportedTerminal"
 ```
 
 Running with nohangup (nohup) and ampersand (&) will place the process in the background and allow the terminal to disconnect while keeping the Beeline process running.  
-
-
 
 ```
 nohup beeline --silent=true --showHeader=true --outputformat=dsv -f query.hql </dev/null > /tmp/output.log 2> /tmp/error.log &
@@ -578,8 +517,6 @@ ZooKeeper-based service discovery introduced in Hive 0.14.0 ([HIVE-7935](https:/
 
 The minimal configuration example is as follows.
 
-
-
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
@@ -595,7 +532,6 @@ The minimal configuration example is as follows.
 ```
 
   
-
 
 With further changes in Hive 2.0.0 and 1.3.0 (unreleased, [HIVE-11581](https://issues.apache.org/jira/browse/HIVE-11581)), none of the additional configuration parameters such as authentication mode, transport mode, or SSL parameters need to be specified, as they are retrieved from the ZooKeeper entries along with the hostname.
 
@@ -623,9 +559,6 @@ The URL connection properties in beeline-hs2-connection.xml must have the prefix
 
   
 
-
-
-
 ```
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -643,8 +576,6 @@ The URL connection properties in beeline-hs2-connection.xml must have the prefix
 
 In case of properties which are present in both beeline-hs2-connection.xml and hive-site.xml, the property value derived from beeline-hs2-connection.xml takes precedence. For example in the below beeline-hs2-connection.xml file provides the value of principal for Beeline connection in a Kerberos enabled environment. In this case the property value for beeline.hs2.connection.principal overrides the value of HiveConf.ConfVars.HIVE\_SERVER2\_KERBEROS\_PRINCIPAL from hive-site.xml as far as connection URL is concerned.
 
-
-
 ```
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -661,8 +592,6 @@ In case of properties which are present in both beeline-hs2-connection.xml and h
 ```
 
 In case of properties beeline.hs2.connection.hosts, beeline.hs2.connection.hiveconf and beeline.hs2.connection.hivevar the property value is a comma-separated list of values. For example the following beeline-hs2-connection.xml provides the hiveconf and hivevar values in a comma separated format.
-
-
 
 ```
 <?xml version="1.0"?>
@@ -689,8 +618,6 @@ When the beeline-hs2-connection.xml is present and when no other arguments are p
 
 In addition to the above method of using hive-site.xml and beeline-hs2-connection.xml for deriving the JDBC connection URL to use when connecting to HiveServer2 from Beeline, a user can optionally add beeline-site.xml to their classpath, and within beeline-site.xml, she can specify complete JDBC URLs. A user can also specify multiple named URLs and use `beeline -c <named_url>` to connect to a specific URL. This is particularly useful when the same cluster has multiple HiveServer2 instances running with different configurations. One of the named URLs is treated as default (which is the URL that gets used when the user simply types `beeline`). An example beeline-site.xml is shown below:
 
-
-
 ```
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -714,8 +641,6 @@ In addition to the above method of using hive-site.xml and beeline-hs2-connecti
 
 In the above example, simply typing `beeline` opens a new JDBC connection to `jdbc:hive2://localhost:10000/default;user=hive;password=hive`. If both beeline-site.xml and beeline-hs2-connection.xml are present in the classpath, the final URL is created by applying the properties specified in beeline-hs2-connection.xml on top of the URL properties derived from beeline-site.xml. As an example consider the following beeline-hs2-connection.xml:
 
-
-
 ```
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -732,8 +657,6 @@ In the above example, simply typing `beeline` opens a new JDBC connection to `jd
 ```
 
 Consider the following beeline-site.xml:
-
-
 
 ```
 <?xml version="1.0"?>
@@ -766,8 +689,6 @@ You can use JDBC to access data stored in a relational database or other tabular
   
 For example:
 
-
-
 ```
 Class.forName("org.apache.hive.jdbc.HiveDriver");
 
@@ -776,16 +697,12 @@ Class.forName("org.apache.hive.jdbc.HiveDriver");
   
 For example:
 
-
-
 ```
 Connection cnct = DriverManager.getConnection("jdbc:hive2://<host>:<port>", "<user>", "<password>");
 
 ```
 
 The default `<port>` is 10000. In non-secure configurations, specify a `<user>` for the query to run as. The `<password>` field value is ignored in non-secure mode.
-
-
 
 ```
 Connection cnct = DriverManager.getConnection("jdbc:hive2://<host>:<port>", "<user>", "");
@@ -797,8 +714,6 @@ In Kerberos secure mode, the user information is based on the Kerberos credentia
   
 For example:
 
-
-
 ```
 Statement stmt = cnct.createStatement();
 ResultSet rset = stmt.executeQuery("SELECT foo FROM bar");
@@ -809,8 +724,6 @@ ResultSet rset = stmt.executeQuery("SELECT foo FROM bar");
 These steps are illustrated in the sample code below.
 
 #### JDBC Client Sample Code
-
-
 
 ```
 import java.sql.SQLException;
@@ -885,8 +798,6 @@ public class HiveJdbcClient {
 
 #### Running the JDBC Sample Code
 
-
-
 ```
 # Then on the command-line
 $ javac HiveJdbcClient.java
@@ -929,8 +840,6 @@ $ java -cp $CLASSPATH HiveJdbcClient
 
 Alternatively, you can run the following bash script, which will seed the data file and build your classpath before invoking the client. The script adds all the additional jars needed for using HiveServer2 in embedded mode as well.
 
-
-
 ```
 #!/bin/bash
 HADOOP\_HOME=/your/path/to/hadoop
@@ -953,8 +862,6 @@ java -cp $CLASSPATH HiveJdbcClient
 ## JDBC Data Types
 
 The following table lists the data types implemented for HiveServer2 JDBC.
-
-
 
 | Hive Type | Java Type | Specification |
 | --- | --- | --- |
@@ -985,7 +892,6 @@ The client needs to have a valid Kerberos ticket in the ticket cache before conn
 **NOTE**: If you don't have a "/" after the port number, the jdbc driver does not parse the hostname and ends up running HS2 in embedded mode . So if you are specifying a hostname, make sure you have a "/" or "/<dbname>" after the port number.
 
 In the case of LDAP, CUSTOM or PAM authentication, the client needs to pass a valid user name and password to the JDBC connection API.
-
 
 ```
 To use sasl.qop, add the following to the sessionconf part of your Hive JDBC hive connection string, e.g.
@@ -1022,8 +928,6 @@ To use a pre-authenticated subject you will need the following changes.
 3. Open the connection in Subject.doAs().
 
 The following code snippet illustrates the usage (refer to [HIVE-6486](https://issues.apache.org/jira/browse/HIVE-6486) for a complete [test case](https://issues.apache.org/jira/secure/attachment/12633984/TestCase_HIVE-6486.java)):
-
-
 
 ```
 static Connection getConnection( Subject signedOnUserSubject ) throws Exception{
@@ -1094,8 +998,6 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 	```
 3. Select 'Extra Class Path -> Add' to add the following jars from your local Hive and Hadoop distribution.
 
-
-
 ```
    HIVE\_HOME/lib/hive-jdbc-*-standalone.jar
    HADOOP\_HOME/share/hadoop/common/hadoop-common-*.jar 
@@ -1107,8 +1009,6 @@ Hive JDBC standalone jars are used in Hive 0.14.0 onward ([HIVE-538](https://iss
 
 The hadoop-common jars are for Hadoop 2.0; for previous versions of Hadoop, use `HADOOP_HOME/hadoop-*-core.jar` instead.
 4. Select 'List Drivers'. This will cause SQuirrel to parse your jars for JDBC drivers and might take a few seconds. From the 'Class Name' input box select the Hive driver for working with HiveServer2:
-
-
 
 ```
    org.apache.hive.jdbc.HiveDriver
@@ -1215,22 +1115,15 @@ When the above URL is specified, Beeline will call underlying requests to add HT
 
   
 
+  
 
   
 
-
   
 
-
   
-
-
-  
-
 
 Save
-
-
 
  
 

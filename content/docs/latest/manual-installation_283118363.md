@@ -3,21 +3,7 @@ title: "Apache Hive : Manual Installation"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Manual Installation
-
-
-
-
-
-
 
 * [Installing, configuring and running Hive]({{< ref "#installing,-configuring-and-running-hive" >}})
 	+ [Prerequisites]({{< ref "#prerequisites" >}})
@@ -36,9 +22,6 @@ date: 2024-12-12
 	+ [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
 		- [HCatalog]({{< ref "#hcatalog" >}})
 		- [WebHCat (Templeton)]({{< ref "#webhcat--templeton-" >}})
-
-
-
 
 # Installing, configuring and running Hive
 
@@ -63,8 +46,6 @@ You will have to build protobuf 2.5 later. And it doesn't compile with ARM JDK. 
 
 JDK install on apple ARM: 
 
-
-
 ```
 brew install homebrew/cask-versions/adoptopenjdk8 --cask
 brew untap adoptopenjdk/openjdk
@@ -75,8 +56,6 @@ brew untap adoptopenjdk/openjdk
 Just install maven and configure the JAVA\_HOME properly. 
 
 Notes for arm: after a proper configuration, you should see something like this:
-
-
 
 ```
 mvn -version
@@ -93,8 +72,6 @@ As you can see, even if it is an arm processor, maven thinks the architecture is
 
 You have to download and compile protobuf. And also, install it into the local maven repository. Protobuf 2.5.0 is not ready for ARM. On this chipset, you will need to do some extra steps.
 
-
-
 ```
 wget https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.bz2
 tar -xvf protobuf-2.5.0.tar.bz2
@@ -105,8 +82,6 @@ cd protobuf-2.5.0
 On ARM, edit the src/google/protobuf/stubs/platform\_macros.h and add arm to the part, processor architecture detection, after the last elif branch:   
  
 
-
-
 ```
 #elif defined(\_\_arm64\_\_)
 #define GOOGLE\_PROTOBUF\_ARCH\_ARM 1
@@ -115,8 +90,6 @@ On ARM, edit the src/google/protobuf/stubs/platform\_macros.h and add arm to the
 
 Now, you can compile and install protobuf:
 
-
-
 ```
 make
 make check
@@ -124,8 +97,6 @@ sudo make install
 ```
 
 You can validate your install:
-
-
 
 ```
 protoc --version
@@ -137,8 +108,6 @@ Firstly, move through the instructions on the official documentation, single-nod
 
 After that, set up HADOOP\_HOME:
 
-
-
 ```
 export HADOOP\_HOME=/yourpathtohadoop/hadoop-3.3.6
 ```
@@ -149,8 +118,6 @@ Tez will require some additional steps. Hadoop uses a tez tarball but it expects
 
 Download tez, extract and re-compress the tar: 
 
-
-
 ```
 wget https://dlcdn.apache.org/tez/0.10.3/apache-tez-0.10.3-bin.tar.gz
 tar -xzvf apache-tez-0.10.3-bin.tar.gz
@@ -159,8 +126,6 @@ tar zcvf ../apache-tez-0.10.3-bin.tar.gz * && cd ..
 ```
 
 Add the necessary tez files to hdfs
-
-
 
 ```
 $HADOOP\_HOME/sbin/start-dfs.sh	# start hdfs
@@ -173,16 +138,12 @@ $HADOOP\_HOME/sbin/stop-all.sh # stop hdfs
 
 Set up TEZ\_HOME and HADOOP\_CLASSPATH environment variables
 
-
-
 ```
 export TEZ\_HOME=/yourpathtotez/apache-tez-0.10.3-bin
 export HADOOP\_CLASSPATH=$TEZ\_HOME/*:$TEZ\_HOME/conf
 ```
 
 Create a new config file for Tez: $TEZ\_HOME/conf/tez-site.xml
-
-
 
 ```
 <configuration>
@@ -196,8 +157,6 @@ Create a new config file for Tez: $TEZ\_HOME/conf/tez-site.xml
 ## Extra hadoop configurations to make everything working
 
 Modify $HADOOP\_HOME/**etc/hadoop/core-site.xml**
-
-
 
 ```
 <configuration>
@@ -220,8 +179,6 @@ Modify $HADOOP\_HOME/**etc/hadoop/core-site.xml**
 
 Modify $HADOOP\_HOME/**etc/hadoop/hadoop-env.sh**
 
-
-
 ```
 # JAVA\_HOME
 export JAVA\_HOME=/yourpathtojavahome/javahome
@@ -233,8 +190,6 @@ ${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
 ```
 
 Modify $HADOOP\_HOME/**etc/hadoop/mapred-site.xml**
-
-
 
 ```
 <configuration>
@@ -250,8 +205,6 @@ Modify $HADOOP\_HOME/**etc/hadoop/mapred-site.xml**
 ```
 
 Modify $HADOOP\_HOME/**etc/hadoop/yarn-site.xml**
-
-
 
 ```
 <configuration>
@@ -283,15 +236,11 @@ Start hadoop
 
 If you already started hadoop before, stop it. As we configured yarn and map-reduce, we have to restart it and make sure yarn is running:
 
-
-
 ```
 $HADOOP\_HOME/sbin/stop-all.sh
 ```
 
 And start hadoop:
-
-
 
 ```
 $HADOOP\_HOME/sbin/start-all.sh
@@ -303,16 +252,12 @@ Start by downloading the most recent stable release of Hive from one of the Apac
 
 Next you need to unpack the tarball. This will result in the creation of a subdirectory named `hive-x.y.z` (where `x.y.z` is the release number):
 
-
-
 ```
 wget https://dlcdn.apache.org/hive/hive-4.0.0/apache-hive-4.0.0-bin.tar.gz
 tar -xzvf apache-hive-4.0.0-bin.tar.gz 
 ```
 
 Set the environment variable `HIVE_HOME` to point to the installation directory:
-
-
 
 ```
 cd apache-hive-4.0.0-bin
@@ -321,23 +266,17 @@ export HIVE\_HOME=/yourpathtohive/apache-hive-4.0.0-bin
 
 Add `$HIVE_HOME/bin` to your `PATH`:
 
-
-
 ```
 export PATH=$HIVE\_HOME/bin:$PATH
 ```
 
 Create a directory for external tables: 
 
-
-
 ```
 mkdir /yourpathtoexternaltables/warehouse
 ```
 
 Create a new config file for Hive: $HIVE\_HOME/conf/hive-site.xml
-
-
 
 ```
 <configuration>
@@ -375,15 +314,11 @@ Create a new config file for Hive: $HIVE\_HOME/conf/hive-site.xml
 
 Initialize metastore schema. It will create a directore called metastore\_db. It contains an embedded Derby database for metastore
 
-
-
 ```
 $HIVE\_HOME/bin/schematool -dbType derby -initSchema --verbose
 ```
 
 Run HiveServer2
-
-
 
 ```
 $HIVE\_HOME/bin/hiveserver2
@@ -393,15 +328,11 @@ $HIVE\_HOME/bin/hiveserver2
 
 Run beeline:
 
-
-
 ```
 $HIVE\_HOME/bin/beeline -u 'jdbc:hive2://localhost:10000/' -n yourusername
 ```
 
 As a test, create a table insert some value
-
-
 
 ```
 create table test (message string);
@@ -414,10 +345,7 @@ Configuring is the same as when we do it from tarball. The only difference is th
 
   
 
-
 Hive is available via Git at <https://github.com/apache/hive>. You can download it by running the following command.
-
-
 
 ```
 git clone git@github.com:apache/hive.git
@@ -425,18 +353,13 @@ git clone git@github.com:apache/hive.git
 
 In case you want to get a specific release branch, like 4.0.0, you can run that command: 
 
-
-
 ```
 git clone -b branch-4.0 --single-branch git@github.com:apache/hive.git
 ```
 
   
 
-
 To build Hive, execute the following command on the base directory:
-
-
 
 ```
   $ mvn clean install -Pdist,iceberg -DskipTests 
@@ -462,8 +385,6 @@ You can begin using Hive as soon as it is installed, it should be work on you co
 ## Beeline CLI
 
 HiveServer2 has a CLI called Beeline (see [Beeline – New Command Line Shell](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell)). To use Beeline, execute the following command in the Hive home directory:
-
-
 
 ```
 $ bin/beeline
@@ -492,8 +413,6 @@ HCatalog installation is documented [here]({{< ref "hcatalog-installhcat_3401340
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the hcatalog/webhcat/svr/src/main/bin/webhcat\_server.sh directory.
 
 WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat_34015585" >}}).
-
-
 
  
 

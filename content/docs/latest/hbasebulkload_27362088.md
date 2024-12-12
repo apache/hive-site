@@ -3,23 +3,9 @@ title: "Apache Hive : HBaseBulkLoad"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HBaseBulkLoad
 
-
-
-
-
-
 # Hive HBase Bulk Load
-
 
 * [Hive HBase Bulk Load]({{< ref "#hive-hbase-bulk-load" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -33,16 +19,11 @@ date: 2024-12-12
 	+ [Map New Table Back Into Hive]({{< ref "#map-new-table-back-into-hive" >}})
 	+ [Followups Needed]({{< ref "#followups-needed" >}})
 
-
-
-
 This page explains how to use Hive to bulk load data into a new (empty) HBase table per [HIVE-1295](https://issues.apache.org/jira/browse/HIVE-1295). (If you're not using a build which contains this functionality yet, you'll need to build from source and make sure this patch and HIVE-1321 are both applied.)
 
 ## Overview
 
 Ideally, bulk load from Hive into HBase would be part of [HBaseIntegration]({{< ref "hbaseintegration_27362089" >}}), making it as simple as this:
-
-
 
 ```
 CREATE TABLE new\_hbase\_table(rowkey string, x int, y int) 
@@ -89,8 +70,6 @@ TBD: provide some example numbers based on Facebook experiments; also reference 
 
 You will need to add a couple jar files to your path. First, put them in DFS:
 
-
-
 ```
 hadoop dfs -put /usr/lib/hive/lib/hbase-VERSION.jar /user/hive/hbase-VERSION.jar
 hadoop dfs -put /usr/lib/hive/lib/hive-hbase-handler-VERSION.jar /user/hive/hive-hbase-handler-VERSION.jar
@@ -98,8 +77,6 @@ hadoop dfs -put /usr/lib/hive/lib/hive-hbase-handler-VERSION.jar /user/hive/hive
 ```
 
 Then add them to your hive-site.xml:
-
-
 
 ```
 <property>
@@ -112,8 +89,6 @@ Then add them to your hive-site.xml:
 ## Prepare Range Partitioning
 
 In order to perform a parallel sort on the data, we need to range-partition it. The idea is to divide the space of row keys up into nearly equal-sized ranges, one per reducer which will be used in the parallel sort. The details will vary according to your source data, and you may need to run a number of exploratory Hive queries in order to come up with a good enough set of ranges. Here's one example:
-
-
 
 ```
 add jar lib/hive-contrib-0.7.0.jar;
@@ -135,8 +110,6 @@ limit 11;
 This works by ordering all of the rows in a .01% sample of the table (using a single reducer), and then selecting every nth row (here n=910000). The value of n is chosen by dividing the total number of rows in the sample by the desired number of ranges, e.g. 12 in this case (one more than the number of partitioning keys produced by the LIMIT clause). The assumption here is that the distribution in the sample matches the overall distribution in the table; if this is not the case, the resulting partition keys will lead to skew in the parallel sort.
 
 Once you have your sampling query defined, the next step is to save its results to a properly formatted file which will be used in a subsequent step. To do this, run commands like the following:
-
-
 
 ```
 create external table hb\_range\_keys(transaction\_id\_range\_start string)
@@ -166,8 +139,6 @@ The first command creates an external table defining the format of the file to b
 
 The second command populates it (using the sampling query previously defined). Usage of ORDER BY guarantees that a single file will be produced in directory `/tmp/hb_range_keys`. The filename is unknown, but it is necessary to reference the file by name later, so run a command such as the following to copy it to a specific name:
 
-
-
 ```
 dfs -cp /tmp/hb\_range\_keys/* /tmp/hb\_range\_key\_list;
 
@@ -179,8 +150,6 @@ The sort is going to produce a lot of data, so make sure you have sufficient spa
 
 The directory does not actually need to exist (it will be automatically created in the next step), but if it does exist, it should be empty.
 
-
-
 ```
 dfs -rmr /tmp/hbsort;
 dfs -mkdir /tmp/hbsort;
@@ -190,8 +159,6 @@ dfs -mkdir /tmp/hbsort;
 ## Sort Data
 
 Now comes the big step: running a sort over all of the data to be bulk loaded. Make sure that your Hive instance has the HBase jars available on its auxpath.
-
-
 
 ```
 set hive.execution.engine=mr;
@@ -229,8 +196,6 @@ The first column in the SELECT list is interpreted as the rowkey; subsequent col
 
 Once the sort job completes successfully, one final step is required for importing the result files into HBase. Again, we don't know the name of the file, so we copy it over:
 
-
-
 ```
 dfs -copyToLocal /tmp/hbsort/cf/* /tmp/hbout
 
@@ -240,16 +205,12 @@ If Hive and HBase are running in different clusters, use [distcp](http://hadoop.
 
 If you are using HBase 0.90.2 or newer, you can use the [completebulkload](http://hbase.apache.org/bulk-loads.html) utility to load the data into HBase
 
-
-
 ```
 hadoop jar hbase-VERSION.jar completebulkload [-c /path/to/hbase/config/hbase-site.xml] /tmp/hbout transactions
 
 ```
 
 In older versions of HBase, use the `bin/loadtable.rb` script to import them:
-
-
 
 ```
 hbase org.jruby.Main loadtable.rb transactions /tmp/hbout
@@ -263,8 +224,6 @@ After this script finishes, you may need to wait a minute or two for the new tab
 ## Map New Table Back Into Hive
 
 Finally, if you'd like to access the HBase table you just created via Hive:
-
-
 
 ```
 CREATE EXTERNAL TABLE hbase\_transactions(transaction\_id string, user\_name string, amount double, ...) 
@@ -283,8 +242,6 @@ TBLPROPERTIES("hbase.table.name" = "transactions");
 * Support multiple column families once HBASE-1861 is implemented
 * Support loading into existing tables once HBASE-1923 is implemented
 * Wrap it all up into the ideal single-INSERT-with-auto-sampling job...
-
-
 
  
 

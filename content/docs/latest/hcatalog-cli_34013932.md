@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog CLI"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HCatalog CLI
 
-
-
-
-
-
 # Command Line Interface
-
 
 * [Command Line Interface]({{< ref "#command-line-interface" >}})
 	+ [Set Up]({{< ref "#set-up" >}})
@@ -38,9 +24,6 @@ date: 2024-12-12
 		- [Authentication]({{< ref "#authentication" >}})
 		- [Error Log]({{< ref "#error-log" >}})
 
-
-
-
 ## Set Up
 
 The HCatalog command line interface (CLI) can be invoked as `HIVE_HOME=`*hive\_home hcat\_home*`/bin/hcat` where *hive\_home* is the directory where Hive has been installed and *hcat\_home* is the directory where HCatalog has been installed.
@@ -50,8 +33,6 @@ If you are using BigTop's rpms or debs you can invoke the CLI by doing `/usr/bin
 ## HCatalog CLI
 
 The HCatalog CLI supports these command line options:
-
-
 
 | Option | Usage | Description |
 | --- | --- | --- |
@@ -69,8 +50,6 @@ Note the following:
 * The order of options is immaterial; you can specify the options in any order.
 
 If no option is provided, then a usage message is printed:
-
-
 
 ```
 Usage:  hcat  { -e "<query>" | -f <filepath> }  [-g <group>] [-p <perms>] [-D<name>=<value>]
@@ -183,16 +162,13 @@ Any command not listed above is NOT supported and throws an exception with the m
 
 ### Authentication
 
-
 If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
-
 
 ### Error Log
 
 If other errors occur while using the HCatalog CLI, more detailed messages are written to /tmp/*<username>*/hive.log.
 
   
-
 
 **Navigation Links**
 Previous: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter_34013921" >}})  
@@ -203,9 +179,6 @@ Hive command line interface: [Hive CLI]({{< ref "languagemanual-cli_27362033" >}
  WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl_34016001" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

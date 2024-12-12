@@ -3,26 +3,11 @@ title: "Apache Hive : Subqueries in SELECT"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Subqueries in SELECT
-
-
-
-
-
 
 # Problem
 
 Currently Hive doesn't support subqueries in a SELECT statement, for example, the following query will not run on Hive:
-
-
 
 ```
 SELECT customer.customer\_num,
@@ -102,8 +87,6 @@ Given the assumptions above, the following kind of subqueries could be used in S
 
 * Scalar subqueries, for example: 
 
-
-
 ```
 SELECT customer.customer\_num,
 	(SELECT SUM(ship\_charge) 
@@ -114,16 +97,12 @@ FROM customer
 ```
 * IN subqueries, for example:
 
-
-
 ```
 SELECT p\_size IN (
 		SELECT MAX(p\_size) FROM part)
 FROM part
 ```
 * EXISTS subqueries, for example:
-
-
 
 ```
 SELECT EXISTS(SELECT p\_size FROM part)
@@ -141,8 +120,6 @@ Design for this will be similar to the work done in [HIVE-15456](https://issues
 * HiveRelDecorrelator::decorrelateQuery will then be used to decorrelate correlated queries.
 
  [HIVE-16091](https://issues.apache.org/jira/browse/HIVE-16091) covers the initial work for supporting subqueries in SELECT.
-
-
 
  
 

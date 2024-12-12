@@ -3,23 +3,9 @@ title: "Apache Hive : GettingStarted"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : GettingStarted
 
-
-
-
-
-
 Table of Contents
-
 
 * [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
 	
@@ -59,9 +45,6 @@ Table of Contents
 	+ [MovieLens User Ratings]({{< ref "#movielens-user-ratings" >}})
 	+ [Apache Weblog Data]({{< ref "#apache-weblog-data" >}})
 
-
-
-
 ## Installation and Configuration
 
 You can install a stable release of Hive by downloading a tarball, or you can download the source code and build Hive from that.
@@ -82,16 +65,12 @@ Start by downloading the most recent stable release of Hive from one of the Apac
 
 Next you need to unpack the tarball. This will result in the creation of a subdirectory named `hive-x.y.z` (where `x.y.z` is the release number):
 
-
-
 ```
   $ tar -xzvf hive-x.y.z.tar.gz
 
 ```
 
 Set the environment variable `HIVE_HOME` to point to the installation directory:
-
-
 
 ```
   $ cd hive-x.y.z
@@ -100,8 +79,6 @@ Set the environment variable `HIVE_HOME` to point to the installation directory:
 ```
 
 Finally, add `$HIVE_HOME/bin` to your `PATH`:
-
-
 
 ```
   $ export PATH=$HIVE\_HOME/bin:$PATH
@@ -119,8 +96,6 @@ As of 0.13, Hive is built using [Apache Maven](http://maven.apache.org).
 #### Compile Hive on master
 
 To build the current Hive code from the master branch:
-
-
 
 ```
   $ git clone https://git-wip-us.apache.org/repos/asf/hive.git
@@ -148,8 +123,6 @@ If building Hive source using Maven (mvn), we will refer to the directory "/pack
 
 In branch-1, Hive supports both Hadoop 1.x and 2.x.  You will need to specify which version of Hadoop to build against via a Maven profile.  To build against Hadoop 1.x use the profile `hadoop-1`; for Hadoop 2.x use `hadoop-2`.  For example to build against Hadoop 1.x, the above mvn command becomes:
 
-
-
 ```
   $ mvn clean package -Phadoop-1,dist
 
@@ -158,8 +131,6 @@ In branch-1, Hive supports both Hadoop 1.x and 2.x.  You will need to specify w
 #### Compile Hive Prior to 0.13 on Hadoop 0.20
 
 Prior to Hive 0.13, Hive was built using [Apache Ant](http://ant.apache.org/).  To build an older version of Hive on Hadoop 0.20:
-
-
 
 ```
   $ svn co http://svn.apache.org/repos/asf/hive/branches/branch-{version} hive
@@ -185,8 +156,6 @@ If using Ant, we will refer to the directory "`build/dist`" as `<install-dir>`.
 
 To build Hive in Ant against Hadoop 0.23, 2.0.0, or other version, build with the appropriate flag; some examples below:
 
-
-
 ```
   $ ant clean package -Dhadoop.version=0.23.3 -Dhadoop-0.23.version=0.23.3 -Dhadoop.mr.rev=23
   $ ant clean package -Dhadoop.version=2.0.0-alpha -Dhadoop-0.23.version=2.0.0-alpha -Dhadoop.mr.rev=23
@@ -202,8 +171,6 @@ Hive uses Hadoop, so:
 
 In addition, you must use below HDFS commands to create `/tmp` and `/user/hive/warehouse` (aka `hive.metastore.warehouse.dir`) and set them `chmod g+w` before you can create a table in Hive.
 
-
-
 ```
   $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /tmp
   $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
@@ -214,8 +181,6 @@ In addition, you must use below HDFS commands to create `/tmp` and `/user/hive/w
 
 You may find it useful, though it's not necessary, to set `HIVE_HOME`:
 
-
-
 ```
   $ export HIVE\_HOME=<hive-install-dir>
 
@@ -224,8 +189,6 @@ You may find it useful, though it's not necessary, to set `HIVE_HOME`:
 #### Running Hive CLI
 
 To use the Hive [command line interface]({{< ref "languagemanual-cli_27362033" >}}) (CLI) from the shell:
-
-
 
 ```
   $ $HIVE\_HOME/bin/hive
@@ -236,16 +199,12 @@ To use the Hive [command line interface]({{< ref "languagemanual-cli_27362033" >
 
 Starting from Hive 2.1, we need to run the schematool command below as an initialization step. For example, we can use "derby" as db type. 
 
-
-
 ```
   $ $HIVE\_HOME/bin/schematool -dbType <db type> -initSchema
 
 ```
 
 [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}) (introduced in Hive 0.11) has its own CLI called [Beeline]({{< ref "hiveserver2-clients_30758725" >}}).  HiveCLI is now deprecated in favor of Beeline, as it lacks the multi-user, security, and other capabilities of HiveServer2.  To run HiveServer2 and Beeline from shell:
-
-
 
 ```
   $ $HIVE\_HOME/bin/hiveserver2
@@ -257,8 +216,6 @@ Beeline is started with the JDBC URL of the HiveServer2, which depends on the ad
 
 Or to start Beeline and HiveServer2 in the same process for testing purpose, for a similar user experience to HiveCLI:
 
-
-
 ```
   $ $HIVE\_HOME/bin/beeline -u jdbc:hive2://
 
@@ -268,16 +225,12 @@ Or to start Beeline and HiveServer2 in the same process for testing purpose, for
 
 To run the HCatalog server from the shell in Hive release 0.11.0 and later:
 
-
-
 ```
   $ $HIVE\_HOME/hcatalog/sbin/hcat\_server.sh
 
 ```
 
 To use the HCatalog command line interface (CLI) in Hive release 0.11.0 and later:
-
-
 
 ```
   $ $HIVE\_HOME/hcatalog/bin/hcat
@@ -289,8 +242,6 @@ For more information, see [HCatalog Installation from Tarball]({{< ref "hcatalog
 #### Running WebHCat (Templeton)
 
 To run the WebHCat server from the shell in Hive release 0.11.0 and later:
-
-
 
 ```
   $ $HIVE\_HOME/hcatalog/sbin/webhcat\_server.sh
@@ -320,8 +271,6 @@ For more information, see [WebHCat Installation]({{< ref "webhcat-installwebhcat
 * Hive queries are executed using map-reduce queries and, therefore, the behavior of such queries can be controlled by the Hadoop configuration variables.
 * The HiveCLI (deprecated) and Beeline command 'SET' can be used to set any Hadoop (or Hive) configuration variable. For example:
 
-
-
 ```
     beeline> SET mapred.job.tracker=myhost.mycompany.com:50030;
     beeline> SET -v;
@@ -334,8 +283,6 @@ The latter shows all the current settings. Without the `-v` option only the vari
 
 Hive compiler generates map-reduce jobs for most queries. These jobs are then submitted to the Map-Reduce cluster indicated by the variable:
 
-
-
 ```
   mapred.job.tracker
 
@@ -345,8 +292,6 @@ While this usually points to a map-reduce cluster with multiple nodes, Hadoop al
 
 Starting with release 0.7, Hive fully supports local mode execution. To enable this, the user can enable the following option:
 
-
-
 ```
   hive> SET mapreduce.framework.name=local;
 ```
@@ -354,8 +299,6 @@ Starting with release 0.7, Hive fully supports local mode execution. To enable t
 In addition, `mapred.local.dir` should point to a path that's valid on the local machine (for example `/tmp/<username>/mapred/local`). (Otherwise, the user will get an exception allocating local disk space.)
 
 Starting with release 0.7, Hive also supports a mode to run map-reduce jobs in local-mode automatically. The relevant options are `hive.exec.mode.local.auto`, `hive.exec.mode.local.auto.inputbytes.max`, and `hive.exec.mode.local.auto.tasks.max`:
-
-
 
 ```
   hive> SET hive.exec.mode.local.auto=false;
@@ -440,16 +383,12 @@ If the logger level has already been set to DEBUG at root via hive.root.logger, 
 
 ### Creating Hive Tables
 
-
-
 ```
   hive> CREATE TABLE pokes (foo INT, bar STRING);
 
 ```
 
 creates a table called pokes with two columns, the first being an integer and the other a string.
-
-
 
 ```
   hive> CREATE TABLE invites (foo INT, bar STRING) PARTITIONED BY (ds STRING);
@@ -462,8 +401,6 @@ By default, tables are assumed to be of text input format and the delimiters are
 
 ### Browsing through Tables
 
-
-
 ```
   hive> SHOW TABLES;
 
@@ -471,16 +408,12 @@ By default, tables are assumed to be of text input format and the delimiters are
 
 lists all the tables.
 
-
-
 ```
   hive> SHOW TABLES '.*s';
 
 ```
 
 lists all the table that end with 's'. The pattern matching follows Java regular expressions. Check out this link for documentation <http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html>.
-
-
 
 ```
 hive> DESCRIBE invites;
@@ -493,8 +426,6 @@ shows the list of columns.
 
 Table names can be [changed]({{< ref "#changed" >}}) and columns can be [added or replaced]({{< ref "#added-or-replaced" >}}):
 
-
-
 ```
   hive> ALTER TABLE events RENAME TO 3koobecaf;
   hive> ALTER TABLE pokes ADD COLUMNS (new\_col INT);
@@ -505,16 +436,12 @@ Table names can be [changed]({{< ref "#changed" >}}) and columns can be [added o
 
 Note that REPLACE COLUMNS replaces all existing columns and only changes the table's schema, not the data. The table must use a native SerDe. REPLACE COLUMNS can also be used to drop columns from the table's schema:
 
-
-
 ```
   hive> ALTER TABLE invites REPLACE COLUMNS (foo INT COMMENT 'only keep the first column');
 
 ```
 
 Dropping tables:
-
-
 
 ```
   hive> DROP TABLE pokes;
@@ -539,8 +466,6 @@ The Hive DML operations are documented in [Hive Data Manipulation Language]({{< 
 
 Loading data from flat files into Hive:
 
-
-
 ```
   hive> LOAD DATA LOCAL INPATH './examples/files/kv1.txt' OVERWRITE INTO TABLE pokes;
 
@@ -556,8 +481,6 @@ NOTES:
 * If the file is in hdfs, it is moved into the Hive-controlled file system namespace.  
 The root of the Hive directory is specified by the option `hive.metastore.warehouse.dir` in `hive-default.xml`. We advise users to create this directory before trying to create tables via Hive.
 
-
-
 ```
   hive> LOAD DATA LOCAL INPATH './examples/files/kv2.txt' OVERWRITE INTO TABLE invites PARTITION (ds='2008-08-15');
   hive> LOAD DATA LOCAL INPATH './examples/files/kv3.txt' OVERWRITE INTO TABLE invites PARTITION (ds='2008-08-08');
@@ -565,8 +488,6 @@ The root of the Hive directory is specified by the option `hive.metastore.wareho
 ```
 
 The two LOAD statements above load data into two different partitions of the table invites. Table invites must be created as partitioned by the key ds for this to succeed.
-
-
 
 ```
   hive> LOAD DATA INPATH '/user/myname/kv2.txt' OVERWRITE INTO TABLE invites PARTITION (ds='2008-08-15');
@@ -587,8 +508,6 @@ More are available in the Hive sources at `ql/src/test/queries/positive`.
 
 #### SELECTS and FILTERS
 
-
-
 ```
   hive> SELECT a.foo FROM invites a WHERE a.ds='2008-08-15';
 
@@ -597,8 +516,6 @@ More are available in the Hive sources at `ql/src/test/queries/positive`.
 selects column 'foo' from all rows of partition `ds=2008-08-15` of the `invites` table. The results are not stored anywhere, but are displayed on the console.
 
 Note that in all the examples that follow, `INSERT` (into a Hive table, local directory or HDFS directory) is optional.
-
-
 
 ```
   hive> INSERT OVERWRITE DIRECTORY '/tmp/hdfs\_out' SELECT a.* FROM invites a WHERE a.ds='2008-08-15';
@@ -610,16 +527,12 @@ NOTE: partition columns if any are selected by the use of *. They can also be sp
 
 Partitioned tables must always have a partition selected in the `WHERE` clause of the statement.
 
-
-
 ```
   hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local\_out' SELECT a.* FROM pokes a;
 
 ```
 
 selects all rows from pokes table into a local directory.
-
-
 
 ```
   hive> INSERT OVERWRITE TABLE events SELECT a.* FROM profiles a;
@@ -636,8 +549,6 @@ selects the sum of a column. The avg, min, or max can also be used. Note that fo
 
 #### GROUP BY
 
-
-
 ```
   hive> FROM invites a INSERT OVERWRITE TABLE events SELECT a.bar, count(*) WHERE a.foo > 0 GROUP BY a.bar;
   hive> INSERT OVERWRITE TABLE events SELECT a.bar, count(*) FROM invites a WHERE a.foo > 0 GROUP BY a.bar;
@@ -648,16 +559,12 @@ Note that for versions of Hive which don't include [HIVE-287](https://issues.apa
 
 #### JOIN
 
-
-
 ```
   hive> FROM pokes t1 JOIN invites t2 ON (t1.bar = t2.bar) INSERT OVERWRITE TABLE events SELECT t1.bar, t1.foo, t2.foo;
 
 ```
 
 #### MULTITABLE INSERT
-
-
 
 ```
   FROM src
@@ -669,8 +576,6 @@ Note that for versions of Hive which don't include [HIVE-287](https://issues.apa
 ```
 
 #### STREAMING
-
-
 
 ```
   hive> FROM invites a INSERT OVERWRITE TABLE events SELECT TRANSFORM(a.foo, a.bar) AS (oof, rab) USING '/bin/cat' WHERE a.ds > '2008-08-09';
@@ -686,8 +591,6 @@ Similarly – streaming can be used on the reduce side (please see the [Hive Tut
 
 First, create a table with tab-delimited text file format:
 
-
-
 ```
 CREATE TABLE u\_data (
   userid INT,
@@ -702,15 +605,11 @@ STORED AS TEXTFILE;
 
 Then, download the data files from **MovieLens 100k** on the [GroupLens datasets](http://grouplens.org/datasets/movielens/) page (which also has a README.txt file and index of unzipped files):
 
-
-
 ```
 wget http://files.grouplens.org/datasets/movielens/ml-100k.zip
 ```
 
 or:
-
-
 
 ```
 curl --remote-name http://files.grouplens.org/datasets/movielens/ml-100k.zip
@@ -720,15 +619,11 @@ Note:  If the link to [GroupLens datasets](http://grouplens.org/datasets/movie
 
 Unzip the data files:
 
-
-
 ```
 unzip ml-100k.zip
 ```
 
 And load `u.data` into the table that was just created:
-
-
 
 ```
 LOAD DATA LOCAL INPATH '<path>/u.data'
@@ -737,8 +632,6 @@ OVERWRITE INTO TABLE u\_data;
 ```
 
 Count the number of rows in table u\_data:
-
-
 
 ```
 SELECT COUNT(*) FROM u\_data;
@@ -750,8 +643,6 @@ Note that for older versions of Hive which don't include [HIVE-287](https://issu
 Now we can do some complex data analysis on the table `u_data`:
 
 Create `weekday_mapper.py`:
-
-
 
 ```
 import sys
@@ -766,8 +657,6 @@ for line in sys.stdin:
 ```
 
 Use the mapper script:
-
-
 
 ```
 CREATE TABLE u\_data\_new (
@@ -802,8 +691,6 @@ For default Apache weblog, we can create a table with the following command.
 
 More about RegexSerDe can be found here in [HIVE-662](https://issues.apache.org/jira/browse/HIVE-662) and [HIVE-1719](https://issues.apache.org/jira/browse/HIVE-1719).
 
-
-
 ```
 CREATE TABLE apachelog (
   host STRING,
@@ -822,8 +709,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE;
 
 ```
-
-
 
  
 

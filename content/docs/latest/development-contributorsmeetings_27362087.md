@@ -3,29 +3,13 @@ title: "Apache Hive : Development ContributorsMeetings"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Development ContributorsMeetings
-
-
-
-
-
 
 # Hive Contributors Meetings
 
-
 Active contributors to the Hive project are invited to attend the monthly Hive Contributors Meeting. Meetings are announced on the [Hive Contributors](http://www.meetup.com/Hive-Contributors-Group/) meetup group.
 
-
 ## Meeting Minutes
-
 
 * [April 18, 2012]({{< ref "contributorminutes20120418_27844528" >}})
 * [December 5, 2011]({{< ref "contributorminutes20111205_27833038" >}})
@@ -39,8 +23,6 @@ Active contributors to the Hive project are invited to attend the monthly Hive C
 * [August 8, 2010]({{< ref "development-contributorsmeetings-hivecontributorsminutes100808_27362082" >}})
 * [July 6, 2010]({{< ref "development-contributorsmeetings-hivecontributorsminutes100706_27362085" >}})
 * [June 1, 2010]({{< ref "development-contributorsmeetings-hivecontributorsminutes100601_27362084" >}})
-
-
 
  
 

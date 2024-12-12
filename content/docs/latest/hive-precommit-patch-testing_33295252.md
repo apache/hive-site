@@ -3,20 +3,7 @@ title: "Apache Hive : Hive PreCommit Patch Testing"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive PreCommit Patch Testing
-
-
-
-
-
 
 ## Short Version
 
@@ -49,8 +36,6 @@ Hive Precommit testing is triggered via the following Jenkins job [PreCommit-Ad
 
 The PreCommit build requires a patch name to be in a specific format. The format is as follows:
 
-
-
 ```
 HIVE-XXXX(.XX)?(-branch)?.patch(.txt)?
 (HIVE-XXXX\.)?DXXXX(.XX)?.patch(.txt)?
@@ -65,8 +50,6 @@ If you'd like to resubmit your patch you can either:
 
 1. Upload the patch again (by clicking Submit Patch)
 2. Click "Build with Parameters" here [PreCommit-HIVE-MASTER-Build](https://builds.apache.org/view/H-L/view/Hive/job/PreCommit-HIVE-MASTER-Build/) and put the numeric portion of the JIRA in the issue number field.
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : Common Table Expression"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Common Table Expression
-
-
-
-
-
 
 A Common Table Expression (CTE) is a temporary result set derived from a simple query specified in a WITH clause, which immediately precedes a SELECT or INSERT keyword.  The CTE is defined only within the execution scope of a single statement.  One or more CTEs can be used in a Hive [SELECT]({{< ref "languagemanual-select_27362043" >}}), [INSERT]({{< ref "#insert" >}}), [CREATE TABLE AS SELECT]({{< ref "#create-table-as-select" >}}), or [CREATE VIEW AS SELECT]({{< ref "#create-view-as-select" >}}) statement.
 
@@ -25,8 +12,6 @@ Version
 Common Table Expressions are added in Hive 0.13.0 with [HIVE-1180](https://issues.apache.org/jira/browse/HIVE-1180).
 
 ## Common Table Expression Syntax
-
-
 
 ```
 withClause: cteClause (, cteClause)*
@@ -42,8 +27,6 @@ cteClause: cte\_name AS (select statment)
 ## Examples
 
 ### CTE in Select Statements
-
-
 
 ```
 with q1 as ( select key from src where key = '5')
@@ -67,8 +50,6 @@ select * from q1 union all select * from q2;
 ```
 
 ### CTE in Views, CTAS, and Insert Statements
-
-
 
 ```
 -- insert example
@@ -102,8 +83,6 @@ In the second View example, a query's CTE is different from the CTE used when cr
 Also see this JIRA:
 
 * [HIVE-1180](https://issues.apache.org/jira/browse/HIVE-1180) Support Common Table Expressions (CTEs) in Hive
-
-
 
  
 

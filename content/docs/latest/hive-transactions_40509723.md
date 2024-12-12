@@ -3,23 +3,9 @@ title: "Apache Hive : Hive Transactions"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive Transactions
 
-
-
-
-
-
 # ACID and Transactions in Hive
-
 
 * [ACID and Transactions in Hive]({{< ref "#acid-and-transactions-in-hive" >}})
 	+ [What is ACID and why should you use it?]({{< ref "#what-is-acid-and-why-should-you-use-it?" >}})
@@ -43,9 +29,6 @@ date: 2024-12-12
 		- [Compaction pooling]({{< ref "#compaction-pooling" >}})
 	+ [Table Properties]({{< ref "#table-properties" >}})
 * [Talks and Presentations]({{< ref "#talks-and-presentations" >}})
-
-
-
 
 Hive 3 Warning
 
@@ -161,7 +144,6 @@ Also see [LanguageManual DDL#ShowCompactions]({{< ref "#languagemanual-ddl#show
 
   
 
-
 ### Transaction/Lock Manager
 
 A new logical entity called "transaction manager"  was added which incorporated previous notion of "database/table/partition lock manager" (hive.lock.manager with default of org.apache.hadoop.hive.ql.lockmgr.zookeeper.ZooKeeperHiveLockManager). The transaction manager is now additionally responsible for managing of transactions locks. The default DummyTxnManager emulates behavior of old Hive versions: has no transactions and uses hive.lock.manager property to create lock manager for tables, partitions and databases. A newly added DbTxnManager manages all locks/transactions in Hive metastore with DbLockManager (transactions and locks are durable in the face of server failure). This means that previous behavior of locking in ZooKeeper is not present anymore when transactions are enabled. To avoid clients dying and leaving transaction or locks dangling, a heartbeat is sent from lock holders and transaction initiators to the metastore on a regular basis.  If a heartbeat is not received in the configured amount of time, the lock or transaction will be aborted.
@@ -194,8 +176,6 @@ The following sections list all of the configuration parameters that affect Hive
 ### New Configuration Parameters for Transactions
 
 A number of new configuration parameters have been added to the system to support transactions.
-
-
 
 | **Configuration key** | **Values** | **Location** | **Notes** |
 | [hive.txn.manager]({{< ref "#hive-txn-manager" >}})  | *Default:* org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager*Value required for transactions:* org.apache.hadoop.hive.ql.lockmgr.DbTxnManager | Client/HiveServer2 | DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions. |
@@ -240,8 +220,6 @@ A number of new configuration parameters have been added to the system to suppor
 ### Configuration Values to Set for *INSERT, UPDATE, DELETE*
 
 In addition to the new parameters listed above, some existing parameters need to be set to support *INSERT ... VALUES, UPDATE,*and *DELETE*.
-
-
 
 | Configuration key | Must be set to |
 | --- | --- |
@@ -306,12 +284,9 @@ DataWorks Summit 2018, San Jose, CA, USA - Covers Hive 3 and ACID V2 features
 
   
 
-
 Save
 
 Save
-
-
 
  
 

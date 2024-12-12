@@ -3,21 +3,7 @@ title: "Apache Hive : HiveReplicationv2Development"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveReplicationv2Development
-
-
-
-
-
-
 
 * [Issues with the Current Replication System]({{< ref "#issues-with-the-current-replication-system" >}})
 	+ [Slowness]({{< ref "#slowness" >}})
@@ -44,9 +30,6 @@ date: 2024-12-12
 * [Bootstrap, Revisited]({{< ref "#bootstrap,-revisited" >}})
 * [Metastore notification API security]({{< ref "#metastore-notification-api-security" >}})
 * [Setup/Configuration]({{< ref "#setup/configuration" >}})
-
-
-
 
 This document describes the second version of Hive Replication. Please refer to the [first version of Hive Replication]({{< ref "hivereplicationdevelopment_55155632" >}}) for details on prior implementation.
 
@@ -121,7 +104,6 @@ One of the primary ways this consideration affects us is that we drifted towards
   
 Consider the following series of operations:
 
-
 ```
 CREATE TABLE blah (a int) PARTITIONED BY (p string);  
 INSERT INTO TABLE blah [PARTITION (p="a") VALUES 5;  
@@ -154,10 +136,6 @@ We stop our examination at this point, because we see one possible outcome from 
 
 An example:
 
-
-
-
-
 State-transfer has a few good things going for it, such as being resilient and idempotent, but it introduces this problem of temporary states that are possible which never existed in the source, and this is a big no-no for load-balancing use-cases where the destination db is not simply a cold backup but a db that is actively being used for reads.
 
 # Change Management
@@ -171,7 +149,6 @@ Let us now consider a base part of a replication workflow. It would need to have
 5. The destination then performs whatever task is needed to restate
 
   
-
 
 Now, so far, our primary problem seems to be that we can only capture "latest" state, and not the original state at the time the event occurred. That is to say that at the time we process the notification, we get the state of the object at that time, t3, instead of the state of the object at time t1. In the time between t1 and t3, the object may have changed substantially, and if we go ahead and take the state at t3, and then apply to destination in an idempotent fashion, always taking only updates, we get our current implementation, with the rubberbanding problem.
 
@@ -209,7 +186,6 @@ Here is a possible solution to the rubber banding problem described earlier:
 For each metastore event for which a notification is generated, store the metadata object (e.g. table, partition etc), the location of the files (associated with the event) and the checksum of each affected file (the reason for storing the checksum is explained shortly). In case of events which delete files (e.g. drop table/partition), move the deleted files to a configurable location on the file system (let's call it $cmroot for purpose of this discussion) instead of deleting them.
 
 Consider the following sequence of commands for illustration:
-
 
 ```
 Event 100: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;   
@@ -302,7 +278,6 @@ The REPL DUMP command has an optional WITH clause to set command-specific confi
 
   
 
-
 #### Return values:
 
 1. Error codes returned as return error codes (and over jdbc if with HS2)
@@ -323,7 +298,6 @@ Bootstrap note : The FROM clause means that we read the event log to determine w
 When bootstrap dump is in progress, it blocks rename table/partition operations on any tables of the dumped database and throws HiveException. Once bootstrap dump is completed, rename operations are enabled and will work as normal. If HiveServer2 crashes when bootstrap dump in progress, then rename operations will continue to throw HiveException even after HiveServer2 is restored with no REPL DUMP in progress. This abnormal state should be manually fixed using following work around. 
 
 Look up the HiveServer logs for below pair of log messages.
-
 
 > REPL DUMP:: Set property for Database: <db\_name>, Property: <bootstrap.dump.state.xxxx>, Value: ACTIVE
 > 
@@ -365,9 +339,6 @@ Let us consider the case of a table T1, which was dumped out around evid=200. No
 
   
 
-
-
-
 | event id | operation |
 | --- | --- |
 | 184 | ALTER TABLE T1 DROP PARTITION(Px) |
@@ -376,7 +347,6 @@ Let us consider the case of a table T1, which was dumped out around evid=200. No
 | 216 | ALTER TABLE T1 DROP PARTITION(Py) |
 
   
-
 
 Basically, let us try to understand what happens when partitions are added(Pa & Pb) and dropped(Px & Py) both before and after a table is dumped. So, for our bootstrap, we go through 2 phases - first an object dump of all the objects we're expected to dump, and then a consolidation phase where we go through all the events that occurred during our object dump.
 
@@ -391,7 +361,6 @@ Now, one approach to handle this would be to simply say that we say that the dum
 While this can work, the problem with this approach is that the destination can now have tables at differing states as a result of the dump - i.e. a table T2 that was dumped at about evid=220 will have newer info than T1 that was dumped about evid=200, and this is a sort of mini-rubberbanding in itself, since different parts of a whole are at different states. This problem is actually a little worse, since different partitions of a table can actually be at different states. Thus, we will not follow this approach.
 
   
-
 
 Approach 2 : Consolidate at source.
 
@@ -438,11 +407,7 @@ REPLCMINTERVAL("[hive.repl.cm](http://hive.repl.cm).interval","3600s",new TimeVa
 
   
 
-
   
-
-
-
 
  
 

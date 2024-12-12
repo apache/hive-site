@@ -3,31 +3,14 @@ title: "Apache Hive : WebHCat Configure"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Configure
 
-
-
-
-
-
 # WebHCat Configuration
-
 
 * [WebHCat Configuration]({{< ref "#webhcat-configuration" >}})
 	+ [Configuration Files]({{< ref "#configuration-files" >}})
 	+ [Configuration Variables]({{< ref "#configuration-variables" >}})
 		- [Default Values]({{< ref "#default-values" >}})
-
-
-
 
 ## Configuration Files
 
@@ -48,8 +31,6 @@ The configuration files are loaded in this order with later files overriding ear
 
 Configuration files may access the special environment variable `env` for all environment variables. For example, the Pig executable could be specified using:
 
-
-
 ```
 ${env.PIG\_HOME}/bin/pig
 
@@ -62,8 +43,6 @@ Log File Location
 The webhcat-log4j.properties file sets the location of the log files created by WebHCat and some other properties of the logging system.
 
 ## Configuration Variables
-
-
 
 | Name | Description |
 | --- | --- |
@@ -130,9 +109,6 @@ Previous: [Installation]({{< ref "webhcat-installwebhcat_34015585" >}})
 Hive configuration: [Configuring Hive]({{< ref "adminmanual-configuration_27362070" >}}), [Hive Configuration Properties](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties), [Thrift Server Setup]({{< ref "#thrift-server-setup" >}})
 
 General: [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

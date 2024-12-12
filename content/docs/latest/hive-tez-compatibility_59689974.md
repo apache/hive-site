@@ -3,24 +3,9 @@ title: "Apache Hive : Hive-Tez Compatibility"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive-Tez Compatibility
 
-
-
-
-
-
 This is derived from the pom files of the respective releases. Other releases with compatibility are listed in parenthesis.
-
-
 
 | Hive | (Works with) Tez |
 | --- | --- |
@@ -32,8 +17,6 @@ This is derived from the pom files of the respective releases. Other releases wi
 | 2.0 | 0.8.2 |
 
 *Hive-1.2 is the latest release of Hive as of 07/2015.
-
-
 
  
 

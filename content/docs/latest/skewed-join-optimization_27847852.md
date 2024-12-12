@@ -3,20 +3,7 @@ title: "Apache Hive : Skewed Join Optimization"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Skewed Join Optimization
-
-
-
-
-
 
 ### Optimizing Skewed Joins
 
@@ -62,32 +49,20 @@ The assumption is that B has few rows with keys which are skewed in A. So these 
 
 *Implementation:*  Starting in Hive 0.10.0, tables can be created as skewed or altered to be skewed (in which case partitions created after the ALTER statement will be skewed). In addition, skewed tables can use the list bucketing feature by specifying the STORED AS DIRECTORIES option. See the DDL documentation for details: [Create Table]({{< ref "#create-table" >}}), [Skewed Tables]({{< ref "#skewed-tables" >}}), and [Alter Table Skewed or Stored as Directories]({{< ref "#alter-table-skewed-or-stored-as-directories" >}}).
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
 | 
 Is this proposal ready for review?
 
-
  Posted by cwsteinbach at May 31, 2012 21:27
   |
 | 
 yes
 
-
  Posted by namit.jain at Jun 01, 2012 21:07
   |
-
-
 
  
 

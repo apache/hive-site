@@ -3,23 +3,9 @@ title: "Apache Hive : Presentations"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Presentations
 
-
-
-
-
-
  
-
 
 * [Hive Meetups]({{< ref "#hive-meetups" >}})
 	+ [January 2016 Hive User Group Meetup]({{< ref "#january-2016-hive-user-group-meetup" >}})
@@ -33,9 +19,6 @@ date: 2024-12-12
 	+ [November 2011 NYC Hive Meetup Presentations]({{< ref "#november-2011-nyc-hive-meetup-presentations" >}})
 * [Older Hive Presentations]({{< ref "#older-hive-presentations" >}})
 * [Related Work]({{< ref "#related-work" >}})
-
-
-
 
 # Hive Meetups
 
@@ -152,14 +135,7 @@ date: 2024-12-12
 
  
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28016657.pdf](/attachments/27362054/28016657.pdf) (application/pdf)
@@ -316,8 +292,6 @@ date: 2024-12-12
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337443.pdf](/attachments/27362054/61337443.pdf) (application/pdf)
    
-
-
 
  
 

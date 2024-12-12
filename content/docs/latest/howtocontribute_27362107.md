@@ -3,25 +3,11 @@ title: "Apache Hive : HowToContribute"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HowToContribute
-
-
-
-
-
 
 # How to Contribute to Apache Hive
 
 This page describes the mechanics of *how* to contribute software to Apache Hive. For ideas about *what* you might contribute, please see open tickets in [Jira](https://issues.apache.org/jira/browse/HIVE).
-
 
 * [How to Contribute to Apache Hive]({{< ref "#how-to-contribute-to-apache-hive" >}})
 	+ [Getting the Source Code]({{< ref "#getting-the-source-code" >}})
@@ -47,16 +33,11 @@ This page describes the mechanics of *how* to contribute software to Apache Hive
 	+ [Generating Thrift Code]({{< ref "#generating-thrift-code" >}})
 	+ [See Also]({{< ref "#see-also" >}})
 
-
-
-
 ## Getting the Source Code
 
 First of all, you need the Hive source code.
 
 Get the source code on your local drive using git. See [Understanding Hive Branches]({{< ref "#understanding-hive-branches" >}}) below to understand which branch you should be using.
-
-
 
 ```
 git clone https://github.com/apache/hive
@@ -163,8 +144,6 @@ On this page we assume you are building from the master branch and do not includ
 
 When submitting a patch it's highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by [Hive PreCommit Patch Testing]({{< ref "hive-precommit-patch-testing_33295252" >}}). [Hive Developer FAQ]({{< ref "hivedeveloperfaq_27823747" >}}) describes how to execute a specific set of tests.
 
-
-
 ```
 mvn clean install -DskipTests
 mvn test -Dtest=SomeTest
@@ -229,8 +208,6 @@ There are many excellent howtos about how to submit pullrequests for github proj
 
 Setting up a repo with 2 remotes; I would recommend to use the github user as the remote name - as it may make things easier if you need to add someone else's repo as well.
 
-
-
 ```
 # clone the apache/hive repo from github
 git clone --origin apache https://github.com/apache/hive
@@ -240,8 +217,6 @@ git remote add GITHUB\_USER git@github.com:GITHUB\_USER/hive
 ```
 
 You will need a separate branch to make your changes; you need to this for every PR you are doing.
-
-
 
 ```
 # fetch all changes - so you will create your feature branch on top of the current master
@@ -254,8 +229,6 @@ git push GITHUB\_USER -u HEAD
 ```
 
 Make your change
-
-
 
 ```
 # make your changes; you should include the ticketid + message in the first commit message
@@ -286,15 +259,11 @@ Please do:
 
 you could do that using:
 
-
-
 ```
 git fetch origin pull/ID/head:BRANCHNAME
 ```
 
 Suppose you want to pull the changes of PR-1234 into a local branch named "radiator"
-
-
 
 ```
 git fetch origin pull/1234/head:radiator
@@ -445,11 +414,7 @@ Contributors should join the [Hive mailing lists](https://hive.apache.org/commun
 
   
 
-
   
-
-
-
 
  
 

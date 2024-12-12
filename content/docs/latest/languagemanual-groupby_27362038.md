@@ -3,21 +3,7 @@ title: "Apache Hive : LanguageManual GroupBy"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual GroupBy
-
-
-
-
-
-
 
 * [Group By Syntax]({{< ref "#group-by-syntax" >}})
 	+ [Simple Examples]({{< ref "#simple-examples" >}})
@@ -27,12 +13,7 @@ date: 2024-12-12
 	+ [Map-side Aggregation for Group By]({{< ref "#map-side-aggregation-for-group-by" >}})
 	+ [Grouping Sets, Cubes, Rollups, and the GROUPING\_\_ID Function]({{< ref "#grouping-sets,-cubes,-rollups,-and-the-grouping\_\_id-function" >}})
 
-
-
-
 ## Group By Syntax
-
-
 
 ```
 groupByClause: GROUP BY groupByExpression (, groupByExpression)*
@@ -52,8 +33,6 @@ In `groupByExpression` columns are specified by name, not by position number. H
 
 In order to count the number of rows in a table:
 
-
-
 ```
   SELECT COUNT(*) FROM table2;
 
@@ -62,8 +41,6 @@ In order to count the number of rows in a table:
 Note that for versions of Hive which don't include [HIVE-287](https://issues.apache.org/jira/browse/HIVE-287), you'll need to use COUNT(1) in place of COUNT(*).
 
 In order to count the number of distinct users by gender one could write the following query:
-
-
 
 ```
   INSERT OVERWRITE TABLE pv\_gender\_sum
@@ -74,8 +51,6 @@ In order to count the number of distinct users by gender one could write the fol
 ```
 
 Multiple aggregations can be done at the same time, however, no two aggregations can have different DISTINCT columns. For example, the following is possible because count(DISTINCT) and sum(DISTINCT) specify the same column:
-
-
 
 ```
   INSERT OVERWRITE TABLE pv\_gender\_agg
@@ -88,8 +63,6 @@ Multiple aggregations can be done at the same time, however, no two aggregations
 Note that for versions of Hive which don't include [HIVE-287](https://issues.apache.org/jira/browse/HIVE-287), you'll need to use COUNT(1) in place of COUNT(*).
 
 However, the following query is not allowed. We don't allow multiple DISTINCT expressions in the same query.
-
-
 
 ```
   INSERT OVERWRITE TABLE pv\_gender\_agg
@@ -104,16 +77,12 @@ However, the following query is not allowed. We don't allow multiple DISTINCT ex
 When using group by clause, the select statement can only include columns included in the group by clause. Of course, you can have as many aggregation functions (e.g. `count`) in the select statement as well.  
  Let's take a simple example
 
-
-
 ```
 CREATE TABLE t1(a INTEGER, b INTGER);
 
 ```
 
 A group by query on the above table could look like:
-
-
 
 ```
 SELECT
@@ -130,8 +99,6 @@ The above query works because the select clause contains `a` (the group by key) 
 
 However, the query below **DOES NOT** work:
 
-
-
 ```
 SELECT
    a,
@@ -144,8 +111,6 @@ GROUP BY
 ```
 
 This is because the select clause has an additional column (`b`) that is not included in the group by clause (and it's not an aggregation function either). This is because, if the table `t1` looked like:
-
-
 
 ```
 a    b
@@ -164,8 +129,6 @@ Since the grouping is only done on `a`, what value of `b` should Hive display fo
 
 The output of the aggregations or simple selects can be further sent into multiple tables or even to hadoop dfs files (which can then be manipulated using hdfs utilitites). e.g. if along with the gender breakdown, one needed to find the breakdown of unique page views by age, one could accomplish that with the following query:
 
-
-
 ```
   FROM pv\_users 
   INSERT OVERWRITE TABLE pv\_gender\_sum
@@ -181,8 +144,6 @@ The output of the aggregations or simple selects can be further sent into multip
 
 *hive.map.aggr* controls how we do aggregations. The default is false. If it is set to true, Hive will do the first-level aggregation directly in the map task.  
  This usually provides better efficiency, but may require more memory to run successfully.
-
-
 
 ```
   set hive.map.aggr=true;
@@ -210,8 +171,6 @@ Also see the JIRAs:
 New in Hive release 0.11.0:
 
 * [HIVE-3552](https://issues.apache.org/jira/browse/HIVE-3552) HIVE-3552 performant manner for performing cubes/rollups/grouping sets for a high number of grouping set keys
-
-
 
  
 

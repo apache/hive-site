@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference GetProperties"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference GetProperties
 
-
-
-
-
-
 # List Properties — GET ddl/database/:db/table/:table/property
-
 
 * [List Properties — GET ddl/database/:db/table/:table/property]({{< ref "#list-properties-—-get-ddl/database/:db/table/:table/property" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -29,9 +15,6 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-
-
-
 
 ## Description
 
@@ -43,8 +26,6 @@ List all the properties of an HCatalog table.
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **:db** | The database name | Required | None |
@@ -53,8 +34,6 @@ List all the properties of an HCatalog table.
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
-
-
 
 | Name | Description |
 | --- | --- |
@@ -66,16 +45,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/property?user.name=ctdean'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -98,14 +73,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [PUT ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-putcolumn_34016987" >}}) Next: [GET ddl/database/:db/table/:table/property/:property]({{< ref "webhcat-reference-getproperty_34017004" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

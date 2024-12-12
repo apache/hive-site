@@ -3,23 +3,9 @@ title: "Apache Hive : HiveWebInterface"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveWebInterface
 
-
-
-
-
-
 # Hive Web Interface (component removed as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15622))
-
 
 * [Hive Web Interface (component removed as of Hive 2.2.0)]({{< ref "#hive-web-interface--component-removed-as-of-hive-2-2-0-" >}})
 	+ [What Is the Hive Web Interface]({{< ref "#what-is-the-hive-web-interface" >}})
@@ -41,9 +27,6 @@ date: 2024-12-12
 		- [Schema Browser]({{< ref "#schema-browser" >}})
 		- [Diagnostics]({{< ref "#diagnostics" >}})
 		- [Running a Query]({{< ref "#running-a-query" >}})
-
-
-
 
 ## What Is the Hive Web Interface
 
@@ -82,8 +65,6 @@ Hive Web Interface made its first appearance in the 0.2 branch. If you have Hive
 
 You should not need to edit the defaults for the Hive Web Interface. HWI uses:
 
-
-
 ```
 <property>
   <name>hive.hwi.listen.host</name>
@@ -112,8 +93,6 @@ You probably want to set up [HiveDerbyServerMode]({{< ref "hivederbyservermode_2
 When initializing `hive` with no arguments, the CLI is invoked. Hive has an extension architecture used to start other `hive` demons.  
  Jetty requires [Apache Ant](http://ant.apache.org/) to start HWI. You should define ANT\_LIB as an environment variable or add that to the `hive` invocation.
 
-
-
 ```
 export ANT\_LIB=/opt/ant/lib
 bin/hive --service hwi
@@ -122,16 +101,12 @@ bin/hive --service hwi
 
 Java has no direct way of demonizing. In a production environment you should create a wrapper script.
 
-
-
 ```
 nohup bin/hive --service hwi > /dev/null 2> /dev/null &
 
 ```
 
 If you want help on the service invocation or list of parameters you can add
-
-
 
 ```
 bin/hive --service hwi --help
@@ -185,8 +160,6 @@ In the CLI a command like 'SET x=5' is not processed by the the Query Processor,
  ![](plugins/servlet/confluence/placeholder/unknown-attachment "7_session_runquery.png")  
  ![](plugins/servlet/confluence/placeholder/unknown-attachment "8_session_query_1.png")  
  ![](plugins/servlet/confluence/placeholder/unknown-attachment "9_file_view.png")
-
-
 
  
 

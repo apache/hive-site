@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference ResponseTypes"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference ResponseTypes
 
-
-
-
-
-
 # Response Types — GET :version
-
 
 * [Response Types — GET :version]({{< ref "#response-types-—-get-:version" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -31,9 +17,6 @@ date: 2024-12-12
 		- [JSON Output]({{< ref "#json-output" >}})
 		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
 
-
-
-
 ## Description
 
 Returns a list of the response types supported by WebHCat (Templeton).
@@ -44,8 +27,6 @@ Returns a list of the response types supported by WebHCat (Templeton).
 
 ## Parameters
 
-
-
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **:version** | The WebHCat version number. (Currently this must be "v1".) | Required | None |
@@ -53,8 +34,6 @@ Returns a list of the response types supported by WebHCat (Templeton).
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
-
-
 
 | Name | Description |
 | --- | --- |
@@ -64,16 +43,12 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1'
 
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -86,8 +61,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### JSON Output (error)
 
-
-
 ```
 {
   "error": "null for uri: http://localhost:50111/templeton/v2"
@@ -97,15 +70,11 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [Reference: WebHCat Resources]({{< ref "webhcat-reference_34015762" >}})   
 Next: [GET status]({{< ref "webhcat-reference-status_34015941" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

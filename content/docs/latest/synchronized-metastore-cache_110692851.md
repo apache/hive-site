@@ -3,20 +3,7 @@ title: "Apache Hive : Synchronized Metastore Cache"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Synchronized Metastore Cache
-
-
-
-
-
 
 # Overview
 
@@ -33,7 +20,6 @@ The problem we try to solve here is the cache consistency issue. We already buil
 The only data structure change is adding ValidWriteIdList into SharedCache.TableWrapper, which represents the transaction state of the cached table.
 
 ![](attachments/110692851/110692854.png)  
-
 
 Note there is no db table structure change, and we don’t store extra information in db. We don’t update TBLS.WRITE\_ID field as we will use db as the fact of truth. We assume db always carry the latest copy and every time we fetch from db, we will tag it with the transaction state of the query.
 
@@ -77,7 +63,6 @@ Here is a complete flow for a cache update when write happen (and illustrated in
 
 ![](attachments/110692851/110692855.png)  
 
-
 ## Bootstrap
 
 The use cases discussed so far are driven by a query. However, during the HMS startup, there’s a cache prewarm. HMS will fetch everything from db to cache. There is no particular query drives the process, that means we don’t have ValidWriteIdList of the query. Prewarm needs to generate ValidWriteIdList by itself. To do that, for every table, HMS will query the current global transaction state ValidTxnList (HiveTxnManager.getValidTxns), and then convert it to table specific ValidWriteIdList (HiveTxnManager.getValidWriteIds). As an optimization, we don’t have to invoke HiveTxnManager.getValidTxns per table. We can invoke it every couple of minutes. If ValidTxnList is outdated, we will get an outdated ValidWriteIdList. Next time when Hive read this entry, Metastore will fetch from the db even though it is in fact fresh. There’s no correctness issue, only impact performance in some cases. The other possibility is the entry changes after we fetches ValidWriteIdList. This is not unlikely as fetching all partitions of the table may take some time. If that happens, the cached entry is actually newer than the ValidWriteIdList. The next time Hive reads it will trigger a db read though it is not necessary. Again, there’s no correctness issue, only impact performance in some cases.
@@ -119,8 +104,6 @@ Hive\_metastore.thrift and HiveMetaStoreClient.java
 
 Adding a serialized version of ValidWriteIdList to every read HMS API.
 
-
-
 | **hive\_metastore.thriftOld API** | **New API** |
 | get\_table(string dbname,string tbl\_name) | get\_table(string dbname,string tbl\_name,int tableid,string validWriteIdList) |
 
@@ -134,8 +117,6 @@ HMS read API will remain backward compatible for external table. That is, new se
 RawStore
 
 ObjectStore will use the additional validWriteIdList field for all read methods to compare with cached ValidWriteIdList
-
-
 
 | **Old API** | **New API** |
 | getTable(String catName,String dbName,String tableName) | getTable(String catName,String dbName,String tableName,int tableid,String validWriteIdList) |
@@ -153,8 +134,6 @@ All other components invoking HMS API directly (bypass Hive.java) will be change
 
 For every read request involving table/partitions, HMS client (HiveMetaStoreClient) need to pass tableid and validWriteIdList string in addition to the existing arguments. tableid and validWriteIdList can be retrieved with txnMgr.getValidWriteIdsAndTblIds(). validWriteIdList can be null if it is external table, as HMS will return whatever in the cache for external table using eventual consistency. But if validWriteIdList=null for managed table, HMS will throw exception. validWriteIdList is a serialized form of [ValidReaderWriteIdList](https://github.com/apache/hive/blob/master/storage-api/src/java/org/apache/hadoop/hive/common/ValidReaderWriteIdList.java#L119). Usually ValidTxnWriteIdList can be obtained from [HiveTxnManager](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/lockmgr/HiveTxnManager.java) using the following code snippet:
 
-
-
 ```
 HiveTxnManager txnMgr = TxnManagerFactory.getTxnManagerFactory().getTxnManager(conf);
 ValidTxnList txnIds = txnMgr.getValidTxns(); // get global transaction state
@@ -166,26 +145,15 @@ ValidWriteIdList writeids = txnWriteIds.getTableValidWriteIdList(fullTableName);
 
 For every managed table write, advance the writeid for the table:
 
-
-
 ```
 AcidUtils.advanceWriteId(conf, tbl);
 ```
 
   
 
-
   
 
-
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

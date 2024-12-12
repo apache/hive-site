@@ -3,21 +3,7 @@ title: "Apache Hive : Streaming Data Ingest"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Streaming Data Ingest
-
-
-
-
-
-
 
 * [Hive 3 Streaming API]({{< ref "#hive-3-streaming-api" >}})
 * [Hive HCatalog Streaming API]({{< ref "#hive-hcatalog-streaming-api" >}})
@@ -41,9 +27,6 @@ date: 2024-12-12
 * [Example – Non-secure Mode]({{< ref "#example-–-non-secure-mode" >}})
 * [Example – Secure Streaming]({{< ref "#example-–-secure-streaming" >}})
 * [Knowledge Base]({{< ref "#knowledge-base" >}})
-
-
-
 
 # Hive 3 Streaming API
 
@@ -172,8 +155,6 @@ It's imperative for proper functioning of the system that the client of this API
 
 # Example – Non-secure Mode
 
-
-
 ```
 ///// Stream five records in two transactions /////
  
@@ -194,9 +175,7 @@ String serdeClass = "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe";
  
 HiveEndPoint hiveEP = new HiveEndPoint("thrift://x.y.com:9083", dbName, tblName, partitionVals);
 
-
 .. spin up threads ..
-
 
 //-------   Thread 1  -------//
 StreamingConnection connection = hiveEP.newConnection(true);
@@ -204,13 +183,11 @@ DelimitedInputWriter writer =
                      new DelimitedInputWriter(fieldNames,",", hiveEP);
 TransactionBatch txnBatch = connection.fetchTransactionBatch(10, writer);
 
-
 ///// Batch 1 - First TXN
 txnBatch.beginNextTransaction();
 txnBatch.write("1,Hello streaming".getBytes());
 txnBatch.write("2,Welcome to streaming".getBytes());
 txnBatch.commit();
-
 
 if(txnBatch.remainingTransactions() > 0) {
 ///// Batch 1 - Second TXN
@@ -220,21 +197,17 @@ txnBatch.write("4,Alan Gates".getBytes());
 txnBatch.write("5,Owen O’Malley".getBytes());
 txnBatch.commit();
 
-
 txnBatch.close();
 connection.close();
 }
 
-
 txnBatch = connection.fetchTransactionBatch(10, writer);
-
 
 ///// Batch 2 - First TXN
 txnBatch.beginNextTransaction();
 txnBatch.write("6,David Schorow".getBytes());
 txnBatch.write("7,Sushant Sowmyan".getBytes());
 txnBatch.commit();
-
 
 if(txnBatch.remainingTransactions() > 0) {
 ///// Batch 2 - Second TXN
@@ -243,22 +216,17 @@ txnBatch.write("8,Ashutosh Chauhan".getBytes());
 txnBatch.write("9,Thejas Nair" getBytes());
 txnBatch.commit();
 
-
 txnBatch.close();
 }
 
-
 connection.close();
 
-
 //-------   Thread 2  -------//
-
 
 StreamingConnection connection2 = hiveEP.newConnection(true);
 DelimitedInputWriter writer2 =
                      new DelimitedInputWriter(fieldNames,",", hiveEP);
 TransactionBatch txnBatch2= connection.fetchTransactionBatch(10, writer2);
-
 
 ///// Batch 1 - First TXN
 txnBatch2.beginNextTransaction();
@@ -266,28 +234,22 @@ txnBatch2.write("21,Venkat Ranganathan".getBytes());
 txnBatch2.write("22,Bowen Zhang".getBytes());
 txnBatch2.commit();
 
-
 ///// Batch 1 - Second TXN
 txnBatch2.beginNextTransaction();
 txnBatch2.write("23,Venkatesh Seetaram".getBytes());
 txnBatch2.write("24,Deepesh Khandelwal".getBytes());
 txnBatch2.commit();
 
-
 txnBatch2.close();
 connection.close();
 
-
-
 txnBatch = connection.fetchTransactionBatch(10, writer);
-
 
 ///// Batch 2 - First TXN
 txnBatch.beginNextTransaction();
 txnBatch.write("26,David Schorow".getBytes());
 txnBatch.write("27,Sushant Sowmyan".getBytes());
 txnBatch.commit();
-
 
 txnBatch2.close();
 connection2.close();
@@ -300,9 +262,6 @@ To connect via Kerberos to a secure Hive metastore, a UserGroupInformation (UGI)
 **Important:**To connect using Kerberos, the 'authenticatedUser' argument to EndPoint.newConnection() should have been used to do a Kerberos login.  Additionally the 'hive.metastore.kerberos.principal' setting should be set correctly either in hive-site.xml or in the 'conf' argument (if not null). If using hive-site.xml, its directory should be included in the classpath.
 
   
-
-
-
 
 ```
 import org.apache.hadoop.security.UserGroupInformation;
@@ -331,9 +290,6 @@ secureConn.close();
 * [Lessons learnt from NiFi streaming data to Hive transactional tables](https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html)
 
   
-
-
-
 
  
 

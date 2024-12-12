@@ -3,20 +3,7 @@ title: "Apache Hive : LanguageManual"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual
-
-
-
-
-
 
 This is the Hive Language Manual.  For other Hive documentation, see the Hive wiki's [Home page]({{< ref "#home-page" >}}).
 
@@ -68,8 +55,6 @@ This is the Hive Language Manual.  For other Hive documentation, see the Hive w
 	+ [SQL Standard Based Authorization]({{< ref "sql-standard-based-hive-authorization_40509928" >}})
 	+ [Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}})
 * [Configuration Properties]({{< ref "configuration-properties_27842758" >}})
-
-
 
  
 

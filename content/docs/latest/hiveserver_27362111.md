@@ -3,20 +3,7 @@ title: "Apache Hive : HiveServer"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HiveServer
-
-
-
-
-
 
 # Thrift Hive Server
 
@@ -66,8 +53,6 @@ $ bin/hive --service hiveserver
 
 After starting the server, to test if the server is working well, run the hiveserver and jdbc tests in 'standalone' mode. The HIVE\_PORT is assumed to be 10000 on localhost for this case.
 
-
-
 ```
 $ ant test -Dtestcase=TestJdbcDriver -Dstandalone=true
 $ ant test -Dtestcase=TestHiveServer -Dstandalone=true
@@ -79,8 +64,6 @@ The service supports clients in multiple languages. For more details see [Hive C
 Troubleshooting: Connection Error
 
 Hive server and clients communicate through Thrift and FB303 services. In some distributions, both the Hadoop and Hive distributions have different versions of libthrift.jar and libfb303.jar. If they are incompatible, it may cause a Thrift connection error when running the unit test on standalone mode. The solution is to remove the Hadoop's version of libthrift.jar and libfb303.jar.
-
-
 
  
 

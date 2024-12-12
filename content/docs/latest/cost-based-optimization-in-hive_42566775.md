@@ -3,21 +3,7 @@ title: "Apache Hive : Cost-based optimization in Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Cost-based optimization in Hive
-
-
-
-
-
-
 
 * [Abstract]({{< ref "#abstract" >}})
 * [1. INTRODUCTION]({{< ref "#1--introduction" >}})
@@ -27,9 +13,6 @@ date: 2024-12-12
 * [5. Phase 1 – Work Items]({{< ref "#5--phase-1-–-work-items" >}})
 * [Open Issues]({{< ref "#open-issues" >}})
 * [Reference]({{< ref "#reference" >}})
-
-
-
 
 # Abstract
 
@@ -764,14 +747,7 @@ Sai Wu, Feng Li, Sharad Mehrotra, Beng Chin Ooi
 
 *School of Information and Computer Science, University of California at Irvine*
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

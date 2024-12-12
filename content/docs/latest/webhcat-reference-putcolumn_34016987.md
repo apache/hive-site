@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference PutColumn"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference PutColumn
 
-
-
-
-
-
 # Create Column — PUT ddl/database/:db/table/:table/column/:column
-
 
 * [Create Column — PUT ddl/database/:db/table/:table/column/:column]({{< ref "#create-column-—-put-ddl/database/:db/table/:table/column/:column" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -30,9 +16,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 
-
-
-
 ## Description
 
 Create a column in an HCatalog table.
@@ -42,8 +25,6 @@ Create a column in an HCatalog table.
 `http://`*www.myserver.com*`/templeton/v1/ddl/database/`*:db*`/table/`*:table*`/column/`*:column*
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -59,8 +40,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **column** | The column name |
@@ -71,8 +50,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ### Curl Command
 
-
-
 ```
 % curl -s -X PUT -HContent-type:application/json \
        -d '{"type": "string", "comment": "The brand name"}' \
@@ -81,8 +58,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 
 ### JSON Output
-
-
 
 ```
 {
@@ -96,14 +71,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
   
 
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-getcolumn_34016979" >}}) Next: [GET ddl/database/:db/table/:table/property]({{< ref "webhcat-reference-getproperties_34016995" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

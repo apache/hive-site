@@ -3,20 +3,7 @@ title: "Apache Hive : Hive 0.14 release status"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive 0.14 release status
-
-
-
-
-
 
 This page tracks the jiras requested for the release hive-0.14.
 
@@ -25,7 +12,6 @@ This page tracks the jiras requested for the release hive-0.14.
 The query I am using for tracking:
 
  
-
 
 project = Hive AND (affectedVersion = 0.14.0 OR fixVersion = 0.14.0) AND (priority = Critical OR priority = Blocker) AND (status = "Patch Available" OR status = "In Progress" OR status = Open OR status = "Documentation/Testcases Required" or status = "Documentation Required")
  
@@ -47,8 +33,6 @@ I have removed the table that was used for tracking earlier. I have shared the q
 4. Once the blocker list goes to 0, I am going to create an RC.  
   
 5. **Patches for blocker jiras are going to need to be double committed to both trunk and 0.14 by the one committing the jira.**
-
-
 
  
 

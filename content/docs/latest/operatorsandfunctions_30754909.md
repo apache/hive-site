@@ -3,20 +3,7 @@ title: "Apache Hive : OperatorsAndFunctions"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : OperatorsAndFunctions
-
-
-
-
-
 
 ## Hive Operators and Functions
 
@@ -26,8 +13,6 @@ date: 2024-12-12
 	+ [Reflect UDF]({{< ref "reflectudf_30754716" >}})
 	+ [Generic UDAF Case Study]({{< ref "genericudafcasestudy_27362093" >}})
 	+ [Functions for Statistics and Data Mining]({{< ref "statisticsanddatamining_27362058" >}})
-
-
 
  
 

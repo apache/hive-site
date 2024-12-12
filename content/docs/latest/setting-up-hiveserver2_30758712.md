@@ -3,23 +3,9 @@ title: "Apache Hive : Setting Up HiveServer2"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Setting Up HiveServer2
 
-
-
-
-
-
 # HiveServer2
-
 
 * [HiveServer2]({{< ref "#hiveserver2" >}})
 	+ [How to Configure]({{< ref "#how-to-configure" >}})
@@ -46,9 +32,6 @@ date: 2024-12-12
 	+ [Python Client Driver]({{< ref "#python-client-driver" >}})
 	+ [Ruby Client Driver]({{< ref "#ruby-client-driver" >}})
 
-
-
-
 [HiveServer2](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver_27362111" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
 * The Thrift interface definition language (IDL) for HiveServer2 is available at <https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>.
@@ -64,7 +47,6 @@ Introduced in Hive version 0.11. See [HIVE-2935](https://issues.apache.org/jira/
 
 #### **Configuration Properties in the `hive-site.xml` File**
 
-
 hive.server2.thrift.min.worker.threads – Minimum number of worker threads, default 5.
 
 hive.server2.thrift.max.worker.threads – Maximum number of worker threads, default 500.
@@ -73,21 +55,16 @@ hive.server2.thrift.port – TCP port number to listen on, default 10000.
 
 hive.server2.thrift.bind.host – TCP interface to bind to.
 
-
 See [HiveServer2 in the Configuration Properties document]({{< ref "#hiveserver2-in-the-configuration-properties-document" >}}) for additional properties that can be set for HiveServer2.
 
 **Optional Environment Settings**
 
-
 HIVE\_SERVER2\_THRIFT\_BIND\_HOST – Optional TCP host interface to bind to. Overrides the configuration file setting.  
 HIVE\_SERVER2\_THRIFT\_PORT – Optional TCP port number to listen on, default 10000. Overrides the configuration file setting.
-
 
 #### **Running in HTTP Mode**
 
 HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see [HIVE-4752](https://issues.apache.org/jira/browse/HIVE-4752)). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: [HiveServer2 Clients -- JDBC Connection URLs](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC). Use the following settings to enable and configure HTTP mode:
-
-
 
 | Setting | Default | Description |
 | --- | --- | --- |
@@ -97,11 +74,9 @@ HiveServer2 provides support for sending Thrift RPC messages over HTTP transport
 | [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5 | Minimum worker threads in the server pool |
 | [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}}) | cliservice | The service endpoint |
 
-
 ##### Cookie Based Authentication
 
 [HIVE-9709](https://issues.apache.org/jira/browse/HIVE-9709) and [HIVE-9710](https://issues.apache.org/jira/browse/HIVE-9710) introduced cookie based authentication for HiveServer2 in HTTP mode. The HiveServer2 parameters (hive.server2.thrift.http.cookie.*) associated with this change can be found [here](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.server2.thrift.http.cookie.auth.enabled).
-
 
 #### Optional Global Init File
 
@@ -120,16 +95,12 @@ HiveServer2 operation logs are available for Beeline clients (Hive 0.14 onward).
 
 ## How to Start
 
-
-
 ```
 $HIVE\_HOME/bin/hiveserver2
 
 ```
 
 OR
-
-
 
 ```
 $HIVE\_HOME/bin/hive --service hiveserver2
@@ -139,8 +110,6 @@ $HIVE\_HOME/bin/hive --service hiveserver2
 #### **Usage Message**
 
 The `-H` or `--help` option displays a usage message, for example:
-
-
 
 ```
 $HIVE\_HOME/bin/hive --service hiveserver2 -H
@@ -155,7 +124,6 @@ usage: hiveserver2
 HiveServer2 supports Anonymous (no authentication) with and without SASL, Kerberos (GSSAPI), pass through LDAP, Pluggable Custom Authentication and Pluggable Authentication Modules (PAM, supported Hive 0.13 onwards).
 
 #### **Configuration**
-
 
 Authentication mode:
 
@@ -183,22 +151,17 @@ hive.server2.custom.authentication.class – Custom authentication class that im
 
 For PAM mode, see details in [section on PAM]({{< ref "#section-on-pam" >}}) below.
 
-
 #### **Impersonation**
 
 By default HiveServer2 performs the query processing as the user who submitted the query. But if the following parameter is set to false, the query will run as the user that the `hiveserver2` process runs as.
 
-
 hive.server2.enable.doAs – Impersonate the connected user, default true.
 
-
 To prevent memory leaks in unsecure mode, disable file system caches by setting the following parameters to true (see [HIVE-4501](https://issues.apache.org/jira/browse/HIVE-4501)):
-
 
 fs.hdfs.impl.disable.cache – Disable HDFS filesystem cache, default false.
 
 fs.file.impl.disable.cache – Disable local filesystem cache, default false.
-
 
 #### **Integrity/Confidentiality Protection**
 
@@ -211,13 +174,11 @@ Integrity protection and confidentiality protection (beyond just the default of 
 
 Support is provided for SSL encryption (Hive 0.13 onward, see [HIVE-5351](https://issues.apache.org/jira/browse/HIVE-5351)). To enable, set the following configurations in `hive-site.xml`:
 
-
 hive.server2.use.SSL – Set this to true.
 
 hive.server2.keystore.path – Set this to your keystore path.
 
 hive.server2.keystore.password – Set this to your keystore password.
-
 
 Note
 
@@ -259,11 +220,9 @@ Support is provided for PAM (Hive 0.13 onward, see [HIVE-6466](https://issues.ap
 
 Finally, set the following configurations in `hive-site.xml`:
 
-
 hive.server2.authentication – Set this to PAM.
 
 hive.server2.authentication.pam.services – Set this to a list of comma-separated PAM services that will be used. Note that a file with the same name as the PAM service must exist in /etc/pam.d.
-
 
 #### Setting up HiveServer2 job credential provider
 
@@ -275,11 +234,9 @@ Starting Hive 2.2.0 onwards (see [HIVE-14822](https://issues.apache.org/jira/br
 4. If the password using environment variable set in step 2 is not provided, HiveServer2 will use HADOOP\_CREDSTORE\_PASSWORD environment variable if available.
 5. HiveServer2 will now modify the job configuration of the jobs launched using MR or Spark execution engines to include the job credential provider so that job tasks can access the encrypted keystore with the secrets.
 
-
 hive.server2.job.credential.provider.path – Set this to your job-specific hadoop credential provider. Eg: jceks://hdfs/user/hive/secret/jobcreds.jceks.
 
 HIVE\_JOB\_CREDSTORE\_PASSWORD – Set this HiveServer2 environment variable to your job specific Hadoop credential provider password set above.
-
 
 ## Scratch Directory Management
 
@@ -297,8 +254,6 @@ The following are the properties that can be configured related to scratch direc
 ### ClearDanglingScratchDir Tool
 
 The tool **cleardanglingscratchdir** can be run to clean up any dangling scratch directories that might be left over from improper shutdowns of Hive, such as when a virtual machine restarts and leaves no chance for Hive to run the shutdown hook.
-
-
 
 ```
 hive --service cleardanglingscratchdir [-r] [-v] [-s scratchdir]
@@ -325,7 +280,6 @@ The interface is currently under development with [HIVE-12338](https://issues.a
 
   
 
-
 ![](attachments/30758712/61336258.png)
 
 ## Python Client Driver
@@ -336,15 +290,11 @@ The driver has been certified for use with Python 2.6 and newer.
 
 To use the [pyhs2](https://github.com/BradRuderman/pyhs2) driver:
 
-
-
 ```
 pip install pyhs2
 ```
 
 and then:
-
-
 
 ```
 import pyhs2
@@ -380,14 +330,7 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 
  
 
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

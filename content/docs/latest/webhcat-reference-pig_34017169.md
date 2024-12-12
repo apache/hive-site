@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat Reference Pig"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference Pig
 
-
-
-
-
-
 # Pig Job — POST pig
-
 
 * [Pig Job — POST pig]({{< ref "#pig-job-—-post-pig" >}})
 	+ [Description]({{< ref "#description" >}})
@@ -31,9 +17,6 @@ date: 2024-12-12
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
 
-
-
-
 ## Description
 
 Create and queue a [Pig](http://pig.apache.org/) job.
@@ -43,8 +26,6 @@ Create and queue a [Pig](http://pig.apache.org/) job.
 `http://`*www.myserver.com*`/templeton/v1/pig`
 
 ## Parameters
-
-
 
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
@@ -61,8 +42,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ## Results
 
-
-
 | Name | Description |
 | --- | --- |
 | **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
@@ -71,8 +50,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ## Example
 
 ### Code and Data Setup
-
-
 
 ```
 % cat id.pig
@@ -93,8 +70,6 @@ dra:Deirdre McClure:marvelous
 
 ### Curl Command
 
-
-
 ```
 % curl -s -d file=id.pig \
        -d arg=-v \
@@ -109,8 +84,6 @@ Prior to Hive 0.13.0, user.name was specified in POST requests as a form paramet
 In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.name should be specified in the query string (as shown above): `'http://.../templeton/v1/pig?user.name=*<name>*'`. Specifying user.name as a form parameter is deprecated.
 
 ### JSON Output
-
-
 
 ```
 {
@@ -130,9 +103,6 @@ Previous: [POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar_34017030"
  Next: [POST hive]({{< ref "webhcat-reference-hive_34017180" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
-
-
 
  
 

@@ -3,20 +3,7 @@ title: "Apache Hive : WebHCat Reference AllDDL"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat Reference AllDDL
-
-
-
-
-
 
 # WebHCat Reference: DDL Resources
 
@@ -26,9 +13,6 @@ This is an overview page for the WebHCat DDL resources. The full list of WebHCat
 * For information about Hive DDL commands, see [Hive Data Definition Language]({{< ref "languagemanual-ddl_27362034" >}}).
 
   
-
-
-
 
 | Object | Resource (Type) | Description |
 | --- | --- | --- |
@@ -56,16 +40,12 @@ This is an overview page for the WebHCat DDL resources. The full list of WebHCat
 
   
 
-
 **Navigation Links**
 Previous: [GET version]({{< ref "webhcat-reference-version_34015986" >}}) Next: [POST ddl]({{< ref "webhcat-reference-ddl_34015990" >}})
 
 HCatalog DDL commands: [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl_27362034" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat (Templeton) Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Home]({{< ref "home_27362069" >}})
-
-
-
 
  
 

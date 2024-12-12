@@ -3,23 +3,9 @@ title: "Apache Hive : LanguageManual ImportExport"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : LanguageManual ImportExport
 
-
-
-
-
-
 # Import/Export
-
 
 * [Import/Export]({{< ref "#import/export" >}})
 	+ [Overview]({{< ref "#overview" >}})
@@ -27,9 +13,6 @@ date: 2024-12-12
 	+ [Import Syntax]({{< ref "#import-syntax" >}})
 	+ [Replication usage]({{< ref "#replication-usage" >}})
 	+ [Examples]({{< ref "#examples" >}})
-
-
-
 
 Version
 
@@ -51,16 +34,12 @@ The `EXPORT` and `IMPORT` commands work independently of the source and target m
 
 ### Export Syntax
 
-
-
 ```
 EXPORT TABLE tablename [PARTITION (part\_column="value"[, ...])] 
   TO 'export\_target\_path' [ FOR replication('eventid') ]
 ```
 
 ### Import Syntax
-
-
 
 ```
 IMPORT [[EXTERNAL] TABLE new\_or\_original\_tablename [PARTITION (part\_column="value"[, ...])]] 
@@ -83,8 +62,6 @@ For those using EXPORT for the first-time manual bootstrapping usecase, users ar
 
 Simple export and import:
 
-
-
 ```
 export table department to 'hdfs\_exports\_location/department';
 import from 'hdfs\_exports\_location/department';
@@ -92,8 +69,6 @@ import from 'hdfs\_exports\_location/department';
 ```
 
 Rename table on import:
-
-
 
 ```
 export table department to 'hdfs\_exports\_location/department';
@@ -103,8 +78,6 @@ import table imported\_dept from 'hdfs\_exports\_location/department';
 
 Export partition and import:
 
-
-
 ```
 export table employee partition (emp\_country="in", emp\_state="ka") to 'hdfs\_exports\_location/employee';
 import from 'hdfs\_exports\_location/employee';
@@ -113,8 +86,6 @@ import from 'hdfs\_exports\_location/employee';
 
 Export table and import partition:
 
-
-
 ```
 export table employee to 'hdfs\_exports\_location/employee';
 import table employee partition (emp\_country="us", emp\_state="tn") from 'hdfs\_exports\_location/employee';
@@ -122,8 +93,6 @@ import table employee partition (emp\_country="us", emp\_state="tn") from 'hdfs\
 ```
 
 Specify the import location:
-
-
 
 ```
 export table department to 'hdfs\_exports\_location/department';
@@ -134,15 +103,11 @@ import table department from 'hdfs\_exports\_location/department'
 
 Import as an external table:
 
-
-
 ```
 export table department to 'hdfs\_exports\_location/department';
 import external table department from 'hdfs\_exports\_location/department';
 
 ```
-
-
 
  
 

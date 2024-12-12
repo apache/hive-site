@@ -3,23 +3,9 @@ title: "Apache Hive : HBaseIntegration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : HBaseIntegration
 
-
-
-
-
-
 # Hive HBase Integration
-
 
 * [Hive HBase Integration]({{< ref "#hive-hbase-integration" >}})
 	
@@ -45,9 +31,6 @@ date: 2024-12-12
 	+ [Links]({{< ref "#links" >}})
 	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
 	+ [Open Issues (JIRA)]({{< ref "#open-issues--jira-" >}})
-
-
-
 
 Version information
 
@@ -77,16 +60,12 @@ The storage handler is built as an independent module, `hive-hbase-handler-x.y.z
 
 Here's an example using CLI from a source build environment, targeting a single-node HBase server. (Note that the jar locations and names have changed in Hive 0.9.0, so for earlier releases, some changes are needed.)
 
-
-
 ```
 $HIVE\_SRC/build/dist/bin/hive --auxpath $HIVE\_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE\_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE\_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE\_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.master=hbase.yoyodyne.com:60000
 
 ```
 
 Here's an example which instead targets a distributed HBase cluster where a quorum of 3 zookeepers is used to elect the HBase master:
-
-
 
 ```
 $HIVE\_SRC/build/dist/bin/hive --auxpath $HIVE\_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE\_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE\_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE\_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.zookeeper.quorum=zk1.yoyodyne.com,zk2.yoyodyne.com,zk3.yoyodyne.com
@@ -96,8 +75,6 @@ $HIVE\_SRC/build/dist/bin/hive --auxpath $HIVE\_SRC/build/dist/lib/hive-hbase-ha
 The handler requires Hadoop 0.20 or higher, and has only been tested with dependency versions hadoop-0.20.x, hbase-0.92.0 and zookeeper-3.3.4. If you are not using hbase-0.92.0, you will need to rebuild the handler with the HBase jar matching your version, and change the `--auxpath` above accordingly. Failure to use matching versions will lead to misleading connection failures such as MasterNotRunningException since the HBase RPC protocol changes often.
 
 In order to create a new HBase table which is to be managed by Hive, use the `STORED BY` clause on `CREATE TABLE`:
-
-
 
 ```
 CREATE TABLE hbase\_table\_1(key int, value string) 
@@ -110,8 +87,6 @@ TBLPROPERTIES ("hbase.table.name" = "xyz", "hbase.mapred.output.outputtable" = "
 The `hbase.columns.mapping` property is required and will be explained in the next section. The `hbase.table.name` property is optional; it controls the name of the table as known by HBase, and allows the Hive table to have a different name. In this example, the table is known as `hbase_table_1` within Hive, and as `xyz` within HBase. If not specified, then the Hive and HBase table names will be identical. The `hbase.mapred.output.outputtable` property is optional; it's needed if you plan to insert data to the table (the property is used by `hbase.mapreduce.TableOutputFormat`)
 
 After executing the command above, you should be able to see the new (empty) table in the HBase shell:
-
-
 
 ```
 $ hbase shell
@@ -136,16 +111,12 @@ Notice that even though a column name "val" is specified in the mapping, only th
 
 Here's how to move data from Hive into the HBase table (see [GettingStarted]({{< ref "gettingstarted_27362090" >}}) for how to create the example table `pokes` in Hive first):
 
-
-
 ```
 INSERT OVERWRITE TABLE hbase\_table\_1 SELECT * FROM pokes WHERE foo=98;
 
 ```
 
 Use HBase shell to verify that the data actually got loaded:
-
-
 
 ```
 hbase(main):009:0> scan "xyz"
@@ -156,8 +127,6 @@ ROW                          COLUMN+CELL
 ```
 
 And then query it back via Hive:
-
-
 
 ```
 hive> select * from hbase\_table\_1;
@@ -172,8 +141,6 @@ Time taken: 4.582 seconds
 
 Inserting large amounts of data may be slow due to WAL overhead; if you would like to disable this, make sure you have HIVE-1383 (as of Hive 0.6), and then issue this command before the INSERT:
 
-
-
 ```
 set hive.hbase.wal.enabled=false;
 
@@ -182,8 +149,6 @@ set hive.hbase.wal.enabled=false;
 **Warning:** disabling WAL may lead to data loss if an HBase failure occurs, so only use this if you have some other recovery strategy available.
 
 If you want to give Hive access to an existing HBase table, use CREATE EXTERNAL TABLE:
-
-
 
 ```
 CREATE EXTERNAL TABLE hbase\_table\_2(key int, value string) 
@@ -221,8 +186,6 @@ The next few sections provide detailed examples of the kinds of column mappings 
 
 Here's an example with three Hive columns and two HBase column families, with two of the Hive columns (`value1` and `value2`) corresponding to one of the column families (`a`, with HBase column names `b` and `c`), and the other Hive column corresponding to a single column (`e`) in its own column family (`d`).
 
-
-
 ```
 CREATE TABLE hbase\_table\_1(key int, value1 string, value2 int, value3 int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -235,8 +198,6 @@ FROM pokes WHERE foo=98 OR foo=100;
 ```
 
 Here's how this looks in HBase:
-
-
 
 ```
 hbase(main):014:0> describe "hbase\_table\_1"
@@ -261,8 +222,6 @@ ROW                          COLUMN+CELL
 
 And when queried back into Hive:
 
-
-
 ```
 hive> select * from hbase\_table\_1;
 Total MapReduce jobs = 1
@@ -279,8 +238,6 @@ Time taken: 4.054 seconds
 
 Here's how a Hive MAP datatype can be used to access an entire column family. Each row can have a different set of columns, where the column names correspond to the map keys and the column values correspond to the map values.
 
-
-
 ```
 CREATE TABLE hbase\_table\_1(value map<string,int>, row\_key int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -296,8 +253,6 @@ WHERE foo=98 OR foo=100;
 
 Here's how this looks in HBase (with different column names in different rows):
 
-
-
 ```
 hbase(main):012:0> scan "hbase\_table\_1"
 ROW                          COLUMN+CELL                                                                      
@@ -308,8 +263,6 @@ ROW                          COLUMN+CELL
 ```
 
 And when queried back into Hive:
-
-
 
 ```
 hive> select * from hbase\_table\_1;
@@ -325,8 +278,6 @@ Time taken: 3.808 seconds
 
 Note that the key of the MAP must have datatype string, since it is used for naming the HBase column, so the following table definition will fail:
 
-
-
 ```
 CREATE TABLE hbase\_table\_1(key int, value map<int,int>) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -340,8 +291,6 @@ FAILED: Error in metadata: java.lang.RuntimeException: MetaException(message:org
 ### Hive MAP to HBase Column Prefix
 
 Also note that starting with [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-3725), wildcards can also be used to retrieve columns. For instance, if you want to retrieve all columns in HBase that start with the prefix "col\_prefix", a query like the following should work:
-
-
 
 ```
 CREATE TABLE hbase\_table\_1(value map<string,int>, row\_key int) 
@@ -358,8 +307,6 @@ The same restrictions apply though. That is, the key of the map should be a stri
 
 Starting with [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11329), it is possible to hide column prefixes in select query results.  There is the SerDe boolean property hbase.columns.mapping.prefix.hide (false by default), which defines if the prefix should be hidden in keys of Hive map:
 
-
-
 ```
 CREATE TABLE hbase\_table\_1(tags map<string,int>, row\_key string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -371,12 +318,10 @@ WITH SERDEPROPERTIES (
 
 Then a value of the column "tags" (`select tags from hbase_table_1`) will be:
 
-
 ```
 "x" : 1
 ```
 instead of:
-
 
 ```
 "tag\_x" : 1
@@ -385,8 +330,6 @@ instead of:
 
 Table definitions such as the following are illegal because a  
  Hive column mapped to an entire column family must have MAP type:
-
-
 
 ```
 CREATE TABLE hbase\_table\_1(key int, value string) 
@@ -402,8 +345,6 @@ FAILED: Error in metadata: java.lang.RuntimeException: MetaException(message:org
 
 Relying on the default value of `hbase.table.default.storage.type`:
 
-
-
 ```
 CREATE TABLE hbase\_table\_1 (key int, value string, foobar double)
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -414,8 +355,6 @@ WITH SERDEPROPERTIES (
 ```
 
 Specifying `hbase.table.default.storage.type`:
-
-
 
 ```
 CREATE TABLE hbase\_table\_1 (key int, value string, foobar double)
@@ -435,8 +374,6 @@ As of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-2599)
 
 Hive can read and write delimited composite keys to HBase by mapping the HBase row key to a Hive struct, and using ROW FORMAT DELIMITED...COLLECTION ITEMS TERMINATED BY. Example:
 
-
-
 ```
 -- Create a table with a composite row key consisting of two string fields, delimited by '~'
 CREATE EXTERNAL TABLE delimited\_example(key struct<f1:string, f2:string>, value string) 
@@ -452,8 +389,6 @@ WITH SERDEPROPERTIES (
 As of Hive 0.14.0 with [HIVE-6411](https://issues.apache.org/jira/browse/HIVE-6411) (0.13.0 also supports complex composite keys, but using a different interface–see [HIVE-2599](https://issues.apache.org/jira/browse/HIVE-2599) for that interface)
 
 For more complex use cases, Hive allows users to specify an HBaseKeyFactory which defines the mapping of a key to fields in a Hive struct. This can be configured using the property "hbase.composite.key.factory" in the SERDEPROPERTIES option:
-
-
 
 ```
 -- Parse a row key with 3 fixed width fields each of width 10
@@ -477,8 +412,6 @@ Hive 0.14.0 onward supports storing and querying Avro objects in HBase columns b
 
 An example HiveQL statement where `test_col_fam` is the column family and `test_col` is the column name:
 
-
-
 ```
 CREATE EXTERNAL TABLE test\_hbase\_avro
 ROW FORMAT SERDE 'org.apache.hadoop.hive.hbase.HBaseSerDe' 
@@ -495,23 +428,17 @@ TBLPROPERTIES (
 
 The important properties to note are the following three:
 
-
-
 ```
 "test\_col\_fam.test\_col.serialization.type" = "avro"
 ```
 
 This property tells Hive that the given column under the given column family is an Avro column, so Hive needs to deserialize it accordingly.
 
-
-
 ```
 "test\_col\_fam.test\_col.avro.schema.url" = "hdfs://testcluster/tmp/schema.avsc"
 ```
 
 Using this property you specify where the reader schema is for the column that will be used to deserialize. This can be on HDFS like mentioned here, or provided inline using something like `"test_col_fam.test_col.avro.schema.literal"` property. If you have a custom store where you store this schema, you can write a custom implementation of [AvroSchemaRetriever](https://github.com/apache/hive/blob/master/serde/src/java/org/apache/hadoop/hive/serde2/avro/AvroSchemaRetriever.java) and plug that in using the `"avro.schema.retriever property"` using a property like `"test_col_fam.test_col.avro.schema.retriever"`. You would need to ensure that the jar with this custom class is on the Hive classpath. For a usage discussion and links to other resources, see [HIVE-6147](https://issues.apache.org/jira/browse/HIVE-6147?focusedCommentId=15125117&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-15125117).
-
-
 
 ```
 "hbase.struct.autogenerate" = "true"
@@ -533,8 +460,6 @@ One subtle difference between HBase tables and Hive tables is that HBase tables 
 
 For example, the pokes table contains rows with duplicate keys. If it is copied into another Hive table, the duplicates are preserved:
 
-
-
 ```
 CREATE TABLE pokes2(foo INT, bar STRING);
 INSERT OVERWRITE TABLE pokes2 SELECT * FROM pokes;
@@ -546,8 +471,6 @@ SELECT COUNT(1) FROM pokes2 WHERE foo=498;
 ```
 
 But in HBase, the duplicates are silently eliminated:
-
-
 
 ```
 CREATE TABLE pokes3(foo INT, bar STRING)
@@ -592,8 +515,6 @@ Positive QL tests are under `hbase-handler/src/test/queries`. These use a HBase+
 
 The QL tests can be executed via ant like this:
 
-
-
 ```
 ant test -Dtestcase=TestHBaseCliDriver -Dqfile=hbase\_queries.q
 
@@ -611,12 +532,6 @@ An Eclipse launch template remains to be defined.
 * Primary credit for this feature goes to Samuel Guo, who did most of the development work in the early drafts of the patch
 
 ## Open Issues (JIRA)
-
-
-
-
-
-
 
 |
 |  |
@@ -905,29 +820,14 @@ An Eclipse launch template remains to be defined.
   |  |
 | 
 
-
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
 
-
  |
-
-
-
-
 
 Showing 20 out of
 [80 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22HBase%20Handler%22%29%20and%20Resolution%20=%20unresolved&tempMax=1000&src=confmacro) 
 
-
-
-
-
-
-
-
  
-
-
 
  
 

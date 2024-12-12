@@ -3,30 +3,13 @@ title: "Apache Hive : RCFileCat"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : RCFileCat
 
-
-
-
-
-
 # RCFileCat
-
 
 * [RCFileCat]({{< ref "#rcfilecat" >}})
 	+ [Data]({{< ref "#data" >}})
 	+ [Metadata]({{< ref "#metadata" >}})
-
-
-
 
 $HIVE\_HOME/bin/hive --rcfilecat is a shell utility which can be used to print data or metadata from [RC files]({{< ref "rcfile_58851803" >}}).
 
@@ -35,8 +18,6 @@ $HIVE\_HOME/bin/hive --rcfilecat is a shell utility which can be used to print d
 Prints out the rows stored in an RCFile, columns are tab separated and rows are newline separated.
 
 Usage:
-
-
 
 ```
 hive --rcfilecat [--start=start\_offset] [--length=len] [--verbose] fileName
@@ -54,8 +35,6 @@ New in 0.11.0
 
 Usage:
 
-
-
 ```
 hive --rcfilecat [--column-sizes | --column-sizes-pretty] fileName
 
@@ -66,8 +45,6 @@ With the --column-sizes option set, instead of printing the data in the RC file,
  The sizes of the columns are the aggregated sizes of the column in the entire file taken from the RC file headers.
 
 With the --column-sizes-pretty option set prints the same data as is printed with the --column-sizes option but with a more human friendly format.
-
-
 
  
 

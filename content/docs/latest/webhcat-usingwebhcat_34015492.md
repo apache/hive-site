@@ -3,23 +3,9 @@ title: "Apache Hive : WebHCat UsingWebHCat"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : WebHCat UsingWebHCat
 
-
-
-
-
-
 # Using the HCatalog REST API (WebHCat)
-
 
 * [Using the HCatalog REST API (WebHCat)]({{< ref "#using-the-hcatalog-rest-api--webhcat-" >}})
 	+ [Introduction to WebHCat]({{< ref "#introduction-to-webhcat" >}})
@@ -32,9 +18,6 @@ date: 2024-12-12
 	+ [Error Codes and Responses]({{< ref "#error-codes-and-responses" >}})
 	+ [Log Files]({{< ref "#log-files" >}})
 	+ [Project Name]({{< ref "#project-name" >}})
-
-
-
 
 Version information
 
@@ -87,16 +70,12 @@ The user.name parameter is part of POST parameters for POST calls, and part of t
 
 For example, to specify user.name in a GET :table command:
 
-
-
 ```
 % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table?user.name=ctdean'
 
 ```
 
 And to specify user.name in a POST :table command:
-
-
 
 ```
 % curl -s -d user.name=ctdean \
@@ -108,8 +87,6 @@ And to specify user.name in a POST :table command:
 ### Security Error Response
 
 If the user.name parameter is not supplied when required, the following error will be returned:
-
-
 
 ```
 {
@@ -158,15 +135,7 @@ Next: [WebHCat Installation]({{< ref "webhcat-installwebhcat_34015585" >}})
 
 General: [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
-
-
-
-
-
 ## Attachments:
-
-
-
 
 ![](images/icons/bullet_blue.gif)
 

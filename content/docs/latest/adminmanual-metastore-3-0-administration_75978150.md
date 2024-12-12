@@ -3,23 +3,9 @@ title: "Apache Hive : AdminManual Metastore 3.0 Administration"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : AdminManual Metastore 3.0 Administration
 
-
-
-
-
-
 Metastore 3.0 Administration
-
 
 * [Version Note]({{< ref "#version-note" >}})
 * [Introduction]({{< ref "#introduction" >}})
@@ -39,9 +25,6 @@ Metastore 3.0 Administration
 * [Performance Optimizations]({{< ref "#performance-optimizations" >}})
 	+ [CachedStore]({{< ref "#cachedstore" >}})
 * [Less Commonly Changed Configuration Parameters]({{< ref "#less-commonly-changed-configuration-parameters" >}})
-
-
-
 
 ## Version Note
 
@@ -69,8 +52,6 @@ Configuration values specific to running the Metastore with various RDBMSs, embe
 
  
 
-
-
 | Parameter | Hive 2 Parameter | Default Value | Description |
 | --- | --- | --- | --- |
 | metastore.warehouse.dir | hive.metastore.warehouse.dir |  | URI of the default location for tables in the default catalog and database. |
@@ -91,8 +72,6 @@ The metastore can be run with [Apache Derby](https://db.apache.org/derby/) embed
 
 For any durable, multi-user installation, an external RDBMS should be used to store Metastore objects.  The Metastore connects to an external RDBMS via JDBC.  Any jars required by the JDBC driver for your RDBMS should be placed in `METASTORE_HOME/lib` or explicilty passed on the command line.  The following values need to be configured to connect the Metastore to an RDBMS.  (Note:  these configuration parameters did not change between Hive 2 and 3.)
 
-
-
 | Configuration Parameter | Comment |
 | --- | --- |
 | javax.jdo.option.ConnectionURL | Connection URL for the JDBC driver |
@@ -103,8 +82,6 @@ For any durable, multi-user installation, an external RDBMS should be used to st
 #### Supported RDBMSs
 
 As the Metastore uses DataNucleus to communicate with the RDBMS, theoretically any storage option supported by DataNucleus would work with the Metastore.  However, we only test and recommend the following:
-
-
 
 | RDBMS | Minimum Version | javax.jdo.option.ConnectionURL | javax.jdo.option.ConnectionDriverName |
 | --- | --- | --- | --- |
@@ -165,8 +142,6 @@ Except in the case of HiveServer2, using this mode raises a few concerns.  Firs
 
 To run the Metastore as a service, you must first configure it with a URL.
 
-
-
 | Configured On | Parameter | Hive 2 Parameter | Format | Default Value | Comment |
 | --- | --- | --- | --- | --- | --- |
 | Client | metastore.thrift.uris | hive.metastore.uris | thrift://<HOST>:<PORT>[, thrift://<HOST>:<PORT>...] | none | HOST = hostname, PORT = should be set to match metastore.thrift.port on the server (which defaults to 9083. You can provide multiple servers in a comma separate list. |
@@ -189,8 +164,6 @@ CLIENT\_KERBEROS\_PRINCIPAL, KERBEROS\_*, SSL*, USE\_SSL, USE\_THRIFT\_SASL
 Beginning in Hive 3.0, the Metastore is released as a separate package and can be run without the rest of Hive.  This is referred to as standalone mode. 
 
 By default the Metastore is configured for use with Hive, so a few configuration parameters have to be changed in this configuration.
-
-
 
 | Configuration Parameter | Set to for Standalone Mode |
 | --- | --- |
@@ -216,7 +189,6 @@ Details about all properties for the CachedStore can be found on [Configuration
 
 BATCHED\_RETRIEVE\_*, CLIENT\_CONNECT\_RETRY\_DELAY, FILTER\_HOOK, SERDES\_USING\_METASTORE\_FOR\_SCHEMA, SERVER\_*\_THREADS, 
 
-
 ```
 THREAD\_POOL\_SIZE
 ```
@@ -229,8 +201,6 @@ Transactions: MAX\_OPEN\_TXNS, TXNS\_*
  
 
  
-
-
 
  
 

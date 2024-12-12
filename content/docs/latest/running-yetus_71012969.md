@@ -3,20 +3,7 @@ title: "Apache Hive : Running Yetus"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Running Yetus
-
-
-
-
-
 
 # Overview
 
@@ -41,8 +28,6 @@ The following Yetus plugins are used in the Hive personality:
 
 To run findbugs checks, the findbugs binary should be installed on the computer and the FINDBUGS\_HOME environment variable should be set. The binary can be downloaded [here](http://findbugs.sourceforge.net/downloads.html).
 
-
-
 ```
 export FINDBUGS\_HOME=~/dev/upstream/findbugs-3.0.1/
 ```
@@ -53,13 +38,9 @@ First checkout a copy of the branch you are targeting without your commits.
 
 Then run the checks with the following command:
 
-
-
 ```
 ./dev-support/test-patch.sh ~/Downloads/HIVE-16345.2.patch
 ```
-
-
 
  
 

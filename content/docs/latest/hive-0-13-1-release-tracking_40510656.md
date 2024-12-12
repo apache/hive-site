@@ -3,27 +3,13 @@ title: "Apache Hive : Hive 0.13.1 Release tracking"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Hive 0.13.1 Release tracking
-
-
-
-
-
 
  
 * [Goal]({{< ref "#goal" >}})
 * [Jiras requested after RC0]({{< ref "#jiras-requested-after-rc0" >}})
 * [Jiras requested for RC0]({{< ref "#jiras-requested-for-rc0" >}})
 * [Timeline]({{< ref "#timeline" >}})
-
 
  
 
@@ -41,8 +27,6 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 
  
 
-
-
 | Category | JIRA | Description | Current Status | 0.13.1 inclusion requestor | 0.13.1 inclusion +1 (2 additional committers) |
 | --- | --- | --- | --- | --- | --- |
 |  |  |  |  |  |  |
@@ -54,8 +38,6 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
  The following jiras have been requested as part of this release. This list is currently (as of May 2nd 2014 6pm PDT) closed for additions. Please do not make any further edits to this table.
 
  
-
-
 
 | Category | JIRA | Description | Current Status | 0.13.1 inclusion requestor |
 | --- | --- | --- | --- | --- |
@@ -95,8 +77,6 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 
 7th May 2014 : Test results analyzed: found the following issues caused:
 
-
-
 | Failure | Patch | Cause | Resoultion |
 | --- | --- | --- | --- |
 | org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_nullformatCTAS | HIVE-6945 | Table properties map order change, golden files differ | Regenerated test golden files |
@@ -128,7 +108,6 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
  
 
   
-
 
  
 

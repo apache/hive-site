@@ -3,21 +3,7 @@ title: "Apache Hive : Vectorized Query Execution"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Vectorized Query Execution
-
-
-
-
-
-
 
 * [Introduction]({{< ref "#introduction" >}})
 * [Using Vectorized Query Execution]({{< ref "#using-vectorized-query-execution" >}})
@@ -26,9 +12,6 @@ date: 2024-12-12
 	+ [Seeing whether vectorization is used for a query]({{< ref "#seeing-whether-vectorization-is-used-for-a-query" >}})
 * [Limitations]({{< ref "#limitations" >}})
 * [Version Information]({{< ref "#version-information" >}})
-
-
-
 
 # Introduction
 
@@ -98,8 +81,6 @@ Vectorized support continues to be added for additional functions and expression
 
 You can verify which parts of your query are being vectorized using the **[explain]({{< ref "languagemanual-explain_27362037" >}})** feature. For example, when Fetch is used in the plan instead of Map, it does not vectorize and the explain output will not include the "`Vectorized execution: true`" notation:
 
-
-
 ```
 create table vectorizedtable(state string,id int) stored as orc;
 
@@ -109,8 +90,6 @@ explain select count(*) from vectorizedtable;
 ```
 
 The **explain** output contains this:
-
-
 
 ```
 STAGE PLANS:
@@ -167,8 +146,6 @@ set hive.fetch.task.conversion=none
 # Version Information
 
 Vectorized execution is available in Hive 0.13.0 and later ([HIVE-5283](https://issues.apache.org/jira/browse/HIVE-5283)).
-
-
 
  
 

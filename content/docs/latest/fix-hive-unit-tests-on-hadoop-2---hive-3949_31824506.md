@@ -3,22 +3,7 @@ title: "Apache Hive : Fix Hive Unit Tests on Hadoop 2 - HIVE-3949"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Fix Hive Unit Tests on Hadoop 2 - HIVE-3949
-
-
-
-
-
-
-
 
 | Test | JIRA | Status |
 | --- | --- | --- |
@@ -52,8 +37,6 @@ date: 2024-12-12
 | TestCliDriver.list\_bucket\_dml\_{2,4,5,9,12,13}.q  |  HIVE-4746  |  (star) Resolved  |
 | TestCliDriver.list\_bucket\_dml\_{6,7,8}.q  |  HIVE-4750  |  (star) Resolved  |
 | TestMiniMrCliDriver.*  |  HIVE-4756  |  (star) Resolved  |
-
-
 
  
 

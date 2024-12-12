@@ -3,20 +3,7 @@ title: "Apache Hive : Column Statistics in Hive"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Column Statistics in Hive
-
-
-
-
-
 
 *** [Introduction]({{< ref "#introduction" >}})
 * [HiveQL changes]({{< ref "#hiveql-changes" >}})
@@ -44,7 +31,6 @@ HiveQL currently supports the [analyze command]({{< ref "#analyze-command" >}}) 
 Please note that table and column aliases are not supported in the analyze statement.
 
 To view column stats :
-
 
 ```
 describe formatted [table\_name] [column\_name];
@@ -229,15 +215,7 @@ Note that delete\_column\_statistics is needed to remove the entries from the me
 
 Note that in V1 of the project, we will support only scalar statistics. Furthermore, we will support only static partitions, i.e., both the partition key and partition value should be specified in the analyze command. In a following version, we will add support for height balanced histograms as well as support for dynamic partitions in the analyze command for column level statistics.
 
-
-
-
-
 ## Comments:
-
-
-
-
 
 |  |
 | --- |
@@ -245,17 +223,13 @@ Note that in V1 of the project, we will support only scalar statistics. Furtherm
 Shreepadma, is there a jira for this ? Is this ready for review, or is it a initial design ?
 Also, can you go over <https://issues.apache.org/jira/browse/HIVE-3421> and see how the two are related ?
 
-
  Posted by namit.jain at Sep 14, 2012 00:51
   |
 | 
 Namit, This patch is ready for review. There is already a JIRA for this - HIVE-1362. I've the patch on both JIRA and reviewboard. Please note that this goes beyond HIVE-3421 - this patch adds the stats specified on both this wiki and the JIRA page. Thanks.
 
-
  Posted by shreepadma at Oct 03, 2012 00:46
   |
-
-
 
  
 

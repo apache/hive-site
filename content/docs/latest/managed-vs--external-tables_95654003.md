@@ -3,20 +3,7 @@ title: "Apache Hive : Managed vs. External Tables"
 date: 2024-12-12
 ---
 
-
-
-
-
-
-
-
-
 # Apache Hive : Managed vs. External Tables
-
-
-
-
-
 
 Hive fundamentally knows two different types of tables:
 
@@ -57,8 +44,6 @@ Use managed tables when Hive should manage the lifecycle of the table, or when g
 An external table describes the metadata / schema on external files. External table files can be accessed and managed by processes outside of Hive. External tables can access data stored in sources such as Azure Storage Volumes (ASV) or remote HDFS locations. If the structure or partitioning of an external table is changed, an [MSCK REPAIR TABLE table\_name]({{< ref "#msck-repair-table-table\_name" >}}) statement can be used to refresh metadata information.
 
 Use external tables when files are already present or in remote locations, and the files should remain even if the table is dropped.
-
-
 
  
 
