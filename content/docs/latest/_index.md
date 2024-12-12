@@ -3,19 +3,6 @@ title: "Space Details:"
 date: 2024-12-12
 ---
 
-# Space Details:
-
-|  |  |
-| --- | --- |
-| Key | Hive |
-| Name | Apache Hive |
-| Description |  |
-| Created by | admin (Jun 24, 2011) |
-
-  
-
-  
-
 ## Available Pages:
 
 * [AdminManual]({{< ref "adminmanual_27362071" >}})
