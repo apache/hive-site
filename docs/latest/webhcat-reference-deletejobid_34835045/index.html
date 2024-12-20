@@ -1,0 +1,295 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : WebHCat Reference DeleteJobID</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--webhcat-reference-deletejobid>Apache Hive : WebHCat Reference DeleteJobID</h1>
+<h1 id=delete-job--delete-jobsjobid>Delete Job — DELETE jobs/:jobid</h1>
+<ul>
+<li><a href=#delete-job-—-delete-jobs/:jobid>Delete Job — DELETE jobs/:jobid</a>
+<ul>
+<li><a href=#description>Description</a></li>
+<li><a href=#url>URL</a></li>
+<li><a href=#parameters>Parameters</a></li>
+<li><a href=#results>Results</a></li>
+<li><a href=#example>Example</a>
+<ul>
+<li><a href=#curl-command>Curl Command</a></li>
+<li><a href=#json-output>JSON Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id=description>Description</h2>
+<p>Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.</p>
+<p>Version: Hive 0.12.0 and later</p>
+<p><code>DELETE jobs/:jobid</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[DELETE queue/:jobid](https://hive.apache.org/docs/latest/webhcat-reference-deletejob_34017204/)</code> in prior releases.<br>
+<code>DELETE queue/:jobid</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p>
+<h2 id=url>URL</h2>
+<p><code>http://</code><em><a href=http://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/jobs/</code><em>:jobid</em></p>
+<h2 id=parameters>Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Required?</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>:jobid</strong></td>
+<td>The job ID to delete. This is the ID received when the job was created.</td>
+<td>Required</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p>
+<h2 id=results>Results</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>status</strong></td>
+<td>A JSON object containing the job status information. See the Hadoop documentation (<a href=http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapred/JobStatus.html><code>Class JobStatus</code></a>) for more information.</td>
+</tr>
+<tr>
+<td><strong>profile</strong></td>
+<td>A JSON object containing the job profile information. WebHCat passes along the information in the JobProfile object, which is subject to change from one Hadoop version to another. See the <a href=http://hadoop.apache.org/docs/>Hadoop documentation</a> (API docs) for org.apache.hadoop.mapred.JobProfile for more information.</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td>The job ID.</td>
+</tr>
+<tr>
+<td><strong>parentId</strong></td>
+<td>The parent job ID.</td>
+</tr>
+<tr>
+<td><strong>percentComplete</strong></td>
+<td>The job completion percentage, for example &ldquo;75% complete&rdquo;.</td>
+</tr>
+<tr>
+<td><strong>exitValue</strong></td>
+<td>The job&rsquo;s exit value.</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>User name of the job creator.</td>
+</tr>
+<tr>
+<td><strong>callback</strong></td>
+<td>The callback URL, if any.</td>
+</tr>
+<tr>
+<td><strong>completed</strong></td>
+<td>A string representing completed status, for example &ldquo;done&rdquo;.</td>
+</tr>
+</tbody>
+</table>
+<h2 id=example>Example</h2>
+<h3 id=curl-command>Curl Command</h3>
+<pre tabindex=0><code>% curl -s -X DELETE 'http://localhost:50111/templeton/v1/jobs/job\_201111111311\_0009?user.name=ctdean'
+
+</code></pre><h3 id=json-output>JSON Output</h3>
+<pre tabindex=0><code>{
+ &quot;status&quot;: {
+            &quot;startTime&quot;: 1321047216471,
+            &quot;username&quot;: &quot;ctdean&quot;,
+            &quot;jobID&quot;: {
+                      &quot;jtIdentifier&quot;: &quot;201111111311&quot;,
+                      &quot;id&quot;: 9
+                     },
+            &quot;jobACLs&quot;: {
+                       },
+            &quot;schedulingInfo&quot;: &quot;NA&quot;,
+            &quot;failureInfo&quot;: &quot;NA&quot;,
+            &quot;jobId&quot;: &quot;job\_201111111311\_0009&quot;,
+            &quot;jobPriority&quot;: &quot;NORMAL&quot;,
+            &quot;runState&quot;: 1,
+            &quot;jobComplete&quot;: false
+           },
+ &quot;profile&quot;: {
+             &quot;url&quot;: &quot;http://localhost:50030/jobdetails.jsp?jobid=job\_201111111311\_0009&quot;,
+             &quot;user&quot;: &quot;ctdean&quot;,
+             &quot;jobID&quot;: {
+                       &quot;jtIdentifier&quot;: &quot;201111111311&quot;,
+                       &quot;id&quot;: 9
+                      },
+             &quot;queueName&quot;: &quot;default&quot;,
+             &quot;jobFile&quot;: &quot;hdfs://localhost:9000/tmp/hadoop-ctdean/mapred/staging/ctdean/.staging/job\_201111111311\_0009/job.xml&quot;,
+             &quot;jobName&quot;: &quot;streamjob3322518350676530377.jar&quot;,
+             &quot;jobId&quot;: &quot;job\_201111111311\_0009&quot;
+            }
+ &quot;id&quot;: &quot;job\_201111111311\_0009&quot;,
+ &quot;parentId&quot;: &quot;job\_201111111311\_0008&quot;,
+ &quot;percentComplete&quot;: &quot;10% complete&quot;,
+ &quot;exitValue&quot;: 0,
+ &quot;user&quot;: &quot;ctdean&quot;,
+ &quot;callback&quot;: null,
+ &quot;completed&quot;: &quot;false&quot;
+}
+
+</code></pre><p>Note</p>
+<p>The job is not immediately deleted, therefore the information returned may not reflect deletion, as in our example. Use <a href=https://hive.apache.org/docs/latest/webhcat-reference-job_34835065/>GET jobs/:jobid</a> to monitor the job and confirm that it is eventually deleted.</p>
+<p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat-reference-job_34835065/>GET jobs/:jobid</a></p>
+<p>General: <a href=https://hive.apache.org/docs/latest/webhcat-reference_34015762/>WebHCat Reference</a> – <a href=https://hive.apache.org/docs/latest/webhcat_33299069/>WebHCat Manual</a> – <a href=https://hive.apache.org/docs/latest/hcatalog_33299065/>HCatalog Manual</a> – <a href=https://hive.apache.org/docs/latest/home_27362069/>Hive Wiki Home</a> – <a href=http://hive.apache.org/>Hive Project Site</a></p>
+<p>Replaces deprecated resource: <a href=https://hive.apache.org/docs/latest/webhcat-reference-deletejob_34017204/>DELETE queue/:jobid</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

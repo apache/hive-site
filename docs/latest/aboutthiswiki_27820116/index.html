@@ -1,0 +1,236 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : AboutThisWiki</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--aboutthiswiki>Apache Hive : AboutThisWiki</h1>
+<ul>
+<li><a href=#how-to-get-permission-to-edit>How to get permission to edit</a></li>
+<li><a href=#how-to-edit-the-hive-wiki>How to edit the Hive wiki</a>
+<ul>
+<li><a href=#advanced-links>Advanced links</a></li>
+</ul>
+</li>
+<li><a href=#how-to-find-documentation-tasks>How to find documentation tasks</a></li>
+<li><a href=#how-to-export-the-hive-wiki>How to export the Hive wiki</a></li>
+<li><a href=#history>History</a></li>
+</ul>
+<p>This page provides information about the <a href=https://hive.apache.org/docs/latest/home_27362069/>Hive wiki</a>, including how to edit and export as well as a brief history of the wiki. Note that the <a href=http://hive.apache.org/>Hive website</a> is separate from the Hive wiki. See <a href=https://hive.apache.org/docs/latest/how-to-edit-the-website_33294834/>How to edit the website</a> for information on editing the website.</p>
+<h2 id=how-to-get-permission-to-edit>How to get permission to edit</h2>
+<ul>
+<li>Create a <a href=https://cwiki.apache.org/confluence/signup.action>Confluence account</a> if you don&rsquo;t already have one.</li>
+<li>Sign up for the <a href=http://hive.apache.org/mailing_lists.html>user mailing list</a> by sending a message to <a href>user-subscribe@hive.apache.org</a>.</li>
+<li>Send a message to <a href>user@hive.apache.org</a>:
+<ul>
+<li>Request write access to the Hive wiki.</li>
+<li>Provide your Confluence username.</li>
+</ul>
+</li>
+</ul>
+<h2 id=how-to-edit-the-hive-wiki>How to edit the Hive wiki</h2>
+<p>Once you have wiki edit privilege and are logged in, an <strong>Edit button</strong> will appear in the upper right corner of each wiki document (next to Watch and Share). That takes you to the Edit window, where you should enter a brief note about the nature of your changes in a field at the bottom (&ldquo;What did you change?") and then edit the document. A bar across the top has fairly obvious GUI symbols and there&rsquo;s help via the &ldquo;<strong>?</strong>&rdquo; <strong>button</strong>, top right.</p>
+<p>In the bottom right corner there&rsquo;s a <strong>Preview</strong> <strong>button</strong> (which toggles with Edit) and a <strong>Save button</strong>. The editor auto-saves and keeps your draft, which you can find in the drop-down list on your ID picture (upper right). When you use the <strong>Save button</strong>, email gets sent to everyone watching that wiki page <em>unless</em> <em>you&rsquo;ve unchecked &ldquo;Notify watchers&rdquo;</em> at the bottom; but auto-save does not notify watchers. If you save something and then decide it&rsquo;s all wrong, you can go to the page history and revert it. Page history is in the Tools drop-down list (<strong>&rdquo;&mldr;" button</strong>) on every wiki page, but not in the editing window.</p>
+<p>It is good practice to put a comment on the <a href=https://issues.apache.org/jira/browse/HIVE-10000>JIRA issue</a> that you&rsquo;re documenting, with a link to the wiki page, so people watching that issue can review your changes and future JIRA trawlers can find the documentation easily. See <a href=#how-to-find-documentation-tasks>How to find documentation tasks</a> below for more about the JIRA. As a note, Confluence markup syntax is the same as JIRA since they come from the same company.</p>
+<p>Version information</p>
+<p>Please include Hive version information with your changes, because the wiki covers all releases of Hive.</p>
+<p>You can give the version either in the text or in a Version info box like this one (click the <strong>"+" icon</strong>, select &ldquo;Info&rdquo; from the drop-down list, and enter &ldquo;Version&rdquo; or &ldquo;Version information&rdquo; as the title). To link to a JIRA issue, highlight <a href=https://issues.apache.org/jira/browse/HIVE-10000>some text</a> or the issue ID such as <a href=https://issues.apache.org/jira/browse/HIVE-10000>HIVE-10000</a> and click the <strong>Insert link icon</strong> (upper middle-right side of the page), using the &ldquo;Web link&rdquo; option on the left side of the &ldquo;Insert link&rdquo; window.</p>
+<p>Links to other parts of the wiki should be made with the &ldquo;Advanced&rdquo;, &ldquo;Search&rdquo;, or &ldquo;Recently viewed&rdquo; option of the &ldquo;Insert link&rdquo; window rather than using the &ldquo;Web link&rdquo; option, so that Confluence can automatically adjust links to any sections that get renamed.</p>
+<p>If you rename a section and want to preserve external links to it, you should add an anchor for the old title in a text paragraph either before or after the changed heading. (Do not put the anchor on the heading itself because that affects internal links.) Anchors can also be used for links to text or graphics within a section. To insert an anchor, use the <strong>"+" icon</strong> and select &ldquo;Other macros&rdquo; at the bottom of the drop-down list. For an example, look at <a href=#this-section>this section</a> in Edit mode.</p>
+<h4 id=advanced-links>Advanced links</h4>
+<p>For &ldquo;Advanced&rdquo; links within the wiki, the Link field is case-sensitive. An advanced link to a Hive wiki page just uses the title as shown at the top of that page, which may or may not include spaces:</p>
+<ul>
+<li><a href=https://hive.apache.org/docs/latest/gettingstarted_27362090/>GettingStarted</a></li>
+<li><a href=https://hive.apache.org/docs/latest/books-about-hive_61322063/>Books about Hive</a></li>
+<li><a href=https://hive.apache.org/docs/latest/languagemanual_27362030/>LanguageManual</a></li>
+</ul>
+<p>Sections within a wiki page are marked with a &ldquo;#&rdquo; sign. Subheadings are treated the same as major headings:</p>
+<ul>
+<li><a href=#gettingstarted#installation-and-configuration>GettingStarted#Installation and Configuration</a></li>
+<li><a href=#gettingstarted#requirements>GettingStarted#Requirements</a></li>
+</ul>
+<p>An advanced link to a section on the same wiki page only needs &ldquo;#&rdquo; and the heading text in the Link field:</p>
+<ul>
+<li><a href=##how-to-edit-the-hive-wiki>#How to edit the Hive wiki</a></li>
+</ul>
+<p>Links to anchors work the same as sections:</p>
+<ul>
+<li><a href=##how-to-edit>#How to edit</a></li>
+</ul>
+<h2 id=how-to-find-documentation-tasks>How to find documentation tasks</h2>
+<p>While you are reading the wiki, you are likely to find things that need to be improved. For example, if you spot a broken link within the wiki, look for the page name in <a href="https://cwiki.apache.org/confluence/pages/listpages-dirview.action?key=Hive">this list</a> and fix the link.</p>
+<p>Documentation tasks are tracked in JIRA issues using the TODOC label with version appended, such as TODOC2.0 and TODOC1.3. Versions 0.10 through 0.14 omit the leading &ldquo;0.&rdquo;, such as TODOC12.</p>
+<p>The following can quickly locate items potentially requiring further documentation:</p>
+<ol>
+<li><a href="https://issues.apache.org/jira/browse/HIVE/?selectedTab=com.atlassian.jira.jira-projects-plugin:issues-panel">Browse to JIRA</a></li>
+<li>Select Issues – use Search field in upper right corner (press Enter with or without a search string)</li>
+<li>Select Project – Hive</li>
+<li>Select More.. Label TODOC (case sensitive)</li>
+<li>Save Filter As</li>
+</ol>
+<p>Another option is to search for string &ldquo;Doc note:&rdquo; although this selects both open and completed tasks.</p>
+<p>When the documentation has been completed and verified, the TODOC label can be removed from the issue.</p>
+<p>Note: TODOC labels began with TODOC10 for version 0.10. Even when Hive reaches version 10.0, TODOC10 and TODOC10.0 labels will be distinguishable by the presence or absence of a dot number.</p>
+<h2 id=how-to-export-the-hive-wiki>How to export the Hive wiki</h2>
+<p>The Hive wiki can be exported to HTML, XML, or PDF. Individual pages can be exported to PDF, <a href=http://en.wikipedia.org/wiki/EPUB>EPUB</a>, or Word.</p>
+<ul>
+<li>To obtain export permission, send a request to <a href>user@hive.apache.org</a> requesting export access and give your Confluence username (see <a href=#how-to-get-permission-to-edit>How to get permission to edit</a> above).</li>
+<li>To export the entire Hive wiki or selected pages, use Space Tools (left side of any wiki page) and select Content Tools (top bar in Space Tools) then select the Export tab. Choose an export format and click Next. Select Full Export or Custom Export, and click Export. For a custom export, you can choose which pages you want to export.</li>
+<li>To export the current wiki page, use the Tools drop-down list (upper right corner of any page) and select Export to PDF, Export to EPUB, or Export to Word.</li>
+</ul>
+<h2 id=history>History</h2>
+<p>The Apache Hive wiki originally started out as a subspace in the Apache Hadoop MoinMoin wiki (when Hive was still a Hadoop subproject). When Hive graduated to become a top-level project, we moved its wiki out to a top-level Confluence wiki. (The MoinMoin wiki had been under attack by spammers, captchas weren&rsquo;t helping, and there didn&rsquo;t seem to be a way to use access control to defend the Hive subspace.)</p>
+<p>Just like in a real move, sometimes stuff gets broken in transit. The MoinMoin and Confluence markup languages are somewhat different, and the migration tools we used didn&rsquo;t preserve everything perfectly.</p>
+<p>To prevent further edits on the MoinMoin source, we&rsquo;ve deleted all the pages there (replacing them with instructions for how to find their new locations), but we have a full backup of the MoinMoin data in case we notice that anything was entirely lost in the move.</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

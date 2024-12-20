@@ -1,0 +1,293 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HCatalog Streaming Mutation API</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hcatalog-streaming-mutation-api>Apache Hive : HCatalog Streaming Mutation API</h1>
+<p>A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions>ACID</a> feature. It is introduced in Hive 2.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-10165>HIVE-10165</a>).</p>
+<ul>
+<li><a href=#background>Background</a></li>
+<li><a href=#structure>Structure</a></li>
+<li><a href=#data-requirements>Data Requirements</a></li>
+<li><a href=#streaming-requirements>Streaming Requirements</a></li>
+<li><a href=#record-layout>Record Layout</a></li>
+<li><a href=#connection-and-transaction-management>Connection and Transaction Management</a></li>
+<li><a href=#writing-data>Writing Data</a>
+<ul>
+<li><a href=#dynamic-partition-creation>Dynamic Partition Creation</a></li>
+</ul>
+</li>
+<li><a href=#reading-data>Reading Data</a></li>
+<li><a href=#example>Example</a></li>
+</ul>
+<h1 id=background>Background</h1>
+<p>In certain data processing use cases it is necessary to modify existing data when new facts arrive. An example of this is the classic ETL merge where a copy of a data set is kept in sync with a master by the frequent application of deltas. The deltas describe the mutations (inserts, updates, deletes) that have occurred to the master since the previous sync. To implement such a case using Hadoop traditionally demands that the partitions containing records targeted by the mutations be rewritten. This is a coarse approach; a partition containing millions of records might be rebuilt because of a single record change. Additionally these partitions cannot be restated atomically; at some point the old partition data must be swapped with the new partition data. When this swap occurs, usually by issuing an HDFS <code>rm</code> followed by a <code>mv</code>, the possibility exists where the data appears to be unavailable and hence any downstream jobs consuming the data might unexpectedly fail. Therefore data processing patterns that restate raw data on HDFS cannot operate robustly without some external mechanism to orchestrate concurrent access to changing data.</p>
+<p>The availability of ACID tables in Hive provides a mechanism that both enables concurrent access to data stored in HDFS (so long as it&rsquo;s in the ORC+ACID format) and also permits row level mutations on records within a table, without the need to rewrite the existing data. But while Hive itself supports <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> commands, and the ORC format can support large batches of mutations in a transaction, Hive&rsquo;s execution engine currently submits each individual mutation operation in a separate transaction and issues table scans (M/R jobs) to execute them. It does not currently scale to the demands of processing large deltas in an atomic manner. Furthermore it would be advantageous to extend atomic batch mutation capabilities beyond Hive by making them available to other data processing frameworks. The Streaming Mutation API does just this.</p>
+<p>The Streaming Mutation API, although similar to the <a href=https://hive.apache.org/docs/latest/streaming-data-ingest_40509746/>Streaming API</a>, has a number of differences and is built to enable very different use cases. Superficially, the Streaming API can only write new data whereas the mutation API can also modify existing data. However the two APIs are also based on very different transaction models. The Streaming API focuses on surfacing a continuous stream of new data into a Hive table and does so by batching small sets of writes into multiple short-lived transactions. Conversely the mutation API is designed to infrequently apply large sets of mutations to a data set in an atomic fashion: either all or none of the mutations will be applied. This instead mandates the use of a single long-lived transaction. This table summarises the attributes of each API:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th><a href=https://hive.apache.org/docs/latest/streaming-data-ingest_40509746/>Streaming API</a></th>
+<th>Mutation API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ingest type</td>
+<td>Data arrives continuously.</td>
+<td>Ingests are performed periodically and the mutations are applied in a single batch.</td>
+</tr>
+<tr>
+<td>Transaction scope</td>
+<td>Transactions are created for small batches of writes.</td>
+<td>The entire set of mutations should be applied within a single transaction.</td>
+</tr>
+<tr>
+<td>Data availability</td>
+<td>Surfaces new data to users frequently and quickly.</td>
+<td>Change sets should be applied atomically, either the effect of the delta is visible or it is not.</td>
+</tr>
+<tr>
+<td>Sensitive to record order</td>
+<td>No, records do not have pre-existing lastTxnIds or bucketIds. Records are likely being written into a single partition (today&rsquo;s date for example).</td>
+<td>Yes, all mutated records have existing <code>RecordIdentifiers</code> and must be grouped by [partitionValues, bucketId] and sorted by lastTxnId. These record coordinates initially arrive in an order that is effectively random.</td>
+</tr>
+<tr>
+<td>Impact of a write failure</td>
+<td>Transaction can be aborted and producer can choose to resubmit failed records as ordering is not important.</td>
+<td>Ingest for the respective group (partitionValues + bucketId) must be halted and failed records resubmitted to preserve sequence.</td>
+</tr>
+<tr>
+<td>User perception of missing data</td>
+<td>Data has not arrived yet → &ldquo;latency?&rdquo;</td>
+<td>&ldquo;This data is inconsistent, some records have been updated, but other related records have not&rdquo; – consider here the classic transfer between bank accounts scenario.</td>
+</tr>
+<tr>
+<td>API end point scope</td>
+<td>A given <code>HiveEndPoint</code> instance submits many transactions to a specific bucket, in a specific partition, of a specific table.</td>
+<td>A set of <code>MutationCoordinators</code> writes changes to unknown set of buckets, of an unknown set of partitions, of specific tables (can be more than one), within a single transaction.</td>
+</tr>
+</tbody>
+</table>
+<h1 id=structure>Structure</h1>
+<p>The API comprises two main concerns: transaction management, and the writing of mutation operations to the data set. The two concerns have a minimal coupling as it is expected that transactions will be initiated from a single job launcher type process while the writing of mutations will be scaled out across any number of worker nodes. In the context of Hadoop M/R these can be more concretely defined as the Tool and Map/Reduce task components. However, use of this architecture is not mandated and in fact both concerns could be handled within a single simple process depending on the requirements.</p>
+<p>Note that a suitably configured Hive instance is required to operate this system even if you do not intend to access the data from within Hive. Internally, transactions are managed by the Hive MetaStore. Mutations are performed to HDFS via ORC APIs that bypass the MetaStore. Additionally you may wish to configure your MetaStore instance to perform periodic data compactions.</p>
+<p><strong>Note on packaging:</strong> The APIs are defined in the <code>org.apache.hive.hcatalog.streaming.mutate</code> Java package and included as the <code>hive-hcatalog-streaming</code> jar.</p>
+<h1 id=data-requirements>Data Requirements</h1>
+<p>Generally speaking, to apply a mutation to a record one must have some unique key that identifies the record. However, primary keys are not a construct provided by Hive. Internally Hive uses <code>RecordIdentifiers</code> stored in a virtual <code>ROW__ID</code> column to uniquely identify records within an ACID table. Therefore, any process that wishes to issue mutations to a table via this API must have available the corresponding row ids for the target records. What this means in practice is that the process issuing mutations must first read in a current snapshot of the data and then join the mutations on some domain specific primary key to obtain the corresponding Hive <code>ROW__ID</code>. This is effectively what occurs within Hive&rsquo;s table scan process when an <code>UPDATE</code> or <code>DELETE</code> statement is executed. The <code>AcidInputFormat</code> provides access to this data via <code>AcidRecordReader.getRecordIdentifier()</code>.</p>
+<p>The implementation of the ACID format places some constraints on the order in which records are written and it is important that this ordering is enforced. Additionally, data must be grouped appropriately to adhere to the constraints imposed by the <code>OrcRecordUpdater</code>. Grouping also makes it possible to parallelise the writing of mutations for the purposes of scaling. Finally, to correctly bucket new records (inserts) there is a slightly unintuitive trick that must be applied.</p>
+<p>All of these data sequencing concerns are the responsibility of the client process calling the API which is assumed to have first class grouping and sorting capabilities (Hadoop Map/Reduce etc). The streaming API provides nothing more than validators that fail fast when they encounter groups and records that are out of sequence.</p>
+<p>In short, API client processes should prepare data for the mutate API like so:</p>
+<ul>
+<li><strong>MUST:</strong> Order records by <code>ROW__ID.originalTxn</code>, then <code>ROW__ID.rowId</code>.</li>
+<li><strong>MUST:</strong> Assign a <code>ROW__ID</code> containing a computed <code>bucketId</code> to each record to be inserted.</li>
+<li><strong>SHOULD:</strong> Group/partition by table partition value, then <code>ROW__ID.bucketId</code>.</li>
+</ul>
+<p>The addition of bucket ids to insert records prior to grouping and sorting seems unintuitive. However, it is required to ensure both adequate partitioning of new data and bucket allocation consistent with that provided by Hive. In a typical ETL the majority of mutation events are inserts, often targeting a single partition (new data for the previous day, hour, etc.). If more that one worker is writing said events, were we to leave the bucket id empty then all inserts would go to a single worker (e.g: reducer) and the workload could be heavily skewed. The assignment of a computed bucket allows inserts to be more usefully distributed across workers. Additionally, when Hive is working with the data it may expect records to have been bucketed in a way that is consistent with its own internal scheme. A convenience type and method is provided to more easily compute and append bucket ids: <code>BucketIdResolver</code> and <code>BucketIdResolverImpl</code>.</p>
+<p>Update operations should not attempt to modify values of partition or bucketing columns. The API does not prevent this and such attempts could lead to data corruption.</p>
+<h1 id=streaming-requirements>Streaming Requirements</h1>
+<p>A few things are currently required to use streaming. </p>
+<ol>
+<li>Currently, only <a href=https://hive.apache.org/docs/latest/languagemanual-orc_31818911/>ORC storage format</a> is supported. So &lsquo;<code>stored as orc</code>&rsquo; must be specified during table creation.</li>
+<li>The Hive table must be bucketed, but not sorted. So something like &lsquo;<code>clustered by (colName) into 10 buckets</code>&rsquo; must be specified during table creation. See <a href=https://hive.apache.org/docs/latest/languagemanual-ddl-bucketedtables_27362035/>Bucketed Tables</a> for a detailed example.</li>
+<li>User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.</li>
+<li>Hive transactions must be configured for each table (see <a href=#hive-transactions – table-properties>Hive Transactions – Table Properties</a>) as well as in <code>hive-site.xml</code> (see <a href=#hive-transactions-–-configuration>Hive Transactions – Configuration</a>).</li>
+</ol>
+<p><strong>Note:</strong> Hive also supports streaming mutations to <strong>unpartitioned</strong> tables.</p>
+<h1 id=record-layout>Record Layout</h1>
+<p>The structure, layout, and encoding of records is the exclusive concern of the client ETL mutation process and may be quite different from the target Hive ACID table. The mutation API requires concrete implementations of the <code>MutatorFactory</code> and <code>Mutator</code> classes to extract pertinent data from records and serialize data into the ACID files. Fortunately base classes are provided (<code>AbstractMutator</code>, <code>RecordInspectorImpl</code>) to simplify this effort and usually all that is required is the specification of a suitable <code>ObjectInspector</code> and the provision of the indexes of the <code>ROW__ID</code> and bucketed columns within the record structure. Note that all column indexes in these classes are with respect to your record structure, not the Hive table structure.</p>
+<p>You will likely also want to use a <code>BucketIdResolver</code> to append bucket ids to new records for insertion. Fortunately the core implementation is provided in <code>BucketIdResolverImpl</code> but note that bucket column indexes must be presented in the same order as they are in the Hive table definition to ensure consistent bucketing. Note that you cannot move records between buckets and an exception will be thrown if you attempt to do so. In real terms this means that you should not attempt to modify the values in bucket columns with an <code>UPDATE</code>.</p>
+<h1 id=connection-and-transaction-management>Connection and Transaction Management</h1>
+<p>The <code>MutatorClient</code> class is used to create and manage transactions in which mutations can be performed. The scope of a transaction can extend across multiple ACID tables. When a client connects, it communicates with the metastore to verify and acquire metadata for the target tables. An invocation of <code>newTransaction</code> then opens a transaction with the metastore, finalizes a collection of <code>AcidTables</code> and returns a new <code>Transaction</code> instance. The ACID tables are light-weight, serializable objects that are used by the mutation writing components of the API to target specific ACID file locations. Usually your <code>MutatorClient</code> will be running on some master node and your coordinators on worker nodes. In this event the <code>AcidTableSerializer</code> can be used to encode the tables in a more transportable form, for use as a <code>Configuration</code> property for example.</p>
+<p>As you would expect, a <code>Transaction</code> must be initiated with a call to <code>begin</code> before any mutations can be applied. This invocation acquires a lock on the targeted tables using the metastore, and initiates a heartbeat to prevent transaction timeouts. It is highly recommended that you register a <code>LockFailureListener</code> with the client so that your process can handle any lock or transaction failures. Typically you may wish to abort the job in the event of such an error. With the transaction in place you can now start streaming mutations with one or more <code>MutatorCoordinator</code> instances (more on this later), and then can <code>commit</code> or <code>abort</code> the transaction when the change set has been applied, which will release the lock with the metastore client. Finally you should <code>close</code> the mutation client to release any held resources.</p>
+<p>The <code>MutatorClientBuilder</code> is provided to simplify the construction of clients.</p>
+<p><strong>WARNING:</strong> Hive doesn&rsquo;t currently have a deadlock detector (it is being worked on as part of <a href=https://issues.apache.org/jira/browse/HIVE-9675>HIVE-9675</a>). This API could potentially deadlock with other stream writers or with SQL users.</p>
+<h1 id=writing-data>Writing Data</h1>
+<p>The <code>MutatorCoordinator</code> class is used to issue mutations to an ACID table. You will require at least one instance per table participating in the transaction. The target of a given instance is defined by the respective <code>AcidTable</code> used to construct the coordinator. It is recommended that a <code>MutatorClientBuilder</code> be used to simplify the construction process.</p>
+<p>Mutations can be applied by invoking the respective <code>insert</code>, <code>update</code>, and <code>delete</code> methods on the coordinator. These methods each take as parameters the target partition of the record and the mutated record. In the case of an unpartitioned table you should simply pass an empty list as the partition value. For inserts specifically, only the bucket id will be extracted from the <code>RecordIdentifier</code>, the transaction id and row id will be ignored and replaced by appropriate values in the <code>RecordUpdater</code>.</p>
+<p>Additionally, in the case of deletes, everything but the <code>RecordIdentifier</code> in the record will be ignored and therefore it is often easier to simply submit the original record.</p>
+<p><strong>Caution:</strong> As mentioned previously, mutations must arrive in a specific order for the resultant table data to be consistent. Coordinators will verify a naturally ordered sequence of [lastTransactionId, rowId] and will throw an exception if this sequence is broken. This exception should almost certainly be escalated so that the transaction is aborted. This, along with the correct ordering of the data, is the responsibility of the client using the API.</p>
+<h2 id=dynamic-partition-creation>Dynamic Partition Creation</h2>
+<p>It is very likely to be desirable to have new partitions created automatically (say on a hourly basis). In such cases requiring the Hive admin to pre-create the necessary partitions may not be reasonable. The API allows coordinators to create partitions as needed (see: <code>MutatorClientBuilder.addSinkTable(String, String, boolean)</code>). Partition creation being an atomic action, multiple coordinators can race to create the partition, but only one would succeed, so coordinators' clients need not synchronize when creating a partition. The user of the coordinator process needs to be given write permissions on the Hive table in order to create partitions.</p>
+<p>Care must be taken when using this option as it requires that the coordinators maintain a connection with the metastore database. When coordinators are running in a distributed environment (as is likely the case) it is possible for them to overwhelm the metastore. In such cases it may be better to disable partition creation and collect a set of affected partitions as part of your ETL merge process. These can then be created with a single metastore connection in your client code, once the cluster side merge process is complete.</p>
+<p>Finally, note that when partition creation is disabled the coordinators must synthesize the partition URI as they cannot retrieve it from the metastore. This may cause problems if the layout of your partitions in HDFS does not follow the Hive standard (as implemented in <code>org.apache.hadoop.hive.metastore.Warehouse.getPartitionPath(Path, LinkedHashMap &lt;String, String>)</code>).</p>
+<h1 id=reading-data>Reading Data</h1>
+<p>Although this API is concerned with writing changes to data, as previously stated we&rsquo;ll almost certainly have to read the existing data first to obtain the relevant <code>ROW__ID</code>s. Therefore it is worth noting that reading ACID data in a robust and consistent manner requires the following:</p>
+<ol>
+<li>Obtaining a valid transaction list from the metastore (<code>ValidTxnList</code>).</li>
+<li>Acquiring a lock with the metastore and issuing heartbeats (<code>LockImpl</code> can help with this).</li>
+<li>Configuring the <code>OrcInputFormat</code> and then reading the data. Make sure that you also pull in the <code>ROW__ID</code> values. See: <code>AcidRecordReader.getRecordIdentifier</code>.</li>
+<li>Releasing the lock.</li>
+</ol>
+<h1 id=example>Example</h1>
+<p><img src="attachments/61337025/61337024.png?effects=border-simple,blur-border" alt></p>
+<p>So to recap, the sequence of events required to apply mutations to a dataset using the API is:</p>
+<ol>
+<li>Create a <code>MutatorClient</code> to manage a transaction for the targeted ACID tables. This set of tables should include any transactional destinations or sources. Don&rsquo;t forget to register a <code>LockFailureListener</code> so that you can handle transaction failures.</li>
+<li>Open a new <code>Transaction</code> with the client.</li>
+<li>Get the <code>AcidTables</code> from the client.</li>
+<li>Begin the transaction.</li>
+<li>Create at least one <code>MutatorCoordinator</code> for each table. The <code>AcidTableSerializer</code> can help you transport the <code>AcidTables</code> when your workers are in a distributed environment.</li>
+<li>Compute your mutation set (this is your ETL merge process).</li>
+<li>Optionally: collect the set of affected partitions.</li>
+<li>Append bucket ids to insertion records. A <code>BucketIdResolver</code> can help here.</li>
+<li>Group and sort your data appropriately.</li>
+<li>Issue mutation events to your coordinators.</li>
+<li>Close your coordinators.</li>
+<li>Abort or commit the transaction.</li>
+<li>Close your mutation client.</li>
+<li>Optionally: create any affected partitions that do not exist in the metastore.</li>
+</ol>
+<p>See <code>[ExampleUseCase](https://github.com/apache/hive/blob/master/hcatalog/streaming/src/test/org/apache/hive/hcatalog/streaming/mutate/ExampleUseCase.java)</code> and <code>[TestMutations.testUpdatesAndDeletes()](https://github.com/apache/hive/blob/master/hcatalog/streaming/src/test/org/apache/hive/hcatalog/streaming/mutate/TestMutations.java#L421)</code> for some very simple usages.</p>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

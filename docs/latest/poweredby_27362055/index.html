@@ -1,0 +1,198 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : PoweredBy</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--poweredby>Apache Hive : PoweredBy</h1>
+<p>Applications and organizations using Hive include (alphabetically):</p>
+<h2 id=bizohttpwwwbizocom><a href=http://www.bizo.com>Bizo</a></h2>
+<p>We use Hive for reporting and ad hoc queries.</p>
+<h2 id=chitikahttpwwwchitikacom><a href=http://www.chitika.com>Chitika</a></h2>
+<p>We use Hive for data mining and analysis on our 435M monthly global users.</p>
+<h2 id=cnethttpwwwcnetcom><a href=http://www.cnet.com>CNET</a></h2>
+<p>We use Hive for data mining, internal log analysis and ad hoc queries.</p>
+<h2 id=digghttpwwwdiggcom><a href=http://www.digg.com>Digg</a></h2>
+<p>We use Hive for data mining, internal log analysis, R&D, and reporting/analytics.</p>
+<h2 id=eharmonyhttpwwweharmonycom><a href=http://www.eharmony.com>eHarmony</a></h2>
+<p>We use Hadoop to store copies of internal log and dimension data sources and use it as a source for reporting/analytics and machine learning. Currently have a 640 machine cluster with ~5000 cores and 2PB raw storage. Each (commodity) node has 8 cores and 4 TB of storage.</p>
+<h2 id=groovesharkhttpwwwgroovesharkcom><a href=http://www.grooveshark.com>Grooveshark</a></h2>
+<p>We use Hive for user analytics, dataset cleaning, and machine learning R&D.</p>
+<h2 id=hi5httpwwwhi5com><a href=http://www.hi5.com>hi5</a></h2>
+<p>We use Hive for analytics, machine learning and social graph analysis.</p>
+<h2 id=hubspothttpdevhubspotcom><a href=http://dev.hubspot.com/>HubSpot</a></h2>
+<p>We use Hive as part of a larger Hadoop pipeline to serve near-realtime web analytics.</p>
+<h2 id=lastfmhttpwwwlastfm><a href=http://www.last.fm>Last.fm</a></h2>
+<p>We use Hive for various ad hoc queries.</p>
+<h2 id=medhelp-find-a-doctorhttpwwwmedhelporgfind-a-doctor><a href=http://www.medhelp.org/find-a-doctor>MedHelp Find a Doctor</a></h2>
+<p>We implemented Hive to analyse large amounts of doctors across the United States, and for internal analytics for over 1M pageview/day.</p>
+<h2 id=nexrhttpwwwnexrcom><a href=http://www.nexr.com>NexR</a></h2>
+<ul>
+<li><a href=http://www.cloudera.com/resource/hadoop-world-2011-presentation-slides-replacing-rdb-dw-with-hadoop-and-hive-for-telco-big-data>Replacing RDB&DW with Hadoop and Hive</a></li>
+</ul>
+<p>We use hive for replacing Oracle DW, big data analysis and integrating R. We develop the enterprise Hive.</p>
+<h2 id=papertrailhttppapertrailappcom><a href=http://papertrailapp.com/>Papertrail</a></h2>
+<ul>
+<li><a href=http://help.papertrailapp.com/kb/analytics/log-analytics-with-hadoop-and-hive>Log analytics with Hadoop and Hive</a></li>
+</ul>
+<p>We use Hive as a customer-facing analysis destination for our hosted syslog and app log management service.</p>
+<h2 id=rocket-fuelhttpwwwrocketfuelinccom><a href=http://www.rocketfuelinc.com/>Rocket Fuel</a></h2>
+<p>We use Hive to host all our fact and dimension data. Off this warehouse, we do reporting, analytics, machine learning and model building, and various ad hoc queries.</p>
+<h2 id=saaspulsehttpwwwsaaspulsecom><a href=http://www.saaspulse.com/>SaaSPulse</a></h2>
+<p>We use Hive for analytics, machine learning and customer interaction analysis of web applications.</p>
+<h2 id=scribdhttpwwwscribdcom><a href=http://www.scribd.com/>Scribd</a></h2>
+<p>We use hive for machine learning, data mining, ad-hoc querying, and both internal and user-facing analytics</p>
+<h2 id=taobaohttpwwwtaobaocom><a href=http://www.taobao.com>TaoBao</a></h2>
+<p>We use Hive for data mining, internal log analysis and ad-hoc queries. We also do some extensively developing work on Hive.</p>
+<h2 id=trending-topicshttpwwwtrendingtopicsorg><a href=http://www.trendingtopics.org>Trending Topics</a></h2>
+<p>Hot Wikipedia Topics, Served Fresh Daily. Powered by Cloudera Hadoop Distribution & Hive on EC2. We use Hive for log data normalization and building sample datasets for trend detection R&D.</p>
+<h2 id=videoegghttpwwwvideoeggcom><a href=http://www.videoegg.com>VideoEgg</a></h2>
+<p>We use Hive as the core database for our data warehouse where we track and analyze all the usage data of the ads across our network.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

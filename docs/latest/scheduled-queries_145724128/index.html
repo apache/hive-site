@@ -1,0 +1,493 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Scheduled Queries</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--scheduled-queries>Apache Hive : Scheduled Queries</h1>
+<ul>
+<li><a href=#maintaining-scheduled-queries>Maintaining scheduled queries</a>
+<ul>
+<li><a href=#create-scheduled-query-syntax>Create Scheduled query syntax</a></li>
+<li><a href=#alter-scheduled-query-syntax>Alter Scheduled query syntax</a></li>
+<li><a href=#drop-syntax>Drop syntax</a></li>
+<li><a href=#schedulespecification-syntax>scheduleSpecification syntax</a>
+<ul>
+<li><a href=#cron-based-schedule-syntax>CRON based schedule syntax</a></li>
+<li><a href=#every-based-schedule-syntax>EVERY based schedule syntax</a></li>
+</ul>
+</li>
+<li><a href=#executedas-syntax>ExecutedAs syntax</a></li>
+<li><a href=#enablespecification-syntax>enableSpecification syntax</a></li>
+<li><a href=#defined-as-syntax>Defined AS syntax</a></li>
+<li><a href=#executespec-syntax>executeSpec syntax</a></li>
+</ul>
+</li>
+<li><a href=#system-tables/views>System tables/views</a>
+<ul>
+<li><a href=#information\_schema-scheduled\_queries>information_schema.scheduled_queries</a></li>
+<li><a href=#information\_schema-scheduled\_executions>information_schema.scheduled_executions</a>
+<ul>
+<li><a href=#execution-states>Execution states</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#hive-metastore-related-configuration>Hive metastore related configuration</a></li>
+<li><a href=#hiveserver2-related-configuration>HiveServer2 related configuration</a></li>
+</ul>
+</li>
+<li><a href=#examples>Examples</a>
+<ul>
+<li><a href=#example-1-–-basic-example-of-using-schedules>Example 1 – basic example of using schedules</a></li>
+<li><a href=#example-2-–-analyze-external-table-periodically>Example 2 – analyze external table periodically</a></li>
+<li><a href=#example-3-–-materialized-view-rebuild>Example 3 – materialized view rebuild</a></li>
+<li><a href=#example-4-–-ingestion>Example 4 – Ingestion</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Intro</strong></p>
+<p>Executing statements periodically can be usefull in</p>
+<ul>
+<li>Pulling informations from external systems</li>
+<li>Periodically updating column statistics</li>
+<li>Rebuilding materialized views</li>
+</ul>
+<p>Overview</p>
+<ul>
+<li>The metastore maintains the scheduled queries in the metastore database</li>
+<li>Hiveserver(s) periodically polls the metastore for a scheduled query to be executed</li>
+</ul>
+<ul>
+<li>During execution informations about ongoing/finished executions are kept in the metastore</li>
+</ul>
+<p>Scheduled queries were added in Hive 4.0 (HIVE-21884)</p>
+<p>Hive has it’s scheduled query interface built into the language itself for easy access:</p>
+<h1 id=maintaining-scheduled-queries>Maintaining scheduled queries</h1>
+<h2 id=create-scheduled-query-syntax>Create Scheduled query syntax</h2>
+<p><strong>CREATE SCHEDULED QUERY &lt;scheduled_query_name></strong><br>
+<strong><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec"></a></strong> <br>
+<strong>[<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec"></a></strong> <strong>]</strong><br>
+<strong>[<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification"></a>]</strong><br>
+<strong><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec"></a></strong></p>
+<h2 id=alter-scheduled-query-syntax>Alter Scheduled query syntax</h2>
+<p><strong>ALTER SCHEDULED QUERY &lt;scheduled_query_name></strong> <strong>(<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executeSpec"></a>);</strong></p>
+<h2 id=drop-syntax>Drop syntax</h2>
+<p><strong>DROP SCHEDULED QUERY &lt;scheduled_query_name>;</strong></p>
+<h2 id=schedulespecification-syntax>scheduleSpecification syntax</h2>
+<p>Schedules can be specified using CRON expressions or for common cases there is a simpler form; in any case the schedule is stored as Quartz cron expression.</p>
+<h3 id=cron-based-schedulesyntax>CRON based schedule syntax</h3>
+<p><strong>CRON <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-quartz_schedule_expression">&lt;quartz_schedule_expression></a></strong></p>
+<p>where quartz_schedule_expression is quoted schedule in the Quartz format</p>
+<p><a href=https://www.freeformatter.com/cron-expression-generator-quartz.html>https://www.freeformatter.com/cron-expression-generator-quartz.html</a></p>
+<p>For example the <code>CRON '0 */10 * * * ? *'</code>  expression will fire every 10 minutes.</p>
+<h3 id=every-based-schedule-syntax>EVERY based schedule syntax</h3>
+<p>To give a more readable way to declare schedules EVERY can be used.</p>
+<p><strong>EVERY [] (SECOND|MINUTE|HOUR) [(OFFSET BY|AT) ]</strong></p>
+<p>the format makes it possible to declare schedules in a more readable way:</p>
+<p><strong>EVERY 2 MINUTES <br>
+EVERY HOUR AT &lsquo;0:07:30&rsquo;<br>
+EVERY DAY AT &lsquo;11:35:30&rsquo;</strong></p>
+<h2 id=executedas-syntax>ExecutedAs syntax</h2>
+<p><strong>EXECUTED AS &lt;user_name></strong></p>
+<p>Scheduled queries are executed as the declaring user by default; but people with admin privileges might be able to change the executing user.</p>
+<h2 id=enablespecification-syntax>enableSpecification syntax</h2>
+<p><strong>(ENABLE[D] | DISABLE[D])</strong></p>
+<p>Can be used to enable/disable a schedule.</p>
+<p>For CREATE SCHEDULED QUERY statements the default behaviour is set by the configuration key <strong>hive.scheduled.queries.create.as.enabled</strong></p>
+<p>In case there are in-flight scheduled executions at the time when the corresponding schedule is disabled - the already running executions will still finish. But no more executions will be triggered.</p>
+<h2 id=defined-as-syntax>Defined AS syntax</h2>
+<p><strong>[DEFINED] AS </strong></p>
+<p>The “query” is a single statement expression to be scheduled for execution.</p>
+<h2 id=executespec-syntax>executeSpec syntax</h2>
+<p><strong>EXECUTE</strong></p>
+<p>Changes the schedules next execution time to be now. Could be useful during debugging/development.</p>
+<h1 id=system-tablesviews>System tables/views</h1>
+<p>Informations about scheduled queries/executions can be obtain by using the <em>information_schema</em> or the <em>sysdb</em> - recommended way is to use the information_schema; <em>sysdb</em> is tables are there to build the <em>information_schema</em> level views - and for debugging.</p>
+<h2 id=information_schemascheduled_queries>information_schema.scheduled_queries</h2>
+<p>Suppose we have a scheduled query defined by:</p>
+<p>**create scheduled query sc1 cron &lsquo;0 <em>/10 * * * ? <em>&rsquo; as select 1;</em></em></p>
+<p>Let’s take a look at it in the <strong>information_schema.scheduled_queries</strong> table by using</p>
+<p><strong>select * from information_schema.scheduled_queries;</strong></p>
+<p>I will transpose the resultset to describe each column</p>
+<p>| <strong>scheduled_query_id</strong> | 1 | Internally, every scheduled query also has a numeric id |
+| <strong>schedule_name</strong> | sc1 | The name of the schedule |
+| <strong>enabled</strong> | true | True if the schedule is enabled |
+| <strong>cluster_namespace</strong> | hive | The namespace thes scheduled query belongs to |
+| <strong>schedule</strong> | 0 */10 * * * ? * | The schedule described in QUARTZ cron format |
+| <strong>user</strong> | dev | The owner/executor of the query |
+| <strong>query</strong> | select 1 | The query being scheduled |
+| <strong>next_execution</strong> | 2020-01-29 16:50:00 | Technical column; shows when the next execution should happen |</p>
+<p><strong>(schedule_name,cluster_namespace)</strong> is unique</p>
+<h2 id=information_schemascheduled_executions>information_schema.scheduled_executions</h2>
+<p>This view can be used to get information about recent scheduled query executions.</p>
+<p><strong>select * from information_schema.scheduled_executions;</strong></p>
+<p>One record in this view has the following informations:</p>
+<p>| <strong>scheduled_execution_id</strong> | <strong>13</strong> | Every scheduled query execution has a unique numeric id |
+| <strong>schedule_name</strong> | <strong>sc1</strong> | The schedule name to which this execution belongs |
+| <strong>executor_query_id</strong> | <strong>dev_20200131103008_c9a39b8d-e26b-44cd-b8ae-9d054204dc07</strong> | The query id assigned by the execution engine for the given scheduled execution |
+| <strong>state</strong> | <strong>FINISHED</strong> | State of the execution; can be |
+| <strong>start_time</strong> | <strong>2020-01-31 10:30:06</strong> | Start time of execution |
+| <strong>end_time</strong> | <strong>2020-01-31 10:30:08</strong> | End time of execution |
+| <strong>elapsed</strong> | <strong>2</strong> | (computed) end_time-start_time |
+| <strong>error_message</strong> | <strong>NULL</strong> | In case the query is FAILED the error message is shown here |
+| <strong>last_update_time</strong> | <strong>NULL</strong> | During execution the last update time the executor provided informations about the state |</p>
+<h3 id=execution-states>Execution states</h3>
+<p>| <strong>INITED</strong> | The scheduled execution record is created at the time an executor is assigned to run it;The INITED state is retained until the first update from the executor comes in. |
+| <strong>EXECUTING</strong> | Queries in executing state are being processed by the executor; during this phase the executor reports the progress of the query in intervals defined by: <strong>hive.scheduled.queries.executor.progress.report.interval</strong> |
+| <strong>FAILED</strong> | The query execution stoped by an error code(or an exception) when this state is set the <strong>error_message</strong> is also filled. |
+| <strong>FINISHED</strong> | The query finished without problems |
+| <strong>TIMED_OUT</strong> | An execution is considered timed out when it’s being executed for more than <strong>metastore.scheduled.queries.execution.timeout</strong>.The scheduled queries maintenance task checks for any timed out executions. |</p>
+<p>How long are execution informations are retained?</p>
+<p>The scheduled query maintenance task removes older than <strong>metastore.scheduled.queries.execution.max.age</strong> entries.</p>
+<h1 id=configuration>Configuration</h1>
+<h2 id=hive-metastore-related-configuration>Hive metastore related configuration</h2>
+<ul>
+<li><strong>metastore.scheduled.queries.enabled (default: true)</strong> Controls the metastore side support for scheduled queries; forces all HMS scheduled query related endpoints to return with an error</li>
+<li><strong>metastore.scheduled.queries.execution.timeout (default: 2 minutes)</strong> <br>
+In case a scheduled execution is not updated for at least this amount of time; it’s state will be changed to <strong>TIMED_OUT</strong> by the cleaner task</li>
+<li><strong>metastore.scheduled.queries.execution.maint.task.frequency (default: 1 minute)<br>
+Interval of scheduled query maintenance task. Which removes executions above max age; and marks executions as TIMED_OUT if the condition is met</strong></li>
+<li><strong>metastore.scheduled.queries.execution.max.age (default: 30 days)</strong><br>
+Maximal age of a scheduled query execution entry before it is removed.</li>
+</ul>
+<h2 id=hiveserver2-related-configuration>HiveServer2 related configuration</h2>
+<ul>
+<li><strong>hive.scheduled.queries.executor.enabled (default: true)</strong> <br>
+Controls whether HS2 will run scheduled query executor.</li>
+<li><strong>hive.scheduled.queries.namespace (default: &ldquo;hive&rdquo;)</strong> Sets the scheduled query namespace to be used. New scheduled queries are created in this namespace; and execution is also bound to the namespace</li>
+<li><strong>hive.scheduled.queries.executor.idle.sleep.time (default: 1 minute)</strong> <br>
+Time to sleep between querying for the presence of a scheduled query.</li>
+<li><strong>hive.scheduled.queries.executor.progress.report.interval (default: 1 minute)</strong> While scheduled queries are in flight; a background update happens periodically to report the actual state of the query.</li>
+<li><strong>hive.scheduled.queries.create.as.enabled (default: true)</strong> This option sets the default behaviour of newly created scheduled queries.</li>
+<li><strong>hive.security.authorization.scheduled.queries.supported (default: false)</strong> Enable this if the configured authorizer is able to handle scheduled query related calls.</li>
+</ul>
+<h1 id=examples>Examples</h1>
+<h2 id=example-1-basic-example-of-using-schedules>Example 1 – basic example of using schedules</h2>
+<pre tabindex=0><code>create table t (a integer);
+
+-- create a scheduled query; every 10 minute insert a new row
+create scheduled query sc1 cron '0 */10 * * * ? *' as insert into t values (1);
+-- depending on hive.scheduled.queries.create.as.enabled the query might get create in disabled mode
+-- it can be enabled using:
+alter scheduled query sc1 enabled;
+
+-- inspect scheduled queries using the information\_schema
+select * from information\_schema.scheduled\_queries s where schedule\_name='sc1';
++-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
+| s.scheduled\_query\_id  | s.schedule\_name  | s.enabled  | s.cluster\_namespace  |    s.schedule     | s.user  |  s.query  |   s.next\_execution   |
++-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
+| 1                     | sc1              | true       | hive                 | 0 */10 * * * ? *  | dev     | select 1  | 2020-02-03 15:10:00  |
++-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
+
+-- wait 10 minutes or execute by issuing:
+alter scheduled query sc1 execute;
+
+select * from information\_schema.scheduled\_executions s where schedule\_name='sc1' order by scheduled\_execution\_id desc limit 1;
++---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
+| s.scheduled\_execution\_id  | s.schedule\_name  |                s.executor\_query\_id                 |  s.state  |     s.start\_time     |      s.end\_time      | s.elapsed  | s.error\_message  | s.last\_update\_time  |
++---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
+| 496                       | sc1              | dev\_20200203152025\_bdf3deac-0ca6-407f-b122-c637e50f99c8 | FINISHED  | 2020-02-03 15:20:23  | 2020-02-03 15:20:31  | 8          | NULL             | NULL                |
++---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
+
+</code></pre><h2 id=example-2-analyze-external-table-periodically>Example 2 – analyze external table periodically</h2>
+<p>Suppose you have an external table - the contents of it is slowly changing&mldr;which will eventually lead that Hive will utilize outdated statistics during planning time</p>
+<pre tabindex=0><code>-- create external table
+create external table t (a integer);
+
+-- see where the table lives:
+desc formatted t;
+[...]
+| Location:                     | file:/data/hive/warehouse/t                       | NULL                                               |
+[...]
+
+-- in a terminal; load some data into the table directory:
+seq 1 10 &gt; /data/hive/warehouse/t/f1
+
+-- back in hive you will see that 
+select count(1) from t;
+10
+-- meanwhile basic stats show that the table has &quot;0&quot; rows 
+desc formatted t;
+[...]
+|                               | numRows                                            | 0                                                  |
+[...]
+
+create scheduled query t\_analyze cron '0 */1 * * * ? *' as analyze table t compute statistics for columns;
+
+-- wait some time or execute by issuing:
+alter scheduled query t\_analyze execute;
+
+select * from information\_schema.scheduled\_executions s where schedule\_name='ex\_analyze' order by scheduled\_execution\_id desc limit 3;
++---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
+| s.scheduled\_execution\_id  | s.schedule\_name  |                s.executor\_query\_id                 |  s.state   |     s.start\_time     |      s.end\_time      | s.elapsed  | s.error\_message  |  s.last\_update\_time  |
++---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
+| 498                       | t\_analyze       | dev\_20200203152640\_a59bc198-3ed3-4ef2-8f63-573607c9914e | FINISHED   | 2020-02-03 15:26:38  | 2020-02-03 15:28:01  | 83         | NULL             | NULL                 |
++---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
+
+-- and the numrows have been updated
+desc formatted t;
+[...]
+|                               | numRows                                            | 10                                                 |
+[...]
+
+-- we don't want this running every minute anymore...
+alter scheduled query t\_analyze disable;
+</code></pre><h2 id=example-3-materialized-view-rebuild>Example 3 – materialized view rebuild</h2>
+<pre tabindex=0><code>-- some settings...they might be there already
+set hive.support.concurrency=true;
+set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+set hive.strict.checks.cartesian.product=false;
+set hive.stats.fetch.column.stats=true;
+set hive.materializedview.rewriting=true;
+
+-- create some tables
+CREATE TABLE emps (
+  empid INT,
+  deptno INT,
+  name VARCHAR(256),
+  salary FLOAT,
+  hire\_date TIMESTAMP)
+STORED AS ORC
+TBLPROPERTIES ('transactional'='true');
+ 
+CREATE TABLE depts (
+  deptno INT,
+  deptname VARCHAR(256),
+  locationid INT)
+STORED AS ORC
+TBLPROPERTIES ('transactional'='true');
+
+-- load data
+insert into emps values (100, 10, 'Bill', 10000, 1000), (200, 20, 'Eric', 8000, 500),
+  (150, 10, 'Sebastian', 7000, null), (110, 10, 'Theodore', 10000, 250), (120, 10, 'Bill', 10000, 250),
+  (1330, 10, 'Bill', 10000, '2020-01-02');
+insert into depts values (10, 'Sales', 10), (30, 'Marketing', null), (20, 'HR', 20);
+
+insert into emps values (1330, 10, 'Bill', 10000, '2020-01-02');
+
+-- create mv
+CREATE MATERIALIZED VIEW mv1 AS
+  SELECT empid, deptname, hire\_date FROM emps
+    JOIN depts ON (emps.deptno = depts.deptno)
+    WHERE hire\_date &gt;= '2016-01-01 00:00:00';
+
+EXPLAIN
+SELECT empid, deptname FROM emps
+JOIN depts ON (emps.deptno = depts.deptno)
+WHERE hire\_date &gt;= '2018-01-01';
+
+-- create a schedule to rebuild mv
+create scheduled query mv\_rebuild cron '0 */10 * * * ? *' defined as 
+  alter materialized view mv1 rebuild;
+
+-- from this expalin it will be seen that the mv1 is being used
+EXPLAIN
+SELECT empid, deptname FROM emps
+JOIN depts ON (emps.deptno = depts.deptno)
+WHERE hire\_date &gt;= '2018-01-01';
+
+-- insert a new record
+insert into emps values (1330, 10, 'Bill', 10000, '2020-01-02');
+
+-- the source tables are scanned
+EXPLAIN
+SELECT empid, deptname FROM emps
+JOIN depts ON (emps.deptno = depts.deptno)
+WHERE hire\_date &gt;= '2018-01-01';
+
+-- wait 10 minutes or execute
+alter scheduled query mv\_rebuild execute;
+
+-- run it again...the view should be rebuilt
+EXPLAIN
+SELECT empid, deptname FROM emps
+JOIN depts ON (emps.deptno = depts.deptno)
+WHERE hire\_date &gt;= '2018-01-01';
+
+</code></pre><h2 id=example-4-ingestion>Example 4 – Ingestion</h2>
+<pre tabindex=0><code>drop table if exists t;
+drop table if exists s;
+
+-- suppose that this table is an external table or something
+-- which supports the pushdown of filter condition on the id column
+create table s(id integer, cnt integer);
+
+-- create an internal table and an offset table
+create table t(id integer, cnt integer);
+create table t\_offset(offset integer);
+insert into t\_offset values(0);
+
+-- pretend that data is added to s
+insert into s values(1,1);
+
+-- run an ingestion...
+from (select id==offset as first,* from s
+join t\_offset on id&gt;=offset) s1
+insert into t select id,cnt where first = false
+insert overwrite table t\_offset select max(s1.id);
+
+-- configure to run ingestion every 10 minutes
+create scheduled query ingest every 10 minutes defined as
+from (select id==offset as first,* from s
+join t\_offset on id&gt;=offset) s1
+insert into t select id,cnt where first = false
+insert overwrite table t\_offset select max(s1.id);
+
+-- add some new values
+insert into s values(2,2),(3,3);
+
+-- pretend that a timeout have happened
+alter scheduled query ingest execute;
+
+</code></pre>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

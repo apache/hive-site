@@ -1,0 +1,240 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HCatalog UsingHCat</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hcatalog-usinghcat>Apache Hive : HCatalog UsingHCat</h1>
+<h1 id=using-hcatalog>Using HCatalog</h1>
+<ul>
+<li><a href=#using-hcatalog>Using HCatalog</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#hcatalog-architecture>HCatalog Architecture</a>
+<ul>
+<li><a href=#interfaces>Interfaces</a></li>
+<li><a href=#data-model>Data Model</a></li>
+</ul>
+</li>
+<li><a href=#data-flow-example>Data Flow Example</a>
+<ul>
+<li><a href=#first:-copy-data-to-the-grid>First: Copy Data to the Grid</a></li>
+<li><a href=#second:-prepare-the-data>Second: Prepare the Data</a></li>
+<li><a href=#third:-analyze-the-data>Third: Analyze the Data</a></li>
+</ul>
+</li>
+<li><a href=#hcatalog-web-api>HCatalog Web API</a></li>
+</ul>
+</li>
+</ul>
+<p>Version information</p>
+<p>HCatalog graduated from the Apache incubator and merged with the Hive project on March 26, 2013.<br>
+Hive version 0.11.0 is the first release that includes HCatalog.</p>
+<h2 id=overview>Overview</h2>
+<p>HCatalog is a table and storage management layer for Hadoop that enables users with different data processing tools — Pig, MapReduce — to more easily read and write data on the grid. HCatalog’s table abstraction presents users with a relational view of data in the Hadoop distributed file system (HDFS) and ensures that users need not worry about where or in what format their data is stored — RCFile format, text files, SequenceFiles, or ORC files.</p>
+<p>HCatalog supports reading and writing files in any format for which a SerDe (serializer-deserializer) can be written. By default, HCatalog supports RCFile, CSV, JSON, and SequenceFile, and ORC file formats. To use a custom format, you must provide the InputFormat, OutputFormat, and SerDe.</p>
+<p><img src=attachments/34013260/34177026.jpg alt></p>
+<h2 id=hcatalog-architecture>HCatalog Architecture</h2>
+<p>HCatalog is built on top of the Hive metastore and incorporates Hive&rsquo;s DDL. HCatalog provides read and write interfaces for Pig and MapReduce and uses Hive&rsquo;s command line interface for issuing data definition and metadata exploration commands.</p>
+<h3 id=interfaces>Interfaces</h3>
+<p>The HCatalog interface for Pig consists of HCatLoader and HCatStorer, which implement the Pig load and store interfaces respectively. HCatLoader accepts a table to read data from; you can indicate which partitions to scan by immediately following the load statement with a partition filter statement. HCatStorer accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the STORE clause; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. HCatLoader is implemented on top of HCatInputFormat and HCatStorer is implemented on top of HCatOutputFormat. (See <a href=https://hive.apache.org/docs/latest/hcatalog-loadstore_34013511/>Load and Store Interfaces</a>.)</p>
+<p>The HCatalog interface for MapReduce — HCatInputFormat and HCatOutputFormat — is an implementation of Hadoop InputFormat and OutputFormat. HCatInputFormat accepts a table to read data from and optionally a selection predicate to indicate which partitions to scan. HCatOutputFormat accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the setOutput method; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. (See <a href=https://hive.apache.org/docs/latest/hcatalog-inputoutput_34013776/>Input and Output Interfaces</a>.)</p>
+<p><strong>Note:</strong> There is no Hive-specific interface. Since HCatalog uses Hive&rsquo;s metastore, Hive can read data in HCatalog directly.</p>
+<p>Data is defined using HCatalog&rsquo;s command line interface (CLI). The HCatalog CLI supports all Hive DDL that does not require MapReduce to execute, allowing users to create, alter, drop tables, etc. The CLI also supports the data exploration part of the Hive command line, such as SHOW TABLES, DESCRIBE TABLE, and so on. Unsupported Hive DDL includes import/export, the REBUILD and CONCATENATE options of ALTER TABLE, CREATE TABLE AS SELECT, and ANALYZE TABLE &mldr; COMPUTE STATISTICS. (See <a href=https://hive.apache.org/docs/latest/hcatalog-cli_34013932/>Command Line Interface</a>.)</p>
+<h3 id=data-model>Data Model</h3>
+<p>HCatalog presents a relational view of data. Data is stored in tables and these tables can be placed in databases. Tables can also be hash partitioned on one or more keys; that is, for a given value of a key (or set of keys) there will be one partition that contains all rows with that value (or set of values). For example, if a table is partitioned on date and there are three days of data in the table, there will be three partitions in the table. New partitions can be added to a table, and partitions can be dropped from a table. Partitioned tables have no partitions at create time. Unpartitioned tables effectively have one default partition that must be created at table creation time. There is no guaranteed read consistency when a partition is dropped.</p>
+<p>Partitions contain records. Once a partition is created records cannot be added to it, removed from it, or updated in it. Partitions are multi-dimensional and not hierarchical. Records are divided into columns. Columns have a name and a datatype. HCatalog supports the same datatypes as Hive. See <a href=https://hive.apache.org/docs/latest/hcatalog-loadstore_34013511/>Load and Store Interfaces</a> for more information about datatypes.</p>
+<h2 id=data-flow-example>Data Flow Example</h2>
+<p>This simple data flow example shows how HCatalog can help grid users share and access data.</p>
+<h3 id=first-copy-data-to-the-grid>First: Copy Data to the Grid</h3>
+<p>Joe in data acquisition uses <code>distcp</code> to get data onto the grid.</p>
+<pre tabindex=0><code>hadoop distcp file:///file.dat hdfs://data/rawevents/20100819/data
+
+hcat &quot;alter table rawevents add partition (ds='20100819') location 'hdfs://data/rawevents/20100819/data'&quot;
+
+</code></pre><h3 id=second-prepare-the-data>Second: Prepare the Data</h3>
+<p>Sally in data processing uses Pig to cleanse and prepare the data.</p>
+<p>Without HCatalog, Sally must be manually informed by Joe when data is available, or poll on HDFS.</p>
+<pre tabindex=0><code>A = load '/data/rawevents/20100819/data' as (alpha:int, beta:chararray, ...);
+B = filter A by bot\_finder(zeta) = 0;
+...
+store Z into 'data/processedevents/20100819/data';
+
+</code></pre><p>With HCatalog, HCatalog will send a JMS message that data is available. The Pig job can then be started.</p>
+<pre tabindex=0><code>A = load 'rawevents' using org.apache.hive.hcatalog.pig.HCatLoader();
+B = filter A by date = '20100819' and by bot\_finder(zeta) = 0;
+...
+store Z into 'processedevents' using org.apache.hive.hcatalog.pig.HCatStorer(&quot;date=20100819&quot;);
+
+</code></pre><h3 id=third-analyze-the-data>Third: Analyze the Data</h3>
+<p>Robert in client management uses Hive to analyze his clients' results.</p>
+<p>Without HCatalog, Robert must alter the table to add the required partition.</p>
+<pre tabindex=0><code>alter table processedevents add partition 20100819 hdfs://data/processedevents/20100819/data
+
+select advertiser\_id, count(clicks)
+from processedevents
+where date = '20100819'
+group by advertiser\_id;
+
+</code></pre><p>With HCatalog, Robert does not need to modify the table structure.</p>
+<pre tabindex=0><code>select advertiser\_id, count(clicks)
+from processedevents
+where date = ‘20100819’
+group by advertiser\_id;
+
+</code></pre><h2 id=hcatalog-web-api>HCatalog Web API</h2>
+<p><em>WebHCat</em> is a REST API for HCatalog. (REST stands for &ldquo;<a href=http://en.wikipedia.org/wiki/Representational_state_transfer>representational state transfer</a>&rdquo;, a style of API based on HTTP verbs).  The original name of WebHCat was <em>Templeton</em>. For more information, see the <a href=https://hive.apache.org/docs/latest/webhcat_33299069/>WebHCat manual</a>.</p>
+<p> </p>
+<p><strong>Navigation Links</strong>
+Next: <a href=https://hive.apache.org/docs/latest/hcatalog-installhcat_34013403/>HCatalog Installation</a></p>
+<p>General: <a href=https://hive.apache.org/docs/latest/hcatalog_33299065/>HCatalog Manual</a> – <a href=https://hive.apache.org/docs/latest/webhcat_33299069/>WebHCat Manual</a> – <a href=https://hive.apache.org/docs/latest/home_27362069/>Hive Wiki Home</a> – <a href=http://hive.apache.org/>Hive Project Site</a></p>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

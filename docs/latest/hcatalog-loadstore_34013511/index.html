@@ -1,0 +1,596 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HCatalog LoadStore</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hcatalog-loadstore>Apache Hive : HCatalog LoadStore</h1>
+<h1 id=load-and-store-interfaces>Load and Store Interfaces</h1>
+<ul>
+<li><a href=#load-and-store-interfaces>Load and Store Interfaces</a>
+<ul>
+<li><a href=#set-up>Set Up</a></li>
+<li><a href=#running-pig>Running Pig</a></li>
+<li><a href=#hcatloader>HCatLoader</a>
+<ul>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#assumptions>Assumptions</a></li>
+</ul>
+</li>
+<li><a href=#hcatloader-data-types>HCatLoader Data Types</a>
+<ul>
+<li><a href=#types-in-hive-0-12-0-and-earlier>Types in Hive 0.12.0 and Earlier</a></li>
+<li><a href=#types-in-hive-0-13-0-and-later>Types in Hive 0.13.0 and Later</a></li>
+</ul>
+</li>
+<li><a href=#running-pig-with-hcatalog>Running Pig with HCatalog</a>
+<ul>
+<li><a href=#the--usehcatalog-flag>The -useHCatalog Flag</a></li>
+<li><a href=#jars-and-configuration-files>Jars and Configuration Files</a></li>
+<li><a href=#authentication>Authentication</a></li>
+</ul>
+</li>
+<li><a href=#load-examples>Load Examples</a>
+<ul>
+<li><a href=#filter-operators>Filter Operators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#hcatstorer>HCatStorer</a>
+<ul>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#assumptions>Assumptions</a></li>
+</ul>
+</li>
+<li><a href=#store-examples>Store Examples</a></li>
+<li><a href=#hcatstorer-data-types>HCatStorer Data Types</a>
+<ul>
+<li><a href=#types-in-hive-0-12-0-and-earlier>Types in Hive 0.12.0 and Earlier</a></li>
+<li><a href=#types-in-hive-0-13-0-and-later>Types in Hive 0.13.0 and Later</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#data-type-mappings>Data Type Mappings</a>
+<ul>
+<li><a href=#primitive-types>Primitive Types</a></li>
+<li><a href=#complex-types>Complex Types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id=set-up>Set Up</h2>
+<p>The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables. No HCatalog-specific setup is required for these interfaces.</p>
+<p><strong>Note</strong>: HCatalog is not thread safe.</p>
+<h2 id=running-pig>Running Pig</h2>
+<p><strong>The -useHCatalog Flag</strong></p>
+<p>To bring in the appropriate jars for working with HCatalog, simply include the following flag / parameters when running Pig from the shell, Hue, or other applications:</p>
+<pre tabindex=0><code>pig -useHCatalog
+</code></pre><p>See section <a href=#running-pig-with-hcatalog>Running Pig with HCatalog</a> below for details.</p>
+<p>Stale Content Warning</p>
+<p>The fully qualified package name changed from <em>org.apache.hcatalog.pig</em> to <em>org.apache.hive.hcatalog.pig</em> in Pig versions 0.14+. </p>
+<p>In many older web site examples you may find references to the old syntax which no longer functions.</p>
+<table>
+<thead>
+<tr>
+<th>Previous Pig Versions</th>
+<th>0.14+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>org.apache.hcatalog.pig.HCatLoader</td>
+<td>org.apache.hive.hcatalog.pig.HCatLoader</td>
+</tr>
+<tr>
+<td>org.apache.hcatalog.pig.HCatStorer</td>
+<td>org.apache.hive.hcatalog.pig.HCatStorer</td>
+</tr>
+</tbody>
+</table>
+<h2 id=hcatloader>HCatLoader</h2>
+<p>HCatLoader is used with Pig scripts to read data from HCatalog-managed tables.</p>
+<h3 id=usage>Usage</h3>
+<p>HCatLoader is accessed via a Pig load statement.  </p>
+<p><em>Using Pig 0.14+</em></p>
+<pre tabindex=0><code>A = LOAD 'tablename' USING org.apache.hive.hcatalog.pig.HCatLoader();
+</code></pre><h4 id=assumptions>Assumptions</h4>
+<p>You must specify the table name in single quotes: LOAD &lsquo;tablename&rsquo;. If you are using a non-default database you must specify your input as &lsquo;dbname.tablename&rsquo;. If you are using Pig 0.9.2 or earlier, you must create your database and table prior to running the Pig script. Beginning with Pig 0.10 you can issue these create commands in Pig using the SQL command.  Details of Pig syntax can be found in <a href=https://issues.apache.org/jira/browse/PIG-2482>PIG-2482</a>.</p>
+<p>The Hive metastore lets you create tables without specifying a database; if you created tables this way, then the database name is &lsquo;default&rsquo; and is not required when specifying the table for HCatLoader.</p>
+<p>If the table is partitioned, you can indicate which partitions to scan by immediately following the load statement with a partition filter statement (see <a href=#load-examples>Load Examples</a> below).</p>
+<h3 id=hcatloader-data-types>HCatLoader Data Types</h3>
+<p>Restrictions apply to the types of columns HCatLoader can read from HCatalog-managed tables. HCatLoader can read <em><strong>only</strong></em> the Hive data types listed below. </p>
+<p>The tables in <a href=#data-type-mappings>Data Type Mappings</a> show how Pig will interpret each Hive data type.</p>
+<h4 id=types-in-hive-0120-and-earlier>Types in Hive 0.12.0 and Earlier</h4>
+<p>Hive 0.12.0 and earlier releases support reading these Hive primitive data types with HCatLoader:</p>
+<ul>
+<li>boolean</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>string</li>
+<li>binary</li>
+</ul>
+<p>and these complex data types:</p>
+<ul>
+<li>map – key type should be string</li>
+<li>ARRAY&lt;<em>any type</em>></li>
+<li>struct&lt;<em>any type fields</em>></li>
+</ul>
+<h4 id=types-in-hive-0130-and-later>Types in Hive 0.13.0 and Later</h4>
+<p>Hive 0.13.0 added support for reading these Hive data types with HCatLoader (<a href=https://issues.apache.org/jira/browse/HIVE-5814>HIVE-5814</a>):</p>
+<ul>
+<li>tinyint</li>
+<li>smallint</li>
+<li>date</li>
+<li>timestamp</li>
+<li>decimal</li>
+<li>char(x)</li>
+<li>varchar(x)</li>
+</ul>
+<p>See <a href=#data-type-mappings>Data Type Mappings</a> below for details of the mappings between Hive and Pig types.</p>
+<p>Note</p>
+<p>Hive does not have a data type corresponding to the big integer type in Pig.</p>
+<h3 id=running-pig-with-hcatalog>Running Pig with HCatalog</h3>
+<p>Pig does not automatically pick up HCatalog jars. To bring in the necessary jars, you can either use a flag in the pig command or set the environment variables PIG_CLASSPATH and PIG_OPTS as described below.</p>
+<h4 id=the--usehcatalog-flag>The -useHCatalog Flag</h4>
+<p>To bring in the appropriate jars for working with HCatalog, simply include the following flag:</p>
+<pre tabindex=0><code>pig -useHCatalog
+
+</code></pre><h4 id=jars-and-configuration-files>Jars and Configuration Files</h4>
+<p>For Pig commands that omit <code>-useHCatalog</code>, you need to tell Pig where to find your HCatalog jars and the Hive jars used by the HCatalog client. To do this, you must define the environment variable PIG_CLASSPATH with the appropriate jars.</p>
+<p>HCatalog can tell you the jars it needs. In order to do this it needs to know where Hadoop and Hive are installed. Also, you need to tell Pig the URI for your metastore, in the PIG_OPTS variable.</p>
+<p>In the case where you have installed Hadoop and Hive via tar, you can do this:</p>
+<pre tabindex=0><code>export HADOOP\_HOME=&lt;path\_to\_hadoop\_install&gt;
+
+export HIVE\_HOME=&lt;path\_to\_hive\_install&gt;
+
+export HCAT\_HOME=&lt;path\_to\_hcat\_install&gt;
+
+export PIG\_CLASSPATH=$HCAT\_HOME/share/hcatalog/hcatalog-core*.jar:\
+$HCAT\_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
+$HIVE\_HOME/lib/hive-metastore-*.jar:$HIVE\_HOME/lib/libthrift-*.jar:\
+$HIVE\_HOME/lib/hive-exec-*.jar:$HIVE\_HOME/lib/libfb303-*.jar:\
+$HIVE\_HOME/lib/jdo2-api-*-ec.jar:$HIVE\_HOME/conf:$HADOOP\_HOME/conf:\
+$HIVE\_HOME/lib/slf4j-api-*.jar
+
+export PIG\_OPTS=-Dhive.metastore.uris=thrift://&lt;hostname&gt;:&lt;port&gt;
+
+</code></pre><p>Or you can pass the jars in your command line:</p>
+<pre tabindex=0><code>&lt;path\_to\_pig\_install&gt;/bin/pig -Dpig.additional.jars=\
+$HCAT\_HOME/share/hcatalog/hcatalog-core*.jar:\
+$HCAT\_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
+$HIVE\_HOME/lib/hive-metastore-*.jar:$HIVE\_HOME/lib/libthrift-*.jar:\
+$HIVE\_HOME/lib/hive-exec-*.jar:$HIVE\_HOME/lib/libfb303-*.jar:\
+$HIVE\_HOME/lib/jdo2-api-*-ec.jar:$HIVE\_HOME/lib/slf4j-api-*.jar  &lt;script.pig&gt;
+
+</code></pre><p>The version number found in each filepath will be substituted for *. For example, HCatalog release 0.5.0 uses these jars and conf files:</p>
+<ul>
+<li><code>$HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar</code></li>
+<li><code>$HCAT_HOME/share/hcatalog/hcatalog-pig-adapter-0.5.0.jar</code></li>
+<li><code>$HIVE_HOME/lib/hive-metastore-0.10.0.jar</code></li>
+<li><code>$HIVE_HOME/lib/libthrift-0.7.0.jar</code></li>
+<li><code>$HIVE_HOME/lib/hive-exec-0.10.0.jar</code></li>
+<li><code>$HIVE_HOME/lib/libfb303-0.7.0.jar</code></li>
+<li><code>$HIVE_HOME/lib/jdo2-api-2.3-ec.jar</code></li>
+<li><code>$HIVE_HOME/conf</code></li>
+<li><code>$HADOOP_HOME/conf</code></li>
+<li><code>$HIVE_HOME/lib/slf4j-api-1.6.1.jar</code></li>
+</ul>
+<h4 id=authentication>Authentication</h4>
+<p>If you are using a secure cluster and a failure results in a message like &ldquo;2010-11-03 16:17:28,225 WARN hive.metastore &mldr; - Unable to connect metastore with URI thrift://&mldr;&rdquo; in <code>/tmp/</code><em></em><code>/hive.log</code>, then make sure you have run &ldquo;<code>kinit</code> <em></em><code>@FOO.COM</code>&rdquo; to get a Kerberos ticket and to be able to authenticate to the HCatalog server.</p>
+<h3 id=load-examples>Load Examples</h3>
+<p>This load statement will load all partitions of the specified table.</p>
+<pre tabindex=0><code>/* myscript.pig */
+A = LOAD 'tablename' USING org.apache.hive.hcatalog.pig.HCatLoader();
+...
+...
+
+</code></pre><p>If only some partitions of the specified table are needed, include a partition filter statement <em><strong>immediately</strong></em> following the load statement in the data flow. (In the script, however, a filter statement might not immediately follow its load statement.) The filter statement can include conditions on partition as well as non-partition columns.</p>
+<pre tabindex=0><code>/* myscript.pig */
+A = LOAD 'tablename' USING  org.apache.hive.hcatalog.pig.HCatLoader();
+
+-- date is a partition column; age is not
+B = filter A by date == '20100819' and age &lt; 30;
+
+-- both date and country are partition columns
+C = filter A by date == '20100819' and country == 'US';
+...
+...
+
+</code></pre><p>To scan a whole table, for example:</p>
+<pre tabindex=0><code>a = load 'student\_data' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = foreach a generate name, age;
+
+</code></pre><p>Notice that the schema is automatically provided to Pig; there&rsquo;s no need to declare name and age as fields, as if you were loading from a file.</p>
+<p>To scan a single partition of the table web_logs partitioned by the column datestamp, for example:</p>
+<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp == '20110924';
+
+</code></pre><p>Pig will push the datestamp filter shown here to HCatalog, so that HCatalog knows to just scan the partition where datestamp = &lsquo;20110924&rsquo;. You can combine this filter with others via &lsquo;and&rsquo;:</p>
+<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp == '20110924' and user is not null;
+
+</code></pre><p>Pig will split the above filter, pushing the datestamp portion to HCatalog and retaining the &lsquo;<code>user is not null</code>&rsquo; part to apply itself. You can also give a more complex filter to retrieve a set of partitions.</p>
+<h4 id=filter-operators>Filter Operators</h4>
+<p>A filter can contain the operators &lsquo;and&rsquo;, &lsquo;or&rsquo;, &lsquo;()&rsquo;, &lsquo;==&rsquo;, &lsquo;!=&rsquo;, &lsquo;&lt;&rsquo;, &lsquo;>&rsquo;, &lsquo;&lt;=&rsquo; and &lsquo;>=&rsquo;.</p>
+<p>For example:</p>
+<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp &gt; '20110924';
+
+</code></pre><p>A complex filter can have various combinations of operators, such as:</p>
+<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp == '20110924' or datestamp == '20110925';
+
+</code></pre><p>These two examples have the same effect:</p>
+<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp &gt;= '20110924' and datestamp &lt;= '20110925';
+
+</code></pre><pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+b = filter a by datestamp &lt;= '20110925' and datestamp &gt;= '20110924';
+
+</code></pre><h2 id=hcatstorer>HCatStorer</h2>
+<p>HCatStorer is used with Pig scripts to write data to HCatalog-managed tables.</p>
+<h3 id=usage-1>Usage</h3>
+<p>HCatStorer is accessed via a Pig store statement.</p>
+<pre tabindex=0><code>A = LOAD ...
+B = FOREACH A ...
+...
+...
+my\_processed\_data = ...
+
+STORE my\_processed\_data INTO 'tablename'
+   USING org.apache.hive.hcatalog.pig.HCatStorer();
+
+</code></pre><h4 id=assumptions-1>Assumptions</h4>
+<p>You must specify the table name in single quotes: LOAD &lsquo;tablename&rsquo;. Both the database and table must be created prior to running your Pig script. If you are using a non-default database you must specify your input as &lsquo;dbname.tablename&rsquo;. If you are using Pig 0.9.2 or earlier, you must create your database and table prior to running the Pig script. Beginning with Pig 0.10 you can issue these create commands in Pig using the SQL command.</p>
+<p>The Hive metastore lets you create tables without specifying a database; if you created tables this way, then the database name is &lsquo;default&rsquo; and you do not need to specify the database name in the store statement.</p>
+<p>For the USING clause, you can have a string argument that represents key/value pairs for partition. This is a mandatory argument when you are writing to a partitioned table and the partition column is not in the output column. The values for partition keys should <em>NOT</em> be quoted.</p>
+<p>If partition columns are present in data they need not be specified as a STORE argument. Instead HCatalog will use these values to place records in the appropriate partition(s). It is valid to specify some partition keys in the STORE statement and have other partition keys in the data.</p>
+<h3 id=store-examples>Store Examples</h3>
+<p>You can write to a non-partitioned table simply by using HCatStorer. The contents of the table will be overwritten:</p>
+<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
+
+</code></pre><p>To add one new partition to a partitioned table, specify the partition value in the store function. Pay careful attention to the quoting, as the whole string must be single quoted and separated with an equals sign:</p>
+<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer('datestamp=20110924');
+
+</code></pre><p>To write into multiple partitions at once, make sure that the partition column is present in your data, then call HCatStorer with no argument:</p>
+<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
+  -- datestamp must be a field in the relation z
+
+</code></pre><h3 id=hcatstorer-data-types>HCatStorer Data Types</h3>
+<p>Restrictions apply to the types of columns HCatStorer can write to HCatalog-managed tables. HCatStorer can write <em><strong>only</strong></em> the data types listed below.</p>
+<p>The tables in <a href=#data-type-mappings>Data Type Mappings</a> show how HCatalog will interpret each Pig data type.</p>
+<h4 id=types-in-hive-0120-and-earlier-1>Types in Hive 0.12.0 and Earlier</h4>
+<p>Hive 0.12.0 and earlier releases support writing these Pig primitive data types with HCatStorer:</p>
+<ul>
+<li>boolean</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>chararray</li>
+<li>bytearray</li>
+</ul>
+<p>and these complex data types:</p>
+<ul>
+<li>map</li>
+<li>bag</li>
+<li>tuple</li>
+</ul>
+<h4 id=types-in-hive-0130-and-later-1>Types in Hive 0.13.0 and Later</h4>
+<p>Hive 0.13.0 added support for writing these Pig data types with HCatStorer (<a href=https://issues.apache.org/jira/browse/HIVE-5814>HIVE-5814</a>):</p>
+<ul>
+<li>short</li>
+<li>datetime</li>
+<li>bigdecimal</li>
+</ul>
+<p>and added more Hive data types that the Pig types can be written to. See <a href=#data-type-mappings>Data Type Mappings</a> below for details of the mappings between Pig and Hive types.</p>
+<p>Note</p>
+<p>Hive does not have a data type corresponding to the biginteger type in Pig.</p>
+<h2 id=data-type-mappings>Data Type Mappings</h2>
+<p>The tables below show the mappings between data types in HCatalog-managed Hive tables and Pig. For general information about Hive data types, see <a href=https://hive.apache.org/docs/latest/languagemanual-types_27838462/>Hive Data Types</a> and <a href=#type-system>Type System</a>.</p>
+<p>Any type mapping not listed here is not supported and will throw an exception. The user is expected to cast the value to a compatible type first (in a Pig script, for example).</p>
+<h3 id=primitive-types>Primitive Types</h3>
+<table>
+<thead>
+<tr>
+<th>Hive Type/Value</th>
+<th>Pig Type/Value</th>
+<th>Hive → Pig</th>
+<th>Pig → Hive</th>
+<th>Available in Hive Release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOLEAN/boolean</td>
+<td>BOOLEAN/boolean</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>TINYINT/byte</td>
+<td>INTEGER/int</td>
+<td>direct/lossless mapping</td>
+<td>performs a range check1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>SMALLINT/short</td>
+<td>SMALLINT/short</td>
+<td>direct/lossless mapping</td>
+<td>performs a range check1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>INT/int</td>
+<td>INTEGER/int</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>BIGINT/long</td>
+<td>LONG/long</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>FLOAT/float</td>
+<td>FLOAT/float</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>DOUBLE/double</td>
+<td>DOUBLE/double</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>STRING/java.lang.String</td>
+<td>CHARARRAY/java.lang.String</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>BINARY/byte[]</td>
+<td>BYTEARRAY/org.apache.pig.data.DataByteArray</td>
+<td>direct/lossless mapping</td>
+<td>direct/lossless mapping</td>
+<td></td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>DATETIME/org.joda.time.DateTime</td>
+<td>turn to DateTime with time part set to 0 and local timezone</td>
+<td>if time component is 0 (regardless of timezone in the DateTime value), it will be written to target; otherwise it is considered out of range1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>TIMESTAMP/java.sql.Timestamp</td>
+<td>DATETIME/org.joda.time.DateTime</td>
+<td>will lose ‘nanos’ and set timezone to local timezone</td>
+<td>will translate to Timestamp based on &lsquo;millis&rsquo; value</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>DECIMAL/HiveDecimal (maximum 38 digits)</td>
+<td>BIGDECIMAL/java.math.BigDecimal</td>
+<td>direct/lossless mapping</td>
+<td>performs a range check1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>CHAR(x)/HiveChar</td>
+<td>CHARARRAY/java.lang.String</td>
+<td>direct/lossless mapping</td>
+<td>performs a range check1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>VARCHAR(x)/HiveVarchar</td>
+<td>CHARARRAY/java.lang.String</td>
+<td>direct/lossless mapping</td>
+<td>performs a range check1</td>
+<td>0.13.0+</td>
+</tr>
+<tr>
+<td>1 Range check: If the Pig value is out of range for the target Hive column, by default NULL will be written and one warning per target column/type will be logged. The user may specify “<code>onOutOfRangeValue Throw</code>” to HCatStorer so that an error will be raised instead. For example:<code>store data into 'test\_tbl' using org.apache.hive.hcatalog.pig.HCatStorer('','','-onOutOfRangeValue Throw');</code>The only values for <code>onOutOfRangeValue</code> are <code>Throw</code> and <code>Null</code> (default).</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Note</p>
+<p>Hive does not have a data type corresponding to the BIGINTEGER type in Pig (java.math.BigInteger values).</p>
+<h3 id=complex-types>Complex Types</h3>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th>Hive Type</th>
+<th>Pig Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map (key type should be string)</td>
+<td>map</td>
+</tr>
+<tr>
+<td>ARRAY&lt;<em>any type</em>></td>
+<td>bag</td>
+</tr>
+<tr>
+<td>struct&lt;<em>any type fields</em>></td>
+<td>tuple</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/hcatalog-configuration-properties_39622369/>HCatalog Configuration Properties</a><br>
+Next: <a href=https://hive.apache.org/docs/latest/hcatalog-inputoutput_34013776/>Input and Output Interfaces</a></p>
+<p>General: <a href=https://hive.apache.org/docs/latest/hcatalog_33299065/>HCatalog Manual</a> – <a href=https://hive.apache.org/docs/latest/webhcat_33299069/>WebHCat Manual</a> – <a href=https://hive.apache.org/docs/latest/home_27362069/>Hive Wiki Home</a> – <a href=http://hive.apache.org/>Hive Project Site</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

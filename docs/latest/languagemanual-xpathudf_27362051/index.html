@@ -1,0 +1,308 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LanguageManual XPathUDF</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--languagemanual-xpathudf>Apache Hive : LanguageManual XPathUDF</h1>
+<p>Documentation for Built-In User-Defined Functions Related To XPath</p>
+<h2 id=udfs>UDFs</h2>
+<h3 id=xpath-xpath_short-xpath_int-xpath_long-xpath_float-xpath_double-xpath_number-xpath_string>xpath, xpath_short, xpath_int, xpath_long, xpath_float, xpath_double, xpath_number, xpath_string</h3>
+<ul>
+<li>Functions for parsing XML data using XPath expressions.</li>
+<li>Since version: 0.6.0</li>
+</ul>
+<h4 id=overview>Overview</h4>
+<p>The <em>xpath</em> family of UDFs are wrappers around the Java XPath library <code>javax.xml.xpath</code> provided by the JDK. The library is based on the XPath 1.0 specification. Please refer to <a href=http://java.sun.com/javase/6/docs/api/javax/xml/xpath/package-summary.html>http://java.sun.com/javase/6/docs/api/javax/xml/xpath/package-summary.html</a> for detailed information on the Java XPath library.</p>
+<p>All functions follow the form: <code>xpath_*(xml_string, xpath_expression_string)</code>. The XPath expression string is compiled and cached. It is reused if the expression in the next input row matches the previous. Otherwise, it is recompiled. So, the xml string is always parsed for every input row, but the xpath expression is precompiled and reused for the vast majority of use cases.</p>
+<p>Backward axes are supported. For example:</p>
+<pre tabindex=0><code>
+&gt; select xpath ('&lt;a&gt;&lt;b id=&quot;1&quot;&gt;&lt;c/&gt;&lt;/b&gt;&lt;b id=&quot;2&quot;&gt;&lt;c/&gt;&lt;/b&gt;&lt;/a&gt;','/descendant::c/ancestor::b/@id') from t1 limit 1 ;
+[1&quot;,&quot;2]
+
+</code></pre><p>Each function returns a specific Hive type given the XPath expression:</p>
+<ul>
+<li><code>xpath</code> returns a Hive array of strings.</li>
+<li><code>xpath_string</code> returns a string.</li>
+<li><code>xpath_boolean</code> returns a boolean.</li>
+<li><code>xpath_short</code> returns a short integer.</li>
+<li><code>xpath_int</code> returns an integer.</li>
+<li><code>xpath_long</code> returns a long integer.</li>
+<li><code>xpath_float</code> returns a floating point number.</li>
+<li><code>xpath_double,xpath_number</code> returns a double-precision floating point number (<code>xpath_number</code> is an alias for <code>xpath_double</code>).</li>
+</ul>
+<p>The UDFs are schema agnostic - no XML validation is performed. However, malformed xml (e.g., <code>&lt;a>&lt;b>1&lt;/b>&lt;/aa></code>) will result in a runtime exception being thrown.</p>
+<p>Following are specifics on each xpath UDF variant.</p>
+<h4 id=xpath>xpath</h4>
+<p>The <code>xpath()</code> function always returns a hive array of strings. If the expression results in a non-text value (e.g., another xml node) the function will return an empty array. There are 2 primary uses for this function: to get a list of node text values or to get a list of attribute values.</p>
+<p>Examples:</p>
+<p>Non-matching XPath expression:</p>
+<pre tabindex=0><code>
+&gt; select xpath('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;','a/*') from src limit 1 ;
+[]
+
+</code></pre><p>Get a list of node text values:</p>
+<pre tabindex=0><code>
+&gt; select xpath('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;','a/*/text()') from src limit 1 ;
+[b1&quot;,&quot;b2]
+
+</code></pre><p>Get a list of values for attribute &lsquo;id&rsquo;:</p>
+<pre tabindex=0><code>
+&gt; select xpath('&lt;a&gt;&lt;b id=&quot;foo&quot;&gt;b1&lt;/b&gt;&lt;b id=&quot;bar&quot;&gt;b2&lt;/b&gt;&lt;/a&gt;','//@id') from src limit 1 ; 
+[foo&quot;,&quot;bar]
+
+</code></pre><p>Get a list of node texts for nodes where the &lsquo;class&rsquo; attribute equals &lsquo;bb&rsquo;:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath ('&lt;a&gt;&lt;b class=&quot;bb&quot;&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;b&gt;b3&lt;/b&gt;&lt;c class=&quot;bb&quot;&gt;c1&lt;/c&gt;&lt;c&gt;c2&lt;/c&gt;&lt;/a&gt;', 'a/*[@class=&quot;bb&quot;]/text()') FROM src LIMIT 1 ;
+[b1&quot;,&quot;c1]
+
+</code></pre><h4 id=xpath_string>xpath_string</h4>
+<p>The <code>xpath_string()</code> function returns the text of the first matching node.</p>
+<p>Get the text for node &lsquo;a/b&rsquo;:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
+bb
+
+</code></pre><p>Get the text for node &lsquo;a&rsquo;. Because &lsquo;a&rsquo; has children nodes with text, the result is a composite of text from the children.</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+bbcc
+
+</code></pre><p>Non-matching expression returns an empty string:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/d') FROM src LIMIT 1 ;
+
+</code></pre><p>Gets the text of the first node that matches &lsquo;//b&rsquo;:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', '//b') FROM src LIMIT 1 ;
+b1
+
+</code></pre><p>Gets the second matching node:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[2]') FROM src LIMIT 1 ;
+b2
+
+</code></pre><p>Gets the text from the first node that has an attribute &lsquo;id&rsquo; with value &lsquo;b_2&rsquo;:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b id=&quot;b\_2&quot;&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[@id=&quot;b\_2&quot;]') FROM src LIMIT 1 ;
+b2
+
+</code></pre><h4 id=xpath_boolean>xpath_boolean</h4>
+<p>Returns true if the XPath expression evaluates to true, or if a matching node is found.</p>
+<p>Match found:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
+true
+
+</code></pre><p>No match found:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/c') FROM src LIMIT 1 ;
+false
+
+</code></pre><p>Match found:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b = &quot;b&quot;') FROM src LIMIT 1 ;
+true
+
+</code></pre><p>No match found:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;10&lt;/b&gt;&lt;/a&gt;', 'a/b &lt; 10') FROM src LIMIT 1 ;
+false
+
+</code></pre><h4 id=xpath_short-xpath_int-xpath_long>xpath_short, xpath_int, xpath_long</h4>
+<p>These functions return an integer numeric value, or the value zero if no match is found, or a match is found but the value is non-numeric.</p>
+<p>Mathematical operations are supported. In cases where the value overflows the return type, then the maximum value for the type is returned.</p>
+<p>No match:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_int ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
+0
+
+</code></pre><p>Non-numeric match:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_int ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+0
+&gt; SELECT xpath\_int ('&lt;a&gt;this 2 is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+0
+
+</code></pre><p>Adding values:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/*)') FROM src LIMIT 1 ;
+15
+&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b)') FROM src LIMIT 1 ;
+7
+&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b[@class=&quot;odd&quot;])') FROM src LIMIT 1 ;
+5
+
+</code></pre><p>Overflow:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
+2147483647
+
+</code></pre><h4 id=xpath_float-xpath_double-xpath_number>xpath_float, xpath_double, xpath_number</h4>
+<p>Similar to xpath_short, xpath_int and xpath_long but with floating point semantics. Non-matches result in zero. However,</p>
+<p>non-numeric matches result in NaN. Note that <code>xpath_number()</code> is an alias for <code>xpath_double()</code>.</p>
+<p>No match:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_double ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
+0.0
+
+</code></pre><p>Non-numeric match:</p>
+<pre tabindex=0><code>
+&gt; SELECT xpath\_double ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+NaN
+
+</code></pre><p>A very large number:</p>
+<pre tabindex=0><code>
+SELECT xpath\_double ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
+8.0E19
+
+</code></pre><h1 id=udafs>UDAFs</h1>
+<h1 id=udtfs>UDTFs</h1>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

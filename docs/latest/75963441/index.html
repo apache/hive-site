@@ -1,0 +1,241 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Query Results Caching (HIVE-18513)</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--query-results-caching-hive-18513>Apache Hive : Query Results Caching (HIVE-18513)</h1>
+<h2 id=introduction>Introduction</h2>
+<p>This document proposes the addition of a query results cache to Hive. Caching query results allows a previously computed query result to be re-used in the event that the same query is processed by Hive. This can save both time and resources spent running the cluster tasks required for the query.</p>
+<h2 id=background>Background</h2>
+<p>Existing behavior for Hive query processing (very simplified):</p>
+<ol>
+<li>Hive query compilation takes the query string and produces a QueryPlan. The QueryPlan contains both the list of cluster tasks required for the query, as well as the FetchTask used to fetch results. The cluster tasks are configured to output the final results to a designated temp directory. The FetchTask contains a FetchOperator which is configured to read from the designated temp directory, as well as the input format, column information, and other information.</li>
+<li>During query execution (Driver.execute()), Hive will submit any cluster tasks (MR/Tez/Spark) required for the query.</li>
+<li>When the cluster tasks are finished the queryPlan’s FetchTask is used to read the query results from the temp directory (Driver.getResults())</li>
+<li>Cleanup of the query results is handled by the Driver’s Context object. Several directory paths are cleaned up in this step, including the query results directory and parent directories of the results directory.</li>
+</ol>
+<h2 id=proposed-changes>Proposed Changes</h2>
+<h3 id=new-components>New components:</h3>
+<p>Results Cache</p>
+<ul>
+<li>Keeps a mapping of query string to cached results entry</li>
+<li>Used to lookup cache entries based on the query string</li>
+<li>Can receive query results from queries, for use by future queries</li>
+<li>Responsible for invalidating cache stale entries, and cleaning up resources used by the invalidated cache entries</li>
+</ul>
+<h3 id=changes-to-query-processing>Changes to query processing:</h3>
+<p>During query compilation, check the results cache to see if it already has the query results. If there is a cache hit then the query plan will be set to a FetchTask that will read from the cached location.</p>
+<p>During query execution:</p>
+<ul>
+<li>If the results cache can be used for this query:</li>
+</ul>
+<ul>
+<li>The query will simply be the FetchTask reading from the cached results directory. No cluster tasks will be required.</li>
+</ul>
+<ul>
+<li>If the results cache cannot be used:</li>
+</ul>
+<ul>
+<li>Run the cluster tasks as normal</li>
+<li>Check if the query results that have been computed are eligible to add to the results cache.</li>
+</ul>
+<ul>
+<li>If results can be cached, the temporary results generated for the query will be saved to the results cache. Steps may need to be done here to ensure the query results directory is not deleted by query cleanup.</li>
+</ul>
+<h2 id=considerations>Considerations</h2>
+<h3 id=at-what-level-of-the-query-processing-should-results-caching-be-applied>At what level of the query processing should results caching be applied</h3>
+<p>There are several potential places the cache lookup can be done:</p>
+<ul>
+<li>Before parsing/compilation</li>
+<li>After parsing (with the AST available) but before full query optimization/planning</li>
+<li>After query compilation/planning</li>
+</ul>
+<p>The current approach is for cache lookup to occur after AST generation but before full optimization. This can give us a chance to avoid full query optimization/planning. Access to the AST also allows Hive to fully qualify table references (to make sure the current query is using the same tables as the cached query), plus row filtering and column masking rewrites (from Ranger access rules) occur on the AST so this can still work with those.</p>
+<h3 id=heading></h3>
+<h3 id=matching-the-current-query-with-entries-in-the-results-cache>Matching the current query with entries in the results cache</h3>
+<h3 id=heading-1></h3>
+<p>Hive will need to check if the results for an incoming query are already saved in the results cache. A simple way to match the query with results cache entries would be to compare the incoming query text with the query text of the results cache entry. Many of the existing DBMS results caching solutions seem to cache results based on the query string.</p>
+<p>Unqualified table references need to be taken into account - depending on the current database at the time of the query, 2 queries running the exact same query string may access tables from completely different databases. So rather than performing the lookup based on the original SQL string, the query string should have any unqualified references resolved. This can be done using the AST and the UnparseTranslator.</p>
+<p>There are similar issues with query string matching that apply to user-level security with row/column masking/filtering.</p>
+<h3 id=is-the-results-cache-independent-or-shared-between-different-hive-instances>Is the results cache independent or shared between different Hive instances?</h3>
+<p>Currently each Hive instance has its own separate results cache. Originally the thinking was the query plan or AST would be part of the information saved in the cache, and might have been problematic to save and share between the different instances. But actually only the modified query string is saved for it which might make it possible to eventually have a shared cache. There are still a number of structures that are saved to properly set up the query (results schema, TableAccessInfo/ColumnAccessInfo, ReadEntities), so those would have to be saved somehow.</p>
+<p> ### Which queries can use the results cache</p>
+<p> Disallowed functions:</p>
+<p> * Non-deterministic functions (rand(), unix_timestamp(), &mldr;)</p>
+<ul>
+<li>Runtime constant functions (current_date, current_timestamp, current_user(), current_database(), &mldr;)</li>
+</ul>
+<p> Disallowed tables:</p>
+<p> * Temporary tables</p>
+<ul>
+<li>External tables? If Hive relies on modifications to the underlying table to invalidate cached results, then external tables should not be allowed because these tables could be written outside of Hive.</li>
+</ul>
+<p> Other conditions:</p>
+<p> * If the query has no cluster tasks (fetch-only query), no need to cache</p>
+<h3 id=saving-query-results-from-getting-deleted-by-query-cleanup>Saving query results from getting deleted by query cleanup</h3>
+<p>To keep the query results for possible re-use, we need to make sure that the results directory is not deleted as part of query cleanup. Note that the Driver Context cleans up not only the query results directory but the parent directories of the results directory, which may complicate trying to save the query results directory while also performing the rest of the query cleanup.</p>
+<p>The solution chosen will be to move the query results directory to a designated results cache directory to make sure that it does not get removed during query cleanup. This requires no changes to the existing query cleanup, and makes for simpler management of cached directories - all cached results can be under a single cache directory.</p>
+<h3 id=columnrow-masking-and-filtering>Column/Row Masking and Filtering</h3>
+<p>Due to Ranger column/row masking, the query results from one user may look different that they would for a different user, even if the query text is the same. If results caching is enabled, then Hive will need to make sure that the cache lookup works correctly in this case, or else it will have to be disabled for masking/filtering.</p>
+<p>The query rewrites that occur for Hive masking/filtering are done on the AST (SemanticAnalyzer.analyzeInternal()). So as long as the query string used for cache lookup can be derived from the rewritten AST (or the AST can be used during lookup), then query lookups should correctly distinguish cases where the query was modified from the original query text due to row/column filtering and masking.</p>
+<p> ### Invalidating results cache entries</p>
+<p> One issue with saving query results in a cache is that over time the entries in the results cache can become stale, if the underlying tables from the query are updated or dropped. A solution for this is to have a mechanism to invalidate the entries saved in the results cache. Some possible mechanisms for this:</p>
+<p> 1. Allow entries in the results cache to be valid for only a configured length of time. This is a simpler implementation which does not have to rely having to detect when the underlying tables of a cached query result have been changed. The disadvantage is that when the underlying tables are changed, any stale results would be served by the results cache until the cached result expires.
+2. Add a command to clear the results cache. This can give the user a chance to prevent stale results from being served by the cache if they know that a table has been updated. Disadvantage is this requires manual intervention by the user to prevent stale results from being served.
+3. Expire results cache entries if there are updates to the underlying tables. It may be possible to reuse the same mechanism that Materialized Views use to determine if any of the underlying tables of a cached query have been modified.</p>
+<h3 id=cleanup-of-cache-directories>Cleanup of cache directories</h3>
+<p>Each Hive instance can keep track of its cached results directories, and set them to be deleted on process exit. Under normal conditions this may be able to take care of cache directory cleanup, but in the case that the Hive process is terminated without a chance to perform graceful cleanup, these directories may still be left around.</p>
+<p>Hive also has a cleanup mechanism for scratch directories (ClearDanglingScratchDir). It may be possible to reuse this for results cache cleanup. This cleanup works by creating a lockfile in the directory, and keeping the file open for the duration of the Hive instance. The cleanup thread will not delete the directory as long as the lock file is held by the Hive instance. This mechanism would work as long as each Hive instance is responsible for its own results cache directory (which is the current plan), as opposed to having a cache that is shared among different Hive instances.</p>
+<h3 id=table-locks>Table Locks</h3>
+<p>At the start of query execution the Hive Driver will acquire locks for all tables being queried. This behavior should still remain even for queries that are using the cache - the read lock will prevent other users from being able to write to the underlying tables and invalidating the cache at the time the results cache is being checked for the query results.</p>
+<p> One possible problem is the fact that the cache lookup and decision to use the cache occurs during query compilation/semantic analysis, but the locks for the query are not acquired until query execution time. Between that period of time it might be possible for another query to have acquired the write lock and modified one of the tables used in the cache. When our query tries to acquire the read locks for the table, it will block until the write lock is done, and now when it is time for query execution the cache entry we found during compilation is now invalid due to the updates to the table. One solution to is would be to fail compilation with a RetryableException, so that the query can be retried - the next time the cache is checked the invalid entry will no longer be chosen. <a href=https://issues.apache.org/jira/browse/HIVE-17626>HIVE-17626</a> and its subtasks are supposed to allow queries to be retried in certain cases. This mechanism can be re-used here to allow the query to be re-run. </p>
+<p> </p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : UserGuide</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--userguide>Apache Hive : UserGuide</h1>
+<p>NOTE: This page is deprecated and merged into <a href=https://hive.apache.org/docs/latest/gettingstarted_27362090/>GettingStarted</a>.</p>
+<h1 id=user-guide>User Guide</h1>
+<p>The query language specification is available at <a href=https://hive.apache.org/docs/latest/languagemanual_27362030/>LanguageManual</a>. Also see, <a href=https://hive.apache.org/docs/latest/gettingstarted_27362090/>GettingStarted</a> for setup instructions.</p>
+<h2 id=supported-features>Supported Features</h2>
+<h2 id=usage-examples>Usage Examples</h2>
+<h3 id=creating-tables>Creating tables</h3>
+<h4 id=movielens-user-ratings>MovieLens User Ratings</h4>
+<pre tabindex=0><code>CREATE TABLE u\_data (
+  userid INT,
+  movieid INT,
+  rating INT,
+  unixtime STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+</code></pre><h4 id=apache-access-log-tables>Apache Access Log Tables</h4>
+<pre tabindex=0><code>add jar ../build/contrib/hive\_contrib.jar;
+
+CREATE TABLE apachelog (
+  host STRING,
+  identity STRING,
+  user STRING,
+  time STRING,
+  request STRING,
+  status STRING,
+  size STRING,
+  referer STRING,
+  agent STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+  &quot;input.regex&quot; = &quot;([^]*) ([^]*) ([^]*) (-|\\[^\\]*\\]) ([^ \&quot;]*|\&quot;[^\&quot;]*\&quot;) (-|[0-9]*) (-|[0-9]*)(?: ([^ \&quot;]*|\&quot;[^\&quot;]*\&quot;) ([^ \&quot;]*|\&quot;[^\&quot;]*\&quot;))?&quot;,
+  &quot;output.format.string&quot; = &quot;%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s&quot;
+)
+STORED AS TEXTFILE;
+
+</code></pre><h4 id=control-separated-tables>Control Separated Tables</h4>
+<pre tabindex=0><code>CREATE TABLE mylog (
+name STRING, language STRING, groups ARRAY&lt;STRING&gt;, entities MAP&lt;INT, STRING&gt;)
+ROW FORMAT DELIMITED
+  FIELDS TERMINATED BY '\001'
+  COLLECTION ITEMS TERMINATED BY '\002'
+  MAP KEYS TERMINATED BY '\003'
+STORED AS TEXTFILE;
+
+</code></pre><h3 id=loading-tables>Loading tables</h3>
+<h4 id=movielens-user-ratings-1>MovieLens User Ratings</h4>
+<p>Download and extract the data:</p>
+<pre tabindex=0><code>wget http://www.grouplens.org/system/files/ml-data.tar+0.gz
+tar xvzf ml-data.tar+0.gz
+
+</code></pre><p>Load it in:</p>
+<pre tabindex=0><code>LOAD DATA LOCAL INPATH 'ml-data/u.data'
+OVERWRITE INTO TABLE u\_data;
+
+</code></pre><h3 id=running-queries>Running queries</h3>
+<h4 id=movielens-user-ratings-2>MovieLens User Ratings</h4>
+<pre tabindex=0><code>SELECT COUNT(1) FROM u\_data;
+
+</code></pre><h3 id=running-custom-mapreduce-jobs>Running custom map/reduce jobs</h3>
+<h4 id=movielens-user-ratings-3>MovieLens User Ratings</h4>
+<p>Create weekday_mapper.py:</p>
+<pre tabindex=0><code>import sys
+import datetime
+
+for line in sys.stdin:
+  line = line.strip()
+  userid, movieid, rating, unixtime = line.split('\t')
+  weekday = datetime.datetime.fromtimestamp(float(unixtime)).isoweekday()
+  print '\t'.join([userid, movieid, rating, str(weekday)])
+
+</code></pre><p>Use the mapper script:</p>
+<pre tabindex=0><code>CREATE TABLE u\_data\_new (
+  userid INT,
+  movieid INT,
+  rating INT,
+  weekday INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t';
+
+INSERT OVERWRITE TABLE u\_data\_new
+SELECT
+  TRANSFORM (userid, movieid, rating, unixtime)
+  USING 'python weekday\_mapper.py'
+  AS (userid, movieid, rating, weekday)
+FROM u\_data;
+
+SELECT weekday, COUNT(1)
+FROM u\_data\_new
+GROUP BY weekday;
+
+</code></pre><p><strong>Note: due to a bug in the parser, you must run the &ldquo;INSERT OVERWRITE&rdquo; query on a single line</strong></p>
+<h3 id=using-sampling>Using sampling</h3>
+<h2 id=known-issuesbugs>Known Issues/Bugs</h2>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

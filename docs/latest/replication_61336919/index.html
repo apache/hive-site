@@ -1,0 +1,224 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Replication</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--replication>Apache Hive : Replication</h1>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#potential-uses>Potential Uses</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#limitations>Limitations</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#typical-mode-of-operation>Typical Mode of Operation</a></li>
+<li><a href=#replication-to-aws/emr/s3>Replication to AWS/EMR/S3</a></li>
+</ul>
+<h2 id=overview>Overview</h2>
+<p>Hive Replication builds on the <a href=https://hive.apache.org/docs/latest/hcatalog-notification_34014558/>metastore event</a> and <a href=https://hive.apache.org/docs/latest/languagemanual-importexport_27837968/>ExIm</a> features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly &lsquo;light touch&rsquo;, exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an &lsquo;out of the box&rsquo; solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.</p>
+<p>See <a href=https://hive.apache.org/docs/latest/hivereplicationdevelopment_55155632/>HiveReplicationDevelopment</a> for information on the design of replication in Hive.</p>
+<p> </p>
+<p><strong>A more advanced replication mechanism is being implemented in Hive to address some of the limitations of this mode. See <a href=https://hive.apache.org/docs/latest/hivereplicationv2development_66850051/>HiveReplicationv2Development</a> for details.</strong></p>
+<h2 id=potential-uses>Potential Uses</h2>
+<ul>
+<li>Disaster recovery clusters.</li>
+<li>Copying data into clouds for off-premise processing.</li>
+</ul>
+<h2 id=prerequisites>Prerequisites</h2>
+<ul>
+<li>You must be running Hive 1.1.0 or later at your replication source (for <code>DbNotificationListener</code> support).</li>
+<li>You must be running Hive 0.8.0 or later at your replication destination (for <code>IMPORT</code> support).</li>
+<li>You&rsquo;ll require Hive 1.2.0 or later JAR dependencies to instantiate and execute <code>ReplicationTasks</code>. This is not a cluster requirement; it is needed only for the service orchestrating the replication.</li>
+<li>You will initially require administration privileges on the source cluster to enable the writing of notifications to the metastore database.</li>
+</ul>
+<h2 id=limitations>Limitations</h2>
+<ul>
+<li>While the metastore events feature allows the sinking of notifications to anything implementing <code>MetaStoreEventListener</code>, the implementation of the replication feature can only source events from the metastore database and hence the <code>DbNotificationListener</code> must be used.</li>
+<li>Data appended to tables or partitions using the HCatalogWriters will not be automatically replicated as they do not currently generate metastore notifications (<a href=https://issues.apache.org/jira/browse/HIVE-9577>HIVE-9577</a>). This is likely only a consideration if data is being written to table by processes outside of Hive.</li>
+</ul>
+<h2 id=configuration>Configuration</h2>
+<p>To configure the persistence of metastore notification events it is necessary to set the following <code>[hive-site.xml](#hive-site-xml)</code> properties on the source cluster. A restart of the metastore service will be required for the settings to take effect.</p>
+<p><strong>hive-site.xml Configuration for Replication</strong></p>
+<pre tabindex=0><code>  &lt;property&gt;
+    &lt;name&gt;hive.metastore.event.listeners&lt;/name&gt;
+    &lt;value&gt;org.apache.hive.hcatalog.listener.DbNotificationListener&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hive.metastore.event.db.listener.timetolive&lt;/name&gt;
+    &lt;value&gt;86400s&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre><p>The system uses the <code>org.apache.hive.hcatalog.api.repl.exim.EximReplicationTaskFactory</code> by default. This uses <code>EXPORT</code> and <code>IMPORT</code> commands to capture, move, and ingest the metadata and data that need to be replicated. However, it is possible to provide custom implementations by setting the <code>hive.repl.task.factory</code> Hive configuration property.</p>
+<h2 id=typical-mode-of-operation>Typical Mode of Operation</h2>
+<ul>
+<li>With the metastore event configuration in place on the source cluster, the <code>NOTIFICATION_LOG</code> table in the metastore will be populated with events on the successful execution of metadata operations such as <code>CREATE</code>, <code>ALTER</code>, and <code>DROP</code>.</li>
+<li>These events can be read and converted into <code>ReplicationTasks</code> using <code>org.apache.hive.hcatalog.api.HCatClient.getReplicationTasks(long, int, String, String)</code>.</li>
+<li><code>ReplicationTasks</code> encapsulate a set of commands to execute on the source Hive instance (typically to export data) and another set to execute on the replica instance (typically to import data). The commands are provided as Hive SQL strings.</li>
+<li>The <code>ReplicationTask</code> also serves as a place where database and table name mappings can be declared and <code>StagingDirectoryProvider</code> implementations configured for the resolution of paths at both the source and destination:
+<ul>
+<li><code>org.apache.hive.hcatalog.api.repl.ReplicationTask.withDbNameMapping(Function&lt;String, String>)</code></li>
+<li><code>org.apache.hive.hcatalog.api.repl.ReplicationTask.withTableNameMapping(Function&lt;String, String>)</code></li>
+<li><code>org.apache.hive.hcatalog.api.repl.ReplicationTask.withSrcStagingDirProvider(StagingDirectoryProvider)</code></li>
+<li><code>org.apache.hive.hcatalog.api.repl.ReplicationTask.withDstStagingDirProvider(StagingDirectoryProvider)</code></li>
+</ul>
+</li>
+<li>The Hive SQL commands provided by the tasks must then be executed against the source Hive and then the destination (aka the replica). One way of doing this is to open up a JDBC connection to the respective HiveServer and submit the task&rsquo;s Hive SQL queries.</li>
+<li>It is necessary to maintain the position within the notification log so that replication tasks are applied only once. This can be achieved by maintaining a record of the last successfully executed event&rsquo;s id (<code>task.getEvent().getEventId()</code>) and providing this as an offset when sourcing the next batch of events.</li>
+<li>To avoid losing or missing events that require replication, it may be wise to poll for replication tasks at a frequency significantly greater than derived from the <code>hive.metastore.event.db.listener.timetolive</code> property. If notifications are not consumed in a timely manner they may be purged from the table before they can be actioned by the replication service.</li>
+</ul>
+<h2 id=replication-to-awsemrs3>Replication to AWS/EMR/S3</h2>
+<p>At this time it is not possible to replicate to tables on EMR that have a path location in S3. This is due to a bug in the dependency of the <code>IMPORT</code> command in the EMR distribution (checked in AMI-4.2.0). Also, if using the <code>EximReplicationTaskFactory</code> you may need to add the relevant S3 protocols to your Hive configurations:</p>
+<p><strong>HiveConf Configuration for ExIm on S3</strong></p>
+<pre tabindex=0><code>  &lt;property&gt;
+    &lt;name&gt;hive.exim.uri.scheme.whitelist&lt;/name&gt;
+    &lt;value&gt;hdfs,s3a&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre><p> </p>
+<p>Save</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Dependent Tables</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--dependent-tables>Apache Hive : Dependent Tables</h1>
+<p>Hive supports both partitioned and unpartitioned external tables. In both cases, when a new table/partition is being added, the location is also specified for the new table/partition. Let us consider a specific example:</p>
+<p>create table T (key string, value string) partitioned by (ds string, hr string);</p>
+<p>insert overwrite table T partition (ds=&lsquo;1&rsquo;, hr=&lsquo;1&rsquo;) &mldr;;</p>
+<p>..</p>
+<p>insert overwrite table T partition (ds=&lsquo;1&rsquo;, hr=&lsquo;24&rsquo;) &mldr;;</p>
+<p>T is a partitioned table by date and hour, and Tsignal is an external table which conceptually denotes the creation of the signal table.</p>
+<p>create external table Tsignal (key string, value string) partitioned by (ds string);</p>
+<p>When all the hourly partitions are created for a day (ds=&lsquo;1&rsquo;), the corresponding partition can be added to Tsignal</p>
+<p>alter table Tsignal add partition (ds=&lsquo;1&rsquo;) location &lsquo;Location of T&rsquo;/ds=1;</p>
+<p>There is a implicit dependency between Tsignal@ds=1 and T@ds=1/hr=1, T@ds=1/hr=2, &mldr;. T@ds=1/hr=24, but that dependency is not captured anywhere</p>
+<p>in the metastore. It would be useful to have an ability to explicitly create that dependency. This dependency can be used for all kinds of auditing purposes. For eg. when the following query is performed:</p>
+<p>select .. from Tsignal where ds = &lsquo;1&rsquo;;</p>
+<p>the inputs only contains Tsignal@ds=1, but is should also contain T@ds=1/hr=1, T@ds=1/hr=2,&mldr;.T@ds=1/hr=24</p>
+<p>This dependency should be captured by the metastore. For simplicity, let us assume we create a new notion of dependent tables (instead of overloading external tables).</p>
+<p>create dependency table Tdependent (key string, value string) partitioned by (ds string);</p>
+<p>This is like a external table but also captures the dependency (we can also enhance external tables for the same).</p>
+<p>alter table Tdependent add partition (ds=&lsquo;1&rsquo;) location &lsquo;/T/ds=1&rsquo; dependent partitions table T partitions (ds=&lsquo;1&rsquo;);</p>
+<p>specify the partial partition spec for the dependent partitions.</p>
+<p>Note that each table can point to different locations - hive needs to ensure that all the dependent partitions are under the location &lsquo;T/ds=1&rsquo;</p>
+<ul>
+<li>Specify the location</li>
+</ul>
+<p>The metastore can store the dependencies completely or partially.</p>
+<ul>
+<li>
+<ul>
+<li>
+<p>Materialize the dependencies both-ways</p>
+<p>Tdependent@ds=1 depends on T@ds=1/hr=1 to T@ds=1/hr=24</p>
+<p>T@ds=1/hr=1 is depended upon by T@ds=1</p>
+<p>Advantages: if T@ds=1/hr=1 is dropped, T@ds=1 can be notified or it can choose to dis-allow this</p>
+<p>Any property on Tdependent can be propagated to T</p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Is the dependency used for querying ? What happens if T@ds=1/hr=25 gets added ? The query &lsquo;select .. from Tdependent where ds = 1&rsquo; includes T@ds=1/hr=25, but this is not shown in the inputs.
+<ul>
+<li>Dont use the location for querying - then why have the location ?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Store partial dependencies</p>
+<p>Tdependent@ds=1 depends on T@ds=1 (spec).</p>
+<p>At describe time, the spec is evaluated and all the dependent partitions are computed dynamically. At add partition time, verify that the location captures all dependent partitions.</p>
+<p>The partial spec is not used for querying - location is used for that. At query time, verify that the location captures all dependent partitions.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The dependent table does not have a location.</p>
+<ul>
+<li>The list of partitions are computed at query time - think of it like a view, where each partition has its own definition limited to &lsquo;select * from T where partial/full partition spec&rsquo;. Query layer needs to change. Is it possible ? Unlike a view, it does not rewritten at semantic analysis time. After partition pruning is done (on a dependent table), rewrite the</li>
+</ul>
+<p>tree to contain the base table T - the columns remain the same, so it should be possible.</p>
+</li>
+</ul>
+<p>With this, it is possible that the partitions point to different tables.</p>
+<p>For eg:</p>
+<p>alter table Tdependent add partition (ds=&lsquo;1&rsquo;) depends on table T1 partition (ds=&lsquo;1&rsquo;);</p>
+<p>alter table Tdependent add partition (ds=&lsquo;2&rsquo;) depends on table T2 partition (ds=&lsquo;2&rsquo;);</p>
+<p>Something that can be achieved by external tables currently. The dependent partitions are computed dynamically - T1@ds=1/hr=1 does not know the fact that it is dependent upon by Tdependent@ds=1.</p>
+<p>T1@ds=1/hr=1 can be dropped anytime, and Tdependent@ds=1 automatically stops depending upon it from that point.</p>
+<p>I am leaning towards this - the user need not specify both the location and the dependent partitions.</p>
+<p>Can the external tables be enhanced to support this ? Will create a problem for the query layer, since the external tables are handled differently today.</p>
+<ul>
+<li>
+<ul>
+<li>
+<p>The list of dependent partitions are materialized and stored in the metastore, and use that for querying.</p>
+<p>A query like &lsquo;select .. from Tdependent where ds = 1&rsquo; gets transformed to &lsquo;select .. from (select * from T where ((ds = 1 and hr = 1) or (ds = 1 and hr = 2) &mldr;. or (ds=1 and hr=24))&rsquo;</p>
+<p>Can put a lot of load on the query layer.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>= Final Proposal =</p>
+<p>Instead of enhancing external tables to solve a convoluted usecase, create a new type of tables - dependent tables. The reason for the existence of external tables is to point to some existing data.</p>
+<p>== Dependent Tables ==</p>
+<p>Create a table which explicitly depends on another table. Consider the following scenario for the first use case mentioned:</p>
+<pre tabindex=0><code>
+create table T (key string, value string) partitioned by (ds string, hr string);
+
+-- create a dependent table which specifies the dependencies explicitly
+-- Tdep inherits the schema of T
+-- Tdep is partitioned by a prefix of T (either ds or ds,hr)
+create dependent table Tdep partitioned by (ds string) depends on table T;
+
+</code></pre><p>In order to denote the end of a daily partition for T, the corresponding partition is added in Tdep</p>
+<pre tabindex=0><code>
+-- create partition T@ds=1/hr=1 to T@ds=1/hr=24
+alter table Tdep add partition (ds=1);
+
+</code></pre><p>The metastore stores the following dependencies</p>
+<ul>
+<li>Tdep depends on T, and T is dependent upon by Tdep</li>
+<li>Tdep@ds=1 depends on T@ds=1</li>
+</ul>
+<p>In some usecases, it is possible that some partitions of Tdep depends on T, whereas the newer partitions of Tdep depend on T2.</p>
+<pre tabindex=0><code>
+create table T (key string, value string) partitioned by (ds string, hr string);
+
+-- create a dependent table which specifies the dependencies explicitly
+-- Tdep inherits the schema of T
+-- Tdep is partitioned by a prefix of T (either ds or ds,hr)
+create dependent table Tdep partitioned by (ds string) depends on table T;
+
+-- create partition T@ds=1/hr=1 to T@ds=1/hr=24
+alter table Tdep add partition (ds=1);
+
+-- repeat this for T@ds=1 to T@ds=10
+
+-- T is being deprecated, and T2 is the new table (with the same schema, possibly partitioned on different keys)
+
+create table T2 (key string, value string) partitioned by (ds string, hr string, min string);
+
+alter table Tdep depends on table T2;
+
+-- create partition T2@ds=11/hr=1/min=1 to T2@ds=11/hr=24/min=60
+alter table Tdep add partition (ds=1);
+
+</code></pre><p>The metastore stores the following dependencies</p>
+<ul>
+<li>Tdep depends on (T,T2), and (T,T2) are dependent upon by Tdep</li>
+<li>T and T2 have the same schema</li>
+<li>Tdep@ds=1..Tdep@ds=10 depends on T@ds=1..T@ds=10 respectively</li>
+<li>Tdep@ds=11 depends on T2@ds=11</li>
+</ul>
+<p>The query on Tdep is re-written to access the underlying tables. For eg. for the query &lsquo;select count(1) from Tdep where ds = 1&rsquo;, once partition pruning is done (on Tdep), the operator tree (TableScan(Tdep):ds=1 -> Select) is rewritten to (TableScan(T):ds=1/hr=1 to ds=1/hr=24 -> Select). The advantage of this over external tables is that all the table properties (bucketing/sorting/list bucketing) for the underlying tables are used. This can easily extend to multiple tables. For eg. for the query &lsquo;select count(1) from Tdep where ds = 1 or ds = 11&rsquo;, once partition pruning is done (on Tdep), the operator tree (TableScan(Tdep):ds=1,ds=11 -> Select) is rewritten to (TableScan(T):ds=1/hr=1 to ds=1/hr=24 -> Select -> Union) and (TableScan(T2):ds=1/hr=1 to ds=1/hr=24 -> Select -> Union).</p>
+<ul>
+<li>If the schema of T changes, it can either be dis-allowed or propagated to Tdep.</li>
+<li>desc extended will be enhanced to show all the dependent partitions.</li>
+<li>The dependency of an existing partition can be changed: alter table Tdep partition (ds=10) depends on table T2</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

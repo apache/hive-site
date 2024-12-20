@@ -1,0 +1,217 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Kudu Integration</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--kudu-integration>Apache Hive : Kudu Integration</h1>
+<h1 id=hive-kudu-integration>Hive Kudu Integration</h1>
+<ul>
+<li><a href=#hive-kudu-integration>Hive Kudu Integration</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#implementation>Implementation</a></li>
+<li><a href=#hive-configuration>Hive Configuration</a></li>
+<li><a href=#table-creation>Table Creation</a></li>
+<li><a href=#impala-tables>Impala Tables</a></li>
+<li><a href=#data-ingest>Data Ingest</a>
+<ul>
+<li><a href=#examples>Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id=overview>Overview</h2>
+<p><a href=https://kudu.apache.org>Apache Kudu</a> is a an Open Source data storage engine that makes fast analytics on fast and changing data easy. </p>
+<h2 id=implementation>Implementation</h2>
+<p>The initial implementation was added to Hive 4.0 in <a href=https://issues.apache.org/jira/browse/HIVE-12971>HIVE-12971</a> and is designed to work with Kudu 1.2+.</p>
+<p>There are two main components which make up the implementation: the <code>KuduStorageHandler</code> and the <code>KuduPredicateHandler</code>. The <code>KuduStorageHandler</code> is a Hive <a href=https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.</p>
+<p><strong>NOTE</strong>: The initial implementation is considered <code>***experimental***</code> as there are remaining <a href=https://issues.apache.org/jira/browse/HIVE-12971>sub-jiras</a> open to make the implementation more configurable and performant. Currently only external tables pointing at existing Kudu tables are supported. Support for creating and altering underlying Kudu tables in tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a>. Additionally full support for UPDATE, UPSERT, and DELETE statement support is tracked by <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
+<h2 id=hive-configuration>Hive Configuration</h2>
+<p>To issue queries against Kudu using Hive, one optional parameter can be provided by the Hive configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Hive Configuration</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>hive.kudu.master.addresses.default
+</code></pre><p>| Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the <em>kudu.master_addresses</em> table property is not set. |</p>
+<p>For those familiar with Kudu, the master addresses configuration is the normal configuration value necessary to connect to Kudu. The easiest way to provide this value is by using the <code>-hiveconf</code> option to the <code>hive</code> command. </p>
+<pre tabindex=0><code>hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
+</code></pre><h2 id=table-creation>Table Creation</h2>
+<p>To access Kudu tables, a Hive table must be created using the <code>CREATE</code> command with the <code>STORED BY</code> clause. Until <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a> is completed, the <code>EXTERNAL</code> keyword is required and will create a Hive table that references an existing Kudu table. Dropping the external Hive table will not remove the underlying Kudu table.</p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE kudu\_table (foo INT, bar STRING, baz DOUBLE)
+STORED BY 'org.apache.hadoop.hive.kudu.KuduStorageHandler'
+TBLPROPERTIES (
+  &quot;kudu.table\_name&quot;=&quot;default.kudu\_table&quot;, 
+  &quot;kudu.master\_addresses&quot;=&quot;localhost:7051&quot;
+);
+</code></pre><p>In the above statement, normal Hive column name and type pairs are provided as is the case with normal create table statements. The full <code>KuduStorageHandler</code> class name is provided to inform Hive that Kudu will back this Hive table. A number of TBLPROPERTIES can be provided to configure the KuduStorageHandler. The most important property is <code>kudu.table_name</code> which tells hive which Kudu table it should reference. The other common property is <code>kudu.master_addresses</code> which configures the Kudu master addresses for this table. If the <code>kudu.master_addresses</code> property is not provided, the <code>hive.kudu.master.addresses.default</code> configuration will be used. </p>
+<h2 id=impala-tables>Impala Tables</h2>
+<p>Because Impala creates tables with the same storage handler metadata in the HiveMetastore, tables created or altered via Impala DDL can be accessed from Hive. This is especially useful until <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a> is complete and full DDL support is available through Hive. See the <a href=https://kudu.apache.org/docs/kudu_impala_integration.html>Kudu documentation</a> and the <a href=https://impala.apache.org/docs/build/html/topics/impala_kudu.html>Impala documentation</a> for more details.</p>
+<h2 id=data-ingest>Data Ingest</h2>
+<p>Though it is a common practice to ingest the data into Kudu tables via tools like <a href=https://nifi.apache.org/>Apache NiFi</a> or <a href=https://spark.apache.org/>Apache Spark</a> and query the data via Hive, data can also be inserted to the Kudu tables via <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries>Hive INSERT statements</a>. It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22024>HIVE-22024</a>. Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
+<h3 id=examples>Examples</h3>
+<pre tabindex=0><code>INSERT INTO kudu\_table SELECT * FROM other\_table;
+
+INSERT INTO TABLE kudu\_table
+VALUES (1, 'test 1', 1.1), (2, 'test 2', 2.2);
+</code></pre>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

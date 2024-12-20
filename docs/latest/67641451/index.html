@@ -1,0 +1,309 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Supported Features: Apache Hive 2.1</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--supported-features-apache-hive-21>Apache Hive : Supported Features: Apache Hive 2.1</h1>
+<p>| Identifier | Description | Hive 2.1 | Comment |
+| E011 | Numeric data types | Yes | |
+| E011-01 | INTEGER and SMALLINT data types (including all spellings) | Yes | Int instead of Integer |
+| E011-02 | REAL, DOUBLE PRECISON,and FLOAT data types | Yes | Double instead of Double Precision |
+| E011-03 | DECIMAL and NUMERIC data types | Yes | |
+| E011-04 | Arithmetic operators | Yes | |
+| E011-05 | Numeric comparison | Yes | |
+| E011-06 | Implicit casting among the numeric data types | Yes | |
+| E021 | Character data types | Yes | |
+| E021-01 | CHARACTER data type | Yes | Char instead of Character |
+| E021-02 | CHARACTER VARYING data type | Yes | Varchar instead of Character Varying |
+| E021-03 | Character literals | Yes | |
+| E021-04 | CHARACTER_LENGTH function | Partial | length UDF provided |
+| E021-06 | SUBSTRING function | Yes | |
+| E021-07 | Character concatenation | Yes | concat UDF instead of standard || operator |
+| E021-08 | UPPER and LOWER functions | Yes | |
+| E021-09 | TRIM function | Partial | leading / trailing / both from not supported |
+| E021-10 | Implicit casting among the fixed-length and variablelength character string types | Yes | |
+| E021-12 | Character comparison | Yes | |
+| E031 | Identifiers | Yes | |
+| E031-01 | Delimited identifiers | Partial | Backtick (`) used instead of ("). Semicolon character (;) cannot be used in an identifier. Table and column names have additional restrictions |
+| E031-03 | Trailing underscore | Yes | |
+| E051 | Basic query specification | Yes | |
+| E051-01 | SELECT DISTINCT | Yes | |
+| E051-02 | GROUP BY clause | Partial | Empty grouping sets not supported |
+| E051-04 | GROUP BY can contain columns not in | Yes | |
+| E051-05 | Select list items can be renamed | Yes | |
+| E051-06 | HAVING clause | Yes | |
+| E051-07 | Qualified * in select list | Yes | |
+| E051-08 | Correlation names in the FROM clause | Yes | |
+| E061 | Basic predicates and search conditions | Yes | |
+| E061-01 | Comparison predicate | Yes | |
+| E061-02 | BETWEEN predicate | Yes | |
+| E061-03 | IN predicate with list of values | Yes | |
+| E061-04 | LIKE predicate | Yes | |
+| E061-06 | NULL predicate | Yes | |
+| E061-08 | EXISTS predicate | Yes | |
+| E061-11 | Subqueries in IN predicate | Yes | |
+| E061-13 | Correlated subqueries | Partial | Only correlated subqueries that can be decorrelated with rewrite rules supported |
+| E071 | Basic query expressions | Yes | |
+| E071-01 | UNION DISTINCT table operator | Partial | Corresponding By syntax not supported |
+| E071-02 | UNION ALL table operator | Partial | Corresponding By syntax not supported |
+| E071-05 | Columns combined via table operators need not have exactly the same data type. | Yes | |
+| E071-06 | Table operators in subqueries | Yes | |
+| E081 | Basic Privileges | Yes | |
+| E081-01 | SELECT privilege | Yes | |
+| E081-03 | INSERT privilege at the table level | Yes | |
+| E081-04 | UPDATE privilege at the table level | Yes | |
+| E081-08 | WITH GRANT OPTION | Yes | |
+| E091 | Set Functions | Yes | |
+| E091-01 | AVG | Yes | |
+| E091-02 | COUNT | Yes | |
+| E091-03 | MAX | Yes | |
+| E091-04 | MIN | Yes | |
+| E091-05 | SUM | Yes | |
+| E091-07 | DISTINCT quantifier | Yes | |
+| E101 | Basic data manipulation | Yes | |
+| E101-01 | INSERT statement | Yes | |
+| E101-03 | Searched UPDATE statement | Yes | |
+| E101-04 | Searched DELETE statement | Yes | |
+| E131 | Null value support (nulls in lieu of values) | Partial | Null specification is supported |
+| E141 | Basic integrity constraints | Yes | |
+| E141-03 | PRIMARY KEY constraints | Partial | Non-validated |
+| E141-04 | Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action | Partial | Non-validated |
+| E141-10 | Names in a foreign key can be specified in any order | Yes | |
+| E151 | Transaction support | Partial | Autocommit transaction for INSERT/UPDATE/DELETE |
+| E161 | SQL comments using leading double minus | Yes | |
+| F031 | Basic schema manipulation | Yes | |
+| F031-01 | CREATE TABLE statement to create persistent base tables | Yes | |
+| F031-02 | CREATE VIEW statement | Yes | |
+| F031-03 | GRANT statement | Yes | |
+| F031-04 | ALTER TABLE statement: ADD COLUMN clause | Yes | |
+| F031-13 | DROP TABLE statement: RESTRICT clause | Yes | |
+| F031-16 | DROP VIEW statement: RESTRICT clause | Yes | |
+| F041 | Basic joined table | Yes | |
+| F041-01 | Inner join (but not necessarily the INNER keyword) | Yes | Named columns join not supported |
+| F041-02 | INNER keyword | Yes | |
+| F041-03 | LEFT OUTER JOIN | Yes | |
+| F041-04 | RIGHT OUTER JOIN | Yes | |
+| F041-05 | Outer joins can be nested | Yes | |
+| F041-07 | The inner table in a left or right outer join can also be used in an inner join | Yes | |
+| F051 | Basic date and time | Yes | |
+| F051-01 | DATE data type (including support of DATE literal) | Yes | |
+| F051-03 | TIMESTAMP data type (including support of TIMES- TAMP literal) with fractional seconds precision of at least 0 and 6. | Yes | |
+| F051-04 | Comparison predicate on DATE, TIME, and TIMES- TAMP data types | Yes | |
+| F051-05 | Explicit CAST between date- time types and character string types | Yes | |
+| F051-06 | CURRENT_DATE | Yes | |
+| F052 | Intervals and datetime arithmetic | Yes | |
+| F081 | UNION and EXCEPT in views | Partial | UNION only |
+| F131 | Grouped operations | Yes | |
+| F131-01 | WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views | Yes | |
+| F131-02 | Multiple tables supported in queries with grouped views | Yes | |
+| F131-03 | Set functions supported in queries with grouped views | Yes | |
+| F131-04 | Subqueries with GROUP BY and HAVING clauses and grouped views | Yes | |
+| F171 | Multiple schemas per user | Yes | |
+| F200 | TRUNCATE TABLE statement | Yes | |
+| F201 | CAST function | Yes | |
+| F261 | CASE expression | Yes | |
+| F261-01 | Simple CASE | Yes | |
+| F261-02 | Searched CASE | Yes | |
+| F261-04 | COALESCE | Yes | |
+| F311-01 | CREATE SCHEMA | Yes | |
+| F311-02 | CREATE TABLE for persistent base tables | Yes | |
+| F311-03 | CREATE VIEW | Yes | |
+| F311-05 | GRANT statement | Yes | |
+| F382 | Alter column data type | Yes | Uses nonstandard syntax |
+| F391 | Long identifiers | Yes | |
+| F401 | Extended joined table | Yes | |
+| F401-01 | NATURAL JOIN | Yes | |
+| F401-02 | FULL OUTER JOIN | Yes | |
+| F401-04 | CROSS JOIN | Yes | |
+| F403 | Partitioned join tables | Yes | |
+| F531 | Temporary tables | Yes | |
+| F555 | Enhanced seconds precision | Yes | |
+| F561 | Full value expressions | Yes | |
+| F591 | Derived tables | Yes | |
+| F641 | Row and table constructors | Yes | |
+| F651 | Catalog name qualifiers | Yes | |
+| F846 | Octet support in regular expression operators | Yes | |
+| F847 | Nonconstant regular expressions | Yes | |
+| F850 | Top-level in | Yes | |
+| F851 | in subqueries | Yes | |
+| F852 | Top-level in views | Yes | |
+| F855 | Nested in | Yes | |
+| S023 | Basic structured types | Yes | |
+| S091 | Basic array support | Yes | |
+| S091-01 | Arrays of built-in data types | Yes | |
+| S091-02 | Arrays of distinct types | Yes | |
+| S098 | ARRAY_AGG | Partial | collect_list does the same |
+| S201-01 | Array parameters | Yes | |
+| S281 | Nested collection types | Yes | |
+| T021 | BINARY and VARBINARY data types | Partial | BINARY only |
+| T031 | BOOLEAN data type | Yes | |
+| T051 | Row types | Yes | |
+| T071 | BIGINT data type | Yes | |
+| T121 | WITH (excluding RECURSIVE) in query expression | Yes | |
+| T122 | WITH (excluding RECURSIVE) in subquery | Yes | |
+| T172 | AS subquery clause in table definition | Yes | |
+| T326 | Table functions | Yes | |
+| T331 | Basic roles | Yes | |
+| T431 | Extended grouping capabilities | Partial | Grouping sets need to be extracted manually from a bitmask |
+| T433 | Multiargument GROUPING function | Yes | |
+| T441 | ABS and MOD functions | Partial | ABS provided, MOD provided via % operator |
+| T501 | Enhanced EXISTS predicate | Yes | |
+| T581 | Regular expression substring function | Yes | |
+| T611 | Elementary OLAP operations | Yes | |
+| T612 | Advanced OLAP operations | Partial | PERCENT_RANK, CUME_DIST and ROW_NUMBER supported |
+| T613 | Sampling | Yes | Nonstandard syntax via TABLESAMPLE |
+| T614 | NTILE function | Yes | |
+| T615 | LEAD and LAG functions | Yes | |
+| T616 | Null treatment option for LEAD and LAG functions | Yes | |
+| T617 | FIRST_VALUE and LAST_VALUE functions | Yes | |
+| T621 | Enhanced numeric functions | Yes | |
+| T631 | IN predicate with one list element | Yes | |</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

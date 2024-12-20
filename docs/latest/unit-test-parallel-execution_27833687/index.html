@@ -1,0 +1,281 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Unit Test Parallel Execution</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--unit-test-parallel-execution>Apache Hive : Unit Test Parallel Execution</h1>
+<p>It&rsquo;s likely you are looking for <a href=https://hive.apache.org/docs/latest/hive-precommit-patch-testing_33295252/>Hive PreCommit Patch Testing</a>.</p>
+<p>This page explains how to use parallel testing in Hive (<a href=https://issues.apache.org/jira/browse/HIVE-1487>https://issues.apache.org/jira/browse/HIVE-1487</a>).</p>
+<ul>
+<li><a href=#installation>Installation</a>
+<ul>
+<li><a href=#python-modules>Python modules</a>
+<ul>
+<li><a href=#global-installation>Global installation</a></li>
+<li><a href=#local-installation>Local installation</a></li>
+</ul>
+</li>
+<li><a href=#ssh-keys>SSH keys</a></li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#configuration-file>Configuration file</a></li>
+<li><a href=#configuration-parameter-for-speeding-up-unit-tests>Configuration parameter for speeding up unit tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#testing-a-differential-revision>Testing a Differential revision</a></li>
+<li><a href=#testing-a-patch-from-file-system>Testing a patch from file system</a></li>
+<li><a href=#multiple-test-runs>Multiple test runs</a></li>
+<li><a href=#testing-report>Testing report</a></li>
+<li><a href=#tests-output>Tests output</a></li>
+<li><a href=#hive-logs>Hive logs</a></li>
+</ul>
+</li>
+<li><a href=#possible-issues>Possible issues</a></li>
+</ul>
+<h2 id=installation>Installation</h2>
+<h3 id=python-modules>Python modules</h3>
+<p>To use parallel tests you have to install Python with &ldquo;argparse&rdquo; and &ldquo;mako&rdquo;<br>
+modules. You can do that using your package manager or you can install the<br>
+modules by hand. If you&rsquo;re using Python 2.7 or newer, &ldquo;argparse&rdquo; module is<br>
+already included and you don&rsquo;t have to install it.</p>
+<h4 id=global-installation>Global installation</h4>
+<p>You can install the modules globally for all users with &ldquo;easy_install&rdquo;:</p>
+<pre tabindex=0><code>sudo easy\_install argparse
+sudo easy\_install mako
+
+</code></pre><h4 id=local-installation>Local installation</h4>
+<p>If you don&rsquo;t have root acces on the machine, or you don&rsquo;t want to pollute your<br>
+system directories, you can install the modules in your home directory.</p>
+<pre tabindex=0><code>easy\_install --prefix &quot;~/.python\_modules&quot; argparse
+easy\_install --prefix &quot;~/.python\_modules&quot; mako
+
+</code></pre><p>You&rsquo;ll have to update &ldquo;PYTHONPATH&rdquo; environmental variable to include<br>
+&ldquo;~/.python_modules&rdquo;. You can do that by adding this line to your &ldquo;.bashrc&rdquo; or<br>
+&ldquo;.zshrc&rdquo;:</p>
+<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python\_modules/lib/pythonVERSION/site-packages&quot;
+
+</code></pre><p>Where &ldquo;VERSION&rdquo; is Python version you&rsquo;re using, like &ldquo;2.6&rdquo; or &ldquo;2.7&rdquo;, for example<br>
+if you&rsquo;re using Python 2.6:</p>
+<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python\_modules/lib/python2.6/site-packages&quot;
+
+</code></pre><h3 id=ssh-keys>SSH keys</h3>
+<p>You will have to setup SSH so you can access all test nodes without a password.</p>
+<h3 id=configuration>Configuration</h3>
+<h4 id=configuration-file>Configuration file</h4>
+<p>You&rsquo;ll need to configure which hosts the test should run on. You should put<br>
+your configuration file in &ldquo;~/.hive_ptest.conf&rdquo;. Configuration file format is<br>
+documented in the <a href=https://github.com/apache/hive/blob/trunk/testutils/ptest/README>README</a> file distributed with the test script.</p>
+<h4 id=configuration-parameter-for-speeding-up-unit-tests>Configuration parameter for speeding up unit tests</h4>
+<p>Unit tests will run faster if the Hive configuration parameter<br>
+<a href=#hive-exec-submit-local-task-via-child>hive.exec.submit.local.task.via.child</a> is set to true. See <a href=https://issues.apache.org/jira/browse/HIVE-7271>HIVE-7271</a> for details.</p>
+<h2 id=usage>Usage</h2>
+<p>You can see all possible options by running:</p>
+<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --help
+
+</code></pre><h3 id=testing-a-differential-revision>Testing a Differential revision</h3>
+<p>If you want to test a patch from <a href=https://reviews.facebook.net>Phabricator</a>, you<br>
+can use this command:</p>
+<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --revision D123
+
+</code></pre><h3 id=testing-a-patch-from-file-system>Testing a patch from file system</h3>
+<p>You can also test a patch from local file system.</p>
+<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --patch /path/to/my.patch
+
+</code></pre><p>You can provide multiple patches if you want to. They will be applied in the<br>
+same order they appear on the command line.</p>
+<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
+
+</code></pre><h3 id=multiple-test-runs>Multiple test runs</h3>
+<p>Multiple users can run parallel tests using the same configuration file without<br>
+problems. If you want to run different test instances simultaneously as one user you&rsquo;ll<br>
+have to export &ldquo;HIVE_PTEST_SUFFIX&rdquo; environmental variable and set it to some<br>
+unique string for each instance.</p>
+<p>The <a href=https://github.com/apache/hive/blob/trunk/testutils/ptest/README>README</a> file<br>
+distributed with the test script explains how this variable affects the paths<br>
+defined in your configuration file.</p>
+<pre tabindex=0><code>HIVE\_PTEST\_SUFFIX=first\_run hive\_repo/testutils/ptest/hivetest.py --test &amp;
+HIVE\_PTEST\_SUFFIX=second\_run hive\_repo/testutils/ptest/hivetest.py --test &amp;
+
+</code></pre><h3 id=testing-report>Testing report</h3>
+<p>The paths here assume you&rsquo;re using &ldquo;~/hivetests&rdquo; as your &ldquo;master_base_path&rdquo;; if<br>
+you are using some other path, update the paths accordingly.</p>
+<p>After the test run ends, a test report will be generated in<br>
+&ldquo;~/hivetests/report/TIMESTAMP&rdquo;; the main file is named &ldquo;report.html&rdquo;. Since<br>
+JUnit properties lists take up a lot of space, by default they are generated in<br>
+separate &ldquo;.html&rdquo; files and linked from &ldquo;report.html&rdquo;. If you want to generate<br>
+just one file (for easy copying for example) you can use &ldquo;&ndash;one-file-report&rdquo;<br>
+switch and the properties will be embedded in &ldquo;report.html&rdquo;. Keep in mind that<br>
+instead of getting a ~300k file, you&rsquo;ll get one that might be more than 10MB.</p>
+<p>If you want to use a fixed report name instead of a timestamp, you can use<br>
+&ldquo;&ndash;report-name&rdquo; switch, for example:</p>
+<pre tabindex=0><code>hive\_repo/testuitls/ptest/hivetest.py --test --revision D123 --report-name D123
+
+</code></pre><p>This will generate report in &ldquo;~/hivetests/report/D123&rdquo;. If there was already a<br>
+report with that name it will be removed.</p>
+<h3 id=tests-output>Tests output</h3>
+<p>&ldquo;.q.out&rdquo; files from TestCliDriver and TestNegativeCliDriver runs will be copied<br>
+to &ldquo;~/hivetests/report/TIMESTAMP/out&rdquo; so they are available in one place.</p>
+<h3 id=hive-logs>Hive logs</h3>
+<p>&ldquo;hive.log&rdquo; files from all test runs will be copied to<br>
+&ldquo;~/hivetests/report/TIMESTAMP/logs&rdquo; and will be renamed to<br>
+&ldquo;hive-HOST-TESTCASE.log&rdquo;.</p>
+<h2 id=possible-issues>Possible issues</h2>
+<p>Minimr tests (TestMinimrCliDriver, TestNegativeMinimrCliDriver and<br>
+TestHBaseMinimrCliDriver) can&rsquo;t run simultaneously on one machine. The script<br>
+makes sure they are not scheduled to run simultaneously on the same host during<br>
+one test run, but multiple script runs (multiple users or one user testing<br>
+multiple patches at the same time) might collide and cause failures in that test<br>
+cases.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

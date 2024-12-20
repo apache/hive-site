@@ -1,0 +1,385 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : AccumuloIntegration</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--accumulointegration>Apache Hive : AccumuloIntegration</h1>
+<h1 id=hive-accumulo-integration>Hive Accumulo Integration</h1>
+<ul>
+<li><a href=#hive-accumulo-integration>Hive Accumulo Integration</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#implementation>Implementation</a></li>
+<li><a href=#accumulo-configuration>Accumulo Configuration</a></li>
+<li><a href=#usage>Usage</a></li>
+<li><a href=#column-mapping>Column Mapping</a></li>
+<li><a href=#indexing>Indexing</a></li>
+<li><a href=#other-options>Other options</a></li>
+<li><a href=#examples>Examples</a>
+<ul>
+<li><a href=#override-the-accumulo-table-name>Override the Accumulo table name</a></li>
+<li><a href=#store-a-hive-map-with-binary-serialization>Store a Hive map with binary serialization</a></li>
+<li><a href=#register-an-external-table>Register an external table</a></li>
+<li><a href=#create-an-indexed-table>Create an indexed table</a></li>
+</ul>
+</li>
+<li><a href=#acknowledgements>Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=overview>Overview</h2>
+<p><a href=http://accumulo.apache.org>Apache Accumulo</a> is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user. Leveraging Apache Hive as a SQL interface to Accumulo complements its existing high-throughput batch access and low-latency random lookups.</p>
+<h2 id=implementation>Implementation</h2>
+<p>The initial implementation was added to Hive 0.14 in <a href=https://issues.apache.org/jira/browse/HIVE-7068>HIVE-7068</a> and is designed to work with Accumulo 1.6.x. There are two main components which make up the implementation: the AccumuloStorageHandler and the AccumuloPredicateHandler. The AccumuloStorageHandler is a <a href=https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of Hive table to Accumulo table and configures Hive queries. The AccumuloPredicateHandler is used push down filter operations to the Accumulo for more efficient reduction of data.</p>
+<h2 id=accumulo-configuration>Accumulo Configuration</h2>
+<p>The only additional Accumulo configuration necessary is the inclusion of the hive-<code>accumulo-handler.jar</code>, provided as a part of the Hive distribution, to be included in the Accumulo server classpath. This can be accomplished a variety of ways: copying/symlink the jar into <code>$ACCUMULO_HOME/lib</code> or <code>$ACCUMULO_HOME/lib/ext</code> or include the path to the jar in <code>general.classpaths</code> in accumulo-site.xml. Be sure to restart the Accumulo tabletservers if the jar is added to the classpath in a non-dynamic fashion (using <code>$ACCUMULO_HOME/lib</code> or <code>general.classpaths</code> in accumulo-site.xml).</p>
+<h2 id=usage>Usage</h2>
+<p>To issue queries against Accumulo using Hive, four parameters must be provided by the Hive configuration:</p>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th>Connection Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accumulo.instance.name</td>
+</tr>
+<tr>
+<td>accumulo.zookeepers</td>
+</tr>
+<tr>
+<td>accumulo.user.name</td>
+</tr>
+<tr>
+<td>accumulo.user.pass</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>For those familiar with Accumulo, these four configurations are the normal configuration values necessary to connect to Accumulo: the Accumulo instance name, the ZooKeeper quorum (comma-separated list of hosts), and Accumulo username and password. The easiest way to provide these values is by using the <code>-hiveconf</code> option to the <code>hive</code> command. It is expected that the Accumulo user provided either has the ability to create new tables, or that the Hive queries will only be accessing existing Accumulo tables.</p>
+<pre tabindex=0><code>hive -hiveconf accumulo.instance.name=accumulo -hiveconf accumulo.zookeepers=localhost -hiveconf accumulo.user.name=hive -hiveconf accumulo.user.pass=hive
+</code></pre><p>To access Accumulo tables, a Hive table must be created using the <code>CREATE</code> command with the <code>STORED BY</code> clause. If the <code>EXTERNAL</code> keyword is omitted from the <code>CREATE</code> call, the lifecycle of the Accumulo table is tied to the lifetime of the Hive table: if the Hive table is deleted, so is the Accumulo table. This is the default case. Providing the <code>EXTERNAL</code> keyword will create a Hive table that references an Accumulo table but will not remove the underlying Accumulo table if the Hive table is dropped.</p>
+<p>Each Hive row maps to a set of Accumulo keys with the same row ID. One column in the Hive row is designated as a &ldquo;special&rdquo; column which is used as the Accumulo row ID. All other Hive columns in the row have some mapping to Accumulo column (column family and qualifier) where the Hive column value is placed in the Accumulo value.</p>
+<pre tabindex=0><code>CREATE TABLE accumulo\_table(rowid STRING, name STRING, age INT, weight DOUBLE, height INT)
+STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
+WITH SERDEPROPERTIES('accumulo.columns.mapping' = ':rowid,person:name,person:age,person:weight,person:height');
+</code></pre><p>In the above statement, normal Hive column name and type pairs are provided as is the case with normal create table statements. The full AccumuloStorageHandler class name is provided to inform Hive that Accumulo will back this Hive table. A number of properties can be provided to configure the AccumuloStorageHandler via SERDEPROPERTIES or TBLPROPERTIES. The most important property is &ldquo;accumulo.columns.mapping&rdquo; which controls how the Hive columns map to Accumulo columns. In this case, the &ldquo;row&rdquo; Hive column is used to populate the Accumulo row ID component of the Accumulo Key, while the other Hive columns (name, age, weight and height) are all columns within the Accumulo row.</p>
+<p>For the above schema in the &ldquo;accumulo_table&rdquo;, we could envision a single row in the table:</p>
+<pre tabindex=0><code>hive&gt; select * from accumulo\_table;
+row1	Steve	32	200	72
+</code></pre><p>The above record would be serialized into Accumulo Key-Value pairs in the following manner given the declared accumulo.columns.mapping:</p>
+<pre tabindex=0><code>user@accumulo accumulo\_table&gt; scan
+row1	person:age []	32
+row1	person:height []	72
+row1	person:name []	Steve
+row1	person:weight []	200
+</code></pre><p>The power of the column mapping is that multiple Hive tables with differing column mappings can interact with the same Accumulo table and produce different results. When columns are excluded, the performance of Hive queries can be improved through the use of Accumulo locality groups to filter out unwanted data at the server-side.</p>
+<h2 id=column-mapping>Column Mapping</h2>
+<p>The column mapping string is comma-separated list of encoded values whose offset corresponds to the Hive schema for the table. The order of the columns in the Hive schema can be arbitrary as long as the elements in the column mapping align to the intended Hive column. For those familiar with Accumulo, each element in the column mapping string resembles a column_family:column_qualifier; however, there are a few different variants that allow for different control.</p>
+<ol>
+<li>A single column
+<ol>
+<li>This places the value for the Hive column into the Accumulo value with the given column family and column qualifier.</li>
+</ol>
+</li>
+<li>A column qualifier map
+<ol>
+<li>A column family is provided and a column qualifier prefix of any length is allowed, follow by an asterisk.</li>
+<li>The Hive column type is expected to be a Map, the key of the Hive map is appended to the column qualifier prefix</li>
+<li>The value of the Hive map is placed in the Accumulo value.</li>
+</ol>
+</li>
+<li>The rowid
+<ol>
+<li>Controls which Hive column is used as the Accumulo rowid.</li>
+<li>Exactly one &ldquo;:rowid&rdquo; element must exist in each column mapping</li>
+<li>&ldquo;:rowid&rdquo; is case insensitive (:rowID is equivalent to :rowId)</li>
+</ol>
+</li>
+</ol>
+<p>Additionally, a serialization option can be provided to each element in the column mapping which will control how the value is serialized. Currently, the options are:</p>
+<ul>
+<li>&lsquo;binary&rsquo; or &lsquo;b&rsquo;</li>
+<li>&lsquo;string&rsquo; or &rsquo;s'</li>
+</ul>
+<p>These are set by including a pound sign ('#') after the column mapping element with either the long or short serialization value. The default serialization is &lsquo;string&rsquo;. For example, for the value 10, &ldquo;person:age#s&rdquo; is synonymous with the &ldquo;person:age&rdquo; and would serialize the value as the literal string &ldquo;10&rdquo;. If &ldquo;person:age#b&rdquo; was used instead, the value would be serialized as four bytes: \x00\x00\x00\xA0.</p>
+<h2 id=indexing>Indexing</h2>
+<p>Starting in Hive 3.0.0 with <a href=https://issues.apache.org/jira/browse/HIVE-15795>HIVE-15795</a>, indexing support has been added to Accumulo-backed Hive tables. Indexing works by using another Accumulo table to store the field value mapping to rowId of the data table. The index table is automatically populated on record insertion via Hive.</p>
+<p>Using index tables greatly improve performance of non-rowId predicate queries by eliminating full table scans. Indexing works for both internally and externally managed tables using either the Tez or Map Reduce query engines. The following options control indexing behavior.</p>
+<table>
+<thead>
+<tr>
+<th>Option Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>accumulo.indextable.name</strong></td>
+<td><strong>(Required) The name of the index table in Accumulo.</strong></td>
+</tr>
+<tr>
+<td><strong>accumulo.indexed.columns</strong></td>
+<td>(Optional) A comma separated list of hive columns to index, or * which indexes all columns (default: *)</td>
+</tr>
+<tr>
+<td><strong>accumulo.index.rows.max</strong></td>
+<td>(Optional) The maximum number of predicate values to scan from the index for each search predicate (default: 20000) <em><a href=#see-this-note-about-this-value>See this note about this value</a></em></td>
+</tr>
+<tr>
+<td><strong>accumulo.index.scanner</strong></td>
+<td>(Optional) The index scanner implementation. (default: org.apache.hadoop.hive.accumulo.AccumuloDefaultIndexScanner)</td>
+</tr>
+</tbody>
+</table>
+<p>The indexes are stored in the index table using the following format:</p>
+<p><code>rowId = [field value in data table]</code></p>
+<p><code>column_family = [field column family in data table] + ‘_’ + [field column quantifier in data table]</code></p>
+<p><code>column_quantifier = [field rowId in data table]</code></p>
+<p><code>visibility = [field visibility in data table]</code></p>
+<p><code>value = [empty byte array]</code></p>
+<p> </p>
+<p>When using a string encoded table, the indexed field value is encoded using Accumulo Lexicoder methods for numeric types. Otherwise, values are encoding using native binary encoding. This information will allow applications to insert data and index values into Accumulo outside of Hive but still require high performance queries from within Hive.</p>
+<p>It is important to note when inserting data and indexes outside of Hive it is important to update both tables within the same unit of work. If the Hive query does not find indexes matches for the any of the query predicates, the query will short circuit and return empty results without searching the data table.</p>
+<p>If the search predicate matches more entries than defined by the option <code>accumulo.index.rows.max</code> (default 20000), the index search results will be abandoned and the query will fall back to a full scan of the data table with predicate filtering. Remember using large values for this option or having very large data table rowId values may require increasing hive memory to prevent memory errors.</p>
+<h2 id=other-options>Other options</h2>
+<p>The following options are also valid to be used with SERDEPROPERTIES or TABLEPROPERTIES for further control over the actions of the AccumuloStorageHandler:</p>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th>Option Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accumulo.iterator.pushdown</td>
+<td>Should filter predicates be satisfied within Accumulo using Iterators (default: true)</td>
+</tr>
+<tr>
+<td>accumulo.default.storage</td>
+<td>The default storage serialization method for values (default: string)</td>
+</tr>
+<tr>
+<td>accumulo.visibility.label</td>
+<td>A static ColumnVisibility string to use when writing any records to Accumulo (default: empty string)</td>
+</tr>
+<tr>
+<td>accumulo.authorizations</td>
+<td>A comma-separated list of authorizations to use when scanning Accumulo (default: no authorizations).Note that the Accumulo user provided to connect to Accumulo must have all authorizations provided.</td>
+</tr>
+<tr>
+<td>accumulo.composite.rowid.factory</td>
+<td>Extension point which allows a custom class to be provided when constructing LazyObjects from the rowid without changingthe ObjectInspector for the rowid column.</td>
+</tr>
+<tr>
+<td>accumulo.composite.rowid</td>
+<td>Extension point which allows for custom parsing of the rowid column into a LazyObject.</td>
+</tr>
+<tr>
+<td>accumulo.table.name</td>
+<td>Controls what Accumulo table name is used (default: the Hive table name)</td>
+</tr>
+<tr>
+<td>accumulo.mock.instance</td>
+<td>Use a MockAccumulo instance instead of connecting to a real instance (default: false). Useful for testing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id=examples>Examples</h2>
+<h3 id=override-the-accumulo-table-name>Override the Accumulo table name</h3>
+<p>Create a user table, consisting of some unique key for a user, a user ID, and a username. The Accumulo row ID is from the Hive column, the user ID column is written to the &ldquo;f&rdquo; column family and &ldquo;userid&rdquo; column qualifier, and the username column to the &ldquo;f&rdquo; column family and the &ldquo;nickname&rdquo; column qualifier. Instead of using the &ldquo;users&rdquo; Accumulo table, it is overridden in the TBLPROPERTIES to use the Accumulo table &ldquo;hive_users&rdquo; instead.</p>
+<pre tabindex=0><code>CREATE TABLE users(key int, userid int, username string) 
+STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
+WITH SERDEPROPERTIES (&quot;accumulo.columns.mapping&quot; = &quot;:rowID,f:userid,f:nickname&quot;)
+WITH TBLPROPERTIES (&quot;accumulo.table.name&quot; = &quot;hive\_users&quot;);
+</code></pre><h3 id=store-a-hive-map-with-binary-serialization>Store a Hive map with binary serialization</h3>
+<p>Using an asterisk in the column mapping string, a Hive map can be expanded from a single Accumulo Key-Value pair to multiple Key-Value pairs. The Hive Map is a parameterized type: in the below case, the key is a string, and the value integer. The default serialization is overriden from &lsquo;string&rsquo; to &lsquo;binary&rsquo; which means that the integers in the value of the Hive map will be stored as a series of bytes instead of the UTF-8 string representation.</p>
+<pre tabindex=0><code>CREATE TABLE hive\_map(key int, value map&lt;string,int&gt;) 
+STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
+WITH SERDEPROPERTIES (
+  &quot;accumulo.columns.mapping&quot; = &quot;:rowID,cf:*&quot;,
+  &quot;accumulo.default.storage&quot; = &quot;binary&quot;
+);
+</code></pre><h3 id=register-an-external-table>Register an external table</h3>
+<p>Creating the Hive table with the external keyword decouples the lifecycle of the Accumulo table from that of the Hive table. Creating this table assumes that the Accumulo table &ldquo;countries&rdquo; already exists. This is a very useful way to use Hive to manage tables that are created and populated by some external tool (e.g. A MapReduce job). When the Hive table countries is deleted, the Accumulo table will not be deleted. Additionally, the external keyword can also be useful when creating multiple Hive tables with different options that operate on the same underlying Accumulo table.</p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE countries(key string, name string, country string, country\_id int)
+STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
+WITH SERDEPROPERTIES (&quot;accumulo.columns.mapping&quot; = &quot;:rowID,info:name,info:country,info:country\_id&quot;);
+</code></pre><h3 id=create-an-indexed-table>Create an indexed table</h3>
+<p>To take advantage of indexing, Hive uses another Accumulo table is used to create a lexicographically-sorted search term index for each field allowing for very efficient exact match and bounded range searches.</p>
+<pre tabindex=0><code>CREATE TABLE company\_stats (
+   rowid string,
+   active\_entry boolean,
+   num\_offices tinyint,
+   num\_personel smallint,
+   total\_manhours int,
+   num\_shareholders bigint,
+   eff\_rating float,
+   err\_rating double,
+   yearly\_production decimal,
+   start\_date date,
+   address varchar(100),
+   phone char(13),
+   last\_update timestamp )
+ROW FORMAT SERDE 'org.apache.hadoop.hive.accumulo.serde.AccumuloSerDe'
+STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
+WITH SERDEPROPERTIES (
+   &quot;accumulo.columns.mapping&quot; = &quot;:rowID,a:act,a:off,a:per,a:mhs,a:shs,a:eff,a:err,a:yp,a:sd,a:addr,a:ph,a:lu”,
+   &quot;accumulo.table.name&quot;=&quot;company\_stats&quot;,
+   &quot;accumulo.indextable.name&quot;=&quot;company\_stats\_idx&quot;
+ );
+</code></pre><h2 id=acknowledgements>Acknowledgements</h2>
+<p>I would be remiss to not mention the efforts made by Brian Femiano that were the basis for this storage handler. His initial prototype for Accumulo-Hive integration was the base for this work.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

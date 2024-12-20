@@ -1,0 +1,276 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : StatisticsAndDataMining</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--statisticsanddatamining>Apache Hive : StatisticsAndDataMining</h1>
+<h1 id=statistics-and-data-mining-in-hive>Statistics and Data Mining in Hive</h1>
+<p>This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions.</p>
+<ul>
+<li><a href=#statistics-and-data-mining-in-hive>Statistics and Data Mining in Hive</a>
+<ul>
+<li><a href=#ngrams---and-context\_ngrams--:-n-gram-frequency-estimation>ngrams() and context_ngrams(): N-gram frequency estimation</a>
+<ul>
+<li><a href=#use-cases>Use Cases</a></li>
+<li><a href=#usage>Usage</a></li>
+<li><a href=#example>Example</a></li>
+</ul>
+</li>
+<li><a href=#histogram\_numeric--:-estimating-frequency-distributions>histogram_numeric(): Estimating frequency distributions</a>
+<ul>
+<li><a href=#use-cases>Use Cases</a></li>
+<li><a href=#usage>Usage</a></li>
+<li><a href=#example>Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id=ngrams-and-context_ngrams-n-gram-frequency-estimation>ngrams() and context_ngrams(): N-gram frequency estimation</h2>
+<p><a href=http://en.wikipedia.org/wiki/N-gram>N-grams</a> are subsequences of length <strong>N</strong> drawn from a longer sequence. The purpose of the <code>ngrams()</code> UDAF is to find the <code>k</code> most frequent n-grams from one or more sequences. It can be used in conjunction with the <code>sentences()</code> UDF to analyze unstructured natural language text, or the <code>collect()</code> function to analyze more general string data.</p>
+<p>Contextual n-grams are similar to n-grams, but allow you to specify a &lsquo;context&rsquo; string around which n-grams are to be estimated. For example, you can specify that you&rsquo;re only interested in finding the most common two-word phrases in text that follow the context &ldquo;I love&rdquo;. You could achieve the same result by manually stripping sentences of non-contextual content and then passing them to <code>ngrams()</code>, but <code>context_ngrams()</code> makes it much easier.</p>
+<h3 id=use-cases>Use Cases</h3>
+<ol>
+<li>
+<p>(ngrams) Find important topics in text in conjunction with a stopword list.</p>
+</li>
+<li>
+<p>(ngrams) Find trending topics in text.</p>
+</li>
+<li>
+<p>(context_ngrams) Extract marketing intelligence around certain words (e.g., &ldquo;Twitter is ___").</p>
+</li>
+<li>
+<p>(ngrams) Find frequently accessed URL sequences.</p>
+</li>
+<li>
+<p>(context_ngrams) Find frequently accessed URL sequences that start or end at a particular URL.</p>
+</li>
+<li>
+<p>(context_ngrams) Pre-compute common search lookaheads.</p>
+</li>
+</ol>
+<h3 id=usage>Usage</h3>
+<pre tabindex=0><code>
+SELECT context\_ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
+
+</code></pre><p>The command above will return the top-100 bigrams (2-grams) from a hypothetical table called <code>twitter</code>. The <code>tweet</code> column is assumed to contain a string with arbitrary, possibly meaningless, text. The <code>lower()</code> UDF first converts the text to lowercase for standardization, and then <code>sentences()</code> splits up the text into arrays of words. The optional fourth argument is the <strong>precision factor</strong> that control the tradeoff between memory usage and accuracy in frequency estimation. Higher values will be more accurate, but could potentially crash the JVM with an OutOfMemory error. If omitted, sensible defaults are used.</p>
+<pre tabindex=0><code>
+SELECT context\_ngrams(sentences(lower(tweet)), array(&quot;i&quot;,&quot;love&quot;,null), 100, [, 1000]) FROM twitter;
+
+</code></pre><p>The command above will return a list of the top 100 words that follow the phrase &ldquo;i love&rdquo; in a hypothetical database of Twitter tweets. Each <code>null</code> specifies the position of an n-gram component to estimate; therefore, every query must contain at least one <code>null</code> in the context array.</p>
+<p>Note that the following two queries are identical, but <code>ngrams()</code> will be slightly faster in practice.</p>
+<pre tabindex=0><code>
+SELECT ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
+SELECT context\_ngrams(sentences(lower(tweet)), array(null,null), 100, [, 1000]) FROM twitter;
+
+</code></pre><h3 id=example>Example</h3>
+<pre tabindex=0><code>
+SELECT explode(ngrams(sentences(lower(val)), 2, 10)) AS x FROM kafka;
+{&quot;ngram&quot;:[of&quot;,&quot;the],&quot;estfrequency&quot;:23.0}
+{&quot;ngram&quot;:[on&quot;,&quot;the],&quot;estfrequency&quot;:20.0}
+{&quot;ngram&quot;:[in&quot;,&quot;the],&quot;estfrequency&quot;:18.0}
+{&quot;ngram&quot;:[he&quot;,&quot;was],&quot;estfrequency&quot;:17.0}
+{&quot;ngram&quot;:[at&quot;,&quot;the],&quot;estfrequency&quot;:17.0}
+{&quot;ngram&quot;:[that&quot;,&quot;he],&quot;estfrequency&quot;:16.0}
+{&quot;ngram&quot;:[to&quot;,&quot;the],&quot;estfrequency&quot;:16.0}
+{&quot;ngram&quot;:[out&quot;,&quot;of],&quot;estfrequency&quot;:16.0}
+{&quot;ngram&quot;:[he&quot;,&quot;had],&quot;estfrequency&quot;:16.0}
+{&quot;ngram&quot;:[it&quot;,&quot;was],&quot;estfrequency&quot;:15.0}
+
+</code></pre><pre tabindex=0><code>
+SELECT explode(context\_ngrams(sentences(lower(val)), array(&quot;he&quot;, null), 10)) AS x FROM kafka;
+{&quot;ngram&quot;:[was],&quot;estfrequency&quot;:17.0}
+{&quot;ngram&quot;:[had],&quot;estfrequency&quot;:16.0}
+{&quot;ngram&quot;:[thought],&quot;estfrequency&quot;:13.0}
+{&quot;ngram&quot;:[could],&quot;estfrequency&quot;:9.0}
+{&quot;ngram&quot;:[would],&quot;estfrequency&quot;:7.0}
+{&quot;ngram&quot;:[lay],&quot;estfrequency&quot;:5.0}
+{&quot;ngram&quot;:[s],&quot;estfrequency&quot;:4.0}
+{&quot;ngram&quot;:[wanted],&quot;estfrequency&quot;:4.0}
+{&quot;ngram&quot;:[did],&quot;estfrequency&quot;:4.0}
+{&quot;ngram&quot;:[felt],&quot;estfrequency&quot;:4.0}
+
+</code></pre><h2 id=histogram_numeric-estimating-frequency-distributions>histogram_numeric(): Estimating frequency distributions</h2>
+<p>Histograms represent frequency distributions from empirical data. The kind that is referred to here are histograms with variable-sized bins. Specifically, this UDAF will return a list of (x,y) pairs that represent histogram bin centers and heights. It&rsquo;s up to you to then plot them in Excel / Gnuplot / Matlab / Mathematica to get a nice graphical display.</p>
+<h3 id=use-cases-1>Use Cases</h3>
+<ol>
+<li>
+<p>Estimating the frequency distribution of a column, possibly grouped by other attributes.</p>
+</li>
+<li>
+<p>Choosing discretization points in a continuous valued column.</p>
+</li>
+</ol>
+<h3 id=usage-1>Usage</h3>
+<pre tabindex=0><code>
+SELECT histogram\_numeric(age) FROM users GROUP BY gender;
+
+</code></pre><p>The command above is self-explanatory. Converting the output into a graphical display is a bit more involved. The following <a href=http://www.gnuplot.info/>Gnuplot</a> command should do it, assuming that you&rsquo;ve parsed the output from <code>histogram()</code> into a text file of (x,y) pairs called <code>data.txt</code>.</p>
+<pre tabindex=0><code>
+plot 'data.txt' u 1:2 w impulses lw 5
+
+</code></pre><h3 id=example-1>Example</h3>
+<pre tabindex=0><code>
+SELECT explode(histogram\_numeric(val, 10)) AS x FROM normal;
+{&quot;x&quot;:-3.6505464999999995,&quot;y&quot;:20.0}
+{&quot;x&quot;:-2.7514727901960785,&quot;y&quot;:510.0}
+{&quot;x&quot;:-1.7956678951954481,&quot;y&quot;:8263.0}
+{&quot;x&quot;:-0.9878507685761995,&quot;y&quot;:19167.0}
+{&quot;x&quot;:-0.2625338380837097,&quot;y&quot;:31737.0}
+{&quot;x&quot;:0.5057392319427763,&quot;y&quot;:31502.0}
+{&quot;x&quot;:1.2774146480311135,&quot;y&quot;:14526.0}
+{&quot;x&quot;:2.083955560712489,&quot;y&quot;:3986.0}
+{&quot;x&quot;:2.9209550254545484,&quot;y&quot;:275.0}
+{&quot;x&quot;:3.674835214285715,&quot;y&quot;:14.0}
+
+</code></pre>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

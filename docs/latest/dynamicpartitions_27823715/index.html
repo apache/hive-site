@@ -1,0 +1,278 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : DynamicPartitions</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--dynamicpartitions>Apache Hive : DynamicPartitions</h1>
+<h1 id=dynamic-partitions>Dynamic Partitions</h1>
+<ul>
+<li><a href=#dynamic-partitions>Dynamic Partitions</a>
+<ul>
+<li><a href=#documentation>Documentation</a></li>
+<li><a href=#terminology>Terminology</a></li>
+<li><a href=#syntax>Syntax</a></li>
+<li><a href=#design>Design</a></li>
+<li><a href=#design-issues>Design issues</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=documentation>Documentation</h2>
+<p>This is the <a href=https://hive.apache.org/docs/latest/designdocs_27362075/>design</a> document for dynamic partitions in Hive. Usage information is also available:</p>
+<ul>
+<li><a href=#tutorial:-dynamic-partition-insert>Tutorial: Dynamic-Partition Insert</a></li>
+<li><a href=#hive-dml:-dynamic-partition-inserts>Hive DML: Dynamic Partition Inserts</a></li>
+<li><a href=https://hive.apache.org/docs/latest/hcatalog-dynamicpartitions_34014006/>HCatalog Dynamic Partitioning</a>
+<ul>
+<li><a href=#usage-with-pig>Usage with Pig</a></li>
+<li><a href=#usage-from-mapreduce>Usage from MapReduce</a></li>
+</ul>
+</li>
+</ul>
+<p>References:</p>
+<ul>
+<li><a href=https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt>Original design doc</a></li>
+<li><a href=https://issues.apache.org/jira/browse/HIVE-936>HIVE-936</a></li>
+</ul>
+<h2 id=terminology>Terminology</h2>
+<ul>
+<li>Static Partition (SP) columns: in DML/DDL involving multiple partitioning columns, the columns whose values are known at COMPILE TIME (given by user).</li>
+<li>Dynamic Partition (DP) columns: columns whose values are only known at EXECUTION TIME.</li>
+</ul>
+<h2 id=syntax>Syntax</h2>
+<p>DP columns are specified the same way as it is for SP columns – in the partition clause. The only difference is that DP columns do not have values, while SP columns do. In the partition clause, we need to specify all partitioning columns, even if all of them are DP columns.</p>
+<p>In INSERT &mldr; SELECT &mldr; queries, the dynamic partition columns must be <strong>specified last</strong> among the columns in the SELECT statement and <strong>in the same order</strong> in which they appear in the PARTITION() clause.</p>
+<ul>
+<li>all DP columns – only allowed in nonstrict mode. In strict mode, we should throw an error. e.g.,</li>
+</ul>
+<pre tabindex=0><code>
+   INSERT OVERWRITE TABLE T PARTITION (ds, hr) 
+   SELECT key, value, ds, hr FROM srcpart WHERE ds is not null and hr&gt;10;
+
+</code></pre><ul>
+<li>mixed SP & DP columns. e.g.,</li>
+</ul>
+<pre tabindex=0><code>
+   INSERT OVERWRITE TABLE T PARTITION (ds='2010-03-03', hr) 
+   SELECT key, value, /*ds,*/ hr FROM srcpart WHERE ds is not null and hr&gt;10;
+
+</code></pre><ul>
+<li>SP is a subpartition of a DP: should throw an error because partition column order determins directory hierarchy. We cannot change the hierarchy in DML. e.g.,</li>
+</ul>
+<pre tabindex=0><code>
+   -- throw an exception
+   INSERT OVERWRITE TABLE T PARTITION (ds, hr = 11) 
+   SELECT key, value, ds/*, hr*/ FROM srcpart WHERE ds is not null and hr=11;
+
+</code></pre><ul>
+<li>multi-table insert. e.g.,</li>
+</ul>
+<pre tabindex=0><code>
+   FROM S
+   INSERT OVERWRITE TABLE T PARTITION (ds='2010-03-03', hr) 
+   SELECT key, value, ds, hr FROM srcpart WHERE ds is not null and hr&gt;10
+   INSERT OVERWRITE TABLE R PARTITION (ds='2010-03-03, hr=12)
+   SELECT key, value, ds, hr from srcpart where ds is not null and hr = 12;
+
+</code></pre><ul>
+<li>CTAS – syntax is a little bit different from CTAS on non-partitioned tables, since the schema of the target table is not totally derived from the select-clause. We need to specify the schema including partitioning columns in the create-clause. e.g.,</li>
+</ul>
+<pre tabindex=0><code>
+   CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS 
+   SELECT key, value, ds, hr+1 hr1 FROM srcpart WHERE ds is not null and hr&gt;10;
+
+</code></pre><p>The above example shows the case of all DP columns in CTAS. If you want put some constant for some partitioning column, you can specify it in the select-clause. e.g,</p>
+<pre tabindex=0><code>
+   CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS 
+   SELECT key, value, &quot;2010-03-03&quot;, hr+1 hr1 FROM srcpart WHERE ds is not null and hr&gt;10;
+
+</code></pre><h2 id=design>Design</h2>
+<ul>
+<li>In SemanticAnalyser.genFileSinkPlan(), parse the input and generate a list of SP and DP columns. We also generate a mapping from the input ExpressionNode to the output DP columns in FileSinkDesc.</li>
+<li>We also need to keep a HashFunction class in FileSinkDesc to evaluate partition directory names from the input expression value.</li>
+<li>In FileSinkOperator, setup the input -> DP mapping and Hash in initOp(). and determine the output path in processOp() from the mapping.</li>
+<li>ObjectInspector setup?</li>
+<li>MoveTask: since DP columns represent a subdirectory tree, it is possible to use one MoveTask at the end to move the results from the temporary directory to the final directory.</li>
+<li>post exec hook for replication: remove all existing data in DP before creating new partitions. We should make sure replication hook recognize all the modified partitions.</li>
+<li>metastore support: since we are creating multiple parititions in a DML, metastore should be able to create all these partitions. Need to investigate.</li>
+</ul>
+<h2 id=design-issues>Design issues</h2>
+<ol>
+<li>Data type of the dynamic partitioning column:</li>
+</ol>
+<p>A dynamic partitioning column could be the result of an expression. For example:</p>
+<pre tabindex=0><code>
+ -- part\_col is partitioning column
+ create table T as select a, concat(&quot;part\_&quot;, part\_col) from S where part\_col is not null; 
+
+</code></pre><p>Although currently there is not restriction on the data type of the partitioning column, allowing non-primitive columns to be partitioning column probably doesn&rsquo;t make sense. The dynamic partitioning column&rsquo;s type should be derived from the expression. The data type has to be able to be converted to a string in order to be saved as a directory name in HDFS.</p>
+<ol start=2>
+<li>Partitioning column value to directory name conversion:</li>
+</ol>
+<p>After converting column value to string, we still need to convert the string value to a valid directory name. Some reasons are:</p>
+<ul>
+<li>string length is unlimited in theory, but HDFS/local FS directory name length is limited.</li>
+<li>string value could contains special characters that is reserved in FS path names (such as &lsquo;/&rsquo; or &lsquo;..').</li>
+<li>what should we do for partition column ObjectInspector?</li>
+</ul>
+<p>We need to define a UDF (say hive_qname_partition(T.part_col)) to take a primitive typed value and convert it to a qualified partition name.</p>
+<ol start=3>
+<li>Due to 2), this dynamic partitioning scheme qualifies as a hash-based partitioning scheme, except that we define the hash function to be as close as</li>
+</ol>
+<p>the input value. We should allow users to plugin their own UDF for the partition hash function. Will file a follow up JIRA if there is sufficient interests.</p>
+<ol start=4>
+<li>If there are multiple partitioning columns, their order is significant since that translates to the directory structure in HDFS: partitioned by (ds string, dept int) implies a directory structure of ds=2009-02-26/dept=2. In a DML or DDL involving partitioned table, So if a subset of partitioning columns are specified (static), we should throw an error if a dynamic partitioning column is lower. Example:</li>
+</ol>
+<pre tabindex=0><code>
+ create table nzhang\_part(a string) partitioned by (ds string, dept int);
+ insert overwrite nzhang\_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
+
+</code></pre>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

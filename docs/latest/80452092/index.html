@@ -1,0 +1,262 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive remote databases/tables</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-remote-databasestables>Apache Hive : Hive remote databases/tables</h1>
+<h2 id=abstract>Abstract</h2>
+<p>At the <a href=https://dataworkssummit.com/berlin-2018/session/tools-and-approaches-for-migrating-big-datasets-to-the-cloud/>2018 DataWorks conference</a> in Berlin, <a href=http://www.hotels.com>Hotels.com</a> presented <a href=https://github.com/HotelsDotCom/waggle-dance>Waggle Dance</a>, a tool for federating multiple Hive clusters and providing the illusion of a unified data catalog from disparate instances. We’ve been running Waggle Dance in production for well over a year and it has formed a critical part of our data platform architecture and infrastructure.</p>
+<p>We believe that this type of functionality will be of increasing importance as Hadoop and Hive workloads migrate to the cloud. While Waggle Dance is one solution, significant benefits could be realized if these kinds of abilities were an integral part of the Hive platform.</p>
+<p>This proposal outlines why such a feature is needed in Hive, the benefits gained by offering it as a built-in feature, and representation of a possible implementation. Our proposed implementation draws inspiration from the remote table features present in some traditional RDBMSes, which may already be familiar to you.</p>
+<h2 id=the-cloud-a-rich-source-of-new-architectures>The cloud, a rich source of new architectures</h2>
+<p>Waggle Dance was created to overcome the problems created by architectural patterns that arose in cloud deployments of Hive. Unlike the monolithic deployment model typical of on premises deployments, in the cloud users are able to trivially create multiple cluster instances, either by design or unintentionally through organic growth. This ability to create new clusters in the cloud provides new levels of flexibility and agility to organizations. They are no longer bound to inelastic resource pools, specific platform versions, and lengthy upgrade cycles. Different parts of an organization are free to technologically innovate at their own pace.</p>
+<p>However, Hive is designed around the monolithic cluster architecture and provides no means to enable cross cluster access of datasets. One Hive cluster cannot concurrently access local datasets and those in another cluster. This results in a set of data silos in the cloud, inhibiting data exploration, discovery and sharing and ultimately limiting an organization&rsquo;s ability to realize the full potential of their datasets.</p>
+<h2 id=how-waggle-dance-works>How Waggle Dance works</h2>
+<p>Waggle Dance provides a federated view of these disparately located datasets, allowing users in one cluster to explore and access datasets in multiple other clusters. Waggle Dance operates as a request routing metastore proxy service. It implements the Hive metastore Thrift API, so that as far as a workload (ETL, Query, Analytics tool) is concerned, it is communicating directly with a Hive metastore service instance. Waggle Dance connects to multiple metastore services, located in otherwise unconnected clusters. It routes and transforms metadata requests from the workload, to the appropriate metastore using database identifiers encoded in the payloads. Finally it returns the responses from the different metastores to the workload. These responses typically contain data file paths that the workload then uses to consume data. Typically these are located in a region wide object store such as S3, and hence the underlying dataset data can be read fairly seamlessly between clusters.</p>
+<h2 id=problems-with-waggle-dance>Problems with Waggle Dance</h2>
+<p>We’ve been successfully using Waggle Dance in production to federate many Hive instances, often bridging across different AWS accounts in the same region. It has enabled the sharing of large datasets across different organizational units and has restored the ability to easily explore, discover and share datasets as we once did on our on-premises organisation-wide Hive cluster. Our user groups include Data scientists, analysts, and engineers who are interacting with the platform using a diverse range of tools including Hive, Spark, Cascading, HS2+JDBC (+ many clients), Qubole, and Databricks.</p>
+<p>While we are very happy with the functionality that Waggle Dance provides, there are some drawbacks:</p>
+<h4 id=additional-infrastructure-requirements>Additional infrastructure requirements</h4>
+<p>To deliver Waggle Dance as a highly available service we must operate multiple additional load balanced virtual servers in a cross availability zone arrangement. These servers have a similar memory footprint to our HMS instances as they are required to serialize and deserialize Thrift objects passing between workloads and federated metastore instances. This Waggle Dance infrastructure creates an additional operational burden on our data platform.</p>
+<h4 id=thrift-api-limits-integration-opportunities>Thrift API limits integration opportunities</h4>
+<p>The HMS Thrift API has proved to be a very convenient integration and interception point for Waggle Dance. However, we are seeing a trends and possible needs for alternative means of integrating data catalogue services with Hive.</p>
+<ul>
+<li>Amazon’s Glue catalog service uses a custom <code>HiveMetaStoreClientFactory</code> implementation to deliver metadata to Hive and other workloads, side-stepping any need for Thrift API compatibility. Currently this precludes us from federating Glue catalogs into our unified catalog.</li>
+<li>Additionally, the recently announced <a href=https://github.com/Netflix/iceberg>iceberg table format from Netflix</a> provides many metastore-like attributes in a highly scalable design, yet requires minimal metadata serving infrastructure other than S3. It’s not hard to imagine that this data format could also be integrated with Hive, partly with a <code>HiveMetaStoreClientFactory</code> implementation. What is clear, is that a Thrift API is redundant in this case and so could not be used as a federation endpoint for Waggle Dance.</li>
+<li>While the HMS Thrift API has provided excellent backward compatibility across releases, it has not been perfect in all cases. With some new Hive releases, we’ve had to implement work arounds in Waggle Dance so that we can support federation between different versions of Hive. We anticipate that Waggle Dance will be shown to be quite brittle in the event of any significant breaking changes in the HMS Thrift API, and will thus need to adopt a different approach or redesign.</li>
+</ul>
+<h4 id=federation-management-is-externalised>Federation management is externalised</h4>
+<p>Waggle Dance is a service separate from HMS, any configuration relating to the metastores and databases we wish to expose in a federated view must be managed separately via YAML config files that are loaded by Waggle Dance on start up. This creates an administration overhead, and prevents Hive users from creating and managing federated access to the datasets that they require.</p>
+<h4 id=name-overloads>Name overloads</h4>
+<p>As our multiple cloud-based Hive clusters are independent, they have no shared global schema namespace. Consequently it is possible for database and/or table name overloads to occur when federating multiple metastores; some may well include database or table names that are already in use in one or more of the other metastores in the federation. Waggle Dance handles this by either applying a prefix to remote database names, or by allowing administrators to carefully curate a list of databases that should be exposed locally, so that overloads can at least be excluded. However, both approaches have drawbacks. Prefixing creates localized database names, and consequently encourages the creation of non-portable Hive SQL scripts. The curation of imported databases is an operational burden, and is not useful when one wants to access two databases with the same name in a unified view.</p>
+<h2 id=federation-with-remote-databases-and-tables>Federation with remote databases and tables</h2>
+<p>While Waggle Dance is working well for us, its design was highly influenced by our need to quickly prove a concept and unblock groups of users. Therefore we intentionally avoided any design that might require changes to HMS and by implication, extended release cycles. However, in the data warehousing world there are already good examples of features that solve these kind of federation based problems. These features are often tightly integrated into the data warehousing platform, giving users a seamless experience. For example, the Oracle platform includes features such as <a href=https://docs.oracle.com/cd/B28359_01/server.111/b28310/ds_concepts002.htm#i1007709>Database links</a>, and <a href=https://docs.oracle.com/cd/B28359_01/server.111/b28310/ds_admin006.htm#ADMIN12178>Remote tables</a> that allow catalog entities to be projected and accessed from a remote database server into a local instance.</p>
+<h2 id=an-implementation-of-remotes-in-hive>An implementation of &lsquo;remotes&rsquo; in Hive</h2>
+<p>We therefore propose that the concept of remotes be added to Hive. Practically this would encapsulate and deliver the proven functionality and utility of Waggle Dance while simultaneously overcoming the deficiencies in the Waggle Dance design. Before exploring the full scope of this idea, let&rsquo;s consider the anatomy of the most typical use case from a user&rsquo;s perspective; creating a link to a table in a remote cluster to enable local access:</p>
+<pre tabindex=0><code>    CREATE REMOTE TABLE local_db.local_tbl
+    CONNECTED TO remote_db.remote_tbl
+    VIA 'org.apache.hadoop.hive.metastore.ThriftHiveMetastoreClientFactory'
+    WITH TBLPROPERTIES (
+      'hive.metastore.uris' = 'thrift://remote-hms:9083'
+    );
+</code></pre><p>Once created the user can expect to access the table <code>remote_db.remote_tbl</code>, located in a remote Hive cluster, as if it were a cluster local entity, using the synonym <code>local_db.local_tbl</code>.</p>
+<ul>
+<li>Firstly notice that this can be an entirely user-driven process, managed from within a Hive client. If desired, the creation of remotes could possibly be authorized by appropriate <code>GRANTs</code>.</li>
+<li>The user is free to choose the local synonym and target database for the table. This provides a mechanism to re-map names to avoid issues of overloads, or to make names &lsquo;contextually relevant&rsquo; to the domain of the local cluster. However, an option would be provided to simply adopt the remote names when no re-mapping is desired, yielding a simpler <code>CREATE REMOTE TABLE</code> (CRT) statement.</li>
+<li>The remote table that will be exposed locally is declared via a <code>CONNECTED TO</code> stanza. The full-qualified table name should exist in the target remote Hive cluster.</li>
+<li>The statement includes a <code>VIA</code> stanza that describes the client implementation that will be used to connect to the remote metadata catalog. This is the fully qualified name of a class that implements <code>org.apache.hadoop.hive.ql.metadata.HiveMetaStoreClientFactory</code> that, along with its dependencies, must be on the classpath. This provides far greater scope for integrations with other metadata catalogs such as <a href=https://aws.amazon.com/glue/>AWS Glue</a> and <a href=https://github.com/Netflix/iceberg>Netflix iceberg</a>, and also provides a migration path for HMS endpoints based around protocols other than Thrift. It also allows the inclusion of additional transport features with appropriate implementations. For example, Waggle Dance provides the option of multi-hop SSH tunneling for HMS Thrift transports, a useful feature when federating data catalogs across accounts and networks.</li>
+<li>The aforementioned client factories can be configured using the table properties declared in this remote table definition. In this instance they are used to declare the <code>hive.metastore.uris</code> of the HMS in which the remote table resides. However, one can imagine that different client implementations might support a variety of specific properties. In our SSH tunneling example, we might for example wish to declare the <a href=https://github.com/HotelsDotCom/waggle-dance#bastion-host-to-cluster-node-with-different-users-and-key-pairs>tunnel configuration</a>.</li>
+</ul>
+<p>Once the remote table has been created the user is free to interact with it as they would any other table (we assume read only at this time). As we demonstrated with Waggle Dance, users are able to efficiently and transparently select, join, and describe tables from multiple distributed clusters in a single local unified view.</p>
+<h4 id=the-hivemetastoreclientfactory-abstraction>The <code>HiveMetaStoreClientFactory</code> abstraction</h4>
+<p>The proposed implementation leans heavily on the <code>org.apache.hadoop.hive.ql.metadata.HiveMetaStoreClientFactory</code> and <code>HiveMetaStoreClient</code> abstractions for delivering different metadata catalog client implementations. At this time this appears to be a construct introduced by Amazon into their EMR platform for the purposes of integrating with their AWS Glue data catalog. This is achieved by specifying the relevant class name under the <code>hive-site.xml</code> key <code>hive.metastore.client.factory.class</code>. It is unclear whether this abstraction, and associated changes will be contributed back to the Apache Hive project. However, irrespective of Amazon&rsquo;s intentions, this or something similar will need to be introduced to allow the integration of different catalog connectors.</p>
+<h4 id=other-use-cases>Other use cases</h4>
+<p>Our first example dealt with the simple federating of a single table from one remote metastore. The following examples aim to describe the greater scope of the implementation.</p>
+<h5 id=remote-databases>Remote databases</h5>
+<p>Waggle Dance actually federates databases, and hence sets of tables. We could achieve a similar feat with a <code>CREATE REMOTE DATABASE</code> (CRD) statement. This would expose all tables in the remote database to the local Hive cluster</p>
+<pre tabindex=0><code>    CREATE REMOTE DATABASE local_db_name
+    CONNECTED TO remote_db_name
+    VIA 'org.apache.hadoop.hive.metastore.ThriftHiveMetastoreClientFactory'
+    WITH DBPROPERTIES (
+      'hive.metastore.uris' = 'thrift://remote-hms:9083'
+    );
+</code></pre><h5 id=statement-defaults>Statement defaults</h5>
+<p>The CRT and CRD statements can be simplified if we assume some sensible defaults. Here we assume that if a <code>VIA</code> stanza is not supplied, we&rsquo;ll default to the HMS Thrift implementation. If the <code>CONNECT TO</code> stanza is omitted, the remote database name is assumed to be equal to user supplied local name:</p>
+<pre tabindex=0><code>    CREATE REMOTE DATABASE db_name
+    WITH DBPROPERTIES (
+      'hive.metastore.uris' = 'thrift://remote-hms:9083'
+    );
+</code></pre><p>Now, for a remote table we can also derive the local database name from the user&rsquo;s currently selected database, and expect that the remote table name is equal to the user supplied local name:</p>
+<pre tabindex=0><code>CREATE REMOTE TABLE tbl_name
+    WITH TBLPROPERTIES (
+      'hive.metastore.uris' = 'thrift://remote-hms:9083'
+    );
+</code></pre><h5 id=ssh-tunneling-and-bastion-hosts>SSH Tunneling and bastion hosts</h5>
+<p>With a suitable connector, remotes could be configured to use a SSH tunnel to access a remote Hive metastore in cases where certain network restrictions prevent a direct connection from the local cluster to the machine running the Thrift Hive metastore service. A SSH tunnel consists of one or more hops or jump-boxes. The connection between each pair of nodes requires a user and a private key to establish the SSH connection.</p>
+<pre tabindex=0><code>    CREATE REMOTE TABLE tbl_name
+    VIA 'org.apache.hadoop.hive.metastore.SSHThriftHiveMetastoreClientFactory'
+    WITH TBLPROPERTIES (
+      'hive.metastore.uris' = 'thrift://metastore.domain:9083'
+      'ssh.tunnel.route' = 'bastionuser@bastion-host.domain -&gt; user@cluster-node.domain'
+      'ssh.tunnel.private.keys' = '/home/user/.ssh/bastionuser-key-pair.pem,/home/user/.ssh/user-key-pair.pem'
+      'ssh.tunnel.known.hosts' = '/home/user/.ssh/known_hosts'
+    );
+</code></pre><h5 id=non-thrift-catalog-integrations>Non-Thrift catalog integrations</h5>
+<p>Using different <code>HiveMetastoreClientFactory</code> we can import database and table entities for other catalog implementations, or HMS endpoints that use alternative protocols such as REST or GRPC. Consider these illustrative examples:</p>
+<h6 id=aws-glue>AWS Glue</h6>
+<pre tabindex=0><code>    CREATE REMOTE TABLE tbl_name
+    VIA 'com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory'
+    WITH TBLPROPERTIES (
+      -- Glue endpoint configuration
+    );
+</code></pre><h6 id=netflix-iceberg>Netflix iceberg</h6>
+<pre tabindex=0><code>    CREATE REMOTE TABLE tbl_name
+    VIA 'xxx.yyy.iceberg.hive.zzz.IcebergTableHiveClientFactory'
+    WITH TBLPROPERTIES (
+      'iceberg.table.path' = 'an-atomic-store:/tables/tbl_name'
+    )
+</code></pre><h5 id=behaviour-of-describe-and-show-operations>Behaviour of <code>DESCRIBE</code> and <code>SHOW</code> operations</h5>
+<p>On executing <code>DESCRIBE</code> operations on remote tables and databases, we envisage that the user be returned the description from the remote catalog to which the remote configuration is appended.</p>
+<h2 id=summary>Summary</h2>
+<p>The cloud provides a very different environment for the provisioning of Hive clusters. Clusters may be created in minutes by ordinary users, compared with the months that might be required of an operations team with a physical cluster. Therefore it is not uncommon, and should be expected, that a single organization might become dependent on multiple clusters. With Hive&rsquo;s current monolithic architecture, these form data silos which in turn create a barrier for data discovery, exploration, and sharing - decreasing the potential value that organizations can derive from their datasets. With Waggle Dance, we have shown that cross-Hive-cluster federation is both a possible and effective solution to this problem. However, significant benefits could be gained if such a feature were a core offering of the Hive platform.</p>
+<p>The proposed solution of Hive &lsquo;remotes&rsquo; offers feature parity with Waggle Dance while overcoming its deficiencies. It also offers opportunities to integrate with more recent HMS alternatives in a complimentary manner.</p>
+<h2 id=faq>FAQ</h2>
+<h4 id=why-not-replicate-tables-between-clusters-instead>Why not replicate tables between clusters instead?</h4>
+<p>We could instead replicate tables between our siloed clusters in the cloud. However there are some significant drawbacks. Replication creates large operational overheads. Processes must be deployed, configured, and managed. Greater storage costs are also incurred for each new replica. Finally, one needs to ensure all replicas are in sync, and detect and communicate information concerning any divergent tables.</p>
+<h4 id=how-is-authentication-applied>How is authentication applied?</h4>
+<p>Waggle Dance has rudimentary support for the propagation of identity to remote federated metastores. It does this by simply passing along the current UGI principal in the Thrift requests. Clearly, this principal needs to be known in the target HMS. The proposed remoting feature could provide similar functionality. At this time Waggle Dance does not support Kerberos. However, we see no technical reason why this could not be implemented both in Waggle Dance and the remote tables feature.</p>
+<h4 id=how-is-authorization-applied>How is authorization applied?</h4>
+<p>Currently, the only comprehensive authorization scheme that Hive offers is applied in the HiveServer2 component, and not the HMS. Additionally, HMS resident authorization schemes (file based) do not function on the file stores offered by the cloud providers targeted by the remotes feature. Therefore, authorization appears to be a client issue and is not in the scope of this proposal.</p>
+<h4 id=what-access-patterns-are-supported>What access patterns are supported?</h4>
+<p>Waggle Dance is primarily used for read only access of tables in remote Hive clusters, and full control of tables in the local cluster. This proposal assumes a similar set of constraints. However, one can imagine that it might be useful to write to AWS Glue, or Netflix iceberg tables for the purposes of incremental migration to those platforms.</p>
+<h4 id=will-it-work-with-acid-tables>Will it work with ACID tables?</h4>
+<p>Remote tables should work in the context of read only access. To read ACID, one needs only the <code>ValidTxnList</code> from the remote metastore and access to the set of base and delta files. Writing of remote ACID tables does not seem practical as there is no global transaction manager in this architecture. Note that at this time ACID does not function reliably on S3, although this capability has been promised.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>

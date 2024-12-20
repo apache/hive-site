@@ -1,0 +1,1043 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive UDFs</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
+<link href=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css rel=stylesheet integrity=sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC crossorigin=anonymous>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/BecomingACommitter>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Bylaws>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-udfs>Apache Hive : Hive UDFs</h1>
+<ul>
+<li><a href=#built-in-aggregate-functions--udaf->Built-in Aggregate Functions (UDAF)</a></li>
+<li><a href=#built-in-table-generating-functions--udtf->Built-in Table-Generating Functions (UDTF)</a></li>
+<li><a href=#string-functions>String Functions</a></li>
+<li><a href=#date-functions>Date Functions</a></li>
+<li><a href=#mathematical-functions>Mathematical Functions</a></li>
+<li><a href=#collection-functions>Collection Functions</a></li>
+<li><a href=#type-conversion-functions>Type Conversion Functions</a></li>
+<li><a href=#conditional-functions>Conditional Functions</a></li>
+<li><a href=#data-masking-functions>Data Masking Functions</a></li>
+<li><a href=#miscellaneous-functions>Miscellaneous Functions</a></li>
+<li><a href=#geospatial>Geospatial</a></li>
+<li><a href="#creating-custom-udf's">Creating Custom UDF&rsquo;s</a></li>
+</ul>
+<p>Hive User-Defined Functions (UDFs) are custom functions developed in Java and seamlessly integrated with Apache Hive. UDFs are routines designed to accept parameters, execute a specific action, and return the resulting value. The return value can either be a single scalar row or a complete result set, depending on the UDF&rsquo;s code and the implemented interface. UDFs represent a powerful capability that enhances classical SQL functionality by allowing the integration of custom code, providing Hive users with a versatile toolset. Apache Hive comes equipped with a variety of built-in UDFs that users can leverage. Similar to other SQL-based solutions, Hive also offers functionality to expand its already rich set of UDFs by incorporating custom ones as needed.</p>
+<p>Important</p>
+<p>Every UDF&rsquo;s evaluate method is one row at a time! This means if your UDFs has complex code, it could introduce performance issue in execution time.</p>
+<p>To gain an understanding of UDFs, let&rsquo;s begin with an example to comprehend their execution pattern.</p>
+<p><strong>UDF&rsquo;s in action</strong></p>
+<pre tabindex=0><code>SELECT length(string\_col) FROM table\_name;
+</code></pre><p>In this case, the <strong>length</strong> of thebuilt-in UDF evaluates each row of the string_col values. </p>
+<p>As we see how a built-in UDF works let&rsquo;s see what kind of built-in UDFs the Apache Hive has.</p>
+<p>Tipp</p>
+<p>All Hive keywords are <strong>case-insensitive</strong>, including the names of Hive operators and functions. I.e: length and LENGTH are also accepted by the Hive.</p>
+<h3 id=built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</h3>
+<p>Hive Aggregate Functions (UDAF) take multiple rows as input and return a single row as output. Depending on the functionality it mostly aggregates the values and returns a single result. These functions are mainly used in the GROUP BY statements.</p>
+<p>These functions can be used without GROUP BY as well. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bigint</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>count(*)
+</code></pre><pre tabindex=0><code>count(expr)
+</code></pre><pre tabindex=0><code>count(DISTINCT expr[, expr...])
+</code></pre><p>| count(*) - Returns the total number of retrieved rows, including rows containing NULL values.count(expr) - Returns the number of rows for which the supplied expression is non-NULL.count(DISTINCT expr[, expr]) - Returns the number of rows for which the supplied expression(s) are unique and non-NULL. Execution of this can be optimized with <a href=#hive-optimize-distinct-rewrite>hive.optimize.distinct.rewrite</a>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCount.java>GenericUDAFCount</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>sum(col), sum(DISTINCT col)
+</code></pre><p>| Returns the sum of the elements in the group or the sum of the distinct values of the column in the group. MODIFIED | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFSum.java>GenericUDAFSum</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>avg(col), avg(DISTINCT col)
+</code></pre><p>| Returns the average of the elements in the group or the average of the distinct values of the column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFAverage.java>GenericUDAFAverage</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>min(col)
+</code></pre><p>| Returns the minimum of the column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFMin.java>GenericUDAFMin</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>max(col)
+</code></pre><p>| Returns the maximum value of the column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFMax.java>GenericUDAFMax</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>variance(col), var\_pop(col)
+</code></pre><p>| Returns the variance of a numeric column in the group. MODIFIED | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFVariance.java>GenericUDAFVariance</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>var\_samp(col)
+</code></pre><p>| Returns the unbiased sample variance of a numeric column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFVarianceSample.java>GenericUDAFVarianceSample</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>stddev\_pop(col)
+</code></pre><p>| Returns the standard deviation of a numeric column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFStd.java>GenericUDAFStd</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>stddev\_samp(col)
+</code></pre><p>| Returns the unbiased sample standard deviation of a numeric column in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFStdSample.java>GenericUDAFStdSample</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>covar\_pop(col1, col2)
+</code></pre><p>| Returns the population covariance of a pair of numeric columns in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCovariance.java>GenericUDAFCovariance</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>covar\_samp(col1, col2)
+</code></pre><p>| Returns the sample covariance of a pair of numeric columns in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCovarianceSample.java>GenericUDAFCovarianceSample</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>corr(col1, col2)
+</code></pre><p>| Returns the Pearson coefficient of correlation of a pair of numeric columns in the group. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCorrelation.java>GenericUDAFCorrelation</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>percentile(bigint col, p)
+</code></pre><p>| Returns the exact pth percentile of a column in the group (does not work with floating point types). p must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDAFPercentile.java>UDAFPercentile</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>percentile(bigint col, array(p1 [, p2]...))
+</code></pre><p>| Returns the exact percentiles p1, p2, &mldr; of a column in the group (does not work with floating point types). pi must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>percentile\_approx(double col, p [, B])
+</code></pre><p>| Returns an approximate pth percentile of a numeric column (including floating point types) in the group. The B parameter controls approximation accuracy at the cost of memory. Higher values yield better approximations, and the default is 10,000. When the number of distinct values in col is smaller than B, this gives an exact percentile value. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFPercentileApprox.java>GenericUDAFPercentileApprox</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>percentile\_approx(double col, array(p1 [, p2]...) [, B])
+</code></pre><p>| Same as above, but accepts and returns an array of percentile values instead of a single one. |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_avgx(independent, dependent)
+</code></pre><p>| Equivalent to avg(dependent).  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_avgy(independent, dependent)
+</code></pre><p>| Equivalent to avg(independent).  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_count(independent, dependent)
+</code></pre><p>| Returns the number of non-null pairs used to fit the linear regression line.  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_intercept(independent, dependent)
+</code></pre><p>| Returns the y-intercept of the <a href=https://en.wikipedia.org/wiki/Linear_regression>linear regression line</a>, i.e. the value of b in the equation dependent = a * independent + b. | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_r2(independent, dependent)
+</code></pre><p>| Returns the <a href=https://en.wikipedia.org/wiki/Coefficient_of_determination>coefficient of determination</a> for the regression.  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_slope(independent, dependent)
+</code></pre><p>| Returns the slope of the <a href=https://en.wikipedia.org/wiki/Linear_regression>linear regression line</a>, i.e. the value of an in the equation dependent = a * independent + b.  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_sxx(independent, dependent)
+</code></pre><p>| Equivalent to regr_count(independent, dependent) * var_pop(dependent).  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_sxy(independent, dependent)
+</code></pre><p>| Equivalent to regr_count(independent, dependent) * covar_pop(independent, dependent).  | |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>regr\_syy(independent, dependent)
+</code></pre><p>| Equivalent to regr_count(independent, dependent) * var_pop(independent). | |
+| <strong>array&lt;struct {<code>'x','y'</code>}></strong> |</p>
+<pre tabindex=0><code>histogram\_numeric(col, b)
+</code></pre><p>| Computes a histogram of a numeric column in the group using b non-uniformly spaced bins. The output is an array of size b of double-valued (x,y) coordinates that represent the bin centers and heights | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFHistogramNumeric.java>GenericUDAFHistogramNumeric</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>collect\_set(col)
+</code></pre><p>| Returns a set of objects with duplicate elements eliminated. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCollectSet.java>GenericUDAFCollectSet</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>collect\_list(col)
+</code></pre><p>| Returns a list of objects with duplicates.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFCollectList.java>GenericUDAFCollectList</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>ntile(integer x)
+</code></pre><p>| Divides an ordered partition into <code>x</code> groups called buckets and assign a bucket number to each row in the partition. This allows easy calculation of tertiles, quartiles, deciles, percentiles, and other common summary statistics. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFNTile.java>GenericUDAFNTile</a> |</p>
+<p>Most of the UDAFs ignore NULL values. </p>
+<h3 id=built-in-table-generating-functions-udtf>Built-in Table-Generating Functions (UDTF)</h3>
+<p>Normal user-defined functions, such as concat(), take in a single input row and output a single output row. In contrast, table-generating functions transform a single input row into multiple output rows. UDTF is one of the most advanced functions.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Row-set columns types</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source Code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>explode(ARRAY&lt;T&gt; a)
+</code></pre><p>| Explodes an array to multiple rows. Returns a row-set with a single column (<em>col</em>), one row for each element from the array. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFExplode.java>GenericUDTFExplode</a> |
+| <strong>Tkey,Tvalue</strong> |</p>
+<pre tabindex=0><code>explode(MAP&lt;Tkey,Tvalue&gt; m)
+</code></pre><p>| Explodes a map to multiple rows. Returns a row-set with two columns (<em>key,value)</em> , one row for each key-value pair from the input map. |
+| <strong>int,T</strong> |</p>
+<pre tabindex=0><code>posexplode(ARRAY&lt;T&gt; a)
+</code></pre><p>| Explodes an array to multiple rows with an additional positional column ofint type (position of items in the original array, starting with 0). Returns a row-set with two columns (<em>pos,val</em>), one row for each element from the array. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFPosExplode.java>GenericUDTFPosExplode</a> |
+| <strong>T1,&mldr;,Tn</strong> |</p>
+<pre tabindex=0><code>inline(ARRAY&lt;STRUCT&lt;f1:T1,...,fn:Tn&gt;&gt; a)
+</code></pre><p>| Explodes an array of structs to multiple rows. Returns a row-set with N columns (N = number of top level elements in the struct), one row per struct from the array. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFInline.java>GenericUDTFInline</a> |
+| <strong>T1,&mldr;,Tn/r</strong> |</p>
+<pre tabindex=0><code>stack(int r,T1  V1,...,Tn/r Vn)
+</code></pre><p>| Breaks up <em>n</em> values V1,&mldr;,Vninto <em>r</em> rows. Each row will have <em>n/r</em> columns. <em>r</em> must be constant. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFStack.java>GenericUDTFStack</a> |
+| <strong>string1,&mldr;,stringn</strong> |</p>
+<pre tabindex=0><code>json\_tuple(string jsonStr, string k1,...,string kn)
+</code></pre><p>| Takes JSON string and a set of <em>n</em> keys, and returns a tuple of <em>n</em> values. This is a more efficient version of the <code>get_json_object</code> UDF because it can get multiple keys with just one call. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFJSONTuple.java>GenericUDTFJSONTuple</a> |
+| <strong>string 1,&mldr;,stringn</strong> |</p>
+<pre tabindex=0><code>parse\_url\_tuple(string urlStr, string p1,...,string pn)
+</code></pre><p>| Takes URLstring and a set of n URL parts, and returns a tuple of n values. This is similar to the parse_url() UDF but can extract multiple parts at once out of a URL. Valid part names are HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, USERINFO, QUERY:. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDTFParseUrlTuple.java>GenericUDTFParseUrlTuple</a> |</p>
+<h3 id=string-functions>String Functions</h3>
+<p>There is no good engine without string manipulation functions. Apache Hive has rich built-instring functions. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>int</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>ascii(string str)
+</code></pre><p>| Returns the numeric value of the first character of str. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFAscii.java>UDFAscii</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>base64(binary bin)
+</code></pre><p>| Converts the argument from binary to a base64string. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFBase64.java>UDFBase64</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>character\_length(string str)
+</code></pre><p>| Returns the number of UTF-8 characters contained in str. The function char_length is shorthand for this function. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCharacterLength.java>GenericUDFCharacterLength</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>chr(bigint|double A)
+</code></pre><p>| Returns the ASCII character having the binary equivalent to A. If A is larger than 256 the result is equivalent to chr(A % 256). Example: select chr(88); returns &ldquo;X&rdquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFChr.java>UDFChr</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>concat(string|binary A,string|binary B...)
+</code></pre><p>| Returns the string or bytes resulting from concatenating the strings or bytes passed in as parameters in order. For example, concat(&lsquo;foo&rsquo;, &lsquo;bar&rsquo;) results in &lsquo;foobar&rsquo;. Note that this function can take any number of input strings. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFConcat.java>GenericUDFConcat</a> |
+| <strong>array&lt;struct&lt;string,double&#187;</strong> |</p>
+<pre tabindex=0><code>context\_ngrams(array&lt;array&lt;string&gt;&gt;, array&lt;string&gt;, int K, int pf)
+</code></pre><p>| Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of &ldquo;context&rdquo;. See <a href=https://hive.apache.org/docs/latest/statisticsanddatamining_27362058/>StatisticsAndDataMining</a> for more information. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFContextNGrams.java>GenericUDAFContextNGrams</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>concat\_ws(string SEP, string A, string B...)
+</code></pre><p>| Like concat() above, but with custom separator SEP. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFConcatWS.java>GenericUDFConcatWS</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>concat\_ws(string SEP, array&lt;string&gt;)
+</code></pre><p>| Like concat_ws() above, but taking an array ofstrings. |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>decode(binary bin, string charset)
+</code></pre><p>| Decodes the first argument into a string using the provided character set (one of &lsquo;US-ASCII&rsquo;, &lsquo;ISO-8859-1&rsquo;, &lsquo;UTF-8&rsquo;, &lsquo;UTF-16BE&rsquo;, &lsquo;UTF-16LE&rsquo;, &lsquo;UTF-16&rsquo;). If either argument is null, the result will also be null. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDecode.java>GenericUDFDecode</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>elt(N int, str1 string, str2s tring, str3 string,...)
+</code></pre><p>| Return string at index number. For example elt(2,&lsquo;hello&rsquo;,&lsquo;world&rsquo;) returns &lsquo;world&rsquo;. Returns NULL if N is less than 1 or greater than the number of arguments. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFElt.java>GenericUDFElt</a> |
+| <strong>binary</strong> |</p>
+<pre tabindex=0><code>encode(string src, string charset)
+</code></pre><p>| Encodes the first argument into a BINARY using the provided character set (one of &lsquo;US-ASCII&rsquo;, &lsquo;ISO-8859-1&rsquo;, &lsquo;UTF-8&rsquo;, &lsquo;UTF-16BE&rsquo;, &lsquo;UTF-16LE&rsquo;, &lsquo;UTF-16&rsquo;). If either argument is null, the result will also be null.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFEncode.java>GenericUDFEncode</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>field(val T, val1 T, val2 T, val3 T,...) 
+</code></pre><p>| Returns the index of val in the val1,val2,val3,&mldr; list or 0 if not found. For example field(&lsquo;world&rsquo;,&lsquo;say&rsquo;,&lsquo;hello&rsquo;,&lsquo;world&rsquo;) returns 3.All primitive types are supported, arguments are compared using str.equals(x). If val is NULL, the return value is 0. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFField.java>GenericUDFField</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>find\_in\_set(string str, string strList)
+</code></pre><p>| Returns the first occurrence of str in strList where strList is a comma-delimited string. Returns null if either argument is null. Returns 0 if the first argument contains any commas. For example, find_in_set(&lsquo;ab&rsquo;, &lsquo;abc,b,ab,c,def&rsquo;) returns 3. | <a href=https://github.com/apache/hive/blob/1455f6201b0f7b061361bc9acc23cb810ff02483/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFFindInSet.java>UDFFindInSet</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>format\_number(number x, int d)
+</code></pre><p>| Formats the number X to a format like &lsquo;#,###,###.##&rsquo;, rounded to D decimal places, and returns the result as a string. If D is 0, the result has no decimal point or fractional part. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFFormatNumber.java>GenericUDFFormatNumber</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>get\_json\_object(string json\_string,string path)
+</code></pre><p>| Extracts JSON object from a JSON string based on JSON path specified, and returns JSON string of the extracted JSON object. It will return null if the input JSON string is invalid.NoteThe json path can only have the characters [0-9a-z_], i.e., no upper-case or special characters. Also, the keys <em>cannot start with numbers.</em> This is due to restrictions on Hive column names. | <a href=https://github.com/apache/hive/blob/1455f6201b0f7b061361bc9acc23cb810ff02483/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFJson.java>UDFJson</a> |
+| <strong>boolean</strong> |</p>
+<pre tabindex=0><code>in\_file(string str, string filename)
+</code></pre><p>| Returns true if the string <code>str</code> appears as an entire line in <code>filename</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFInFile.java>GenericUDFInFile</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>instr(string str, string substr)
+</code></pre><p>| Returns the position of the first occurrence of <code>substr</code> in <code>str</code>. Returns <code>null</code> if either of the arguments are <code>null</code> and returns <code>0</code> if <code>substr</code> could not be found in <code>str</code>. Be aware that this is not zero-based. The first character in <code>str</code> has index 1. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFInstr.java>GenericUDFInstr</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>length(string A)
+</code></pre><p>| Returns the length of the string. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLength.java>GenericUDFLength</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>locate(string substr,string str[,int pos])
+</code></pre><p>| Returns the position of the first occurrence of substr in str after position pos. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLocate.java>GenericUDFLocate</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>lower(string A) lcase(string A)
+</code></pre><p>| Returns the string resulting from converting all characters of B to lowercase. For example, lower(&lsquo;fOoBaR&rsquo;) results in &lsquo;foobar&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLower.java>GenericUDFLower</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>lpad(string str,int len,string pad)
+</code></pre><p>| Returns str, left-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In the case of an empty padstring, the return value is null. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLpad.java>GenericUDFLpad</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>ltrim(string A)
+</code></pre><p>| Returns the string resulting from trimming spaces from the beginning(left-hand side) of A. For example, ltrim(' foobar &lsquo;) results in &lsquo;foobar &lsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLTrim.java>GenericUDFLTrim</a> |
+| <strong>array&lt;struct&lt;string,double&#187;</strong> |</p>
+<pre tabindex=0><code>ngrams(array&lt;array&lt;string&gt;&gt;,int N,int K,int pf)
+</code></pre><p>| Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See <a href=https://hive.apache.org/docs/latest/statisticsanddatamining_27362058/>StatisticsAndDataMining</a> for more information. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFnGrams.java>GenericUDAFnGrams</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>octet\_length(string str)
+</code></pre><p>| Returns the number of octets required to hold the string str in UTF-8 encoding.  Note that octet_length(str) can be larger than character_length(str). | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFOctetLength.java>GenericUDFOctetLength</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>parse\_url(string urlString,string partToExtract [,string keyToExtract])
+</code></pre><p>| Returns the specified part from the URL. Valid values for partToExtract include HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, and USERINFO. For example, parse_url('<a href="http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1">http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1</a>&rsquo;, &lsquo;HOST&rsquo;) returns &lsquo;<a href=http://facebook.com>facebook.com</a>&rsquo;. Also, a value of a particular key in QUERY can be extracted by providing the key as the third argument, for example, parse_url('<a href="http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1">http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1</a>&rsquo;, &lsquo;QUERY&rsquo;, &lsquo;k1&rsquo;) returns &lsquo;v1&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFParseUrl.java>UDFParseUrl</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>printf(string format, Obj... args)
+</code></pre><p>| Returns the input formatted according to <a href=https://en.wikipedia.org/wiki/Printf>printf-style</a> formatstrings. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFPrintf.java>GenericUDFPrintf</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>quote(string text)
+</code></pre><p>| Returns the quoted string </p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>DONT</td>
+<td>&lsquo;DONT&rsquo;</td>
+</tr>
+<tr>
+<td>DON&rsquo;T</td>
+<td>&lsquo;DON'T&rsquo;</td>
+</tr>
+</tbody>
+</table>
+<p>NEW Includes escape character for any single quotes in Apache Hive 4.0.0 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFQuote.java>GenericUDFQuote</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>regexp\_extract(string subject, string pattern, int index)
+</code></pre><p>| Returns the string extracted using the pattern. For example, regexp_extract(&lsquo;foothebar&rsquo;, &lsquo;foo(.*?)(bar)&rsquo;, 2) returns &lsquo;bar.&rsquo; Note that some care is necessary in using predefined character classes: using &lsquo;\s&rsquo; as the second argument will match the letter s; &lsquo;\s&rsquo; is necessary to match whitespace, etc. The &lsquo;index&rsquo; parameter is the Java regex Matcher group() method index.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFRegExpExtract.java>UDFRegExpExtract</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>regexp\_replace(string INITIAL\_STRING, string PATTERN, string REPLACEMENT)
+</code></pre><p>| Returns the string resulting from replacing all substrings in INITIAL_STRING that match the java regular expression syntax defined in PATTERN with instances of REPLACEMENT. For example, regexp_replace(&ldquo;foobar&rdquo;, &ldquo;oo|ar&rdquo;, &ldquo;") returns &lsquo;fb.&rsquo; Note that some care is necessary in using predefined character classes: using &lsquo;\s&rsquo; as the second argument will match the letter s; &lsquo;\s&rsquo; is necessary to match whitespace, etc. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFRegExpReplace.java>UDFRegExpReplace</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>repeat(string str, int n)
+</code></pre><p>| Repeats <code>str</code> in n times. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFRepeat.java>UDFRepeat</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>replace(string A, string OLD, string NEW)
+</code></pre><p>| Returns the string A with all non-overlapping occurrences of OLD replaced with NEW. Example: select replace(&ldquo;ababab&rdquo;, &ldquo;abab&rdquo;, &ldquo;Z&rdquo;); returns &ldquo;Zab&rdquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFReplace.java>UDFReplace</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>reverse(string A)
+</code></pre><p>| Returns the reversed string. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFReverse.java>UDFReverse</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>rpad(string str,int len,string pad)
+</code></pre><p>| Returns str, right-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In the case of an empty padstring, the return value is null. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFRpad.java>GenericUDFRpad</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>rtrim(string A)
+</code></pre><p>| Returns the string resulting from trimming spaces from the end(right-hand side) of A. For example, rtrim(&rsquo; foobar &lsquo;) results in ' foobar&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFRTrim.java>GenericUDFRTrim</a> |
+| <strong>array&lt;array></strong> |</p>
+<pre tabindex=0><code>sentences(string str,string lang,string locale)
+</code></pre><p>| Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The &lsquo;lang&rsquo; and &lsquo;locale&rsquo; are optional arguments. For example, sentences(&lsquo;Hello there! How are you?') returns ( (&ldquo;Hello&rdquo;, &ldquo;there&rdquo;), (&ldquo;How&rdquo;, &ldquo;are&rdquo;, &ldquo;you&rdquo;) ). | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSentences.java>GenericUDFSentences</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>space(int n)
+</code></pre><p>| Returns a string of n spaces. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSpace.java>UDFSpace</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>split(string str, string pat)
+</code></pre><p>| Splits str around pat (pat is a regular expression). | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSplit.java>GenericUDFSplit</a> |
+| <strong>map&lt;string,string></strong> |</p>
+<pre tabindex=0><code>str\_to\_map(text[, delimiter1, delimiter2])
+</code></pre><p>| Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are &lsquo;,&rsquo; for delimiter1 and &lsquo;:&rsquo; for delimiter2. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFStringToMap.java>GenericUDFStringToMap</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>substr(string|binary A,int start) substring(string|binary A,int start)
+</code></pre><p>| Returns the substring or slice of the byte array of A starting from start position till the end of string A. For example, substr(&lsquo;foobar&rsquo;, 4) results in &lsquo;bar&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSubstringIndex.java>GenericUDFSubstringIndex</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>substr(string|binary A,int start,int len) substring(string|binary A,int start,int len)
+</code></pre><p>| Returns the substring or slice of the byte array of A starting from start position with length len. For example, substr(&lsquo;foobar&rsquo;, 4, 1) results in &lsquo;b&rsquo;. |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>substring\_index(string A,string delim,int count)
+</code></pre><p>| Returns the substring from string A before count occurrences of the delimiter delim. If the count is positive, everything to the left of the final delimiter (counting from the left) is returned. If count is negative, everything to the right of the final delimiter (counting from the right) is returned. Substring_index performs a case-sensitive match when searching for delim. Example: substring_index('<a href=http://www.apache.org>www.apache.org</a>&rsquo;, &lsquo;.&rsquo;, 2) = &lsquo;www.apache&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSubstringIndex.java>GenericUDFSubstringIndex</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>translate(string|char|varchar input,string|char|varchar from, string|char|varchar to)
+</code></pre><p>| Translates the input string by replacing the characters present in the <code>from</code> string with the corresponding characters in the <code>to</code>string. This is similar to the <code>translate</code> function in <a href=http://www.postgresql.org/docs/9.1/interactive/functions-string.html>PostgreSQL</a>. If any of the parameters to this UDF are NULL, the result is NULL as well.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFTranslate.java>GenericUDFTranslate</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>trim(string A)
+</code></pre><p>| Returns the string resulting from trimming spaces from both ends of A. For example, trim(' foobar &lsquo;) results in &lsquo;foobar&rsquo; | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFTrim.java>GenericUDFTrim</a> |
+| <strong>binary</strong> |</p>
+<pre tabindex=0><code>unbase64(string str)
+</code></pre><p>| Converts the argument from a base64 string to BINARY. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFUnbase64.java>UDFUnbase64</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>upper(string A) ucase(string A)
+</code></pre><p>| Returns the string resulting from converting all characters of A to upper case. For example, upper(&lsquo;fOoBaR&rsquo;) results in &lsquo;FOOBAR&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFUpper.java>GenericUDFUpper</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>initcap(string A)
+</code></pre><p>| Returns string, with the first letter of each word in uppercase, and all other letters in lowercase. Words are delimited by whitespace. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFInitCap.java>GenericUDFInitCap</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>levenshtein(string A, string B)
+</code></pre><p>| Returns the <a href=https://en.wikipedia.org/wiki/Levenshtein_distance>Levenshtein distance</a> between two strings. Example: levenshtein(&lsquo;kitten&rsquo;, &lsquo;sitting&rsquo;) results in 3. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLevenshtein.java>GenericUDFLevenshtein</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>soundex(string A)
+</code></pre><p>| Returns the <a href=https://en.wikipedia.org/wiki/Soundex>soundex code</a> of the string. Example: soundex(&lsquo;Miller&rsquo;) results in M460. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSoundex.java>GenericUDFSoundex</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>deserialize(base64 encoded message, compressionFormat)
+</code></pre><p>| NEW Returns plain text string of given message which was compressed in compressionFormat and base64 encoded. Currently, Supports only &lsquo;gzip&rsquo; for Gzip compressed and base 64 encoded strings.Example: deserialize(&lsquo;H4sIAAAAAAAA/ytJLS4BAAx+f9gEAAAA&rsquo;, &lsquo;gzip&rsquo;) Result: test | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDeserialize.java>GenericUDFDeserialize</a> |</p>
+<h3 id=date-functions>Date Functions</h3>
+<p>In many analytical workloads Date is one of the most used built-in functions in Hive. The following list contains the supported built-in date functions in Hive.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>string</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>from\_unixtime(bigint unixtime[,string pattern])
+</code></pre><p>| Converts a number of seconds since epoch (1970-01-01 00:00:00 UTC) to a string representing the timestamp of that moment in the current time zone(using config &ldquo;hive.local.time.zone&rdquo;) using the specified pattern. If the pattern is missing the default is used (&lsquo;uuuu-MM-dd HH:mm:ss&rsquo; or yyyy-MM-dd HH:mm:ss&rsquo;). Example: from_unixtime(0)=1970-01-01 00:00:00 (hive.local.time.zone=Etc/GMT)MODIFIEDAs of Hive 4.0.0 the &ldquo;<strong>hive.datetime.formatter&rdquo;</strong> property can be used to control the underlying formatter implementation and as a consequence the accepted patterns and their behavior.  Earlier versions used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFFromUnixTime.java>GenericUDFFromUnixTime</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>unix\_timestamp()
+</code></pre><p>| Gets the current Unix timestamp in seconds. This function is not deterministic and its value is not fixed for the scope of a query execution, therefore prevents proper optimization of queries - this has been deprecated since 2.0 in favor of CURRENT_TIMESTAMP constant. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFUnixTimeStamp.java>GenericUDFUnixTimeStamp</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>unix\_timestamp(string date)
+</code></pre><p>| Converts a DateTimestring to unix time (seconds since epoch) using the default pattern(s). The default accepted patterns depend on the underlying formatter implementation. The DateTime string does not contain a timezone so the conversion uses the local time zone as specified by &ldquo;hive.local.time.zone&rdquo; property. Returns null when the conversion fails. Example: unix_timestamp(&lsquo;2009-03-20 11:30:01&rsquo;) = 1237573801MODIFIEDAs of Hive 4.0.0 the &ldquo;hive.datetime.formatter&rdquo; property can be used to control the underlying formatter implementation and as a consequence the accepted patterns and their behavior. Earlier versions used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>unix\_timestamp(string date,string pattern)
+</code></pre><p>| Converts a date-time string to unix time (seconds since epoch) using the specified pattern. The accepted patterns and their behavior depend on the underlying formatter implementation. Returns null when the conversion fails. Example: unix_timestamp(&lsquo;2009-03-20&rsquo;, &lsquo;uuuu-MM-dd&rsquo;) = 1237532400MODIFIEDAs of Hive 4.0.0 the &ldquo;hive.datetime.formatter&rdquo; property can be used to control the underlying formatter implementation and as a consequence the accepted patterns and their behavior.  Earlier versions used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. |
+| <strong>date</strong> |</p>
+<pre tabindex=0><code>to\_date(string timestamp)
+</code></pre><p>| Returns the date part of a timestamp date object. Example: to_date(&ldquo;1970-01-01 00:00:00&rdquo;)  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDate.java>GenericUDFDate</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>year(string date)
+</code></pre><p>| Returns the year part of a date or a timestamp string: year(&ldquo;1970-01-01 00:00:00&rdquo;) = 1970, year(&ldquo;1970-01-01&rdquo;) = 1970. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFYear.java>UDFYear</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>quarter(date/timestamp/string)
+</code></pre><p>| Returns the quarter of the year for a date, timestamp, or string in the range 1 to 4. Example: quarter(&lsquo;2015-04-08&rsquo;) = 2. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFQuarter.java>GenericUDFQuarter</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>month(string date)
+</code></pre><p>| Returns the month part of a date or a timestamp string. Example: month(&ldquo;1970-11-01 00:00:00&rdquo;) = 11, month(&ldquo;1970-11-01&rdquo;) = 11. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFMonth.java>UDFMonth</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>day(string date) dayofmonth(date)
+</code></pre><p>| Returns the day part of a date or a timestamp string. Example: day(&ldquo;1970-11-01 00:00:00&rdquo;) = 1, day(&ldquo;1970-11-01&rdquo;) = 1. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFDayOfMonth.java>UDFDayOfMonth</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>hour(string date)
+</code></pre><p>| Returns the hour of the timestamp: Example: hour(&lsquo;2009-07-30 12:58:59&rsquo;) = 12, hour(&lsquo;12:58:59&rsquo;) = 12. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFHour.java>UDFHour</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>minute(string date)
+</code></pre><p>| Returns the minute of the timestamp. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFMinute.java>UDFMinute</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>second(string date)
+</code></pre><p>| Returns the second of the timestamp. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSecond.java>UDFSecond</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>weekofyear(string date)
+</code></pre><p>| Returns the week number of a timestamp string. Example: weekofyear(&ldquo;1970-11-01 00:00:00&rdquo;) = 44 or weekofyear(&ldquo;1970-11-01&rdquo;) = 44. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFWeekOfYear.java>UDFWeekOfYear</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>extract(field FROM source)
+</code></pre><p>| Retrieve fields such as days or hours from the source. The source must be a date, timestamp, interval, or string that can be converted into either a date or timestamp. Supported fields include day, dayofweek, hour, minute, month, quarter, second, week and year.Examples:1. select extract(month from &ldquo;2016-10-20&rdquo;) results in 10.
+2. select extract(hour from &ldquo;2016-10-20 05:06:07&rdquo;) results in 5.
+3. select extract(dayofweek from &ldquo;2016-10-20 05:06:07&rdquo;) results in 5.
+4. select extract(month from interval &lsquo;1-3&rsquo; year to month) results in 3.
+5. select extract(minute from interval &lsquo;3 12:20:30&rsquo; day to second) results in 20.
+| |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>datediff(string enddate,string startdate)
+</code></pre><p>| Returns the number of days from startdate to end date. Example: datediff(&lsquo;2009-03-01&rsquo;, &lsquo;2009-02-27&rsquo;) = 2. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDateDiff.java>GenericUDFDateDiff</a> |
+| <strong>date</strong> |</p>
+<pre tabindex=0><code>date\_add(date/timestamp/string startdate, tinyint/smallint/int days)
+</code></pre><p>| Adds a number of days to startdate. Example: date_add(&lsquo;2008-12-31&rsquo;, 1) = &lsquo;2009-01-01&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDateAdd.java>GenericUDFDateAdd</a> |
+| <strong>date</strong> |</p>
+<pre tabindex=0><code>date\_sub(date/timestamp/string startdate, tinyint/smallint/int days)
+</code></pre><p>| Subtracts a number of days to startdate: date_sub(&lsquo;2008-12-31&rsquo;, 1) = &lsquo;2008-12-30&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDateSub.java>GenericUDFDateSub</a> |
+| <strong>timestamp</strong> |</p>
+<pre tabindex=0><code>from\_utc\_timestamp({any primitive type} ts,string timezone)
+</code></pre><p>| Converts a timestamp* in UTC to a given timezone.* timestamp is a primitive type, including timestamp/date, tinyint/smallint/int/bigint, float/double and decimal.Fractional values are considered as seconds.integer values are considered as milliseconds. For example, from_utc_timestamp(2592000.0,&lsquo;PST&rsquo;), from_utc_timestamp(2592000000,&lsquo;PST&rsquo;) and from_utc_timestamp(timestamp &lsquo;1970-01-30 16:00:00&rsquo;,&lsquo;PST&rsquo;) all return the timestamp 1970-01-30 08:00:00. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFFromUtcTimestamp.java>GenericUDFFromUtcTimestamp</a> |
+| <strong>timestamp</strong> |</p>
+<pre tabindex=0><code>to\_utc\_timestamp({any primitive type} ts,string timezone)
+</code></pre><p>| Converts a timestamp* in a given timezone to UTC.* timestamp is a primitive type, including timestamp/date, tinyint/smallint/int/bigint, float/double and decimal.Fractional values are considered as seconds.integer values are considered as milliseconds. For example, to_utc_timestamp(2592000.0,&lsquo;PST&rsquo;), to_utc_timestamp(2592000000,&lsquo;PST&rsquo;) and to_utc_timestamp(timestamp &lsquo;1970-01-30 16:00:00&rsquo;,&lsquo;PST&rsquo;) all return the timestamp 1970-01-31 00:00:00. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFToUtcTimestamp.java>GenericUDFToUtcTimestamp</a> |
+| <strong>date</strong> |</p>
+<pre tabindex=0><code>current\_date
+</code></pre><p>| Returns the current date at the start of query evaluation. All calls of current_date within the same query return the same value. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCurrentDate.java>GenericUDFCurrentDate</a> |
+| <strong>timestamp</strong> |</p>
+<pre tabindex=0><code>current\_timestamp
+</code></pre><p>| Returns the current timestamp at the start of query evaluation. All calls of current_timestamp within the same query return the same value. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCurrentTimestamp.java>GenericUDFCurrentTimestamp</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>add\_months(string start\_date,int num\_months, output\_date\_format)
+</code></pre><p>| Returns the date that is num_months after start_date. start_date is a string, date or timestamp. num_months is an integer. If start_date is the last day of the month or if the resulting month has fewer days than the day component of start_date, then the result is the last day of the resulting month. Otherwise, the result has the same day component as start_date. The default output format is &lsquo;yyyy-MM-dd&rsquo;.MODIFIEDBefore Hive 4.0.0, the time part of the date is ignored. As of Hive 4.0.0, add_months supports an optional argument output_date_format, which accepts a string that represents a valid date format for the output. This allows to retain the time format in the output.For example :add_months(&lsquo;2009-08-31&rsquo;, 1) returns &lsquo;2009-09-30&rsquo;.add_months(&lsquo;2017-12-31 14:15:16&rsquo;, 2, &lsquo;YYYY-MM-dd HH:mm:ss&rsquo;) returns &lsquo;2018-02-28 14:15:16&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFAddMonths.java>GenericUDFAddMonths</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>last\_day(string date)
+</code></pre><p>| Returns the last day of the month to which the date belongs. <code>date</code> is a string in the format &lsquo;yyyy-MM-dd HH:mm:ss&rsquo; or &lsquo;yyyy-MM-dd&rsquo;. <strong>The time part of the date is ignored!</strong> | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLastDay.java>GenericUDFLastDay</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>next\_day(string start\_date,string day\_of\_week)
+</code></pre><p>| Returns the first date which is later than start_date and named as day_of_week.  <code>start_date</code>  is a string/date/timestamp. day_of_week is 2 letters, 3 letters or full name of the day of the week (e.g. Mo, tue, FRIDAY). <strong>The time part of start_date is ignored.</strong> Example: next_day(&lsquo;2015-01-14&rsquo;, &lsquo;TU&rsquo;) = 2015-01-20. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFNextDay.java>GenericUDFNextDay</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>trunc(string date,string format)
+</code></pre><p>| Returns date truncated to the unit specified by the format. Supported formats: MONTH/MON/MM, YEAR/YYYY/YY. Example: trunc(&lsquo;2015-03-17&rsquo;, &lsquo;MM&rsquo;) = 2015-03-01. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFTrunc.java>GenericUDFTrunc</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>months\_between(date1, date2)
+</code></pre><p>| Returns the number of months between dates <code>date1</code> and <code>date2</code>. If <code>date1</code> is later than <code>date2</code>, then the result is positive. If <code>date1</code> is earlier than <code>date</code> , then the result is negative. If date1 and date2 are either the same days of the month or both last days of months, then the result is always aninteger. Otherwise, the UDF calculates the fractional portion of the result based on a 31-day month and considers the difference in time components date1 and date2. date1 and date2 type can be date, timestamp or string in the format &lsquo;yyyy-MM-dd&rsquo; or &lsquo;yyyy-MM-dd HH:mm:ss&rsquo;. The result is rounded to 8 decimal places. Example: months_between(&lsquo;1997-02-28 10:30:00&rsquo;, &lsquo;1996-10-30&rsquo;) = 3.94959677 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMonthsBetween.java>GenericUDFMonthsBetween</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>date\_format(date/timestamp/string ts,string pattern)
+</code></pre><p>| Converts a date/timestamp/string to a value of string using the specified pattern. The accepted patterns and their behavior depend on the underlying formatter implementation. The pattern argument should be constant. Example: date_format(&lsquo;2015-04-08&rsquo;, &lsquo;y&rsquo;) = &lsquo;2015&rsquo;.date_format can be used to implement other UDFs, e.g.:* dayname(date) is date_format(date, &lsquo;EEEE&rsquo;)</p>
+<ul>
+<li>dayofyear(date) is date_format(date, &lsquo;D&rsquo;)</li>
+</ul>
+<p>MODIFIEDAs of Hive 4.0.0 the &ldquo;<strong>hive.datetime.formatter&rdquo;</strong> property can be used to control the underlying formatter implementation and as a consequence the accepted patterns and their behavior.  Earlier versions used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFDateFormat.java>GenericUDFDateFormat</a> |</p>
+<h3 id=mathematical-functions>Mathematical Functions</h3>
+<p>The following built-in mathematical functions are supported in Hive. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name (Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>double</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>round(double a)
+</code></pre><p>| Returns the rounded <code>bigint</code> value of <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFRound.java>GenericUDFRound</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>round(double a,int d)
+</code></pre><p>| Returns <code>a</code> rounded to <code>d</code> decimal places. |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>bround(double a)
+</code></pre><p>| Returns the rounded bigint value of <code>a</code> using HALF_EVEN rounding mode. Also known as Gaussian rounding or bankers' rounding. Example: bround(2.5) = 2, bround(3.5) = 4. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFBRound.java>GenericUDFBRound</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>bround(double a,int d)
+</code></pre><p>| Returns <code>a</code> rounded to <code>d</code> decimal places using HALF_EVEN rounding mode.  Example: bround(8.25, 1) = 8.2, bround(8.35, 1) = 8.4. |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>floor(double a)
+</code></pre><p>| Returns the maximum <code>bigint</code> value that is equal to or less than <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFFloor.java>GenericUDFFloor</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>ceil(double a), ceiling(double a)
+</code></pre><p>| Returns the minimum bigint value that is equal to or greater than <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCeil.java>GenericUDFCeil</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>rand(), rand(INT seed)
+</code></pre><p>| Returns a random number (that changes from row to row) that is distributed uniformly from 0 to 1. Specifying the seed will make sure the generated random number sequence is deterministic. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFRand.java>UDFRand</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>exp(double a), exp(decimal a)
+</code></pre><p>| Returns <code>ea</code> where <code>e</code> is the base of the natural logarithm. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFExp.java>UDFExp</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>ln(double a), ln(decimal a)
+</code></pre><p>| Returns the natural logarithm of the argument <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFLn.java>UDFLn</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>log10(double a), log10(decimal a)
+</code></pre><p>| Returns the base-10 logarithm of the argument <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFLog10.java>UDFLog10</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>log2(double a), log2(decimal a)
+</code></pre><p>| Returns the base-2 logarithm of the argument <code>a</code>.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFLog2.java>UDFLog2</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>log(double base, double a)
+</code></pre><pre tabindex=0><code>log(decimal base, decimal a)
+</code></pre><p>| Returns the base-<code>base</code> logarithm of the argument <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFLog.java>UDFLog</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>pow(double a, double p), power(double a, double p)
+</code></pre><p>| Returns <code>ap</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFPower.java>GenericUDFPower</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>sqrt(double a), sqrt(decimal a)
+</code></pre><p>| Returns the square root of <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSqrt.java>UDFSqrt</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>bin(bigint a)
+</code></pre><p>| Returns the number in binary format. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFBin.java>UDFBin</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>hex(bigint a) hex(string a) hex(binary a)
+</code></pre><p>| If the argument is an int or <code>binary</code>, <code>hex</code> returns the number as a string in hexadecimal format. Otherwise, if the number is a string, it converts each character into its hexadecimal representation and returns the resulting string.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFHex.java>UDFHex</a> |
+| <strong>binary</strong> |</p>
+<pre tabindex=0><code>unhex(STRING a)
+</code></pre><p>| Inverse of hex.interprets each pair of characters as a hexadecimal number and converts to the byte representation of the number. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFUnhex.java>UDFUnhex</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>conv(bigint num,int from\_base,int to\_base), conv(STRING num,int from\_base,int to\_base)
+</code></pre><p>| Converts a number from a given base to another. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFConv.java>UDFConv</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>abs(double a)
+</code></pre><p>| Returns the absolute value. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFAbs.java>GenericUDFAbs</a> |
+| <strong>int or double</strong> |</p>
+<pre tabindex=0><code>pmod(INT a,int b), pmod(double a, double b)
+</code></pre><p>| Returns the positive value of <code>a mod b</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFOPMod.java>GenericUDFOPMod</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>sin(double a), sin(decimal a)
+</code></pre><p>| Returns the sine of <code>a</code> (<code>a</code> is in radians). | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSin.java>UDFSin</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>asin(double a), asin(decimal a)
+</code></pre><p>| Returns the arc sin of <code>a</code> if -1&lt;=a&lt;=1 or NULL otherwise.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFAsin.java>UDFAsin</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>cos(double a), cos(decimal a)
+</code></pre><p>| Returns the cosine of <code>a</code> (<code>a</code> is in radians).  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFCos.java>UDFCos</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>acos(double a), acos(decimal a)
+</code></pre><p>| Returns the arccosine of <code>a</code> if -1&lt;=a&lt;=1 or NULL otherwise. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFAcos.java>UDFAcos</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>tan(double a), tan(decimal a)
+</code></pre><p>| Returns the tangent of <code>a</code> (<code>a</code> is in radians). | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFTan.java>UDFTan</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>atan(double a), atan(decimal a)
+</code></pre><p>| Returns the arctangent of <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFAtan.java>UDFAtan</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>degrees(double a), degrees(decimal a)
+</code></pre><p>| Converts value of <code>a</code> from radians to degrees.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFDegrees.java>UDFDegrees</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>radians(double a), radians(double a)
+</code></pre><p>| Converts value of <code>a</code> from degrees to radians.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFRadians.java>UDFRadians</a> |
+| <strong>int or double</strong> |</p>
+<pre tabindex=0><code>positive(INT a), positive(double a)
+</code></pre><p>| Returns <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFOPPositive.java>GenericUDFOPPositive</a> |
+| <strong>int or double</strong> |</p>
+<pre tabindex=0><code>negative(INT a), negative(double a)
+</code></pre><p>| Returns <code>-a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFOPNegative.java>GenericUDFOPNegative</a> |
+| <strong>double or int</strong> |</p>
+<pre tabindex=0><code>sign(double a), sign(decimal a)
+</code></pre><p>| Returns the sign of <code>a</code> as &lsquo;1.0&rsquo; (if <code>a</code> is positive) or &lsquo;-1.0&rsquo; (if <code>a</code> is negative), &lsquo;0.0&rsquo; otherwise. The decimal version returns int instead of double.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSign.java>UDFSign</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>e()
+</code></pre><p>| Returns the value of <code>e</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFE.java>UDFE</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>pi()
+</code></pre><p>| Returns the value of <code>pi</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFPI.java>UDFPI</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>factorial(INT a)
+</code></pre><p>| Returns the factorial of <code>a</code> Valid <code>a</code> is [0..20]. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFFactorial.java>GenericUDFFactorial</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>cbrt(double a)
+</code></pre><p>| Returns the cube root of <code>a</code> double value. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCbrt.java>GenericUDFCbrt</a> |
+| <strong>int****bigint</strong> |</p>
+<pre tabindex=0><code>shiftleft(TINYINT|SMALLINT|INT a,int b)
+</code></pre><pre tabindex=0><code>shiftleft(bigint a,int b)
+</code></pre><p>| Bitwise left shift. Shifts <code>a</code> <code>b</code> positions to the left.Returns int for tinyint, smallint andint <code>a</code>. Returns bigint for bigint <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFOPBitShiftLeft.java>UDFOPBitShiftLeft</a> |
+| <strong>int****bigint</strong> |</p>
+<pre tabindex=0><code>shiftright(TINYINT|SMALLINT|INT a,int b)
+</code></pre><pre tabindex=0><code>shiftright(bigint a,int b)
+</code></pre><p>| Bitwise right shift. Shifts <code>a</code> <code>b</code> positions to the right.Returns int for tinyint, smallint andint <code>a</code>. Returns bigint for bigint <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFOPBitShiftRight.java>UDFOPBitShiftRight</a> |
+| <strong>int****bigint</strong> |</p>
+<pre tabindex=0><code>shiftrightunsigned(TINYINT|SMALLINT|INT a,int b),
+</code></pre><pre tabindex=0><code>shiftrightunsigned(bigint a,int b)
+</code></pre><p>| Bitwise unsigned right shift. Shifts <code>a</code> <code>b</code> positions to the right.Returns int for tinyint, smallint andint <code>a</code>. Returns bigint for bigint <code>a</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFOPBitShiftRightUnsigned.java>UDFOPBitShiftRightUnsigned</a> |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>greatest(T v1, T v2, ...)
+</code></pre><p>| Returns the greatest value of the list of values. Fixed to return NULL when one or more arguments are NULL, and strict type restriction relaxed, consistent with &ldquo;>&rdquo; operator. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFGreatest.java>GenericUDFGreatest</a> |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>least(T v1, T v2, ...)
+</code></pre><p>| Returns the least value of the list of values. Fixed to return NULL when one or more arguments are NULL, and strict type restriction relaxed, consistent with &ldquo;&lt;&rdquo; operator. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLeast.java>GenericUDFLeast</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>width\_bucket(NUMERIC expr, NUMERIC min\_value, NUMERIC max\_value,int num\_buckets)
+</code></pre><p>| Returns an integer between 0 and num_buckets+1 by mapping expr into the ith equally sized bucket. Buckets are made by dividing [min_value, max_value]into equally sized regions. If expr &lt; min_value, return 1, if expr > max_value return num_buckets+1. See <a href=https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions214.htm>https://docs.oracle.com/cd/B19306_01/server.102/b14200/functions214.htm</a> | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFWidthBucket.java>GenericUDFWidthBucket</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>cosh(double x)
+</code></pre><p>| NEW Returns the hyperbolic cosine of <code>x,</code> where <code>x</code> is in radians. Example: cosh(0) Result: 1 | <a href=https://github.com/apache/hive/blame/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFCosh.java>UDFCosh</a> |
+| <strong>double</strong> |</p>
+<pre tabindex=0><code>tanh(double x)
+</code></pre><p>| NEW Returns the hyperbolic tangent of <code>x,</code> where <code>x</code> is in radians. Example: tanh(0) Result: 1 | <a href=https://github.com/apache/hive/blame/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFTanh.java>UDFTanh</a> |</p>
+<h3 id=collection-functions>Collection Functions</h3>
+<p>The following built-in collection functions are supported in Hive. </p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>OSS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>int</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>size(Map&lt;K.V&gt;)
+</code></pre><p>| Returns the number of elements in the map type. | |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>size(Array&lt;T&gt;)
+</code></pre><p>| Returns the number of elements in the array type. | |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>map\_keys(Map&lt;K.V&gt;)
+</code></pre><p>| Returns an unordered array containing the keys of the input map. | |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>map\_values(Map&lt;K.V&gt;)
+</code></pre><p>| Returns an unordered array containing the values of the input map. | |
+| <strong>boolean</strong> |</p>
+<pre tabindex=0><code>array\_contains(Array&lt;T&gt;, value)
+</code></pre><p>| Returns TRUE if the array contains the provided parameter value. | |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>sort\_array(Array&lt;T&gt;)
+</code></pre><p>| Sorts the input array in ascending order according to the natural ordering of the array elements and returns it. | |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array(obj1, obj2, ....  objN)
+</code></pre><p>| NEW The function returns an array of the same type as the input array with distinct values. Example: array(&lsquo;b&rsquo;, &rsquo;d', &rsquo;d', &lsquo;a&rsquo;) reurtns [&lsquo;b&rsquo;, &rsquo;d', &lsquo;a&rsquo;]  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayDistinct.java>GenericUDFArrayDistinct.java</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array\_slice(array, start, length)
+</code></pre><p>| NEW Returns the subset or range of elements. Example: array-slice(array(1, 2, 3, 4), 2 , 2) Result: 3,4 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArraySlice.java>GenericUDFArraySlice</a>  |
+| <strong>t</strong> |</p>
+<pre tabindex=0><code>array\_min((array(obj1, obj2, obj3...))
+</code></pre><p>| NEW The function returns the minimum value in the array with elements for which order is supported. Example: array_min(array(1, 3, 0, NULL)) Result: 0 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayMin.java>GenericUDFArrayMin</a> |
+| <strong>t</strong> |</p>
+<pre tabindex=0><code>array\_max((array(obj1, obj2, obj3...))
+</code></pre><p>| NEW The function returns the maximum value in the array with elements for which order is supported. Example: array_max(array(1, 3, 0, NULL)) Result: 3 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayMax.java>GenericUDFArrayMax</a> |
+| <strong>t</strong> |</p>
+<pre tabindex=0><code>array\_distinct(array(obj1, obj2, obj3...))
+</code></pre><p>| NEW The function returns an array of the same type as the input array with distinct values. Example: array_distinct(array(&lsquo;b&rsquo;, &rsquo;d', &rsquo;d', &lsquo;a&rsquo;)) Result:  [&lsquo;b&rsquo;, &rsquo;d', &lsquo;a&rsquo;] | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayDistinct.java>GenericUDFArrayDistinct</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>array\_join(array, delimiter, replaceNull)
+</code></pre><p>| NEW Concatenate the elements of an array with a specified delimiter. Example: array_join(array(1, 2, NULL, 4), &lsquo;,&rsquo;,':') Result: 1,2,:,4 | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayJoin.java>GenericUDFArrayJoin</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array\_expect(array1, array2)
+</code></pre><p>| NEW Returns an array of the elements in array1 but not in array2. Example: array_expect(array(1, 2, 3,4), array(2,3)) Result: [1,4] | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayExcept.java>GenericUDFArrayExcept</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array\_intersect(array1, array2)
+</code></pre><p>| NEW Returns an array of the elements in the intersection of array1 and array2, without duplicates. Example: array_intersect(array(1, 2, 3,4), array(1,2,3)) Result: [1,2,3] | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayIntersect.java>GenericUDFArrayIntersect</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array\_union(array1, array2)
+</code></pre><p>| NEW Returns an array of the elements in the union of array1 and array2 without duplicates. Example: array_union(array(1, 2, 2, 4), array(2, 3)) Result: [1, 2, 3, 4] | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayUnion.java>GenericUDFArrayUnion</a> |
+| <strong>array</strong> |</p>
+<pre tabindex=0><code>array\_remove(array, element)
+</code></pre><p>| NEW Removes all occurrences of elements from the array. Example: array_remove(array(1, 2, 3, 4, 2), 2) Result: [1, 3, 4] | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFArrayRemove.java>GenericUDFArrayRemove</a> |</p>
+<h3 id=type-conversion-functions>Type Conversion Functions</h3>
+<p>The following built-in type conversion functions are supported in Hive. </p>
+<table>
+<thead>
+<tr>
+<th>Return Type</th>
+<th>Name(Signature)</th>
+<th>Description</th>
+<th>Source code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>binary</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>binary(string|binary)
+</code></pre><p>| Casts the parameter into a binary. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFBaseBinary.java>GenericUDFBaseBinary</a> |
+| <strong>Expected &ldquo;=&rdquo; to follow &ldquo;type&rdquo;</strong> |</p>
+<pre tabindex=0><code>cast(expr as &lt;type&gt;)
+</code></pre><p>| Converts the results of the expression expr to . For example, cast(&lsquo;1&rsquo; as bigint) will convert the string &lsquo;1&rsquo; to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. | |</p>
+<h3 id=conditional-functions>Conditional Functions</h3>
+<p>The following built-in conditional functions are supported in Hive.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>if(boolean testCondition, T valueTrue, T valueFalseOrNull)
+</code></pre><p>| Returns valueTrue when testCondition is true, returns valueFalseOrNull otherwise. |
+| <strong>boolean</strong> |</p>
+<pre tabindex=0><code>isnull( a )
+</code></pre><p>| Returns true if a is NULL and false otherwise. |
+| <strong>boolean</strong> |</p>
+<pre tabindex=0><code>isnotnull ( a )
+</code></pre><p>| Returns true if a is not NULL and false otherwise. |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>nvl(T value, T default\_value)
+</code></pre><p>| Returns default value if value is null else returns value. |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>COALESCE(T v1, T v2, ...)
+</code></pre><p>| Returns the first v that is not NULL, or NULL if all v&rsquo;s are NULL. |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>CASE a WHEN b THEN c [WHEN d THEN e]* [ELSE f] END
+</code></pre><p>| When a = b, returns c; when a = d, returns e; else returns f. |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>CASE WHEN a THEN b [WHEN c THEN d]* [ELSE e] END
+</code></pre><p>| When a = true, returns b; when c = true, returns d; else returns e. |
+| <strong>T</strong> |</p>
+<pre tabindex=0><code>nullif( a, b )
+</code></pre><p>| Returns NULL if a=b; otherwise returns a.Shorthand forCASE WHEN a = b then NULL else a |
+| <strong>void</strong> |</p>
+<pre tabindex=0><code>assert\_true(boolean condition)
+</code></pre><p>| Throw an exception if &lsquo;condition&rsquo; is not true, otherwise, return null. For example, select assert_true (2&lt;1). |</p>
+<h3 id=data-masking-functions>Data Masking Functions</h3>
+<p>The following built-in data masking functions are supported in Hive:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>string</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>mask(string str[,string upper[,string lower[,string number]]])
+</code></pre><p>| Returns a masked version of str. By default, upper case letters are converted to &ldquo;X&rdquo;, lower case letters are converted to &ldquo;x&rdquo; and numbers are converted to &ldquo;n&rdquo;. Example: mask(&ldquo;abcd-EFGH-8765-4321&rdquo;) results in xxxx-XXXX-nnnn-nnnn. You can override the characters used in the mask by supplying additional arguments: the second argument controls the mask character for upper case letters, the third argument for lower case letters, and the fourth argument for numbers. For example, mask(&ldquo;abcd-EFGH-8765-4321&rdquo;, &ldquo;U&rdquo;, &ldquo;l&rdquo;, &ldquo;#") results in llll-UUUU-####-####. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMask.java>GenericUDFMask</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>mask\_first\_n(string str[,int n])
+</code></pre><p>| Returns a masked version of str with the first n values masked. Upper case letters are converted to &ldquo;X&rdquo;, lower case letters are converted to &ldquo;x&rdquo; and numbers are converted to &ldquo;n&rdquo;. For example, mask_first_n(&ldquo;1234-5678-8765-4321&rdquo;, 4) results in nnnn-5678-8765-4321. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMaskFirstN.java>GenericUDFMaskFirstN</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>mask\_last\_n(string str[,int n])
+</code></pre><p>| Returns a masked version of str with the last n values masked. Upper case letters are converted to &ldquo;X&rdquo;, lower case letters are converted to &ldquo;x&rdquo; and numbers are converted to &ldquo;n&rdquo;. For example, mask_last_n(&ldquo;1234-5678-8765-4321&rdquo;, 4) results in 1234-5678-8765-nnnn. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMaskLastN.java>GenericUDFMaskLastN</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>mask\_show\_first\_n(string str[,int n])
+</code></pre><p>| Returns a masked version of str, showing the first n characters unmasked. Upper case letters are converted to &ldquo;X&rdquo;, lower case letters are converted to &ldquo;x&rdquo; and numbers are converted to &ldquo;n&rdquo;. For example, mask_show_first_n(&ldquo;1234-5678-8765-4321&rdquo;, 4) results in 1234-nnnn-nnnn-nnnn. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMaskShowFirstN.java>GenericUDFMaskShowFirstN</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>mask\_show\_last\_n(string str[,int n])
+</code></pre><p>| Returns a masked version of str, showing the last n characters unmasked. Upper case letters are converted to &ldquo;X&rdquo;, lower case letters are converted to &ldquo;x&rdquo; and numbers are converted to &ldquo;n&rdquo;. For example, mask_show_last_n(&ldquo;1234-5678-8765-4321&rdquo;, 4) results in nnnn-nnnn-nnnn-4321. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMaskShowLastN.java>GenericUDFMaskShowLastN</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>mask\_hash(string|char|varchar str)
+</code></pre><p>| Returns a hashed value based on str. The hash is consistent and can be used to join masked values together across tables. This function returns null for non-string types. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFMaskHash.java>GenericUDFMaskHash</a> |</p>
+<h3 id=miscellaneous-functions>Miscellaneous Functions</h3>
+<p>In Hive several built-in functions do not belong to any categories above. These are the special functions that Hive has.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Source code</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>varies</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>java\_method(class, method[, arg1[, arg2..]])
+</code></pre><p>| Synonym for <code>reflect</code>. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFReflect.java>GenericUDFReflect</a> |
+| <strong>varies</strong> |</p>
+<pre tabindex=0><code>reflect(class, method[, arg1[, arg2..]])
+</code></pre><p>| Calls a Java method by matching the argument signature, using reflection. See <a href=https://hive.apache.org/docs/latest/reflectudf_30754716/>Reflect (Generic) UDF</a> for examples. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFReflect.java>GenericUDFReflect</a> |
+| <strong>int</strong> |</p>
+<pre tabindex=0><code>hash(a1[, a2...])
+</code></pre><p>| Returns a hash value of the arguments.  | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFHash.java>GenericUDFHash</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>current\_user()
+</code></pre><p>| Returns current user name from the configured authenticator manager. Could be the same as the user provided when connecting, but with some authentication managers (for example HadoopDefaultAuthenticator) it could be different. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCurrentUser.java>GenericUDFCurrentUser</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>logged\_in\_user()
+</code></pre><p>| Returns the current user name from the session state. This is the username provided when connecting to Hive. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFLoggedInUser.java>GenericUDFLoggedInUser</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>current\_database()
+</code></pre><p>| Returns current database name. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCurrentDatabase.java>GenericUDFCurrentDatabase</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>md5(string/binary)
+</code></pre><p>| Calculates an MD5 128-bit checksum for the string or binary. The value is returned as a string of 32 hex digits, or NULL if the argument was NULL. Example: md5(&lsquo;ABC&rsquo;) = &lsquo;902fbdd2b1df0c4f70b4a5d23525e932&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFMd5.java>UDFMd5</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>sha1(string/binary)
+</code></pre><pre tabindex=0><code>sha(string/binary)
+</code></pre><p>| Calculates the SHA-1 digest for string or binary and returns the value as a hex string. Example: sha1(&lsquo;ABC&rsquo;) = &lsquo;3c01bdbb26f358bab27f267924aa2c9a03fcfdb8&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFSha1.java>UDFSha1</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>crc32(string/binary)
+</code></pre><p>| Computes a cyclic redundancy check value for string or binary argument and returns bigint value. Example: crc32(&lsquo;ABC&rsquo;) = 2743272264. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFCrc32.java>UDFCrc32</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>sha2(string/binary,int)
+</code></pre><p>| Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2(&lsquo;ABC&rsquo;, 256) = &lsquo;b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSha2.java>GenericUDFSha2</a> |
+| <strong>binary</strong> |</p>
+<pre tabindex=0><code>aes\_encrypt(inputstring/binary, keystring/binary)
+</code></pre><p>| Encrypt input using AES. Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: base64(aes_encrypt(&lsquo;ABC&rsquo;, &lsquo;1234567890123456&rsquo;)) = &lsquo;y6Ss+zCYObpCbgfWfyNWTw==&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFAesEncrypt.java>GenericUDFAesEncrypt</a> |
+| <strong>binary</strong> |</p>
+<pre tabindex=0><code>aes\_decrypt(input binary, keystring/binary)
+</code></pre><p>| Decrypt input using AES. Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: aes_decrypt(unbase64(&lsquo;y6Ss+zCYObpCbgfWfyNWTw=='), &lsquo;1234567890123456&rsquo;) = &lsquo;ABC&rsquo;. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFAesDecrypt.java>GenericUDFAesDecrypt</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>version()
+</code></pre><p>| Returns the Hive version. The string contains 2 fields, the first being a build number and the second being a build hash. Example: &ldquo;select version();&rdquo; might return &ldquo;2.1.0.2.5.0.0-1245 r027527b9c5ce1a3d7d0b6d2e6de2378fb0c39232&rdquo;. Actual results will depend on your build. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/UDFVersion.java>UDFVersion</a> |
+| <strong>bigint</strong> |</p>
+<pre tabindex=0><code>surrogate\_key([write\_id\_bits, task\_id\_bits])
+</code></pre><p>| Automatically generate numerical Ids for rows as you enter data into a table. Can only be used as the default value for acid or insert-only tables. | <a href=https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFSurrogateKey.java>GenericUDFSurrogateKey</a> |
+| <strong>string</strong> |</p>
+<pre tabindex=0><code>typeof(x)
+</code></pre><p>|  NEW Returns the type of the supplied argument | <a href=https://github.com/apache/hive/blame/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFTypeOf.java>GenericUDFTypeOf</a> |</p>
+<h3 id=geospatial>Geospatial</h3>
+<p>NEW</p>
+<p>Hive 4.0 provides <a href=https://github.com/Esri/spatial-framework-for-hadoop>ESRI-based</a> standard geospatial UDFs.</p>
+<p>The ESRI UDFs constitute an extensive list, and it&rsquo;s important to note that the Hive documentation does not duplicate the entirety of the function documentation. <a href=https://github.com/Esri/spatial-framework-for-hadoop/wiki/UDF-Documentation>Here</a>, you can find ESRI UDFs documentation.</p>
+<p><a href=https://medium.com/@ayushtkn/apache-hive-esri-geospatial-support-5ca815daaa7e>Blog about the Hive Geospatial support</a></p>
+<h3 id=creating-custom-udfs>Creating Custom UDF&rsquo;s</h3>
+<p>Apache Hive offers a wide range of built-in User-Defined Functions (UDFs). However, for specific requirements not covered by the built-in functions, users can develop their own custom UDFs with just a basic understanding of Java.</p>
+<p>Custom UDFs in Hive are categorized into three types based on the number of input and output rows. Each type of UDF corresponds to a different interface that needs to be implemented.</p>
+<table>
+<thead>
+<tr>
+<th>UDF</th>
+<th>UDAF</th>
+<th>UDTF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>It is a function that receives only a single row as an input and returns a single row as an output.Like: length, or round functions</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre tabindex=0><code>org.apache.hadoop.hive.ql.exec.UDF;
+</code></pre><p>| It is a function that receives multiple rows as input and returns a single row as output.Like: Count, Min, Max | It is a function that receives a single row as input and returns multiple rows - result set or table - as output.Like: exploed, parse_url_tuple |</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js integrity=sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM crossorigin=anonymous></script>
+</body>
+</html>
