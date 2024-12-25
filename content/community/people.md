@@ -115,6 +115,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | sankarh         | Sankar Hariappan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | sbadhya         | Sourabh Badhya                    | <a href="http://cloudera.com/">Cloudera</a>                                  |
 | sdong           | Siying Dong                       | <a href="http://facebook.com/">Facebook</a>                                  |
+| simhadrig       | Simhadri Govindappa               |                                                                              |
 | sseth           | Siddharth Seth                    | <a href="http://hortonworks.com/">Hortonworks</a>                            |
 | szita           | Adam Szita                        | <a href="http://cloudera.com/">Cloudera</a>                                  |
 | tchoi           | Teddy Choi                        | <a href="http://hortonworks.com/">Hortonworks</a>                            |
