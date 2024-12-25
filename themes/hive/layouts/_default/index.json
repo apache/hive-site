@@ -1,0 +1,20 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range site.RegularPages -}}
+{{- $sc := newScratch -}}
+{{- if isset .Params "description" -}}
+{{- $sc.Add "ct" .Description  -}}
+{{- end -}}
+
+{{- if isset .Params "about" -}}
+{{- range .Params.About.about_item }}
+{{- $sc.Add "ct" (print .title " " .subtitle " " .content) -}}
+{{- end -}}
+{{- end -}}
+{{- $sc.Add "ct" .Plain -}}
+{{- $content := $sc.Get "ct" }}
+
+{{ $date:= .PublishDate.Format "02"}}
+{{- $.Scratch.Add "index" (dict "title" .Title "date" $date "tags" .Params.tags "image" .Params.image "categories"
+.Params.categories "contents" $content "permalink" .Permalink) -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

@@ -108,6 +108,12 @@
                             <li><a class="dropdown-item" href="{{ .Site.Params.apache.apacheUrl }}">Website</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <form action="/search" method="GET" class="search-bar">
+                            <input type="search" name="q" id="search-query" placeholder="Search..." class="search-input">
+                            <button type="submit" class="search-button">Search</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
