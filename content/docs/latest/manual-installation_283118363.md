@@ -16,6 +16,7 @@ date: 2024-12-12
 	+ [Extra hadoop configurations to make everything working]({{< ref "#extra-hadoop-configurations-to-make-everything-working" >}})
 	+ [Installing Hive from a Tarball]({{< ref "#installing-hive-from-a-tarball" >}})
 	+ [Installing from Source Code]({{< ref "#installing-from-source-code" >}})
+        + [Installing with old version hadoop(>=3.1.0)]({{< ref "#installing-with-old-version-hadoop(>=3.1.0)" >}})
 	+ [Next Steps]({{< ref "#next-steps" >}})
 	+ [Beeline CLI]({{< ref "#beeline-cli" >}})
 	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
@@ -377,6 +378,75 @@ It has a content like:
 That directory should contain all the files necessary to run Hive. You can run it from there or copy it to a different location, if you prefer.
 
 From now, you can follow the steps described in the section Installing Hive from a Tarball
+
+## Installing with old version hadoop(>=3.1.0)
+
+Although we normally require hive4 to rely on a 
+hadoop 3.3.6 cluster environment. 
+However, in practice, in an ON YARN environment,
+we can package all the hadoop related dependencies into 
+tez&hive so that they do not need to rely on the lib 
+of the original hadoop cluster environment at runtime. 
+In this way, we can run HIVE4 in a lower version of hadoop, 
+provided that the base APIs of the hadoop 3.x series are common to 
+each other.
+
+The steps are as follows:
+
+1.Download the high version of the Hadoop package, unzip it, and then set the hadoop_home finger of the env script in HIVE4 to the path where the high version of hadoop is unzipped.
+
+2.Compile TEZ to get tez.tar.gz which contains all hadoop related dependencies, 
+first extract it on the physical machine where HIVE is deployed and configure the TEZ_HOME in HIVE to point to it, 
+then place tez.tar.gz in a path in hdfs.
+
+```shell
+[root@hmsclient01 opt]# ll
+drwxr-xr-x 11 hive hadoop      4096 Nov  7 13:59 apache-hive-4.0.1-SNAPSHOT-bin
+drwxr-xr-x  3 hive hadoop      4096 Nov  7 13:59 apache-tez-0.10.4-bin
+drwxr-xr-x 10 hive hadoop      4096 Nov  7 13:59 hadoop-3.3.6
+lrwxrwxrwx  1 hive hadoop        30 Nov  7 13:59 hive-4.0.0 -> apache-hive-4.0.1-SNAPSHOT-bin
+lrwxrwxrwx  1 hive hadoop        21 Nov  7 13:59 tez -> apache-tez-0.10.4-bin
+[root@hmsclient01 opt]# pwd
+/opt
+```
+
+edit `hive-env.sh`
+```shell
+# Folder containing extra libraries required for hive compilation/execution can be controlled by:
+export TEZ_HOME=/opt/tez
+# Set HADOOP_HOME to point to a specific hadoop install directory
+#HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
+HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop-3.3.6}
+
+export HIVE_HOME=${HIVE_HOME:-/opt/hive-4.0.0}
+```
+
+3.In tez-site.xml. Set the following two confs to use only the libs that come with tez. For nativeLib, 
+you can reuse the cluster's existing libs.
+```xml
+      <property>
+        <name>tez.lib.uris</name><!--hdfs path-->
+        <value>/{hdfs-dir}/apache-tez-0.10.4-bin.tar.gz</value>
+    </property>
+    <property>
+        <name>tez.lib.uris.classpath</name> <!--only use tez self lib-->
+       <value>$PWD/tezlib/*,$PWD/tezlib/lib/*</value>
+    </property>
+
+    <property>
+        <name>tez.am.launch.env</name><!--Example, replace with actual value-->
+        <value>LD_LIBRARY_PATH=/usr/hdp/3.1.0.0-78/hadoop/lib/native</value>
+    </property>
+    
+    <property>
+        <name>tez.task.launch.env</name><!--Example, replace with actual value-->
+        <value>LD_LIBRARY_PATH=/usr/hdp/3.1.0.0-78/hadoop/lib/native</value>
+    </property>
+
+```
+
+Through the above steps, we can run Hive4+tez in any Hadoop3 environment. Users do not need to upgrade the cluster's original hive/hadoop/tez.
+
 
 ## Next Steps
 
