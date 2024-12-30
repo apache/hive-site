@@ -382,7 +382,7 @@ From now, you can follow the steps described in the section Installing Hive fro
 ## Installing with old version hadoop(>=3.1.0)
 
 Although we normally require hive4 to rely on a 
-hadoop 3.3.6 cluster environment. 
+hadoop 3.3.6+ cluster environment. 
 However, in practice, in an ON YARN environment,
 we can package all the hadoop related dependencies into 
 tez&hive so that they do not need to rely on the lib 
