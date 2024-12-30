@@ -400,17 +400,19 @@ first extract it on the physical machine where HIVE is deployed and configure th
 then place tez.tar.gz in a path in hdfs.
 
 ```shell
+## This is an example,Users should install HIVE and TEZ into actual directories.
+## In this example, we have installed HIVE-4.0.1 and TEZ-0.10.4 on an Hadoop 3.1.0 cluster.
+[root@hmsclient01 opt]# cd /opt
 [root@hmsclient01 opt]# ll
-drwxr-xr-x 11 hive hadoop      4096 Nov  7 13:59 apache-hive-4.0.1-SNAPSHOT-bin
+drwxr-xr-x 11 hive hadoop      4096 Nov  7 13:59 apache-hive-4.0.1-bin
 drwxr-xr-x  3 hive hadoop      4096 Nov  7 13:59 apache-tez-0.10.4-bin
 drwxr-xr-x 10 hive hadoop      4096 Nov  7 13:59 hadoop-3.3.6
-lrwxrwxrwx  1 hive hadoop        30 Nov  7 13:59 hive-4.0.0 -> apache-hive-4.0.1-SNAPSHOT-bin
+lrwxrwxrwx  1 hive hadoop        30 Nov  7 13:59 hive-4.0.0 -> apache-hive-4.0.1-bin
 lrwxrwxrwx  1 hive hadoop        21 Nov  7 13:59 tez -> apache-tez-0.10.4-bin
-[root@hmsclient01 opt]# pwd
-/opt
 ```
 
 edit `hive-env.sh`
+
 ```shell
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
 export TEZ_HOME=/opt/tez
