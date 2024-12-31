@@ -24,7 +24,7 @@ date: 2024-12-12
 	+ [Basic Approach]({{< ref "#basic-approach" >}})
 * [Implementation]({{< ref "#implementation" >}})
 	+ [Events]({{< ref "#events" >}})
-	+ [Event IDs, State IDs, and Sequencing of Exports/Imports]({{< ref "#event-ids,-state-ids,-and-sequencing-of-exports/imports" >}})
+	+ [Event IDs, State IDs, and Sequencing of Exports/Imports]({{< ref "#event-ids-state-ids-and-sequencing-of-exportsimports" >}})
 	+ [Handling of Events]({{< ref "#handling-of-events" >}})
 * [Future Features]({{< ref "#future-features" >}})
 * [References]({{< ref "#references" >}})

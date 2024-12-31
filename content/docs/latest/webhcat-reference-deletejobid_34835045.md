@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Delete Job — DELETE jobs/:jobid
 
-* [Delete Job — DELETE jobs/:jobid]({{< ref "#delete-job-—-delete-jobs/:jobid" >}})
+* [Delete Job — DELETE jobs/:jobid]({{< ref "#delete-job--delete-jobsjobid" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Current Status — GET status
 
-* [Current Status — GET status]({{< ref "#current-status-—-get-status" >}})
+* [Current Status — GET status]({{< ref "#current-status--get-status" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

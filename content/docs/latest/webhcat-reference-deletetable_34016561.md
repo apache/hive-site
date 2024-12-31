@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Delete Table — DELETE ddl/database/:db/table/:table
 
-* [Delete Table — DELETE ddl/database/:db/table/:table]({{< ref "#delete-table-—-delete-ddl/database/:db/table/:table" >}})
+* [Delete Table — DELETE ddl/database/:db/table/:table]({{< ref "#delete-table--delete-ddldatabasedbtabletable" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

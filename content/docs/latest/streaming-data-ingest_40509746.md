@@ -17,7 +17,7 @@ date: 2024-12-12
 		- [TransactionBatch]({{< ref "#transactionbatch" >}})
 			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
 		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#i/o-–-writing-data" >}})
+	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
 		- [RecordWriter]({{< ref "#recordwriter" >}})
 		- [DelimitedInputWriter]({{< ref "#delimitedinputwriter" >}})
 		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})

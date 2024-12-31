@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Import/Export
 
-* [Import/Export]({{< ref "#import/export" >}})
+* [Import/Export]({{< ref "#importexport" >}})
 	+ [Overview]({{< ref "#overview" >}})
 	+ [Export Syntax]({{< ref "#export-syntax" >}})
 	+ [Import Syntax]({{< ref "#import-syntax" >}})

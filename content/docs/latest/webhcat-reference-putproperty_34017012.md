@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Set Property — PUT ddl/database/:db/table/:table/property/:property
 
-* [Set Property — PUT ddl/database/:db/table/:table/property/:property]({{< ref "#set-property-—-put-ddl/database/:db/table/:table/property/:property" >}})
+* [Set Property — PUT ddl/database/:db/table/:table/property/:property]({{< ref "#set-property--put-ddldatabasedbtabletablepropertyproperty" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

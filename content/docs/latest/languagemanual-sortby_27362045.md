@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual SortBy
 
-* [Order, Sort, Cluster, and Distribute By]({{< ref "#order,-sort,-cluster,-and-distribute-by" >}})
+* [Order, Sort, Cluster, and Distribute By]({{< ref "#order-sort-cluster-and-distribute-by" >}})
 	+ [Syntax of Order By]({{< ref "#syntax-of-order-by" >}})
 	+ [Syntax of Sort By]({{< ref "#syntax-of-sort-by" >}})
 		- [Difference between Sort By and Order By]({{< ref "#difference-between-sort-by-and-order-by" >}})

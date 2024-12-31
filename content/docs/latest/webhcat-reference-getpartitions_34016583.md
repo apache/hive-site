@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List Partitions — GET ddl/database/:db/table/:table/partition
 
-* [List Partitions — GET ddl/database/:db/table/:table/partition]({{< ref "#list-partitions-—-get-ddl/database/:db/table/:table/partition" >}})
+* [List Partitions — GET ddl/database/:db/table/:table/partition]({{< ref "#list-partitions--get-ddldatabasedbtabletablepartition" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

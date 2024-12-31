@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # DDL Command — POST ddl
 
-* [DDL Command — POST ddl]({{< ref "#ddl-command-—-post-ddl" >}})
+* [DDL Command — POST ddl]({{< ref "#ddl-command--post-ddl" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
@@ -15,7 +15,7 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
+		- [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 

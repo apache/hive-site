@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : HiveServer2 Clients
 
-* [Beeline – Command Line Shell]({{< ref "#beeline-–-command-line-shell" >}})
+* [Beeline – Command Line Shell]({{< ref "#beeline--command-line-shell" >}})
 	+ [Beeline Example]({{< ref "#beeline-example" >}})
 	+ [Beeline Commands]({{< ref "#beeline-commands" >}})
 	+ [Beeline Properties]({{< ref "#beeline-properties" >}})
@@ -19,7 +19,7 @@ date: 2024-12-12
 		- [json]({{< ref "#json" >}})
 		- [jsonfile]({{< ref "#jsonfile" >}})
 		- [Separated-Value Output Formats]({{< ref "#separated-value-output-formats" >}})
-			* [csv2, tsv2, dsv]({{< ref "#csv2,-tsv2,-dsv" >}})
+			* [csv2, tsv2, dsv]({{< ref "#csv2-tsv2-dsv" >}})
 				+ [Quoting in csv2, tsv2 and dsv Formats]({{< ref "#quoting-in-csv2,-tsv2-and-dsv-formats" >}})
 			* [csv, tsv]({{< ref "#csv,-tsv" >}})
 	+ [HiveServer2 Logging]({{< ref "#hiveserver2-logging" >}})
@@ -34,8 +34,8 @@ date: 2024-12-12
 		- [Connection URL When ZooKeeper Service Discovery Is Enabled]({{< ref "#connection-url-when-zookeeper-service-discovery-is-enabled" >}})
 		- [Named Connection URLs]({{< ref "#named-connection-urls" >}})
 		- [Reconnecting]({{< ref "#reconnecting" >}})
-		- [Using hive-site.xml to automatically connect to HiveServer2]({{< ref "#using-hive-site-xml-to-automatically-connect-to-hiveserver2" >}})
-		- [Using beeline-site.xml to automatically connect to HiveServer2]({{< ref "#using-beeline-site-xml-to-automatically-connect-to-hiveserver2" >}})
+		- [Using hive-site.xml to automatically connect to HiveServer2]({{< ref "#using-hive-sitexml-to-automatically-connect-to-hiveserver2" >}})
+		- [Using beeline-site.xml to automatically connect to HiveServer2]({{< ref "#using-beeline-sitexml-to-automatically-connect-to-hiveserver2" >}})
 		- [Using JDBC]({{< ref "#using-jdbc" >}})
 			* [JDBC Client Sample Code]({{< ref "#jdbc-client-sample-code" >}})
 			* [Running the JDBC Sample Code]({{< ref "#running-the-jdbc-sample-code" >}})
@@ -48,12 +48,12 @@ date: 2024-12-12
 * [Ruby Client]({{< ref "#ruby-client" >}})
 * [Integration with SQuirrel SQL Client]({{< ref "#integration-with-squirrel-sql-client" >}})
 * [Integration with SQL Developer]({{< ref "#integration-with-sql-developer" >}})
-* [Integration with DbVisSoftware's DbVisualizer]({{< ref "#integration-with-dbvissoftware's-dbvisualizer" >}})
+* [Integration with DbVisSoftware's DbVisualizer]({{< ref "#integration-with-dbvissoftwares-dbvisualizer" >}})
 * [Advanced Features for Integration with Other Tools]({{< ref "#advanced-features-for-integration-with-other-tools" >}})
 	+ [Supporting Cookie Replay in HTTP Mode]({{< ref "#supporting-cookie-replay-in-http-mode" >}})
 	+ [Using 2-way SSL in HTTP Mode]({{< ref "#using-2-way-ssl-in-http-mode" >}})
-	+ [Passing HTTP Header Key/Value Pairs via JDBC Driver]({{< ref "#passing-http-header-key/value-pairs-via-jdbc-driver" >}})
-	+ [Passing Custom HTTP Cookie Key/Value Pairs via JDBC Driver]({{< ref "#passing-custom-http-cookie-key/value-pairs-via-jdbc-driver" >}})
+	+ [Passing HTTP Header Key/Value Pairs via JDBC Driver]({{< ref "#passing-http-header-keyvalue-pairs-via-jdbc-driver" >}})
+	+ [Passing Custom HTTP Cookie Key/Value Pairs via JDBC Driver]({{< ref "#passing-custom-http-cookie-keyvalue-pairs-via-jdbc-driver" >}})
 
 This page describes the different clients supported by [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}).  Other documentation for HiveServer2 includes:
 

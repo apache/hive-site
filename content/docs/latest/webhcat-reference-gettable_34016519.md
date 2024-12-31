@@ -7,17 +7,17 @@ date: 2024-12-12
 
 # Describe Table — GET ddl/database/:db/table/:table
 
-* [Describe Table — GET ddl/database/:db/table/:table]({{< ref "#describe-table-—-get-ddl/database/:db/table/:table" >}})
+* [Describe Table — GET ddl/database/:db/table/:table]({{< ref "#describe-table--get-ddldatabasedbtabletable" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
 	+ [Results]({{< ref "#results" >}})
 	+ [Example]({{< ref "#example" >}})
-		- [Curl Command (simple)]({{< ref "#curl-command--simple-" >}})
-		- [JSON Output (simple)]({{< ref "#json-output--simple-" >}})
-		- [Curl Command (extended)]({{< ref "#curl-command--extended-" >}})
-		- [JSON Output (extended)]({{< ref "#json-output--extended-" >}})
-		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
+		- [Curl Command (simple)]({{< ref "#curl-command-simple" >}})
+		- [JSON Output (simple)]({{< ref "#json-output-simple" >}})
+		- [Curl Command (extended)]({{< ref "#curl-command-extended" >}})
+		- [JSON Output (extended)]({{< ref "#json-output-extended" >}})
+		- [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 

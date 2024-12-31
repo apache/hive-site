@@ -6,7 +6,7 @@ date: 2024-12-12
 # Apache Hive : AdminManual Configuration
 
 * [Configuring Hive]({{< ref "#configuring-hive" >}})
-	+ [hive-site.xml and hive-default.xml.template]({{< ref "#hive-site-xml-and-hive-default-xml-template" >}})
+	+ [hive-site.xml and hive-default.xml.template]({{< ref "#hive-sitexml-and-hive-defaultxmltemplate" >}})
 	+ [Temporary Folders]({{< ref "#temporary-folders" >}})
 	+ [Log Files]({{< ref "#log-files" >}})
 	+ [Derby Server Mode]({{< ref "#derby-server-mode" >}})
@@ -32,7 +32,7 @@ A number of configuration variables in Hive can be used by the administrator to 
   bin/hive --hiveconf hive.exec.scratchdir=/tmp/mydir
 
 ```
-* In **`hive-site.xml`**. This is used for setting values for the entire Hive configuration (see [hive-site.xml and hive-default.xml.template]({{< ref "#hive-site-xml-and-hive-default-xml-template" >}}) below). For example:
+* In **`hive-site.xml`**. This is used for setting values for the entire Hive configuration (see [hive-site.xml and hive-default.xml.template]({{< ref "#hive-sitexml-and-hive-defaultxmltemplate" >}}) below). For example:
 
 ```
   <property>

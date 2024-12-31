@@ -12,10 +12,10 @@ date: 2024-12-12
 	+ [Predicate Pushdown Rules]({{< ref "#predicate-pushdown-rules" >}})
 		- [Hive Implementation]({{< ref "#hive-implementation" >}})
 	+ [Examples]({{< ref "#examples" >}})
-		- [Case J1: Join Predicate on Preserved Row Table]({{< ref "#case-j1:-join-predicate-on-preserved-row-table" >}})
-		- [Case J2: Join Predicate on Null Supplying Table]({{< ref "#case-j2:-join-predicate-on-null-supplying-table" >}})
-		- [Case W1: Where Predicate on Preserved Row Table]({{< ref "#case-w1:-where-predicate-on-preserved-row-table" >}})
-		- [Case W2: Where Predicate on Null Supplying Table]({{< ref "#case-w2:-where-predicate-on-null-supplying-table" >}})
+		- [Case J1: Join Predicate on Preserved Row Table]({{< ref "#case-j1-join-predicate-on-preserved-row-table" >}})
+		- [Case J2: Join Predicate on Null Supplying Table]({{< ref "#case-j2-join-predicate-on-null-supplying-table" >}})
+		- [Case W1: Where Predicate on Preserved Row Table]({{< ref "#case-w1-where-predicate-on-preserved-row-table" >}})
+		- [Case W2: Where Predicate on Null Supplying Table]({{< ref "#case-w2-where-predicate-on-null-supplying-table" >}})
 
 This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html). The original HTML document is attached to the [Hive Design Docs]({{< ref "designdocs_27362075" >}}) and can be [downloaded here](https://cwiki.apache.org/confluence/download/attachments/27362075/OuterJoinBehavior.html).
 

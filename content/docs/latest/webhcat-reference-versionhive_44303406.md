@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Hive Version — GET version/hive
 
-* [Hive Version — GET version/hive]({{< ref "#hive-version-—-get-version/hive" >}})
+* [Hive Version — GET version/hive]({{< ref "#hive-version--get-versionhive" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

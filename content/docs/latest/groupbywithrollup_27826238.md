@@ -16,12 +16,12 @@ References:
 * [Group By With Rollup]({{< ref "#group-by-with-rollup" >}})
 	+ [Terminology]({{< ref "#terminology" >}})
 	+ [Design]({{< ref "#design" >}})
-		- [Map Aggr & No Skew:]({{< ref "#map-aggr-&-no-skew:" >}})
-		- [Map Aggr & Skew]({{< ref "#map-aggr-&-skew" >}})
-		- [No Map Aggr & No Skew & No Rollup]({{< ref "#no-map-aggr-&-no-skew-&-no-rollup" >}})
-		- [No Map Aggr & No Skew & With Rollup]({{< ref "#no-map-aggr-&-no-skew-&-with-rollup" >}})
-		- [No Map Aggr & Skew & (No Distinct or No Rollup)]({{< ref "#no-map-aggr-&-skew-&--no-distinct-or-no-rollup-" >}})
-		- [No Map Aggr & Skew & Distinct & Rollup]({{< ref "#no-map-aggr-&-skew-&-distinct-&-rollup" >}})
+		- [Map Aggr & No Skew:]({{< ref "#map-aggr--no-skew" >}})
+		- [Map Aggr & Skew]({{< ref "#map-aggr--skew" >}})
+		- [No Map Aggr & No Skew & No Rollup]({{< ref "#no-map-aggr--no-skew--no-rollup" >}})
+		- [No Map Aggr & No Skew & With Rollup]({{< ref "#no-map-aggr--no-skew--with-rollup" >}})
+		- [No Map Aggr & Skew & (No Distinct or No Rollup)]({{< ref "#no-map-aggr--skew--no-distinct-or-no-rollup" >}})
+		- [No Map Aggr & Skew & Distinct & Rollup]({{< ref "#no-map-aggr--skew--distinct--rollup" >}})
 
 ## Terminology
 

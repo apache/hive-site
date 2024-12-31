@@ -15,7 +15,7 @@ date: 2024-12-12
 * [ODBC]({{< ref "#odbc" >}})
 * [Thrift]({{< ref "#thrift" >}})
 	+ [Thrift Java Client]({{< ref "#thrift-java-client" >}})
-	+ [Thrift C++ Client]({{< ref "#thrift-c++-client" >}})
+	+ [Thrift C++ Client]({{< ref "#thrift-c-client" >}})
 	+ [Thrift Node Clients]({{< ref "#thrift-node-clients" >}})
 	+ [Thrift Ruby Client]({{< ref "#thrift-ruby-client" >}})
 

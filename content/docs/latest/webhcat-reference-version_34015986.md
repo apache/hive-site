@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List Versions — GET version
 
-* [List Versions — GET version]({{< ref "#list-versions-—-get-version" >}})
+* [List Versions — GET version]({{< ref "#list-versions--get-version" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

@@ -7,12 +7,12 @@ date: 2024-12-12
 
 # Using the HCatalog REST API (WebHCat)
 
-* [Using the HCatalog REST API (WebHCat)]({{< ref "#using-the-hcatalog-rest-api--webhcat-" >}})
+* [Using the HCatalog REST API (WebHCat)]({{< ref "#using-the-hcatalog-rest-api-webhcat" >}})
 	+ [Introduction to WebHCat]({{< ref "#introduction-to-webhcat" >}})
 	+ [URL Format]({{< ref "#url-format" >}})
 	+ [Security]({{< ref "#security" >}})
 		- [Standard Parameters]({{< ref "#standard-parameters" >}})
-			* [Specifying user.name]({{< ref "#specifying-user-name" >}})
+			* [Specifying user.name]({{< ref "#specifying-username" >}})
 		- [Security Error Response]({{< ref "#security-error-response" >}})
 	+ [WebHDFS and Code Push]({{< ref "#webhdfs-and-code-push" >}})
 	+ [Error Codes and Responses]({{< ref "#error-codes-and-responses" >}})

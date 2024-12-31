@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Describe Partition — GET ddl/database/:db/table/:table/partition/:partition
 
-* [Describe Partition — GET ddl/database/:db/table/:table/partition/:partition]({{< ref "#describe-partition-—-get-ddl/database/:db/table/:table/partition/:partition" >}})
+* [Describe Partition — GET ddl/database/:db/table/:table/partition/:partition]({{< ref "#describe-partition--get-ddldatabasedbtabletablepartitionpartition" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

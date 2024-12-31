@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Hive Job — POST hive
 
-* [Hive Job — POST hive]({{< ref "#hive-job-—-post-hive" >}})
+* [Hive Job — POST hive]({{< ref "#hive-job--post-hive" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

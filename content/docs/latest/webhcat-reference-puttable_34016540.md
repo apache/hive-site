@@ -7,16 +7,16 @@ date: 2024-12-12
 
 # Create Table — PUT ddl/database/:db/table/:table
 
-* [Create Table — PUT ddl/database/:db/table/:table]({{< ref "#create-table-—-put-ddl/database/:db/table/:table" >}})
+* [Create Table — PUT ddl/database/:db/table/:table]({{< ref "#create-table--put-ddldatabasedbtabletable" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
 	+ [Results]({{< ref "#results" >}})
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
-		- [Curl Command (using clusteredBy)]({{< ref "#curl-command--using-clusteredby-" >}})
+		- [Curl Command (using clusteredBy)]({{< ref "#curl-command-using-clusteredby" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
+		- [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 

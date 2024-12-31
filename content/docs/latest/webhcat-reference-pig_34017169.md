@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Pig Job — POST pig
 
-* [Pig Job — POST pig]({{< ref "#pig-job-—-post-pig" >}})
+* [Pig Job — POST pig]({{< ref "#pig-job--post-pig" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

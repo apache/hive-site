@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List JobIDs — GET jobs
 
-* [List JobIDs — GET jobs]({{< ref "#list-jobids-—-get-jobs" >}})
+* [List JobIDs — GET jobs]({{< ref "#list-jobids--get-jobs" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
@@ -15,10 +15,10 @@ date: 2024-12-12
 	+ [Examples]({{< ref "#examples" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [Curl Command (showall)]({{< ref "#curl-command--showall-" >}})
-		- [JSON Output (showall)]({{< ref "#json-output--showall-" >}})
-		- [Curl Command (fields)]({{< ref "#curl-command--fields-" >}})
-		- [JSON Output (fields)]({{< ref "#json-output--fields-" >}})
+		- [Curl Command (showall)]({{< ref "#curl-command-showall" >}})
+		- [JSON Output (showall)]({{< ref "#json-output-showall" >}})
+		- [Curl Command (fields)]({{< ref "#curl-command-fields" >}})
+		- [JSON Output (fields)]({{< ref "#json-output-fields" >}})
 
 ## Description
 

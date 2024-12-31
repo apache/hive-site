@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Rename Table — POST ddl/database/:db/table/:table
 
-* [Rename Table — POST ddl/database/:db/table/:table]({{< ref "#rename-table-—-post-ddl/database/:db/table/:table" >}})
+* [Rename Table — POST ddl/database/:db/table/:table]({{< ref "#rename-table--post-ddldatabasedbtabletable" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
@@ -15,7 +15,7 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
+		- [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 

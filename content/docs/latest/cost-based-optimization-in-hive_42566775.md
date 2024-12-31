@@ -6,11 +6,11 @@ date: 2024-12-12
 # Apache Hive : Cost-based optimization in Hive
 
 * [Abstract]({{< ref "#abstract" >}})
-* [1. INTRODUCTION]({{< ref "#1--introduction" >}})
-* [2. RELATED WORK]({{< ref "#2--related-work" >}})
-* [3. BACKGROUND]({{< ref "#3--background" >}})
-* [4. Implementation details]({{< ref "#4--implementation-details" >}})
-* [5. Phase 1 – Work Items]({{< ref "#5--phase-1-–-work-items" >}})
+* [1. INTRODUCTION]({{< ref "#1-introduction" >}})
+* [2. RELATED WORK]({{< ref "#2-related-work" >}})
+* [3. BACKGROUND]({{< ref "#3-background" >}})
+* [4. Implementation details]({{< ref "#4-implementation-details" >}})
+* [5. Phase 1 – Work Items]({{< ref "#5-phase-1--work-items" >}})
 * [Open Issues]({{< ref "#open-issues" >}})
 * [Reference]({{< ref "#reference" >}})
 

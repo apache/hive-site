@@ -16,7 +16,7 @@ date: 2024-12-12
 	+ [Example 3]({{< ref "#example-3" >}})
 * [Materialized view maintenance]({{< ref "#materialized-view-maintenance" >}})
 * [Materialized view lifecycle]({{< ref "#materialized-view-lifecycle" >}})
-* [Open issues (JIRA)]({{< ref "#open-issues--jira-" >}})
+* [Open issues (JIRA)]({{< ref "#open-issues-jira" >}})
 
   
 

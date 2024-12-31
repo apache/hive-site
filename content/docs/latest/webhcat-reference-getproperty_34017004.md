@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Property Value — GET ddl/database/:db/table/:table/property/:property
 
-* [Property Value — GET ddl/database/:db/table/:table/property/:property]({{< ref "#property-value-—-get-ddl/database/:db/table/:table/property/:property" >}})
+* [Property Value — GET ddl/database/:db/table/:table/property/:property]({{< ref "#property-value--get-ddldatabasedbtabletablepropertyproperty" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
@@ -15,7 +15,7 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output--error-" >}})
+		- [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 

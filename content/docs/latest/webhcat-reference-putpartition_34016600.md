@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Create Partition — PUT ddl/database/:db/table/:table/partition/:partition
 
-* [Create Partition — PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "#create-partition-—-put-ddl/database/:db/table/:table/partition/:partition" >}})
+* [Create Partition — PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "#create-partition--put-ddldatabasedbtabletablepartitionpartition" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

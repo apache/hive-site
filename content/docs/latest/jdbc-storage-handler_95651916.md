@@ -10,7 +10,7 @@ date: 2024-12-12
 * [Syntax]({{< ref "#syntax" >}})
 	+ [Table Properties]({{< ref "#table-properties" >}})
 	+ [Supported Data Type]({{< ref "#supported-data-type" >}})
-	+ [Column/Type Mapping]({{< ref "#column/type-mapping" >}})
+	+ [Column/Type Mapping]({{< ref "#columntype-mapping" >}})
 * [Auto Shipping]({{< ref "#auto-shipping" >}})
 * [Securing Password]({{< ref "#securing-password" >}})
 * [Partitioning]({{< ref "#partitioning" >}})

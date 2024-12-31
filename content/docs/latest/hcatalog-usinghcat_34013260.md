@@ -13,9 +13,9 @@ date: 2024-12-12
 		- [Interfaces]({{< ref "#interfaces" >}})
 		- [Data Model]({{< ref "#data-model" >}})
 	+ [Data Flow Example]({{< ref "#data-flow-example" >}})
-		- [First: Copy Data to the Grid]({{< ref "#first:-copy-data-to-the-grid" >}})
-		- [Second: Prepare the Data]({{< ref "#second:-prepare-the-data" >}})
-		- [Third: Analyze the Data]({{< ref "#third:-analyze-the-data" >}})
+		- [First: Copy Data to the Grid]({{< ref "#first-copy-data-to-the-grid" >}})
+		- [Second: Prepare the Data]({{< ref "#second-prepare-the-data" >}})
+		- [Third: Analyze the Data]({{< ref "#third-analyze-the-data" >}})
 	+ [HCatalog Web API]({{< ref "#hcatalog-web-api" >}})
 
 Version information

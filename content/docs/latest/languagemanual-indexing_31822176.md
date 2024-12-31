@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Indexing
 
-* [Indexing Is Removed since 3.0]({{< ref "#indexing-is-removed-since-3-0" >}})
+* [Indexing Is Removed since 3.0]({{< ref "#indexing-is-removed-since-30" >}})
 * [Overview of Hive Indexes]({{< ref "#overview-of-hive-indexes" >}})
 * [Indexing Resources]({{< ref "#indexing-resources" >}})
 	+ [Configuration Parameters for Hive Indexes]({{< ref "#configuration-parameters-for-hive-indexes" >}})

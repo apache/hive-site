@@ -10,11 +10,11 @@ date: 2024-12-12
 This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions. 
 
 * [Statistics and Data Mining in Hive]({{< ref "#statistics-and-data-mining-in-hive" >}})
-	+ [ngrams() and context\_ngrams(): N-gram frequency estimation]({{< ref "#ngrams---and-context\_ngrams--:-n-gram-frequency-estimation" >}})
+	+ [ngrams() and context\_ngrams(): N-gram frequency estimation]({{< ref "#ngrams-and-context_ngrams-n-gram-frequency-estimation" >}})
 		- [Use Cases]({{< ref "#use-cases" >}})
 		- [Usage]({{< ref "#usage" >}})
 		- [Example]({{< ref "#example" >}})
-	+ [histogram\_numeric(): Estimating frequency distributions]({{< ref "#histogram\_numeric--:-estimating-frequency-distributions" >}})
+	+ [histogram\_numeric(): Estimating frequency distributions]({{< ref "#histogram_numeric-estimating-frequency-distributions" >}})
 		- [Use Cases]({{< ref "#use-cases" >}})
 		- [Usage]({{< ref "#usage" >}})
 		- [Example]({{< ref "#example" >}})

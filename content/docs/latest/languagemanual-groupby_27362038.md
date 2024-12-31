@@ -11,7 +11,7 @@ date: 2024-12-12
 * [Advanced Features]({{< ref "#advanced-features" >}})
 	+ [Multi-Group-By Inserts]({{< ref "#multi-group-by-inserts" >}})
 	+ [Map-side Aggregation for Group By]({{< ref "#map-side-aggregation-for-group-by" >}})
-	+ [Grouping Sets, Cubes, Rollups, and the GROUPING\_\_ID Function]({{< ref "#grouping-sets,-cubes,-rollups,-and-the-grouping\_\_id-function" >}})
+	+ [Grouping Sets, Cubes, Rollups, and the GROUPING\_\_ID Function]({{< ref "#grouping-sets-cubes-rollups-and-the-grouping__id-function" >}})
 
 ## Group By Syntax
 

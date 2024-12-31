@@ -11,7 +11,7 @@ date: 2024-12-12
 	+ [New committers]({{< ref "#new-committers" >}})
 	+ [Review]({{< ref "#review" >}})
 	+ [Reject]({{< ref "#reject" >}})
-	+ [PreCommit runs, and committing patches]({{< ref "#precommit-runs,-and-committing-patches" >}})
+	+ [PreCommit runs, and committing patches]({{< ref "#precommit-runs-and-committing-patches" >}})
 	+ [Commit]({{< ref "#commit" >}})
 		- [Committing Documentation]({{< ref "#committing-documentation" >}})
 	+ [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # MapReduce Streaming Job — POST mapreduce/streaming
 
-* [MapReduce Streaming Job — POST mapreduce/streaming]({{< ref "#mapreduce-streaming-job-—-post-mapreduce/streaming" >}})
+* [MapReduce Streaming Job — POST mapreduce/streaming]({{< ref "#mapreduce-streaming-job--post-mapreducestreaming" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

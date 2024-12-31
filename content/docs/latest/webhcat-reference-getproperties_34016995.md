@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List Properties — GET ddl/database/:db/table/:table/property
 
-* [List Properties — GET ddl/database/:db/table/:table/property]({{< ref "#list-properties-—-get-ddl/database/:db/table/:table/property" >}})
+* [List Properties — GET ddl/database/:db/table/:table/property]({{< ref "#list-properties--get-ddldatabasedbtabletableproperty" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

@@ -16,7 +16,7 @@ date: 2024-12-12
 		- [Logging Configuration]({{< ref "#logging-configuration" >}})
 	+ [How to Start]({{< ref "#how-to-start" >}})
 		- [Usage Message]({{< ref "#usage-message" >}})
-	+ [Authentication/Security Configuration]({{< ref "#authentication/security-configuration" >}})
+	+ [Authentication/Security Configuration]({{< ref "#authenticationsecurity-configuration" >}})
 		- [Configuration]({{< ref "#configuration" >}})
 		- [Impersonation]({{< ref "#impersonation" >}})
 		- [Integrity/Confidentiality Protection]({{< ref "#integrity/confidentiality-protection" >}})
