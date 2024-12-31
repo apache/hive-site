@@ -395,7 +395,7 @@ The steps are as follows:
 
 1.Download the high version of the Hadoop package, unzip it, and then set the hadoop_home finger of the env script in HIVE4 to the path where the high version of hadoop is unzipped.
 
-2.Compile TEZ to get tez.tar.gz which contains all hadoop related dependencies, 
+2.Compile TEZ to get tez.tar.gz which contains all hadoop related dependencies(not tez minimal tarball), 
 first extract it on the physical machine where HIVE is deployed and configure the TEZ_HOME in HIVE to point to it, 
 then place tez.tar.gz in a path in hdfs.
 
@@ -417,7 +417,6 @@ edit `hive-env.sh`
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
 export TEZ_HOME=/opt/tez
 # Set HADOOP_HOME to point to a specific hadoop install directory
-#HADOOP_HOME=${HADOOP_HOME:-/usr/hdp/current/hadoop-client}
 HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop-3.3.6}
 
 export HIVE_HOME=${HIVE_HOME:-/opt/hive-4.0.0}
