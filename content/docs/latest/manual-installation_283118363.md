@@ -422,16 +422,20 @@ HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop-3.3.6}
 export HIVE_HOME=${HIVE_HOME:-/opt/hive-4.0.0}
 ```
 
-3.In tez-site.xml. Set the following two confs to use only the libs that come with tez. For nativeLib, 
+3.In tez-site.xml. Set the following confs to use only the libs that come with tez. For nativeLib, 
 you can reuse the cluster's existing libs.
 ```xml
-      <property>
+    <property>
         <name>tez.lib.uris</name><!--hdfs path-->
         <value>/{hdfs-dir}/apache-tez-0.10.4-bin.tar.gz</value>
     </property>
     <property>
         <name>tez.lib.uris.classpath</name> <!--only use tez self lib,do not use any old version hadoop cluster's lib-->
        <value>$PWD/tezlib/*,$PWD/tezlib/lib/*</value>
+    </property>
+    <property>
+        <name>tez.use.cluster.hadoop-libs</name><!--only use tez self lib,do not use any old version hadoop cluster's lib-->
+        <value>false</value>
     </property>
 
     <property>
