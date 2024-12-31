@@ -430,7 +430,7 @@ you can reuse the cluster's existing libs.
         <value>/{hdfs-dir}/apache-tez-0.10.4-bin.tar.gz</value>
     </property>
     <property>
-        <name>tez.lib.uris.classpath</name> <!--only use tez self lib-->
+        <name>tez.lib.uris.classpath</name> <!--only use tez self lib,do not use any old version hadoop cluster's lib-->
        <value>$PWD/tezlib/*,$PWD/tezlib/lib/*</value>
     </property>
 
