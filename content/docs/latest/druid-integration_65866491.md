@@ -15,14 +15,14 @@ date: 2024-12-12
 		- [Create tables linked to existing Druid datasources]({{< ref "#create-tables-linked-to-existing-druid-datasources" >}})
 		- [Create Druid datasources from Hive]({{< ref "#create-druid-datasources-from-hive" >}})
 		- [Druid kafka ingestion from Hive]({{< ref "#druid-kafka-ingestion-from-hive" >}})
-			* [Start/Stop/Reset Druid Kafka ingestion]({{< ref "#start/stop/reset-druid-kafka-ingestion" >}})
-		- [INSERT, INSERT OVERWRITE and DROP statements]({{< ref "#insert,-insert-overwrite-and-drop-statements" >}})
+			* [Start/Stop/Reset Druid Kafka ingestion]({{< ref "#startstopreset-druid-kafka-ingestion" >}})
+		- [INSERT, INSERT OVERWRITE and DROP statements]({{< ref "#insert-insert-overwrite-and-drop-statements" >}})
 		- [Queries completely executed in Druid]({{< ref "#queries-completely-executed-in-druid" >}})
 			* [Select queries]({{< ref "#select-queries" >}})
 			* [Timeseries queries]({{< ref "#timeseries-queries" >}})
 			* [GroupBy queries]({{< ref "#groupby-queries" >}})
 		- [Queries across Druid and Hive]({{< ref "#queries-across-druid-and-hive" >}})
-* [Open Issues (JIRA)]({{< ref "#open-issues--jira-" >}})
+* [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
 
  
 

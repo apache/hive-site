@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Writing UDTF's
 
-* [Writing UDTF's]({{< ref "#writing-udtf's" >}})
+* [Writing UDTF's]({{< ref "#writing-udtfs" >}})
 	+ [GenericUDTF Interface]({{< ref "#genericudtf-interface" >}})
 
 ## GenericUDTF Interface

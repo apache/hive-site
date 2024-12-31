@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Create Database — PUT ddl/database/:db
 
-* [Create Database — PUT ddl/database/:db]({{< ref "#create-database-—-put-ddl/database/:db" >}})
+* [Create Database — PUT ddl/database/:db]({{< ref "#create-database--put-ddldatabasedb" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

@@ -14,7 +14,7 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Newly Created Tables]({{< ref "#newly-created-tables" >}})
 		- [Existing Tables]({{< ref "#existing-tables" >}})
-	+ [Current Status (JIRA)]({{< ref "#current-status--jira-" >}})
+	+ [Current Status (JIRA)]({{< ref "#current-status-jira" >}})
 
 This document is an addition to [Statistics in Hive](https://cwiki.apache.org/confluence/display/Hive/StatsDev). It describes the support of collecting column level top K values for Hive tables (see [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421)).
 

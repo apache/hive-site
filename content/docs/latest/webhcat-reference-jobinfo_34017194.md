@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Job Information — GET queue/:jobid
 
-* [Job Information — GET queue/:jobid]({{< ref "#job-information-—-get-queue/:jobid" >}})
+* [Job Information — GET queue/:jobid]({{< ref "#job-information--get-queuejobid" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
@@ -15,7 +15,7 @@ date: 2024-12-12
 	+ [Example]({{< ref "#example" >}})
 		- [Curl Command]({{< ref "#curl-command" >}})
 		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (Hive 0.12.0 and later)]({{< ref "#json-output--hive-0-12-0-and-later-" >}})
+		- [JSON Output (Hive 0.12.0 and later)]({{< ref "#json-output-hive-0120-and-later" >}})
 
 ## Description
 

@@ -5,11 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : Manual Installation
 
-* [Installing, configuring and running Hive]({{< ref "#installing,-configuring-and-running-hive" >}})
+* [Installing, configuring and running Hive]({{< ref "#installing-configuring-and-running-hive" >}})
 	+ [Prerequisites]({{< ref "#prerequisites" >}})
 	+ [Install the prerequisites]({{< ref "#install-the-prerequisites" >}})
 		- [Java 8]({{< ref "#java-8" >}})
-		- [Maven:]({{< ref "#maven:" >}})
+		- [Maven:]({{< ref "#maven" >}})
 		- [Protobuf]({{< ref "#protobuf" >}})
 		- [Hadoop]({{< ref "#hadoop" >}})
 		- [Tez]({{< ref "#tez" >}})
@@ -21,7 +21,7 @@ date: 2024-12-12
 	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
 	+ [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
 		- [HCatalog]({{< ref "#hcatalog" >}})
-		- [WebHCat (Templeton)]({{< ref "#webhcat--templeton-" >}})
+		- [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
 
 # Installing, configuring and running Hive
 

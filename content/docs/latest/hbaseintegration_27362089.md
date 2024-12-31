@@ -17,7 +17,7 @@ date: 2024-12-12
 		- [Hive MAP to HBase Column Family]({{< ref "#hive-map-to-hbase-column-family" >}})
 		- [Hive MAP to HBase Column Prefix]({{< ref "#hive-map-to-hbase-column-prefix" >}})
 			* [Hiding Column Prefixes]({{< ref "#hiding-column-prefixes" >}})
-		- [Illegal: Hive Primitive to HBase Column Family]({{< ref "#illegal:-hive-primitive-to-hbase-column-family" >}})
+		- [Illegal: Hive Primitive to HBase Column Family]({{< ref "#illegal-hive-primitive-to-hbase-column-family" >}})
 		- [Example with Binary Columns]({{< ref "#example-with-binary-columns" >}})
 		- [Simple Composite Row Keys]({{< ref "#simple-composite-row-keys" >}})
 		- [Complex Composite Row Keys and HBaseKeyFactory]({{< ref "#complex-composite-row-keys-and-hbasekeyfactory" >}})
@@ -30,7 +30,7 @@ date: 2024-12-12
 	+ [Tests]({{< ref "#tests" >}})
 	+ [Links]({{< ref "#links" >}})
 	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
-	+ [Open Issues (JIRA)]({{< ref "#open-issues--jira-" >}})
+	+ [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
 
 Version information
 

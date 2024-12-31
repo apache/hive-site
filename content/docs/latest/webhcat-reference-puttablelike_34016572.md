@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable
 
-* [Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "#create-table-like-—-put-ddl/database/:db/table/:existingtable/like/:newtable" >}})
+* [Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "#create-table-like--put-ddldatabasedbtableexistingtablelikenewtable" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

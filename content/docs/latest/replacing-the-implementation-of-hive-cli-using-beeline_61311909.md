@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## 
 * 
-* [Why Replace the Existing Hive CLI?]({{< ref "#why-replace-the-existing-hive-cli?" >}})
+* [Why Replace the Existing Hive CLI?]({{< ref "#why-replace-the-existing-hive-cli" >}})
 * [Hive CLI Functionality Support]({{< ref "#hive-cli-functionality-support" >}})
 	+ [Hive CLI Options Support]({{< ref "#hive-cli-options-support" >}})
 	+ [Examples]({{< ref "#examples" >}})

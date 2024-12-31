@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List Columns — GET ddl/database/:db/table/:table/column
 
-* [List Columns — GET ddl/database/:db/table/:table/column]({{< ref "#list-columns-—-get-ddl/database/:db/table/:table/column" >}})
+* [List Columns — GET ddl/database/:db/table/:table/column]({{< ref "#list-columns--get-ddldatabasedbtabletablecolumn" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

@@ -7,7 +7,7 @@ date: 2024-12-12
 
   
 
-* [Status of Hive Authorization before Hive 0.13]({{< ref "#status-of-hive-authorization-before-hive-0-13" >}})
+* [Status of Hive Authorization before Hive 0.13]({{< ref "#status-of-hive-authorization-before-hive-013" >}})
 * [SQL Standards Based Hive Authorization (New in Hive 0.13)]({{< ref "#sql-standards-based-hive-authorization--new-in-hive-0-13-" >}})
 	+ [Restrictions on Hive Commands and Statements]({{< ref "#restrictions-on-hive-commands-and-statements" >}})
 	+ [Privileges]({{< ref "#privileges" >}})
@@ -21,11 +21,11 @@ date: 2024-12-12
 		- [Examples of Managing Object Privileges]({{< ref "#examples-of-managing-object-privileges" >}})
 	+ [Privileges Required for Hive Operations]({{< ref "#privileges-required-for-hive-operations" >}})
 	+ [Configuration]({{< ref "#configuration" >}})
-		- [For Hive 0.13.x]({{< ref "#for-hive-0-13-x" >}})
-		- [For Hive 0.14 and Newer]({{< ref "#for-hive-0-14-and-newer" >}})
+		- [For Hive 0.13.x]({{< ref "#for-hive-013x" >}})
+		- [For Hive 0.14 and Newer]({{< ref "#for-hive-014-and-newer" >}})
 	+ [Known Issues]({{< ref "#known-issues" >}})
-		- [Hive 0.13]({{< ref "#hive-0-13" >}})
-		- [Hive 0.13.1]({{< ref "#hive-0-13-1" >}})
+		- [Hive 0.13]({{< ref "#hive-013" >}})
+		- [Hive 0.13.1]({{< ref "#hive-0131" >}})
 	+ [References]({{< ref "#references" >}})
 	+ [Troubleshooting]({{< ref "#troubleshooting" >}})
 

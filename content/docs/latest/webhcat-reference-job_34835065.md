@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Job Information — GET jobs/:jobid
 
-* [Job Information — GET jobs/:jobid]({{< ref "#job-information-—-get-jobs/:jobid" >}})
+* [Job Information — GET jobs/:jobid]({{< ref "#job-information--get-jobsjobid" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})
