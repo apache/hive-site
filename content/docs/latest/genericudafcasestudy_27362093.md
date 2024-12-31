@@ -13,7 +13,7 @@ This tutorial walks through the development of the `histogram()` UDAF, which com
 
 **NOTE:** In this tutorial, we walk through the creation of a `histogram()` function. Starting with the 0.6.0 release of Hive, this appears as the built-in function `histogram_numeric()`.
 
-* [Writing GenericUDAFs: A Tutorial]({{< ref "#writing-genericudafs:-a-tutorial" >}})
+* [Writing GenericUDAFs: A Tutorial]({{< ref "#writing-genericudafs-a-tutorial" >}})
 	+ [Preliminaries]({{< ref "#preliminaries" >}})
 	+ [Writing the source]({{< ref "#writing-the-source" >}})
 		- [Overview]({{< ref "#overview" >}})
@@ -28,7 +28,7 @@ This tutorial walks through the development of the `histogram()` UDAF, which com
 	+ [Compiling and running]({{< ref "#compiling-and-running" >}})
 	+ [Creating the tests]({{< ref "#creating-the-tests" >}})
 * [Checklist for open source submission]({{< ref "#checklist-for-open-source-submission" >}})
-* [Tips, Tricks, Best Practices]({{< ref "#tips,-tricks,-best-practices" >}})
+* [Tips, Tricks, Best Practices]({{< ref "#tips-tricks-best-practices" >}})
 	+ [Resolver Interface Evolution]({{< ref "#resolver-interface-evolution" >}})
 
 ## Preliminaries

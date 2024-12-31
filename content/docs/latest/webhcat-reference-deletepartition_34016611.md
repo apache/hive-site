@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Delete Partition — DELETE ddl/database/:db/table/:table/partition/:partition
 
-* [Delete Partition — DELETE ddl/database/:db/table/:table/partition/:partition]({{< ref "#delete-partition-—-delete-ddl/database/:db/table/:table/partition/:partition" >}})
+* [Delete Partition — DELETE ddl/database/:db/table/:table/partition/:partition]({{< ref "#delete-partition--delete-ddldatabasedbtabletablepartitionpartition" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

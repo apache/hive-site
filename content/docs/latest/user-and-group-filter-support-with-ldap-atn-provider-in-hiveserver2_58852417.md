@@ -7,15 +7,15 @@ date: 2024-12-12
 
 * [User and Group Filter Support with LDAP]({{< ref "#user-and-group-filter-support-with-ldap" >}})
 	+ [Group Membership]({{< ref "#group-membership" >}})
-		- [hive.server2.authentication.ldap.groupDNPattern]({{< ref "#hive-server2-authentication-ldap-groupdnpattern" >}})
-		- [hive.server2.authentication.ldap.groupFilter]({{< ref "#hive-server2-authentication-ldap-groupfilter" >}})
-		- [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hive-server2-authentication-ldap-groupmembershipkey" >}})
-		- [hive.server2.authentication.ldap.groupClassKey]({{< ref "#hive-server2-authentication-ldap-groupclasskey" >}})
+		- [hive.server2.authentication.ldap.groupDNPattern]({{< ref "#hiveserver2authenticationldapgroupdnpattern" >}})
+		- [hive.server2.authentication.ldap.groupFilter]({{< ref "#hiveserver2authenticationldapgroupfilter" >}})
+		- [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}})
+		- [hive.server2.authentication.ldap.groupClassKey]({{< ref "#hiveserver2authenticationldapgroupclasskey" >}})
 	+ [User Search List]({{< ref "#user-search-list" >}})
-		- [hive.server2.authentication.ldap.userDNPattern]({{< ref "#hive-server2-authentication-ldap-userdnpattern" >}})
-		- [hive.server2.authentication.ldap.userFilter]({{< ref "#hive-server2-authentication-ldap-userfilter" >}})
+		- [hive.server2.authentication.ldap.userDNPattern]({{< ref "#hiveserver2authenticationldapuserdnpattern" >}})
+		- [hive.server2.authentication.ldap.userFilter]({{< ref "#hiveserver2authenticationldapuserfilter" >}})
 	+ [Custom Query String]({{< ref "#custom-query-string" >}})
-		- [hive.server2.authentication.ldap.customLDAPQuery]({{< ref "#hive-server2-authentication-ldap-customldapquery" >}})
+		- [hive.server2.authentication.ldap.customLDAPQuery]({{< ref "#hiveserver2authenticationldapcustomldapquery" >}})
 		- [Support for Groups in Custom LDAP Query]({{< ref "#support-for-groups-in-custom-ldap-query" >}})
 	+ [Order of Precedence]({{< ref "#order-of-precedence" >}})
 
@@ -244,7 +244,7 @@ will return the entries
 ```
 but there is no means to form a query that would return just the values of "member" attributes. (LDAP APIs allow filtering of the attributes on the result set.)
 
-To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hive-server2-authentication-ldap-groupmembershipkey" >}}). This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is "*member*".
+To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}}). This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is "*member*".
 
 This allows the Hive LDAP authentication provider to specify a query that returns groups and individual users as below (all users of `group1` + the user `user4` will be allowed to authenticate):
 

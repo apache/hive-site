@@ -11,7 +11,7 @@ date: 2024-12-12
 * [Limitations]({{< ref "#limitations" >}})
 * [Configuration]({{< ref "#configuration" >}})
 * [Typical Mode of Operation]({{< ref "#typical-mode-of-operation" >}})
-* [Replication to AWS/EMR/S3]({{< ref "#replication-to-aws/emr/s3" >}})
+* [Replication to AWS/EMR/S3]({{< ref "#replication-to-awsemrs3" >}})
 
 ## Overview
 

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Describe Column — GET ddl/database/:db/table/:table/column/:column
 
-* [Describe Column — GET ddl/database/:db/table/:table/column/:column]({{< ref "#describe-column-—-get-ddl/database/:db/table/:table/column/:column" >}})
+* [Describe Column — GET ddl/database/:db/table/:table/column/:column]({{< ref "#describe-column--get-ddldatabasedbtabletablecolumncolumn" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

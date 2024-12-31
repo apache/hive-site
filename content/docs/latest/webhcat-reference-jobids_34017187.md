@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List JobIDs — GET queue
 
-* [List JobIDs — GET queue]({{< ref "#list-jobids-—-get-queue" >}})
+* [List JobIDs — GET queue]({{< ref "#list-jobids--get-queue" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

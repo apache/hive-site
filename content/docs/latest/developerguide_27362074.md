@@ -37,7 +37,7 @@ date: 2024-12-12
 		- [Debugging Hive Code]({{< ref "#debugging-hive-code" >}})
 			* [Debugging Client-Side Code]({{< ref "#debugging-client-side-code" >}})
 			* [Debugging Server-Side Code]({{< ref "#debugging-server-side-code" >}})
-			* [Debugging without Ant (Client and Server Side)]({{< ref "#debugging-without-ant--client-and-server-side-" >}})
+			* [Debugging without Ant (Client and Server Side)]({{< ref "#debugging-without-ant-client-and-server-side" >}})
 	+ [Pluggable interfaces]({{< ref "#pluggable-interfaces" >}})
 		- [File Formats]({{< ref "#file-formats" >}})
 		- [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}})

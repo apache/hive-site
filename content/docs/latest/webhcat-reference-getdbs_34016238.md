@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # List Databases — GET ddl/database
 
-* [List Databases — GET ddl/database]({{< ref "#list-databases-—-get-ddl/database" >}})
+* [List Databases — GET ddl/database]({{< ref "#list-databases--get-ddldatabase" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

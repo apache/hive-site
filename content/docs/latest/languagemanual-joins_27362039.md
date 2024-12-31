@@ -13,7 +13,7 @@ date: 2024-12-12
 	+ [MapJoin Restrictions]({{< ref "#mapjoin-restrictions" >}})
 	+ [Join Optimization]({{< ref "#join-optimization" >}})
 		- [Predicate Pushdown in Outer Joins]({{< ref "#predicate-pushdown-in-outer-joins" >}})
-		- [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-0-11" >}})
+		- [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-011" >}})
 
 ## Join Syntax
 

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # MapReduce Job — POST mapreduce/jar
 
-* [MapReduce Job — POST mapreduce/jar]({{< ref "#mapreduce-job-—-post-mapreduce/jar" >}})
+* [MapReduce Job — POST mapreduce/jar]({{< ref "#mapreduce-job--post-mapreducejar" >}})
 	+ [Description]({{< ref "#description" >}})
 	+ [URL]({{< ref "#url" >}})
 	+ [Parameters]({{< ref "#parameters" >}})

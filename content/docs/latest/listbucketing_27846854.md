@@ -8,7 +8,7 @@ date: 2024-12-12
 * [Goal]({{< ref "#goal" >}})
 	+ [Basic Partitioning]({{< ref "#basic-partitioning" >}})
 	+ [List Bucketing]({{< ref "#list-bucketing" >}})
-	+ [Skewed Table vs. List Bucketing Table]({{< ref "#skewed-table-vs--list-bucketing-table" >}})
+	+ [Skewed Table vs. List Bucketing Table]({{< ref "#skewed-table-vs-list-bucketing-table" >}})
 	+ [List Bucketing Validation]({{< ref "#list-bucketing-validation" >}})
 		- [DDL]({{< ref "#ddl" >}})
 		- [DML]({{< ref "#dml" >}})

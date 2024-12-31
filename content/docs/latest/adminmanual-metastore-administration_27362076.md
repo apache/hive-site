@@ -13,9 +13,9 @@ date: 2024-12-12
 		- [Additional Configuration Parameters]({{< ref "#additional-configuration-parameters" >}})
 		- [Data Nucleus Auto Start]({{< ref "#data-nucleus-auto-start" >}})
 		- [Default Configuration]({{< ref "#default-configuration" >}})
-	+ [Local/Embedded Metastore Database (Derby)]({{< ref "#local/embedded-metastore-database--derby-" >}})
+	+ [Local/Embedded Metastore Database (Derby)]({{< ref "#localembedded-metastore-database-derby" >}})
 	+ [Remote Metastore Database]({{< ref "#remote-metastore-database" >}})
-	+ [Local/Embedded Metastore Server]({{< ref "#local/embedded-metastore-server" >}})
+	+ [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}})
 	+ [Remote Metastore Server]({{< ref "#remote-metastore-server" >}})
 		- [Client Configuration Parameters]({{< ref "#client-configuration-parameters" >}})
 	+ [Supported Backend Databases for Metastore]({{< ref "#supported-backend-databases-for-metastore" >}})
@@ -33,12 +33,12 @@ There are 2 different ways to setup the metastore server and metastore database 
 
 Configuration options for **metastore database** where metadata is persisted:
 
-* [Local/Embedded Metastore Database (Derby)]({{< ref "#local/embedded-metastore-database--derby-" >}})
+* [Local/Embedded Metastore Database (Derby)]({{< ref "#localembedded-metastore-database-derby" >}})
 * [Remote Metastore Database]({{< ref "#remote-metastore-database" >}})
 
 Configuration options for **metastore server**:
 
-* [Local/Embedded Metastore Server]({{< ref "#local/embedded-metastore-server" >}})
+* [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}})
 * [Remote Metastore Server]({{< ref "#remote-metastore-server" >}})
 
 #### Basic Configuration Parameters
@@ -97,7 +97,7 @@ The default configuration sets up an embedded metastore which is used in unit te
 
 **An embedded metastore database is mainly used for unit tests. Only one process can connect to the metastore database at a time, so it is not really a practical solution but works well for unit tests.**
 
-For unit tests [Local/Embedded Metastore Server]({{< ref "#local/embedded-metastore-server" >}}) configuration for the metastore server is used in conjunction with embedded database.
+For unit tests [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}}) configuration for the metastore server is used in conjunction with embedded database.
 
 Derby is the default database for the embedded metastore.
 

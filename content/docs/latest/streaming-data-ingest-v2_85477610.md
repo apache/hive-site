@@ -16,7 +16,7 @@ Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data
 		- [HiveStreamingConnection]({{< ref "#hivestreamingconnection" >}})
 			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
 		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#i/o-–-writing-data" >}})
+	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
 		- [RecordWriter]({{< ref "#recordwriter" >}})
 		- [StrictDelimitedInputWriter]({{< ref "#strictdelimitedinputwriter" >}})
 		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})

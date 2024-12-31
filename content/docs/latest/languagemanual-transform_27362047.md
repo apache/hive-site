@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Transform
 
-* [Transform/Map-Reduce Syntax]({{< ref "#transform/map-reduce-syntax" >}})
+* [Transform/Map-Reduce Syntax]({{< ref "#transformmap-reduce-syntax" >}})
 	+ [SQL Standard Based Authorization Disallows TRANSFORM]({{< ref "#sql-standard-based-authorization-disallows-transform" >}})
 	+ [TRANSFORM Examples]({{< ref "#transform-examples" >}})
 * [Schema-less Map-reduce Scripts]({{< ref "#schema-less-map-reduce-scripts" >}})

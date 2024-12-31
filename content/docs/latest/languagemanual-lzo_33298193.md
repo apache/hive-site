@@ -10,12 +10,12 @@ date: 2024-12-12
 * [LZO Compression]({{< ref "#lzo-compression" >}})
 	+ [General LZO Concepts]({{< ref "#general-lzo-concepts" >}})
 	+ [Prerequisites]({{< ref "#prerequisites" >}})
-		- [Lzo/Lzop Installations]({{< ref "#lzo/lzop-installations" >}})
+		- [Lzo/Lzop Installations]({{< ref "#lzolzop-installations" >}})
 		- [core-site.xml]({{< ref "#core-site-xml" >}})
 		- [Table Definition]({{< ref "#table-definition" >}})
 	+ [Hive Queries]({{< ref "#hive-queries" >}})
-		- [Option 1: Directly Create LZO Files]({{< ref "#option-1:-directly-create-lzo-files" >}})
-		- [Option 2: Write Custom Java to Create LZO Files]({{< ref "#option-2:-write-custom-java-to-create-lzo-files" >}})
+		- [Option 1: Directly Create LZO Files]({{< ref "#option-1-directly-create-lzo-files" >}})
+		- [Option 2: Write Custom Java to Create LZO Files]({{< ref "#option-2-write-custom-java-to-create-lzo-files" >}})
 
 ## General LZO Concepts
 
