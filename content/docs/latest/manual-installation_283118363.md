@@ -415,13 +415,13 @@ After compiling to get tez.tar.gz, users should set the following properties in 
 
     <property>
         <name>tez.am.launch.env</name><!--Example, replace with actual native-lib install path.Reuse old version hadoop cluster's native lib is ok.-->
-        <value>LD_LIBRARY_PATH=/usr/hadoop/3.1.0/hadoop/lib/native,JAVA_HOME=/home/jdk17/</value>
+        <value>LD_LIBRARY_PATH=/usr/hadoop/3.1.0/hadoop/lib/native</value>
         <description>Users can set up environment variables individually, including but not limited to: JAVA_HOME, LD_LIBRARY_PATH.</description>
     </property>
     
     <property>
         <name>tez.task.launch.env</name><!--Example, replace with actual native-lib install path.Reuse old version hadoop cluster's native lib is ok.-->
-        <value>LD_LIBRARY_PATH=/usr/hadoop/3.1.0/hadoop/lib/native,JAVA_HOME=/home/jdk17/</value>
+        <value>LD_LIBRARY_PATH=/usr/hadoop/3.1.0/hadoop/lib/native</value>
         <description>Users can set up environment variables individually, including but not limited to: JAVA_HOME, LD_LIBRARY_PATH.</description>
     </property>
 ```
