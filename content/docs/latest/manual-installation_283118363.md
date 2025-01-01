@@ -430,19 +430,19 @@ After compiling to get tez.tar.gz, users should set the following properties in 
 
 ```shell
 ## DO not upload minimal tarball !!!
-[root@hmsclient01 opt]# hdfs dfs -put apache-tez-0.10.4-bin.tar.gz /apps/
+[hadoop@hive opt]# hdfs dfs -put apache-tez-0.10.4-bin.tar.gz /apps/
 ```
 
 3.Download the high version of the Hadoop package(Please ensure that the HADOOP version on which TEZ depends is the same as the HADOOP version you have downloaded.).Unzip HIVE, HADOOP, and TEZ all in the installation path.
 
 ```shell
 ## In this example, we have installed HIVE-4.0.1 and TEZ-0.10.4 on an Hadoop 3.1.0 cluster.users should install HIVE,HADOOP and TEZ into actual directories.
-[root@hmsclient01 opt]# cd /opt
-[root@hmsclient01 opt]# ll
+[hadoop@hive opt]# cd /opt
+[hadoop@hive opt]# ll
 drwxr-xr-x 11 hive hadoop      4096 Nov  7 13:59 apache-hive-4.0.1-bin
 drwxr-xr-x  3 hive hadoop      4096 Nov  7 13:59 apache-tez-0.10.4-bin
 drwxr-xr-x 10 hive hadoop      4096 Nov  7 13:59 hadoop-3.3.6
-lrwxrwxrwx  1 hive hadoop        30 Nov  7 13:59 hive-4.0.0 -> apache-hive-4.0.1-bin
+lrwxrwxrwx  1 hive hadoop        30 Nov  7 13:59 hive-4.0.1 -> apache-hive-4.0.1-bin
 lrwxrwxrwx  1 hive hadoop        21 Nov  7 13:59 tez -> apache-tez-0.10.4-bin
 ```
 
@@ -451,7 +451,7 @@ edit `hive-env.sh`
 ```shell
 # Set HADOOP_HOME to point to a specific hadoop install directory
 HADOOP_HOME=${HADOOP_HOME:-/opt/hadoop-3.3.6}
-export HIVE_HOME=${HIVE_HOME:-/opt/hive-4.0.0}
+export HIVE_HOME=${HIVE_HOME:-/opt/hive-4.0.1}
 export TEZ_HOME=/opt/tez
 ```
 
@@ -464,7 +464,7 @@ cp /usr/hadoop/3.1.0/hadoop/conf/*  /opt/hadoop3.3.6/conf/
 Put `tez-site.xml` into hive conf dir:
 
 ```shell
-mv tez-site.xml  /opt/hive-4.0.0/conf/
+mv tez-site.xml  /opt/hive-4.0.1/conf/
 ```
 
 After completing the above steps, users should be able to start the HMS service and HS2 service normally, and submit TEZ computing tasks without any issues.
