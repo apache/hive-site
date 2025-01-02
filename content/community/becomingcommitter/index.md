@@ -28,7 +28,7 @@ Of course, before becoming a committer, there are certain things you can't actua
 
 The graph below shows monthly patch authorship and commit activity for an actual Hive committer. The blue shows all commits going into Hive from all committers. The orange shows patches authored by this committer, whereas the green shows patches reviewed and committed by him after they were authored by others. (Not shown are reviews he participated in before becoming a committer.)
 
-![](attachments/27823300/28016690.png)
+{{< figure src="commitactivity.png" alt="Commit activity for X from 2008 to 2011" >}}
 
 Important points to notice:
 

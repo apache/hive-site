@@ -17,7 +17,7 @@ date: 2024-12-12
 	+ [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})
 	+ [Dialog]({{< ref "#dialog" >}})
 
-This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "becomingacommitter_27823300" >}}))
+This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "/community/becomingcommitter" >}}))
 
 ## New committers
 
