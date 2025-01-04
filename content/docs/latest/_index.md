@@ -184,7 +184,6 @@ date: 2024-12-12
 	+ [Using TiDB as the Hive Metastore database]({{< ref "using-tidb-as-the-hive-metastore-database_158872426" >}})
 * [Howl]({{< ref "howl_27362109" >}})
 * [HowToCommit]({{< ref "howtocommit_27362108" >}})
-	+ [BecomingACommitter]({{< ref "becomingacommitter_27823300" >}})
 * [HowToContribute]({{< ref "howtocontribute_27362107" >}})
 	+ [HBaseMetastoreDevelopmentGuide]({{< ref "hbasemetastoredevelopmentguide_55151960" >}})
 		- [Hbase execution plans for RawStore partition filter condition]({{< ref "hbase-execution-plans-for-rawstore-partition-filter-condition_55151993" >}})
