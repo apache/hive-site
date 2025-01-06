@@ -16,7 +16,7 @@ date: 2024-12-12
 ## Union Syntax
 
 ```
-select\_statement UNION [ALL | DISTINCT] select\_statement UNION [ALL | DISTINCT] select\_statement ...
+select_statement UNION [ALL | DISTINCT] select_statement UNION [ALL | DISTINCT] select_statement ...
 
 ```
 
@@ -27,7 +27,7 @@ UNION is used to combine the result from multiple SELECT statements into a singl
 
 You can mix UNION ALL and UNION DISTINCT in the same query. Mixed UNION types are treated such that a DISTINCT union overrides any ALL union to its left. A DISTINCT union can be produced explicitly by using UNION DISTINCT or implicitly by using UNION with no following DISTINCT or ALL keyword.
 
-The number and names of columns returned by each *select\_statement* have to be the same. Otherwise, a schema error is thrown.
+The number and names of columns returned by each *select_statement* have to be the same. Otherwise, a schema error is thrown.
 
 #### UNION within a FROM Clause
 
@@ -36,9 +36,9 @@ If some additional processing has to be done on the result of the UNION, the ent
 ```
 SELECT *
 FROM (
-  select\_statement
+  select_statement
   UNION ALL
-  select\_statement
+  select_statement
 ) unionResult
 
 ```
@@ -49,11 +49,11 @@ For example, if we suppose there are two different tables that track which user 
     SELECT u.id, actions.date
     FROM (
         SELECT av.uid AS uid 
-        FROM action\_video av 
+        FROM action_video av 
         WHERE av.date = '2008-06-03' 
         UNION ALL 
         SELECT ac.uid AS uid 
-        FROM action\_comment ac 
+        FROM action_comment ac 
         WHERE ac.date = '2008-06-03' 
      ) actions JOIN users u ON (u.id = actions.uid) 
 
@@ -87,19 +87,19 @@ ORDER BY key LIMIT 10
 UNION expects the same schema on both sides of the expression list. As a result, the following query may fail with an error message such as "FAILED: SemanticException 4:47 Schema of both sides of union should match."
 
 ```
-INSERT OVERWRITE TABLE target\_table
-  SELECT name, id, category FROM source\_table\_1
+INSERT OVERWRITE TABLE target_table
+  SELECT name, id, category FROM source_table_1
   UNION ALL
-  SELECT name, id, "Category159" FROM source\_table\_2
+  SELECT name, id, "Category159" FROM source_table_2
 ```
 
 In such cases, column aliases can be used to force equal schemas:
 
 ```
-INSERT OVERWRITE TABLE target\_table
-  SELECT name, id, category FROM source\_table\_1
+INSERT OVERWRITE TABLE target_table
+  SELECT name, id, category FROM source_table_1
   UNION ALL
-  SELECT name, id, "Category159" as category FROM source\_table\_2
+  SELECT name, id, "Category159" as category FROM source_table_2
 ```
 
 #### Column Type Conversion
@@ -107,9 +107,9 @@ INSERT OVERWRITE TABLE target\_table
 Before [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251) in release 2.2.0, Hive tries to perform implicit conversion across Hive type groups. With the change of [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251), Hive will only perform implicit conversion within each type group including string group, number group or date group, not across groups. In order to union the types from different groups such as a string type and a date type, an explicit cast from string to date or from date to string is needed in the query.
 
 ```
-  SELECT name, id, cast('2001-01-01' as date) d FROM source\_table\_1
+  SELECT name, id, cast('2001-01-01' as date) d FROM source_table_1
   UNION ALL
-  SELECT name, id, hiredate as d FROM source\_table\_2
+  SELECT name, id, hiredate as d FROM source_table_2
 ```
 
  
@@ -118,9 +118,9 @@ Before [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251) in relea
 
 Version information
 
-In Hive 0.12.0 and earlier releases, unions can only be used within a subquery such as "SELECT * FROM (*select\_statement* UNION ALL *select\_statement* UNION ALL ...) *unionResult*".
+In Hive 0.12.0 and earlier releases, unions can only be used within a subquery such as "SELECT * FROM (*select_statement* UNION ALL *select_statement* UNION ALL ...) *unionResult*".
 
-As of Hive 0.13.0, unions can also be used in a top-level query: "*select\_statement* UNION ALL *select\_statement* UNION ALL ...". (See [HIVE-6189](https://issues.apache.org/jira/browse/HIVE-6189).)
+As of Hive 0.13.0, unions can also be used in a top-level query: "*select_statement* UNION ALL *select_statement* UNION ALL ...". (See [HIVE-6189](https://issues.apache.org/jira/browse/HIVE-6189).)
 
 Before Hive 1.2.0, only UNION ALL (bag union) is supported. UNION (or UNION DISTINCT) is supported since Hive 1.2.0. (See [HIVE-9039](https://issues.apache.org/jira/browse/HIVE-9039).)
 

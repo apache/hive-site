@@ -10,11 +10,11 @@ date: 2024-12-12
 Currently Hive doesn't support subqueries in a SELECT statement, for example, the following query will not run on Hive:
 
 ```
-SELECT customer.customer\_num,
-	(SELECT SUM(ship\_charge) 
+SELECT customer.customer_num,
+	(SELECT SUM(ship_charge) 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 ```
 
@@ -30,30 +30,30 @@ We plan to limit the scope with the following assumptions and limitations.
 
 ```
 -- subquery in non-simple expression
-SELECT 1 + (SELECT SUM(ship\_charge) FROM orders), customer.customer\_num FROM customer
+SELECT 1 + (SELECT SUM(ship_charge) FROM orders), customer.customer_num FROM customer
  
 -- subquery in CASE
-SELECT CASE WHEN (select count(*) from store\_sales 
-                  where ss\_quantity between 1 and 20) > 409437
-            THEN (select avg(ss\_ext\_list\_price) 
-                  from store\_sales 
-                  where ss\_quantity between 1 and 20) 
-            ELSE (select avg(ss\_net\_paid\_inc\_tax)
-                  from store\_sales
-                  where ss\_quantity between 1 and 20) end bucket1
+SELECT CASE WHEN (select count(*) from store_sales 
+                  where ss_quantity between 1 and 20) > 409437
+            THEN (select avg(ss_ext_list_price) 
+                  from store_sales 
+                  where ss_quantity between 1 and 20) 
+            ELSE (select avg(ss_net_paid_inc_tax)
+                  from store_sales
+                  where ss_quantity between 1 and 20) end bucket1
 FROM reason
-WHERE r\_reason\_sk = 1
+WHERE r_reason_sk = 1
 ```
 * Scalar subqueries can only return at most one row. Hive will check for this case at runtime and throw an error if not satisfied. For example the following query is invalid:
 
 **Not Supported**
 
 ```
-SELECT customer.customer\_num,
-	(SELECT ship\_charge 
+SELECT customer.customer_num,
+	(SELECT ship_charge 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 ```
 * Scalar subqueries can only have one column. Hive will check for this case during compilation and throw an error. For example the following query is invalid:
@@ -61,10 +61,10 @@ FROM customer
 **Not Supported**
 
 ```
-SELECT customer.customer\_num,
-	(SELECT ship\_charge, customer\_num
+SELECT customer.customer_num,
+	(SELECT ship_charge, customer_num
 		FROM orders LIMIT 1
-	) AS total\_ship\_chg
+	) AS total_ship_chg
 FROM customer
 ```
 * Correlated variables are only permitted in a filter, that is, a WHERE or HAVING clause. For example the following query is invalid:
@@ -72,11 +72,11 @@ FROM customer
 **Not Supported**
 
 ```
-SELECT customer.customer\_num,
-	(SELECT customer.customer\_num 
+SELECT customer.customer_num,
+	(SELECT customer.customer_num 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 ```
 * Subqueries with DISTINCT are not allowed. Since DISTINCT <expression> will be evaluated as GROUP BY <expression>, subqueries with DISTINCT are disallowed for now.
@@ -88,24 +88,24 @@ Given the assumptions above, the following kind of subqueries could be used in S
 * Scalar subqueries, for example: 
 
 ```
-SELECT customer.customer\_num,
-	(SELECT SUM(ship\_charge) 
+SELECT customer.customer_num,
+	(SELECT SUM(ship_charge) 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 ```
 * IN subqueries, for example:
 
 ```
-SELECT p\_size IN (
-		SELECT MAX(p\_size) FROM part)
+SELECT p_size IN (
+		SELECT MAX(p_size) FROM part)
 FROM part
 ```
 * EXISTS subqueries, for example:
 
 ```
-SELECT EXISTS(SELECT p\_size FROM part)
+SELECT EXISTS(SELECT p_size FROM part)
 FROM part
 ```
 

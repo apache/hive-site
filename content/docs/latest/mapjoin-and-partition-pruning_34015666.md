@@ -106,7 +106,7 @@ This optimization has compile time and run/execution time pieces to it. Compile 
 
 1. Walk through Task DAG looking for MapredTask. Perform #2 - #6 for each such MapRedTask.  
 
-2. Skip Task if it contains backup join plan (i.e if not MAPJOIN\_ONLY\_NOBACKUP or if backupTask is not null).  
+2. Skip Task if it contains backup join plan (i.e if not MAPJOIN_ONLY_NOBACKUP or if backupTask is not null).  
 
 **NOTE:**  
 

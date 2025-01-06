@@ -15,7 +15,7 @@ date: 2024-12-12
 
 ```
 
-table\_sample: TABLESAMPLE (BUCKET x OUT OF y [ON colname])
+table_sample: TABLESAMPLE (BUCKET x OUT OF y [ON colname])
 
 ```
 
@@ -62,7 +62,7 @@ Block sampling is available starting with Hive 0.8. Addressed under JIRA - <http
 
 ```
 
-block\_sample: TABLESAMPLE (n PERCENT)
+block_sample: TABLESAMPLE (n PERCENT)
 
 ```
 
@@ -89,7 +89,7 @@ Or user can specify total length to be read, but it has same limitation with PER
 
 ```
 
-block\_sample: TABLESAMPLE (ByteLengthLiteral)
+block_sample: TABLESAMPLE (ByteLengthLiteral)
 
 ByteLengthLiteral : (Digit)+ ('b' | 'B' | 'k' | 'K' | 'm' | 'M' | 'g' | 'G')
 
@@ -108,7 +108,7 @@ Hive also supports limiting input by row count basis, but it acts differently wi
 
 ```
 
-block\_sample: TABLESAMPLE (n ROWS)
+block_sample: TABLESAMPLE (n ROWS)
 
 ```
 

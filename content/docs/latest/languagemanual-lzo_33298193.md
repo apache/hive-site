@@ -82,8 +82,8 @@ This creates `names.txt.lzo` on HDFS.
 The following `hive -e` command creates an LZO-compressed external table:
 
 ```
-hive -e "CREATE EXTERNAL TABLE IF NOT EXISTS hive\_table\_name (column\_1  datatype\_1......column\_N datatype\_N)
-         PARTITIONED BY (partition\_col\_1 datatype\_1 ....col\_P  datatype\_P)
+hive -e "CREATE EXTERNAL TABLE IF NOT EXISTS hive_table_name (column_1  datatype_1......column_N datatype_N)
+         PARTITIONED BY (partition_col_1 datatype_1 ....col_P  datatype_P)
          ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
          STORED AS INPUTFORMAT  \"com.hadoop.mapred.DeprecatedLzoTextInputFormat\"
                    OUTPUTFORMAT \"org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat\";

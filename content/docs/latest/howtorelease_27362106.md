@@ -119,7 +119,7 @@ gpg: Good signature from "Your Name <YOUR-APACHE-ID@apache.org>"
 ```
 % sftp YOUR-APACHE-ID@home.apache.org
 
-sftp> cd public\_html
+sftp> cd public_html
 sftp> mkdir hive-storage-X.Y.Z
 sftp> cd hive-storage-X.Y.Z
 sftp> put hive-storage-X.Y.Z-rcR.tar.gz*
@@ -216,8 +216,8 @@ These operations take place in the release branch.
 1. Check out the release branch with:
 
 ```
-git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive\_src\_dir>
-cd <hive\_src\_dir>
+git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive_src_dir>
+cd <hive_src_dir>
 git checkout branch-X.Y
 ```
 2. Update the `version` property value in all pom.xml files. You should remove the `SNAPSHOT` suffix and set `version` equal to `hive-X.Y.Z` where Z is the point release number in this release series (0 for the first one, in which case this step is a no-op since you already did this above when creating the branch). Use [Maven's Versions plugin](http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html) to do this as follows:
@@ -234,7 +234,7 @@ Make sure to update the version property in standalone-metastore/pom.xml and upg
 7. If not already done, merge desired patches from trunk into the branch and commit these changes. Avoid usage of "git merge" to avoid too many merge commits. Either request the committer who committed that patch in master to commit to this branch, or commit it yourself, or try doing a git cherry-pick for trivial patches. Specifics of this step can be laid down by the release manager.
 8. You probably also want to commit a patch (on both trunk and branch) which updates README.txt to bring it up to date (at a minimum, search+replacing references to the version number). Also check NOTICE to see if anything needs to be updated for recent library dependency changes or additions.
 	1. Select all of the JIRAs for the current release that aren't FIXED and do bulk update to clear the 'Fixed Version' field.
-	2. Likewise, use JIRA's [Release Notes](https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310843) link to generate content for the RELEASE\_NOTES.txt file. Be sure to select 'Text' format. (It's OK to do this with a direct commit rather than a patch.)
+	2. Likewise, use JIRA's [Release Notes](https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310843) link to generate content for the RELEASE_NOTES.txt file. Be sure to select 'Text' format. (It's OK to do this with a direct commit rather than a patch.)
 	3. Update the release notes in trunk with the release notes in branch.
 9. Tag the release candidate (R is the release candidate number, and also starts from 0):
 
@@ -273,7 +273,7 @@ apache-hive-X.Y.Z-src.tar.gz: OK
 
 ```
 % gpg --full-generate-key
-% gpg --keyserver hkp://keyserver.ubuntu.com --send-keys <PUB\_KEY>
+% gpg --keyserver hkp://keyserver.ubuntu.com --send-keys <PUB_KEY>
 % svn co --depth files https://dist.apache.org/repos/dist/release/hive
 % cd hive
 % (gpg --list-sigs <NAME> && gpg --armor --export <NAME>) >> KEYS
@@ -305,7 +305,7 @@ svn commit -m "Hive X.Y.Z release"
 
 **Note**: If you get an error `gpg: signing failed: Inappropriate ioctl for device,` try doing ``export GPG_TTY=$(tty)``
 
-**Note**: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=<PRIV\_KEY>
+**Note**: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=<PRIV_KEY>
 
 ```
 % mvn deploy -DskipTests -Papache-release,iceberg -Dmaven.javadoc.skip=true
@@ -380,7 +380,7 @@ git tag -d release-X.Y.Z-rcR
 git push origin :release-X.Y.Z-rcR
 ```
 
-If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your\_gpg\_key\_id" then rerun the command.
+If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.
 2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts(
 
 [INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro)
@@ -400,7 +400,7 @@ svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apach
 mvn clean install javadoc:javadoc javadoc:aggregate -DskipTests -Pjavadoc,iceberg
 ```
 
-After you run this, you should have javadocs present in your <hive\_source\_dir>/target/site/apidocs
+After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs
 5. Check out the javadocs svn repository as follows:
 
 ```
@@ -409,9 +409,9 @@ svn co --depth empty https://svn.apache.org/repos/infra/websites/production/hive
 6. Copy the generated javadocs from the source repository to the javadocs repository, add and commit:
 
 ```
-mkdir <hive\_javadocs\_repo\_dir>/rX.Y.Z/
-cd <hive\_javadocs\_repo\_dir>
-cp -r <hive\_source\_dir>/target/site/apidocs ./rX.Y.Z/api
+mkdir <hive_javadocs_repo_dir>/rX.Y.Z/
+cd <hive_javadocs_repo_dir>
+cp -r <hive_source_dir>/target/site/apidocs ./rX.Y.Z/api
 svn add rX.Y.Z
 svn commit
 ```
@@ -426,8 +426,8 @@ git clone https://github.com/apache/hive-site.git
 
 ```
 ./downloads.md:### 18 May 2015 : release 1.2.0 available
-./downloads.md:You can look at the complete [JIRA change log for this release][HIVE\_1\_2\_0\_CL].
-./downloads.md:[HIVE\_1\_2\_0\_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&styleName=Text&projectId=12310843
+./downloads.md:You can look at the complete [JIRA change log for this release][HIVE_1_2_0_CL].
+./downloads.md:[HIVE_1_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&styleName=Text&projectId=12310843
 ./javadoc.md:  * [Hive 1.2.0 Javadocs][r1.2.0]
 ./javadoc.md:[r1.2.0]: /javadocs/r1.2.0/api/index.html
 ```
@@ -499,8 +499,8 @@ After the release has been completed, prepare the branch for the next developmen
 1. Check out the release branch with:
 
 ```
-git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive\_src\_dir>
-cd <hive\_src\_dir>
+git clone https://git-wip-us.apache.org/repos/asf/hive.git/ <hive_src_dir>
+cd <hive_src_dir>
 git checkout branch-X.Y
 ```
 2. Increment the `version` property value in all pom.xml files and add the `SNAPSHOT` suffix. For example, if the released version was `0.7.0`, the new value should be `0.7.1-SNAPSHOT`. Please note that the `SNAPSHOT` suffix is required in order to indicate that this is an unreleased development branch. Use [Maven's Versions plugin](http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html) to do this as follows:

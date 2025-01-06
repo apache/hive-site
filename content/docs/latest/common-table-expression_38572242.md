@@ -15,7 +15,7 @@ Common Table Expressions are added in Hive 0.13.0 with [HIVE-1180](https://issue
 
 ```
 withClause: cteClause (, cteClause)*
-cteClause: cte\_name AS (select statment)
+cteClause: cte_name AS (select statment)
 ```
 
 ### Additional Grammar Rules

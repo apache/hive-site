@@ -63,7 +63,7 @@ Patch Available
 | Metastore upgrade | 
 [HIVE-7018](https://issues.apache.org/jira/browse/HIVE-7018?src=confmacro)
  -
- Table and Partition tables have column LINK\_TARGET\_ID in Mysql scripts but not others
+ Table and Partition tables have column LINK_TARGET_ID in Mysql scripts but not others
 Closed
  | Deferred to 1.3, has schema changes | hsubramaniyan |
 | Security | 

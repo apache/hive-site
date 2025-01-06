@@ -49,8 +49,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s -d rename=test\_table\_2 \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ekoifman'
+% curl -s -d rename=test_table_2 \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ekoifman'
 
 ```
 
@@ -64,7 +64,7 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ```
 {
- "table": "test\_table\_2",
+ "table": "test_table_2",
  "database": "default"
 }
 
@@ -74,10 +74,10 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ```
 {
-  "error": "Table test\_table does not exist",
+  "error": "Table test_table does not exist",
   "errorCode": 404,
   "database": "default",
-  "table": "test\_table\_2"
+  "table": "test_table_2"
 }
 
 ```

@@ -80,7 +80,7 @@ SET hive.druid.broker.address.default=10.5.0.10:8082;
 Then, to create a table that we can query from Hive, we execute the following statement in Hive:
 
 ```
-CREATE EXTERNAL TABLE druid\_table\_1
+CREATE EXTERNAL TABLE druid_table_1
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 TBLPROPERTIES ("druid.datasource" = "wikiticker");
 ```
@@ -90,10 +90,10 @@ Observe that you need to specify the *datasource* as TBLPROPERTIES using the 
 If we execute a *DESCRIBE* statement, we can actually see the information about the table:
 
 ```
-hive> DESCRIBE FORMATTED druid\_table\_1;
+hive> DESCRIBE FORMATTED druid_table_1;
 OK
-# col\_name            	data\_type           	comment
-\_\_time              	timestamp           	from deserializer
+# col_name            	data_type           	comment
+__time              	timestamp           	from deserializer
 added               	bigint              	from deserializer
 channel             	string              	from deserializer
 cityname            	string              	from deserializer
@@ -114,25 +114,25 @@ page                	string              	from deserializer
 regionisocode       	string              	from deserializer
 regionname          	string              	from deserializer
 user                	string              	from deserializer
-user\_unique         	string              	from deserializer
+user_unique         	string              	from deserializer
 # Detailed Table Information
 Database:           	druid
 Owner:              	user1
 CreateTime:         	Thu Aug 18 19:09:10 BST 2016
 LastAccessTime:     	UNKNOWN
 Retention:          	0
-Location:           	hdfs:/tmp/user1/hive/warehouse/druid.db/druid\_table\_1
-Table Type:         	EXTERNAL\_TABLE
+Location:           	hdfs:/tmp/user1/hive/warehouse/druid.db/druid_table_1
+Table Type:         	EXTERNAL_TABLE
 Table Parameters:
-	COLUMN\_STATS\_ACCURATE	{\"BASIC\_STATS\":\"true\"}
+	COLUMN_STATS_ACCURATE	{\"BASIC_STATS\":\"true\"}
 	EXTERNAL            	TRUE
 	druid.datasource    	wikiticker
 	numFiles            	0
 	numRows             	0
 	rawDataSize         	0
-	storage\_handler     	org.apache.hadoop.hive.druid.DruidStorageHandler
+	storage_handler     	org.apache.hadoop.hive.druid.DruidStorageHandler
 	totalSize           	0
-	transient\_lastDdlTime	1471543750
+	transient_lastDdlTime	1471543750
 # Storage Information
 SerDe Library:      	org.apache.hadoop.hive.druid.serde.DruidSerDe
 InputFormat:        	null
@@ -155,8 +155,8 @@ If we want to manage the data in the Druid datasources from Hive, there are mult
 For instance, we might want to create an empty table backed by Druid using a *CREATE TABLE* statement and then append and overwrite data using *INSERT* and *INSERT OVERWRITE* Hive statements, respectively.
 
 ```
-CREATE EXTERNAL TABLE druid\_table\_1
-(`\_\_time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
+CREATE EXTERNAL TABLE druid_table_1
+(`__time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 
 ```
@@ -164,10 +164,10 @@ STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 Another possible scenario is that our data is stored in Hive tables and we want to preprocess it and create Druid datasources from Hive to accelerate our SQL query workload. We can do that by executing a *Create Table As Select* (CTAS) statement. For example:
 
 ```
-CREATE EXTERNAL TABLE druid\_table\_1
+CREATE EXTERNAL TABLE druid_table_1
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 AS
-<select `timecolumn` as `\_\_time`, `dimension1`, `dimension2`, `metric1`, `metric2`....>;
+<select `timecolumn` as `__time`, `dimension1`, `dimension2`, `metric1`, `metric2`....>;
 ```
 
 Observe that we still create three different groups of columns corresponding to the Druid categories: the **timestamp** column (`__time`) mandatory in Druid, the **dimension** columns (whose type is STRING), and the **metrics** columns (all the rest).
@@ -183,8 +183,8 @@ Version Info
   
 
 ```
-CREATE TABLE druid\_table\_1
-(`\_\_time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
+CREATE TABLE druid_table_1
+(`__time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 ```
   
@@ -206,7 +206,7 @@ Integration with Druid Kafka Indexing Service is introduced in Hive 3.0.0 ([HIVE
 **Druid Kafka Ingestion**
 
 ```
-CREATE EXTERNAL TABLE druid\_kafka\_table\_1(`\_\_time` timestamp,`dimension1` string, `dimension1` string, `metric1` int, `metric2 double ....)
+CREATE EXTERNAL TABLE druid_kafka_table_1(`__time` timestamp,`dimension1` string, `dimension1` string, `metric1` int, `metric2 double ....)
         STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
         TBLPROPERTIES (
         "kafka.bootstrap.servers" = "localhost:9092",
@@ -229,9 +229,9 @@ Observe that we specified kafka topic name and kafka bootstrap servers as part o
 We can Start/Stop/Reset druid kafka ingestion using sql statement shown below. 
 
 ```
-ALTER TABLE druid\_kafka\_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'START');
-ALTER TABLE druid\_kafka\_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'STOP');
-ALTER TABLE druid\_kafka\_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'RESET');
+ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'START');
+ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'STOP');
+ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'RESET');
 ```
 
 Note: Reseting the ingestion will reset the kafka consumer offset maintained by druid to the next offset. The consumer offsets maintained by druid will be reset to either the earliest or latest offset depending on *druid.kafka.ingestion.useEarliestOffset*
@@ -275,23 +275,23 @@ We start with the simplest type of Druid query: *[select](http://druid.io/docs/
 Consider the following query, a simple select query for 10 rows consisting of all the columns of the table:
 
 ```
-SELECT * FROM druid\_table\_1 LIMIT 10;
+SELECT * FROM druid_table_1 LIMIT 10;
 ```
 
 The Hive plan for the query will be the following:
 
 ```
 hive> EXPLAIN
-    > SELECT * FROM druid\_table\_1 LIMIT 10;
+    > SELECT * FROM druid_table_1 LIMIT 10;
 OK
 Plan optimized by CBO.
 Stage-0
   Fetch Operator
     limit:-1
-    Select Operator [SEL\_1]
-      Output:["\_col0","\_col1","\_col2","\_col3","\_col4","\_col5","\_col6","\_col7","\_col8","\_col9","\_col10","\_col11","\_col12","\_col13","\_col14","\_col15","\_col16","\_col17","\_col18","\_col19","\_col20","\_col21"]
-      TableScan [TS\_0]
-        Output:["\_\_time","added","channel","cityname","comment","count","countryisocode","countryname","deleted","delta","isanonymous","isminor","isnew","isrobot","isunpatrolled","metrocode","namespace","page","regionisocode","regionname","user","user\_unique"],properties:{"druid.query.json":"{\"queryType\":\"select\",\"dataSource\":\"wikiticker\",\"descending\":\"false\",\"intervals\":[\"-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00\"],\"dimensions\":[\"channel\",\"cityname\",\"comment\",\"countryisocode\",\"countryname\",\"isanonymous\",\"isminor\",\"isnew\",\"isrobot\",\"isunpatrolled\",\"metrocode\",\"namespace\",\"page\",\"regionisocode\",\"regionname\",\"user\",\"user\_unique\"],\"metrics\":[\"added\",\"count\",\"deleted\",\"delta\"],\"pagingSpec\":{\"threshold\":10},\"context\":{\"druid.query.fetch\":true}}","druid.query.type":"select"}
+    Select Operator [SEL_1]
+      Output:["_col0","_col1","_col2","_col3","_col4","_col5","_col6","_col7","_col8","_col9","_col10","_col11","_col12","_col13","_col14","_col15","_col16","_col17","_col18","_col19","_col20","_col21"]
+      TableScan [TS_0]
+        Output:["__time","added","channel","cityname","comment","count","countryisocode","countryname","deleted","delta","isanonymous","isminor","isnew","isrobot","isunpatrolled","metrocode","namespace","page","regionisocode","regionname","user","user_unique"],properties:{"druid.query.json":"{\"queryType\":\"select\",\"dataSource\":\"wikiticker\",\"descending\":\"false\",\"intervals\":[\"-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00\"],\"dimensions\":[\"channel\",\"cityname\",\"comment\",\"countryisocode\",\"countryname\",\"isanonymous\",\"isminor\",\"isnew\",\"isrobot\",\"isunpatrolled\",\"metrocode\",\"namespace\",\"page\",\"regionisocode\",\"regionname\",\"user\",\"user_unique\"],\"metrics\":[\"added\",\"count\",\"deleted\",\"delta\"],\"pagingSpec\":{\"threshold\":10},\"context\":{\"druid.query.fetch\":true}}","druid.query.type":"select"}
 Time taken: 0.141 seconds, Fetched: 10 row(s)
 ```
 
@@ -307,7 +307,7 @@ Observe that the Druid query is in the properties attached to the TableScan. For
     ["channel","cityname","comment","countryisocode",
      "countryname","isanonymous","isminor","isnew",
      "isrobot","isunpatrolled","metrocode","namespace",
-     "page","regionisocode","regionname","user","user\_unique"
+     "page","regionisocode","regionname","user","user_unique"
     ],
   "metrics":["added","count","deleted","delta"],
   "pagingSpec":{"threshold":10}
@@ -321,9 +321,9 @@ Observe that we get to push the limit into the Druid query (`threshold`). Obser
 In Druid, the timestamp column plays a central role. In fact, Druid allows to filter on the time dimension using the `intervals` property for all those queries. This is very important, as the time intervals determine the nodes that store the Druid data. Thus, specifying a precise range minimizes the number of nodes hit by the broken for a certain query. Inspired by Druid [PR-2880](https://github.com/druid-io/druid/pull/2880), we implemented the intervals extraction from the filter conditions in the logical plan of a query. For instance, consider the following query:
 
 ```
-SELECT `\_\_time`
-FROM druid\_table\_1
-WHERE `\_\_time` >= '2010-01-01 00:00:00' AND `\_\_time` <= '2011-01-01 00:00:00'
+SELECT `__time`
+FROM druid_table_1
+WHERE `__time` >= '2010-01-01 00:00:00' AND `__time` <= '2011-01-01 00:00:00'
 LIMIT 10;
 ```
 
@@ -344,10 +344,10 @@ The Druid query generated for the SQL query above is the following (we omit the 
 Observe that we infer correctly the interval for the specified dates, `2010-01-01T00:00:00.000Z/2011-01-01T00:00:00.001Z`, because in Druid the starting date of the interval is included, but the closing date is not. We also support recognition of multiple interval ranges, for instance in the following SQL query:
 
 ```
-SELECT `\_\_time`
-FROM druid\_table\_1
-WHERE (`\_\_time` BETWEEN '2010-01-01 00:00:00' AND '2011-01-01 00:00:00')
-    OR (`\_\_time` BETWEEN '2012-01-01 00:00:00' AND '2013-01-01 00:00:00')
+SELECT `__time`
+FROM druid_table_1
+WHERE (`__time` BETWEEN '2010-01-01 00:00:00' AND '2011-01-01 00:00:00')
+    OR (`__time` BETWEEN '2012-01-01 00:00:00' AND '2013-01-01 00:00:00')
 LIMIT 10;
 ```
 
@@ -359,29 +359,29 @@ Furthermore we can infer overlapping intervals too. Finally, the filters that ar
 
 ```
 -- GRANULARITY: MONTH
-SELECT `floor\_month`(`\_\_time`), max(delta), sum(added)
-FROM druid\_table\_1
-GROUP BY `floor\_month`(`\_\_time`);
+SELECT `floor_month`(`__time`), max(delta), sum(added)
+FROM druid_table_1
+GROUP BY `floor_month`(`__time`);
 ```
 
-Basically, we group by a given time granularity and calculate the aggregation results for each resulting group. In particular, the `floor_month` function over the timestamp dimension \_\_`time` represents the Druid month granularity format. Currently, we support `floor_year`, `floor_quarter`, `floor_month`, `floor_week`, `floor_day`, `floor_hour`, `floor_minute`, and `floor_second` granularities. In addition, we support two special types of granularities, `all` and `none`, which we describe below. We plan to extend our integration work to support other important Druid custom granularity constructs, such as [*duration* and *period* granularities](http://druid.io/docs/0.9.1.1/querying/granularities.html).
+Basically, we group by a given time granularity and calculate the aggregation results for each resulting group. In particular, the `floor_month` function over the timestamp dimension __`time` represents the Druid month granularity format. Currently, we support `floor_year`, `floor_quarter`, `floor_month`, `floor_week`, `floor_day`, `floor_hour`, `floor_minute`, and `floor_second` granularities. In addition, we support two special types of granularities, `all` and `none`, which we describe below. We plan to extend our integration work to support other important Druid custom granularity constructs, such as [*duration* and *period* granularities](http://druid.io/docs/0.9.1.1/querying/granularities.html).
 
 The Hive plan for the query will be the following:
 
 ```
 hive> EXPLAIN
-    > SELECT `floor\_month`(`\_\_time`), max(delta), sum(added)
-    > FROM druid\_table\_1
-    > GROUP BY `floor\_month`(`\_\_time`);
+    > SELECT `floor_month`(`__time`), max(delta), sum(added)
+    > FROM druid_table_1
+    > GROUP BY `floor_month`(`__time`);
 OK
 Plan optimized by CBO.
 Stage-0
   Fetch Operator
     limit:-1
-    Select Operator [SEL\_1]
-      Output:["\_col0","\_col1","\_col2"]
-      TableScan [TS\_0]
-        Output:["\_\_time","$f1","$f2"],
+    Select Operator [SEL_1]
+      Output:["_col0","_col1","_col2"]
+      TableScan [TS_0]
+        Output:["__time","$f1","$f2"],
         properties:{"druid.query.json":"{\"queryType\":\"timeseries\",\"dataSource\":\"wikiticker\",\"descending\":\"false\",\"granularity\":\"MONTH\",\"aggregations\":[{\"type\":\"longMax\",\"name\":\"$f1\",\"fieldName\":\"delta\"},{\"type\":\"longSum\",\"name\":\"$f2\",\"fieldName\":\"added\"}],\"intervals\":[\"-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00\"]}","druid.query.type":"timeseries"}
 Time taken: 0.116 seconds, Fetched: 10 row(s)
 ```
@@ -411,7 +411,7 @@ One rather special case is `all` granularity, which we introduce by example bel
 ```
 -- GRANULARITY: ALL
 SELECT max(delta), sum(added)
-FROM druid\_table\_1;
+FROM druid_table_1;
 ```
 
 As it will do an aggregation on the complete dataset, it translates into a *timeseries* query with granularity `all`. In particular, the equivalent Druid query attached to the TableScan operator is the following:
@@ -438,7 +438,7 @@ For instance, the following SQL query will generate a Druid *groupBy* query:
 
 ```
 SELECT max(delta), sum(added)
-FROM druid\_table\_1
+FROM druid_table_1
 GROUP BY `channel`, `user`;
 ```
 
@@ -460,8 +460,8 @@ GROUP BY `channel`, `user`;
 Finally, we provide an example of a query that runs across Druid and Hive. In particular, let us create a second table in Hive with some data:
 
 ```
-CREATE TABLE hive\_table\_1 (col1 INT, col2 STRING);
-INSERT INTO hive\_table\_1 VALUES(1, '#en.wikipedia');
+CREATE TABLE hive_table_1 (col1 INT, col2 STRING);
+INSERT INTO hive_table_1 VALUES(1, '#en.wikipedia');
 ```
 
 Assume we want to execute the following query:
@@ -471,15 +471,15 @@ SELECT a.channel, b.col1
 FROM
 (
   SELECT `channel`, max(delta) as m, sum(added)
-  FROM druid\_table\_1
-  GROUP BY `channel`, `floor\_year`(`\_\_time`)
+  FROM druid_table_1
+  GROUP BY `channel`, `floor_year`(`__time`)
   ORDER BY m DESC
   LIMIT 1000
 ) a
 JOIN
 (
   SELECT col1, col2
-  FROM hive\_table\_1
+  FROM hive_table_1
 ) b
 ON a.channel = b.col2;
 ```
@@ -492,68 +492,68 @@ hive> explain
     > FROM
     > (
     >   SELECT `channel`, max(delta) as m, sum(added)
-    >   FROM druid\_table\_1
-    >   GROUP BY `channel`, `floor\_year`(`\_\_time`)
+    >   FROM druid_table_1
+    >   GROUP BY `channel`, `floor_year`(`__time`)
     >   ORDER BY m DESC
     >   LIMIT 1000
     > ) a
     > JOIN
     > (
     >   SELECT col1, col2
-    >   FROM hive\_table\_1
+    >   FROM hive_table_1
     > ) b
     > ON a.channel = b.col2;
 OK
 Plan optimized by CBO.
 Vertex dependency in root stage
-Map 2 <- Map 1 (BROADCAST\_EDGE)
+Map 2 <- Map 1 (BROADCAST_EDGE)
 Stage-0
   Fetch Operator
     limit:-1
     Stage-1
       Map 2
-      File Output Operator [FS\_11]
-        Select Operator [SEL\_10] (rows=1 width=0)
-          Output:["\_col0","\_col1"]
-          Map Join Operator [MAPJOIN\_16] (rows=1 width=0)
-            Conds:RS\_7.\_col0=SEL\_6.\_col1(Inner),HybridGraceHashJoin:true,Output:["\_col0","\_col2"]
-          <-Map 1 [BROADCAST\_EDGE]
-            BROADCAST [RS\_7]
-              PartitionCols:\_col0
-              Filter Operator [FIL\_2] (rows=1 width=0)
-                predicate:\_col0 is not null
-                Select Operator [SEL\_1] (rows=1 width=0)
-                  Output:["\_col0"]
-                  TableScan [TS\_0] (rows=1 width=0)
-                    druid@druid\_table\_1,druid\_table\_1,Tbl:PARTIAL,Col:NONE,Output:["channel"],properties:{"druid.query.json":"{\"queryType\":\"groupBy\",\"dataSource\":\"wikiticker\",\"granularity\":\"all\",\"dimensions\":[{\"type\":\"default\",\"dimension\":\"channel\"},{\"type\":\"extraction\",\"dimension\":\"\_\_time\",\"outputName\":\"floor\_year\",\"extractionFn\":{\"type\":\"timeFormat\",\"format\":\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\"granularity\":\"year\",\"timeZone\":\"UTC\",\"locale\":\"en-US\"}}],\"limitSpec\":{\"type\":\"default\",\"limit\":1000,\"columns\":[{\"dimension\":\"$f2\",\"direction\":\"descending\",\"dimensionOrder\":\"numeric\"}]},\"aggregations\":[{\"type\":\"doubleMax\",\"name\":\"$f2\",\"fieldName\":\"delta\"},{\"type\":\"doubleSum\",\"name\":\"$f3\",\"fieldName\":\"added\"}],\"intervals\":[\"1900-01-01T00:00:00.000/3000-01-01T00:00:00.000\"]}","druid.query.type":"groupBy"}
-          <-Select Operator [SEL\_6] (rows=1 width=15)
-              Output:["\_col0","\_col1"]
-              Filter Operator [FIL\_15] (rows=1 width=15)
+      File Output Operator [FS_11]
+        Select Operator [SEL_10] (rows=1 width=0)
+          Output:["_col0","_col1"]
+          Map Join Operator [MAPJOIN_16] (rows=1 width=0)
+            Conds:RS_7._col0=SEL_6._col1(Inner),HybridGraceHashJoin:true,Output:["_col0","_col2"]
+          <-Map 1 [BROADCAST_EDGE]
+            BROADCAST [RS_7]
+              PartitionCols:_col0
+              Filter Operator [FIL_2] (rows=1 width=0)
+                predicate:_col0 is not null
+                Select Operator [SEL_1] (rows=1 width=0)
+                  Output:["_col0"]
+                  TableScan [TS_0] (rows=1 width=0)
+                    druid@druid_table_1,druid_table_1,Tbl:PARTIAL,Col:NONE,Output:["channel"],properties:{"druid.query.json":"{\"queryType\":\"groupBy\",\"dataSource\":\"wikiticker\",\"granularity\":\"all\",\"dimensions\":[{\"type\":\"default\",\"dimension\":\"channel\"},{\"type\":\"extraction\",\"dimension\":\"__time\",\"outputName\":\"floor_year\",\"extractionFn\":{\"type\":\"timeFormat\",\"format\":\"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\",\"granularity\":\"year\",\"timeZone\":\"UTC\",\"locale\":\"en-US\"}}],\"limitSpec\":{\"type\":\"default\",\"limit\":1000,\"columns\":[{\"dimension\":\"$f2\",\"direction\":\"descending\",\"dimensionOrder\":\"numeric\"}]},\"aggregations\":[{\"type\":\"doubleMax\",\"name\":\"$f2\",\"fieldName\":\"delta\"},{\"type\":\"doubleSum\",\"name\":\"$f3\",\"fieldName\":\"added\"}],\"intervals\":[\"1900-01-01T00:00:00.000/3000-01-01T00:00:00.000\"]}","druid.query.type":"groupBy"}
+          <-Select Operator [SEL_6] (rows=1 width=15)
+              Output:["_col0","_col1"]
+              Filter Operator [FIL_15] (rows=1 width=15)
                 predicate:col2 is not null
-                TableScan [TS\_4] (rows=1 width=15)
-                  druid@hive\_table\_1,hive\_table\_1,Tbl:COMPLETE,Col:NONE,Output:["col1","col2"]
+                TableScan [TS_4] (rows=1 width=15)
+                  druid@hive_table_1,hive_table_1,Tbl:COMPLETE,Col:NONE,Output:["col1","col2"]
 Time taken: 0.924 seconds, Fetched: 31 row(s)
 hive> SELECT a.channel, b.col1
     > FROM
     > (
     >   SELECT `channel`, max(delta) as m, sum(added)
-    >   FROM druid\_table\_1
-    >   GROUP BY `channel`, `floor\_year`(`\_\_time`)
+    >   FROM druid_table_1
+    >   GROUP BY `channel`, `floor_year`(`__time`)
     >   ORDER BY m DESC
     >   LIMIT 1000
     > ) a
     > JOIN
     > (
     >   SELECT col1, col2
-    >   FROM hive\_table\_1
+    >   FROM hive_table_1
     > ) b
     > ON a.channel = b.col2;
-Query ID = user1\_20160818202329\_e9a8b3e8-18d3-49c7-bfe0-99d38d2402d3
+Query ID = user1_20160818202329_e9a8b3e8-18d3-49c7-bfe0-99d38d2402d3
 Total jobs = 1
 Launching Job 1 out of 1
-2016-08-18 20:23:30 Running Dag: dag\_1471548210492\_0001\_1
-2016-08-18 20:23:30 Starting to run new task attempt: attempt\_1471548210492\_0001\_1\_00\_000000\_0
-Status: Running (Executing on YARN cluster with App id application\_1471548210492\_0001)
+2016-08-18 20:23:30 Running Dag: dag_1471548210492_0001_1
+2016-08-18 20:23:30 Starting to run new task attempt: attempt_1471548210492_0001_1_00_000000_0
+Status: Running (Executing on YARN cluster with App id application_1471548210492_0001)
 ----------------------------------------------------------------------------------------------
         VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
 ----------------------------------------------------------------------------------------------
@@ -562,7 +562,7 @@ Map 2 .......... container     SUCCEEDED      1          1        0        0    
 ----------------------------------------------------------------------------------------------
 VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 0.15 s
 ----------------------------------------------------------------------------------------------
-2016-08-18 20:23:31 Completed running task attempt: attempt\_1471548210492\_0001\_1\_00\_000000\_0
+2016-08-18 20:23:31 Completed running task attempt: attempt_1471548210492_0001_1_00_000000_0
 OK
 #en.wikipedia	1
 Time taken: 1.835 seconds, Fetched: 2 row(s)

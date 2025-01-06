@@ -44,14 +44,14 @@ Set the environment variable `HIVE_HOME` to point to the installation director
 
 ```
   $ cd hive-x.y.z
-  $ export HIVE\_HOME={{pwd}}
+  $ export HIVE_HOME={{pwd}}
 
 ```
 
 Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 ```
-  $ export PATH=$HIVE\_HOME/bin:$PATH
+  $ export PATH=$HIVE_HOME/bin:$PATH
 ```
 
 ## Installing from Source Code (Hive 1.2.0 and Later)
@@ -100,7 +100,7 @@ It will create the subdirectory build/dist with the following contents:
 
 Subdirectory build/dist should contain all the files necessary to run Hive. You can run it from there or copy it to a different location, if you prefer.
 
-In order to run Hive, you must have Hadoop in your path or have defined the environment variable HADOOP\_HOME with the Hadoop installation directory.
+In order to run Hive, you must have Hadoop in your path or have defined the environment variable HADOOP_HOME with the Hadoop installation directory.
 
 Moreover, we strongly advise users to create the HDFS directories /tmp and /user/hive/warehouse (also known as hive.metastore.warehouse.dir) and set them chmod g+w before tables are created in Hive.
 
@@ -117,7 +117,7 @@ $ bin/hive
 
 ```
 
-The Hive home directory is the one with the contents of build/dist for Hive 0.12 and earlier; for Hive 0.13 and later it is packaging/target/apache-hive-*<release\_string>*-bin/apache-hive-*<release\_string>*-bin/.
+The Hive home directory is the one with the contents of build/dist for Hive 0.12 and earlier; for Hive 0.13 and later it is packaging/target/apache-hive-*<release_string>*-bin/apache-hive-*<release_string>*-bin/.
 
 HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see [Beeline – New Command Line Shell](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell)). To use Beeline, execute the following command in the Hive home directory:
 
@@ -127,7 +127,7 @@ $ bin/beeline
 
 ## Hive Metastore
 
-Metadata is stored in an embedded Derby database whose disk storage location is determined by the Hive configuration variable named javax.jdo.option.ConnectionURL. By default, this location is ./metastore\_db (see conf/hive-default.xml).
+Metadata is stored in an embedded Derby database whose disk storage location is determined by the Hive configuration variable named javax.jdo.option.ConnectionURL. By default, this location is ./metastore_db (see conf/hive-default.xml).
 
 Using Derby in embedded mode allows at most one user at a time. To configure Derby to run in server mode, see [Hive Using Derby in Server Mode]({{< ref "hivederbyservermode_27362068" >}}).
 

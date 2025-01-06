@@ -26,10 +26,10 @@ The following Yetus plugins are used in the Hive personality:
 
 # Findbugs
 
-To run findbugs checks, the findbugs binary should be installed on the computer and the FINDBUGS\_HOME environment variable should be set. The binary can be downloaded [here](http://findbugs.sourceforge.net/downloads.html).
+To run findbugs checks, the findbugs binary should be installed on the computer and the FINDBUGS_HOME environment variable should be set. The binary can be downloaded [here](http://findbugs.sourceforge.net/downloads.html).
 
 ```
-export FINDBUGS\_HOME=~/dev/upstream/findbugs-3.0.1/
+export FINDBUGS_HOME=~/dev/upstream/findbugs-3.0.1/
 ```
 
 # Running Yetus

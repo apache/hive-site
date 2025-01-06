@@ -74,14 +74,14 @@ Set the environment variable `HIVE_HOME` to point to the installation directory:
 
 ```
   $ cd hive-x.y.z
-  $ export HIVE\_HOME={{pwd}}
+  $ export HIVE_HOME={{pwd}}
 
 ```
 
 Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 ```
-  $ export PATH=$HIVE\_HOME/bin:$PATH
+  $ export PATH=$HIVE_HOME/bin:$PATH
 
 ```
 
@@ -106,7 +106,7 @@ To build the current Hive code from the master branch:
   LICENSE
   NOTICE
   README.txt
-  RELEASE\_NOTES.txt
+  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
@@ -141,7 +141,7 @@ Prior to Hive 0.13, Hive was built using [Apache Ant](http://ant.apache.org/). 
   LICENSE
   NOTICE
   README.txt
-  RELEASE\_NOTES.txt
+  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
@@ -172,17 +172,17 @@ Hive uses Hadoop, so:
 In addition, you must use below HDFS commands to create `/tmp` and `/user/hive/warehouse` (aka `hive.metastore.warehouse.dir`) and set them `chmod g+w` before you can create a table in Hive.
 
 ```
-  $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /tmp
-  $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
-  $ $HADOOP\_HOME/bin/hadoop fs -chmod g+w   /tmp
-  $ $HADOOP\_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse
+  $ $HADOOP_HOME/bin/hadoop fs -mkdir       /tmp
+  $ $HADOOP_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
+  $ $HADOOP_HOME/bin/hadoop fs -chmod g+w   /tmp
+  $ $HADOOP_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse
 
 ```
 
 You may find it useful, though it's not necessary, to set `HIVE_HOME`:
 
 ```
-  $ export HIVE\_HOME=<hive-install-dir>
+  $ export HIVE_HOME=<hive-install-dir>
 
 ```
 
@@ -191,7 +191,7 @@ You may find it useful, though it's not necessary, to set `HIVE_HOME`:
 To use the Hive [command line interface]({{< ref "languagemanual-cli_27362033" >}}) (CLI) from the shell:
 
 ```
-  $ $HIVE\_HOME/bin/hive
+  $ $HIVE_HOME/bin/hive
 
 ```
 
@@ -200,16 +200,16 @@ To use the Hive [command line interface]({{< ref "languagemanual-cli_27362033" >
 Starting from Hive 2.1, we need to run the schematool command below as an initialization step. For example, we can use "derby" as db type. 
 
 ```
-  $ $HIVE\_HOME/bin/schematool -dbType <db type> -initSchema
+  $ $HIVE_HOME/bin/schematool -dbType <db type> -initSchema
 
 ```
 
 [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}) (introduced in Hive 0.11) has its own CLI called [Beeline]({{< ref "hiveserver2-clients_30758725" >}}).  HiveCLI is now deprecated in favor of Beeline, as it lacks the multi-user, security, and other capabilities of HiveServer2.  To run HiveServer2 and Beeline from shell:
 
 ```
-  $ $HIVE\_HOME/bin/hiveserver2
+  $ $HIVE_HOME/bin/hiveserver2
 
-  $ $HIVE\_HOME/bin/beeline -u jdbc:hive2://$HS2\_HOST:$HS2\_PORT
+  $ $HIVE_HOME/bin/beeline -u jdbc:hive2://$HS2_HOST:$HS2_PORT
 ```
 
 Beeline is started with the JDBC URL of the HiveServer2, which depends on the address and port where HiveServer2 was started.  By default, it will be (localhost:10000), so the address will look like jdbc:hive2://localhost:10000.
@@ -217,7 +217,7 @@ Beeline is started with the JDBC URL of the HiveServer2, which depends on the ad
 Or to start Beeline and HiveServer2 in the same process for testing purpose, for a similar user experience to HiveCLI:
 
 ```
-  $ $HIVE\_HOME/bin/beeline -u jdbc:hive2://
+  $ $HIVE_HOME/bin/beeline -u jdbc:hive2://
 
 ```
 
@@ -226,14 +226,14 @@ Or to start Beeline and HiveServer2 in the same process for testing purpose, for
 To run the HCatalog server from the shell in Hive release 0.11.0 and later:
 
 ```
-  $ $HIVE\_HOME/hcatalog/sbin/hcat\_server.sh
+  $ $HIVE_HOME/hcatalog/sbin/hcat_server.sh
 
 ```
 
 To use the HCatalog command line interface (CLI) in Hive release 0.11.0 and later:
 
 ```
-  $ $HIVE\_HOME/hcatalog/bin/hcat
+  $ $HIVE_HOME/hcatalog/bin/hcat
 
 ```
 
@@ -244,7 +244,7 @@ For more information, see [HCatalog Installation from Tarball]({{< ref "hcatalog
 To run the WebHCat server from the shell in Hive release 0.11.0 and later:
 
 ```
-  $ $HIVE\_HOME/hcatalog/sbin/webhcat\_server.sh
+  $ $HIVE_HOME/hcatalog/sbin/webhcat_server.sh
 
 ```
 
@@ -324,9 +324,9 @@ The logs are stored in the directory `/tmp/<*user.name*>`:
 * `/tmp/<*user.name*>/hive.log`  
 Note: In [local mode](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706478#GettingStarted-Hive,Map-ReduceandLocal-Mode), prior to Hive 0.13.0 the log file name was "`.log`" instead of "`hive.log`". This bug was fixed in release 0.13.0 (see [HIVE-5528](https://issues.apache.org/jira/browse/HIVE-5528) and [HIVE-5676](https://issues.apache.org/jira/browse/HIVE-5676)).
 
-To configure a different log location, set `hive.log.dir` in $HIVE\_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (`chmod 1777 <*dir*>`).
+To configure a different log location, set `hive.log.dir` in $HIVE_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (`chmod 1777 <*dir*>`).
 
-* `hive.log.dir=*<other\_location>*`
+* `hive.log.dir=*<other_location>*`
 
 If the user wishes, the logs can be emitted to the console by adding the arguments shown below:
 
@@ -428,9 +428,9 @@ Table names can be [changed]({{< ref "#changed" >}}) and columns can be [added o
 
 ```
   hive> ALTER TABLE events RENAME TO 3koobecaf;
-  hive> ALTER TABLE pokes ADD COLUMNS (new\_col INT);
-  hive> ALTER TABLE invites ADD COLUMNS (new\_col2 INT COMMENT 'a comment');
-  hive> ALTER TABLE invites REPLACE COLUMNS (foo INT, bar STRING, baz INT COMMENT 'baz replaces new\_col2');
+  hive> ALTER TABLE pokes ADD COLUMNS (new_col INT);
+  hive> ALTER TABLE invites ADD COLUMNS (new_col2 INT COMMENT 'a comment');
+  hive> ALTER TABLE invites REPLACE COLUMNS (foo INT, bar STRING, baz INT COMMENT 'baz replaces new_col2');
 
 ```
 
@@ -518,7 +518,7 @@ selects column 'foo' from all rows of partition `ds=2008-08-15` of the `invites`
 Note that in all the examples that follow, `INSERT` (into a Hive table, local directory or HDFS directory) is optional.
 
 ```
-  hive> INSERT OVERWRITE DIRECTORY '/tmp/hdfs\_out' SELECT a.* FROM invites a WHERE a.ds='2008-08-15';
+  hive> INSERT OVERWRITE DIRECTORY '/tmp/hdfs_out' SELECT a.* FROM invites a WHERE a.ds='2008-08-15';
 
 ```
 
@@ -528,7 +528,7 @@ NOTE: partition columns if any are selected by the use of *. They can also be sp
 Partitioned tables must always have a partition selected in the `WHERE` clause of the statement.
 
 ```
-  hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local\_out' SELECT a.* FROM pokes a;
+  hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local_out' SELECT a.* FROM pokes a;
 
 ```
 
@@ -537,10 +537,10 @@ selects all rows from pokes table into a local directory.
 ```
   hive> INSERT OVERWRITE TABLE events SELECT a.* FROM profiles a;
   hive> INSERT OVERWRITE TABLE events SELECT a.* FROM profiles a WHERE a.key < 100;
-  hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/reg\_3' SELECT a.* FROM events a;
-  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg\_4' select a.invites, a.pokes FROM profiles a;
-  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg\_5' SELECT COUNT(*) FROM invites a WHERE a.ds='2008-08-15';
-  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg\_5' SELECT a.foo, a.bar FROM invites a;
+  hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/reg_3' SELECT a.* FROM events a;
+  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg_4' select a.invites, a.pokes FROM profiles a;
+  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg_5' SELECT COUNT(*) FROM invites a WHERE a.ds='2008-08-15';
+  hive> INSERT OVERWRITE DIRECTORY '/tmp/reg_5' SELECT a.foo, a.bar FROM invites a;
   hive> INSERT OVERWRITE LOCAL DIRECTORY '/tmp/sum' SELECT SUM(a.pc) FROM pc1 a;
 
 ```
@@ -592,7 +592,7 @@ Similarly – streaming can be used on the reduce side (please see the [Hive Tut
 First, create a table with tab-delimited text file format:
 
 ```
-CREATE TABLE u\_data (
+CREATE TABLE u_data (
   userid INT,
   movieid INT,
   rating INT,
@@ -627,14 +627,14 @@ And load `u.data` into the table that was just created:
 
 ```
 LOAD DATA LOCAL INPATH '<path>/u.data'
-OVERWRITE INTO TABLE u\_data;
+OVERWRITE INTO TABLE u_data;
 
 ```
 
-Count the number of rows in table u\_data:
+Count the number of rows in table u_data:
 
 ```
-SELECT COUNT(*) FROM u\_data;
+SELECT COUNT(*) FROM u_data;
 
 ```
 
@@ -659,7 +659,7 @@ for line in sys.stdin:
 Use the mapper script:
 
 ```
-CREATE TABLE u\_data\_new (
+CREATE TABLE u_data_new (
   userid INT,
   movieid INT,
   rating INT,
@@ -667,17 +667,17 @@ CREATE TABLE u\_data\_new (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t';
 
-add FILE weekday\_mapper.py;
+add FILE weekday_mapper.py;
 
-INSERT OVERWRITE TABLE u\_data\_new
+INSERT OVERWRITE TABLE u_data_new
 SELECT
   TRANSFORM (userid, movieid, rating, unixtime)
-  USING 'python weekday\_mapper.py'
+  USING 'python weekday_mapper.py'
   AS (userid, movieid, rating, weekday)
-FROM u\_data;
+FROM u_data;
 
 SELECT weekday, COUNT(*)
-FROM u\_data\_new
+FROM u_data_new
 GROUP BY weekday;
 
 ```

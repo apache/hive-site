@@ -34,7 +34,7 @@ set hive.query.reexecution.strategies=overlay;
 
 create table t(a int);
 insert into t values (1);
-select assert\_true(${hiveconf:zzz} > a) from t group by a;
+select assert_true(${hiveconf:zzz} > a) from t group by a;
 ```
 
 Every hive setting which has a prefix of "reexec.overlay" will be set for all reexecutions.

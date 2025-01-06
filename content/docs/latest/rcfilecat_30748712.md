@@ -11,7 +11,7 @@ date: 2024-12-12
 	+ [Data]({{< ref "#data" >}})
 	+ [Metadata]({{< ref "#metadata" >}})
 
-$HIVE\_HOME/bin/hive --rcfilecat is a shell utility which can be used to print data or metadata from [RC files]({{< ref "rcfile_58851803" >}}).
+$HIVE_HOME/bin/hive --rcfilecat is a shell utility which can be used to print data or metadata from [RC files]({{< ref "rcfile_58851803" >}}).
 
 ## Data
 
@@ -20,9 +20,9 @@ Prints out the rows stored in an RCFile, columns are tab separated and rows are 
 Usage:
 
 ```
-hive --rcfilecat [--start=start\_offset] [--length=len] [--verbose] fileName
+hive --rcfilecat [--start=start_offset] [--length=len] [--verbose] fileName
 
---start=start\_offset           Start offset to begin reading in the file
+--start=start_offset           Start offset to begin reading in the file
 --length=len                   Length of data to read from the file
 --verbose                      Prints periodic stats about the data read,
                                how many records, how many bytes, scan rate

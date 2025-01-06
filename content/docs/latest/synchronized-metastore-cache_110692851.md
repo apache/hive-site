@@ -21,7 +21,7 @@ The only data structure change is adding ValidWriteIdList into SharedCache.Table
 
 ![](attachments/110692851/110692854.png)  
 
-Note there is no db table structure change, and we don’t store extra information in db. We don’t update TBLS.WRITE\_ID field as we will use db as the fact of truth. We assume db always carry the latest copy and every time we fetch from db, we will tag it with the transaction state of the query.
+Note there is no db table structure change, and we don’t store extra information in db. We don’t update TBLS.WRITE_ID field as we will use db as the fact of truth. We assume db always carry the latest copy and every time we fetch from db, we will tag it with the transaction state of the query.
 
 # How It Works
 
@@ -29,16 +29,16 @@ Note there is no db table structure change, and we don’t store extra informati
 
 Metastore read request will compare ValidWriteIdList parameter with the cached one. If the cached version is fresh or newer (there’s no transaction committed after the entry is cached) , Metastore will use cached copy. Otherwise, Metastore will retrieve the entry from ObjectStore.
 
-Here is the example for a get\_table request:
+Here is the example for a get_table request:
 
-1. At the beginning of the query, Hive will retrieve the global transaction state and store in config (ValidTxnList.VALID\_TXNS\_KEY)
+1. At the beginning of the query, Hive will retrieve the global transaction state and store in config (ValidTxnList.VALID_TXNS_KEY)
 2. Hive translate ValidTxnList to ValidWriteIdList of the table [12:7,8,12] (The format for writeid is [hwm:exceptions], all writeids from 1 to hwm minus exceptions, are committed. In this example, writeid 1..6,9,10,11 are committed)
 3. Hive pass the ValidWriteIdList to HMS
 4. HMS compare ValidWriteIdList [12:7,8,12] with the cached one [11:7,8] using TxnIdUtils.compare, if it is fresh or newer (Fresh or newer means no transaction committed between two states. In this example, [11:7,8] means writeid 1..6,9,10,11 are committed, the same as the requested writeid [12:7,8,12]), HMS return cached table entry
 5. If the cached ValidWriteIdList is [12:7,12], the comparison fails because writeid 8 is committed since then. HMS will fetch the table from ObjectStore
 6. HMS will eventually catch up with the newer version from notification log. HMS will serve the request from cache since then
 
-Here is another example of get\_partitions\_by\_expr. The API is a list query not a point lookup. There are a couple of similarities and differences to point out:
+Here is another example of get_partitions_by_expr. The API is a list query not a point lookup. There are a couple of similarities and differences to point out:
 
 1. HMS will still compare requested writeid and cached table writeid to decide if the request can serve from cache
 2. Every add/remove/alter/rename partition request will increment the table writeid. HMS will mark cached table entry invalid upon processing the first write message from notification log, and mark it valid and tag with the right writeid upon processing the commit message from notification log
@@ -54,9 +54,9 @@ In the previous discussion, we know if the cache is stale, HMS will serve the re
 Here is a complete flow for a cache update when write happen (and illustrated in the diagram):
 
 1. The ValidWriteIdList of cached table is initially [11:7,8]
-2. HMS 1 get a alter\_table request. HMS 1 puts alter\_table message to notification log
+2. HMS 1 get a alter_table request. HMS 1 puts alter_table message to notification log
 3. The transaction in HMS 1 get committed. HMS 1 puts commit message to notification log
-4. The cache update thread in HMS 2 will read the alter\_table event from notification log, update the cache with the new version from notification log. However, the entry is not available for read as writeid associate with it is not updated yet
+4. The cache update thread in HMS 2 will read the alter_table event from notification log, update the cache with the new version from notification log. However, the entry is not available for read as writeid associate with it is not updated yet
 5. A read for the entry on HMS 2 will fetch from db since the entry is not available for read
 6. The cache update thread will further read commit event from notification log, mark writeid 12 as committed, the tag of cached table entry changed to [12:7,8]
 7. The next read from HMS 2 will serve from cache
@@ -71,10 +71,10 @@ The use cases discussed so far are driven by a query. However, during the HMS st
 
 HMS will maintain ValidWriteIdList for every cache entry when transactions are committed. The initial ValidWriteIdList is brought in by bootstrap. After that, for every commit message, HMS needs to:
 
-1. Find the table writeids associated with the txnid, this can be done by a db lookup on TXN\_TO\_WRITE\_ID table, or by processing ALLOC\_WRITE\_ID\_EVENT message in the notification log. I will explain later in detail
+1. Find the table writeids associated with the txnid, this can be done by a db lookup on TXN_TO_WRITE_ID table, or by processing ALLOC_WRITE_ID_EVENT message in the notification log. I will explain later in detail
 2. Mark the writeid as committed in the ValidWriteIdList associated with the cached tables
 
-As an optimization, we can save a db lookup in #1 by cache the writeid of modified tables of the transaction. Every modified table will generate a corresponding ALLOC\_WRITE\_ID\_EVENT associate txnid with table writeid generated. Upon we receive commit message of the transaction, we can get the table writeids for the transaction. Thus we don’t need to do a db lookup to find the same information. However, in the initial commit message after bootstrap, we might miss some ALLOC\_WRITE\_ID\_EVENT for the transaction. To address this issue, we will use this optimization unless we saw the open transaction event as well. Otherwise, HMS will still go to the db to fetch the writeids.
+As an optimization, we can save a db lookup in #1 by cache the writeid of modified tables of the transaction. Every modified table will generate a corresponding ALLOC_WRITE_ID_EVENT associate txnid with table writeid generated. Upon we receive commit message of the transaction, we can get the table writeids for the transaction. Thus we don’t need to do a db lookup to find the same information. However, in the initial commit message after bootstrap, we might miss some ALLOC_WRITE_ID_EVENT for the transaction. To address this issue, we will use this optimization unless we saw the open transaction event as well. Otherwise, HMS will still go to the db to fetch the writeids.
 
 ## Deal with Rename
 
@@ -94,25 +94,25 @@ This approach also provide read your own writes guarantee. Reads within the tran
 
 ## Limitation
 
-The check based on ValidWriteIdList is limited to table/partition. We cannot use the same mechanism for other entities such as databases, functions, privileges, as Hive only generate writeid on table (partition belong to table, so we use table writeid to track partition changes). Currently we don’t cache other entities, HMW will fetch those directly from db. However, many of those entities need to be in cache. For example, get\_database is invoked multiple times by every query. So we need to address this issue in the future.
+The check based on ValidWriteIdList is limited to table/partition. We cannot use the same mechanism for other entities such as databases, functions, privileges, as Hive only generate writeid on table (partition belong to table, so we use table writeid to track partition changes). Currently we don’t cache other entities, HMW will fetch those directly from db. However, many of those entities need to be in cache. For example, get_database is invoked multiple times by every query. So we need to address this issue in the future.
 
 API changes
 
 When reading, we need to pass a writeid list so HMS can compare it with the cached version. We need to add ValidWriteIdList into metastore thrift API and RawStore interfaces for all table/partition related read calls.
 
-Hive\_metastore.thrift and HiveMetaStoreClient.java
+Hive_metastore.thrift and HiveMetaStoreClient.java
 
 Adding a serialized version of ValidWriteIdList to every read HMS API.
 
-| **hive\_metastore.thriftOld API** | **New API** |
-| get\_table(string dbname,string tbl\_name) | get\_table(string dbname,string tbl\_name,int tableid,string validWriteIdList) |
+| **hive_metastore.thriftOld API** | **New API** |
+| get_table(string dbname,string tbl_name) | get_table(string dbname,string tbl_name,int tableid,string validWriteIdList) |
 
 Actually we don’t need to add the new field into every read request because:
 
 1. Many APIs are using a request structure rather than taking individual parameters. So need to add ValidWriteIdList to the request structure instead
 2. Some APIs already take ValidWriteIdList to invalidate outdated transactional statistics. We don’t need to change the API signature, but will reuse the ValidWriteIdList to validate cached entries in CachedStore
 
-HMS read API will remain backward compatible for external table. That is, new server can deal with old client. If the old client issue a create\_table call, server side will receive the request of create\_table with tableid=0 and validWriteIdList=null, and will cache or retrieve the entry regardless(with eventual consistency model). For managed table, tableid and validWriteIdList are required and HMS server will throw an exception if validWriteIdList=null.
+HMS read API will remain backward compatible for external table. That is, new server can deal with old client. If the old client issue a create_table call, server side will receive the request of create_table with tableid=0 and validWriteIdList=null, and will cache or retrieve the entry regardless(with eventual consistency model). For managed table, tableid and validWriteIdList are required and HMS server will throw an exception if validWriteIdList=null.
 
 RawStore
 

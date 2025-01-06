@@ -32,7 +32,7 @@ The configuration files are loaded in this order with later files overriding ear
 Configuration files may access the special environment variable `env` for all environment variables. For example, the Pig executable could be specified using:
 
 ```
-${env.PIG\_HOME}/bin/pig
+${env.PIG_HOME}/bin/pig
 
 ```
 
@@ -87,9 +87,9 @@ The webhcat-log4j.properties file sets the location of the log files created by 
 
 Some of the default values for WebHCat configuration variables depend on the release number. For the default values in the Hive release you are using, see the webhcat-default.xml file. It can be found in the SVN repository at:
 
-* http://svn.apache.org/repos/asf/hive/branches/branch-*<release\_number>*/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml
+* http://svn.apache.org/repos/asf/hive/branches/branch-*<release_number>*/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml
 
-where *<release\_number>* is 0.11, 0.12, and so on. Prior to Hive 0.11, WebHCat was in the Apache incubator.
+where *<release_number>* is 0.11, 0.12, and so on. Prior to Hive 0.11, WebHCat was in the Apache incubator.
 
 For example:
 

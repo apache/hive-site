@@ -55,14 +55,14 @@ The [TPC DS](http://www.tpc.org/tpcds/) is an example of such a schema. It model
 
 ```
 Select count(*) cnt
-From store\_sales ss
-     join household\_demographics hd on (ss.ss\_hdemo\_sk = hd.hd\_demo\_sk)
-     join time\_dim t on (ss.ss\_sold\_time\_sk = t.t\_time\_sk)
-     join store s on (s.s\_store\_sk = ss.ss\_store\_sk)
+From store_sales ss
+     join household_demographics hd on (ss.ss_hdemo_sk = hd.hd_demo_sk)
+     join time_dim t on (ss.ss_sold_time_sk = t.t_time_sk)
+     join store s on (s.s_store_sk = ss.ss_store_sk)
 Where
-     t.t\_hour = 8
-     t.t\_minute >= 30
-     hd.hd\_dep\_count = 2
+     t.t_hour = 8
+     t.t_minute >= 30
+     hd.hd_dep_count = 2
 order by cnt;
 
 ```
@@ -72,8 +72,8 @@ order by cnt;
 Hive supports MAPJOINs, which are well suited for this scenario – at least for dimensions small enough to fit in memory. Before release 0.11, a MAPJOIN could be invoked either through an optimizer hint:
 
 ```
-select /*+ MAPJOIN(time\_dim) */ count(*) from
-store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
+select /*+ MAPJOIN(time_dim) */ count(*) from
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
 
 ```
 
@@ -82,7 +82,7 @@ or via auto join conversion:
 ```
 set hive.auto.convert.join=true;
 select count(*) from
-store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
 
 ```
 
@@ -128,11 +128,11 @@ The following sections describe each of these optimizer enhancements.
 The following query will produce two separate map-only jobs when executed:
 
 ```
-select /*+ MAPJOIN(time\_dim, date\_dim) */ count(*) from
-store\_sales 
-join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk) 
-join date\_dim on (ss\_sold\_date\_sk = d\_date\_sk)
-where t\_hour = 8 and d\_year = 2002
+select /*+ MAPJOIN(time_dim, date_dim) */ count(*) from
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk) 
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
 
 ```
 
@@ -164,14 +164,14 @@ For example, the previous query just becomes:
 
 ```
 select count(*) from
-store\_sales 
-join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
-join date\_dim on (ss\_sold\_date\_sk = d\_date\_sk)
-where t\_hour = 8 and d\_year = 2002
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk)
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
 
 ```
 
-If time\_dim and date\_dim fit in the size configuration provided, the respective joins are converted to map-joins. If the sum of the sizes of the tables can fit in the configured size, then the two map-joins are combined resulting in a single map-join. This reduces the number of MR-jobs required and significantly boosts the speed of execution of this query. This example can be easily extended for multi-way joins as well and will work as expected.
+If time_dim and date_dim fit in the size configuration provided, the respective joins are converted to map-joins. If the sum of the sizes of the tables can fit in the configured size, then the two map-joins are combined resulting in a single map-join. This reduces the number of MR-jobs required and significantly boosts the speed of execution of this query. This example can be easily extended for multi-way joins as well and will work as expected.
 
 Outer joins offer more challenges. Since a map-join operator can only stream one table, the streamed table needs to be the one from which all of the rows are required. For the left outer join, this is the table on the left side of the join; for the right outer join, the table on the right side, etc. This means that even though an inner join can be converted to a map-join, an outer join cannot be converted. An outer join can only be converted if the table(s) apart from the one that needs to be streamed can be fit in the size configuration. A full outer join cannot be converted to a map-join at all since both tables need to be streamed.
 
@@ -227,13 +227,13 @@ The names describe their uses. This is especially useful for the fact-fact join 
 
 If the tables have differing number of keys, for example Table A has 2 SORT columns and Table B has 1 SORT column, then you might get an index out of bounds exception.
 
-The following query results in an index out of bounds exception because emp\_person let us say for example has 1 sort column while emp\_pay\_history has 2 sort columns.
+The following query results in an index out of bounds exception because emp_person let us say for example has 1 sort column while emp_pay_history has 2 sort columns.
 
 **Error Hive 0.11**
 
 ```
 SELECT p.*, py.*
-FROM emp\_person p INNER JOIN emp\_pay\_history py
+FROM emp_person p INNER JOIN emp_pay_history py
 ON   p.empid = py.empid
 ```
 
@@ -243,7 +243,7 @@ This works fine.
 
 ```
 SELECT p.*, py.*
-FROM emp\_pay\_history py INNER JOIN emp\_person p
+FROM emp_pay_history py INNER JOIN emp_person p
 ON   p.empid = py.empid
 
 ```

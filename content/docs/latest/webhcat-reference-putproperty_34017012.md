@@ -51,7 +51,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 % curl -s -X PUT -HContent-type:application/json -d '{ "value": "apples" }' \
-  'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/property/fruit?user.name=ctdean'
+  'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property/fruit?user.name=ctdean'
 
 ```
 
@@ -60,7 +60,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
  "property": "fruit",
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 

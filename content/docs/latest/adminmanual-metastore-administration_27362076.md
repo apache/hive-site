@@ -141,10 +141,10 @@ hive --service metastore
 In versions of Hive earlier than 0.5.0, it's instead necessary to run the Thrift server via direct execution of Java:
 
 ```
-$JAVA\_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE\_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP\_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
+$JAVA_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
 ```
 
-If you execute Java directly, then JAVA\_HOME, HIVE\_HOME, HADOOP\_HOME must be correctly set; CLASSPATH should contain Hadoop, Hive (lib and auxlib), and Java jars.
+If you execute Java directly, then JAVA_HOME, HIVE_HOME, HADOOP_HOME must be correctly set; CLASSPATH should contain Hadoop, Hive (lib and auxlib), and Java jars.
 
 **Server Configuration Parameters**
 
@@ -157,9 +157,9 @@ The following example uses a[Remote Metastore Database]({{< ref "#remote-metasto
 | javax.jdo.option.ConnectionUserName | `<user name>` | user name for connecting to MySQL server |
 | javax.jdo.option.ConnectionPassword | `<password>` | password for connecting to MySQL server |
 | hive.metastore.warehouse.dir | `<base hdfs path>` | default location for Hive tables. |
-| hive.metastore.thrift.bind.host | <host\_name> | Host name to bind the metastore service to. When empty, "localhost" is used. This configuration is available Hive 4.0.0 onwards. |
+| hive.metastore.thrift.bind.host | <host_name> | Host name to bind the metastore service to. When empty, "localhost" is used. This configuration is available Hive 4.0.0 onwards. |
 
-From Hive 3.0.0 ([HIVE-16452](https://issues.apache.org/jira/browse/HIVE-16452)) onwards the metastore database stores a GUID which can be queried using the Thrift API get\_metastore\_db\_uuid by metastore clients in order to identify the backend database instance. This API can be accessed by the HiveMetaStoreClient using the method getMetastoreDbUuid().
+From Hive 3.0.0 ([HIVE-16452](https://issues.apache.org/jira/browse/HIVE-16452)) onwards the metastore database stores a GUID which can be queried using the Thrift API get_metastore_db_uuid by metastore clients in order to identify the backend database instance. This API can be accessed by the HiveMetaStoreClient using the method getMetastoreDbUuid().
 
 #### **Client Configuration Parameters**
 
@@ -178,7 +178,7 @@ From Hive 4.0.0 ([HIVE-20794](https://issues.apache.org/jira/browse/HIVE-20794))
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.service.discovery.mode | service discovery mode | When it is set to "zookeeper", ZooKeeper is used for dynamic service discovery of a remote metastore. In that case, a metastore adds itself to the ZooKeeper when it is started and removes itself when it shuts down. By default it is empty. Both the client and server should have same value for this parameter. |
-| hive.metastore.uris | <host\_name>:<port>, <host\_name>:<port>, ... | One or more host and port pairs of ZooKeeper servers forming a ZooKeeper ensemble. Used when hive.metastore.service.discovery.mode is set to "zookeeper". The configuration is not used by server otherwise. If all the servers are using the same port you may specify the port using hive.metastore.zookeeper.client.port instead of specifying it with every server separately. Both the client and server should have same value for this parameter. |
+| hive.metastore.uris | <host_name>:<port>, <host_name>:<port>, ... | One or more host and port pairs of ZooKeeper servers forming a ZooKeeper ensemble. Used when hive.metastore.service.discovery.mode is set to "zookeeper". The configuration is not used by server otherwise. If all the servers are using the same port you may specify the port using hive.metastore.zookeeper.client.port instead of specifying it with every server separately. Both the client and server should have same value for this parameter. |
 | hive.metastore.zookeeper.client.port | <port> | Port number when same port number is used by all the ZooKeeper servers in the ensemble. Both the client and server should have same value for this parameter. |
 | hive.metastore.zookeeper.namespace | <namespace name> | The parent node under which all ZooKeeper nodes for metastores are created. |
 | hive.metastore.zookeeper.session.timeout | <time in milliseconds> | ZooKeeper client's session timeout (in milliseconds). The client is disconnected if a heartbeat is not sent in the timeout. |
@@ -188,12 +188,12 @@ From Hive 4.0.0 ([HIVE-20794](https://issues.apache.org/jira/browse/HIVE-20794))
 
   
 
-If you are using MySQL as the datastore for metadata, put MySQL jdbc libraries in HIVE\_HOME/lib before starting Hive Client or HiveMetastore Server.
+If you are using MySQL as the datastore for metadata, put MySQL jdbc libraries in HIVE_HOME/lib before starting Hive Client or HiveMetastore Server.
 
 To change the metastore port, use this `hive` command:
 
 ```
-hive --service metastore -p <port\_num>
+hive --service metastore -p <port_num>
 ```
 
 ### Supported Backend Databases for Metastore

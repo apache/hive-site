@@ -17,7 +17,7 @@ date: 2024-12-12
 
 | Category | Outage/Regression/Trivial ? | JIRA | Current Statusfor 1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- | --- |
-| QL | Outage | HIVE-10538 | committed | prasanth\_j |
+| QL | Outage | HIVE-10538 | committed | prasanth_j |
 | Auth | Trivial | HIVE-10578 | committed | thejas |
 | Webhcat | Outage (was Trivial, now upgraded with reopening) | HIVE-10564 | committed | thejas |
 | Add Jar | Regression | HIVE-10576 | committed | thejas |
@@ -62,7 +62,7 @@ Closed
  -
  Support limited integer type promotion in ORC
 Closed
- | committed | prasanth\_j |
+ | committed | prasanth_j |
 
  
 
@@ -117,7 +117,7 @@ Closed
  -
  HIVE-10223 breaks hadoop-1 build
 Closed
- | committed | prasanth\_j |
+ | committed | prasanth_j |
 | serde | 
 [HIVE-10437](https://issues.apache.org/jira/browse/HIVE-10437?src=confmacro)
  -
@@ -199,7 +199,7 @@ Closed
 | Transactions | 
 [HIVE-8915](https://issues.apache.org/jira/browse/HIVE-8915?src=confmacro)
  -
- Log file explosion due to non-existence of COMPACTION\_QUEUE table
+ Log file explosion due to non-existence of COMPACTION_QUEUE table
 Closed
  | committed | alangates |
 | vectorization | 

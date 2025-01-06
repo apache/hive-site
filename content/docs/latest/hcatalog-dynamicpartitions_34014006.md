@@ -23,10 +23,10 @@ The following Pig script illustrates this:
 ```
 A = load 'raw' using HCatLoader(); 
 ... 
-split Z into for\_us if region='us', for\_eu if region='eu', for\_asia if region='asia'; 
-store for\_us into 'processed' using HCatStorer("ds=20110110, region=us"); 
-store for\_eu into 'processed' using HCatStorer("ds=20110110, region=eu"); 
-store for\_asia into 'processed' using HCatStorer("ds=20110110, region=asia"); 
+split Z into for_us if region='us', for_eu if region='eu', for_asia if region='asia'; 
+store for_us into 'processed' using HCatStorer("ds=20110110, region=us"); 
+store for_eu into 'processed' using HCatStorer("ds=20110110, region=eu"); 
+store for_asia into 'processed' using HCatStorer("ds=20110110, region=asia"); 
 
 ```
 
@@ -51,15 +51,15 @@ This section describes changes that occurred in HCatalog 0.5, 0.12, and 0.13 for
 
 Starting in HCatalog 0.5, dynamic partitioning on external tables was broken ([HCATALOG-500](https://issues.apache.org/jira/browse/HCATALOG-500)). This issue was fixed in Hive 0.12.0 by creating dynamic partitions of external tables in locations based on metadata rather than user specifications ([HIVE-5011](https://issues.apache.org/jira/browse/HIVE-5011)). Starting in Hive 0.13.0, users are able to customize the locations by specifying a path pattern in the job configuration property hcat.dynamic.partitioning.custom.pattern ([HIVE-6109](https://issues.apache.org/jira/browse/HIVE-6109)). Static partitions for external tables can have user-specified locations in all Hive releases.
 
-For example, in Hive 0.12.0 if a table named user\_logs is partitioned by (year, month, day, hour, minute, country) and stored at external location "hdfs://hcat/data/user\_logs", then the locations of its dynamic partitions have the standard Hive format which includes keys as well as values, such as:
+For example, in Hive 0.12.0 if a table named user_logs is partitioned by (year, month, day, hour, minute, country) and stored at external location "hdfs://hcat/data/user_logs", then the locations of its dynamic partitions have the standard Hive format which includes keys as well as values, such as:
 
-* hdfs://hcat/data/user\_logs/year=2013/month=12/day=21/hour=06/minute=10/country=US
+* hdfs://hcat/data/user_logs/year=2013/month=12/day=21/hour=06/minute=10/country=US
 
 In Hive 0.13.0 and later, hcat.dynamic.partitioning.custom.pattern can be configured to a custom path pattern. For example, the pattern "${year}/${month}/${day}/${hour}/${minute}/${country}" omits keys from the path:
 
-* hdfs://hcat/data/user\_logs/2013/12/21/06/10/US
+* hdfs://hcat/data/user_logs/2013/12/21/06/10/US
 
-Each dynamic partition column must be present in the custom location path in the format ${column\_name}, and the custom location path must consist of all dynamic partition columns. Other valid custom path strings include:
+Each dynamic partition column must be present in the custom location path in the format ${column_name}, and the custom location path must consist of all dynamic partition columns. Other valid custom path strings include:
 
 * data/${year}/${month}/${day}/${country}
 * ${year}­‐${month}­‐${day}/country=${country}

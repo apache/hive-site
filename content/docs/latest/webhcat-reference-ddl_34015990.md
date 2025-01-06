@@ -63,14 +63,14 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ```
 {
- "stdout": "important\_table
-            my\_other\_table
-            my\_table
-            my\_table\_2
+ "stdout": "important_table
+            my_other_table
+            my_table
+            my_table_2
             pokes
             ",
  "stderr": "WARNING: org.apache.hadoop.metrics.jvm.EventCounter is deprecated...
-            Hive history file=/tmp/ctdean/hive\_job\_log\_ctdean\_201111111258\_2117356679.txt
+            Hive history file=/tmp/ctdean/hive_job_log_ctdean_201111111258_2117356679.txt
             OK
             Time taken: 1.202 seconds
             ",
@@ -85,7 +85,7 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 {
   "stdout": "",
   "stderr": "WARNING: org.apache.hadoop.metrics.jvm.EventCounter is deprecated...
-            Hive history file=/tmp/ctdean/hive\_job\_log\_ctdean\_201204051246\_689834593.txt
+            Hive history file=/tmp/ctdean/hive_job_log_ctdean_201204051246_689834593.txt
             FAILED: Parse Error: line 1:5 Failed to recognize predicate 'tab'...
 
             ",

@@ -41,7 +41,7 @@ hive> set har.partfile.size=1099511627776;
 
 `hive.archive.har.parentdir.settable` informs Hive whether the parent directory can be set while creating the archive. In recent versions of Hadoop the `-p` option can specify the root directory of the archive. For example, if `/dir1/dir2/file` is archived with `/dir1` as the parent directory, then the resulting archive file will contain the directory structure `dir2/file`. In older versions of Hadoop (prior to 2011), this option was not available and therefore Hive must be configured to accommodate this limitation.
 
-`har.partfile.size` controls the size of the files that make up the archive. The archive will contain `*size\_of\_partition*``/``har.partfile.size` files, rounded up. Higher values mean fewer files, but will result in longer archiving times due to the reduced number of mappers.
+`har.partfile.size` controls the size of the files that make up the archive. The archive will contain `*size_of_partition*``/``har.partfile.size` files, rounded up. Higher values mean fewer files, but will result in longer archiving times due to the reduced number of mappers.
 
 ## Usage
 
@@ -50,7 +50,7 @@ hive> set har.partfile.size=1099511627776;
 Once the configuration values are set, a partition can be archived with the command:
 
 ```
-ALTER TABLE table\_name ARCHIVE PARTITION (partition\_col = partition\_col\_value, partition\_col = partiton\_col\_value, ...)
+ALTER TABLE table_name ARCHIVE PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
 
 ```
 

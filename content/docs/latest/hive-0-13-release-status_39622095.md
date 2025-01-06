@@ -58,7 +58,7 @@ HIVE-6855 : A couple of errors in MySQL db creation script for transaction table
 HIVE-6860 : Issue with FS based stats collection on Tez (Ashutosh Chauhan via Vikram Dixit)  
 HIVE-6821 : Fix some non-deterministic tests (Jason Dere via Ashutosh Chauhan)  
 HIVE-6739 : Hive HBase query fails on Tez due to missing jars and then due to NPE in getSplits (Sergey Shelukhin, reviewed by Vikram Dixit K)  
-HIVE-6841: Vectorized execution throws NPE for partitioning columns with \_\_HIVE\_DEFAULT\_PARTITION\_\_ (reviewd by Hari, Ashutosh)  
+HIVE-6841: Vectorized execution throws NPE for partitioning columns with __HIVE_DEFAULT_PARTITION__ (reviewd by Hari, Ashutosh)  
 HIVE-6840: Use Unordered Output for Bucket Map Joins on Tez (Siddharth Seth via Gunther Hagleitner)
 
 HIVE-6834 Dynamic partition optimization bails out after removing file sink operator (Prasanth J via Harish Butani)
@@ -70,7 +70,7 @@ HIVE-6738 : HiveServer2 secure Thrift/HTTP needs to accept doAs parameter from p
 HIVE-6829 : alter table foo compact gives an error (Alan Gates via Ashutosh Chauhan)  
 HIVE-6827 : Disable insecure commands with std sql auth (Ashutosh Chauhan via Thejas Nair)  
 HIVE-6743: Allow specifying the log level for Tez tasks (Siddarth Seth via Gunther Hagleitner)  
-HIVE-6838 : q.out files need correction for stats properties - sample8,transform\_ppr1,transform\_ppr2,union\_ppr (Thejas Nair, reviewed by Jitendra Nath Pandey\_  
+HIVE-6838 : q.out files need correction for stats properties - sample8,transform_ppr1,transform_ppr2,union_ppr (Thejas Nair, reviewed by Jitendra Nath Pandey_  
 revert HIVE-6827 to fix unit test failure  
 HIVE-6808 : sql std auth - describe table, show partitions are not being authorized (Thejas M Nair, reviewed by Ashutosh Chauhan)  
 HIVE-6823 : adding missing files  
@@ -88,7 +88,7 @@ HIVE-6786 Off by one error in ORC PPD (Prasanth J via Sergey Shelukhin)
 HIVE-6789 : HiveStatement client transport lock should unlock in finally block. (Vaibhav Gumashta via Thejas Nair)  
 HIVE-6766 : HCatLoader always returns Char datatype with maxlength(255) when table format is ORC (Eugene Koifman, reviewed by Sushanth Sowmyan)  
 HIVE-6795 : metastore initialization should add default roles with default, SBA (Thejas Nair via Ashutosh Chauhan)  
-HIVE-6802 Fix metastore.thrift: add partition\_columns.types constant(Harish Butani via Jason Dere)  
+HIVE-6802 Fix metastore.thrift: add partition_columns.types constant(Harish Butani via Jason Dere)  
 HIVE-6779 : Hive cli may get into inconsistent state when Ctrl-C is hit on hadoop2 (Ashutosh Chauhan via Jason Dere)  
 HIVE-6642 Query fails to vectorize when a non string partition column is part of the query expression (Hari Subramaniyan via Harish Butani)  
 HIVE-5835 Null pointer exception in DeleteDelegator in templeton code (Hari Subramaniyan via Thejas Nair)  
@@ -102,9 +102,9 @@ HIVE-6752: Vectorized Between and IN expressions don't work with decimal, date t
 HIVE-6547 : normalize struct Role in metastore thrift interface (Thejas M Nair, reviewed by Ashutosh Chauhan)  
 HIVE-6728 : Missing file override-container-log4j.properties in Hcatalog (Eugene Koifman via Thejas Nair)  
 HIVE-6676 : hcat cli fails to run when running with hive on tez (Eugene Koifman via Thejas Nair)  
-HIVE-6597 : WebHCat E2E tests doAsTests\_6 and doAsTests\_7 need to be updated (Deepesh Khandelwal via Eugene Koifman & Sushanth Sowmyan) (backport to 0.13)  
+HIVE-6597 : WebHCat E2E tests doAsTests_6 and doAsTests_7 need to be updated (Deepesh Khandelwal via Eugene Koifman & Sushanth Sowmyan) (backport to 0.13)  
 HIVE-6188 : Document hive.metastore.try.direct.sql & hive.metastore.try.direct.sql.ddl (Sergey Shelukhin, reviewed by Jitendra Nath Pandey)  
-HIVE-6686 : webhcat does not honour -Dlog4j.configuration=$WEBHCAT\_LOG4J of log4j.properties file on local filesystem. (Eugene Koifman via Thejas Nair)  
+HIVE-6686 : webhcat does not honour -Dlog4j.configuration=$WEBHCAT_LOG4J of log4j.properties file on local filesystem. (Eugene Koifman via Thejas Nair)  
 HIVE-6592 : WebHCat E2E test abort when pointing to https url of webhdfs (Deepesh Khandelwal via Sushanth Sowmyan) (backport to 0.13)  
 HIVE-6633 : pig -useHCatalog with embedded metastore fails to pass command line args to metastore (Eric Hanson via Sushanth Sowmyan) (backport to 0.13)
 
@@ -144,9 +144,9 @@ HIVE-6742: Tez Outputs need to be started before accessing the writer (Siddharth
 HIVE-6460 Need new 'show' functionality for transactions (Alan Gates via Harish Butani)  
 HIVE-6671 WebHCat Job Submission API 'enablelog' parameter is only supported with Hadoop 1 (Eugene Koifman via gates)  
 HIVE-6724 : HCatStorer throws ClassCastException while storing tinyint/smallint data (Eugene Koifman via Sushanth Sowmyan) (backport from 0.14 trunk)  
-HIVE-6661 WebHCat E2E test TestPig\_10 fails (Hadoop 2) (Eugene Koifman via gates)  
-HIVE-6653 WebHCat E2E test JOBS\_7 and JOBS\_9 fail as profile.url in job details is being returned as null (Eugene Koifman via gates)  
-HIVE-6644 document TestStreaming\_2 e2e test case for webhcat for branch 0.13  
+HIVE-6661 WebHCat E2E test TestPig_10 fails (Hadoop 2) (Eugene Koifman via gates)  
+HIVE-6653 WebHCat E2E test JOBS_7 and JOBS_9 fail as profile.url in job details is being returned as null (Eugene Koifman via gates)  
+HIVE-6644 document TestStreaming_2 e2e test case for webhcat for branch 0.13  
 HIVE-6606 : Stand alone metastore fails to start if new transaction values not defined in config (Alan Gates via Ashutosh Chauhan)  
 HIVE-6349 : Column name map is broken (reviewed by Remus, Sergey)  
 HIVE-6646 : Error in txn handler SQL (Alan Gates via Ashutosh Chauhan)  
@@ -162,7 +162,7 @@ HIVE-6711 : ORC maps uses getMapSize() from MapOI which is unreliable (Prasanth 
 HIVE-6707 : Lazy maps are broken (LazyMap and LazyBinaryMap) (Prasanth J via Vikram Dixit, reviewed by Gunther)  
 HIVE-6687 : JDBC ResultSet fails to get value by qualified projection name (Laljo John Pullokkaran via Ashutosh Chauhan)  
 HIVE-6222 Make Vector Group By operator abandon grouping if too many distinct keys (Remus Rusanu)  
-HIVE-6704 : date\_add()/date\_sub()/datediff() fail with NPE with null input (Jason Dere via Ashutosh Chauhan)  
+HIVE-6704 : date_add()/date_sub()/datediff() fail with NPE with null input (Jason Dere via Ashutosh Chauhan)  
 HIVE-6672 : JARs loaded by permanent functions don't work properly with HiveServer2 (Jason Dere via Ashutosh Chauhan)  
 HIVE-3969 : Session state for hive server should be cleaned-up (Navis via Ashutosh Chauhan)  
 HIVE-6673 : sql std auth - show grant statement for all principals throws NPE (Thejas Nair via Ashutosh Chauhan)  
@@ -176,12 +176,12 @@ HIVE-6580 : Refactor ThriftBinaryCLIService and ThriftHttpCLIService tests. (Vai
 HIVE-6681 : Describe table sometimes shows from deserializer for column comments (Ashutosh Chauhan via Gunther Hagleitner)  
 HIVE-6668 When auto join convert is on and noconditionaltask is off, ConditionalResolverCommonJoin fails to resolve map joins. (Navis Ryu via Harish Butani)  
 HIVE-6488 : Investigate TestBeeLineWithArgs (Jason Dere via Ashutosh Chauhan)  
-HIVE-6645 : to\_date()/to\_unix\_timestamp() fail with NPE if input is null (Jason Dere via Ashutosh Chauhan)
+HIVE-6645 : to_date()/to_unix_timestamp() fail with NPE if input is null (Jason Dere via Ashutosh Chauhan)
 
 HIVE-6613: Control when spcific Inputs / Outputs are started (Siddharth Seth via Gunther Hagleitner)  
-HIVE-6688 : Fix groupby\_* qfile failures in hadoop-2 (Jason Dere via Ashutosh Chauhan)  
+HIVE-6688 : Fix groupby_* qfile failures in hadoop-2 (Jason Dere via Ashutosh Chauhan)  
 HIVE-6690 : NPE in tez session state (Sergey Shelukhin, reviewed by Gunther Hagleitner)  
-HIVE-6658 : Modify Alter\_numbuckets* test to reflect hadoop2 changes(Laljo John Pullokkaran via Jason Dere)  
+HIVE-6658 : Modify Alter_numbuckets* test to reflect hadoop2 changes(Laljo John Pullokkaran via Jason Dere)  
 HIVE-6660: HiveServer2 running in non-http mode closes server socket for an SSL connection after the 1st request (Prasad Mujumdar, reviewed by Thejas Nair and Vaibhav Gumashta)  
 HIVE-6639. Vectorization: Partition column names are not picked up. (reviewed by Vikram)  
 HIVE-6641 : optimized HashMap keys won't work correctly with decimals (Sergey Shelukhin, reviewed by Gunther Hagleitner)  
@@ -195,7 +195,7 @@ HIVE-6578 : Use ORC file footer statistics through StatsProvidingRecordReader in
 
 HIVE-6518: Add a GC canary to the VectorGroupByOperator to flush whenever a GC is triggered. (Gopal V via jitendra, reviewed by Remus, Gunther)  
 HIVE-4764 : Support Kerberos HTTP authentication for HiveServer2 running in http mode (Vaibhav Gumashta via Thejas Nair)  
-HIVE-6659 : Update log for list\_bucket\_* to add pre/post DB (Laljo John Pullokkaran via Ashutosh Chauhan)  
+HIVE-6659 : Update log for list_bucket_* to add pre/post DB (Laljo John Pullokkaran via Ashutosh Chauhan)  
 HIVE-6012: restore backward compatibility of arithmetic operations (reviewed by Gunther/Sergey)  
 HIVE-6610 : Unit test log needs to reflect DB Name (Laljo John Pullokkaran via Ashutosh Chauhan)
 
@@ -210,7 +210,7 @@ HIVE-6636 : /user/hive is a bad default for HDFS jars path for Tez (Sergey Shelu
 HIVE-6576 : sending user.name as a form parameter in POST doesn't work post HADOOP-10193 (Eugene Koifman via Thejas Nair)  
 HIVE-6567 : "show grant ... on all" fails with NPE (Thejas Nair, reviewed by Ashutosh Chauhan)  
 HIVE-6434 : Restrict function create/drop to admin roles (Jason Dere via Thejas Nair)  
-HIVE-6110 : schematool errors out when HIVE\_OPTS is set (Venki Korukanti via Ashutosh Chauhan)  
+HIVE-6110 : schematool errors out when HIVE_OPTS is set (Venki Korukanti via Ashutosh Chauhan)  
 HIVE-6630 : FS based stats collection have issues for list bucketing case (Ashutosh Chauhan via Gunther Hagleitner)  
 HIVE-6609 : Doing Ctrl-C on hive cli doesn't kill running MR jobs on hadoop-2 (Ashutosh Chauhan via Jason Dere)
 
@@ -230,7 +230,7 @@ HIVE-6507 : OrcFile table property names are specified as strings (Sushanth Sowm
 HIVE-5099 : Some partition publish operation cause OOM in metastore backed by SQL Server (Daniel Dai via Thejas Nair)  
 HIVE-6512 : HiveServer2 ThriftCLIServiceTest#testDoAs is an invalid test (Vaibhav Gumashta via Thejas Nair)  
 HIVE-5155 : Support secure proxy user access to HiveServer2 (Prasad Mujumdar via Thejas Nair)  
-HIVE-5931 : SQL std auth - add metastore get\_principals\_in\_role api, support SHOW PRINCIPALS role\_name (Thejas Nair via Ashutosh Chauhan)  
+HIVE-5931 : SQL std auth - add metastore get_principals_in_role api, support SHOW PRINCIPALS role_name (Thejas Nair via Ashutosh Chauhan)  
 HIVE-6558 : HiveServer2 Plain SASL authentication broken after hadoop 2.3 upgrade (Prasad Mujumdar via Ashutosh Chauhan)  
 HIVE-6559 : sourcing txn-script from schema script results in failure for mysql & oracle (Alan Gates via Ashutosh Chauhan)  
 HIVE-6594: UnsignedInt128 addition does not increase internal int array count resulting in corrupted values during serialization (Remus Rusanu)  
@@ -238,7 +238,7 @@ HIVE-6605 : Hive does not set the environment correctly when running in Tez mode
 HIVE-6587 : allow specifying additional Hive classpath for Hadoop (Sergey Shelukhin, reviewed by Gunther Hagleitner)  
 HIVE-6608 add apache pom as parent pom (reviewed by Brock)  
 HIVE-6591 : Importing a table containing hidden dirs fails (Ashutosh Chauhan via Vikram Dixit)  
-HIVE-6585 : bucket map join fails in presence of \_SUCCESS file (Ashutosh Chauhan via Vikram Dixit)
+HIVE-6585 : bucket map join fails in presence of _SUCCESS file (Ashutosh Chauhan via Vikram Dixit)
 
 HIVE-6414: ParquetInputFormat provides data values that do not match the object inspectors (Justin Coffey via Xuefu)  
 HIVE-6486 : Support secure Subject.doAs() in HiveServer2 JDBC client. (Shivaraju Gowda via Thejas Nair)  

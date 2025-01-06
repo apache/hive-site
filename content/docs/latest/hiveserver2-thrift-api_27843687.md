@@ -73,68 +73,68 @@ namespace cpp Apache.Hive
 // List of protocol versions. A new token should be
 // added to the end of this list every time a change is made.
 enum ProtocolVersion {
-  HIVE\_SERVER2\_PROTOCOL\_V1
+  HIVE_SERVER2_PROTOCOL_V1
 }
 
 enum TType {
-  BOOLEAN\_TYPE,
-  TINYINT\_TYPE,
-  SMALLINT\_TYPE,
-  INT\_TYPE,
-  BIGINT\_TYPE,
-  FLOAT\_TYPE,
-  DOUBLE\_TYPE,
-  STRING\_TYPE,
-  TIMESTAMP\_TYPE,
-  BINARY\_TYPE,
-  ARRAY\_TYPE,
-  MAP\_TYPE,
-  STRUCT\_TYPE,
-  UNION\_TYPE,
-  USER\_DEFINED\_TYPE
+  BOOLEAN_TYPE,
+  TINYINT_TYPE,
+  SMALLINT_TYPE,
+  INT_TYPE,
+  BIGINT_TYPE,
+  FLOAT_TYPE,
+  DOUBLE_TYPE,
+  STRING_TYPE,
+  TIMESTAMP_TYPE,
+  BINARY_TYPE,
+  ARRAY_TYPE,
+  MAP_TYPE,
+  STRUCT_TYPE,
+  UNION_TYPE,
+  USER_DEFINED_TYPE
 }
   
-const set<TType> PRIMITIVE\_TYPES = [
-  TType.BOOLEAN\_TYPE
-  TType.TINYINT\_TYPE
-  TType.SMALLINT\_TYPE
-  TType.INT\_TYPE
-  TType.BIGINT\_TYPE
-  TType.FLOAT\_TYPE
-  TType.DOUBLE\_TYPE
-  TType.STRING\_TYPE
-  TType.TIMESTAMP\_TYPE
-  TType.BINARY\_TYPE
+const set<TType> PRIMITIVE_TYPES = [
+  TType.BOOLEAN_TYPE
+  TType.TINYINT_TYPE
+  TType.SMALLINT_TYPE
+  TType.INT_TYPE
+  TType.BIGINT_TYPE
+  TType.FLOAT_TYPE
+  TType.DOUBLE_TYPE
+  TType.STRING_TYPE
+  TType.TIMESTAMP_TYPE
+  TType.BINARY_TYPE
 ]
 
-const set<TType> COMPLEX\_TYPES = [
-  TType.ARRAY\_TYPE
-  TType.MAP\_TYPE
-  TType.STRUCT\_TYPE
-  TType.UNION\_TYPE
-  TType.USER\_DEFINED\_TYPE
+const set<TType> COMPLEX_TYPES = [
+  TType.ARRAY_TYPE
+  TType.MAP_TYPE
+  TType.STRUCT_TYPE
+  TType.UNION_TYPE
+  TType.USER_DEFINED_TYPE
 ]
 
-const set<TType> COLLECTION\_TYPES = [
-  TType.ARRAY\_TYPE
-  TType.MAP\_TYPE
+const set<TType> COLLECTION_TYPES = [
+  TType.ARRAY_TYPE
+  TType.MAP_TYPE
 ]
 
-const map<TType,string> TYPE\_NAMES = {
-  TType.BOOLEAN\_TYPE: "BOOLEAN",
-  TType.TINYINT\_TYPE: "TINYINT",
-  TType.SMALLINT\_TYPE: "SMALLINT",
-  TType.INT\_TYPE: "INT",
-  TType.BIGINT\_TYPE: "BIGINT",
-  TType.FLOAT\_TYPE: "FLOAT",
-  TType.DOUBLE\_TYPE: "DOUBLE",
-  TType.STRING\_TYPE: "STRING",
-  TType.TIMESTAMP\_TYPE: "TIMESTAMP",
-  TType.BINARY\_TYPE: "BINARY",
-  TType.ARRAY\_TYPE: "ARRAY",
-  TType.MAP\_TYPE: "MAP",
-  TType.STRUCT\_TYPE: "STRUCT",
-  TType.UNION\_TYPE: "UNIONTYPE"
+const map<TType,string> TYPE_NAMES = {
+  TType.BOOLEAN_TYPE: "BOOLEAN",
+  TType.TINYINT_TYPE: "TINYINT",
+  TType.SMALLINT_TYPE: "SMALLINT",
+  TType.INT_TYPE: "INT",
+  TType.BIGINT_TYPE: "BIGINT",
+  TType.FLOAT_TYPE: "FLOAT",
+  TType.DOUBLE_TYPE: "DOUBLE",
+  TType.STRING_TYPE: "STRING",
+  TType.TIMESTAMP_TYPE: "TIMESTAMP",
+  TType.BINARY_TYPE: "BINARY",
+  TType.ARRAY_TYPE: "ARRAY",
+  TType.MAP_TYPE: "MAP",
+  TType.STRUCT_TYPE: "STRUCT",
+  TType.UNION_TYPE: "UNIONTYPE"
 }
 
 // Thrift does not support recursively defined types or forward declarations,
@@ -146,8 +146,8 @@ const map<TType,string> TYPE\_NAMES = {
 // "INT":
 // TTypeDesc {
 //   types = [
-//     TTypeEntry.primitive\_entry {
-//       type = INT\_TYPE
+//     TTypeEntry.primitive_entry {
+//       type = INT_TYPE
 //     }
 //   ]
 // }
@@ -155,11 +155,11 @@ const map<TType,string> TYPE\_NAMES = {
 // "ARRAY<INT>":
 // TTypeDesc {
 //   types = [
-//     TTypeEntry.array\_entry {
-//       object\_type\_ptr = 1
+//     TTypeEntry.array_entry {
+//       object_type_ptr = 1
 //     },
-//     TTypeEntry.primitive\_entry {
-//       type = INT\_TYPE
+//     TTypeEntry.primitive_entry {
+//       type = INT_TYPE
 //     }
 //   ]
 // }
@@ -167,15 +167,15 @@ const map<TType,string> TYPE\_NAMES = {
 // "MAP<INT,STRING>":
 // TTypeDesc {
 //   types = [
-//     TTypeEntry.map\_entry {
-//       key\_type\_ptr = 1
-//       value\_type\_ptr = 2
+//     TTypeEntry.map_entry {
+//       key_type_ptr = 1
+//       value_type_ptr = 2
 //     },
-//     TTypeEntry.primitive\_entry {
-//       type = INT\_TYPE
+//     TTypeEntry.primitive_entry {
+//       type = INT_TYPE
 //     },
-//     TTypeEntry.primitive\_entry {
-//       type = STRING\_TYPE
+//     TTypeEntry.primitive_entry {
+//       type = STRING_TYPE
 //     }
 //   ]
 // }
@@ -185,29 +185,29 @@ typedef i32 TTypeEntryPtr
 // Type entry for a primitive type.
 struct TPrimitiveTypeEntry {
   // The primitive type token. This must satisfy the condition
-  // that type is in the PRIMITIVE\_TYPES set.
+  // that type is in the PRIMITIVE_TYPES set.
   1: required TType type
 }
 
 // Type entry for an ARRAY type.
 struct TArrayTypeEntry {
-  1: required TTypeEntryPtr object\_type\_ptr
+  1: required TTypeEntryPtr object_type_ptr
 }
 
 // Type entry for a MAP type.
 struct TMapTypeEntry {
-  1: required TTypeEntryPtr key\_type\_ptr
-  2: required TTypeEntryPtr value\_type\_ptr
+  1: required TTypeEntryPtr key_type_ptr
+  2: required TTypeEntryPtr value_type_ptr
 }
 
 // Type entry for a STRUCT type.
 struct TStructTypeEntry {
-  1: required map<string, TTypeEntryPtr> name\_to\_type\_ptr
+  1: required map<string, TTypeEntryPtr> name_to_type_ptr
 }
 
 // Type entry for a UNIONTYPE type.
 struct TUnionTypeEntry {
-  1: required map<string, TTypeEntryPtr> name\_to\_type\_ptr
+  1: required map<string, TTypeEntryPtr> name_to_type_ptr
 }
 
 struct TUserDefinedTypeEntry {
@@ -217,12 +217,12 @@ struct TUserDefinedTypeEntry {
 
 // We use a union here since Thrift does not support inheritance.
 union TTypeEntry {
-  1: TPrimitiveTypeEntry primitive\_entry
-  2: TArrayTypeEntry array\_entry
-  3: TMapTypeEntry map\_entry
-  4: TStructTypeEntry struct\_entry
-  5: TUnionTypeEntry union\_entry
-  6: TUserDefinedTypeEntry user\_defined\_type\_entry
+  1: TPrimitiveTypeEntry primitive_entry
+  2: TArrayTypeEntry array_entry
+  3: TMapTypeEntry map_entry
+  4: TStructTypeEntry struct_entry
+  5: TUnionTypeEntry union_entry
+  6: TUserDefinedTypeEntry user_defined_type_entry
 }
 
 // Type descriptor for columns.
@@ -236,10 +236,10 @@ struct TTypeDesc {
 // A result set column descriptor.
 struct TColumnDesc {
   // The name of the column
-  1: required string col\_name
+  1: required string col_name
 
   // The type descriptor for this column
-  2: required TTypeDesc type\_desc
+  2: required TTypeDesc type_desc
   
   // The ordinal position of this column in the schema
   3: required i32 position
@@ -260,13 +260,13 @@ struct TTableSchema {
 // disambiguated by looking at the Schema of the
 // result set.
 union TColumnValue {
-  1: bool   bool\_val      // BOOLEAN
-  2: byte   byte\_val      // TINYINT
-  3: i16    i16\_val       // SMALLINT
-  4: i32    i32\_val       // INT
-  5: i64    i64\_val       // BIGINT, TIMESTAMP
-  6: double double\_val    // FLOAT, DOUBLE
-  7: string string\_val    // STRING, LIST, MAP, STRUCT, UNIONTYPE, BINARY
+  1: bool   bool_val      // BOOLEAN
+  2: byte   byte_val      // TINYINT
+  3: i16    i16_val       // SMALLINT
+  4: i32    i32_val       // INT
+  5: i64    i64_val       // BIGINT, TIMESTAMP
+  6: double double_val    // FLOAT, DOUBLE
+  7: string string_val    // STRING, LIST, MAP, STRUCT, UNIONTYPE, BINARY
 }
 
 // Represents a row in a rowset.
@@ -277,31 +277,31 @@ struct TRow {
 // Represents a rowset
 struct TRowSet {
   // The starting row offset of this rowset.
-  1: i64 start\_row\_offset
+  1: i64 start_row_offset
   2: list<TRow> rows
 }
 
 // The return status code contained in each response.
 enum TStatusCode {
   SUCCESS,
-  SUCCESS\_WITH\_INFO,
-  SQL\_STILL\_EXECUTING,
+  SUCCESS_WITH_INFO,
+  SQL_STILL_EXECUTING,
   ERROR,
-  INVALID\_HANDLE
+  INVALID_HANDLE
 }
 
 // The return status of a remote request
 struct TStatus {
-  1: required TStatusCode status\_code
+  1: required TStatusCode status_code
 
-  // If status is SUCCESS\_WITH\_INFO, info\_msgs may be populated with
+  // If status is SUCCESS_WITH_INFO, info_msgs may be populated with
   // additional diagnostic information.
-  2: optional list<string> info\_msgs
+  2: optional list<string> info_msgs
 
   // If status is ERROR, then the following fields may be set
-  3: optional string sql\_state  // as defined in the ISO/IEF CLI specification
-  4: optional i32 error\_code    // internal error code
-  5: optional string error\_message
+  3: optional string sql_state  // as defined in the ISO/IEF CLI specification
+  4: optional i32 error_code    // internal error code
+  5: optional string error_message
 }
 
 // The state of an operation (i.e. a query or other
@@ -329,10 +329,10 @@ typedef string TIdentifier
 // A search pattern.
 //
 // Valid search pattern characters:
-// '\_': Any single character.
+// '_': Any single character.
 // '%': Any sequence of zero or more characters.
 // '\': Escape character used to include special characters,
-//      e.g. '\_', '%', '\'. If a '\' precedes a non-special
+//      e.g. '_', '%', '\'. If a '\' precedes a non-special
 //      character it has no special meaning and is interpreted
 //      literally.
 typedef string TPattern
@@ -359,23 +359,23 @@ struct THandleIdentifier {
 // Client-side handle to persistent
 // session information on the server-side.
 struct TSessionHandle {
-  1: required THandleIdentifier sess\_id
+  1: required THandleIdentifier sess_id
 }
 
 // The subtype of an OperationHandle.
 enum TOperationType {
-  EXECUTE\_STATEMENT,
-  GET\_TYPE\_INFO,
-  GET\_TABLES,
-  GET\_COLUMNS,
-  GET\_FUNCTIONS,
+  EXECUTE_STATEMENT,
+  GET_TYPE_INFO,
+  GET_TABLES,
+  GET_COLUMNS,
+  GET_FUNCTIONS,
 }
 
 // Client-side reference to a task running
 // asynchronously on the server.
 struct TOperationHandle {
-  1: required THandleIdentifier op\_id
-  2: required TOperationType op\_type
+  1: required THandleIdentifier op_id
+  2: required TOperationType op_type
 }
 
 // OpenSession()
@@ -384,7 +384,7 @@ struct TOperationHandle {
 // which operations may be executed. 
 struct TOpenSessionReq {
   // The version of the HiveServer2 protocol that the client is using.
-  1: required ProtocolVersion client\_protocol = ProtocolVersion.HIVE\_SERVER2\_PROTOCOL\_V1
+  1: required ProtocolVersion client_protocol = ProtocolVersion.HIVE_SERVER2_PROTOCOL_V1
   
   // Username and password for authentication.
   // Depending on the authentication scheme being used,
@@ -403,10 +403,10 @@ struct TOpenSessionResp {
   1: required TStatus status
 
   // The protocol version that the server is using.
-  2: ProtocolVersion server\_protocol = ProtocolVersion.HIVE\_SERVER2\_PROTOCOL\_V1
+  2: ProtocolVersion server_protocol = ProtocolVersion.HIVE_SERVER2_PROTOCOL_V1
 
   // Session Handle
-  3: TSessionHandle session\_handle
+  3: TSessionHandle session_handle
 
   // The configuration settings for this session.
   4: map<string, string> configuration
@@ -418,7 +418,7 @@ struct TOpenSessionResp {
 // currently allocated to that session. Any open
 // operations in that session will be canceled.
 struct TCloseSessionReq {
-  1: required TSessionHandle session\_handle
+  1: required TSessionHandle session_handle
 }
 
 struct TCloseSessionResp {
@@ -432,12 +432,12 @@ struct TCloseSessionResp {
 // using the same keys as ODBC.
 struct TGetInfoReq {
   // The sesssion to run this request against
-  1: required TSessionHandle session\_handle
+  1: required TSessionHandle session_handle
 
   // List of keys for which info is requested. If unset or empty,
   // the response message will contain the values of all Info
   // properties.
-  2: optional list<string> info\_keys
+  2: optional list<string> info_keys
 }
 
 struct TGetInfoResp {
@@ -464,12 +464,12 @@ struct TExecuteStatementReq {
   // the existing session configuration before this statement
   // is executed. These properties apply to this statement
   // only and will not affect the subsequent state of the Session.
-  3: map<string, string> conf\_overlay
+  3: map<string, string> conf_overlay
 }
 
 struct TExecuteStatementResp {
   1: required TStatus status
-  2: TOperationHandle op\_handle
+  2: TOperationHandle op_handle
 }
 
 // GetTypeInfo()
@@ -487,7 +487,7 @@ struct TGetTypeInfoReq {
 
 struct TGetTypeInfoResp {
   1: required TStatus status
-  2: TOperationHandle op\_handle
+  2: TOperationHandle op_handle
 }  
 
 // GetTables()
@@ -500,22 +500,22 @@ struct TGetTypeInfoResp {
 // Result Set Columns:
 //
 // col1
-// name: TABLE\_CAT
+// name: TABLE_CAT
 // type: STRING
 // desc: Catalog name. NULL if not applicable.
 //
 // col2
-// name: TABLE\_SCHEM
+// name: TABLE_SCHEM
 // type: STRING
 // desc: Schema name.
 //
 // col3
-// name: TABLE\_NAME
+// name: TABLE_NAME
 // type: STRING
 // desc: Table name.
 //
 // col4
-// name: TABLE\_TYPE
+// name: TABLE_TYPE
 // type: STRING
 // desc: The table type, e.g. "TABLE", "VIEW", etc.
 //
@@ -529,23 +529,23 @@ struct TGetTablesReq {
   1: required TSessionHandle session
 
   // Name of the catalog or a search pattern.
-  2: optional TPatternOrIdentifier catalog\_name
+  2: optional TPatternOrIdentifier catalog_name
 
   // Name of the schema or a search pattern.
-  3: required TPatternOrIdentifier schema\_name
+  3: required TPatternOrIdentifier schema_name
 
   // Name of the table or a search pattern.
-  4: required TPatternOrIdentifier table\_name
+  4: required TPatternOrIdentifier table_name
 
   // List of table types to match
   // e.g. "TABLE", "VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY",
   // "LOCAL TEMPORARY", "ALIAS", "SYNONYM", etc.
-  5: list<string> table\_types
+  5: list<string> table_types
 }
 
 struct TGetTablesResp {
   1: required TStatus status
-  2: TOperationHandle op\_handle
+  2: TOperationHandle op_handle
 }
 
 // GetColumns()
@@ -562,21 +562,21 @@ struct TGetColumnsReq {
   1: required TSessionHandle session
 
   // Name of the catalog. Must not contain a search pattern.
-  2: optional TIdentifier catalog\_name
+  2: optional TIdentifier catalog_name
 
   // Schema name or search pattern
-  3: required TPatternOrIdentifier schema\_name
+  3: required TPatternOrIdentifier schema_name
 
   // Table name or search pattern
-  4: required TPatternOrIdentifier table\_name
+  4: required TPatternOrIdentifier table_name
 
   // Column name or search pattern
-  5: required TPatternOrIdentifier column\_name
+  5: required TPatternOrIdentifier column_name
 }
 
 struct TGetColumnsResp {
   1: required TStatus status
-  2: optional TOperationHandle op\_handle
+  2: optional TOperationHandle op_handle
 }
 
 // GetFunctions()
@@ -586,7 +586,7 @@ struct TGetColumnsResp {
 // Result Set Columns:
 //
 // col1
-// name: FUNCTION\_NAME
+// name: FUNCTION_NAME
 // type: STRING
 // desc: The name of the function.
 //
@@ -596,12 +596,12 @@ struct TGetColumnsResp {
 // desc: A description of the function.
 //
 // col3
-// name: FUNCTION\_TYPE
+// name: FUNCTION_TYPE
 // type: STRING
 // desc: The function type: "UDF", "UDAF", or "UDTF".
 //
 // col4
-// name: FUNCTION\_CLASS
+// name: FUNCTION_CLASS
 // type: STRING
 // desc: The fully qualified name of the class
 //       that implements the specified function.
@@ -613,7 +613,7 @@ struct TGetFunctionsReq {
 
 struct TGetFunctionsResp {
   1: required TStatus status
-  2: optional TOperationHandle op\_handle
+  2: optional TOperationHandle op_handle
 }
   
 
@@ -622,12 +622,12 @@ struct TGetFunctionsResp {
 // Get the status of an operation running on the server.
 struct TGetOperationStatusReq {
   // Session to run this request against
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 }
 
 struct TGetOperationStatusResp {
   1: required TStatus status
-  2: TOperationState op\_state
+  2: TOperationState op_state
 }
 
 // CancelOperation()
@@ -636,7 +636,7 @@ struct TGetOperationStatusResp {
 // frees any resources which were allocated.
 struct TCancelOperationReq {
   // Operation to cancel
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 }
 
 struct TCancelOperationResp {
@@ -649,12 +649,12 @@ struct TCancelOperationResp {
 // request, this function returns the queryplan for that
 // statement annotated with counter information.
 struct TGetQueryPlanReq {
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 }
 
 struct TGetQueryPlanResp {
   1: required TStatus status
-  2: optional queryplan.QueryPlan query\_plan
+  2: optional queryplan.QueryPlan query_plan
 }
 
 // CloseOperation()
@@ -664,7 +664,7 @@ struct TGetQueryPlanResp {
 // all of the resources which were allocated on
 // the server to service the operation.
 struct TCloseOperationReq {
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 }
 
 struct TCloseOperationResp {
@@ -676,7 +676,7 @@ struct TCloseOperationResp {
 // Retrieves schema information for the specified operation
 struct TGetResultSetMetadataReq {
   // Operation for which to fetch result set schema information
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 }
 
 struct TGetResultSetMetadataResp {
@@ -686,27 +686,27 @@ struct TGetResultSetMetadataResp {
 
 enum TFetchOrientation {
   // Get the next rowset. The fetch offset is ignored.
-  FETCH\_NEXT,
+  FETCH_NEXT,
 
   // Get the previous rowset. The fetch offset is ignored.
   // NOT SUPPORTED
-  FETCH\_PRIOR,
+  FETCH_PRIOR,
 
   // Return the rowset at the given fetch offset relative
   // to the curren rowset.
   // NOT SUPPORTED
-  FETCH\_RELATIVE,
+  FETCH_RELATIVE,
 
   // Return the rowset at the specified fetch offset.
   // NOT SUPPORTED
-  FETCH\_ABSOLUTE,
+  FETCH_ABSOLUTE,
 
   // Get the first rowset in the result set.
-  FETCH\_FIRST,
+  FETCH_FIRST,
 
   // Get the last rowset in the result set.
   // NOT SUPPORTED
-  FETCH\_LAST
+  FETCH_LAST
 }
 
 // FetchResults()
@@ -715,22 +715,22 @@ enum TFetchOrientation {
 // a particular OperationHandle.
 struct TFetchResultsReq {
   // Operation from which to fetch results.
-  1: required TOperationHandle op\_handle
+  1: required TOperationHandle op_handle
 
   // The fetch orientation. For V1 this must be either
-  // FETCH\_NEXT or FETCH\_FIRST. Defaults to FETCH\_NEXT.
-  2: TFetchOrientation orientation = TFetchOrientation.FETCH\_NEXT
+  // FETCH_NEXT or FETCH_FIRST. Defaults to FETCH_NEXT.
+  2: TFetchOrientation orientation = TFetchOrientation.FETCH_NEXT
   
   // Max number of rows that should be returned in
   // the rowset.
-  3: i64 max\_rows
+  3: i64 max_rows
 }
 
 struct TFetchResultsResp {
   1: required TStatus status
 
   // TRUE if there are more rows left to fetch from the server.
-  2: bool has\_more\_rows
+  2: bool has_more_rows
 
   // The rowset. This is optional so that we have the
   // option in the future of adding alternate formats for

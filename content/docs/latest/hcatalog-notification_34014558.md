@@ -43,7 +43,7 @@ conn.start();
 	```
 	HiveMetaStoreClient msc = new HiveMetaStoreClient(hiveConf);
 	String topicName = msc.getTable("mydb",
-	                   "myTbl").getParameters().get(HCatConstants.HCAT\_MSGBUS\_TOPIC\_NAME);
+	                   "myTbl").getParameters().get(HCatConstants.HCAT_MSGBUS_TOPIC_NAME);
 	
 	```
 	* Use the topic name to subscribe to a topic as follows:
@@ -51,7 +51,7 @@ conn.start();
 	
 	
 	```
-	Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
+	Session session = conn.createSession(true, Session.SESSION_TRANSACTED);
 	Destination hcatTopic = session.createTopic(topicName);
 	MessageConsumer consumer = session.createConsumer(hcatTopic);
 	consumer.setMessageListener(this);
@@ -62,9 +62,9 @@ conn.start();
 ```
 @Override
 public void onMessage(Message msg) {
-  // We are interested in only add\_partition events on this table.
+  // We are interested in only add_partition events on this table.
   // So, check message type first.
-  if(msg.getStringProperty(HCatConstants.HCAT\_EVENT).equals(HCatConstants.HCAT\_ADD\_PARTITION\_EVENT)){
+  if(msg.getStringProperty(HCatConstants.HCAT_EVENT).equals(HCatConstants.HCAT_ADD_PARTITION_EVENT)){
        Object obj = (((ObjectMessage)msg).getObject());
   }
 }
@@ -90,7 +90,7 @@ partMap.put("date","20110711");
 partMap.put("country","*");
 
 // Mark the partition as "done"
-msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD\_DONE);
+msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD_DONE);
 
 ```
 
@@ -108,7 +108,7 @@ partMap.put("date","20110711");
 partMap.put("country","*");
 
 // Mark the partition as "done"
-msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD\_DONE);
+msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD_DONE);
 
 ```
 
@@ -116,13 +116,13 @@ If the consumer has registered with the message bus and is currently live, it wi
 
 ```
 // Enquire to metastore whether a particular partition has been marked or not.
-boolean marked = msc.isPartitionMarkedForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD\_DONE);
+boolean marked = msc.isPartitionMarkedForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD_DONE);
 
 // Or register to a message bus and get asynchronous callback.
 ConnectionFactory connFac = new ActiveMQConnectionFactory(amqurl);
 Connection conn = connFac.createConnection();
 conn.start();
-Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
+Session session = conn.createSession(true, Session.SESSION_TRANSACTED);
 Destination hcatTopic = session.createTopic(topic);
 MessageConsumer consumer = session.createConsumer(hcatTopic);
 consumer.setMessageListener(this);
@@ -197,10 +197,10 @@ For the server to start with support for notifications, the following must be in
 
 Then, follow these guidelines to set up your environment:
 
-1. The HCatalog server start script is *$YOUR\_HCAT\_SERVER*`/share/hcatalog/scripts/hcat_server_start.sh`.
-2. This script expects classpath to be set by the AUX\_CLASSPATH environment variable.
-3. Therefore set AUX\_CLASSPATH to satisfy (a) and (b) above.
-4. The `jndi.properties` file is located at *$YOUR\_HCAT\_SERVER*`/etc/hcatalog/jndi.properties`.
+1. The HCatalog server start script is *$YOUR_HCAT_SERVER*`/share/hcatalog/scripts/hcat_server_start.sh`.
+2. This script expects classpath to be set by the AUX_CLASSPATH environment variable.
+3. Therefore set AUX_CLASSPATH to satisfy (a) and (b) above.
+4. The `jndi.properties` file is located at *$YOUR_HCAT_SERVER*`/etc/hcatalog/jndi.properties`.
 5. You need to uncomment and set the following properties in the `jndi.properties` file:
 	* `java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory`
 	* `java.naming.provider.url = tcp://localhost:61616`    (This is the ActiveMQ URL in your setup.)
@@ -209,9 +209,9 @@ Then, follow these guidelines to set up your environment:
 
 If tables are created while the server is configured for notifications, a default topic name is automatically set as a table property. To use notifications with tables created previously (either in other HCatalog installations or prior to enabling notifications in the current installation) you will have to manually set a topic name. For example:
 
-     *$YOUR\_HCAT\_CLIENT\_HOME*`/bin/hcat -e "ALTER TABLE access SET hcat.msgbus.topic.name=$TOPIC_NAME"`
+     *$YOUR_HCAT_CLIENT_HOME*`/bin/hcat -e "ALTER TABLE access SET hcat.msgbus.topic.name=$TOPIC_NAME"`
 
-You then need to configure your ActiveMQ Consumer(s) to listen for messages on the topic you gave in $TOPIC\_NAME. A good default policy is `TOPIC_NAME = "$database.$table"` (that is a literal dot).
+You then need to configure your ActiveMQ Consumer(s) to listen for messages on the topic you gave in $TOPIC_NAME. A good default policy is `TOPIC_NAME = "$database.$table"` (that is a literal dot).
 
   
 

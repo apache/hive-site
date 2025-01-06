@@ -59,8 +59,8 @@ See [HiveServer2 in the Configuration Properties document]({{< ref "#hiveserver2
 
 **Optional Environment Settings**
 
-HIVE\_SERVER2\_THRIFT\_BIND\_HOST – Optional TCP host interface to bind to. Overrides the configuration file setting.  
-HIVE\_SERVER2\_THRIFT\_PORT – Optional TCP port number to listen on, default 10000. Overrides the configuration file setting.
+HIVE_SERVER2_THRIFT_BIND_HOST – Optional TCP host interface to bind to. Overrides the configuration file setting.  
+HIVE_SERVER2_THRIFT_PORT – Optional TCP port number to listen on, default 10000. Overrides the configuration file setting.
 
 #### **Running in HTTP Mode**
 
@@ -96,14 +96,14 @@ HiveServer2 operation logs are available for Beeline clients (Hive 0.14 onward).
 ## How to Start
 
 ```
-$HIVE\_HOME/bin/hiveserver2
+$HIVE_HOME/bin/hiveserver2
 
 ```
 
 OR
 
 ```
-$HIVE\_HOME/bin/hive --service hiveserver2
+$HIVE_HOME/bin/hive --service hiveserver2
 
 ```
 
@@ -112,7 +112,7 @@ $HIVE\_HOME/bin/hive --service hiveserver2
 The `-H` or `--help` option displays a usage message, for example:
 
 ```
-$HIVE\_HOME/bin/hive --service hiveserver2 -H
+$HIVE_HOME/bin/hive --service hiveserver2 -H
 Starting HiveServer2
 usage: hiveserver2
  -H,--help                        Print help information
@@ -215,7 +215,7 @@ Support is provided for PAM (Hive 0.13 onward, see [HIVE-6466](https://issues.ap
 
 * Download the [JPAM](http://sourceforge.net/projects/jpam/files/jpam/jpam-1.1/) native library for the relevant architecture.
 * Unzip and copy libjpam.so to a directory (<libjmap-directory>) on the system.
-* Add the directory to the LD\_LIBRARY\_PATH environment variable like so:`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<libjmap-directory>`
+* Add the directory to the LD_LIBRARY_PATH environment variable like so:`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<libjmap-directory>`
 * For some PAM modules, you'll have to ensure that your `/etc/shadow` and `/etc/login.defs` files are readable by the user running the HiveServer2 process.
 
 Finally, set the following configurations in `hive-site.xml`:
@@ -229,14 +229,14 @@ hive.server2.authentication.pam.services – Set this to a list of comma-separat
 Starting Hive 2.2.0 onwards (see [HIVE-14822](https://issues.apache.org/jira/browse/HIVE-14822)) Hiveserver2 supports job specific hadoop credential provider for MR and Spark jobs. When using encrypted passwords via the Hadoop Credential Provider, HiveServer2 needs to forward enough information to the job configuration so that jobs launched across cluster can read those secrets. Additionally, HiveServer2 may have secrets that the job should not have such as the Hive Metastore database password. If your job needs to access such secrets, like S3 credentials, then you can configure them using the configuration steps below:
 
 1. Create a job-specific keystore using Hadoop Credential Provider API at a secure location in HDFS. This keystore should contain the encrypted key/value pairs of the configurations needed by jobs. Eg: in case of S3 credentials the keystore should contain fs.s3a.secret.key and fs.s3a.access.key with their corresponding values.
-2. The password to decrypt the keystore should be set as a HiveServer2 environment variable called HIVE\_JOB\_CREDSTORE\_PASSWORD
+2. The password to decrypt the keystore should be set as a HiveServer2 environment variable called HIVE_JOB_CREDSTORE_PASSWORD
 3. Set  hive.server2.job.credential.provider.path to URL pointing to the type and location of keystore created in (1) above. If there is no job-specific keystore, HiveServer2 will use the one set using hadoop.credential.provider.path in core-site.xml if available.
-4. If the password using environment variable set in step 2 is not provided, HiveServer2 will use HADOOP\_CREDSTORE\_PASSWORD environment variable if available.
+4. If the password using environment variable set in step 2 is not provided, HiveServer2 will use HADOOP_CREDSTORE_PASSWORD environment variable if available.
 5. HiveServer2 will now modify the job configuration of the jobs launched using MR or Spark execution engines to include the job credential provider so that job tasks can access the encrypted keystore with the secrets.
 
 hive.server2.job.credential.provider.path – Set this to your job-specific hadoop credential provider. Eg: jceks://hdfs/user/hive/secret/jobcreds.jceks.
 
-HIVE\_JOB\_CREDSTORE\_PASSWORD – Set this HiveServer2 environment variable to your job specific Hadoop credential provider password set above.
+HIVE_JOB_CREDSTORE_PASSWORD – Set this HiveServer2 environment variable to your job specific Hadoop credential provider password set above.
 
 ## Scratch Directory Management
 

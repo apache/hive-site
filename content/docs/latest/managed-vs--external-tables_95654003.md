@@ -18,7 +18,7 @@ Another consequence is that data is attached to the Hive entities. So, whenever 
 
 For external tables Hive assumes that it does *not* manage the data.
 
-Managed or external tables can be identified using the [DESCRIBE FORMATTED table\_name]({{< ref "#describe-formatted-table\_name" >}}) command, which will display either MANAGED\_TABLE or EXTERNAL\_TABLE depending on table type.
+Managed or external tables can be identified using the [DESCRIBE FORMATTED table_name]({{< ref "#describe-formatted-table_name" >}}) command, which will display either MANAGED_TABLE or EXTERNAL_TABLE depending on table type.
 
 [Statistics]({{< ref "statsdev_27362062" >}}) can be managed on internal and external tables and partitions for query optimization. 
 
@@ -41,7 +41,7 @@ Use managed tables when Hive should manage the lifecycle of the table, or when g
 
 ## External tables
 
-An external table describes the metadata / schema on external files. External table files can be accessed and managed by processes outside of Hive. External tables can access data stored in sources such as Azure Storage Volumes (ASV) or remote HDFS locations. If the structure or partitioning of an external table is changed, an [MSCK REPAIR TABLE table\_name]({{< ref "#msck-repair-table-table\_name" >}}) statement can be used to refresh metadata information.
+An external table describes the metadata / schema on external files. External table files can be accessed and managed by processes outside of Hive. External tables can access data stored in sources such as Azure Storage Volumes (ASV) or remote HDFS locations. If the structure or partitioning of an external table is changed, an [MSCK REPAIR TABLE table_name]({{< ref "#msck-repair-table-table_name" >}}) statement can be used to refresh metadata information.
 
 Use external tables when files are already present or in remote locations, and the files should remain even if the table is dropped.
 

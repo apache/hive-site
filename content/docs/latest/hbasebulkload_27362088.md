@@ -26,14 +26,14 @@ This page explains how to use Hive to bulk load data into a new (empty) HBase ta
 Ideally, bulk load from Hive into HBase would be part of [HBaseIntegration]({{< ref "hbaseintegration_27362089" >}}), making it as simple as this:
 
 ```
-CREATE TABLE new\_hbase\_table(rowkey string, x int, y int) 
+CREATE TABLE new_hbase_table(rowkey string, x int, y int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf:x,cf:y");
 
 SET hive.hbase.bulk=true;
 
-INSERT OVERWRITE TABLE new\_hbase\_table
-SELECT rowkey\_expression, x, y FROM ...any\_hive\_query...;
+INSERT OVERWRITE TABLE new_hbase_table
+SELECT rowkey_expression, x, y FROM ...any_hive_query...;
 
 ```
 
@@ -93,16 +93,16 @@ In order to perform a parallel sort on the data, we need to range-partition it. 
 ```
 add jar lib/hive-contrib-0.7.0.jar;
 set mapred.reduce.tasks=1;
-create temporary function row\_sequence as 
+create temporary function row_sequence as 
 'org.apache.hadoop.hive.contrib.udf.UDFRowSequence';
-select transaction\_id from
-(select transaction\_id
+select transaction_id from
+(select transaction_id
 from transactions
-tablesample(bucket 1 out of 10000 on transaction\_id) s 
-order by transaction\_id 
+tablesample(bucket 1 out of 10000 on transaction_id) s 
+order by transaction_id 
 limit 10000000) x
-where (row\_sequence() % 910000)=0
-order by transaction\_id
+where (row_sequence() % 910000)=0
+order by transaction_id
 limit 11;
 
 ```
@@ -112,7 +112,7 @@ This works by ordering all of the rows in a .01% sample of the table (using a si
 Once you have your sampling query defined, the next step is to save its results to a properly formatted file which will be used in a subsequent step. To do this, run commands like the following:
 
 ```
-create external table hb\_range\_keys(transaction\_id\_range\_start string)
+create external table hb_range_keys(transaction_id_range_start string)
 row format serde 
 'org.apache.hadoop.hive.serde2.binarysortable.BinarySortableSerDe'
 stored as 
@@ -120,17 +120,17 @@ inputformat
 'org.apache.hadoop.mapred.TextInputFormat'
 outputformat 
 'org.apache.hadoop.hive.ql.io.HiveNullValueSequenceFileOutputFormat'
-location '/tmp/hb\_range\_keys';
+location '/tmp/hb_range_keys';
 
-insert overwrite table hb\_range\_keys
-select transaction\_id from
-(select transaction\_id
+insert overwrite table hb_range_keys
+select transaction_id from
+(select transaction_id
 from transactions
-tablesample(bucket 1 out of 10000 on transaction\_id) s 
-order by transaction\_id 
+tablesample(bucket 1 out of 10000 on transaction_id) s 
+order by transaction_id 
 limit 10000000) x
-where (row\_sequence() % 910000)=0
-order by transaction\_id
+where (row_sequence() % 910000)=0
+order by transaction_id
 limit 11;
 
 ```
@@ -140,7 +140,7 @@ The first command creates an external table defining the format of the file to b
 The second command populates it (using the sampling query previously defined). Usage of ORDER BY guarantees that a single file will be produced in directory `/tmp/hb_range_keys`. The filename is unknown, but it is necessary to reference the file by name later, so run a command such as the following to copy it to a specific name:
 
 ```
-dfs -cp /tmp/hb\_range\_keys/* /tmp/hb\_range\_key\_list;
+dfs -cp /tmp/hb_range_keys/* /tmp/hb_range_key_list;
 
 ```
 
@@ -164,19 +164,19 @@ Now comes the big step: running a sort over all of the data to be bulk loaded. M
 set hive.execution.engine=mr;
 set mapred.reduce.tasks=12;
 set hive.mapred.partitioner=org.apache.hadoop.mapred.lib.TotalOrderPartitioner;
-set total.order.partitioner.path=/tmp/hb\_range\_key\_list;
+set total.order.partitioner.path=/tmp/hb_range_key_list;
 set hfile.compression=gz;
 
-create table hbsort(transaction\_id string, user\_name string, amount double, ...)
+create table hbsort(transaction_id string, user_name string, amount double, ...)
 stored as
 INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.hbase.HiveHFileOutputFormat'
 TBLPROPERTIES ('hfile.family.path' = '/tmp/hbsort/cf');
 
 insert overwrite table hbsort
-select transaction\_id, user\_name, amount, ...
+select transaction_id, user_name, amount, ...
 from transactions
-cluster by transaction\_id;
+cluster by transaction_id;
 
 ```
 
@@ -226,9 +226,9 @@ After this script finishes, you may need to wait a minute or two for the new tab
 Finally, if you'd like to access the HBase table you just created via Hive:
 
 ```
-CREATE EXTERNAL TABLE hbase\_transactions(transaction\_id string, user\_name string, amount double, ...) 
+CREATE EXTERNAL TABLE hbase_transactions(transaction_id string, user_name string, amount double, ...) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
-WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf:user\_name,cf:amount,...")
+WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf:user_name,cf:amount,...")
 TBLPROPERTIES("hbase.table.name" = "transactions");
 
 ```

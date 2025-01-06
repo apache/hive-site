@@ -85,18 +85,18 @@ beeline> !connect jdbc:hive2://localhost:10000 scott tiger
 Connecting to jdbc:hive2://localhost:10000
 Connected to: Hive (version 0.10.0)
 Driver: Hive (version 0.10.0-SNAPSHOT)
-Transaction isolation: TRANSACTION\_REPEATABLE\_READ
+Transaction isolation: TRANSACTION_REPEATABLE_READ
 0: jdbc:hive2://localhost:10000> show tables;
 show tables;
 +-------------------+
-|     tab\_name      |
+|     tab_name      |
 +-------------------+
 | primitives        |
 | src               |
 | src1              |
-| src\_json          |
-| src\_sequencefile  |
-| src\_thrift        |
+| src_json          |
+| src_sequencefile  |
+| src_thrift        |
 | srcbucket         |
 | srcbucket2        |
 | srcpart           |
@@ -110,7 +110,7 @@ show tables;
 You can also specify the connection parameters on command line. This means you can find the command with the connection string from your UNIX shell history. 
 
 ```
-% beeline -u jdbc:hive2://localhost:10000/default -n scott -w password\_file
+% beeline -u jdbc:hive2://localhost:10000/default -n scott -w password_file
 Hive version 0.11.0-SNAPSHOT by Apache
 
 Connecting to jdbc:hive2://localhost:10000/default
@@ -155,7 +155,7 @@ Use "`;`" (semicolon) to terminate commands. Comments in scripts can be specifie
 | set | Prints a list of configuration variables that are overridden by the user or Hive. |
 | set -v | Prints all Hadoop and Hive configuration variables. |
 | add FILE[S] <filepath> <filepath>* add JAR[S] <filepath> <filepath>* add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| add FILE[S] <ivyurl> <ivyurl>* add JAR[S] <ivyurl> <ivyurl>* add ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query\_string. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| add FILE[S] <ivyurl> <ivyurl>* add JAR[S] <ivyurl> <ivyurl>* add ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
 | list FILE[S] list JAR[S] list ARCHIVE[S] | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. (As of Hive 0.14.0: [HIVE-7592](https://issues.apache.org/jira/browse/HIVE-7592)). |
 | list FILE[S] <filepath>* list JAR[S] <filepath>* list ARCHIVE[S] <filepath>* | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
 | delete FILE[S] <filepath>* delete JAR[S] <filepath>* delete ARCHIVE[S] <filepath>* | Removes the resource(s) from the distributed cache. |
@@ -170,12 +170,12 @@ The Beeline CLI supports these command line options:
 
 | Option | Description |
 | --- | --- |
-| **-u** *<database URL>* | The JDBC URL to connect to. Special characters in parameter values should be encoded with URL encoding if needed.Usage:  `beeline -u` *db\_URL*  |
+| **-u** *<database URL>* | The JDBC URL to connect to. Special characters in parameter values should be encoded with URL encoding if needed.Usage:  `beeline -u` *db_URL*  |
 | **-r** | [Reconnect]({{< ref "#reconnect" >}}) to last used URL (if a user has previously used `!connect` to a URL and used `!save` to a beeline.properties file).Usage:  `beeline -r`Version: 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)) |
-| **-n** *<username>* | The username to connect as.Usage:  `beeline -n` *valid\_user* |
-| **-p** *<password>* | The password to connect as.Usage:  `beeline -p` *valid\_password*Optional password mode:Starting Hive 2.2.0 ([HIVE-13589](https://issues.apache.org/jira/browse/HIVE-13589)) the argument for -p option is optional.Usage : beeline -p [valid\_password]If the password is not provided after -p Beeline will prompt for the password while initiating the connection. When password is provided Beeline uses it initiate the connection without prompting. |
-| **-d** *<driver class>* | The driver class to use.Usage:  `beeline -d` *driver\_class* |
-| **-e** *<query>* | Query that should be executed. Double or single quotes enclose the query string. This option can be specified multiple times.Usage:  `beeline -e "`*query\_string*"Support to run multiple SQL statements separated by semicolons in a single *query\_string*: 1.2.0 ([HIVE-9877](https://issues.apache.org/jira/browse/HIVE-9877))Bug fix (null pointer exception): 0.13.0 ([HIVE-5765](https://issues.apache.org/jira/browse/HIVE-5765))Bug fix (--headerInterval not honored): 0.14.0 ([HIVE-7647](https://issues.apache.org/jira/browse/HIVE-7647))Bug fix (running `-e` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
+| **-n** *<username>* | The username to connect as.Usage:  `beeline -n` *valid_user* |
+| **-p** *<password>* | The password to connect as.Usage:  `beeline -p` *valid_password*Optional password mode:Starting Hive 2.2.0 ([HIVE-13589](https://issues.apache.org/jira/browse/HIVE-13589)) the argument for -p option is optional.Usage : beeline -p [valid_password]If the password is not provided after -p Beeline will prompt for the password while initiating the connection. When password is provided Beeline uses it initiate the connection without prompting. |
+| **-d** *<driver class>* | The driver class to use.Usage:  `beeline -d` *driver_class* |
+| **-e** *<query>* | Query that should be executed. Double or single quotes enclose the query string. This option can be specified multiple times.Usage:  `beeline -e "`*query_string*"Support to run multiple SQL statements separated by semicolons in a single *query_string*: 1.2.0 ([HIVE-9877](https://issues.apache.org/jira/browse/HIVE-9877))Bug fix (null pointer exception): 0.13.0 ([HIVE-5765](https://issues.apache.org/jira/browse/HIVE-5765))Bug fix (--headerInterval not honored): 0.14.0 ([HIVE-7647](https://issues.apache.org/jira/browse/HIVE-7647))Bug fix (running `-e` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
 | **-f** *<file>* | Script file that should be executed.Usage:  `beeline -f` *filepath*Version: 0.12.0 ([HIVE-4268](https://issues.apache.org/jira/browse/HIVE-4268))Note: If the script contains tabs, query compilation fails in version 0.12.0. This bug is fixed in version 0.13.0 ([HIVE-6359](https://issues.apache.org/jira/browse/HIVE-6359)).Bug fix (running `-f` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
 | **-i** (or) **--init** <file or files> | The init files for initializationUsage:  `beeline -i */tmp/initfile*`Single file:Version: 0.14.0 ([HIVE-6561](https://issues.apache.org/jira/browse/HIVE-6561))Multiple files:Version: 2.1.0 ([HIVE-11336](https://issues.apache.org/jira/browse/HIVE-11336)) |
 | **-w** (or) **--password-file** <password file> | The password file to read password from.Version: 1.2.0 ([HIVE-7175](https://issues.apache.org/jira/browse/HIVE-7175)) |
@@ -201,7 +201,7 @@ The Beeline CLI supports these command line options:
 | **--outputformat=**[table/vertical/csv/tsv/dsv/csv2/tsv2] | Format mode for result display. Default is table. See [Separated-Value Output Formats]({{< ref "#separated-value-output-formats" >}}) below for description of recommended sv options.Usage:  `beeline --outputformat=tsv`Version: dsv/csv2/tsv2 added in 0.14.0 ([HIVE-8615](https://issues.apache.org/jira/browse/HIVE-8615)) |
 | **--****truncateTable**=[true/false]  | If true, truncates table column in the console when it exceeds console length.Version: 0.14.0 ([HIVE-6928](https://issues.apache.org/jira/browse/HIVE-6928)) |
 | **--delimiterForDSV=** DELIMITER | The delimiter for delimiter-separated values output format. Default is '|' character.Version: 0.14.0 ([HIVE-7390](https://issues.apache.org/jira/browse/HIVE-7390)) |
-| **--isolation=**LEVEL | Set the transaction isolation level to TRANSACTION\_READ\_COMMITTED or TRANSACTION\_SERIALIZABLE. See the "Field Detail" section in the Java [Connection](http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html) documentation.Usage:  `beeline --isolation=TRANSACTION\_SERIALIZABLE` |
+| **--isolation=**LEVEL | Set the transaction isolation level to TRANSACTION_READ_COMMITTED or TRANSACTION_SERIALIZABLE. See the "Field Detail" section in the Java [Connection](http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html) documentation.Usage:  `beeline --isolation=TRANSACTION_SERIALIZABLE` |
 | **--nullemptystring=**[true/false] | Use historic behavior of printing null as empty string (true) or use current behavior of printing null as NULL (false). Default is false.Usage:  `beeline --nullemptystring=false`Version: 0.13.0 ([HIVE-4485](https://issues.apache.org/jira/browse/HIVE-4485)) |
 | **--incremental=**[true/false] | Defaults to `true` from Hive 2.3 onwards, before it defaulted to `false``.` When set to `false`, the entire result set is fetched and buffered before being displayed, yielding optimal display column sizing. When set to `true`, result rows are displayed immediately as they are fetched, yielding lower latency and memory usage at the price of extra display column padding. Setting `--incremental=true` is recommended if you encounter an OutOfMemory on the client side (due to the fetched result set size being large). |
 | ****--incrementalBufferRows=****NUMROWS | The number of rows to buffer when printing rows on stdout, defaults to 1000; only applicable if `--incremental=true` and `--outputformat=table`Usage: `beeline --incrementalBufferRows=1000`Version: 2.3.0 ([HIVE-14170](https://issues.apache.org/jira/browse/HIVE-14170)) |
@@ -448,7 +448,7 @@ Some versions of Beeline client may require a workaround to allow the *nohup* c
 The following environment variable can be updated:
 
 ```
-export HADOOP\_CLIENT\_OPTS="$HADOOP\_CLIENT\_OPTS -Djline.terminal=jline.UnsupportedTerminal"
+export HADOOP_CLIENT_OPTS="$HADOOP_CLIENT_OPTS -Djline.terminal=jline.UnsupportedTerminal"
 ```
 
 Running with nohangup (nohup) and ampersand (&) will place the process in the background and allow the terminal to disconnect while keeping the Beeline process running.  
@@ -498,14 +498,14 @@ JDBC connection URL:  `jdbc:hive2://<host>:<port>/<db>;transportMode=http;httpP
 
 Versions earlier than 0.14
 
-In versions earlier than [0.14](https://issues.apache.org/jira/browse/HIVE-6972) these parameters used to be called `[hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}})` and `[hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}})` respectively and were part of the *hive\_conf\_list*. These versions have been deprecated in favour of the new versions (which are part of the *sess\_var\_list*) but continue to work for now.
+In versions earlier than [0.14](https://issues.apache.org/jira/browse/HIVE-6972) these parameters used to be called `[hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}})` and `[hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}})` respectively and were part of the *hive_conf_list*. These versions have been deprecated in favour of the new versions (which are part of the *sess_var_list*) but continue to work for now.
 
 ### Connection URL When SSL Is Enabled in HiveServer2
 
 JDBC connection URL:  `jdbc:hive2://<host>:<port>/<db>;ssl=true;sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>`, where:
 
-* <trust\_store\_path> is the path where client's truststore file lives.
-* <trust\_store\_password> is the password to access the truststore.
+* <trust_store_path> is the path where client's truststore file lives.
+* <trust_store_password> is the password to access the truststore.
 
 In HTTP mode:  `jdbc:hive2://<host>:<port>/<db>;ssl=true;sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>;transportMode=http;httpPath=<http_endpoint>`.
 
@@ -545,7 +545,7 @@ The JDBC connection URL: `jdbc:hive2://<zookeeper quorum>/;serviceDiscoveryMode
 
 ### **Named Connection URLs**
 
-As of Hive 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)), Beeline now also supports named URL connect strings via usage of environment variables. If you try to do a `!connect` to a name that does not look like a URL, then Beeline will attempt to see if there is an environment variable called BEELINE\_URL\_<name>. For instance, if you specify `!connect blue`, it will look for BEELINE\_URL\_BLUE, and use that to connect. This should make it easier for system administrators to specify environment variables for users, and users need not type in the full URL each time to connect.
+As of Hive 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)), Beeline now also supports named URL connect strings via usage of environment variables. If you try to do a `!connect` to a name that does not look like a URL, then Beeline will attempt to see if there is an environment variable called BEELINE_URL_<name>. For instance, if you specify `!connect blue`, it will look for BEELINE_URL_BLUE, and use that to connect. This should make it easier for system administrators to specify environment variables for users, and users need not type in the full URL each time to connect.
 
 ### **Reconnecting**
 
@@ -553,7 +553,7 @@ Traditionally, `!reconnect` has worked to refresh a connection that has already 
 
 ### Using hive-site.xml to automatically connect to HiveServer2
 
-As of Hive 2.2.0 ([HIVE-14063](https://issues.apache.org/jira/browse/HIVE-14063)), Beeline adds support to use the hive-site.xml present in the classpath to automatically generate a connection URL based on the configuration properties in hive-site.xml and an additional user configuration file. Not all the URL properties can be derived from hive-site.xml and hence in order to use this feature user must create a configuration file called “beeline-hs2-connection.xml” which is a Hadoop XML format file. This file is used to provide user-specific connection properties for the connection URL. Beeline looks for this configuration file in ${user.home}/.beeline/ (Unix based OS) or ${user.home}\beeline\ directory (in case of Windows). If the file is not found in the above locations Beeline looks for it in ${HIVE\_CONF\_DIR} location and /etc/hive/conf (check [HIVE-16335](https://issues.apache.org/jira/browse/HIVE-16335) which fixes this location from /etc/conf/hive in Hive 2.2.0) in that order. Once the file is found, Beeline uses beeline-hs2-connection.xml in conjunction with the hive-site.xml in the class path to determine the connection URL.
+As of Hive 2.2.0 ([HIVE-14063](https://issues.apache.org/jira/browse/HIVE-14063)), Beeline adds support to use the hive-site.xml present in the classpath to automatically generate a connection URL based on the configuration properties in hive-site.xml and an additional user configuration file. Not all the URL properties can be derived from hive-site.xml and hence in order to use this feature user must create a configuration file called “beeline-hs2-connection.xml” which is a Hadoop XML format file. This file is used to provide user-specific connection properties for the connection URL. Beeline looks for this configuration file in ${user.home}/.beeline/ (Unix based OS) or ${user.home}\beeline\ directory (in case of Windows). If the file is not found in the above locations Beeline looks for it in ${HIVE_CONF_DIR} location and /etc/hive/conf (check [HIVE-16335](https://issues.apache.org/jira/browse/HIVE-16335) which fixes this location from /etc/conf/hive in Hive 2.2.0) in that order. Once the file is found, Beeline uses beeline-hs2-connection.xml in conjunction with the hive-site.xml in the class path to determine the connection URL.
 
 The URL connection properties in beeline-hs2-connection.xml must have the prefix “beeline.hs2.connection.” followed by the URL property name. For example in order to provide the property ssl the property key in the beeline-hs2-connection.xml should be “beeline.hs2.connection.ssl”. The sample beeline.hs2.connection.xml below provides the value of user and password for the Beeline connection URL. In this case the rest of the properties like HS2 hostname and port information, Kerberos configuration properties, SSL properties, transport mode, etc., are picked up using the hive-site.xml in the class path. If the password is empty beeline.hs2.connection.password property should be removed. In most cases the below configuration values in beeline-hs2-connection.xml and the correct hive-site.xml in classpath should be sufficient to make the connection to the HiveServer2.
 
@@ -574,7 +574,7 @@ The URL connection properties in beeline-hs2-connection.xml must have the prefix
 </configuration>
 ```
 
-In case of properties which are present in both beeline-hs2-connection.xml and hive-site.xml, the property value derived from beeline-hs2-connection.xml takes precedence. For example in the below beeline-hs2-connection.xml file provides the value of principal for Beeline connection in a Kerberos enabled environment. In this case the property value for beeline.hs2.connection.principal overrides the value of HiveConf.ConfVars.HIVE\_SERVER2\_KERBEROS\_PRINCIPAL from hive-site.xml as far as connection URL is concerned.
+In case of properties which are present in both beeline-hs2-connection.xml and hive-site.xml, the property value derived from beeline-hs2-connection.xml takes precedence. For example in the below beeline-hs2-connection.xml file provides the value of principal for Beeline connection in a Kerberos enabled environment. In this case the property value for beeline.hs2.connection.principal overrides the value of HiveConf.ConfVars.HIVE_SERVER2_KERBEROS_PRINCIPAL from hive-site.xml as far as connection URL is concerned.
 
 ```
 <?xml version="1.0"?>
@@ -831,7 +831,7 @@ $ javac HiveJdbcClient.java
 #     jpox-rdbms-1.2.2.jar
 # and from hadoop/build
 #     hadoop-core*.jar
-# as well as hive/build/dist/conf, any HIVE\_AUX\_JARS\_PATH set, 
+# as well as hive/build/dist/conf, any HIVE_AUX_JARS_PATH set, 
 # and hadoop jars necessary to run MR jobs (eg lzo codec)
 
 $ java -cp $CLASSPATH HiveJdbcClient
@@ -842,16 +842,16 @@ Alternatively, you can run the following bash script, which will seed the data f
 
 ```
 #!/bin/bash
-HADOOP\_HOME=/your/path/to/hadoop
-HIVE\_HOME=/your/path/to/hive
+HADOOP_HOME=/your/path/to/hadoop
+HIVE_HOME=/your/path/to/hive
 
 echo -e '1\x01foo' > /tmp/a.txt
 echo -e '2\x01bar' >> /tmp/a.txt
 
-HADOOP\_CORE=$(ls $HADOOP\_HOME/hadoop-core*.jar)
-CLASSPATH=.:$HIVE\_HOME/conf:$(hadoop classpath)
+HADOOP_CORE=$(ls $HADOOP_HOME/hadoop-core*.jar)
+CLASSPATH=.:$HIVE_HOME/conf:$(hadoop classpath)
 
-for i in ${HIVE\_HOME}/lib/*.jar ; do
+for i in ${HIVE_HOME}/lib/*.jar ; do
     CLASSPATH=$CLASSPATH:$i
 done
 
@@ -936,12 +936,12 @@ static Connection getConnection( Subject signedOnUserSubject ) throws Exception{
                public Object run()
                {
                        Connection con = null;
-                       String JDBC\_DB\_URL = "jdbc:hive2://HiveHost:10000/default;" ||
+                       String JDBC_DB_URL = "jdbc:hive2://HiveHost:10000/default;" ||
                                               "principal=hive/localhost.localdomain@EXAMPLE.COM;" || 
                                               "kerberosAuthType=fromSubject";
                        try {
-                               Class.forName(JDBC\_DRIVER);
-                               con =  DriverManager.getConnection(JDBC\_DB\_URL);
+                               Class.forName(JDBC_DRIVER);
+                               con =  DriverManager.getConnection(JDBC_DB_URL);
                        } catch (SQLException e) {
                                e.printStackTrace();
                        } catch (ClassNotFoundException e) {
@@ -999,8 +999,8 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 3. Select 'Extra Class Path -> Add' to add the following jars from your local Hive and Hadoop distribution.
 
 ```
-   HIVE\_HOME/lib/hive-jdbc-*-standalone.jar
-   HADOOP\_HOME/share/hadoop/common/hadoop-common-*.jar 
+   HIVE_HOME/lib/hive-jdbc-*-standalone.jar
+   HADOOP_HOME/share/hadoop/common/hadoop-common-*.jar 
 ```
 
 Version information
@@ -1054,7 +1054,7 @@ The JDBC connection URL when enabled should look like this:
 * cookieAuth is set to `true` by default.
 * cookieName: If any of the incoming cookies' keys match the value of cookieName, the JDBC driver will not send any login credentials/Kerberos ticket to the server. The client will just send the cookie alone back to the server for authentication. The default value of cookieName is hive.server2.auth (this is the HiveServer2 cookie name).
 * To turn off cookie replay, cookieAuth=false must be used in the JDBC URL.
-* **Important Note:** As part of [HIVE-9709](https://issues.apache.org/jira/browse/HIVE-9709), we upgraded Apache http-client and http-core components of Hive to 4.4. To avoid any collision between this upgraded version of HttpComponents and other any versions that might be present in your system (such as the one provided by Apache Hadoop 2.6 which uses http-client and http-core components version of 4.2.5), the client is expected to set CLASSPATH in such a way that Beeline-related jars appear before HADOOP lib jars. This is achieved via setting HADOOP\_USER\_CLASSPATH\_FIRST=true before using hive-jdbc. In fact, in bin/beeline.sh we do this!
+* **Important Note:** As part of [HIVE-9709](https://issues.apache.org/jira/browse/HIVE-9709), we upgraded Apache http-client and http-core components of Hive to 4.4. To avoid any collision between this upgraded version of HttpComponents and other any versions that might be present in your system (such as the one provided by Apache Hadoop 2.6 which uses http-client and http-core components version of 4.2.5), the client is expected to set CLASSPATH in such a way that Beeline-related jars appear before HADOOP lib jars. This is achieved via setting HADOOP_USER_CLASSPATH_FIRST=true before using hive-jdbc. In fact, in bin/beeline.sh we do this!
 
 ### Using 2-way SSL in HTTP Mode
 
@@ -1068,10 +1068,10 @@ JDBC connection URL:
 
 `jdbc:hive2://<host>:<port>/<db>;ssl=true;twoWay=true;``sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>;sslKeyStore=<key_store_path>;keyStorePassword=<key_store_password>;``transportMode=http;httpPath=<http_endpoint>`
 
-* *<trust\_store\_path>* is the path where the client's truststore file lives. This is a mandatory non-empty field.
-* *<trust\_store\_password>* is the password to access the truststore.
-* *<key\_store\_path>* is the path where the client's keystore file lives. This is a mandatory non-empty field.
-* *<key\_store\_password>* is the password to access the keystore.
+* *<trust_store_path>* is the path where the client's truststore file lives. This is a mandatory non-empty field.
+* *<trust_store_password>* is the password to access the truststore.
+* *<key_store_path>* is the path where the client's keystore file lives. This is a mandatory non-empty field.
+* *<key_store_password>* is the password to access the keystore.
 
 For versions earlier than 0.14, see the [version note]({{< ref "#version-note" >}}) above.
 
@@ -1083,9 +1083,9 @@ JDBC connection URL with s`torePasswordPath`:
 
 A local keystore file can be created leveraging [hadoop credential command](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/CredentialProviderAPI.html#Overview) with `trustStorePassword` and `keyStorePassword` aliases like below. And this file can be passed with `storePasswordPath` option in the connection URL.
 
-hadoop credential create **trust****StorePassword** -value *mytruststorepassword* -provider *localjceks://file/tmp/client\_creds.jceks*
+hadoop credential create **trust****StorePassword** -value *mytruststorepassword* -provider *localjceks://file/tmp/client_creds.jceks*
 
-hadoop credential create **keyStorePassword** -value *mykeystorepassword* -provider *localjceks://file/tmp/client\_creds.jceks*
+hadoop credential create **keyStorePassword** -value *mykeystorepassword* -provider *localjceks://file/tmp/client_creds.jceks*
 
 ### Passing HTTP Header Key/Value Pairs via JDBC Driver
 
@@ -1097,7 +1097,7 @@ This option is available starting in [Hive 1.2.0](https://issues.apache.org/jira
 
 JDBC connection URL:
 
-`jdbc:hive2://<host>:<port>/<db>;transportMode=http;httpPath=<http\_endpoint>;http.header.<name1>=<value1>;http.header.<name2>=<value2>`
+`jdbc:hive2://<host>:<port>/<db>;transportMode=http;httpPath=<http_endpoint>;http.header.<name1>=<value1>;http.header.<name2>=<value2>`
 
 When the above URL is specified, Beeline will call underlying requests to add an HTTP header set to *<name1>* and *<value1>* and another HTTP header set to *<name2>* and *<value2>*. This is helpful when the end user needs to send identity in an HTTP header down to intermediate servers such as Knox via Beeline for authentication, for example `http.header.USERNAME=<value1>;http.header.PASSWORD=<value2>`.
 

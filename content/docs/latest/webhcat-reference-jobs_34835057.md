@@ -39,7 +39,7 @@ Version: Hive 0.12.0 and later
 | --- | --- | --- | --- |
 | **fields** | If **fields** set to "*", the request will return full details of the job. If **fields** is missing, will only return the job ID. Currently the value can only be "*", other values are not allowed and will throw exception. | Optional | None |
 | **showall** | If **showall** is set to "true", the request will return all jobs the user has permission to view, not only the jobs belonging to the user. | Optional | false |
-| **jobid** | If **jobid** is present, only the records whose job ID is lexicographically greater than **jobid** are returned. For example, if **jobid** = "job\_201312091733\_0001", the jobs whose job ID is greater than "job\_201312091733\_0001" are returned. The number of records returned depends on the value of **numrecords**.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | None |
+| **jobid** | If **jobid** is present, only the records whose job ID is lexicographically greater than **jobid** are returned. For example, if **jobid** = "job_201312091733_0001", the jobs whose job ID is greater than "job_201312091733_0001" are returned. The number of records returned depends on the value of **numrecords**.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | None |
 | **numrecords** | If the **jobid** and **numrecords** parameters are present, the top *numrecords* records appearing after **jobid** will be returned after sorting the job ID list lexicographically. If the **jobid** parameter is missing and **numrecords** is present, the top *numrecords* will be returned after lexicographically sorting the job ID list. If the **jobid** parameter is present and **numrecords** is missing, all the records whose job ID is greater than **jobid** are returned.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | All |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
@@ -68,7 +68,7 @@ Every element inside the array includes:
 
 ```
 [
-{"id":"job\_201304291205\_0015","detail":null}
+{"id":"job_201304291205_0015","detail":null}
 ]
 
 ```
@@ -84,8 +84,8 @@ Every element inside the array includes:
 
 ```
 [
-{"id":"job\_201304291205\_0014","detail":null},
-{"id":"job\_201111111311\_0015","detail":null},
+{"id":"job_201304291205_0014","detail":null},
+{"id":"job_201111111311_0015","detail":null},
 ]
 
 ```
@@ -104,12 +104,12 @@ Hive 0.12.0 bug
 In release 0.12.0 the first line of JSON output for the fields parameter gives the parent jobid instead of the actual jobid ([HIVE-5510](https://issues.apache.org/jira/browse/HIVE-5510)). The example below shows the correct jobid, as displayed in release 0.13.0 and later.
 
 ```
-[{"id":"job\_201304291205\_0016",
+[{"id":"job_201304291205_0016",
   "detail":{
     "status":{
       "jobACLs":{
-        "MODIFY\_JOB":{"allAllowed":false,"aclstring":" "},
-        "VIEW\_JOB":{"allAllowed":false,"aclstring":" "}},
+        "MODIFY_JOB":{"allAllowed":false,"aclstring":" "},
+        "VIEW_JOB":{"allAllowed":false,"aclstring":" "}},
       "runState":2,
       "startTime":1367264912274,
       "schedulingInfo":"NA",
@@ -117,19 +117,19 @@ In release 0.12.0 the first line of JSON output for the fields parameter gives t
       "jobPriority":"NORMAL",
       "username":"daijy",
       "jobID":{"id":16,"jtIdentifier":"201304291205"},
-      "jobId":"job\_201304291205\_0016",
+      "jobId":"job_201304291205_0016",
       "jobComplete":true},
     "profile":{
       "user":"daijy",
       "jobFile":"hdfs://localhost:8020/Users/daijy/hadoop-1.0.3/tmp/mapred/staging/
-          daijy/.staging/job\_201304291205\_0016/job.xml",
-      "url":"http://localhost:50030/jobdetails.jsp?jobid=job\_201304291205\_0016",
+          daijy/.staging/job_201304291205_0016/job.xml",
+      "url":"http://localhost:50030/jobdetails.jsp?jobid=job_201304291205_0016",
       "queueName":"default",
       "jobName":"word count",
       "jobID":{"id":16,"jtIdentifier":"201304291205"},
-      "jobId":"job\_201304291205\_0016"},
-      "id":"job\_201304291205\_0016",
-      "parentId":"job\_201304291205\_0015",
+      "jobId":"job_201304291205_0016"},
+      "id":"job_201304291205_0016",
+      "parentId":"job_201304291205_0015",
       "percentComplete":"map 100% reduce 100%",
       "exitValue":0,
       "user":"daijy",

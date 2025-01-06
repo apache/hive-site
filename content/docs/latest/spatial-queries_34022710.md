@@ -17,13 +17,13 @@ At the language layer, Hadoop-GIS extends HQL to support spatial data types and 
 
 JOIN operator – we kept JOIN keyword for backward compatibility. However, whenever there is a spatial operator in the join predicate, the query is considered as spatial join query and a spatial join query processing pipeline is applied to process this query.
 
-e.g SELECT *  FROM a JOIN b on ST\_INTERSECTS (a.spatialcolumn ,b.spatialcolumn)  = TRUE ;
+e.g SELECT *  FROM a JOIN b on ST_INTERSECTS (a.spatialcolumn ,b.spatialcolumn)  = TRUE ;
 
 **Data Type**
 
 We will add a spatial data type in Hive: **GEOMETRY**. Geometry is an extension of String type with special serialization/deserialization, and operation support. For example, users can create a table with spatial column as shown in following example:
 
-CREATE TABLE IF NOT EXISTS spatial\_table ( tile\_id  STRING, d\_id STRING, rec\_id STRING, outline **GEOMETRY**) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' ;
+CREATE TABLE IF NOT EXISTS spatial_table ( tile_id  STRING, d_id STRING, rec_id STRING, outline **GEOMETRY**) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' ;
 
 **Query Pipelines**
 
@@ -37,29 +37,29 @@ Before Hive submits the spatial query operator to the RESQUE for processing, it 
 
 At this moment, Hadoop-GIS support the following spatial predicates which implemented as Hive UDF. More predicates being developed and will be integrate in future.
 
-* *st\_intersects*
-* *st\_touches*
-* *st\_crosses*
-* *st\_contains*
-* *st\_adjacent*
-* *st\_disjoint*
-* *st\_equals*
-* *st\_dwithin*
-* *st\_within*
-* *st\_overlaps*
+* *st_intersects*
+* *st_touches*
+* *st_crosses*
+* *st_contains*
+* *st_adjacent*
+* *st_disjoint*
+* *st_equals*
+* *st_dwithin*
+* *st_within*
+* *st_overlaps*
 
 We can use the spatial query just like using standard HQL in Hive shell. For example, if we want to *spatially join* two tables (say *ta* and *tb*), we can issue following HQL sentence in Hive Shell:
 
-* *SELECT ta.rec\_id, tb.rec\_id FROM ta JOIN tb ON (st\_intersects(ta.outline, tb.outline) = TRUE);*
+* *SELECT ta.rec_id, tb.rec_id FROM ta JOIN tb ON (st_intersects(ta.outline, tb.outline) = TRUE);*
 
-We will get the following output for the above *st\_intersects* query:
+We will get the following output for the above *st_intersects* query:
 
 * *……*
 * *Hadoop job information for Stage-1: number of mappers: 2; number of reducers: 1*
 * *2013-09-08 01:23:18,838 Stage-1 map = 0%,  reduce = 0%*
 * *2013-09-08 01:23:24,889 Stage-1 map = 100%,  reduce = 0%*
 * *2013-09-08 01:23:33,954 Stage-1 map = 100%,  reduce = 100%*
-* *Ended Job = job\_201309080121\_0001*
+* *Ended Job = job_201309080121_0001*
 * *MapReduce Jobs Launched:*
 * *Job 0: Map: 2  Reduce: 1   HDFS Read: 187984 HDFS Write: 40 SUCCESS*
 * *Total MapReduce CPU Time Spent: 0 msec*

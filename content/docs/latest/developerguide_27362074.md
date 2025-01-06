@@ -100,7 +100,7 @@ Hive currently uses these SerDe classes to serialize and deserialize data:
 ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
 ```
 
-LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended\_boolean\_literal]({{< ref "#hive-lazysimple-extended\_boolean\_literal" >}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
+LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended_boolean_literal]({{< ref "#hive-lazysimple-extended_boolean_literal" >}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
 * ThriftSerDe: This SerDe is used to read/write Thrift serialized objects. The class file for the Thrift object must be loaded first.
 * DynamicSerDe: This SerDe also read/write Thrift serialized objects, but it understands Thrift DDL so the schema of the object can be provided at runtime. Also it supports a lot of different protocols, including TBinaryProtocol, TJSONProtocol, TCTLSeparatedProtocol (which writes data in delimited records).
 
@@ -165,7 +165,7 @@ To add a new native SerDe with STORED AS keyword, follow these steps:
 
 MetaStore contains metadata regarding tables, partitions and databases. This is used by Query Processor during plan generation.
 
-* Metastore Server - This is the Thrift server (interface defined in metastore/if/hive\_metastore.if) that services metadata requests from clients. It delegates most of the requests underlying meta data store and the Hadoop file system which contains data.
+* Metastore Server - This is the Thrift server (interface defined in metastore/if/hive_metastore.if) that services metadata requests from clients. It delegates most of the requests underlying meta data store and the Hadoop file system which contains data.
 * Object Store - ObjectStore class handles access to the actual metadata is stored in the SQL store. The current implementation uses JPOX ORM solution which is based of JDA specification. It can be used with any database that is supported by JPOX. New meta stores (file based or xml based) can added by implementing the interface MetaStore. FileStore is a partial implementation of an older version of metastore which may be deprecated soon.
 * Metastore Client - There are python, java, php Thrift clients in metastore/src. Java generated client is extended with HiveMetaStoreClient which is used by Query Processor (ql/metadta). This is the main interface to all other Hive components.
 
@@ -274,9 +274,9 @@ If Hive fails at runtime, try '`ant very-clean package`' to delete the Ivy cache
 From Thejas:
 
 ```
-export HIVE\_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
+export HIVE_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
     --hiveconf hive.metastore.warehouse.dir=file:///tmp/warehouse \
-    --hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore\_db;create=true'
+    --hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true'
 
 ```
 
@@ -339,10 +339,10 @@ The above test produces the following files:
 * `build/ql/test/TEST-org.apache.hadoop.hive.cli.TestCliDriver.txt` - Log output for the test. This can be helpful when examining test failures.
 * `build/ql/test/logs/groupby1.q.out` - Actual query result for the test. This result is compared to the expected result as part of the test.
 
-Run the set of unit tests matching a regex, e.g. partition\_wise\_fileformat tests 10-16:
+Run the set of unit tests matching a regex, e.g. partition_wise_fileformat tests 10-16:
 
 ```
-ant test -Dtestcase=TestCliDriver -Dqfile\_regex=partition\_wise\_fileformat1[0-6]
+ant test -Dtestcase=TestCliDriver -Dqfile_regex=partition_wise_fileformat1[0-6]
 
 ```
 
@@ -417,15 +417,15 @@ If you have already built Hive without javac.debug=on, you can clean the build a
 * Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.
 
 ```
-    > export HIVE\_DEBUG\_PORT=8000
-    > export HIVE\_DEBUG="-Xdebug -Xrunjdwp:transport=dt\_socket,address=${HIVE\_DEBUG\_PORT},server=y,suspend=y"
+    > export HIVE_DEBUG_PORT=8000
+    > export HIVE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,address=${HIVE_DEBUG_PORT},server=y,suspend=y"
 
 ```
 
-In particular HIVE\_DEBUG\_PORT is the port number that the JVM is listening on and the debugger will attach to. Then run the unit test as follows:
+In particular HIVE_DEBUG_PORT is the port number that the JVM is listening on and the debugger will attach to. Then run the unit test as follows:
 
 ```
-    > export HADOOP\_OPTS=$HIVE\_DEBUG
+    > export HADOOP_OPTS=$HIVE_DEBUG
     > ant test -Dtestcase=TestCliDriver -Dqfile=<mytest>.q
 
 ```
@@ -433,7 +433,7 @@ In particular HIVE\_DEBUG\_PORT is the port number that the JVM is listening on 
 The unit test will run until it shows:
 
 ```
-     [junit] Listening for transport dt\_socket at address: 8000
+     [junit] Listening for transport dt_socket at address: 8000
 
 ```
 * Now, you can use jdb to attach to port 8000 to debug
@@ -456,10 +456,10 @@ or if you are running Eclipse and the Hive projects are already imported, you ca
 #### Debugging without Ant (Client and Server Side)
 
 There is another way of debugging Hive code without going through Ant.  
- You need to install Hadoop and set the environment variable HADOOP\_HOME to that.
+ You need to install Hadoop and set the environment variable HADOOP_HOME to that.
 
 ```
-    > export HADOOP\_HOME=<your hadoop home>
+    > export HADOOP_HOME=<your hadoop home>
  
 ```
 
