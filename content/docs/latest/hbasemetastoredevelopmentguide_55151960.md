@@ -29,16 +29,16 @@ Once you’ve built the code from the HBase metastore branch (hbase-metastore), 
  
 
 1. Install HBase, preferably HBase 1.1.1 as that’s what is being used for testing.
-2. Copy following jars into $HBASE\_HOME/lib
+2. Copy following jars into $HBASE_HOME/lib
 	1. hive-common-.*.jar
 	2. hive-metastore-.*.jar
 	3. hive-serde-.*.jar
 3. Setup HBase, <http://hbase.apache.org/book.html#quickstart>  I run it in stand alone mode, so you have to set a couple of values in hbase-site.xml for this to work.
-4. Set HADOOP\_HOME if you’re not in a cluster where hadoop is already on your path.
-5. Start HBase: $HBASE\_HOME/bin/start-hbase.sh
+4. Set HADOOP_HOME if you’re not in a cluster where hadoop is already on your path.
+5. Start HBase: $HBASE_HOME/bin/start-hbase.sh
 6. Set it up so that HBase jars and conf file are picked up by Hive
-1. export HIVE\_AUX\_JARS\_PATH=$HBASE\_HOME/lib/
-2. export AUX\_CLASSPATH=$HBASE\_HOME/conf
+1. export HIVE_AUX_JARS_PATH=$HBASE_HOME/lib/
+2. export AUX_CLASSPATH=$HBASE_HOME/conf
 
 8. Create the metastore tables in HBase: hive --service hbaseschematool --install
 9. Configure Hive to use HBase as its metastore, in hive-site.xml:

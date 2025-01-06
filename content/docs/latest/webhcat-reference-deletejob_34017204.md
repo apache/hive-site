@@ -61,7 +61,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s -X DELETE 'http://localhost:50111/templeton/v1/queue/job\_201111111311\_0009?user.name=ctdean'
+% curl -s -X DELETE 'http://localhost:50111/templeton/v1/queue/job_201111111311_0009?user.name=ctdean'
 
 ```
 
@@ -80,25 +80,25 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
                        },
             "schedulingInfo": "NA",
             "failureInfo": "NA",
-            "jobId": "job\_201111111311\_0009",
+            "jobId": "job_201111111311_0009",
             "jobPriority": "NORMAL",
             "runState": 1,
             "jobComplete": false
            },
  "profile": {
-             "url": "http://localhost:50030/jobdetails.jsp?jobid=job\_201111111311\_0009",
+             "url": "http://localhost:50030/jobdetails.jsp?jobid=job_201111111311_0009",
              "user": "ctdean",
              "jobID": {
                        "jtIdentifier": "201111111311",
                        "id": 9
                       },
              "queueName": "default",
-             "jobFile": "hdfs://localhost:9000/tmp/hadoop-ctdean/mapred/staging/ctdean/.staging/job\_201111111311\_0009/job.xml",
+             "jobFile": "hdfs://localhost:9000/tmp/hadoop-ctdean/mapred/staging/ctdean/.staging/job_201111111311_0009/job.xml",
              "jobName": "streamjob3322518350676530377.jar",
-             "jobId": "job\_201111111311\_0009"
+             "jobId": "job_201111111311_0009"
             }
- "id": "job\_201111111311\_0009",
- "parentId": "job\_201111111311\_0008",
+ "id": "job_201111111311_0009",
+ "parentId": "job_201111111311_0008",
  "percentComplete": "10% complete",
  "exitValue": 0,
  "user": "ctdean",

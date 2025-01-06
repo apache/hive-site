@@ -177,15 +177,15 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
 
 ```
   FROM (
-    FROM pv\_users
-    MAP ( pv\_users.userid, pv\_users.date )
-    USING 'map\_script'
+    FROM pv_users
+    MAP ( pv_users.userid, pv_users.date )
+    USING 'map_script'
     AS c1, c2, c3
     DISTRIBUTE BY c2
-    SORT BY c2, c1) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    REDUCE ( map\_output.c1, map\_output.c2, map\_output.c3 )
-    USING 'reduce\_script'
+    SORT BY c2, c1) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    REDUCE ( map_output.c1, map_output.c2, map_output.c3 )
+    USING 'reduce_script'
     AS date, count;
 
 ```

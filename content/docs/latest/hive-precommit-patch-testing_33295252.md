@@ -44,7 +44,7 @@ HIVE-XXXX(.XX)?(-branch)?.patch(.txt)?
 
 All other attachments will be ignored. Branch and .txt are both optional. If branch is not specified then trunk is assumed. Before executing a PreCommit build for a particular branch, the branch must be setup on the [Hive PTest2 Infrastructure]({{< ref "hive-ptest2-infrastructure_33295254" >}}) by a committer.
 
-To find your issue's build in the queue, navigate to [PreCommit-HIVE-Build](https://builds.apache.org/job/PreCommit-HIVE-Build/), find the Build History column on the left, and mouse over the icon on each "pending" build until you find your issue number (e.g. ISSUE\_NUM=12345).
+To find your issue's build in the queue, navigate to [PreCommit-HIVE-Build](https://builds.apache.org/job/PreCommit-HIVE-Build/), find the Build History column on the left, and mouse over the icon on each "pending" build until you find your issue number (e.g. ISSUE_NUM=12345).
 
 If you'd like to resubmit your patch you can either:
 

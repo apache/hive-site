@@ -44,14 +44,14 @@ $ bin/hive --service hiveserver
 
 ```
 $ build/dist/bin/hive --service hiveserver --help
-usage HIVE\_PORT=xxxx ./hive --service hiveserver
-  HIVE\_PORT : Specify the server port
+usage HIVE_PORT=xxxx ./hive --service hiveserver
+  HIVE_PORT : Specify the server port
 
 $ bin/hive --service hiveserver
 
 ```
 
-After starting the server, to test if the server is working well, run the hiveserver and jdbc tests in 'standalone' mode. The HIVE\_PORT is assumed to be 10000 on localhost for this case.
+After starting the server, to test if the server is working well, run the hiveserver and jdbc tests in 'standalone' mode. The HIVE_PORT is assumed to be 10000 on localhost for this case.
 
 ```
 $ ant test -Dtestcase=TestJdbcDriver -Dstandalone=true

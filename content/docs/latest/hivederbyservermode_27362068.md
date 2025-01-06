@@ -43,15 +43,15 @@ mkdir db-derby-10.4.1.3-bin/data
 
 ### Set Environment
 
-The variable to set has changed over the years. DERBY\_HOME is now the proper name. I set this and the legacy name.
+The variable to set has changed over the years. DERBY_HOME is now the proper name. I set this and the legacy name.
 
 `/etc/profile.d/derby.sh`
 
 ```
-DERBY\_INSTALL=/opt/hadoop/db-derby-10.4.1.3-bin
-DERBY\_HOME=/opt/hadoop/db-derby-10.4.1.3-bin
-export DERBY\_INSTALL
-export DERBY\_HOME
+DERBY_INSTALL=/opt/hadoop/db-derby-10.4.1.3-bin
+DERBY_HOME=/opt/hadoop/db-derby-10.4.1.3-bin
+export DERBY_INSTALL
+export DERBY_HOME
 
 ```
 
@@ -88,7 +88,7 @@ Edit `/opt/hadoop/hive/conf/hive-site.xml` as follows. Note that "hadoop1" shoul
 ```
 <property>
   <name>javax.jdo.option.ConnectionURL</name>
-  <value>jdbc:derby://hadoop1:1527/metastore\_db;create=true</value>
+  <value>jdbc:derby://hadoop1:1527/metastore_db;create=true</value>
   <description>JDBC connect string for a JDBC metastore</description>
 </property>
 
@@ -114,11 +114,11 @@ org.jpox.validateConstraints=false
 org.jpox.storeManagerType=rdbms
 org.jpox.autoCreateSchema=true
 org.jpox.autoStartMechanismMode=checked
-org.jpox.transactionIsolation=read\_committed
+org.jpox.transactionIsolation=read_committed
 javax.jdo.option.DetachAllOnCommit=true
 javax.jdo.option.NontransactionalRead=true
 javax.jdo.option.ConnectionDriverName=org.apache.derby.jdbc.ClientDriver
-javax.jdo.option.ConnectionURL=jdbc:derby://hadoop1:1527/metastore\_db;create=true
+javax.jdo.option.ConnectionURL=jdbc:derby://hadoop1:1527/metastore_db;create=true
 javax.jdo.option.ConnectionUserName=APP
 javax.jdo.option.ConnectionPassword=mine
 

@@ -55,9 +55,9 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
  "tables": [
-   "my\_table",
-   "my\_table\_2",
-   "my\_table\_3"
+   "my_table",
+   "my_table_2",
+   "my_table_3"
  ],
  "database": "default"
 }

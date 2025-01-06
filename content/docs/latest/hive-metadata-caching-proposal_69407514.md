@@ -107,7 +107,7 @@ HivePartitionManager.getFilteredPartitionNames:
 
             else {
 
-                filter.add(PARTITION\_VALUE\_WILDCARD);
+                filter.add(PARTITION_VALUE_WILDCARD);
 
             }
 

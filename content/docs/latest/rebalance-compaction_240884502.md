@@ -12,7 +12,7 @@ In order to improve performance, Hive under the hood creates bucket files even f
 SQL example:  
 
 ```
-ALTER TABLE table\_name COMPACT 'REBALANCE';
+ALTER TABLE table_name COMPACT 'REBALANCE';
 ```
 
 ### Number of implicit buckets
@@ -22,7 +22,7 @@ It is possible to set the desired number of implicit buckects during a rebalance
 SQL example:
 
 ```
-ALTER TABLE table\_name COMPACT 'REBALANCE' CLUSTERED INTO n BUCKETS;
+ALTER TABLE table_name COMPACT 'REBALANCE' CLUSTERED INTO n BUCKETS;
 ```
 
 If the bucket number is not supplied, the number of buckets will remain the same, only the data will be redistributed among them.
@@ -34,7 +34,7 @@ Optionally, an order by expression can be supplied, to be able to re-order the d
 SQL example:
 
 ```
-ALTER TABLE table\_name COMPACT 'REBALANCE' ORDER BY column\_name DESC;
+ALTER TABLE table_name COMPACT 'REBALANCE' ORDER BY column_name DESC;
 ```
 
 If the *order by* expression is not set, the ordering of the data remains the same after the compaction.

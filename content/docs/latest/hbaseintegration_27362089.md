@@ -61,14 +61,14 @@ The storage handler is built as an independent module, `hive-hbase-handler-x.y.z
 Here's an example using CLI from a source build environment, targeting a single-node HBase server. (Note that the jar locations and names have changed in Hive 0.9.0, so for earlier releases, some changes are needed.)
 
 ```
-$HIVE\_SRC/build/dist/bin/hive --auxpath $HIVE\_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE\_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE\_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE\_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.master=hbase.yoyodyne.com:60000
+$HIVE_SRC/build/dist/bin/hive --auxpath $HIVE_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.master=hbase.yoyodyne.com:60000
 
 ```
 
 Here's an example which instead targets a distributed HBase cluster where a quorum of 3 zookeepers is used to elect the HBase master:
 
 ```
-$HIVE\_SRC/build/dist/bin/hive --auxpath $HIVE\_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE\_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE\_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE\_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.zookeeper.quorum=zk1.yoyodyne.com,zk2.yoyodyne.com,zk3.yoyodyne.com
+$HIVE_SRC/build/dist/bin/hive --auxpath $HIVE_SRC/build/dist/lib/hive-hbase-handler-0.9.0.jar,$HIVE_SRC/build/dist/lib/hbase-0.92.0.jar,$HIVE_SRC/build/dist/lib/zookeeper-3.3.4.jar,$HIVE_SRC/build/dist/lib/guava-r09.jar --hiveconf hbase.zookeeper.quorum=zk1.yoyodyne.com,zk2.yoyodyne.com,zk3.yoyodyne.com
 
 ```
 
@@ -77,7 +77,7 @@ The handler requires Hadoop 0.20 or higher, and has only been tested with depend
 In order to create a new HBase table which is to be managed by Hive, use the `STORED BY` clause on `CREATE TABLE`:
 
 ```
-CREATE TABLE hbase\_table\_1(key int, value string) 
+CREATE TABLE hbase_table_1(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf1:val")
 TBLPROPERTIES ("hbase.table.name" = "xyz", "hbase.mapred.output.outputtable" = "xyz");
@@ -98,7 +98,7 @@ xyz
 hbase(main):002:0> describe "xyz"
 DESCRIPTION                                                             ENABLED                               
  {NAME => 'xyz', FAMILIES => [{NAME => 'cf1', COMPRESSION => 'NONE', VE true                                  
- RSIONS => '3', TTL => '2147483647', BLOCKSIZE => '65536', IN\_MEMORY =>                                       
+ RSIONS => '3', TTL => '2147483647', BLOCKSIZE => '65536', IN_MEMORY =>                                       
   'false', BLOCKCACHE => 'true'}]}                                                                            
 1 row(s) in 0.0220 seconds
 hbase(main):003:0> scan "xyz"
@@ -112,7 +112,7 @@ Notice that even though a column name "val" is specified in the mapping, only th
 Here's how to move data from Hive into the HBase table (see [GettingStarted]({{< ref "gettingstarted_27362090" >}}) for how to create the example table `pokes` in Hive first):
 
 ```
-INSERT OVERWRITE TABLE hbase\_table\_1 SELECT * FROM pokes WHERE foo=98;
+INSERT OVERWRITE TABLE hbase_table_1 SELECT * FROM pokes WHERE foo=98;
 
 ```
 
@@ -121,7 +121,7 @@ Use HBase shell to verify that the data actually got loaded:
 ```
 hbase(main):009:0> scan "xyz"
 ROW                          COLUMN+CELL                                                                      
- 98                          column=cf1:val, timestamp=1267737987733, value=val\_98                            
+ 98                          column=cf1:val, timestamp=1267737987733, value=val_98                            
 1 row(s) in 0.0110 seconds
 
 ```
@@ -129,12 +129,12 @@ ROW                          COLUMN+CELL
 And then query it back via Hive:
 
 ```
-hive> select * from hbase\_table\_1;
+hive> select * from hbase_table_1;
 Total MapReduce jobs = 1
 Launching Job 1 out of 1
 ...
 OK
-98	val\_98
+98	val_98
 Time taken: 4.582 seconds
 
 ```
@@ -151,10 +151,10 @@ set hive.hbase.wal.enabled=false;
 If you want to give Hive access to an existing HBase table, use CREATE EXTERNAL TABLE:
 
 ```
-CREATE EXTERNAL TABLE hbase\_table\_2(key int, value string) 
+CREATE EXTERNAL TABLE hbase_table_2(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES ("hbase.columns.mapping" = "cf1:val")
-TBLPROPERTIES("hbase.table.name" = "some\_existing\_table", "hbase.mapred.output.outputtable" = "some\_existing\_table");
+TBLPROPERTIES("hbase.table.name" = "some_existing_table", "hbase.mapred.output.outputtable" = "some_existing_table");
 
 ```
 
@@ -187,12 +187,12 @@ The next few sections provide detailed examples of the kinds of column mappings 
 Here's an example with three Hive columns and two HBase column families, with two of the Hive columns (`value1` and `value2`) corresponding to one of the column families (`a`, with HBase column names `b` and `c`), and the other Hive column corresponding to a single column (`e`) in its own column family (`d`).
 
 ```
-CREATE TABLE hbase\_table\_1(key int, value1 string, value2 int, value3 int) 
+CREATE TABLE hbase_table_1(key int, value1 string, value2 int, value3 int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = ":key,a:b,a:c,d:e"
 );
-INSERT OVERWRITE TABLE hbase\_table\_1 SELECT foo, bar, foo+1, foo+2 
+INSERT OVERWRITE TABLE hbase_table_1 SELECT foo, bar, foo+1, foo+2 
 FROM pokes WHERE foo=98 OR foo=100;
 
 ```
@@ -200,20 +200,20 @@ FROM pokes WHERE foo=98 OR foo=100;
 Here's how this looks in HBase:
 
 ```
-hbase(main):014:0> describe "hbase\_table\_1"
+hbase(main):014:0> describe "hbase_table_1"
 DESCRIPTION                                                             ENABLED                               
- {NAME => 'hbase\_table\_1', FAMILIES => [{NAME => 'a', COMPRESSION => 'N true                                  
- ONE', VERSIONS => '3', TTL => '2147483647', BLOCKSIZE => '65536', IN\_M                                       
+ {NAME => 'hbase_table_1', FAMILIES => [{NAME => 'a', COMPRESSION => 'N true                                  
+ ONE', VERSIONS => '3', TTL => '2147483647', BLOCKSIZE => '65536', IN_M                                       
  EMORY => 'false', BLOCKCACHE => 'true'}, {NAME => 'd', COMPRESSION =>                                        
  'NONE', VERSIONS => '3', TTL => '2147483647', BLOCKSIZE => '65536', IN                                       
- \_MEMORY => 'false', BLOCKCACHE => 'true'}]}                                                                  
+ _MEMORY => 'false', BLOCKCACHE => 'true'}]}                                                                  
 1 row(s) in 0.0170 seconds
-hbase(main):015:0> scan "hbase\_table\_1"
+hbase(main):015:0> scan "hbase_table_1"
 ROW                          COLUMN+CELL                                                                      
- 100                         column=a:b, timestamp=1267740457648, value=val\_100                               
+ 100                         column=a:b, timestamp=1267740457648, value=val_100                               
  100                         column=a:c, timestamp=1267740457648, value=101                                   
  100                         column=d:e, timestamp=1267740457648, value=102                                   
- 98                          column=a:b, timestamp=1267740457648, value=val\_98                                
+ 98                          column=a:b, timestamp=1267740457648, value=val_98                                
  98                          column=a:c, timestamp=1267740457648, value=99                                    
  98                          column=d:e, timestamp=1267740457648, value=100                                   
 2 row(s) in 0.0240 seconds
@@ -223,13 +223,13 @@ ROW                          COLUMN+CELL
 And when queried back into Hive:
 
 ```
-hive> select * from hbase\_table\_1;
+hive> select * from hbase_table_1;
 Total MapReduce jobs = 1
 Launching Job 1 out of 1
 ...
 OK
-100	val\_100	101	102
-98	val\_98	99	100
+100	val_100	101	102
+98	val_98	99	100
 Time taken: 4.054 seconds
 
 ```
@@ -239,12 +239,12 @@ Time taken: 4.054 seconds
 Here's how a Hive MAP datatype can be used to access an entire column family. Each row can have a different set of columns, where the column names correspond to the map keys and the column values correspond to the map values.
 
 ```
-CREATE TABLE hbase\_table\_1(value map<string,int>, row\_key int) 
+CREATE TABLE hbase_table_1(value map<string,int>, row_key int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = "cf:,:key"
 );
-INSERT OVERWRITE TABLE hbase\_table\_1 SELECT map(bar, foo), foo FROM pokes 
+INSERT OVERWRITE TABLE hbase_table_1 SELECT map(bar, foo), foo FROM pokes 
 WHERE foo=98 OR foo=100;
 
 ```
@@ -254,10 +254,10 @@ WHERE foo=98 OR foo=100;
 Here's how this looks in HBase (with different column names in different rows):
 
 ```
-hbase(main):012:0> scan "hbase\_table\_1"
+hbase(main):012:0> scan "hbase_table_1"
 ROW                          COLUMN+CELL                                                                      
- 100                         column=cf:val\_100, timestamp=1267739509194, value=100                            
- 98                          column=cf:val\_98, timestamp=1267739509194, value=98                              
+ 100                         column=cf:val_100, timestamp=1267739509194, value=100                            
+ 98                          column=cf:val_98, timestamp=1267739509194, value=98                              
 2 row(s) in 0.0080 seconds
 
 ```
@@ -265,13 +265,13 @@ ROW                          COLUMN+CELL
 And when queried back into Hive:
 
 ```
-hive> select * from hbase\_table\_1;
+hive> select * from hbase_table_1;
 Total MapReduce jobs = 1
 Launching Job 1 out of 1
 ...
 OK
-{"val\_100":100}	100
-{"val\_98":98}	98
+{"val_100":100}	100
+{"val_98":98}	98
 Time taken: 3.808 seconds
 
 ```
@@ -279,7 +279,7 @@ Time taken: 3.808 seconds
 Note that the key of the MAP must have datatype string, since it is used for naming the HBase column, so the following table definition will fail:
 
 ```
-CREATE TABLE hbase\_table\_1(key int, value map<int,int>) 
+CREATE TABLE hbase_table_1(key int, value map<int,int>) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = ":key,cf:"
@@ -290,13 +290,13 @@ FAILED: Error in metadata: java.lang.RuntimeException: MetaException(message:org
 
 ### Hive MAP to HBase Column Prefix
 
-Also note that starting with [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-3725), wildcards can also be used to retrieve columns. For instance, if you want to retrieve all columns in HBase that start with the prefix "col\_prefix", a query like the following should work:
+Also note that starting with [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-3725), wildcards can also be used to retrieve columns. For instance, if you want to retrieve all columns in HBase that start with the prefix "col_prefix", a query like the following should work:
 
 ```
-CREATE TABLE hbase\_table\_1(value map<string,int>, row\_key int) 
+CREATE TABLE hbase_table_1(value map<string,int>, row_key int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
-"hbase.columns.mapping" = "cf:col\_prefix.*,:key"
+"hbase.columns.mapping" = "cf:col_prefix.*,:key"
 );
 
 ```
@@ -308,10 +308,10 @@ The same restrictions apply though. That is, the key of the map should be a stri
 Starting with [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11329), it is possible to hide column prefixes in select query results.  There is the SerDe boolean property hbase.columns.mapping.prefix.hide (false by default), which defines if the prefix should be hidden in keys of Hive map:
 
 ```
-CREATE TABLE hbase\_table\_1(tags map<string,int>, row\_key string) 
+CREATE TABLE hbase_table_1(tags map<string,int>, row_key string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
-"hbase.columns.mapping" = "cf:tag\_.*,:key",
+"hbase.columns.mapping" = "cf:tag_.*,:key",
 "hbase.columns.mapping.prefix.hide" = "true"
 );
 ```
@@ -324,7 +324,7 @@ Then a value of the column "tags" (`select tags from hbase_table_1`) will be:
 instead of:
 
 ```
-"tag\_x" : 1
+"tag_x" : 1
 ```
 ### Illegal: Hive Primitive to HBase Column Family
 
@@ -332,7 +332,7 @@ Table definitions such as the following are illegal because a
  Hive column mapped to an entire column family must have MAP type:
 
 ```
-CREATE TABLE hbase\_table\_1(key int, value string) 
+CREATE TABLE hbase_table_1(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = ":key,cf:"
@@ -346,7 +346,7 @@ FAILED: Error in metadata: java.lang.RuntimeException: MetaException(message:org
 Relying on the default value of `hbase.table.default.storage.type`:
 
 ```
-CREATE TABLE hbase\_table\_1 (key int, value string, foobar double)
+CREATE TABLE hbase_table_1 (key int, value string, foobar double)
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = ":key#b,cf:val,cf:foo#b"
@@ -357,7 +357,7 @@ WITH SERDEPROPERTIES (
 Specifying `hbase.table.default.storage.type`:
 
 ```
-CREATE TABLE hbase\_table\_1 (key int, value string, foobar double)
+CREATE TABLE hbase_table_1 (key int, value string, foobar double)
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = ":key,cf:val#s,cf:foo",
@@ -376,7 +376,7 @@ Hive can read and write delimited composite keys to HBase by mapping the HBase r
 
 ```
 -- Create a table with a composite row key consisting of two string fields, delimited by '~'
-CREATE EXTERNAL TABLE delimited\_example(key struct<f1:string, f2:string>, value string) 
+CREATE EXTERNAL TABLE delimited_example(key struct<f1:string, f2:string>, value string) 
 ROW FORMAT DELIMITED 
 COLLECTION ITEMS TERMINATED BY '~' 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' 
@@ -392,12 +392,12 @@ For more complex use cases, Hive allows users to specify an HBaseKeyFactory whic
 
 ```
 -- Parse a row key with 3 fixed width fields each of width 10
--- Example taken from: https://svn.apache.org/repos/asf/hive/trunk/hbase-handler/src/test/queries/positive/hbase\_custom\_key2.q
-CREATE TABLE hbase\_ck\_4(key struct<col1:string,col2:string,col3:string>, value string)
+-- Example taken from: https://svn.apache.org/repos/asf/hive/trunk/hbase-handler/src/test/queries/positive/hbase_custom_key2.q
+CREATE TABLE hbase_ck_4(key struct<col1:string,col2:string,col3:string>, value string)
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
-    "hbase.table.name" = "hbase\_custom2",
-    "hbase.mapred.output.outputtable" = "hbase\_custom2",
+    "hbase.table.name" = "hbase_custom2",
+    "hbase.mapred.output.outputtable" = "hbase_custom2",
     "hbase.columns.mapping" = ":key,cf:string",
     "hbase.composite.key.factory"="org.apache.hadoop.hive.hbase.SampleHBaseKeyFactory2");
 ```
@@ -413,29 +413,29 @@ Hive 0.14.0 onward supports storing and querying Avro objects in HBase columns b
 An example HiveQL statement where `test_col_fam` is the column family and `test_col` is the column name:
 
 ```
-CREATE EXTERNAL TABLE test\_hbase\_avro
+CREATE EXTERNAL TABLE test_hbase_avro
 ROW FORMAT SERDE 'org.apache.hadoop.hive.hbase.HBaseSerDe' 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' 
 WITH SERDEPROPERTIES (
-	"hbase.columns.mapping" = ":key,test\_col\_fam:test\_col", 
-	"test\_col\_fam.test\_col.serialization.type" = "avro",
-	"test\_col\_fam.test\_col.avro.schema.url" = "hdfs://testcluster/tmp/schema.avsc")
+	"hbase.columns.mapping" = ":key,test_col_fam:test_col", 
+	"test_col_fam.test_col.serialization.type" = "avro",
+	"test_col_fam.test_col.avro.schema.url" = "hdfs://testcluster/tmp/schema.avsc")
 TBLPROPERTIES (
-    "hbase.table.name" = "hbase\_avro\_table",
-    "hbase.mapred.output.outputtable" = "hbase\_avro\_table",
+    "hbase.table.name" = "hbase_avro_table",
+    "hbase.mapred.output.outputtable" = "hbase_avro_table",
     "hbase.struct.autogenerate"="true");
 ```
 
 The important properties to note are the following three:
 
 ```
-"test\_col\_fam.test\_col.serialization.type" = "avro"
+"test_col_fam.test_col.serialization.type" = "avro"
 ```
 
 This property tells Hive that the given column under the given column family is an Avro column, so Hive needs to deserialize it accordingly.
 
 ```
-"test\_col\_fam.test\_col.avro.schema.url" = "hdfs://testcluster/tmp/schema.avsc"
+"test_col_fam.test_col.avro.schema.url" = "hdfs://testcluster/tmp/schema.avsc"
 ```
 
 Using this property you specify where the reader schema is for the column that will be used to deserialize. This can be on HDFS like mentioned here, or provided inline using something like `"test_col_fam.test_col.avro.schema.literal"` property. If you have a custom store where you store this schema, you can write a custom implementation of [AvroSchemaRetriever](https://github.com/apache/hive/blob/master/serde/src/java/org/apache/hadoop/hive/serde2/avro/AvroSchemaRetriever.java) and plug that in using the `"avro.schema.retriever property"` using a property like `"test_col_fam.test_col.avro.schema.retriever"`. You would need to ensure that the jar with this custom class is on the Hive classpath. For a usage discussion and links to other resources, see [HIVE-6147](https://issues.apache.org/jira/browse/HIVE-6147?focusedCommentId=15125117&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-15125117).
@@ -516,7 +516,7 @@ Positive QL tests are under `hbase-handler/src/test/queries`. These use a HBase+
 The QL tests can be executed via ant like this:
 
 ```
-ant test -Dtestcase=TestHBaseCliDriver -Dqfile=hbase\_queries.q
+ant test -Dtestcase=TestHBaseCliDriver -Dqfile=hbase_queries.q
 
 ```
 

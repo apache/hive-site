@@ -113,10 +113,10 @@ $ javac HiveJdbcClient.java
 
 # To run the program in standalone mode, we need the following jars in the classpath
 # from hive/build/dist/lib
-#     hive\_exec.jar
-#     hive\_jdbc.jar
-#     hive\_metastore.jar
-#     hive\_service.jar
+#     hive_exec.jar
+#     hive_jdbc.jar
+#     hive_metastore.jar
+#     hive_service.jar
 #     libfb303.jar
 #     log4j-1.2.15.jar
 #
@@ -139,16 +139,16 @@ $ java -cp $CLASSPATH HiveJdbcClient
 # and build your classpath before invoking the client.
 
 #!/bin/bash
-HADOOP\_HOME=/your/path/to/hadoop
-HIVE\_HOME=/your/path/to/hive
+HADOOP_HOME=/your/path/to/hadoop
+HIVE_HOME=/your/path/to/hive
 
 echo -e '1\x01foo' > /tmp/a.txt
 echo -e '2\x01bar' >> /tmp/a.txt
 
-HADOOP\_CORE={{ls $HADOOP\_HOME/hadoop-*-core.jar}}
-CLASSPATH=.:$HADOOP\_CORE:$HIVE\_HOME/conf
+HADOOP_CORE={{ls $HADOOP_HOME/hadoop-*-core.jar}}
+CLASSPATH=.:$HADOOP_CORE:$HIVE_HOME/conf
 
-for i in ${HIVE\_HOME}/lib/*.jar ; do
+for i in ${HIVE_HOME}/lib/*.jar ; do
     CLASSPATH=$CLASSPATH:$i
 done
 
@@ -212,12 +212,12 @@ Operates only on a standalone server.
 
 ```
 <?php
-// set THRIFT\_ROOT to php directory of the hive distribution
-$GLOBALS['THRIFT\_ROOT'] = '/lib/php/';
+// set THRIFT_ROOT to php directory of the hive distribution
+$GLOBALS['THRIFT_ROOT'] = '/lib/php/';
 // load the required files for connecting to Hive
-require\_once $GLOBALS['THRIFT\_ROOT'] . 'packages/hive\_service/ThriftHive.php';
-require\_once $GLOBALS['THRIFT\_ROOT'] . 'transport/TSocket.php';
-require\_once $GLOBALS['THRIFT\_ROOT'] . 'protocol/TBinaryProtocol.php';
+require_once $GLOBALS['THRIFT_ROOT'] . 'packages/hive_service/ThriftHive.php';
+require_once $GLOBALS['THRIFT_ROOT'] . 'transport/TSocket.php';
+require_once $GLOBALS['THRIFT_ROOT'] . 'protocol/TBinaryProtocol.php';
 // Set up the transport/protocol/client
 $transport = new TSocket('localhost', 10000);
 $protocol = new TBinaryProtocol($transport);
@@ -226,7 +226,7 @@ $transport->open();
 
 // run queries, metadata calls etc
 $client->execute('SELECT * from src');
-var\_dump($client->fetchAll());
+var_dump($client->fetchAll());
 $transport->close();
 
 ```

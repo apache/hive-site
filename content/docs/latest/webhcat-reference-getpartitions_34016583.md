@@ -46,7 +46,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table/partition?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/partition?user.name=ctdean'
 
 ```
 
@@ -70,7 +70,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
     }
   ],
   "database": "default",
-  "table": "my\_table"
+  "table": "my_table"
 }
 
 ```

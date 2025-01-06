@@ -9,7 +9,7 @@ Documentation for Built-In User-Defined Functions Related To XPath
 
 ## UDFs
 
-### xpath, xpath\_short, xpath\_int, xpath\_long, xpath\_float, xpath\_double, xpath\_number, xpath\_string
+### xpath, xpath_short, xpath_int, xpath_long, xpath_float, xpath_double, xpath_number, xpath_string
 
 * Functions for parsing XML data using XPath expressions.
 * Since version: 0.6.0
@@ -85,7 +85,7 @@ Get a list of node texts for nodes where the 'class' attribute equals 'bb':
 
 ```
 
-#### xpath\_string
+#### xpath_string
 
 The `xpath_string()` function returns the text of the first matching node.
 
@@ -93,7 +93,7 @@ Get the text for node 'a/b':
 
 ```
 
-> SELECT xpath\_string ('<a><b>bb</b><c>cc</c></a>', 'a/b') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>bb</b><c>cc</c></a>', 'a/b') FROM src LIMIT 1 ;
 bb
 
 ```
@@ -102,7 +102,7 @@ Get the text for node 'a'. Because 'a' has children nodes with text, the result 
 
 ```
 
-> SELECT xpath\_string ('<a><b>bb</b><c>cc</c></a>', 'a') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>bb</b><c>cc</c></a>', 'a') FROM src LIMIT 1 ;
 bbcc
 
 ```
@@ -111,7 +111,7 @@ Non-matching expression returns an empty string:
 
 ```
 
-> SELECT xpath\_string ('<a><b>bb</b><c>cc</c></a>', 'a/d') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>bb</b><c>cc</c></a>', 'a/d') FROM src LIMIT 1 ;
 
 ```
 
@@ -119,7 +119,7 @@ Gets the text of the first node that matches '//b':
 
 ```
 
-> SELECT xpath\_string ('<a><b>b1</b><b>b2</b></a>', '//b') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>b1</b><b>b2</b></a>', '//b') FROM src LIMIT 1 ;
 b1
 
 ```
@@ -128,21 +128,21 @@ Gets the second matching node:
 
 ```
 
-> SELECT xpath\_string ('<a><b>b1</b><b>b2</b></a>', 'a/b[2]') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>b1</b><b>b2</b></a>', 'a/b[2]') FROM src LIMIT 1 ;
 b2
 
 ```
 
-Gets the text from the first node that has an attribute 'id' with value 'b\_2':
+Gets the text from the first node that has an attribute 'id' with value 'b_2':
 
 ```
 
-> SELECT xpath\_string ('<a><b>b1</b><b id="b\_2">b2</b></a>', 'a/b[@id="b\_2"]') FROM src LIMIT 1 ;
+> SELECT xpath_string ('<a><b>b1</b><b id="b_2">b2</b></a>', 'a/b[@id="b_2"]') FROM src LIMIT 1 ;
 b2
 
 ```
 
-#### xpath\_boolean
+#### xpath_boolean
 
 Returns true if the XPath expression evaluates to true, or if a matching node is found.
 
@@ -150,7 +150,7 @@ Match found:
 
 ```
 
-> SELECT xpath\_boolean ('<a><b>b</b></a>', 'a/b') FROM src LIMIT 1 ;
+> SELECT xpath_boolean ('<a><b>b</b></a>', 'a/b') FROM src LIMIT 1 ;
 true
 
 ```
@@ -159,7 +159,7 @@ No match found:
 
 ```
 
-> SELECT xpath\_boolean ('<a><b>b</b></a>', 'a/c') FROM src LIMIT 1 ;
+> SELECT xpath_boolean ('<a><b>b</b></a>', 'a/c') FROM src LIMIT 1 ;
 false
 
 ```
@@ -168,7 +168,7 @@ Match found:
 
 ```
 
-> SELECT xpath\_boolean ('<a><b>b</b></a>', 'a/b = "b"') FROM src LIMIT 1 ;
+> SELECT xpath_boolean ('<a><b>b</b></a>', 'a/b = "b"') FROM src LIMIT 1 ;
 true
 
 ```
@@ -177,12 +177,12 @@ No match found:
 
 ```
 
-> SELECT xpath\_boolean ('<a><b>10</b></a>', 'a/b < 10') FROM src LIMIT 1 ;
+> SELECT xpath_boolean ('<a><b>10</b></a>', 'a/b < 10') FROM src LIMIT 1 ;
 false
 
 ```
 
-#### xpath\_short, xpath\_int, xpath\_long
+#### xpath_short, xpath_int, xpath_long
 
 These functions return an integer numeric value, or the value zero if no match is found, or a match is found but the value is non-numeric.  
 
@@ -192,7 +192,7 @@ No match:
 
 ```
 
-> SELECT xpath\_int ('<a>b</a>', 'a = 10') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a>b</a>', 'a = 10') FROM src LIMIT 1 ;
 0
 
 ```
@@ -201,9 +201,9 @@ Non-numeric match:
 
 ```
 
-> SELECT xpath\_int ('<a>this is not a number</a>', 'a') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a>this is not a number</a>', 'a') FROM src LIMIT 1 ;
 0
-> SELECT xpath\_int ('<a>this 2 is not a number</a>', 'a') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a>this 2 is not a number</a>', 'a') FROM src LIMIT 1 ;
 0
 
 ```
@@ -212,11 +212,11 @@ Adding values:
 
 ```
 
-> SELECT xpath\_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/*)') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/*)') FROM src LIMIT 1 ;
 15
-> SELECT xpath\_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/b)') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/b)') FROM src LIMIT 1 ;
 7
-> SELECT xpath\_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/b[@class="odd"])') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a><b class="odd">1</b><b class="even">2</b><b class="odd">4</b><c>8</c></a>', 'sum(a/b[@class="odd"])') FROM src LIMIT 1 ;
 5
 
 ```
@@ -225,14 +225,14 @@ Overflow:
 
 ```
 
-> SELECT xpath\_int ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c') FROM src LIMIT 1 ;
+> SELECT xpath_int ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c') FROM src LIMIT 1 ;
 2147483647
 
 ```
 
-#### xpath\_float, xpath\_double, xpath\_number
+#### xpath_float, xpath_double, xpath_number
 
-Similar to xpath\_short, xpath\_int and xpath\_long but with floating point semantics. Non-matches result in zero. However,  
+Similar to xpath_short, xpath_int and xpath_long but with floating point semantics. Non-matches result in zero. However,  
 
 non-numeric matches result in NaN. Note that `xpath_number()` is an alias for `xpath_double()`.
 
@@ -240,7 +240,7 @@ No match:
 
 ```
 
-> SELECT xpath\_double ('<a>b</a>', 'a = 10') FROM src LIMIT 1 ;
+> SELECT xpath_double ('<a>b</a>', 'a = 10') FROM src LIMIT 1 ;
 0.0
 
 ```
@@ -249,7 +249,7 @@ Non-numeric match:
 
 ```
 
-> SELECT xpath\_double ('<a>this is not a number</a>', 'a') FROM src LIMIT 1 ;
+> SELECT xpath_double ('<a>this is not a number</a>', 'a') FROM src LIMIT 1 ;
 NaN
 
 ```
@@ -258,7 +258,7 @@ A very large number:
 
 ```
 
-SELECT xpath\_double ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c') FROM src LIMIT 1 ;
+SELECT xpath_double ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c') FROM src LIMIT 1 ;
 8.0E19
 
 ```

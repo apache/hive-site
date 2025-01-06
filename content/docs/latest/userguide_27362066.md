@@ -20,7 +20,7 @@ The query language specification is available at [LanguageManual]({{< ref "langu
 #### MovieLens User Ratings
 
 ```
-CREATE TABLE u\_data (
+CREATE TABLE u_data (
   userid INT,
   movieid INT,
   rating INT,
@@ -34,7 +34,7 @@ STORED AS TEXTFILE;
 #### Apache Access Log Tables
 
 ```
-add jar ../build/contrib/hive\_contrib.jar;
+add jar ../build/contrib/hive_contrib.jar;
 
 CREATE TABLE apachelog (
   host STRING,
@@ -84,7 +84,7 @@ Load it in:
 
 ```
 LOAD DATA LOCAL INPATH 'ml-data/u.data'
-OVERWRITE INTO TABLE u\_data;
+OVERWRITE INTO TABLE u_data;
 
 ```
 
@@ -93,7 +93,7 @@ OVERWRITE INTO TABLE u\_data;
 #### MovieLens User Ratings
 
 ```
-SELECT COUNT(1) FROM u\_data;
+SELECT COUNT(1) FROM u_data;
 
 ```
 
@@ -101,7 +101,7 @@ SELECT COUNT(1) FROM u\_data;
 
 #### MovieLens User Ratings
 
-Create weekday\_mapper.py:
+Create weekday_mapper.py:
 
 ```
 import sys
@@ -118,7 +118,7 @@ for line in sys.stdin:
 Use the mapper script:
 
 ```
-CREATE TABLE u\_data\_new (
+CREATE TABLE u_data_new (
   userid INT,
   movieid INT,
   rating INT,
@@ -126,15 +126,15 @@ CREATE TABLE u\_data\_new (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t';
 
-INSERT OVERWRITE TABLE u\_data\_new
+INSERT OVERWRITE TABLE u_data_new
 SELECT
   TRANSFORM (userid, movieid, rating, unixtime)
-  USING 'python weekday\_mapper.py'
+  USING 'python weekday_mapper.py'
   AS (userid, movieid, rating, weekday)
-FROM u\_data;
+FROM u_data;
 
 SELECT weekday, COUNT(1)
-FROM u\_data\_new
+FROM u_data_new
 GROUP BY weekday;
 
 ```

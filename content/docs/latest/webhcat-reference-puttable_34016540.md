@@ -66,7 +66,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
  "partitionedBy": [
    { "name": "country", "type": "string" } ],
  "format": { "storedAs": "rcfile" } }' \
- 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ctdean'
+ 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ctdean'
 
 ```
 
@@ -94,7 +94,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
         "properties": {
           "key": "value" } } } }
   } ' \
-  'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table\_c?user.name=ctdean'
+  'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table_c?user.name=ctdean'
 
 ```
 
@@ -102,7 +102,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 
@@ -112,15 +112,15 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
-  "statement": "use default; create table test\_table\_c(id bigint, price float comment ...",
-  "error": "unable to create table: test\_table\_c",
+  "statement": "use default; create table test_table_c(id bigint, price float comment ...",
+  "error": "unable to create table: test_table_c",
   "exec": {
     "stdout": "",
     "stderr": "WARNING: org.apache.hadoop.metrics.jvm.EventCounter is deprecated...
-        Hive history file=/tmp/ctdean/hive\_job\_log\_ctdean\_201204051335\_2016086186.txt
+        Hive history file=/tmp/ctdean/hive_job_log_ctdean_201204051335_2016086186.txt
         SLF4J: Class path contains multiple SLF4J bindings.
         SLF4J: Found binding in ...
-        SLF4J: See http://www.slf4j.org/codes.html#multiple\_bindings for an explanation.
+        SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
         OK
         Time taken: 0.448 seconds
         FAILED: Error in semantic analysis: Operation not supported. HCatalog doesn't allow Clustered By in create table.

@@ -47,7 +47,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/column/price?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/column/price?user.name=ctdean'
 
 ```
 
@@ -56,7 +56,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
  "database": "default",
- "table": "test\_table",
+ "table": "test_table",
  "column": {
    "name": "price",
    "comment": "The unit price",

@@ -160,28 +160,28 @@ For general information about Hive data types, see [Hive Data Types]({{< ref "la
 Your MapReduce program needs to be told where the Thrift server is. The easiest way to do this is to pass the location as an argument to your Java program. You need to pass the Hive and HCatalog jars to MapReduce as well, via the -libjars argument.
 
 ```
-export HADOOP\_HOME=<path\_to\_hadoop\_install>
-export HCAT\_HOME=<path\_to\_hcat\_install>
-export HIVE\_HOME=<path\_to\_hive\_install>
-export LIB\_JARS=$HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar,
-$HIVE\_HOME/lib/hive-metastore-0.10.0.jar,
-$HIVE\_HOME/lib/libthrift-0.7.0.jar,
-$HIVE\_HOME/lib/hive-exec-0.10.0.jar,
-$HIVE\_HOME/lib/libfb303-0.7.0.jar,
-$HIVE\_HOME/lib/jdo2-api-2.3-ec.jar,
-$HIVE\_HOME/lib/slf4j-api-1.6.1.jar
+export HADOOP_HOME=<path_to_hadoop_install>
+export HCAT_HOME=<path_to_hcat_install>
+export HIVE_HOME=<path_to_hive_install>
+export LIB_JARS=$HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar,
+$HIVE_HOME/lib/hive-metastore-0.10.0.jar,
+$HIVE_HOME/lib/libthrift-0.7.0.jar,
+$HIVE_HOME/lib/hive-exec-0.10.0.jar,
+$HIVE_HOME/lib/libfb303-0.7.0.jar,
+$HIVE_HOME/lib/jdo2-api-2.3-ec.jar,
+$HIVE_HOME/lib/slf4j-api-1.6.1.jar
 
-export HADOOP\_CLASSPATH=$HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar:
-$HIVE\_HOME/lib/hive-metastore-0.10.0.jar:
-$HIVE\_HOME/lib/libthrift-0.7.0.jar:
-$HIVE\_HOME/lib/hive-exec-0.10.0.jar:
-$HIVE\_HOME/lib/libfb303-0.7.0.jar:
-$HIVE\_HOME/lib/jdo2-api-2.3-ec.jar:
-$HIVE\_HOME/conf:$HADOOP\_HOME/conf:
-$HIVE\_HOME/lib/slf4j-api-1.6.1.jar
+export HADOOP_CLASSPATH=$HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar:
+$HIVE_HOME/lib/hive-metastore-0.10.0.jar:
+$HIVE_HOME/lib/libthrift-0.7.0.jar:
+$HIVE_HOME/lib/hive-exec-0.10.0.jar:
+$HIVE_HOME/lib/libfb303-0.7.0.jar:
+$HIVE_HOME/lib/jdo2-api-2.3-ec.jar:
+$HIVE_HOME/conf:$HADOOP_HOME/conf:
+$HIVE_HOME/lib/slf4j-api-1.6.1.jar
 
-$HADOOP\_HOME/bin/hadoop --config $HADOOP\_HOME/conf jar <path\_to\_jar>
-<main\_class> -libjars $LIB\_JARS <program\_arguments>
+$HADOOP_HOME/bin/hadoop --config $HADOOP_HOME/conf jar <path_to_jar>
+<main_class> -libjars $LIB_JARS <program_arguments>
 
 ```
 
@@ -190,15 +190,15 @@ This works but Hadoop will ship libjars every time you run the MapReduce program
 Instead, you can optimize to ship libjars using HDFS locations. By doing this, Hadoop will reuse the entries in the distributed cache.
 
 ```
-bin/hadoop fs -copyFromLocal $HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/hive-metastore-0.10.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/libthrift-0.7.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/hive-exec-0.10.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/libfb303-0.7.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/jdo2-api-2.3-ec.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/slf4j-api-1.6.1.jar /tmp
+bin/hadoop fs -copyFromLocal $HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/hive-metastore-0.10.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/libthrift-0.7.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/hive-exec-0.10.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/libfb303-0.7.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/jdo2-api-2.3-ec.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/slf4j-api-1.6.1.jar /tmp
 
-export LIB\_JARS=hdfs:///tmp/hcatalog-core-0.5.0.jar,
+export LIB_JARS=hdfs:///tmp/hcatalog-core-0.5.0.jar,
 hdfs:///tmp/hive-metastore-0.10.0.jar,
 hdfs:///tmp/libthrift-0.7.0.jar,
 hdfs:///tmp/hive-exec-0.10.0.jar,
@@ -328,7 +328,7 @@ For example:
 
 ### Scan Filter
 
-Assume for example you have a web\_logs table that is partitioned by the column "`ds`". You could select one partition of the table by changing
+Assume for example you have a web_logs table that is partitioned by the column "`ds`". You could select one partition of the table by changing
 
 ```
 HCatInputFormat.setInput(job, InputJobInfo.create(dbName, inputTableName, null));
@@ -347,7 +347,7 @@ This filter must reference only partition columns. Values from other columns wil
 
 ### Write Filter
 
-To write to a single partition you can change the above example to have a Map of key value pairs that describe all of the partition keys and values for that partition. In our example web\_logs table, there is only one partition column (`ds`), so our Map will have only one entry. Change
+To write to a single partition you can change the above example to have a Map of key value pairs that describe all of the partition keys and values for that partition. In our example web_logs table, there is only one partition column (`ds`), so our Map will have only one entry. Change
 
 ```
 HCatOutputFormat.setOutput(job, OutputJobInfo.create(dbName, outputTableName, null));

@@ -25,7 +25,7 @@ On the client side (PC), the following are required:
 * Any version of Hive that incorporates [HIVE-467![](images/icons/linkext7.gif)](https://issues.apache.org/jira/browse/HIVE-467). (As of this writing - the relevant patches are not committed. For convenience sake - a Hive distribution with this patch can be downloaded from [here![](images/icons/linkext7.gif)](http://jsensarma.com/downloads/hive-s3-ec2.tar.gz).)
 * A version of Hadoop ec2 scripts (src/contrib/ec2/bin) with a fix for [here![](images/icons/linkext7.gif)](https://issues.apache.org/jira/browse/HADOOP-5839)]. Again - since the relevant patches are not committed yet - a version of Hadoop-19 ec2 scripts with the relevant patches applied can be downloaded from [[http:--jsensarma.com-downloads-hadoop-0.19-ec2-remote.tar.gz]. These scripts must be used to launch hadoop clusters in EC2.
 
-Hive requires a local directory of Hadoop to run (specified using environment variable HADOOP\_HOME). This can be a version of Hadoop compatible with the one running on the EC2 clusters. This recipe has been tried with hadoop distribution created from from branch-19.
+Hive requires a local directory of Hadoop to run (specified using environment variable HADOOP_HOME). This can be a version of Hadoop compatible with the one running on the EC2 clusters. This recipe has been tried with hadoop distribution created from from branch-19.
 
 It is assumed that the user can successfully launch Hive CLI (`bin/hive` from the Hive distribution) at this point.
 
@@ -77,10 +77,10 @@ hive> alter table pkv add partition (insertdate='2008-01-01') location 's3n://da
 * ```
 
 hive> create external table lineitem (
-  l\_orderkey int, l\_partkey int, l\_suppkey int, l\_linenumber int, l\_quantity double,
-  l\_extendedprice double, l\_discount double, l\_tax double, l\_returnflag string, 
-  l\_linestatus string, l\_shipdate string, l\_commitdate string, l\_receiptdate string,
-  l\_shipinstruct string, l\_shipmode string, l\_comment string) 
+  l_orderkey int, l_partkey int, l_suppkey int, l_linenumber int, l_quantity double,
+  l_extendedprice double, l_discount double, l_tax double, l_returnflag string, 
+  l_linestatus string, l_shipdate string, l_commitdate string, l_receiptdate string,
+  l_shipinstruct string, l_shipmode string, l_comment string) 
   row format delimited fields terminated by '|' 
   location 's3n://data.s3ndemo.hive/tpch/lineitem';
 
@@ -126,12 +126,12 @@ Now we are all setup. The sample query from TPCH (1.sql) can be tried as follows
 ```
 
 hive> insert overwrite directory '/tmp/tpcresults-1.sql' 
-  select l\_returnflag, l\_linestatus, sum ( l\_quantity ) as sum\_qty, sum ( l\_extendedprice ) as sum\_base\_price,
-  sum ( l\_extendedprice * ( 1 - l\_discount )) as sub\_disc\_price, 
-  sum ( l\_extendedprice * ( 1 - l\_discount ) * ( 1 + l\_tax )) as sum\_charge,
-  avg ( l\_quantity ) as avg\_qty, avg ( l\_extendedprice ) as avg\_price, 
-  avg ( l\_discount ) as avg\_disc, count ( 1 ) as count\_order
-  from lineitem where l\_shipdate <= to\_date('1998-12-01') group by l\_returnflag, l\_linestatus; 
+  select l_returnflag, l_linestatus, sum ( l_quantity ) as sum_qty, sum ( l_extendedprice ) as sum_base_price,
+  sum ( l_extendedprice * ( 1 - l_discount )) as sub_disc_price, 
+  sum ( l_extendedprice * ( 1 - l_discount ) * ( 1 + l_tax )) as sum_charge,
+  avg ( l_quantity ) as avg_qty, avg ( l_extendedprice ) as avg_price, 
+  avg ( l_discount ) as avg_disc, count ( 1 ) as count_order
+  from lineitem where l_shipdate <= to_date('1998-12-01') group by l_returnflag, l_linestatus; 
 
 ```
 
@@ -165,10 +165,10 @@ Currently, Hive does not have any explicit support tmp tables. But tables define
 
 ```
 
-hive> create table cust\_order (nationkey string, acctbal double, mktsegment string, orderstatus string, totalprice double);
-hive> from customer c left outer join orders o on (c.c\_custkey = o.o\_custkey)
-  insert overwrite table cust\_order
-  select c.c\_nationkey, c.c\_acctbal, c.c\_mktsegment, o.o\_orderstatus, o.o\_totalprice;
+hive> create table cust_order (nationkey string, acctbal double, mktsegment string, orderstatus string, totalprice double);
+hive> from customer c left outer join orders o on (c.c_custkey = o.o_custkey)
+  insert overwrite table cust_order
+  select c.c_nationkey, c.c_acctbal, c.c_mktsegment, o.o_orderstatus, o.o_totalprice;
 
 ```
 

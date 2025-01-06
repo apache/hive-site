@@ -30,7 +30,7 @@ Create a partition in an HCatalog table.
 | --- | --- | --- | --- |
 | **:db** | The database name | Required | None |
 | **:table** | The table name | Required | None |
-| **:partition** | The partition name, col\_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
+| **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
 | **group** | The user group to use | Optional | None |
 | **permissions** | The permissions string to use | Optional | None |
 | **location** | The location for partition creation | Required | None |
@@ -51,8 +51,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s -X PUT -HContent-type:application/json -d '{"location": "loc\_a"}' \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/partition/country=%27algeria%27?user.name=ctdean'
+% curl -s -X PUT -HContent-type:application/json -d '{"location": "loc_a"}' \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/partition/country=%27algeria%27?user.name=ctdean'
 
 ```
 
@@ -61,7 +61,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
  "partition": "country='algeria'",
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 

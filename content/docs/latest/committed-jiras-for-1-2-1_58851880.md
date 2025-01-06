@@ -16,7 +16,7 @@ This is a list of jiras that were initially intended for 1.2.1, but were not fin
 | Tez | 
 [HIVE-10551](https://issues.apache.org/jira/browse/HIVE-10551?src=confmacro)
  -
- OOM when running query\_89 with vectorization on & hybridgrace=false
+ OOM when running query_89 with vectorization on & hybridgrace=false
 Resolved
  | open | sseth |
 | QL | 
@@ -177,7 +177,7 @@ Resolved
 | WebHCat | 
 [HIVE-10858](https://issues.apache.org/jira/browse/HIVE-10858?src=confmacro)
  -
- WebHCat specific resources should be added to HADOOP\_CLASSPATH first
+ WebHCat specific resources should be added to HADOOP_CLASSPATH first
 Resolved
  | Committed to 1.3.0,1.2.1 | ekoifman |
 | WebHCat | 
@@ -237,7 +237,7 @@ Resolved
 | HS2 | 
 [HIVE-10528](https://issues.apache.org/jira/browse/HIVE-10528?src=confmacro)
  -
- Hiveserver2 in HTTP mode is not applying auth\_to\_local rules
+ Hiveserver2 in HTTP mode is not applying auth_to_local rules
 Resolved
  | committed | vgumashta |
 | Query Planning | 
@@ -257,7 +257,7 @@ Resolved
 | Tests | 
 [HIVE-10724](https://issues.apache.org/jira/browse/HIVE-10724?src=confmacro)
  -
- WebHCat e2e test TestStreaming\_5 fails on Windows
+ WebHCat e2e test TestStreaming_5 fails on Windows
 Resolved
  | committed | sushanth |
 | WebHCat | 
@@ -455,7 +455,7 @@ Closed
 | Query Planning | 
 [HIVE-10874](https://issues.apache.org/jira/browse/HIVE-10874?src=confmacro)
  -
- Fail in TestMinimrCliDriver.testCliDriver\_ql\_rewrite\_gbtoidx\_cbo\_2.q due to duplicate column name
+ Fail in TestMinimrCliDriver.testCliDriver_ql_rewrite_gbtoidx_cbo_2.q due to duplicate column name
 Resolved
  | committed | jpullokk |
 | Query Planning | 
@@ -517,7 +517,7 @@ Closed
 | Tests | 
 [HIVE-11050](https://issues.apache.org/jira/browse/HIVE-11050?src=confmacro)
  -
- testCliDriver\_vector\_outer\_join.* failures in Unit tests due to unstable data creation queries
+ testCliDriver_vector_outer_join.* failures in Unit tests due to unstable data creation queries
 Resolved
  | committed | mmccline |
 | Test | 

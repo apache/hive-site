@@ -39,7 +39,7 @@ As of Hive 0.13.0, [GET version/hive]({{< ref "webhcat-reference-versionhive_44
 | **arg** | Set a program argument. This parameter was introduced in Hive 0.12.0. (See [HIVE-4444](https://issues.apache.org/jira/browse/HIVE-4444).) | Optional in Hive 0.12.0+ | None |
 | **files** | Comma-separated files to be copied to the map reduce cluster. This parameter was introduced in Hive 0.12.0. (See [HIVE-4444](https://issues.apache.org/jira/browse/HIVE-4444).) | Optional in Hive 0.12.0+ | None |
 | **statusdir** | A directory where WebHCat will write the status of the Hive job. If provided, it is the caller's responsibility to remove this directory when done. | Optional | None |
-| **enablelog** | If **statusdir** is set and **enablelog** is "true", collect Hadoop job configuration and logs into a directory named `$statusdir/logs` after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in `$statusdir/logs` is: `logs/$job_id` *(directory for $job\_id)* `logs/$job_id/job.xml.html` `logs/$job_id/$attempt_id` *(directory for $attempt\_id)* `logs/$job_id/$attempt_id/stderr` `logs/$job_id/$attempt_id/stdout` `logs/$job_id/$attempt_id/syslog` This parameter was introduced in Hive 0.12.0. (See [HIVE-4531](https://issues.apache.org/jira/browse/HIVE-4531).) | Optional in Hive 0.12.0+ | None |
+| **enablelog** | If **statusdir** is set and **enablelog** is "true", collect Hadoop job configuration and logs into a directory named `$statusdir/logs` after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in `$statusdir/logs` is: `logs/$job_id` *(directory for $job_id)* `logs/$job_id/job.xml.html` `logs/$job_id/$attempt_id` *(directory for $attempt_id)* `logs/$job_id/$attempt_id/stderr` `logs/$job_id/$attempt_id/stdout` `logs/$job_id/$attempt_id/syslog` This parameter was introduced in Hive 0.12.0. (See [HIVE-4531](https://issues.apache.org/jira/browse/HIVE-4531).) | Optional in Hive 0.12.0+ | None |
 | **callback** | Define a URL to be called upon job completion. You may embed a specific job ID into this URL using `$jobId`. This tag will be replaced in the callback URL with this job's job ID. | Optional | None |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
@@ -48,7 +48,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 | Name | Description |
 | --- | --- |
-| **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
+| **id** | A string containing the job ID similar to "job_201110132141_0001". |
 | **info** | A JSON object containing the information returned when the job was queued. See the Hadoop documentation ([`Class TaskController`](http://hadoop.apache.org/docs/r1.2.1/api/org/apache/hadoop/mapred/TaskController.html)) for more information. |
 
 ## Example
@@ -72,9 +72,9 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ```
 {
- "id": "job\_201111111311\_0005",
+ "id": "job_201111111311_0005",
  "info": {
-          "stdout": "templeton-job-id:job\_201111111311\_0005
+          "stdout": "templeton-job-id:job_201111111311_0005
                     ",
           "stderr": "",
           "exitcode": 0

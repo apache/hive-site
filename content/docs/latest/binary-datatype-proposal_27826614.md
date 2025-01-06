@@ -15,7 +15,7 @@ Hive is designed to work with big data. Often in such cases, a row in a data mig
 
 ```
 
-create table binary\_table (a string, b binary);
+create table binary_table (a string, b binary);
 
 ```
 

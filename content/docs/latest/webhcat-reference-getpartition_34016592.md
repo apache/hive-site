@@ -30,7 +30,7 @@ Describe a single partition in an HCatalog table.
 | --- | --- | --- | --- |
 | **:db** | The database name | Required | None |
 | **:table** | The table name | Required | None |
-| **:partition** | The partition name, col\_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
+| **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 

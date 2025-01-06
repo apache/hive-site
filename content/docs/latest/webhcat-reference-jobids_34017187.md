@@ -60,8 +60,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
 
 ```
 {
- "job\_201111111311\_0008",
- "job\_201111111311\_0012"
+ "job_201111111311_0008",
+ "job_201111111311_0012"
 }
 
 ```

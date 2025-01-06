@@ -13,11 +13,11 @@ For Tez execution, %context is set to the mapper/reducer name. For other executi
 
 | Counter Name | Description |
 | --- | --- |
-| RECORDS\_IN[\_%context] | Input records read |
-| RECORDS\_OUT[\_%context] | Output records written |
-| RECORDS\_OUT\_INTERMEDIATE[\_%context] | Records written as intermediate records to ReduceSink (which become input records to other tasks) |
-| CREATED\_FILES | Number of files created |
-| DESERIALIZE\_ERRORS | Deserialization errors encountered while reading data |
+| RECORDS_IN[_%context] | Input records read |
+| RECORDS_OUT[_%context] | Output records written |
+| RECORDS_OUT_INTERMEDIATE[_%context] | Records written as intermediate records to ReduceSink (which become input records to other tasks) |
+| CREATED_FILES | Number of files created |
+| DESERIALIZE_ERRORS | Deserialization errors encountered while reading data |
 
  
 

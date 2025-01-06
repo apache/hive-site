@@ -46,7 +46,7 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 | Authorization | HIVE-6957 | SQL authorization does not work with HS2 binary mode and Kerberos auth | Committed in 0.14 | thejas |
 | Metastore | HIVE-6945 | Issues with dropping partitions on Oracle | Committed in 0.14 | sershe |
 | Metastore | HIVE-6862 | add DB schema DDL and upgrade 12to13 scripts for MS SQL Server | Committed in 0.14 | ekoifman |
-| QL | HIVE-6883 | Dynamic Partitioning Optimization does not honor sort order or order by | Committed in 0.14 | prasanth\_j |
+| QL | HIVE-6883 | Dynamic Partitioning Optimization does not honor sort order or order by | Committed in 0.14 | prasanth_j |
 | QL | HIVE-6961 | Drop partitions treats partition columns as strings | Committed in 0.14 | sershe |
 | WebHCat | HIVE-4576 | WebHCat does not allow values with commas | Committed in 0.14 | ekoifman |
 | FileFormats | HIVE-6952 | Hive 0.13 HiveOutputFormat breaks backwards compatibility | Committed in 0.14 | ashutoshc |
@@ -79,13 +79,13 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 
 | Failure | Patch | Cause | Resoultion |
 | --- | --- | --- | --- |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_nullformatCTAS | HIVE-6945 | Table properties map order change, golden files differ | Regenerated test golden files |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_create\_table\_alter |  | " | " |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_tblproperties |  | " | " |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_unset\_table\_view\_property |  | " | " |
-| org.apache.hadoop.hive.cli.TestNegativeCliDriver.testNegativeCliDriver\_unset\_table\_property |  | " | " |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_nullformatCTAS | HIVE-6945 | Table properties map order change, golden files differ | Regenerated test golden files |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_show_create_table_alter |  | " | " |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_show_tblproperties |  | " | " |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_unset_table_view_property |  | " | " |
+| org.apache.hadoop.hive.cli.TestNegativeCliDriver.testNegativeCliDriver_unset_table_property |  | " | " |
 | org.apache.hive.service.cli.TestScratchDir.testLocalScratchDirs | HIVE-6846 | Test error, incorrect expectation, not a product problem, test fixed in trunk | Ignored |
-| org.apache.hadoop.hive.cli.TestMinimrCliDriver.testCliDriver\_bucketmapjoin6 | HIVE-6826 | Flaky test, succeeds on rerunning | Ignored |
+| org.apache.hadoop.hive.cli.TestMinimrCliDriver.testCliDriver_bucketmapjoin6 | HIVE-6826 | Flaky test, succeeds on rerunning | Ignored |
 
  
 

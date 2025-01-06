@@ -49,32 +49,32 @@ Note that we avoid the term *file-based* in these definitions, since the form of
 Storage handlers are associated with a table when it is created via the new STORED BY clause, an alternative to the existing ROW FORMAT and STORED AS clause:
 
 ```
-CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table\_name
-  [(col\_name data\_type [COMMENT col\_comment], ...)]
-  [COMMENT table\_comment]
-  [PARTITIONED BY (col\_name data\_type [col\_comment], col\_name data\_type [COMMENT col\_comment], ...)]
-  [CLUSTERED BY (col\_name, col\_name, ...) [SORTED BY (col\_name, ...)] INTO num\_buckets BUCKETS]
+CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
+  [(col_name data_type [COMMENT col_comment], ...)]
+  [COMMENT table_comment]
+  [PARTITIONED BY (col_name data_type [col_comment], col_name data_type [COMMENT col_comment], ...)]
+  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name, ...)] INTO num_buckets BUCKETS]
   [
-   [ROW FORMAT row\_format] [STORED AS file\_format]
+   [ROW FORMAT row_format] [STORED AS file_format]
    | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
-  [LOCATION hdfs\_path]
-  [AS select\_statement]
+  [LOCATION hdfs_path]
+  [AS select_statement]
 
 ```
 
-When STORED BY is specified, then row\_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from [Hive 4.0](https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration), they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.
+When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from [Hive 4.0](https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration), they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.
 
 See [CREATE TABLE]({{< ref "#create-table" >}}) and [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}) for more information.
 
 Example:
 
 ```
-CREATE TABLE hbase\_table\_1(key int, value string) 
+CREATE TABLE hbase_table_1(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 "hbase.columns.mapping" = "cf:string",
-"hbase.table.name" = "hbase\_table\_0"
+"hbase.table.name" = "hbase_table_0"
 );
 
 ```
@@ -154,7 +154,7 @@ Also note that there is no facility for two-phase commit in metadata transaction
 * Storage handlers are currently set only at the table level. We may want to allow them to be specified per partition, including support for a table spanning different storage handlers.
 * FileSinkOperator should probably be refactored, since non-native tables aren't accessed as files, meaning a lot of the logic is irrelevant for them
 * It may be a good idea to support temporary disablement of metastore hooks as part of manual catalog repair operations
-* The CREATE TABLE grammar isn't quite as strict as the one given above; some changes are needed in order to prevent STORED BY and row\_format both being specified at once
+* The CREATE TABLE grammar isn't quite as strict as the one given above; some changes are needed in order to prevent STORED BY and row_format both being specified at once
 * CREATE TABLE AS SELECT is currently prohibited for creating a non-native table. It should be possible to support this, although it may not make sense for all storage handlers. For example, for HBase, it won't make sense until the storage handler is capable of automatically filling in column mappings.
 
  

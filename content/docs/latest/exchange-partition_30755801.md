@@ -26,7 +26,7 @@ If the schemas are different, the following exception is thrown:
 #### Syntax
 
 ```
-ALTER TABLE <dest\_table> EXCHANGE PARTITION (<[partial] partition spec>) WITH TABLE <src\_table>
+ALTER TABLE <dest_table> EXCHANGE PARTITION (<[partial] partition spec>) WITH TABLE <src_table>
 
 ```
 
