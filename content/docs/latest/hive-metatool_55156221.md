@@ -26,41 +26,13 @@ The `metatool` command invokes the Hive MetaTool with these options:
 
 | Option | Description |
 | --- | --- |
-| 
-```
--listFSRoot
-```
- | Print the location of the current file system root (NameNode). The value is prefixed with `hdfs:// scheme`. |
-| 
-```
--updateLocation <new-loc> <old-loc>
-```
- | Update records in the Hive metastore to point to a new NameNode location (file system root location). Both *new-loc* and *old-loc* should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, *new-loc* should match the value of the `dfs.nameservices` property. The *old-loc* should match the value returned by the **listFSRoot** option.When run with the **dryRun** option, changes are displayed but are not persisted. When run with the **serdepropKey**/**tablePropKey** option, **updateLocation** looks for the *serde-prop-key*/*table-prop-key* that is specified and updates its value if found. |
-| 
-```
--serdePropKey <serde-prop-key>
-```
- | Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the **updateLocation** option. |
-| 
-```
--tablePropKey <table-prop-key>
-```
- | Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the **updateLocation** option. |
-| 
-```
--dryRun
-```
- | Perform a dry run of **updateLocation** changes. The **updateLocation** changes are displayed but not persisted.This option is valid only with the **updateLocation** option. |
-| 
-```
--executeJDOQL <query-string>
-```
- | Execute the given JDOQL query. |
-| 
-```
--help
-```
- | Print a list of command options and their descriptions. |
+| ``` -listFSRoot ``` | Print the location of the current file system root (NameNode). The value is prefixed with `hdfs:// scheme`. |
+| ``` -updateLocation <new-loc> <old-loc> ``` | Update records in the Hive metastore to point to a new NameNode location (file system root location). Both *new-loc* and *old-loc* should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, *new-loc* should match the value of the `dfs.nameservices` property. The *old-loc* should match the value returned by the **listFSRoot** option.When run with the **dryRun** option, changes are displayed but are not persisted. When run with the **serdepropKey**/**tablePropKey** option, **updateLocation** looks for the *serde-prop-key*/*table-prop-key* that is specified and updates its value if found. |
+| ``` -serdePropKey <serde-prop-key> ``` | Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the **updateLocation** option. |
+| ``` -tablePropKey <table-prop-key> ``` | Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the **updateLocation** option. |
+| ``` -dryRun ``` | Perform a dry run of **updateLocation** changes. The **updateLocation** changes are displayed but not persisted.This option is valid only with the **updateLocation** option. |
+| ``` -executeJDOQL <query-string> ``` | Execute the given JDOQL query. |
+| ``` -help ``` | Print a list of command options and their descriptions. |
 
 If you are unsure which version of Avro SerDe is used, pass both **serdePropKey** and **tablePropKey** arguments with their respective values for the keys to **updateLocation**.
 

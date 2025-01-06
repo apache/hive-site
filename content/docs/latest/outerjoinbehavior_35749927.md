@@ -21,6 +21,8 @@ This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.
 
 ## Definitions
 
+| | |
+| --- | --- |
 |  **Preserved Row table**  |  The table in an Outer Join that must return all rows.  For left outer joins this is the *Left* table, for right outer joins it is the *Right* table, and for full outer joins both tables are *Preserved Row* tables.  |
 |  **Null Supplying table**  |  This is the table that has nulls filled in for its columns in unmatched rows.  In the non-full outer join case, this is the other table in the Join. For full outer joins both tables are also *Null Supplying* tables.  |
 |  **During Join predicate**  |  A predicate that is in the JOIN **ON** clause.  For example, in '`R1 join R2 on R1.x = 5`' the predicate '`R1.x = 5`' is a *During Join predicate*.  |

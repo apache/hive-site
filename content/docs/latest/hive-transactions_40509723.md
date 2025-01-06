@@ -178,6 +178,7 @@ The following sections list all of the configuration parameters that affect Hive
 A number of new configuration parameters have been added to the system to support transactions.
 
 | **Configuration key** | **Values** | **Location** | **Notes** |
+| --- | --- | --- | --- |
 | [hive.txn.manager]({{< ref "#hive-txn-manager" >}})  | *Default:* org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager*Value required for transactions:* org.apache.hadoop.hive.ql.lockmgr.DbTxnManager | Client/HiveServer2 | DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions. |
 | [hive.txn.strict.locking.mode]({{< ref "#hive-txn-strict-locking-mode" >}}) | *Default:* true | Client/ HiveServer2 | In strict mode non-ACID resources use standard R/W lock semantics, e.g. INSERT will acquire exclusive lock. In non-strict mode, for non-ACID resources, INSERT will only acquire shared lock, which allows two concurrent writes to the same partition but still lets lock manager prevent DROP TABLE etc. when the table is being written to (as of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15774)). |
 | [hive.txn.timeout]({{< ref "#hive-txn-timeout" >}})  | *Default:* 300 | Client/HiveServer2/Metastore  | Time after which transactions are declared aborted if the client has not sent a heartbeat, in seconds. It's critical that this property has the same value for all components/services.5 |
@@ -207,15 +208,15 @@ A number of new configuration parameters have been added to the system to suppor
 | hive.compactor.initiator.failed.compacts.threshold | *Default: 2* | Metastore | Number of of consecutive failed compactions for a given partition after which the Initiator will stop attempting to schedule compactions automatically. It is still possible to use [ALTER TABLE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable/PartitionCompact) to initiate compaction. Once a manually initiated compaction succeeds auto initiated compactions will resume. Note that this must be less than hive.compactor.history.retention.failed. |
 | hive.compactor.history.reaper.interval | *Default: 2m* | Metastore | Controls how often the process to purge historical record of compactions runs. |
 
-1hive.txn.max.open.batch controls how many transactions streaming agents such as Flume or Storm open simultaneously.  The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt).  Thus increasing this value decreases the number of delta files created by streaming agents.  But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.
+1. hive.txn.max.open.batch controls how many transactions streaming agents such as Flume or Storm open simultaneously.  The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt).  Thus increasing this value decreases the number of delta files created by streaming agents.  But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.
 
- 2Worker threads spawn MapReduce jobs to do compactions.  They do not do the compactions themselves.  Increasing the number of worker threads will decrease the time it takes tables or partitions to be compacted once they are determined to need compaction.  It will also increase the background load on the Hadoop cluster as more MapReduce jobs will be running in the background.  Each compaction can handle one partition at a time (or whole table if it's unpartitioned).  
+2. Worker threads spawn MapReduce jobs to do compactions.  They do not do the compactions themselves.  Increasing the number of worker threads will decrease the time it takes tables or partitions to be compacted once they are determined to need compaction.  It will also increase the background load on the Hadoop cluster as more MapReduce jobs will be running in the background.  Each compaction can handle one partition at a time (or whole table if it's unpartitioned).  
 
-3Decreasing this value will reduce the time it takes for compaction to be started for a table or partition that requires compaction.  However, checking if compaction is needed requires several calls to the NameNode for each table or partition that has had a transaction done on it since the last major compaction.  So decreasing this value will increase the load on the NameNode.
+3. Decreasing this value will reduce the time it takes for compaction to be started for a table or partition that requires compaction.  However, checking if compaction is needed requires several calls to the NameNode for each table or partition that has had a transaction done on it since the last major compaction.  So decreasing this value will increase the load on the NameNode.
 
-4If the compactor detects a very high number of delta files, it will first run several partial minor compactions (currently sequentially) and then perform the compaction actually requested.
+4. If the compactor detects a very high number of delta files, it will first run several partial minor compactions (currently sequentially) and then perform the compaction actually requested.
 
-5If the value is not the same active transactions may be determined to be "timed out" and consequently Aborted.  This will result in errors like "No such transaction...", "No such lock ..."
+5. If the value is not the same active transactions may be determined to be "timed out" and consequently Aborted.  This will result in errors like "No such transaction...", "No such lock ..."
 
 ### Configuration Values to Set for *INSERT, UPDATE, DELETE*
 

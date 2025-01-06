@@ -73,10 +73,7 @@ Operator level statistics are matched to the new plan using operator subtree mat
 | --- | --- | --- |
 | hive.query.reexecution.enabled | true | Feature enabler |
 | hive.query.reexecution.strategies | overlay,reoptimize | reexecution plugins; currently overlay and reoptimize is supported |
-| hive.query.reexecution.stats.persist.scope | query | runtime statistics can be persisted:* **query:** - only used during the reexecution
-* **hiveserver:** persisted during the lifetime of the hiveserver
-* **metastore**: persisted in the metastore; and loaded on hiveserver startu[
- |
+| hive.query.reexecution.stats.persist.scope | query | runtime statistics can be persisted:* **query:** - only used during the reexecution **hiveserver:** persisted during the lifetime of the hiveserver **metastore**: persisted in the metastore; and loaded on hiveserver startup |
 | hive.query.reexecution.max.count | 1 | number of reexecution that may happen |
 | hive.query.reexecution.always.collect.operator.stats | false | Enable to gather runtime statistics on all queries. |
 | hive.query.reexecution.stats.cache.batch.size | -1 | If runtime stats are stored in metastore; the maximal batch size per round during load. |
