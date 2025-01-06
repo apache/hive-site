@@ -201,11 +201,7 @@ hive --service metastore -p <port\_num>
 | Database | Minimum Supported Version | Name for Parameter Values | See Also |
 | --- | --- | --- | --- |
 | MySQL | 5.6.17 | `mysql` |  |
-| Postgres | 9.1.13 | 
-```
-postgres
-```
- |  |
+| Postgres | 9.1.13 | ``` postgres ``` |  |
 | Oracle | 11g | `oracle` | [hive.metastore.orm.retrieveMapNullsAsEmptyStrings]({{< ref "#hive-metastore-orm-retrievemapnullsasemptystrings" >}}) |
 | MS SQL Server | 2008 R2 | `mssql` |  |
 

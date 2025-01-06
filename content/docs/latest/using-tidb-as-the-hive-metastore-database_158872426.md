@@ -42,6 +42,7 @@ Creating a Hive cluster with TiDB involves the following steps:
 ## Components required
 
 | **Component** | **Version** |
+| --- | --- |
 | Hive | 3.1.2 |
 | Hadoop | 2.6.0-cdh-5.16.1 |
 | TiDB | 4.0 |
@@ -176,6 +177,7 @@ In addition, if you're interested in our MySQL-to-TiDB migration story, check ou
 | 2.1.x | Tested and verified in production |
 | 2.3.x | Tested and verified in production |
 | 3.x | Tested |
+
 2. Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.
 3. Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.
 4. How to handle `MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error) ` exception? In TiDB, execute the following command `set global tidb\_skip\_isolation\_level\_check=1;` to skip check.

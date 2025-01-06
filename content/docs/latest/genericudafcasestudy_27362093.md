@@ -37,6 +37,8 @@ Make sure you have the latest Hive trunk by running `svn up` in your Hive direct
 
 The files we will be editing or creating are as follows, relative to the Hive root:
 
+| | |
+| --- | --- |
 |  `ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDAFHistogram.java`  |  the main source file, to be created by you. |   |
 |  `ql/src/java/org/apache/hadoop/hive/ql/exec/FunctionRegistry.java`  |  the function registry source file, to be edited by you to register our new `histogram()` UDAF into Hive's built-in function list. |   |
 |  `ql/src/test/queries/clientpositive/udaf_histogram.q`  |  a file of sample queries for testing `histogram()` on sample data, to be created by you. |   |
@@ -194,6 +196,7 @@ All evaluators must extend from the abstract base class org.apache.hadoop.hive.q
 What do all these functions do? The following is a brief summary of each function, in (roughly) chronological order of being called. It's **very** important to remember that the computation of your aggregation must be arbitrarily divisible over the data. Think of it like writing a divide-and-conquer algorithm where the partitioning of the data is completely out of your control and handled by Hive. More formally, given any subset of the input rows, you should be able to compute a partial result, and also be able to merge any pair of partial results into another partial result. This naturally makes it difficult to port over many existing algorithms, but should guarantee researchers jobs for quite some time.
 
 |  **Function**  |  **Purpose**  |
+| --- | --- |
 |  init  |  Called by Hive to initialize an instance of your UDAF evaluator class.  |
 |  getNewAggregationBuffer  |  Return an object that will be used to store temporary aggregation results.  |
 |  iterate  |  Process a new row of data into the aggregation buffer  |

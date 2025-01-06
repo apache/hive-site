@@ -145,6 +145,8 @@ In our experiments, we adopted some memory optimizations discussed below, which 
 
  
 
+| | | |
+| --- | --- | --- |
 | object | count | Avg size (byte) |
 | table | 895 | 1576 |
 | partition | 97,863 | 591 |

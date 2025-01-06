@@ -347,7 +347,9 @@ The following built-in String functions are supported in Hive:
 | DONT | 'DONT' |
 | DON'T | 'DON\'T' |
 
- |
+
+| **Return Type** | **Name(Signature)** | **Description** |
+| --- | --- | --- |
 | string | regexp\_extract(string subject, string pattern, int index) | Returns the string extracted using the pattern. For example, regexp\_extract('foothebar', 'foo(.*?)(bar)', 2) returns 'bar.' Note that some care is necessary in using predefined character classes: using '\s' as the second argument will match the letter s; '\\s' is necessary to match whitespace, etc. The 'index' parameter is the Java regex Matcher group() method index. See [docs/api/java/util/regex/Matcher.html](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Matcher.html) for more information on the 'index' or Java regex group() method. |
 | string | regexp\_replace(string INITIAL\_STRING, string PATTERN, string REPLACEMENT) | Returns the string resulting from replacing all substrings in INITIAL\_STRING that match the java regular expression syntax defined in PATTERN with instances of REPLACEMENT. For example, regexp\_replace("foobar", "oo|ar", "") returns 'fb.' Note that some care is necessary in using predefined character classes: using '\s' as the second argument will match the letter s; '\\s' is necessary to match whitespace, etc. |
 | string | repeat(string str, int n) | Repeats str n times. |
