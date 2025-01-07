@@ -1,23 +1,24 @@
 ---
+
 title: "Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2
 
 * [User and Group Filter Support with LDAP]({{< ref "#user-and-group-filter-support-with-ldap" >}})
-	+ [Group Membership]({{< ref "#group-membership" >}})
-		- [hive.server2.authentication.ldap.groupDNPattern]({{< ref "#hiveserver2authenticationldapgroupdnpattern" >}})
-		- [hive.server2.authentication.ldap.groupFilter]({{< ref "#hiveserver2authenticationldapgroupfilter" >}})
-		- [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}})
-		- [hive.server2.authentication.ldap.groupClassKey]({{< ref "#hiveserver2authenticationldapgroupclasskey" >}})
-	+ [User Search List]({{< ref "#user-search-list" >}})
-		- [hive.server2.authentication.ldap.userDNPattern]({{< ref "#hiveserver2authenticationldapuserdnpattern" >}})
-		- [hive.server2.authentication.ldap.userFilter]({{< ref "#hiveserver2authenticationldapuserfilter" >}})
-	+ [Custom Query String]({{< ref "#custom-query-string" >}})
-		- [hive.server2.authentication.ldap.customLDAPQuery]({{< ref "#hiveserver2authenticationldapcustomldapquery" >}})
-		- [Support for Groups in Custom LDAP Query]({{< ref "#support-for-groups-in-custom-ldap-query" >}})
-	+ [Order of Precedence]({{< ref "#order-of-precedence" >}})
+  + [Group Membership]({{< ref "#group-membership" >}})
+    - [hive.server2.authentication.ldap.groupDNPattern]({{< ref "#hiveserver2authenticationldapgroupdnpattern" >}})
+    - [hive.server2.authentication.ldap.groupFilter]({{< ref "#hiveserver2authenticationldapgroupfilter" >}})
+    - [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}})
+    - [hive.server2.authentication.ldap.groupClassKey]({{< ref "#hiveserver2authenticationldapgroupclasskey" >}})
+  + [User Search List]({{< ref "#user-search-list" >}})
+    - [hive.server2.authentication.ldap.userDNPattern]({{< ref "#hiveserver2authenticationldapuserdnpattern" >}})
+    - [hive.server2.authentication.ldap.userFilter]({{< ref "#hiveserver2authenticationldapuserfilter" >}})
+  + [Custom Query String]({{< ref "#custom-query-string" >}})
+    - [hive.server2.authentication.ldap.customLDAPQuery]({{< ref "#hiveserver2authenticationldapcustomldapquery" >}})
+    - [Support for Groups in Custom LDAP Query]({{< ref "#support-for-groups-in-custom-ldap-query" >}})
+  + [Order of Precedence]({{< ref "#order-of-precedence" >}})
 
 ## User and Group Filter Support with LDAP
 
@@ -106,12 +107,12 @@ The properties above assist in correctly finding user-group associations in LDAP
 **Example**: If the LDAP Group "testGroup" has the following attributes, Hive's LDAP Authentication provider will not be able to find group members. Setting the 2 properties will help with this.
 
 ```
-    dn:uid=testGroup,ou=Groups,dc=domain,dc=com  
-    objectClass: group  
-    objectClass: top  
-    memberUid: uid=testUser1,ou=Users,dc=domain,dc=com  
-    memberUid: uid=testUser2,ou=Users,dc=domain,dc=com  
-    cn: HiveUserGroup
+dn:uid=testGroup,ou=Groups,dc=domain,dc=com  
+objectClass: group  
+objectClass: top  
+memberUid: uid=testUser1,ou=Users,dc=domain,dc=com  
+memberUid: uid=testUser2,ou=Users,dc=domain,dc=com  
+cn: HiveUserGroup
 ```
 
 ```
@@ -221,27 +222,30 @@ It is not always straightforward to be able to author queries that return users.
 One common configuration is that groups contain a list of users:
 
 ```
-   "dn: uid=group1,ou=Groups,dc=example,dc=com",  
-   "distinguishedName: uid=group1,ou=Groups,dc=example,dc=com",  
-   "objectClass: top",  
-   "objectClass: groupOfNames",  
-   "objectClass: ExtensibleObject",  
-   "cn: group1",  
-   "ou: Groups",  
-   "sn: group1",  
-   "member: uid=user1,ou=People,dc=example,dc=com",
+"dn: uid=group1,ou=Groups,dc=example,dc=com",  
+"distinguishedName: uid=group1,ou=Groups,dc=example,dc=com",  
+"objectClass: top",  
+"objectClass: groupOfNames",  
+"objectClass: ExtensibleObject",  
+"cn: group1",  
+"ou: Groups",  
+"sn: group1",  
+"member: uid=user1,ou=People,dc=example,dc=com",
 ```
+
 The query
 
 ```
-   (&(objectClass=groupOfNames)(|(cn=group1)(cn=group2)))
+(&(objectClass=groupOfNames)(|(cn=group1)(cn=group2)))
 ```
+
 will return the entries
 
 ```
-   uid=group1,ou=Groups,dc=example,dc=com  
-   uid=group2,ou=Groups,dc=example,dc=com
+uid=group1,ou=Groups,dc=example,dc=com  
+uid=group2,ou=Groups,dc=example,dc=com
 ```
+
 but there is no means to form a query that would return just the values of "member" attributes. (LDAP APIs allow filtering of the attributes on the result set.)
 
 To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}}). This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is "*member*".
@@ -264,8 +268,4 @@ The group membership parameters can be used in conjunction with the user lists t
 2. If the *.groupFilter and *.userFilter parameters are both specified in the configuration file, access is granted ***if and only if*** the user being authenticated satisfies ***both*** conditions; access is denied otherwise. So the user has to be listed in the *.userFilter ***and*** the user MUST also belong to one of the groups listed in the *.groupFilter.
 3. If only one of the filters ( ( *.userDNPattern + *.userFilter ) || ( *.groupDNPattern + *.groupFilter ) ) is specified, a decision is adjudicated based on whether the user being authenticated satisfies the specified filter.
 4. If neither *.groupFilter nor *.userFilter is specified in the configuration file, the provider attempts to search for the user in the LDAP directory within the *baseDN* tree. Access is granted if user has been found, and denied otherwise. **IMPORTANT:** This implementation is a little more stringent compared to the prior implementation. In the prior implementation, if the baseDN was not provided, authentication would be granted if the provider is able to bind to LDAP with the user
-
- 
-
- 
 

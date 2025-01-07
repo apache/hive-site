@@ -1,26 +1,27 @@
 ---
+
 title: "Apache Hive : AccumuloIntegration"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AccumuloIntegration
 
 # Hive Accumulo Integration
 
 * [Hive Accumulo Integration]({{< ref "#hive-accumulo-integration" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Implementation]({{< ref "#implementation" >}})
-	+ [Accumulo Configuration]({{< ref "#accumulo-configuration" >}})
-	+ [Usage]({{< ref "#usage" >}})
-	+ [Column Mapping]({{< ref "#column-mapping" >}})
-	+ [Indexing]({{< ref "#indexing" >}})
-	+ [Other options]({{< ref "#other-options" >}})
-	+ [Examples]({{< ref "#examples" >}})
-		- [Override the Accumulo table name]({{< ref "#override-the-accumulo-table-name" >}})
-		- [Store a Hive map with binary serialization]({{< ref "#store-a-hive-map-with-binary-serialization" >}})
-		- [Register an external table]({{< ref "#register-an-external-table" >}})
-		- [Create an indexed table]({{< ref "#create-an-indexed-table" >}})
-	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
+  + [Overview]({{< ref "#overview" >}})
+  + [Implementation]({{< ref "#implementation" >}})
+  + [Accumulo Configuration]({{< ref "#accumulo-configuration" >}})
+  + [Usage]({{< ref "#usage" >}})
+  + [Column Mapping]({{< ref "#column-mapping" >}})
+  + [Indexing]({{< ref "#indexing" >}})
+  + [Other options]({{< ref "#other-options" >}})
+  + [Examples]({{< ref "#examples" >}})
+    - [Override the Accumulo table name]({{< ref "#override-the-accumulo-table-name" >}})
+    - [Store a Hive map with binary serialization]({{< ref "#store-a-hive-map-with-binary-serialization" >}})
+    - [Register an external table]({{< ref "#register-an-external-table" >}})
+    - [Create an indexed table]({{< ref "#create-an-indexed-table" >}})
+  + [Acknowledgements]({{< ref "#acknowledgements" >}})
 
 ## Overview
 
@@ -40,12 +41,12 @@ To issue queries against Accumulo using Hive, four parameters must be provided b
 
  
 
-| Connection Parameters |
-| --- |
+| Connection Parameters  |
+|------------------------|
 | accumulo.instance.name |
-| accumulo.zookeepers |
-| accumulo.user.name |
-| accumulo.user.pass |
+| accumulo.zookeepers    |
+| accumulo.user.name     |
+| accumulo.user.pass     |
 
  
 
@@ -91,15 +92,15 @@ The power of the column mapping is that multiple Hive tables with differing colu
 The column mapping string is comma-separated list of encoded values whose offset corresponds to the Hive schema for the table. The order of the columns in the Hive schema can be arbitrary as long as the elements in the column mapping align to the intended Hive column. For those familiar with Accumulo, each element in the column mapping string resembles a column\_family:column\_qualifier; however, there are a few different variants that allow for different control.
 
 1. A single column
-	1. This places the value for the Hive column into the Accumulo value with the given column family and column qualifier.
+   1. This places the value for the Hive column into the Accumulo value with the given column family and column qualifier.
 2. A column qualifier map
-	1. A column family is provided and a column qualifier prefix of any length is allowed, follow by an asterisk.
-	2. The Hive column type is expected to be a Map, the key of the Hive map is appended to the column qualifier prefix
-	3. The value of the Hive map is placed in the Accumulo value.
+   1. A column family is provided and a column qualifier prefix of any length is allowed, follow by an asterisk.
+   2. The Hive column type is expected to be a Map, the key of the Hive map is appended to the column qualifier prefix
+   3. The value of the Hive map is placed in the Accumulo value.
 3. The rowid
-	1. Controls which Hive column is used as the Accumulo rowid.
-	2. Exactly one ":rowid" element must exist in each column mapping
-	3. ":rowid" is case insensitive (:rowID is equivalent to :rowId)
+   1. Controls which Hive column is used as the Accumulo rowid.
+   2. Exactly one ":rowid" element must exist in each column mapping
+   3. ":rowid" is case insensitive (:rowID is equivalent to :rowId)
 
 Additionally, a serialization option can be provided to each element in the column mapping which will control how the value is serialized. Currently, the options are:
 
@@ -114,12 +115,12 @@ Starting in Hive 3.0.0 with [HIVE-15795](https://issues.apache.org/jira/browse/H
 
 Using index tables greatly improve performance of non-rowId predicate queries by eliminating full table scans. Indexing works for both internally and externally managed tables using either the Tez or Map Reduce query engines. The following options control indexing behavior.
 
-| Option Name | Description |
-| --- | --- |
-| **accumulo.indextable.name** | **(Required) The name of the index table in Accumulo.** |
-| **accumulo.indexed.columns** | (Optional) A comma separated list of hive columns to index, or * which indexes all columns (default: *) |
-| **accumulo.index.rows.max** | (Optional) The maximum number of predicate values to scan from the index for each search predicate (default: 20000) *[See this note about this value]({{< ref "#see-this-note-about-this-value" >}})* |
-| **accumulo.index.scanner** | (Optional) The index scanner implementation. (default: org.apache.hadoop.hive.accumulo.AccumuloDefaultIndexScanner) |
+|         Option Name          |                                                                                              Description                                                                                              |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **accumulo.indextable.name** | **(Required) The name of the index table in Accumulo.**                                                                                                                                               |
+| **accumulo.indexed.columns** | (Optional) A comma separated list of hive columns to index, or * which indexes all columns (default: *)                                                                                               |
+| **accumulo.index.rows.max**  | (Optional) The maximum number of predicate values to scan from the index for each search predicate (default: 20000) *[See this note about this value]({{< ref "#see-this-note-about-this-value" >}})* |
+| **accumulo.index.scanner**   | (Optional) The index scanner implementation. (default: org.apache.hadoop.hive.accumulo.AccumuloDefaultIndexScanner)                                                                                   |
 
 The indexes are stored in the index table using the following format:
 
@@ -147,16 +148,16 @@ The following options are also valid to be used with SERDEPROPERTIES or TABLEPRO
 
  
 
-| Option Name | Description |
-| --- | --- |
-| accumulo.iterator.pushdown | Should filter predicates be satisfied within Accumulo using Iterators (default: true) |
-| accumulo.default.storage | The default storage serialization method for values (default: string) |
-| accumulo.visibility.label | A static ColumnVisibility string to use when writing any records to Accumulo (default: empty string) |
-| accumulo.authorizations | A comma-separated list of authorizations to use when scanning Accumulo (default: no authorizations).Note that the Accumulo user provided to connect to Accumulo must have all authorizations provided. |
-| accumulo.composite.rowid.factory | Extension point which allows a custom class to be provided when constructing LazyObjects from the rowid without changingthe ObjectInspector for the rowid column. |
-| accumulo.composite.rowid | Extension point which allows for custom parsing of the rowid column into a LazyObject. |
-| accumulo.table.name | Controls what Accumulo table name is used (default: the Hive table name) |
-| accumulo.mock.instance | Use a MockAccumulo instance instead of connecting to a real instance (default: false). Useful for testing. |
+|           Option Name            |                                                                                              Description                                                                                               |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| accumulo.iterator.pushdown       | Should filter predicates be satisfied within Accumulo using Iterators (default: true)                                                                                                                  |
+| accumulo.default.storage         | The default storage serialization method for values (default: string)                                                                                                                                  |
+| accumulo.visibility.label        | A static ColumnVisibility string to use when writing any records to Accumulo (default: empty string)                                                                                                   |
+| accumulo.authorizations          | A comma-separated list of authorizations to use when scanning Accumulo (default: no authorizations).Note that the Accumulo user provided to connect to Accumulo must have all authorizations provided. |
+| accumulo.composite.rowid.factory | Extension point which allows a custom class to be provided when constructing LazyObjects from the rowid without changingthe ObjectInspector for the rowid column.                                      |
+| accumulo.composite.rowid         | Extension point which allows for custom parsing of the rowid column into a LazyObject.                                                                                                                 |
+| accumulo.table.name              | Controls what Accumulo table name is used (default: the Hive table name)                                                                                                                               |
+| accumulo.mock.instance           | Use a MockAccumulo instance instead of connecting to a real instance (default: false). Useful for testing.                                                                                             |
 
 ## Examples
 
@@ -225,8 +226,4 @@ WITH SERDEPROPERTIES (
 ## Acknowledgements
 
 I would be remiss to not mention the efforts made by Brian Femiano that were the basis for this storage handler. His initial prototype for Accumulo-Hive integration was the base for this work.
-
- 
-
- 
 

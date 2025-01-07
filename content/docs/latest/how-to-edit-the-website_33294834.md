@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : How to edit the website"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : How to edit the website
 
@@ -23,13 +24,14 @@ Apache Hive requires a review for changes to the website.
 buildsite/build\_site.pl --source-base hive-site --target-base hive-website
 
 ```
+
 If deleting a file or changing the name of a file make a trivial edit to lib/path.pm or lib/view.pm to force a full site rebuild. If making a simple edit it is easier to just use the Apache bookmarklet.
 2. Wait a few minutes to get the email on the commits list that buildbot has rebuilt the [staging website](http://hive.staging.apache.org/).
 3. If the change looks ok, commit the change to the production website by one of the following:
 
-	* Using the Apache bookmarklet and selecting [Publish site](https://cms.apache.org/hive/publish)
-	* curl -sL <http://s.apache.org/cms-cli> | perl on your local machine
-	* ssh -t <user>@people.apache.org publish.pl mrunit <your Apache ID>
+* Using the Apache bookmarklet and selecting [Publish site](https://cms.apache.org/hive/publish)
+* curl -sL <http://s.apache.org/cms-cli> | perl on your local machine
+* ssh -t <user>@people.apache.org publish.pl mrunit <your Apache ID>
 
 ## Posting generated content
 
@@ -52,8 +54,4 @@ Save
 Save
 
 Save
-
- 
-
- 
 

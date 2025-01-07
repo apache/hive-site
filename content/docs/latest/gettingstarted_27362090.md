@@ -1,49 +1,49 @@
 ---
+
 title: "Apache Hive : GettingStarted"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : GettingStarted
 
 Table of Contents
 
 * [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
-	
-		- [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})+ [Requirements]({{< ref "#requirements" >}})
-	+ [Installing Hive from a Stable Release]({{< ref "#installing-hive-from-a-stable-release" >}})
-	+ [Building Hive from Source]({{< ref "#building-hive-from-source" >}})
-		- [Compile Hive on master]({{< ref "#compile-hive-on-master" >}})
-		- [Compile Hive on branch-1]({{< ref "#compile-hive-on-branch-1" >}})
-		- [Compile Hive Prior to 0.13 on Hadoop 0.20]({{< ref "#compile-hive-prior-to-013-on-hadoop-020" >}})
-		- [Compile Hive Prior to 0.13 on Hadoop 0.23]({{< ref "#compile-hive-prior-to-013-on-hadoop-023" >}})
-	+ [Running Hive]({{< ref "#running-hive" >}})
-		- [Running Hive CLI]({{< ref "#running-hive-cli" >}})
-		- [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})
-		- [Running HCatalog]({{< ref "#running-hcatalog" >}})
-		- [Running WebHCat (Templeton)]({{< ref "#running-webhcat-templeton" >}})
-	+ [Configuration Management Overview]({{< ref "#configuration-management-overview" >}})
-	+ [Runtime Configuration]({{< ref "#runtime-configuration" >}})
-	+ [Hive, Map-Reduce and Local-Mode]({{< ref "#hive-map-reduce-and-local-mode" >}})
-	+ [Hive Logging]({{< ref "#hive-logging" >}})
-		- [HiveServer2 Logs]({{< ref "#hiveserver2-logs" >}})
-		- [Audit Logs]({{< ref "#audit-logs" >}})
-		- [Perf Logger]({{< ref "#perf-logger" >}})
+  - [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})+ [Requirements]({{< ref "#requirements" >}})
+  + [Installing Hive from a Stable Release]({{< ref "#installing-hive-from-a-stable-release" >}})
+  + [Building Hive from Source]({{< ref "#building-hive-from-source" >}})
+    - [Compile Hive on master]({{< ref "#compile-hive-on-master" >}})
+    - [Compile Hive on branch-1]({{< ref "#compile-hive-on-branch-1" >}})
+    - [Compile Hive Prior to 0.13 on Hadoop 0.20]({{< ref "#compile-hive-prior-to-013-on-hadoop-020" >}})
+    - [Compile Hive Prior to 0.13 on Hadoop 0.23]({{< ref "#compile-hive-prior-to-013-on-hadoop-023" >}})
+  + [Running Hive]({{< ref "#running-hive" >}})
+    - [Running Hive CLI]({{< ref "#running-hive-cli" >}})
+    - [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})
+    - [Running HCatalog]({{< ref "#running-hcatalog" >}})
+    - [Running WebHCat (Templeton)]({{< ref "#running-webhcat-templeton" >}})
+  + [Configuration Management Overview]({{< ref "#configuration-management-overview" >}})
+  + [Runtime Configuration]({{< ref "#runtime-configuration" >}})
+  + [Hive, Map-Reduce and Local-Mode]({{< ref "#hive-map-reduce-and-local-mode" >}})
+  + [Hive Logging]({{< ref "#hive-logging" >}})
+    - [HiveServer2 Logs]({{< ref "#hiveserver2-logs" >}})
+    - [Audit Logs]({{< ref "#audit-logs" >}})
+    - [Perf Logger]({{< ref "#perf-logger" >}})
 * [DDL Operations]({{< ref "#ddl-operations" >}})
-	+ [Creating Hive Tables]({{< ref "#creating-hive-tables" >}})
-	+ [Browsing through Tables]({{< ref "#browsing-through-tables" >}})
-	+ [Altering and Dropping Tables]({{< ref "#altering-and-dropping-tables" >}})
-	+ [Metadata Store]({{< ref "#metadata-store" >}})
+  + [Creating Hive Tables]({{< ref "#creating-hive-tables" >}})
+  + [Browsing through Tables]({{< ref "#browsing-through-tables" >}})
+  + [Altering and Dropping Tables]({{< ref "#altering-and-dropping-tables" >}})
+  + [Metadata Store]({{< ref "#metadata-store" >}})
 * [DML Operations]({{< ref "#dml-operations" >}})
 * [SQL Operations]({{< ref "#sql-operations" >}})
-	+ [Example Queries]({{< ref "#example-queries" >}})
-		- [SELECTS and FILTERS]({{< ref "#selects-and-filters" >}})
-		- [GROUP BY]({{< ref "#group-by" >}})
-		- [JOIN]({{< ref "#join" >}})
-		- [MULTITABLE INSERT]({{< ref "#multitable-insert" >}})
-		- [STREAMING]({{< ref "#streaming" >}})
+  + [Example Queries]({{< ref "#example-queries" >}})
+    - [SELECTS and FILTERS]({{< ref "#selects-and-filters" >}})
+    - [GROUP BY]({{< ref "#group-by" >}})
+    - [JOIN]({{< ref "#join" >}})
+    - [MULTITABLE INSERT]({{< ref "#multitable-insert" >}})
+    - [STREAMING]({{< ref "#streaming" >}})
 * [Simple Example Use Cases]({{< ref "#simple-example-use-cases" >}})
-	+ [MovieLens User Ratings]({{< ref "#movielens-user-ratings" >}})
-	+ [Apache Weblog Data]({{< ref "#apache-weblog-data" >}})
+  + [MovieLens User Ratings]({{< ref "#movielens-user-ratings" >}})
+  + [Apache Weblog Data]({{< ref "#apache-weblog-data" >}})
 
 ## Installation and Configuration
 
@@ -54,9 +54,9 @@ You can install a stable release of Hive by downloading a tarball, or you can do
 ### Requirements
 
 * Java 1.7  
-*Note:*  Hive versions [1.2](https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel) onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6 as well. Users are strongly advised to start moving to Java 1.8 (see [HIVE-8607](https://issues.apache.org/jira/browse/HIVE-8607)).
+  *Note:*  Hive versions [1.2](https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel) onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6 as well. Users are strongly advised to start moving to Java 1.8 (see [HIVE-8607](https://issues.apache.org/jira/browse/HIVE-8607)).
 * Hadoop 2.x (preferred), 1.x (not supported by Hive 2.0.0 onward).  
-Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.
+  Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.
 * Hive is commonly used in production Linux and Windows environment. Mac is a commonly used development environment. The instructions in this document are applicable to Linux and Mac. Using it on Windows would require slightly different steps.
 
 ### Installing Hive from a Stable Release
@@ -98,21 +98,21 @@ As of 0.13, Hive is built using [Apache Maven](http://maven.apache.org).
 To build the current Hive code from the master branch:
 
 ```
-  $ git clone https://git-wip-us.apache.org/repos/asf/hive.git
-  $ cd hive
-  $ mvn clean package -Pdist [-DskipTests -Dmaven.javadoc.skip=true]
-  $ cd packaging/target/apache-hive-{version}-SNAPSHOT-bin/apache-hive-{version}-SNAPSHOT-bin
-  $ ls
-  LICENSE
-  NOTICE
-  README.txt
-  RELEASE\_NOTES.txt
-  bin/ (all the shell scripts)
-  lib/ (required jar files)
-  conf/ (configuration files)
-  examples/ (sample input and query files)
-  hcatalog / (hcatalog installation)
-  scripts / (upgrade scripts for hive-metastore)
+ $ git clone https://git-wip-us.apache.org/repos/asf/hive.git
+ $ cd hive
+ $ mvn clean package -Pdist [-DskipTests -Dmaven.javadoc.skip=true]
+ $ cd packaging/target/apache-hive-{version}-SNAPSHOT-bin/apache-hive-{version}-SNAPSHOT-bin
+ $ ls
+ LICENSE
+ NOTICE
+ README.txt
+ RELEASE\_NOTES.txt
+ bin/ (all the shell scripts)
+ lib/ (required jar files)
+ conf/ (configuration files)
+ examples/ (sample input and query files)
+ hcatalog / (hcatalog installation)
+ scripts / (upgrade scripts for hive-metastore)
 ```
 
 Here, {version} refers to the current Hive version.
@@ -133,21 +133,21 @@ In branch-1, Hive supports both Hadoop 1.x and 2.x.  You will need to specify w
 Prior to Hive 0.13, Hive was built using [Apache Ant](http://ant.apache.org/).  To build an older version of Hive on Hadoop 0.20:
 
 ```
-  $ svn co http://svn.apache.org/repos/asf/hive/branches/branch-{version} hive
-  $ cd hive
-  $ ant clean package
-  $ cd build/dist
-  # ls
-  LICENSE
-  NOTICE
-  README.txt
-  RELEASE\_NOTES.txt
-  bin/ (all the shell scripts)
-  lib/ (required jar files)
-  conf/ (configuration files)
-  examples/ (sample input and query files)
-  hcatalog / (hcatalog installation)
-  scripts / (upgrade scripts for hive-metastore)
+$ svn co http://svn.apache.org/repos/asf/hive/branches/branch-{version} hive
+$ cd hive
+$ ant clean package
+$ cd build/dist
+# ls
+LICENSE
+NOTICE
+README.txt
+RELEASE\_NOTES.txt
+bin/ (all the shell scripts)
+lib/ (required jar files)
+conf/ (configuration files)
+examples/ (sample input and query files)
+hcatalog / (hcatalog installation)
+scripts / (upgrade scripts for hive-metastore)
 ```
 
 If using Ant, we will refer to the directory "`build/dist`" as `<install-dir>`.
@@ -258,13 +258,13 @@ For more information, see [WebHCat Installation]({{< ref "webhcat-installwebhcat
 * Log4j configuration is stored in `<install-dir>/conf/hive-log4j.properties`
 * Hive configuration is an overlay on top of Hadoop – it inherits the Hadoop configuration variables by default.
 * Hive configuration can be manipulated by:
-	+ Editing hive-site.xml and defining any desired variables (including Hadoop variables) in it
-	+ Using the set command (see next section)
-	+ Invoking Hive (deprecated), Beeline or HiveServer2 using the syntax:
-		- `$ bin/hive --hiveconf x1=y1 --hiveconf x2=y2  //this sets the variables x1 and x2 to y1 and y2 respectively`
-		- $ bin/hiveserver2 --hiveconf x1=y1 --hiveconf x2=y2  //this sets server-side variables x1 and x2 to y1 and y2 respectively
-		- $ bin/beeline --hiveconf x1=y1 --hiveconf x2=y2  //this sets client-side variables x1 and x2 to y1 and y2 respectively.
-	+ Setting the `HIVE_OPTS` environment variable to "`--hiveconf x1=y1 --hiveconf x2=y2`" which does the same as above.
+  + Editing hive-site.xml and defining any desired variables (including Hadoop variables) in it
+  + Using the set command (see next section)
+  + Invoking Hive (deprecated), Beeline or HiveServer2 using the syntax:
+    - `$ bin/hive --hiveconf x1=y1 --hiveconf x2=y2  //this sets the variables x1 and x2 to y1 and y2 respectively`
+    - $ bin/hiveserver2 --hiveconf x1=y1 --hiveconf x2=y2  //this sets server-side variables x1 and x2 to y1 and y2 respectively
+    - $ bin/beeline --hiveconf x1=y1 --hiveconf x2=y2  //this sets client-side variables x1 and x2 to y1 and y2 respectively.
+  + Setting the `HIVE_OPTS` environment variable to "`--hiveconf x1=y1 --hiveconf x2=y2`" which does the same as above.
 
 ### Runtime Configuration
 
@@ -293,7 +293,7 @@ While this usually points to a map-reduce cluster with multiple nodes, Hadoop al
 Starting with release 0.7, Hive fully supports local mode execution. To enable this, the user can enable the following option:
 
 ```
-  hive> SET mapreduce.framework.name=local;
+hive> SET mapreduce.framework.name=local;
 ```
 
 In addition, `mapred.local.dir` should point to a path that's valid on the local machine (for example `/tmp/<username>/mapred/local`). (Otherwise, the user will get an exception allocating local disk space.)
@@ -322,7 +322,7 @@ Hive uses log4j for logging. By default logs are not emitted to the console by t
 The logs are stored in the directory `/tmp/<*user.name*>`:
 
 * `/tmp/<*user.name*>/hive.log`  
-Note: In [local mode](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706478#GettingStarted-Hive,Map-ReduceandLocal-Mode), prior to Hive 0.13.0 the log file name was "`.log`" instead of "`hive.log`". This bug was fixed in release 0.13.0 (see [HIVE-5528](https://issues.apache.org/jira/browse/HIVE-5528) and [HIVE-5676](https://issues.apache.org/jira/browse/HIVE-5676)).
+  Note: In [local mode](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706478#GettingStarted-Hive,Map-ReduceandLocal-Mode), prior to Hive 0.13.0 the log file name was "`.log`" instead of "`hive.log`". This bug was fixed in release 0.13.0 (see [HIVE-5528](https://issues.apache.org/jira/browse/HIVE-5528) and [HIVE-5676](https://issues.apache.org/jira/browse/HIVE-5676)).
 
 To configure a different log location, set `hive.log.dir` in $HIVE\_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (`chmod 1777 <*dir*>`).
 
@@ -479,7 +479,7 @@ NOTES:
 
 * NO verification of data against the schema is performed by the load command.
 * If the file is in hdfs, it is moved into the Hive-controlled file system namespace.  
-The root of the Hive directory is specified by the option `hive.metastore.warehouse.dir` in `hive-default.xml`. We advise users to create this directory before trying to create tables via Hive.
+  The root of the Hive directory is specified by the option `hive.metastore.warehouse.dir` in `hive-default.xml`. We advise users to create this directory before trying to create tables via Hive.
 
 ```
   hive> LOAD DATA LOCAL INPATH './examples/files/kv2.txt' OVERWRITE INTO TABLE invites PARTITION (ds='2008-08-15');
@@ -709,8 +709,4 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE;
 
 ```
-
- 
-
- 
 

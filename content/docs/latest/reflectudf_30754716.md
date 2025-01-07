@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : ReflectUDF"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : ReflectUDF
 
@@ -31,15 +32,12 @@ Note that Reflect UDF is non-deterministic since there is no guarantee what a sp
 
 ## Comments:
 
-|  |
-| --- |
-| 
+|   |
+|---|
+|   |
+
 This doc comes from the Hive xdocs, with minor edits. It is included here because the xdocs are currently unavailable (Feb. 2013).
 
- Posted by leftyl at Feb 21, 2013 09:30
-  |
-
- 
-
- 
+Posted by leftyl at Feb 21, 2013 09:30
+|
 

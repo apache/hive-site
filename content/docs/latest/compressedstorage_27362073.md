@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : CompressedStorage"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : CompressedStorage
 
@@ -43,8 +44,4 @@ The value for io.seqfile.compression.type determines how the compression is perf
 ### LZO Compression
 
 See [LZO Compression]({{< ref "languagemanual-lzo_33298193" >}}) for information about using LZO with Hive.
-
- 
-
- 
 

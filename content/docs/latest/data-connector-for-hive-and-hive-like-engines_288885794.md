@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Data Connector for Hive and Hive-like engines"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Data Connector for Hive and Hive-like engines
 
@@ -9,13 +10,9 @@ date: 2024-12-12
 
 Data connectors (referred to as "connector" in Hive Query Language) are top level objects in Hive where users can define a set of properties required to be able to connect to an external datasource from hive. This document illustrates example of the data connector framework can be used to do SQL query federation between two distinct "hive" clusters/installations or between Hive and another hive-like compute engines (eg: EMR).
 
-  
-
 ### HIVEJDBC type Data connector
 
 Apache Hive now has a connector to plugin in multiple hive and hive like sources. [HIVE-27597](https://issues.apache.org/jira/browse/HIVE-27597) adds a JDBC based connector of type "***HIVEJDBC***". Similar to the other data connectors, this connector needs a URL, Driver name, credentials etc to be defined as part of the connector definition. Once defined, users can use the same connector object to map multiple databases from the remote datasource to local hive metastore.
-
-  
 
 HIVEJDBC connector requires the following values
 
@@ -29,24 +26,25 @@ HIVEJDBC connector requires the following values
 ### How do I use it?
 
 1. Create a connector first.
+
 ```
     CREATE CONNECTOR hiveserver\_connector TYPE 'hivejdbc' URL 'jdbc:hive2://<maskedhost>:10000'   
      WITH DCPROPERTIES ("hive.sql.dbcp.username"="hive", "hive.sql.dbcp.password"="hive");  
   
 
 ```
+
 2. Create a database of type REMOTE in hive using the connector from Step 1. This maps a remote database named "`*default*`" to a hive database named "*`hiveserver_remote`*" in hive.
 
 ```
-         CREATE REMOTE DATABASE hiveserver\_remote USING hiveserver\_connector   
-         WITH DBPROPERTIES ("connector.remoteDbName"="default");  
-     
-   3. Use the tables in REMOTE database much like the JDBC-storagehandler based tables in hive. One big difference   
-      is that the metadata for these tables are never persisted in hive. Currently, create/alter/drop table DDLs   
-      are not supported in REMOTE databases.   
-  
-     0: jdbc:hive2://localhost:10000> USE hiveserver\_remote;
+       CREATE REMOTE DATABASE hiveserver\_remote USING hiveserver\_connector   
+       WITH DBPROPERTIES ("connector.remoteDbName"="default");  
+     3. Use the tables in REMOTE database much like the JDBC-storagehandler based tables in hive. One big difference   
+    is that the metadata for these tables are never persisted in hive. Currently, create/alter/drop table DDLs   
+    are not supported in REMOTE databases.   
+    0: jdbc:hive2://localhost:10000> USE hiveserver\_remote;
 ```
+
 `0: jdbc:hive2://localhost:10000> **describe formatted test\_emr\_tbl;**`
 
 ```
@@ -88,14 +86,14 @@ HIVEJDBC connector requires the following values
 |                               | serialization.format                            | 1                                                  |  
 +-------------------------------+-------------------------------------------------+----------------------------------------------------+
 ```
+
 `33 rows selected (6.099 seconds)`
 
-  
+```
+4. Offload the remote table to local cluster, run CTAS (example below pulls in all the data into the local table,   
+   but you can pull in select columns and rows by applying predicates)
+```
 
-```
-    4. Offload the remote table to local cluster, run CTAS (example below pulls in all the data into the local table,   
-       but you can pull in select columns and rows by applying predicates)
-```
 `0: jdbc:hive2://localhost:10000> **create table default.emr\_clone as select * from test\_emr\_tbl;**`
 
 `INFO  : Completed executing command(queryId=ngangam\_20240129182608\_db20e2bb-1db3-473f-9564-0d81b01228bc); Time taken: 6.492 seconds`
@@ -104,8 +102,6 @@ HIVEJDBC connector requires the following values
 
 `2 rows affected (14.802 seconds)`
 
-  
-
 **`0: jdbc:hive2://localhost:10000> select count(*) from default.emr\_clone;`**
 
 `INFO  : Completed executing command(queryId=ngangam\_20240129182647\_7544c9d1-c68b-4a34-b6b0-910945a1dba5); Time taken: 2.344 seconds`
@@ -113,19 +109,20 @@ HIVEJDBC connector requires the following values
 `INFO  : OK`
 
 ```
-     +------+  
-     | \_c0  |  
-     +------+  
-     | 2    |  
-     +------+
++------+  
+| \_c0  |  
++------+  
+| 2    |  
++------+
 ```
-`1 row selected (8.795 seconds)` 
+
+`1 row selected (8.795 seconds)`
 
 ```
-  
-    5. To fetch data from the remote tables, run SELECT queries using column spec and predicates as you would   
-       normally with any SQL tables.
+5. To fetch data from the remote tables, run SELECT queries using column spec and predicates as you would   
+   normally with any SQL tables.
 ```
+
 0: jdbc:hive2://localhost:10000> **select * from test\_emr\_tbl where tblkey > 1;**
 
 INFO  : Completed executing command(queryId=ngangam\_20240129191217\_79b9e874-197d-4c31-8164-1ec2397bbff7); Time taken: 0.001 seconds
@@ -133,12 +130,13 @@ INFO  : Completed executing command(queryId=ngangam\_20240129191217\_79b9e874-1
 INFO  : OK
 
 ```
-     +----------------------+---------------------+  
-     | test\_emr\_tbl.tblkey  | test\_emr\_tbl.descr  |  
-     +----------------------+---------------------+  
-     | 2                    | test 2              |  
-     +----------------------+---------------------+
++----------------------+---------------------+  
+| test\_emr\_tbl.tblkey  | test\_emr\_tbl.descr  |  
++----------------------+---------------------+  
+| 2                    | test 2              |  
++----------------------+---------------------+
 ```
+
 1 row selected (8.238 seconds)
 
 ```
@@ -146,8 +144,4 @@ INFO  : OK
 6. Join with local hive tables, run SELECT queries joining multiple tables (local or remote) as you would   
    normally with any SQL tables.
 ```
-
- 
-
- 
 

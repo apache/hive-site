@@ -1,29 +1,29 @@
 ---
+
 title: "Apache Hive : LanguageManual JoinOptimization"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual JoinOptimization
 
 # Join Optimization
 
 * [Join Optimization]({{< ref "#join-optimization" >}})
-	+ [Improvements to the Hive Optimizer]({{< ref "#improvements-to-the-hive-optimizer" >}})
-	+ [Star Join Optimization]({{< ref "#star-join-optimization" >}})
-		- [Star Schema Example]({{< ref "#star-schema-example" >}})
-		- [Prior Support for MAPJOIN]({{< ref "#prior-support-for-mapjoin" >}})
-			* [Limitations of Prior Implementation]({{< ref "#limitations-of-prior-implementation" >}})
-		- [Enhancements for Star Joins]({{< ref "#enhancements-for-star-joins" >}})
-			* [Optimize Chains of Map Joins]({{< ref "#optimize-chains-of-map-joins" >}})
-				+ [Current and Future Optimizations]({{< ref "#current-and-future-optimizations" >}})
-			* [Optimize Auto Join Conversion]({{< ref "#optimize-auto-join-conversion" >}})
-				
-					- [Current Optimization]({{< ref "#current-optimization" >}})+ [Auto Conversion to SMB Map Join]({{< ref "#auto-conversion-to-smb-map-join" >}})
-					- [SMB Join across Tables with Different Keys]({{< ref "#smb-join-across-tables-with-different-keys" >}})
-			* [Generate Hash Tables on the Task Side]({{< ref "#generate-hash-tables-on-the-task-side" >}})
-				+ [Pros and Cons of Client-Side Hash Tables]({{< ref "#pros-and-cons-of-client-side-hash-tables" >}})
-				+ [Task-Side Generation of Hash Tables]({{< ref "#task-side-generation-of-hash-tables" >}})
-					- [Further Options for Optimization]({{< ref "#further-options-for-optimization" >}})
+  + [Improvements to the Hive Optimizer]({{< ref "#improvements-to-the-hive-optimizer" >}})
+  + [Star Join Optimization]({{< ref "#star-join-optimization" >}})
+    - [Star Schema Example]({{< ref "#star-schema-example" >}})
+    - [Prior Support for MAPJOIN]({{< ref "#prior-support-for-mapjoin" >}})
+      * [Limitations of Prior Implementation]({{< ref "#limitations-of-prior-implementation" >}})
+    - [Enhancements for Star Joins]({{< ref "#enhancements-for-star-joins" >}})
+      * [Optimize Chains of Map Joins]({{< ref "#optimize-chains-of-map-joins" >}})
+        + [Current and Future Optimizations]({{< ref "#current-and-future-optimizations" >}})
+      * [Optimize Auto Join Conversion]({{< ref "#optimize-auto-join-conversion" >}})
+        - [Current Optimization]({{< ref "#current-optimization" >}})+ [Auto Conversion to SMB Map Join]({{< ref "#auto-conversion-to-smb-map-join" >}})
+        - [SMB Join across Tables with Different Keys]({{< ref "#smb-join-across-tables-with-different-keys" >}})
+      * [Generate Hash Tables on the Task Side]({{< ref "#generate-hash-tables-on-the-task-side" >}})
+        + [Pros and Cons of Client-Side Hash Tables]({{< ref "#pros-and-cons-of-client-side-hash-tables" >}})
+        + [Task-Side Generation of Hash Tables]({{< ref "#task-side-generation-of-hash-tables" >}})
+          - [Further Options for Optimization]({{< ref "#further-options-for-optimization" >}})
 
 For a general discussion of Hive joins including syntax, examples, and restrictions, see the [Joins](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins) wiki doc.
 
@@ -38,9 +38,9 @@ This document describes optimizations of Hive's query execution planning to impr
 Hive automatically recognizes various use cases and optimizes for them. Hive 0.11 improves the optimizer for these cases:
 
 * Joins where one side fits in memory. In the new optimization:
-	+ that side is loaded into memory as a hash table
-	+ only the larger table needs to be scanned
-	+ fact tables have a smaller footprint in memory
+  + that side is loaded into memory as a hash table
+  + only the larger table needs to be scanned
+  + fact tables have a smaller footprint in memory
 * Star-schema joins
 * Hints are no longer needed for many cases.
 * Map joins are automatically picked up by the optimizer.
@@ -91,15 +91,15 @@ The default value for [hive.auto.convert.join]({{< ref "#hive-auto-convert-join"
 MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through. The prior implementation has this division of labor:
 
 * Local work:
-	+ read records via standard table scan (including filters and projections) from source on local machine
-	+ build hashtable in memory
-	+ write hashtable to local disk
-	+ upload hashtable to dfs
-	+ add hashtable to distributed cache
+  + read records via standard table scan (including filters and projections) from source on local machine
+  + build hashtable in memory
+  + write hashtable to local disk
+  + upload hashtable to dfs
+  + add hashtable to distributed cache
 * Map task
-	+ read hashtable from local disk (distributed cache) into memory
-	+ match records' keys against hashtable
-	+ combine matches and write to output
+  + read hashtable from local disk (distributed cache) into memory
+  + match records' keys against hashtable
+  + combine matches and write to output
 * No reduce task
 
 #### Limitations of Prior Implementation
@@ -275,8 +275,4 @@ When the hashtables are generated completely on the task side, all task nodes ha
 
 1. Increase the replication factor on dimension tables.
 2. Use the distributed cache to hold dimension tables.
-
- 
-
- 
 

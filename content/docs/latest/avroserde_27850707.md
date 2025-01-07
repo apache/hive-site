@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : AvroSerDe"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AvroSerDe
 
@@ -10,18 +11,17 @@ date: 2024-12-12
 * [Requirements]({{< ref "#requirements" >}})
 * [Avro to Hive type conversion]({{< ref "#avro-to-hive-type-conversion" >}})
 * [Creating Avro-backed Hive tables]({{< ref "#creating-avro-backed-hive-tables" >}})
-	+ [All Hive versions]({{< ref "#all-hive-versions" >}})
-	+ [Hive 0.14 and later versions]({{< ref "#hive-014-and-later-versions" >}})
+  + [All Hive versions]({{< ref "#all-hive-versions" >}})
+  + [Hive 0.14 and later versions]({{< ref "#hive-014-and-later-versions" >}})
 * [Writing tables to Avro files]({{< ref "#writing-tables-to-avro-files" >}})
-	
-		- [Example]({{< ref "#example" >}})+ [All Hive versions]({{< ref "#all-hive-versions" >}})
-	+ [Hive 0.14 and later]({{< ref "#hive-014-and-later" >}})
-	+ [Avro file extension]({{< ref "#avro-file-extension" >}})
+  - [Example]({{< ref "#example" >}})+ [All Hive versions]({{< ref "#all-hive-versions" >}})
+  + [Hive 0.14 and later]({{< ref "#hive-014-and-later" >}})
+  + [Avro file extension]({{< ref "#avro-file-extension" >}})
 * [Specifying the Avro schema for a table]({{< ref "#specifying-the-avro-schema-for-a-table" >}})
-	+ [Use avro.schema.url]({{< ref "#use-avroschemaurl" >}})
-	+ [Use schema.literal and embed the schema in the create statement]({{< ref "#use-schemaliteral-and-embed-the-schema-in-the-create-statement" >}})
-	+ [Use avro.schema.literal and pass the schema into the script]({{< ref "#use-avroschemaliteral-and-pass-the-schema-into-the-script" >}})
-	+ [Use none to ignore either avro.schema.literal or avro.schema.url]({{< ref "#use-none-to-ignore-either-avroschemaliteral-or-avroschemaurl" >}})
+  + [Use avro.schema.url]({{< ref "#use-avroschemaurl" >}})
+  + [Use schema.literal and embed the schema in the create statement]({{< ref "#use-schemaliteral-and-embed-the-schema-in-the-create-statement" >}})
+  + [Use avro.schema.literal and pass the schema into the script]({{< ref "#use-avroschemaliteral-and-pass-the-schema-into-the-script" >}})
+  + [Use none to ignore either avro.schema.literal or avro.schema.url]({{< ref "#use-none-to-ignore-either-avroschemaliteral-or-avroschemaurl" >}})
 * [HBase Integration]({{< ref "#hbase-integration" >}})
 * [If something goes wrong]({{< ref "#if-something-goes-wrong" >}})
 * [FAQ]({{< ref "#faq" >}})
@@ -52,32 +52,32 @@ For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}}
 
 The AvroSerde has been built and tested against Hive 0.9.1 and later, and uses Avro 1.7.5 as of Hive 0.13 and 0.14.
 
-| Hive Versions | Avro Version |
-| --- | --- |
-| Hive 0.9.1 | Avro 1.5.3 |
-| Hive 0.10, 0.11, and 0.12 | Avro 1.7.1 |
-| Hive 0.13 and 0.14 | Avro 1.7.5 |
+|       Hive Versions       | Avro Version |
+|---------------------------|--------------|
+| Hive 0.9.1                | Avro 1.5.3   |
+| Hive 0.10, 0.11, and 0.12 | Avro 1.7.1   |
+| Hive 0.13 and 0.14        | Avro 1.7.5   |
 
 ### Avro to Hive type conversion
 
 While most Avro types convert directly to equivalent Hive types, there are some which do not exist in Hive and are converted to reasonable equivalents. Also, the AvroSerde special cases unions of null and another type, as described below:
 
-| Avro type | Becomes Hive type | Note |
-| --- | --- | --- |
-| null | void |
-| boolean | boolean |
-| int | int |
-| long | bigint |
-| float | float |
-| double | double |
-| bytes | binary | Bytes are converted to Array[smallint] prior to Hive 0.12.0. |
-| string | string |
-| record | struct |
-| map | map |
-| list | array |
-| union | union | Unions of [T, null] transparently convert to nullable T, other types translate directly to Hive's unions of those types. However, unions were introduced in Hive 7 and are not currently able to be used in where/group-by statements. They are essentially look-at-only. Because the AvroSerde transparently converts [T,null], to nullable T, this limitation only applies to unions of multiple types or unions not of a single type and null. |
-| enum | string | Hive has no concept of enums. |
-| fixed | binary | Fixeds are converted to Array[smallint] prior to Hive 0.12.0. |
+| Avro type | Becomes Hive type |                                                                                                                                                                                                                       Note                                                                                                                                                                                                                        |
+|-----------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| null      | void              |
+| boolean   | boolean           |
+| int       | int               |
+| long      | bigint            |
+| float     | float             |
+| double    | double            |
+| bytes     | binary            | Bytes are converted to Array[smallint] prior to Hive 0.12.0.                                                                                                                                                                                                                                                                                                                                                                                      |
+| string    | string            |
+| record    | struct            |
+| map       | map               |
+| list      | array             |
+| union     | union             | Unions of [T, null] transparently convert to nullable T, other types translate directly to Hive's unions of those types. However, unions were introduced in Hive 7 and are not currently able to be used in where/group-by statements. They are essentially look-at-only. Because the AvroSerde transparently converts [T,null], to nullable T, this limitation only applies to unions of multiple types or unions not of a single type and null. |
+| enum      | string            | Hive has no concept of enums.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| fixed     | binary            | Fixeds are converted to Array[smallint] prior to Hive 0.12.0.                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Creating Avro-backed Hive tables
 
@@ -385,12 +385,6 @@ Hive tends to swallow exceptions from the AvroSerde that occur before job submis
 * Why do I get **error-error-error-error-error-error-error** and a message to check avro.schema.literal and avro.schema.url when describing a table or running a query against a table?
 
 > The AvroSerde returns this message when it has trouble finding or parsing the schema provided by either the avro.schema.literal or avro.avro.schema.url value. It is unable to be more specific because Hive expects all calls to the serde config methods to be successful, meaning we are unable to return an actual exception. By signaling an error via this message, the table is left in a good state and the incorrect value can be corrected with a call to **alter table T set TBLPROPERTIES**.
-> 
-> 
 
  
-
- 
-
- 
 

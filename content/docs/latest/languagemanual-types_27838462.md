@@ -1,43 +1,44 @@
 ---
+
 title: "Apache Hive : LanguageManual Types"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Types
 
 # Hive Data Types
 
 * [Hive Data Types]({{< ref "#hive-data-types" >}})
-	+ [Overview]({{< ref "#overview" >}})
-		- [Numeric Types]({{< ref "#numeric-types" >}})
-		- [Date/Time Types]({{< ref "#datetime-types" >}})
-		- [String Types]({{< ref "#string-types" >}})
-		- [Misc Types]({{< ref "#misc-types" >}})
-		- [Complex Types]({{< ref "#complex-types" >}})
-	+ [Column Types]({{< ref "#column-types" >}})
-		- [Integral Types (TINYINT, SMALLINT, INT/INTEGER, BIGINT)]({{< ref "#integral-types--tinyint,-smallint,-int/integer,-bigint-" >}})
-		- 
-		- [Strings]({{< ref "#strings" >}})
-		- [Varchar]({{< ref "#varchar" >}})
-		- [Char]({{< ref "#char" >}})
-		- [Timestamps]({{< ref "#timestamps" >}})
-			* [Casting Dates]({{< ref "#casting-dates" >}})
-		- [Intervals]({{< ref "#intervals" >}})
-		- [Decimals]({{< ref "#decimals" >}})
-			* [Decimal Literals]({{< ref "#decimal-literals" >}})
-			* [Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0]({{< ref "#decimal-type-incompatibilities-between-hive-0120-and-0130" >}})
-				+ [Upgrading Pre-Hive 0.13.0 Decimal Columns]({{< ref "#upgrading-pre-hive-0130-decimal-columns" >}})
-		- [Union Types]({{< ref "#union-types" >}})
-	+ [Literals]({{< ref "#literals" >}})
-		- [Floating Point Types]({{< ref "#floating-point-types" >}})
-			* [Decimal Types]({{< ref "#decimal-types" >}})
-				+ [Using Decimal Types]({{< ref "#using-decimal-types" >}})
-				+ [Mathematical UDFs]({{< ref "#mathematical-udfs" >}})
-				+ [Casting Decimal Values]({{< ref "#casting-decimal-values" >}})
-				+ [Testing Decimal Types]({{< ref "#testing-decimal-types" >}})
-	+ [Handling of NULL Values]({{< ref "#handling-of-null-values" >}})
-	+ [Change Types]({{< ref "#change-types" >}})
-	+ [Allowed Implicit Conversions]({{< ref "#allowed-implicit-conversions" >}})
+  + [Overview]({{< ref "#overview" >}})
+    - [Numeric Types]({{< ref "#numeric-types" >}})
+    - [Date/Time Types]({{< ref "#datetime-types" >}})
+    - [String Types]({{< ref "#string-types" >}})
+    - [Misc Types]({{< ref "#misc-types" >}})
+    - [Complex Types]({{< ref "#complex-types" >}})
+  + [Column Types]({{< ref "#column-types" >}})
+    - [Integral Types (TINYINT, SMALLINT, INT/INTEGER, BIGINT)]({{< ref "#integral-types--tinyint,-smallint,-int/integer,-bigint-" >}})
+    - 
+    - [Strings]({{< ref "#strings" >}})
+    - [Varchar]({{< ref "#varchar" >}})
+    - [Char]({{< ref "#char" >}})
+    - [Timestamps]({{< ref "#timestamps" >}})
+      * [Casting Dates]({{< ref "#casting-dates" >}})
+    - [Intervals]({{< ref "#intervals" >}})
+    - [Decimals]({{< ref "#decimals" >}})
+      * [Decimal Literals]({{< ref "#decimal-literals" >}})
+      * [Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0]({{< ref "#decimal-type-incompatibilities-between-hive-0120-and-0130" >}})
+        + [Upgrading Pre-Hive 0.13.0 Decimal Columns]({{< ref "#upgrading-pre-hive-0130-decimal-columns" >}})
+    - [Union Types]({{< ref "#union-types" >}})
+  + [Literals]({{< ref "#literals" >}})
+    - [Floating Point Types]({{< ref "#floating-point-types" >}})
+      * [Decimal Types]({{< ref "#decimal-types" >}})
+        + [Using Decimal Types]({{< ref "#using-decimal-types" >}})
+        + [Mathematical UDFs]({{< ref "#mathematical-udfs" >}})
+        + [Casting Decimal Values]({{< ref "#casting-decimal-values" >}})
+        + [Testing Decimal Types]({{< ref "#testing-decimal-types" >}})
+  + [Handling of NULL Values]({{< ref "#handling-of-null-values" >}})
+  + [Change Types]({{< ref "#change-types" >}})
+  + [Allowed Implicit Conversions]({{< ref "#allowed-implicit-conversions" >}})
 
 ## Overview
 
@@ -53,8 +54,13 @@ For data types supported by HCatalog, see:
 
 * [`TINYINT`](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-tinyint) (1-byte signed integer, from `-128` to `127`)
 * [`SMALLINT`](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-smallint) (2-byte signed integer, from `-32,768` to `32,767`)
-* ```
+* 
+
+```
+```
+
 [INT](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-int)/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)
+
 ```
 * [`BIGINT`](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-bigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
 * `FLOAT` (4-byte single precision floating point number)
@@ -62,9 +68,10 @@ For data types supported by HCatalog, see:
 * ```
 DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-13556))
 ```
+
 * [`DECIMAL`](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-decimal)
-	+ Introduced in Hive [0.11.0](https://issues.apache.org/jira/browse/HIVE-2693) with a precision of 38 digits
-	+ Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-3976) introduced user-definable precision and scale
+  + Introduced in Hive [0.11.0](https://issues.apache.org/jira/browse/HIVE-2693) with a precision of 38 digits
+  + Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-3976) introduced user-definable precision and scale
 * `NUMERIC` (same as `DECIMAL`, starting with [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-16764))
 
 ### Date/Time Types
@@ -99,13 +106,11 @@ DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0
 
 Integral literals are assumed to be `INT` by default, unless the number exceeds the range of `INT` in which case it is interpreted as a BIGINT, or if one of the following postfixes is present on the number.
 
-| Type | Postfix | Example |
-| --- | --- | --- |
-| TINYINT | Y | 100Y |
-| SMALLINT | S | 100S |
-| BIGINT | L | 100L  |
-
-  
+|   Type   | Postfix | Example |
+|----------|---------|---------|
+| TINYINT  | Y       | 100Y    |
+| SMALLINT | S       | 100S    |
+| BIGINT   | L       | 100L    |
 
 Version
 
@@ -178,25 +183,25 @@ Dates were introduced in Hive 0.12.0 ([HIVE-4055](https://issues.apache.org/jira
 
 Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{< ref "122917025" >}}).
 
-| Valid casts to/from Date type | Result |
-| --- | --- |
-| cast(date as date) | Same date value |
-| cast(timestamp as date) | The year/month/day of the timestamp is determined, based on the local timezone, and returned as a date value. |
-| cast(string as date) | If the string is in the form 'YYYY-MM-DD', then a date value corresponding to that year/month/day is returned. If the string value does not match this formate, then NULL is returned. |
-| cast(date as timestamp) | A timestamp value is generated corresponding to midnight of the year/month/day of the date value, based on the local timezone. |
-| cast(date as string) | The year/month/day represented by the Date is formatted as a string in the form 'YYYY-MM-DD'. |
+| Valid casts to/from Date type |                                                                                         Result                                                                                         |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cast(date as date)            | Same date value                                                                                                                                                                        |
+| cast(timestamp as date)       | The year/month/day of the timestamp is determined, based on the local timezone, and returned as a date value.                                                                          |
+| cast(string as date)          | If the string is in the form 'YYYY-MM-DD', then a date value corresponding to that year/month/day is returned. If the string value does not match this formate, then NULL is returned. |
+| cast(date as timestamp)       | A timestamp value is generated corresponding to midnight of the year/month/day of the date value, based on the local timezone.                                                         |
+| cast(date as string)          | The year/month/day represented by the Date is formatted as a string in the form 'YYYY-MM-DD'.                                                                                          |
 
 ### Intervals
 
-| Supported Interval Description | Example | Meaning | Since |
-| --- | --- | --- | --- |
-| Intervals of time units:SECOND / MINUTE / DAY / MONTH / YEAR | INTERVAL '1' DAY | an interval of 1 day(s) | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)). |
-| Year to month intervals, format: SY-MS: optional sign (+/-)Y: year countM: month count | INTERVAL '1-2' YEAR TO MONTH | shorthand for:INTERVAL '1' YEAR +INTERVAL '2' MONTH | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)). |
-| Day to second intervals, format: SD H:M:S.nnnnnnS: optional sign (+/-)D: day countH: hours M: minutesS: secondsnnnnnn: optional nanotime | INTERVAL '1 2:3:4.000005' DAY | shorthand for:INTERVAL '1' DAY+INTERVAL '2' HOUR +INTERVAL '3' MINUTE +INTERVAL '4' SECOND +INTERVAL '5' NANO | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)). |
-| Support for intervals with constant numbers | INTERVAL 1 DAY | aids query readability / portability  | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
-| Support for intervals with expressions:this may involve other functions/columns.The expression must return with a number (which is not floating-point) or with a string. | INTERVAL (1+dt) DAY | enables dynamic intervals | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
-| Optional usage of interval keywordthe usage of the INTERVAL keyword is mandatoryfor intervals with expressions (ex: INTERVAL (1+dt) SECOND) | 1 DAY'1-2' YEAR TO MONTH | INTERVAL 1 DAYINTERVAL '1-2' YEARS TO MONTH | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
-| Add timeunit aliases to aid portability / readability: SECONDS / MINUTES / HOURS / DAYS / WEEKS / MONTHS / YEARS | 2 SECONDS | 2 SECOND | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
+|                                                                      Supported Interval Description                                                                      |            Example            |                                                    Meaning                                                    |                                    Since                                     |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| Intervals of time units:SECOND / MINUTE / DAY / MONTH / YEAR                                                                                                             | INTERVAL '1' DAY              | an interval of 1 day(s)                                                                                       | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)).   |
+| Year to month intervals, format: SY-MS: optional sign (+/-)Y: year countM: month count                                                                                   | INTERVAL '1-2' YEAR TO MONTH  | shorthand for:INTERVAL '1' YEAR +INTERVAL '2' MONTH                                                           | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)).   |
+| Day to second intervals, format: SD H:M:S.nnnnnnS: optional sign (+/-)D: day countH: hours M: minutesS: secondsnnnnnn: optional nanotime                                 | INTERVAL '1 2:3:4.000005' DAY | shorthand for:INTERVAL '1' DAY+INTERVAL '2' HOUR +INTERVAL '3' MINUTE +INTERVAL '4' SECOND +INTERVAL '5' NANO | Hive 1.2.0 ([HIVE-9792](https://issues.apache.org/jira/browse/HIVE-9792)).   |
+| Support for intervals with constant numbers                                                                                                                              | INTERVAL 1 DAY                | aids query readability / portability                                                                          | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
+| Support for intervals with expressions:this may involve other functions/columns.The expression must return with a number (which is not floating-point) or with a string. | INTERVAL (1+dt) DAY           | enables dynamic intervals                                                                                     | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
+| Optional usage of interval keywordthe usage of the INTERVAL keyword is mandatoryfor intervals with expressions (ex: INTERVAL (1+dt) SECOND)                              | 1 DAY'1-2' YEAR TO MONTH      | INTERVAL 1 DAYINTERVAL '1-2' YEARS TO MONTH                                                                   | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
+| Add timeunit aliases to aid portability / readability: SECONDS / MINUTES / HOURS / DAYS / WEEKS / MONTHS / YEARS                                                         | 2 SECONDS                     | 2 SECOND                                                                                                      | Hive 2.2.0 ([HIVE-13557](https://issues.apache.org/jira/browse/HIVE-13557)). |
 
 ### Decimals
 
@@ -228,6 +233,7 @@ Integral literals larger than BIGINT must be handled with Decimal(38,0). The Pos
 ```
 select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my\_table limit 1;
 ```
+
 #### Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0
 
 With the changes in the Decimal data type in Hive 0.13.0, the pre-Hive 0.13.0 columns (of type "decimal") will be treated as being of type decimal(10,0).  What this means is that existing data being read from these tables will be treated as 10-digit integer values, and data being written to these tables will be converted to 10-digit integer values before being written. To avoid these issues, Hive users on 0.12 or earlier with tables containing Decimal columns will be required to migrate their tables, after upgrading to Hive 0.13.0 or later.
@@ -253,6 +259,7 @@ ds=2008-04-08/hr=11
 ds=2008-04-08/hr=12
 ...
 ```
+
 4. Each existing partition in the table must also have its DECIMAL column changed to add the desired precision/scale.
 
 This can be done with a single [ALTER TABLE CHANGE COLUMN]({{< ref "#alter-table-change-column" >}}) by using dynamic partitioning (available for ALTER TABLE CHANGE COLUMN in Hive 0.14 or later, with [HIVE-8411](https://issues.apache.org/jira/browse/HIVE-8411)):
@@ -264,8 +271,6 @@ SET hive.exec.dynamic.partition = true;
 -- This will alter all existing partitions of the table - be sure you know what you are doing!
 ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
 ```
-
-  
 
 Alternatively, this can be done one partition at a time using ALTER TABLE CHANGE COLUMN, by specifying one partition per statement (This is available in Hive 0.14 or later, with [HIVE-7971](https://issues.apache.org/jira/browse/HIVE-7971).):
 
@@ -426,28 +431,22 @@ When [hive.metastore.disallow.incompatible.col.type.changes]({{< ref "#hive-meta
 
 ## Allowed Implicit Conversions
 
-|  | void | boolean | tinyint | smallint | int | bigint | float | double | decimal | string | varchar | timestamp | date | binary |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| void to | true | true | true | true | true | true | true | true | true | true | true | true | true | true |
-| boolean to | false | true | false | false | false | false | false | false | false | false | false | false | false | false |
-| tinyint to | false | false | true | true | true | true | true | true | true | true | true | false | false | false |
-| smallint to | false | false | false | true | true | true | true | true | true | true | true | false | false | false |
-| int to | false | false | false | false | true | true | true | true | true | true | true | false | false | false |
-| bigint to | false | false | false | false | false | true | true | true | true | true | true | false | false | false |
-| float to | false | false | false | false | false | false | true | true | true | true | true | false | false | false |
-| double to | false | false | false | false | false | false | false | true | true | true | true | false | false | false |
-| decimal to | false | false | false | false | false | false | false | false | true | true | true | false | false | false |
-| string to | false | false | false | false | false | false | false | true | true | true | true | false | false | false |
-| varchar to | false | false | false | false | false | false | false | true | true | true | true | false | false | false |
-| timestamp to | false | false | false | false | false | false | false | false | false | true | true | true | false | false |
-| date to | false | false | false | false | false | false | false | false | false | true | true | false | true | false |
-| binary to | false | false | false | false | false | false | false | false | false | false | false | false | false | true |
-
-  
+|              | void  | boolean | tinyint | smallint |  int  | bigint | float | double | decimal | string | varchar | timestamp | date  | binary |
+|--------------|-------|---------|---------|----------|-------|--------|-------|--------|---------|--------|---------|-----------|-------|--------|
+| void to      | true  | true    | true    | true     | true  | true   | true  | true   | true    | true   | true    | true      | true  | true   |
+| boolean to   | false | true    | false   | false    | false | false  | false | false  | false   | false  | false   | false     | false | false  |
+| tinyint to   | false | false   | true    | true     | true  | true   | true  | true   | true    | true   | true    | false     | false | false  |
+| smallint to  | false | false   | false   | true     | true  | true   | true  | true   | true    | true   | true    | false     | false | false  |
+| int to       | false | false   | false   | false    | true  | true   | true  | true   | true    | true   | true    | false     | false | false  |
+| bigint to    | false | false   | false   | false    | false | true   | true  | true   | true    | true   | true    | false     | false | false  |
+| float to     | false | false   | false   | false    | false | false  | true  | true   | true    | true   | true    | false     | false | false  |
+| double to    | false | false   | false   | false    | false | false  | false | true   | true    | true   | true    | false     | false | false  |
+| decimal to   | false | false   | false   | false    | false | false  | false | false  | true    | true   | true    | false     | false | false  |
+| string to    | false | false   | false   | false    | false | false  | false | true   | true    | true   | true    | false     | false | false  |
+| varchar to   | false | false   | false   | false    | false | false  | false | true   | true    | true   | true    | false     | false | false  |
+| timestamp to | false | false   | false   | false    | false | false  | false | false  | false   | true   | true    | true      | false | false  |
+| date to      | false | false   | false   | false    | false | false  | false | false  | false   | true   | true    | false     | true  | false  |
+| binary to    | false | false   | false   | false    | false | false  | false | false  | false   | false  | false   | false     | false | true   |
 
 Save
-
- 
-
- 
 

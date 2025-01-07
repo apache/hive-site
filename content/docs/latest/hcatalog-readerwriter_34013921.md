@@ -1,17 +1,18 @@
 ---
+
 title: "Apache Hive : HCatalog ReaderWriter"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog ReaderWriter
 
 # Reader and Writer Interfaces
 
 * [Reader and Writer Interfaces]({{< ref "#reader-and-writer-interfaces" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [HCatReader]({{< ref "#hcatreader" >}})
-	+ [HCatWriter]({{< ref "#hcatwriter" >}})
-	+ [Complete Example Program]({{< ref "#complete-example-program" >}})
+  + [Overview]({{< ref "#overview" >}})
+  + [HCatReader]({{< ref "#hcatreader" >}})
+  + [HCatWriter]({{< ref "#hcatwriter" >}})
+  + [Complete Example Program]({{< ref "#complete-example-program" >}})
 
 ## Overview
 
@@ -124,11 +125,7 @@ A complete java program for the reader and writer examples above can be found he
 
 **Navigation Links**
 Previous: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput_34013776" >}})  
- Next: [Command Line Interface]({{< ref "hcatalog-cli_34013932" >}})
+Next: [Command Line Interface]({{< ref "hcatalog-cli_34013932" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

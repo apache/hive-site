@@ -1,41 +1,42 @@
 ---
+
 title: "Apache Hive : Hive on Spark"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive on Spark
 
 * [1. Introduction]({{< ref "#1-introduction" >}})
-	+ [1.1 Motivation]({{< ref "#11-motivation" >}})
-	+ [1.2 Design Principle]({{< ref "#12-design-principle" >}})
-	+ [1.3 Comparison with Shark and Spark SQL]({{< ref "#13-comparison-with-shark-and-spark-sql" >}})
-	+ [1.4 Other Considerations]({{< ref "#14-other-considerations" >}})
+  + [1.1 Motivation]({{< ref "#11-motivation" >}})
+  + [1.2 Design Principle]({{< ref "#12-design-principle" >}})
+  + [1.3 Comparison with Shark and Spark SQL]({{< ref "#13-comparison-with-shark-and-spark-sql" >}})
+  + [1.4 Other Considerations]({{< ref "#14-other-considerations" >}})
 * [2. High-Level Functionality]({{< ref "#2-high-level-functionality" >}})
-	+ [2.1 A New Execution Engine]({{< ref "#21-a-new-execution-engine" >}})
-	+ [2.2 Spark Configuration]({{< ref "#22-spark-configuration" >}})
-	+ [2.3 Miscellaneous Functionality]({{< ref "#23-miscellaneous-functionality" >}})
+  + [2.1 A New Execution Engine]({{< ref "#21-a-new-execution-engine" >}})
+  + [2.2 Spark Configuration]({{< ref "#22-spark-configuration" >}})
+  + [2.3 Miscellaneous Functionality]({{< ref "#23-miscellaneous-functionality" >}})
 * [3. Hive-Level Design]({{< ref "#3-hive-level-design" >}})
-	+ [3.1 Query Planning]({{< ref "#31-query-planning" >}})
-	+ [3.2 Job Execution]({{< ref "#32-job-execution" >}})
-	+ [3.3 Design Considerations]({{< ref "#33-design-considerations" >}})
-		- [Table as RDD]({{< ref "#table-as-rdd" >}})
-		- [SparkWork]({{< ref "#sparkwork" >}})
-		- [SparkTask]({{< ref "#sparktask" >}})
-		- [Shuffle, Group, and Sort]({{< ref "#shuffle-group-and-sort" >}})
-		- [Join]({{< ref "#join" >}})
-		- [Number of Tasks]({{< ref "#number-of-tasks" >}})
-		- [Local MapReduce Tasks]({{< ref "#local-mapreduce-tasks" >}})
-		- [Semantic Analysis and Logical Optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
-		- [Job Diagnostics]({{< ref "#job-diagnostics" >}})
-		- [Counters and Metrics]({{< ref "#counters-and-metrics" >}})
-		- [Explain Statements]({{< ref "#explain-statements" >}})
-		- [Hive Variables]({{< ref "#hive-variables" >}})
-		- [Union]({{< ref "#union" >}})
-		- [Concurrency and Thread Safety]({{< ref "#concurrency-and-thread-safety" >}})
-		- [Build Infrastructure]({{< ref "#build-infrastructure" >}})
-		- [Mini Spark Cluster]({{< ref "#mini-spark-cluster" >}})
-		- [Testing]({{< ref "#testing" >}})
-	+ [3.4 Potentially Required Work from Spark]({{< ref "#34-potentially-required-work-from-spark" >}})
+  + [3.1 Query Planning]({{< ref "#31-query-planning" >}})
+  + [3.2 Job Execution]({{< ref "#32-job-execution" >}})
+  + [3.3 Design Considerations]({{< ref "#33-design-considerations" >}})
+    - [Table as RDD]({{< ref "#table-as-rdd" >}})
+    - [SparkWork]({{< ref "#sparkwork" >}})
+    - [SparkTask]({{< ref "#sparktask" >}})
+    - [Shuffle, Group, and Sort]({{< ref "#shuffle-group-and-sort" >}})
+    - [Join]({{< ref "#join" >}})
+    - [Number of Tasks]({{< ref "#number-of-tasks" >}})
+    - [Local MapReduce Tasks]({{< ref "#local-mapreduce-tasks" >}})
+    - [Semantic Analysis and Logical Optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
+    - [Job Diagnostics]({{< ref "#job-diagnostics" >}})
+    - [Counters and Metrics]({{< ref "#counters-and-metrics" >}})
+    - [Explain Statements]({{< ref "#explain-statements" >}})
+    - [Hive Variables]({{< ref "#hive-variables" >}})
+    - [Union]({{< ref "#union" >}})
+    - [Concurrency and Thread Safety]({{< ref "#concurrency-and-thread-safety" >}})
+    - [Build Infrastructure]({{< ref "#build-infrastructure" >}})
+    - [Mini Spark Cluster]({{< ref "#mini-spark-cluster" >}})
+    - [Testing]({{< ref "#testing" >}})
+  + [3.4 Potentially Required Work from Spark]({{< ref "#34-potentially-required-work-from-spark" >}})
 * [4. Summary]({{< ref "#4-summary" >}})
 
 # 1. Introduction
@@ -79,7 +80,7 @@ Compared with Shark and Spark SQL, our approach by design supports all existing 
 
 ## 1.4 Other Considerations
 
-We know that a new execution backend is a major undertaking. It inevitably adds complexity and maintenance cost, even though the design avoids touching the existing code paths. And Hive will now have unit tests running against MapReduce, Tez, and Spark. We think that the benefit outweighs the cost. From an infrastructure point of view, we can get sponsorship for more hardware to do continuous integration. 
+We know that a new execution backend is a major undertaking. It inevitably adds complexity and maintenance cost, even though the design avoids touching the existing code paths. And Hive will now have unit tests running against MapReduce, Tez, and Spark. We think that the benefit outweighs the cost. From an infrastructure point of view, we can get sponsorship for more hardware to do continuous integration.
 
 Lastly, Hive on Tez has laid some important groundwork that will be very helpful to support a new execution engine such as Spark. This project here will certainly benefit from that. On the other hand, Spark is a framework that’s very different from either MapReduce or Tez. Thus, it’s very likely to find gaps and hiccups during the integration. It’s expected that Hive community will work closely with Spark community to ensure the success of the integration.
 
@@ -127,7 +128,7 @@ For Spark, we will introduce SparkCompiler, parallel to MapReduceCompiler and Te
 
 During the task plan generation, SparkCompiler may perform physical optimizations that's suitable for Spark. However, for first phase of the implementation, we will focus less on this unless it's easy and obvious. Further optimization can be done down the road in an incremental manner as we gain more and more knowledge and experience with Spark.
 
-How to generate SparkWork from Hive’s operator plan is left to the implementation. However, there seems to be a lot of common logics between Tez and Spark as well as between MapReduce and Spark. If feasible, we will extract the common logic and package it into a shareable form, leaving the specific     implementations to each task compiler, without destabilizing either MapReduce or Tez.    
+How to generate SparkWork from Hive’s operator plan is left to the implementation. However, there seems to be a lot of common logics between Tez and Spark as well as between MapReduce and Spark. If feasible, we will extract the common logic and package it into a shareable form, leaving the specific     implementations to each task compiler, without destabilizing either MapReduce or Tez.   
 
 ## 3.2 Job Execution
 
@@ -175,7 +176,7 @@ It's worth noting that during the prototyping Spark caches function globally in 
 
 ### Shuffle, Group, and Sort
 
-While this comes for “free” for MapReduce and Tez, we will need to provide an equivalent for Spark. Fortunately, Spark provides a few transformations that are suitable to substitute MapReduce’s shuffle capability, such as partitionBy, groupByKey, and sortByKey. Transformation partitionBy does pure shuffling (no grouping or sorting), groupByKey does shuffling and grouping, and sortByKey() does shuffling plus sorting. Therefore, for each ReduceSinkOperator in SparkWork, we will need to inject one of the transformations. 
+While this comes for “free” for MapReduce and Tez, we will need to provide an equivalent for Spark. Fortunately, Spark provides a few transformations that are suitable to substitute MapReduce’s shuffle capability, such as partitionBy, groupByKey, and sortByKey. Transformation partitionBy does pure shuffling (no grouping or sorting), groupByKey does shuffling and grouping, and sortByKey() does shuffling plus sorting. Therefore, for each ReduceSinkOperator in SparkWork, we will need to inject one of the transformations.
 
 Having the capability of selectively choosing the exact shuffling behavior provides opportunities for optimization. For instance, Hive's groupBy doesn't require the key to be sorted, but MapReduce does it nevertheless. In Spark, we can choose sortByKey only if necessary key order is important (such as for SQL order by).
 
@@ -183,7 +184,7 @@ While sortByKey provides no grouping, it’s easy to group the keys as rows with
 
 As Hive is more sophisticated in using MapReduce keys to implement operations that’s not directly available such as join, above mentioned transformations may not behave exactly as Hive needs. Thus, we need to be diligent in identifying potential issues as we move forward.
 
-Finally, it seems that Spark community is in the process of improving/changing the shuffle related APIs. Thus, this part of design is subject to change. Please refer to <https://issues.apache.org/jira/browse/SPARK-2044> for the details on Spark shuffle-related improvement. 
+Finally, it seems that Spark community is in the process of improving/changing the shuffle related APIs. Thus, this part of design is subject to change. Please refer to <https://issues.apache.org/jira/browse/SPARK-2044> for the details on Spark shuffle-related improvement.
 
 ### Join
 
@@ -201,7 +202,7 @@ The determination of the number of reducers will be the same as it’s for MapRe
 
 While we could see the benefits of running local jobs on Spark, such as avoiding sinking data to a file and then reading it from the file to memory, in the short term, those tasks will still be executed the same way as it is today. This means that Hive will always have to submit MapReduce jobs when executing locally. However, this can be further investigated and evaluated down the road.
 
-The same applies for presenting the query result to the user. Presently, a fetch operator is used on the client side to fetch rows from the temporary file (produced by FileSink in the query plan). It's possible to have the FileSink to generate an in-memory RDD instead and the fetch operator can directly read rows from the RDD. Again this can be investigated and implemented as a future work.    
+The same applies for presenting the query result to the user. Presently, a fetch operator is used on the client side to fetch rows from the temporary file (produced by FileSink in the query plan). It's possible to have the FileSink to generate an in-memory RDD instead and the fetch operator can directly read rows from the RDD. Again this can be investigated and implemented as a future work.   
 
 ### Semantic Analysis and Logical Optimizations
 
@@ -273,10 +274,4 @@ It can be seen from above analysis that the project of Spark on Hive is simple a
 Secondly, we expect the integration between Hive and Spark will not be always smooth. Functional gaps may be identified and problems may arise. We anticipate that Hive community and Spark community will work closely to resolve any obstacles that might come on the way.
 
 Nevertheless, we believe that the impact on existing code path is minimal. While Spark execution engine may take some time to stabilize, MapReduce and Tez should continue working as it is.
-
-  
-
- 
-
- 
 

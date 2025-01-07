@@ -1,13 +1,14 @@
 ---
+
 title: "Apache Hive : Hive MetaTool"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive MetaTool
 
 * [Hive MetaTool]({{< ref "#hive-metatool" >}})
-	+ [The metatool Command]({{< ref "#the-metatool-command" >}})
-	+ [Usage Example]({{< ref "#usage-example" >}})
+  + [The metatool Command]({{< ref "#the-metatool-command" >}})
+  + [Usage Example]({{< ref "#usage-example" >}})
 
 ## Hive MetaTool
 
@@ -25,42 +26,56 @@ The Hive MetaTool enables administrators to do bulk updates on the location fiel
 The `metatool` command invokes the Hive MetaTool with these options:
 
 | Option | Description |
-| --- | --- |
-| 
+|--------|-------------|
+|        |
+
 ```
 -listFSRoot
 ```
- | Print the location of the current file system root (NameNode). The value is prefixed with `hdfs:// scheme`. |
-| 
+
+| Print the location of the current file system root (NameNode). The value is prefixed with `hdfs:// scheme`. |
+|
+
 ```
 -updateLocation <new-loc> <old-loc>
 ```
- | Update records in the Hive metastore to point to a new NameNode location (file system root location). Both *new-loc* and *old-loc* should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, *new-loc* should match the value of the `dfs.nameservices` property. The *old-loc* should match the value returned by the **listFSRoot** option.When run with the **dryRun** option, changes are displayed but are not persisted. When run with the **serdepropKey**/**tablePropKey** option, **updateLocation** looks for the *serde-prop-key*/*table-prop-key* that is specified and updates its value if found. |
-| 
+
+| Update records in the Hive metastore to point to a new NameNode location (file system root location). Both *new-loc* and *old-loc* should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, *new-loc* should match the value of the `dfs.nameservices` property. The *old-loc* should match the value returned by the **listFSRoot** option.When run with the **dryRun** option, changes are displayed but are not persisted. When run with the **serdepropKey**/**tablePropKey** option, **updateLocation** looks for the *serde-prop-key*/*table-prop-key* that is specified and updates its value if found. |
+|
+
 ```
 -serdePropKey <serde-prop-key>
 ```
- | Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the **updateLocation** option. |
-| 
+
+| Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the **updateLocation** option. |
+|
+
 ```
 -tablePropKey <table-prop-key>
 ```
- | Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the **updateLocation** option. |
-| 
+
+| Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the **updateLocation** option. |
+|
+
 ```
 -dryRun
 ```
- | Perform a dry run of **updateLocation** changes. The **updateLocation** changes are displayed but not persisted.This option is valid only with the **updateLocation** option. |
-| 
+
+| Perform a dry run of **updateLocation** changes. The **updateLocation** changes are displayed but not persisted.This option is valid only with the **updateLocation** option. |
+|
+
 ```
 -executeJDOQL <query-string>
 ```
- | Execute the given JDOQL query. |
-| 
+
+| Execute the given JDOQL query. |
+|
+
 ```
 -help
 ```
- | Print a list of command options and their descriptions. |
+
+| Print a list of command options and their descriptions. |
 
 If you are unsure which version of Avro SerDe is used, pass both **serdePropKey** and **tablePropKey** arguments with their respective values for the keys to **updateLocation**.
 
@@ -105,20 +120,15 @@ Updated 0 records in SERDE\_PARAMS table
 
  
 
-Using metatool to read out table information (for all metastore backends).  
-  
+Using metatool to read out table information (for all metastore backends).
 
 ```
 HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MTableColumnStatistics';
 ```
 
 ```
-  
- HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"("+partitionName+")::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
+HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"("+partitionName+")::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
 ```
+
  
-
- 
-
- 
 

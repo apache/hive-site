@@ -1,18 +1,19 @@
 ---
+
 title: "Apache Hive : HCatalog DynamicPartitions"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog DynamicPartitions
 
 # Dynamic Partitioning
 
 * [Dynamic Partitioning]({{< ref "#dynamic-partitioning" >}})
-	+ [Overview]({{< ref "#overview" >}})
-		- [External Tables]({{< ref "#external-tables" >}})
-		- [Hive Dynamic Partitions]({{< ref "#hive-dynamic-partitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+  + [Overview]({{< ref "#overview" >}})
+    - [External Tables]({{< ref "#external-tables" >}})
+    - [Hive Dynamic Partitions]({{< ref "#hive-dynamic-partitions" >}})
+  + [Usage with Pig]({{< ref "#usage-with-pig" >}})
+  + [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
 
 ## Overview
 
@@ -53,11 +54,11 @@ Starting in HCatalog 0.5, dynamic partitioning on external tables was broken ([H
 
 For example, in Hive 0.12.0 if a table named user\_logs is partitioned by (year, month, day, hour, minute, country) and stored at external location "hdfs://hcat/data/user\_logs", then the locations of its dynamic partitions have the standard Hive format which includes keys as well as values, such as:
 
-* hdfs://hcat/data/user\_logs/year=2013/month=12/day=21/hour=06/minute=10/country=US
+* \_logs/year=2013/month=12/day=21/hour=06/minute=10/country=UShdfs://hcat/data/user
 
 In Hive 0.13.0 and later, hcat.dynamic.partitioning.custom.pattern can be configured to a custom path pattern. For example, the pattern "${year}/${month}/${day}/${hour}/${minute}/${country}" omits keys from the path:
 
-* hdfs://hcat/data/user\_logs/2013/12/21/06/10/US
+* \_logs/2013/12/21/06/10/UShdfs://hcat/data/user
 
 Each dynamic partition column must be present in the custom location path in the format ${column\_name}, and the custom location path must consist of all dynamic partition columns. Other valid custom path strings include:
 
@@ -72,8 +73,8 @@ See [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-propert
 Information about Hive dynamic partitions is available here:
 
 * [Design Document for Dynamic Partitions]({{< ref "dynamicpartitions_27823715" >}})
-	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
-	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
+  + [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
+  + [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
 * [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
 * [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
 
@@ -151,15 +152,11 @@ With dynamic partitioning, we simply specify only as many keys as we know about,
 
 **Navigation Links**
 Previous: [Storage Formats]({{< ref "hcatalog-storageformats_34013997" >}})  
- Next: [Notification]({{< ref "hcatalog-notification_34014558" >}})
+Next: [Notification]({{< ref "hcatalog-notification_34014558" >}})
 
 Hive design document: [Dynamic Partitions]({{< ref "dynamicpartitions_27823715" >}})  
- Hive tutorial: [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})  
- Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
+Hive tutorial: [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})  
+Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

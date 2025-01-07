@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Hadoop-compatible Input-Output Format for Hive"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hadoop-compatible Input-Output Format for Hive
 
@@ -43,8 +44,4 @@ Usage:
 2. Fill it with information about the table to write to (with database and partition).
 3. Initialize HiveApiOutputFormat with the information.
 4. Go to town using HiveApiOutputFormat with your Hadoop-compatible writing system.
-
- 
-
- 
 

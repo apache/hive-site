@@ -1,16 +1,17 @@
 ---
+
 title: "Apache Hive : LanguageManual SortBy"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual SortBy
 
 * [Order, Sort, Cluster, and Distribute By]({{< ref "#order-sort-cluster-and-distribute-by" >}})
-	+ [Syntax of Order By]({{< ref "#syntax-of-order-by" >}})
-	+ [Syntax of Sort By]({{< ref "#syntax-of-sort-by" >}})
-		- [Difference between Sort By and Order By]({{< ref "#difference-between-sort-by-and-order-by" >}})
-		- [Setting Types for Sort By]({{< ref "#setting-types-for-sort-by" >}})
-	+ [Syntax of Cluster By and Distribute By]({{< ref "#syntax-of-cluster-by-and-distribute-by" >}})
+  + [Syntax of Order By]({{< ref "#syntax-of-order-by" >}})
+  + [Syntax of Sort By]({{< ref "#syntax-of-sort-by" >}})
+    - [Difference between Sort By and Order By]({{< ref "#difference-between-sort-by-and-order-by" >}})
+    - [Setting Types for Sort By]({{< ref "#setting-types-for-sort-by" >}})
+  + [Syntax of Cluster By and Distribute By]({{< ref "#syntax-of-cluster-by-and-distribute-by" >}})
 
 # Order, Sort, Cluster, and Distribute By
 
@@ -189,8 +190,4 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
     AS date, count;
 
 ```
-
- 
-
- 
 

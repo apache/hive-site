@@ -1,29 +1,30 @@
 ---
+
 title: "Apache Hive : Streaming Data Ingest"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Streaming Data Ingest
 
 * [Hive 3 Streaming API]({{< ref "#hive-3-streaming-api" >}})
 * [Hive HCatalog Streaming API]({{< ref "#hive-hcatalog-streaming-api" >}})
-	+ [Streaming Mutation API]({{< ref "#streaming-mutation-api" >}})
+  + [Streaming Mutation API]({{< ref "#streaming-mutation-api" >}})
 * [Streaming Requirements]({{< ref "#streaming-requirements" >}})
 * [Limitations]({{< ref "#limitations" >}})
 * [API Usage]({{< ref "#api-usage" >}})
-	+ [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
-		- [HiveEndPoint]({{< ref "#hiveendpoint" >}})
-		- [StreamingConnection]({{< ref "#streamingconnection" >}})
-		- [TransactionBatch]({{< ref "#transactionbatch" >}})
-			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
-		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
-		- [RecordWriter]({{< ref "#recordwriter" >}})
-		- [DelimitedInputWriter]({{< ref "#delimitedinputwriter" >}})
-		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
-		- [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
-		- [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
-	+ [Error Handling]({{< ref "#error-handling" >}})
+  + [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
+    - [HiveEndPoint]({{< ref "#hiveendpoint" >}})
+    - [StreamingConnection]({{< ref "#streamingconnection" >}})
+    - [TransactionBatch]({{< ref "#transactionbatch" >}})
+      * [Usage Guidelines]({{< ref "#usage-guidelines" >}})
+    - [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
+  + [I/O – Writing Data]({{< ref "#io--writing-data" >}})
+    - [RecordWriter]({{< ref "#recordwriter" >}})
+    - [DelimitedInputWriter]({{< ref "#delimitedinputwriter" >}})
+    - [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
+    - [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
+    - [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
+  + [Error Handling]({{< ref "#error-handling" >}})
 * [Example – Non-secure Mode]({{< ref "#example-–-non-secure-mode" >}})
 * [Example – Secure Streaming]({{< ref "#example-–-secure-streaming" >}})
 * [Knowledge Base]({{< ref "#knowledge-base" >}})
@@ -53,17 +54,17 @@ Starting in release 2.0.0, Hive offers another API for mutating (insert/update/
 A few things are required to use streaming.
 
 1. The following settings are required in hive-site.xml to enable ACID support for streaming:
-	1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
-	2. **hive.compactor.initiator.on = true**(See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
-	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
-	4. **hive.compactor.worker.threads** > **0**
+   1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
+   2. **hive.compactor.initiator.on = true**(See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
+   3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
+   4. **hive.compactor.worker.threads** > **0**
 2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc_31818911" >}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
 4. The Hive table must be [bucketed]({{< ref "languagemanual-ddl-bucketedtables_27362035" >}}), but not sorted. So something like “clustered by (colName) into *10* buckets” must be specified during table creation. The number of buckets is ideally the same as the number of streaming writers.
 5. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
 6. (Temporary requirements) **When issuing queries** on streaming tables, the client needs to set
-	1. **hive.vectorized.execution.enabled**  to  **false** (for Hive version < 0.14.0)
-	2. **hive.input.format**  to  **org.apache.hadoop.hive.ql.io.HiveInputFormat**
+   1. **hive.vectorized.execution.enabled**  to  **false** (for Hive version < 0.14.0)
+   2. **hive.input.format**  to  **org.apache.hadoop.hive.ql.io.HiveInputFormat**
 
 # Limitations
 
@@ -261,8 +262,6 @@ To connect via Kerberos to a secure Hive metastore, a UserGroupInformation (UGI)
 
 **Important:**To connect using Kerberos, the 'authenticatedUser' argument to EndPoint.newConnection() should have been used to do a Kerberos login.  Additionally the 'hive.metastore.kerberos.principal' setting should be set correctly either in hive-site.xml or in the 'conf' argument (if not null). If using hive-site.xml, its directory should be included in the classpath.
 
-  
-
 ```
 import org.apache.hadoop.security.UserGroupInformation;
 
@@ -288,10 +287,4 @@ secureConn.close();
 
 * [Talks and Presentations](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TalksandPresentations)
 * [Lessons learnt from NiFi streaming data to Hive transactional tables](https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html)
-
-  
-
- 
-
- 
 

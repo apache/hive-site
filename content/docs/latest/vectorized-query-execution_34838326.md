@@ -1,15 +1,16 @@
 ---
+
 title: "Apache Hive : Vectorized Query Execution"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Vectorized Query Execution
 
 * [Introduction]({{< ref "#introduction" >}})
 * [Using Vectorized Query Execution]({{< ref "#using-vectorized-query-execution" >}})
-	+ [Enabling vectorized execution]({{< ref "#enabling-vectorized-execution" >}})
-	+ [Supported data types and operations]({{< ref "#supported-data-types-and-operations" >}})
-	+ [Seeing whether vectorization is used for a query]({{< ref "#seeing-whether-vectorization-is-used-for-a-query" >}})
+  + [Enabling vectorized execution]({{< ref "#enabling-vectorized-execution" >}})
+  + [Supported data types and operations]({{< ref "#supported-data-types-and-operations" >}})
+  + [Seeing whether vectorization is used for a query]({{< ref "#seeing-whether-vectorization-is-used-for-a-query" >}})
 * [Limitations]({{< ref "#limitations" >}})
 * [Version Information]({{< ref "#version-information" >}})
 
@@ -146,8 +147,4 @@ set hive.fetch.task.conversion=none
 # Version Information
 
 Vectorized execution is available in Hive 0.13.0 and later ([HIVE-5283](https://issues.apache.org/jira/browse/HIVE-5283)).
-
- 
-
- 
 

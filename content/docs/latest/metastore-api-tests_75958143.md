@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : MetaStore API Tests"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : MetaStore API Tests
 
@@ -36,8 +37,4 @@ The following test files will check the API functionalities:
  
 
  
-
- 
-
- 
 

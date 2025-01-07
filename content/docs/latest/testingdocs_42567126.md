@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : TestingDocs"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : TestingDocs
 
@@ -19,8 +20,4 @@ The following documents describe aspects of testing for Hive:
 * [MiniDriver Tests]({{< ref "minidriver-tests_38571221" >}})
 * [Running Yetus]({{< ref "running-yetus_71012969" >}})
 * [MetaStore API Tests]({{< ref "metastore-api-tests_75958143" >}})
-
- 
-
- 
 

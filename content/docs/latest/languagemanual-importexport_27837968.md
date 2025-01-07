@@ -1,18 +1,19 @@
 ---
+
 title: "Apache Hive : LanguageManual ImportExport"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual ImportExport
 
 # Import/Export
 
 * [Import/Export]({{< ref "#importexport" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Export Syntax]({{< ref "#export-syntax" >}})
-	+ [Import Syntax]({{< ref "#import-syntax" >}})
-	+ [Replication usage]({{< ref "#replication-usage" >}})
-	+ [Examples]({{< ref "#examples" >}})
+  + [Overview]({{< ref "#overview" >}})
+  + [Export Syntax]({{< ref "#export-syntax" >}})
+  + [Import Syntax]({{< ref "#import-syntax" >}})
+  + [Replication usage]({{< ref "#replication-usage" >}})
+  + [Examples]({{< ref "#examples" >}})
 
 Version
 
@@ -108,8 +109,4 @@ export table department to 'hdfs\_exports\_location/department';
 import external table department from 'hdfs\_exports\_location/department';
 
 ```
-
- 
-
- 
 

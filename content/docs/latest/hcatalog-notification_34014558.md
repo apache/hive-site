@@ -1,18 +1,19 @@
 ---
+
 title: "Apache Hive : HCatalog Notification"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog Notification
 
 # Notification
 
 * [Notification]({{< ref "#notification" >}})
-	+ [Notification for a New Partition]({{< ref "#notification-for-a-new-partition" >}})
-	+ [Notification for a Set of Partitions]({{< ref "#notification-for-a-set-of-partitions" >}})
-	+ [Server Configuration]({{< ref "#server-configuration" >}})
-		- [Enable JMS Notifications]({{< ref "#enable-jms-notifications" >}})
-		- [Topic Names]({{< ref "#topic-names" >}})
+  + [Notification for a New Partition]({{< ref "#notification-for-a-new-partition" >}})
+  + [Notification for a Set of Partitions]({{< ref "#notification-for-a-set-of-partitions" >}})
+  + [Server Configuration]({{< ref "#server-configuration" >}})
+    - [Enable JMS Notifications]({{< ref "#enable-jms-notifications" >}})
+    - [Topic Names]({{< ref "#topic-names" >}})
 
 Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them. The current version of HCatalog supports two kinds of events:
 
@@ -33,30 +34,26 @@ Connection conn = connFac.createConnection();
 conn.start();
 
 ```
-2. Subscribe to a topic you are interested in. When subscribing on a message bus, you need to subscribe to a particular topic to receive the messages that are being delivered on that topic.   
-   
 
-	* The topic name corresponding to a particular table is stored in table properties and can be retrieved using the following piece of code:
-	
-	
-	
-	```
-	HiveMetaStoreClient msc = new HiveMetaStoreClient(hiveConf);
-	String topicName = msc.getTable("mydb",
-	                   "myTbl").getParameters().get(HCatConstants.HCAT\_MSGBUS\_TOPIC\_NAME);
-	
-	```
-	* Use the topic name to subscribe to a topic as follows:
-	
-	
-	
-	```
-	Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
-	Destination hcatTopic = session.createTopic(topicName);
-	MessageConsumer consumer = session.createConsumer(hcatTopic);
-	consumer.setMessageListener(this);
-	
-	```
+2. Subscribe to a topic you are interested in. When subscribing on a message bus, you need to subscribe to a particular topic to receive the messages that are being delivered on that topic.
+   * The topic name corresponding to a particular table is stored in table properties and can be retrieved using the following piece of code:
+
+   ```
+   	HiveMetaStoreClient msc = new HiveMetaStoreClient(hiveConf);
+   	String topicName = msc.getTable("mydb",
+   	                   "myTbl").getParameters().get(HCatConstants.HCAT\_MSGBUS\_TOPIC\_NAME);
+
+   ```
+
+   * Use the topic name to subscribe to a topic as follows:
+
+   ```
+   	Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
+   	Destination hcatTopic = session.createTopic(topicName);
+   	MessageConsumer consumer = session.createConsumer(hcatTopic);
+   	consumer.setMessageListener(this);
+
+   ```
 3. To start receiving messages you need to implement the JMS interface `MessageListener`, which, in turn, will make you implement the method `onMessage(Message msg)`. This method will be called whenever a new message arrives on the message bus. The message contains a partition object representing the corresponding partition, which can be retrieved as shown here:
 
 ```
@@ -202,8 +199,8 @@ Then, follow these guidelines to set up your environment:
 3. Therefore set AUX\_CLASSPATH to satisfy (a) and (b) above.
 4. The `jndi.properties` file is located at *$YOUR\_HCAT\_SERVER*`/etc/hcatalog/jndi.properties`.
 5. You need to uncomment and set the following properties in the `jndi.properties` file:
-	* `java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory`
-	* `java.naming.provider.url = tcp://localhost:61616`    (This is the ActiveMQ URL in your setup.)
+   * `java.naming.factory.initial = org.apache.activemq.jndi.ActiveMQInitialContextFactory`
+   * `java.naming.provider.url = tcp://localhost:61616`    (This is the ActiveMQ URL in your setup.)
 
 ### Topic Names
 
@@ -213,15 +210,9 @@ If tables are created while the server is configured for notifications, a defaul
 
 You then need to configure your ActiveMQ Consumer(s) to listen for messages on the topic you gave in $TOPIC\_NAME. A good default policy is `TOPIC_NAME = "$database.$table"` (that is a literal dot).
 
-  
-
 **Navigation Links**
 Previous: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions_34014006" >}})  
 Next: [Storage Based Authorization]({{< ref "hcatalog-authorization_34014782" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Synchronized Metastore Cache"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Synchronized Metastore Cache
 
@@ -19,7 +20,7 @@ The problem we try to solve here is the cache consistency issue. We already buil
 
 The only data structure change is adding ValidWriteIdList into SharedCache.TableWrapper, which represents the transaction state of the cached table.
 
-![](attachments/110692851/110692854.png)  
+![](attachments/110692851/110692854.png)
 
 Note there is no db table structure change, and we don’t store extra information in db. We don’t update TBLS.WRITE\_ID field as we will use db as the fact of truth. We assume db always carry the latest copy and every time we fetch from db, we will tag it with the transaction state of the query.
 
@@ -32,7 +33,7 @@ Metastore read request will compare ValidWriteIdList parameter with the cached o
 Here is the example for a get\_table request:
 
 1. At the beginning of the query, Hive will retrieve the global transaction state and store in config (ValidTxnList.VALID\_TXNS\_KEY)
-2. Hive translate ValidTxnList to ValidWriteIdList of the table [12:7,8,12] (The format for writeid is [hwm:exceptions], all writeids from 1 to hwm minus exceptions, are committed. In this example, writeid 1..6,9,10,11 are committed)
+2. Hive translate ValidTxnList to ValidWriteIdList of the table [12:7,8,12](The format for writeid is [hwm:exceptions], all writeids from 1 to hwm minus exceptions, are committed. In this example, writeid 1..6,9,10,11 are committed)
 3. Hive pass the ValidWriteIdList to HMS
 4. HMS compare ValidWriteIdList [12:7,8,12] with the cached one [11:7,8] using TxnIdUtils.compare, if it is fresh or newer (Fresh or newer means no transaction committed between two states. In this example, [11:7,8] means writeid 1..6,9,10,11 are committed, the same as the requested writeid [12:7,8,12]), HMS return cached table entry
 5. If the cached ValidWriteIdList is [12:7,12], the comparison fails because writeid 8 is committed since then. HMS will fetch the table from ObjectStore
@@ -49,7 +50,7 @@ Every write request will advance the write id for the table for both DML/DDL. Th
 
 ## Cache update
 
-In the previous discussion, we know if the cache is stale, HMS will serve the request from ObjectStore. We need to catch up the cache with the latest change. This can be done by the existing notification log based cache update mechanism. A thread in HMS constantly poll from notification log, update the cache with the entries from notification log. The interesting entries in notification log are table/partition writes, and corresponding commit transaction message. When processing table/partition writes, HMS will put the table/partition entry in cache. However, the entry is not immediately usable until the commit message of the corresponding writes is processed, and mark writeid of corresponding table entry committed. 
+In the previous discussion, we know if the cache is stale, HMS will serve the request from ObjectStore. We need to catch up the cache with the latest change. This can be done by the existing notification log based cache update mechanism. A thread in HMS constantly poll from notification log, update the cache with the entries from notification log. The interesting entries in notification log are table/partition writes, and corresponding commit transaction message. When processing table/partition writes, HMS will put the table/partition entry in cache. However, the entry is not immediately usable until the commit message of the corresponding writes is processed, and mark writeid of corresponding table entry committed.
 
 Here is a complete flow for a cache update when write happen (and illustrated in the diagram):
 
@@ -61,7 +62,7 @@ Here is a complete flow for a cache update when write happen (and illustrated in
 6. The cache update thread will further read commit event from notification log, mark writeid 12 as committed, the tag of cached table entry changed to [12:7,8]
 7. The next read from HMS 2 will serve from cache
 
-![](attachments/110692851/110692855.png)  
+![](attachments/110692851/110692855.png)
 
 ## Bootstrap
 
@@ -149,15 +150,7 @@ For every managed table write, advance the writeid for the table:
 AcidUtils.advanceWriteId(conf, tbl);
 ```
 
-  
-
-  
-
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

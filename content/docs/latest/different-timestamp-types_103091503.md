@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Different TIMESTAMP types"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Different TIMESTAMP types
 
@@ -53,10 +54,4 @@ In fact, even the implicit textual representations could be different than shown
 | TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | ✓ |  |  |
 | TIMESTAMP WITH LOCAL TIME ZONE | Instant |  | ✓ |  |
 | TIMESTAMP WITH TIME ZONE | OffsetDateTime | ✓ | ✓ | ✓ |
-
-  
-
- 
-
- 
 

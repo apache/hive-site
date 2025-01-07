@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Partition Filter Syntax"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Partition Filter Syntax
 
@@ -22,8 +23,4 @@ The following operators are supported when constructing filters for partition co
 * `AND`
 * `OR`
 * `LIKE` (on keys of type `string` only, supports literal string template with '.`*'` wildcard)
-
- 
-
- 
 

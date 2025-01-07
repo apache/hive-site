@@ -1,23 +1,20 @@
 ---
+
 title: "Apache Hive : Hive 0.13 release status"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive 0.13 release status
 
 ### JQL used to track issues
 
 > id in () ORDER BY status ASC, assignee
-> 
-> 
 
 ### JQL for jiras fixed for 0.13 after branch
 
-> 
 > ```
 > project = Hive AND resolutiondate >= "2014/03/04 17:09" AND resolution = Fixed AND fixVersion = 0.13.0 ORDER BY resolutiondate DESC
 > ```
-> 
 
 ### Jiras applied to 0.13
 
@@ -49,7 +46,7 @@ HIVE-6812 : show compactions returns error when there are no compactions (Alan G
 HIVE-6845 : TestJdbcDriver.testShowRoleGrant can fail if TestJdbcDriver/TestJdbcDriver2 run together (Jason Dere via Thejas Nair)  
 HIVE-6759. Don't trust file lengths from HDFS when ORC files are being written.  
 HIVE-6782 : HiveServer2Concurrency issue when running with tez intermittently, throwing org.apache.tez.dag.api.SessionNotRunning: Application not running error (Vikram Dixit  
- K, reviewed by Thejas Nair)  
+K, reviewed by Thejas Nair)  
 HIVE-6846 : allow safe set commands with sql standard authorization (Thejas Nair via Ashutosh Chauhan)  
 HIVE-6757 Remove deprecated parquet classes from outside of org.apache package (Owen O'Malley via Xufeu Zhang)  
 HIVE-6787. Only add ACID OrcInputSplits when the partition is actually ACID  
@@ -257,8 +254,4 @@ HIVE-6555 : Fix metastore version in mysql script(Ashutosh Chauhan via Prasad Mu
 HIVE-6537 NullPointerException when loading hashtable for MapJoin directly (Sergey Shelukhin and Navis, reviewed by Gunther Hagleitner)  
 HIVE-6548 : Missing owner name and type fields in schema script for DBS table (Ashutosh Chauhan via Thejas Nair)  
 HIVE-6325: Enable using multiple concurrent sessions in tez (Vikram Dixit, reviewed by Gunther Hagleitner)
-
- 
-
- 
 

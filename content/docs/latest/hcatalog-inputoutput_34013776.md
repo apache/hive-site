@@ -1,25 +1,26 @@
 ---
+
 title: "Apache Hive : HCatalog InputOutput"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog InputOutput
 
 # Input and Output Interfaces
 
 * [Input and Output Interfaces]({{< ref "#input-and-output-interfaces" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [HCatInputFormat]({{< ref "#hcatinputformat" >}})
-		- [API]({{< ref "#api" >}})
-	+ [HCatOutputFormat]({{< ref "#hcatoutputformat" >}})
-		- [API]({{< ref "#api" >}})
-	+ [HCatRecord]({{< ref "#hcatrecord" >}})
-	+ [Running MapReduce with HCatalog]({{< ref "#running-mapreduce-with-hcatalog" >}})
-		- [Authentication]({{< ref "#authentication" >}})
-		- [Read Example]({{< ref "#read-example" >}})
-		- [Filter Operators]({{< ref "#filter-operators" >}})
-		- [Scan Filter]({{< ref "#scan-filter" >}})
-		- [Write Filter]({{< ref "#write-filter" >}})
+  + [Set Up]({{< ref "#set-up" >}})
+  + [HCatInputFormat]({{< ref "#hcatinputformat" >}})
+    - [API]({{< ref "#api" >}})
+  + [HCatOutputFormat]({{< ref "#hcatoutputformat" >}})
+    - [API]({{< ref "#api" >}})
+  + [HCatRecord]({{< ref "#hcatrecord" >}})
+  + [Running MapReduce with HCatalog]({{< ref "#running-mapreduce-with-hcatalog" >}})
+    - [Authentication]({{< ref "#authentication" >}})
+    - [Read Example]({{< ref "#read-example" >}})
+    - [Filter Operators]({{< ref "#filter-operators" >}})
+    - [Scan Filter]({{< ref "#scan-filter" >}})
+    - [Write Filter]({{< ref "#write-filter" >}})
 
 ## Set Up
 
@@ -137,21 +138,21 @@ HCatRecord is the type supported for storing values in HCatalog tables.
 
 The types in an HCatalog table schema determine the types of objects returned for different fields in HCatRecord. This table shows the mappings between Java classes for MapReduce programs and HCatalog data types:
 
-| HCatalog Data Type | Java Class in MapReduce | Values |
-| --- | --- | --- |
-| TINYINT | java.lang.Byte | -128 to 127 |
-| SMALLINT | java.lang.Short | -(2^15) to (2^15)-1, which is -32,768 to 32,767 |
-| INT | java.lang.Integer | -(2^31) to (2^31)-1, which is -2,147,483,648 to 2,147,483,647 |
-| BIGINT | java.lang.Long | -(2^63) to (2^63)-1, which is -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
-| BOOLEAN | java.lang.Boolean | true or false |
-| FLOAT | java.lang.Float | single-precision floating-point value |
-| DOUBLE | java.lang.Double | double-precision floating-point value |
-| DECIMAL | java.math.BigDecimal | exact floating-point value with 38-digit precision |
-| BINARY | byte[] | binary data |
-| STRING | java.lang.String | character string |
-| STRUCT | java.util.List | structured data |
-| ARRAY | java.util.List | values of one data type |
-| MAP | java.util.Map | key-value pairs |
+| HCatalog Data Type | Java Class in MapReduce |                                        Values                                         |
+|--------------------|-------------------------|---------------------------------------------------------------------------------------|
+| TINYINT            | java.lang.Byte          | -128 to 127                                                                           |
+| SMALLINT           | java.lang.Short         | -(2^15) to (2^15)-1, which is -32,768 to 32,767                                       |
+| INT                | java.lang.Integer       | -(2^31) to (2^31)-1, which is -2,147,483,648 to 2,147,483,647                         |
+| BIGINT             | java.lang.Long          | -(2^63) to (2^63)-1, which is -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| BOOLEAN            | java.lang.Boolean       | true or false                                                                         |
+| FLOAT              | java.lang.Float         | single-precision floating-point value                                                 |
+| DOUBLE             | java.lang.Double        | double-precision floating-point value                                                 |
+| DECIMAL            | java.math.BigDecimal    | exact floating-point value with 38-digit precision                                    |
+| BINARY             | byte[]                  | binary data                                                                           |
+| STRING             | java.lang.String        | character string                                                                      |
+| STRUCT             | java.util.List          | structured data                                                                       |
+| ARRAY              | java.util.List          | values of one data type                                                               |
+| MAP                | java.util.Map           | key-value pairs                                                                       |
 
 For general information about Hive data types, see [Hive Data Types]({{< ref "languagemanual-types_27838462" >}}) and [Type System]({{< ref "#type-system" >}}).
 
@@ -369,11 +370,7 @@ To write multiple partitions simultaneously you can leave the Map null, but all 
 
 **Navigation Links**
 Previous: [Load and Store Interfaces]({{< ref "hcatalog-loadstore_34013511" >}})  
- Next: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter_34013921" >}})
+Next: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter_34013921" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

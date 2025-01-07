@@ -1,32 +1,33 @@
 ---
+
 title: "Apache Hive : HiveReplicationv2Development"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveReplicationv2Development
 
 * [Issues with the Current Replication System]({{< ref "#issues-with-the-current-replication-system" >}})
-	+ [Slowness]({{< ref "#slowness" >}})
-	+ [Requiring Staging Directories with Full Copies (4xcopy Problem)]({{< ref "#requiring-staging-directories-with-full-copies-4xcopy-problem" >}})
-	+ [Unsuitable for Load-Balancing Use Cases]({{< ref "#unsuitable-for-load-balancing-use-cases" >}})
-	+ [Incompatibility with ACID]({{< ref "#incompatibility-with-acid" >}})
-	+ [Dependency on External Tools To Do a Lot]({{< ref "#dependency-on-external-tools-to-do-a-lot" >}})
-	+ [Support for a Hub-Spoke Model]({{< ref "#support-for-a-hub-spoke-model" >}})
+  + [Slowness]({{< ref "#slowness" >}})
+  + [Requiring Staging Directories with Full Copies (4xcopy Problem)]({{< ref "#requiring-staging-directories-with-full-copies-4xcopy-problem" >}})
+  + [Unsuitable for Load-Balancing Use Cases]({{< ref "#unsuitable-for-load-balancing-use-cases" >}})
+  + [Incompatibility with ACID]({{< ref "#incompatibility-with-acid" >}})
+  + [Dependency on External Tools To Do a Lot]({{< ref "#dependency-on-external-tools-to-do-a-lot" >}})
+  + [Support for a Hub-Spoke Model]({{< ref "#support-for-a-hub-spoke-model" >}})
 * [Rubberbanding]({{< ref "#rubberbanding" >}})
 * [Change Management]({{< ref "#change-management" >}})
-	+ [\_files]({{< ref "#_files" >}})
-	+ [Solution for Rubber Banding]({{< ref "#solution-for-rubber-banding" >}})
-	+ [\_metadata]({{< ref "#_metadata" >}})
+  + [\_files]({{< ref "#_files" >}})
+  + [Solution for Rubber Banding]({{< ref "#solution-for-rubber-banding" >}})
+  + [\_metadata]({{< ref "#_metadata" >}})
 * [A Need for Bootstrap]({{< ref "#a-need-for-bootstrap" >}})
 * [New Commands]({{< ref "#new-commands" >}})
-	+ [REPL DUMP]({{< ref "#repl-dump" >}})
-		- [Syntax:]({{< ref "#syntax" >}})
-		- [Return values:]({{< ref "#return-values" >}})
-		- [Note:]({{< ref "#note" >}})
-	+ [REPL LOAD]({{< ref "#repl-load" >}})
-		- [Return values:]({{< ref "#return-values" >}})
-	+ [REPL STATUS]({{< ref "#repl-status" >}})
-		- [Return values:]({{< ref "#return-values" >}})
+  + [REPL DUMP]({{< ref "#repl-dump" >}})
+    - [Syntax:]({{< ref "#syntax" >}})
+    - [Return values:]({{< ref "#return-values" >}})
+    - [Note:]({{< ref "#note" >}})
+  + [REPL LOAD]({{< ref "#repl-load" >}})
+    - [Return values:]({{< ref "#return-values" >}})
+  + [REPL STATUS]({{< ref "#repl-status" >}})
+    - [Return values:]({{< ref "#return-values" >}})
 * [Bootstrap, Revisited]({{< ref "#bootstrap-revisited" >}})
 * [Metastore notification API security]({{< ref "#metastore-notification-api-security" >}})
 * [Setup/Configuration]({{< ref "#setupconfiguration" >}})
@@ -101,7 +102,6 @@ One of the primary ways this consideration affects us is that we drifted towards
 
 # Rubberbanding
 
-  
 Consider the following series of operations:
 
 ```
@@ -110,7 +110,7 @@ INSERT INTO TABLE blah [PARTITION (p="a") VALUES 5;
 INSERT INTO TABLE blah [PARTITION (p="b") VALUES 10;  
 INSERT INTO TABLE blah [PARTITION (p="a") VALUES 15;
 ```
-  
+
 Now, for each operation that occurs, a monotonically increasing state-id is provided by DbNotificationListener, so that we have an ability to order those events by when they occurred. For the sake of simplicity, let's say they occurred at states 10,20,30,40 respectively, in order.
 
 Now, if there were another thread running "SELECT * from blah;" from another thread, then depending on when the SELECT command ran, it would have differing results:
@@ -129,8 +129,8 @@ Now, let us look at the same select * behaviour we observed on the source as it 
 
 1. If the select * runs before PROC(10), then we get an error, since the table has not yet been created.
 2. If the select * runs between PROC(10) & PROC(20), then it will result in the partition p="a") being impressed over.
-	1. If PROC(20) occurs before 40 has occurred, then it will return { (a,5) }
-	2. If PROC(20) occurs after 40 has occurred, then it will return { (a,5) , (a,15) } - This is because the partition state captured by PROC(20) will occur after 40, and thus contain (a,15), but partition p="b" has not yet been re-impressed because we haven't yet re-impressed that partition, which will occur only at PROC(30).
+   1. If PROC(20) occurs before 40 has occurred, then it will return { (a,5) }
+   2. If PROC(20) occurs after 40 has occurred, then it will return { (a,5) , (a,15) } - This is because the partition state captured by PROC(20) will occur after 40, and thus contain (a,15), but partition p="b" has not yet been re-impressed because we haven't yet re-impressed that partition, which will occur only at PROC(30).
 
 We stop our examination at this point, because we see one possible outcome from the select * on the destination which was impossible at the source. This is the problem introduced by state-transfer that we term rubber-banding - nomenclature coming in from online games which deal with each individual player having different latencies, and the server having to reconcile updates in a staggered/stuttering fashion.
 
@@ -148,8 +148,6 @@ Let us now consider a base part of a replication workflow. It would need to have
 4. The requisite data is copied over from the source wh to the destination warehouse
 5. The destination then performs whatever task is needed to restate
 
-  
-
 Now, so far, our primary problem seems to be that we can only capture "latest" state, and not the original state at the time the event occurred. That is to say that at the time we process the notification, we get the state of the object at that time, t3, instead of the state of the object at time t1. In the time between t1 and t3, the object may have changed substantially, and if we go ahead and take the state at t3, and then apply to destination in an idempotent fashion, always taking only updates, we get our current implementation, with the rubberbanding problem.
 
 Fundamentally, this is the core of our problem. To not have rubberbanding, one of the following must be true of that time period between t1 & t3:
@@ -161,7 +159,6 @@ Route (1) is how we should approach ACID tables, and should be the way hopefully
 
 In the meanwhile, however, we must try to solve (2) as well. To this end, our goal with replv2 is to make sure that if there is any hive access that makes any change to an object, we capture the original state. There are two aspects to the original state - the metadata and the data. The metadata is easily solvable, since t1 & t2 can be done in the context of a single hive operation, and we can impress the metadata for the notification and our change to the metadata in the same metastore transaction. This now leaves us the question of what happens with the backing filesystem data for the object.
 
-  
 Now, in addition to this problem that we're solving of tracking what the filesystem state was at the time we did our dump, we have one more problem we want to solve, and that is that of the 4x copy problem. We've already solved the problem with the extra copy on the destination. Now, we need to somehow prevent the extra copy on the source to make this work. Essentially, what we need, to prevent making an extra copy of the entire data on the source, we need to have a "stable" way of determining what the FS backing state for the object was at the time the event occurred.
 
 Both of these problems, that of the 4x copy problem, and that of making sure that we know what FS state existed at t1 to prevent rubberbanding, are then solvable if we have a snapshot of the source filesystem at the time the event occurred. At first, this, to us, led us to looking at HDFS snapshots as the way to solve this problem. Unfortunately, HDFS snapshots, while they would solve our problem, are, per discussion with HDFS folks, not something we can create a large number of, and we might very well likely need a snapshot for every single event that comes along.
@@ -192,6 +189,7 @@ Event 100: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 Event 110: ALTER TABLE tbl DROP PARTITION (p=1);  
 Event 120: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 ```
+
 When loading the dump on the destination side (at a much later point), when the event 100 is replayed, the load task on the destination will try to pull the files from the <location> (the \_files contains the path of <location>), which may contain new or different data. To replicate the exact state of the source at the time event 100 occurred at the source, we do the following:
 
 1. When Event 100 occurs at the source, in the notification event, we store the checksum of the file(s) in the newly added partition along with the file path(s).
@@ -235,7 +233,6 @@ The current implementation of replication is built upon existing commands EXPORT
 
 This is better described via various examples of each of the pieces of the command syntax, as follows:
 
-  
 (a) REPL DUMP sales;       REPL DUMP sales.['.*?']Replicates out sales database for bootstrap, from <init-evid>=0 (bootstrap case) to <end-evid>=<CURR-EVID> with a batch size of 0, i.e. no batching.
 
 (b) REPL DUMP sales.['T3', '[a-z]+'];
@@ -266,7 +263,7 @@ Similar to cases (d) & (e), with the addition of a batch size of <num-evids>=100
 
       REPL DUMP sales.['[a-z]+', 'Q5'] REPLACE sales.['[a-z]+'] FROM 500;
 
-This is an example of changing the replication policy/scope dynamically during incremental replication cycle. 
+This is an example of changing the replication policy/scope dynamically during incremental replication cycle.
 
 In first case, a full DB replication policy "sales" is changed to a replication policy that includes only table/view names with only alphabets "sales.['[a-z]+']" such as "stores", "products" etc. The REPL LOAD using this dump would intelligently drops the tables which are excluded as per the new policy. For instance, table with name 'T5' would be automatically dropped during REPL LOAD if it is already there in target cluster.
 
@@ -276,14 +273,12 @@ In second case, policy is again changed to include table/view 'Q5' and in this c
 
 The REPL DUMP command has an optional WITH clause to set command-specific configurations to be used when trying to dump. These configurations are only used by the corresponding REPL DUMP command and won't be used for other queries running in the same session. In this example, we set the configurations to exclude external tables and also include only metadata and don't dump data. 
 
-  
-
 #### Return values:
 
 1. Error codes returned as return error codes (and over jdbc if with HS2)
 2. Returns 2 columns in the ResultSet:
-	1. <dir-name> - the directory to which it has dumped info.
-	2. <last-evid> - the last event-id associated with this dump, which might be the end-evid, or the curr-evid, as the case may be.
+   1. <dir-name> - the directory to which it has dumped info.
+   2. <last-evid> - the last event-id associated with this dump, which might be the end-evid, or the curr-evid, as the case may be.
 
 #### Note:
 
@@ -300,10 +295,8 @@ When bootstrap dump is in progress, it blocks rename table/partition operations 
 Look up the HiveServer logs for below pair of log messages.
 
 > REPL DUMP:: Set property for Database: <db\_name>, Property: <bootstrap.dump.state.xxxx>, Value: ACTIVE
-> 
+>
 > REPL DUMP:: Reset property for Database: <db\_name>, Property: <bootstrap.dump.state.xxxx>
-> 
-> 
 
 If Reset property log is not found for the corresponding Set property log, then user need to manually reset the database property <bootstrap.dump.state.xxxx> with value as "IDLE" using ALTER DATABASE command.
 
@@ -311,7 +304,6 @@ If Reset property log is not found for the corresponding Set property log, then 
 
 `REPL LOAD {<dbname>} FROM <dirname> {WITH ('key1'='value1', 'key2'='value2')};`
 
-  
 This causes a REPL DUMP present in <dirname> (which is to be a fully qualified HDFS URL) to be pulled and loaded. If <dbname> is specified, and the original dump was a database-level dump, this allows Hive to do db-rename-mapping on import. If dbname is not specified, the original dbname as recorded in the dump would be used.The REPL LOAD command has an optional WITH clause to set command-specific configurations to be used when trying to copy from the source cluster. These configurations are only used by the corresponding REPL LOAD command and won't be used for other queries running in the same session.
 
 #### Return values:
@@ -323,12 +315,13 @@ This causes a REPL DUMP present in <dirname> (which is to be a fully qualified H
 
 `REPL STATUS <dbname>;`
 
-  
-Will return the same output that REPL LOAD returns, allows REPL LOAD to be run asynchronously. If no knowledge of a replication associated with that db is present, i.e., there are no known replications for that, we return an empty set. Note that for cases where a destination db or table exists, but no known repl exists for it, this should be considered an error condition for tools calling REPL LOAD to pass on to the end-user, to alert them that they may be overwriting an existing db with another.  
+Will return the same output that REPL LOAD returns, allows REPL LOAD to be run asynchronously. If no knowledge of a replication associated with that db is present, i.e., there are no known replications for that, we return an empty set. Note that for cases where a destination db or table exists, but no known repl exists for it, this should be considered an error condition for tools calling REPL LOAD to pass on to the end-user, to alert them that they may be overwriting an existing db with another.
+
 #### Return values:
 
 1. Error codes returned as normal.
 2. Returns the last replication state (event ID) for the given database.
+
 # Bootstrap, Revisited
 
 When we introduced the notion of a need for bootstrap, we said that the problem of time passing during the bootstrap was something of a problem that needed solving separately.
@@ -337,16 +330,12 @@ Let us say that we begin the dump at evid=170, and by the time we finish the dum
 
 Let us consider the case of a table T1, which was dumped out around evid=200. Now, let us say that the following operations have occurred on the two tables during the time the dump has been proceeding:
 
-  
-
-| event id | operation |
-| --- | --- |
-| 184 | ALTER TABLE T1 DROP PARTITION(Px) |
-| 196 | ALTER TABLE T1 ADD PARTITION(Pa) |
-| 204 | ALTER TABLE T1 ADD PARTITION(Pb) |
-| 216 | ALTER TABLE T1 DROP PARTITION(Py) |
-
-  
+| event id |             operation             |
+|----------|-----------------------------------|
+| 184      | ALTER TABLE T1 DROP PARTITION(Px) |
+| 196      | ALTER TABLE T1 ADD PARTITION(Pa)  |
+| 204      | ALTER TABLE T1 ADD PARTITION(Pb)  |
+| 216      | ALTER TABLE T1 DROP PARTITION(Py) |
 
 Basically, let us try to understand what happens when partitions are added(Pa & Pb) and dropped(Px & Py) both before and after a table is dumped. So, for our bootstrap, we go through 2 phases - first an object dump of all the objects we're expected to dump, and then a consolidation phase where we go through all the events that occurred during our object dump.
 
@@ -359,8 +348,6 @@ Approach 1 : Consolidate at destination.
 Now, one approach to handle this would be to simply say that we say that the dump is of the minimum state for the whole object, say 170, and let the various events apply on the destination as long as they are applicable, and ignore errors (such as when we try to drop a partition Px from a replicated table T1 which already does not have Px in it.)
 
 While this can work, the problem with this approach is that the destination can now have tables at differing states as a result of the dump - i.e. a table T2 that was dumped at about evid=220 will have newer info than T1 that was dumped about evid=200, and this is a sort of mini-rubberbanding in itself, since different parts of a whole are at different states. This problem is actually a little worse, since different partitions of a table can actually be at different states. Thus, we will not follow this approach.
-
-  
 
 Approach 2 : Consolidate at source.
 
@@ -381,9 +368,9 @@ The related hive config parameter is "hive.metastore.event.db.notification.api.a
 The auth mechanism works as below:
 
 1. Skip auth in embedded metasore mode regardless of "hive.metastore.event.db.notification.api.auth" setting  
-The reason is that we know the metastore calls are made from hive as opposed to other un-authorized processes that are running metastore client.
+   The reason is that we know the metastore calls are made from hive as opposed to other un-authorized processes that are running metastore client.
 2. Enable auth in remote metastore mode if "hive.metastore.event.db.notification.api.auth" set to true  
-The UGI of the remote metastore client is always set on metastore server. We retrieve this user info and check if this user has proxy privilege according to the [proxy user](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/Superusers.html) settings. For example, the UGI is user "hive" and "hive" been configured to have the proxy privilege against a list of hosts. Then the auth will pass for the notification related calls from those hosts. If a user "foo" is performing repl operations (e.g. through HS2 with doAs=true), then the auth will fail unless user "foo" is configured to have the proxy privilege.
+   The UGI of the remote metastore client is always set on metastore server. We retrieve this user info and check if this user has proxy privilege according to the [proxy user](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/Superusers.html) settings. For example, the UGI is user "hive" and "hive" been configured to have the proxy privilege against a list of hosts. Then the auth will pass for the notification related calls from those hosts. If a user "foo" is performing repl operations (e.g. through HS2 with doAs=true), then the auth will fail unless user "foo" is configured to have the proxy privilege.
 
 # Setup/Configuration
 
@@ -397,19 +384,10 @@ hive.metastore.dml.events = true
 
 [hive.repl.cm](http://hive.repl.cm/).enabled = true
 
-  
 There are additional replication related parameters (with their default values). These are relevant only to cluster that acts as the source cluster. The defaults should work for these in most cases - 
 
 REPLDIR("hive.repl.rootdir","/user/hive/repl/", "HDFS root dir for all replication dumps."),  
 REPLCMDIR("hive.repl.cmrootdir","/user/hive/cmroot/", "Root dir for ChangeManager, used for deleted files."),  
 REPLCMRETIAN("[hive.repl.cm](http://hive.repl.cm).retain","24h", new TimeValidator(TimeUnit.HOURS),"Time to retain removed files in cmrootdir."),  
 REPLCMINTERVAL("[hive.repl.cm](http://hive.repl.cm).interval","3600s",new TimeValidator(TimeUnit.SECONDS),"Inteval for cmroot cleanup thread."),
-
-  
-
-  
-
- 
-
- 
 

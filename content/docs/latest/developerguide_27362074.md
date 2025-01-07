@@ -1,48 +1,49 @@
 ---
+
 title: "Apache Hive : DeveloperGuide"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : DeveloperGuide
 
 # Developer Guide
 
 * [Developer Guide]({{< ref "#developer-guide" >}})
-	+ [Code Organization and a Brief Architecture]({{< ref "#code-organization-and-a-brief-architecture" >}})
-		- [Introduction]({{< ref "#introduction" >}})
-		- [Hive SerDe]({{< ref "#hive-serde" >}})
-			* [How to Write Your Own SerDe]({{< ref "#how-to-write-your-own-serde" >}})
-			* [ObjectInspector]({{< ref "#objectinspector" >}})
-			* [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}})
-		- [MetaStore]({{< ref "#metastore" >}})
-		- [Query Processor]({{< ref "#query-processor" >}})
-			* [Compiler]({{< ref "#compiler" >}})
-			* [Parser]({{< ref "#parser" >}})
-			* [TypeChecking]({{< ref "#typechecking" >}})
-			* [Semantic Analysis]({{< ref "#semantic-analysis" >}})
-			* [Plan generation]({{< ref "#plan-generation" >}})
-			* [Task generation]({{< ref "#task-generation" >}})
-			* [Execution Engine]({{< ref "#execution-engine" >}})
-			* [Plan]({{< ref "#plan" >}})
-			* [Operators]({{< ref "#operators" >}})
-			* [UDFs and UDAFs]({{< ref "#udfs-and-udafs" >}})
-	+ [Compiling and Running Hive]({{< ref "#compiling-and-running-hive" >}})
-		- [Default Mode]({{< ref "#default-mode" >}})
-		- [Advanced Mode]({{< ref "#advanced-mode" >}})
-		- [Running Hive Without a Hadoop Cluster]({{< ref "#running-hive-without-a-hadoop-cluster" >}})
-	+ [Unit tests and debugging]({{< ref "#unit-tests-and-debugging" >}})
-		- [Layout of the unit tests]({{< ref "#layout-of-the-unit-tests" >}})
-		- [Running unit tests]({{< ref "#running-unit-tests" >}})
-		- [Adding new unit tests]({{< ref "#adding-new-unit-tests" >}})
-		- [Debugging Hive Code]({{< ref "#debugging-hive-code" >}})
-			* [Debugging Client-Side Code]({{< ref "#debugging-client-side-code" >}})
-			* [Debugging Server-Side Code]({{< ref "#debugging-server-side-code" >}})
-			* [Debugging without Ant (Client and Server Side)]({{< ref "#debugging-without-ant-client-and-server-side" >}})
-	+ [Pluggable interfaces]({{< ref "#pluggable-interfaces" >}})
-		- [File Formats]({{< ref "#file-formats" >}})
-		- [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}})
-		- [Map-Reduce Scripts]({{< ref "#map-reduce-scripts" >}})
-		- [UDFs and UDAFs - how to add new UDFs and UDAFs]({{< ref "#udfs-and-udafs---how-to-add-new-udfs-and-udafs" >}})
+  + [Code Organization and a Brief Architecture]({{< ref "#code-organization-and-a-brief-architecture" >}})
+    - [Introduction]({{< ref "#introduction" >}})
+    - [Hive SerDe]({{< ref "#hive-serde" >}})
+      * [How to Write Your Own SerDe]({{< ref "#how-to-write-your-own-serde" >}})
+      * [ObjectInspector]({{< ref "#objectinspector" >}})
+      * [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}})
+    - [MetaStore]({{< ref "#metastore" >}})
+    - [Query Processor]({{< ref "#query-processor" >}})
+      * [Compiler]({{< ref "#compiler" >}})
+      * [Parser]({{< ref "#parser" >}})
+      * [TypeChecking]({{< ref "#typechecking" >}})
+      * [Semantic Analysis]({{< ref "#semantic-analysis" >}})
+      * [Plan generation]({{< ref "#plan-generation" >}})
+      * [Task generation]({{< ref "#task-generation" >}})
+      * [Execution Engine]({{< ref "#execution-engine" >}})
+      * [Plan]({{< ref "#plan" >}})
+      * [Operators]({{< ref "#operators" >}})
+      * [UDFs and UDAFs]({{< ref "#udfs-and-udafs" >}})
+  + [Compiling and Running Hive]({{< ref "#compiling-and-running-hive" >}})
+    - [Default Mode]({{< ref "#default-mode" >}})
+    - [Advanced Mode]({{< ref "#advanced-mode" >}})
+    - [Running Hive Without a Hadoop Cluster]({{< ref "#running-hive-without-a-hadoop-cluster" >}})
+  + [Unit tests and debugging]({{< ref "#unit-tests-and-debugging" >}})
+    - [Layout of the unit tests]({{< ref "#layout-of-the-unit-tests" >}})
+    - [Running unit tests]({{< ref "#running-unit-tests" >}})
+    - [Adding new unit tests]({{< ref "#adding-new-unit-tests" >}})
+    - [Debugging Hive Code]({{< ref "#debugging-hive-code" >}})
+      * [Debugging Client-Side Code]({{< ref "#debugging-client-side-code" >}})
+      * [Debugging Server-Side Code]({{< ref "#debugging-server-side-code" >}})
+      * [Debugging without Ant (Client and Server Side)]({{< ref "#debugging-without-ant-client-and-server-side" >}})
+  + [Pluggable interfaces]({{< ref "#pluggable-interfaces" >}})
+    - [File Formats]({{< ref "#file-formats" >}})
+    - [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}})
+    - [Map-Reduce Scripts]({{< ref "#map-reduce-scripts" >}})
+    - [UDFs and UDAFs - how to add new UDFs and UDAFs]({{< ref "#udfs-and-udafs---how-to-add-new-udfs-and-udafs" >}})
 
 ## Code Organization and a Brief Architecture
 
@@ -147,14 +148,14 @@ As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5976)a registration
 
 The following mappings have been added through this registration mechanism:
 
-| Syntax | Equivalent |
-| --- | --- |
-| STORED AS AVRO /STORED AS AVROFILE | `ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.avro.AvroSerDe'``STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'` |
-| STORED AS ORC /STORED AS ORCFILE | `ROW FORMAT SERDE````'org.apache.hadoop.hive.ql.io.orc.OrcSerde````'``STORED AS INPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat````'``OUTPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat````'` |
+|                  Syntax                  |                                                                                                                              Equivalent                                                                                                                               |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| STORED AS AVRO /STORED AS AVROFILE       | `ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.avro.AvroSerDe'``STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'`                                  |
+| STORED AS ORC /STORED AS ORCFILE         | `ROW FORMAT SERDE````'org.apache.hadoop.hive.ql.io.orc.OrcSerde````'``STORED AS INPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat````'``OUTPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat````'`                                         |
 | STORED AS PARQUET /STORED AS PARQUETFILE | `ROW FORMAT SERDE```'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe```'``STORED AS INPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat```'``OUTPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat```'` |
-| STORED AS RCFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileOutputFormat'` |
-| STORED AS SEQUENCEFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileOutputFormat'` |
-| STORED AS TEXTFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.TextInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'` |
+| STORED AS RCFILE                         | `STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileOutputFormat'`                                                                                                                            |
+| STORED AS SEQUENCEFILE                   | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileOutputFormat'`                                                                                                                        |
+| STORED AS TEXTFILE                       | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.TextInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'`                                                                                                                           |
 
 To add a new native SerDe with STORED AS keyword, follow these steps:
 
@@ -289,21 +290,21 @@ Then you can run '`build/dist/bin/hive`' and it will work against your local fil
 Hive uses [JUnit](http://junit.org/) for unit tests. Each of the 3 main components of Hive have their unit test implementations in the corresponding src/test directory e.g. trunk/metastore/src/test has all the unit tests for metastore, trunk/serde/src/test has all the unit tests for serde and trunk/ql/src/test has all the unit tests for the query processor. The metastore and serde unit tests provide the TestCase implementations for JUnit. The query processor tests on the other hand are generated using Velocity. The main directories under trunk/ql/src/test that contain these tests and the corresponding results are as follows:
 
 * Test Queries:
-	+ queries/clientnegative - This directory contains the query files (.q files) for the negative test cases. These are run through the CLI classes and therefore test the entire query processor stack.
-	+ queries/clientpositive - This directory contains the query files (.q files) for the positive test cases. Thesre are run through the CLI classes and therefore test the entire query processor stack.
-	+ qureies/positive (Will be deprecated) - This directory contains the query files (.q files) for the positive test cases for the compiler. These only test the compiler and do not run the execution code.
-	+ queries/negative (Will be deprecated) - This directory contains the query files (.q files) for the negative test cases for the compiler. These only test the compiler and do not run the execution code.
+  + queries/clientnegative - This directory contains the query files (.q files) for the negative test cases. These are run through the CLI classes and therefore test the entire query processor stack.
+  + queries/clientpositive - This directory contains the query files (.q files) for the positive test cases. Thesre are run through the CLI classes and therefore test the entire query processor stack.
+  + qureies/positive (Will be deprecated) - This directory contains the query files (.q files) for the positive test cases for the compiler. These only test the compiler and do not run the execution code.
+  + queries/negative (Will be deprecated) - This directory contains the query files (.q files) for the negative test cases for the compiler. These only test the compiler and do not run the execution code.
 * Test Results:
-	+ results/clientnegative - The expected results from the queries in queries/clientnegative.
-	+ results/clientpositive - The expected results from the queries in queries/clientpositive.
-	+ results/compiler/errors - The expected results from the queries in queries/negative.
-	+ results/compiler/parse - The expected Abstract Syntax Tree output for the queries in queries/positive.
-	+ results/compiler/plan - The expected query plans for the queries in queries/positive.
+  + results/clientnegative - The expected results from the queries in queries/clientnegative.
+  + results/clientpositive - The expected results from the queries in queries/clientpositive.
+  + results/compiler/errors - The expected results from the queries in queries/negative.
+  + results/compiler/parse - The expected Abstract Syntax Tree output for the queries in queries/positive.
+  + results/compiler/plan - The expected query plans for the queries in queries/positive.
 * Velocity Templates to Generate the Tests:
-	+ templates/TestCliDriver.vm - Generates the tests from queries/clientpositive.
-	+ templates/TestNegativeCliDriver.vm - Generates the tests from queries/clientnegative.
-	+ templates/TestParse.vm - Generates the tests from queries/positive.
-	+ templates/TestParseNegative.vm - Generates the tests from queries/negative.
+  + templates/TestCliDriver.vm - Generates the tests from queries/clientpositive.
+  + templates/TestNegativeCliDriver.vm - Generates the tests from queries/clientnegative.
+  + templates/TestParse.vm - Generates the tests from queries/positive.
+  + templates/TestParseNegative.vm - Generates the tests from queries/negative.
 
 ### Running unit tests
 
@@ -379,8 +380,7 @@ Similarly, to add negative client tests, write a new query input file in ql/src/
 
 ### Debugging Hive Code
 
-  
- Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.
+Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.
 
 #### Debugging Client-Side Code
 
@@ -388,13 +388,13 @@ The client-side code runs on your local machine so you can easily debug it using
 
 * Make sure that you have run `ant model-jar` in hive/metastore and `ant gen-test` in hive since the last time you ran `ant clean`.
 * To run all of the unit tests for the CLI:
-	+ Open up TestCliDriver.java
-	+ Click Run->Debug Configurations, select TestCliDriver, and click Debug.
+  + Open up TestCliDriver.java
+  + Click Run->Debug Configurations, select TestCliDriver, and click Debug.
 * To run a single test within TestCliDriver.java:
-	+ Begin running the whole TestCli suite as before.
-	+ Once it finishes the setup and starts executing the JUnit tests, stop the test execution.
-	+ Find the desired test in the JUnit pane,
-	+ Right click on that test and select Debug.
+  + Begin running the whole TestCli suite as before.
+  + Once it finishes the setup and starts executing the JUnit tests, stop the test execution.
+  + Find the desired test in the JUnit pane,
+  + Right click on that test and select Debug.
 
 #### Debugging Server-Side Code
 
@@ -414,6 +414,7 @@ If you have already built Hive without javac.debug=on, you can clean the build a
     > ant -Djavac.debug=on package
 
 ```
+
 * Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.
 
 ```
@@ -436,6 +437,7 @@ The unit test will run until it shows:
      [junit] Listening for transport dt\_socket at address: 8000
 
 ```
+
 * Now, you can use jdb to attach to port 8000 to debug
 
 ```
@@ -445,46 +447,42 @@ The unit test will run until it shows:
 
 or if you are running Eclipse and the Hive projects are already imported, you can debug with Eclipse. Under Eclipse Run -> Debug Configurations, find "Remote Java Application" at the bottom of the left panel. There should be a MapRedTask configuration already. If there is no such configuration, you can create one with the following property:
 
-	+ Name: any task such as MapRedTask
-	+ Project: the Hive project that you imported.
-	+ Connection Type: Standard (Socket Attach)
-	+ Connection Properties:
-		- Host: localhost
-		- Port: 8000  
-		 Then hit the "Debug" button and Eclipse will attach to the JVM listening on port 8000 and continue running till the end. If you define breakpoints in the source code before hitting the "Debug" button, it will stop there. The rest is the same as debugging client-side Hive.
++ Name: any task such as MapRedTask
++ Project: the Hive project that you imported.
++ Connection Type: Standard (Socket Attach)
++ Connection Properties:
+  - Host: localhost
+  - Port: 8000  
+    Then hit the "Debug" button and Eclipse will attach to the JVM listening on port 8000 and continue running till the end. If you define breakpoints in the source code before hitting the "Debug" button, it will stop there. The rest is the same as debugging client-side Hive.
 
 #### Debugging without Ant (Client and Server Side)
 
 There is another way of debugging Hive code without going through Ant.  
- You need to install Hadoop and set the environment variable HADOOP\_HOME to that.
+You need to install Hadoop and set the environment variable HADOOP\_HOME to that.
 
 ```
-    > export HADOOP\_HOME=<your hadoop home>
- 
+> export HADOOP\_HOME=<your hadoop home>
 ```
 
 Then, start Hive:
 
 ```
-    >  ./build/dist/bin/hive --debug
- 
+>  ./build/dist/bin/hive --debug
 ```
 
 It will then act similar to the debugging steps outlines in Debugging Hive code. It is faster since there is no need to compile Hive code,  
- and go through Ant. It can be used to debug both client side and server side Hive.
+and go through Ant. It can be used to debug both client side and server side Hive.
 
 If you want to debug a particular query, start Hive and perform the steps needed before that query. Then start Hive again in debug to debug that query.
 
 ```
-    >  ./build/dist/bin/hive
-    >  perform steps before the query
- 
+>  ./build/dist/bin/hive
+>  perform steps before the query
 ```
 
 ```
-    >  ./build/dist/bin/hive --debug
-    >  run the query
- 
+>  ./build/dist/bin/hive --debug
+>  run the query
 ```
 
 Note that the local file system will be used, so the space on your machine will not be released automatically (unlike debugging via Ant, where the tables created in test are automatically dropped at the end of the test). Make sure to either drop the tables explicitly, or drop the data from /User/hive/warehouse.
@@ -508,8 +506,4 @@ Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/
 Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook) Page 74-87.
 
  
-
- 
-
- 
 

@@ -1,13 +1,14 @@
 ---
+
 title: "Apache Hive : AboutThisWiki"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AboutThisWiki
 
 * [How to get permission to edit]({{< ref "#how-to-get-permission-to-edit" >}})
 * [How to edit the Hive wiki]({{< ref "#how-to-edit-the-hive-wiki" >}})
-	+ [Advanced links]({{< ref "#advanced-links" >}})
+  + [Advanced links]({{< ref "#advanced-links" >}})
 * [How to find documentation tasks]({{< ref "#how-to-find-documentation-tasks" >}})
 * [How to export the Hive wiki]({{< ref "#how-to-export-the-hive-wiki" >}})
 * [History]({{< ref "#history" >}})
@@ -19,8 +20,8 @@ This page provides information about the [Hive wiki]({{< ref "home_27362069" >}}
 * Create a [Confluence account](https://cwiki.apache.org/confluence/signup.action) if you don't already have one.
 * Sign up for the [user mailing list](http://hive.apache.org/mailing_lists.html) by sending a message to [user-subscribe@hive.apache.org]({{< ref "mailto:user-subscribe@hive-apache-org" >}}).
 * Send a message to [user@hive.apache.org]({{< ref "mailto:user@hive-apache-org" >}}):
-	+ Request write access to the Hive wiki.
-	+ Provide your Confluence username.
+  + Request write access to the Hive wiki.
+  + Provide your Confluence username.
 
 ## How to edit the Hive wiki
 
@@ -28,7 +29,7 @@ Once you have wiki edit privilege and are logged in, an **Edit button** will app
 
 In the bottom right corner there's a **Preview** **button** (which toggles with Edit) and a **Save button**. The editor auto-saves and keeps your draft, which you can find in the drop-down list on your ID picture (upper right). When you use the **Save button**, email gets sent to everyone watching that wiki page *unless* *you've unchecked "Notify watchers"* at the bottom; but auto-save does not notify watchers. If you save something and then decide it's all wrong, you can go to the page history and revert it. Page history is in the Tools drop-down list (**"..." button**) on every wiki page, but not in the editing window.
 
-It is good practice to put a comment on the [JIRA issue](https://issues.apache.org/jira/browse/HIVE-10000) that you're documenting, with a link to the wiki page, so people watching that issue can review your changes and future JIRA trawlers can find the documentation easily. See [How to find documentation tasks]({{< ref "#how-to-find-documentation-tasks" >}}) below for more about the JIRA. As a note, Confluence markup syntax is the same as JIRA since they come from the same company.  
+It is good practice to put a comment on the [JIRA issue](https://issues.apache.org/jira/browse/HIVE-10000) that you're documenting, with a link to the wiki page, so people watching that issue can review your changes and future JIRA trawlers can find the documentation easily. See [How to find documentation tasks]({{< ref "#how-to-find-documentation-tasks" >}}) below for more about the JIRA. As a note, Confluence markup syntax is the same as JIRA since they come from the same company.
 
 Version information
 
@@ -93,7 +94,7 @@ The Hive wiki can be exported to HTML, XML, or PDF. Individual pages can be expo
 
 The Apache Hive wiki originally started out as a subspace in the Apache Hadoop MoinMoin wiki (when Hive was still a Hadoop subproject). When Hive graduated to become a top-level project, we moved its wiki out to a top-level Confluence wiki. (The MoinMoin wiki had been under attack by spammers, captchas weren't helping, and there didn't seem to be a way to use access control to defend the Hive subspace.)
 
-Just like in a real move, sometimes stuff gets broken in transit. The MoinMoin and Confluence markup languages are somewhat different, and the migration tools we used didn't preserve everything perfectly.   
+Just like in a real move, sometimes stuff gets broken in transit. The MoinMoin and Confluence markup languages are somewhat different, and the migration tools we used didn't preserve everything perfectly.
 
 To prevent further edits on the MoinMoin source, we've deleted all the pages there (replacing them with instructions for how to find their new locations), but we have a full backup of the MoinMoin data in case we notice that anything was entirely lost in the move.
 
@@ -104,8 +105,4 @@ Save
 Save
 
 Save
-
- 
-
- 
 

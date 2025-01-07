@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : ContributorDay2011"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : ContributorDay2011
 
@@ -15,8 +16,4 @@ Resources for mini-hackathon:
 * [HIVE-1545](https://issues.apache.org/jira/browse/HIVE-1545) has the UDF libraries we'd like to get cleaned up for inclusion in Hive or extension libraries (download core.tar.gz and/or ext.tar.gz)
 
 If instead of coding you'd like to help with wiki repair, see [AboutThisWiki]({{< ref "aboutthiswiki_27820116" >}}).
-
- 
-
- 
 

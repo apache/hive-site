@@ -1,28 +1,29 @@
 ---
+
 title: "Apache Hive : Streaming Data Ingest V2"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Streaming Data Ingest V2
 
 Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data-ingest_40509746" >}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
 
 * [Hive Streaming API]({{< ref "#hive-streaming-api" >}})
-	+ [Streaming Mutation API Deprecation and Removal]({{< ref "#streaming-mutation-api-deprecation-and-removal" >}})
+  + [Streaming Mutation API Deprecation and Removal]({{< ref "#streaming-mutation-api-deprecation-and-removal" >}})
 * [Streaming Requirements]({{< ref "#streaming-requirements" >}})
 * [Limitations]({{< ref "#limitations" >}})
 * [API Usage]({{< ref "#api-usage" >}})
-	+ [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
-		- [HiveStreamingConnection]({{< ref "#hivestreamingconnection" >}})
-			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
-		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
-		- [RecordWriter]({{< ref "#recordwriter" >}})
-		- [StrictDelimitedInputWriter]({{< ref "#strictdelimitedinputwriter" >}})
-		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
-		- [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
-		- [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
-	+ [Error Handling]({{< ref "#error-handling" >}})
+  + [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
+    - [HiveStreamingConnection]({{< ref "#hivestreamingconnection" >}})
+      * [Usage Guidelines]({{< ref "#usage-guidelines" >}})
+    - [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
+  + [I/O – Writing Data]({{< ref "#io--writing-data" >}})
+    - [RecordWriter]({{< ref "#recordwriter" >}})
+    - [StrictDelimitedInputWriter]({{< ref "#strictdelimitedinputwriter" >}})
+    - [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
+    - [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
+    - [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
+  + [Error Handling]({{< ref "#error-handling" >}})
 * [Example]({{< ref "#example" >}})
 
 # Hive Streaming API
@@ -48,10 +49,10 @@ Starting in release 3.0.0, Hive deprecated Streaming Mutation API from hive-hcat
 A few things are required to use streaming.
 
 1. The following settings are required in hive-site.xml to enable ACID support for streaming:
-	1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
-	2. **hive.compactor.initiator.on = true**(See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
-	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
-	4. **hive.compactor.worker.threads** > **0**
+   1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
+   2. **hive.compactor.initiator.on = true**(See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
+   3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
+   4. **hive.compactor.worker.threads** > **0**
 2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc_31818911" >}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
 4. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
@@ -71,6 +72,7 @@ StrictJsonWriter
 ```
 StrictRegexWriter
 ```
+
 All these record writers expects strict schema match, meaning the schema of the records should exactly match with the table schema (Note: The writers does not perform schema check, it is up to the clients to make sure the record schema matches the table schema). 
 
 Support for other input formats can be provided by additional implementations of the *RecordWriter* interface.
@@ -91,6 +93,7 @@ The class HiveStreamingConnection describes the streaming connection related inf
 * abortTransaction() has to be triggered from a separate thread it has to be co-ordinated via external variables or  
 * synchronization mechanism
 ```
+
 HiveStreamingConnection API also supports 2 partitioning mode (static vs dynamic). In static partitioning mode, partition column values can be specified upfront via builder API. If the static partition exists (pre-created by the user or already existing partition in a table), the streaming connection will use it and if it does not exist the streaming connection will create a new static partition using the specified values. If the table is partitioned and if static partition values are not specified in builder API, hive streaming connection will use dynamic partitioning mode under which hive streaming connection expects the partition values to be the last columns in the record (similar to how hive dynamic partitioning works). For example, if table is partitioned by 2 columns (year and month), hive streaming connection will extract last 2 columns from the input records using which partitions will be created dynamically in metastore. 
 
 Transactions are implemented slightly differently than traditional database systems. Each transaction has an id and multiple transactions are grouped into a “Transaction Batch”. This helps grouping records from multiple transactions into fewer files (rather than 1 file per transaction). During hive streaming connection creation, transaction batch size can be specified via builder API. Transaction management is completely hidden behind the API, in most cases users do not have to worry about tuning the transaction batch size (which is an expert level setting and might not be honored in future release). Also the API automatically rolls over to next transaction batch on beginTransaction() invocation if the current transaction batch is exhausted. The recommendation is to leave the transaction batch size at default value of 1 and group several thousands records together under a each transaction. Since each transaction corresponds to a delta directory in the filesystem, committing transaction too often can end up creating too many small directories. 
@@ -124,7 +127,7 @@ These classes and interfaces provide support for writing the data to Hive within
 
 ### RecordWriter
 
-RecordWriter is the base interface implemented by all Writers. A Writer is responsible for taking a record in the form of a byte[] (or InputStream with configurable line delimiter) containing data in a known format (such as CSV) and writing it out in the format supported by Hive streaming. A RecordWriter with Strict implementation expects record schema to exactly match as that of table schema. A RecordWriter writing in dynamic partitioning mode expects the partition columns to be the last columns in each record. If partition column value is empty or null, records will go into \_\_HIVE\_DEFAULT\_PARTITION\_\_. A streaming client will instantiate an appropriate RecordWriter type and pass it to HiveStreamingConnection builder API. The streaming client does not directly interact with RecordWriter thereafter. The StreamingConnection object will thereafter use and manage the RecordWriter instance to perform I/O.  See the [Javadoc](http://hive.apache.org/javadocs/r3.0.0/api/org/apache/hive/streaming/HiveStreamingConnection.html) for details.
+RecordWriter is the base interface implemented by all Writers. A Writer is responsible for taking a record in the form of a byte[](or InputStream with configurable line delimiter) containing data in a known format (such as CSV) and writing it out in the format supported by Hive streaming. A RecordWriter with Strict implementation expects record schema to exactly match as that of table schema. A RecordWriter writing in dynamic partitioning mode expects the partition columns to be the last columns in each record. If partition column value is empty or null, records will go into \_\_HIVE\_DEFAULT\_PARTITION\_\_. A streaming client will instantiate an appropriate RecordWriter type and pass it to HiveStreamingConnection builder API. The streaming client does not directly interact with RecordWriter thereafter. The StreamingConnection object will thereafter use and manage the RecordWriter instance to perform I/O.  See the [Javadoc](http://hive.apache.org/javadocs/r3.0.0/api/org/apache/hive/streaming/HiveStreamingConnection.html) for details.
 
 A RecordWriter's primary functions are:
 
@@ -244,8 +247,4 @@ connection.commitTransaction();
 // close the streaming connection
 connection.close();
 ```
-
- 
-
- 
 

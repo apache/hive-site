@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : How-to articles"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : How-to articles
 
@@ -14,8 +15,4 @@ date: 2024-12-12
 Provide step-by-step guidance for completing a task.
 
 Add how-to article
-
- 
-
- 
 

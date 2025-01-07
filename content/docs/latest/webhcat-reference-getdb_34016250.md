@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : WebHCat Reference GetDB"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference GetDB
 
 # Describe Database — GET ddl/database/:db
 
 * [Describe Database — GET ddl/database/:db]({{< ref "#describe-database--get-ddldatabasedb" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output-error" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
+    - [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 
@@ -27,20 +28,20 @@ Describe a database. (Note: This resource has a "format=extended" parameter howe
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
+|  Name   |    Description    | Required? | Default |
+|---------|-------------------|-----------|---------|
+| **:db** | The database name | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **location** | The database location |
-| **params** | The database parameters |
-| **comment** | The database comment |
-| **database** | The database name |
+|     Name     |       Description       |
+|--------------|-------------------------|
+| **location** | The database location   |
+| **params**   | The database parameters |
+| **comment**  | The database comment    |
+| **database** | The database name       |
 
 ## Example
 
@@ -73,14 +74,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database]({{< ref "webhcat-reference-getdbs_34016238" >}}) Next: [PUT ddl/database/:db]({{< ref "webhcat-reference-putdb_34016273" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

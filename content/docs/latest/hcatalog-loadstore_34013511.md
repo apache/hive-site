@@ -1,37 +1,38 @@
 ---
+
 title: "Apache Hive : HCatalog LoadStore"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog LoadStore
 
 # Load and Store Interfaces
 
 * [Load and Store Interfaces]({{< ref "#load-and-store-interfaces" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [Running Pig]({{< ref "#running-pig" >}})
-	+ [HCatLoader]({{< ref "#hcatloader" >}})
-		- [Usage]({{< ref "#usage" >}})
-			* [Assumptions]({{< ref "#assumptions" >}})
-		- [HCatLoader Data Types]({{< ref "#hcatloader-data-types" >}})
-			* [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
-			* [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
-		- [Running Pig with HCatalog]({{< ref "#running-pig-with-hcatalog" >}})
-			* [The -useHCatalog Flag]({{< ref "#the--usehcatalog-flag" >}})
-			* [Jars and Configuration Files]({{< ref "#jars-and-configuration-files" >}})
-			* [Authentication]({{< ref "#authentication" >}})
-		- [Load Examples]({{< ref "#load-examples" >}})
-			* [Filter Operators]({{< ref "#filter-operators" >}})
-	+ [HCatStorer]({{< ref "#hcatstorer" >}})
-		- [Usage]({{< ref "#usage" >}})
-			* [Assumptions]({{< ref "#assumptions" >}})
-		- [Store Examples]({{< ref "#store-examples" >}})
-		- [HCatStorer Data Types]({{< ref "#hcatstorer-data-types" >}})
-			* [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
-			* [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
-	+ [Data Type Mappings]({{< ref "#data-type-mappings" >}})
-		- [Primitive Types]({{< ref "#primitive-types" >}})
-		- [Complex Types]({{< ref "#complex-types" >}})
+  + [Set Up]({{< ref "#set-up" >}})
+  + [Running Pig]({{< ref "#running-pig" >}})
+  + [HCatLoader]({{< ref "#hcatloader" >}})
+    - [Usage]({{< ref "#usage" >}})
+      * [Assumptions]({{< ref "#assumptions" >}})
+    - [HCatLoader Data Types]({{< ref "#hcatloader-data-types" >}})
+      * [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
+      * [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
+    - [Running Pig with HCatalog]({{< ref "#running-pig-with-hcatalog" >}})
+      * [The -useHCatalog Flag]({{< ref "#the--usehcatalog-flag" >}})
+      * [Jars and Configuration Files]({{< ref "#jars-and-configuration-files" >}})
+      * [Authentication]({{< ref "#authentication" >}})
+    - [Load Examples]({{< ref "#load-examples" >}})
+      * [Filter Operators]({{< ref "#filter-operators" >}})
+  + [HCatStorer]({{< ref "#hcatstorer" >}})
+    - [Usage]({{< ref "#usage" >}})
+      * [Assumptions]({{< ref "#assumptions" >}})
+    - [Store Examples]({{< ref "#store-examples" >}})
+    - [HCatStorer Data Types]({{< ref "#hcatstorer-data-types" >}})
+      * [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
+      * [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
+  + [Data Type Mappings]({{< ref "#data-type-mappings" >}})
+    - [Primitive Types]({{< ref "#primitive-types" >}})
+    - [Complex Types]({{< ref "#complex-types" >}})
 
 ## Set Up
 
@@ -57,8 +58,8 @@ The fully qualified package name changed from *org.apache.hcatalog.pig* to *o
 
 In many older web site examples you may find references to the old syntax which no longer functions.
 
-| Previous Pig Versions | 0.14+ |
-| --- | --- |
+|       Previous Pig Versions        |                  0.14+                  |
+|------------------------------------|-----------------------------------------|
 | org.apache.hcatalog.pig.HCatLoader | org.apache.hive.hcatalog.pig.HCatLoader |
 | org.apache.hcatalog.pig.HCatStorer | org.apache.hive.hcatalog.pig.HCatStorer |
 
@@ -384,22 +385,22 @@ Any type mapping not listed here is not supported and will throw an exception. 
 
 ### Primitive Types
 
-| Hive Type/Value | Pig Type/Value | Hive → Pig | Pig → Hive | Available in Hive Release |
-| --- | --- | --- | --- | --- |
-| BOOLEAN/boolean | BOOLEAN/boolean | direct/lossless mapping | direct/lossless mapping |  |
-| TINYINT/byte | INTEGER/int | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| SMALLINT/short | SMALLINT/short | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| INT/int | INTEGER/int | direct/lossless mapping | direct/lossless mapping |  |
-| BIGINT/long | LONG/long | direct/lossless mapping | direct/lossless mapping |  |
-| FLOAT/float | FLOAT/float | direct/lossless mapping | direct/lossless mapping |  |
-| DOUBLE/double | DOUBLE/double | direct/lossless mapping | direct/lossless mapping |  |
-| STRING/java.lang.String | CHARARRAY/java.lang.String | direct/lossless mapping | direct/lossless mapping |  |
-| BINARY/byte[] | BYTEARRAY/org.apache.pig.data.DataByteArray | direct/lossless mapping | direct/lossless mapping |  |
-| DATE | DATETIME/org.joda.time.DateTime | turn to DateTime with time part set to 0 and local timezone | if time component is 0 (regardless of timezone in the DateTime value), it will be written to target; otherwise it is considered out of range1 | 0.13.0+ |
-| TIMESTAMP/java.sql.Timestamp | DATETIME/org.joda.time.DateTime | will lose ‘nanos’ and set timezone to local timezone | will translate to Timestamp based on 'millis' value | 0.13.0+ |
-| DECIMAL/HiveDecimal (maximum 38 digits) | BIGDECIMAL/java.math.BigDecimal | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| CHAR(x)/HiveChar | CHARARRAY/java.lang.String | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| VARCHAR(x)/HiveVarchar | CHARARRAY/java.lang.String | direct/lossless mapping | performs a range check1 | 0.13.0+ |
+|                                                                                                                                                                                                                                Hive Type/Value                                                                                                                                                                                                                                 |               Pig Type/Value                |                         Hive → Pig                          |                                                                  Pig → Hive                                                                   | Available in Hive Release |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| BOOLEAN/boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                                | BOOLEAN/boolean                             | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| TINYINT/byte                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | INTEGER/int                                 | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| SMALLINT/short                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | SMALLINT/short                              | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| INT/int                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | INTEGER/int                                 | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| BIGINT/long                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | LONG/long                                   | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| FLOAT/float                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | FLOAT/float                                 | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| DOUBLE/double                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | DOUBLE/double                               | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| STRING/java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                        | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| BINARY/byte[]                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | BYTEARRAY/org.apache.pig.data.DataByteArray | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| DATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | DATETIME/org.joda.time.DateTime             | turn to DateTime with time part set to 0 and local timezone | if time component is 0 (regardless of timezone in the DateTime value), it will be written to target; otherwise it is considered out of range1 | 0.13.0+                   |
+| TIMESTAMP/java.sql.Timestamp                                                                                                                                                                                                                                                                                                                                                                                                                                                   | DATETIME/org.joda.time.DateTime             | will lose ‘nanos’ and set timezone to local timezone        | will translate to Timestamp based on 'millis' value                                                                                           | 0.13.0+                   |
+| DECIMAL/HiveDecimal (maximum 38 digits)                                                                                                                                                                                                                                                                                                                                                                                                                                        | BIGDECIMAL/java.math.BigDecimal             | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| CHAR(x)/HiveChar                                                                                                                                                                                                                                                                                                                                                                                                                                                               | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| VARCHAR(x)/HiveVarchar                                                                                                                                                                                                                                                                                                                                                                                                                                                         | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
 | 1 Range check: If the Pig value is out of range for the target Hive column, by default NULL will be written and one warning per target column/type will be logged. The user may specify “`onOutOfRangeValue Throw`” to HCatStorer so that an error will be raised instead. For example:`store data into 'test\_tbl' using org.apache.hive.hcatalog.pig.HCatStorer('','','-onOutOfRangeValue Throw');`The only values for `onOutOfRangeValue` are `Throw` and `Null` (default). |
 
 Note
@@ -410,21 +411,17 @@ Hive does not have a data type corresponding to the BIGINTEGER type in Pig (java
 
  
 
-| Hive Type | Pig Type |
-| --- | --- |
-| map  (key type should be string) | map |
-| ARRAY<*any type*> | bag |
-| struct<*any type fields*> | tuple |
+|            Hive Type             | Pig Type |
+|----------------------------------|----------|
+| map  (key type should be string) | map      |
+| ARRAY<*any type*>                | bag      |
+| struct<*any type fields*>        | tuple    |
 
  
 
 **Navigation Links**
 Previous: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties_39622369" >}})  
- Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput_34013776" >}})
+Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput_34013776" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

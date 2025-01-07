@@ -1,14 +1,15 @@
 ---
+
 title: "Apache Hive : LanguageManual Indexing"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Indexing
 
 * [Indexing Is Removed since 3.0]({{< ref "#indexing-is-removed-since-30" >}})
 * [Overview of Hive Indexes]({{< ref "#overview-of-hive-indexes" >}})
 * [Indexing Resources]({{< ref "#indexing-resources" >}})
-	+ [Configuration Parameters for Hive Indexes]({{< ref "#configuration-parameters-for-hive-indexes" >}})
+  + [Configuration Parameters for Hive Indexes]({{< ref "#configuration-parameters-for-hive-indexes" >}})
 * [Simple Examples]({{< ref "#simple-examples" >}})
 
 ## Indexing Is Removed since 3.0
@@ -131,8 +132,4 @@ Rebuild index on a partition:
 ```
 ALTER INDEX table10\_index ON table10 PARTITION (columnX='valueQ', columnY='valueR') REBUILD;
 ```
-
- 
-
- 
 

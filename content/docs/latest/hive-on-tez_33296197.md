@@ -1,43 +1,44 @@
 ---
+
 title: "Apache Hive : Hive on Tez"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive on Tez
 
 * [Overview]({{< ref "#overview" >}})
-	+ [Multiple reduce stages]({{< ref "#multiple-reduce-stages" >}})
-	+ [Pipelining]({{< ref "#pipelining" >}})
-	+ [In memory versus disk writes]({{< ref "#in-memory-versus-disk-writes" >}})
-	+ [Joins]({{< ref "#joins" >}})
-	+ [Fine-tuned algorithms]({{< ref "#fine-tuned-algorithms" >}})
-	+ [Limit processing]({{< ref "#limit-processing" >}})
+  + [Multiple reduce stages]({{< ref "#multiple-reduce-stages" >}})
+  + [Pipelining]({{< ref "#pipelining" >}})
+  + [In memory versus disk writes]({{< ref "#in-memory-versus-disk-writes" >}})
+  + [Joins]({{< ref "#joins" >}})
+  + [Fine-tuned algorithms]({{< ref "#fine-tuned-algorithms" >}})
+  + [Limit processing]({{< ref "#limit-processing" >}})
 * [Scope]({{< ref "#scope" >}})
 * [Functional requirements of phase I]({{< ref "#functional-requirements-of-phase-i" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Plan with TEZ]({{< ref "#plan-with-tez" >}})
-		- [Plan without TEZ]({{< ref "#plan-without-tez" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Plan with TEZ]({{< ref "#plan-with-tez" >}})
+    - [Plan without TEZ]({{< ref "#plan-without-tez" >}})
 * [Design]({{< ref "#design" >}})
-	+ [Summary of changes]({{< ref "#summary-of-changes" >}})
-	+ [Execution layer]({{< ref "#execution-layer" >}})
-		- [Job submission]({{< ref "#job-submission" >}})
-		- [Job monitoring]({{< ref "#job-monitoring" >}})
-		- [Job diagnostics]({{< ref "#job-diagnostics" >}})
-		- [Counters]({{< ref "#counters" >}})
-		- [Job execution]({{< ref "#job-execution" >}})
-	+ [Query planning]({{< ref "#query-planning" >}})
-		- [MapRedWork]({{< ref "#mapredwork" >}})
-		- [Semantic analysis and logical optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
-		- [Physical Optimizations and Task generation]({{< ref "#physical-optimizations-and-task-generation" >}})
-		- [Local Job Runner]({{< ref "#local-job-runner" >}})
-		- [Number of tasks]({{< ref "#number-of-tasks" >}})
-		- [Explain statements]({{< ref "#explain-statements" >}})
-		- [Hive variables]({{< ref "#hive-variables" >}})
-	+ [Build infrastructure]({{< ref "#build-infrastructure" >}})
-	+ [Testing]({{< ref "#testing" >}})
-		- [Mini Tez Cluster]({{< ref "#mini-tez-cluster" >}})
+  + [Summary of changes]({{< ref "#summary-of-changes" >}})
+  + [Execution layer]({{< ref "#execution-layer" >}})
+    - [Job submission]({{< ref "#job-submission" >}})
+    - [Job monitoring]({{< ref "#job-monitoring" >}})
+    - [Job diagnostics]({{< ref "#job-diagnostics" >}})
+    - [Counters]({{< ref "#counters" >}})
+    - [Job execution]({{< ref "#job-execution" >}})
+  + [Query planning]({{< ref "#query-planning" >}})
+    - [MapRedWork]({{< ref "#mapredwork" >}})
+    - [Semantic analysis and logical optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
+    - [Physical Optimizations and Task generation]({{< ref "#physical-optimizations-and-task-generation" >}})
+    - [Local Job Runner]({{< ref "#local-job-runner" >}})
+    - [Number of tasks]({{< ref "#number-of-tasks" >}})
+    - [Explain statements]({{< ref "#explain-statements" >}})
+    - [Hive variables]({{< ref "#hive-variables" >}})
+  + [Build infrastructure]({{< ref "#build-infrastructure" >}})
+  + [Testing]({{< ref "#testing" >}})
+    - [Mini Tez Cluster]({{< ref "#mini-tez-cluster" >}})
 * [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
-	+ [Hive-Tez Compatibility]({{< ref "#hive-tez-compatibility" >}})
+  + [Hive-Tez Compatibility]({{< ref "#hive-tez-compatibility" >}})
 
 # Overview
 
@@ -101,9 +102,9 @@ Limiting the integration to the fairly simple MRR/MPJ pattern will require minim
 # Functional requirements of phase I
 
 * Hive continues to work **as is** on clusters that do not have TEZ.
-	+ MR revisions 20, 20S, 23 continue to work unchanged.
+  + MR revisions 20, 20S, 23 continue to work unchanged.
 * Hive can optionally submit MR jobs to TEZ without any additional improvements.
-	+ Hive can treat TEZ like just another Hadoop 23 instance.
+  + Hive can treat TEZ like just another Hadoop 23 instance.
 * Hive can optionally detect chains of MR jobs and optimize them to a single DAG of the form MR* and submit it to TEZ.
 * Hive can optionally detect when a join has multiple parent tasks and combine them into a single DAG of a tree shape.
 * Hive will display the MRR optimization in explain plans.
@@ -120,11 +121,11 @@ The following things are out of scope for the first phase:
 One new configuration variable will be introduced:
 
 * ~~hive.optimize.tez~~   
-hive.execution.engine (changed in [HIVE-6103](https://issues.apache.org/jira/browse/HIVE-6103))
-	+ ~~True~~   
-	tez: Submit native TEZ dags, optimized for MRR/MPJ
-	+ ~~False~~   
-	mr (default): Submit single map, single reduce plans
+  hive.execution.engine (changed in [HIVE-6103](https://issues.apache.org/jira/browse/HIVE-6103))
+  + ~~True~~   
+    tez: Submit native TEZ dags, optimized for MRR/MPJ
+  + ~~False~~   
+    mr (default): Submit single map, single reduce plans
 * Update:  Several configuration variables were introduced in Hive 0.13.0.  See the [Tez section]({{< ref "#tez-section" >}}) in Configuration Properties.
 
 Note: It is possible to execute an MR plan against TEZ. In order to do so, one simply has to change the following variable (assuming Tez is installed on the cluster):
@@ -338,8 +339,4 @@ For information about how to configure Hive 0.13.0+ for Tez, see the release not
 ### Hive-Tez Compatibility
 
 For a list of Hive and Tez releases that are compatible with each other, see [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility_59689974" >}}).
-
- 
-
- 
 

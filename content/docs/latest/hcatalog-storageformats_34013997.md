@@ -1,16 +1,17 @@
 ---
+
 title: "Apache Hive : HCatalog StorageFormats"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog StorageFormats
 
 # Storage Formats
 
 * [Storage Formats]({{< ref "#storage-formats" >}})
-	+ [SerDes and Storage Formats]({{< ref "#serdes-and-storage-formats" >}})
-	+ [Usage from Hive]({{< ref "#usage-from-hive" >}})
-	+ [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}})
+  + [SerDes and Storage Formats]({{< ref "#serdes-and-storage-formats" >}})
+  + [Usage from Hive]({{< ref "#usage-from-hive" >}})
+  + [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}})
 
 ### SerDes and Storage Formats
 
@@ -45,15 +46,11 @@ See [HCATALOG-436](https://issues.apache.org/jira/browse/HCATALOG-436) for detai
 
 **Navigation Links**
 Previous: [Command Line Interface]({{< ref "hcatalog-cli_34013932" >}})  
- Next: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions_34014006" >}})
+Next: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions_34014006" >}})
 
 SerDe general information: [Hive SerDe]({{< ref "#hive-serde" >}})  
- SerDe details: [SerDe]({{< ref "serde_27362059" >}})  
- SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
+SerDe details: [SerDe]({{< ref "serde_27362059" >}})  
+SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

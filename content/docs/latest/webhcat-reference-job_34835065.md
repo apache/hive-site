@@ -1,20 +1,21 @@
 ---
+
 title: "Apache Hive : WebHCat Reference Job"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference Job
 
 # Job Information — GET jobs/:jobid
 
 * [Job Information — GET jobs/:jobid]({{< ref "#job-information--get-jobsjobid" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
 
 ## Description
 
@@ -31,26 +32,26 @@ Version: Hive 0.12.0 and later
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:jobid** | The job ID to check. This is the ID received when the job was created. | Required | None |
+|    Name    |                              Description                               | Required? | Default |
+|------------|------------------------------------------------------------------------|-----------|---------|
+| **:jobid** | The job ID to check. This is the ID received when the job was created. | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **status** | A JSON object containing the job status information. See the Hadoop documentation ([`Class JobStatus`](http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapred/JobStatus.html)) for more information. |
-| **profile** | A JSON object containing the job profile information. WebHCat passes along the information in the JobProfile object, which is subject to change from one Hadoop version to another. See the [Hadoop documentation](http://hadoop.apache.org/docs/) (API docs) for org.apache.hadoop.mapred.JobProfile for more information. |
-| **id** | The job ID. |
-| **parentId** | The parent job ID. |
-| **percentComplete** | The job completion percentage, for example "75% complete". |
-| **exitValue** | The job's exit value. |
-| **user** | User name of the job creator. |
-| **callback** | The callback URL, if any. |
-| **completed** | A string representing completed status of the process launched by the Launcher task. For example when a MapReduce job is submitted via WebHCat, the Launcher invokes a "`hadoop jar`" command and then when that process exits the **completed** string is set to "done". Note that this is not the same as the job status (see **status**). |
-| **userargs** | A JSON object repesenting the argument names and values for the job submission request. |
+|        Name         |                                                                                                                                                                 Description                                                                                                                                                                  |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **status**          | A JSON object containing the job status information. See the Hadoop documentation ([`Class JobStatus`](http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapred/JobStatus.html)) for more information.                                                                                                                              |
+| **profile**         | A JSON object containing the job profile information. WebHCat passes along the information in the JobProfile object, which is subject to change from one Hadoop version to another. See the [Hadoop documentation](http://hadoop.apache.org/docs/) (API docs) for org.apache.hadoop.mapred.JobProfile for more information.                  |
+| **id**              | The job ID.                                                                                                                                                                                                                                                                                                                                  |
+| **parentId**        | The parent job ID.                                                                                                                                                                                                                                                                                                                           |
+| **percentComplete** | The job completion percentage, for example "75% complete".                                                                                                                                                                                                                                                                                   |
+| **exitValue**       | The job's exit value.                                                                                                                                                                                                                                                                                                                        |
+| **user**            | User name of the job creator.                                                                                                                                                                                                                                                                                                                |
+| **callback**        | The callback URL, if any.                                                                                                                                                                                                                                                                                                                    |
+| **completed**       | A string representing completed status of the process launched by the Launcher task. For example when a MapReduce job is submitted via WebHCat, the Launcher invokes a "`hadoop jar`" command and then when that process exits the **completed** string is set to "done". Note that this is not the same as the job status (see **status**). |
+| **userargs**        | A JSON object repesenting the argument names and values for the job submission request.                                                                                                                                                                                                                                                      |
 
 ## Example
 
@@ -115,13 +116,9 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 **Navigation Links**
 Previous: [GET jobs]({{< ref "webhcat-reference-jobs_34835057" >}})  
- Next: [DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid_34835045" >}})
+Next: [DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid_34835045" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaces deprecated resource: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo_34017194" >}})
-
- 
-
- 
 

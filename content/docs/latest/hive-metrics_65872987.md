@@ -1,11 +1,10 @@
 ---
+
 title: "Apache Hive : Hive Metrics"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive Metrics
-
-  
 
 The metrics that Hive collects can be viewed in the [HiveServer2 Web UI]({{< ref "#hiveserver2-web-ui" >}}) by using the "Metrics Dump" tab.
 
@@ -154,8 +153,4 @@ See [HiveServer2 Overview]({{< ref "hiveserver2-overview_65147648" >}}) for more
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

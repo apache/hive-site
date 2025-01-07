@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HBaseMetastoreDevelopmentGuide"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HBaseMetastoreDevelopmentGuide
 
@@ -30,18 +31,17 @@ Once you’ve built the code from the HBase metastore branch (hbase-metastore), 
 
 1. Install HBase, preferably HBase 1.1.1 as that’s what is being used for testing.
 2. Copy following jars into $HBASE\_HOME/lib
-	1. hive-common-.*.jar
-	2. hive-metastore-.*.jar
-	3. hive-serde-.*.jar
+   1. hive-common-.*.jar
+   2. hive-metastore-.*.jar
+   3. hive-serde-.*.jar
 3. Setup HBase, <http://hbase.apache.org/book.html#quickstart>  I run it in stand alone mode, so you have to set a couple of values in hbase-site.xml for this to work.
 4. Set HADOOP\_HOME if you’re not in a cluster where hadoop is already on your path.
 5. Start HBase: $HBASE\_HOME/bin/start-hbase.sh
 6. Set it up so that HBase jars and conf file are picked up by Hive
-1. export HIVE\_AUX\_JARS\_PATH=$HBASE\_HOME/lib/
-2. export AUX\_CLASSPATH=$HBASE\_HOME/conf
-
-8. Create the metastore tables in HBase: hive --service hbaseschematool --install
-9. Configure Hive to use HBase as its metastore, in hive-site.xml:
+7. export HIVE\_AUX\_JARS\_PATH=$HBASE\_HOME/lib/
+8. export AUX\_CLASSPATH=$HBASE\_HOME/conf
+9. Create the metastore tables in HBase: hive --service hbaseschematool --install
+10. Configure Hive to use HBase as its metastore, in hive-site.xml:
 
 ```
 <property>
@@ -74,8 +74,6 @@ The following command will import the metadata from the rdbms to hbase:
 
 hive --service hbaseimport 
 
-  
-
 # Design Docs
 
 [Overall Approach](https://issues.apache.org/jira/secure/attachment/12697601/HBaseMetastoreApproach.pdf)
@@ -83,8 +81,4 @@ hive --service hbaseimport 
 [Hbase execution plans for RawStore partition filter condition]({{< ref "hbase-execution-plans-for-rawstore-partition-filter-condition_55151993" >}})
 
  
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HiveAws HivingS3nRemotely"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveAws HivingS3nRemotely
 
@@ -56,12 +57,17 @@ Some example data files are provided in the S3 bucket `data.s3ndemo.hive`. We wi
 * `s3n://data.s3ndemo.hive/kv` - Key Value pairs in a text file
 * `s3n://data.s3ndemo.hive/pkv` - Key Value pairs in a directories that are partitioned by date
 * `s3n://data.s3ndemo.hive/tpch/*` - Eight directories containing data corresponding to the eight tables used by [TPCH benchmark![](images/icons/linkext7.gif)](http://tpc.org/tpch/). The data is generated for a scale 10 (approx 10GB) database using the standard `dbgen` utility provided by TPCH.
+
 ## Setting up tables (DDL Statements)
 
 In this example - we will use HDFS as the default table store for Hive. We will make Hive tables over the files in S3 using the `external tables` functionality in Hive. Executing DDL commands does not require a functioning Hadoop cluster (since we are just setting up metadata):
 
 * Declare a simple table containing key-value pairs:
-* ```
+* 
+
+```
+
+```
 
 hive> create external table kv (key int, values string)  location 's3n://data.s3ndemo.hive/kv';
 
@@ -73,16 +79,21 @@ hive> create external table pkv (key int, values string) partitioned by (insertd
 hive> alter table pkv add partition (insertdate='2008-01-01') location 's3n://data.s3ndemo.hive/pkv/2008-01-01';
 
 ```
+
 * Declare a table over a TPCH table:
-* ```
+* 
+
+```
+
+```
 
 hive> create external table lineitem (
-  l\_orderkey int, l\_partkey int, l\_suppkey int, l\_linenumber int, l\_quantity double,
-  l\_extendedprice double, l\_discount double, l\_tax double, l\_returnflag string, 
-  l\_linestatus string, l\_shipdate string, l\_commitdate string, l\_receiptdate string,
-  l\_shipinstruct string, l\_shipmode string, l\_comment string) 
-  row format delimited fields terminated by '|' 
-  location 's3n://data.s3ndemo.hive/tpch/lineitem';
+l\_orderkey int, l\_partkey int, l\_suppkey int, l\_linenumber int, l\_quantity double,
+l\_extendedprice double, l\_discount double, l\_tax double, l\_returnflag string,
+l\_linestatus string, l\_shipdate string, l\_commitdate string, l\_receiptdate string,
+l\_shipinstruct string, l\_shipmode string, l\_comment string)
+row format delimited fields terminated by '|'
+location 's3n://data.s3ndemo.hive/tpch/lineitem';
 
 ```
 
@@ -118,7 +129,7 @@ hive> set mapred.job.tracker=ec2-12-34-56-78.compute-1.amazonaws.com:50002;
 
 ```
 
- 1.#4 Set up a ssh tunnel via port 2600 to the Hadoop master. This can be done by executing the following from another terminal/window:
+1.#4 Set up a ssh tunnel via port 2600 to the Hadoop master. This can be done by executing the following from another terminal/window:
 * `$ ssh -i <path to Hadoop private key path> -D 2600 ec2-12-34-56-78.compute-1.amazonaws.com`
 
 Now we are all setup. The sample query from TPCH (1.sql) can be tried as follows:
@@ -184,10 +195,6 @@ The socket related options allow Hive CLI to communicate with the Hadoop cluster
 
 * Unknown macro: {link-to}  Hive and AWS
 
- presents general landscape and alternative on running Hive queries in AWS.
+presents general landscape and alternative on running Hive queries in AWS.
 * [On issues and lessons learned during this integration effort![](images/icons/linkext7.gif)](http://jsensarma.com/blog/2009/05/14/hive-hadoop-s3-ec2-it-works/)
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Replication"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Replication
 
@@ -47,14 +48,14 @@ To configure the persistence of metastore notification events it is necessary to
 **hive-site.xml Configuration for Replication**
 
 ```
-  <property>
-    <name>hive.metastore.event.listeners</name>
-    <value>org.apache.hive.hcatalog.listener.DbNotificationListener</value>
-  </property>
-  <property>
-    <name>hive.metastore.event.db.listener.timetolive</name>
-    <value>86400s</value>
-  </property>
+<property>
+  <name>hive.metastore.event.listeners</name>
+  <value>org.apache.hive.hcatalog.listener.DbNotificationListener</value>
+</property>
+<property>
+  <name>hive.metastore.event.db.listener.timetolive</name>
+  <value>86400s</value>
+</property>
 ```
 
 The system uses the `org.apache.hive.hcatalog.api.repl.exim.EximReplicationTaskFactory` by default. This uses `EXPORT` and `IMPORT` commands to capture, move, and ingest the metadata and data that need to be replicated. However, it is possible to provide custom implementations by setting the `hive.repl.task.factory` Hive configuration property.
@@ -65,10 +66,10 @@ The system uses the `org.apache.hive.hcatalog.api.repl.exim.EximReplicationTask
 * These events can be read and converted into `ReplicationTasks` using `org.apache.hive.hcatalog.api.HCatClient.getReplicationTasks(long, int, String, String)`.
 * `ReplicationTasks` encapsulate a set of commands to execute on the source Hive instance (typically to export data) and another set to execute on the replica instance (typically to import data). The commands are provided as Hive SQL strings.
 * The `ReplicationTask` also serves as a place where database and table name mappings can be declared and `StagingDirectoryProvider` implementations configured for the resolution of paths at both the source and destination:
-	+ `org.apache.hive.hcatalog.api.repl.ReplicationTask.withDbNameMapping(Function<String, String>)`
-	+ `org.apache.hive.hcatalog.api.repl.ReplicationTask.withTableNameMapping(Function<String, String>)`
-	+ `org.apache.hive.hcatalog.api.repl.ReplicationTask.withSrcStagingDirProvider(StagingDirectoryProvider)`
-	+ `org.apache.hive.hcatalog.api.repl.ReplicationTask.withDstStagingDirProvider(StagingDirectoryProvider)`
+  + `org.apache.hive.hcatalog.api.repl.ReplicationTask.withDbNameMapping(Function<String, String>)`
+  + `org.apache.hive.hcatalog.api.repl.ReplicationTask.withTableNameMapping(Function<String, String>)`
+  + `org.apache.hive.hcatalog.api.repl.ReplicationTask.withSrcStagingDirProvider(StagingDirectoryProvider)`
+  + `org.apache.hive.hcatalog.api.repl.ReplicationTask.withDstStagingDirProvider(StagingDirectoryProvider)`
 * The Hive SQL commands provided by the tasks must then be executed against the source Hive and then the destination (aka the replica). One way of doing this is to open up a JDBC connection to the respective HiveServer and submit the task's Hive SQL queries.
 * It is necessary to maintain the position within the notification log so that replication tasks are applied only once. This can be achieved by maintaining a record of the last successfully executed event's id (`task.getEvent().getEventId()`) and providing this as an offset when sourcing the next batch of events.
 * To avoid losing or missing events that require replication, it may be wise to poll for replication tasks at a frequency significantly greater than derived from the `hive.metastore.event.db.listener.timetolive` property. If notifications are not consumed in a timely manner they may be purged from the table before they can be actioned by the replication service.
@@ -80,17 +81,13 @@ At this time it is not possible to replicate to tables on EMR that have a path l
 **HiveConf Configuration for ExIm on S3**
 
 ```
-  <property>
-    <name>hive.exim.uri.scheme.whitelist</name>
-    <value>hdfs,s3a</value>
-  </property>
+<property>
+  <name>hive.exim.uri.scheme.whitelist</name>
+  <value>hdfs,s3a</value>
+</property>
 ```
 
  
 
 Save
-
- 
-
- 
 

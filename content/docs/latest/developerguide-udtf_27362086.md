@@ -1,14 +1,15 @@
 ---
+
 title: "Apache Hive : DeveloperGuide UDTF"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : DeveloperGuide UDTF
 
 # Writing UDTF's
 
 * [Writing UDTF's]({{< ref "#writing-udtfs" >}})
-	+ [GenericUDTF Interface]({{< ref "#genericudtf-interface" >}})
+  + [GenericUDTF Interface]({{< ref "#genericudtf-interface" >}})
 
 ## GenericUDTF Interface
 
@@ -138,8 +139,4 @@ public abstract class GenericUDTF {
 }
 
 ```
-
- 
-
- 
 

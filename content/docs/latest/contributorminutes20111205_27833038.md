@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : ContributorMinutes20111205"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : ContributorMinutes20111205
 
@@ -22,8 +23,4 @@ A patch has been committed to make Hive build and run against Hadoop 0.23, and C
 Ashutosh asked about a registry of available Hive storage handlers, and John referenced the Introduction section in <https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>.
 
 Code walkthroughs were carried out for HIVE-2616 and HIVE-2589.
-
- 
-
- 
 

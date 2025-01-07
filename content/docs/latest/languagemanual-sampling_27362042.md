@@ -1,13 +1,14 @@
 ---
+
 title: "Apache Hive : LanguageManual Sampling"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Sampling
 
 * [Sampling Syntax]({{< ref "#sampling-syntax" >}})
-	+ [Sampling Bucketized Table]({{< ref "#sampling-bucketized-table" >}})
-	+ [Block Sampling]({{< ref "#block-sampling" >}})
+  + [Sampling Bucketized Table]({{< ref "#sampling-bucketized-table" >}})
+  + [Block Sampling]({{< ref "#block-sampling" >}})
 
 ## Sampling Syntax
 
@@ -119,8 +120,4 @@ For example, the following query will take the first 10 rows from each input spl
 SELECT * FROM source TABLESAMPLE(10 ROWS);
 
 ```
-
- 
-
- 
 

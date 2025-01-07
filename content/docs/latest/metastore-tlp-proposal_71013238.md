@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Metastore TLP Proposal"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Metastore TLP Proposal
 
@@ -43,7 +44,7 @@ Moving the code from Hive into a new project is not straightforward and will tak
 
 1. A new TLP is established.  As mentioned above, any existing Hive PMC members will be welcome to join the PMC, and any existing Hive committers will be granted committership in the new project.
 2. Hive begins the process of detangling the metastore code inside the Hive project.  This will be done inside Hive to avoid a time where the code is in both Hive and the new project that would require double patching of any new features or bugs.  
-In order to enable the new project to begin adding layers around the core metastore and make releases, Hive can make source-only releases of only the metastore code during this interim period, similar to how the storage-api is released now.  The new project can then depend on those releases.
+   In order to enable the new project to begin adding layers around the core metastore and make releases, Hive can make source-only releases of only the metastore code during this interim period, similar to how the storage-api is released now.  The new project can then depend on those releases.
 3. Once the detangling is complete and Hive is satisfied that the result works, the code will be moved from Hive to the new project.
 
 There are many technical questions of how to separate out the code.  These mainly center around which pieces of code should be moved into the new project, and whether the new project continues to depend on Hive’s storage-api (as ORC does today) or whether it copies any code that both it and Hive require (such as parts of the shim layer) in order to avoid any Hive dependencies.  Also there are places where metastore "calls back" into QL via reflection (e.g. partition expression evaluation).  We will need to determine how to continue this without pulling a dependency on all of Hive into the new project.  Discussions and decisions on this will happen throughout the process via the normal methods.
@@ -62,8 +63,4 @@ The following have been suggested as a name for this project:
 * ZCatalog
 
  
-
- 
-
- 
 

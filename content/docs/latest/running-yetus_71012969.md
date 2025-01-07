@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Running Yetus"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Running Yetus
 
@@ -41,8 +42,4 @@ Then run the checks with the following command:
 ```
 ./dev-support/test-patch.sh ~/Downloads/HIVE-16345.2.patch
 ```
-
- 
-
- 
 

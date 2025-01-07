@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HivePlugins"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HivePlugins
 
@@ -95,8 +96,4 @@ CREATE FUNCTION myfunc AS 'myclass' USING JAR 'hdfs:///path/to/jar';
 ```
 
 This will add the jar to the classpath as if ADD JAR had been called on that jar. 
-
- 
-
- 
 

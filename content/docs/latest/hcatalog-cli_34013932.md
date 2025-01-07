@@ -1,28 +1,29 @@
 ---
+
 title: "Apache Hive : HCatalog CLI"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog CLI
 
 # Command Line Interface
 
 * [Command Line Interface]({{< ref "#command-line-interface" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
-		- [Owner Permissions]({{< ref "#owner-permissions" >}})
-		- [Hive CLI]({{< ref "#hive-cli" >}})
-	+ [HCatalog DDL]({{< ref "#hcatalog-ddl" >}})
-		- [Create/Drop/Alter Table]({{< ref "#createdropalter-table" >}})
-		- [Create/Drop/Alter View]({{< ref "#createdropalter-view" >}})
-		- [Show/Describe]({{< ref "#showdescribe" >}})
-		- [Create/Drop Index]({{< ref "#createdrop-index" >}})
-		- [Create/Drop Function]({{< ref "#createdrop-function" >}})
-		- ["dfs" Command and "set" Command]({{< ref "#dfs-set-cmd" >}})
-		- [Other Commands]({{< ref "#other-commands" >}})
-	+ [CLI Errors]({{< ref "#cli-errors" >}})
-		- [Authentication]({{< ref "#authentication" >}})
-		- [Error Log]({{< ref "#error-log" >}})
+  + [Set Up]({{< ref "#set-up" >}})
+  + [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
+    - [Owner Permissions]({{< ref "#owner-permissions" >}})
+    - [Hive CLI]({{< ref "#hive-cli" >}})
+  + [HCatalog DDL]({{< ref "#hcatalog-ddl" >}})
+    - [Create/Drop/Alter Table]({{< ref "#createdropalter-table" >}})
+    - [Create/Drop/Alter View]({{< ref "#createdropalter-view" >}})
+    - [Show/Describe]({{< ref "#showdescribe" >}})
+    - [Create/Drop Index]({{< ref "#createdrop-index" >}})
+    - [Create/Drop Function]({{< ref "#createdrop-function" >}})
+    - ["dfs" Command and "set" Command]({{< ref "#dfs-set-cmd" >}})
+    - [Other Commands]({{< ref "#other-commands" >}})
+  + [CLI Errors]({{< ref "#cli-errors" >}})
+    - [Authentication]({{< ref "#authentication" >}})
+    - [Error Log]({{< ref "#error-log" >}})
 
 ## Set Up
 
@@ -34,14 +35,14 @@ If you are using BigTop's rpms or debs you can invoke the CLI by doing `/usr/bin
 
 The HCatalog CLI supports these command line options:
 
-| Option | Usage | Description |
-| --- | --- | --- |
-| **-g** | `hcat -g mygroup ...` | Tells HCatalog that the table which needs to be created must have group "mygroup". |
-| **-p** | `hcat -p rwxr-xr-x ...` | Tells HCatalog that the table which needs to be created must have permissions "rwxr-xr-x". |
-| **-f** | `hcat -f myscript.hcatalog ...` | Tells HCatalog that myscript.hcatalog is a file containing DDL commands to execute. |
-| **-e** | `hcat -e 'create table mytable(a int);' ...` | Tells HCatalog to treat the following string as a DDL command and execute it. |
-| **-D** | `hcat -D`*key*`=`*value* `...` | Passes the key-value pair to HCatalog as a Java System Property. |
-|   | `hcat` | Prints a usage message. |
+| Option |                    Usage                     |                                        Description                                         |
+|--------|----------------------------------------------|--------------------------------------------------------------------------------------------|
+| **-g** | `hcat -g mygroup ...`                        | Tells HCatalog that the table which needs to be created must have group "mygroup".         |
+| **-p** | `hcat -p rwxr-xr-x ...`                      | Tells HCatalog that the table which needs to be created must have permissions "rwxr-xr-x". |
+| **-f** | `hcat -f myscript.hcatalog ...`              | Tells HCatalog that myscript.hcatalog is a file containing DDL commands to execute.        |
+| **-e** | `hcat -e 'create table mytable(a int);' ...` | Tells HCatalog to treat the following string as a DDL command and execute it.              |
+| **-D** | `hcat -D`*key*`=`*value* `...`               | Passes the key-value pair to HCatalog as a Java System Property.                           |
+|        | `hcat`                                       | Prints a usage message.                                                                    |
 
 Note the following:
 
@@ -67,7 +68,7 @@ Many `hcat` commands can be issued as `hive` commands, including all HCatalog DD
 * "`hcat -g`" and "`hcat -p`" for table group and permission settings are only available in the HCatalog CLI.
 * `hcat` uses the `-p` flag for permissions but `hive` uses it to specify a port number.
 * `hcat` uses the `-D` flag *without a space* to define key=value pairs but `hive` uses `-d` or `--define` with a space (also `--hivevar`).  
- For example, "`hcat -DA=B`" versus "`hive -d A=B`".
+  For example, "`hcat -DA=B`" versus "`hive -d A=B`".
 * `hcat` without any flags prints a help message but `hive` uses the `-H` flag or `--help`.
 
 The Hive CLI is documented [here]({{< ref "languagemanual-cli_27362033" >}}).
@@ -168,19 +169,13 @@ If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metast
 
 If other errors occur while using the HCatalog CLI, more detailed messages are written to /tmp/*<username>*/hive.log.
 
-  
-
 **Navigation Links**
 Previous: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter_34013921" >}})  
- Next: [Storage Formats]({{< ref "hcatalog-storageformats_34013997" >}})
+Next: [Storage Formats]({{< ref "hcatalog-storageformats_34013997" >}})
 
 Hive command line interface: [Hive CLI]({{< ref "languagemanual-cli_27362033" >}})  
- Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl_27362034" >}})  
- WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl_34016001" >}})
+Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl_27362034" >}})  
+WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl_34016001" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

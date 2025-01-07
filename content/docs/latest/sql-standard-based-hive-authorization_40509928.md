@@ -1,33 +1,32 @@
 ---
+
 title: "Apache Hive : SQL Standard Based Hive Authorization"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : SQL Standard Based Hive Authorization
 
-  
-
 * [Status of Hive Authorization before Hive 0.13]({{< ref "#status-of-hive-authorization-before-hive-013" >}})
 * [SQL Standards Based Hive Authorization (New in Hive 0.13)]({{< ref "#sql-standards-based-hive-authorization--new-in-hive-0-13-" >}})
-	+ [Restrictions on Hive Commands and Statements]({{< ref "#restrictions-on-hive-commands-and-statements" >}})
-	+ [Privileges]({{< ref "#privileges" >}})
-	+ [Objects]({{< ref "#objects" >}})
-	+ [Object Ownership]({{< ref "#object-ownership" >}})
-	+ [Users and Roles]({{< ref "#users-and-roles" >}})
-		- [Names of Users and Roles]({{< ref "#names-of-users-and-roles" >}})
-		- [Role Management Commands]({{< ref "#role-management-commands" >}})
-	+ [Managing Object Privileges]({{< ref "#managing-object-privileges" >}})
-		- [Object Privilege Commands]({{< ref "#object-privilege-commands" >}})
-		- [Examples of Managing Object Privileges]({{< ref "#examples-of-managing-object-privileges" >}})
-	+ [Privileges Required for Hive Operations]({{< ref "#privileges-required-for-hive-operations" >}})
-	+ [Configuration]({{< ref "#configuration" >}})
-		- [For Hive 0.13.x]({{< ref "#for-hive-013x" >}})
-		- [For Hive 0.14 and Newer]({{< ref "#for-hive-014-and-newer" >}})
-	+ [Known Issues]({{< ref "#known-issues" >}})
-		- [Hive 0.13]({{< ref "#hive-013" >}})
-		- [Hive 0.13.1]({{< ref "#hive-0131" >}})
-	+ [References]({{< ref "#references" >}})
-	+ [Troubleshooting]({{< ref "#troubleshooting" >}})
+  + [Restrictions on Hive Commands and Statements]({{< ref "#restrictions-on-hive-commands-and-statements" >}})
+  + [Privileges]({{< ref "#privileges" >}})
+  + [Objects]({{< ref "#objects" >}})
+  + [Object Ownership]({{< ref "#object-ownership" >}})
+  + [Users and Roles]({{< ref "#users-and-roles" >}})
+    - [Names of Users and Roles]({{< ref "#names-of-users-and-roles" >}})
+    - [Role Management Commands]({{< ref "#role-management-commands" >}})
+  + [Managing Object Privileges]({{< ref "#managing-object-privileges" >}})
+    - [Object Privilege Commands]({{< ref "#object-privilege-commands" >}})
+    - [Examples of Managing Object Privileges]({{< ref "#examples-of-managing-object-privileges" >}})
+  + [Privileges Required for Hive Operations]({{< ref "#privileges-required-for-hive-operations" >}})
+  + [Configuration]({{< ref "#configuration" >}})
+    - [For Hive 0.13.x]({{< ref "#for-hive-013x" >}})
+    - [For Hive 0.14 and Newer]({{< ref "#for-hive-014-and-newer" >}})
+  + [Known Issues]({{< ref "#known-issues" >}})
+    - [Hive 0.13]({{< ref "#hive-013" >}})
+    - [Hive 0.13.1]({{< ref "#hive-0131" >}})
+  + [References]({{< ref "#references" >}})
+  + [Troubleshooting]({{< ref "#troubleshooting" >}})
 
 # Status of Hive Authorization before Hive 0.13
 
@@ -95,10 +94,10 @@ Privileges can be granted to users as well as roles.
 Users can belong to one or more roles.
 
 There are two roles with special meaning – **public** and **admin**.  
-All users belong to the **public** role. You use this role in your grant statement to grant a privilege to all users.  
-  
-When a user runs a Hive query or command, the privileges granted to the user and her "***current roles***" are checked. The current roles can be seen using the "`show current roles;`" command. All of the user's roles except for the **admin** role will be in the current roles by default, although you can use the "`set role`" command to set a specific role as the current role. See the command descriptions for details.  
-  
+All users belong to the **public** role. You use this role in your grant statement to grant a privilege to all users.
+
+When a user runs a Hive query or command, the privileges granted to the user and her "***current roles***" are checked. The current roles can be seen using the "`show current roles;`" command. All of the user's roles except for the **admin** role will be in the current roles by default, although you can use the "`set role`" command to set a specific role as the current role. See the command descriptions for details.
+
 Users who do the work of a database administrator are expected to be added to the **admin** role.   
 They have privileges for running additional commands such as "`create role`" and "`drop role`". They can also access objects that they haven’t been given explicit access to. However, a user who belongs to the **admin** role needs to run the "`set role`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
 
@@ -373,47 +372,47 @@ Y:  Privilege required.
 
 Y + G:  Privilege "WITH GRANT OPTION" required.
 
-| Action | Select | Insert | Update | Delete | Ownership | Admin | URI Privilege (RWX Permission + Ownership) |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| CREATE TABLE |  |  |  |  | Y (of database) |  | Y  (for create external table – the location) |
-| DROP TABLE |  |  |  |  | Y |  |  |
-| DESCRIBE TABLE | Y |  |  |  |  |  |  |
-| SHOW PARTITIONS | Y |  |  |  |  |  |  |
-| ALTER TABLE LOCATION |  |  |  |  | Y |  | Y (for new location) |
-| ALTER PARTITION LOCATION |  |  |  |  | Y |  | Y (for new partition location) |
-| ALTER TABLE ADD PARTITION |  | Y |  |  |  |  | Y (for partition location) |
-| ALTER TABLE DROP PARTITION |  |  |  | Y |  |  |  |
-| ALTER TABLE (all of them except the ones above) |  |  |  |  | Y |  |  |
-| TRUNCATE TABLE |  |  |  |  | Y |  |  |
-| CREATE VIEW | Y + G |  |  |  |  |  |  |
-| ALTER VIEW PROPERTIES |  |  |  |  | Y |  |  |
-| ALTER VIEW RENAME |  |  |  |  | Y |  |  |
-| DROP VIEW PROPERTIES |  |  |  |  | Y |  |  |
-| DROP VIEW |  |  |  |  | Y |  |  |
-| ANALYZE TABLE | Y | Y |  |  |  |  |  |
-| SHOW COLUMNS | Y |  |  |  |  |  |  |
-| SHOW TABLE STATUS | Y |  |  |  |  |  |  |
-| SHOW TABLE PROPERTIES | Y |  |  |  |  |  |  |
-| CREATE TABLE AS SELECT | Y (of input) |  |  |  | Y (of database) |  |  |
-| CREATE INDEX |  |  |  |  | Y (of table) |  |  |
-| DROP INDEX |  |  |  |  | Y |  |  |
-| ALTER INDEX REBUILD |  |  |  |  | Y |  |  |
-| ALTER INDEX PROPERTIES |  |  |  |  | Y |  |  |
-| SELECT | Y |  |  |  |  |  |  |
-| INSERT |  | Y |  | Y (for OVERWRITE) |  |  |  |
-| UPDATE |  |  | Y |  |  |  |  |
-| DELETE |  |  |  | Y |  |  |  |
-| LOAD |  | Y (output) |  | Y (output) |  |  | Y (input location) |
-| SHOW CREATE TABLE | Y+G |  |  |  |  |  |  |
-| CREATE FUNCTION |  |  |  |  |  | Y |  |
-| DROP FUNCTION |  |  |  |  |  | Y |  |
-| CREATE MACRO |  |  |  |  |  | Y |  |
-| DROP MACRO |  |  |  |  |  | Y |  |
-| MSCK (metastore check) |  |  |  |  |  | Y |  |
-| ALTER DATABASE |  |  |  |  |  | Y |  |
-| CREATE DATABASE |  |  |  |  |  |  | Y (if custom location specified) |
-| EXPLAIN | Y |  |  |  |  |  |  |
-| DROP DATABASE |  |  |  |  | Y |  |  |
+|                     Action                      |    Select    |   Insert   | Update |      Delete       |    Ownership    | Admin |  URI Privilege (RWX Permission + Ownership)   |
+|-------------------------------------------------|--------------|------------|--------|-------------------|-----------------|-------|-----------------------------------------------|
+| CREATE TABLE                                    |              |            |        |                   | Y (of database) |       | Y  (for create external table – the location) |
+| DROP TABLE                                      |              |            |        |                   | Y               |       |                                               |
+| DESCRIBE TABLE                                  | Y            |            |        |                   |                 |       |                                               |
+| SHOW PARTITIONS                                 | Y            |            |        |                   |                 |       |                                               |
+| ALTER TABLE LOCATION                            |              |            |        |                   | Y               |       | Y (for new location)                          |
+| ALTER PARTITION LOCATION                        |              |            |        |                   | Y               |       | Y (for new partition location)                |
+| ALTER TABLE ADD PARTITION                       |              | Y          |        |                   |                 |       | Y (for partition location)                    |
+| ALTER TABLE DROP PARTITION                      |              |            |        | Y                 |                 |       |                                               |
+| ALTER TABLE (all of them except the ones above) |              |            |        |                   | Y               |       |                                               |
+| TRUNCATE TABLE                                  |              |            |        |                   | Y               |       |                                               |
+| CREATE VIEW                                     | Y + G        |            |        |                   |                 |       |                                               |
+| ALTER VIEW PROPERTIES                           |              |            |        |                   | Y               |       |                                               |
+| ALTER VIEW RENAME                               |              |            |        |                   | Y               |       |                                               |
+| DROP VIEW PROPERTIES                            |              |            |        |                   | Y               |       |                                               |
+| DROP VIEW                                       |              |            |        |                   | Y               |       |                                               |
+| ANALYZE TABLE                                   | Y            | Y          |        |                   |                 |       |                                               |
+| SHOW COLUMNS                                    | Y            |            |        |                   |                 |       |                                               |
+| SHOW TABLE STATUS                               | Y            |            |        |                   |                 |       |                                               |
+| SHOW TABLE PROPERTIES                           | Y            |            |        |                   |                 |       |                                               |
+| CREATE TABLE AS SELECT                          | Y (of input) |            |        |                   | Y (of database) |       |                                               |
+| CREATE INDEX                                    |              |            |        |                   | Y (of table)    |       |                                               |
+| DROP INDEX                                      |              |            |        |                   | Y               |       |                                               |
+| ALTER INDEX REBUILD                             |              |            |        |                   | Y               |       |                                               |
+| ALTER INDEX PROPERTIES                          |              |            |        |                   | Y               |       |                                               |
+| SELECT                                          | Y            |            |        |                   |                 |       |                                               |
+| INSERT                                          |              | Y          |        | Y (for OVERWRITE) |                 |       |                                               |
+| UPDATE                                          |              |            | Y      |                   |                 |       |                                               |
+| DELETE                                          |              |            |        | Y                 |                 |       |                                               |
+| LOAD                                            |              | Y (output) |        | Y (output)        |                 |       | Y (input location)                            |
+| SHOW CREATE TABLE                               | Y+G          |            |        |                   |                 |       |                                               |
+| CREATE FUNCTION                                 |              |            |        |                   |                 | Y     |                                               |
+| DROP FUNCTION                                   |              |            |        |                   |                 | Y     |                                               |
+| CREATE MACRO                                    |              |            |        |                   |                 | Y     |                                               |
+| DROP MACRO                                      |              |            |        |                   |                 | Y     |                                               |
+| MSCK (metastore check)                          |              |            |        |                   |                 | Y     |                                               |
+| ALTER DATABASE                                  |              |            |        |                   |                 | Y     |                                               |
+| CREATE DATABASE                                 |              |            |        |                   |                 |       | Y (if custom location specified)              |
+| EXPLAIN                                         | Y            |            |        |                   |                 |       |                                               |
+| DROP DATABASE                                   |              |            |        |                   | Y               |       |                                               |
 
 Version Information
 
@@ -433,8 +432,11 @@ As of Hive 3.0.0 ([HIVE-12408](https://issues.apache.org/jira/browse/HIVE-12408)
 * -hiveconf hive.security.authorization.manager=org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdHiveAuthorizerFactory
 
 * -hiveconf hive.security.authorization.enabled=true
+
 * -hiveconf hive.security.authenticator.manager=org.apache.hadoop.hive.ql.security.SessionStateUserAuthenticator
+
 * -hiveconf hive.metastore.uris=' '
+
 ### For Hive 0.14 and Newer
 
 **Set the following in hive-site.xml:**
@@ -442,7 +444,7 @@ As of Hive 3.0.0 ([HIVE-12408](https://issues.apache.org/jira/browse/HIVE-12408)
 * **hive.server2.enable.doAs** to false.
 * **hive.users.in.admin.role** to the list of comma-separated users who need to be added to **admin** role. Note that a user who belongs to the **admin** role needs to run the "`[set role]({{< ref "#set-role" >}})`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
 * Add org.apache.hadoop.hive.ql.security.authorization.MetaStoreAuthzAPIAuthorizerEmbedOnly to **hive.security.metastore.authorization.manager**. (It takes a comma separated list, so you can add it along with StorageBasedAuthorization parameter, if you want to enable that as well).  
-This setting disallows any of the authorization api calls to be invoked in a remote metastore. HiveServer2 can be configured to use embedded metastore, and that will allow it to invoke metastore authorization api. Hive cli and any other remote metastore users would be denied authorization when they try to make authorization api calls. This restricts the authorization api to privileged HiveServer2 process. You should also ensure that the metastore rdbms access is restricted to the metastore server and hiverserver2.
+  This setting disallows any of the authorization api calls to be invoked in a remote metastore. HiveServer2 can be configured to use embedded metastore, and that will allow it to invoke metastore authorization api. Hive cli and any other remote metastore users would be denied authorization when they try to make authorization api calls. This restricts the authorization api to privileged HiveServer2 process. You should also ensure that the metastore rdbms access is restricted to the metastore server and hiverserver2.
 * **hive.security.authorization.manager** to org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory. This will ensure that any table or views created by hive-cli have default privileges granted for the owner.
 
 **Set the following in hiveserver2-site.xml:**
@@ -450,8 +452,11 @@ This setting disallows any of the authorization api calls to be invoked in a rem
 * hive.security.authorization.manager=org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdHiveAuthorizerFactory
 
 * hive.security.authorization.enabled=true
+
 * hive.security.authenticator.manager=org.apache.hadoop.hive.ql.security.SessionStateUserAuthenticator
+
 * hive.metastore.uris=' '
+
 ## Known Issues
 
 ### Hive 0.13
@@ -489,9 +494,4 @@ For information on the SQL standard for security see:
 
 ![](images/icons/bullet_blue.gif)
 [attachments/40509928/42696874-txt](/attachments/40509928/42696874-txt) (text/plain)
-   
-
- 
-
- 
 

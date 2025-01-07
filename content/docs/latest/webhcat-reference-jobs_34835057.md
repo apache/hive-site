@@ -1,24 +1,25 @@
 ---
+
 title: "Apache Hive : WebHCat Reference Jobs"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference Jobs
 
 # List JobIDs — GET jobs
 
 * [List JobIDs — GET jobs]({{< ref "#list-jobids--get-jobs" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Examples]({{< ref "#examples" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [Curl Command (showall)]({{< ref "#curl-command-showall" >}})
-		- [JSON Output (showall)]({{< ref "#json-output-showall" >}})
-		- [Curl Command (fields)]({{< ref "#curl-command-fields" >}})
-		- [JSON Output (fields)]({{< ref "#json-output-fields" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Examples]({{< ref "#examples" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
+    - [Curl Command (showall)]({{< ref "#curl-command-showall" >}})
+    - [JSON Output (showall)]({{< ref "#json-output-showall" >}})
+    - [Curl Command (fields)]({{< ref "#curl-command-fields" >}})
+    - [JSON Output (fields)]({{< ref "#json-output-fields" >}})
 
 ## Description
 
@@ -35,12 +36,12 @@ Version: Hive 0.12.0 and later
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **fields** | If **fields** set to "*", the request will return full details of the job. If **fields** is missing, will only return the job ID. Currently the value can only be "*", other values are not allowed and will throw exception. | Optional | None |
-| **showall** | If **showall** is set to "true", the request will return all jobs the user has permission to view, not only the jobs belonging to the user. | Optional | false |
-| **jobid** | If **jobid** is present, only the records whose job ID is lexicographically greater than **jobid** are returned. For example, if **jobid** = "job\_201312091733\_0001", the jobs whose job ID is greater than "job\_201312091733\_0001" are returned. The number of records returned depends on the value of **numrecords**.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | None |
-| **numrecords** | If the **jobid** and **numrecords** parameters are present, the top *numrecords* records appearing after **jobid** will be returned after sorting the job ID list lexicographically. If the **jobid** parameter is missing and **numrecords** is present, the top *numrecords* will be returned after lexicographically sorting the job ID list. If the **jobid** parameter is present and **numrecords** is missing, all the records whose job ID is greater than **jobid** are returned.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | All |
+|      Name      |                                                                                                                                                                                                                                                                                                           Description                                                                                                                                                                                                                                                                                                           |        Required?         | Default |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|---------|
+| **fields**     | If **fields** set to "*", the request will return full details of the job. If **fields** is missing, will only return the job ID. Currently the value can only be "*", other values are not allowed and will throw exception.                                                                                                                                                                                                                                                                                                                                                                                                   | Optional                 | None    |
+| **showall**    | If **showall** is set to "true", the request will return all jobs the user has permission to view, not only the jobs belonging to the user.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Optional                 | false   |
+| **jobid**      | If **jobid** is present, only the records whose job ID is lexicographically greater than **jobid** are returned. For example, if **jobid** = "job\_201312091733\_0001", the jobs whose job ID is greater than "job\_201312091733\_0001" are returned. The number of records returned depends on the value of **numrecords**.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).)                                                                                                                                                               | Optional in Hive 0.13.0+ | None    |
+| **numrecords** | If the **jobid** and **numrecords** parameters are present, the top *numrecords* records appearing after **jobid** will be returned after sorting the job ID list lexicographically. If the **jobid** parameter is missing and **numrecords** is present, the top *numrecords* will be returned after lexicographically sorting the job ID list. If the **jobid** parameter is present and **numrecords** is missing, all the records whose job ID is greater than **jobid** are returned.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | All     |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
 
@@ -50,9 +51,9 @@ Returns an array of jobs either belonging to the user, or which the user has per
 
 Every element inside the array includes:
 
-| Name | Description |
-| --- | --- |
-| **id** | Job ID. |
+|    Name    |                                                                                         Description                                                                                          |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **id**     | Job ID.                                                                                                                                                                                      |
 | **detail** | Job details if **showall** is set to "true"; otherwise "null". For more information about what details it contains, check `[GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})`. |
 
 ## Examples
@@ -156,13 +157,9 @@ In release 0.12.0 the first line of JSON output for the fields parameter gives t
 
 **Navigation Links**
 Previous: [DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob_34017204" >}})  
- Next: [GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})
+Next: [GET jobs/:jobid]({{< ref "webhcat-reference-job_34835065" >}})
 
 General: [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
 
 Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids_34017187" >}})
-
- 
-
- 
 

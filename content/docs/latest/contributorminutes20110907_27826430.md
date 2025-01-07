@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : ContributorMinutes20110907"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : ContributorMinutes20110907
 
@@ -30,8 +31,4 @@ As part of releasing 0.8, the Hive community should publish a proposed date for 
 A question was posted to the meetup page by Amareshwari. She wanted to know if anyone was planning on porting Hive to Hadoop 0.23, once that version was out. Alan said that Hortonworks would like to contribute to this, and is interested in collaborating with others on it.
 
 Amareshwari posted a second question on moving Hive from the old mapred interface to MapReduce to the newer mapreduce. There was consensus amongst the committers present that it was better to stay on mapred for now since it was guaranteed to be stable even in 0.23, while mapreduce is evolving.
-
- 
-
- 
 

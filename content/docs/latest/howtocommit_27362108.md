@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : HowToCommit"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HowToCommit
 
 # Guide for Hive Committers
 
 * [Guide for Hive Committers]({{< ref "#guide-for-hive-committers" >}})
-	+ [New committers]({{< ref "#new-committers" >}})
-	+ [Review]({{< ref "#review" >}})
-	+ [Reject]({{< ref "#reject" >}})
-	+ [PreCommit runs, and committing patches]({{< ref "#precommit-runs-and-committing-patches" >}})
-	+ [Commit]({{< ref "#commit" >}})
-		- [Committing Documentation]({{< ref "#committing-documentation" >}})
-	+ [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})
-	+ [Dialog]({{< ref "#dialog" >}})
+  + [New committers]({{< ref "#new-committers" >}})
+  + [Review]({{< ref "#review" >}})
+  + [Reject]({{< ref "#reject" >}})
+  + [PreCommit runs, and committing patches]({{< ref "#precommit-runs-and-committing-patches" >}})
+  + [Commit]({{< ref "#commit" >}})
+    - [Committing Documentation]({{< ref "#committing-documentation" >}})
+  + [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})
+  + [Dialog]({{< ref "#dialog" >}})
 
 This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "/community/becomingcommitter" >}}))
 
@@ -56,11 +57,10 @@ If a commit introduces new test failures, the preferred process is to revert the
 When you commit/merge a Pull Request, please:
 
 1. Ensure that the Pull Request has a +1 vote, and that **24 hours have elapsed since the first +1 vote was cast** on the Pull Request. Note that this rule appears in the Hive Bylaws. Do not ignore it.
-2. Include the Jira issue id in the commit message, along with a short description of the change and the name of the contributor. Be sure to get the issue id right, as this causes Jira to link to the change in Git/Github.   
-
-	1. if contributor is you then add the following suffix to commit message "(<you>, reviewed by <reviewer>)". Example: "HIVE-123. Add awesomesauce to the optimizer. (jvs, reviewed by Ashutosh Chauhan)"
-	2. if contributor is not you then add the following suffix to commit message "(<contributor> via <you>)". Example: "HIVE-123. Add awesomesauce to the optimizer. (Mike Brakestoner, reviewed by Ashutosh Chauhan)"
-		1. Additionally: "Co-authored-by: Ayush Saxena <ayushsaxena@[apache.org](http://apache.org)>" can be used to attribute any additional code contributors.
+2. Include the Jira issue id in the commit message, along with a short description of the change and the name of the contributor. Be sure to get the issue id right, as this causes Jira to link to the change in Git/Github.
+   1. if contributor is you then add the following suffix to commit message "(<you>, reviewed by <reviewer>)". Example: "HIVE-123. Add awesomesauce to the optimizer. (jvs, reviewed by Ashutosh Chauhan)"
+   2. if contributor is not you then add the following suffix to commit message "(<contributor> via <you>)". Example: "HIVE-123. Add awesomesauce to the optimizer. (Mike Brakestoner, reviewed by Ashutosh Chauhan)"
+      1. Additionally: "Co-authored-by: Ayush Saxena <ayushsaxena@[apache.org](http://apache.org)>" can be used to attribute any additional code contributors.
 3. Resolve the issue as fixed, thanking the contributor and the reviewers. **Always set the "Fix Version"** at this point, but please only set a single fix version, the earliest release in which the change will appear. However, if a patch is backported to a point release (such as 1.0.2) then multiple fix versions should be set so that the automated release notes can list the Jira issue for the point release as well as the primary release.
 
 #### Committing Documentation
@@ -83,8 +83,4 @@ Committers/Contributors can hang out in the #hive channel in Apache Slack worksp
 Note: Committers or individuals with Apache Id can directly join the #hive slack channel on Apache Workspace, any other individual if interested should drop a mail to hive dev mailing list with his email id and any existing member of the #hive apache channel should be able to send him the invite to join the group.
 
 Instructions to add folks to ASF hive channel: <https://infra.apache.org/slack.html>
-
- 
-
- 
 

@@ -1,20 +1,21 @@
 ---
+
 title: "Apache Hive : HCatalog Authorization"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HCatalog Authorization
 
 # Storage Based Authorization
 
 * [Storage Based Authorization]({{< ref "#storage-based-authorization" >}})
-	+ [Default Authorization Model of Hive]({{< ref "#default-authorization-model-of-hive" >}})
-	+ [Storage-System Based Authorization Model]({{< ref "#storage-system-based-authorization-model" >}})
-		- [Minimum Permissions]({{< ref "#minimum-permissions" >}})
-		- [Unused DDL for Permissions]({{< ref "#unused-ddl-for-permissions" >}})
-	+ [Configuring Storage-System Based Authorization]({{< ref "#configuring-storage-system-based-authorization" >}})
-	+ [Creating New Tables or Databases]({{< ref "#creating-new-tables-or-databases" >}})
-	+ [Known Issues]({{< ref "#known-issues" >}})
+  + [Default Authorization Model of Hive]({{< ref "#default-authorization-model-of-hive" >}})
+  + [Storage-System Based Authorization Model]({{< ref "#storage-system-based-authorization-model" >}})
+    - [Minimum Permissions]({{< ref "#minimum-permissions" >}})
+    - [Unused DDL for Permissions]({{< ref "#unused-ddl-for-permissions" >}})
+  + [Configuring Storage-System Based Authorization]({{< ref "#configuring-storage-system-based-authorization" >}})
+  + [Creating New Tables or Databases]({{< ref "#creating-new-tables-or-databases" >}})
+  + [Known Issues]({{< ref "#known-issues" >}})
 
 ## Default Authorization Model of Hive
 
@@ -65,17 +66,17 @@ The file system’s logic for determining if a user has permission on the direct
 
 The following table shows the minimum permissions required for Hive operations under this authorization model:
 
-| Operation | Database Read Access | Database Write Access | Table Read Access | Table Write Access |
-| --- | --- | --- | --- | --- |
-| LOAD |   |   |   | X |
-| EXPORT |   |   | X |   |
-| IMPORT |   |   |   | X |
-| CREATE TABLE |   | X |   |   |
-| CREATE TABLE AS SELECT |   | X | X  source table |   |
-| DROP TABLE |   | X |   |   |
-| SELECT |   |   | X |   |
-| ALTER TABLE |   |   |   | X |
-| SHOW TABLES | X |   |   |   |
+|       Operation        | Database Read Access | Database Write Access | Table Read Access | Table Write Access |
+|------------------------|----------------------|-----------------------|-------------------|--------------------|
+| LOAD                   |                      |                       |                   | X                  |
+| EXPORT                 |                      |                       | X                 |                    |
+| IMPORT                 |                      |                       |                   | X                  |
+| CREATE TABLE           |                      | X                     |                   |                    |
+| CREATE TABLE AS SELECT |                      | X                     | X  source table   |                    |
+| DROP TABLE             |                      | X                     |                   |                    |
+| SELECT                 |                      |                       | X                 |                    |
+| ALTER TABLE            |                      |                       |                   | X                  |
+| SHOW TABLES            | X                    |                       |                   |                    |
 
 **Caution:** Hive's current implementation of this authorization model does not prevent malicious users from doing bad things. See the [Known Issues]({{< ref "#known-issues" >}}) section below.
 
@@ -139,8 +140,4 @@ Previous: [Notification]({{< ref "hcatalog-notification_34014558" >}})
 Hive documents: [Authorization]({{< ref "languagemanual-authorization_27362032" >}}) and [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server_45876440" >}})
 
 General: [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

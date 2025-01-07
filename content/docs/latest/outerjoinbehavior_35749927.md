@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : OuterJoinBehavior"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : OuterJoinBehavior
 
 # Hive Outer Join Behavior
 
 * [Hive Outer Join Behavior]({{< ref "#hive-outer-join-behavior" >}})
-	+ [Definitions]({{< ref "#definitions" >}})
-	+ [Predicate Pushdown Rules]({{< ref "#predicate-pushdown-rules" >}})
-		- [Hive Implementation]({{< ref "#hive-implementation" >}})
-	+ [Examples]({{< ref "#examples" >}})
-		- [Case J1: Join Predicate on Preserved Row Table]({{< ref "#case-j1-join-predicate-on-preserved-row-table" >}})
-		- [Case J2: Join Predicate on Null Supplying Table]({{< ref "#case-j2-join-predicate-on-null-supplying-table" >}})
-		- [Case W1: Where Predicate on Preserved Row Table]({{< ref "#case-w1-where-predicate-on-preserved-row-table" >}})
-		- [Case W2: Where Predicate on Null Supplying Table]({{< ref "#case-w2-where-predicate-on-null-supplying-table" >}})
+  + [Definitions]({{< ref "#definitions" >}})
+  + [Predicate Pushdown Rules]({{< ref "#predicate-pushdown-rules" >}})
+    - [Hive Implementation]({{< ref "#hive-implementation" >}})
+  + [Examples]({{< ref "#examples" >}})
+    - [Case J1: Join Predicate on Preserved Row Table]({{< ref "#case-j1-join-predicate-on-preserved-row-table" >}})
+    - [Case J2: Join Predicate on Null Supplying Table]({{< ref "#case-j2-join-predicate-on-null-supplying-table" >}})
+    - [Case W1: Where Predicate on Preserved Row Table]({{< ref "#case-w1-where-predicate-on-preserved-row-table" >}})
+    - [Case W2: Where Predicate on Null Supplying Table]({{< ref "#case-w2-where-predicate-on-null-supplying-table" >}})
 
 This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html). The original HTML document is attached to the [Hive Design Docs]({{< ref "designdocs_27362075" >}}) and can be [downloaded here](https://cwiki.apache.org/confluence/download/attachments/27362075/OuterJoinBehavior.html).
 
@@ -35,10 +36,10 @@ The logic can be summarized by these two rules:
 
 This captured in the following table:
 
-|   |  Preserved Row Table  |  Null Supplying Table  |
-| --- | --- | --- |
-|  Join  Predicate  |  Case J1:  Not Pushed  |  Case J2:  Pushed  |
-|  Where  Predicate  |  Case W1:  Pushed  |  Case W2:  Not Pushed  |
+|                  | Preserved Row Table  | Null Supplying Table |
+|------------------|----------------------|----------------------|
+| Join  Predicate  | Case J1:  Not Pushed | Case J2:  Pushed     |
+| Where  Predicate | Case W1:  Pushed     | Case W2:  Not Pushed |
 
 See [Examples]({{< ref "#examples" >}}) below for illustrations of cases J1, J2, W1, and W2.
 
@@ -46,7 +47,7 @@ See [Examples]({{< ref "#examples" >}}) below for illustrations of cases J1, J2,
 
 Hive enforces the rules by these methods in the SemanticAnalyzer and JoinPPD classes:
 
-**Rule 1:** During **QBJoinTree** construction in Plan Gen, the `parseJoinCondition()` logic applies this rule.  
+**Rule 1:** During **QBJoinTree** construction in Plan Gen, the `parseJoinCondition()` logic applies this rule.
 
 **Rule 2:** During **JoinPPD** (Join Predicate PushDown) the `getQualifiedAliases()` logic applies this rule.
 
@@ -310,8 +311,4 @@ STAGE PLANS:
       limit: -1
 
 ```
-
- 
-
- 
 

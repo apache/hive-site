@@ -1,28 +1,29 @@
 ---
+
 title: "Apache Hive : Top K Stats"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Top K Stats
 
 # Column Level Top K Statistics
 
 * [Column Level Top K Statistics]({{< ref "#column-level-top-k-statistics" >}})
-	+ [Scope]({{< ref "#scope" >}})
-	+ [Implementation]({{< ref "#implementation" >}})
-	+ [Usage]({{< ref "#usage" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Newly Created Tables]({{< ref "#newly-created-tables" >}})
-		- [Existing Tables]({{< ref "#existing-tables" >}})
-	+ [Current Status (JIRA)]({{< ref "#current-status-jira" >}})
+  + [Scope]({{< ref "#scope" >}})
+  + [Implementation]({{< ref "#implementation" >}})
+  + [Usage]({{< ref "#usage" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Newly Created Tables]({{< ref "#newly-created-tables" >}})
+    - [Existing Tables]({{< ref "#existing-tables" >}})
+  + [Current Status (JIRA)]({{< ref "#current-status-jira" >}})
 
 This document is an addition to [Statistics in Hive](https://cwiki.apache.org/confluence/display/Hive/StatsDev). It describes the support of collecting column level top K values for Hive tables (see [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421)).
 
 ## Scope
 
 In addition to the partition statistics, column level top K values can also be estimated for Hive tables.  
- The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify [skew](https://cwiki.apache.org/confluence/display/Hive/ListBucketing). This works for both newly created and existing tables.  
- The algorithm for computing top K is based on this paper: [Efficient Computation of Frequent and Top-k Elements in Data Streams](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.9563&rep=rep1&type=pdf).
+The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify [skew](https://cwiki.apache.org/confluence/display/Hive/ListBucketing). This works for both newly created and existing tables.  
+The algorithm for computing top K is based on this paper: [Efficient Computation of Frequent and Top-k Elements in Data Streams](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.9563&rep=rep1&type=pdf).
 
 ## Implementation
 
@@ -191,8 +192,4 @@ Top K works the same way for ANALYZE commands as for INSERT commands.
 ## Current Status (JIRA)
 
 See [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421).
-
- 
-
- 
 

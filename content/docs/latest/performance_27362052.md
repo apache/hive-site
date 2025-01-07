@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Performance"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Performance
 
@@ -23,8 +24,4 @@ Here are some JIRA issues about benchmarks for Hive:
  
 
  
-
- 
-
- 
 

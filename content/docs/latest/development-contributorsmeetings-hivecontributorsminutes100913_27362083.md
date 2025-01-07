@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913
 
@@ -20,8 +21,4 @@ Next, [HIVE-1609](https://issues.apache.org/jira/browse/HIVE-1609) (partition fi
 Finally, [HIVE-1476](https://issues.apache.org/jira/browse/HIVE-1476) (metastore creating files as service user) was discussed. It was agreed that the approach in the proposed patch (performing HDFS operations on the metastore client side) was a stopgap that we don't really want to include in Hive. Instead, the correct long-term solution being developed by Todd Lipcon is to upgrade the Thrift version used by Hive to a recent one containing his SASL support, and then add impersonation support to the metastore server. Since the Howl team's schedule does not allow them to wait for that work to complete and get tested, they will keep the [HIVE-1476](https://issues.apache.org/jira/browse/HIVE-1476) patch privately applied within their own branch of Hive; it will not be committed on Hive trunk. Once they are able to move over to the long-term solution, the stopgap can be discarded. (In the meantime, we need to work together to minimize the merge-to-branch impact as the metastore code continues to change on trunk.)
 
 The October meetup will be at Facebook HQ in Palo Alto.
-
- 
-
- 
 

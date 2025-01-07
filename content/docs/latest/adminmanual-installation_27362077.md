@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : AdminManual Installation"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AdminManual Installation
 
 * [Installing Hive]({{< ref "#installing-hive" >}})
-	+ [Installing from a Tarball]({{< ref "#installing-from-a-tarball" >}})
-	+ [Installing from Source Code (Hive 1.2.0 and Later)]({{< ref "#installing-from-source-code-hive-120-and-later" >}})
-	+ [Installing from Source Code (Hive 0.13.0 and Later)]({{< ref "#installing-from-source-code-hive-0130-and-later" >}})
-	+ [Installing from Source Code (Hive 0.12.0 and Earlier)]({{< ref "#installing-from-source-code-hive-0120-and-earlier" >}})
+  + [Installing from a Tarball]({{< ref "#installing-from-a-tarball" >}})
+  + [Installing from Source Code (Hive 1.2.0 and Later)]({{< ref "#installing-from-source-code-hive-120-and-later" >}})
+  + [Installing from Source Code (Hive 0.13.0 and Later)]({{< ref "#installing-from-source-code-hive-0130-and-later" >}})
+  + [Installing from Source Code (Hive 0.12.0 and Earlier)]({{< ref "#installing-from-source-code-hive-0120-and-earlier" >}})
 * [Next Steps]({{< ref "#next-steps" >}})
-	+ [Hive CLI and Beeline CLI]({{< ref "#hive-cli-and-beeline-cli" >}})
-	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
+  + [Hive CLI and Beeline CLI]({{< ref "#hive-cli-and-beeline-cli" >}})
+  + [Hive Metastore]({{< ref "#hive-metastore" >}})
 * [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
-	+ [HCatalog]({{< ref "#hcatalog" >}})
-	+ [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
+  + [HCatalog]({{< ref "#hcatalog" >}})
+  + [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
 
 # Installing Hive
 
@@ -24,9 +25,9 @@ You can install a stable release of Hive by downloading and unpacking a tarball,
 Hive installation has these requirements:
 
 * Java 1.7 (preferred).  
-*Note:*  Hive versions [1.2](https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel) onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6, but prefer 1.7. Users are strongly advised to start moving to Java 1.8 (see [HIVE-8607](https://issues.apache.org/jira/browse/HIVE-8607)).
+  *Note:*  Hive versions [1.2](https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel) onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6, but prefer 1.7. Users are strongly advised to start moving to Java 1.8 (see [HIVE-8607](https://issues.apache.org/jira/browse/HIVE-8607)).
 * Hadoop 2.x (preferred), 1.x (not supported by Hive 2.0.0 onward).  
-Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.
+  Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.
 * Hive is commonly used in production Linux and Windows environment. Mac is a commonly used development environment. The instructions in this document are applicable to Linux and Mac. Using it on Windows would require slightly different steps.
 
 ## Installing from a Tarball
@@ -51,7 +52,7 @@ Set the environment variable `HIVE_HOME` to point to the installation director
 Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 ```
-  $ export PATH=$HIVE\_HOME/bin:$PATH
+$ export PATH=$HIVE\_HOME/bin:$PATH
 ```
 
 ## Installing from Source Code (Hive 1.2.0 and Later)
@@ -156,8 +157,4 @@ WebHCat is installed with Hive, starting with Hive release 0.11.0.
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the `hcatalog/sbin` directory.
 
 WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat_34015585" >}}).
-
- 
-
- 
 

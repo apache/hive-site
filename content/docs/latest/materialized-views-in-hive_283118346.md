@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Materialized views in Hive"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Materialized views in Hive
 
@@ -132,8 +133,4 @@ However, in some occasions it may be fine to accept stale data, e.g., if the mat
 | `SET hive.materializedview.rewriting.time.window=10min;` |
 
 The parameter value can be also overridden by a concrete materialized view just by setting it as a table property when the materialization is created.
-
- 
-
- 
 

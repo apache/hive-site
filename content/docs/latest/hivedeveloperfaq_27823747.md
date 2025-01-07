@@ -1,46 +1,47 @@
 ---
+
 title: "Apache Hive : HiveDeveloperFAQ"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveDeveloperFAQ
 
 # Hive Developer FAQ
 
 * [Hive Developer FAQ]({{< ref "#hive-developer-faq" >}})
-	+ [Developing]({{< ref "#developing" >}})
-		- [How do I move some files?]({{< ref "#how-do-i-move-some-files" >}})
-		- [How do I add a new MiniDriver test?]({{< ref "#how-do-i-add-a-new-minidriver-test" >}})
-	+ [Building]({{< ref "#building" >}})
-		- [Maven settings]({{< ref "#maven-settings" >}})
-		- [How to build all source?]({{< ref "#how-to-build-all-source" >}})
-		- [How do I import into Eclipse?]({{< ref "#how-do-i-import-into-eclipse" >}})
-		- [How to generate tarball?]({{< ref "#how-to-generate-tarball" >}})
-		- [How to generate protobuf code?]({{< ref "#how-to-generate-protobuf-code" >}})
-		- [How to generate Thrift code?]({{< ref "#how-to-generate-thrift-code" >}})
-		- [How to run findbugs after a change?]({{< ref "#how-to-run-findbugs-after-a-change?" >}})
-		- [How to compile ODBC?]({{< ref "#how-to-compile-odbc" >}})
-		- [How do I publish Hive artifacts to my local Maven repository?]({{< ref "#how-do-i-publish-hive-artifacts-to-my-local-maven-repository" >}})
-	+ [Testing]({{< ref "#testing" >}})
-		- [How do I run precommit tests on a patch?]({{< ref "#how-do-i-run-precommit-tests-on-a-patch" >}})
-		- [How do I rerun precommit tests over the same patch?]({{< ref "#how-do-i-rerun-precommit-tests-over-the-same-patch" >}})
-		- [How do I run a single test?]({{< ref "#how-do-i-run-a-single-test" >}})
-		- [How do I run all of the unit tests?]({{< ref "#how-do-i-run-all-of-the-unit-tests" >}})
-		- [How do I run all of the unit tests except for a certain few tests?]({{< ref "#how-do-i-run-all-of-the-unit-tests-except-for-a-certain-few-tests" >}})
-		- [How do I run the clientpositive/clientnegative unit tests?]({{< ref "#how-do-i-run-the-clientpositiveclientnegative-unit-tests" >}})
-		- [How do I run with Postgre/MySQL/Oracle?]({{< ref "#how-do-i-run-with-postgremysqloracle" >}})
-		- [How do I remote debug a qtest?]({{< ref "#how-do-i-remote-debug-a-qtest" >}})
-		- [How do I modify the init script when testing?]({{< ref "#how-do-i-modify-the-init-script-when-testing" >}})
-		- [How do I update the output of a CliDriver testcase?]({{< ref "#how-do-i-update-the-output-of-a-clidriver-testcase" >}})
-		- [How do I update the results of many test cases?]({{< ref "#how-do-i-update-the-results-of-many-test-cases" >}})
-		- [Where is the log output of a test?]({{< ref "#where-is-the-log-output-of-a-test" >}})
-		- [How do I add a test case?]({{< ref "#how-do-i-add-a-test-case" >}})
-		- [Why isn't the itests pom connected to the root pom?]({{< ref "#why-isnt-the-itests-pom-connected-to-the-root-pom" >}})
-		- [Why does a test fail with a NullPointerException in MiniDFSCluster?]({{< ref "#why-does-a-test-fail-with-a-nullpointerexception-in-minidfscluster" >}})
-		- [Why do Spark unit tests fail with a SecurityException?]({{< ref "#why-do-spark-unit-tests-fail-with-a-securityexception" >}})
-	+ [Debugging]({{< ref "#debugging" >}})
-		- [How do I debug into a single test in Eclipse?]({{< ref "#how-do-i-debug-into-a-single-test-in-eclipse?" >}})
-		- [How do I debug my queries in Hive?]({{< ref "#how-do-i-debug-my-queries-in-hive" >}})
+  + [Developing]({{< ref "#developing" >}})
+    - [How do I move some files?]({{< ref "#how-do-i-move-some-files" >}})
+    - [How do I add a new MiniDriver test?]({{< ref "#how-do-i-add-a-new-minidriver-test" >}})
+  + [Building]({{< ref "#building" >}})
+    - [Maven settings]({{< ref "#maven-settings" >}})
+    - [How to build all source?]({{< ref "#how-to-build-all-source" >}})
+    - [How do I import into Eclipse?]({{< ref "#how-do-i-import-into-eclipse" >}})
+    - [How to generate tarball?]({{< ref "#how-to-generate-tarball" >}})
+    - [How to generate protobuf code?]({{< ref "#how-to-generate-protobuf-code" >}})
+    - [How to generate Thrift code?]({{< ref "#how-to-generate-thrift-code" >}})
+    - [How to run findbugs after a change?]({{< ref "#how-to-run-findbugs-after-a-change?" >}})
+    - [How to compile ODBC?]({{< ref "#how-to-compile-odbc" >}})
+    - [How do I publish Hive artifacts to my local Maven repository?]({{< ref "#how-do-i-publish-hive-artifacts-to-my-local-maven-repository" >}})
+  + [Testing]({{< ref "#testing" >}})
+    - [How do I run precommit tests on a patch?]({{< ref "#how-do-i-run-precommit-tests-on-a-patch" >}})
+    - [How do I rerun precommit tests over the same patch?]({{< ref "#how-do-i-rerun-precommit-tests-over-the-same-patch" >}})
+    - [How do I run a single test?]({{< ref "#how-do-i-run-a-single-test" >}})
+    - [How do I run all of the unit tests?]({{< ref "#how-do-i-run-all-of-the-unit-tests" >}})
+    - [How do I run all of the unit tests except for a certain few tests?]({{< ref "#how-do-i-run-all-of-the-unit-tests-except-for-a-certain-few-tests" >}})
+    - [How do I run the clientpositive/clientnegative unit tests?]({{< ref "#how-do-i-run-the-clientpositiveclientnegative-unit-tests" >}})
+    - [How do I run with Postgre/MySQL/Oracle?]({{< ref "#how-do-i-run-with-postgremysqloracle" >}})
+    - [How do I remote debug a qtest?]({{< ref "#how-do-i-remote-debug-a-qtest" >}})
+    - [How do I modify the init script when testing?]({{< ref "#how-do-i-modify-the-init-script-when-testing" >}})
+    - [How do I update the output of a CliDriver testcase?]({{< ref "#how-do-i-update-the-output-of-a-clidriver-testcase" >}})
+    - [How do I update the results of many test cases?]({{< ref "#how-do-i-update-the-results-of-many-test-cases" >}})
+    - [Where is the log output of a test?]({{< ref "#where-is-the-log-output-of-a-test" >}})
+    - [How do I add a test case?]({{< ref "#how-do-i-add-a-test-case" >}})
+    - [Why isn't the itests pom connected to the root pom?]({{< ref "#why-isnt-the-itests-pom-connected-to-the-root-pom" >}})
+    - [Why does a test fail with a NullPointerException in MiniDFSCluster?]({{< ref "#why-does-a-test-fail-with-a-nullpointerexception-in-minidfscluster" >}})
+    - [Why do Spark unit tests fail with a SecurityException?]({{< ref "#why-do-spark-unit-tests-fail-with-a-securityexception" >}})
+  + [Debugging]({{< ref "#debugging" >}})
+    - [How do I debug into a single test in Eclipse?]({{< ref "#how-do-i-debug-into-a-single-test-in-eclipse?" >}})
+    - [How do I debug my queries in Hive?]({{< ref "#how-do-i-debug-my-queries-in-hive" >}})
 
 Maven
 
@@ -192,13 +193,11 @@ mvn clean install -DskipTests -Pprotobuf
 mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
 ```
 
-  
-
-Don’t forget to update `hive_metastore.proto` when changing  `hive_metastore.thrift 
+Don’t forget to update `hive_metastore.proto` when changing  `hive_metastore.thrift
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21141&avatarType=issuetype)HIVE-26769](https://issues.apache.org/jira/browse/HIVE-26769?src=confmacro)
- -
- [TRACKING] gRPC support for Hive metastore
+-
+[TRACKING] gRPC support for Hive metastore
 Open`### How to run findbugs after a change?
 
 ```
@@ -284,8 +283,6 @@ cd itests
 mvn clean install -DskipTests 
 
 ```
-
-  
 
 ### How do I run all of the unit tests except for a certain few tests?
 
@@ -376,8 +373,6 @@ mvn test -Dtest=TestCliDriver -Dqfile=alter1.q -Dtest.output.overwrite=true
 
 ```
 
-  
-
 ### How do I update the results of many test cases?
 
 Assume that you have a file like below which you'd like to re-generate output files for. Such a file could be created by copying the output from the precommit tests.
@@ -415,8 +410,13 @@ for driver,q in groupby(sorted([a.groups() for a in l if a]), key=lambda a:a[0])
 
 Logs are put in a couple locations:
 
-* ```
+* 
+
+```
+```
+
 From the root of the source tree: find . -name hive.log
+
 ```
 * ```
 /tmp/$USER/ (Linux) or $TMPDIR/$USER/ (MacOS)
@@ -429,8 +429,8 @@ See [Hive Logging]({{< ref "#hive-logging" >}}) for details about log files, inc
 First, add the test case to the qfile test suite:
 
 * Copy the test to a new file under `ql/src/test/queries/clientpositive/<filename>.q` (or `/clientnegative` if it is a negative test).
-	+ If the new test creates any table, view, function, etc., make sure that the name is unique across tests. For instance, name a table in the test file `foo.q`, `foo_t1` instead of simply `t1`. This will help reduce flakiness in the test runs, since Jenkins will run tests and batches, and currently it does not restore to former state after running each of the q files.
-	+ If there is any interaction with file system, use unique folders for the test to avoid any collision with other tests.
+  + If the new test creates any table, view, function, etc., make sure that the name is unique across tests. For instance, name a table in the test file `foo.q`, `foo_t1` instead of simply `t1`. This will help reduce flakiness in the test runs, since Jenkins will run tests and batches, and currently it does not restore to former state after running each of the q files.
+  + If there is any interaction with file system, use unique folders for the test to avoid any collision with other tests.
 * Add the `<filename.q>` to `itests/src/test/resources/testconfiguration.properties` to the appropriate variable (ex. `minimr.query.files`).
 
 Next, generate the golden (output) file the first time you run the test case:
@@ -440,18 +440,21 @@ Next, generate the golden (output) file the first time you run the test case:
 ```
 mvn clean install -DskipTests
 ```
+
 * Compile the itests:
 
 ```
 cd itests
 mvn clean install -DskipTests
 ```
+
 * Run the test and generate the output file using the appropriate `-Dtest` (ex. `TestCliDriver`; see `itests/qtest/pom.xml` for the names of other test suites):
 
 ```
 cd qtest
 mvn test -Dtest=TestCliDriver -Dqfile=<filename>.q -Dtest.output.overwrite=true
 ```
+
 * Add your output file to `ql/src/test/results/clientpositive/<filename>.q.out` (or `/clientnegative` if it is a negative test).
 
 With the above steps, you can [create a patch]({{< ref "#create-a-patch" >}}) which has a `.java` file, a `.q` file and a `.q.out` file.
@@ -493,11 +496,13 @@ If you get the following errors in the unit tests:
 java.lang.SecurityException: class "javax.servlet.FilterRegistration"'s signer information does not match signer information of other classes in the same package
 
 ```
+
 It happens because there are two conflicting versions of the same classes "javax.servlet:servlet-api" and "org.eclipse.jetty.orbit:javax-servlet". Spark requires the eclipse version, but most tools including Hadoop and Jetty depend on the javax one. To avoid this problem, we need to exclude the javax version everywhere it comes up. Fortunately, maven has a tool to do that with:
 
 ```
 mvn dependency:tree -Dverbose
 ```
+
 which prints out the dependency tree. Go to each directory with the failing unit tests and search the dependency tree for  "javax.servlet:servlet-api" and use exclusions in the pom.xml to remove it. See [HIVE-12783](https://issues.apache.org/jira/browse/HIVE-12783) for an example.
 
 ## Debugging
@@ -549,16 +554,4 @@ SET mapreduce.framework.name=local
 ```
 
 At this point, attach the remote debugger as mentioned before to start debugging your queries.
-
-  
-
-  
-
-  
-
-  
-
- 
-
- 
 

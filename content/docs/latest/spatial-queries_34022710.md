@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Spatial queries"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Spatial queries
 
@@ -87,8 +88,4 @@ Changes are mostly at the language, and query optimization layer.
 **Optimization**: The generated query plan is optimized with a function which can produce optimal query plan according to the spatial predicate and table information.
 
 The RESQUE library will be deployed as shared library, and a path to this library will be provided to hive to invoke functions in the library via RANSFORM mechanism. 
-
- 
-
- 
 

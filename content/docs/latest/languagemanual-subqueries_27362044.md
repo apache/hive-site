@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : LanguageManual SubQueries"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual SubQueries
 
@@ -70,8 +71,4 @@ There are a few limitations:
 * IN/NOT IN subqueries may only select a single column.
 * EXISTS/NOT EXISTS must have one or more correlated predicates.
 * References to the parent query are only supported in the WHERE clause of the subquery.
-
- 
-
- 
 

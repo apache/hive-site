@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425
 
@@ -38,8 +39,4 @@ John mentioned some summer intern projects being considered at Facebook (list to
 There was discussion around using some Yahoo QA machines (or the OSUOSL cluster) for automatic patch validation; Carl got some contact info and is going to look into that more.
 
 We ended with some review and discussion of HIVE-2038 (metastore listener). It was decided that generic events are going to be dealt with in a followup JIRA.
-
- 
-
- 
 

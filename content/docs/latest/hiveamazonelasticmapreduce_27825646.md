@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HiveAmazonElasticMapReduce"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveAmazonElasticMapReduce
 
@@ -99,13 +100,13 @@ Hadoop task attempt logs are available in /mnt/var/log/hadoop/userlogs/ folder o
 The following Hive tutorials are available for you to get started with Hive on Elastic MapReduce:
 
 1. Finding trending topics using Google Books n-grams data and Apache Hive on Elastic MapReduce
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/5249664154115844>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/5249664154115844>
 2. Contextual Advertising using Apache Hive and Amazon Elastic MapReduce with High Performance Computing instances
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/2855>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/2855>
 3. Operating a Data Warehouse with Hive, Amazon Elastic MapReduce and Amazon SimpleDB
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/2854>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/2854>
 4. Running Hive on Amazon ElasticMap Reduce
-	* <http://aws.amazon.com/articles/2857>
+   * <http://aws.amazon.com/articles/2857>
 
 In addition, Amazon provides step-by-step video tutorials:
 
@@ -122,8 +123,4 @@ Please also refer to the EMR developer guide for more information:
 <http://docs.amazonwebservices.com/ElasticMapReduce/latest/DeveloperGuide/>
 
 Contributed by: Vaibhav Aggarwal
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Hive 0.13.1 Release tracking"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive 0.13.1 Release tracking
 
@@ -28,8 +29,8 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
  
 
 | Category | JIRA | Description | Current Status | 0.13.1 inclusion requestor | 0.13.1 inclusion +1 (2 additional committers) |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+|----------|------|-------------|----------------|----------------------------|-----------------------------------------------|
+|          |      |             |                |                            |                                               |
 
  
 
@@ -39,25 +40,25 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 
  
 
-| Category | JIRA | Description | Current Status | 0.13.1 inclusion requestor |
-| --- | --- | --- | --- | --- |
-| Authorization | HIVE-6919 | Hive sql std auth select query fails on partitioned tables | Committed in 0.14 | thejas |
-| Authorization | HIVE-6921 | Index creation fails with sql std auth turned on | Committed in 0.14 | ashutoshc |
-| Authorization | HIVE-6957 | SQL authorization does not work with HS2 binary mode and Kerberos auth | Committed in 0.14 | thejas |
-| Metastore | HIVE-6945 | Issues with dropping partitions on Oracle | Committed in 0.14 | sershe |
-| Metastore | HIVE-6862 | add DB schema DDL and upgrade 12to13 scripts for MS SQL Server | Committed in 0.14 | ekoifman |
-| QL | HIVE-6883 | Dynamic Partitioning Optimization does not honor sort order or order by | Committed in 0.14 | prasanth\_j |
-| QL | HIVE-6961 | Drop partitions treats partition columns as strings | Committed in 0.14 | sershe |
-| WebHCat | HIVE-4576 | WebHCat does not allow values with commas | Committed in 0.14 | ekoifman |
-| FileFormats | HIVE-6952 | Hive 0.13 HiveOutputFormat breaks backwards compatibility | Committed in 0.14 | ashutoshc |
-| Tez | HIVE-6826 | Hive-tez has issues when different partitions work off of different input types | Committed in 0.14 | hagleitn |
-| Tez | HIVE-6828 | Hive-tez bucket map join conversion interferes with map join conversion | Committed in 0.14 | hagleitn |
-| Tez | HIVE-6898 | Functions in hive are failing with java.lang.ClassNotFoundException on Tez | Committed in 0.14 | hagleitn |
-| Parquet | HIVE-6783 | Incompatible schema for maps between parquet-hive and parquet-pig | Committed in 0.14 | szehon |
-| QL | HIVE-6955 | ExprNodeColDesc isSame doesn't account for tabAlias: this affects trait Propagation in Joins(Tez BucketJoin broken w/o this fix) | Committed in 0.14 | rhbutani |
-| Test | HIVE-6877 | TestOrcRawRecordMerger is deleting test.tmp.dir(Note: Test fix, but included because it makes validation of release difficult otherwise) | Committed in 0.14 | amareshwari |
-| Authorization | HIVE-6985 | sql std auth - privileges grants to public role not being honored | Committed in 0.14 | thejas |
-| QL | HIVE-7001 | fs.permissions.umask-mode is getting unset when Session is started | Committed in 0.14 | thejas |
+|   Category    |   JIRA    |                                                               Description                                                                |  Current Status   | 0.13.1 inclusion requestor |
+|---------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------|-------------------|----------------------------|
+| Authorization | HIVE-6919 | Hive sql std auth select query fails on partitioned tables                                                                               | Committed in 0.14 | thejas                     |
+| Authorization | HIVE-6921 | Index creation fails with sql std auth turned on                                                                                         | Committed in 0.14 | ashutoshc                  |
+| Authorization | HIVE-6957 | SQL authorization does not work with HS2 binary mode and Kerberos auth                                                                   | Committed in 0.14 | thejas                     |
+| Metastore     | HIVE-6945 | Issues with dropping partitions on Oracle                                                                                                | Committed in 0.14 | sershe                     |
+| Metastore     | HIVE-6862 | add DB schema DDL and upgrade 12to13 scripts for MS SQL Server                                                                           | Committed in 0.14 | ekoifman                   |
+| QL            | HIVE-6883 | Dynamic Partitioning Optimization does not honor sort order or order by                                                                  | Committed in 0.14 | prasanth\_j                |
+| QL            | HIVE-6961 | Drop partitions treats partition columns as strings                                                                                      | Committed in 0.14 | sershe                     |
+| WebHCat       | HIVE-4576 | WebHCat does not allow values with commas                                                                                                | Committed in 0.14 | ekoifman                   |
+| FileFormats   | HIVE-6952 | Hive 0.13 HiveOutputFormat breaks backwards compatibility                                                                                | Committed in 0.14 | ashutoshc                  |
+| Tez           | HIVE-6826 | Hive-tez has issues when different partitions work off of different input types                                                          | Committed in 0.14 | hagleitn                   |
+| Tez           | HIVE-6828 | Hive-tez bucket map join conversion interferes with map join conversion                                                                  | Committed in 0.14 | hagleitn                   |
+| Tez           | HIVE-6898 | Functions in hive are failing with java.lang.ClassNotFoundException on Tez                                                               | Committed in 0.14 | hagleitn                   |
+| Parquet       | HIVE-6783 | Incompatible schema for maps between parquet-hive and parquet-pig                                                                        | Committed in 0.14 | szehon                     |
+| QL            | HIVE-6955 | ExprNodeColDesc isSame doesn't account for tabAlias: this affects trait Propagation in Joins(Tez BucketJoin broken w/o this fix)         | Committed in 0.14 | rhbutani                   |
+| Test          | HIVE-6877 | TestOrcRawRecordMerger is deleting test.tmp.dir(Note: Test fix, but included because it makes validation of release difficult otherwise) | Committed in 0.14 | amareshwari                |
+| Authorization | HIVE-6985 | sql std auth - privileges grants to public role not being honored                                                                        | Committed in 0.14 | thejas                     |
+| QL            | HIVE-7001 | fs.permissions.umask-mode is getting unset when Session is started                                                                       | Committed in 0.14 | thejas                     |
 
  
 
@@ -77,15 +78,15 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
 
 7th May 2014 : Test results analyzed: found the following issues caused:
 
-| Failure | Patch | Cause | Resoultion |
-| --- | --- | --- | --- |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_nullformatCTAS | HIVE-6945 | Table properties map order change, golden files differ | Regenerated test golden files |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_create\_table\_alter |  | " | " |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_tblproperties |  | " | " |
-| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_unset\_table\_view\_property |  | " | " |
-| org.apache.hadoop.hive.cli.TestNegativeCliDriver.testNegativeCliDriver\_unset\_table\_property |  | " | " |
-| org.apache.hive.service.cli.TestScratchDir.testLocalScratchDirs | HIVE-6846 | Test error, incorrect expectation, not a product problem, test fixed in trunk | Ignored |
-| org.apache.hadoop.hive.cli.TestMinimrCliDriver.testCliDriver\_bucketmapjoin6 | HIVE-6826 | Flaky test, succeeds on rerunning | Ignored |
+|                                            Failure                                             |   Patch   |                                     Cause                                     |          Resoultion           |
+|------------------------------------------------------------------------------------------------|-----------|-------------------------------------------------------------------------------|-------------------------------|
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_nullformatCTAS                         | HIVE-6945 | Table properties map order change, golden files differ                        | Regenerated test golden files |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_create\_table\_alter             |           | "                                                                             | "                             |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_show\_tblproperties                    |           | "                                                                             | "                             |
+| org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_unset\_table\_view\_property           |           | "                                                                             | "                             |
+| org.apache.hadoop.hive.cli.TestNegativeCliDriver.testNegativeCliDriver\_unset\_table\_property |           | "                                                                             | "                             |
+| org.apache.hive.service.cli.TestScratchDir.testLocalScratchDirs                                | HIVE-6846 | Test error, incorrect expectation, not a product problem, test fixed in trunk | Ignored                       |
+| org.apache.hadoop.hive.cli.TestMinimrCliDriver.testCliDriver\_bucketmapjoin6                   | HIVE-6826 | Flaky test, succeeds on rerunning                                             | Ignored                       |
 
  
 
@@ -106,10 +107,4 @@ The list of jiras requested for RC0 of 0.13.1 is now closed. Any further inclusi
  
 
  
-
-  
-
- 
-
- 
 

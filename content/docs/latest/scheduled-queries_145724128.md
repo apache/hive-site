@@ -1,34 +1,34 @@
 ---
+
 title: "Apache Hive : Scheduled Queries"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Scheduled Queries
 
- 
 * [Maintaining scheduled queries]({{< ref "#maintaining-scheduled-queries" >}})
-	+ [Create Scheduled query syntax]({{< ref "#create-scheduled-query-syntax" >}})
-	+ [Alter Scheduled query syntax]({{< ref "#alter-scheduled-query-syntax" >}})
-	+ [Drop syntax]({{< ref "#drop-syntax" >}})
-	+ [scheduleSpecification syntax]({{< ref "#schedulespecification-syntax" >}})
-		- [CRON based schedule syntax]({{< ref "#cron-based-schedule-syntax" >}})
-		- [EVERY based schedule syntax]({{< ref "#every-based-schedule-syntax" >}})
-	+ [ExecutedAs syntax]({{< ref "#executedas-syntax" >}})
-	+ [enableSpecification syntax]({{< ref "#enablespecification-syntax" >}})
-	+ [Defined AS syntax]({{< ref "#defined-as-syntax" >}})
-	+ [executeSpec syntax]({{< ref "#executespec-syntax" >}})
+  + [Create Scheduled query syntax]({{< ref "#create-scheduled-query-syntax" >}})
+  + [Alter Scheduled query syntax]({{< ref "#alter-scheduled-query-syntax" >}})
+  + [Drop syntax]({{< ref "#drop-syntax" >}})
+  + [scheduleSpecification syntax]({{< ref "#schedulespecification-syntax" >}})
+    - [CRON based schedule syntax]({{< ref "#cron-based-schedule-syntax" >}})
+    - [EVERY based schedule syntax]({{< ref "#every-based-schedule-syntax" >}})
+  + [ExecutedAs syntax]({{< ref "#executedas-syntax" >}})
+  + [enableSpecification syntax]({{< ref "#enablespecification-syntax" >}})
+  + [Defined AS syntax]({{< ref "#defined-as-syntax" >}})
+  + [executeSpec syntax]({{< ref "#executespec-syntax" >}})
 * [System tables/views]({{< ref "#system-tablesviews" >}})
-	+ [information\_schema.scheduled\_queries]({{< ref "#information_schemascheduled_queries" >}})
-	+ [information\_schema.scheduled\_executions]({{< ref "#information_schemascheduled_executions" >}})
-		- [Execution states]({{< ref "#execution-states" >}})
+  + [information\_schema.scheduled\_queries]({{< ref "#information_schemascheduled_queries" >}})
+  + [information\_schema.scheduled\_executions]({{< ref "#information_schemascheduled_executions" >}})
+    - [Execution states]({{< ref "#execution-states" >}})
 * [Configuration]({{< ref "#configuration" >}})
-	+ [Hive metastore related configuration]({{< ref "#hive-metastore-related-configuration" >}})
-	+ [HiveServer2 related configuration]({{< ref "#hiveserver2-related-configuration" >}})
+  + [Hive metastore related configuration]({{< ref "#hive-metastore-related-configuration" >}})
+  + [HiveServer2 related configuration]({{< ref "#hiveserver2-related-configuration" >}})
 * [Examples]({{< ref "#examples" >}})
-	+ [Example 1 – basic example of using schedules]({{< ref "#example-1-–-basic-example-of-using-schedules" >}})
-	+ [Example 2 – analyze external table periodically]({{< ref "#example-2-–-analyze-external-table-periodically" >}})
-	+ [Example 3 – materialized view rebuild]({{< ref "#example-3-–-materialized-view-rebuild" >}})
-	+ [Example 4 – Ingestion]({{< ref "#example-4-–-ingestion" >}})
+  + [Example 1 – basic example of using schedules]({{< ref "#example-1-–-basic-example-of-using-schedules" >}})
+  + [Example 2 – analyze external table periodically]({{< ref "#example-2-–-analyze-external-table-periodically" >}})
+  + [Example 3 – materialized view rebuild]({{< ref "#example-3-–-materialized-view-rebuild" >}})
+  + [Example 4 – Ingestion]({{< ref "#example-4-–-ingestion" >}})
 
 **Intro**
 
@@ -38,18 +38,13 @@ Executing statements periodically can be usefull in
 * Periodically updating column statistics
 * Rebuilding materialized views
 
-  
 Overview
 
 * The metastore maintains the scheduled queries in the metastore database
 * Hiveserver(s) periodically polls the metastore for a scheduled query to be executed
 + During execution informations about ongoing/finished executions are kept in the metastore
 
-  
-
 Scheduled queries were added in Hive 4.0 (HIVE-21884)
-
-  
 
 Hive has it’s scheduled query interface built into the language itself for easy access:
 
@@ -61,8 +56,7 @@ Hive has it’s scheduled query interface built into the language itself for eas
 **[<scheduleSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec)**    
 **[[<executedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec)**  **]**   
 **[[<enableSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification)]**   
-**[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)**    
-  
+**[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)**
 
 ## Alter Scheduled query syntax
 
@@ -70,15 +64,9 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
 ## Drop syntax
 
-  
-
-  
-
 **DROP SCHEDULED QUERY <scheduled\_query\_name>;**
 
-  
-
-##  scheduleSpecification syntax
+## scheduleSpecification syntax
 
 Schedules can be specified using CRON expressions or for common cases there is a simpler form; in any case the schedule is stored as Quartz cron expression.
 
@@ -96,7 +84,7 @@ For example the `CRON '0 */10 * * * ? *'`  expression will fire every 10 minut
 
 To give a more readable way to declare schedules EVERY can be used.
 
-**EVERY [<integer>] (SECOND|MINUTE|HOUR) [(OFFSET BY|AT) <timeOrDate>]**
+**EVERY [<integer>](SECOND|MINUTE|HOUR) [(OFFSET BY|AT) <timeOrDate>]**
 
 the format makes it possible to declare schedules in a more readable way:
 
@@ -104,17 +92,13 @@ the format makes it possible to declare schedules in a more readable way:
 EVERY HOUR AT '0:07:30'  
 EVERY DAY AT '11:35:30'**
 
-  
-
-  
-
-##  ExecutedAs syntax
+## ExecutedAs syntax
 
 **EXECUTED AS <user\_name>**
 
 Scheduled queries are executed as the declaring user by default; but people with admin privileges might be able to change the executing user.
 
-##  enableSpecification syntax
+## enableSpecification syntax
 
 **(ENABLE[D] | DISABLE[D])**
 
@@ -128,9 +112,7 @@ In case there are in-flight scheduled executions at the time when the correspon
 
 **[DEFINED] AS <hiveQuery>**
 
-The “query” is a single statement expression to be scheduled for execution.  
-
-  
+The “query” is a single statement expression to be scheduled for execution.
 
 ## executeSpec syntax
 
@@ -143,8 +125,6 @@ Changes the schedules next execution time to be now. Could be useful during debu
 Informations about scheduled queries/executions can be obtain by using the *information\_schema* or the *sysdb* - recommended way is to use the information\_schema; *sysdb* is tables are there to build the *information\_schema* level views - and for debugging.
 
 ## information\_schema.scheduled\_queries
-
-  
 
 Suppose we have a scheduled query defined by:
 
@@ -165,11 +145,7 @@ I will transpose the resultset to describe each column
 | **query** | select 1 | The query being scheduled |
 | **next\_execution** | 2020-01-29 16:50:00 | Technical column; shows when the next execution should happen |
 
-  
-
 **(schedule\_name,cluster\_namespace)**  is unique
-
-  
 
 ## information\_schema.scheduled\_executions
 
@@ -197,13 +173,9 @@ One record in this view has the following informations:
 | **FINISHED** | The query finished without problems |
 | **TIMED\_OUT** | An execution is considered timed out when it’s being executed for more than **metastore.scheduled.queries.execution.timeout**.The scheduled queries maintenance task checks for any timed out executions. |
 
-  
-
 How long are execution informations are retained?
 
 The scheduled query maintenance task removes older than **metastore.scheduled.queries.execution.max.age** entries.
-
-  
 
 # Configuration
 
@@ -211,33 +183,26 @@ The scheduled query maintenance task removes older than **metastore.scheduled.qu
 
 * **metastore.scheduled.queries.enabled (default: true)**  Controls the metastore side support for scheduled queries; forces all HMS scheduled query related endpoints to return with an error
 * **metastore.scheduled.queries.execution.timeout (default: 2 minutes)**    
- In case a scheduled execution is not updated for at least this amount of time; it’s state will be changed to  **TIMED\_OUT**  by the cleaner task
+  In case a scheduled execution is not updated for at least this amount of time; it’s state will be changed to  **TIMED\_OUT**  by the cleaner task
 * **metastore.scheduled.queries.execution.maint.task.frequency (default: 1 minute)  
-Interval of scheduled query maintenance task. Which removes executions above max age; and marks executions as TIMED\_OUT if the condition is met**
+  Interval of scheduled query maintenance task. Which removes executions above max age; and marks executions as TIMED\_OUT if the condition is met**
 * **metastore.scheduled.queries.execution.max.age (default: 30 days)**  
-Maximal age of a scheduled query execution entry before it is removed.
+  Maximal age of a scheduled query execution entry before it is removed.
 
 ## HiveServer2 related configuration
 
 * **hive.scheduled.queries.executor.enabled (default: true)**    
- Controls whether HS2 will run scheduled query executor.
+  Controls whether HS2 will run scheduled query executor.
 * **hive.scheduled.queries.namespace (default: "hive")**  Sets the scheduled query namespace to be used. New scheduled queries are created in this namespace; and execution is also bound to the namespace
 * **hive.scheduled.queries.executor.idle.sleep.time (default: 1 minute)**    
- Time to sleep between querying for the presence of a scheduled query.
+  Time to sleep between querying for the presence of a scheduled query.
 * **hive.scheduled.queries.executor.progress.report.interval (default: 1 minute)**  While scheduled queries are in flight; a background update happens periodically to report the actual state of the query.
 * **hive.scheduled.queries.create.as.enabled (default: true)**  This option sets the default behaviour of newly created scheduled queries.
 * **hive.security.authorization.scheduled.queries.supported (default: false)**  Enable this if the configured authorizer is able to handle scheduled query related calls.
 
-  
-  
-
 # Examples
 
-  
-
 ## Example 1 – basic example of using schedules
-
-  
 
 ```
 create table t (a integer);
@@ -267,8 +232,6 @@ select * from information\_schema.scheduled\_executions s where schedule\_name='
 +---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
 
 ```
-
-  
 
 ## Example 2 – analyze external table periodically
 
@@ -318,15 +281,7 @@ desc formatted t;
 alter scheduled query t\_analyze disable;
 ```
 
-  
-
-  
-
-  
-
 ## Example 3 – materialized view rebuild
-
-  
 
 ```
 -- some settings...they might be there already
@@ -402,11 +357,7 @@ WHERE hire\_date >= '2018-01-01';
 
 ```
 
-  
-
 ## Example 4 – Ingestion
-
-  
 
 ```
 drop table if exists t;
@@ -444,24 +395,4 @@ insert into s values(2,2),(3,3);
 alter scheduled query ingest execute;
 
 ```
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
- 
-
- 
 

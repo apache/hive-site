@@ -1,28 +1,29 @@
 ---
+
 title: "Apache Hive : Theta Join"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Theta Join
 
 * [Preliminaries]({{< ref "#preliminaries" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Specific Use Cases]({{< ref "#specific-use-cases" >}})
-		- [Geo-Location]({{< ref "#geo-location" >}})
-		- [Side-Table Similarity]({{< ref "#side-table-similarity" >}})
-	+ [Requirements]({{< ref "#requirements" >}})
-		- [Goals]({{< ref "#goals" >}})
-		- [Specific Non-Goals]({{< ref "#specific-non-goals" >}})
+  + [Overview]({{< ref "#overview" >}})
+  + [Specific Use Cases]({{< ref "#specific-use-cases" >}})
+    - [Geo-Location]({{< ref "#geo-location" >}})
+    - [Side-Table Similarity]({{< ref "#side-table-similarity" >}})
+  + [Requirements]({{< ref "#requirements" >}})
+    - [Goals]({{< ref "#goals" >}})
+    - [Specific Non-Goals]({{< ref "#specific-non-goals" >}})
 * [Literature Review]({{< ref "#literature-review" >}})
-	+ [Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]]({{< ref "#map-reduce-merge:-simplified-relational-data-processing-on-large-clusters-[1]" >}})
-	+ [Efficient Parallel Set-Similarity Joins Using MapReduce [2]]({{< ref "#efficient-parallel-set-similarity-joins-using-mapreduce-[2]" >}})
-	+ [Processing Theta-Joins using MapReduce [3]]({{< ref "#processing-theta-joins-using-mapreduce-[3]" >}})
-	+ [Efficient Multi-way Theta-Join Processing Using MapReduce [4]]({{< ref "#efficient-multi-way-theta-join-processing-using-mapreduce-[4]" >}})
+  + [Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]]({{< ref "#map-reduce-merge:-simplified-relational-data-processing-on-large-clusters-[1]" >}})
+  + [Efficient Parallel Set-Similarity Joins Using MapReduce [2]]({{< ref "#efficient-parallel-set-similarity-joins-using-mapreduce-[2]" >}})
+  + [Processing Theta-Joins using MapReduce [3]]({{< ref "#processing-theta-joins-using-mapreduce-[3]" >}})
+  + [Efficient Multi-way Theta-Join Processing Using MapReduce [4]]({{< ref "#efficient-multi-way-theta-join-processing-using-mapreduce-[4]" >}})
 * [Design]({{< ref "#design" >}})
-	+ [Map-side]({{< ref "#map-side" >}})
-	+ [Reduce-side]({{< ref "#reduce-side" >}})
-		- [Mapper]({{< ref "#mapper" >}})
-		- [Reducer]({{< ref "#reducer" >}})
+  + [Map-side]({{< ref "#map-side" >}})
+  + [Reduce-side]({{< ref "#reduce-side" >}})
+    - [Mapper]({{< ref "#mapper" >}})
+    - [Reducer]({{< ref "#reducer" >}})
 * [References]({{< ref "#references" >}})
 
 ## Preliminaries
@@ -119,8 +120,4 @@ The reducer is fairly simple, it buffers up the S relation and then performs the
 3. [Processing Theta-Joins using MapReduce](http://www.ccs.neu.edu/home/mirek/papers/2011-SIGMOD-ParallelJoins.pdf)
 4. [Efficient Multi-way Theta-Join Processing Using MapReduce](http://vldb.org/pvldb/vol5/p1184_xiaofeizhang_vldb2012.pdf)
 5. [HIVE-2206](https://issues.apache.org/jira/browse/HIVE-2206)
-
- 
-
- 
 

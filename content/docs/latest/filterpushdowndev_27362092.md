@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : FilterPushdownDev"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : FilterPushdownDev
 
 # Filter Pushdown
 
 * [Filter Pushdown]({{< ref "#filter-pushdown" >}})
-	+ [Introduction]({{< ref "#introduction" >}})
-	+ [Use Cases]({{< ref "#use-cases" >}})
-	+ [Components Involved]({{< ref "#components-involved" >}})
-	+ [Primary Filter Representation]({{< ref "#primary-filter-representation" >}})
-	+ [Other Filter Representations]({{< ref "#other-filter-representations" >}})
-	+ [Filter Passing]({{< ref "#filter-passing" >}})
-	+ [Filter Collection]({{< ref "#filter-collection" >}})
-	+ [Filter Decomposition]({{< ref "#filter-decomposition" >}})
+  + [Introduction]({{< ref "#introduction" >}})
+  + [Use Cases]({{< ref "#use-cases" >}})
+  + [Components Involved]({{< ref "#components-involved" >}})
+  + [Primary Filter Representation]({{< ref "#primary-filter-representation" >}})
+  + [Other Filter Representations]({{< ref "#other-filter-representations" >}})
+  + [Filter Passing]({{< ref "#filter-passing" >}})
+  + [Filter Collection]({{< ref "#filter-collection" >}})
+  + [Filter Decomposition]({{< ref "#filter-decomposition" >}})
 
 ## Introduction
 
@@ -68,7 +69,7 @@ Column names in this string are unqualified references to the columns of the tab
 As mentioned above, we want to avoid duplication in code which interprets the filter string (e.g. parsing). As a first cut, we will provide access to the `ExprNodeDesc` tree by passing it along in serialized form as an optional companion to the filter string. In followups, we will provide parsing utilities for the string form.
 
 We will also provide an IndexPredicateAnalyzer class capable of detecting simple [sargable](http://en.wikipedia.org/wiki/Sargable)  
- subexpressions in an `ExprNodeDesc` tree. In followups, we will provide support for discriminating and combining more complex indexable subexpressions.
+subexpressions in an `ExprNodeDesc` tree. In followups, we will provide support for discriminating and combining more complex indexable subexpressions.
 
 ```
 public class IndexPredicateAnalyzer
@@ -188,11 +189,11 @@ x > 3 AND upper(y) = 'XYZ'
 ```
 
 Suppose a storage handler is capable of implementing the range scanfor `x > 3`, but does not have a facility for evaluating {{upper(y) =  
- 'XYZ'}}. In this case, the optimal plan would involve decomposing the filter, pushing just the first part down into the storage handler, and  
- leaving only the remainder for Hive to evaluate via its own executor.
+'XYZ'}}. In this case, the optimal plan would involve decomposing the filter, pushing just the first part down into the storage handler, and  
+leaving only the remainder for Hive to evaluate via its own executor.
 
 In order for this to be possible, the storage handler needs to be able to negotiate the decomposition with Hive. This means that Hive gives  
- the storage handler the entire filter, and the storage handler passes back a "residual": the portion that needs to be evaluated by Hive. A null residual indicates that the storage handler was able to deal with the entire filter on its own (in which case no `FilterOperator` is needed).
+the storage handler the entire filter, and the storage handler passes back a "residual": the portion that needs to be evaluated by Hive. A null residual indicates that the storage handler was able to deal with the entire filter on its own (in which case no `FilterOperator` is needed).
 
 In order to support this interaction, we will introduce a new (optional) interface to be implemented by storage handlers:
 
@@ -216,8 +217,4 @@ Hive's optimizer (during predicate pushdown) calls the decomposePredicate method
 It is assumed that storage handlers which are sophisticated enough to implement this interface are suitable for tight coupling to the `ExprNodeDesc` representation.
 
 Again, this interface is optional, and pushdown is still possible even without it. If the storage handler does not implement this interface, Hive will always implement the entire expression in the `FilterOperator`, but it will still provide the expression to the storage handler's input format; the storage handler is free to implement as much or as little as it wants.
-
- 
-
- 
 

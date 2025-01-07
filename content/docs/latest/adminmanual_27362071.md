@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : AdminManual"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AdminManual
 
@@ -13,8 +14,4 @@ date: 2024-12-12
 * [Setting up Hive Web Interface]({{< ref "hivewebinterface_27362110" >}})
 * [Setting up Hive Server (JDBC, ODBC, Thrift, etc)]({{< ref "adminmanual-settinguphiveserver_27362079" >}})
 * [Hive on Amazon Web Services]({{< ref "hiveaws_27362103" >}})
-
- 
-
- 
 

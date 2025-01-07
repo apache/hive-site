@@ -1,11 +1,13 @@
 ---
+
 title: "Apache Hive : LanguageManual VariableSubstitution"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual VariableSubstitution
 
 # 
+
 * 
 * [Introduction]({{< ref "#introduction" >}})
 * [Using Variables]({{< ref "#using-variables" >}})
@@ -136,8 +138,4 @@ Variable substitution is on by default ([hive.variable.substitute]({{< ref "#hiv
 set hive.variable.substitute=false;
 
 ```
-
- 
-
- 
 

@@ -1,17 +1,18 @@
 ---
+
 title: "Apache Hive : LanguageManual Union"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Union
 
 * [Union Syntax]({{< ref "#union-syntax" >}})
-	+ [UNION within a FROM Clause]({{< ref "#union-within-a-from-clause" >}})
-	+ [Unions in DDL and Insert Statements]({{< ref "#unions-in-ddl-and-insert-statements" >}})
-	+ [Applying Subclauses]({{< ref "#applying-subclauses" >}})
-	+ [Column Aliases for Schema Matching]({{< ref "#column-aliases-for-schema-matching" >}})
-	+ [Column Type Conversion]({{< ref "#column-type-conversion" >}})
-	+ [Version Information]({{< ref "#version-information" >}})
+  + [UNION within a FROM Clause]({{< ref "#union-within-a-from-clause" >}})
+  + [Unions in DDL and Insert Statements]({{< ref "#unions-in-ddl-and-insert-statements" >}})
+  + [Applying Subclauses]({{< ref "#applying-subclauses" >}})
+  + [Column Aliases for Schema Matching]({{< ref "#column-aliases-for-schema-matching" >}})
+  + [Column Type Conversion]({{< ref "#column-type-conversion" >}})
+  + [Version Information]({{< ref "#version-information" >}})
 
 ## Union Syntax
 
@@ -107,9 +108,9 @@ INSERT OVERWRITE TABLE target\_table
 Before [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251) in release 2.2.0, Hive tries to perform implicit conversion across Hive type groups. With the change of [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251), Hive will only perform implicit conversion within each type group including string group, number group or date group, not across groups. In order to union the types from different groups such as a string type and a date type, an explicit cast from string to date or from date to string is needed in the query.
 
 ```
-  SELECT name, id, cast('2001-01-01' as date) d FROM source\_table\_1
-  UNION ALL
-  SELECT name, id, hiredate as d FROM source\_table\_2
+SELECT name, id, cast('2001-01-01' as date) d FROM source\_table\_1
+UNION ALL
+SELECT name, id, hiredate as d FROM source\_table\_2
 ```
 
  
@@ -127,8 +128,4 @@ Before Hive 1.2.0, only UNION ALL (bag union) is supported. UNION (or UNION DIST
  
 
  
-
- 
-
- 
 

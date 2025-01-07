@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HiveServer"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveServer
 
@@ -64,8 +65,4 @@ The service supports clients in multiple languages. For more details see [Hive C
 Troubleshooting: Connection Error
 
 Hive server and clients communicate through Thrift and FB303 services. In some distributions, both the Hadoop and Hive distributions have different versions of libthrift.jar and libfb303.jar. If they are incompatible, it may cause a Thrift connection error when running the unit test on standalone mode. The solution is to remove the Hadoop's version of libthrift.jar and libfb303.jar.
-
- 
-
- 
 

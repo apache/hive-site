@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Transitivity on predicate pushdown"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Transitivity on predicate pushdown
 
@@ -233,8 +234,4 @@ STAGE PLANS:
       limit: -1
 
 ```
-
- 
-
- 
 
