@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : MapJoinOptimization"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : MapJoinOptimization
 
-**Index** 
+**Index**
 
 * [1. Map Join Optimization]({{< ref "#1-map-join-optimization" >}})
-	+ [1.1 Using Distributed Cache to Propagate Hashtable File]({{< ref "#11-using-distributed-cache-to-propagate-hashtable-file" >}})
-	+ [1.2 Removing JDBM]({{< ref "#12-removing-jdbm" >}})
-	+ [1.3 Performance Evaluation]({{< ref "#13-performance-evaluation" >}})
+  + [1.1 Using Distributed Cache to Propagate Hashtable File]({{< ref "#11-using-distributed-cache-to-propagate-hashtable-file" >}})
+  + [1.2 Removing JDBM]({{< ref "#12-removing-jdbm" >}})
+  + [1.3 Performance Evaluation]({{< ref "#13-performance-evaluation" >}})
 * [2. Converting Join into Map Join Automatically]({{< ref "#2-converting-join-into-map-join-automatically" >}})
-	+ [2.1 New Join Execution Flow]({{< ref "#21-new-join-execution-flow" >}})
-	+ [2.2 Resolving the Join Operation at Run Time]({{< ref "#22-resolving-the-join-operation-at-run-time" >}})
-	+ [2.3 Backup Task]({{< ref "#23-backup-task" >}})
-	+ [2.4 Performance Evaluation]({{< ref "#24-performance-evaluation" >}})
+  + [2.1 New Join Execution Flow]({{< ref "#21-new-join-execution-flow" >}})
+  + [2.2 Resolving the Join Operation at Run Time]({{< ref "#22-resolving-the-join-operation-at-run-time" >}})
+  + [2.3 Backup Task]({{< ref "#23-backup-task" >}})
+  + [2.4 Performance Evaluation]({{< ref "#24-performance-evaluation" >}})
 
 # 1. Map Join Optimization
 
@@ -63,9 +64,9 @@ As shown in Table1, the optimized Map Join will be 12 ~ 26 times faster than the
 
 Since map join is faster than the common join, it would be better to run the map join whenever possible. Previously, Hive users need to give a hint in the query to assign which table the small table is. For example, ***select /****+mapjoin(a)**/ * from src1 x join src2y on x.key=y.key***; It is not a good way for user experience and query performance, because sometimes user may give a wrong hint and also users may not give any hints. It would be much better to convert the Common Join into Map Join without users' hint.
 
- ([HIVE-1642](http://issues.apache.org/jira/browse/HIVE-1642)) has solved the problem by converting the Common Join into Map Join automatically. For the Map Join, the query processor should know which input table the big table is. The other input tables will be recognize as the small tables during the execution stage and these tables need to be held in the memory. However, in general, the query processor has no idea of input file size during compiling time (even with statistics) because some of the table may be intermediate tables generated from sub queries. So the query processor can only figure out the input file size during the execution time.
+([HIVE-1642](http://issues.apache.org/jira/browse/HIVE-1642)) has solved the problem by converting the Common Join into Map Join automatically. For the Map Join, the query processor should know which input table the big table is. The other input tables will be recognize as the small tables during the execution stage and these tables need to be held in the memory. However, in general, the query processor has no idea of input file size during compiling time (even with statistics) because some of the table may be intermediate tables generated from sub queries. So the query processor can only figure out the input file size during the execution time.
 
-Right now, users need to enable this feature by **set hive.auto.convert.join = true;**   
+Right now, users need to enable this feature by **set hive.auto.convert.join = true;**
 
 This would become default in hive 0.11 with ([HIVE-3297](http://issues.apache.org/jira/browse/HIVE-3297))
 
@@ -104,8 +105,4 @@ Here are some performance comparison results between the previous Common Join wi
 For the previous common join, the experiment only calculates the average time of map reduce task execution time. Because job finish time will include the job scheduling overhead. Sometimes it will wait for some time to start to run the job in the cluster. Also for the new optimized common join, the experiment only adds up the average time of local task execution time with the average time of map reduce execution time. So both of the results have avoided the job scheduling overhead.
 
 From the result, if the new common join can be converted into map join, it will get 57% ~163 % performance improvement.
-
- 
-
- 
 

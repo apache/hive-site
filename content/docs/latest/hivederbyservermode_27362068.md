@@ -1,20 +1,21 @@
 ---
+
 title: "Apache Hive : HiveDerbyServerMode"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveDerbyServerMode
 
 # Hive Using Derby in Server Mode
 
 * [Hive Using Derby in Server Mode]({{< ref "#hive-using-derby-in-server-mode" >}})
-	+ [Download Derby]({{< ref "#download-derby" >}})
-	+ [Set Environment]({{< ref "#set-environment" >}})
-	+ [Starting Derby]({{< ref "#starting-derby" >}})
-	+ [Configure Hive to Use Network Derby]({{< ref "#configure-hive-to-use-network-derby" >}})
-	+ [Copy Derby Jar Files]({{< ref "#copy-derby-jar-files" >}})
-	+ [Start Up Hive]({{< ref "#start-up-hive" >}})
-	+ [The Result]({{< ref "#the-result" >}})
+  + [Download Derby]({{< ref "#download-derby" >}})
+  + [Set Environment]({{< ref "#set-environment" >}})
+  + [Starting Derby]({{< ref "#starting-derby" >}})
+  + [Configure Hive to Use Network Derby]({{< ref "#configure-hive-to-use-network-derby" >}})
+  + [Copy Derby Jar Files]({{< ref "#copy-derby-jar-files" >}})
+  + [Start Up Hive]({{< ref "#start-up-hive" >}})
+  + [The Result]({{< ref "#the-result" >}})
 
 Hive in embedded mode has a limitation of one active user at a time. You may want to run [Derby](http://db.apache.org/derby/) as a Network Server, this way multiple users can access it simultaneously from different systems.
 
@@ -103,7 +104,7 @@ Edit `/opt/hadoop/hive/conf/hive-site.xml` as follows. Note that "hadoop1" shoul
 `/opt/hadoop/hive/conf/jpox.properties`
 
       **Version:** JPOX properties are *NOT* used in Hive 5.0 or later.  
-       JPOX properties can be specified in `hive-site.xml`. Normally `jpox.properties` changes are not required.
+      JPOX properties can be specified in `hive-site.xml`. Normally `jpox.properties` changes are not required.
 
 ```
 javax.jdo.PersistenceManagerFactoryClass=org.jpox.PersistenceManagerFactoryImpl
@@ -158,8 +159,4 @@ A directory should be created: `/opt/hadoop/db-derby-10.4.1.3-bin/data/metastore
 ### The Result
 
 Now you can run multiple Hive instances working on the same data simultaneously and remotely.
-
- 
-
- 
 

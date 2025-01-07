@@ -1,20 +1,21 @@
 ---
+
 title: "Apache Hive : WebHCat Reference GetPartitions"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference GetPartitions
 
 # List Partitions — GET ddl/database/:db/table/:table/partition
 
 * [List Partitions — GET ddl/database/:db/table/:table/partition]({{< ref "#list-partitions--get-ddldatabasedbtabletablepartition" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
 
 ## Description
 
@@ -26,20 +27,20 @@ List all the partitions in an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
+|    Name    |    Description    | Required? | Default |
+|------------|-------------------|-----------|---------|
+| **:db**    | The database name | Required  | None    |
+| **:table** | The table name    | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|      Name      |                    Description                    |
+|----------------|---------------------------------------------------|
 | **partitions** | A list of partition values and of partition names |
-| **database** | The database name |
-| **table** | The table name |
+| **database**   | The database name                                 |
+| **table**      | The table name                                    |
 
 ## Example
 
@@ -75,14 +76,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "webhcat-reference-puttablelike_34016572" >}}) Next: [GET ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-getpartition_34016592" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

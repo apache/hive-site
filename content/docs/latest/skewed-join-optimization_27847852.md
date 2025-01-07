@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Skewed Join Optimization"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Skewed Join Optimization
 
@@ -12,7 +13,7 @@ date: 2024-12-12
 A join of 2 large data tables is done by a set of MapReduce jobs which first sorts the tables based on the join key and then joins them. The Mapper gives all rows with a particular key to the same Reducer.
 
 e.g., Suppose we have table A with a key column, "id" which has values 1, 2, 3 and 4, and table B with a similar column, which has values 1, 2 and 3.  
- We want to do a join corresponding to the following query
+We want to do a join corresponding to the following query
 
 * select A.id from A join B on A.id = B.id
 
@@ -28,11 +29,11 @@ Do two separate queries
 The first query will not have any skew, so all the Reducers will finish at roughly the same time. If we assume that B has only few rows with B.id = 1, then it will fit into memory. So the join can be done efficiently by storing the B values in an in-memory hash table. This way, the join can be done by the Mapper itself and the data do not have to go to a Reducer. The partial results of the two queries can then be merged to get the final results.
 
 * Advantages
-	+ If a small number of skewed keys make up for a significant percentage of the data, they will not become bottlenecks.
+  + If a small number of skewed keys make up for a significant percentage of the data, they will not become bottlenecks.
 * Disadvantages
-	+ The tables A and B have to be read and processed twice.
-	+ Because of the partial results, the results also have to be read and written twice.
-	+ The user needs to be aware of the skew in the data and manually do the above process.
+  + The tables A and B have to be read and processed twice.
+  + Because of the partial results, the results also have to be read and written twice.
+  + The user needs to be aware of the skew in the data and manually do the above process.
 
 We can improve this further by trying to reduce the processing of skewed keys. First read B and store the rows with key 1 in an in-memory hash table. Now run a set of mappers to read A and do the following:
 
@@ -51,20 +52,17 @@ The assumption is that B has few rows with keys which are skewed in A. So these 
 
 ## Comments:
 
-|  |
-| --- |
-| 
+|   |
+|---|
+|   |
+
 Is this proposal ready for review?
 
- Posted by cwsteinbach at May 31, 2012 21:27
-  |
-| 
+Posted by cwsteinbach at May 31, 2012 21:27
+|
+|
 yes
 
- Posted by namit.jain at Jun 01, 2012 21:07
-  |
-
- 
-
- 
+Posted by namit.jain at Jun 01, 2012 21:07
+|
 

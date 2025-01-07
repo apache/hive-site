@@ -1,27 +1,28 @@
 ---
+
 title: "Apache Hive : Druid Integration"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Druid Integration
 
 * [Introduction]({{< ref "#introduction" >}})
-	+ [Objectives]({{< ref "#objectives" >}})
+  + [Objectives]({{< ref "#objectives" >}})
 * [Preliminaries]({{< ref "#preliminaries" >}})
-	+ [Druid]({{< ref "#druid" >}})
-	+ [Storage Handlers]({{< ref "#storage-handlers" >}})
+  + [Druid]({{< ref "#druid" >}})
+  + [Storage Handlers]({{< ref "#storage-handlers" >}})
 * [Usage]({{< ref "#usage" >}})
-	+ [Discovery and management of Druid datasources from Hive]({{< ref "#discovery-and-management-of-druid-datasources-from-hive" >}})
-		- [Create tables linked to existing Druid datasources]({{< ref "#create-tables-linked-to-existing-druid-datasources" >}})
-		- [Create Druid datasources from Hive]({{< ref "#create-druid-datasources-from-hive" >}})
-		- [Druid kafka ingestion from Hive]({{< ref "#druid-kafka-ingestion-from-hive" >}})
-			* [Start/Stop/Reset Druid Kafka ingestion]({{< ref "#startstopreset-druid-kafka-ingestion" >}})
-		- [INSERT, INSERT OVERWRITE and DROP statements]({{< ref "#insert-insert-overwrite-and-drop-statements" >}})
-		- [Queries completely executed in Druid]({{< ref "#queries-completely-executed-in-druid" >}})
-			* [Select queries]({{< ref "#select-queries" >}})
-			* [Timeseries queries]({{< ref "#timeseries-queries" >}})
-			* [GroupBy queries]({{< ref "#groupby-queries" >}})
-		- [Queries across Druid and Hive]({{< ref "#queries-across-druid-and-hive" >}})
+  + [Discovery and management of Druid datasources from Hive]({{< ref "#discovery-and-management-of-druid-datasources-from-hive" >}})
+    - [Create tables linked to existing Druid datasources]({{< ref "#create-tables-linked-to-existing-druid-datasources" >}})
+    - [Create Druid datasources from Hive]({{< ref "#create-druid-datasources-from-hive" >}})
+    - [Druid kafka ingestion from Hive]({{< ref "#druid-kafka-ingestion-from-hive" >}})
+      * [Start/Stop/Reset Druid Kafka ingestion]({{< ref "#startstopreset-druid-kafka-ingestion" >}})
+    - [INSERT, INSERT OVERWRITE and DROP statements]({{< ref "#insert-insert-overwrite-and-drop-statements" >}})
+    - [Queries completely executed in Druid]({{< ref "#queries-completely-executed-in-druid" >}})
+      * [Select queries]({{< ref "#select-queries" >}})
+      * [Timeseries queries]({{< ref "#timeseries-queries" >}})
+      * [GroupBy queries]({{< ref "#groupby-queries" >}})
+    - [Queries across Druid and Hive]({{< ref "#queries-across-druid-and-hive" >}})
 * [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
 
  
@@ -178,22 +179,17 @@ Further, note that if we do not specify the value for the `druid.datasource` 
 
 Version Info
 
-**Version 2.2.0: CREATE TABLE syntax when data is managed via hive.** 
-
-  
+**Version 2.2.0: CREATE TABLE syntax when data is managed via hive.**
 
 ```
 CREATE TABLE druid\_table\_1
 (`\_\_time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
 ```
-  
 
- NOTE - Before Hive 3.0.0, we do not use *EXTERNAL* tables and do not specify the value for the `druid.datasource` property. 
+ NOTE - Before Hive 3.0.0, we do not use *EXTERNAL* tables and do not specify the value for the `druid.datasource` property.
 
-**For versions 3.0.0+, All Druid tables are EXTERNAL ([HIVE-20085](https://issues.apache.org/jira/browse/HIVE-20085)).**   
-
-  
+**For versions 3.0.0+, All Druid tables are EXTERNAL ([HIVE-20085](https://issues.apache.org/jira/browse/HIVE-20085)).**
 
 ### Druid kafka ingestion from Hive
 
@@ -201,7 +197,7 @@ Version Info
 
 Integration with Druid Kafka Indexing Service is introduced in Hive 3.0.0 ([HIVE-18976](https://jira.apache.org/jira/browse/HIVE-18976)).
 
- [Druid Kafka Indexing Service](http://druid.io/docs/latest/development/extensions-core/kafka-ingestion.html) supports exactly-once ingestion from Kafka topic by managing the creation and lifetime of Kafka indexing tasks. We can manage Druid Kafka Ingestion using Hive *CREATE TABLE* statement as shown below.
+[Druid Kafka Indexing Service](http://druid.io/docs/latest/development/extensions-core/kafka-ingestion.html) supports exactly-once ingestion from Kafka topic by managing the creation and lifetime of Kafka indexing tasks. We can manage Druid Kafka Ingestion using Hive *CREATE TABLE* statement as shown below.
 
 **Druid Kafka Ingestion**
 
@@ -244,7 +240,7 @@ Version Info
 
 **Version 2.2.0 : These statements are supported by Hive managed tables (not external) backed by Druid.**
 
-**For versions 3.0.0+, All Druid tables are EXTERNAL ([HIVE-20085](https://issues.apache.org/jira/browse/HIVE-20085)) and these statements are supported for any table.** 
+**For versions 3.0.0+, All Druid tables are EXTERNAL ([HIVE-20085](https://issues.apache.org/jira/browse/HIVE-20085)) and these statements are supported for any table.**
 
 **Querying Druid from Hive**
 
@@ -575,298 +571,294 @@ Time taken: 1.835 seconds, Fetched: 2 row(s)
 |
 |  |
 | Key | Summary | T | Created | Updated | Due | Assignee | Reporter | P | Status | Resolution |
-| [HIVE-14473](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro) | [Druid integration II](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro)  | [New Feature](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro) | 
- Aug 08, 2016
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+| [HIVE-14473](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro) | [Druid integration II](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro)  | [New Feature](https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro) |
+Aug 08, 2016
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-14543](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro) | [Create Druid table without specifying data source](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro) | 
- Aug 16, 2016
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-14543](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro) | [Create Druid table without specifying data source](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro) |
+Aug 16, 2016
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-14597](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro) | [Support for Druid custom granularities](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro) | 
- Aug 22, 2016
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Minor | 
+Open
+|
+Unresolved
+|
+| [HIVE-14597](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro) | [Support for Druid custom granularities](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro) |
+Aug 22, 2016
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Minor |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-14722](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro) | [Support creating vector row batches from Druid](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro) | 
- Sep 08, 2016
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-14722](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro) | [Support creating vector row batches from Druid](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro) |
+Sep 08, 2016
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-15584](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro) | [Early bail out when we use CTAS and Druid source already exists](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro) | 
- Jan 11, 2017
-  | 
- Feb 27, 2024
-  |  | 
- Slim Bouguerra
-  | 
- Jesús Camacho Rodríguez
-  | Minor | 
+Open
+|
+Unresolved
+|
+| [HIVE-15584](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro) | [Early bail out when we use CTAS and Druid source already exists](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro) |
+Jan 11, 2017
+|
+Feb 27, 2024
+|  |
+Slim Bouguerra
+|
+Jesús Camacho Rodríguez
+| Minor |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-15640](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro) | [Hive/Druid integration: null handling for metrics](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro) | 
- Jan 16, 2017
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Critical | 
+Open
+|
+Unresolved
+|
+| [HIVE-15640](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro) | [Hive/Druid integration: null handling for metrics](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro) |
+Jan 16, 2017
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Critical |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-16121](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro) | [Add flag to allow approximate results coming from Druid](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro) | 
- Mar 06, 2017
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-16121](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro) | [Add flag to allow approximate results coming from Druid](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro) |
+Mar 06, 2017
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-16816](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro) | [Chained Group by support for druid.](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro) | 
- Jun 02, 2017
-  | 
- Feb 23, 2018
-  |  | 
- Slim Bouguerra
-  | 
- Slim Bouguerra
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-16816](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro) | [Chained Group by support for druid.](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro) |
+Jun 02, 2017
+|
+Feb 23, 2018
+|  |
+Slim Bouguerra
+|
+Slim Bouguerra
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-17716](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro) | [Not pushing postaggregations into Druid due to CAST on constant](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro) | 
- Oct 05, 2017
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-17716](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro) | [Not pushing postaggregations into Druid due to CAST on constant](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro) |
+Oct 05, 2017
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-18668](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro) | [Really shade guava in ql](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro) | 
- Feb 09, 2018
-  | 
- Oct 21, 2022
-  |  | 
- Zoltan Haindrich
-  | 
- Zoltan Haindrich
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-18668](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro) | [Really shade guava in ql](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro) |
+Feb 09, 2018
+|
+Oct 21, 2022
+|  |
+Zoltan Haindrich
+|
+Zoltan Haindrich
+| Major |
 
- Patch Available
-  | 
- Unresolved
-  |
-| [HIVE-18731](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro) | [Add Documentations about this feature.](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro) | 
- Feb 16, 2018
-  | 
- Oct 17, 2018
-  |  | 
- Slim Bouguerra
-  | 
- Slim Bouguerra
-  | Major | 
+Patch Available
+|
+Unresolved
+|
+| [HIVE-18731](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro) | [Add Documentations about this feature.](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro) |
+Feb 16, 2018
+|
+Oct 17, 2018
+|  |
+Slim Bouguerra
+|
+Slim Bouguerra
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-19044](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro) | [Duplicate field names within Druid Query Generated by Calcite plan](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro) | 
- Mar 25, 2018
-  | 
- Apr 05, 2018
-  |  | 
- Slim Bouguerra
-  | 
- Slim Bouguerra
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-19044](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro) | [Duplicate field names within Druid Query Generated by Calcite plan](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro) |
+Mar 25, 2018
+|
+Apr 05, 2018
+|  |
+Slim Bouguerra
+|
+Slim Bouguerra
+| Major |
 
- Patch Available
-  | 
- Unresolved
-  |
-| [HIVE-19201](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro) | [Hive doesn't read Druid data correctly](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro) | 
- Apr 13, 2018
-  | 
- Oct 05, 2018
-  | 
- Apr 17, 2018
-  | 
- Unassigned
-  | 
- Tournadre
-  | Blocker | 
+Patch Available
+|
+Unresolved
+|
+| [HIVE-19201](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro) | [Hive doesn't read Druid data correctly](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro) |
+Apr 13, 2018
+|
+Oct 05, 2018
+|
+Apr 17, 2018
+|
+Unassigned
+|
+Tournadre
+| Blocker |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-19300](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro) | [Skip Druid/JDBC rules in optimizer when there are no Druid/JDBC sources](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro) | 
- Apr 25, 2018
-  | 
- Feb 27, 2024
-  |  | 
- Unassigned
-  | 
- Jesús Camacho Rodríguez
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-19300](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro) | [Skip Druid/JDBC rules in optimizer when there are no Druid/JDBC sources](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro) |
+Apr 25, 2018
+|
+Feb 27, 2024
+|  |
+Unassigned
+|
+Jesús Camacho Rodríguez
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-19672](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro) | [Column Names mismatch between native Druid Tables and Hive External table map](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro) | 
- May 23, 2018
-  | 
- Oct 21, 2022
-  |  | 
- Unassigned
-  | 
- Slim Bouguerra
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-19672](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro) | [Column Names mismatch between native Druid Tables and Hive External table map](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro) |
+May 23, 2018
+|
+Oct 21, 2022
+|  |
+Unassigned
+|
+Slim Bouguerra
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-20426](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro) | [Upload Druid Test Runner logs from Build Slaves](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro) | 
- Aug 20, 2018
-  | 
- Aug 20, 2018
-  |  | 
- Vineet Garg
-  | 
- Slim Bouguerra
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-20426](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro) | [Upload Druid Test Runner logs from Build Slaves](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro) |
+Aug 20, 2018
+|
+Aug 20, 2018
+|  |
+Vineet Garg
+|
+Slim Bouguerra
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-20468](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro) | [Add ability to skip creating druid bitmap indexes for specific string dimensions](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro)  | [New Feature](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro) | 
- Aug 27, 2018
-  | 
- Aug 27, 2018
-  |  | 
- Nishant Bangarwa
-  | 
- Nishant Bangarwa
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-20468](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro) | [Add ability to skip creating druid bitmap indexes for specific string dimensions](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro)  | [New Feature](https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro) |
+Aug 27, 2018
+|
+Aug 27, 2018
+|  |
+Nishant Bangarwa
+|
+Nishant Bangarwa
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-20469](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro) | [Do not rollup PK/FK columns when indexing to druid.](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro) | 
- Aug 27, 2018
-  | 
- Oct 10, 2018
-  |  | 
- Nishant Bangarwa
-  | 
- Nishant Bangarwa
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-20469](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro) | [Do not rollup PK/FK columns when indexing to druid.](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro) |
+Aug 27, 2018
+|
+Oct 10, 2018
+|  |
+Nishant Bangarwa
+|
+Nishant Bangarwa
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-20687](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) | [Cancel Running Druid Query when a hive query is cancelled.](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) | 
- Oct 03, 2018
-  | 
- Oct 05, 2018
-  |  | 
- Nishant Bangarwa
-  | 
- Nishant Bangarwa
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-20687](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) | [Cancel Running Druid Query when a hive query is cancelled.](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) |
+Oct 03, 2018
+|
+Oct 05, 2018
+|  |
+Nishant Bangarwa
+|
+Nishant Bangarwa
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| [HIVE-20997](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) | [Make Druid Cluster start on random ports.](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) | 
- Dec 03, 2018
-  | 
- Dec 04, 2018
-  |  | 
- Slim Bouguerra
-  | 
- Slim Bouguerra
-  | Major | 
+Open
+|
+Unresolved
+|
+| [HIVE-20997](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) | [Make Druid Cluster start on random ports.](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) |
+Dec 03, 2018
+|
+Dec 04, 2018
+|  |
+Slim Bouguerra
+|
+Slim Bouguerra
+| Major |
 
- Open
-  | 
- Unresolved
-  |
-| 
+Open
+|
+Unresolved
+|
+|
 
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
 
- |
+|
 
 Showing 20 out of
-[28 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+12330863++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC+&src=confmacro) 
-
- 
-
- 
+[28 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+12330863++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC+&src=confmacro)
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : LanguageManual LateralView"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual LateralView
 
@@ -36,16 +37,16 @@ From Hive 0.12.0, column aliases can be omitted. In this case, aliases are inher
 Consider the following base table named `pageAds`. It has two columns: `pageid` (name of the page) and `adid_list` (an array of ads appearing on the page):
 
 | Column name | Column type |
-| --- | --- |
-| pageid | STRING |
-| adid\_list | Array<int> |
+|-------------|-------------|
+| pageid      | STRING      |
+| adid\_list  | Array<int>  |
 
 An example table with two rows:
 
-| pageid | adid\_list |
-| --- | --- |
-| front\_page | [1, 2, 3] |
-| contact\_page | [3, 4, 5] |
+|    pageid     | adid\_list |
+|---------------|------------|
+| front\_page   | [1, 2, 3]  |
+| contact\_page | [3, 4, 5]  |
 
 and the user would like to count the total number of times an ad appears across all pages.
 
@@ -60,13 +61,13 @@ FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
 The resulting output will be
 
 | pageid (string) | adid (int) |
-| --- | --- |
-| "front\_page" | 1 |
-| "front\_page" | 2 |
-| "front\_page" | 3 |
-| "contact\_page" | 3 |
-| "contact\_page" | 4 |
-| "contact\_page" | 5 |
+|-----------------|------------|
+| "front\_page"   | 1          |
+| "front\_page"   | 2          |
+| "front\_page"   | 3          |
+| "contact\_page" | 3          |
+| "contact\_page" | 4          |
+| "contact\_page" | 5          |
 
 Then in order to count the number of times a particular ad appears, count/group by can be used:
 
@@ -169,17 +170,13 @@ SELECT * FROM src LATERAL VIEW OUTER explode(array()) C AS a limit 10;
 it will produce:
 
 238 val\_238 NULL  
- 86 val\_86 NULL  
- 311 val\_311 NULL  
- 27 val\_27 NULL  
- 165 val\_165 NULL  
- 409 val\_409 NULL  
- 255 val\_255 NULL  
- 278 val\_278 NULL  
- 98 val\_98 NULL  
- ...
-
- 
-
- 
+86 val\_86 NULL  
+311 val\_311 NULL  
+27 val\_27 NULL  
+165 val\_165 NULL  
+409 val\_409 NULL  
+255 val\_255 NULL  
+278 val\_278 NULL  
+98 val\_98 NULL  
+...
 

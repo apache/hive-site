@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : UpdatableViews"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : UpdatableViews
 
@@ -36,8 +37,4 @@ Notes:
 * When we specify dynamic partitions for a view, do we create partitions on each view in a chain of updatable views?  If we don't, there may be strange behavior where SHOW PARTITIONS may not show anything on a view, but we can insert into such partitions of a view.  If we do, drop partition on the view actually does nothing to the data.
 
 See [Hive Views]({{< ref "viewdev_27362067" >}}) for general information about views.
-
- 
-
- 
 

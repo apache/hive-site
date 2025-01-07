@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Storage API Release Proposal"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Storage API Release Proposal
 
@@ -22,8 +23,4 @@ During development of a fix for a Hive release branch that impacts both Storage 
 To commit the change, the developer will need to commit the Storage API change on the Storage API release branch and make a release candidate. Once the vote passes, they can commit the rest of their patch to Hive including changing the
 
  
-
- 
-
- 
 

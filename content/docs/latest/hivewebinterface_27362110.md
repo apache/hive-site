@@ -1,32 +1,33 @@
 ---
+
 title: "Apache Hive : HiveWebInterface"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveWebInterface
 
 # Hive Web Interface (component removed as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15622))
 
 * [Hive Web Interface (component removed as of Hive 2.2.0)]({{< ref "#hive-web-interface--component-removed-as-of-hive-2-2-0-" >}})
-	+ [What Is the Hive Web Interface]({{< ref "#what-is-the-hive-web-interface" >}})
-		- [WebHCat API]({{< ref "#webhcat-api" >}})
-	+ [Features of HWI]({{< ref "#features-of-hwi" >}})
-		- [Schema Browsing]({{< ref "#schema-browsing" >}})
-		- [Detached Query Execution]({{< ref "#detached-query-execution" >}})
-		- [No Local Installation]({{< ref "#no-local-installation" >}})
-	+ [Configuration]({{< ref "#configuration" >}})
-		- [Start Up]({{< ref "#start-up" >}})
-		- [Authentication]({{< ref "#authentication" >}})
-	+ [Accessing HWI]({{< ref "#accessing-hwi" >}})
-	+ [Tips and Tricks]({{< ref "#tips-and-tricks" >}})
-		- [Result File]({{< ref "#result-file" >}})
-		- [Debug Mode]({{< ref "#debug-mode" >}})
-		- [Set Processor]({{< ref "#set-processor" >}})
-	+ [Walk Through]({{< ref "#walk-through" >}})
-		- [Authorize]({{< ref "#authorize" >}})
-		- [Schema Browser]({{< ref "#schema-browser" >}})
-		- [Diagnostics]({{< ref "#diagnostics" >}})
-		- [Running a Query]({{< ref "#running-a-query" >}})
+  + [What Is the Hive Web Interface]({{< ref "#what-is-the-hive-web-interface" >}})
+    - [WebHCat API]({{< ref "#webhcat-api" >}})
+  + [Features of HWI]({{< ref "#features-of-hwi" >}})
+    - [Schema Browsing]({{< ref "#schema-browsing" >}})
+    - [Detached Query Execution]({{< ref "#detached-query-execution" >}})
+    - [No Local Installation]({{< ref "#no-local-installation" >}})
+  + [Configuration]({{< ref "#configuration" >}})
+    - [Start Up]({{< ref "#start-up" >}})
+    - [Authentication]({{< ref "#authentication" >}})
+  + [Accessing HWI]({{< ref "#accessing-hwi" >}})
+  + [Tips and Tricks]({{< ref "#tips-and-tricks" >}})
+    - [Result File]({{< ref "#result-file" >}})
+    - [Debug Mode]({{< ref "#debug-mode" >}})
+    - [Set Processor]({{< ref "#set-processor" >}})
+  + [Walk Through]({{< ref "#walk-through" >}})
+    - [Authorize]({{< ref "#authorize" >}})
+    - [Schema Browser]({{< ref "#schema-browser" >}})
+    - [Diagnostics]({{< ref "#diagnostics" >}})
+    - [Running a Query]({{< ref "#running-a-query" >}})
 
 ## What Is the Hive Web Interface
 
@@ -91,7 +92,7 @@ You probably want to set up [HiveDerbyServerMode]({{< ref "hivederbyservermode_2
 ### Start Up
 
 When initializing `hive` with no arguments, the CLI is invoked. Hive has an extension architecture used to start other `hive` demons.  
- Jetty requires [Apache Ant](http://ant.apache.org/) to start HWI. You should define ANT\_LIB as an environment variable or add that to the `hive` invocation.
+Jetty requires [Apache Ant](http://ant.apache.org/) to start HWI. You should define ANT\_LIB as an environment variable or add that to the `hive` invocation.
 
 ```
 export ANT\_LIB=/opt/ant/lib
@@ -136,19 +137,19 @@ Debug mode is used when the user is interested in having the result file contain
 ### Set Processor
 
 In the CLI a command like 'SET x=5' is not processed by the the Query Processor, it is processed by  
- the Set Processor. Use the form 'x=5', not 'set x=5'.
+the Set Processor. Use the form 'x=5', not 'set x=5'.
 
 ## Walk Through
 
 ### Authorize
 
 ![](plugins/servlet/confluence/placeholder/unknown-attachment "1_hwi_authorize.png")  
- ![](plugins/servlet/confluence/placeholder/unknown-attachment "2_hwi_authorize.png")
+![](plugins/servlet/confluence/placeholder/unknown-attachment "2_hwi_authorize.png")
 
 ### Schema Browser
 
 ![](plugins/servlet/confluence/placeholder/unknown-attachment "3_schema_table.png")  
- ![](plugins/servlet/confluence/placeholder/unknown-attachment "4_schema_browser.png")
+![](plugins/servlet/confluence/placeholder/unknown-attachment "4_schema_browser.png")
 
 ### Diagnostics
 
@@ -157,11 +158,7 @@ In the CLI a command like 'SET x=5' is not processed by the the Query Processor,
 ### Running a Query
 
 ![](plugins/servlet/confluence/placeholder/unknown-attachment "6_newsession.png")  
- ![](plugins/servlet/confluence/placeholder/unknown-attachment "7_session_runquery.png")  
- ![](plugins/servlet/confluence/placeholder/unknown-attachment "8_session_query_1.png")  
- ![](plugins/servlet/confluence/placeholder/unknown-attachment "9_file_view.png")
-
- 
-
- 
+![](plugins/servlet/confluence/placeholder/unknown-attachment "7_session_runquery.png")  
+![](plugins/servlet/confluence/placeholder/unknown-attachment "8_session_query_1.png")  
+![](plugins/servlet/confluence/placeholder/unknown-attachment "9_file_view.png")
 

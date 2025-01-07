@@ -1,33 +1,34 @@
 ---
+
 title: "Apache Hive : Hive Transactions"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive Transactions
 
 # ACID and Transactions in Hive
 
 * [ACID and Transactions in Hive]({{< ref "#acid-and-transactions-in-hive" >}})
-	+ [What is ACID and why should you use it?]({{< ref "#what-is-acid-and-why-should-you-use-it" >}})
-	+ [Limitations]({{< ref "#limitations" >}})
-	+ [Streaming APIs]({{< ref "#streaming-apis" >}})
-	+ [Grammar Changes]({{< ref "#grammar-changes" >}})
-	+ [Basic Design]({{< ref "#basic-design" >}})
-		- [Base and Delta Directories]({{< ref "#base-and-delta-directories" >}})
-		- [Compactor]({{< ref "#compactor" >}})
-			* [Delta File Compaction]({{< ref "#delta-file-compaction" >}})
-			* [Initiator]({{< ref "#initiator" >}})
-			* [Worker]({{< ref "#worker" >}})
-			* [Cleaner]({{< ref "#cleaner" >}})
-			* [AcidHouseKeeperService]({{< ref "#acidhousekeeperservice" >}})
-			* [SHOW COMPACTIONS]({{< ref "#show-compactions" >}})
-		- [Transaction/Lock Manager]({{< ref "#transactionlock-manager" >}})
-	+ [Configuration]({{< ref "#configuration" >}})
-		- [New Configuration Parameters for Transactions]({{< ref "#new-configuration-parameters-for-transactions" >}})
-		- [Configuration Values to Set for INSERT, UPDATE, DELETE]({{< ref "#configuration-values-to-set-for-insert,-update,-delete" >}})
-		- [Configuration Values to Set for Compaction]({{< ref "#configuration-values-to-set-for-compaction" >}})
-		- [Compaction pooling]({{< ref "#compaction-pooling" >}})
-	+ [Table Properties]({{< ref "#table-properties" >}})
+  + [What is ACID and why should you use it?]({{< ref "#what-is-acid-and-why-should-you-use-it" >}})
+  + [Limitations]({{< ref "#limitations" >}})
+  + [Streaming APIs]({{< ref "#streaming-apis" >}})
+  + [Grammar Changes]({{< ref "#grammar-changes" >}})
+  + [Basic Design]({{< ref "#basic-design" >}})
+    - [Base and Delta Directories]({{< ref "#base-and-delta-directories" >}})
+    - [Compactor]({{< ref "#compactor" >}})
+      * [Delta File Compaction]({{< ref "#delta-file-compaction" >}})
+      * [Initiator]({{< ref "#initiator" >}})
+      * [Worker]({{< ref "#worker" >}})
+      * [Cleaner]({{< ref "#cleaner" >}})
+      * [AcidHouseKeeperService]({{< ref "#acidhousekeeperservice" >}})
+      * [SHOW COMPACTIONS]({{< ref "#show-compactions" >}})
+    - [Transaction/Lock Manager]({{< ref "#transactionlock-manager" >}})
+  + [Configuration]({{< ref "#configuration" >}})
+    - [New Configuration Parameters for Transactions]({{< ref "#new-configuration-parameters-for-transactions" >}})
+    - [Configuration Values to Set for INSERT, UPDATE, DELETE]({{< ref "#configuration-values-to-set-for-insert,-update,-delete" >}})
+    - [Configuration Values to Set for Compaction]({{< ref "#configuration-values-to-set-for-compaction" >}})
+    - [Compaction pooling]({{< ref "#compaction-pooling" >}})
+  + [Table Properties]({{< ref "#table-properties" >}})
 * [Talks and Presentations]({{< ref "#talks-and-presentations" >}})
 
 Hive 3 Warning
@@ -142,8 +143,6 @@ This commands displays information about currently running compaction and recent
 
 Also see [LanguageManual DDL#ShowCompactions]({{< ref "#languagemanual-ddl#showcompactions" >}}) for more information on the output of this command and [NewConfigurationParametersforTransactions]({{< ref "#newconfigurationparametersfortransactions" >}})/Compaction History for configuration properties affecting the output of this command.  The system retains the last N entries of each type: failed, succeeded, attempted (where N is configurable for each type).
 
-  
-
 ### Transaction/Lock Manager
 
 A new logical entity called "transaction manager"  was added which incorporated previous notion of "database/table/partition lock manager" (hive.lock.manager with default of org.apache.hadoop.hive.ql.lockmgr.zookeeper.ZooKeeperHiveLockManager). The transaction manager is now additionally responsible for managing of transactions locks. The default DummyTxnManager emulates behavior of old Hive versions: has no transactions and uses hive.lock.manager property to create lock manager for tables, partitions and databases. A newly added DbTxnManager manages all locks/transactions in Hive metastore with DbLockManager (transactions and locks are durable in the face of server failure). This means that previous behavior of locking in ZooKeeper is not present anymore when transactions are enabled. To avoid clients dying and leaving transaction or locks dangling, a heartbeat is sent from lock holders and transaction initiators to the metastore on a regular basis.  If a heartbeat is not received in the configured amount of time, the lock or transaction will be aborted.
@@ -221,11 +220,11 @@ A number of new configuration parameters have been added to the system to suppor
 
 In addition to the new parameters listed above, some existing parameters need to be set to support *INSERT ... VALUES, UPDATE,*and *DELETE*.
 
-| Configuration key | Must be set to |
-| --- | --- |
-| [hive.support.concurrency]({{< ref "#hive-support-concurrency" >}}) | true (default is false) |
-| [hive.enforce.bucketing]({{< ref "#hive-enforce-bucketing" >}}) | true (default is false) (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331)) |
-| [hive.exec.dynamic.partition.mode]({{< ref "#hive-exec-dynamic-partition-mode" >}}) | nonstrict (default is strict) |
+|                                  Configuration key                                  |                                              Must be set to                                               |
+|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| [hive.support.concurrency]({{< ref "#hive-support-concurrency" >}})                 | true (default is false)                                                                                   |
+| [hive.enforce.bucketing]({{< ref "#hive-enforce-bucketing" >}})                     | true (default is false) (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331)) |
+| [hive.exec.dynamic.partition.mode]({{< ref "#hive-exec-dynamic-partition-mode" >}}) | nonstrict (default is strict)                                                                             |
 
 ### Configuration Values to Set for Compaction
 
@@ -282,13 +281,7 @@ DataWorks Summit 2018, San Jose, CA, USA - Covers Hive 3 and ACID V2 features
 * [Slides](https://www.slideshare.net/Hadoop_Summit/transactional-operations-in-apache-hive-present-and-future-102803358)
 * [Video](https://www.youtube.com/watch?v=GyzU9wG0cFQ&t=834s)
 
-  
-
 Save
 
 Save
-
- 
-
- 
 

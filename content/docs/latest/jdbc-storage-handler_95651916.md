@@ -1,25 +1,27 @@
 ---
+
 title: "Apache Hive : JDBC Storage Handler"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : JDBC Storage Handler
 
 # 
+
 * 
 * [Syntax]({{< ref "#syntax" >}})
-	+ [Table Properties]({{< ref "#table-properties" >}})
-	+ [Supported Data Type]({{< ref "#supported-data-type" >}})
-	+ [Column/Type Mapping]({{< ref "#columntype-mapping" >}})
+  + [Table Properties]({{< ref "#table-properties" >}})
+  + [Supported Data Type]({{< ref "#supported-data-type" >}})
+  + [Column/Type Mapping]({{< ref "#columntype-mapping" >}})
 * [Auto Shipping]({{< ref "#auto-shipping" >}})
 * [Securing Password]({{< ref "#securing-password" >}})
 * [Partitioning]({{< ref "#partitioning" >}})
 * [Computation Pushdown]({{< ref "#computation-pushdown" >}})
 * [Using a Non-default Schema]({{< ref "#using-a-non-default-schema" >}})
-	+ [MariaDB]({{< ref "#mariadb" >}})
-	+ [MS SQL]({{< ref "#ms-sql" >}})
-	+ [Oracle]({{< ref "#oracle" >}})
-	+ [PostgreSQL]({{< ref "#postgresql" >}})
+  + [MariaDB]({{< ref "#mariadb" >}})
+  + [MS SQL]({{< ref "#ms-sql" >}})
+  + [Oracle]({{< ref "#oracle" >}})
+  + [PostgreSQL]({{< ref "#postgresql" >}})
 
 # Syntax
 
@@ -69,8 +71,6 @@ Besides the above required properties, you can also specify optional parameters 
 * hive.sql.dbcp.xxx: all dbcp parameters will pass to commons-dbcp. See <https://commons.apache.org/proper/commons-dbcp/configuration.html> for definition of the parameters. For example, if you specify hive.sql.dbcp.maxActive=1 in table property, Hive will pass maxActive=1 to commons-dbcp
 
 ## Supported Data Type
-
-  
 
 The column data type for a Hive JdbcStorageHandler table can be:
 
@@ -456,16 +456,4 @@ Grant the necessary permissions to access the schema. For example:
 GRANT USAGE ON SCHEMA bob TO greg;
 GRANT SELECT ON ALL TABLES IN SCHEMA bob TO greg;
 ```
-
-  
-
-  
-
-  
-
-  
-
- 
-
- 
 

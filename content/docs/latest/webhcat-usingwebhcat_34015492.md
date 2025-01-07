@@ -1,28 +1,29 @@
 ---
+
 title: "Apache Hive : WebHCat UsingWebHCat"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat UsingWebHCat
 
 # Using the HCatalog REST API (WebHCat)
 
 * [Using the HCatalog REST API (WebHCat)]({{< ref "#using-the-hcatalog-rest-api-webhcat" >}})
-	+ [Introduction to WebHCat]({{< ref "#introduction-to-webhcat" >}})
-	+ [URL Format]({{< ref "#url-format" >}})
-	+ [Security]({{< ref "#security" >}})
-		- [Standard Parameters]({{< ref "#standard-parameters" >}})
-			* [Specifying user.name]({{< ref "#specifying-username" >}})
-		- [Security Error Response]({{< ref "#security-error-response" >}})
-	+ [WebHDFS and Code Push]({{< ref "#webhdfs-and-code-push" >}})
-	+ [Error Codes and Responses]({{< ref "#error-codes-and-responses" >}})
-	+ [Log Files]({{< ref "#log-files" >}})
-	+ [Project Name]({{< ref "#project-name" >}})
+  + [Introduction to WebHCat]({{< ref "#introduction-to-webhcat" >}})
+  + [URL Format]({{< ref "#url-format" >}})
+  + [Security]({{< ref "#security" >}})
+    - [Standard Parameters]({{< ref "#standard-parameters" >}})
+      * [Specifying user.name]({{< ref "#specifying-username" >}})
+    - [Security Error Response]({{< ref "#security-error-response" >}})
+  + [WebHDFS and Code Push]({{< ref "#webhdfs-and-code-push" >}})
+  + [Error Codes and Responses]({{< ref "#error-codes-and-responses" >}})
+  + [Log Files]({{< ref "#log-files" >}})
+  + [Project Name]({{< ref "#project-name" >}})
 
 Version information
 
 The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.  
- Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
+Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
 
 ## Introduction to WebHCat
 
@@ -138,8 +139,4 @@ General: [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual](
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

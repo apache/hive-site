@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : ContributorMinutes20120418"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : ContributorMinutes20120418
 
@@ -17,13 +18,9 @@ Carl said that he is organizing the Hive BoF session at this year's Hadoop Summi
 
 The discussion next turned to problems with Arc and Phabricator. Carl expressed concern that bugs have crept in over the past couple of months, and that it's no longer clear who is responsible for making sure Hive works with Arc/Phabricator. John pointed out that the issues which were raised on the dev mailing list last week have already been resolved. There was general consensus that when it works, Arc/Phabricator is an improvement on ReviewBoard. John proposed that we continue using Arc/Phabricator, and raise any problems with it on the dev maligning list. There were no objections.
 
-Harish gave a short [presentation](https://github.com/hbutani/SQLWindowing/wiki/MoveToHive) on the [SQL Windowing library](https://github.com/hbutani/SQLWindowing) he wrote for Hive and how it might be integrated into Hive. Everyone agreed that adding this functionality to Hive makes sense. Several people suggested adding the toolkit to the contrib module as-is and using it to generate interest with users, but concerns were raised that this might be painful to support/deprecate in the future. The discussion ended with general agreement that we should start work now to incrementally push this capability into Hive's query compiler. 
+Harish gave a short [presentation](https://github.com/hbutani/SQLWindowing/wiki/MoveToHive) on the [SQL Windowing library](https://github.com/hbutani/SQLWindowing) he wrote for Hive and how it might be integrated into Hive. Everyone agreed that adding this functionality to Hive makes sense. Several people suggested adding the toolkit to the contrib module as-is and using it to generate interest with users, but concerns were raised that this might be painful to support/deprecate in the future. The discussion ended with general agreement that we should start work now to incrementally push this capability into Hive's query compiler.
 
 Carl explained the motivations and design decisions behind the HiveServer2 API proposal. The main motivations are supporting concurrency and providing a better foundation on which to build ODBC and JDBC drivers. Work on this project has started and is being tracked in [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).
 
 Namit offered to host the next contrib meeting at Facebook.
-
- 
-
- 
 

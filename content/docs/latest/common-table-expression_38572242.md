@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Common Table Expression"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Common Table Expression
 
@@ -83,8 +84,4 @@ In the second View example, a query's CTE is different from the CTE used when cr
 Also see this JIRA:
 
 * [HIVE-1180](https://issues.apache.org/jira/browse/HIVE-1180) Support Common Table Expressions (CTEs) in Hive
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : MultiDelimitSerDe"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : MultiDelimitSerDe
 
@@ -14,8 +15,6 @@ Introduced in [HIVE-5871](https://issues.apache.org/jira/browse/HIVE-5871), Mul
 Hive 0.14.0 and later.
 
 # Hive QL Syntax
-
-  
 
 You can use MultiDelimitSerDe in a create table statement like this:
 
@@ -42,20 +41,17 @@ where field.delim is the field delimiter, collection.delim and mapkey.delim
 
 ## Comments:
 
-|  |
-| --- |
-| 
+|   |
+|---|
+|   |
+
 Thank you [Lefty Leverenz](https://cwiki.apache.org/confluence/display/~leftyl)
 
- Posted by afan at Oct 05, 2018 06:18
-  |
-| 
+Posted by afan at Oct 05, 2018 06:18
+|
+|
 And thanks for your contributions [Alice Fan](https://cwiki.apache.org/confluence/display/~afan).
 
- Posted by leftyl at Oct 05, 2018 06:27
-  |
-
- 
-
- 
+Posted by leftyl at Oct 05, 2018 06:27
+|
 

@@ -1,23 +1,24 @@
 ---
+
 title: "Apache Hive : LanguageManual ORC"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual ORC
 
 # ORC Files
 
 * [ORC Files]({{< ref "#orc-files" >}})
-	+ [ORC File Format]({{< ref "#orc-file-format" >}})
-		- [File Structure]({{< ref "#file-structure" >}})
-		- [Stripe Structure]({{< ref "#stripe-structure" >}})
-	+ [HiveQL Syntax]({{< ref "#hiveql-syntax" >}})
-	+ [Serialization and Compression]({{< ref "#serialization-and-compression" >}})
-		- [Integer Column Serialization]({{< ref "#integer-column-serialization" >}})
-		- [String Column Serialization]({{< ref "#string-column-serialization" >}})
-		- [Compression]({{< ref "#compression" >}})
-	+ [ORC File Dump Utility]({{< ref "#orc-file-dump-utility" >}})
-	+ [ORC Configuration Parameters]({{< ref "#orc-configuration-parameters" >}})
+  + [ORC File Format]({{< ref "#orc-file-format" >}})
+    - [File Structure]({{< ref "#file-structure" >}})
+    - [Stripe Structure]({{< ref "#stripe-structure" >}})
+  + [HiveQL Syntax]({{< ref "#hiveql-syntax" >}})
+  + [Serialization and Compression]({{< ref "#serialization-and-compression" >}})
+    - [Integer Column Serialization]({{< ref "#integer-column-serialization" >}})
+    - [String Column Serialization]({{< ref "#string-column-serialization" >}})
+    - [Compression]({{< ref "#compression" >}})
+  + [ORC File Dump Utility]({{< ref "#orc-file-dump-utility" >}})
+  + [ORC Configuration Parameters]({{< ref "#orc-configuration-parameters" >}})
 * [ORC Format Specification]({{< ref "#orc-format-specification" >}})
 
 ## ORC File Format
@@ -33,11 +34,11 @@ Compared with RCFile format, for example, ORC file format has many advantages su
 * a single file as the output of each task, which reduces the NameNode's load
 * Hive type support including datetime, decimal, and the complex types (struct, list, map, and union)
 * light-weight indexes stored within the file
-	+ skip row groups that don't pass predicate filtering
-	+ seek to a given row
+  + skip row groups that don't pass predicate filtering
+  + seek to a given row
 * block-mode compression based on data type
-	+ run-length encoding for integer columns
-	+ dictionary encoding for string columns
+  + run-length encoding for integer columns
+  + dictionary encoding for string columns
 * concurrent reads of the same file using separate RecordReaders
 * ability to split files without scanning for markers
 * bound the amount of memory needed for reading or writing
@@ -79,15 +80,15 @@ File formats are specified at the table (or partition) level. You can specify th
 
 The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{< ref "#create-table" >}})). They are:
 
-| Key | Default | Notes |
-| --- | --- | --- |
-| orc.compress | ZLIB | high level compression (one of NONE, ZLIB, SNAPPY) |
-| orc.compress.size | 262,144 | number of bytes in each compression chunk |
-| orc.stripe.size | 67,108,864 | number of bytes in each stripe |
-| orc.row.index.stride | 10,000 | number of rows between index entries (must be >= 1000) |
-| orc.create.index | true | whether to create row indexes |
-| orc.bloom.filter.columns | "" | comma separated list of column names for which bloom filter should be created |
-| orc.bloom.filter.fpp | 0.05 | false positive probability for bloom filter (must >0.0 and <1.0) |
+|           Key            |  Default   |                                     Notes                                     |
+|--------------------------|------------|-------------------------------------------------------------------------------|
+| orc.compress             | ZLIB       | high level compression (one of NONE, ZLIB, SNAPPY)                            |
+| orc.compress.size        | 262,144    | number of bytes in each compression chunk                                     |
+| orc.stripe.size          | 67,108,864 | number of bytes in each stripe                                                |
+| orc.row.index.stride     | 10,000     | number of rows between index entries (must be >= 1000)                        |
+| orc.create.index         | true       | whether to create row indexes                                                 |
+| orc.bloom.filter.columns | ""         | comma separated list of column names for which bloom filter should be created |
+| orc.bloom.filter.fpp     | 0.05       | false positive probability for bloom filter (must >0.0 and <1.0)              |
 
 For example, creating an ORC stored table without compression:
 
@@ -128,11 +129,11 @@ The *variable-width encoding* is based on Google's protocol buffers and uses the
 Each set of numbers is encoded this way:
 
 * If the first byte (b0) is negative:
-	+ -b0 variable-length integers follow.
+  + -b0 variable-length integers follow.
 * If the first byte (b0) is positive:
-	+ it represents b0 + 3 repeated integers
-	+ the second byte (-128 to +127) is added between each repetition
-	+ 1 variable-length integer.
+  + it represents b0 + 3 repeated integers
+  + the second byte (-128 to +127) is added between each repetition
+  + 1 variable-length integer.
 
 In *run-length encoding,* the first byte specifies run length and whether the values are literals or duplicates. Duplicates can step by -128 to +128. Run-length encoding uses protobuf style variable-length integers.
 
@@ -203,8 +204,4 @@ The ORC specification has moved to [ORC project](https://orc.apache.org/specifi
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : GettingStarted EclipseSetup"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : GettingStarted EclipseSetup
 
@@ -31,8 +32,4 @@ This should import the project and the launch configurations. You can run the Hi
 There should be several configurations including `TestCliDriver`, `TestJdbc`, and `TestHive`.
 
 Then, you should be able to run all the unit tests by Run->Run.
-
- 
-
- 
 

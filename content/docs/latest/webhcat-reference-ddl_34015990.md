@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : WebHCat Reference DDL"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference DDL
 
 # DDL Command — POST ddl
 
 * [DDL Command — POST ddl]({{< ref "#ddl-command--post-ddl" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output-error" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
+    - [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 
@@ -27,21 +28,21 @@ Performs an [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) command. The command is 
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **exec** | The HCatalog ddl string to execute | Required | None |
-| **group** | The user group to use when creating a table | Optional | None |
-| **permissions** | The permissions string to use when creating a table. The format is "`rwxrw-r-x`". | Optional | None |
+|      Name       |                                    Description                                    | Required? | Default |
+|-----------------|-----------------------------------------------------------------------------------|-----------|---------|
+| **exec**        | The HCatalog ddl string to execute                                                | Required  | None    |
+| **group**       | The user group to use when creating a table                                       | Optional  | None    |
+| **permissions** | The permissions string to use when creating a table. The format is "`rwxrw-r-x`". | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **stdout** | A string containing the result HCatalog sent to standard out (possibly empty). |
-| **stderr** | A string containing the result HCatalog sent to standard error (possibly empty). |
-| **exitcode** | The exitcode HCatalog returned. |
+|     Name     |                                   Description                                    |
+|--------------|----------------------------------------------------------------------------------|
+| **stdout**   | A string containing the result HCatalog sent to standard out (possibly empty).   |
+| **stderr**   | A string containing the result HCatalog sent to standard error (possibly empty). |
+| **exitcode** | The exitcode HCatalog returned.                                                  |
 
 ## Example
 
@@ -96,11 +97,7 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 **Navigation Links**
 Previous: [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop_44303410" >}})  
- Next: [GET ddl/database]({{< ref "webhcat-reference-getdbs_34016238" >}})
+Next: [GET ddl/database]({{< ref "webhcat-reference-getdbs_34016238" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

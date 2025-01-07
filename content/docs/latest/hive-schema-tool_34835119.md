@@ -1,14 +1,15 @@
 ---
+
 title: "Apache Hive : Hive Schema Tool"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive Schema Tool
 
 * [Metastore Schema Verification]({{< ref "#metastore-schema-verification" >}})
 * [The Hive Schema Tool]({{< ref "#the-hive-schema-tool" >}})
-	+ [The schematool Command]({{< ref "#the-schematool-command" >}})
-	+ [Usage Examples]({{< ref "#usage-examples" >}})
+  + [The schematool Command]({{< ref "#the-schematool-command" >}})
+  + [Usage Examples]({{< ref "#usage-examples" >}})
 
 ## Metastore Schema Verification
 
@@ -85,7 +86,7 @@ usage: schemaTool
 The **dbType** is required and can be one of:
 
 ```
- derby|mysql|postgres|oracle|mssql
+derby|mysql|postgres|oracle|mssql
 ```
 
 Version
@@ -107,6 +108,7 @@ Initialization script completed
 schemaTool completed
 
 ```
+
 * Get schema information:
 
 ```
@@ -119,6 +121,7 @@ Metastore schema version:        0.13.0
 schemaTool completed
 
 ```
+
 * Attempt to get schema information with older metastore:
 
 ```
@@ -150,6 +153,7 @@ Completed upgrade-0.12.0-to-0.13.0.derby.sql
 schemaTool completed
 
 ```
+
 * Upgrade dry run can be used to list the required scripts for the given upgrade.
 
 ```
@@ -174,6 +178,7 @@ This is useful if you just want to find out all the required scripts for the sch
 build/dist/bin/schematool -moveDatabase db1 -fromCatalog hive -toCatalog spark
 
 ```
+
 * Moving a table from Hive catalog to Spark Catalog
 
 ```
@@ -185,8 +190,4 @@ schematool -moveDatabase newdb -fromCatalog hive -toCatalog spark
 schematool -moveTable table1 -fromCatalog hive -toCatalog spark  -fromDatabase db1 -toDatabase newdb
 
 ```
-
- 
-
- 
 

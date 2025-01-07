@@ -1,31 +1,32 @@
 ---
+
 title: "Apache Hive : HiveReplicationDevelopment"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveReplicationDevelopment
 
 * [Introduction]({{< ref "#introduction" >}})
-	+ [Purposes of Replication]({{< ref "#purposes-of-replication" >}})
-		- [Disaster Recovery]({{< ref "#disaster-recovery" >}})
-		- [Load Balancing]({{< ref "#load-balancing" >}})
-	+ [Replication Taxonomy]({{< ref "#replication-taxonomy" >}})
-		- [Transaction Source]({{< ref "#transaction-source" >}})
-			* [Primary-Copy]({{< ref "#primary-copy" >}})
-			* [Update-Anywhere]({{< ref "#update-anywhere" >}})
-		- [Synchronization Strategy]({{< ref "#synchronization-strategy" >}})
-			* [Eager]({{< ref "#eager" >}})
-			* [Lazy]({{< ref "#lazy" >}})
+  + [Purposes of Replication]({{< ref "#purposes-of-replication" >}})
+    - [Disaster Recovery]({{< ref "#disaster-recovery" >}})
+    - [Load Balancing]({{< ref "#load-balancing" >}})
+  + [Replication Taxonomy]({{< ref "#replication-taxonomy" >}})
+    - [Transaction Source]({{< ref "#transaction-source" >}})
+      * [Primary-Copy]({{< ref "#primary-copy" >}})
+      * [Update-Anywhere]({{< ref "#update-anywhere" >}})
+    - [Synchronization Strategy]({{< ref "#synchronization-strategy" >}})
+      * [Eager]({{< ref "#eager" >}})
+      * [Lazy]({{< ref "#lazy" >}})
 * [Design]({{< ref "#design" >}})
-	+ [Taxonomy Design Choices]({{< ref "#taxonomy-design-choices" >}})
-		- [Primary-Copy vs Update-Anywhere]({{< ref "#primary-copy-vs-update-anywhere" >}})
-		- [Eager vs Lazy]({{< ref "#eager-vs-lazy" >}})
-	+ [Other Design Choices]({{< ref "#other-design-choices" >}})
-	+ [Basic Approach]({{< ref "#basic-approach" >}})
+  + [Taxonomy Design Choices]({{< ref "#taxonomy-design-choices" >}})
+    - [Primary-Copy vs Update-Anywhere]({{< ref "#primary-copy-vs-update-anywhere" >}})
+    - [Eager vs Lazy]({{< ref "#eager-vs-lazy" >}})
+  + [Other Design Choices]({{< ref "#other-design-choices" >}})
+  + [Basic Approach]({{< ref "#basic-approach" >}})
 * [Implementation]({{< ref "#implementation" >}})
-	+ [Events]({{< ref "#events" >}})
-	+ [Event IDs, State IDs, and Sequencing of Exports/Imports]({{< ref "#event-ids-state-ids-and-sequencing-of-exportsimports" >}})
-	+ [Handling of Events]({{< ref "#handling-of-events" >}})
+  + [Events]({{< ref "#events" >}})
+  + [Event IDs, State IDs, and Sequencing of Exports/Imports]({{< ref "#event-ids-state-ids-and-sequencing-of-exportsimports" >}})
+  + [Handling of Events]({{< ref "#handling-of-events" >}})
 * [Future Features]({{< ref "#future-features" >}})
 * [References]({{< ref "#references" >}})
 
@@ -144,18 +145,18 @@ As mentioned above, each event is tagged with an event sequence ID. In addition 
 
 Each event is handled differently depending on its event type, which is a combination of the object (database, table, partition) and the operation (create, add, alter, insert, drop). Each event may include a source command, a copy, and a destination command. The following chart describes the ten event types and how they are handled with descriptions below.
 
-| Event | Source Command | Needs Copy? | Destination Command |
-| --- | --- | --- | --- |
-| CreateDatabase | No-op | No | No-op |
-| DropDatabase | No-op | No | `DROP DATABASE CASCADE` |
-| AlterDatabase | *(not implemented)* | *(not implemented)* | *(not implemented)* |
-| CreateTable | `EXPORT … FOR REPLICATION` | Yes | `IMPORT` |
-| DropTable | No-op | No | `DROP TABLE … FOR REPLICATION(‘id’)` |
-| AlterTable | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT`` |
-| AddPartition | (multi) `EXPORT … FOR REPLICATION` | Yes | (multi) ``IMPORT`` |
-| DropPartition | No-op | No | (multi) `ALTER TABLE … DROP PARTITION(…) FOR REPLICATION(‘id’)` |
-| AlterPartition | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT`` |
-| Insert | `EXPORT … FOR REPLICATION` | Yes (dumb copy) | ``IMPORT`` |
+|     Event      |           Source Command            |     Needs Copy?     |                       Destination Command                       |
+|----------------|-------------------------------------|---------------------|-----------------------------------------------------------------|
+| CreateDatabase | No-op                               | No                  | No-op                                                           |
+| DropDatabase   | No-op                               | No                  | `DROP DATABASE CASCADE`                                         |
+| AlterDatabase  | *(not implemented)*                 | *(not implemented)* | *(not implemented)*                                             |
+| CreateTable    | `EXPORT … FOR REPLICATION`          | Yes                 | `IMPORT`                                                        |
+| DropTable      | No-op                               | No                  | `DROP TABLE … FOR REPLICATION(‘id’)`                            |
+| AlterTable     | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT``                                                      |
+| AddPartition   | (multi) `EXPORT … FOR REPLICATION`  | Yes                 | (multi) ``IMPORT``                                              |
+| DropPartition  | No-op                               | No                  | (multi) `ALTER TABLE … DROP PARTITION(…) FOR REPLICATION(‘id’)` |
+| AlterPartition | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT``                                                      |
+| Insert         | `EXPORT … FOR REPLICATION`          | Yes (dumb copy)     | ``IMPORT``                                                      |
 
 ##### CreateDatabase
 
@@ -223,8 +224,4 @@ Save
 Save
 
 Save
-
- 
-
- 
 

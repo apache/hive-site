@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Cost-based optimization in Hive"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Cost-based optimization in Hive
 
@@ -110,18 +111,18 @@ Calcite currently has over fifty cost based optimization rules. Some of the prom
 In this document we propose to use Calcite’s cost based optimizer, Volcano, to perform Cost Based Optimizations in Hive. We propose to implement Calcite based CBO in a phased manner. Note here that proposal is to use Calcite’s optimizer only and nothing else. Listed below are the envisioned stages of introducing CBO in to Hive using Calcite:
 
 * Phase1 – Join Reordering & Join algorithm Selection
-	+ Table cardinality and boundary statistics will be used to compute operator cardinality.
-	+ Hive operator tree will be converted to Calcite operator tree.
-	+ Volcano optimizer in Calcite will be used to rearrange joins and to pick the join algorithm.
-	+ Optimized Calcite operator tree would be converted back to Hive AST and will be executed as before. So all of the Hive’s existing optimizations would run on top of Calcite optimized SQL.
+  + Table cardinality and boundary statistics will be used to compute operator cardinality.
+  + Hive operator tree will be converted to Calcite operator tree.
+  + Volcano optimizer in Calcite will be used to rearrange joins and to pick the join algorithm.
+  + Optimized Calcite operator tree would be converted back to Hive AST and will be executed as before. So all of the Hive’s existing optimizations would run on top of Calcite optimized SQL.
 * Phase2 – Add support for Histograms, use other optimizations in Calcite
-	+ Introduce space efficient histograms
-	+ Change operator cardinality computation to use histograms
-	+ Register additional optimization rules available in Calcite like the ones listed above.
+  + Introduce space efficient histograms
+  + Change operator cardinality computation to use histograms
+  + Register additional optimization rules available in Calcite like the ones listed above.
 * Phase3 – Code restructuring so that Calcite generates optimized Hive Operator tree
-	+ Unlike phase1 Hive AST would be directly translated into Calcite operator tree.
-	+ Optimize Calcite operator tree using Volcano optimizer.
-	+ Convert optimized Calcite operator tree back into Hive Operator tree. This is unlike phase1 where optimized Calcite operator tree is converted to Hive AST.
+  + Unlike phase1 Hive AST would be directly translated into Calcite operator tree.
+  + Optimize Calcite operator tree using Volcano optimizer.
+  + Convert optimized Calcite operator tree back into Hive Operator tree. This is unlike phase1 where optimized Calcite operator tree is converted to Hive AST.
 
 # 2. RELATED WORK
 
@@ -140,7 +141,7 @@ In this document we propose to use Calcite’s cost based optimizer, Volcano, to
 
 Sai Wu, Feng Li, Sharad Mehrotra, Beng Chin Ooi
 
-*School of Computing, National University of Singapore, Singapore, 117590* 
+*School of Computing, National University of Singapore, Singapore, 117590*
 
 *School of Information and Computer Science, University of California at Irvine*
 
@@ -260,7 +261,7 @@ Restrictions:
 
 * Calcite CBO will be used only for select expressions
 * Calcite CBO won’t be used if select expression contains any of the following operators:
-	+ Sort By
+  + Sort By
 
 Hive supports both total ordering (order by) and partial ordering (sort by). Partial ordering cannot be represented in relational algebra and SQL. In future we may represent Sort By as a table function.
 
@@ -708,27 +709,27 @@ Example: C(R1  a=b R2) = max (C(R2.b=R1.a C(R1 X R2)), C(R1))
 2. Walk the Hive OP tree and introduce cast functions to make sure that all of the comparisons (implicit & explicit) are strictly type safe (the type must be same on both sides).
 3. Implement Calcite operators specific to Hive that would do cost computation and cloning.
 4. Convert the Hive OP tree to Calcite OP tree.
-	1. Convert Hive Types to Calcite types
-	2. Convert Hive Expressions to Calcite expressions
-	3. Convert Hive Operator to Calcite operator
-	4. Handle Hidden Columns
-	5. Handle columns introduced by ReduceSink (for shuffling)
-	6. Handle Join condition expressions stashed in Reducesink op
-	7. Handle filters in Join Conditions
-	8. Convert Hive Semi Join to Calcite
-	9. Attach cost to operators
-	10. Alias the top-level query projections to query projections that user expects.
+   1. Convert Hive Types to Calcite types
+   2. Convert Hive Expressions to Calcite expressions
+   3. Convert Hive Operator to Calcite operator
+   4. Handle Hidden Columns
+   5. Handle columns introduced by ReduceSink (for shuffling)
+   6. Handle Join condition expressions stashed in Reducesink op
+   7. Handle filters in Join Conditions
+   8. Convert Hive Semi Join to Calcite
+   9. Attach cost to operators
+   10. Alias the top-level query projections to query projections that user expects.
 5. Optimize the Calcite OP tree using Volcano Optimizer.
-	1. Implement Rules to convert Joins to Hive Join algorithms.
-		1. Common Join -> Map Join
-		2. Map Join -> Bucket Map Join
-		3. Common Join -> Bucket Map Join
-		4. Bucket Map Join ->  SMB Join
-		5. Common Join -> Skew Join
+   1. Implement Rules to convert Joins to Hive Join algorithms.
+      1. Common Join -> Map Join
+      2. Map Join -> Bucket Map Join
+      3. Common Join -> Bucket Map Join
+      4. Bucket Map Join ->  SMB Join
+      5. Common Join -> Skew Join
 6. Walk the Optimized Calcite OP tree and introduce derived tables to convert OP tree to SQL.
-	1. Generate unique table (including derived table) aliases
+   1. Generate unique table (including derived table) aliases
 7. Walk the OP tree and convert in to AST.
-	1. Stash Join algorithm in AST as query Hints
+   1. Stash Join algorithm in AST as query Hints
 8. Modify Plan Generator to pay attention to Calcite query hints
 9. Rerun Hive optimizer and generate the execution plan (this second pass would not invoke Calcite optimizer).
 
@@ -743,15 +744,11 @@ Example: C(R1  a=b R2) = max (C(R2.b=R1.a C(R1 X R2)), C(R1))
 
 Sai Wu, Feng Li, Sharad Mehrotra, Beng Chin Ooi
 
-*School of Computing, National University of Singapore, Singapore, 117590* 
+*School of Computing, National University of Singapore, Singapore, 117590*
 
 *School of Information and Computer Science, University of California at Irvine*
 
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : WebHCat Reference GetTables"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : WebHCat Reference GetTables
 
 # List Tables — GET ddl/database/:db/table
 
 * [List Tables — GET ddl/database/:db/table]({{< ref "#list-tables--get-ddldatabasedbtable" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output-error" >}})
+  + [Description]({{< ref "#description" >}})
+  + [URL]({{< ref "#url" >}})
+  + [Parameters]({{< ref "#parameters" >}})
+  + [Results]({{< ref "#results" >}})
+  + [Example]({{< ref "#example" >}})
+    - [Curl Command]({{< ref "#curl-command" >}})
+    - [JSON Output]({{< ref "#json-output" >}})
+    - [JSON Output (error)]({{< ref "#json-output-error" >}})
 
 ## Description
 
@@ -27,19 +28,19 @@ List the tables in an HCatalog database.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **like** | List only tables whose names match the specified pattern | Optional | "*" (List all tables) |
+|   Name   |                       Description                        | Required? |        Default        |
+|----------|----------------------------------------------------------|-----------|-----------------------|
+| **:db**  | The database name                                        | Required  | None                  |
+| **like** | List only tables whose names match the specified pattern | Optional  | "*" (List all tables) |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **tables** | A list of table names |
-| **database** | The database name |
+|     Name     |      Description      |
+|--------------|-----------------------|
+| **tables**   | A list of table names |
+| **database** | The database name     |
 
 ## Example
 
@@ -94,14 +95,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [DELETE ddl/database/:db]({{< ref "webhcat-reference-deletedb_34016281" >}}) Next: [GET ddl/database/:db/table/:table]({{< ref "webhcat-reference-gettable_34016519" >}})
 
 General: [DDL Resources]({{< ref "webhcat-reference-allddl_34016001" >}}) – [WebHCat Reference]({{< ref "webhcat-reference_34015762" >}}) – [WebHCat Manual]({{< ref "webhcat_33299069" >}}) – [HCatalog Manual]({{< ref "hcatalog_33299065" >}}) – [Hive Wiki Home]({{< ref "home_27362069" >}}) – [Hive Project Site](http://hive.apache.org/)
-
- 
-
- 
 

@@ -1,19 +1,20 @@
 ---
+
 title: "Apache Hive : StorageHandlers"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : StorageHandlers
 
 # Hive Storage Handlers
 
 * [Hive Storage Handlers]({{< ref "#hive-storage-handlers" >}})
-	+ [Introduction]({{< ref "#introduction" >}})
-	+ [Terminology]({{< ref "#terminology" >}})
-	+ [DDL]({{< ref "#ddl" >}})
-	+ [Storage Handler Interface]({{< ref "#storage-handler-interface" >}})
-	+ [HiveMetaHook Interface]({{< ref "#hivemetahook-interface" >}})
-	+ [Open Issues]({{< ref "#open-issues" >}})
+  + [Introduction]({{< ref "#introduction" >}})
+  + [Terminology]({{< ref "#terminology" >}})
+  + [DDL]({{< ref "#ddl" >}})
+  + [Storage Handler Interface]({{< ref "#storage-handler-interface" >}})
+  + [HiveMetaHook Interface]({{< ref "#hivemetahook-interface" >}})
+  + [Open Issues]({{< ref "#open-issues" >}})
 
 ## Introduction
 
@@ -156,8 +157,4 @@ Also note that there is no facility for two-phase commit in metadata transaction
 * It may be a good idea to support temporary disablement of metastore hooks as part of manual catalog repair operations
 * The CREATE TABLE grammar isn't quite as strict as the one given above; some changes are needed in order to prevent STORED BY and row\_format both being specified at once
 * CREATE TABLE AS SELECT is currently prohibited for creating a non-native table. It should be possible to support this, although it may not make sense for all storage handlers. For example, for HBase, it won't make sense until the storage handler is capable of automatically filling in column mappings.
-
- 
-
- 
 

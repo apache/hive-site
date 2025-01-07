@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : PoweredBy"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : PoweredBy
 
@@ -82,8 +83,4 @@ Hot Wikipedia Topics, Served Fresh Daily. Powered by Cloudera Hadoop Distributio
 ## [VideoEgg](http://www.videoegg.com)
 
 We use Hive as the core database for our data warehouse where we track and analyze all the usage data of the ads across our network.
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Hive PTest2 Infrastructure"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive PTest2 Infrastructure
 
@@ -18,15 +19,15 @@ The infrastructure master is at ec2-174-129-184-35.compute-1.amazonaws.com.  Co
 The infrastructure master hosts two processes:
 
 1. Jenkins: <http://ec2-174-129-184-35.compute-1.amazonaws.com/jenkins/>
-	* This is the admin for Hive builds.  The dashboard shows the state of the build queue, test results of past builds, etc.
-	* Builds are submitted either manually in the dashboard UI, automatically by patch upload (see [Hive PreCommit Testing](https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing)), or by Jenkins schedule (branch builds).
+   * This is the admin for Hive builds.  The dashboard shows the state of the build queue, test results of past builds, etc.
+   * Builds are submitted either manually in the dashboard UI, automatically by patch upload (see [Hive PreCommit Testing](https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing)), or by Jenkins schedule (branch builds).
 2. Hive PTest2 WebServer
-	* Exposes a REST API to take test requests from the Jenkins builds.  Each request specifies a profile property-file, which contains a set of properties such as what branch to build and what tests to run.
-	* On a test request:
-		+ Creates EC2 slaves, which are spot-instances.
-		+ Reads the specified property-file and compiles Hive using it.
-		+ Distributes the compiled artifacts across the EC2 slaves, makes SSH calls to run the tests remotely in parallel, and gathers the results.
-	1. * If no further test request comes in 30 minutes, the slaves are shutdown.
+   * Exposes a REST API to take test requests from the Jenkins builds.  Each request specifies a profile property-file, which contains a set of properties such as what branch to build and what tests to run.
+   * On a test request:
+     + Creates EC2 slaves, which are spot-instances.
+     + Reads the specified property-file and compiles Hive using it.
+     + Distributes the compiled artifacts across the EC2 slaves, makes SSH calls to run the tests remotely in parallel, and gathers the results.
+   1. * If no further test request comes in 30 minutes, the slaves are shutdown.
 
 ### Jenkins Configuration/Debug
 
@@ -68,8 +69,4 @@ $ sudo /usr/local/hiveptest/bin/start-server.sh
 $ sudo /usr/local/hiveptest/bin/restart-server.sh 
 $ sudo /usr/local/hiveptest/bin/update.sh 
 ```
-
- 
-
- 
 

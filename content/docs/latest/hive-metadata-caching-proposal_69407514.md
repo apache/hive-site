@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Hive Metadata Caching Proposal"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Hive Metadata Caching Proposal
 
@@ -11,15 +12,13 @@ During Hive 2 benchmark, we find Hive metastore operation take a lot of time and
 
 ## Server side vs client side cache
 
-We are thinking about two possible locations of cache. One is on metastore client side, the other is on metastore server side. Both client side and server side cache needs to be a singleton and shared within the JVM. Let’s take Metastore server side cache as an example and illustrated below: 
+We are thinking about two possible locations of cache. One is on metastore client side, the other is on metastore server side. Both client side and server side cache needs to be a singleton and shared within the JVM. Let’s take Metastore server side cache as an example and illustrated below:
 
 ![ms2.png](https://lh6.googleusercontent.com/qtleiaHa_6m5Qv8VdvdVzAO23lThXljKODtu0uNJDanrRteYOfR-ss6HhBnByFz4XjmYbXUzqKRRExgM1t56xrBUP2sEwVsncMTT2zVrxwlI-63NMQUeqCErWN4DRkTz7wEHmn_5)
 
 Here we show two HiveServer2 instances using a single remote metastore. The metastore server will have a cache and thus shared by both HiveServer2 instances. In practice, we usually use HiveServer2 with embedded metastore. In this picture, metastore server code lives inside HS2 JVM instance and metastore server cache is shared within the HiveServer2:
 
 ![ms1.png](https://lh6.googleusercontent.com/yDtScj5Ls99DYNBW6Z5KAqxFQscGsnfSoT7o20TZkA4OYYoiaFdJjqKwBa437pmygEx72e7KWmkeqFm-0Z2I2c-sWeYYi8YdAU1oSiCIPVOPDPhB8yNpGepO1jbgH0kE7Bq8_8KR)
-
-  
 
 On the other hand, Metastore client side lives in client JVM and will go away once the client is gone.
 
@@ -39,8 +38,8 @@ To address this issue, we envision several approaches to invalidate stale cache 
 2. Metastore has an event log (currently used for implementing replication v2). The event log captures all the changes to the metadata object. So we shall be able to monitor the event log on every cache instance and invalidate changed entries (
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)](https://issues.apache.org/jira/browse/HIVE-18056?src=confmacro)
- -
- CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
+-
+CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
 Closed
 
 ). This might have a minor lag due to the event propagation, but that should be much shorter than the cache eviction.
@@ -61,13 +60,11 @@ Presto has the following cache:
 + partitionCache
 + userRolesCache
 + userTablePrivileges
-
 * Range scan cache
 + databaseNamesCache: regex -> database names, facilitates database search
 + tableNamesCache
 + viewNamesCache
 + partitionNamesCache: table name -> partition names
-
 * Other
 + partitionFilterCache: PS -> partition names, facilitates partition pruning
 
@@ -75,43 +72,43 @@ For every partition filter condition, Presto breaks it down into tupleDomain and
 
 AddExchanges.planTableScan:
 
-            DomainTranslator.ExtractionResult decomposedPredicate = DomainTranslator.fromPredicate(
+           DomainTranslator.ExtractionResult decomposedPredicate = DomainTranslator.fromPredicate(
 
-                    metadata,
+                   metadata,
 
-                    session,
+                   session,
 
-                    deterministicPredicate,
+                   deterministicPredicate,
 
-                    types);
+                   types);
 
-    public static class ExtractionResult
+   public static class ExtractionResult
 
-    {
+   {
 
-        private final TupleDomain<Symbol> tupleDomain;
+       private final TupleDomain<Symbol> tupleDomain;
 
-        private final Expression remainingExpression;
+       private final Expression remainingExpression;
 
-    }
+   }
 
 tupleDomain is a mapping of column -> range or exact value. When converting to PS, any range will be converted into wildcard and only exact value will be considered:
 
 HivePartitionManager.getFilteredPartitionNames:
 
-        for (HiveColumnHandle partitionKey : partitionKeys) {
+       for (HiveColumnHandle partitionKey : partitionKeys) {
 
-            if (domain != null && domain.isNullableSingleValue()) {
+           if (domain != null && domain.isNullableSingleValue()) {
 
-                    filter.add(((Slice) value).toStringUtf8());
+                   filter.add(((Slice) value).toStringUtf8());
 
-            else {
+           else {
 
-                filter.add(PARTITION\_VALUE\_WILDCARD);
+               filter.add(PARTITION\_VALUE\_WILDCARD);
 
-            }
+           }
 
-        }
+       }
 
 For example, the expression “state = CA and date between ‘201612’ and ‘201701’ will be broken down to PS (state = CA) and remainder date between ‘201612’ and ‘201701’. Presto will retrieve the partitions with state = CA from the PS -> partition name cache and partition object cache, and evaluates “date between ‘201612’ and ‘201701’ for every partitions returned. This is a good balance compare to caching partition names for every expression.
 
@@ -122,8 +119,8 @@ Our design is a metastore server side cache and we will do metastore invalidatio
 Further, in our design, metastore will read all metastore objects once at startup time (prewarm) and there is no eviction of the metastore objects ever since. The only time we change cache is when user requested a change through metastore client (eg, alter table, alter partition), and upon receiving metastore event of changes made by other metastore server. Note that during prewarm (which can take a long time if the metadata size is large), we will allow the metastore to server requests. If a table has already been cached, the requests for that table (and its partitions and statistics) can be served from the cache. If the table has not been prewarmed yet, the requests for that table will be served from the database (
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)](https://issues.apache.org/jira/browse/HIVE-18264?src=confmacro)
- -
- CachedStore: Store cached partitions/col stats within the table cache and make prewarm non-blocking
+-
+CachedStore: Store cached partitions/col stats within the table cache and make prewarm non-blocking
 Resolved
 
 ).
@@ -131,8 +128,8 @@ Resolved
 Currently, the size of the metastore cache can be restricted by a combination of cache whitelist and blacklist patterns (
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)](https://issues.apache.org/jira/browse/HIVE-18056?src=confmacro)
- -
- CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
+-
+CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
 Closed
 
 ). Before a table is cached, it is checked against these filters to decide if it can be cached or not. Similarly, when a table is read, if it does not pass the above filters, it is read from the database and not the cache.
@@ -186,8 +183,8 @@ For local metastore request that changes an object, such as alter table/alter pa
 For remote metastore updates, we will either use a periodical synchronization (current approach), or monitor event log and fetch affected objects from SQL database (
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)HIVE-18661](https://issues.apache.org/jira/browse/HIVE-18661?src=confmacro)
- -
- CachedStore: Use metastore notification log events to update cache
+-
+CachedStore: Use metastore notification log events to update cache
 Resolved
 
 ). Both options are discussed already in “Cache Consistency” section.
@@ -197,8 +194,8 @@ Resolved
 We already have aggregated stats module in ObjectStore (
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype)HIVE-10382](https://issues.apache.org/jira/browse/HIVE-10382?src=confmacro)
- -
- Aggregate stats cache for RDBMS based metastore codepath
+-
+Aggregate stats cache for RDBMS based metastore codepath
 Closed
 
 ). However, the base column statistics is not cached and needs to fetch from SQL database everytime needed. We plan to port aggregated stats module to CachedStore to use cached column statistics to do the calculation. One design choice yet to make is whether we need to cache aggregated stats, or calculate them on the fly in the CachedStore assuming all column stats are in memory. But in either case, once we turn on aggregate stats in CacheStore, we shall turn off it in ObjectStore (already have a switch) so we don’t do it twice.
@@ -209,7 +206,7 @@ This is one of the most important operations in Hive metastore we want to optimi
 
 ### Architecture
 
-CachedStore will implement a RawStore interface. CachedStore internally wraps a real RawStore implementation which could be anything (either ObjectStore, or HBaseStore). In HiveServer2 embedded metastore or standalone metastore setting, we will set hive.metastore.rawstore.impl to CachedStore, and hive.metastore.cached.rawstore.impl (the wrapped RawStore) to ObjectStore. If we are using HiveCli with embedded metastore, we might want to skip CachedStore since we might not want prewarm latency. 
+CachedStore will implement a RawStore interface. CachedStore internally wraps a real RawStore implementation which could be anything (either ObjectStore, or HBaseStore). In HiveServer2 embedded metastore or standalone metastore setting, we will set hive.metastore.rawstore.impl to CachedStore, and hive.metastore.cached.rawstore.impl (the wrapped RawStore) to ObjectStore. If we are using HiveCli with embedded metastore, we might want to skip CachedStore since we might not want prewarm latency.
 
 ### Potential Issues
 
@@ -224,10 +221,4 @@ There are maybe some potential issue or unimplemented featrue in the initial ver
 ### Compare to Presto
 
 In our design, we sacrifice prewarm time and memory footprint in change of simplicity and better runtime performance. By monitoring event queue, and can solve the remote metastore consistency issue which is missing in Presto. Architecture level, CachedStore is a lightweight cache layer wrapping the real RawStore, with this design, there’s nothing prevent us to implement alternative cache strategy in addition to our current approach.
-
-  
-
- 
-
- 
 

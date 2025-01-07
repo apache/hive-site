@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : BecomingACommitter"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : BecomingACommitter
 
@@ -47,8 +48,4 @@ It should go without saying, but here it is anyway: your participation in the pr
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

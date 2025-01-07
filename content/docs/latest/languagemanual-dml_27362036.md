@@ -1,54 +1,55 @@
 ---
+
 title: "Apache Hive : LanguageManual DML"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual DML
 
 # Hive Data Manipulation Language
 
 * [Hive Data Manipulation Language]({{< ref "#hive-data-manipulation-language" >}})
-	+ [Loading files into tables]({{< ref "#loading-files-into-tables" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Inserting data into Hive Tables from queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-		- [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
-			* [Example]({{< ref "#example" >}})
-			* [Additional Documentation]({{< ref "#additional-documentation" >}})
-	+ [Writing data into the filesystem from queries]({{< ref "#writing-data-into-the-filesystem-from-queries" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Inserting values into tables from SQL]({{< ref "#inserting-values-into-tables-from-sql" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Examples]({{< ref "#examples" >}})
-	+ [Update]({{< ref "#update" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Delete]({{< ref "#delete" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Merge]({{< ref "#merge" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Performance Note]({{< ref "#performance-note" >}})
-		- [Notes]({{< ref "#notes" >}})
-		- [Examples]({{< ref "#examples" >}})
+  + [Loading files into tables]({{< ref "#loading-files-into-tables" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Notes]({{< ref "#notes" >}})
+  + [Inserting data into Hive Tables from queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Notes]({{< ref "#notes" >}})
+    - [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
+      * [Example]({{< ref "#example" >}})
+      * [Additional Documentation]({{< ref "#additional-documentation" >}})
+  + [Writing data into the filesystem from queries]({{< ref "#writing-data-into-the-filesystem-from-queries" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Notes]({{< ref "#notes" >}})
+  + [Inserting values into tables from SQL]({{< ref "#inserting-values-into-tables-from-sql" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Examples]({{< ref "#examples" >}})
+  + [Update]({{< ref "#update" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Notes]({{< ref "#notes" >}})
+  + [Delete]({{< ref "#delete" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Notes]({{< ref "#notes" >}})
+  + [Merge]({{< ref "#merge" >}})
+    - [Syntax]({{< ref "#syntax" >}})
+    - [Synopsis]({{< ref "#synopsis" >}})
+    - [Performance Note]({{< ref "#performance-note" >}})
+    - [Notes]({{< ref "#notes" >}})
+    - [Examples]({{< ref "#examples" >}})
 
 There are multiple ways to modify data in Hive:
 
 * [LOAD](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Loadingfilesintotables)
 * INSERT
-	+ [into Hive tables from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingdataintoHiveTablesfromqueries)
-	+ [into directories from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Writingdataintothefilesystemfromqueries)
-	+ [into Hive tables from SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingintotablesfromSQL)
+  + [into Hive tables from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingdataintoHiveTablesfromqueries)
+  + [into directories from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Writingdataintothefilesystemfromqueries)
+  + [into Hive tables from SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingintotablesfromSQL)
 * [UPDATE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Update)
 * [DELETE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Delete)
 * [MERGE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Merge)
@@ -72,27 +73,27 @@ LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION 
 Load operations prior to Hive 3.0 are pure copy/move operations that move datafiles into locations corresponding to Hive tables.
 
 * *filepath* can be:
-	+ a relative path, such as `project/data1`
-	+ an absolute path, such as `/user/hive/project/data1`
-	+ a full URI with scheme and (optionally) an authority, such as `hdfs://namenode:9000/user/hive/project/data1`
+  + a relative path, such as `project/data1`
+  + an absolute path, such as `/user/hive/project/data1`
+  + a full URI with scheme and (optionally) an authority, such as `hdfs://namenode:9000/user/hive/project/data1`
 * The target being loaded to can be a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns.
 * *filepath* can refer to a file (in which case Hive will move the file into the table) or it can be a directory (in which case Hive will move all the files within that directory into the table). In either case, *filepath* addresses a set of files.
 * If the keyword LOCAL is specified, then:
-	+ the load command will look for *filepath* in the local file system. If a relative path is specified, it will be interpreted relative to the user's current working directory. The user can specify a full URI for local files as well - for example: `<file:///user/hive/project/data1>`
-	+ the load command will try to copy all the files addressed by *filepath* to the target filesystem. The target file system is inferred by looking at the location attribute of the table. The copied data files will then be moved to the table.
-	+ Note: If you run this command against a HiveServer2 instance then the local path refers to a path on the HiveServer2 instance. HiveServer2 must have the proper permissions to access that file.
+  + the load command will look for *filepath* in the local file system. If a relative path is specified, it will be interpreted relative to the user's current working directory. The user can specify a full URI for local files as well - for example: `<file:///user/hive/project/data1>`
+  + the load command will try to copy all the files addressed by *filepath* to the target filesystem. The target file system is inferred by looking at the location attribute of the table. The copied data files will then be moved to the table.
+  + Note: If you run this command against a HiveServer2 instance then the local path refers to a path on the HiveServer2 instance. HiveServer2 must have the proper permissions to access that file.
 * If the keyword LOCAL is *not* specified, then Hive will either use the full URI of *filepath*, if one is specified, or will apply the following rules:
-	+ If scheme or authority are not specified, Hive will use the scheme and authority from the hadoop configuration variable `fs.default.name` that specifies the Namenode URI.
-	+ If the path is not absolute, then Hive will interpret it relative to `/user/<username>`
-	+ Hive will *move* the files addressed by *filepath* into the table (or partition)
+  + If scheme or authority are not specified, Hive will use the scheme and authority from the hadoop configuration variable `fs.default.name` that specifies the Namenode URI.
+  + If the path is not absolute, then Hive will interpret it relative to `/user/<username>`
+  + Hive will *move* the files addressed by *filepath* into the table (or partition)
 * If the OVERWRITE keyword is used then the contents of the target table (or partition) will be deleted and replaced by the files referred to by *filepath*; otherwise the files referred by *filepath* will be added to the table.
 
 Additional load operations are supported by Hive 3.0 onwards as Hive internally rewrites the load into an INSERT AS SELECT.
 
 * If table has partitions, however, the load command does not have them, the load would be converted into INSERT AS SELECT and assume that the last set of columns are partition columns. It will throw an error if the file does not conform to the expected schema.
 * If table is bucketed then the following rules apply:
-	+ In strict mode : launches an INSERT AS SELECT job.
-	+ In non-strict mode : if the file names conform to the naming convention (if the file belongs to bucket 0, it should be named 000000\_0 or 000000\_0\_copy\_1, or if it belongs to bucket 2 the names should be like 000002\_0 or 000002\_0\_copy\_3, etc.) then it will be a pure copy/move operation, else it will launch an INSERT AS SELECT job.
+  + In strict mode : launches an INSERT AS SELECT job.
+  + In non-strict mode : if the file names conform to the naming convention (if the file belongs to bucket 0, it should be named 000000\_0 or 000000\_0\_copy\_1, or if it belongs to bucket 2 the names should be like 000002\_0 or 000002\_0\_copy\_3, etc.) then it will be a pure copy/move operation, else it will launch an INSERT AS SELECT job.
 * *filepath* can contain subdirectories, provided each file conforms to the schema.
 * *inputformat* can be any Hive input format such as text, ORC, etc.
 * *serde* can be the associated Hive SERDE.
@@ -148,12 +149,12 @@ INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) sel
 ##### Synopsis
 
 * INSERT OVERWRITE will overwrite any existing data in the table or partition
-	+ unless `IF NOT EXISTS` is provided for a partition (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2612)).
-	+ As of Hive 2.3.0 ([HIVE-15880](https://issues.apache.org/jira/browse/HIVE-15880)), if the table has `TBLPROPERTIES ("auto.purge"="true")` the previous data of the table is not moved to Trash when INSERT OVERWRITE query is run against the table. This functionality is applicable only for managed tables (see [managed tables]({{< ref "#managed-tables" >}})) and is turned off when "auto.purge" property is unset or set to false.
+  + unless `IF NOT EXISTS` is provided for a partition (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2612)).
+  + As of Hive 2.3.0 ([HIVE-15880](https://issues.apache.org/jira/browse/HIVE-15880)), if the table has `TBLPROPERTIES ("auto.purge"="true")` the previous data of the table is not moved to Trash when INSERT OVERWRITE query is run against the table. This functionality is applicable only for managed tables (see [managed tables]({{< ref "#managed-tables" >}})) and is turned off when "auto.purge" property is unset or set to false.
 * INSERT INTO will append to the table or partition, keeping the existing data intact. (Note: INSERT INTO syntax is only available starting in version 0.8.)
-	+ As of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-6406), a table can be made ***immutable*** by creating it with `TBLPROPERTIES ("immutable"="true")`. The default is "immutable"="false".  
-	INSERT INTO behavior into an immutable table is disallowed if any data is already present, although INSERT INTO still works if the immutable table is empty. The behavior of INSERT OVERWRITE is not affected by the "immutable" table property.  
-	An immutable table is protected against accidental updates due to a script loading data into it being run multiple times by mistake. The first insert into an immutable table succeeds and successive inserts fail, resulting in only one set of data in the table, instead of silently succeeding with multiple copies of the data in the table.
+  + As of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-6406), a table can be made ***immutable*** by creating it with `TBLPROPERTIES ("immutable"="true")`. The default is "immutable"="false".  
+    INSERT INTO behavior into an immutable table is disallowed if any data is already present, although INSERT INTO still works if the immutable table is empty. The behavior of INSERT OVERWRITE is not affected by the "immutable" table property.  
+    An immutable table is protected against accidental updates due to a script loading data into it being run multiple times by mistake. The first insert into an immutable table succeeds and successive inserts fail, resulting in only one set of data in the table, instead of silently succeeding with multiple copies of the data in the table.
 * Inserts can be done to a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns. If [hive.typecheck.on.insert]({{< ref "#hive-typecheck-on-insert" >}}) is set to true, these values are validated, converted and normalized to conform to their column types (Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-5297) onward).
 * Multiple insert clauses (also known as *Multi Table Insert*) can be specified in the same query.
 * The output of each of the select statements is written to the chosen table (or partition). Currently the OVERWRITE keyword is mandatory and implies that the contents of the chosen table or partition are replaced with the output of corresponding select statement.
@@ -178,14 +179,14 @@ In the dynamic partition inserts, users can give partial partition specification
 
 Dynamic partition inserts are disabled by default prior to Hive 0.9.0 and enabled by default in Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2835) and later. These are the relevant configuration properties for dynamic partition inserts:
 
-| Configuration property | Default | Note |
-| --- | --- | --- |
-| `hive.exec.dynamic.partition` | `true` | Needs to be set to `true` to enable dynamic partition inserts |
-| `hive.exec.dynamic.partition.mode` | `strict` | In `strict` mode, the user must specify at least one static partition in case the user accidentally overwrites all partitions, in `nonstrict` mode all partitions are allowed to be dynamic |
-| `hive.exec.max.dynamic.partitions.pernode` | 100 | Maximum number of dynamic partitions allowed to be created in each mapper/reducer node |
-| `hive.exec.max.dynamic.partitions` | 1000 | Maximum number of dynamic partitions allowed to be created in total |
-| `hive.exec.max.created.files` | 100000 | Maximum number of HDFS files created by all mappers/reducers in a MapReduce job |
-| `hive.error.on.empty.partition` | `false` | Whether to throw an exception if dynamic partition insert generates empty results |
+|           Configuration property           | Default  |                                                                                            Note                                                                                             |
+|--------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `hive.exec.dynamic.partition`              | `true`   | Needs to be set to `true` to enable dynamic partition inserts                                                                                                                               |
+| `hive.exec.dynamic.partition.mode`         | `strict` | In `strict` mode, the user must specify at least one static partition in case the user accidentally overwrites all partitions, in `nonstrict` mode all partitions are allowed to be dynamic |
+| `hive.exec.max.dynamic.partitions.pernode` | 100      | Maximum number of dynamic partitions allowed to be created in each mapper/reducer node                                                                                                      |
+| `hive.exec.max.dynamic.partitions`         | 1000     | Maximum number of dynamic partitions allowed to be created in total                                                                                                                         |
+| `hive.exec.max.created.files`              | 100000   | Maximum number of HDFS files created by all mappers/reducers in a MapReduce job                                                                                                             |
+| `hive.error.on.empty.partition`            | `false`  | Whether to throw an exception if dynamic partition insert generates empty results                                                                                                           |
 
 ###### Example
 
@@ -201,12 +202,12 @@ Here the `country` partition will be dynamically created by the last column from
 ###### Additional Documentation
 
 * [Design Document]({{< ref "dynamicpartitions_27823715" >}})
-	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
-	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
+  + [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
+  + [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
 * [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
 * [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions_34014006" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+  + [Usage with Pig]({{< ref "#usage-with-pig" >}})
+  + [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
 
 ### Writing data into the filesystem from queries
 
@@ -387,12 +388,4 @@ SQL Standard requires that an error is raised if the ON clause is such that more
 ##### Examples
 
 * See [here](https://community.hortonworks.com/articles/97113/hive-acid-merge-by-example.html).
-
-  
-
-  
-
- 
-
- 
 

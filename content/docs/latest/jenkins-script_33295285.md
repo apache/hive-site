@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Jenkins Script"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Jenkins Script
 
@@ -112,8 +113,4 @@ fi
 exit $ret
 
 ```
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : RelatedProjects"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : RelatedProjects
 
@@ -16,8 +17,4 @@ Apache Hivemall is a scalable machine learning library for Apache Hive, Apache S
 ## [Apache Sentry (incubating)](https://github.com/apache/incubator-sentry)
 
 [Sentry](https://sentry.incubator.apache.org) is a role-based authorization system for Apache Hive.
-
- 
-
- 
 

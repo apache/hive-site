@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HiveServer2 Thrift API"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveServer2 Thrift API
 
@@ -769,8 +770,4 @@ service TSQLService {
 }
 
 ```
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025
 
@@ -34,8 +35,4 @@ It was generally agreed that #3 is the ideal configuration, but we'll be dealing
 Shyam mentioned some ongoing work on real-time Hadoop that might be an interesting project for Hive collaboration.
 
 Next meeting will be at Cloudera.
-
- 
-
- 
 

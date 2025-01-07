@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : HowToContribute"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HowToContribute
 
@@ -10,28 +11,28 @@ date: 2024-12-12
 This page describes the mechanics of *how* to contribute software to Apache Hive. For ideas about *what* you might contribute, please see open tickets in [Jira](https://issues.apache.org/jira/browse/HIVE).
 
 * [How to Contribute to Apache Hive]({{< ref "#how-to-contribute-to-apache-hive" >}})
-	+ [Getting the Source Code]({{< ref "#getting-the-source-code" >}})
-	+ [Becoming a Contributor]({{< ref "#becoming-a-contributor" >}})
-	+ [Making Changes]({{< ref "#making-changes" >}})
-		- [Coding Conventions]({{< ref "#coding-conventions" >}})
-		- [Understanding Maven]({{< ref "#understanding-maven" >}})
-		- [Understanding Hive Branches]({{< ref "#understanding-hive-branches" >}})
-		- [Hadoop Dependencies]({{< ref "#hadoop-dependencies" >}})
-			* [branch-1]({{< ref "#branch-1" >}})
-			* [branch-2]({{< ref "#branch-2" >}})
-		- [Unit Tests]({{< ref "#unit-tests" >}})
-		- [Add a Unit Test]({{< ref "#add-a-unit-test" >}})
-			* [Java Unit Test]({{< ref "#java-unit-test" >}})
-			* [Query Unit Test]({{< ref "#query-unit-test" >}})
-			* [Beeline Query Unit Test]({{< ref "#beeline-query-unit-test" >}})
-		- [Debugging]({{< ref "#debugging" >}})
-		- [Submitting a PR]({{< ref "#submitting-a-pr" >}})
-		- [Fetching a PR from Github]({{< ref "#fetching-a-pr-from-github" >}})
-	+ [Contributing Your Work]({{< ref "#contributing-your-work" >}})
-	+ [JIRA]({{< ref "#jira" >}})
-		- [Guidelines]({{< ref "#guidelines" >}})
-	+ [Generating Thrift Code]({{< ref "#generating-thrift-code" >}})
-	+ [See Also]({{< ref "#see-also" >}})
+  + [Getting the Source Code]({{< ref "#getting-the-source-code" >}})
+  + [Becoming a Contributor]({{< ref "#becoming-a-contributor" >}})
+  + [Making Changes]({{< ref "#making-changes" >}})
+    - [Coding Conventions]({{< ref "#coding-conventions" >}})
+    - [Understanding Maven]({{< ref "#understanding-maven" >}})
+    - [Understanding Hive Branches]({{< ref "#understanding-hive-branches" >}})
+    - [Hadoop Dependencies]({{< ref "#hadoop-dependencies" >}})
+      * [branch-1]({{< ref "#branch-1" >}})
+      * [branch-2]({{< ref "#branch-2" >}})
+    - [Unit Tests]({{< ref "#unit-tests" >}})
+    - [Add a Unit Test]({{< ref "#add-a-unit-test" >}})
+      * [Java Unit Test]({{< ref "#java-unit-test" >}})
+      * [Query Unit Test]({{< ref "#query-unit-test" >}})
+      * [Beeline Query Unit Test]({{< ref "#beeline-query-unit-test" >}})
+    - [Debugging]({{< ref "#debugging" >}})
+    - [Submitting a PR]({{< ref "#submitting-a-pr" >}})
+    - [Fetching a PR from Github]({{< ref "#fetching-a-pr-from-github" >}})
+  + [Contributing Your Work]({{< ref "#contributing-your-work" >}})
+  + [JIRA]({{< ref "#jira" >}})
+    - [Guidelines]({{< ref "#guidelines" >}})
+  + [Generating Thrift Code]({{< ref "#generating-thrift-code" >}})
+  + [See Also]({{< ref "#see-also" >}})
 
 ## Getting the Source Code
 
@@ -55,8 +56,8 @@ This is an optional step. Eclipse has a lot of advanced features for Java develo
 This checklist tells you how to create accounts and obtain permissions needed by Hive contributors. See the [Hive website](http://hive.apache.org/) for additional information.
 
 * Request an Apache Software Foundation [JIRA account](https://cwiki.apache.org/confluence/display/Hive/HowToContribute#HowToContribute-RequestAccount), if you do not already have one.
-	+ The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
-	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
+  + The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
+  + The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
 * To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{< ref "#about-this-wiki" >}}).
 * To edit the Hive website, follow the instructions in [How to edit the website](https://cwiki.apache.org/confluence/display/Hive/How+to+edit+the+website).
@@ -75,26 +76,26 @@ Modify the source code and add some features using your favorite IDE.
 Please take care about the following points.
 
 * All public classes and methods should have informative [Javadoc comments](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html).
-	+ Do not use @author tags.
+  + Do not use @author tags.
 * Code should be formatted according to [Sun's conventions](http://web.archive.org/web/20140228225807/http://www.oracle.com/technetwork/java/codeconventions-150003.pdf), with two exceptions:
-	+ Indent two (2) spaces per level, not four (4).
-	+ Line length limit is 120 chars, instead of 80 chars.
+  + Indent two (2) spaces per level, not four (4).
+  + Line length limit is 120 chars, instead of 80 chars.
 
 An Eclipse [formatter](https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml) is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.
 
 * + For Eclipse:
-		- Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
-		- In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
-	+ For Intellij:
-		- Go to Settings -> Editor -> Code Style -> Java -> Scheme; Click manage; Import eclipse-styles.xml; Apply.
+    - Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
+    - In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
+    + For Intellij:
+      - Go to Settings -> Editor -> Code Style -> Java -> Scheme; Click manage; Import eclipse-styles.xml; Apply.
 * Contributions should not introduce new Checkstyle violations.
-	+ Check for new [Checkstyle](http://checkstyle.sourceforge.net/) violations by running `mvn checkstyle:checkstyle-aggregate`, and then inspect the results in the `target/site` directory. It is possible to run the checks for a specific module, if the  `mvn` command is issued in the root directory of the module.
-	+ If you use Eclipse you should install the [eclipse-cs Checkstyle plugin](http://eclipse-cs.sourceforge.net/). This plugin highlights violations in your code and is also able to automatically correct some types of violations.
+  + Check for new [Checkstyle](http://checkstyle.sourceforge.net/) violations by running `mvn checkstyle:checkstyle-aggregate`, and then inspect the results in the `target/site` directory. It is possible to run the checks for a specific module, if the  `mvn` command is issued in the root directory of the module.
+  + If you use Eclipse you should install the [eclipse-cs Checkstyle plugin](http://eclipse-cs.sourceforge.net/). This plugin highlights violations in your code and is also able to automatically correct some types of violations.
 * Contributions should pass existing unit tests.
 * New unit tests should be provided to demonstrate bugs and fixes. [JUnit](http://www.junit.org) is our test framework:
-	+ You should create test classes for junit4, whose class name must start with a 'Test' prefix.
-	+ You can run all the unit tests with the command `mvn test`, or you can run a specific unit test with the command `mvn test -Dtest=<class name without package prefix>` (for example: `mvn test -Dtest=TestFileSystem`).
-	+ After uploading your patch, it might worthwhile to check if your new test has been executed in the precommit job.
+  + You should create test classes for junit4, whose class name must start with a 'Test' prefix.
+  + You can run all the unit tests with the command `mvn test`, or you can run a specific unit test with the command `mvn test -Dtest=<class name without package prefix>` (for example: `mvn test -Dtest=TestFileSystem`).
+  + After uploading your patch, it might worthwhile to check if your new test has been executed in the precommit job.
 
 ### Understanding Maven
 
@@ -171,7 +172,7 @@ If the feature is added in `ql` (query language):
 
 * Add a new `XXXXXX.q` file in `ql/src/test/queries/clientpositive`. (Optionally, add a new `XXXXXX.q` file for a query that is expected to fail in `ql/src/test/queries/clientnegative`.)
 * Run `mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=XXXXXX.q -Dtest.output.overwrite=true`. This will generate a new `XXXXXX.q.out` file in `ql/src/test/results/clientpositive`.
-	+ If you want to run multiple .q files in the test run, you can specify comma separated .q files, for example `-Dqfile="X1.q,X2.q"`. You can also specify a Java regex, for example `-Dqfile_regex='join.*'`. (Note that it takes Java regex, i.e., `'join.*`'`` and not `'join*'`.) The regex match first removes the `.q` from the file name before matching regex, so specifying `join*.q` will not work.
+  + If you want to run multiple .q files in the test run, you can specify comma separated .q files, for example `-Dqfile="X1.q,X2.q"`. You can also specify a Java regex, for example `-Dqfile_regex='join.*'`. (Note that it takes Java regex, i.e., `'join.*`'`` and not `'join*'`.) The regex match first removes the `.q` from the file name before matching regex, so specifying `join*.q` will not work.
 
 If the feature is added in `contrib`:
 
@@ -186,17 +187,17 @@ Legacy query test Drivers (all of them except TestBeeLineDriver) uses HiveCli to
 * `-Dqfile=XXXXXX.q`  - To run one or more specific query file tests. For the exact format, check the Query Unit Test paragraph. If not provided only those query files from `ql/src/test/queries/clientpositive` directory will be run which are mentioned in `itests/src/test/resources/testconfiguration.properties` in the `beeline.positive.include` parameter.
 * `-Dtest.output.overwrite=true` - This will rewrite the output of the q.out files in `ql/src/test/results/clientpositive/beeline`. The default value is false, and it will check the current output against the golden files
 * `-Dtest.beeline.compare.portable` - If this parameter is true, the generated and the golden query output files will be filtered before comparing them. This way the existing query tests can be run against different configurations using the same golden output files. The result of the following commands will be filtered out from the output files: EXPLAIN, DESCRIBE, DESCRIBE EXTENDED, DESCRIBE FORMATTED, SHOW TABLES, SHOW FORMATTED INDEXES and SHOW DATABASES.  
-The default value is `false`.
+  The default value is `false`.
 * `-Djunit.parallel.threads=1` - The number of the parallel threads running the tests. The default is `1`. There were some flakiness caused by parallelization
 * `-Djunit.parallel.timeout=10` - The tests are terminated after the given timeout. The parameter is set in minutes and the default is 10 minutes. (As of [HIVE 3.0.0](https://issues.apache.org/jira/browse/HIVE-17072).)
 * The BeeLine tests could run against an existing cluster. Or if not provided, then against a MiniHS2 cluster created during the tests.
-	+ `-Dtest.beeline.url` - The jdbc url which should be used to connect to the existing cluster. If not set then a MiniHS2 cluster will be created instead.
-	+ `-Dtest.beeline.user` - The user which should be used to connect to the cluster. If not set `"user"` will be used.
-	+ `-Dtest.beeline.password` - The password which should be used to connect to the cluster. If not set `"password"` will be used.
-	+ `-Dtest.data.dir` - The test data directory on the cluster. If not set `<HIVEROOT>/data/files` will be used.
-	+ `-Dtest.results.dir` - The test results directory to compare against. If not set the default configuration will be used.
-	+ `-Dtest.init.script` - The test init script. If not set the default configuration will be used.
-	+ `-Dtest.beeline.shared.database` - If true, then the default database will be used, otherwise a test-specific database will be created for every run. The default value is false.
+  + `-Dtest.beeline.url` - The jdbc url which should be used to connect to the existing cluster. If not set then a MiniHS2 cluster will be created instead.
+  + `-Dtest.beeline.user` - The user which should be used to connect to the cluster. If not set `"user"` will be used.
+  + `-Dtest.beeline.password` - The password which should be used to connect to the cluster. If not set `"password"` will be used.
+  + `-Dtest.data.dir` - The test data directory on the cluster. If not set `<HIVEROOT>/data/files` will be used.
+  + `-Dtest.results.dir` - The test results directory to compare against. If not set the default configuration will be used.
+  + `-Dtest.init.script` - The test init script. If not set the default configuration will be used.
+  + `-Dtest.beeline.shared.database` - If true, then the default database will be used, otherwise a test-specific database will be created for every run. The default value is false.
 
 ### Debugging
 
@@ -291,7 +292,7 @@ Committers: for non-trivial changes, it is best to get another committer to revi
 
 ## JIRA
 
-Hive uses [JIRA](https://issues.apache.org/jira/browse/HIVE) for issues/case management. You must have a JIRA account in order to log cases and issues. 
+Hive uses [JIRA](https://issues.apache.org/jira/browse/HIVE) for issues/case management. You must have a JIRA account in order to log cases and issues.
 
 Requests for the creation of new accounts can be submitted via the following form: <https://selfserve.apache.org/jira-account.html>
 
@@ -330,73 +331,81 @@ Here are the steps relevant to `hive_metastore.thrift`:
 
 1. Don't make any changes to `hive_metastore.thrift` until instructed below.
 2. Use the approved version of Thrift. This is currently `thrift-0.14.1`, which you can obtain from <http://thrift.apache.org/>.
-	1. For Mac via Homebrew (since the version we need is not available by default):
-	
-	
-	
-	```
-	brew tap-new $USER/local-tap
-	brew extract --version='0.14.1' thrift $USER/local-tap
-	brew install thrift@0.14.1
-	mkdir -p /usr/local/share/fb303/if
-	cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
-	```
-	2. For Mac, building from sources:
-	
-	
-	
-	```
-	wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
-	
-	tar xzf thrift-0.14.1.tar.gz
-	
-	
-	brew install libtool
-	brew install automake
-	
-	#If configure fails with "syntax error near unexpected token `QT5", then run "brew install pkg-config"
-	
-	./bootstrap.sh
-	
-	sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
-	
-	brew install openssl
-	
-	sudo ln -s /usr/local/opt/openssl/include/openssl/ /usr/local/include/
-	
-	sudo make
-	
-	sudo make install
-	
-	mkdir -p /usr/local/share/fb303/if
-	
-	cp path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
-	# or alternatively the following command
-	curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
-	```
-	3. For Linux:
-	
-	
-	
-	```
-	cd /path/to/thrift-0.14.1
-	/configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
-	sudo make
-	sudo make install 
-	sudo mkdir -p /usr/local/share/fb303/if
-	sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
-	```
+   1. For Mac via Homebrew (since the version we need is not available by default):
+
+   ```
+   brew tap-new $USER/local-tap
+   brew extract --version='0.14.1' thrift $USER/local-tap
+   brew install thrift@0.14.1
+   mkdir -p /usr/local/share/fb303/if
+   cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
+   ```
+
+   2. For Mac, building from sources:
+
+   ```
+   	wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
+
+   	tar xzf thrift-0.14.1.tar.gz
+
+
+   	brew install libtool
+   	brew install automake
+
+   	#If configure fails with "syntax error near unexpected token `QT5", then run "brew install pkg-config"
+
+   	./bootstrap.sh
+
+   	sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+
+   	brew install openssl
+
+   	sudo ln -s /usr/local/opt/openssl/include/openssl/ /usr/local/include/
+
+   	sudo make
+
+   	sudo make install
+
+   	mkdir -p /usr/local/share/fb303/if
+
+   	cp path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
+   	# or alternatively the following command
+   	curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
+   ```
+
+   3. For Linux:
+
+   ```
+   cd /path/to/thrift-0.14.1
+   /configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+   sudo make
+   sudo make install 
+   sudo mkdir -p /usr/local/share/fb303/if
+   sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
+   ```
 3. Before proceeding, verify that `which thrift` returns the build of Thrift you just installed (typically `/usr/local/bin` on Linux); if not, edit your PATH and repeat the verification. Also verify that the command 'thrift -version' returns the expected version number of Thrift.
 4. Now you can run the Maven 'thriftif' profile to generate the Thrift code:
-	1. `cd /path/to/hive/`
-	2. ```
-	mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
-	```
+   1. `cd /path/to/hive/`
+   2. 
+
+   ```
+   ```
+
+   mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
+
+   ```
+   ```
 5. Verify that the code generation was a no-op, which should be the case if you have the correct Thrift version and everyone has been following these instructions. You may use `git status` for the same. If you can't figure out what is going wrong, ask for help from a committer.
 6. Now make your changes to `hive_metastore.thrift`, and then run the compiler again, from /path/to/hive/<hive\_metastore.thrift's module>:
-	1. ```
-	mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
-	```
+   1. 
+
+   ```
+   ```
+
+   mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
+
+   ```
+   ```
 7. Now use `git status and git diff` to verify that the regenerated code corresponds only to the changes you made to `hive_metastore.thrift`. You may also need `git add` if new files were generated (and or `git rm` if some files are now obsoleted).
 8. `cd /path/to/hive`
 9. `mvn clean package -DskiptTests (at the time of writing also "-Dmaven.javadoc.skip" is needed)`
@@ -411,12 +420,4 @@ Contributors should join the [Hive mailing lists](https://hive.apache.org/commun
 * [Apache contributor documentation](http://www.apache.org/dev/contributors.html)
 * [Apache voting documentation](http://www.apache.org/foundation/voting.html)
 * [How to edit the website]({{< ref "how-to-edit-the-website_33294834" >}})
-
-  
-
-  
-
- 
-
- 
 

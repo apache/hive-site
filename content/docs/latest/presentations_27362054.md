@@ -1,22 +1,23 @@
 ---
+
 title: "Apache Hive : Presentations"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Presentations
 
  
 
 * [Hive Meetups]({{< ref "#hive-meetups" >}})
-	+ [January 2016 Hive User Group Meetup]({{< ref "#january-2016-hive-user-group-meetup" >}})
-	+ [November 2015 Hive Contributor Meetup]({{< ref "#november-2015-hive-contributor-meetup" >}})
-	+ [April 2015 Hive Contributor Meetup Presentations]({{< ref "#april-2015-hive-contributor-meetup-presentations" >}})
-	+ [February 2015 Hive User Meetup Presentation]({{< ref "#february-2015-hive-user-meetup-presentation" >}})
-	+ [November 2013 Hive Contributors Meetup Presentations]({{< ref "#november-2013-hive-contributors-meetup-presentations" >}})
-	+ [June 2013 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2013-hadoop-summit-hive-meetup-presentations" >}})
-	+ [February 2013 Hive User Group Meetup]({{< ref "#february-2013-hive-user-group-meetup" >}})
-	+ [June 2012 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2012-hadoop-summit-hive-meetup-presentations" >}})
-	+ [November 2011 NYC Hive Meetup Presentations]({{< ref "#november-2011-nyc-hive-meetup-presentations" >}})
+  + [January 2016 Hive User Group Meetup]({{< ref "#january-2016-hive-user-group-meetup" >}})
+  + [November 2015 Hive Contributor Meetup]({{< ref "#november-2015-hive-contributor-meetup" >}})
+  + [April 2015 Hive Contributor Meetup Presentations]({{< ref "#april-2015-hive-contributor-meetup-presentations" >}})
+  + [February 2015 Hive User Meetup Presentation]({{< ref "#february-2015-hive-user-meetup-presentation" >}})
+  + [November 2013 Hive Contributors Meetup Presentations]({{< ref "#november-2013-hive-contributors-meetup-presentations" >}})
+  + [June 2013 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2013-hadoop-summit-hive-meetup-presentations" >}})
+  + [February 2013 Hive User Group Meetup]({{< ref "#february-2013-hive-user-group-meetup" >}})
+  + [June 2012 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2012-hadoop-summit-hive-meetup-presentations" >}})
+  + [November 2011 NYC Hive Meetup Presentations]({{< ref "#november-2011-nyc-hive-meetup-presentations" >}})
 * [Older Hive Presentations]({{< ref "#older-hive-presentations" >}})
 * [Related Work]({{< ref "#related-work" >}})
 
@@ -139,161 +140,118 @@ date: 2024-12-12
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28016657.pdf](/attachments/27362054/28016657.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28016834.pdf](/attachments/27362054/28016834.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28016835.pdf](/attachments/27362054/28016835.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28016838.pdf](/attachments/27362054/28016838.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28017801.pdf](/attachments/27362054/28017801.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28017802.pdf](/attachments/27362054/28017802.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28017803.pdf](/attachments/27362054/28017803.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28017805.pdf](/attachments/27362054/28017805.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/28017807.pdf](/attachments/27362054/28017807.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/30966691.pdf](/attachments/27362054/30966691.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/30966693.pdf](/attachments/27362054/30966693.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/30966692.pdf](/attachments/27362054/30966692.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/30966880.pdf](/attachments/27362054/30966880.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193149-pptx](/attachments/27362054/35193149-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193150-pptx](/attachments/27362054/35193150-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193151-pptx](/attachments/27362054/35193151-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193152-pptx](/attachments/27362054/35193152-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193153-pptx](/attachments/27362054/35193153-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/35193154-pptx](/attachments/27362054/35193154-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/52036008-pptx](/attachments/27362054/52036008-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/52036063.pdf](/attachments/27362054/52036063.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/55476524-key](/attachments/27362054/55476524-key) (application/x-iwork-keynote-sffkey)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/55476525-pptx](/attachments/27362054/55476525-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/55476526-pptx](/attachments/27362054/55476526-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/56131586.pdf](/attachments/27362054/56131586.pdf) (application/download)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329032-pptx](/attachments/27362054/61329032-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329033-pptx](/attachments/27362054/61329033-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329034-pptx](/attachments/27362054/61329034-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329036-pptx](/attachments/27362054/61329036-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329038-pptx](/attachments/27362054/61329038-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329039.pdf](/attachments/27362054/61329039.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329040-pptx](/attachments/27362054/61329040-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61329311-ppsx](/attachments/27362054/61329311-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337098-pptx](/attachments/27362054/61337098-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337312-ppsx](/attachments/27362054/61337312-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337313-pptx](/attachments/27362054/61337313-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337399-ppsx](/attachments/27362054/61337399-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337398-ppsx](/attachments/27362054/61337398-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337443.pdf](/attachments/27362054/61337443.pdf) (application/pdf)
-   
-
- 
-
- 
 

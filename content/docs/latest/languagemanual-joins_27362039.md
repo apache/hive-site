@@ -1,19 +1,20 @@
 ---
+
 title: "Apache Hive : LanguageManual Joins"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Joins
 
 # Hive Joins
 
 * [Hive Joins]({{< ref "#hive-joins" >}})
-	+ [Join Syntax]({{< ref "#join-syntax" >}})
-	+ [Examples]({{< ref "#examples" >}})
-	+ [MapJoin Restrictions]({{< ref "#mapjoin-restrictions" >}})
-	+ [Join Optimization]({{< ref "#join-optimization" >}})
-		- [Predicate Pushdown in Outer Joins]({{< ref "#predicate-pushdown-in-outer-joins" >}})
-		- [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-011" >}})
+  + [Join Syntax]({{< ref "#join-syntax" >}})
+  + [Examples]({{< ref "#examples" >}})
+  + [MapJoin Restrictions]({{< ref "#mapjoin-restrictions" >}})
+  + [Join Optimization]({{< ref "#join-optimization" >}})
+    - [Predicate Pushdown in Outer Joins]({{< ref "#predicate-pushdown-in-outer-joins" >}})
+    - [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-011" >}})
 
 ## Join Syntax
 
@@ -47,8 +48,8 @@ Version 0.13.0+: Implicit join notation
 Implicit join notation is supported starting with Hive 0.13.0 (see [HIVE-5558](https://issues.apache.org/jira/browse/HIVE-5558)). This allows the FROM clause to join a comma-separated list of tables, omitting the JOIN keyword. For example:
 
 `SELECT *   
- FROM table1 t1, table2 t2, table3 t3   
- WHERE t1.id = t2.id AND t2.id = t3.id AND t1.zipcode = '02535';`
+FROM table1 t1, table2 t2, table3 t3   
+WHERE t1.id = t2.id AND t2.id = t3.id AND t1.zipcode = '02535';`
 
 Version 0.13.0+: Unqualified column references
 
@@ -60,7 +61,7 @@ For example:
 `CREATE TABLE b (k2 string, v2 string);`
 
 `SELECT k1, v1, k2, v2`  
- `FROM a JOIN b ON k1 = k2;`
+`FROM a JOIN b ON k1 = k2;`
 
 Version 2.2.0+: Complex expressions in ON clause
 
@@ -77,6 +78,7 @@ join\_condition:
 equality\_expression:  
     expression = expression
 ```
+
 ## Examples
 
 Some salient points to consider when writing join queries are as follows:
@@ -84,15 +86,15 @@ Some salient points to consider when writing join queries are as follows:
 * Complex join expressions are allowed e.g.
 
 ```
-  SELECT a.* FROM a JOIN b ON (a.id = b.id)
+SELECT a.* FROM a JOIN b ON (a.id = b.id)
 ```
 
 ```
-  SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
+SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
 ```
 
 ```
-  SELECT a.* FROM a LEFT OUTER JOIN b ON (a.id <> b.id)
+SELECT a.* FROM a LEFT OUTER JOIN b ON (a.id <> b.id)
 ```
 
 are valid joins.
@@ -178,7 +180,7 @@ will join a on b, producing a list of a.val and b.val. The WHERE clause, however
 ```
 
 ...first joins a on b, throwing away everything in a or b that does not have a corresponding key in the other table. The reduced table is then joined on c. This provides unintuitive results if there is a key that exists in both a and c but not b: The whole row (including a.val1, a.val2, and a.key) is dropped in the "a JOIN b" step because it is not in b. The result does not have a.key in it, so when it is LEFT OUTER JOINed with c, c.val does not make it in because there is no c.key that matches an a.key (because that row from a was removed). Similarly, if this were a RIGHT OUTER JOIN (instead of LEFT), we would end up with an even weirder effect: NULL, NULL, NULL, c.val, because even though we specified a.key=c.key as the join key, we dropped all rows of a that did not match the first JOIN.  
- To achieve the more intuitive effect, we should instead do FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).
+To achieve the more intuitive effect, we should instead do FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).
 * LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. As of Hive 0.13 the IN/NOT IN/EXISTS/NOT EXISTS operators are supported using [subqueries]({{< ref "languagemanual-subqueries_27362044" >}}) so most of these JOINs don't have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN are that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.
 
 ```
@@ -197,6 +199,7 @@ can be rewritten to:
    FROM a LEFT SEMI JOIN b ON (a.key = b.key)
 
 ```
+
 * If all but one of the tables being joined are small, the join can be performed as a map only job. The query
 
 ```
@@ -220,6 +223,7 @@ can be done on the mapper only. Instead of fetching B completely for each mapper
   set hive.optimize.bucketmapjoin = true
 
 ```
+
 * If the tables being joined are sorted and bucketized on the join columns, and they have the same number of buckets, a sort-merge join can be performed. The corresponding buckets are joined with each other at the mapper. If both A and B have 4 buckets,
 
 ```
@@ -249,14 +253,14 @@ can be done on the mapper only. The mapper for the bucket for A will traverse th
 
 does not need a reducer. For every mapper of A, B is read completely.
 * The following is not supported.
-	+ Union Followed by a MapJoin
-	+ Lateral View Followed by a MapJoin
-	+ Reduce Sink (Group By/Join/Sort By/Cluster By/Distribute By) Followed by MapJoin
-	+ MapJoin Followed by Union
-	+ MapJoin Followed by Join
-	+ MapJoin Followed by MapJoin
++ Union Followed by a MapJoin
++ Lateral View Followed by a MapJoin
++ Reduce Sink (Group By/Join/Sort By/Cluster By/Distribute By) Followed by MapJoin
++ MapJoin Followed by Union
++ MapJoin Followed by Join
++ MapJoin Followed by MapJoin
 * The configuration variable hive.auto.convert.join (if set to true) automatically converts the joins to mapjoins at runtime if possible, and it should be used instead of the mapjoin hint. The mapjoin hint should only be used for the following query.
-	+ If all the inputs are bucketed or sorted, and the join should be converted to a bucketized map-side join or bucketized sort-merge join.
++ If all the inputs are bucketed or sorted, and the join should be converted to a bucketized map-side join or bucketized sort-merge join.
 * Consider the possibility of multiple mapjoins on different keys:
 
 ```
@@ -271,8 +275,8 @@ select /*+MAPJOIN(smallTableTwo)*/ idOne, idTwo, value FROM
 
 The above query is not supported. Without the mapjoin hint, the above query would be executed as 2 map-only jobs. If the user knows in advance that the inputs are small enough to fit in memory, the following configurable parameters can be used to make sure that the query executes in a single map-reduce job.
 
-	+ hive.auto.convert.join.noconditionaltask - Whether Hive enable the optimization about converting common join into mapjoin based on the input file size. If this paramater is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the specified size, the join is directly converted to a mapjoin (there is no conditional task).
-	+ hive.auto.convert.join.noconditionaltask.size - If hive.auto.convert.join.noconditionaltask is off, this parameter does not take affect. However, if it is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than this size, the join is directly converted to a mapjoin(there is no conditional task). The default is 10MB.
++ hive.auto.convert.join.noconditionaltask - Whether Hive enable the optimization about converting common join into mapjoin based on the input file size. If this paramater is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the specified size, the join is directly converted to a mapjoin (there is no conditional task).
++ hive.auto.convert.join.noconditionaltask.size - If hive.auto.convert.join.noconditionaltask is off, this parameter does not take affect. However, if it is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than this size, the join is directly converted to a mapjoin(there is no conditional task). The default is 10MB.
 
 ## Join Optimization
 
@@ -283,8 +287,4 @@ See [Hive Outer Join Behavior]({{< ref "outerjoinbehavior_35749927" >}}) for inf
 ### Enhancements in Hive Version 0.11
 
 See [Join Optimization](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization) for information about enhancements to join optimization introduced in Hive version 0.11.0. The use of hints is de-emphasized in the enhanced optimizations ([HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) and related JIRAs).
-
- 
-
- 
 

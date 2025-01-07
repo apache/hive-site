@@ -4,3 +4,4 @@ themes/.DS_Store
 themes/hive/.DS_Store
 themes/hive/static/.DS_Store
 .hugo_build.lock
+target

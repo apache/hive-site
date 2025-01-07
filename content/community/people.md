@@ -1,45 +1,45 @@
 ---
+
 title: "People"
 date: 2022-09-14T01:23:03+05:30
 draft: false
 aliases: [/people.html]
----
+-----------------------
 
 <!---
-  Licensed to the Apache Software Foundation (ASF) under one
-  or more contributor license agreements.  See the NOTICE file
-  distributed with this work for additional information
-  regarding copyright ownership.  The ASF licenses this file
-  to you under the Apache License, Version 2.0 (the
-  "License"); you may not use this file except in compliance
-  with the License.  You may obtain a copy of the License at
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
 
-  http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing,
-  software distributed under the License is distributed on an
-  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  KIND, either express or implied.  See the License for the
-  specific language governing permissions and limitations
-  under the License. -->
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License. -->
 
 # People
----
 
+---
 
 Apache Hive is a community developed project. The list below is a partial
 list of contributors to the project, for a complete list you would have to look
 at all contributors to our issue tracker, mailing list and version control.
 
-
-
 ## Hive PMC
+
 ---
 
-| Apache username | Name                    | Organization                                       | Role |
+| Apache username |          Name           |                    Organization                    | Role |
 |-----------------|-------------------------|----------------------------------------------------|------|
 | aihuaxu         | Aihua Xu                | <a href="http://cloudera.com/">Cloudera</a>        |      |
-| anishek         | Anishek Agarwal         |                                                    |      | 
+| anishek         | Anishek Agarwal         |                                                    |      |
 | athusoo         | Ashish Thusoo           | <a href="http://qubole.com/">Qubole</a>            |      |
 | ayushsaxena     | Ayush Saxena            | <a href="http://cloudera.com/">Cloudera</a>        |      |
 | brock           | Brock Noland            | <a href="http://streamsets.com/">StreamSets</a>    |      |
@@ -82,9 +82,12 @@ at all contributors to our issue tracker, mailing list and version control.
 | zabetak         | Stamatis Zampetakis     | <a href="http://cloudera.com/">Cloudera</a>        |      |
 
 ---
+
 ## Hive Committers
+
 ---
-| Apache username | name                              | organization                                                                 |
+
+| Apache username |               name                |                                 organization                                 |
 |-----------------|-----------------------------------|------------------------------------------------------------------------------|
 | amareshwari     | Amareshwari Sriramadasu           | <a href="http://www.inmobi.com/">InMobi</a>                                  |
 | apivovarov      | Alexander Pivovarov               | <a href="http://fostercitylab.crabdance.com/">Foster City Hadoop Lab LLC</a> |
@@ -127,23 +130,29 @@ at all contributors to our issue tracker, mailing list and version control.
 PMC members are also Hive committers.
 
 ## Catalog Committers
+
 ---
-| Apache username | name                     | organization                             |
+
+| Apache username |           name           |               organization               |
 |-----------------|--------------------------|------------------------------------------|
 | toffer          | Francis Christopher Liu  | <a href="http://yahoo.com/">Yahoo!</a>   |
 | avandana        | Vandana Ayyalasomayajula | <a href="http://yahoo.com/">Yahoo!</a>   |
 | travis          | Travis Crawford          | <a href="http://twitter.com">Twitter</a> |
 | mithun          | Mithun Radhakrishnan     | <a href="https://www.oath.com/">Oath</a> |
 
+---
+
+## Contributors
 
 ---
-## Contributors
----
+
 A list of Hive contributors and their contributions is available from
 [Jira](https://issues.apache.org/jira/secure/ConfigureReport.jspa?projectOrFilterId=project-12310843&amp;statistictype=assignees&amp;selectedProjectId=12310843&amp;reportKey=com.atlassian.jira.plugin.system.reports%3Apie-report&amp;Next=Next).
 
 ## Emeritus Hive PMC Members
+
 ---
+
 * Alan Gates
 * Dhruba Borthakur
 * Prasad Chakka
@@ -152,3 +161,4 @@ A list of Hive contributors and their contributions is available from
 * John Sichi
 * Sushanth Sowmyan
 * Paul Yang
+

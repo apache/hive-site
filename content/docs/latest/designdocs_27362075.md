@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : DesignDocs"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : DesignDocs
 
@@ -33,7 +34,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Optimizing Skewed Joins]({{< ref "skewed-join-optimization_27847852" >}}) ([HIVE-3086](https://issues.apache.org/jira/browse/HIVE-3086))
 * [Correlation Optimizer]({{< ref "correlation-optimizer_34019487" >}}) ([HIVE-2206](https://issues.apache.org/jira/browse/HIVE-2206))
 * [Hive on Tez]({{< ref "hive-on-tez_33296197" >}}) ([HIVE-4660](https://issues.apache.org/jira/browse/HIVE-4660))
-	+ [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility_59689974" >}})
+  + [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility_59689974" >}})
 * [Vectorized Query Execution]({{< ref "vectorized-query-execution_34838326" >}}) ([HIVE-4160](https://issues.apache.org/jira/browse/HIVE-4160))
 * [Cost Based Optimizer in Hive](https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive) ([HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775))
 * [Atomic Insert/Update/Delete](https://issues.apache.org/jira/browse/HIVE-5317) ([HIVE-5317](https://issues.apache.org/jira/browse/HIVE-5317))
@@ -91,41 +92,28 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/34177517.pdf](/attachments/27362075/34177517.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193010.pdf](/attachments/27362075/35193010.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193011.pdf](/attachments/27362075/35193011.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/36438041.pdf](/attachments/27362075/36438041.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193076.pdf](/attachments/27362075/35193076.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193122.pdf](/attachments/27362075/35193122.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193191-html](/attachments/27362075/35193191-html) (text/html)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/34177489.pdf](/attachments/27362075/34177489.pdf) (application/download)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/55476344.pdf](/attachments/27362075/55476344.pdf) (application/download)
-   
-
- 
-
- 
 

@@ -1,36 +1,37 @@
 ---
+
 title: "Apache Hive : Setting Up HiveServer2"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Setting Up HiveServer2
 
 # HiveServer2
 
 * [HiveServer2]({{< ref "#hiveserver2" >}})
-	+ [How to Configure]({{< ref "#how-to-configure" >}})
-		- [Configuration Properties in the hive-site.xml File]({{< ref "#configuration-properties-in-the-hive-site-xml-file" >}})
-		- [Running in HTTP Mode]({{< ref "#running-in-http-mode" >}})
-			* [Cookie Based Authentication]({{< ref "#cookie-based-authentication" >}})
-		- [Optional Global Init File]({{< ref "#optional-global-init-file" >}})
-		- [Logging Configuration]({{< ref "#logging-configuration" >}})
-	+ [How to Start]({{< ref "#how-to-start" >}})
-		- [Usage Message]({{< ref "#usage-message" >}})
-	+ [Authentication/Security Configuration]({{< ref "#authenticationsecurity-configuration" >}})
-		- [Configuration]({{< ref "#configuration" >}})
-		- [Impersonation]({{< ref "#impersonation" >}})
-		- [Integrity/Confidentiality Protection]({{< ref "#integrity/confidentiality-protection" >}})
-		- [SSL Encryption]({{< ref "#ssl-encryption" >}})
-			* [Setting up SSL with self-signed certificates]({{< ref "#setting-up-ssl-with-self-signed-certificates" >}})
-			* [Selectively disabling SSL protocol versions]({{< ref "#selectively-disabling-ssl-protocol-versions" >}})
-		- [Pluggable Authentication Modules (PAM)]({{< ref "#pluggable-authentication-modules--pam-" >}})
-		- [Setting up HiveServer2 job credential provider]({{< ref "#setting-up-hiveserver2-job-credential-provider" >}})
-	+ [Scratch Directory Management]({{< ref "#scratch-directory-management" >}})
-		- [Configuration Properties]({{< ref "#configuration-properties" >}})
-		- [ClearDanglingScratchDir Tool]({{< ref "#cleardanglingscratchdir-tool" >}})
-	+ [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}})
-	+ [Python Client Driver]({{< ref "#python-client-driver" >}})
-	+ [Ruby Client Driver]({{< ref "#ruby-client-driver" >}})
+  + [How to Configure]({{< ref "#how-to-configure" >}})
+    - [Configuration Properties in the hive-site.xml File]({{< ref "#configuration-properties-in-the-hive-site-xml-file" >}})
+    - [Running in HTTP Mode]({{< ref "#running-in-http-mode" >}})
+      * [Cookie Based Authentication]({{< ref "#cookie-based-authentication" >}})
+    - [Optional Global Init File]({{< ref "#optional-global-init-file" >}})
+    - [Logging Configuration]({{< ref "#logging-configuration" >}})
+  + [How to Start]({{< ref "#how-to-start" >}})
+    - [Usage Message]({{< ref "#usage-message" >}})
+  + [Authentication/Security Configuration]({{< ref "#authenticationsecurity-configuration" >}})
+    - [Configuration]({{< ref "#configuration" >}})
+    - [Impersonation]({{< ref "#impersonation" >}})
+    - [Integrity/Confidentiality Protection]({{< ref "#integrity/confidentiality-protection" >}})
+    - [SSL Encryption]({{< ref "#ssl-encryption" >}})
+      * [Setting up SSL with self-signed certificates]({{< ref "#setting-up-ssl-with-self-signed-certificates" >}})
+      * [Selectively disabling SSL protocol versions]({{< ref "#selectively-disabling-ssl-protocol-versions" >}})
+    - [Pluggable Authentication Modules (PAM)]({{< ref "#pluggable-authentication-modules--pam-" >}})
+    - [Setting up HiveServer2 job credential provider]({{< ref "#setting-up-hiveserver2-job-credential-provider" >}})
+  + [Scratch Directory Management]({{< ref "#scratch-directory-management" >}})
+    - [Configuration Properties]({{< ref "#configuration-properties" >}})
+    - [ClearDanglingScratchDir Tool]({{< ref "#cleardanglingscratchdir-tool" >}})
+  + [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}})
+  + [Python Client Driver]({{< ref "#python-client-driver" >}})
+  + [Ruby Client Driver]({{< ref "#ruby-client-driver" >}})
 
 [HiveServer2](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver_27362111" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
@@ -66,13 +67,13 @@ HIVE\_SERVER2\_THRIFT\_PORT – Optional TCP port number to listen on, default 1
 
 HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see [HIVE-4752](https://issues.apache.org/jira/browse/HIVE-4752)). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: [HiveServer2 Clients -- JDBC Connection URLs](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC). Use the following settings to enable and configure HTTP mode:
 
-| Setting | Default | Description |
-| --- | --- | --- |
-| [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}}) | binary | Set to http to enable HTTP transport mode |
-| [hive.server2.thrift.http.port]({{< ref "#hive-server2-thrift-http-port" >}}) | 10001 | HTTP port number to listen on |
-| [hive.server2.thrift.http.max.worker.threads]({{< ref "#hive-server2-thrift-http-max-worker-threads" >}}) | 500 | Maximum worker threads in the server pool |
-| [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5 | Minimum worker threads in the server pool |
-| [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}}) | cliservice | The service endpoint |
+|                                                  Setting                                                  |  Default   |                Description                |
+|-----------------------------------------------------------------------------------------------------------|------------|-------------------------------------------|
+| [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}})                                 | binary     | Set to http to enable HTTP transport mode |
+| [hive.server2.thrift.http.port]({{< ref "#hive-server2-thrift-http-port" >}})                             | 10001      | HTTP port number to listen on             |
+| [hive.server2.thrift.http.max.worker.threads]({{< ref "#hive-server2-thrift-http-max-worker-threads" >}}) | 500        | Maximum worker threads in the server pool |
+| [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5          | Minimum worker threads in the server pool |
+| [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}})                             | cliservice | The service endpoint                      |
 
 ##### Cookie Based Authentication
 
@@ -278,8 +279,6 @@ A Web User Interface (UI) for HiveServer2 provides configuration, logging, metri
 
 The interface is currently under development with [HIVE-12338](https://issues.apache.org/jira/browse/HIVE-12338).
 
-  
-
 ![](attachments/30758712/61336258.png)
 
 ## Python Client Driver
@@ -333,8 +332,4 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Compaction pooling"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Compaction pooling
 
@@ -77,8 +78,4 @@ The already existing *hive.compactor.worker.threads* configuration value holds t
 * All remaining workers not used up by the labeled pools, are assigned to the default pool.
 
 The worker allocation can be configured per HS2 instance.
-
- 
-
- 
 

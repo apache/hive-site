@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : AccessServer Design Proposal"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AccessServer Design Proposal
 
@@ -46,18 +47,15 @@ Hive has a powerful data model that allows users to map logical tables and parti
 
 HCatalog's Storage Based Authorization model is explained in more detail in the [HCatalog documentation](http://hive.apache.org/docs/hcat_r0.5.0/authorization.html), but the following set of quotes provides a good high-level overview:
 
-> 
-> ... when a file system is used for storage, there is a directory corresponding to a database or a table. With this authorization model, **the read/write permissions a user or group has for this directory determine the permissions a user has on the database or table**.  
-> 
-> ...  
-> 
-> For example, an alter table operation would check if the user has permissions on the table directory before allowing the operation, even if it might not change anything on the file system.  
-> 
-> ...  
-> 
+> ... when a file system is used for storage, there is a directory corresponding to a database or a table. With this authorization model, **the read/write permissions a user or group has for this directory determine the permissions a user has on the database or table**.
+>
+> ...
+>
+> For example, an alter table operation would check if the user has permissions on the table directory before allowing the operation, even if it might not change anything on the file system.
+>
+> ...
+>
 > When the database or table is backed by a file system that has a Unix/POSIX-style permissions model (like HDFS), there are read(r) and write(w) permissions you can set for the owner user, group and ‘other’. The file system’s logic for determining if a user has permission **on the directory or file** will be used by Hive.
-> 
-> 
 
 There are several problems with this approach, the first of which is actually hinted at by the inconsistency highlighted in the preceding quote. To determine whether a particular user has read permission on table `foo`, HCatalog's [HdfsAuthorizationProvider class](http://svn.apache.org/repos/asf/hive/branches/branch-0.11/hcatalog/core/src/main/java/org/apache/hcatalog/security/HdfsAuthorizationProvider.java) checks to see if the user has read permission on the corresponding HDFS directory `/hive/warehouse/foo` that contains the table's data. However, in HDFS having [read permission on a directory](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html) only implies that you have the ability to list the contents of the directory – it doesn't have any affect on your ability to read the files contained in the directory.
 
@@ -99,8 +97,4 @@ Finally, red is used in the preceding diagram to highlight HCatalog components w
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

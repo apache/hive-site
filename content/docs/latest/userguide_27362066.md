@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : UserGuide"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : UserGuide
 
@@ -144,8 +145,4 @@ GROUP BY weekday;
 ### Using sampling
 
 ## Known Issues/Bugs
-
- 
-
- 
 

@@ -1,22 +1,23 @@
 ---
+
 title: "Apache Hive : HiveServer2 Overview"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveServer2 Overview
 
 * [Introduction]({{< ref "#introduction" >}})
 * [HS2 Architecture]({{< ref "#hs2-architecture" >}})
-	+ [Server]({{< ref "#server" >}})
-	+ [Transport]({{< ref "#transport" >}})
-	+ [Protocol]({{< ref "#protocol" >}})
-	+ [Processor]({{< ref "#processor" >}})
+  + [Server]({{< ref "#server" >}})
+  + [Transport]({{< ref "#transport" >}})
+  + [Protocol]({{< ref "#protocol" >}})
+  + [Processor]({{< ref "#processor" >}})
 * [Dependencies of HS2]({{< ref "#dependencies-of-hs2" >}})
 * [JDBC Client]({{< ref "#jdbc-client" >}})
 * [Source Code Description]({{< ref "#source-code-description" >}})
-	+ [Server Side]({{< ref "#server-side" >}})
-	+ [Client Side]({{< ref "#client-side" >}})
-	+ [Interaction between Client and Server]({{< ref "#interaction-between-client-and-server" >}})
+  + [Server Side]({{< ref "#server-side" >}})
+  + [Client Side]({{< ref "#client-side" >}})
+  + [Interaction between Client and Server]({{< ref "#interaction-between-client-and-server" >}})
 * [Resources]({{< ref "#resources" >}})
 
 # Introduction
@@ -52,9 +53,9 @@ Process implementation is the application logic to handle requests. For example,
 # Dependencies of HS2
 
 * [Metastore]({{< ref "adminmanual-metastore-administration_27362076" >}})  
-The metastore can be configured as embedded (in the same process as HS2) or as a remote server (which is a Thrift-based service as well). HS2 talks to the metastore for the metadata required for query compilation.
+  The metastore can be configured as embedded (in the same process as HS2) or as a remote server (which is a Thrift-based service as well). HS2 talks to the metastore for the metadata required for query compilation.
 * Hadoop cluster  
-HS2 prepares physical execution plans for various execution engines (MapReduce/Tez/Spark) and submits jobs to the Hadoop cluster for execution.
+  HS2 prepares physical execution plans for various execution engines (MapReduce/Tez/Spark) and submits jobs to the Hadoop cluster for execution.
 
 You can find a diagram of the interactions between HS2 and its dependencies [here]({{< ref "#here" >}}).
 
@@ -105,8 +106,4 @@ User interface:  [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}}
 Metrics:  [Hive Metrics]({{< ref "hive-metrics_65872987" >}})
 
 Cloudera blog on HS2: <http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/>
-
- 
-
- 
 

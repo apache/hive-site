@@ -1,15 +1,16 @@
 ---
+
 title: "Apache Hive : Unit Testing Hive SQL"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Unit Testing Hive SQL
 
 * [Motivations]({{< ref "#motivations" >}})
 * [Challenges]({{< ref "#challenges" >}})
 * [Modularisation]({{< ref "#modularisation" >}})
-	+ [Encapsulation of column level logic]({{< ref "#encapsulation-of-column-level-logic" >}})
-	+ [Encapsulation of set level logic]({{< ref "#encapsulation-of-set-level-logic" >}})
+  + [Encapsulation of column level logic]({{< ref "#encapsulation-of-column-level-logic" >}})
+  + [Encapsulation of set level logic]({{< ref "#encapsulation-of-set-level-logic" >}})
 * [Tools and frameworks]({{< ref "#tools-and-frameworks" >}})
 * [Useful practices]({{< ref "#useful-practices" >}})
 * [Relevant issues]({{< ref "#relevant-issues" >}})
@@ -126,20 +127,17 @@ Although not specifically related to Hive SQL, tooling exists for the testing of
 
 ## Comments:
 
-|  |
-| --- |
-| 
+|   |
+|---|
+|   |
+
 Disclosure: The tools are listed according to level of experience I have with each tool, HiveRunner being the tool that I have used the most. Furthermore, I have previously contributed to the HiveRunner project. I've also been involved with the BeeJU project.
 
- Posted by teabot at Nov 11, 2015 10:20
-  |
-| 
+Posted by teabot at Nov 11, 2015 10:20
+|
+|
 Where does [Capybara](https://cwiki.apache.org/confluence/download/attachments/27362054/CapybaraHiveMeetupNov2015.pptx) fit into this (it at all)?
 
- Posted by teabot at Dec 03, 2015 11:30
-  |
-
- 
-
- 
+Posted by teabot at Dec 03, 2015 11:30
+|
 

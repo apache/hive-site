@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Books about Hive"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Books about Hive
 
@@ -28,8 +29,4 @@ Online book:
 Related books:
 
 * [Apache Iceberg: The Definitive Guide: Data Lakehouse Functionality, Performance, and Scalability on the Data Lake](https://www.amazon.com/dp/1098148622) by Tomer Shiran, Jason Hughes, Alex Merced
-
- 
-
- 
 

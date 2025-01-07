@@ -1,24 +1,23 @@
 ---
+
 title: "Apache Hive : Datasketches Integration"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Datasketches Integration
 
 * [Sketch functions]({{< ref "#sketch-functions" >}})
-	+ [Naming convention]({{< ref "#naming-convention" >}})
-	+ [List declared sketch functions]({{< ref "#list-declared-sketch-functions" >}})
+  + [Naming convention]({{< ref "#naming-convention" >}})
+  + [List declared sketch functions]({{< ref "#list-declared-sketch-functions" >}})
 * [Integration with materialized views]({{< ref "#integration-with-materialized-views" >}})
 * [BI mode]({{< ref "#bi-mode" >}})
-	+ [Rewrite COUNT(DISTINCT(X))]({{< ref "#rewrite-countdistinctx" >}})
-	+ [Rewrite percentile\_disc(p) withing group(order by x)]({{< ref "#rewrite-percentile_discp-withing-grouporder-by-x" >}})
-	+ [Rewrite cume\_dist() over (order by id)]({{< ref "#rewrite-cume\_dist---over--order-by-id-" >}})
-	+ [Rewrite NTILE]({{< ref "#rewrite-ntile" >}})
-	+ [Rewrite RANK]({{< ref "#rewrite-rank" >}})
+  + [Rewrite COUNT(DISTINCT(X))]({{< ref "#rewrite-countdistinctx" >}})
+  + [Rewrite percentile\_disc(p) withing group(order by x)]({{< ref "#rewrite-percentile_discp-withing-grouporder-by-x" >}})
+  + [Rewrite cume\_dist() over (order by id)]({{< ref "#rewrite-cume\_dist---over--order-by-id-" >}})
+  + [Rewrite NTILE]({{< ref "#rewrite-ntile" >}})
+  + [Rewrite RANK]({{< ref "#rewrite-rank" >}})
 * [Examples]({{< ref "#examples" >}})
-	+ [Simple distinct counting examples using HLL]({{< ref "#simple-distinct-counting-examples-using-hll" >}})
-
-  
+  + [Simple distinct counting examples using HLL]({{< ref "#simple-distinct-counting-examples-using-hll" >}})
 
 Apache DataSketches (<https://datasketches.apache.org/>) is integrated into Hive via [HIVE-22939](https://issues.apache.org/jira/browse/HIVE-22939).  
 This enables various kind of sketch operations thru regular sql statement.
@@ -38,28 +37,28 @@ For example we have a function called: **ds\_hll\_estimate** which could be used
 For detailed info about the sketches themself please refer to the datasketches site!
 
 * frequency
-	+ hll
-	+ cpc
-	+ theta
+  + hll
+  + cpc
+  + theta
 * frequent items
-	+ freq
+  + freq
 * histograms
-	+ kll
+  + kll
 
 ### functionName
 
-| name | description |
-| --- | --- |
-| sketch | generates sketch data from input |
-| estimate | computes the estimate for frequency related sketches |
-| union | aggregate function to merge multiple sketches |
-| union\_f | unions 2 sketches given in the arguments |
-| n | number of elements |
-| cdf | cumulative distribution |
-| rank | estimates the rank of the given element; returns a value in the range of 0~1 |
-| intersect | aggregate to intersect multiple sketches |
-| intersect\_f | intersect 2 sketches given in the arguments |
-| stringify | returns the the sketch in a more readable form |
+|     name     |                                 description                                  |
+|--------------|------------------------------------------------------------------------------|
+| sketch       | generates sketch data from input                                             |
+| estimate     | computes the estimate for frequency related sketches                         |
+| union        | aggregate function to merge multiple sketches                                |
+| union\_f     | unions 2 sketches given in the arguments                                     |
+| n            | number of elements                                                           |
+| cdf          | cumulative distribution                                                      |
+| rank         | estimates the rank of the given element; returns a value in the range of 0~1 |
+| intersect    | aggregate to intersect multiple sketches                                     |
+| intersect\_f | intersect 2 sketches given in the arguments                                  |
+| stringify    | returns the the sketch in a more readable form                               |
 
 ## List declared sketch functions
 
@@ -197,11 +196,7 @@ order by id
 
 # Examples
 
-  
-
 ## Simple distinct counting examples using HLL
-
-  
 
 * Prepare sample table
 
@@ -215,7 +210,10 @@ insert into table sketch\_input values
   (6,'b'),(6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b')
 ; 
 ```
-* ### Use HLL to compute distinct values using an intermediate table
+
+* 
+
+### Use HLL to compute distinct values using an intermediate table
 
 ```
 -- build sketches per category
@@ -228,20 +226,29 @@ select category, ds\_hll\_estimate(sketch) from sketch\_intermediate;
 -- union sketches across categories and get overall unique count estimate
 select ds\_hll\_estimate(ds\_hll\_union(sketch)) from sketch\_intermediate;
 ```
-* ### Use HLL to compute distinct values without intermediate table
+
+* 
+
+### Use HLL to compute distinct values without intermediate table
 
 ```
 select category, ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input group by category;
 select ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input;
 ```
-* ### Use HLL to compute distinct values transparently thru BI mode
+
+* 
+
+### Use HLL to compute distinct values transparently thru BI mode
 
 ```
 set hive.optimize.bi.enabled=true;
 select category,count(distinct id) from sketch\_input group by category;
 select count(distinct id) from sketch\_input;
 ```
-* ### Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
+
+* 
+
+### Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
 
 ```
 -- create an MV to store precomputed HLL values
@@ -252,8 +259,4 @@ set hive.optimize.bi.enabled=true;
 select category,count(distinct id) from sketch\_input group by category;
 select count(distinct id) from sketch\_input;
 ```
-
- 
-
- 
 

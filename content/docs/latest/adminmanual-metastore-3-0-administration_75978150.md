@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : AdminManual Metastore 3.0 Administration"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : AdminManual Metastore 3.0 Administration
 
@@ -9,21 +10,21 @@ Metastore 3.0 Administration
 
 * [Version Note]({{< ref "#version-note" >}})
 * [Introduction]({{< ref "#introduction" >}})
-	+ [Changes From Hive 2 to Hive 3]({{< ref "#changes-from-hive-2-to-hive-3" >}})
+  + [Changes From Hive 2 to Hive 3]({{< ref "#changes-from-hive-2-to-hive-3" >}})
 * [General Configuration]({{< ref "#general-configuration" >}})
 * [RDBMS]({{< ref "#rdbms" >}})
-	+ [Option 1: Embedding Derby]({{< ref "#option-1-embedding-derby" >}})
-	+ [Option 2: External RDBMS]({{< ref "#option-2-external-rdbms" >}})
-		- [Supported RDBMSs]({{< ref "#supported-rdbmss" >}})
-	+ [Installing and Upgrading the Metastore Schema]({{< ref "#installing-and-upgrading-the-metastore-schema" >}})
+  + [Option 1: Embedding Derby]({{< ref "#option-1-embedding-derby" >}})
+  + [Option 2: External RDBMS]({{< ref "#option-2-external-rdbms" >}})
+    - [Supported RDBMSs]({{< ref "#supported-rdbmss" >}})
+  + [Installing and Upgrading the Metastore Schema]({{< ref "#installing-and-upgrading-the-metastore-schema" >}})
 * [Running the Metastore]({{< ref "#running-the-metastore" >}})
-	+ [Embedded Mode]({{< ref "#embedded-mode" >}})
-	+ [Metastore Server]({{< ref "#metastore-server" >}})
-		- [High Availability]({{< ref "#high-availability" >}})
-		- [Securing the Service]({{< ref "#securing-the-service" >}})
+  + [Embedded Mode]({{< ref "#embedded-mode" >}})
+  + [Metastore Server]({{< ref "#metastore-server" >}})
+    - [High Availability]({{< ref "#high-availability" >}})
+    - [Securing the Service]({{< ref "#securing-the-service" >}})
 * [Running the Metastore Without Hive]({{< ref "#running-the-metastore-without-hive" >}})
 * [Performance Optimizations]({{< ref "#performance-optimizations" >}})
-	+ [CachedStore]({{< ref "#cachedstore" >}})
+  + [CachedStore]({{< ref "#cachedstore" >}})
 * [Less Commonly Changed Configuration Parameters]({{< ref "#less-commonly-changed-configuration-parameters" >}})
 
 ## Version Note
@@ -52,15 +53,15 @@ Configuration values specific to running the Metastore with various RDBMSs, embe
 
  
 
-| Parameter | Hive 2 Parameter | Default Value | Description |
-| --- | --- | --- | --- |
-| metastore.warehouse.dir | hive.metastore.warehouse.dir |  | URI of the default location for tables in the default catalog and database. |
-| datanucleus.schema.autoCreateAll | datanucleus.schema.autoCreateAll | false | Auto creates the necessary schema in the RDBMS at startup if one does not exist. Set this to false after creating it once. To enable auto create also set hive.metastore.schema.verification=false. **Auto creation is not recommended in production**; run `schematool` instead. |
-| metastore.schema.verification | hive.metastore.schema.verification | true | Enforce metastore schema version consistency. When set to true: verify that version information stored in the RDBMS is compatible with the version of the Metastore jar. Also disable automatic schema migration. Users are required to manually migrate the schema after upgrade, which ensures proper schema migration. This setting is strongly recommended in production.When set to false: warn if the version information stored in RDBMS doesn't match the version of the Metastore jar and allow auto schema migration. |
-| metastore.hmshandler.retry.attempts | hive.hmshandler.retry.attempts | 10 | The number of times to retry a call to the meastore when there is a connection error. |
-| metastore.hmshandler.retry.interval | hive.hmshandler.retry.interval | 2 sec | Time between retry attempts. |
-| metastore.log4j.file | hive.log4j.file | none | Log4j configuration file. If unset will look for `metastore-log4j2.properties` in $METASTORE\_HOME/conf |
-| metastore.stats.autogather | hive.stats.autogather | true | Whether to automatically gather basic statistics during insert commands. |
+|              Parameter              |          Hive 2 Parameter          | Default Value |                                                                                                                                                                                                                                                           Description                                                                                                                                                                                                                                                           |
+|-------------------------------------|------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| metastore.warehouse.dir             | hive.metastore.warehouse.dir       |               | URI of the default location for tables in the default catalog and database.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| datanucleus.schema.autoCreateAll    | datanucleus.schema.autoCreateAll   | false         | Auto creates the necessary schema in the RDBMS at startup if one does not exist. Set this to false after creating it once. To enable auto create also set hive.metastore.schema.verification=false. **Auto creation is not recommended in production**; run `schematool` instead.                                                                                                                                                                                                                                               |
+| metastore.schema.verification       | hive.metastore.schema.verification | true          | Enforce metastore schema version consistency. When set to true: verify that version information stored in the RDBMS is compatible with the version of the Metastore jar. Also disable automatic schema migration. Users are required to manually migrate the schema after upgrade, which ensures proper schema migration. This setting is strongly recommended in production.When set to false: warn if the version information stored in RDBMS doesn't match the version of the Metastore jar and allow auto schema migration. |
+| metastore.hmshandler.retry.attempts | hive.hmshandler.retry.attempts     | 10            | The number of times to retry a call to the meastore when there is a connection error.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| metastore.hmshandler.retry.interval | hive.hmshandler.retry.interval     | 2 sec         | Time between retry attempts.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| metastore.log4j.file                | hive.log4j.file                    | none          | Log4j configuration file. If unset will look for `metastore-log4j2.properties` in $METASTORE\_HOME/conf                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| metastore.stats.autogather          | hive.stats.autogather              | true          | Whether to automatically gather basic statistics during insert commands.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ## RDBMS
 
@@ -72,44 +73,54 @@ The metastore can be run with [Apache Derby](https://db.apache.org/derby/) embed
 
 For any durable, multi-user installation, an external RDBMS should be used to store Metastore objects.  The Metastore connects to an external RDBMS via JDBC.  Any jars required by the JDBC driver for your RDBMS should be placed in `METASTORE_HOME/lib` or explicilty passed on the command line.  The following values need to be configured to connect the Metastore to an RDBMS.  (Note:  these configuration parameters did not change between Hive 2 and 3.)
 
-| Configuration Parameter | Comment |
-| --- | --- |
-| javax.jdo.option.ConnectionURL | Connection URL for the JDBC driver |
-| javax.jdo.option.ConnectionDriverName | JDBC driver class |
-| javax.jdo.option.ConnectionUserName | User name to connect to the RDBMS with |
-| javax.jdo.option.ConnectionPassword | Password to connect to the RDBMS with. The Metastore uses [Hadoop's CredentialProvider API](http://hadoop.apache.org/docs/r3.0.1/api/org/apache/hadoop/security/alias/CredentialProvider.html) so this does not have to be stored in clear text in your configuration file. |
+|        Configuration Parameter        |                                                                                                                                   Comment                                                                                                                                   |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| javax.jdo.option.ConnectionURL        | Connection URL for the JDBC driver                                                                                                                                                                                                                                          |
+| javax.jdo.option.ConnectionDriverName | JDBC driver class                                                                                                                                                                                                                                                           |
+| javax.jdo.option.ConnectionUserName   | User name to connect to the RDBMS with                                                                                                                                                                                                                                      |
+| javax.jdo.option.ConnectionPassword   | Password to connect to the RDBMS with. The Metastore uses [Hadoop's CredentialProvider API](http://hadoop.apache.org/docs/r3.0.1/api/org/apache/hadoop/security/alias/CredentialProvider.html) so this does not have to be stored in clear text in your configuration file. |
 
 #### Supported RDBMSs
 
 As the Metastore uses DataNucleus to communicate with the RDBMS, theoretically any storage option supported by DataNucleus would work with the Metastore.  However, we only test and recommend the following:
 
-| RDBMS | Minimum Version | javax.jdo.option.ConnectionURL | javax.jdo.option.ConnectionDriverName |
-| --- | --- | --- | --- |
-| MS SQL Server | 2008 R2 | jdbc:sqlserver://<HOST>:<PORT>;DatabaseName=<SCHEMA> | 
+|     RDBMS     | Minimum Version |            javax.jdo.option.ConnectionURL            | javax.jdo.option.ConnectionDriverName |
+|---------------|-----------------|------------------------------------------------------|---------------------------------------|
+| MS SQL Server | 2008 R2         | jdbc:sqlserver://<HOST>:<PORT>;DatabaseName=<SCHEMA> |
+
 ```
 com.microsoft.sqlserver.jdbc.SQLServerDriver
 ```
- |
-| MySQL | 5.6.17 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> | 
+
+|
+| MySQL | 5.6.17 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> |
+
 ```
 com.mysql.jdbc.Driver
 ```
- |
-| MariaDB | 5.5 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> | 
+
+|
+| MariaDB | 5.5 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> |
+
 ```
 org.mariadb.jdbc.Driver
 ```
- |
-| Oracle* | 11g | jdbc:oracle:thin:@//<HOST>:<PORT>/xe | 
+
+|
+| Oracle* | 11g | jdbc:oracle:thin:@//<HOST>:<PORT>/xe |
+
 ```
 oracle.jdbc.OracleDriver
 ```
- |
-| Postgres | 9.1.13 | jdbc:postgresql://<HOST>:<PORT>/<SCHEMA> | 
+
+|
+| Postgres | 9.1.13 | jdbc:postgresql://<HOST>:<PORT>/<SCHEMA> |
+
 ```
 org.postgresql.Driver
 ```
- |
+
+|
 
 <HOST> = The host the RDBMS is on.
 
@@ -142,10 +153,10 @@ Except in the case of HiveServer2, using this mode raises a few concerns.  Firs
 
 To run the Metastore as a service, you must first configure it with a URL.
 
-| Configured On | Parameter | Hive 2 Parameter | Format | Default Value | Comment |
-| --- | --- | --- | --- | --- | --- |
-| Client | metastore.thrift.uris | hive.metastore.uris | thrift://<HOST>:<PORT>[, thrift://<HOST>:<PORT>...] | none | HOST = hostname, PORT = should be set to match metastore.thrift.port on the server (which defaults to 9083. You can provide multiple servers in a comma separate list. |
-| Server | metastore.thrift.port | hive.metastore.port | integer | 9083 | Port Thrift will listen on. |
+| Configured On |       Parameter       |  Hive 2 Parameter   |                       Format                        | Default Value |                                                                                Comment                                                                                 |
+|---------------|-----------------------|---------------------|-----------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Client        | metastore.thrift.uris | hive.metastore.uris | thrift://<HOST>:<PORT>[, thrift://<HOST>:<PORT>...] | none          | HOST = hostname, PORT = should be set to match metastore.thrift.port on the server (which defaults to 9083. You can provide multiple servers in a comma separate list. |
+| Server        | metastore.thrift.port | hive.metastore.port | integer                                             | 9083          | Port Thrift will listen on.                                                                                                                                            |
 
 Once you have configured your clients, you can start the Metastore on a server using the `start-metastore` utility.  See the `-help` option of that utility for available options.  There is no stop-metastore script.  You must locate the process id for the metastore and kill that process.
 
@@ -165,10 +176,10 @@ Beginning in Hive 3.0, the Metastore is released as a separate package and can b
 
 By default the Metastore is configured for use with Hive, so a few configuration parameters have to be changed in this configuration.
 
-| Configuration Parameter | Set to for Standalone Mode |
-| --- | --- |
+|    Configuration Parameter    |                                                 Set to for Standalone Mode                                                 |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | metastore.task.threads.always | org.apache.hadoop.hive.metastore.events.EventCleanerTask,org.apache.hadoop.hive.metastore.MaterializationsCacheCleanerTask |
-| metastore.expression.proxy | org.apache.hadoop.hive.metastore.DefaultPartitionExpressionProxy |
+| metastore.expression.proxy    | org.apache.hadoop.hive.metastore.DefaultPartitionExpressionProxy                                                           |
 
 Currently the following features have not been tested or are known not to work with the Metastore in standalone mode:
 
@@ -192,6 +203,7 @@ BATCHED\_RETRIEVE\_*, CLIENT\_CONNECT\_RETRY\_DELAY, FILTER\_HOOK, SERDES\_USING
 ```
 THREAD\_POOL\_SIZE
 ```
+
 Security: EXECUTE\_SET\_UGI, metastore.authorization.storage.checks
 
 Setting up Caching: CACHED*, CATALOGS\_TO\_CACHE & AGGREGATE\_STATS\_CACHE*
@@ -201,8 +213,4 @@ Transactions: MAX\_OPEN\_TXNS, TXNS\_*
  
 
  
-
- 
-
- 
 

@@ -1,21 +1,22 @@
 ---
+
 title: "Apache Hive : LanguageManual LZO"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual LZO
 
 # LZO Compression
 
 * [LZO Compression]({{< ref "#lzo-compression" >}})
-	+ [General LZO Concepts]({{< ref "#general-lzo-concepts" >}})
-	+ [Prerequisites]({{< ref "#prerequisites" >}})
-		- [Lzo/Lzop Installations]({{< ref "#lzolzop-installations" >}})
-		- [core-site.xml]({{< ref "#core-site-xml" >}})
-		- [Table Definition]({{< ref "#table-definition" >}})
-	+ [Hive Queries]({{< ref "#hive-queries" >}})
-		- [Option 1: Directly Create LZO Files]({{< ref "#option-1-directly-create-lzo-files" >}})
-		- [Option 2: Write Custom Java to Create LZO Files]({{< ref "#option-2-write-custom-java-to-create-lzo-files" >}})
+  + [General LZO Concepts]({{< ref "#general-lzo-concepts" >}})
+  + [Prerequisites]({{< ref "#prerequisites" >}})
+    - [Lzo/Lzop Installations]({{< ref "#lzolzop-installations" >}})
+    - [core-site.xml]({{< ref "#core-site-xml" >}})
+    - [Table Definition]({{< ref "#table-definition" >}})
+  + [Hive Queries]({{< ref "#hive-queries" >}})
+    - [Option 1: Directly Create LZO Files]({{< ref "#option-1-directly-create-lzo-files" >}})
+    - [Option 2: Write Custom Java to Create LZO Files]({{< ref "#option-2-write-custom-java-to-create-lzo-files" >}})
 
 ## General LZO Concepts
 
@@ -59,14 +60,14 @@ Add the following to your `core-site.xml`:
 For example:
 
 `<property>`  
- `<name>io.compression.codecs</name>`  
- `<value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,`com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec`</value>`  
- `</property>`
+`<name>io.compression.codecs</name>`  
+`<value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.BZip2Codec,`com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec`</value>`  
+`</property>`
 
 `<property>`  
- `<name>io.compression.codec.lzo.class</name>`  
- `<value>`com.hadoop.compression.lzo.LzoCodec`</value>`  
- `</property>`
+`<name>io.compression.codec.lzo.class</name>`  
+`<value>`com.hadoop.compression.lzo.LzoCodec`</value>`  
+`</property>`
 
 Next we run the command to create an LZO index file:
 
@@ -123,8 +124,8 @@ hive -e "SET mapreduce.output.fileoutputformat.compress.codec=com.hadoop.compres
 
 1. Create text files as the output of the Hive query.
 2. Write custom Java code to
-	1. convert Hive query generated text files to `.lzo` files
-	2. generate `.lzo.index` files for the `.lzo` files generated above
+   1. convert Hive query generated text files to `.lzo` files
+   2. generate `.lzo.index` files for the `.lzo` files generated above
 
 **Hive Query Parameters**
 
@@ -142,8 +143,4 @@ For example:
 hive -e "SET hive.exec.compress.output=false;SET mapreduce.output.fileoutputformat.compress=false;<query-string>"
 
 ```
-
- 
-
- 
 

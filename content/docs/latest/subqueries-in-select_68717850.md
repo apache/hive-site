@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : Subqueries in SELECT"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Subqueries in SELECT
 
@@ -44,6 +45,7 @@ SELECT CASE WHEN (select count(*) from store\_sales
 FROM reason
 WHERE r\_reason\_sk = 1
 ```
+
 * Scalar subqueries can only return at most one row. Hive will check for this case at runtime and throw an error if not satisfied. For example the following query is invalid:
 
 **Not Supported**
@@ -56,6 +58,7 @@ SELECT customer.customer\_num,
 	) AS total\_ship\_chg
 FROM customer 
 ```
+
 * Scalar subqueries can only have one column. Hive will check for this case during compilation and throw an error. For example the following query is invalid:
 
 **Not Supported**
@@ -67,6 +70,7 @@ SELECT customer.customer\_num,
 	) AS total\_ship\_chg
 FROM customer
 ```
+
 * Correlated variables are only permitted in a filter, that is, a WHERE or HAVING clause. For example the following query is invalid:
 
 **Not Supported**
@@ -79,6 +83,7 @@ SELECT customer.customer\_num,
 	) AS total\_ship\_chg
 FROM customer 
 ```
+
 * Subqueries with DISTINCT are not allowed. Since DISTINCT <expression> will be evaluated as GROUP BY <expression>, subqueries with DISTINCT are disallowed for now.
 
 # Design
@@ -95,6 +100,7 @@ SELECT customer.customer\_num,
 	) AS total\_ship\_chg
 FROM customer 
 ```
+
 * IN subqueries, for example:
 
 ```
@@ -102,6 +108,7 @@ SELECT p\_size IN (
 		SELECT MAX(p\_size) FROM part)
 FROM part
 ```
+
 * EXISTS subqueries, for example:
 
 ```
@@ -114,14 +121,10 @@ All of the above queries could be **correlated** or **uncorrelated**.
 Design for this will be similar to the work done in [HIVE-15456](https://issues.apache.org/jira/browse/HIVE-15456).
 
 * genLogicalPlan will go over the select list to do the following:
-	+ If subquery is not a top-level expression, throw an error.
-	+ Otherwise, generate an appropriate plan by using RexSubquery to represent the subquery.
+  + If subquery is not a top-level expression, throw an error.
+  + Otherwise, generate an appropriate plan by using RexSubquery to represent the subquery.
 * HiveSubqueryRemoveRule will then be applied to remove the RexSubquery node and rewrite the query into a join.
 * HiveRelDecorrelator::decorrelateQuery will then be used to decorrelate correlated queries.
 
  [HIVE-16091](https://issues.apache.org/jira/browse/HIVE-16091) covers the initial work for supporting subqueries in SELECT.
-
- 
-
- 
 

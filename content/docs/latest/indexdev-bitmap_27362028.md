@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : IndexDev Bitmap"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : IndexDev Bitmap
 
@@ -10,21 +11,21 @@ date: 2024-12-12
 * [Introduction]({{< ref "#introduction" >}})
 * [Approach]({{< ref "#approach" >}})
 * [Proposal]({{< ref "#proposal" >}})
-	+ [First implementation]({{< ref "#first-implementation" >}})
-	+ [Second iteration]({{< ref "#second-iteration" >}})
+  + [First implementation]({{< ref "#first-implementation" >}})
+  + [Second iteration]({{< ref "#second-iteration" >}})
 * [Example]({{< ref "#example" >}})
 
 ## Introduction
 
-This document explains the proposed design for adding a bitmap index handler (<https://issues.apache.org/jira/browse/HIVE-1803>).  
+This document explains the proposed design for adding a bitmap index handler (<https://issues.apache.org/jira/browse/HIVE-1803>).
 
-Bitmap indexing (<http://en.wikipedia.org/wiki/Bitmap_index>) is a standard technique for indexing columns with few distinct   
+Bitmap indexing (<http://en.wikipedia.org/wiki/Bitmap_index>) is a standard technique for indexing columns with few distinct
 
 values, such as gender.
 
 ## Approach
 
-We want to develop a bitmap index that can reuse as much of the existing Compact Index code as possible. 
+We want to develop a bitmap index that can reuse as much of the existing Compact Index code as possible.
 
 ## Proposal
 
@@ -53,8 +54,4 @@ For the second iteration, the first entry will be:
 `<https://issues.apache.org/jira/secure/attachment/12460124/bitmap_index_2.png>`
 
 This one uses 1-byte array entries, so each value in the array stores 8 rows. If an entry is 0x00 or 0xFF, it represents 1 or more consecutive bytes of zeros, (in this case 5 and 4, respectively)
-
- 
-
- 
 

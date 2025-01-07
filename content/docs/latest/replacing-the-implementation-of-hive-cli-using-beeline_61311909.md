@@ -1,18 +1,20 @@
 ---
+
 title: "Apache Hive : Replacing the Implementation of Hive CLI Using Beeline"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Replacing the Implementation of Hive CLI Using Beeline
 
 ## 
+
 * 
 * [Why Replace the Existing Hive CLI?]({{< ref "#why-replace-the-existing-hive-cli" >}})
 * [Hive CLI Functionality Support]({{< ref "#hive-cli-functionality-support" >}})
-	+ [Hive CLI Options Support]({{< ref "#hive-cli-options-support" >}})
-	+ [Examples]({{< ref "#examples" >}})
-	+ [Hive CLI Interactive Shell Commands Support]({{< ref "#hive-cli-interactive-shell-commands-support" >}})
-	+ [Hive CLI Configuration Support]({{< ref "#hive-cli-configuration-support" >}})
+  + [Hive CLI Options Support]({{< ref "#hive-cli-options-support" >}})
+  + [Examples]({{< ref "#examples" >}})
+  + [Hive CLI Interactive Shell Commands Support]({{< ref "#hive-cli-interactive-shell-commands-support" >}})
+  + [Hive CLI Configuration Support]({{< ref "#hive-cli-configuration-support" >}})
 * [Performance Impacts]({{< ref "#performance-impacts" >}})
 
 ## Why Replace the Existing Hive CLI?
@@ -59,21 +61,25 @@ usage: hive
 ```
 $HIVE\_HOME/bin/hive -e 'select a.foo from pokes a'
 ```
+
 * Example of setting Hive configuration variables
 
 ```
 $HIVE\_HOME/bin/hive -e 'select a.foo from pokes a' --hiveconf hive.exec.scratchdir=/opt/my/hive\_scratch --hiveconf mapred.reduce.tasks=1
 ```
+
 * Example of dumping data out from a query into a file using silent mode
 
 ```
 $HIVE\_HOME/bin/hive -S -e 'select a.foo from pokes a' > a.txt
 ```
+
 * Example of running a script non-interactively from local disk
 
 ```
 $HIVE\_HOME/bin/hive -f /home/my/hive-script.sql
 ```
+
 * Example of running a script non-interactively from a Hadoop supported filesystem (starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7136))
 
 ```
@@ -86,23 +92,23 @@ When `$HIVE_HOME/bin/hive` is run without either the `-e` or `-f` option, 
 
 Use ";" (semicolon) to terminate commands. Comments in scripts can be specified using the "--" prefix.
 
-| Command | Description |
-| --- | --- |
-| quit exit | Use quit or exit to leave the interactive shell. |
-| reset | Resets the configuration to the default values (as of Hive 0.10: see [HIVE-3202](https://issues.apache.org/jira/browse/HIVE-3202)). |
-| set <key>=<value> | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error. |
-| set | Prints a list of configuration variables that are overridden by the user or Hive. |
-| set -v | Prints all Hadoop and Hive configuration variables. |
-| add FILE[S] <filepath> <filepath>*  add JAR[S] <filepath> <filepath>*  add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| add FILE[S] <ivyurl> <ivyurl>*  add JAR[S] <ivyurl> <ivyurl>*  add ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form [ivy://group:module:version?query\_string]({{< ref "ivy://groupmoduleversion?query_string" >}}). See [Hive Resources]({{< ref "#hive-resources" >}})  for more information. |
-| list FILE[S]  list JAR[S]  list ARCHIVE[S] | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}})  for more information. |
-| list FILE[S] <filepath>*  list JAR[S] <filepath>*  list ARCHIVE[S] <filepath>* | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}})  for more information. |
-| delete FILE[S] <filepath>*  delete JAR[S] <filepath>*  delete ARCHIVE[S] <filepath>* | Removes the resource(s) from the distributed cache. |
-| delete FILE[S] <ivyurl> <ivyurl>*  delete JAR[S] <ivyurl> <ivyurl>*  delete ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the <ivyurl> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| ! <command> | Executes a shell command from the Hive shell. |
-| dfs <dfs command> | Executes a dfs command from the Hive shell. |
-| <query string> | Executes a Hive query and prints results to standard output. |
-| source FILE <filepath> | Executes a script file inside the CLI. |
+|                                                   Command                                                    |                                                                                                                                                                                              Description                                                                                                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| quit exit                                                                                                    | Use quit or exit to leave the interactive shell.                                                                                                                                                                                                                                                                                                                                                       |
+| reset                                                                                                        | Resets the configuration to the default values (as of Hive 0.10: see [HIVE-3202](https://issues.apache.org/jira/browse/HIVE-3202)).                                                                                                                                                                                                                                                                    |
+| set <key>=<value>                                                                                            | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error.                                                                                                                                                                                                                                                             |
+| set                                                                                                          | Prints a list of configuration variables that are overridden by the user or Hive.                                                                                                                                                                                                                                                                                                                      |
+| set -v                                                                                                       | Prints all Hadoop and Hive configuration variables.                                                                                                                                                                                                                                                                                                                                                    |
+| add FILE[S] <filepath> <filepath>*  add JAR[S] <filepath> <filepath>*  add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information.                                                                                                                                                                                                                                 |
+| add FILE[S] <ivyurl> <ivyurl>*  add JAR[S] <ivyurl> <ivyurl>*  add ARCHIVE[S] <ivyurl> <ivyurl>*             | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form [ivy://group:module:version?query\_string]({{< ref "ivy://groupmoduleversion?query_string" >}}). See [Hive Resources]({{< ref "#hive-resources" >}})  for more information. |
+| list FILE[S]  list JAR[S]  list ARCHIVE[S]                                                                   | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}})  for more information.                                                                                                                                                                                                                                                                 |
+| list FILE[S] <filepath>*  list JAR[S] <filepath>*  list ARCHIVE[S] <filepath>*                               | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}})  for more information.                                                                                                                                                                                                                                       |
+| delete FILE[S] <filepath>*  delete JAR[S] <filepath>*  delete ARCHIVE[S] <filepath>*                         | Removes the resource(s) from the distributed cache.                                                                                                                                                                                                                                                                                                                                                    |
+| delete FILE[S] <ivyurl> <ivyurl>*  delete JAR[S] <ivyurl> <ivyurl>*  delete ARCHIVE[S] <ivyurl> <ivyurl>*    | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the <ivyurl> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information.                                                                                                                                                                 |
+| ! <command>                                                                                                  | Executes a shell command from the Hive shell.                                                                                                                                                                                                                                                                                                                                                          |
+| dfs <dfs command>                                                                                            | Executes a dfs command from the Hive shell.                                                                                                                                                                                                                                                                                                                                                            |
+| <query string>                                                                                               | Executes a Hive query and prints results to standard output.                                                                                                                                                                                                                                                                                                                                           |
+| source FILE <filepath>                                                                                       | Executes a script file inside the CLI.                                                                                                                                                                                                                                                                                                                                                                 |
 
 Examples of shell commands:
 
@@ -146,13 +152,13 @@ hive>source /opt/s.sql;
 
 ### Hive CLI Configuration Support
 
-| Configuration Name | Supported in New Hive CLI | Description |
-| --- | --- | --- |
-| hive.cli.print.header | Yes | Whether to print the names of the columns in query output. [HIVE-11624](https://issues.apache.org/jira/browse/HIVE-11624) |
-| hive.cli.errors.ignore | Yes | Whether to force execution of a script when errors occurred. [HIVE-11191](https://issues.apache.org/jira/browse/HIVE-11191) |
-| hive.cli.prompt | Yes | Command line prompt configuration value. Other hiveconf can be used in this configuration value. [HIVE-11226](https://issues.apache.org/jira/browse/HIVE-11226) |
-| hive.cli.pretty.output.num.cols | Yes | The number of columns to use when formatting output generated by the DESCRIBE PRETTY *table\_name* command. [HIVE-11779](https://issues.apache.org/jira/browse/HIVE-11779) |
-| hive.cli.print.current.db | Yes | Whether to include the current database in the Hive prompt. [HIVE-11637](https://issues.apache.org/jira/browse/HIVE-11637) |
+|       Configuration Name        | Supported in New Hive CLI |                                                                                Description                                                                                 |
+|---------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hive.cli.print.header           | Yes                       | Whether to print the names of the columns in query output. [HIVE-11624](https://issues.apache.org/jira/browse/HIVE-11624)                                                  |
+| hive.cli.errors.ignore          | Yes                       | Whether to force execution of a script when errors occurred. [HIVE-11191](https://issues.apache.org/jira/browse/HIVE-11191)                                                |
+| hive.cli.prompt                 | Yes                       | Command line prompt configuration value. Other hiveconf can be used in this configuration value. [HIVE-11226](https://issues.apache.org/jira/browse/HIVE-11226)            |
+| hive.cli.pretty.output.num.cols | Yes                       | The number of columns to use when formatting output generated by the DESCRIBE PRETTY *table\_name* command. [HIVE-11779](https://issues.apache.org/jira/browse/HIVE-11779) |
+| hive.cli.print.current.db       | Yes                       | Whether to include the current database in the Hive prompt. [HIVE-11637](https://issues.apache.org/jira/browse/HIVE-11637)                                                 |
 
 ## Performance Impacts
 
@@ -169,8 +175,4 @@ The lower the score the better since we are evaluating the time cost. There is n
  
 
  
-
- 
-
- 
 

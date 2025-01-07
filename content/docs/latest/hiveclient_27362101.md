@@ -1,23 +1,24 @@
 ---
+
 title: "Apache Hive : HiveClient"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HiveClient
 
 * [Command Line]({{< ref "#command-line" >}})
 * [JDBC]({{< ref "#jdbc" >}})
-	+ [JDBC Client Sample Code]({{< ref "#jdbc-client-sample-code" >}})
-		- [Running the JDBC Sample Code]({{< ref "#running-the-jdbc-sample-code" >}})
-	+ [JDBC Client Setup for a Secure Cluster]({{< ref "#jdbc-client-setup-for-a-secure-cluster" >}})
+  + [JDBC Client Sample Code]({{< ref "#jdbc-client-sample-code" >}})
+    - [Running the JDBC Sample Code]({{< ref "#running-the-jdbc-sample-code" >}})
+  + [JDBC Client Setup for a Secure Cluster]({{< ref "#jdbc-client-setup-for-a-secure-cluster" >}})
 * [Python]({{< ref "#python" >}})
 * [PHP]({{< ref "#php" >}})
 * [ODBC]({{< ref "#odbc" >}})
 * [Thrift]({{< ref "#thrift" >}})
-	+ [Thrift Java Client]({{< ref "#thrift-java-client" >}})
-	+ [Thrift C++ Client]({{< ref "#thrift-c-client" >}})
-	+ [Thrift Node Clients]({{< ref "#thrift-node-clients" >}})
-	+ [Thrift Ruby Client]({{< ref "#thrift-ruby-client" >}})
+  + [Thrift Java Client]({{< ref "#thrift-java-client" >}})
+  + [Thrift C++ Client]({{< ref "#thrift-c-client" >}})
+  + [Thrift Node Clients]({{< ref "#thrift-node-clients" >}})
+  + [Thrift Ruby Client]({{< ref "#thrift-ruby-client" >}})
 
 This page describes the different clients supported by Hive. The command line client currently only supports an embedded server. The JDBC and Thrift-Java clients support both embedded and standalone servers. Clients in other languages only support standalone servers.
 
@@ -252,8 +253,4 @@ Thrift Node clients are available on github at <https://github.com/wdavidw/node
 ## Thrift Ruby Client
 
 A Thrift Ruby client is available on github at <https://github.com/forward3d/rbhive>.
-
- 
-
- 
 

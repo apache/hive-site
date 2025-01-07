@@ -1,27 +1,28 @@
 ---
+
 title: "Apache Hive : Manual Installation"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Manual Installation
 
 * [Installing, configuring and running Hive]({{< ref "#installing-configuring-and-running-hive" >}})
-	+ [Prerequisites]({{< ref "#prerequisites" >}})
-	+ [Install the prerequisites]({{< ref "#install-the-prerequisites" >}})
-		- [Java 8]({{< ref "#java-8" >}})
-		- [Maven:]({{< ref "#maven" >}})
-		- [Protobuf]({{< ref "#protobuf" >}})
-		- [Hadoop]({{< ref "#hadoop" >}})
-		- [Tez]({{< ref "#tez" >}})
-	+ [Extra hadoop configurations to make everything working]({{< ref "#extra-hadoop-configurations-to-make-everything-working" >}})
-	+ [Installing Hive from a Tarball]({{< ref "#installing-hive-from-a-tarball" >}})
-	+ [Installing from Source Code]({{< ref "#installing-from-source-code" >}})
-	+ [Next Steps]({{< ref "#next-steps" >}})
-	+ [Beeline CLI]({{< ref "#beeline-cli" >}})
-	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
-	+ [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
-		- [HCatalog]({{< ref "#hcatalog" >}})
-		- [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
+  + [Prerequisites]({{< ref "#prerequisites" >}})
+  + [Install the prerequisites]({{< ref "#install-the-prerequisites" >}})
+    - [Java 8]({{< ref "#java-8" >}})
+    - [Maven:]({{< ref "#maven" >}})
+    - [Protobuf]({{< ref "#protobuf" >}})
+    - [Hadoop]({{< ref "#hadoop" >}})
+    - [Tez]({{< ref "#tez" >}})
+  + [Extra hadoop configurations to make everything working]({{< ref "#extra-hadoop-configurations-to-make-everything-working" >}})
+  + [Installing Hive from a Tarball]({{< ref "#installing-hive-from-a-tarball" >}})
+  + [Installing from Source Code]({{< ref "#installing-from-source-code" >}})
+  + [Next Steps]({{< ref "#next-steps" >}})
+  + [Beeline CLI]({{< ref "#beeline-cli" >}})
+  + [Hive Metastore]({{< ref "#hive-metastore" >}})
+  + [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
+    - [HCatalog]({{< ref "#hcatalog" >}})
+    - [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
 
 # Installing, configuring and running Hive
 
@@ -40,7 +41,7 @@ You can install a stable release of Hive by downloading and unpacking a tarball,
 
 ### Java 8
 
-Building Hive requires JDK 8 installed. Some notes in case you have ARM chipset (Apple M1 or later). 
+Building Hive requires JDK 8 installed. Some notes in case you have ARM chipset (Apple M1 or later).
 
 You will have to build protobuf 2.5 later. And it doesn't compile with ARM JDK. So we will install intel architecture's Java with brew and configure maven with this. It will enable us to compile protobuf. 
 
@@ -343,8 +344,6 @@ insert into test values ('Hello, from Hive!');
 
 Configuring is the same as when we do it from tarball. The only difference is that we have to build Hive for ourself and we will find the compiled binaries in a different directory.
 
-  
-
 Hive is available via Git at <https://github.com/apache/hive>. You can download it by running the following command.
 
 ```
@@ -357,15 +356,13 @@ In case you want to get a specific release branch, like 4.0.0, you can run that 
 git clone -b branch-4.0 --single-branch git@github.com:apache/hive.git
 ```
 
-  
-
 To build Hive, execute the following command on the base directory:
 
 ```
-  $ mvn clean install -Pdist,iceberg -DskipTests 
+$ mvn clean install -Pdist,iceberg -DskipTests 
 ```
 
-It will create the subdirectory **packaging/target/apache-hive-*<release\_string>*-bin/apache-hive-*<release\_string>*-bin/. That will be your HIVE\_HOME directory.** 
+It will create the subdirectory **packaging/target/apache-hive-*<release\_string>*-bin/apache-hive-*<release\_string>*-bin/. That will be your HIVE\_HOME directory.**
 
 It has a content like:
 
@@ -413,8 +410,4 @@ HCatalog installation is documented [here]({{< ref "hcatalog-installhcat_3401340
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the hcatalog/webhcat/svr/src/main/bin/webhcat\_server.sh directory.
 
 WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat_34015585" >}}).
-
- 
-
- 
 

@@ -1,17 +1,16 @@
 ---
+
 title: "Apache Hive : Storage Based Authorization in the Metastore Server"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : Storage Based Authorization in the Metastore Server
 
 * [Storage Based Authorization in the Metastore Server]({{< ref "#storage-based-authorization-in-the-metastore-server" >}})
-	+ [The Need for Metastore Server Security]({{< ref "#the-need-for-metastore-server-security" >}})
-	+ [Storage Based Authorization]({{< ref "#storage-based-authorization" >}})
-	+ [Configuration Parameters for Metastore Security]({{< ref "#configuration-parameters-for-metastore-security" >}})
-		- [Sample hive-site.xml: Default Settings]({{< ref "#sample-hive-site-xml:-default-settings" >}})
-
-  
+  + [The Need for Metastore Server Security]({{< ref "#the-need-for-metastore-server-security" >}})
+  + [Storage Based Authorization]({{< ref "#storage-based-authorization" >}})
+  + [Configuration Parameters for Metastore Security]({{< ref "#configuration-parameters-for-metastore-security" >}})
+    - [Sample hive-site.xml: Default Settings]({{< ref "#sample-hive-site-xml:-default-settings" >}})
 
 # Storage Based Authorization in the Metastore Server
 
@@ -96,8 +95,4 @@ The snippet below shows the keys as they are in a default state in `hive-site.x
 </property>
 
 ```
-
- 
-
- 
 

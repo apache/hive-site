@@ -1,20 +1,21 @@
 ---
+
 title: "Apache Hive : LanguageManual Explain"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : LanguageManual Explain
 
 * [EXPLAIN Syntax]({{< ref "#explain-syntax" >}})
-	+ [Example]({{< ref "#example" >}})
-	+ [The CBO Clause]({{< ref "#the-cbo-clause" >}})
-	+ [The AST Clause]({{< ref "#the-ast-clause" >}})
-	+ [The DEPENDENCY Clause]({{< ref "#the-dependency-clause" >}})
-	+ [The AUTHORIZATION Clause]({{< ref "#the-authorization-clause" >}})
-	+ [The LOCKS Clause]({{< ref "#the-locks-clause" >}})
-	+ [The VECTORIZATION Clause]({{< ref "#the-vectorization-clause" >}})
-	+ [The ANALYZE Clause]({{< ref "#the-analyze-clause" >}})
-	+ [User-level Explain Output]({{< ref "#user-level-explain-output" >}})
+  + [Example]({{< ref "#example" >}})
+  + [The CBO Clause]({{< ref "#the-cbo-clause" >}})
+  + [The AST Clause]({{< ref "#the-ast-clause" >}})
+  + [The DEPENDENCY Clause]({{< ref "#the-dependency-clause" >}})
+  + [The AUTHORIZATION Clause]({{< ref "#the-authorization-clause" >}})
+  + [The LOCKS Clause]({{< ref "#the-locks-clause" >}})
+  + [The VECTORIZATION Clause]({{< ref "#the-vectorization-clause" >}})
+  + [The ANALYZE Clause]({{< ref "#the-analyze-clause" >}})
+  + [User-level Explain Output]({{< ref "#user-level-explain-output" >}})
 
 ## EXPLAIN Syntax
 
@@ -231,7 +232,6 @@ HiveSortLimit(sort0=[$0], dir0=[ASC], fetch=[100])
                     HiveTableScan(table=[[default, date\_dim]], table:alias=[date\_dim])
 ```
 
-  
 In turn, we can execute the following command:
 
 ```
@@ -305,7 +305,6 @@ EXPLAIN AST
 FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
 ```
 
-  
 Outputs:
 
 ```
@@ -465,8 +464,6 @@ The optional clause defaults are not ONLY and SUMMARY.
 
 See [HIVE-11394](https://issues.apache.org/jira/browse/HIVE-11394) for more details and examples.
 
-  
-
 ### The ANALYZE Clause
 
 Annotates the plan with actual row counts. Since in Hive 2.2.0 ([HIVE-14362](https://issues.apache.org/jira/browse/HIVE-14362))
@@ -532,12 +529,4 @@ Stage-0
                            Statistics:Num rows: 500 Data size: 47000 Basic stats: COMPLETE Column stats: NONE
 
 ```
-
-  
-
-  
-
- 
-
- 
 

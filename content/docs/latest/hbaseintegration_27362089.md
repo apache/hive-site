@@ -1,36 +1,36 @@
 ---
+
 title: "Apache Hive : HBaseIntegration"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : HBaseIntegration
 
 # Hive HBase Integration
 
 * [Hive HBase Integration]({{< ref "#hive-hbase-integration" >}})
-	
-		- [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})+ [Introduction]({{< ref "#introduction" >}})
-	+ [Storage Handlers]({{< ref "#storage-handlers" >}})
-	+ [Usage]({{< ref "#usage" >}})
-	+ [Column Mapping]({{< ref "#column-mapping" >}})
-		- [Multiple Columns and Families]({{< ref "#multiple-columns-and-families" >}})
-		- [Hive MAP to HBase Column Family]({{< ref "#hive-map-to-hbase-column-family" >}})
-		- [Hive MAP to HBase Column Prefix]({{< ref "#hive-map-to-hbase-column-prefix" >}})
-			* [Hiding Column Prefixes]({{< ref "#hiding-column-prefixes" >}})
-		- [Illegal: Hive Primitive to HBase Column Family]({{< ref "#illegal-hive-primitive-to-hbase-column-family" >}})
-		- [Example with Binary Columns]({{< ref "#example-with-binary-columns" >}})
-		- [Simple Composite Row Keys]({{< ref "#simple-composite-row-keys" >}})
-		- [Complex Composite Row Keys and HBaseKeyFactory]({{< ref "#complex-composite-row-keys-and-hbasekeyfactory" >}})
-		- [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})
-	+ [Put Timestamps]({{< ref "#put-timestamps" >}})
-	+ [Key Uniqueness]({{< ref "#key-uniqueness" >}})
-	+ [Overwrite]({{< ref "#overwrite" >}})
-	+ [Potential Followups]({{< ref "#potential-followups" >}})
-	+ [Build]({{< ref "#build" >}})
-	+ [Tests]({{< ref "#tests" >}})
-	+ [Links]({{< ref "#links" >}})
-	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
-	+ [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
+  - [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})+ [Introduction]({{< ref "#introduction" >}})
+  + [Storage Handlers]({{< ref "#storage-handlers" >}})
+  + [Usage]({{< ref "#usage" >}})
+  + [Column Mapping]({{< ref "#column-mapping" >}})
+    - [Multiple Columns and Families]({{< ref "#multiple-columns-and-families" >}})
+    - [Hive MAP to HBase Column Family]({{< ref "#hive-map-to-hbase-column-family" >}})
+    - [Hive MAP to HBase Column Prefix]({{< ref "#hive-map-to-hbase-column-prefix" >}})
+      * [Hiding Column Prefixes]({{< ref "#hiding-column-prefixes" >}})
+    - [Illegal: Hive Primitive to HBase Column Family]({{< ref "#illegal-hive-primitive-to-hbase-column-family" >}})
+    - [Example with Binary Columns]({{< ref "#example-with-binary-columns" >}})
+    - [Simple Composite Row Keys]({{< ref "#simple-composite-row-keys" >}})
+    - [Complex Composite Row Keys and HBaseKeyFactory]({{< ref "#complex-composite-row-keys-and-hbasekeyfactory" >}})
+    - [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})
+  + [Put Timestamps]({{< ref "#put-timestamps" >}})
+  + [Key Uniqueness]({{< ref "#key-uniqueness" >}})
+  + [Overwrite]({{< ref "#overwrite" >}})
+  + [Potential Followups]({{< ref "#potential-followups" >}})
+  + [Build]({{< ref "#build" >}})
+  + [Tests]({{< ref "#tests" >}})
+  + [Links]({{< ref "#links" >}})
+  + [Acknowledgements]({{< ref "#acknowledgements" >}})
+  + [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
 
 Version information
 
@@ -171,9 +171,9 @@ The column mapping support currently available is somewhat cumbersome and restri
 
 * for each Hive column, the table creator must specify a corresponding entry in the comma-delimited `hbase.columns.mapping` string (so for a Hive table with *n* columns, the string should have *n* entries); whitespace should **not** be used in between entries since these will be interperted as part of the column name, which is almost certainly not what you want
 * a mapping entry must be either `:key`, `:timestamp` or of the form `column-family-name:[column-name][#(binary|string)` (the type specification that delimited by *#* was added in Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-1634), earlier versions interpreted everything as strings)
-	+ If no type specification is given the value from `hbase.table.default.storage.type` will be used
-	+ Any prefixes of the valid values are valid too (i.e. `#b` instead of `#binary`)
-	+ If you specify a column as `binary` the bytes in the corresponding HBase cells are expected to be of the form that HBase's `Bytes` class yields.
+  + If no type specification is given the value from `hbase.table.default.storage.type` will be used
+  + Any prefixes of the valid values are valid too (i.e. `#b` instead of `#binary`)
+  + If you specify a column as `binary` the bytes in the corresponding HBase cells are expected to be of the form that HBase's `Bytes` class yields.
 * there must be exactly one `:key` mapping (this can be mapped either to a string or struct column–see [Simple Composite Keys]({{< ref "#simple-composite-keys" >}}) and [Complex Composite Keys]({{< ref "#complex-composite-keys" >}}))
 * (note that before [HIVE-1228](https://issues.apache.org/jira/browse/HIVE-1228) in Hive 0.6, `:key` was not supported, and the first Hive column implicitly mapped to the key; as of Hive 0.6, it is now strongly recommended that you always specify the key explictly; we will drop support for implicit key mapping in the future)
 * if no column-name is given, then the Hive column will map to all columns in the corresponding HBase column family, and the Hive MAP datatype must be used to allow access to these (possibly sparse) columns
@@ -321,15 +321,17 @@ Then a value of the column "tags" (`select tags from hbase_table_1`) will be:
 ```
 "x" : 1
 ```
+
 instead of:
 
 ```
 "tag\_x" : 1
 ```
+
 ### Illegal: Hive Primitive to HBase Column Family
 
 Table definitions such as the following are illegal because a  
- Hive column mapped to an entire column family must have MAP type:
+Hive column mapped to an entire column family must have MAP type:
 
 ```
 CREATE TABLE hbase\_table\_1(key int, value string) 
@@ -536,300 +538,296 @@ An Eclipse launch template remains to be defined.
 |
 |  |
 | T | Key | Summary | Assignee | Reporter | P | Status | Resolution | Created | Updated | Due |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro) | [HIVE-27750](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro) | [Use HBase's TableMapReduceUtil.convertScanToString() API instead of using the method implementation.](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro)  | 
- Dayakar M
-  | 
- Dayakar M
-  | Major | 
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro) | [HIVE-27750](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro) | [Use HBase's TableMapReduceUtil.convertScanToString() API instead of using the method implementation.](https://issues.apache.org/jira/browse/HIVE-27750?src=confmacro)  |
+Dayakar M
+|
+Dayakar M
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Sep 28, 2023
-  | 
- Sep 28, 2023
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro) | [HIVE-24833](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro) | [Hive Uses Fetch Task For HBaseStorageHandler Scans](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro)  | 
- Unassigned
-  | 
- David Mollitor
-  | Major | 
+Open
+|
+Unresolved
+|
+Sep 28, 2023
+|
+Sep 28, 2023
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro) | [HIVE-24833](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro) | [Hive Uses Fetch Task For HBaseStorageHandler Scans](https://issues.apache.org/jira/browse/HIVE-24833?src=confmacro)  |
+Unassigned
+|
+David Mollitor
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Feb 25, 2021
-  | 
- Mar 08, 2021
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro) | [HIVE-24706](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro) | [Spark SQL access hive on HBase table access exception](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro)  | 
- Unassigned
-  | 
- zhangzhanchang
-  | Major | 
+Open
+|
+Unresolved
+|
+Feb 25, 2021
+|
+Mar 08, 2021
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro) | [HIVE-24706](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro) | [Spark SQL access hive on HBase table access exception](https://issues.apache.org/jira/browse/HIVE-24706?src=confmacro)  |
+Unassigned
+|
+zhangzhanchang
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Jan 30, 2021
-  | 
- Jan 23, 2024
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro) | [HIVE-24544](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro) | [HBase Timestamp filter never gets converted to a timerange filter](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro)  | 
- Unassigned
-  | 
- Fabien Carrion
-  | Minor | 
+Open
+|
+Unresolved
+|
+Jan 30, 2021
+|
+Jan 23, 2024
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro) | [HIVE-24544](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro) | [HBase Timestamp filter never gets converted to a timerange filter](https://issues.apache.org/jira/browse/HIVE-24544?src=confmacro)  |
+Unassigned
+|
+Fabien Carrion
+| Minor |
 
- Open
-  | 
- Unresolved
-  | 
- Dec 16, 2020
-  | 
- Dec 16, 2020
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro) | [HIVE-24418](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro) | [there is an error "java.lang.IllegalArgumentException: No columns to insert" when the result data is empty](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro)  | 
- Unassigned
-  | 
- HuiyuZhou
-  | Major | 
+Open
+|
+Unresolved
+|
+Dec 16, 2020
+|
+Dec 16, 2020
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro) | [HIVE-24418](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro) | [there is an error "java.lang.IllegalArgumentException: No columns to insert" when the result data is empty](https://issues.apache.org/jira/browse/HIVE-24418?src=confmacro)  |
+Unassigned
+|
+HuiyuZhou
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Nov 24, 2020
-  | 
- Nov 25, 2020
-  | 
- Nov 24, 2020
-  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro) | [HIVE-24407](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro) | [Unable to read data with Hbase snapshot set](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro)  | 
- Unassigned
-  | 
- Ayush Saxena
-  | Major | 
+Open
+|
+Unresolved
+|
+Nov 24, 2020
+|
+Nov 25, 2020
+|
+Nov 24, 2020
+|
+| [Bug](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro) | [HIVE-24407](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro) | [Unable to read data with Hbase snapshot set](https://issues.apache.org/jira/browse/HIVE-24407?src=confmacro)  |
+Unassigned
+|
+Ayush Saxena
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Nov 20, 2020
-  | 
- Nov 20, 2020
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro) | [HIVE-21936](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro) | [Snapshot inconsistency plan execution](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro)  | 
- Unassigned
-  | 
- Jean-Pierre Hoang
-  | Major | 
+Open
+|
+Unresolved
+|
+Nov 20, 2020
+|
+Nov 20, 2020
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro) | [HIVE-21936](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro) | [Snapshot inconsistency plan execution](https://issues.apache.org/jira/browse/HIVE-21936?src=confmacro)  |
+Unassigned
+|
+Jean-Pierre Hoang
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Jun 30, 2019
-  | 
- Jun 30, 2019
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro) | [HIVE-21748](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro) | [HBase Operations Can Fail When Using MAPREDLOCAL](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro)  | 
- Unassigned
-  | 
- David Mollitor
-  | Major | 
+Open
+|
+Unresolved
+|
+Jun 30, 2019
+|
+Jun 30, 2019
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro) | [HIVE-21748](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro) | [HBase Operations Can Fail When Using MAPREDLOCAL](https://issues.apache.org/jira/browse/HIVE-21748?src=confmacro)  |
+Unassigned
+|
+David Mollitor
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- May 17, 2019
-  | 
- Jun 03, 2019
-  |  |
-| [New Feature](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro) | [HIVE-21277](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro) | [Make HBaseSerde First-Class SerDe](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro)  | 
- Unassigned
-  | 
- David Mollitor
-  | Major | 
+Open
+|
+Unresolved
+|
+May 17, 2019
+|
+Jun 03, 2019
+|  |
+| [New Feature](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro) | [HIVE-21277](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro) | [Make HBaseSerde First-Class SerDe](https://issues.apache.org/jira/browse/HIVE-21277?src=confmacro)  |
+Unassigned
+|
+David Mollitor
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Feb 15, 2019
-  | 
- Feb 15, 2019
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro) | [HIVE-21265](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro) | [Hive miss-uses HBase HConnection object and that puts high load on Zookeeper](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro)  | 
- Unassigned
-  | 
- István Fajth
-  | Major | 
+Open
+|
+Unresolved
+|
+Feb 15, 2019
+|
+Feb 15, 2019
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro) | [HIVE-21265](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro) | [Hive miss-uses HBase HConnection object and that puts high load on Zookeeper](https://issues.apache.org/jira/browse/HIVE-21265?src=confmacro)  |
+Unassigned
+|
+István Fajth
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Feb 13, 2019
-  | 
- Feb 13, 2019
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro) | [HIVE-21179](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro) | [Move SampleHBaseKeyFactory* Into Main Code Line](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro)  | 
- Unassigned
-  | 
- David Mollitor
-  | Major | 
+Open
+|
+Unresolved
+|
+Feb 13, 2019
+|
+Feb 13, 2019
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro) | [HIVE-21179](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro) | [Move SampleHBaseKeyFactory* Into Main Code Line](https://issues.apache.org/jira/browse/HIVE-21179?src=confmacro)  |
+Unassigned
+|
+David Mollitor
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Jan 29, 2019
-  | 
- Jan 29, 2019
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro) | [HIVE-21068](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro) | [hive table join hbase table return code 3](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro)  | 
- Unassigned
-  | 
- Baozhu Zhao
-  | Major | 
+Open
+|
+Unresolved
+|
+Jan 29, 2019
+|
+Jan 29, 2019
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro) | [HIVE-21068](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro) | [hive table join hbase table return code 3](https://issues.apache.org/jira/browse/HIVE-21068?src=confmacro)  |
+Unassigned
+|
+Baozhu Zhao
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Dec 26, 2018
-  | 
- May 21, 2019
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro) | [HIVE-16884](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro) | [Replace the deprecated HBaseInterface with Table](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro)  | 
- Aihua Xu
-  | 
- Aihua Xu
-  | Major | 
+Open
+|
+Unresolved
+|
+Dec 26, 2018
+|
+May 21, 2019
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro) | [HIVE-16884](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro) | [Replace the deprecated HBaseInterface with Table](https://issues.apache.org/jira/browse/HIVE-16884?src=confmacro)  |
+Aihua Xu
+|
+Aihua Xu
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Jun 12, 2017
-  | 
- Jun 12, 2017
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro) | [HIVE-16883](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro) | [HBaseStorageHandler Ignores Case for HBase Table Name](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro)  | 
- Bing Li
-  | 
- Shawn Weeks
-  | Minor | 
+Open
+|
+Unresolved
+|
+Jun 12, 2017
+|
+Jun 12, 2017
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro) | [HIVE-16883](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro) | [HBaseStorageHandler Ignores Case for HBase Table Name](https://issues.apache.org/jira/browse/HIVE-16883?src=confmacro)  |
+Bing Li
+|
+Shawn Weeks
+| Minor |
 
- Open
-  | 
- Unresolved
-  | 
- Jun 12, 2017
-  | 
- Jul 05, 2017
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro) | [HIVE-16818](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro) | ["fixed" avro type is not handled properly with Hive HBase avro integration](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro)  | 
- Unassigned
-  | 
- Swarnim Kulkarni
-  | Major | 
+Open
+|
+Unresolved
+|
+Jun 12, 2017
+|
+Jul 05, 2017
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro) | [HIVE-16818](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro) | ["fixed" avro type is not handled properly with Hive HBase avro integration](https://issues.apache.org/jira/browse/HIVE-16818?src=confmacro)  |
+Unassigned
+|
+Swarnim Kulkarni
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Jun 02, 2017
-  | 
- Jun 02, 2017
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro) | [HIVE-15838](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro) | [Escaping illegal characters allowed in HBase and disallowed in Hive DDL](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro)  | 
- Unassigned
-  | 
- Davide Gesino
-  | Minor | 
+Open
+|
+Unresolved
+|
+Jun 02, 2017
+|
+Jun 02, 2017
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro) | [HIVE-15838](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro) | [Escaping illegal characters allowed in HBase and disallowed in Hive DDL](https://issues.apache.org/jira/browse/HIVE-15838?src=confmacro)  |
+Unassigned
+|
+Davide Gesino
+| Minor |
 
- Open
-  | 
- Unresolved
-  | 
- Feb 07, 2017
-  | 
- Feb 07, 2017
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro) | [HIVE-15204](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro) | [Hive-Hbase integration thorws "java.lang.ClassNotFoundException: NULL::character varying" (Postgres)](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro)  | 
- Unassigned
-  | 
- Anshuman
-  | Major | 
+Open
+|
+Unresolved
+|
+Feb 07, 2017
+|
+Feb 07, 2017
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro) | [HIVE-15204](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro) | [Hive-Hbase integration thorws "java.lang.ClassNotFoundException: NULL::character varying" (Postgres)](https://issues.apache.org/jira/browse/HIVE-15204?src=confmacro)  |
+Unassigned
+|
+Anshuman
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Nov 15, 2016
-  | 
- Nov 16, 2016
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro) | [HIVE-13584](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro) | [HBaseStorageHandler should support table pre-split](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro)  | 
- Svetozar Ivanov
-  | 
- Svetozar Ivanov
-  | Major | 
+Open
+|
+Unresolved
+|
+Nov 15, 2016
+|
+Nov 16, 2016
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro) | [HIVE-13584](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro) | [HBaseStorageHandler should support table pre-split](https://issues.apache.org/jira/browse/HIVE-13584?src=confmacro)  |
+Svetozar Ivanov
+|
+Svetozar Ivanov
+| Major |
 
- Patch Available
-  | 
- Unresolved
-  | 
- Apr 21, 2016
-  | 
- Feb 27, 2024
-  |  |
-| [Improvement](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [HIVE-13315](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [Option to reuse existing restored HBase snapshots](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro)  | 
- Sushanth Sowmyan
-  | 
- Liyin Tang
-  | Major | 
+Patch Available
+|
+Unresolved
+|
+Apr 21, 2016
+|
+Feb 27, 2024
+|  |
+| [Improvement](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [HIVE-13315](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [Option to reuse existing restored HBase snapshots](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro)  |
+Sushanth Sowmyan
+|
+Liyin Tang
+| Major |
 
- Open
-  | 
- Unresolved
-  | 
- Mar 19, 2016
-  | 
- Mar 19, 2016
-  |  |
-| [Bug](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HIVE-11327](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HiveQL to HBase - Predicate Pushdown for composite key not working](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro)  | 
- Unassigned
-  | 
- Yannik Zuehlke
-  | Blocker | 
+Open
+|
+Unresolved
+|
+Mar 19, 2016
+|
+Mar 19, 2016
+|  |
+| [Bug](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HIVE-11327](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HiveQL to HBase - Predicate Pushdown for composite key not working](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro)  |
+Unassigned
+|
+Yannik Zuehlke
+| Blocker |
 
- Open
-  | 
- Unresolved
-  | 
- Jul 21, 2015
-  | 
- Jul 26, 2015
-  |  |
-| 
+Open
+|
+Unresolved
+|
+Jul 21, 2015
+|
+Jul 26, 2015
+|  |
+|
 
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
 
- |
+|
 
 Showing 20 out of
-[80 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22HBase%20Handler%22%29%20and%20Resolution%20=%20unresolved&tempMax=1000&src=confmacro) 
+[80 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22HBase%20Handler%22%29%20and%20Resolution%20=%20unresolved&tempMax=1000&src=confmacro)
 
  
-
- 
-
- 
 

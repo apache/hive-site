@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : PluginDeveloperKit"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : PluginDeveloperKit
 
@@ -69,13 +70,13 @@ All this buildfile does is define some variable settings and then import a build
 The imported PDK buildfile assumes a few things about the structure of your plugin source structure:
 
 * your-plugin-root
-	+ build.xml
-	+ src
-		- Java source files
-	+ test
-		- setup.sql
-		- cleanup.sql
-		- any datafiles needed by your tests
+  + build.xml
+  + src
+    - Java source files
+  + test
+    - setup.sql
+    - cleanup.sql
+    - any datafiles needed by your tests
 
 For the example plugin, a datafile onerow.txt contains a single row of data; setup.sql creates a table named onerow and loads the datafile, whereas cleanup.sql drops the onerow table. The onerow table is convenient for testing UDF's.
 
@@ -156,10 +157,10 @@ The PDK executes tests as follows:
 1. Run top-level cleanup.sql (in case a previous test failed in the middle)
 2. Run top-level setup.sql
 3. For each class with @HivePdkUnitTests annotation
-	1. Run class cleanup (if any)
-	2. Run class setup (if any)
-	3. For each @HivePdkUnitTest annotation, run query and verify that actual result matches expected result
-	4. Run class cleanup (if any)
+   1. Run class cleanup (if any)
+   2. Run class setup (if any)
+   3. For each @HivePdkUnitTest annotation, run query and verify that actual result matches expected result
+   4. Run class cleanup (if any)
 4. Run top-level cleanup.sql
 
 If you encounter problems during test execution, look in the file `TEST-org.apache.hive.pdk.PluginTest.txt` for details.
@@ -171,8 +172,4 @@ If you encounter problems during test execution, look in the file `TEST-org.apac
 * add Eclipse support
 * move Hive builtins to use PDK for more convenient testing ([HIVE-2523](https://issues.apache.org/jira/browse/HIVE-2523))
 * command-line option for invoking a single testcase
-
- 
-
- 
 

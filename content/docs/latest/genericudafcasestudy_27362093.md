@@ -1,7 +1,8 @@
 ---
+
 title: "Apache Hive : GenericUDAFCaseStudy"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : GenericUDAFCaseStudy
 
@@ -14,22 +15,22 @@ This tutorial walks through the development of the `histogram()` UDAF, which com
 **NOTE:** In this tutorial, we walk through the creation of a `histogram()` function. Starting with the 0.6.0 release of Hive, this appears as the built-in function `histogram_numeric()`.
 
 * [Writing GenericUDAFs: A Tutorial]({{< ref "#writing-genericudafs-a-tutorial" >}})
-	+ [Preliminaries]({{< ref "#preliminaries" >}})
-	+ [Writing the source]({{< ref "#writing-the-source" >}})
-		- [Overview]({{< ref "#overview" >}})
-		- [Writing the resolver]({{< ref "#writing-the-resolver" >}})
-		- [Writing the evaluator]({{< ref "#writing-the-evaluator" >}})
-			* [getNewAggregationBuffer]({{< ref "#getnewaggregationbuffer" >}})
-			* [iterate]({{< ref "#iterate" >}})
-			* [terminatePartial]({{< ref "#terminatepartial" >}})
-			* [merge]({{< ref "#merge" >}})
-			* [terminate]({{< ref "#terminate" >}})
-	+ [Modifying the function registry]({{< ref "#modifying-the-function-registry" >}})
-	+ [Compiling and running]({{< ref "#compiling-and-running" >}})
-	+ [Creating the tests]({{< ref "#creating-the-tests" >}})
+  + [Preliminaries]({{< ref "#preliminaries" >}})
+  + [Writing the source]({{< ref "#writing-the-source" >}})
+    - [Overview]({{< ref "#overview" >}})
+    - [Writing the resolver]({{< ref "#writing-the-resolver" >}})
+    - [Writing the evaluator]({{< ref "#writing-the-evaluator" >}})
+      * [getNewAggregationBuffer]({{< ref "#getnewaggregationbuffer" >}})
+      * [iterate]({{< ref "#iterate" >}})
+      * [terminatePartial]({{< ref "#terminatepartial" >}})
+      * [merge]({{< ref "#merge" >}})
+      * [terminate]({{< ref "#terminate" >}})
+  + [Modifying the function registry]({{< ref "#modifying-the-function-registry" >}})
+  + [Compiling and running]({{< ref "#compiling-and-running" >}})
+  + [Creating the tests]({{< ref "#creating-the-tests" >}})
 * [Checklist for open source submission]({{< ref "#checklist-for-open-source-submission" >}})
 * [Tips, Tricks, Best Practices]({{< ref "#tips-tricks-best-practices" >}})
-	+ [Resolver Interface Evolution]({{< ref "#resolver-interface-evolution" >}})
+  + [Resolver Interface Evolution]({{< ref "#resolver-interface-evolution" >}})
 
 ## Preliminaries
 
@@ -53,7 +54,7 @@ At a high-level, there are two parts to implementing a Generic UDAF. The first i
 
 ### Writing the resolver
 
-The resolver handles type checking and operator overloading for UDAF queries. The type checking ensures that the user isn't passing a **double** expression where an **integer** is expected, for example, and the operator overloading allows you to have different UDAF logic for different types of arguments. 
+The resolver handles type checking and operator overloading for UDAF queries. The type checking ensures that the user isn't passing a **double** expression where an **integer** is expected, for example, and the operator overloading allows you to have different UDAF logic for different types of arguments.
 
 The resolver class must extend **org.apache.hadoop.hive.ql.udf.GenericUDAFResolver2** (see [#Resolver Interface Evolution]({{< ref "##resolver-interface-evolution" >}}) for backwards compatibility information). We recommend that you extend the AbstractGenericUDAFResolver base class in order to insulate your UDAF from future interface changes in Hive.
 
@@ -79,7 +80,7 @@ public class GenericUDAFHistogramNumeric extends AbstractGenericUDAFResolver {
 
 ```
 
-The code above shows the basic skeleton of a UDAF. The first line sets up a Log object that you can use to write warnings and errors to be fed into the Hive log. The GenericUDAFResolver class has a single overridden method: **getEvaluator**, which receives information about how the UDAF is being invoked. Of most interest is info.getParameters(), which provides an array of type information objects corresponding to the SQL types of the invocation parameters. For the histogram UDAF, we want two parameters: the numeric column over which to compute the histogram, and the number of histogram bins requested. The very first thing to do is to check that we have exactly two parameters (lines 3-6 below). Then, we check that the first parameter has a primitive type, and not an array or map, for example (lines 9-13). However, not only do we want it to be a primitive type column, but we also want it to be numeric, which means that we need to throw an exception if a STRING type is given (lines 14-28). BOOLEAN is excluded because the "histogram" estimation problem can be solved with a simple COUNT() query. Lines 30-41 illustrate similar type checking for the second parameter to the histogram() UDAF – the number of histogram bins. In this case, we insist that the number of histogram bins is an integer. 
+The code above shows the basic skeleton of a UDAF. The first line sets up a Log object that you can use to write warnings and errors to be fed into the Hive log. The GenericUDAFResolver class has a single overridden method: **getEvaluator**, which receives information about how the UDAF is being invoked. Of most interest is info.getParameters(), which provides an array of type information objects corresponding to the SQL types of the invocation parameters. For the histogram UDAF, we want two parameters: the numeric column over which to compute the histogram, and the number of histogram bins requested. The very first thing to do is to check that we have exactly two parameters (lines 3-6 below). Then, we check that the first parameter has a primitive type, and not an array or map, for example (lines 9-13). However, not only do we want it to be a primitive type column, but we also want it to be numeric, which means that we need to throw an exception if a STRING type is given (lines 14-28). BOOLEAN is excluded because the "histogram" estimation problem can be solved with a simple COUNT() query. Lines 30-41 illustrate similar type checking for the second parameter to the histogram() UDAF – the number of histogram bins. In this case, we insist that the number of histogram bins is an integer.
 
 ```
 
@@ -132,7 +133,7 @@ The code above shows the basic skeleton of a UDAF. The first line sets up a Log 
 
 A form of operator overloading could be implemented here. Say you had two completely different histogram construction algorithms – one designed for working with integers only, and the other for double data types. You would then create two separate Evaluator inner classes, and depending on the type of the input expression, would return the correct one as the return value of the Resolver class.
 
-*CAVEAT*: The histogram function is supposed to be used in a manner resembling the following: `SELECT histogram_numeric(age, 30) FROM employees;`, which means estimate the distribution of employee ages using 30 histogram bins. However, within the resolver class, there is no way of telling if the second argument is a constant or an integer column with a whole bunch of different values. Thus, a pathologically twisted user could write something like: `SELECT histogram_numeric(age, age) FROM employees;`, assuming that age is an integer column. Of course, this makes no sense whatsoever, but it would validate correctly in the Resolver type-checking code above. 
+*CAVEAT*: The histogram function is supposed to be used in a manner resembling the following: `SELECT histogram_numeric(age, 30) FROM employees;`, which means estimate the distribution of employee ages using 30 histogram bins. However, within the resolver class, there is no way of telling if the second argument is a constant or an integer column with a whole bunch of different values. Thus, a pathologically twisted user could write something like: `SELECT histogram_numeric(age, age) FROM employees;`, assuming that age is an integer column. Of course, this makes no sense whatsoever, but it would validate correctly in the Resolver type-checking code above.
 
 We'll deal with this problem in the Evaluator.
 
@@ -248,15 +249,15 @@ System-level tests consist of writing some sample queries that operate on sample
 
 These are the simple steps needed for creating test cases for your new UDAF/UDF:
 
-1. Create a file in `ql/src/test/queries/clientpositive/udaf_XXXXX.q` where `XXXXX` is your UDAF's name.  
+1. Create a file in `ql/src/test/queries/clientpositive/udaf_XXXXX.q` where `XXXXX` is your UDAF's name.
 
- 2. Put some queries in the `.q` file – hopefully enough to cover the full range of functionality and special cases.  
+2. Put some queries in the `.q` file – hopefully enough to cover the full range of functionality and special cases.
 
- 3. For sample data, put your own in `hive/data/files` and load it using `LOAD DATA LOCAL INPATH...`, or reuse one of the files already there (grep for LOAD in the queries directory to see table names).  
+3. For sample data, put your own in `hive/data/files` and load it using `LOAD DATA LOCAL INPATH...`, or reuse one of the files already there (grep for LOAD in the queries directory to see table names).
 
- 4. `touch ql/src/test/results/clientpositive/udaf_XXXX.q.out`  
+4. `touch ql/src/test/results/clientpositive/udaf_XXXX.q.out`
 
- 5. Run the following command to generate the output into the `.q.out` result file.
+5. Run the following command to generate the output into the `.q.out` result file.
 
 ```
 
@@ -264,7 +265,7 @@ ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q -Doverwrite=true
 
 ```
 
- 6. Run the following command to make sure your test runs fine.
+6. Run the following command to make sure your test runs fine.
 
 ```
 
@@ -291,6 +292,7 @@ ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q
 * Ask for a code review in the comments.
 * Click **Submit patch** on your issue after you have completed the steps above.
 * It is also advisable to **watch** your issue to monitor new comments.
+
 # Tips, Tricks, Best Practices
 
 * Hive can have unexpected behavior sometimes. It is best to first run `ant clean` if you're seeing something weird, ranging from unexplained exceptions to strings being incorrectly double-quoted.
@@ -299,13 +301,10 @@ ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q
 * Abstract core functionality from multiple UDAFs into its own class. Examples are `histogram_numeric()` and `percentile_approx()`, which both use the same core histogram estimation functionality.
 * If you're stuck looking for an algorithm to adapt to the terminatePartial/merge paradigm, divide-and-conquer and parallel algorithms are predictably good places to start.
 * Remember that the tests do a `diff` on the expected and actual output, and fail if there is any difference at all. An example of where this can fail horribly is a UDAF like `ngrams()`, where the output is a list of sorted (word,count) pairs. In some cases, different sort implementations might place words with the same count at different positions in the output. Even though the output is correct, the test will fail. In these cases, it's better to output (for example) only the counts, or some appropriate statistic on the counts, like the sum.
+
 ## Resolver Interface Evolution
 
 Old interface org.apache.hadoop.hive.ql.udf.GenericUDAFResolver was deprecated as of the 0.6.0 release. The key difference between GenericUDAFResolver and GenericUDAFResolver2 interface is the fact that the latter allows the evaluator implementation to access extra information regarding the function invocation such as the presence of DISTINCT qualifier or the invocation with the wildcard syntax such as FUNCTION(*). UDAFs that implement the deprecated GenericUDAFResolver interface will not be able to tell the difference between an invocation such as FUNCTION() or FUNCTION(*) since the information regarding specification of the wildcard is not available. Similarly, these implementations will also not be able to tell the difference between FUNCTION(EXPR) vs FUNCTION(DISTINCT EXPR) since the information regarding the presence of the DISTINCT qualifier is also not available.
 
 Note that while resolvers which implement the GenericUDAFResolver2 interface are provided the extra information regarding the presence of DISTINCT qualifier of invocation with the wildcard syntax, they can choose to ignore it completely if it is of no significance to them. The underlying data filtering to compute DISTINCT values is actually done by Hive's core query processor and not by the evaluator or resolver; the information is provided to the resolver only for validation purposes. The AbstractGenericUDAFResolver base class offers an easy way to transition previously written UDAF implementations to migrate to the new resolver interface without having to re-write the implementation since the change from implementing GenericUDAFResolver interface to extending AbstractGenericUDAFResolver class is fairly minimal. (There may be issues with implementations that are part of an inheritance hierarchy since it may not be easy to change the base class.)
-
- 
-
- 
 

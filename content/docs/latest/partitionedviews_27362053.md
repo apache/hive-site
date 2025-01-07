@@ -1,16 +1,17 @@
 ---
+
 title: "Apache Hive : PartitionedViews"
 date: 2024-12-12
----
+----------------
 
 # Apache Hive : PartitionedViews
 
 * [Use Cases]({{< ref "#use-cases" >}})
-	+ [Approaches]({{< ref "#approaches" >}})
-	+ [Syntax]({{< ref "#syntax" >}})
-	+ [Metastore]({{< ref "#metastore" >}})
-	+ [Strict Mode]({{< ref "#strict-mode" >}})
-	+ [View Definition Changes]({{< ref "#view-definition-changes" >}})
+  + [Approaches]({{< ref "#approaches" >}})
+  + [Syntax]({{< ref "#syntax" >}})
+  + [Metastore]({{< ref "#metastore" >}})
+  + [Strict Mode]({{< ref "#strict-mode" >}})
+  + [View Definition Changes]({{< ref "#view-definition-changes" >}})
 * [Hook Information]({{< ref "#hook-information" >}})
 
 This is a followup to [ViewDev]({{< ref "viewdev_27362067" >}}) for adding partition-awareness to views.
@@ -83,8 +84,4 @@ WHERE view\_partition\_col1 = 'val1' AND view\_partition\_col=2 = 'val2' ...
 and then capturing the table/partition inputs for this query and passing them on to the ALTER VIEW ADD PARTITION hook results.
 
 This allows applications to track the dependencies themselves. In the future, Hive will automatically populate these dependencies into the metastore as part of [HIVE-1073](https://issues.apache.org/jira/browse/HIVE-1073).
-
- 
-
- 
 
