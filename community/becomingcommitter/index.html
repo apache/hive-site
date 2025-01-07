@@ -6,7 +6,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content>
 <meta name=author content>
-<title>Apache Hive : DynamicPartitions</title>
+<title>Apache Hive : BecomingACommitter</title>
 <link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
 <link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
 <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css>
@@ -114,130 +114,41 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--dynamicpartitions>Apache Hive : DynamicPartitions</h1>
-<h1 id=dynamic-partitions>Dynamic Partitions</h1>
+<h1 id=apache-hive--becomingacommitter>Apache Hive : BecomingACommitter</h1>
+<h1 id=becoming-a-hive-committer>Becoming A Hive Committer</h1>
+<p>The Apache Software Foundation defines <a href=http://www.apache.org/dev/committers.html#committer-responsibilities>generic guidelines for what it means to be a committer</a>. However, it leaves the question of whether a particular contributor is ready to become a committer on a project up to the judgement of that project&rsquo;s PMC. This wiki page attempts to explain what that means for the Hive project.</p>
+<h2 id=committer-zen>Committer Zen</h2>
+<p>Contributors often ask Hive PMC members the question, &ldquo;What do I need to do in order to become a committer?&rdquo; The simple (though frustrating) answer to this question is, &ldquo;If you want to become a committer, behave like a committer.&rdquo; If you follow this advice, then rest assured that the PMC will notice, and committership will seek you out rather than the other way around. So besides continuing to contribute high-quality code and tests, there are many other things that you should naturally be undertaking as part of getting deeper into the project&rsquo;s life:</p>
 <ul>
-<li><a href=#dynamic-partitions>Dynamic Partitions</a>
+<li>help out users and other developers on the mailing lists, in JIRA, and in IRC</li>
+<li>review and test the patches submitted by others; this can help to offload the burden on existing committers, who will definitely appreciate your efforts</li>
+<li>participate in discussions about releases, roadmaps, architecture, and long-term plans</li>
+<li>help improve the website and the wiki</li>
+<li>participate in (or even initiate) real-world events such as user/developer meetups, papers/talks at conferences, etc</li>
+<li>improve project infrastructure in order to increase the efficiency of committers and other contributors</li>
+<li>help raise the project&rsquo;s quality bar (e.g. by setting up code coverage analysis)</li>
+<li>as much as possible, keep your activity sustained rather than sporadic</li>
+</ul>
+<p>Of course, before becoming a committer, there are certain things you can&rsquo;t actually do (e.g. commit a patch to source control; cast a binding vote), but the more you participate in the activities which surround these actions, the more ready you will be to eventually carry them out yourself.</p>
+<h2 id=visualize>Visualize</h2>
+<p>The graph below shows monthly patch authorship and commit activity for an actual Hive committer. The blue shows all commits going into Hive from all committers. The orange shows patches authored by this committer, whereas the green shows patches reviewed and committed by him after they were authored by others. (Not shown are reviews he participated in before becoming a committer.)</p>
+<figure><img src=commitactivity.png alt="Commit activity for X from 2008 to 2011">
+</figure>
+<p>Important points to notice:</p>
 <ul>
-<li><a href=#documentation>Documentation</a></li>
-<li><a href=#terminology>Terminology</a></li>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#design>Design</a></li>
-<li><a href=#design-issues>Design issues</a></li>
+<li>it took a while for him to become a committer: we&rsquo;d like to make sure that all committers are truly dedicated to the role</li>
+<li>after becoming a committer, he began fulfilling the role by actively reviewing and committing many patches from others (even more than those he continued to author himself!), and sustained that energy over time</li>
+<li>we&rsquo;re using a narrow quantitative measure here (patch count) purely for the purpose of visualizing activity level over time; what we&rsquo;re really interested in are quality and value brought to the project across a wide range of activities (for example, the committer in this case also volunteered to serve as release manager for multiple releases of Hive, starting even before becoming a committer)</li>
 </ul>
-</li>
-</ul>
-<h2 id=documentation>Documentation</h2>
-<p>This is the <a href=https://hive.apache.org/docs/latest/designdocs_27362075/>design</a> document for dynamic partitions in Hive. Usage information is also available:</p>
+<h2 id=the-dark-side>The Dark Side</h2>
+<p>It should go without saying, but here it is anyway: your participation in the project should be a natural part of your work with Hive; if you find yourself undertaking tasks &ldquo;so that you can become a committer&rdquo;, then you&rsquo;re doing it wrong, young padawan. This is particularly true if your motivations for wanting to become a committer are primarily negative or self-centered, e.g.</p>
 <ul>
-<li><a href=#tutorial:-dynamic-partition-insert>Tutorial: Dynamic-Partition Insert</a></li>
-<li><a href=#hive-dml:-dynamic-partition-inserts>Hive DML: Dynamic Partition Inserts</a></li>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog-dynamicpartitions_34014006/>HCatalog Dynamic Partitioning</a>
-<ul>
-<li><a href=#usage-with-pig>Usage with Pig</a></li>
-<li><a href=#usage-from-mapreduce>Usage from MapReduce</a></li>
+<li>you desire the power of a -1 vote (these should be used only extremely rarely in a healthy project)</li>
+<li>you want to push your own changes through unreviewed (Hive follows a review-before-commit policy where even committers need to wait for a +1 from another committer)</li>
+<li>you only want to commit changes from other contributors within a particular affiliation group (e.g. coworkers in the same corporation); the committer role is about furthering a diverse project, not a narrow agenda</li>
 </ul>
-</li>
-</ul>
-<p>References:</p>
-<ul>
-<li><a href=https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt>Original design doc</a></li>
-<li><a href=https://issues.apache.org/jira/browse/HIVE-936>HIVE-936</a></li>
-</ul>
-<h2 id=terminology>Terminology</h2>
-<ul>
-<li>Static Partition (SP) columns: in DML/DDL involving multiple partitioning columns, the columns whose values are known at COMPILE TIME (given by user).</li>
-<li>Dynamic Partition (DP) columns: columns whose values are only known at EXECUTION TIME.</li>
-</ul>
-<h2 id=syntax>Syntax</h2>
-<p>DP columns are specified the same way as it is for SP columns – in the partition clause. The only difference is that DP columns do not have values, while SP columns do. In the partition clause, we need to specify all partitioning columns, even if all of them are DP columns.</p>
-<p>In INSERT &mldr; SELECT &mldr; queries, the dynamic partition columns must be <strong>specified last</strong> among the columns in the SELECT statement and <strong>in the same order</strong> in which they appear in the PARTITION() clause.</p>
-<ul>
-<li>all DP columns – only allowed in nonstrict mode. In strict mode, we should throw an error. e.g.,</li>
-</ul>
-<pre tabindex=0><code>
-   INSERT OVERWRITE TABLE T PARTITION (ds, hr) 
-   SELECT key, value, ds, hr FROM srcpart WHERE ds is not null and hr&gt;10;
-
-</code></pre><ul>
-<li>mixed SP & DP columns. e.g.,</li>
-</ul>
-<pre tabindex=0><code>
-   INSERT OVERWRITE TABLE T PARTITION (ds='2010-03-03', hr) 
-   SELECT key, value, /*ds,*/ hr FROM srcpart WHERE ds is not null and hr&gt;10;
-
-</code></pre><ul>
-<li>SP is a subpartition of a DP: should throw an error because partition column order determins directory hierarchy. We cannot change the hierarchy in DML. e.g.,</li>
-</ul>
-<pre tabindex=0><code>
-   -- throw an exception
-   INSERT OVERWRITE TABLE T PARTITION (ds, hr = 11) 
-   SELECT key, value, ds/*, hr*/ FROM srcpart WHERE ds is not null and hr=11;
-
-</code></pre><ul>
-<li>multi-table insert. e.g.,</li>
-</ul>
-<pre tabindex=0><code>
-   FROM S
-   INSERT OVERWRITE TABLE T PARTITION (ds='2010-03-03', hr) 
-   SELECT key, value, ds, hr FROM srcpart WHERE ds is not null and hr&gt;10
-   INSERT OVERWRITE TABLE R PARTITION (ds='2010-03-03, hr=12)
-   SELECT key, value, ds, hr from srcpart where ds is not null and hr = 12;
-
-</code></pre><ul>
-<li>CTAS – syntax is a little bit different from CTAS on non-partitioned tables, since the schema of the target table is not totally derived from the select-clause. We need to specify the schema including partitioning columns in the create-clause. e.g.,</li>
-</ul>
-<pre tabindex=0><code>
-   CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS 
-   SELECT key, value, ds, hr+1 hr1 FROM srcpart WHERE ds is not null and hr&gt;10;
-
-</code></pre><p>The above example shows the case of all DP columns in CTAS. If you want put some constant for some partitioning column, you can specify it in the select-clause. e.g,</p>
-<pre tabindex=0><code>
-   CREATE TABLE T (key int, value string) PARTITIONED BY (ds string, hr int) AS 
-   SELECT key, value, &quot;2010-03-03&quot;, hr+1 hr1 FROM srcpart WHERE ds is not null and hr&gt;10;
-
-</code></pre><h2 id=design>Design</h2>
-<ul>
-<li>In SemanticAnalyser.genFileSinkPlan(), parse the input and generate a list of SP and DP columns. We also generate a mapping from the input ExpressionNode to the output DP columns in FileSinkDesc.</li>
-<li>We also need to keep a HashFunction class in FileSinkDesc to evaluate partition directory names from the input expression value.</li>
-<li>In FileSinkOperator, setup the input -> DP mapping and Hash in initOp(). and determine the output path in processOp() from the mapping.</li>
-<li>ObjectInspector setup?</li>
-<li>MoveTask: since DP columns represent a subdirectory tree, it is possible to use one MoveTask at the end to move the results from the temporary directory to the final directory.</li>
-<li>post exec hook for replication: remove all existing data in DP before creating new partitions. We should make sure replication hook recognize all the modified partitions.</li>
-<li>metastore support: since we are creating multiple parititions in a DML, metastore should be able to create all these partitions. Need to investigate.</li>
-</ul>
-<h2 id=design-issues>Design issues</h2>
-<ol>
-<li>Data type of the dynamic partitioning column:</li>
-</ol>
-<p>A dynamic partitioning column could be the result of an expression. For example:</p>
-<pre tabindex=0><code>
- -- part\_col is partitioning column
- create table T as select a, concat(&quot;part\_&quot;, part\_col) from S where part\_col is not null; 
-
-</code></pre><p>Although currently there is not restriction on the data type of the partitioning column, allowing non-primitive columns to be partitioning column probably doesn&rsquo;t make sense. The dynamic partitioning column&rsquo;s type should be derived from the expression. The data type has to be able to be converted to a string in order to be saved as a directory name in HDFS.</p>
-<ol start=2>
-<li>Partitioning column value to directory name conversion:</li>
-</ol>
-<p>After converting column value to string, we still need to convert the string value to a valid directory name. Some reasons are:</p>
-<ul>
-<li>string length is unlimited in theory, but HDFS/local FS directory name length is limited.</li>
-<li>string value could contains special characters that is reserved in FS path names (such as &lsquo;/&rsquo; or &lsquo;..').</li>
-<li>what should we do for partition column ObjectInspector?</li>
-</ul>
-<p>We need to define a UDF (say hive_qname_partition(T.part_col)) to take a primitive typed value and convert it to a qualified partition name.</p>
-<ol start=3>
-<li>Due to 2), this dynamic partitioning scheme qualifies as a hash-based partitioning scheme, except that we define the hash function to be as close as</li>
-</ol>
-<p>the input value. We should allow users to plugin their own UDF for the partition hash function. Will file a follow up JIRA if there is sufficient interests.</p>
-<ol start=4>
-<li>If there are multiple partitioning columns, their order is significant since that translates to the directory structure in HDFS: partitioned by (ds string, dept int) implies a directory structure of ds=2009-02-26/dept=2. In a DML or DDL involving partitioned table, So if a subset of partitioning columns are specified (static), we should throw an error if a dynamic partitioning column is lower. Example:</li>
-</ol>
-<pre tabindex=0><code>
- create table nzhang\_part(a string) partitioned by (ds string, dept int);
- insert overwrite nzhang\_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
-
-</code></pre>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt></p>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>
