@@ -127,9 +127,9 @@ ASF
 <li><a href=#default-configuration>Default Configuration</a></li>
 </ul>
 </li>
-<li><a href=#local/embedded-metastore-database--derby->Local/Embedded Metastore Database (Derby)</a></li>
+<li><a href=#localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</a></li>
 <li><a href=#remote-metastore-database>Remote Metastore Database</a></li>
-<li><a href=#local/embedded-metastore-server>Local/Embedded Metastore Server</a></li>
+<li><a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a></li>
 <li><a href=#remote-metastore-server>Remote Metastore Server</a>
 <ul>
 <li><a href=#client-configuration-parameters>Client Configuration Parameters</a></li>
@@ -147,12 +147,12 @@ ASF
 <p>There are 2 different ways to setup the metastore server and metastore database using different Hive configurations:</p>
 <p>Configuration options for <strong>metastore database</strong> where metadata is persisted:</p>
 <ul>
-<li><a href=#local/embedded-metastore-database--derby->Local/Embedded Metastore Database (Derby)</a></li>
+<li><a href=#localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</a></li>
 <li><a href=#remote-metastore-database>Remote Metastore Database</a></li>
 </ul>
 <p>Configuration options for <strong>metastore server</strong>:</p>
 <ul>
-<li><a href=#local/embedded-metastore-server>Local/Embedded Metastore Server</a></li>
+<li><a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a></li>
 <li><a href=#remote-metastore-server>Remote Metastore Server</a></li>
 </ul>
 <h4 id=basic-configuration-parameters>Basic Configuration Parameters</h4>
@@ -273,7 +273,7 @@ ASF
 <p>The default configuration sets up an embedded metastore which is used in unit tests and is described in the next section. More practical options are described in the subsequent sections.</p>
 <h3 id=localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</h3>
 <p><strong>An embedded metastore database is mainly used for unit tests. Only one process can connect to the metastore database at a time, so it is not really a practical solution but works well for unit tests.</strong></p>
-<p>For unit tests <a href=#local/embedded-metastore-server>Local/Embedded Metastore Server</a> configuration for the metastore server is used in conjunction with embedded database.</p>
+<p>For unit tests <a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a> configuration for the metastore server is used in conjunction with embedded database.</p>
 <p>Derby is the default database for the embedded metastore.</p>
 <table>
 <thead>

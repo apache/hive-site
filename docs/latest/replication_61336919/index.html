@@ -122,7 +122,7 @@ ASF
 <li><a href=#limitations>Limitations</a></li>
 <li><a href=#configuration>Configuration</a></li>
 <li><a href=#typical-mode-of-operation>Typical Mode of Operation</a></li>
-<li><a href=#replication-to-aws/emr/s3>Replication to AWS/EMR/S3</a></li>
+<li><a href=#replication-to-awsemrs3>Replication to AWS/EMR/S3</a></li>
 </ul>
 <h2 id=overview>Overview</h2>
 <p>Hive Replication builds on the <a href=https://hive.apache.org/docs/latest/hcatalog-notification_34014558/>metastore event</a> and <a href=https://hive.apache.org/docs/latest/languagemanual-importexport_27837968/>ExIm</a> features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly &lsquo;light touch&rsquo;, exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an &lsquo;out of the box&rsquo; solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.</p>

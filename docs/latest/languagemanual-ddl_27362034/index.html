@@ -118,17 +118,17 @@ ASF
 <p>Hive Data Definition Language</p>
 <ul>
 <li><a href=#overview>Overview</a></li>
-<li><a href=#keywords,-non-reserved-keywords-and-reserved-keywords>Keywords, Non-reserved Keywords and Reserved Keywords</a></li>
-<li><a href=#create/drop/alter/use-database>Create/Drop/Alter/Use Database</a></li>
-<li><a href=#create/drop/alter-connector>Create/Drop/Alter Connector</a></li>
-<li><a href=#create/drop/truncate-table>Create/Drop/Truncate Table</a></li>
-<li><a href=#alter-table/partition/column>Alter Table/Partition/Column</a></li>
-<li><a href=#create/drop/alter-view>Create/Drop/Alter View</a></li>
-<li><a href=#create/drop/alter-materialized-view>Create/Drop/Alter Materialized View</a></li>
+<li><a href=#keywords-non-reserved-keywords-and-reserved-keywords>Keywords, Non-reserved Keywords and Reserved Keywords</a></li>
+<li><a href=#createdropalteruse-database>Create/Drop/Alter/Use Database</a></li>
+<li><a href=#createdropalter-connector>Create/Drop/Alter Connector</a></li>
+<li><a href=#createdroptruncate-table>Create/Drop/Truncate Table</a></li>
+<li><a href=#alter-tablepartitioncolumn>Alter Table/Partition/Column</a></li>
+<li><a href=#createdropalter-view>Create/Drop/Alter View</a></li>
+<li><a href=#createdropalter-materialized-view>Create/Drop/Alter Materialized View</a></li>
 <li><a href=#create/drop/alter-index>Create/Drop/Alter Index</a></li>
-<li><a href=#create/drop-macro>Create/Drop Macro</a></li>
-<li><a href=#create/drop/reload-function>Create/Drop/Reload Function</a></li>
-<li><a href=#create/drop/grant/revoke-roles-and-privileges>Create/Drop/Grant/Revoke Roles and Privileges</a></li>
+<li><a href=#createdrop-macro>Create/Drop Macro</a></li>
+<li><a href=#createdropreload-function>Create/Drop/Reload Function</a></li>
+<li><a href=#createdropgrantrevoke-roles-and-privileges>Create/Drop/Grant/Revoke Roles and Privileges</a></li>
 <li><a href=#show>Show</a></li>
 <li><a href=#describe>Describe</a></li>
 <li><a href=#abort>Abort</a></li>
@@ -273,10 +273,10 @@ ALTER CONNECTOR connector\_name SET OWNER [USER|ROLE] user\_or\_role;
 <ul>
 <li><a href=#managed-and-external-tables>Managed and External Tables</a></li>
 <li><a href=#storage-formats>Storage Formats</a></li>
-<li><a href=#row-formats-&-serde>Row Formats & SerDe</a></li>
+<li><a href=#row-formats--serde>Row Formats & SerDe</a></li>
 <li><a href=#partitioned-tables>Partitioned Tables</a></li>
 <li><a href=#external-tables>External Tables</a></li>
-<li><a href=#create-table-as-select--ctas->Create Table As Select (CTAS)</a></li>
+<li><a href=#create-table-as-select-ctas>Create Table As Select (CTAS)</a></li>
 <li><a href=#create-table-like>Create Table Like</a></li>
 <li><a href=#bucketed-sorted-tables>Bucketed Sorted Tables</a></li>
 <li><a href=#skewed-tables>Skewed Tables</a></li>
@@ -727,27 +727,27 @@ partition\_spec:
 <li><a href=#exchange-partition>Exchange Partition</a></li>
 <li><a href=#discover-partitions>Discover Partitions</a></li>
 <li><a href=#partition-retention>Partition Retention</a></li>
-<li><a href=#recover-partitions--msck-repair-table->Recover Partitions (MSCK REPAIR TABLE)</a></li>
+<li><a href=#recover-partitions-msck-repair-table>Recover Partitions (MSCK REPAIR TABLE)</a></li>
 <li><a href=#drop-partitions>Drop Partitions</a></li>
-<li><a href=#-un-archive-partition>(Un)Archive Partition</a></li>
+<li><a href=#unarchive-partition>(Un)Archive Partition</a></li>
 </ul>
 </li>
 <li><a href=#alter-either-table-or-partition>Alter Either Table or Partition</a>
 <ul>
-<li><a href=#alter-table/partition-file-format>Alter Table/Partition File Format</a></li>
-<li><a href=#alter-table/partition-location>Alter Table/Partition Location</a></li>
-<li><a href=#alter-table/partition-touch>Alter Table/Partition Touch</a></li>
-<li><a href=#alter-table/partition-protections>Alter Table/Partition Protections</a></li>
-<li><a href=#alter-table/partition-compact>Alter Table/Partition Compact</a></li>
-<li><a href=#alter-table/partition-concatenate>Alter Table/Partition Concatenate</a></li>
-<li><a href=#alter-table/partition-update-columns>Alter Table/Partition Update columns</a></li>
+<li><a href=#alter-tablepartition-file-format>Alter Table/Partition File Format</a></li>
+<li><a href=#alter-tablepartition-location>Alter Table/Partition Location</a></li>
+<li><a href=#alter-tablepartition-touch>Alter Table/Partition Touch</a></li>
+<li><a href=#alter-tablepartition-protections>Alter Table/Partition Protections</a></li>
+<li><a href=#alter-tablepartition-compact>Alter Table/Partition Compact</a></li>
+<li><a href=#alter-tablepartition-concatenate>Alter Table/Partition Concatenate</a></li>
+<li><a href=#alter-tablepartition-update-columns>Alter Table/Partition Update columns</a></li>
 </ul>
 </li>
 <li><a href=#alter-column>Alter Column</a>
 <ul>
 <li><a href=#rules-for-column-names>Rules for Column Names</a></li>
-<li><a href=#change-column-name/type/position/comment>Change Column Name/Type/Position/Comment</a></li>
-<li><a href=#add/replace-columns>Add/Replace Columns</a></li>
+<li><a href=#change-column-nametypepositioncomment>Change Column Name/Type/Position/Comment</a></li>
+<li><a href=#addreplace-columns>Add/Replace Columns</a></li>
 <li><a href=#partial-partition-specification>Partial Partition Specification</a></li>
 </ul>
 </li>
@@ -1271,13 +1271,13 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 <ul>
 <li><a href=#show-databases>Show Databases</a></li>
 <li><a href=#show-connectors>Show Connectors</a></li>
-<li><a href=#show-tables/views/materialized-views/partitions/indexes>Show Tables/Views/Materialized Views/Partitions/Indexes</a>
+<li><a href=#show-tablesviewsmaterialized-viewspartitionsindexes>Show Tables/Views/Materialized Views/Partitions/Indexes</a>
 <ul>
 <li><a href=#show-tables>Show Tables</a></li>
 <li><a href=#show-views>Show Views</a></li>
 <li><a href=#show-materialized-views>Show Materialized Views</a></li>
 <li><a href=#show-partitions>Show Partitions</a></li>
-<li><a href=#show-table/partition-extended>Show Table/Partition Extended</a></li>
+<li><a href=#show-tablepartition-extended>Show Table/Partition Extended</a></li>
 <li><a href=#show-table-properties>Show Table Properties</a></li>
 <li><a href=#show-create-table>Show Create Table</a></li>
 <li><a href=#show-indexes>Show Indexes</a></li>
@@ -1560,13 +1560,13 @@ SHOW COMPACTIONS db1.tbl0 PARTITION (p=101,day='Monday') POOL 'pool0' TYPE 'mino
 <ul>
 <li><a href=#describe-database>Describe Database</a></li>
 <li><a href=#describe-dataconnector>Describe Dataconnector</a></li>
-<li><a href=#describe-table/view/materialized-view/column>Describe Table/View/Materialized View/Column</a>
+<li><a href=#describe-tableviewmaterialized-viewcolumn>Describe Table/View/Materialized View/Column</a>
 <ul>
 <li><a href=#display-column-statistics>Display Column Statistics</a></li>
 </ul>
 </li>
 <li><a href=#describe-partition>Describe Partition</a></li>
-<li><a href=#hive-2-0+:-syntax-change>Hive 2.0+: Syntax Change</a></li>
+<li><a href=#hive-20-syntax-change>Hive 2.0+: Syntax Change</a></li>
 </ul>
 <h3 id=describe-database>Describe Database</h3>
 <p>Version information</p>

@@ -120,21 +120,21 @@ ASF
 <ul>
 <li><a href=#group-membership>Group Membership</a>
 <ul>
-<li><a href=#hive-server2-authentication-ldap-groupdnpattern>hive.server2.authentication.ldap.groupDNPattern</a></li>
-<li><a href=#hive-server2-authentication-ldap-groupfilter>hive.server2.authentication.ldap.groupFilter</a></li>
-<li><a href=#hive-server2-authentication-ldap-groupmembershipkey>hive.server2.authentication.ldap.groupMembershipKey</a></li>
-<li><a href=#hive-server2-authentication-ldap-groupclasskey>hive.server2.authentication.ldap.groupClassKey</a></li>
+<li><a href=#hiveserver2authenticationldapgroupdnpattern>hive.server2.authentication.ldap.groupDNPattern</a></li>
+<li><a href=#hiveserver2authenticationldapgroupfilter>hive.server2.authentication.ldap.groupFilter</a></li>
+<li><a href=#hiveserver2authenticationldapgroupmembershipkey>hive.server2.authentication.ldap.groupMembershipKey</a></li>
+<li><a href=#hiveserver2authenticationldapgroupclasskey>hive.server2.authentication.ldap.groupClassKey</a></li>
 </ul>
 </li>
 <li><a href=#user-search-list>User Search List</a>
 <ul>
-<li><a href=#hive-server2-authentication-ldap-userdnpattern>hive.server2.authentication.ldap.userDNPattern</a></li>
-<li><a href=#hive-server2-authentication-ldap-userfilter>hive.server2.authentication.ldap.userFilter</a></li>
+<li><a href=#hiveserver2authenticationldapuserdnpattern>hive.server2.authentication.ldap.userDNPattern</a></li>
+<li><a href=#hiveserver2authenticationldapuserfilter>hive.server2.authentication.ldap.userFilter</a></li>
 </ul>
 </li>
 <li><a href=#custom-query-string>Custom Query String</a>
 <ul>
-<li><a href=#hive-server2-authentication-ldap-customldapquery>hive.server2.authentication.ldap.customLDAPQuery</a></li>
+<li><a href=#hiveserver2authenticationldapcustomldapquery>hive.server2.authentication.ldap.customLDAPQuery</a></li>
 <li><a href=#support-for-groups-in-custom-ldap-query>Support for Groups in Custom LDAP Query</a></li>
 </ul>
 </li>
@@ -283,7 +283,7 @@ ASF
 <pre tabindex=0><code>   uid=group1,ou=Groups,dc=example,dc=com  
    uid=group2,ou=Groups,dc=example,dc=com
 </code></pre><p>but there is no means to form a query that would return just the values of &ldquo;member&rdquo; attributes. (LDAP APIs allow filtering of the attributes on the result set.)</p>
-<p>To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property <a href=#hive-server2-authentication-ldap-groupmembershipkey>hive.server2.authentication.ldap.groupMembershipKey</a>. This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is &ldquo;<em>member</em>&rdquo;.</p>
+<p>To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property <a href=#hiveserver2authenticationldapgroupmembershipkey>hive.server2.authentication.ldap.groupMembershipKey</a>. This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is &ldquo;<em>member</em>&rdquo;.</p>
 <p>This allows the Hive LDAP authentication provider to specify a query that returns groups and individual users as below (all users of <code>group1</code> + the user <code>user4</code> will be allowed to authenticate):</p>
 <pre tabindex=0><code>&lt;property&gt;  
   &lt;name&gt;hive.server2.authentication.ldap.customLDAPQuery&lt;/name&gt;
