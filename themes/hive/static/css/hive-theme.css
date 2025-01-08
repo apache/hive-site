@@ -268,6 +268,64 @@ p,
   padding-bottom:0rem;
 }
 
+/* General Styling */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Styling */
+.search-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Button Styling */
+.search-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:active {
+    background-color: #004080;
+}
+
+/* Additional Styling for Dark Theme Feel */
+.search-bar {
+    color: #000;
+}
+
+
 /* https://github.com/mrmrs/fluidity */
 
 img,
@@ -354,3 +412,5 @@ row{
 span{
  word-wrap: break-word;
 }
+
+
