@@ -16,7 +16,7 @@ date: 2024-12-12
 	+ [Extra hadoop configurations to make everything working]({{< ref "#extra-hadoop-configurations-to-make-everything-working" >}})
 	+ [Installing Hive from a Tarball]({{< ref "#installing-hive-from-a-tarball" >}})
 	+ [Installing from Source Code]({{< ref "#installing-from-source-code" >}})
-    + [Installing with old version hadoop(greater than or equal 3.1.0)]({{< ref "#installing-with-old-version-hadoop(greater-than-or-equal-3.1.0)" >}})
+    + [Installing with old version hadoop(greater than or equal 3.1.0)]({{< ref "#installing-with-old-version-hadoop-greater-than-or-equal-3.1.0" >}})
 	+ [Next Steps]({{< ref "#next-steps" >}})
 	+ [Beeline CLI]({{< ref "#beeline-cli" >}})
 	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
