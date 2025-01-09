@@ -76,7 +76,8 @@ FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid
 GROUP BY adid;
 
 ```
-
+| | |
+| --- | --- |
 | int adid | count(1) |
 | 1 | 1 |
 | 2 | 1 |
@@ -99,7 +100,9 @@ LATERAL VIEW explode(myCol1) myTable2 AS myCol2;
 
 LATERAL VIEW clauses are applied in the order that they appear. For example with the following base table:
 
-| Array<int> col1 | Array<string> col2 |
+| | |
+| --- | --- |
+| Array\<int\> col1 | Array\<string\> col2 |
 | [1, 2] | [a", "b", "c"] |
 | [3, 4] | [d", "e", "f"] |
 
@@ -113,7 +116,9 @@ LATERAL VIEW explode(col1) myTable1 AS myCol1;
 
 Will produce:
 
-| int mycol1 | Array<string> col2 |
+| | |
+| --- | --- |
+| int mycol1 | Array\<string\> col2 |
 | 1 | [a", "b", "c"] |
 | 2 | [a", "b", "c"] |
 | 3 | [d", "e", "f"] |
@@ -130,6 +135,8 @@ LATERAL VIEW explode(col2) myTable2 AS myCol2;
 
 Will produce:
 
+| | |
+| --- | --- |
 | int myCol1 | string myCol2 |
 | 1 | "a" |
 | 1 | "b" |

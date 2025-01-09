@@ -34,11 +34,7 @@ To issue queries against Kudu using Hive, one optional parameter can be provided
 
 | Hive Configuration |  |
 | --- | --- |
-| 
-```
-hive.kudu.master.addresses.default
-```
- | Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the *kudu.master\_addresses* table property is not set. |
+| ``` hive.kudu.master.addresses.default ``` | Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the *kudu.master\_addresses* table property is not set. |
 
   
 

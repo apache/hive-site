@@ -11,12 +11,7 @@ Here you can find the most important configurations and default values.
 
 | Config Name | Default Value | Description | Config file |
 | --- | --- | --- | --- |
-| 
-```
-hive.metastore.client.cache.v2.enabled
-```
- | true | This property enabled a Caffaine Cache for Metastore client | MetastoreConf |
-|  |  |  |  |
+| ``` hive.metastore.client.cache.v2.enabled ``` | true | This property enabled a Caffaine Cache for Metastore client | MetastoreConf |
 
   
 

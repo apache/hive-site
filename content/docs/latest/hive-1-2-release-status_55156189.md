@@ -40,7 +40,6 @@ All commits that do not meet these criteria should be directed towards branch-1 
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
 | HS2/metastore | HIVE-11224 | committed | thejas |
-|  |  |  |  |
 
 # [Committed JIRAS in branch-1.2 for 1.2.1]({{< ref "committed-jiras-for-1-2-1_58851880" >}})
 
@@ -54,57 +53,14 @@ The following are jiras originally intended for branch-1.2, but at this time, sh
 
 | Category | JIRA | Current Status in branch-1.2 | Committerrequesting inclusion |
 | --- | --- | --- | --- |
-| HS2 | 
-[HIVE-6679](https://issues.apache.org/jira/browse/HIVE-6679?src=confmacro)
- -
- HiveServer2 should support configurable the server side socket timeout and keepalive for various transports types where applicable
-Patch Available
- | Deferred to 1.3, needs more testing | vgumashta |
-| Metastore upgrade | 
-[HIVE-7018](https://issues.apache.org/jira/browse/HIVE-7018?src=confmacro)
- -
- Table and Partition tables have column LINK\_TARGET\_ID in Mysql scripts but not others
-Closed
- | Deferred to 1.3, has schema changes | hsubramaniyan |
-| Security | 
-[HIVE-9736](https://issues.apache.org/jira/browse/HIVE-9736?src=confmacro)
- -
- StorageBasedAuthProvider should batch namenode-calls where possible.
-Patch Available
- | Deferred to 1.3, needs additional test fixes | mithun |
-| Metastore | 
-[HIVE-10895](https://issues.apache.org/jira/browse/HIVE-10895?src=confmacro)
- -
- ObjectStore does not close Query objects in some calls, causing a potential leak in some metastore db resources
-Closed
- | Deferred to 1.3, needs updates | vgumashta |
-| Webhcat | 
-[HIVE-11008](https://issues.apache.org/jira/browse/HIVE-11008?src=confmacro)
- -
- webhcat GET /jobs retries on getting job details from history server is too agressive
-Open
- | Deferred to 1.3, still being discussed | thejas |
-| Authorization | 
-[HIVE-10250](https://issues.apache.org/jira/browse/HIVE-10250?src=confmacro)
- -
- Optimize AuthorizationPreEventListener to reuse TableWrapper objects
-Open
- | Deferred to 1.3, needs additional test fixes | mithun |
-| ORC | 
-[HIVE-10556](https://issues.apache.org/jira/browse/HIVE-10556?src=confmacro)
- -
- ORC PPD schema on read related changes
-Open
- | Deferred to 1.3, still open | gopalv |
-| orc | 
-[ORC-12](https://issues.apache.org/jira/browse/HIVE-9451?src=confmacro)
- -
- Add max size of column dictionaries to ORC metadata
-Open
- | Deferred to 1.3, needs additional updates | omalley |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| HS2 | [HIVE-6679](https://issues.apache.org/jira/browse/HIVE-6679?src=confmacro) - HiveServer2 should support configurable the server side socket timeout and keepalive for various transports types where applicable Patch Available | Deferred to 1.3, needs more testing | vgumashta |
+| Metastore upgrade | [HIVE-7018](https://issues.apache.org/jira/browse/HIVE-7018?src=confmacro) - Table and Partition tables have column LINK\_TARGET\_ID in Mysql scripts but not others Closed | Deferred to 1.3, has schema changes | hsubramaniyan |
+| Security | [HIVE-9736](https://issues.apache.org/jira/browse/HIVE-9736?src=confmacro) - StorageBasedAuthProvider should batch namenode-calls where possible. Patch Available | Deferred to 1.3, needs additional test fixes | mithun |
+| Metastore | [HIVE-10895](https://issues.apache.org/jira/browse/HIVE-10895?src=confmacro) - ObjectStore does not close Query objects in some calls, causing a potential leak in some metastore db resources Closed | Deferred to 1.3, needs updates | vgumashta |
+| Webhcat | [HIVE-11008](https://issues.apache.org/jira/browse/HIVE-11008?src=confmacro) - webhcat GET /jobs retries on getting job details from history server is too agressive Open | Deferred to 1.3, still being discussed | thejas |
+| Authorization | [HIVE-10250](https://issues.apache.org/jira/browse/HIVE-10250?src=confmacro) - Optimize AuthorizationPreEventListener to reuse TableWrapper objects Open | Deferred to 1.3, needs additional test fixes | mithun |
+| ORC | [HIVE-10556](https://issues.apache.org/jira/browse/HIVE-10556?src=confmacro) - ORC PPD schema on read related changes Open | Deferred to 1.3, still open | gopalv |
+| orc | [ORC-12](https://issues.apache.org/jira/browse/HIVE-9451?src=confmacro) - Add max size of column dictionaries to ORC metadata Open | Deferred to 1.3, needs additional updates | omalley |
 
  
 
@@ -120,16 +76,10 @@ Open
 
 |  |
 | --- |
-| 
-It seems if you just paste the JIRA URL to the ticket, it will automatically display number, title and status
-
- Posted by ekoifman at Apr 24, 2015 20:51
-  |
-| 
+| It seems if you just paste the JIRA URL to the ticket, it will automatically display number, title and status Posted by ekoifman at Apr 24, 2015 20:51 |
 Very useful, Eugene!
 
  Posted by khorgath@gmail.com at Apr 24, 2015 20:54
-  |
 
  
 

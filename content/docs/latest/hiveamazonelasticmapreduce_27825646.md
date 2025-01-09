@@ -25,6 +25,8 @@ Amazon Elastic MapReduce provides you with multiple clients to run your Hive clu
 
 # Supported versions:
 
+| | |
+| --- | --- |
 |  Hadoop Version  |  Hive Version  |
 |  0.18  |  0.4  |
 |  0.20  |  0.5, 0.7, 0.7.1  |
@@ -33,6 +35,8 @@ Amazon Elastic MapReduce provides you with multiple clients to run your Hive clu
 
 ## Thrift Communication port
 
+| | |
+| --- | --- |
 |  Hive Version  |  Thrift port  |
 |  0.4  |  10000  |
 |  0.5  |  10000  |
@@ -41,6 +45,8 @@ Amazon Elastic MapReduce provides you with multiple clients to run your Hive clu
 
 ## Log File
 
+| | |
+| --- | --- |
 |  Hive Version  |  Log location  |
 |  0.4  |  /mnt/var/log/apps/hive.log  |
 |  0.5  |  /mnt/var/log/apps/hive\_05.log  |
@@ -55,6 +61,8 @@ By default, Amazon Elastic MapReduce uses MySQL, preinstalled on the Master Node
 
 EMR configures the master node to allow SSH access. You can log onto the master node and execute Hive commands using the Hive CLI. If you have multiple versions of Hive installed on the cluster you can access each one of them via a separate command:
 
+| | |
+| --- | --- |
 |  Hive Version  |  Hive command  |
 |  0.4  |  hive  |
 |  0.5  |  hive-0.5  |
@@ -67,6 +75,8 @@ EMR sets up a separate Hive metastore and Hive warehouse for each installed Hive
 
 EMR runs a Thrift Hive server on the master node of the Hive cluster. It can be accessed using any JDBC client (for example, squirrel SQL) via Hive JDBC drivers. The JDBC drivers for different Hive versions can be downloaded via the following links:
 
+| | |
+| --- | --- |
 |  Hive Version  |  Hive JDBC  |
 |  0.5  | <http://aws.amazon.com/developertools/0196055244487017> |
 |  0.7  | <http://aws.amazon.com/developertools/1818074809286277> |

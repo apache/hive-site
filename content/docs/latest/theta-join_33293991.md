@@ -95,6 +95,7 @@ As previously mention a detailed description of 1-Bucket-Theta is located [3]. A
 The matrix is partitioned by r, the number of reducers. An example join matrix follows, with four reducers 1-4 each a separate color:
 
 |  **Row Ids**  |  **T 1**  |  **T 2**  |  **T 3**  |  **T 4**  |
+| --- | --- | --- | --- | --- |
 |  **S 1**  |  1  |  1  |  2  |  2  |
 |  **S 2**  |  1  |  1  |  2  |  2  |
 |  **S 3**  |  3  |  3  |  4  |  4  |

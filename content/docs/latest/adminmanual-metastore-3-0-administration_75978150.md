@@ -85,37 +85,17 @@ As the Metastore uses DataNucleus to communicate with the RDBMS, theoretically a
 
 | RDBMS | Minimum Version | javax.jdo.option.ConnectionURL | javax.jdo.option.ConnectionDriverName |
 | --- | --- | --- | --- |
-| MS SQL Server | 2008 R2 | jdbc:sqlserver://<HOST>:<PORT>;DatabaseName=<SCHEMA> | 
-```
-com.microsoft.sqlserver.jdbc.SQLServerDriver
-```
- |
-| MySQL | 5.6.17 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> | 
-```
-com.mysql.jdbc.Driver
-```
- |
-| MariaDB | 5.5 | jdbc:mysql://<HOST>:<PORT>/<SCHEMA> | 
-```
-org.mariadb.jdbc.Driver
-```
- |
-| Oracle* | 11g | jdbc:oracle:thin:@//<HOST>:<PORT>/xe | 
-```
-oracle.jdbc.OracleDriver
-```
- |
-| Postgres | 9.1.13 | jdbc:postgresql://<HOST>:<PORT>/<SCHEMA> | 
-```
-org.postgresql.Driver
-```
- |
+| MS SQL Server | 2008 R2 | `jdbc:sqlserver://<HOST>:<PORT>;DatabaseName=<SCHEMA>` | ` com.microsoft.sqlserver.jdbc.SQLServerDriver ` |
+| MySQL | 5.6.17 | `jdbc:mysql://<HOST>:<PORT>/<SCHEMA>` | ` com.mysql.jdbc.Driver ` |
+| MariaDB | 5.5 | `jdbc:mysql://<HOST>:<PORT>/<SCHEMA>` | ` org.mariadb.jdbc.Driver ` |
+| Oracle* | 11g | `jdbc:oracle:thin:@//<HOST>:<PORT>/xe` | ` oracle.jdbc.OracleDriver ` |
+| Postgres | 9.1.13 | `jdbc:postgresql://<HOST>:<PORT>/<SCHEMA>` | ` org.postgresql.Driver ` |
 
-<HOST> = The host the RDBMS is on.
+\<HOST\> = The host the RDBMS is on.
 
-<PORT> = Port the RDBMS is listening for JDBC connections on
+\<PORT\> = Port the RDBMS is listening for JDBC connections on
 
-<SCHEMA> = The schema (or database) that the Metastore stores its tables in.
+\<SCHEMA\> = The schema (or database) that the Metastore stores its tables in.
 
 *The Oracle values shown are for Oracle's thin JDBC client.  If you are using a different client the ConnectionURL and ConnectionDriverName values will differ.
 

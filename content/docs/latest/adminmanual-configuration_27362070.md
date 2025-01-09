@@ -151,6 +151,7 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 #### Configuration Variables Used to Interact with Hadoop
 
 | **Variable Name** | **Description** | **Default Value** |
+| --- | --- | --- |
 | hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP\_HOME/bin/hadoop |
 | hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP\_HOME/conf |
 | fs.default.name | The default name of the filesystem (for example, localhost for hdfs://<clustername>:8020).For YARN this configuration variable is called fs.defaultFS. | file:/// |
@@ -164,6 +165,7 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 #### Hive Variables Used to Pass Run Time Information
 
 | **Variable Name** | **Description** | **Default Value** |
+| --- | --- | --- |
 | hive.session.id | The id of the Hive Session. |   |
 | hive.query.string | The query string passed to the map/reduce job. |   |
 | hive.query.planid | The id of the plan for the map/reduce stage. |   |
