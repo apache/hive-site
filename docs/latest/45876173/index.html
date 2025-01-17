@@ -276,37 +276,353 @@ object\_specification:
 <p> </p>
 <h3 id=hive-operations-and-required-privileges>Hive Operations and Required Privileges</h3>
 <p>As of the release of Hive 0.7, only these operations require permissions, according to org.apache.hadoop.hive.ql.plan.HiveOperation:</p>
-<p>| Operation | ALTER | UPDATE | CREATE | DROP | INDEX | LOCK | SELECT | SHOW_DATABASE |
-| LOAD |   | X |   |   |   |   |   |   |
-| EXPORT |   |   |   |   |   |   | X |   |
-| IMPORT | X | X |   |   |   |   |   |   |
-| CREATE TABLE |   |   | X |   |   |   |   |   |
-| CREATE TABLE AS SELECT |   |   | X |   |   |   | X |   |
-| DROP TABLE |   |   |   | X |   |   |   |   |
-| SELECT |   |   |   |   |   |   | X |   |
-| ALTER TABLE ADD COLUMN | X |   |   |   |   |   |   |   |
-| ALTER TABLE REPLACE COLUMN | X |   |   |   |   |   |   |   |
-| ALTER TABLE RENAME | X |   |   |   |   |   |   |   |
-| ALTER TABLE ADD PARTITION |   |   | X |   |   |   |   |   |
-| ALTER TABLE DROP PARTITION |   |   |   | X |   |   |   |   |
-| ALTER TABLE ARCHIVE |   | X |   |   |   |   |   |   |
-| ALTER TABLE UNARCHIVE |   | X |   |   |   |   |   |   |
-| ALTER TABLE SET PROPERTIES | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDEPROPERTIES | X |   |   |   |   |   |   |   |
-| ALTER TABLE CLUSTER BY | X |   |   |   |   |   |   |   |
-| ALTER TABLE PROTECT MODE | X |   |   |   |   |   |   |   |
-| ALTER PARTITION PROTECT MODE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET FILEFORMAT | X |   |   |   |   |   |   |   |
-| ALTER PARTITION SET FILEFORMAT | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET LOCATION |   | X |   |   |   |   |   |   |
-| ALTER PARTITION SET LOCATION |   | X |   |   |   |   |   |   |
-| ALTER TABLE CONCATENATE |   | X |   |   |   |   |   |   |
-| ALTER PARTITION CONCATENATE |   | X |   |   |   |   |   |   |
-| SHOW DATABASES |   |   |   |   |   |   |   | X |
-| LOCK TABLE |   |   |   |   |   | X |   |   |
-| UNLOCK TABLE |   |   |   |   |   | X |   |   |</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Operation</th>
+<th style=text-align:center>ALTER</th>
+<th style=text-align:center>UPDATE</th>
+<th style=text-align:center>CREATE</th>
+<th style=text-align:center>DROP</th>
+<th style=text-align:center>INDEX</th>
+<th style=text-align:center>LOCK</th>
+<th style=text-align:center>SELECT</th>
+<th style=text-align:center>SHOW_DATABASE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>LOAD</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>EXPORT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>IMPORT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>CREATE TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>CREATE TABLE AS SELECT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>DROP TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>SELECT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ADD COLUMN</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE REPLACE COLUMN</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE RENAME</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ADD PARTITION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE DROP PARTITION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ARCHIVE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE UNARCHIVE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET PROPERTIES</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDEPROPERTIES</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE CLUSTER BY</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE PROTECT MODE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION PROTECT MODE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET FILEFORMAT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION SET FILEFORMAT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET LOCATION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION SET LOCATION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE CONCATENATE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION CONCATENATE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>SHOW DATABASES</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+</tr>
+<tr>
+<td style=text-align:center>LOCK TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>UNLOCK TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

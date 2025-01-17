@@ -115,160 +115,936 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--supported-features-apache-hive-21>Apache Hive : Supported Features: Apache Hive 2.1</h1>
-<p>| Identifier | Description | Hive 2.1 | Comment |
-| E011 | Numeric data types | Yes | |
-| E011-01 | INTEGER and SMALLINT data types (including all spellings) | Yes | Int instead of Integer |
-| E011-02 | REAL, DOUBLE PRECISON,and FLOAT data types | Yes | Double instead of Double Precision |
-| E011-03 | DECIMAL and NUMERIC data types | Yes | |
-| E011-04 | Arithmetic operators | Yes | |
-| E011-05 | Numeric comparison | Yes | |
-| E011-06 | Implicit casting among the numeric data types | Yes | |
-| E021 | Character data types | Yes | |
-| E021-01 | CHARACTER data type | Yes | Char instead of Character |
-| E021-02 | CHARACTER VARYING data type | Yes | Varchar instead of Character Varying |
-| E021-03 | Character literals | Yes | |
-| E021-04 | CHARACTER_LENGTH function | Partial | length UDF provided |
-| E021-06 | SUBSTRING function | Yes | |
-| E021-07 | Character concatenation | Yes | concat UDF instead of standard || operator |
-| E021-08 | UPPER and LOWER functions | Yes | |
-| E021-09 | TRIM function | Partial | leading / trailing / both from not supported |
-| E021-10 | Implicit casting among the fixed-length and variablelength character string types | Yes | |
-| E021-12 | Character comparison | Yes | |
-| E031 | Identifiers | Yes | |
-| E031-01 | Delimited identifiers | Partial | Backtick (`) used instead of ("). Semicolon character (;) cannot be used in an identifier. Table and column names have additional restrictions |
-| E031-03 | Trailing underscore | Yes | |
-| E051 | Basic query specification | Yes | |
-| E051-01 | SELECT DISTINCT | Yes | |
-| E051-02 | GROUP BY clause | Partial | Empty grouping sets not supported |
-| E051-04 | GROUP BY can contain columns not in | Yes | |
-| E051-05 | Select list items can be renamed | Yes | |
-| E051-06 | HAVING clause | Yes | |
-| E051-07 | Qualified * in select list | Yes | |
-| E051-08 | Correlation names in the FROM clause | Yes | |
-| E061 | Basic predicates and search conditions | Yes | |
-| E061-01 | Comparison predicate | Yes | |
-| E061-02 | BETWEEN predicate | Yes | |
-| E061-03 | IN predicate with list of values | Yes | |
-| E061-04 | LIKE predicate | Yes | |
-| E061-06 | NULL predicate | Yes | |
-| E061-08 | EXISTS predicate | Yes | |
-| E061-11 | Subqueries in IN predicate | Yes | |
-| E061-13 | Correlated subqueries | Partial | Only correlated subqueries that can be decorrelated with rewrite rules supported |
-| E071 | Basic query expressions | Yes | |
-| E071-01 | UNION DISTINCT table operator | Partial | Corresponding By syntax not supported |
-| E071-02 | UNION ALL table operator | Partial | Corresponding By syntax not supported |
-| E071-05 | Columns combined via table operators need not have exactly the same data type. | Yes | |
-| E071-06 | Table operators in subqueries | Yes | |
-| E081 | Basic Privileges | Yes | |
-| E081-01 | SELECT privilege | Yes | |
-| E081-03 | INSERT privilege at the table level | Yes | |
-| E081-04 | UPDATE privilege at the table level | Yes | |
-| E081-08 | WITH GRANT OPTION | Yes | |
-| E091 | Set Functions | Yes | |
-| E091-01 | AVG | Yes | |
-| E091-02 | COUNT | Yes | |
-| E091-03 | MAX | Yes | |
-| E091-04 | MIN | Yes | |
-| E091-05 | SUM | Yes | |
-| E091-07 | DISTINCT quantifier | Yes | |
-| E101 | Basic data manipulation | Yes | |
-| E101-01 | INSERT statement | Yes | |
-| E101-03 | Searched UPDATE statement | Yes | |
-| E101-04 | Searched DELETE statement | Yes | |
-| E131 | Null value support (nulls in lieu of values) | Partial | Null specification is supported |
-| E141 | Basic integrity constraints | Yes | |
-| E141-03 | PRIMARY KEY constraints | Partial | Non-validated |
-| E141-04 | Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action | Partial | Non-validated |
-| E141-10 | Names in a foreign key can be specified in any order | Yes | |
-| E151 | Transaction support | Partial | Autocommit transaction for INSERT/UPDATE/DELETE |
-| E161 | SQL comments using leading double minus | Yes | |
-| F031 | Basic schema manipulation | Yes | |
-| F031-01 | CREATE TABLE statement to create persistent base tables | Yes | |
-| F031-02 | CREATE VIEW statement | Yes | |
-| F031-03 | GRANT statement | Yes | |
-| F031-04 | ALTER TABLE statement: ADD COLUMN clause | Yes | |
-| F031-13 | DROP TABLE statement: RESTRICT clause | Yes | |
-| F031-16 | DROP VIEW statement: RESTRICT clause | Yes | |
-| F041 | Basic joined table | Yes | |
-| F041-01 | Inner join (but not necessarily the INNER keyword) | Yes | Named columns join not supported |
-| F041-02 | INNER keyword | Yes | |
-| F041-03 | LEFT OUTER JOIN | Yes | |
-| F041-04 | RIGHT OUTER JOIN | Yes | |
-| F041-05 | Outer joins can be nested | Yes | |
-| F041-07 | The inner table in a left or right outer join can also be used in an inner join | Yes | |
-| F051 | Basic date and time | Yes | |
-| F051-01 | DATE data type (including support of DATE literal) | Yes | |
-| F051-03 | TIMESTAMP data type (including support of TIMES- TAMP literal) with fractional seconds precision of at least 0 and 6. | Yes | |
-| F051-04 | Comparison predicate on DATE, TIME, and TIMES- TAMP data types | Yes | |
-| F051-05 | Explicit CAST between date- time types and character string types | Yes | |
-| F051-06 | CURRENT_DATE | Yes | |
-| F052 | Intervals and datetime arithmetic | Yes | |
-| F081 | UNION and EXCEPT in views | Partial | UNION only |
-| F131 | Grouped operations | Yes | |
-| F131-01 | WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views | Yes | |
-| F131-02 | Multiple tables supported in queries with grouped views | Yes | |
-| F131-03 | Set functions supported in queries with grouped views | Yes | |
-| F131-04 | Subqueries with GROUP BY and HAVING clauses and grouped views | Yes | |
-| F171 | Multiple schemas per user | Yes | |
-| F200 | TRUNCATE TABLE statement | Yes | |
-| F201 | CAST function | Yes | |
-| F261 | CASE expression | Yes | |
-| F261-01 | Simple CASE | Yes | |
-| F261-02 | Searched CASE | Yes | |
-| F261-04 | COALESCE | Yes | |
-| F311-01 | CREATE SCHEMA | Yes | |
-| F311-02 | CREATE TABLE for persistent base tables | Yes | |
-| F311-03 | CREATE VIEW | Yes | |
-| F311-05 | GRANT statement | Yes | |
-| F382 | Alter column data type | Yes | Uses nonstandard syntax |
-| F391 | Long identifiers | Yes | |
-| F401 | Extended joined table | Yes | |
-| F401-01 | NATURAL JOIN | Yes | |
-| F401-02 | FULL OUTER JOIN | Yes | |
-| F401-04 | CROSS JOIN | Yes | |
-| F403 | Partitioned join tables | Yes | |
-| F531 | Temporary tables | Yes | |
-| F555 | Enhanced seconds precision | Yes | |
-| F561 | Full value expressions | Yes | |
-| F591 | Derived tables | Yes | |
-| F641 | Row and table constructors | Yes | |
-| F651 | Catalog name qualifiers | Yes | |
-| F846 | Octet support in regular expression operators | Yes | |
-| F847 | Nonconstant regular expressions | Yes | |
-| F850 | Top-level in | Yes | |
-| F851 | in subqueries | Yes | |
-| F852 | Top-level in views | Yes | |
-| F855 | Nested in | Yes | |
-| S023 | Basic structured types | Yes | |
-| S091 | Basic array support | Yes | |
-| S091-01 | Arrays of built-in data types | Yes | |
-| S091-02 | Arrays of distinct types | Yes | |
-| S098 | ARRAY_AGG | Partial | collect_list does the same |
-| S201-01 | Array parameters | Yes | |
-| S281 | Nested collection types | Yes | |
-| T021 | BINARY and VARBINARY data types | Partial | BINARY only |
-| T031 | BOOLEAN data type | Yes | |
-| T051 | Row types | Yes | |
-| T071 | BIGINT data type | Yes | |
-| T121 | WITH (excluding RECURSIVE) in query expression | Yes | |
-| T122 | WITH (excluding RECURSIVE) in subquery | Yes | |
-| T172 | AS subquery clause in table definition | Yes | |
-| T326 | Table functions | Yes | |
-| T331 | Basic roles | Yes | |
-| T431 | Extended grouping capabilities | Partial | Grouping sets need to be extracted manually from a bitmask |
-| T433 | Multiargument GROUPING function | Yes | |
-| T441 | ABS and MOD functions | Partial | ABS provided, MOD provided via % operator |
-| T501 | Enhanced EXISTS predicate | Yes | |
-| T581 | Regular expression substring function | Yes | |
-| T611 | Elementary OLAP operations | Yes | |
-| T612 | Advanced OLAP operations | Partial | PERCENT_RANK, CUME_DIST and ROW_NUMBER supported |
-| T613 | Sampling | Yes | Nonstandard syntax via TABLESAMPLE |
-| T614 | NTILE function | Yes | |
-| T615 | LEAD and LAG functions | Yes | |
-| T616 | Null treatment option for LEAD and LAG functions | Yes | |
-| T617 | FIRST_VALUE and LAST_VALUE functions | Yes | |
-| T621 | Enhanced numeric functions | Yes | |
-| T631 | IN predicate with one list element | Yes | |</p>
+<table>
+<thead>
+<tr>
+<th>Identifier</th>
+<th>Description</th>
+<th>Hive 2.1</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E011</td>
+<td>Numeric data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-01</td>
+<td>INTEGER and SMALLINT data types (including all spellings)</td>
+<td>Yes</td>
+<td>Int instead of Integer</td>
+</tr>
+<tr>
+<td>E011-02</td>
+<td>REAL, DOUBLE PRECISON,and FLOAT data types</td>
+<td>Yes</td>
+<td>Double instead of Double Precision</td>
+</tr>
+<tr>
+<td>E011-03</td>
+<td>DECIMAL and NUMERIC data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-04</td>
+<td>Arithmetic operators</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-05</td>
+<td>Numeric comparison</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-06</td>
+<td>Implicit casting among the numeric data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021</td>
+<td>Character data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-01</td>
+<td>CHARACTER data type</td>
+<td>Yes</td>
+<td>Char instead of Character</td>
+</tr>
+<tr>
+<td>E021-02</td>
+<td>CHARACTER VARYING data type</td>
+<td>Yes</td>
+<td>Varchar instead of Character Varying</td>
+</tr>
+<tr>
+<td>E021-03</td>
+<td>Character literals</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-04</td>
+<td>CHARACTER_LENGTH function</td>
+<td>Partial</td>
+<td>length UDF provided</td>
+</tr>
+<tr>
+<td>E021-06</td>
+<td>SUBSTRING function</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-07</td>
+<td>Character concatenation</td>
+<td>Yes</td>
+<td>concat UDF instead of standard</td>
+</tr>
+<tr>
+<td>E021-08</td>
+<td>UPPER and LOWER functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-09</td>
+<td>TRIM function</td>
+<td>Partial</td>
+<td>leading / trailing / both from not supported</td>
+</tr>
+<tr>
+<td>E021-10</td>
+<td>Implicit casting among the fixed-length and variablelength character string types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-12</td>
+<td>Character comparison</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E031</td>
+<td>Identifiers</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E031-01</td>
+<td>Delimited identifiers</td>
+<td>Partial</td>
+<td>Backtick (`) used instead of ("). Semicolon character (;) cannot be used in an identifier. Table and column names have additional restrictions</td>
+</tr>
+<tr>
+<td>E031-03</td>
+<td>Trailing underscore</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051</td>
+<td>Basic query specification</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-01</td>
+<td>SELECT DISTINCT</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-02</td>
+<td>GROUP BY clause</td>
+<td>Partial</td>
+<td>Empty grouping sets not supported</td>
+</tr>
+<tr>
+<td>E051-04</td>
+<td>GROUP BY can contain columns not in </td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-05</td>
+<td>Select list items can be renamed</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-06</td>
+<td>HAVING clause</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-07</td>
+<td>Qualified * in select list</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-08</td>
+<td>Correlation names in the FROM clause</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061</td>
+<td>Basic predicates and search conditions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-01</td>
+<td>Comparison predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-02</td>
+<td>BETWEEN predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-03</td>
+<td>IN predicate with list of values</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-04</td>
+<td>LIKE predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-06</td>
+<td>NULL predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-08</td>
+<td>EXISTS predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-11</td>
+<td>Subqueries in IN predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-13</td>
+<td>Correlated subqueries</td>
+<td>Partial</td>
+<td>Only correlated subqueries that can be decorrelated with rewrite rules supported</td>
+</tr>
+<tr>
+<td>E071</td>
+<td>Basic query expressions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-01</td>
+<td>UNION DISTINCT table operator</td>
+<td>Partial</td>
+<td>Corresponding By syntax not supported</td>
+</tr>
+<tr>
+<td>E071-02</td>
+<td>UNION ALL table operator</td>
+<td>Partial</td>
+<td>Corresponding By syntax not supported</td>
+</tr>
+<tr>
+<td>E071-05</td>
+<td>Columns combined via table operators need not have exactly the same data type.</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-06</td>
+<td>Table operators in subqueries</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E081</td>
+<td>Basic Privileges</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-01</td>
+<td>SELECT privilege</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-03</td>
+<td>INSERT privilege at the table level</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-04</td>
+<td>UPDATE privilege at the table level</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-08</td>
+<td>WITH GRANT OPTION</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091</td>
+<td>Set Functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-01</td>
+<td>AVG</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-02</td>
+<td>COUNT</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-03</td>
+<td>MAX</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-04</td>
+<td>MIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-05</td>
+<td>SUM</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-07</td>
+<td>DISTINCT quantifier</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E101</td>
+<td>Basic data manipulation</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-01</td>
+<td>INSERT statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-03</td>
+<td>Searched UPDATE statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-04</td>
+<td>Searched DELETE statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E131</td>
+<td>Null value support (nulls in lieu of values)</td>
+<td>Partial</td>
+<td>Null specification is supported</td>
+</tr>
+<tr>
+<td>E141</td>
+<td>Basic integrity constraints</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E141-03</td>
+<td>PRIMARY KEY constraints</td>
+<td>Partial</td>
+<td>Non-validated</td>
+</tr>
+<tr>
+<td>E141-04</td>
+<td>Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action</td>
+<td>Partial</td>
+<td>Non-validated</td>
+</tr>
+<tr>
+<td>E141-10</td>
+<td>Names in a foreign key can be specified in any order</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>E151</td>
+<td>Transaction support</td>
+<td>Partial</td>
+<td>Autocommit transaction for INSERT/UPDATE/DELETE</td>
+</tr>
+<tr>
+<td>E161</td>
+<td>SQL comments using leading double minus</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031</td>
+<td>Basic schema manipulation</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-01</td>
+<td>CREATE TABLE statement to create persistent base tables</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-02</td>
+<td>CREATE VIEW statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-03</td>
+<td>GRANT statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-04</td>
+<td>ALTER TABLE statement: ADD COLUMN clause</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-13</td>
+<td>DROP TABLE statement: RESTRICT clause</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-16</td>
+<td>DROP VIEW statement: RESTRICT clause</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041</td>
+<td>Basic joined table</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-01</td>
+<td>Inner join (but not necessarily the INNER keyword)</td>
+<td>Yes</td>
+<td>Named columns join not supported</td>
+</tr>
+<tr>
+<td>F041-02</td>
+<td>INNER keyword</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-03</td>
+<td>LEFT OUTER JOIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-04</td>
+<td>RIGHT OUTER JOIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-05</td>
+<td>Outer joins can be nested</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-07</td>
+<td>The inner table in a left or right outer join can also be used in an inner join</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051</td>
+<td>Basic date and time</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-01</td>
+<td>DATE data type (including support of DATE literal)</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-03</td>
+<td>TIMESTAMP data type (including support of TIMES- TAMP literal) with fractional seconds precision of at least 0 and 6.</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-04</td>
+<td>Comparison predicate on DATE, TIME, and TIMES- TAMP data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-05</td>
+<td>Explicit CAST between date- time types and character string types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-06</td>
+<td>CURRENT_DATE</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F052</td>
+<td>Intervals and datetime arithmetic</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F081</td>
+<td>UNION and EXCEPT in views</td>
+<td>Partial</td>
+<td>UNION only</td>
+</tr>
+<tr>
+<td>F131</td>
+<td>Grouped operations</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-01</td>
+<td>WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-02</td>
+<td>Multiple tables supported in queries with grouped views</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-03</td>
+<td>Set functions supported in queries with grouped views</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-04</td>
+<td>Subqueries with GROUP BY and HAVING clauses and grouped views</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F171</td>
+<td>Multiple schemas per user</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F200</td>
+<td>TRUNCATE TABLE statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F201</td>
+<td>CAST function</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F261</td>
+<td>CASE expression</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-01</td>
+<td>Simple CASE</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-02</td>
+<td>Searched CASE</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-04</td>
+<td>COALESCE</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-01</td>
+<td>CREATE SCHEMA</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-02</td>
+<td>CREATE TABLE for persistent base tables</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-03</td>
+<td>CREATE VIEW</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-05</td>
+<td>GRANT statement</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F382</td>
+<td>Alter column data type</td>
+<td>Yes</td>
+<td>Uses nonstandard syntax</td>
+</tr>
+<tr>
+<td>F391</td>
+<td>Long identifiers</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F401</td>
+<td>Extended joined table</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F401-01</td>
+<td>NATURAL JOIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F401-02</td>
+<td>FULL OUTER JOIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F401-04</td>
+<td>CROSS JOIN</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F403</td>
+<td>Partitioned join tables</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F531</td>
+<td>Temporary tables</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F555</td>
+<td>Enhanced seconds precision</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F561</td>
+<td>Full value expressions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F591</td>
+<td>Derived tables</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F641</td>
+<td>Row and table constructors</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F651</td>
+<td>Catalog name qualifiers</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F846</td>
+<td>Octet support in regular expression operators</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F847</td>
+<td>Nonconstant regular expressions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F850</td>
+<td>Top-level in </td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F851</td>
+<td> in subqueries</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F852</td>
+<td>Top-level in views</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>F855</td>
+<td>Nested in </td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S023</td>
+<td>Basic structured types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S091</td>
+<td>Basic array support</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S091-01</td>
+<td>Arrays of built-in data types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S091-02</td>
+<td>Arrays of distinct types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S098</td>
+<td>ARRAY_AGG</td>
+<td>Partial</td>
+<td>collect_list does the same</td>
+</tr>
+<tr>
+<td>S201-01</td>
+<td>Array parameters</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>S281</td>
+<td>Nested collection types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T021</td>
+<td>BINARY and VARBINARY data types</td>
+<td>Partial</td>
+<td>BINARY only</td>
+</tr>
+<tr>
+<td>T031</td>
+<td>BOOLEAN data type</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T051</td>
+<td>Row types</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T071</td>
+<td>BIGINT data type</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T121</td>
+<td>WITH (excluding RECURSIVE) in query expression</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T122</td>
+<td>WITH (excluding RECURSIVE) in subquery</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T172</td>
+<td>AS subquery clause in table definition</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T326</td>
+<td>Table functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T331</td>
+<td>Basic roles</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T431</td>
+<td>Extended grouping capabilities</td>
+<td>Partial</td>
+<td>Grouping sets need to be extracted manually from a bitmask</td>
+</tr>
+<tr>
+<td>T433</td>
+<td>Multiargument GROUPING function</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T441</td>
+<td>ABS and MOD functions</td>
+<td>Partial</td>
+<td>ABS provided, MOD provided via % operator</td>
+</tr>
+<tr>
+<td>T501</td>
+<td>Enhanced EXISTS predicate</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T581</td>
+<td>Regular expression substring function</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T611</td>
+<td>Elementary OLAP operations</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T612</td>
+<td>Advanced OLAP operations</td>
+<td>Partial</td>
+<td>PERCENT_RANK, CUME_DIST and ROW_NUMBER supported</td>
+</tr>
+<tr>
+<td>T613</td>
+<td>Sampling</td>
+<td>Yes</td>
+<td>Nonstandard syntax via TABLESAMPLE</td>
+</tr>
+<tr>
+<td>T614</td>
+<td>NTILE function</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T615</td>
+<td>LEAD and LAG functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T616</td>
+<td>Null treatment option for LEAD and LAG functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T617</td>
+<td>FIRST_VALUE and LAST_VALUE functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T621</td>
+<td>Enhanced numeric functions</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>T631</td>
+<td>IN predicate with one list element</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

@@ -136,7 +136,7 @@ ASF
 </ul>
 <p>As the name suggests, multiple shared locks can be acquired at the same time, whereas X lock blocks all other locks.</p>
 <p>The compatibility matrix is as follows:</p>
-<p>| <strong>Lock****Compatibility</strong>  | <strong>Existing Lock</strong> |
+<p>| <strong>Lock</strong> <strong>Compatibility</strong>  | <strong>Existing Lock</strong> |
 | <strong>S</strong>  | <strong>X</strong> |
 | <strong>Requested</strong> <strong>Lock</strong> | <strong>S</strong> | <strong>True</strong> | <strong>False</strong> |
 | <strong>X</strong> | <strong>False</strong> | <strong>False</strong> |</p>
@@ -146,24 +146,84 @@ ASF
 <p>For a partitioned table, the idea is as follows:</p>
 <p>A &lsquo;S&rsquo; lock on table and relevant partition is acquired when a read is being performed. For all other operations, an &lsquo;X&rsquo; lock is taken on the partition. However, if the change is only applicable to the newer partitions, a &lsquo;S&rsquo; lock is acquired on the table, whereas if the change is applicable to all partitions, a &lsquo;X&rsquo; lock is acquired on the table. Thus, older partitions can be read and written into, while the newer partitions are being converted to RCFile. Whenever a partition is being locked in any mode, all its parents are locked in &lsquo;S&rsquo; mode.</p>
 <p>Based on this, the lock acquired for an operation is as follows:</p>
-<p>| <strong>Hive Command</strong> | <strong>Locks Acquired</strong> |
-| <strong>select .. T1 partition P1</strong> | <strong>S on T1, T1.P1</strong> |
-| <strong>insert into T2(partition P2) select .. T1 partition P1</strong> | <strong>S on T2, T1, T1.P1 and X on T2.P2</strong> |
-| <strong>insert into T2(partition P.Q) select .. T1 partition P1</strong> | <strong>S on T2, T2.P, T1, T1.P1 and X on T2.P.Q</strong> |
-| <strong>alter table T1 rename T2</strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 add cols</strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 replace cols</strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 change cols</strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 <strong>concatenate</strong></strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 add partition P1</strong> | <strong>S on T1, X on T1.P1</strong> |
-| <strong>alter table T1 drop partition P1</strong> | <strong>S on T1, X on T1.P1</strong> |
-| <strong>alter table T1 touch partition P1</strong> | <strong>S on T1, X on T1.P1</strong> |
-| <strong>alter table T1 set serdeproperties</strong> | <strong>S on T1</strong> |
-| <strong>alter table T1 set serializer</strong> | <strong>S on T1</strong> |
-| <strong>alter table T1 set file format</strong> | <strong>S on T1</strong> |
-| <strong>alter table T1 set tblproperties</strong> | <strong>X on T1</strong> |
-| <strong>alter table T1 partition P1 concatenate</strong> | <strong>X on T1.P1</strong> |
-| <strong>drop table T1</strong> | <strong>X on T1</strong> |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Hive Command</strong></th>
+<th><strong>Locks Acquired</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>select .. T1 partition P1</strong></td>
+<td><strong>S on T1, T1.P1</strong></td>
+</tr>
+<tr>
+<td><strong>insert into T2(partition P2) select .. T1 partition P1</strong></td>
+<td><strong>S on T2, T1, T1.P1 and X on T2.P2</strong></td>
+</tr>
+<tr>
+<td><strong>insert into T2(partition P.Q) select .. T1 partition P1</strong></td>
+<td><strong>S on T2, T2.P, T1, T1.P1 and X on T2.P.Q</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 rename T2</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 add cols</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 replace cols</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 change cols</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 <strong>concatenate</strong></strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 add partition P1</strong></td>
+<td><strong>S on T1, X on T1.P1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 drop partition P1</strong></td>
+<td><strong>S on T1, X on T1.P1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 touch partition P1</strong></td>
+<td><strong>S on T1, X on T1.P1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 set serdeproperties</strong></td>
+<td><strong>S on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 set serializer</strong></td>
+<td><strong>S on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 set file format</strong></td>
+<td><strong>S on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 set tblproperties</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+<tr>
+<td><strong>alter table T1 partition P1 concatenate</strong></td>
+<td><strong>X on T1.P1</strong></td>
+</tr>
+<tr>
+<td><strong>drop table T1</strong></td>
+<td><strong>X on T1</strong></td>
+</tr>
+</tbody>
+</table>
 <p>In order to avoid deadlocks, a very simple scheme is proposed here. All the objects to be locked are sorted lexicographically, and the required mode lock is acquired. Note that in some cases, the list of objects may not be known &ndash; for example in case of dynamic partitions, the list of partitions being modified is not known at compile time &ndash; so, the list is generated conservatively. Since the number of partitions may not be known, an exclusive lock is supposed to be taken (but currently not due to <a href=https://issues.apache.org/jira/browse/HIVE-3509>HIVE-3509</a> bug) on the table, or the prefix that is known.</p>
 <p>Two new configurable parameters will be added to decide the number of retries for the lock and the wait time between each retry. If the number of retries are really high, it can lead to a live lock. Look at ZooKeeper recipes (<a href=http://hadoop.apache.org/zookeeper/docs/r3.1.2/recipes.html#sc_recipes_Locks>http://hadoop.apache.org/zookeeper/docs/r3.1.2/recipes.html#sc_recipes_Locks</a>) to see how read/write locks can be implemented using the zookeeper apis. Note that instead of waiting, the lock request will be denied. The existing locks will be released, and all of them will be retried after the retry interval.</p>
 <p>The recipe listed above will not work as specified, because of the hierarchical nature of locks.</p>

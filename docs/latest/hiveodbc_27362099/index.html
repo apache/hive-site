@@ -311,48 +311,184 @@ You can manually install the unixODBC API wrapper by doing the following:</p>
 </li>
 <li>ODBC API Function Support (does anyone know how to remove the linking from the function names?):</li>
 </ul>
-<p>| <code>SQLAllocConnect</code> | supported |
-| <code>SQLAllocEnv</code> | supported |
-| <code>SQLAllocHandle</code> | supported |
-| <code>SQLAllocStmt</code> | supported |
-| <code>SQLBindCol</code> | supported |
-| <code>SQLBindParameter</code> | NOT supported |
-| <code>SQLCancel</code> | NOT supported |
-| <code>SQLColAttribute</code> | supported |
-| <code>SQLColumns</code> | supported |
-| <code>SQLConnect</code> | supported |
-| <code>SQLDescribeCol</code> | supported |
-| <code>SQLDescribeParam</code> | NOT supported |
-| <code>SQLDisconnect</code> | supported |
-| <code>SQLDriverConnect</code> | supported |
-| <code>SQLError</code> | supported |
-| <code>SQLExecDirect</code> | supported |
-| <code>SQLExecute</code> | supported |
-| <code>SQLExtendedFetch</code> | NOT supported |
-| <code>SQLFetch</code> | supported |
-| <code>SQLFetchScroll</code> | NOT supported |
-| <code>SQLFreeConnect</code> | supported |
-| <code>SQLFreeEnv</code> | supported |
-| <code>SQLFreeHandle</code> | supported |
-| <code>SQLFreeStmt</code> | supported |
-| <code>SQLGetConnectAttr</code> | NOT supported |
-| <code>SQLGetData</code> | supported (however, SQLSTATE not returning values) |
-| <code>SQLGetDiagField</code> | NOT supported |
-| <code>SQLGetDiagRec</code> | supported |
-| <code>SQLGetInfo</code> | partially supported; (to get MSTR v9 running) |
-| <code>SQLMoreResults</code> | NOT supported |
-| <code>SQLNumParams</code> | NOT supported |
-| <code>SQLNumResultCols</code> | supported |
-| <code>SQLParamOptions</code> | NOT supported |
-| <code>SQLPrepare</code> | supported; but does not permit parameter markers |
-| <code>SQLRowCount</code> | NOT supported |
-| <code>SQLSetConnectAttr</code> | NOT supported |
-| <code>SQLSetConnectOption</code> | NOT supported |
-| <code>SQLSetEnvAttr</code> | Limited support |
-| <code>SQLSetStmtAttr</code> | NOT supported |
-| <code>SQLSetStmtOption</code> | NOT supported |
-| <code>SQLTables</code> | supported |
-| <code>SQLTransact</code> | NOT supported |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SQLAllocConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocEnv</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocHandle</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocStmt</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLBindCol</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLBindParameter</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLCancel</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLColAttribute</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLColumns</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDescribeCol</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDescribeParam</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLDisconnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDriverConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLError</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExecDirect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExecute</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExtendedFetch</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLFetch</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFetchScroll</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeEnv</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeHandle</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeStmt</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLGetConnectAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLGetData</code></td>
+<td>supported (however, SQLSTATE not returning values)</td>
+</tr>
+<tr>
+<td><code>SQLGetDiagField</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLGetDiagRec</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLGetInfo</code></td>
+<td>partially supported; (to get MSTR v9 running)</td>
+</tr>
+<tr>
+<td><code>SQLMoreResults</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLNumParams</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLNumResultCols</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLParamOptions</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLPrepare</code></td>
+<td>supported; but does not permit parameter markers</td>
+</tr>
+<tr>
+<td><code>SQLRowCount</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetConnectAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetConnectOption</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetEnvAttr</code></td>
+<td>Limited support</td>
+</tr>
+<tr>
+<td><code>SQLSetStmtAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetStmtOption</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLTables</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLTransact</code></td>
+<td>NOT supported</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

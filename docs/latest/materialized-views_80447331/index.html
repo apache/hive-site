@@ -397,272 +397,286 @@ GROUP BY floor(time to month);
 <pre tabindex=0><code>SET hive.materializedview.rewriting.time.window=10min;
 </code></pre><p>The parameter value can be also overridden by a concrete materialized view just by setting it as a table property when the materialization is created.</p>
 <h2 id=open-issues-jira>Open issues (JIRA)</h2>
-<p>|
-| |
-| Key | Summary | T | Created | Updated | Due | Assignee | Reporter | P | Status | Resolution |
-| <a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">HIVE-14494</a> | <a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">Add support for BUILD DEFERRED</a> | <a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">Improvement</a> |
-Aug 09, 2016
-|
-Feb 27, 2024
-| |
-Ashish Sharma
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">HIVE-14499</a> | <a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">Add HMS metrics for materialized views</a> | <a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">Improvement</a> |
-Aug 09, 2016
-|
-Feb 27, 2024
-| |
-John Sherman
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">HIVE-18621</a> | <a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">Replicate materialized views creation metadata with correct database name</a> | <a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">Sub-task</a> |
-Feb 05, 2018
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Minor |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">HIVE-18960</a> | <a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">Make Materialized view invalidation cache work with catalogs</a> | <a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">Sub-task</a> |
-Mar 14, 2018
-|
-Mar 14, 2018
-| |
-Alan Gates
-|
-Alan Gates
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">HIVE-19114</a> | <a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">MV rewriting not being triggered for last query in materialized_view_rewrite_4.q</a> | <a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">Bug</a> |
-Apr 05, 2018
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Critical |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">HIVE-19407</a> | <a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">Only support materialized views stored either as ACID or in selected custom storage handlers</a> | <a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">Improvement</a> |
-May 03, 2018
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">HIVE-20543</a> | <a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">Support replication of Materialized views</a> | <a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">Sub-task</a> |
-Sep 12, 2018
-|
-Aug 21, 2020
-| |
-Aasha Medhi
-|
-Sankar Hariappan
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">HIVE-20773</a> | <a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">Query result cache might contain stale MV data</a> | <a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">Bug</a> |
-Oct 18, 2018
-|
-Jun 23, 2021
-| |
-Unassigned
-|
-Oliver Draese
-| Critical |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">HIVE-21133</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">Support views with rewriting enabled useful for debugging</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">Improvement</a> |
-Jan 18, 2019
-|
-Feb 27, 2024
-| |
-Jesús Camacho Rodríguez
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Patch Available
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">HIVE-21945</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">Enable sorted dynamic partitioning optimization for materialized views with custom data organization</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">Bug</a> |
-Jul 02, 2019
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">HIVE-21946</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">Consider data organization of a materialized view in transparent rewriting</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">Bug</a> |
-Jul 02, 2019
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">HIVE-21953</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">Enable CLUSTERED ON/DISTRIBUTED ON+SORTED ON in incremental rebuild of materialized views</a> | <a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">Bug</a> |
-Jul 04, 2019
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">HIVE-22111</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">Materialized view based on replicated table might not get refreshed</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">Bug</a> |
-Aug 14, 2019
-|
-Feb 27, 2024
-| |
-Unassigned
-|
-Peter Vary
-| Minor |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">HIVE-22253</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">General task tracking improvements for materialized views</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">Task</a> |
-Sep 27, 2019
-|
-Jul 20, 2020
-| |
-Unassigned
-|
-Steve Carlin
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">HIVE-22260</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">Materialized view rewriting does not support <code>UNION</code> operator, exact match can work under view</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">Sub-task</a> |
-Sep 27, 2019
-|
-Sep 27, 2019
-| |
-Unassigned
-|
-Steve Carlin
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">HIVE-22262</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">Aggregate pushdown through join may generate additional rewriting opportunities</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">Sub-task</a> |
-Sep 27, 2019
-|
-Feb 27, 2024
-| |
-Vineet Garg
-|
-Steve Carlin
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">HIVE-22264</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">Degenerate case where mv not being used: computing aggregate on group by field</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">Sub-task</a> |
-Sep 27, 2019
-|
-Sep 27, 2019
-| |
-Unassigned
-|
-Steve Carlin
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">HIVE-22265</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">Ordinals in view are not being picked up in materialized view</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">Sub-task</a> |
-Sep 27, 2019
-|
-Feb 11, 2020
-| |
-Unassigned
-|
-Steve Carlin
-| Critical |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">HIVE-22921</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">materialized_view_partitioned_3.q relies on hive.optimize.sort.dynamic.partition property</a> | <a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">Test</a> |
-Feb 21, 2020
-|
-Feb 27, 2024
-| |
-Vineet Garg
-|
-Jesús Camacho Rodríguez
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-| <a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">HIVE-24335</a> | <a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">RelOptMaterialization creates LogicalProject on top of HiveTableScan</a> | <a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">Bug</a> |
-Oct 30, 2020
-|
-Apr 04, 2024
-| |
-Krisztian Kasa
-|
-Krisztian Kasa
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-|</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Summary</th>
+<th>T</th>
+<th>Created</th>
+<th>Updated</th>
+<th>Due</th>
+<th>Assignee</th>
+<th>Reporter</th>
+<th>P</th>
+<th>Status</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">HIVE-14494</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">Add support for BUILD DEFERRED</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14494?src=confmacro">Improvement</a></td>
+<td>Aug 09, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Ashish Sharma</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">HIVE-14499</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">Add HMS metrics for materialized views</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro">Improvement</a></td>
+<td>Aug 09, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>John Sherman</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">HIVE-18621</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">Replicate materialized views creation metadata with correct database name</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro">Sub-task</a></td>
+<td>Feb 05, 2018</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Minor</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">HIVE-18960</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">Make Materialized view invalidation cache work with catalogs</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro">Sub-task</a></td>
+<td>Mar 14, 2018</td>
+<td>Mar 14, 2018</td>
+<td></td>
+<td>Alan Gates</td>
+<td>Alan Gates</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">HIVE-19114</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">MV rewriting not being triggered for last query in materialized_view_rewrite_4.q</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro">Bug</a></td>
+<td>Apr 05, 2018</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Critical</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">HIVE-19407</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">Only support materialized views stored either as ACID or in selected custom storage handlers</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro">Improvement</a></td>
+<td>May 03, 2018</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">HIVE-20543</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">Support replication of Materialized views</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro">Sub-task</a></td>
+<td>Sep 12, 2018</td>
+<td>Aug 21, 2020</td>
+<td></td>
+<td>Aasha Medhi</td>
+<td>Sankar Hariappan</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">HIVE-20773</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">Query result cache might contain stale MV data</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro">Bug</a></td>
+<td>Oct 18, 2018</td>
+<td>Jun 23, 2021</td>
+<td></td>
+<td>Unassigned</td>
+<td>Oliver Draese</td>
+<td>Critical</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">HIVE-21133</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">Support views with rewriting enabled useful for debugging</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21133?src=confmacro">Improvement</a></td>
+<td>Jan 18, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Patch Available</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">HIVE-21945</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">Enable sorted dynamic partitioning optimization for materialized views with custom data organization</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21945?src=confmacro">Bug</a></td>
+<td>Jul 02, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">HIVE-21946</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">Consider data organization of a materialized view in transparent rewriting</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21946?src=confmacro">Bug</a></td>
+<td>Jul 02, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">HIVE-21953</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">Enable CLUSTERED ON/DISTRIBUTED ON+SORTED ON in incremental rebuild of materialized views</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-21953?src=confmacro">Bug</a></td>
+<td>Jul 04, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">HIVE-22111</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">Materialized view based on replicated table might not get refreshed</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22111?src=confmacro">Bug</a></td>
+<td>Aug 14, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Peter Vary</td>
+<td>Minor</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">HIVE-22253</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">General task tracking improvements for materialized views</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22253?src=confmacro">Task</a></td>
+<td>Sep 27, 2019</td>
+<td>Jul 20, 2020</td>
+<td></td>
+<td>Unassigned</td>
+<td>Steve Carlin</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">HIVE-22260</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">Materialized view rewriting does not support <code>UNION</code> operator, exact match can work under view</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22260?src=confmacro">Sub-task</a></td>
+<td>Sep 27, 2019</td>
+<td>Sep 27, 2019</td>
+<td></td>
+<td>Unassigned</td>
+<td>Steve Carlin</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">HIVE-22262</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">Aggregate pushdown through join may generate additional rewriting opportunities</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro">Sub-task</a></td>
+<td>Sep 27, 2019</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Vineet Garg</td>
+<td>Steve Carlin</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">HIVE-22264</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">Degenerate case where mv not being used: computing aggregate on group by field</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro">Sub-task</a></td>
+<td>Sep 27, 2019</td>
+<td>Sep 27, 2019</td>
+<td></td>
+<td>Unassigned</td>
+<td>Steve Carlin</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">HIVE-22265</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">Ordinals in view are not being picked up in materialized view</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro">Sub-task</a></td>
+<td>Sep 27, 2019</td>
+<td>Feb 11, 2020</td>
+<td></td>
+<td>Unassigned</td>
+<td>Steve Carlin</td>
+<td>Critical</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">HIVE-22921</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">materialized_view_partitioned_3.q relies on hive.optimize.sort.dynamic.partition property</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro">Test</a></td>
+<td>Feb 21, 2020</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Vineet Garg</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">HIVE-24335</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">RelOptMaterialization creates LogicalProject on top of HiveTableScan</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro">Bug</a></td>
+<td>Oct 30, 2020</td>
+<td>Apr 04, 2024</td>
+<td></td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+</tbody>
+</table>
 <p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to retrieve your issues</p>
-<p>|</p>
 <p>Showing 20 out of
 <a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+%22Materialized+views%22++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC++&src=confmacro">24 issues</a></p>
 </div>

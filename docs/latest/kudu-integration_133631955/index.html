@@ -149,13 +149,11 @@ ASF
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
+<td><code>hive.kudu.master.addresses.default</code></td>
+<td>Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the <em>kudu.master_addresses</em> table property is not set.</td>
 </tr>
 </tbody>
 </table>
-<pre tabindex=0><code>hive.kudu.master.addresses.default
-</code></pre><p>| Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the <em>kudu.master_addresses</em> table property is not set. |</p>
 <p>For those familiar with Kudu, the master addresses configuration is the normal configuration value necessary to connect to Kudu. The easiest way to provide this value is by using the <code>-hiveconf</code> option to the <code>hive</code> command. </p>
 <pre tabindex=0><code>hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
 </code></pre><h2 id=table-creation>Table Creation</h2>

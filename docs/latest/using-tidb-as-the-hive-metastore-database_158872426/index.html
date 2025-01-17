@@ -156,11 +156,32 @@ ASF
 </li>
 </ul>
 <h2 id=components-required>Components required</h2>
-<p>| <strong>Component</strong> | <strong>Version</strong> |
-| Hive | 3.1.2 |
-| Hadoop | 2.6.0-cdh-5.16.1 |
-| TiDB | 4.0 |
-| Java Development Kit (JDK) | 1.8.0_221 |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Component</strong></th>
+<th><strong>Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>3.1.2</td>
+</tr>
+<tr>
+<td>Hadoop</td>
+<td>2.6.0-cdh-5.16.1</td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>Java Development Kit (JDK)</td>
+<td>1.8.0_221</td>
+</tr>
+</tbody>
+</table>
 <p>There are no mandatory requirements for the component versions, as long as the components are compatible with each other. After you confirm that you have successfully installed Hadoop and JDK and can use them directly, you can move on to the next step.</p>
 <h2 id=install-a-hive-cluster>Install a Hive cluster</h2>
 <h3 id=step-1-deploy-a-tidb-cluster>Step 1: Deploy a TiDB cluster</h3>
@@ -281,20 +302,13 @@ export JAVA\_HOME=...
 <td>3.x</td>
 <td>Tested</td>
 </tr>
-<tr>
-<td>2. Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.</td>
-<td></td>
-</tr>
-<tr>
-<td>3. Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.</td>
-<td></td>
-</tr>
-<tr>
-<td>4. How to handle <code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error) </code> exception? In TiDB, execute the following command <code>set global tidb\_skip\_isolation\_level\_check=1;</code> to skip check.</td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<ol start=2>
+<li>Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.</li>
+<li>Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.</li>
+<li>How to handle <code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error) </code> exception? In TiDB, execute the following command <code>set global tidb\_skip\_isolation\_level\_check=1;</code> to skip check.</li>
+</ol>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

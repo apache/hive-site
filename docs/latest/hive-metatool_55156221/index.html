@@ -142,31 +142,35 @@ ASF
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
+<td><code>-listFSRoot</code></td>
+<td>Print the location of the current file system root (NameNode). The value is prefixed with <code>hdfs:// scheme</code>.</td>
+</tr>
+<tr>
+<td><code>-updateLocation &lt;new-loc> &lt;old-loc></code></td>
+<td>Update records in the Hive metastore to point to a new NameNode location (file system root location). Both <em>new-loc</em> and <em>old-loc</em> should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, <em>new-loc</em> should match the value of the <code>dfs.nameservices</code> property. The <em>old-loc</em> should match the value returned by the <strong>listFSRoot</strong> option.When run with the <strong>dryRun</strong> option, changes are displayed but are not persisted. When run with the <strong>serdepropKey</strong>/<strong>tablePropKey</strong> option, <strong>updateLocation</strong> looks for the <em>serde-prop-key</em>/<em>table-prop-key</em> that is specified and updates its value if found.</td>
+</tr>
+<tr>
+<td><code>-serdePropKey &lt;serde-prop-key></code></td>
+<td>Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-tablePropKey &lt;table-prop-key></code></td>
+<td>Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-dryRun</code></td>
+<td>Perform a dry run of <strong>updateLocation</strong> changes. The <strong>updateLocation</strong> changes are displayed but not persisted.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-executeJDOQL &lt;query-string></code></td>
+<td>Execute the given JDOQL query.</td>
+</tr>
+<tr>
+<td><code>-help</code></td>
+<td>Print a list of command options and their descriptions.</td>
 </tr>
 </tbody>
 </table>
-<pre tabindex=0><code>-listFSRoot
-</code></pre><p>| Print the location of the current file system root (NameNode). The value is prefixed with <code>hdfs:// scheme</code>. |
-|</p>
-<pre tabindex=0><code>-updateLocation &lt;new-loc&gt; &lt;old-loc&gt;
-</code></pre><p>| Update records in the Hive metastore to point to a new NameNode location (file system root location). Both <em>new-loc</em> and <em>old-loc</em> should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, <em>new-loc</em> should match the value of the <code>dfs.nameservices</code> property. The <em>old-loc</em> should match the value returned by the <strong>listFSRoot</strong> option.When run with the <strong>dryRun</strong> option, changes are displayed but are not persisted. When run with the <strong>serdepropKey</strong>/<strong>tablePropKey</strong> option, <strong>updateLocation</strong> looks for the <em>serde-prop-key</em>/<em>table-prop-key</em> that is specified and updates its value if found. |
-|</p>
-<pre tabindex=0><code>-serdePropKey &lt;serde-prop-key&gt;
-</code></pre><p>| Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option. |
-|</p>
-<pre tabindex=0><code>-tablePropKey &lt;table-prop-key&gt;
-</code></pre><p>| Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option. |
-|</p>
-<pre tabindex=0><code>-dryRun
-</code></pre><p>| Perform a dry run of <strong>updateLocation</strong> changes. The <strong>updateLocation</strong> changes are displayed but not persisted.This option is valid only with the <strong>updateLocation</strong> option. |
-|</p>
-<pre tabindex=0><code>-executeJDOQL &lt;query-string&gt;
-</code></pre><p>| Execute the given JDOQL query. |
-|</p>
-<pre tabindex=0><code>-help
-</code></pre><p>| Print a list of command options and their descriptions. |</p>
 <p>If you are unsure which version of Avro SerDe is used, pass both <strong>serdePropKey</strong> and <strong>tablePropKey</strong> arguments with their respective values for the keys to <strong>updateLocation</strong>.</p>
 <p>Hive Configuration Directory</p>
 <p>Note that <code>metatool</code> is a command for Hive administrators and it needs direct access to the metastore RDBMS. In some environments, the RDBMS login information (especially password or the password key) is only stored on the metastore server host or in a metastore server specific config directory (with more restrictive file system permissions). In such cases, make sure you run on the metastore server machine, as the hive user, and also set the HIVE_CONF_DIR environment variable appropriately (for example, <code>export HIVE\_CONF\_DIR=*&lt;path to metastore server config dir>*</code>).</p>

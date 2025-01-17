@@ -132,17 +132,73 @@ ASF
 <h1 id=comparison>Comparison</h1>
 <p>Let&rsquo;s summarize the example of how the different semantics described above apply to a value inserted into a SQL table.</p>
 <p>If the timestamp literal &lsquo;1969-07-20 16:17:39&rsquo; is inserted in Washington D.C. and then queried from Paris, it might be shown in the following ways based on timestamp semantics:</p>
-<p>| SQL type | Semantics | Result | Explanation |
-| TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | 1969-07-20 16:17:39 | Displayed like the original timestamp literal. |
-| TIMESTAMP WITH LOCAL TIME ZONE | Instant | 1969-07-20 21:17:39 | Differs from the original timestamp literal, but refers to the same time instant. |
-| TIMESTAMP WITH TIME ZONE | OffsetDateTime | 1969-07-20 16:17:39 (UTC -04:00) | Displayed like the original literal but showing the time zone offset as well. |</p>
+<table>
+<thead>
+<tr>
+<th>SQL type</th>
+<th>Semantics</th>
+<th>Result</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIMESTAMP [WITHOUT TIME ZONE]</td>
+<td>LocalDateTime</td>
+<td>1969-07-20 16:17:39</td>
+<td>Displayed like the original timestamp literal.</td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH LOCAL TIME ZONE</td>
+<td>Instant</td>
+<td>1969-07-20 21:17:39</td>
+<td>Differs from the original timestamp literal, but refers to the same time instant.</td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>OffsetDateTime</td>
+<td>1969-07-20 16:17:39 (UTC -04:00)</td>
+<td>Displayed like the original literal but showing the time zone offset as well.</td>
+</tr>
+</tbody>
+</table>
 <p>Of course, the different semantics do not only affect the textual representations but perhaps more importantly SQL function behavior as well. These allow users to take advantage of timestamps in different ways or to explicitly create different textual representations instead of the implicit ones shown above.</p>
 <p>In fact, even the implicit textual representations could be different than shown above, for example Instant could be displayed normalized to UTC or OffsetDateTime could be adjusted to the local time zone by default. The examples shown above are just common ways of creating an implicit textual representation for the different semantics, but the truly important difference lies in what details can and what details can not be reconstructed from the different semantics:</p>
-<p>| | Reconstructible details |
-| SQL type | Semantics | Local clock reading | Time instant | Time zone offset |
-| TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | ✓ | | |
-| TIMESTAMP WITH LOCAL TIME ZONE | Instant | | ✓ | |
-| TIMESTAMP WITH TIME ZONE | OffsetDateTime | ✓ | ✓ | ✓ |</p>
+<p>Reconstructible details:</p>
+<table>
+<thead>
+<tr>
+<th>SQL type</th>
+<th>Semantics</th>
+<th style=text-align:center>Local clock reading</th>
+<th style=text-align:center>Time instant</th>
+<th style=text-align:center>Time zone offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIMESTAMP [WITHOUT TIME ZONE]</td>
+<td>LocalDateTime</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center></td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH LOCAL TIME ZONE</td>
+<td>Instant</td>
+<td style=text-align:center></td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>OffsetDateTime</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center>✓</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

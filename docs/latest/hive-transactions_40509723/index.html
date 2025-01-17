@@ -249,40 +249,203 @@ drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t
 <p>The following sections list all of the configuration parameters that affect Hive transactions and compaction.  Also see <a href=#limitations>Limitations</a> above and <a href=#table-properties>Table Properties</a> below.</p>
 <h3 id=new-configuration-parameters-for-transactions>New Configuration Parameters for Transactions</h3>
 <p>A number of new configuration parameters have been added to the system to support transactions.</p>
-<p>| <strong>Configuration key</strong> | <strong>Values</strong> | <strong>Location</strong> | <strong>Notes</strong> |
-| <a href=#hive-txn-manager>hive.txn.manager</a>  | <em>Default:</em> org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager<em>Value required for transactions:</em> org.apache.hadoop.hive.ql.lockmgr.DbTxnManager | Client/HiveServer2 | DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions. |
-| <a href=#hive-txn-strict-locking-mode>hive.txn.strict.locking.mode</a> | <em>Default:</em> true | Client/ HiveServer2 | In strict mode non-ACID resources use standard R/W lock semantics, e.g. INSERT will acquire exclusive lock. In non-strict mode, for non-ACID resources, INSERT will only acquire shared lock, which allows two concurrent writes to the same partition but still lets lock manager prevent DROP TABLE etc. when the table is being written to (as of <a href=https://issues.apache.org/jira/browse/HIVE-15774>Hive 2.2.0</a>). |
-| <a href=#hive-txn-timeout>hive.txn.timeout</a>  | <em>Default:</em> 300 | Client/HiveServer2/Metastore  | Time after which transactions are declared aborted if the client has not sent a heartbeat, in seconds. It&rsquo;s critical that this property has the same value for all components/services.5 |
-| <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.txn.heartbeat.threadpool.size>hive.txn.heartbeat.threadpool.size</a> | <em>Default:</em> 5 | Client/HiveServer2 | The number of threads to use for heartbeating (as of <a href=https://issues.apache.org/jira/browse/HIVE-12366>Hive 1.3.0 and 2.0.0</a>). |
-| <a href=#hive-timedout-txn-reaper-start>hive.timedout.txn.reaper.start</a> | <em>Default:</em> 100s | Metastore | Time delay of first reaper (the process which aborts timed-out transactions) run after the metastore starts (as of <a href=https://issues.apache.org/jira/browse/HIVE-11317>Hive 1.3.0</a>). Controls AcidHouseKeeperServcie above. |
-| <a href=#hive-timedout-txn-reaper-interval>hive.timedout.txn.reaper.interval</a> | <em>Default:</em> 180s | Metastore | Time interval describing how often the reaper (the process which aborts timed-out transactions) runs (as of <a href=https://issues.apache.org/jira/browse/HIVE-11317>Hive 1.3.0</a>). Controls AcidHouseKeeperServcie above. |
-| <a href=#hive-txn-max-open-batch>hive.txn.max.open.batch</a> | <em>Default:</em> 1000 | Client | Maximum number of transactions that can be fetched in one call to open_txns().1 |
-| <a href=#hive-max-open-txns>hive.max.open.txns</a> | <em>Default:</em> 100000 | HiveServer2/ Metastore | Maximum number of open transactions. If current open transactions reach this limit, future open transaction requests will be rejected, until the number goes below the limit. (As of <a href=https://issues.apache.org/jira/browse/HIVE-13249>Hive 1.3.0 and 2.1.0</a>.) |
-| <a href=#hive-count-open-txns-interval>hive.count.open.txns.interval</a> | <em>Default:</em> 1s | HiveServer2/ Metastore | Time in seconds between checks to count open transactions (as of <a href=https://issues.apache.org/jira/browse/HIVE-13249>Hive 1.3.0 and 2.1.0</a>). |
-| <a href=#hive-txn-retryable-sqlex-regex>hive.txn.retryable.sqlex.regex</a> | <em>Default:</em> "" (empty string) | HiveServer2/ Metastore | Comma separated list of regular expression patterns for SQL state, error code, and error message of retryable SQLExceptions, that&rsquo;s suitable for the Hive metastore database (as of <a href=https://issues.apache.org/jira/browse/HIVE-12637>Hive 1.3.0 and 2.1.0</a>).For an example, see <a href=#configuration-properties>Configuration Properties</a>. |
-| <a href=#hive-compactor-initiator-on>hive.compactor.initiator.on</a> | <em>Default:</em> false<em>Value required for transactions:</em> true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the initiator thread on this metastore instance. Prior to <a href=https://issues.apache.org/jira/browse/HIVE-11388>Hive 1.3.0</a> it&rsquo;s critical that this is enabled on exactly one standalone metastore service instance (not enforced yet).As of <a href=https://issues.apache.org/jira/browse/HIVE-11388>Hive 1.3.0</a> this property may be enabled on any number of standalone metastore instances. |
-| <a href=#hive-compactor-cleaner-on>hive.compactor.cleaner.on</a> | <em>Default:</em> false<em>Value required for transactions:</em> true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the cleaner thread on this metastore instance. Before <strong>Hive 4.0.0</strong> Cleaner thread can be started/stopped with config hive.compactor.initiator.on. This config helps to enable/disable initiator/cleaner threads independently |
-| <a href=#hive-compactor-worker-threads>hive.compactor.worker.threads</a> | <em>Default:</em> 0<em>Value required for transactions:</em> > 0 on at least one instance of the Thrift metastore service | Metastore | How many compactor worker threads to run on this metastore instance.2 |
-| <a href=#hive-compactor-worker-timeout>hive.compactor.worker.timeout</a> | <em>Default:</em> 86400 | Metastore | Time in seconds after which a compaction job will be declared failed and the compaction re-queued. |
-| <a href=#hive-compactor-cleaner-run-interval>hive.compactor.cleaner.run.interval</a> | <em>Default</em>: 5000 | Metastore | Time in milliseconds between runs of the cleaner thread. (<a href=https://issues.apache.org/jira/browse/HIVE-8258>Hive 0.14.0</a> and later.) |
-| <a href=#hive-compactor-check-interval>hive.compactor.check.interval</a> | <em>Default:</em> 300 | Metastore | Time in seconds between checks to see if any tables or partitions need to be compacted.3 |
-| <a href=#hive-compactor-delta-num-threshold>hive.compactor.delta.num.threshold</a> | <em>Default:</em> 10 | Metastore | Number of delta directories in a table or partition that will trigger a minor compaction. |
-| <a href=#hive-compactor-delta-pct-threshold>hive.compactor.delta.pct.threshold</a> | <em>Default:</em> 0.1 | Metastore | Percentage (fractional) size of the delta files relative to the base that will trigger a major compaction. 1 = 100%, so the default 0.1 = 10%. |
-| <a href=#hive-compactor-abortedtxn-threshold>hive.compactor.abortedtxn.threshold</a> | <em>Default:</em> 1000 | Metastore | Number of aborted transactions involving a given table or partition that will trigger a major compaction. |
-| <a href=#hive-compactor-aborted-txn-time-threshold>hive.compactor.aborted.txn.time.threshold</a> | <em>Default</em>: 12h | Metastore | Age of table/partition&rsquo;s oldest aborted transaction when compaction will be triggered. Default time unit is: hours. Set to a negative number to disable. |
-| <a href=#hive-compactor-max-num-delta>hive.compactor.max.num.delta</a> | Default: 500 | Metastore | Maximum number of delta files that the compactor will attempt to handle in a single job (as of <a href=https://issues.apache.org/jira/browse/HIVE-11540>Hive 1.3.0</a>).4 |
-| <a href=#hive-compactor-job-queue>hive.compactor.job.queue</a> | <em>Default</em>: "" (empty string) |  Metastore |  Used to specify name of Hadoop queue to which Compaction jobs will be submitted. Set to empty string to let Hadoop choose the queue (as of <a href=https://issues.apache.org/jira/browse/HIVE-11997>Hive 1.3.0</a>). |
-| Compaction History |
-| hive.compactor.history.retention.succeeded | <em>Default: 3</em> | Metastore | Number of successful compaction entries to retain in history (per partition). |
-| hive.compactor.history.retention.failed | <em>Default: 3</em> | Metastore | Number of failed compaction entries to retain in history (per partition). |
-| hive.compactor.history.retention.attempted | <em>Default: 2</em> | Metastore | Number of attempted compaction entries to retain in history (per partition). |
-| hive.compactor.initiator.failed.compacts.threshold | <em>Default: 2</em> | Metastore | Number of of consecutive failed compactions for a given partition after which the Initiator will stop attempting to schedule compactions automatically. It is still possible to use <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable/PartitionCompact>ALTER TABLE</a> to initiate compaction. Once a manually initiated compaction succeeds auto initiated compactions will resume. Note that this must be less than hive.compactor.history.retention.failed. |
-| hive.compactor.history.reaper.interval | <em>Default: 2m</em> | Metastore | Controls how often the process to purge historical record of compactions runs. |</p>
-<p>1hive.txn.max.open.batch controls how many transactions streaming agents such as Flume or Storm open simultaneously.  The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt).  Thus increasing this value decreases the number of delta files created by streaming agents.  But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.</p>
-<p> 2Worker threads spawn MapReduce jobs to do compactions.  They do not do the compactions themselves.  Increasing the number of worker threads will decrease the time it takes tables or partitions to be compacted once they are determined to need compaction.  It will also increase the background load on the Hadoop cluster as more MapReduce jobs will be running in the background.  Each compaction can handle one partition at a time (or whole table if it&rsquo;s unpartitioned).  </p>
-<p>3Decreasing this value will reduce the time it takes for compaction to be started for a table or partition that requires compaction.  However, checking if compaction is needed requires several calls to the NameNode for each table or partition that has had a transaction done on it since the last major compaction.  So decreasing this value will increase the load on the NameNode.</p>
-<p>4If the compactor detects a very high number of delta files, it will first run several partial minor compactions (currently sequentially) and then perform the compaction actually requested.</p>
-<p>5If the value is not the same active transactions may be determined to be &ldquo;timed out&rdquo; and consequently Aborted.  This will result in errors like &ldquo;No such transaction&mldr;&rdquo;, &ldquo;No such lock &mldr;&rdquo;</p>
+<table>
+<thead>
+<tr>
+<th><strong>Configuration key</strong></th>
+<th><strong>Values</strong></th>
+<th><strong>Location</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=#hive-txn-manager>hive.txn.manager</a> </td>
+<td><em>Default:</em> org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager<em>Value required for transactions:</em> org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</td>
+<td>Client/HiveServer2</td>
+<td>DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions.</td>
+</tr>
+<tr>
+<td><a href=#hive-txn-strict-locking-mode>hive.txn.strict.locking.mode</a></td>
+<td><em>Default:</em> true</td>
+<td>Client/ HiveServer2</td>
+<td>In strict mode non-ACID resources use standard R/W lock semantics, e.g. INSERT will acquire exclusive lock. In non-strict mode, for non-ACID resources, INSERT will only acquire shared lock, which allows two concurrent writes to the same partition but still lets lock manager prevent DROP TABLE etc. when the table is being written to (as of <a href=https://issues.apache.org/jira/browse/HIVE-15774>Hive 2.2.0</a>).</td>
+</tr>
+<tr>
+<td><a href=#hive-txn-timeout>hive.txn.timeout</a> </td>
+<td><em>Default:</em> 300</td>
+<td>Client/HiveServer2/Metastore </td>
+<td>Time after which transactions are declared aborted if the client has not sent a heartbeat, in seconds. It&rsquo;s critical that this property has the same value for all components/services.5</td>
+</tr>
+<tr>
+<td><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.txn.heartbeat.threadpool.size>hive.txn.heartbeat.threadpool.size</a></td>
+<td><em>Default:</em> 5</td>
+<td>Client/HiveServer2</td>
+<td>The number of threads to use for heartbeating (as of <a href=https://issues.apache.org/jira/browse/HIVE-12366>Hive 1.3.0 and 2.0.0</a>).</td>
+</tr>
+<tr>
+<td><a href=#hive-timedout-txn-reaper-start>hive.timedout.txn.reaper.start</a></td>
+<td><em>Default:</em> 100s</td>
+<td>Metastore</td>
+<td>Time delay of first reaper (the process which aborts timed-out transactions) run after the metastore starts (as of <a href=https://issues.apache.org/jira/browse/HIVE-11317>Hive 1.3.0</a>). Controls AcidHouseKeeperServcie above.</td>
+</tr>
+<tr>
+<td><a href=#hive-timedout-txn-reaper-interval>hive.timedout.txn.reaper.interval</a></td>
+<td><em>Default:</em> 180s</td>
+<td>Metastore</td>
+<td>Time interval describing how often the reaper (the process which aborts timed-out transactions) runs (as of <a href=https://issues.apache.org/jira/browse/HIVE-11317>Hive 1.3.0</a>). Controls AcidHouseKeeperServcie above.</td>
+</tr>
+<tr>
+<td><a href=#hive-txn-max-open-batch>hive.txn.max.open.batch</a></td>
+<td><em>Default:</em> 1000</td>
+<td>Client</td>
+<td>Maximum number of transactions that can be fetched in one call to open_txns().1</td>
+</tr>
+<tr>
+<td><a href=#hive-max-open-txns>hive.max.open.txns</a></td>
+<td><em>Default:</em> 100000</td>
+<td>HiveServer2/ Metastore</td>
+<td>Maximum number of open transactions. If current open transactions reach this limit, future open transaction requests will be rejected, until the number goes below the limit. (As of <a href=https://issues.apache.org/jira/browse/HIVE-13249>Hive 1.3.0 and 2.1.0</a>.)</td>
+</tr>
+<tr>
+<td><a href=#hive-count-open-txns-interval>hive.count.open.txns.interval</a></td>
+<td><em>Default:</em> 1s</td>
+<td>HiveServer2/ Metastore</td>
+<td>Time in seconds between checks to count open transactions (as of <a href=https://issues.apache.org/jira/browse/HIVE-13249>Hive 1.3.0 and 2.1.0</a>).</td>
+</tr>
+<tr>
+<td><a href=#hive-txn-retryable-sqlex-regex>hive.txn.retryable.sqlex.regex</a></td>
+<td><em>Default:</em> "" (empty string)</td>
+<td>HiveServer2/ Metastore</td>
+<td>Comma separated list of regular expression patterns for SQL state, error code, and error message of retryable SQLExceptions, that&rsquo;s suitable for the Hive metastore database (as of <a href=https://issues.apache.org/jira/browse/HIVE-12637>Hive 1.3.0 and 2.1.0</a>).For an example, see <a href=#configuration-properties>Configuration Properties</a>.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-initiator-on>hive.compactor.initiator.on</a></td>
+<td><em>Default:</em> false<em>Value required for transactions:</em> true (for exactly one instance of the Thrift metastore service)</td>
+<td>Metastore</td>
+<td>Whether to run the initiator thread on this metastore instance. Prior to <a href=https://issues.apache.org/jira/browse/HIVE-11388>Hive 1.3.0</a> it&rsquo;s critical that this is enabled on exactly one standalone metastore service instance (not enforced yet).As of <a href=https://issues.apache.org/jira/browse/HIVE-11388>Hive 1.3.0</a> this property may be enabled on any number of standalone metastore instances.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-cleaner-on>hive.compactor.cleaner.on</a></td>
+<td><em>Default:</em> false<em>Value required for transactions:</em> true (for exactly one instance of the Thrift metastore service)</td>
+<td>Metastore</td>
+<td>Whether to run the cleaner thread on this metastore instance. Before <strong>Hive 4.0.0</strong> Cleaner thread can be started/stopped with config hive.compactor.initiator.on. This config helps to enable/disable initiator/cleaner threads independently</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-worker-threads>hive.compactor.worker.threads</a></td>
+<td><em>Default:</em> 0<em>Value required for transactions:</em> > 0 on at least one instance of the Thrift metastore service</td>
+<td>Metastore</td>
+<td>How many compactor worker threads to run on this metastore instance.2</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-worker-timeout>hive.compactor.worker.timeout</a></td>
+<td><em>Default:</em> 86400</td>
+<td>Metastore</td>
+<td>Time in seconds after which a compaction job will be declared failed and the compaction re-queued.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-cleaner-run-interval>hive.compactor.cleaner.run.interval</a></td>
+<td><em>Default</em>: 5000</td>
+<td>Metastore</td>
+<td>Time in milliseconds between runs of the cleaner thread. (<a href=https://issues.apache.org/jira/browse/HIVE-8258>Hive 0.14.0</a> and later.)</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-check-interval>hive.compactor.check.interval</a></td>
+<td><em>Default:</em> 300</td>
+<td>Metastore</td>
+<td>Time in seconds between checks to see if any tables or partitions need to be compacted.3</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-delta-num-threshold>hive.compactor.delta.num.threshold</a></td>
+<td><em>Default:</em> 10</td>
+<td>Metastore</td>
+<td>Number of delta directories in a table or partition that will trigger a minor compaction.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-delta-pct-threshold>hive.compactor.delta.pct.threshold</a></td>
+<td><em>Default:</em> 0.1</td>
+<td>Metastore</td>
+<td>Percentage (fractional) size of the delta files relative to the base that will trigger a major compaction. 1 = 100%, so the default 0.1 = 10%.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-abortedtxn-threshold>hive.compactor.abortedtxn.threshold</a></td>
+<td><em>Default:</em> 1000</td>
+<td>Metastore</td>
+<td>Number of aborted transactions involving a given table or partition that will trigger a major compaction.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-aborted-txn-time-threshold>hive.compactor.aborted.txn.time.threshold</a></td>
+<td><em>Default</em>: 12h</td>
+<td>Metastore</td>
+<td>Age of table/partition&rsquo;s oldest aborted transaction when compaction will be triggered. Default time unit is: hours. Set to a negative number to disable.</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-max-num-delta>hive.compactor.max.num.delta</a></td>
+<td>Default: 500</td>
+<td>Metastore</td>
+<td>Maximum number of delta files that the compactor will attempt to handle in a single job (as of <a href=https://issues.apache.org/jira/browse/HIVE-11540>Hive 1.3.0</a>).4</td>
+</tr>
+<tr>
+<td><a href=#hive-compactor-job-queue>hive.compactor.job.queue</a></td>
+<td><em>Default</em>: "" (empty string)</td>
+<td> Metastore</td>
+<td> Used to specify name of Hadoop queue to which Compaction jobs will be submitted. Set to empty string to let Hadoop choose the queue (as of <a href=https://issues.apache.org/jira/browse/HIVE-11997>Hive 1.3.0</a>).</td>
+</tr>
+<tr>
+<td>Compaction History</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>hive.compactor.history.retention.succeeded</td>
+<td><em>Default: 3</em></td>
+<td>Metastore</td>
+<td>Number of successful compaction entries to retain in history (per partition).</td>
+</tr>
+<tr>
+<td>hive.compactor.history.retention.failed</td>
+<td><em>Default: 3</em></td>
+<td>Metastore</td>
+<td>Number of failed compaction entries to retain in history (per partition).</td>
+</tr>
+<tr>
+<td>hive.compactor.history.retention.attempted</td>
+<td><em>Default: 2</em></td>
+<td>Metastore</td>
+<td>Number of attempted compaction entries to retain in history (per partition).</td>
+</tr>
+<tr>
+<td>hive.compactor.initiator.failed.compacts.threshold</td>
+<td><em>Default: 2</em></td>
+<td>Metastore</td>
+<td>Number of of consecutive failed compactions for a given partition after which the Initiator will stop attempting to schedule compactions automatically. It is still possible to use <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable/PartitionCompact>ALTER TABLE</a> to initiate compaction. Once a manually initiated compaction succeeds auto initiated compactions will resume. Note that this must be less than hive.compactor.history.retention.failed.</td>
+</tr>
+<tr>
+<td>hive.compactor.history.reaper.interval</td>
+<td><em>Default: 2m</em></td>
+<td>Metastore</td>
+<td>Controls how often the process to purge historical record of compactions runs.</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>hive.txn.max.open.batch controls how many transactions streaming agents such as Flume or Storm open simultaneously.  The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt).  Thus increasing this value decreases the number of delta files created by streaming agents.  But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.</p>
+</li>
+<li>
+<p>Worker threads spawn MapReduce jobs to do compactions.  They do not do the compactions themselves.  Increasing the number of worker threads will decrease the time it takes tables or partitions to be compacted once they are determined to need compaction.  It will also increase the background load on the Hadoop cluster as more MapReduce jobs will be running in the background.  Each compaction can handle one partition at a time (or whole table if it&rsquo;s unpartitioned).  </p>
+</li>
+<li>
+<p>Decreasing this value will reduce the time it takes for compaction to be started for a table or partition that requires compaction.  However, checking if compaction is needed requires several calls to the NameNode for each table or partition that has had a transaction done on it since the last major compaction.  So decreasing this value will increase the load on the NameNode.</p>
+</li>
+<li>
+<p>If the compactor detects a very high number of delta files, it will first run several partial minor compactions (currently sequentially) and then perform the compaction actually requested.</p>
+</li>
+<li>
+<p>If the value is not the same active transactions may be determined to be &ldquo;timed out&rdquo; and consequently Aborted.  This will result in errors like &ldquo;No such transaction&mldr;&rdquo;, &ldquo;No such lock &mldr;&rdquo;</p>
+</li>
+</ol>
 <h3 id=configuration-values-to-set-forinsert-update-delete>Configuration Values to Set for <em>INSERT, UPDATE, DELETE</em></h3>
 <p>In addition to the new parameters listed above, some existing parameters need to be set to support *INSERT &mldr; VALUES, UPDATE,*and <em>DELETE</em>.</p>
 <table>

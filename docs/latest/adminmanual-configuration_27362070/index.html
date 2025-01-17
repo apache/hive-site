@@ -393,25 +393,109 @@ hive-site.xml -> hivemetastore-site.xml -> hiveserver2-site.xml -> &lsquo;<code>
 <p>Please see <a href=https://hive.apache.org/docs/latest/adminmanual-metastore-administration_27362076/>Hive Metastore Administration</a> for information about the configuration variables used to set up the metastore in local, remote, or embedded mode. Also see descriptions in the <a href=#metastore>Metastore</a> section of the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/configuration-properties_27842758/>Hive Configuration Properties</a>.</p>
 <p>For security configuration (Hive 0.10 and later), see the <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a> section in the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/configuration-properties_27842758/>Hive Configuration Properties</a>.</p>
 <h4 id=configuration-variables-used-to-interact-with-hadoop>Configuration Variables Used to Interact with Hadoop</h4>
-<p>| <strong>Variable Name</strong> | <strong>Description</strong> | <strong>Default Value</strong> |
-| hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP_HOME/bin/hadoop |
-| hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP_HOME/conf |
-| fs.default.name | The default name of the filesystem (for example, localhost for hdfs://:8020).For YARN this configuration variable is called fs.defaultFS. | file:/// |
-| map.input.file | The filename the map is reading from. | null |
-| mapred.job.tracker | The URL to the jobtracker. If this is set to local then map/reduce is run in the local mode. | local |
-| mapred.reduce.tasks | The number of reducers for each map/reduce stage in the query plan. | 1 |
-| mapred.job.name | The name of the map/reduce job. | null |
-| mapreduce.input.fileinputformat.split.maxsize | For splittable data this changes the portion of the data that each mapper is assigned. By default, each mapper is assigned based on the block sizes of the source files. Entering a value larger than the block size will decrease the number of splits which creates fewer mappers. Entering a value smaller than the block size will increase the number of splits which creates more mappers. | empty |
-| fs.trash.interval | The interval, in minutes, after which a trash checkpoint directory is deleted. (This is also the interval between checkpoints.) The checkpoint directory is located in <code>.Trash</code> under the user&rsquo;s home directory and contains files and directories that were removed since the previous checkpoint.Any setting greater than 0 enables the trash feature of HDFS.When using the Transparent Data Encryption (TDE) feature, set this to 0 in Hadoop core-site.xml as documented in <a href=https://issues.apache.org/jira/browse/HIVE-10978>HIVE-10978</a>. | 0 |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Variable Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hadoop.bin.path</td>
+<td>The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM.</td>
+<td>$HADOOP_HOME/bin/hadoop</td>
+</tr>
+<tr>
+<td>hadoop.config.dir</td>
+<td>The location of the configuration directory of the Hadoop installation.</td>
+<td>$HADOOP_HOME/conf</td>
+</tr>
+<tr>
+<td>fs.default.name</td>
+<td>The default name of the filesystem (for example, localhost for hdfs://:8020).For YARN this configuration variable is called fs.defaultFS.</td>
+<td>file:///</td>
+</tr>
+<tr>
+<td>map.input.file</td>
+<td>The filename the map is reading from.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>mapred.job.tracker</td>
+<td>The URL to the jobtracker. If this is set to local then map/reduce is run in the local mode.</td>
+<td>local</td>
+</tr>
+<tr>
+<td>mapred.reduce.tasks</td>
+<td>The number of reducers for each map/reduce stage in the query plan.</td>
+<td>1</td>
+</tr>
+<tr>
+<td>mapred.job.name</td>
+<td>The name of the map/reduce job.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>mapreduce.input.fileinputformat.split.maxsize</td>
+<td>For splittable data this changes the portion of the data that each mapper is assigned. By default, each mapper is assigned based on the block sizes of the source files. Entering a value larger than the block size will decrease the number of splits which creates fewer mappers. Entering a value smaller than the block size will increase the number of splits which creates more mappers.</td>
+<td>empty</td>
+</tr>
+<tr>
+<td>fs.trash.interval</td>
+<td>The interval, in minutes, after which a trash checkpoint directory is deleted. (This is also the interval between checkpoints.) The checkpoint directory is located in <code>.Trash</code> under the user&rsquo;s home directory and contains files and directories that were removed since the previous checkpoint.Any setting greater than 0 enables the trash feature of HDFS.When using the Transparent Data Encryption (TDE) feature, set this to 0 in Hadoop core-site.xml as documented in <a href=https://issues.apache.org/jira/browse/HIVE-10978>HIVE-10978</a>.</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 <h4 id=hive-variables-used-to-pass-run-time-information>Hive Variables Used to Pass Run Time Information</h4>
-<p>| <strong>Variable Name</strong> | <strong>Description</strong> | <strong>Default Value</strong> |
-| hive.session.id | The id of the Hive Session. |   |
-| hive.query.string | The query string passed to the map/reduce job. |   |
-| hive.query.planid | The id of the plan for the map/reduce stage. |   |
-| hive.jobname.length | The maximum length of the jobname. | 50 |
-| hive.table.name | The name of the Hive table. This is passed to the user scripts through the script operator. |   |
-| hive.partition.name | The name of the Hive partition. This is passed to the user scripts through the script operator. |   |
-| hive.alias | The alias being processed. This is also passed to the user scripts through the script operator. |   |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Variable Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive.session.id</td>
+<td>The id of the Hive Session.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.query.string</td>
+<td>The query string passed to the map/reduce job.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.query.planid</td>
+<td>The id of the plan for the map/reduce stage.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.jobname.length</td>
+<td>The maximum length of the jobname.</td>
+<td>50</td>
+</tr>
+<tr>
+<td>hive.table.name</td>
+<td>The name of the Hive table. This is passed to the user scripts through the script operator.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.partition.name</td>
+<td>The name of the Hive partition. This is passed to the user scripts through the script operator.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.alias</td>
+<td>The alias being processed. This is also passed to the user scripts through the script operator.</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
 <h2 id=removing-hive-metastore-password-from-hive-configuration>Removing Hive Metastore Password from Hive Configuration</h2>
 <p>Support for this was added in Hive 0.14.0 with <a href=https://issues.apache.org/jira/browse/HIVE-7634>HIVE-7634</a> and <a href=https://issues.apache.org/jira/browse/HADOOP-10904>HADOOP-10904</a>. By setting up a CredentialProvider to handle storing/retrieval of passwords, you can remove the need to keep the Hive metastore password in cleartext in the Hive configuration.</p>
 <ol>

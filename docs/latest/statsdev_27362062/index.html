@@ -162,15 +162,129 @@ ASF
 <h3 id=column-statistics>Column Statistics</h3>
 <p>The second milestone was to support column level statistics. See <a href=https://hive.apache.org/docs/latest/column-statistics-in-hive_29131019/>Column Statistics in Hive</a> in the Design Documents.</p>
 <p>Supported column stats are:</p>
-<p>| <strong>BooleanColumnStatsData</strong> | <strong>DoubleColumnStatsData</strong> | <strong>LongColumnStatsData</strong> | <strong>StringColumnStatsData</strong> | <strong>BinaryColumnStatsData</strong> | <strong>DecimalColumnStatsData</strong> | <strong>Date</strong> | <strong>DateColumnStatsData</strong> | <strong>Timestamp</strong> | <strong>TimestampColumnStatsData</strong> | <strong>union ColumnStatisticsData</strong> |
-| 1: required i64 numTrues, | 1: optional double lowValue, | 1: optional i64 lowValue, | 1: required i64 maxColLen, | 1: required i64 maxColLen, | 1: optional Decimal lowValue, | 1: required i64 daysSinceEpoch | 1: optional Date lowValue, | 1: required i64 secondsSinceEpoch | 1: optional Timestamp lowValue, | 1: BooleanColumnStatsData booleanStats, |
-| 2: required i64 numFalses, | 2: optional double highValue, | 2: optional i64 highValue, | 2: required double avgColLen, | 2: required double avgColLen, | 2: optional Decimal highValue, | | 2: optional Date highValue, | | 2: optional Timestamp highValue, | 2: LongColumnStatsData longStats, |
-| 3: required i64 numNulls, | 3: required i64 numNulls, | 3: required i64 numNulls, | 3: required i64 numNulls, | 3: required i64 numNulls, | 3: required i64 numNulls, | | 3: required i64 numNulls, | | 3: required i64 numNulls, | 3: DoubleColumnStatsData doubleStats, |
-| 4: optional binary bitVectors | 4: required i64 numDVs, | 4: required i64 numDVs, | 4: required i64 numDVs, | 4: optional binary bitVectors | 4: required i64 numDVs, | | 4: required i64 numDVs, | | 4: required i64 numDVs, | 4: StringColumnStatsData stringStats, |
-| | 5: optional binary bitVectors, | 5: optional binary bitVectors, | 5: optional binary bitVectors | | 5: optional binary bitVectors, | | 5: optional binary bitVectors, | | 5: optional binary bitVectors, | 5: BinaryColumnStatsData binaryStats, |
-| | 6: optional binary histogram | 6: optional binary histogram | | | 6: optional binary histogram | | 6: optional binary histogram | | 6: optional binary histogram | 6: DecimalColumnStatsData decimalStats, |
-| | | | | | | | | | | 7: DateColumnStatsData dateStats, |
-| | | | | | | | | | | 8: TimestampColumnStatsData timestampStats |</p>
+<table>
+<thead>
+<tr>
+<th><strong>BooleanColumnStatsData</strong></th>
+<th><strong>DoubleColumnStatsData</strong></th>
+<th><strong>LongColumnStatsData</strong></th>
+<th><strong>StringColumnStatsData</strong></th>
+<th><strong>BinaryColumnStatsData</strong></th>
+<th><strong>DecimalColumnStatsData</strong></th>
+<th><strong>Date</strong></th>
+<th><strong>DateColumnStatsData</strong></th>
+<th><strong>Timestamp</strong></th>
+<th><strong>TimestampColumnStatsData</strong></th>
+<th><strong>union ColumnStatisticsData</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1: required i64 numTrues,</td>
+<td>1: optional double lowValue,</td>
+<td>1: optional i64 lowValue,</td>
+<td>1: required i64 maxColLen,</td>
+<td>1: required i64 maxColLen,</td>
+<td>1: optional Decimal lowValue,</td>
+<td>1: required i64 daysSinceEpoch</td>
+<td>1: optional Date lowValue,</td>
+<td>1: required i64 secondsSinceEpoch</td>
+<td>1: optional Timestamp lowValue,</td>
+<td>1: BooleanColumnStatsData booleanStats,</td>
+</tr>
+<tr>
+<td>2: required i64 numFalses,</td>
+<td>2: optional double highValue,</td>
+<td>2: optional i64 highValue,</td>
+<td>2: required double avgColLen,</td>
+<td>2: required double avgColLen,</td>
+<td>2: optional Decimal highValue,</td>
+<td></td>
+<td>2: optional Date highValue,</td>
+<td></td>
+<td>2: optional Timestamp highValue,</td>
+<td>2: LongColumnStatsData longStats,</td>
+</tr>
+<tr>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td></td>
+<td>3: required i64 numNulls,</td>
+<td></td>
+<td>3: required i64 numNulls,</td>
+<td>3: DoubleColumnStatsData doubleStats,</td>
+</tr>
+<tr>
+<td>4: optional binary bitVectors</td>
+<td>4: required i64 numDVs,</td>
+<td>4: required i64 numDVs,</td>
+<td>4: required i64 numDVs,</td>
+<td>4: optional binary bitVectors</td>
+<td>4: required i64 numDVs,</td>
+<td></td>
+<td>4: required i64 numDVs,</td>
+<td></td>
+<td>4: required i64 numDVs,</td>
+<td>4: StringColumnStatsData stringStats,</td>
+</tr>
+<tr>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td>5: optional binary bitVectors,</td>
+<td>5: optional binary bitVectors</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td>5: BinaryColumnStatsData binaryStats,</td>
+</tr>
+<tr>
+<td></td>
+<td>6: optional binary histogram</td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td>6: DecimalColumnStatsData decimalStats,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>7: DateColumnStatsData dateStats,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>8: TimestampColumnStatsData timestampStats</td>
+</tr>
+</tbody>
+</table>
 <p>Version: Column statistics</p>
 <p>Column level statistics were added in Hive 0.10.0 by <a href=https://issues.apache.org/jira/browse/HIVE-1362>HIVE-1362</a>.</p>
 <h3 id=top-k-statistics>Top K Statistics</h3>
@@ -406,7 +520,7 @@ set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
 <pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr) COMPUTE STATISTICS NOSCAN;
 
 </code></pre><p>then statistics, number of files and physical size in bytes are gathered for partitions 3 and 4 only.</p>
-<h3 id=analyze-table-table1-cache-metadata>ANALYZE TABLE CACHE METADATA</h3>
+<h3 id=analyze-table-table1-cache-metadata>ANALYZE TABLE &lt;table1> CACHE METADATA</h3>
 <p>Feature not implemented</p>
 <p>Hive Metastore on HBase was discontinued and removed in Hive 3.0.0. See <a href=https://hive.apache.org/docs/latest/hbasemetastoredevelopmentguide_55151960/>HBaseMetastoreDevelopmentGuide</a></p>
 <p>When Hive metastore is configured to use HBase, this command explicitly caches file metadata in HBase metastore.  </p>
@@ -414,272 +528,286 @@ set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
 <pre tabindex=0><code>ANALYZE TABLE Table1 CACHE METADATA;
 </code></pre><p>See feature details in <a href=https://issues.apache.org/jira/secure/attachment/12749746/HBase%20metastore%20split%20cache.pdf>HBase Metastore Split Cache</a> and (<a href=https://issues.apache.org/jira/browse/HIVE-12075>HIVE-12075</a>)</p>
 <h2 id=current-status-jira>Current Status (JIRA)</h2>
-<p>|
-| |
-| T | Key | Summary | Assignee | Reporter | P | Status | Resolution | Created | Updated | Due |
-| <a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">HIVE-28363</a> | <a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improve heuristics of FilterStatsRule without column stats</a> |
-Shohei Okumiya
-|
-Shohei Okumiya
-| Major |</p>
-<p>Resolved
-|
-Fixed
-|
-Jul 08, 2024
-|
-Sep 28, 2024
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">HIVE-28124</a> | <a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Do not allow non-numeric values in Hive table stats during an alter table</a> |
-Miklos Szurap
-|
-Miklos Szurap
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Mar 18, 2024
-|
-Mar 18, 2024
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">HIVE-27479</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Incorrect filter selectivity of BETWEEN expressions when using histograms</a> |
-Ryan Johnson
-|
-Ryan Johnson
-| Major |</p>
-<p>Resolved
-|
-Fixed
-|
-Jul 01, 2023
-|
-Jul 03, 2023
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">HIVE-27142</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Map Join not working as expected when joining non-native tables with native tables</a> |
-Syed Shameerur Rahman
-|
-Syed Shameerur Rahman
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Mar 15, 2023
-|
-Jul 10, 2024
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">HIVE-27065</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Exception in partition column statistics update with SQL Server db when histogram statistics is not enabled</a> |
-Venugopal Reddy K
-|
-Venugopal Reddy K
-| Major |</p>
-<p>Closed
-|
-Fixed
-|
-Feb 10, 2023
-|
-Aug 15, 2023
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">HIVE-27000</a> | <a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improve the modularity of the *ColumnStatsMerger classes</a> |
-Alessandro Solimando
-|
-Alessandro Solimando
-| Major |</p>
-<p>Closed
-|
-Fixed
-|
-Jan 30, 2023
-|
-Aug 15, 2023
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">HIVE-26772</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Add support for specific column statistics to ANALYZE TABLE command</a> |
-Unassigned
-|
-Alessandro Solimando
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Nov 23, 2022
-|
-Nov 23, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">HIVE-26370</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Check stats are up-to-date when getting materialized view state</a> |
-shahbaz
-|
-Krisztian Kasa
-| Major |</p>
-<p>Resolved
-|
-Won&rsquo;t Fix
-|
-Jul 05, 2022
-|
-Oct 21, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">HIVE-26313</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Aggregate all column statistics into a single field in metastore</a> |
-Unassigned
-|
-Alessandro Solimando
-| Major |</p>
-<p>In Progress
-|
-Unresolved
-|
-Jun 10, 2022
-|
-Mar 20, 2023
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Sub-task</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">HIVE-26297</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Refactoring ColumnStatsAggregator classes to reduce warnings</a> |
-Alessandro Solimando
-|
-Alessandro Solimando
-| Minor |</p>
-<p>Resolved
-|
-Abandoned
-|
-Jun 07, 2022
-|
-Dec 15, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">HIVE-26277</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">NPEs and rounding issues in ColumnStatsAggregator classes</a> |
-Alessandro Solimando
-|
-Alessandro Solimando
-| Major |</p>
-<p>Closed
-|
-Fixed
-|
-Jun 01, 2022
-|
-Nov 16, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">HIVE-26221</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Add histogram-based column statistics</a> |
-Alessandro Solimando
-|
-Alessandro Solimando
-| Major |</p>
-<p>Closed
-|
-Fixed
-|
-May 11, 2022
-|
-Aug 15, 2023
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Task</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">HIVE-26066</a> | <a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Remove deprecated GenericUDAFComputeStats</a> |
-Unassigned
-|
-Alessandro Solimando
-| Minor |</p>
-<p>Resolved
-|
-Duplicate
-|
-Mar 24, 2022
-|
-Mar 24, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Sub-task</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">HIVE-25918</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Invalid stats after multi inserting into the same partition</a> |
-Krisztian Kasa
-|
-Krisztian Kasa
-| Major |</p>
-<p>Resolved
-|
-Fixed
-|
-Feb 01, 2022
-|
-Feb 22, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">HIVE-25771</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Stats may be incorrect under concurrent inserts if direct-insert is Off</a> |
-Krisztian Kasa
-|
-Krisztian Kasa
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Dec 03, 2021
-|
-Dec 03, 2021
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">HIVE-25654</a> | <a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Stats of transactional table updated when transaction is rolled back</a> |
-Unassigned
-|
-Krisztian Kasa
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Oct 27, 2021
-|
-Oct 27, 2021
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">HIVE-24056</a> | <a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Column stats gather stage as part of import table command plan generation</a> |
-Ashish Sharma
-|
-Ashish Sharma
-| Major |</p>
-<p>In Progress
-|
-Unresolved
-|
-Aug 21, 2020
-|
-Aug 21, 2020
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Improvement</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">HIVE-23901</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Overhead of Logger in ColumnStatsMerger damage the performance</a> |
-Yu-Wen Lai
-|
-Yu-Wen Lai
-| Major |</p>
-<p>Closed
-|
-Fixed
-|
-Jul 23, 2020
-|
-Nov 17, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">HIVE-23887</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Reset table level basic/column stats during import.</a> |
-Ashish Sharma
-|
-Ashish Sharma
-| Minor |</p>
-<p>Closed
-|
-Fixed
-|
-Jul 21, 2020
-|
-Nov 17, 2022
-| |
-| <a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Bug</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">HIVE-23796</a> | <a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Multiple insert overwrite into a partitioned table doesn&rsquo;t gather column statistics for all partitions</a> |
-Unassigned
-|
-Yu-Wen Lai
-| Major |</p>
-<p>Open
-|
-Unresolved
-|
-Jul 02, 2020
-|
-Jul 02, 2020
-| |
-|</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>Key</th>
+<th>Summary</th>
+<th>Assignee</th>
+<th>Reporter</th>
+<th>P</th>
+<th>Status</th>
+<th>Resolution</th>
+<th>Created</th>
+<th>Updated</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">HIVE-28363</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improve heuristics of FilterStatsRule without column stats</a></td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Jul 08, 2024</td>
+<td>Sep 28, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">HIVE-28124</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Do not allow non-numeric values in Hive table stats during an alter table</a></td>
+<td>Miklos Szurap</td>
+<td>Miklos Szurap</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Mar 18, 2024</td>
+<td>Mar 18, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">HIVE-27479</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Incorrect filter selectivity of BETWEEN expressions when using histograms</a></td>
+<td>Ryan Johnson</td>
+<td>Ryan Johnson</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Jul 01, 2023</td>
+<td>Jul 03, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">HIVE-27142</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Map Join not working as expected when joining non-native tables with native tables</a></td>
+<td>Syed Shameerur Rahman</td>
+<td>Syed Shameerur Rahman</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Mar 15, 2023</td>
+<td>Jul 10, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">HIVE-27065</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Exception in partition column statistics update with SQL Server db when histogram statistics is not enabled</a></td>
+<td>Venugopal Reddy K</td>
+<td>Venugopal Reddy K</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Feb 10, 2023</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">HIVE-27000</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improve the modularity of the *ColumnStatsMerger classes</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jan 30, 2023</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">HIVE-26772</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Add support for specific column statistics to ANALYZE TABLE command</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Nov 23, 2022</td>
+<td>Nov 23, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">HIVE-26370</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Check stats are up-to-date when getting materialized view state</a></td>
+<td>shahbaz</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Won&rsquo;t Fix</td>
+<td>Jul 05, 2022</td>
+<td>Oct 21, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">HIVE-26313</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Aggregate all column statistics into a single field in metastore</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>In Progress</td>
+<td>Unresolved</td>
+<td>Jun 10, 2022</td>
+<td>Mar 20, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Sub-task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">HIVE-26297</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Refactoring ColumnStatsAggregator classes to reduce warnings</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Minor</td>
+<td>Resolved</td>
+<td>Abandoned</td>
+<td>Jun 07, 2022</td>
+<td>Dec 15, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">HIVE-26277</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">NPEs and rounding issues in ColumnStatsAggregator classes</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jun 01, 2022</td>
+<td>Nov 16, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">HIVE-26221</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Add histogram-based column statistics</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>May 11, 2022</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">HIVE-26066</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Remove deprecated GenericUDAFComputeStats</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Minor</td>
+<td>Resolved</td>
+<td>Duplicate</td>
+<td>Mar 24, 2022</td>
+<td>Mar 24, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Sub-task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">HIVE-25918</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Invalid stats after multi inserting into the same partition</a></td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Feb 01, 2022</td>
+<td>Feb 22, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">HIVE-25771</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Stats may be incorrect under concurrent inserts if direct-insert is Off</a></td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Dec 03, 2021</td>
+<td>Dec 03, 2021</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">HIVE-25654</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Stats of transactional table updated when transaction is rolled back</a></td>
+<td>Unassigned</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Oct 27, 2021</td>
+<td>Oct 27, 2021</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">HIVE-24056</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Column stats gather stage as part of import table command plan generation</a></td>
+<td>Ashish Sharma</td>
+<td>Ashish Sharma</td>
+<td>Major</td>
+<td>In Progress</td>
+<td>Unresolved</td>
+<td>Aug 21, 2020</td>
+<td>Aug 21, 2020</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">HIVE-23901</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Overhead of Logger in ColumnStatsMerger damage the performance</a></td>
+<td>Yu-Wen Lai</td>
+<td>Yu-Wen Lai</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jul 23, 2020</td>
+<td>Nov 17, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">HIVE-23887</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Reset table level basic/column stats during import.</a></td>
+<td>Ashish Sharma</td>
+<td>Ashish Sharma</td>
+<td>Minor</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jul 21, 2020</td>
+<td>Nov 17, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">HIVE-23796</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Multiple insert overwrite into a partitioned table doesn&rsquo;t gather column statistics for all partitions</a></td>
+<td>Unassigned</td>
+<td>Yu-Wen Lai</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Jul 02, 2020</td>
+<td>Jul 02, 2020</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to retrieve your issues</p>
-<p>|</p>
 <p>Showing 20 out of
 <a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22Statistics%22%29&tempMax=1000&src=confmacro">306 issues</a></p>
 </div>

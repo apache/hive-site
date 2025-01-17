@@ -268,24 +268,24 @@ ASF
 <tbody>
 <tr>
 <td>Vectorization</td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10609?src=confmacro">HIVE-10609</a> - Vectorization : Q64 fails with ClassCastException Closed</td>
+<td>committed</td>
+<td>vikram.dixit</td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10609?src=confmacro">HIVE-10609</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Optimizer</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10568?src=confmacro">HIVE-10568</a> Select count(distinct()) can have more optimal execution plan Closed</td>
+<td>committed</td>
+<td>hashutosh</td>
+</tr>
+<tr>
+<td>orc</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10591?src=confmacro">HIVE-10591</a> Support limited integer type promotion in ORC Closed</td>
+<td>committed</td>
+<td>prasanth_j</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-<p> </p>
 <p> </p>
 <p> </p>
 <h1 id=jiras-requested-to-be-included-in-12-release-after-rc0-preparation-begins-list-now-closed>JIRAS requested to be included in 1.2 release after RC0 preparation begins (list now closed)</h1>
@@ -305,80 +305,204 @@ ASF
 <tbody>
 <tr>
 <td>Testing Infrastructure</td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10514?src=confmacro">HIVE-10514</a> - Fix MiniCliDriver tests failure Closed</td>
+<td>committed</td>
+<td>sushanth</td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10514?src=confmacro">HIVE-10514</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10512?src=confmacro">HIVE-10512</a> - CBO (Calcite Return Path): SMBJoin conversion throws ClassCastException Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>Vectorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10450?src=confmacro">HIVE-10450</a> - More than one TableScan in MapWork not supported in Vectorization &ndash; causes query to fail during vectorization Closed</td>
+<td>committed</td>
+<td>mmccline</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10307?src=confmacro">HIVE-10307</a> - Support to use number literals in partition column Closed</td>
+<td>committed</td>
+<td>jxiang</td>
+</tr>
+<tr>
+<td>JDBC</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10499?src=confmacro">HIVE-10499</a> - Ensure Session/ZooKeeperClient instances are closed Closed</td>
+<td>committed</td>
+<td>jxiang</td>
+</tr>
+<tr>
+<td>hadoop-1</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10444?src=confmacro">HIVE-10444</a> - HIVE-10223 breaks hadoop-1 build Closed</td>
+<td>committed</td>
+<td>prasanth_j</td>
+</tr>
+<tr>
+<td>serde</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10437?src=confmacro">HIVE-10437</a> - NullPointerException on queries where map/reduce is not involved on tables with partitions Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10507?src=confmacro">HIVE-10507</a> - Expose RetryingMetastoreClient to other external users of metastore client like Flume and Storm. Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>auth</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10572?src=confmacro">HIVE-10572</a> - Improve Hive service test to check empty string Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10071?src=confmacro">HIVE-10071</a> - CBO (Calcite Return Path): Join to MultiJoin rule Closed</td>
+<td>committed</td>
+<td>ashutosh</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10546?src=confmacro">HIVE-10546</a> - genFileSinkPlan should use the generated SEL&rsquo;s RR for the partition col of FS Closed</td>
+<td>committed</td>
+<td>pxiong</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10549?src=confmacro">HIVE-10549</a> - CBO (Calcite Return Path): Enable NonBlockingOpDeDupProc Closed</td>
+<td>committed</td>
+<td>pxiong</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10455?src=confmacro">HIVE-10455</a> - CBO (Calcite Return Path): Different data types at Reducer before JoinOp Closed</td>
+<td>committed</td>
+<td>pxiong</td>
+</tr>
+<tr>
+<td>ORC</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10286?src=confmacro">HIVE-10286</a> - SARGs: Type Safety via PredicateLeaf.type Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10456?src=confmacro">HIVE-10456</a> - Grace Hash Join should not load spilled partitions on abort Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10543?src=confmacro">HIVE-10543</a> - improve error message in MetaStoreAuthzAPIAuthorizerEmbedOnly Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Tez</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10529?src=confmacro">HIVE-10529</a> - Remove references to tez task context before storing operator plan in object cache Closed</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10520?src=confmacro">HIVE-10520</a> - LLAP: Must reset small table result columns for Native Vectorization of Map Join Closed</td>
+<td>committed</td>
+<td>mmccline</td>
+</tr>
+<tr>
+<td>jdbc</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10544?src=confmacro">HIVE-10544</a> - Beeline/Hive JDBC Driver fails in HTTP mode on Windows with java.lang.NoSuchFieldError: INSTANCE Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-8915?src=confmacro">HIVE-8915</a> - Log file explosion due to non-existence of COMPACTION_QUEUE table Closed</td>
+<td>committed</td>
+<td>alangates</td>
+</tr>
+<tr>
+<td>vectorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9908?src=confmacro">HIVE-9908</a> - vectorization error binary type not supported, group by with binary columns Closed</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9456?src=confmacro">HIVE-9456</a> - Make Hive support unicode with MSSQL as Metastore backend Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10446?src=confmacro">HIVE-10446</a> - Hybrid Hybrid Grace Hash Join : java.lang.IllegalArgumentException in Kryo while spilling big table Closed</td>
+<td>resolved</td>
+<td>wzheng</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9582?src=confmacro">HIVE-9582</a> - HCatalog should use IMetaStoreClient interface Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>conf</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10539?src=confmacro">HIVE-10539</a> - set default value of hive.repl.task.factory Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Transactions</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10521?src=confmacro">HIVE-10521</a> - TxnHandler.timeOutTxns only times out some of the expired transactions Closed</td>
+<td>committed</td>
+<td>alangates</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10526?src=confmacro">HIVE-10526</a> - CBO (Calcite Return Path): HiveCost epsilon comparison should take row count in to account Closed</td>
+<td>committed</td>
+<td>hashutosh</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10506?src=confmacro">HIVE-10506</a> - CBO (Calcite Return Path): Disallow return path to be enable if CBO is off Closed</td>
+<td>committed</td>
+<td>jpullokkaran</td>
+</tr>
+<tr>
+<td>Tez</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10542?src=confmacro">HIVE-10542</a> - Full outer joins in tez produce incorrect results in certain cases Closed</td>
+<td>committed</td>
+<td>vikram.dixit</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-8696?src=confmacro">HIVE-8696</a> - HCatClientHMSImpl doesn&rsquo;t use a Retrying-HiveMetastoreClient. Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9743?src=confmacro">HIVE-9743</a> - Incorrect result set for vectorized left outer join Closed</td>
+<td>committed</td>
+<td>vikram.dixit</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10484?src=confmacro">HIVE-10484</a> - Vectorization : RuntimeException &ldquo;Big Table Retained Mapping duplicate column&rdquo; Closed</td>
+<td>committed</td>
+<td>vikram.dixit</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10530?src=confmacro">HIVE-10530</a> - Aggregate stats cache: bug fixes for RDBMS path Closed</td>
+<td>committed</td>
+<td>vgumashta</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-<h2 id=hive-10526httpsissuesapacheorgjirabrowsehive-10526srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10526?src=confmacro">HIVE-10526</a></h2>
-<p>CBO (Calcite Return Path): HiveCost epsilon comparison should take row count in to account
-Closed</p>
-<p>| committed | hashutosh |
-| CBO |</p>
-<h2 id=hive-10506httpsissuesapacheorgjirabrowsehive-10506srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10506?src=confmacro">HIVE-10506</a></h2>
-<p>CBO (Calcite Return Path): Disallow return path to be enable if CBO is off
-Closed</p>
-<h2 id=hive-10542httpsissuesapacheorgjirabrowsehive-10542srcconfmacro>| committed | jpullokkaran |
-| Tez |
-<a href="https://issues.apache.org/jira/browse/HIVE-10542?src=confmacro">HIVE-10542</a></h2>
-<h2 id=hive-8696httpsissuesapacheorgjirabrowsehive-8696srcconfmacro>Full outer joins in tez produce incorrect results in certain cases
-Closed
-| committed | vikram.dixit |
-| HCatalog |
-<a href="https://issues.apache.org/jira/browse/HIVE-8696?src=confmacro">HIVE-8696</a></h2>
-<h2 id=hive-9743httpsissuesapacheorgjirabrowsehive-9743srcconfmacro>HCatClientHMSImpl doesn&rsquo;t use a Retrying-HiveMetastoreClient.
-Closed
-| committed | sushanth |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-9743?src=confmacro">HIVE-9743</a></h2>
-<h2 id=hive-10484httpsissuesapacheorgjirabrowsehive-10484srcconfmacro>Incorrect result set for vectorized left outer join
-Closed
-| committed | vikram.dixit |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10484?src=confmacro">HIVE-10484</a></h2>
-<h2 id=hive-10530httpsissuesapacheorgjirabrowsehive-10530srcconfmacro>Vectorization : RuntimeException &ldquo;Big Table Retained Mapping duplicate column&rdquo;
-Closed
-| committed | vikram.dixit |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-10530?src=confmacro">HIVE-10530</a></h2>
-<p>Aggregate stats cache: bug fixes for RDBMS path
-Closed
-| committed | vgumashta |</p>
 <p> </p>
 <p> </p>
 <h1 id=jiras-requested-to-be-included-in-12-release-after-12-branch-creation-but-before-rc0-roll-outs-list-now-closed>JIRAS requested to be included in 1.2 release after 1.2 branch creation, but before RC0 roll outs (list now closed)</h1>
@@ -398,42 +522,120 @@ Closed
 <tbody>
 <tr>
 <td>Transactions</td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10500?src=confmacro">HIVE-10500</a> - Repeated deadlocks in underlying RDBMS cause transaction or lock failure Closed</td>
+<td>committed</td>
+<td>alangates</td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10500?src=confmacro">HIVE-10500</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>HBase Handler</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10490?src=confmacro">HIVE-10490</a> - HBase Snapshot IF fails at run time with missing dependency of MetricsRegistry Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>CBO</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10462?src=confmacro">HIVE-10462</a> - CBO (Calcite Return Path): MapJoin and SMBJoin conversion not triggered Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>Logical Optimizer</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10451?src=confmacro">HIVE-10451</a> - PTF deserializer fails if values are not used in reducer Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10421?src=confmacro">HIVE-10421</a> - DROP TABLE with qualified table name ignores database name when checking partitions Closed</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>Logging</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10441?src=confmacro">HIVE-10441</a> - Fix confusing log statement in SessionState about hive.execution.engine setting Closed</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>hadoop-1</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10370?src=confmacro">HIVE-10370</a> - Hive does not compile with -Phadoop-1 option Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>hadoop-1</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10431?src=confmacro">HIVE-10431</a> - HIVE-9555 broke hadoop-1 build Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>hadoop-1</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10442?src=confmacro">HIVE-10442</a> - HIVE-10098 broke hadoop-1 build Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>hadoop-1</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10443?src=confmacro">HIVE-10443</a> - HIVE-9870 broke hadoop-1 build Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>serde</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10428?src=confmacro">HIVE-10428</a> - NPE in RegexSerDe using HCat Closed</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>jdbc</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10465?src=confmacro">HIVE-10465</a> - whitelist restrictions don&rsquo;t get initialized in new copy of HiveConf Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10507?src=confmacro">HIVE-10507</a> - Expose RetryingMetastoreClient to other external users of metastore client like Flume and Storm. Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Tez/MR configs</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10508?src=confmacro">HIVE-10508</a> - Strip out password information from config passed to Tez/MR in cases where password encryption is not used Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10456?src=confmacro">HIVE-10456</a> - Grace Hash Join should not load spilled partitions on abort Closed</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>build & release</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10510?src=confmacro">HIVE-10510</a> - Change 1.2.0-SNAPSHOT to 1.2.0 in branch-1.2 Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10384?src=confmacro">HIVE-10384</a> - RetryingMetaStoreClient does not retry wrapped TTransportExceptions Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10517?src=confmacro">HIVE-10517</a> - HCatPartition should not be created with "" as location in tests Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9508?src=confmacro">HIVE-9508</a> - MetaStore client socket connection should have a lifetime Closed</td>
+<td>committed</td>
+<td>vgumashta</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-<h2 id=hive-9508httpsissuesapacheorgjirabrowsehive-9508srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-9508?src=confmacro">HIVE-9508</a></h2>
-<p>MetaStore client socket connection should have a lifetime
-Closed</p>
-<p>| committed | vgumashta |</p>
 <h1 id=jiras-requested-to-be-included-in-12-release-before-12-branch-creation-list-now-closed>JIRAS requested to be included in 1.2 release before 1.2 branch creation (list now closed)</h1>
 <p><strong>Requirement</strong> : General purpose feature jiras or bugfixes. </p>
 <p><strong>Deadline for inclusion</strong> : <strong>00:01, Saturday, 25th Apr 2015 PDT</strong></p>
@@ -451,118 +653,144 @@ Closed</p>
 <tbody>
 <tr>
 <td>Export/Import</td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10227?src=confmacro">HIVE-10227</a> - Concrete implementation of Export/Import based ReplicationTaskFactory Closed</td>
+<td>committed</td>
+<td>sushanth</td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10227?src=confmacro">HIVE-10227</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Export/Import</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10426?src=confmacro">HIVE-10426</a> - Rework/simplify ReplicationTaskFactory instantiation Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9824?src=confmacro">HIVE-9824</a> - LLAP: Native Vectorization of Map Join Closed</td>
+<td>committed</td>
+<td>mmccline</td>
+</tr>
+<tr>
+<td>Spark</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10347?src=confmacro">HIVE-10347</a> - Merge spark to trunk 4/15/2015 Closed</td>
+<td>committed</td>
+<td>szehon</td>
+</tr>
+<tr>
+<td>Types</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9917?src=confmacro">HIVE-9917</a> - After HIVE-3454 is done, make int to timestamp conversion configurable Closed</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10403?src=confmacro">HIVE-10403</a> - Add n-way join support for Hybrid Grace Hash Join Closed</td>
+<td>committed</td>
+<td>wzheng</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10323?src=confmacro">HIVE-10323</a> - Tez merge join operator does not honor hive.join.emit.interval Closed</td>
+<td>committed</td>
+<td>vikram.dixit</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9674?src=confmacro">HIVE-9674</a> - *DropPartitionEvent should handle partition-sets. Closed</td>
+<td>committed</td>
+<td>mithun</td>
+</tr>
+<tr>
+<td>Spark</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10477?src=confmacro">HIVE-10477</a> - Provide option to disable Spark tests Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>JDBC</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10447?src=confmacro">HIVE-10447</a> - Beeline JDBC Driver to support 2 way SSL Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>HiveServer2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-4625?src=confmacro">HIVE-4625</a> - HS2 should not attempt to get delegation token from metastore if using embedded metastore Closed</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10382?src=confmacro">HIVE-10382</a> - Aggregate stats cache for RDBMS based metastore codepath Closed</td>
+<td>committed</td>
+<td>vaibhav</td>
+</tr>
+<tr>
+<td>ACID</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10481?src=confmacro">HIVE-10481</a> - ACID table update finishes but values not really updated if column names are not all lower case Closed</td>
+<td>committed</td>
+<td>Eugene</td>
+</tr>
+<tr>
+<td>ACID</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10483?src=confmacro">HIVE-10483</a> - insert overwrite partition deadlocks on itself with DbTxnManager Closed</td>
+<td>committed</td>
+<td>Eugene</td>
+</tr>
+<tr>
+<td>ACID</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10151?src=confmacro">HIVE-10151</a> - insert into A select from B is broken when both A and B are Acid tables and bucketed the same way Closed</td>
+<td>committed</td>
+<td>Eugene</td>
+</tr>
+<tr>
+<td>Security</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9681?src=confmacro">HIVE-9681</a> - Extend HiveAuthorizationProvider to support partition-sets. Closed</td>
+<td>committed</td>
+<td>mithun</td>
+</tr>
+<tr>
+<td>Replication</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-8165?src=confmacro">HIVE-8165</a> - Annotation changes for replication Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-5672?src=confmacro">HIVE-5672</a> - Insert with custom separator not supported for non-local directory Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Parkquet</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10372?src=confmacro">HIVE-10372</a> - Update parquet version to 1.6.0 Closed</td>
+<td>committed</td>
+<td>Ferdinand Xu</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-5545?src=confmacro">HIVE-5545</a> - HCatRecord getInteger method returns String when used on Partition columns of type INT Closed</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>HiveServer2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-8890?src=confmacro">HIVE-8890</a> - HiveServer2 dynamic service discovery: use persistent ephemeral nodes curator recipe Closed</td>
+<td>committed</td>
+<td>vaibhav</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10213?src=confmacro">HIVE-10213</a> - MapReduce jobs using dynamic-partitioning fail on commit. Closed</td>
+<td>committed</td>
+<td>mithun</td>
+</tr>
+<tr>
+<td>HCatalog</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9845?src=confmacro">HIVE-9845</a> - HCatSplit repeats information making input split data size huge Closed</td>
+<td>committed</td>
+<td>mithun</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-<h2 id=hive-9917httpsissuesapacheorgjirabrowsehive-9917srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-9917?src=confmacro">HIVE-9917</a></h2>
-<p>After HIVE-3454 is done, make int to timestamp conversion configurable
-Closed</p>
-<h2 id=hive-10403httpsissuesapacheorgjirabrowsehive-10403srcconfmacro>| committed | jdere |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10403?src=confmacro">HIVE-10403</a></h2>
-<h2 id=hive-10323httpsissuesapacheorgjirabrowsehive-10323srcconfmacro>Add n-way join support for Hybrid Grace Hash Join
-Closed
-| committed | wzheng |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10323?src=confmacro">HIVE-10323</a></h2>
-<h2 id=hive-9674httpsissuesapacheorgjirabrowsehive-9674srcconfmacro>Tez merge join operator does not honor hive.join.emit.interval
-Closed
-| committed | vikram.dixit |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-9674?src=confmacro">HIVE-9674</a></h2>
-<h2 id=hive-10477httpsissuesapacheorgjirabrowsehive-10477srcconfmacro>*DropPartitionEvent should handle partition-sets.
-Closed
-| committed | mithun |
-| Spark |
-<a href="https://issues.apache.org/jira/browse/HIVE-10477?src=confmacro">HIVE-10477</a></h2>
-<h2 id=hive-10447httpsissuesapacheorgjirabrowsehive-10447srcconfmacro>Provide option to disable Spark tests
-Closed
-| committed | sushanth |
-| JDBC |
-<a href="https://issues.apache.org/jira/browse/HIVE-10447?src=confmacro">HIVE-10447</a></h2>
-<h2 id=hive-4625httpsissuesapacheorgjirabrowsehive-4625srcconfmacro>Beeline JDBC Driver to support 2 way SSL
-Closed
-| committed | thejas |
-| HiveServer2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-4625?src=confmacro">HIVE-4625</a></h2>
-<h2 id=hive-10382httpsissuesapacheorgjirabrowsehive-10382srcconfmacro>HS2 should not attempt to get delegation token from metastore if using embedded metastore
-Closed
-| committed | thejas |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-10382?src=confmacro">HIVE-10382</a></h2>
-<h2 id=hive-10481httpsissuesapacheorgjirabrowsehive-10481srcconfmacro>Aggregate stats cache for RDBMS based metastore codepath
-Closed
-| committed | vaibhav |
-| ACID |
-<a href="https://issues.apache.org/jira/browse/HIVE-10481?src=confmacro">HIVE-10481</a></h2>
-<h2 id=hive-10483httpsissuesapacheorgjirabrowsehive-10483srcconfmacro>ACID table update finishes but values not really updated if column names are not all lower case
-Closed
-| committed | Eugene |
-| ACID |
-<a href="https://issues.apache.org/jira/browse/HIVE-10483?src=confmacro">HIVE-10483</a></h2>
-<h2 id=hive-10151httpsissuesapacheorgjirabrowsehive-10151srcconfmacro>insert overwrite partition deadlocks on itself with DbTxnManager
-Closed
-| committed | Eugene |
-| ACID |
-<a href="https://issues.apache.org/jira/browse/HIVE-10151?src=confmacro">HIVE-10151</a></h2>
-<h2 id=hive-9681httpsissuesapacheorgjirabrowsehive-9681srcconfmacro>insert into A select from B is broken when both A and B are Acid tables and bucketed the same way
-Closed
-| committed | Eugene |
-| Security |
-<a href="https://issues.apache.org/jira/browse/HIVE-9681?src=confmacro">HIVE-9681</a></h2>
-<h2 id=hive-8165httpsissuesapacheorgjirabrowsehive-8165srcconfmacro>Extend HiveAuthorizationProvider to support partition-sets.
-Closed
-| committed | mithun |
-| Replication |
-<a href="https://issues.apache.org/jira/browse/HIVE-8165?src=confmacro">HIVE-8165</a></h2>
-<h2 id=hive-5672httpsissuesapacheorgjirabrowsehive-5672srcconfmacro>Annotation changes for replication
-Closed
-| committed | sushanth |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-5672?src=confmacro">HIVE-5672</a></h2>
-<h2 id=hive-10372httpsissuesapacheorgjirabrowsehive-10372srcconfmacro>Insert with custom separator not supported for non-local directory
-Closed
-| committed | sushanth |
-| Parkquet |
-<a href="https://issues.apache.org/jira/browse/HIVE-10372?src=confmacro">HIVE-10372</a></h2>
-<h2 id=hive-5545httpsissuesapacheorgjirabrowsehive-5545srcconfmacro>Update parquet version to 1.6.0
-Closed
-| committed | Ferdinand Xu |
-| HCatalog |
-<a href="https://issues.apache.org/jira/browse/HIVE-5545?src=confmacro">HIVE-5545</a></h2>
-<h2 id=hive-8890httpsissuesapacheorgjirabrowsehive-8890srcconfmacro>HCatRecord getInteger method returns String when used on Partition columns of type INT
-Closed
-| committed | sushanth |
-| HiveServer2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-8890?src=confmacro">HIVE-8890</a></h2>
-<h2 id=hive-10213httpsissuesapacheorgjirabrowsehive-10213srcconfmacro>HiveServer2 dynamic service discovery: use persistent ephemeral nodes curator recipe
-Closed
-| committed | vaibhav |
-| HCatalog |
-<a href="https://issues.apache.org/jira/browse/HIVE-10213?src=confmacro">HIVE-10213</a></h2>
-<h2 id=hive-9845httpsissuesapacheorgjirabrowsehive-9845srcconfmacro>MapReduce jobs using dynamic-partitioning fail on commit.
-Closed
-| committed | mithun |
-| HCatalog |
-<a href="https://issues.apache.org/jira/browse/HIVE-9845?src=confmacro">HIVE-9845</a></h2>
-<p>HCatSplit repeats information making input split data size huge
-Closed
-| committed | mithun |</p>
 <p> </p>
 <p> </p>
 </div>

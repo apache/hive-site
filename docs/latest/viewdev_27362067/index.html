@@ -195,10 +195,32 @@ DROP VIEW view\_name
 <p><img src=plugins/servlet/confluence/placeholder/unknown-attachment alt title=HiveViewFlat.png></p>
 <p>(Storing the view definition as a table property may not work since property values are limited to VARCHAR(767), and view definitions may be much longer than that, so we&rsquo;ll need to use a LOB.)</p>
 <p>Comparison of the two approaches:</p>
-<p>|   | <strong>Inheritance Model</strong> | <strong>Flat Model</strong> |
-| <em>JDO Support</em> | Need to investigate how well inheritance works for our purposes | Nothing special |
-| <em>Metadata queries from existing code/tools</em> | Existing queries for tables will NOT include views in results; those that need to will have to be modified to reference base class instead | Existing queries for tables WILL include views in results; those that are not supposed to will need to filter them out |
-| <em>Metastore upgrade on deployment</em> | Need to test carefully to make sure introducing inheritance doesn&rsquo;t corrupt existing metastore instances | Nothing special, just adding a new attribute |</p>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th><strong>Inheritance Model</strong></th>
+<th><strong>Flat Model</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>JDO Support</em></td>
+<td>Need to investigate how well inheritance works for our purposes</td>
+<td>Nothing special</td>
+</tr>
+<tr>
+<td><em>Metadata queries from existing code/tools</em></td>
+<td>Existing queries for tables will NOT include views in results; those that need to will have to be modified to reference base class instead</td>
+<td>Existing queries for tables WILL include views in results; those that are not supposed to will need to filter them out</td>
+</tr>
+<tr>
+<td><em>Metastore upgrade on deployment</em></td>
+<td>Need to test carefully to make sure introducing inheritance doesn&rsquo;t corrupt existing metastore instances</td>
+<td>Nothing special, just adding a new attribute</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Update 30-Dec-2009</strong>: Based on a design review meeting, we&rsquo;re going to go with the flat model. Prasad pointed out that in the future, for materialized views, we may need the view definition to be tracked at the partition level as well, so that when we change the view definition, we don&rsquo;t have to discard existing materialized partitions if the new view result can be derived from the old one. So it may make sense to add the view definition as a new attribute of StorageDescriptor (since that is already present at both table and partition level).</p>
 <p><strong>Update 20-Jan-2010</strong>: After further discussion with Prasad, we decided to put the view definition on the table object instead; for details, see discussion in <a href=https://issues.apache.org/jira/browse/HIVE-972>HIVE-972</a>. Also, per <a href=https://issues.apache.org/jira/browse/HIVE-1068>HIVE-1068</a>, we added an attribute to store the type (view, managed table, external table) for each table descriptor.</p>
 <h3 id=dependency-tracking>Dependency Tracking</h3>

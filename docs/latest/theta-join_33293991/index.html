@@ -194,11 +194,47 @@ ASF
 <p>Reduce-side joins will be implemented via 1-Bucket-Theta as described in [3]. This requires the cardinality of the two relations and therefore to perform a reduce-side theta join statistics must be turned on. Initially if the required statistics do not exist an exception will be thrown indicating the problem. After the initial implementation we can use a method to estimate the cardinality.</p>
 <p>As previously mention a detailed description of 1-Bucket-Theta is located [3]. As such the discussion of the internals of the algorithm will be brief. Joining two relations S and T can be viewed as a matrix with the S, the smaller relation, on the left and T on the right.</p>
 <p>The matrix is partitioned by r, the number of reducers. An example join matrix follows, with four reducers 1-4 each a separate color:</p>
-<p>| <strong>Row Ids</strong> | <strong>T 1</strong> | <strong>T 2</strong> | <strong>T 3</strong> | <strong>T 4</strong> |
-| <strong>S 1</strong> | 1 | 1 | 2 | 2 |
-| <strong>S 2</strong> | 1 | 1 | 2 | 2 |
-| <strong>S 3</strong> | 3 | 3 | 4 | 4 |
-| <strong>S 4</strong> | 3 | 3 | 4 | 4 |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Row Ids</strong></th>
+<th><strong>T 1</strong></th>
+<th><strong>T 2</strong></th>
+<th><strong>T 3</strong></th>
+<th><strong>T 4</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S 1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>S 2</strong></td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>S 3</strong></td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>S 4</strong></td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
 <p>In the map phase, each tuple in S is sent to all reducers which intersect the tuples’ row id. For example the S-tuple with the row id of 2, is sent to reducers 1, and 2. Similarly each tuple in T is sent to all reducers which intersect the tuples’ row id. For example, the tuple with rowid 4, is sent to reducers 2 and 4.</p>
 <p>In Hive and MapReduce row ids aren’t common available. Therefore we choose a random row id between 1 and |S| (cardinality of S) for S and 1 and |T| (cardinality of T) for T. Thus a reduce-side theta join must know the estimated cardinality of each relation and statistics must be enabled. Random row id’s will result in well balanced reducer input when processing larger relations. As noted in [3], the partitioning scheme works such that if a relation is much smaller than it’s pair the smaller relation will be broadcast two all reducers. As such therefore random-skew which would occur for small relations does not impact the algorithm in practice. Additionally in Hive if a relation is small the join is converted to a map-side join and 1-Bucket-Theta is not utilized.</p>
 <h4 id=mapper>Mapper</h4>

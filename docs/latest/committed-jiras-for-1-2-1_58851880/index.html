@@ -130,24 +130,30 @@ ASF
 <tbody>
 <tr>
 <td>Tez</td>
-<td></td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10551?src=confmacro">HIVE-10551</a> - OOM when running query_89 with vectorization on & hybridgrace=false Resolved</td>
+<td>open</td>
+<td>sseth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10566?src=confmacro">HIVE-10566</a> - LLAP: Vector row extraction allocates new extractors per process method call instead of just once Resolved</td>
+<td>open</td>
+<td>mmccline</td>
+</tr>
+<tr>
+<td>Hive with TDE</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10978?src=confmacro">HIVE-10978</a> - Document fs.trash.interval wrt Hive and HDFS Encryption Open</td>
+<td>No source code changes butshould be in rel notes</td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10551?src=confmacro">HIVE-10551</a></td>
-<td></td>
-<td></td>
-<td></td>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11028?src=confmacro">HIVE-11028</a> - Tez: table self join and join with another table fails with IndexOutOfBoundsException Closed</td>
+<td>committed in 1.2.2/1.3</td>
+<td>jdere</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
 <h1 id=list-of-jiras-committed-in-branch-12-for-121-1>List of JIRAs committed in branch-1.2 for 1.2.1</h1>
 <p>This is to be a list of jiras that were initially intended for 1.2, but cannot be finished in time for 1.2.0, and are not blockers/outages but desired in 1.2 nonetheless. They are currently being considered for 1.2.1.</p>
 <p>In general, now that 1.2.0 has been voted on and in the process of releasing, committers may add more jiras to this list and commit patches to branch-1.2 again, pursuant to the following rules:</p>
@@ -169,402 +175,480 @@ ASF
 <tbody>
 <tr>
 <td>Tez</td>
-<td></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10559?src=confmacro">HIVE-10559</a> - IndexOutOfBoundsException with RemoveDynamicPruningBySize Closed</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10565?src=confmacro">HIVE-10565</a> - LLAP: Native Vector Map Join doesn&rsquo;t handle filtering and matching on LEFT OUTER JOIN repeated key correctly Closed</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>Vectorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10628?src=confmacro">HIVE-10628</a> - Incorrect result when vectorized native mapjoin is enabled using null safe operators &lt;=> Resolved</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>Unit Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10563?src=confmacro">HIVE-10563</a> - MiniTezCliDriver tests ordering issues Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10107?src=confmacro">HIVE-10107</a> - Union All : Vertex missing stats resulting in OOM and in-efficient plans Resolved</td>
+<td>committed</td>
+<td>mmokhtar</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10675?src=confmacro">HIVE-10675</a> - Provide option to skip Accumulo related Hive tests in itests directory Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Schematool</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10659?src=confmacro">HIVE-10659</a> - Beeline command which contains semi-colon as a non-command terminator will fail Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Unit Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10664?src=confmacro">HIVE-10664</a> - Unit tests run fail in windows because of illegal escape character in file path Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10690?src=confmacro">HIVE-10690</a> - ArrayIndexOutOfBounds exception in MetaStoreDirectSql.aggrColStatsForPartitions() Resolved</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>SerDe</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10672?src=confmacro">HIVE-10672</a> - Analyze command on a table using row format serde JsonSerDe fails with NoClassDefFoundError Resolved</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>UnitTests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10696?src=confmacro">HIVE-10696</a> - TestAddResource tests are non-portable Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>ACID</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11006?src=confmacro">HIVE-11006</a> - improve logging wrt ACID module Closed</td>
+<td>Committed to master, branch-1.2,branch-1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10776?src=confmacro">HIVE-10776</a> - Schema on insert for bucketed tables throwing NullPointerException Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10828?src=confmacro">HIVE-10828</a> - Insert with schema and dynamic partitions NullPointerException Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10934?src=confmacro">HIVE-10934</a> - Restore support for DROP PARTITION PURGE Resolved</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td><a href="https://issues.apache.org/jira/browse/HIVE-10559?src=confmacro">HIVE-10559</a></td>
+<td>Committed</td>
+<td>ekoifman</td>
 <td></td>
+<td>Hive with TDE</td>
+</tr>
+<tr>
+<td>Hive with TDE</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10630?src=confmacro">HIVE-10630</a> - Renaming tables across encryption zones renames table even though the operation throws error Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>Hive with TDE</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10629?src=confmacro">HIVE-10629</a> - Dropping table in an encrypted zone does not drop warehouse directory Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>Hive with TDE</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10658?src=confmacro">HIVE-10658</a> - Insert with values clause may expose data that should be encrypted Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>Hive with TDE</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10747?src=confmacro">HIVE-10747</a> - Enable the cleanup of side effect for the Encryption related qfile test Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>fred</td>
+</tr>
+<tr>
+<td>WebHCat</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10858?src=confmacro">HIVE-10858</a> - WebHCat specific resources should be added to HADOOP_CLASSPATH first Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>WebHCat</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10605?src=confmacro">HIVE-10605</a> - Make hive version number update automatically in webhcat-default.xml during hive tar generation Resolved</td>
+<td>Committed to 1.3.0,1.2.1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>WebHCat</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10992?src=confmacro">HIVE-10992</a> - WebHCat should not create delegation tokens when Kerberos is not enabled Resolved</td>
+<td>Committed 1.2.1,master,branch-1</td>
+<td>ekoifman</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10704?src=confmacro">HIVE-10704</a> - Errors in Tez HashTableLoader when estimated table size is 0 Resolved</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10711?src=confmacro">HIVE-10711</a> - Tez HashTableLoader attempts to allocate more memory than available when HIVECONVERTJOINNOCONDITIONALTASKTHRESHOLD exceeds process max mem Resolved</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10327?src=confmacro">HIVE-10327</a> - Remove ExprNodeNullDesc Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10636?src=confmacro">HIVE-10636</a> - CASE comparison operator rotation optimization Closed</td>
+<td>committed</td>
+<td>ashutoshc</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10606?src=confmacro">HIVE-10606</a> - Divide by zero error in HybridHashTableContainer Resolved</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>SerDe</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10679?src=confmacro">HIVE-10679</a> - JsonSerde ignores varchar and char size limit specified during table creation Resolved</td>
+<td>committed</td>
+<td>jdere</td>
+</tr>
+<tr>
+<td>Export/Import</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10727?src=confmacro">HIVE-10727</a> - Import throws error message &ldquo;org.apache.thrift.protocol.TProtocolException: Required field &lsquo;filesAdded&rsquo; is unset!&rdquo; Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>HS2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10528?src=confmacro">HIVE-10528</a> - Hiveserver2 in HTTP mode is not applying auth_to_local rules Resolved</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10627?src=confmacro">HIVE-10627</a> - Queries fail with Failed to breakup Windowing invocations into Groups Resolved</td>
+<td>committed</td>
+<td>jpullokk</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10686?src=confmacro">HIVE-10686</a> - java.lang.IndexOutOfBoundsException for query with rank() over(partition &mldr;) Resolved</td>
+<td>committed</td>
+<td>jpullokk</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10724?src=confmacro">HIVE-10724</a> - WebHCat e2e test TestStreaming_5 fails on Windows Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>WebHCat</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10760?src=confmacro">HIVE-10760</a> - Templeton: HCatalog Get Column for Non-existent column returns Server Error (500) rather than Not Found(404) Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QL</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10829?src=confmacro">HIVE-10829</a> - ATS hook fails for explainTask Resolved</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>HiveServer2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9842?src=confmacro">HIVE-9842</a> - Enable session/operation timeout by default in HiveServer2 Resolved</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>ATS</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10829?src=confmacro">HIVE-10829</a> - ATS hook fails for explainTask Resolved</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>Stats</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10840?src=confmacro">HIVE-10840</a> - NumberFormatException while running analyze table partition compute statics query Resolved</td>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>committed</td>
+<td>hagleitn</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10839?src=confmacro">HIVE-10839</a> - TestHCatLoaderEncryption.* tests fail in windows because of path related issues Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Beeline</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10753?src=confmacro">HIVE-10753</a> - hs2 jdbc url - wrong connection string cause error on beeline/jdbc/odbc client, misleading message Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Test Framework</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10768?src=confmacro">HIVE-10768</a> - In QTestGenTask.execute() we should not throw an exception right away if we are unable to clean any old files Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10801?src=confmacro">HIVE-10801</a> - &lsquo;drop view&rsquo; fails throwing java.lang.NullPointerException Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10678?src=confmacro">HIVE-10678</a> - update sql standard authorization configuration whitelist - more optimization flags Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10843?src=confmacro">HIVE-10843</a> - desc database and show tables commands don&rsquo;t pass db to HiveAuthorizer check Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10689?src=confmacro">HIVE-10689</a> - HS2 metadata api calls should use HiveAuthorizer interface for authorization Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Vectorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10244?src=confmacro">HIVE-10244</a> - Vectorization : TPC-DS Q80 fails with java.lang.ClassCastException when hive.vectorized.execution.reduce.enabled is enabled Resolved</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>Test</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10862?src=confmacro">HIVE-10862</a> - TestHiveAuthorizerShowFilters tests fail when run in sequence Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-9828?src=confmacro">HIVE-9828</a> - Semantic analyzer does not capture view parent entity for tables referred in view with union all Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10875?src=confmacro">HIVE-10875</a> - Select query with view in subquery adds underlying table as direct input Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10892?src=confmacro">HIVE-10892</a> - TestHCatClient should not accept external metastore param from -Dhive.metastore.uris Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10919?src=confmacro">HIVE-10919</a> - Windows: create table with JsonSerDe failed via beeline unless you add hcatalog core jar to classpath Closed</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10887?src=confmacro">HIVE-10887</a> - TestCliDriver tests ordering issues with Mac and CentOS Closed</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10705?src=confmacro">HIVE-10705</a> - Update tests for HIVE-9302 after removing binaries Closed</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10925?src=confmacro">HIVE-10925</a> - Non-static threadlocals in metastore code can potentially cause memory leak Resolved</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>Hiveserver2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10922?src=confmacro">HIVE-10922</a> - In HS2 doAs=false mode, file system related errors in one query causes other failures Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10877?src=confmacro">HIVE-10877</a> - TestUtil class name confuses ptest2 Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Tez/HiveServer2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10736?src=confmacro">HIVE-10736</a> - HiveServer2 shutdown of cached tez app-masters is not clean Closed</td>
+<td>committed</td>
+<td>Vikram</td>
+</tr>
+<tr>
+<td>UDF/HiveServer2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10453?src=confmacro">HIVE-10453</a> - HS2 leaking open file descriptors when using UDFs Closed</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>Tez</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10929?src=confmacro">HIVE-10929</a> - In Tez mode,dynamic partitioning query with union all fails at moveTask,Invalid partition key & values Closed</td>
+<td>committed</td>
+<td>vgumashta</td>
+</tr>
+<tr>
+<td>Accumulo</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10857?src=confmacro">HIVE-10857</a> - Accumulo storage handler fail throwing java.lang.IllegalArgumentException: Cannot determine SASL mechanism for token class: class org.apache.accumulo.core.client.security.tokens.PasswordToken Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>QueryPlan</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10957?src=confmacro">HIVE-10957</a> - QueryPlan&rsquo;s start time is incorrect in certain cases Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10967?src=confmacro">HIVE-10967</a> - add mapreduce.job.tags to sql std authorization config whitelist Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>encryption</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10910?src=confmacro">HIVE-10910</a> - Alter table drop partition queries in encrypted zone failing to remove data from HDFS Resolved</td>
+<td>committed</td>
+<td>eugene/thejas</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10949?src=confmacro">HIVE-10949</a> - Disable hive-minikdc tests in Windows Closed</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Hiveserver2</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10968?src=confmacro">HIVE-10968</a> - Windows: analyze json table via beeline failed throwing Class org.apache.hive.hcatalog.data.JsonSerDe not found Closed</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10874?src=confmacro">HIVE-10874</a> - Fail in TestMinimrCliDriver.testCliDriver_ql_rewrite_gbtoidx_cbo_2.q due to duplicate column name Resolved</td>
+<td>committed</td>
+<td>jpullokk</td>
+</tr>
+<tr>
+<td>Query Planning</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10811?src=confmacro">HIVE-10811</a> - RelFieldTrimmer throws NoSuchElementException in some cases Resolved</td>
+<td>committed</td>
+<td>jpullokk</td>
+</tr>
+<tr>
+<td>HS2 HTTP mode</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11001?src=confmacro">HIVE-11001</a> - HS2 http cookie mode does not honor doAs url parameter Resolved</td>
+<td>committed</td>
+<td>thejas</td>
+</tr>
+<tr>
+<td>ORC</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10685?src=confmacro">HIVE-10685</a> - Alter table concatenate oparetor will cause duplicate data Resolved</td>
+<td>committed</td>
+<td>prasanthj</td>
+</tr>
+<tr>
+<td>Release</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10684?src=confmacro">HIVE-10684</a> - Fix the unit test failures for HIVE-7553 after HIVE-10674 removed the binary jar files Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Metastore</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11023?src=confmacro">HIVE-11023</a> - Disable directSQL if datanucleus.identifierFactory = datanucleus2 Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Release</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10674?src=confmacro">HIVE-10674</a> - jars should not be checked in to the source control repo Resolved</td>
+<td>resolved</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Release</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11047?src=confmacro">HIVE-11047</a> - Update versions of branch-1.2 to 1.2.1 Resolved</td>
+<td>committed</td>
+<td>sushanth</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11041?src=confmacro">HIVE-11041</a> - Update tests for HIVE-9302 after removing binaries Resolved</td>
+<td>committed</td>
+<td>hsubramaniyan</td>
+</tr>
+<tr>
+<td>Tez</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-10746?src=confmacro">HIVE-10746</a> - Hive 1.2.0+Tez produces 1-byte FileSplits from mapred.TextInputFormat Closed</td>
+<td>committed</td>
+<td>hagleitn</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11050?src=confmacro">HIVE-11050</a> - testCliDriver_vector_outer_join.* failures in Unit tests due to unstable data creation queries Resolved</td>
+<td>committed</td>
+<td>mmccline</td>
+</tr>
+<tr>
+<td>Test</td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-11066?src=confmacro">HIVE-11066</a> - Ensure tests don&rsquo;t share directories on FS Resolved</td>
+<td>committed</td>
+<td>ekoifman</td>
+</tr>
 </tbody>
 </table>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-<h2 id=hive-10563httpsissuesapacheorgjirabrowsehive-10563srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10563?src=confmacro">HIVE-10563</a></h2>
-<p>MiniTezCliDriver tests ordering issues
-Resolved</p>
-<h2 id=hive-10107httpsissuesapacheorgjirabrowsehive-10107srcconfmacro>| committed | hsubramaniyan |
-| Optimizer |
-<a href="https://issues.apache.org/jira/browse/HIVE-10107?src=confmacro">HIVE-10107</a></h2>
-<h2 id=hive-10675httpsissuesapacheorgjirabrowsehive-10675srcconfmacro>Union All : Vertex missing stats resulting in OOM and in-efficient plans
-Resolved
-| committed | mmokhtar |
-| Build |
-<a href="https://issues.apache.org/jira/browse/HIVE-10675?src=confmacro">HIVE-10675</a></h2>
-<h2 id=hive-10659httpsissuesapacheorgjirabrowsehive-10659srcconfmacro>Provide option to skip Accumulo related Hive tests in itests directory
-Resolved
-| committed | hsubramaniyan |
-| Schematool |
-<a href="https://issues.apache.org/jira/browse/HIVE-10659?src=confmacro">HIVE-10659</a></h2>
-<h2 id=hive-10664httpsissuesapacheorgjirabrowsehive-10664srcconfmacro>Beeline command which contains semi-colon as a non-command terminator will fail
-Resolved
-| committed | hsubramaniyan |
-| Unit Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10664?src=confmacro">HIVE-10664</a></h2>
-<h2 id=hive-10690httpsissuesapacheorgjirabrowsehive-10690srcconfmacro>Unit tests run fail in windows because of illegal escape character in file path
-Resolved
-| committed | hsubramaniyan |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-10690?src=confmacro">HIVE-10690</a></h2>
-<h2 id=hive-10672httpsissuesapacheorgjirabrowsehive-10672srcconfmacro>ArrayIndexOutOfBounds exception in MetaStoreDirectSql.aggrColStatsForPartitions()
-Resolved
-| committed | vgumashta |
-| SerDe |
-<a href="https://issues.apache.org/jira/browse/HIVE-10672?src=confmacro">HIVE-10672</a></h2>
-<h2 id=hive-10696httpsissuesapacheorgjirabrowsehive-10696srcconfmacro>Analyze command on a table using row format serde JsonSerDe fails with NoClassDefFoundError
-Resolved
-| committed | jdere |
-| UnitTests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10696?src=confmacro">HIVE-10696</a></h2>
-<h2 id=hive-11006httpsissuesapacheorgjirabrowsehive-11006srcconfmacro>TestAddResource tests are non-portable
-Resolved
-| committed | hsubramaniyan |
-| ACID |
-<a href="https://issues.apache.org/jira/browse/HIVE-11006?src=confmacro">HIVE-11006</a></h2>
-<h2 id=hive-10776httpsissuesapacheorgjirabrowsehive-10776srcconfmacro>improve logging wrt ACID module
-Closed
-| Committed to master, branch-1.2,branch-1 | ekoifman |
-| SQL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10776?src=confmacro">HIVE-10776</a></h2>
-<h2 id=hive-10828httpsissuesapacheorgjirabrowsehive-10828srcconfmacro>Schema on insert for bucketed tables throwing NullPointerException
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| SQL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10828?src=confmacro">HIVE-10828</a></h2>
-<h2 id=hive-10934httpsissuesapacheorgjirabrowsehive-10934srcconfmacro>Insert with schema and dynamic partitions NullPointerException
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| SQL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10934?src=confmacro">HIVE-10934</a></h2>
-<h2 id=hive-10910httpsissuesapacheorgjirabrowsehive-10910srcconfmacro>Restore support for DROP PARTITION PURGE
-Resolved
-| Committed | ekoifman |
-| Hive with TDE |
-<a href="https://issues.apache.org/jira/browse/HIVE-10910?src=confmacro">HIVE-10910</a></h2>
-<h2 id=hive-10630httpsissuesapacheorgjirabrowsehive-10630srcconfmacro>Alter table drop partition queries in encrypted zone failing to remove data from HDFS
-Resolved
-| Committed | ekoifman |
-| Hive with TDE |
-<a href="https://issues.apache.org/jira/browse/HIVE-10630?src=confmacro">HIVE-10630</a></h2>
-<h2 id=hive-10629httpsissuesapacheorgjirabrowsehive-10629srcconfmacro>Renaming tables across encryption zones renames table even though the operation throws error
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| Hive with TDE |
-<a href="https://issues.apache.org/jira/browse/HIVE-10629?src=confmacro">HIVE-10629</a></h2>
-<h2 id=hive-10658httpsissuesapacheorgjirabrowsehive-10658srcconfmacro>Dropping table in an encrypted zone does not drop warehouse directory
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| Hive with TDE |
-<a href="https://issues.apache.org/jira/browse/HIVE-10658?src=confmacro">HIVE-10658</a></h2>
-<h2 id=hive-10747httpsissuesapacheorgjirabrowsehive-10747srcconfmacro>Insert with values clause may expose data that should be encrypted
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| Hive with TDE |
-<a href="https://issues.apache.org/jira/browse/HIVE-10747?src=confmacro">HIVE-10747</a></h2>
-<h2 id=hive-10858httpsissuesapacheorgjirabrowsehive-10858srcconfmacro>Enable the cleanup of side effect for the Encryption related qfile test
-Resolved
-| Committed to 1.3.0,1.2.1 | fred |
-| WebHCat |
-<a href="https://issues.apache.org/jira/browse/HIVE-10858?src=confmacro">HIVE-10858</a></h2>
-<h2 id=hive-10605httpsissuesapacheorgjirabrowsehive-10605srcconfmacro>WebHCat specific resources should be added to HADOOP_CLASSPATH first
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| WebHCat |
-<a href="https://issues.apache.org/jira/browse/HIVE-10605?src=confmacro">HIVE-10605</a></h2>
-<h2 id=hive-10992httpsissuesapacheorgjirabrowsehive-10992srcconfmacro>Make hive version number update automatically in webhcat-default.xml during hive tar generation
-Resolved
-| Committed to 1.3.0,1.2.1 | ekoifman |
-| WebHCat |
-<a href="https://issues.apache.org/jira/browse/HIVE-10992?src=confmacro">HIVE-10992</a></h2>
-<h2 id=hive-10704httpsissuesapacheorgjirabrowsehive-10704srcconfmacro>WebHCat should not create delegation tokens when Kerberos is not enabled
-Resolved
-| Committed 1.2.1,master,branch-1 | ekoifman |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10704?src=confmacro">HIVE-10704</a></h2>
-<h2 id=hive-10711httpsissuesapacheorgjirabrowsehive-10711srcconfmacro>Errors in Tez HashTableLoader when estimated table size is 0
-Resolved
-| committed | jdere |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10711?src=confmacro">HIVE-10711</a></h2>
-<h2 id=hive-10327httpsissuesapacheorgjirabrowsehive-10327srcconfmacro>Tez HashTableLoader attempts to allocate more memory than available when HIVECONVERTJOINNOCONDITIONALTASKTHRESHOLD exceeds process max mem
-Resolved
-| committed | jdere |
-| Query Planning |
-<a href="https://issues.apache.org/jira/browse/HIVE-10327?src=confmacro">HIVE-10327</a></h2>
-<h2 id=hive-10636httpsissuesapacheorgjirabrowsehive-10636srcconfmacro>Remove ExprNodeNullDesc
-Closed
-| committed | ashutoshc |
-| Query Planning |
-<a href="https://issues.apache.org/jira/browse/HIVE-10636?src=confmacro">HIVE-10636</a></h2>
-<h2 id=hive-10606httpsissuesapacheorgjirabrowsehive-10606srcconfmacro>CASE comparison operator rotation optimization
-Closed
-| committed | ashutoshc |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10606?src=confmacro">HIVE-10606</a></h2>
-<h2 id=hive-10679httpsissuesapacheorgjirabrowsehive-10679srcconfmacro>Divide by zero error in HybridHashTableContainer
-Resolved
-| committed | jdere |
-| SerDe |
-<a href="https://issues.apache.org/jira/browse/HIVE-10679?src=confmacro">HIVE-10679</a></h2>
-<h2 id=hive-10727httpsissuesapacheorgjirabrowsehive-10727srcconfmacro>JsonSerde ignores varchar and char size limit specified during table creation
-Resolved
-| committed | jdere |
-| Export/Import |
-<a href="https://issues.apache.org/jira/browse/HIVE-10727?src=confmacro">HIVE-10727</a></h2>
-<h2 id=hive-10528httpsissuesapacheorgjirabrowsehive-10528srcconfmacro>Import throws error message &ldquo;org.apache.thrift.protocol.TProtocolException: Required field &lsquo;filesAdded&rsquo; is unset!&rdquo;
-Resolved
-| committed | sushanth |
-| HS2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-10528?src=confmacro">HIVE-10528</a></h2>
-<p>Hiveserver2 in HTTP mode is not applying auth_to_local rules
-Resolved
-| committed | vgumashta |
-| Query Planning |</p>
-<h2 id=hive-10627httpsissuesapacheorgjirabrowsehive-10627srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10627?src=confmacro">HIVE-10627</a></h2>
-<p>Queries fail with Failed to breakup Windowing invocations into Groups
-Resolved</p>
-<h2 id=hive-10686httpsissuesapacheorgjirabrowsehive-10686srcconfmacro>| committed | jpullokk |
-| Query Planning |
-<a href="https://issues.apache.org/jira/browse/HIVE-10686?src=confmacro">HIVE-10686</a></h2>
-<h2 id=hive-10724httpsissuesapacheorgjirabrowsehive-10724srcconfmacro>java.lang.IndexOutOfBoundsException for query with rank() over(partition &mldr;)
-Resolved
-| committed | jpullokk |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10724?src=confmacro">HIVE-10724</a></h2>
-<h2 id=hive-10760httpsissuesapacheorgjirabrowsehive-10760srcconfmacro>WebHCat e2e test TestStreaming_5 fails on Windows
-Resolved
-| committed | sushanth |
-| WebHCat |
-<a href="https://issues.apache.org/jira/browse/HIVE-10760?src=confmacro">HIVE-10760</a></h2>
-<h2 id=hive-10829httpsissuesapacheorgjirabrowsehive-10829srcconfmacro>Templeton: HCatalog Get Column for Non-existent column returns Server Error (500) rather than Not Found(404)
-Resolved
-| committed | sushanth |
-| QL |
-<a href="https://issues.apache.org/jira/browse/HIVE-10829?src=confmacro">HIVE-10829</a></h2>
-<h2 id=hive-9842httpsissuesapacheorgjirabrowsehive-9842srcconfmacro>ATS hook fails for explainTask
-Resolved
-| committed | hagleitn |
-| HiveServer2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-9842?src=confmacro">HIVE-9842</a></h2>
-<h2 id=hive-10829httpsissuesapacheorgjirabrowsehive-10829srcconfmacro-1>Enable session/operation timeout by default in HiveServer2
-Resolved
-| committed | vgumashta |
-| ATS |
-<a href="https://issues.apache.org/jira/browse/HIVE-10829?src=confmacro">HIVE-10829</a></h2>
-<h2 id=hive-10840httpsissuesapacheorgjirabrowsehive-10840srcconfmacro>ATS hook fails for explainTask
-Resolved
-| committed | hagleitn |
-| Stats |
-<a href="https://issues.apache.org/jira/browse/HIVE-10840?src=confmacro">HIVE-10840</a></h2>
-<h2 id=hive-10839httpsissuesapacheorgjirabrowsehive-10839srcconfmacro>NumberFormatException while running analyze table partition compute statics query
-Resolved
-| committed | hagleitn |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10839?src=confmacro">HIVE-10839</a></h2>
-<h2 id=hive-10753httpsissuesapacheorgjirabrowsehive-10753srcconfmacro>TestHCatLoaderEncryption.* tests fail in windows because of path related issues
-Resolved
-| committed | hsubramaniyan |
-| Beeline |
-<a href="https://issues.apache.org/jira/browse/HIVE-10753?src=confmacro">HIVE-10753</a></h2>
-<h2 id=hive-10768httpsissuesapacheorgjirabrowsehive-10768srcconfmacro>hs2 jdbc url - wrong connection string cause error on beeline/jdbc/odbc client, misleading message
-Resolved
-| committed | hsubramaniyan |
-| Test Framework |
-<a href="https://issues.apache.org/jira/browse/HIVE-10768?src=confmacro">HIVE-10768</a></h2>
-<h2 id=hive-10801httpsissuesapacheorgjirabrowsehive-10801srcconfmacro>In QTestGenTask.execute() we should not throw an exception right away if we are unable to clean any old files
-Resolved
-| committed | hsubramaniyan |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-10801?src=confmacro">HIVE-10801</a></h2>
-<h2 id=hive-10678httpsissuesapacheorgjirabrowsehive-10678srcconfmacro>&lsquo;drop view&rsquo; fails throwing java.lang.NullPointerException
-Resolved
-| committed | hsubramaniyan |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10678?src=confmacro">HIVE-10678</a></h2>
-<h2 id=hive-10843httpsissuesapacheorgjirabrowsehive-10843srcconfmacro>update sql standard authorization configuration whitelist - more optimization flags
-Resolved
-| committed | thejas |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10843?src=confmacro">HIVE-10843</a></h2>
-<h2 id=hive-10689httpsissuesapacheorgjirabrowsehive-10689srcconfmacro>desc database and show tables commands don&rsquo;t pass db to HiveAuthorizer check
-Resolved
-| committed | thejas |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10689?src=confmacro">HIVE-10689</a></h2>
-<h2 id=hive-10244httpsissuesapacheorgjirabrowsehive-10244srcconfmacro>HS2 metadata api calls should use HiveAuthorizer interface for authorization
-Resolved
-| committed | thejas |
-| Vectorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10244?src=confmacro">HIVE-10244</a></h2>
-<h2 id=hive-10862httpsissuesapacheorgjirabrowsehive-10862srcconfmacro>Vectorization : TPC-DS Q80 fails with java.lang.ClassCastException when hive.vectorized.execution.reduce.enabled is enabled
-Resolved
-| committed | hagleitn |
-| Test |
-<a href="https://issues.apache.org/jira/browse/HIVE-10862?src=confmacro">HIVE-10862</a></h2>
-<h2 id=hive-9828httpsissuesapacheorgjirabrowsehive-9828srcconfmacro>TestHiveAuthorizerShowFilters tests fail when run in sequence
-Resolved
-| committed | thejas |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-9828?src=confmacro">HIVE-9828</a></h2>
-<h2 id=hive-10875httpsissuesapacheorgjirabrowsehive-10875srcconfmacro>Semantic analyzer does not capture view parent entity for tables referred in view with union all
-Resolved
-| committed | thejas |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10875?src=confmacro">HIVE-10875</a></h2>
-<h2 id=hive-10892httpsissuesapacheorgjirabrowsehive-10892srcconfmacro>Select query with view in subquery adds underlying table as direct input
-Resolved
-| committed | thejas |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10892?src=confmacro">HIVE-10892</a></h2>
-<h2 id=hive-10919httpsissuesapacheorgjirabrowsehive-10919srcconfmacro>TestHCatClient should not accept external metastore param from -Dhive.metastore.uris
-Resolved
-| committed | sushanth |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10919?src=confmacro">HIVE-10919</a></h2>
-<h2 id=hive-10887httpsissuesapacheorgjirabrowsehive-10887srcconfmacro>Windows: create table with JsonSerDe failed via beeline unless you add hcatalog core jar to classpath
-Closed
-| committed | hsubramaniyan |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10887?src=confmacro">HIVE-10887</a></h2>
-<h2 id=hive-10705httpsissuesapacheorgjirabrowsehive-10705srcconfmacro>TestCliDriver tests ordering issues with Mac and CentOS
-Closed
-| committed | hsubramaniyan |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10705?src=confmacro">HIVE-10705</a></h2>
-<h2 id=hive-10925httpsissuesapacheorgjirabrowsehive-10925srcconfmacro>Update tests for HIVE-9302 after removing binaries
-Closed
-| committed | hsubramaniyan |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-10925?src=confmacro">HIVE-10925</a></h2>
-<h2 id=hive-10922httpsissuesapacheorgjirabrowsehive-10922srcconfmacro>Non-static threadlocals in metastore code can potentially cause memory leak
-Resolved
-| committed | vgumashta |
-| Hiveserver2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-10922?src=confmacro">HIVE-10922</a></h2>
-<h2 id=hive-10877httpsissuesapacheorgjirabrowsehive-10877srcconfmacro>In HS2 doAs=false mode, file system related errors in one query causes other failures
-Resolved
-| committed | thejas |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10877?src=confmacro">HIVE-10877</a></h2>
-<h2 id=hive-10736httpsissuesapacheorgjirabrowsehive-10736srcconfmacro>TestUtil class name confuses ptest2
-Resolved
-| committed | hsubramaniyan |
-| Tez/HiveServer2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-10736?src=confmacro">HIVE-10736</a></h2>
-<h2 id=hive-10453httpsissuesapacheorgjirabrowsehive-10453srcconfmacro>HiveServer2 shutdown of cached tez app-masters is not clean
-Closed
-| committed | Vikram |
-| UDF/HiveServer2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-10453?src=confmacro">HIVE-10453</a></h2>
-<h2 id=hive-10929httpsissuesapacheorgjirabrowsehive-10929srcconfmacro>HS2 leaking open file descriptors when using UDFs
-Closed
-| committed | vgumashta |
-| Tez |
-<a href="https://issues.apache.org/jira/browse/HIVE-10929?src=confmacro">HIVE-10929</a></h2>
-<h2 id=hive-10857httpsissuesapacheorgjirabrowsehive-10857srcconfmacro>In Tez mode,dynamic partitioning query with union all fails at moveTask,Invalid partition key & values
-Closed
-| committed | vgumashta |
-| Accumulo |
-<a href="https://issues.apache.org/jira/browse/HIVE-10857?src=confmacro">HIVE-10857</a></h2>
-<h2 id=hive-10957httpsissuesapacheorgjirabrowsehive-10957srcconfmacro>Accumulo storage handler fail throwing java.lang.IllegalArgumentException: Cannot determine SASL mechanism for token class: class org.apache.accumulo.core.client.security.tokens.PasswordToken
-Resolved
-| committed | sushanth |
-| QueryPlan |
-<a href="https://issues.apache.org/jira/browse/HIVE-10957?src=confmacro">HIVE-10957</a></h2>
-<h2 id=hive-10967httpsissuesapacheorgjirabrowsehive-10967srcconfmacro>QueryPlan&rsquo;s start time is incorrect in certain cases
-Resolved
-| committed | thejas |
-| Authorization |
-<a href="https://issues.apache.org/jira/browse/HIVE-10967?src=confmacro">HIVE-10967</a></h2>
-<h2 id=hive-10910httpsissuesapacheorgjirabrowsehive-10910srcconfmacro-1>add mapreduce.job.tags to sql std authorization config whitelist
-Resolved
-| committed | thejas |
-| encryption |
-<a href="https://issues.apache.org/jira/browse/HIVE-10910?src=confmacro">HIVE-10910</a></h2>
-<h2 id=hive-10949httpsissuesapacheorgjirabrowsehive-10949srcconfmacro>Alter table drop partition queries in encrypted zone failing to remove data from HDFS
-Resolved
-| committed | eugene/thejas |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-10949?src=confmacro">HIVE-10949</a></h2>
-<h2 id=hive-10968httpsissuesapacheorgjirabrowsehive-10968srcconfmacro>Disable hive-minikdc tests in Windows
-Closed
-| committed | hsubramaniyan |
-| Hiveserver2 |
-<a href="https://issues.apache.org/jira/browse/HIVE-10968?src=confmacro">HIVE-10968</a></h2>
-<h2 id=hive-10874httpsissuesapacheorgjirabrowsehive-10874srcconfmacro>Windows: analyze json table via beeline failed throwing Class org.apache.hive.hcatalog.data.JsonSerDe not found
-Closed
-| committed | hsubramaniyan |
-| Query Planning |
-<a href="https://issues.apache.org/jira/browse/HIVE-10874?src=confmacro">HIVE-10874</a></h2>
-<p>Fail in TestMinimrCliDriver.testCliDriver_ql_rewrite_gbtoidx_cbo_2.q due to duplicate column name
-Resolved
-| committed | jpullokk |
-| Query Planning |</p>
-<h2 id=hive-10811httpsissuesapacheorgjirabrowsehive-10811srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10811?src=confmacro">HIVE-10811</a></h2>
-<p>RelFieldTrimmer throws NoSuchElementException in some cases
-Resolved</p>
-<h2 id=hive-11001httpsissuesapacheorgjirabrowsehive-11001srcconfmacro>| committed | jpullokk |
-| HS2 HTTP mode |
-<a href="https://issues.apache.org/jira/browse/HIVE-11001?src=confmacro">HIVE-11001</a></h2>
-<h2 id=hive-10685httpsissuesapacheorgjirabrowsehive-10685srcconfmacro>HS2 http cookie mode does not honor doAs url parameter
-Resolved
-| committed | thejas |
-| ORC |
-<a href="https://issues.apache.org/jira/browse/HIVE-10685?src=confmacro">HIVE-10685</a></h2>
-<h2 id=hive-10684httpsissuesapacheorgjirabrowsehive-10684srcconfmacro>Alter table concatenate oparetor will cause duplicate data
-Resolved
-| committed | prasanthj |
-| Release |
-<a href="https://issues.apache.org/jira/browse/HIVE-10684?src=confmacro">HIVE-10684</a></h2>
-<h2 id=hive-11023httpsissuesapacheorgjirabrowsehive-11023srcconfmacro>Fix the unit test failures for HIVE-7553 after HIVE-10674 removed the binary jar files
-Resolved
-| committed | sushanth |
-| Metastore |
-<a href="https://issues.apache.org/jira/browse/HIVE-11023?src=confmacro">HIVE-11023</a></h2>
-<h2 id=hive-10674httpsissuesapacheorgjirabrowsehive-10674srcconfmacro>Disable directSQL if datanucleus.identifierFactory = datanucleus2
-Resolved
-| committed | sushanth |
-| Release |
-<a href="https://issues.apache.org/jira/browse/HIVE-10674?src=confmacro">HIVE-10674</a></h2>
-<h2 id=hive-11047httpsissuesapacheorgjirabrowsehive-11047srcconfmacro>jars should not be checked in to the source control repo
-Resolved
-| resolved | sushanth |
-| Release |
-<a href="https://issues.apache.org/jira/browse/HIVE-11047?src=confmacro">HIVE-11047</a></h2>
-<h2 id=hive-11041httpsissuesapacheorgjirabrowsehive-11041srcconfmacro>Update versions of branch-1.2 to 1.2.1
-Resolved
-| committed | sushanth |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-11041?src=confmacro">HIVE-11041</a></h2>
-<h2 id=hive-10746httpsissuesapacheorgjirabrowsehive-10746srcconfmacro>Update tests for HIVE-9302 after removing binaries
-Resolved
-| committed | hsubramaniyan |
-| Tez |
-<a href="https://issues.apache.org/jira/browse/HIVE-10746?src=confmacro">HIVE-10746</a></h2>
-<h2 id=hive-11050httpsissuesapacheorgjirabrowsehive-11050srcconfmacro>Hive 1.2.0+Tez produces 1-byte FileSplits from mapred.TextInputFormat
-Closed
-| committed | hagleitn |
-| Tests |
-<a href="https://issues.apache.org/jira/browse/HIVE-11050?src=confmacro">HIVE-11050</a></h2>
-<h2 id=hive-11066httpsissuesapacheorgjirabrowsehive-11066srcconfmacro>testCliDriver_vector_outer_join.* failures in Unit tests due to unstable data creation queries
-Resolved
-| committed | mmccline |
-| Test |
-<a href="https://issues.apache.org/jira/browse/HIVE-11066?src=confmacro">HIVE-11066</a></h2>
-<p>Ensure tests don&rsquo;t share directories on FS
-Resolved
-| committed | ekoifman |
-| | | | |
-| | | | |
-| | | | |</p>
-<p> </p>
-<p> </p>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

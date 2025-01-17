@@ -206,10 +206,37 @@ Closed</p>
 <p>The major concern in this approach is how much memory the metastore cache will consume and how much latency at startup time to read all metastore objects (prewarm). For that, we did some quantitative experiments.</p>
 <p>In our experiments, we adopted some memory optimizations discussed below, which is separating table/partition and storage descriptor. We only cache database/table/partition objects and not count column statistics/permanent functions/constraints. In our setting, the memory footprint is dominated by partition objects which aggregates to 58M (shown in the table below). This does not discount the fact that many strings can be interned and shared by multiple objects, which could save an additional 20% according to HIVE-16079.</p>
 <p> </p>
-<p>| object | count | Avg size (byte) |
-| table | 895 | 1576 |
-| partition | 97,863 | 591 |
-| storagedescriptor | 412 | 680 |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td>count</td>
+<td>Avg size (byte)</td>
+</tr>
+<tr>
+<td>table</td>
+<td>895</td>
+<td>1576</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>97,863</td>
+<td>591</td>
+</tr>
+<tr>
+<td>storagedescriptor</td>
+<td>412</td>
+<td>680</td>
+</tr>
+</tbody>
+</table>
 <p> </p>
 <p>If we have 6G memory reserved for metastore cache, we could afford 10,000,000 partition objects and which we think is enough for majority use cases. In case we are out of the memory boundary, we could switch to a non-cached metastore and don’t crash.</p>
 <p>We also tested the prewarm time in the same setting. It takes metastore 25 seconds to load all databases/tables/partitions from MySql database. Note in slow database such as Azure, the number could be much bigger but we have not tested yet. Metastore would only open listening port after prewarm. All metastore client request will be rejected before prewarm is done.</p>

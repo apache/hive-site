@@ -138,10 +138,32 @@ ASF
 </ul>
 <p>This document is based on a writeup of <a href=http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html>DB2 Outer Join Behavior</a>. The original HTML document is attached to the <a href=https://hive.apache.org/docs/latest/designdocs_27362075/>Hive Design Docs</a> and can be <a href=https://cwiki.apache.org/confluence/download/attachments/27362075/OuterJoinBehavior.html>downloaded here</a>.</p>
 <h2 id=definitions>Definitions</h2>
-<p>| <strong>Preserved Row table</strong> | The table in an Outer Join that must return all rows. For left outer joins this is the <em>Left</em> table, for right outer joins it is the <em>Right</em> table, and for full outer joins both tables are <em>Preserved Row</em> tables. |
-| <strong>Null Supplying table</strong> | This is the table that has nulls filled in for its columns in unmatched rows. In the non-full outer join case, this is the other table in the Join. For full outer joins both tables are also <em>Null Supplying</em> tables. |
-| <strong>During Join predicate</strong> | A predicate that is in the JOIN <strong>ON</strong> clause. For example, in &lsquo;<code>R1 join R2 on R1.x = 5</code>&rsquo; the predicate &lsquo;<code>R1.x = 5</code>&rsquo; is a <em>During Join predicate</em>. |
-| <strong>After Join predicate</strong> | A predicate that is in the WHERE clause. |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Preserved Row table</strong></td>
+<td>The table in an Outer Join that must return all rows. For left outer joins this is the <em>Left</em> table, for right outer joins it is the <em>Right</em> table, and for full outer joins both tables are <em>Preserved Row</em> tables.</td>
+</tr>
+<tr>
+<td><strong>Null Supplying table</strong></td>
+<td>This is the table that has nulls filled in for its columns in unmatched rows. In the non-full outer join case, this is the other table in the Join. For full outer joins both tables are also <em>Null Supplying</em> tables.</td>
+</tr>
+<tr>
+<td><strong>During Join predicate</strong></td>
+<td>A predicate that is in the JOIN <strong>ON</strong> clause. For example, in &lsquo;<code>R1 join R2 on R1.x = 5</code>&rsquo; the predicate &lsquo;<code>R1.x = 5</code>&rsquo; is a <em>During Join predicate</em>.</td>
+</tr>
+<tr>
+<td><strong>After Join predicate</strong></td>
+<td>A predicate that is in the WHERE clause.</td>
+</tr>
+</tbody>
+</table>
 <h2 id=predicate-pushdown-rules>Predicate Pushdown Rules</h2>
 <p>The logic can be summarized by these two rules:</p>
 <ol>

@@ -116,242 +116,1664 @@ ASF
 <div class=docs>
 <h1 id=apache-hive--supported-features-apache-hive-31>Apache Hive : Supported Features: Apache Hive 3.1</h1>
 <p>This table covers all mandatory features from <a href=https://en.wikipedia.org/wiki/SQL:2016>SQL:2016</a> as well as optional features that Hive implements.</p>
-<p>| <strong>Feature ID</strong> | <strong>Feature Name</strong> | <strong>Implemented</strong> | <strong>Mandatory</strong> | <strong>Comments</strong> |
-| E011 | Numeric data types | Yes | Mandatory | |
-| E011-01 | INTEGER and SMALLINT data types (including all spellings) | Yes | Mandatory | |
-| E011-02 | REAL, DOUBLE PRECISON, and FLOAT data types | Yes | Mandatory | |
-| E011-03 | DECIMAL and NUMERIC data types | Yes | Mandatory | |
-| E011-04 | Arithmetic operators | Yes | Mandatory | |
-| E011-05 | Numeric comparison | Yes | Mandatory | |
-| E011-06 | Implicit casting among the numeric data types | Yes | Mandatory | |
-| E021 | Character string types | Yes | Mandatory | |
-| E021-01 | CHARACTER data type (including all its spellings) | Partial | Mandatory | Only support CHAR, not CHARACTER |
-| E021-02 | CHARACTER VARYING data type (including all its spellings) | Partial | Mandatory | Only support VARCHAR, not CHARACTER VARYING or CHAR VARYING |
-| E021-03 | Character literals | Yes | Mandatory | |
-| E021-04 | CHARACTER_LENGTH function | Yes | Mandatory | |
-| E021-05 | OCTET_LENGTH function | Yes | Mandatory | |
-| E021-06 | SUBSTRING function | Partial | Mandatory | Standard: SUBSTRING(<em>val</em> FROM <em>startpos</em> [FOR <em>len</em>]). Hive: SUBSTRING(<em>val</em>, <em>startpos</em> [, <em>len</em>]) |
-| E021-07 | Character concatenation | Yes | Mandatory | |
-| E021-08 | UPPER and LOWER functions | Yes | Mandatory | |
-| E021-09 | TRIM function | Yes | Mandatory | |
-| E021-10 | Implicit casting among the fixed-length and variable-length character string types | Yes | Mandatory | |
-| E021-11 | POSITION function | No | Mandatory | |
-| E021-12 | Character comparison | Yes | Mandatory | |
-| E031 | Identifiers | Partial | Mandatory | Unquoted identifiers use C syntax ([A-Za-z][A-Za-z0-9_]*). Quoted identifiers can have any character. |
-| E031-01 | Delimited identifiers | Partial | Mandatory | Quoting done with ` rather than &ldquo;, only supported for columns, not tables, views, etc. |
-| E031-02 | Lower case identifiers | Yes | Mandatory | |
-| E031-03 | Trailing underscore | Yes | Mandatory | |
-| E051 | Basic query specification | Yes | Mandatory | |
-| E051-01 | SELECT DISTINCT | Yes | Mandatory | |
-| E051-02 | GROUP BY clause | Yes | Mandatory | |
-| E051-04 | GROUP BY can contain columns not in | Yes | Mandatory | |
-| E051-05 | Select list items can be renamed | Yes | Mandatory | |
-| E051-06 | HAVING clause | Yes | Mandatory | |
-| E051-07 | Qualified * in select list | Yes | Mandatory | |
-| E051-08 | Correlation names in the FROM clause | Yes | Mandatory | |
-| E051-09 | Rename columns in the FROM clause | Yes | Mandatory | |
-| E061 | Basic predicates and search conditions | Yes | Mandatory | |
-| E061-01 | Comparison predicate | Yes | Mandatory | |
-| E061-02 | BETWEEN predicate | Yes | Mandatory | |
-| E061-03 | IN predicate with list of values | Yes | Mandatory | |
-| E061-04 | LIKE predicate | Yes | Mandatory | |
-| E061-05 | LIKE predicate: ESCAPE clause | Yes | Mandatory | |
-| E061-06 | NULL predicate | Yes | Mandatory | |
-| E061-07 | Quantified comparison predicate | No | Mandatory | |
-| E061-08 | EXISTS predicate | Yes | Mandatory | |
-| E061-09 | Subqueries in comparison predicate | No | Mandatory | |
-| E061-11 | Subqueries in IN predicate | Yes | Mandatory | |
-| E061-12 | Subqueries in quantified comparison predicate | No | Mandatory | |
-| E061-13 | Correlated subqueries | Yes | Mandatory | |
-| E061-14 | Search condition | Yes | Mandatory | |
-| E071 | Basic query expressions | Yes | Mandatory | |
-| E071-01 | UNION DISTINCT table operator | Yes | Mandatory | |
-| E071-02 | UNION ALL table operator | Yes | Mandatory | |
-| E071-03 | EXCEPT DISTINCT table operator | Yes | Mandatory | |
-| E071-05 | Columns combined via table operators need not have exactly the same data type. | Yes | Mandatory | |
-| E071-06 | Table operators in subqueries | Yes | Mandatory | |
-| E081 | Basic Privileges | Yes | Mandatory | |
-| E081-01 | SELECT privilege at the table level | Yes | Mandatory | |
-| E081-02 | DELETE privilege | Yes | Mandatory | |
-| E081-03 | INSERT privilege at the table level | Yes | Mandatory | |
-| E081-04 | UPDATE privilege at the table level | Yes | Mandatory | |
-| E081-05 | UPDATE privilege at the column level | Yes | Mandatory | |
-| E081-06 | REFERENCES privilege at the table level | No | Mandatory | |
-| E081-07 | REFERENCES privilege at the column level | No | Mandatory | |
-| E081-08 | WITH GRANT OPTION | Yes | Mandatory | |
-| E081-09 | USAGE privilege | No | Mandatory | |
-| E081-10 | EXECUTE privilege | No | Mandatory | |
-| E091 | Set functions | Yes | Mandatory | |
-| E091-01 | AVG | Yes | Mandatory | |
-| E091-02 | COUNT | Yes | Mandatory | |
-| E091-03 | MAX | Yes | Mandatory | |
-| E091-04 | MIN | Yes | Mandatory | |
-| E091-05 | SUM | Yes | Mandatory | |
-| E091-06 | ALL quantifier | Yes | Mandatory | |
-| E091-07 | DISTINCT quantifier | Yes | Mandatory | |
-| E101 | Basic data manipulation | Yes | Mandatory | |
-| E101-01 | INSERT statement | Yes | Mandatory | |
-| E101-03 | Searched UPDATE statement | Yes | Mandatory | |
-| E101-04 | Searched DELETE statement | Yes | Mandatory | |
-| E111 | Single row SELECT statement | No | Mandatory | |
-| E121 | Basic cursor support | No | Mandatory | |
-| E121-01 | DECLARE CURSOR | No | Mandatory | |
-| E121-02 | ORDER BY columns need not be in select list | No | Mandatory | |
-| E121-03 | Value expressions in ORDER BY clause | No | Mandatory | |
-| E121-04 | OPEN statement | No | Mandatory | |
-| E121-06 | Positioned UPDATE statement | No | Mandatory | |
-| E121-07 | Positioned DELETE statement | No | Mandatory | |
-| E121-08 | CLOSE statement | No | Mandatory | |
-| E121-10 | FETCH statement: implicit NEXT | No | Mandatory | |
-| E121-17 | WITH HOLD cursors | No | Mandatory | |
-| E131 | Null value support (nulls in lieu of values) | Yes | Mandatory | |
-| E141 | Basic integrity constraints | Partial | Mandatory | Don&rsquo;t support UNIQUE (VALUE) constraints, don&rsquo;t support UNIQUE over a list of columns. Unique constraints not enforced.Don&rsquo;t support referencing periods, MATCH, or triggered actions in foreign key.Don&rsquo;t support CHECK constraints. |
-| E141-01 | NOT NULL constraints | Yes | Mandatory | |
-| E141-02 | UNIQUE constraints of NOT NULL columns | Partial | Mandatory | UNIQUE constraints not enforced |
-| E141-03 | PRIMARY KEY constraints | Partial | Mandatory | Primary keys not enforced |
-| E141-04 | Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action. | Partial | Mandatory | Don&rsquo;t support referencing periods, MATCH, or triggered actions. Foreign keys not enforced. |
-| E141-06 | CHECK constraints | Yes | Mandatory | |
-| E141-07 | Column defaults | Yes | Mandatory | |
-| E141-08 | NOT NULL inferred on PRIMARY KEY | No | Mandatory | No need to declare NOT NULL with PRIMARY KEY or UNIQUE, but non-nullness not enforced. |
-| E141-10 | Names in a foreign key can be specified in any order | No | Mandatory | |
-| E151 | Transaction support | No | Mandatory | |
-| E151-01 | COMMIT statement | No | Mandatory | |
-| E151-02 | ROLLBACK statement | No | Mandatory | |
-| E152 | Basic SET TRANSACTION statement | No | Mandatory | |
-| E152-01 | SET TRANSACTION state- ment: ISOLATION LEVEL SERIALIZABLE clause | No | Mandatory | |
-| E152-02 | SET TRANSACTION state- ment: READ ONLY and READ WRITE clauses | No | Mandatory | |
-| E153 | Updatable queries with subqueries | No | Mandatory | |
-| E161 | SQL comments using leading double minus | Yes | Mandatory | |
-| E171 | SQLSTATE support | No | Mandatory | |
-| F031 | Basic schema manipulation | Yes | Mandatory | |
-| F031-01 | CREATE TABLE statement to create persistent base tables | Yes | Mandatory | |
-| F031-02 | CREATE VIEW statement | Yes | Mandatory | |
-| F031-03 | GRANT statement | Yes | Mandatory | |
-| F031-04 | ALTER TABLE statement: ADD COLUMN clause | Yes | Mandatory | |
-| F031-13 | DROP TABLE statement: RESTRICT clause | Yes | Mandatory | |
-| F031-16 | DROP VIEW statement: RESTRICT clause | Yes | Mandatory | |
-| F031-19 | REVOKE statement: RESTRICT clause | No | Mandatory | |
-| F032 | CASCADE drop behavior | Yes | Optional | |
-| F034 | Extended REVOKE statement | Yes | Optional | |
-| F034-01 | REVOKE statement performed by other than the owner of a schema object | Yes | Optional | |
-| F034-02 | REVOKE statement: GRANT OPTION FOR clause | Yes | Optional | |
-| F034-03 | REVOKE statement to revoke a privilege that the grantee has WITH GRANT OPTION | Yes | Optional | |
-| F041 | Basic joined table | Yes | Mandatory | |
-| F041-01 | Inner join (but not necessarily the INNER keyword) | Yes | Mandatory | |
-| F041-02 | INNER keyword | Yes | Mandatory | |
-| F041-03 | LEFT OUTER JOIN | Yes | Mandatory | |
-| F041-04 | RIGHT OUTER JOIN | Yes | Mandatory | |
-| F041-05 | Outer joins can be nested | Yes | Mandatory | |
-| F041-07 | The inner table in a left or right outer join can also be used in an inner join | Yes | Mandatory | |
-| F041-08 | All comparison operators are supported (rather than just =) | Yes | Mandatory | |
-| F051 | Basic date and time | Partial | Mandatory | No support for WITH/OUT TIMEZONE.No support for precision in TIMESTAMP.No support for TIME type. |
-| F051-01 | DATE data type (including support of DATE literal) | Partial | Mandatory | Intervals don&rsquo;t match spec syntax |
-| F051-02 | TIME data type (including support of TIME literal) with fractional seconds precision of at least 0. | No | Mandatory | |
-| F051-03 | TIMESTAMP data type (including support of TIMESTAMP literal) with fractional seconds precision of at least 0 and 6. | Partial | Mandatory | No support for WITH/OUT TIMEZONE.No support for precision.Intervals don&rsquo;t match spec syntax. |
-| F051-04 | Comparison predicate on DATE, TIME, and TIMESTAMP data types | Partial | Mandatory | No support for TIME |
-| F051-05 | Explicit CAST between date-time types and character string types | Partial | Mandatory | No support for TIME |
-| F051-06 | CURRENT_DATE | Yes | Mandatory | |
-| F051-07 | LOCALTIME | No | Mandatory | |
-| F051-08 | LOCALTIMESTAMP | Partial | Mandatory | CURRENT_TIMESTAMP supported, doesn&rsquo;t take precision argumentLOCALTIMESTAMP not supported  |
-| F052 | Intervals and datetime arithmetic | Partial | Optional | Interval not supported as column type, only as expression type in queries.Interval syntax differs from standard. |
-| F054 | TIMESTAMP in DATE type precedence list | Yes | Optional | |
-| F081 | UNION and EXCEPT in views | Yes | Mandatory | |
-| F131 | Grouped operations | Yes | Mandatory | |
-| F131-01 | WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views | Yes | Mandatory | |
-| F131-02 | Multiple tables supported in queries with grouped views | Yes | Mandatory | |
-| F131-03 | Set functions supported in queries with grouped views | Yes | Mandatory | |
-| F131-04 | Subqueries with GROUP BY and HAVING clauses and grouped views | Yes | Mandatory | |
-| F131-05 | Single row SELECT with GROUP BY and HAVING clauses and grouped views | Yes | Mandatory | |
-| F171 | Multiple schemas per user | Yes | Optional | |
-| F200 | TRUNCATE TABLE statement | Yes | Optional | |
-| F181 | Multiple module support | No | Mandatory | |
-| F201 | CAST function | Yes | Mandatory | |
-| F221 | Explicit defaults | Yes | Mandatory | |
-| F261 | CASE expression | Yes | Mandatory | |
-| F261-01 | Simple CASE | Yes | Mandatory | |
-| F261-02 | Searched CASE | Yes | Mandatory | |
-| F261-03 | NULLIF | Yes | Mandatory | |
-| F261-04 | COALESCE | Yes | Mandatory | |
-| F302 | INTERSECT table operator | Yes | Optional | |
-| F302-01 | INTERSECT DISTINCT table operator | Yes | Optional | |
-| F302-02 | INTERSECT ALL table operator | Yes | Optional | |
-| F304 | EXCEPT ALL table operator | Yes | Optional | |
-| F311 | Schema definition statement | Yes | Mandatory | |
-| F311-01 | CREATE SCHEMA | Yes | Mandatory | |
-| F311-02 | CREATE TABLE for persistent base tables | Partial | Mandatory | Does not create schema element creation as part of schema creation, must be done in separate statement |
-| F311-03 | CREATE VIEW | Partial | Mandatory | Does not create schema element creation as part of schema creation, must be done in separate statement |
-| F311-04 | CREATE VIEW: WITH CHECK OPTION | No | Mandatory | |
-| F311-05 | GRANT statement | Partial | Mandatory | Does not create schema element creation as part of schema creation, must be done in separate statement |
-| F312 | MERGE statement | Yes | Optional | |
-| F313 | Enhanced MERGE statement | Yes | Optional | |
-| F314 | MERGE statement with DELETE branch | Yes | Optional | |
-| F321 | User authorization | Partial | Optional | Support for CURRENT_USER function, none of the rest |
-| F381 | Extended schema manipulation | Partial | Optional | No support for scope.No support for ALTER routine. |
-| F381-01 | ALTER TABLE statement: ALTER COLUMN clause | Partial | Optional | Syntax non-standard.No support for scope.No support for identities.No support for column generation. |
-| F381-02 | ALTER TABLE statement: ADD CONSTRAINT clause | Partial | Optional | Same limitations as creating constraints above |
-| F381-03 | ALTER TABLE statement: DROP CONSTRAINT clause | Partial | Optional | Same limitations as creating constraints above |
-| F382 | Alter column data type | Partial | Optional | Syntax non-standard |
-| F383 | Set column not null clause | Partial | Optional | Syntax non-standard |
-| F391 | Long identifiers | Yes | Optional | |
-| F401 | Extended joined table | Partial | Optional | NATURAL joins not supported |
-| F401-02 | FULL OUTER JOIN | Yes | Optional | |
-| F401-04 | CROSS JOIN | Yes | Optional | |
-| F471 | Scalar subquery values | Yes | Mandatory | |
-| F481 | Expanded NULL predicate | Yes | Mandatory | |
-| F531 | Temporary tabels | Partial | Optional | GLOBAL/LOCAL scope not supported.DECLARE TEMPORARY TABLE not supported. |
-| F555 | Enhanced seconds precision | Yes | Optional | |
-| F763 | CURRENT_SCHEMA | Partial | Optional | CURRENT_DATABASE, which is equivalent |
-| F812 | Basic flagging | No | Mandatory | |
-| F841 | LIKE_REGEX predicate | Partial | Optional | use RLIKE instead |
-| F847 | Nonconstant regular expressions | Yes | Optional | |
-| F850 | Top level in | Yes | Optional | |
-| F851 | in subqueries | Yes | Optional | |
-| F852 | Top-level in views | Yes | Optional | |
-| F855 | Nested in | Yes | Optional | |
-| F856 | Nested in | Yes | Optional | |
-| F857 | Top-level in | Yes | Optional | |
-| F858 | in subqueries | Yes | Optional | |
-| F859 | Top-level in views | Yes | Optional | |
-| S011 | Distinct data types | No | Mandatory | |
-| S091 | Basic array support | Partial | Optional | Syntax non-standard.No option to declare max cardinality.SIZE instead of CARDINALITY. |
-| S091-01 | Arrays of built-in data types | Partial | Optional | Syntax non-standard |
-| S091-03 | Array expressions | Partial | Optional | Support array element reference and cardinality (though syntax non-standard)No support for array concatenation, trimming, or max-cardinality |
-| T021 | BINARY and VARBINARY types | Partial | Optional | BINARY only, though it acts like VARBINARY, no length parameter accepted.No support for overlay, trim, position, or LIKE. |
-| T031 | BOOLEAN data type | Yes | Optional | |
-| T041 | Basic LOB data type support | Partial | Optional | BINARY acts as BLOB (no size restrictions)STRING acts as CLOBNon-standard syntax |
-| T041-01 | BLOB data type | Partial | Optional | BINARY acts as BLOB, non-standard syntax |
-| T041-02 | CLOB data type | Partial | Optional | STRING acts as CLOB, non-standard syntax |
-| T041-03 | POSITION, LENGTH, LOWER, TRIM, UPPER, SUBSTRING for LOB data types | Partial | Optional | No POSITIONLOWER, UPPER only applicable to STRING |
-| T041-04 | Concatenation of LOB types | Yes | Optional | |
-| T042 | Extended LOB data type support | Partial | Optional | Cast for BINARY and STRING supported.LIKE for STRING supported.All other advanced options not supported. |
-| T051 | Row types | Partial | Optional | Called STRUCT rather than ROW |
-| T071 | BIGINT data type | Yes | Optional | |
-| T121 | WITH (excluding RECURSIVE) in query expression | Yes | Optional | |
-| T321 | Basic SQL-invoked routines | No | Mandatory | |
-| T321-01 | User-defined functions with no overloading | No | Mandatory | |
-| T321-02 | User-defined stored procedures with no overloading | No | Mandatory | |
-| T321-03 | Function invocation | No | Mandatory | |
-| T321-04 | CALL statement | No | Mandatory | |
-| T321-05 | RETURN statement | No | Mandatory | |
-| T331 | Basic roles | Yes | Optional | |
-| T351 | Bracketed comments | Yes | Optional | |
-| T431 | Extended grouping capabilities | Yes | Optional | |
-| T433 | Multiargument GROUPING function | Yes | Optional | |
-| T441 | ABS and MOD functions | Yes | Optional | |
-| T501 | Enhanced EXISTS predicate | Yes | Optional | |
-| T581 | Regular expression substring function | Yes | Optional | |
-| T591 | UNIQUE constraints of possibly null columns | Yes | Optional | |
-| T611 | Elementary OLAP operations | Yes | Optional | |
-| T612 | Advanced OLAP operations | Partial | Optional | |
-| T613 | Sampling | Yes | Optional | |
-| T614 | NTILE function | Yes | Optional | |
-| T615 | LEAD and LAG functions | Yes | Optional | |
-| T617 | FIRST_VALUE and LAST_VALUE functions | Yes | Optional | |
-| T621 | Enhanced numeric functions | Yes | Optional | |
-| T622 | Trigonometric functions | Partial | Optional | No sinh, cosh, tanh |
-| T623 | General logarithm functions | Yes | Optional | |
-| T624 | Common logarithm functions | Yes | Optional | |
-| T631 | IN predicate with one list element | Yes | Mandatory |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Feature ID</strong></th>
+<th><strong>Feature Name</strong></th>
+<th><strong>Implemented</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Comments</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E011</td>
+<td>Numeric data types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-01</td>
+<td>INTEGER and SMALLINT data types (including all spellings)</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-02</td>
+<td>REAL, DOUBLE PRECISON, and FLOAT data types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-03</td>
+<td>DECIMAL and NUMERIC data types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-04</td>
+<td>Arithmetic operators</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-05</td>
+<td>Numeric comparison</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E011-06</td>
+<td>Implicit casting among the numeric data types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021</td>
+<td>Character string types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-01</td>
+<td>CHARACTER data type (including all its spellings)</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Only support CHAR, not CHARACTER</td>
+</tr>
+<tr>
+<td>E021-02</td>
+<td>CHARACTER VARYING data type (including all its spellings)</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Only support VARCHAR, not CHARACTER VARYING or CHAR VARYING</td>
+</tr>
+<tr>
+<td>E021-03</td>
+<td>Character literals</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-04</td>
+<td>CHARACTER_LENGTH function</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-05</td>
+<td>OCTET_LENGTH function</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-06</td>
+<td>SUBSTRING function</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Standard: SUBSTRING(<em>val</em> FROM <em>startpos</em> [FOR <em>len</em>]). Hive: SUBSTRING(<em>val</em>, <em>startpos</em> [, <em>len</em>])</td>
+</tr>
+<tr>
+<td>E021-07</td>
+<td>Character concatenation</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-08</td>
+<td>UPPER and LOWER functions</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-09</td>
+<td>TRIM function</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-10</td>
+<td>Implicit casting among the fixed-length and variable-length character string types</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-11</td>
+<td>POSITION function</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E021-12</td>
+<td>Character comparison</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E031</td>
+<td>Identifiers</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Unquoted identifiers use C syntax ([A-Za-z][A-Za-z0-9_]*). Quoted identifiers can have any character.</td>
+</tr>
+<tr>
+<td>E031-01</td>
+<td>Delimited identifiers</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Quoting done with ` rather than &ldquo;, only supported for columns, not tables, views, etc.</td>
+</tr>
+<tr>
+<td>E031-02</td>
+<td>Lower case identifiers</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E031-03</td>
+<td>Trailing underscore</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051</td>
+<td>Basic query specification</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-01</td>
+<td>SELECT DISTINCT</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-02</td>
+<td>GROUP BY clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-04</td>
+<td>GROUP BY can contain columns not in </td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-05</td>
+<td>Select list items can be renamed</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-06</td>
+<td>HAVING clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-07</td>
+<td>Qualified * in select list</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-08</td>
+<td>Correlation names in the FROM clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E051-09</td>
+<td>Rename columns in the FROM clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061</td>
+<td>Basic predicates and search conditions</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-01</td>
+<td>Comparison predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-02</td>
+<td>BETWEEN predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-03</td>
+<td>IN predicate with list of values</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-04</td>
+<td>LIKE predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-05</td>
+<td>LIKE predicate: ESCAPE clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-06</td>
+<td>NULL predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-07</td>
+<td>Quantified comparison predicate</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-08</td>
+<td>EXISTS predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-09</td>
+<td>Subqueries in comparison predicate</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-11</td>
+<td>Subqueries in IN predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-12</td>
+<td>Subqueries in quantified comparison predicate</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-13</td>
+<td>Correlated subqueries</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E061-14</td>
+<td>Search condition</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071</td>
+<td>Basic query expressions</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-01</td>
+<td>UNION DISTINCT table operator</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-02</td>
+<td>UNION ALL table operator</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-03</td>
+<td>EXCEPT DISTINCT table operator</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-05</td>
+<td>Columns combined via table operators need not have exactly the same data type.</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E071-06</td>
+<td>Table operators in subqueries</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081</td>
+<td>Basic Privileges</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-01</td>
+<td>SELECT privilege at the table level</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-02</td>
+<td>DELETE privilege</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-03</td>
+<td>INSERT privilege at the table level</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-04</td>
+<td>UPDATE privilege at the table level</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-05</td>
+<td>UPDATE privilege at the column level</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-06</td>
+<td>REFERENCES privilege at the table level</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-07</td>
+<td>REFERENCES privilege at the column level</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-08</td>
+<td>WITH GRANT OPTION</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-09</td>
+<td>USAGE privilege</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E081-10</td>
+<td>EXECUTE privilege</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091</td>
+<td>Set functions</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-01</td>
+<td>AVG</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-02</td>
+<td>COUNT</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-03</td>
+<td>MAX</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-04</td>
+<td>MIN</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-05</td>
+<td>SUM</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-06</td>
+<td>ALL quantifier</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E091-07</td>
+<td>DISTINCT quantifier</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E101</td>
+<td>Basic data manipulation</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-01</td>
+<td>INSERT statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-03</td>
+<td>Searched UPDATE statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E101-04</td>
+<td>Searched DELETE statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E111</td>
+<td>Single row SELECT statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121</td>
+<td>Basic cursor support</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-01</td>
+<td>DECLARE CURSOR</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-02</td>
+<td>ORDER BY columns need not be in select list</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-03</td>
+<td>Value expressions in ORDER BY clause</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-04</td>
+<td>OPEN statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-06</td>
+<td>Positioned UPDATE statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-07</td>
+<td>Positioned DELETE statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-08</td>
+<td>CLOSE statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-10</td>
+<td>FETCH statement: implicit NEXT</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E121-17</td>
+<td>WITH HOLD cursors</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E131</td>
+<td>Null value support (nulls in lieu of values)</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E141</td>
+<td>Basic integrity constraints</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Don&rsquo;t support UNIQUE (VALUE) constraints, don&rsquo;t support UNIQUE over a list of columns. Unique constraints not enforced.Don&rsquo;t support referencing periods, MATCH, or triggered actions in foreign key.Don&rsquo;t support CHECK constraints.</td>
+</tr>
+<tr>
+<td>E141-01</td>
+<td>NOT NULL constraints</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E141-02</td>
+<td>UNIQUE constraints of NOT NULL columns</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>UNIQUE constraints not enforced</td>
+</tr>
+<tr>
+<td>E141-03</td>
+<td>PRIMARY KEY constraints</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Primary keys not enforced</td>
+</tr>
+<tr>
+<td>E141-04</td>
+<td>Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete action and referential update action.</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Don&rsquo;t support referencing periods, MATCH, or triggered actions. Foreign keys not enforced.</td>
+</tr>
+<tr>
+<td>E141-06</td>
+<td>CHECK constraints</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E141-07</td>
+<td>Column defaults</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E141-08</td>
+<td>NOT NULL inferred on PRIMARY KEY</td>
+<td>No</td>
+<td>Mandatory</td>
+<td>No need to declare NOT NULL with PRIMARY KEY or UNIQUE, but non-nullness not enforced.</td>
+</tr>
+<tr>
+<td>E141-10</td>
+<td>Names in a foreign key can be specified in any order</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E151</td>
+<td>Transaction support</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E151-01</td>
+<td>COMMIT statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E151-02</td>
+<td>ROLLBACK statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E152</td>
+<td>Basic SET TRANSACTION statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E152-01</td>
+<td>SET TRANSACTION state- ment: ISOLATION LEVEL SERIALIZABLE clause</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E152-02</td>
+<td>SET TRANSACTION state- ment: READ ONLY and READ WRITE clauses</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E153</td>
+<td>Updatable queries with subqueries</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E161</td>
+<td>SQL comments using leading double minus</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>E171</td>
+<td>SQLSTATE support</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031</td>
+<td>Basic schema manipulation</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-01</td>
+<td>CREATE TABLE statement to create persistent base tables</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-02</td>
+<td>CREATE VIEW statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-03</td>
+<td>GRANT statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-04</td>
+<td>ALTER TABLE statement: ADD COLUMN clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-13</td>
+<td>DROP TABLE statement: RESTRICT clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-16</td>
+<td>DROP VIEW statement: RESTRICT clause</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F031-19</td>
+<td>REVOKE statement: RESTRICT clause</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F032</td>
+<td>CASCADE drop behavior</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F034</td>
+<td>Extended REVOKE statement</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F034-01</td>
+<td>REVOKE statement performed by other than the owner of a schema object</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F034-02</td>
+<td>REVOKE statement: GRANT OPTION FOR clause</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F034-03</td>
+<td>REVOKE statement to revoke a privilege that the grantee has WITH GRANT OPTION</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F041</td>
+<td>Basic joined table</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-01</td>
+<td>Inner join (but not necessarily the INNER keyword)</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-02</td>
+<td>INNER keyword</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-03</td>
+<td>LEFT OUTER JOIN</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-04</td>
+<td>RIGHT OUTER JOIN</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-05</td>
+<td>Outer joins can be nested</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-07</td>
+<td>The inner table in a left or right outer join can also be used in an inner join</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F041-08</td>
+<td>All comparison operators are supported (rather than just =)</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F051</td>
+<td>Basic date and time</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>No support for WITH/OUT TIMEZONE.No support for precision in TIMESTAMP.No support for TIME type.</td>
+</tr>
+<tr>
+<td>F051-01</td>
+<td>DATE data type (including support of DATE literal)</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Intervals don&rsquo;t match spec syntax</td>
+</tr>
+<tr>
+<td>F051-02</td>
+<td>TIME data type (including support of TIME literal) with fractional seconds precision of at least 0.</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-03</td>
+<td>TIMESTAMP data type (including support of TIMESTAMP literal) with fractional seconds precision of at least 0 and 6.</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>No support for WITH/OUT TIMEZONE.No support for precision.Intervals don&rsquo;t match spec syntax.</td>
+</tr>
+<tr>
+<td>F051-04</td>
+<td>Comparison predicate on DATE, TIME, and TIMESTAMP data types</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>No support for TIME</td>
+</tr>
+<tr>
+<td>F051-05</td>
+<td>Explicit CAST between date-time types and character string types</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>No support for TIME</td>
+</tr>
+<tr>
+<td>F051-06</td>
+<td>CURRENT_DATE</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-07</td>
+<td>LOCALTIME</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F051-08</td>
+<td>LOCALTIMESTAMP</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>CURRENT_TIMESTAMP supported, doesn&rsquo;t take precision argumentLOCALTIMESTAMP not supported </td>
+</tr>
+<tr>
+<td>F052</td>
+<td>Intervals and datetime arithmetic</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Interval not supported as column type, only as expression type in queries.Interval syntax differs from standard.</td>
+</tr>
+<tr>
+<td>F054</td>
+<td>TIMESTAMP in DATE type precedence list</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F081</td>
+<td>UNION and EXCEPT in views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131</td>
+<td>Grouped operations</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-01</td>
+<td>WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-02</td>
+<td>Multiple tables supported in queries with grouped views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-03</td>
+<td>Set functions supported in queries with grouped views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-04</td>
+<td>Subqueries with GROUP BY and HAVING clauses and grouped views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F131-05</td>
+<td>Single row SELECT with GROUP BY and HAVING clauses and grouped views</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F171</td>
+<td>Multiple schemas per user</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F200</td>
+<td>TRUNCATE TABLE statement</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F181</td>
+<td>Multiple module support</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F201</td>
+<td>CAST function</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F221</td>
+<td>Explicit defaults</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F261</td>
+<td>CASE expression</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-01</td>
+<td>Simple CASE</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-02</td>
+<td>Searched CASE</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-03</td>
+<td>NULLIF</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F261-04</td>
+<td>COALESCE</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F302</td>
+<td>INTERSECT table operator</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F302-01</td>
+<td>INTERSECT DISTINCT table operator</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F302-02</td>
+<td>INTERSECT ALL table operator</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F304</td>
+<td>EXCEPT ALL table operator</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F311</td>
+<td>Schema definition statement</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-01</td>
+<td>CREATE SCHEMA</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-02</td>
+<td>CREATE TABLE for persistent base tables</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Does not create schema element creation as part of schema creation, must be done in separate statement</td>
+</tr>
+<tr>
+<td>F311-03</td>
+<td>CREATE VIEW</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Does not create schema element creation as part of schema creation, must be done in separate statement</td>
+</tr>
+<tr>
+<td>F311-04</td>
+<td>CREATE VIEW: WITH CHECK OPTION</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F311-05</td>
+<td>GRANT statement</td>
+<td>Partial</td>
+<td>Mandatory</td>
+<td>Does not create schema element creation as part of schema creation, must be done in separate statement</td>
+</tr>
+<tr>
+<td>F312</td>
+<td>MERGE statement</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F313</td>
+<td>Enhanced MERGE statement</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F314</td>
+<td>MERGE statement with DELETE branch</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F321</td>
+<td>User authorization</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Support for CURRENT_USER function, none of the rest</td>
+</tr>
+<tr>
+<td>F381</td>
+<td>Extended schema manipulation</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>No support for scope.No support for ALTER routine.</td>
+</tr>
+<tr>
+<td>F381-01</td>
+<td>ALTER TABLE statement: ALTER COLUMN clause</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Syntax non-standard.No support for scope.No support for identities.No support for column generation.</td>
+</tr>
+<tr>
+<td>F381-02</td>
+<td>ALTER TABLE statement: ADD CONSTRAINT clause</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Same limitations as creating constraints above</td>
+</tr>
+<tr>
+<td>F381-03</td>
+<td>ALTER TABLE statement: DROP CONSTRAINT clause</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Same limitations as creating constraints above</td>
+</tr>
+<tr>
+<td>F382</td>
+<td>Alter column data type</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Syntax non-standard</td>
+</tr>
+<tr>
+<td>F383</td>
+<td>Set column not null clause</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Syntax non-standard</td>
+</tr>
+<tr>
+<td>F391</td>
+<td>Long identifiers</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F401</td>
+<td>Extended joined table</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>NATURAL joins not supported</td>
+</tr>
+<tr>
+<td>F401-02</td>
+<td>FULL OUTER JOIN</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F401-04</td>
+<td>CROSS JOIN</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F471</td>
+<td>Scalar subquery values</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F481</td>
+<td>Expanded NULL predicate</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F531</td>
+<td>Temporary tabels</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>GLOBAL/LOCAL scope not supported.DECLARE TEMPORARY TABLE not supported.</td>
+</tr>
+<tr>
+<td>F555</td>
+<td>Enhanced seconds precision</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F763</td>
+<td>CURRENT_SCHEMA</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>CURRENT_DATABASE, which is equivalent</td>
+</tr>
+<tr>
+<td>F812</td>
+<td>Basic flagging</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>F841</td>
+<td>LIKE_REGEX predicate</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>use RLIKE instead</td>
+</tr>
+<tr>
+<td>F847</td>
+<td>Nonconstant regular expressions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F850</td>
+<td>Top level in </td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F851</td>
+<td> in subqueries</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F852</td>
+<td>Top-level in views</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F855</td>
+<td>Nested in </td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F856</td>
+<td>Nested in </td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F857</td>
+<td>Top-level in </td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F858</td>
+<td> in subqueries</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>F859</td>
+<td>Top-level in views</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>S011</td>
+<td>Distinct data types</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>S091</td>
+<td>Basic array support</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Syntax non-standard.No option to declare max cardinality.SIZE instead of CARDINALITY.</td>
+</tr>
+<tr>
+<td>S091-01</td>
+<td>Arrays of built-in data types</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Syntax non-standard</td>
+</tr>
+<tr>
+<td>S091-03</td>
+<td>Array expressions</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Support array element reference and cardinality (though syntax non-standard)No support for array concatenation, trimming, or max-cardinality</td>
+</tr>
+<tr>
+<td>T021</td>
+<td>BINARY and VARBINARY types</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>BINARY only, though it acts like VARBINARY, no length parameter accepted.No support for overlay, trim, position, or LIKE.</td>
+</tr>
+<tr>
+<td>T031</td>
+<td>BOOLEAN data type</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T041</td>
+<td>Basic LOB data type support</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>BINARY acts as BLOB (no size restrictions)STRING acts as CLOBNon-standard syntax</td>
+</tr>
+<tr>
+<td>T041-01</td>
+<td>BLOB data type</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>BINARY acts as BLOB, non-standard syntax</td>
+</tr>
+<tr>
+<td>T041-02</td>
+<td>CLOB data type</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>STRING acts as CLOB, non-standard syntax</td>
+</tr>
+<tr>
+<td>T041-03</td>
+<td>POSITION, LENGTH, LOWER, TRIM, UPPER, SUBSTRING for LOB data types</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>No POSITIONLOWER, UPPER only applicable to STRING</td>
+</tr>
+<tr>
+<td>T041-04</td>
+<td>Concatenation of LOB types</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T042</td>
+<td>Extended LOB data type support</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Cast for BINARY and STRING supported.LIKE for STRING supported.All other advanced options not supported.</td>
+</tr>
+<tr>
+<td>T051</td>
+<td>Row types</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>Called STRUCT rather than ROW</td>
+</tr>
+<tr>
+<td>T071</td>
+<td>BIGINT data type</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T121</td>
+<td>WITH (excluding RECURSIVE) in query expression</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T321</td>
+<td>Basic SQL-invoked routines</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T321-01</td>
+<td>User-defined functions with no overloading</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T321-02</td>
+<td>User-defined stored procedures with no overloading</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T321-03</td>
+<td>Function invocation</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T321-04</td>
+<td>CALL statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T321-05</td>
+<td>RETURN statement</td>
+<td>No</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+<tr>
+<td>T331</td>
+<td>Basic roles</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T351</td>
+<td>Bracketed comments</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T431</td>
+<td>Extended grouping capabilities</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T433</td>
+<td>Multiargument GROUPING function</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T441</td>
+<td>ABS and MOD functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T501</td>
+<td>Enhanced EXISTS predicate</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T581</td>
+<td>Regular expression substring function</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T591</td>
+<td>UNIQUE constraints of possibly null columns</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T611</td>
+<td>Elementary OLAP operations</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T612</td>
+<td>Advanced OLAP operations</td>
+<td>Partial</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T613</td>
+<td>Sampling</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T614</td>
+<td>NTILE function</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T615</td>
+<td>LEAD and LAG functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T617</td>
+<td>FIRST_VALUE and LAST_VALUE functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T621</td>
+<td>Enhanced numeric functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T622</td>
+<td>Trigonometric functions</td>
+<td>Partial</td>
+<td>Optional</td>
+<td>No sinh, cosh, tanh</td>
+</tr>
+<tr>
+<td>T623</td>
+<td>General logarithm functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T624</td>
+<td>Common logarithm functions</td>
+<td>Yes</td>
+<td>Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>T631</td>
+<td>IN predicate with one list element</td>
+<td>Yes</td>
+<td>Mandatory</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id=comments>Comments:</h2>
 <table>
 <thead>

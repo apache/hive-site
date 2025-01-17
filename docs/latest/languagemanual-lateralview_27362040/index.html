@@ -216,12 +216,40 @@ FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
 FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid
 GROUP BY adid;
 
-</code></pre><p>| int adid | count(1) |
-| 1 | 1 |
-| 2 | 1 |
-| 3 | 2 |
-| 4 | 1 |
-| 5 | 1 |</p>
+</code></pre><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int adid</td>
+<td>count(1)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 <h2 id=multiple-lateral-views>Multiple Lateral Views</h2>
 <p>A FROM clause can have multiple LATERAL VIEW clauses. Subsequent LATERAL VIEWS can reference columns from any of the tables appearing to the left of the LATERAL VIEW.</p>
 <p>For example, the following could be a valid query:</p>
@@ -230,38 +258,131 @@ LATERAL VIEW explode(col1) myTable1 AS myCol1
 LATERAL VIEW explode(myCol1) myTable2 AS myCol2;
 
 </code></pre><p>LATERAL VIEW clauses are applied in the order that they appear. For example with the following base table:</p>
-<p>| Array col1 | Array col2 |
-| [1, 2] | [a", &ldquo;b&rdquo;, &ldquo;c&rdquo;] |
-| [3, 4] | [d", &ldquo;e&rdquo;, &ldquo;f&rdquo;] |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Array&lt;int> col1</td>
+<td>Array&lt;string> col2</td>
+</tr>
+<tr>
+<td>[1, 2]</td>
+<td>[a", &ldquo;b&rdquo;, &ldquo;c&rdquo;]</td>
+</tr>
+<tr>
+<td>[3, 4]</td>
+<td>[d", &ldquo;e&rdquo;, &ldquo;f&rdquo;]</td>
+</tr>
+</tbody>
+</table>
 <p>The query:</p>
 <pre tabindex=0><code>SELECT myCol1, col2 FROM baseTable
 LATERAL VIEW explode(col1) myTable1 AS myCol1;
 
 </code></pre><p>Will produce:</p>
-<p>| int mycol1 | Array col2 |
-| 1 | [a", &ldquo;b&rdquo;, &ldquo;c&rdquo;] |
-| 2 | [a", &ldquo;b&rdquo;, &ldquo;c&rdquo;] |
-| 3 | [d", &ldquo;e&rdquo;, &ldquo;f&rdquo;] |
-| 4 | [d", &ldquo;e&rdquo;, &ldquo;f&rdquo;] |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int mycol1</td>
+<td>Array&lt;string> col2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>[a", &ldquo;b&rdquo;, &ldquo;c&rdquo;]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[a", &ldquo;b&rdquo;, &ldquo;c&rdquo;]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[d", &ldquo;e&rdquo;, &ldquo;f&rdquo;]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>[d", &ldquo;e&rdquo;, &ldquo;f&rdquo;]</td>
+</tr>
+</tbody>
+</table>
 <p>A query that adds an additional LATERAL VIEW:</p>
 <pre tabindex=0><code>SELECT myCol1, myCol2 FROM baseTable
 LATERAL VIEW explode(col1) myTable1 AS myCol1
 LATERAL VIEW explode(col2) myTable2 AS myCol2;
 
 </code></pre><p>Will produce:</p>
-<p>| int myCol1 | string myCol2 |
-| 1 | &ldquo;a&rdquo; |
-| 1 | &ldquo;b&rdquo; |
-| 1 | &ldquo;c&rdquo; |
-| 2 | &ldquo;a&rdquo; |
-| 2 | &ldquo;b&rdquo; |
-| 2 | &ldquo;c&rdquo; |
-| 3 | &ldquo;d&rdquo; |
-| 3 | &ldquo;e&rdquo; |
-| 3 | &ldquo;f&rdquo; |
-| 4 | &ldquo;d&rdquo; |
-| 4 | &ldquo;e&rdquo; |
-| 4 | &ldquo;f&rdquo; |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int myCol1</td>
+<td>string myCol2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>&ldquo;a&rdquo;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>&ldquo;b&rdquo;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>&ldquo;c&rdquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&ldquo;a&rdquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&ldquo;b&rdquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&ldquo;c&rdquo;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&ldquo;d&rdquo;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&ldquo;e&rdquo;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&ldquo;f&rdquo;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&ldquo;d&rdquo;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&ldquo;e&rdquo;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&ldquo;f&rdquo;</td>
+</tr>
+</tbody>
+</table>
 <h2 id=outer-lateral-views>Outer Lateral Views</h2>
 <p>Version</p>
 <p>Introduced in Hive version 0.12.0</p>

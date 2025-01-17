@@ -1228,28 +1228,122 @@ Closed</p>
 </tr>
 </tbody>
 </table>
-<p>|
-| string | regexp_extract(string subject, string pattern, int index) | Returns the string extracted using the pattern. For example, regexp_extract(&lsquo;foothebar&rsquo;, &lsquo;foo(.*?)(bar)&rsquo;, 2) returns &lsquo;bar.&rsquo; Note that some care is necessary in using predefined character classes: using &lsquo;\s&rsquo; as the second argument will match the letter s; &lsquo;\s&rsquo; is necessary to match whitespace, etc. The &lsquo;index&rsquo; parameter is the Java regex Matcher group() method index. See <a href=https://docs.oracle.com/javase/8/docs/api/java/util/regex/Matcher.html>docs/api/java/util/regex/Matcher.html</a> for more information on the &lsquo;index&rsquo; or Java regex group() method. |
-| string | regexp_replace(string INITIAL_STRING, string PATTERN, string REPLACEMENT) | Returns the string resulting from replacing all substrings in INITIAL_STRING that match the java regular expression syntax defined in PATTERN with instances of REPLACEMENT. For example, regexp_replace(&ldquo;foobar&rdquo;, &ldquo;oo|ar&rdquo;, &ldquo;") returns &lsquo;fb.&rsquo; Note that some care is necessary in using predefined character classes: using &lsquo;\s&rsquo; as the second argument will match the letter s; &lsquo;\s&rsquo; is necessary to match whitespace, etc. |
-| string | repeat(string str, int n) | Repeats str n times. |
-| string | replace(string A, string OLD, string NEW) | Returns the string A with all non-overlapping occurrences of OLD replaced with NEW (as of <a href=https://issues.apache.org/jira/browse/HIVE-13063>Hive 1.3.0 and 2.1.0</a>). Example: select replace(&ldquo;ababab&rdquo;, &ldquo;abab&rdquo;, &ldquo;Z&rdquo;); returns &ldquo;Zab&rdquo;. |
-| string | reverse(string A) | Returns the reversed string. |
-| string | rpad(string str, int len, string pad) | Returns str, right-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
-| string | rtrim(string A) | Returns the string resulting from trimming spaces from the end(right hand side) of A. For example, rtrim(&rsquo; foobar &lsquo;) results in ' foobar&rsquo;. |
-| array&lt;array> | sentences(string str, string lang, string locale) | Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The &lsquo;lang&rsquo; and &lsquo;locale&rsquo; are optional arguments. For example, sentences(&lsquo;Hello there! How are you?') returns ( (&ldquo;Hello&rdquo;, &ldquo;there&rdquo;), (&ldquo;How&rdquo;, &ldquo;are&rdquo;, &ldquo;you&rdquo;) ). |
-| string | space(int n) | Returns a string of n spaces. |
-| array | split(string str, string pat) | Splits str around pat (pat is a regular expression). |
-| map&lt;string,string> | str_to_map(text[, delimiter1, delimiter2]) | Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are &lsquo;,&rsquo; for delimiter1 and &lsquo;:&rsquo; for delimiter2. |
-| string | substr(string|binary A, int start) substring(string|binary A, int start) | Returns the substring or slice of the byte array of A starting from start position till the end of string A. For example, substr(&lsquo;foobar&rsquo;, 4) results in &lsquo;bar&rsquo; (see [<a href=http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr</a>]). |
-| string | substr(string|binary A, int start, int len) substring(string|binary A, int start, int len) | Returns the substring or slice of the byte array of A starting from start position with length len. For example, substr(&lsquo;foobar&rsquo;, 4, 1) results in &lsquo;b&rsquo; (see [<a href=http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr</a>]). |
-| string | substring_index(string A, string delim, int count) | Returns the substring from string A before count occurrences of the delimiter delim (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-686>1.3.0</a>). If count is positive, everything to the left of the final delimiter (counting from the left) is returned. If count is negative, everything to the right of the final delimiter (counting from the right) is returned. Substring_index performs a case-sensitive match when searching for delim. Example: substring_index(&lsquo;<a href=http://www.apache.org>www.apache.org</a>&rsquo;, &lsquo;.&rsquo;, 2) = &lsquo;www.apache&rsquo;. |
-| string | translate(string|char|varchar input, string|char|varchar from, string|char|varchar to) | Translates the input string by replacing the characters present in the <code>from</code> string with the corresponding characters in the <code>to</code> string. This is similar to the <code>translate</code> function in <a href=http://www.postgresql.org/docs/9.1/interactive/functions-string.html>PostgreSQL</a>. If any of the parameters to this UDF are NULL, the result is NULL as well. (Available as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-2418>0.10.0</a>, for string types)Char/varchar support added as of <a href=https://issues.apache.org/jira/browse/HIVE-6622>Hive 0.14.0</a>. |
-| string | trim(string A) | Returns the string resulting from trimming spaces from both ends of A. For example, trim(&rsquo; foobar &lsquo;) results in &lsquo;foobar&rsquo; |
-| binary | unbase64(string str) | Converts the argument from a base 64 string to BINARY. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-2482>0.12.0</a>.) |
-| string | upper(string A) ucase(string A) | Returns the string resulting from converting all characters of A to upper case. For example, upper(&lsquo;fOoBaR&rsquo;) results in &lsquo;FOOBAR&rsquo;. |
-| string | initcap(string A) | Returns string, with the first letter of each word in uppercase, all other letters in lowercase. Words are delimited by whitespace. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-3405>1.1.0</a>.) |
-| int | levenshtein(string A, string B) | Returns the Levenshtein distance between two strings (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9556>1.2.0</a>). For example, levenshtein(&lsquo;kitten&rsquo;, &lsquo;sitting&rsquo;) results in 3. |
-| string | soundex(string A) | Returns soundex code of the string (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9738>1.2.0</a>). For example, soundex(&lsquo;Miller&rsquo;) results in M460. |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Return Type</strong></th>
+<th><strong>Name(Signature)</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>string</td>
+<td>regexp_extract(string subject, string pattern, int index)</td>
+<td>Returns the string extracted using the pattern. For example, regexp_extract(&lsquo;foothebar&rsquo;, &lsquo;foo(.*?)(bar)&rsquo;, 2) returns &lsquo;bar.&rsquo; Note that some care is necessary in using predefined character classes: using &lsquo;\s&rsquo; as the second argument will match the letter s; &lsquo;\s&rsquo; is necessary to match whitespace, etc. The &lsquo;index&rsquo; parameter is the Java regex Matcher group() method index. See <a href=https://docs.oracle.com/javase/8/docs/api/java/util/regex/Matcher.html>docs/api/java/util/regex/Matcher.html</a> for more information on the &lsquo;index&rsquo; or Java regex group() method.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>regexp_replace(string INITIAL_STRING, string PATTERN, string REPLACEMENT)</td>
+<td>Returns the string resulting from replacing all substrings in INITIAL_STRING that match the java regular expression syntax defined in PATTERN with instances of REPLACEMENT. For example, regexp_replace(&ldquo;foobar&rdquo;, &ldquo;oo</td>
+</tr>
+<tr>
+<td>string</td>
+<td>repeat(string str, int n)</td>
+<td>Repeats str n times.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>replace(string A, string OLD, string NEW)</td>
+<td>Returns the string A with all non-overlapping occurrences of OLD replaced with NEW (as of <a href=https://issues.apache.org/jira/browse/HIVE-13063>Hive 1.3.0 and 2.1.0</a>). Example: select replace(&ldquo;ababab&rdquo;, &ldquo;abab&rdquo;, &ldquo;Z&rdquo;); returns &ldquo;Zab&rdquo;.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>reverse(string A)</td>
+<td>Returns the reversed string.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>rpad(string str, int len, string pad)</td>
+<td>Returns str, right-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>rtrim(string A)</td>
+<td>Returns the string resulting from trimming spaces from the end(right hand side) of A. For example, rtrim(&rsquo; foobar &lsquo;) results in ' foobar&rsquo;.</td>
+</tr>
+<tr>
+<td>array&lt;array></td>
+<td>sentences(string str, string lang, string locale)</td>
+<td>Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The &lsquo;lang&rsquo; and &lsquo;locale&rsquo; are optional arguments. For example, sentences(&lsquo;Hello there! How are you?') returns ( (&ldquo;Hello&rdquo;, &ldquo;there&rdquo;), (&ldquo;How&rdquo;, &ldquo;are&rdquo;, &ldquo;you&rdquo;) ).</td>
+</tr>
+<tr>
+<td>string</td>
+<td>space(int n)</td>
+<td>Returns a string of n spaces.</td>
+</tr>
+<tr>
+<td>array</td>
+<td>split(string str, string pat)</td>
+<td>Splits str around pat (pat is a regular expression).</td>
+</tr>
+<tr>
+<td>map&lt;string,string></td>
+<td>str_to_map(text[, delimiter1, delimiter2])</td>
+<td>Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are &lsquo;,&rsquo; for delimiter1 and &lsquo;:&rsquo; for delimiter2.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>substr(string</td>
+<td>binary A, int start) substring(string</td>
+</tr>
+<tr>
+<td>string</td>
+<td>substr(string</td>
+<td>binary A, int start, int len) substring(string</td>
+</tr>
+<tr>
+<td>string</td>
+<td>substring_index(string A, string delim, int count)</td>
+<td>Returns the substring from string A before count occurrences of the delimiter delim (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-686>1.3.0</a>). If count is positive, everything to the left of the final delimiter (counting from the left) is returned. If count is negative, everything to the right of the final delimiter (counting from the right) is returned. Substring_index performs a case-sensitive match when searching for delim. Example: substring_index(&lsquo;<a href=http://www.apache.org>www.apache.org</a>&rsquo;, &lsquo;.&rsquo;, 2) = &lsquo;www.apache&rsquo;.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>translate(string</td>
+<td>char</td>
+</tr>
+<tr>
+<td>string</td>
+<td>trim(string A)</td>
+<td>Returns the string resulting from trimming spaces from both ends of A. For example, trim(&rsquo; foobar &lsquo;) results in &lsquo;foobar&rsquo;</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>unbase64(string str)</td>
+<td>Converts the argument from a base 64 string to BINARY. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-2482>0.12.0</a>.)</td>
+</tr>
+<tr>
+<td>string</td>
+<td>upper(string A) ucase(string A)</td>
+<td>Returns the string resulting from converting all characters of A to upper case. For example, upper(&lsquo;fOoBaR&rsquo;) results in &lsquo;FOOBAR&rsquo;.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>initcap(string A)</td>
+<td>Returns string, with the first letter of each word in uppercase, all other letters in lowercase. Words are delimited by whitespace. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-3405>1.1.0</a>.)</td>
+</tr>
+<tr>
+<td>int</td>
+<td>levenshtein(string A, string B)</td>
+<td>Returns the Levenshtein distance between two strings (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9556>1.2.0</a>). For example, levenshtein(&lsquo;kitten&rsquo;, &lsquo;sitting&rsquo;) results in 3.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>soundex(string A)</td>
+<td>Returns soundex code of the string (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9738>1.2.0</a>). For example, soundex(&lsquo;Miller&rsquo;) results in M460.</td>
+</tr>
+</tbody>
+</table>
 <h3 id=data-masking-functions>Data Masking Functions</h3>
 <p>The following built-in data masking functions are supported in Hive:</p>
 <table>

@@ -267,28 +267,38 @@ ASF
 <tr>
 <td>MS SQL Server</td>
 <td>2008 R2</td>
-<td>jdbc:sqlserver://:;DatabaseName=</td>
-<td></td>
+<td><code>jdbc:sqlserver://&lt;HOST>:&lt;PORT>;DatabaseName=&lt;SCHEMA></code></td>
+<td><code>com.microsoft.sqlserver.jdbc.SQLServerDriver</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>5.6.17</td>
+<td><code>jdbc:mysql://&lt;HOST>:&lt;PORT>/&lt;SCHEMA></code></td>
+<td><code>com.mysql.jdbc.Driver</code></td>
+</tr>
+<tr>
+<td>MariaDB</td>
+<td>5.5</td>
+<td><code>jdbc:mysql://&lt;HOST>:&lt;PORT>/&lt;SCHEMA></code></td>
+<td><code>org.mariadb.jdbc.Driver</code></td>
+</tr>
+<tr>
+<td>Oracle*</td>
+<td>11g</td>
+<td><code>jdbc:oracle:thin:@//&lt;HOST>:&lt;PORT>/xe</code></td>
+<td><code>oracle.jdbc.OracleDriver</code></td>
+</tr>
+<tr>
+<td>Postgres</td>
+<td>9.1.13</td>
+<td><code>jdbc:postgresql://&lt;HOST>:&lt;PORT>/&lt;SCHEMA></code></td>
+<td><code>org.postgresql.Driver</code></td>
 </tr>
 </tbody>
 </table>
-<pre tabindex=0><code>com.microsoft.sqlserver.jdbc.SQLServerDriver
-</code></pre><p>|
-| MySQL | 5.6.17 | jdbc:mysql://:/ |</p>
-<pre tabindex=0><code>com.mysql.jdbc.Driver
-</code></pre><p>|
-| MariaDB | 5.5 | jdbc:mysql://:/ |</p>
-<pre tabindex=0><code>org.mariadb.jdbc.Driver
-</code></pre><p>|
-| Oracle* | 11g | jdbc:oracle:thin:@//:/xe |</p>
-<pre tabindex=0><code>oracle.jdbc.OracleDriver
-</code></pre><p>|
-| Postgres | 9.1.13 | jdbc:postgresql://:/ |</p>
-<pre tabindex=0><code>org.postgresql.Driver
-</code></pre><p>|</p>
-<p> = The host the RDBMS is on.</p>
-<p> = Port the RDBMS is listening for JDBC connections on</p>
-<p> = The schema (or database) that the Metastore stores its tables in.</p>
+<p>&lt;HOST> = The host the RDBMS is on.</p>
+<p>&lt;PORT> = Port the RDBMS is listening for JDBC connections on</p>
+<p>&lt;SCHEMA> = The schema (or database) that the Metastore stores its tables in.</p>
 <p>*The Oracle values shown are for Oracle&rsquo;s thin JDBC client.  If you are using a different client the ConnectionURL and ConnectionDriverName values will differ.</p>
 <p><strong>Special Note:</strong>  When using Postgres you should set the configuration parameter <code>metastore.try.direct.sql.ddl</code> (previously <code>hive.metastore.try.direct.sql.ddl</code>) to false, to avoid failures in certain operations.</p>
 <h3 id=installing-and-upgrading-the-metastore-schema>Installing and Upgrading the Metastore Schema</h3>
