@@ -190,7 +190,7 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
 
 ```
 
- 
+Note that columns are specified by name, not by position number. However in [Hive 4.1.0](https://issues.apache.org/jira/browse/HIVE-581) and later, columns can be specified by position when configured as follows:
 
- 
-
+* For Hive 4.1.0 and later, [hive.orderby.position.alias](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.orderby.position.alias) is true by default.
+* set hive.cbo.enable=true; (True is the default)
