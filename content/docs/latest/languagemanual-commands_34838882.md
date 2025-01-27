@@ -25,6 +25,7 @@ Commands are non-SQL statements such as setting a property or adding a resource.
 | <query string> | Executes a Hive query and prints results to standard output. |
 | source FILE <filepath> | Executes a script file inside the CLI. |
 | compile `<groovy string>` AS GROOVY NAMED <name> | This allows inline Groovy code to be compiled and be used as a UDF (as of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5252)). For a usage example, see [Nov. 2013 Hive Contributors Meetup Presentations – Using Dynamic Compilation with Hive](https://cwiki.apache.org/confluence/download/attachments/27362054/HiveContrib-Nov13-groovy_plus_hive.pptx?version=1&modificationDate=1385171856000&api=v2). |
+| show processlist                                                 | Displays information about the operations currently running on HiveServer2. It helps to troubleshoot issues such as long running queries, connection starvation, etc. The command was introduced in [HIVE-27829](https://issues.apache.org/jira/browse/HIVE-27829).                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 Sample Usage:
 
@@ -36,7 +37,15 @@ Sample Usage:
   hive> dfs -ls;
 
 ```
-
+```
+0: jdbc:hive2://localhost:10000> show processlist;
++------------+------------+-------------------+---------------------------------------+--------------------------+------------------------+----------------------------------------------------+----------+-------------------+-------------------+---------------+
+| User Name  |  Ip Addr   | Execution Engine  |              Session Id               | Session Active Time (s)  | Session Idle Time (s)  |                      Query ID                      |  State   | Opened Timestamp  | Elapsed Time (s)  |  Runtime (s)  |
++------------+------------+-------------------+---------------------------------------+--------------------------+------------------------+----------------------------------------------------+----------+-------------------+-------------------+---------------+
+| hive       | 127.0.0.1  | mr                | 66df357a-90bf-43cb-847f-279aa6df1c24  | 113                      | 7                      | rtrivedi_20240709124106_d0f00d7a-6fab-4fcd-9f41-d53bb296275d | RUNNING  | 1720546866774     | 16                | Not finished  |
+| hive       | 127.0.0.1  | mr                | 7daa873e-bb46-462e-bc38-94cb8d3e7c17  | 83                       | 29                     | rtrivedi_20240709124106_2dc53c4c-e522-4aed-a969-3d48ac01ba81 | RUNNING  | 1720546866774     | 17                | Not finished  |
++------------+------------+-------------------+---------------------------------------+--------------------------+------------------------+----------------------------------------------------+----------+-------------------+-------------------+---------------+
+```
  
 
  
