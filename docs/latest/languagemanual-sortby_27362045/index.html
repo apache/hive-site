@@ -234,7 +234,17 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
     USING 'reduce\_script'
     AS date, count;
 
-</code></pre>
+</code></pre><p>Note that columns are specified by name, not by position number. However in <a href=https://issues.apache.org/jira/browse/HIVE-28572>HIVE-28572</a> and later, columns can be specified by position when configured as follows:</p>
+<ul>
+<li>set <a href=https://hive.apache.org/docs/latest/configuration-properties_27842758/#hiveorderbypositionalias>hive.orderby.position.alias</a>=true;</li>
+<li>set <a href=https://hive.apache.org/docs/latest/configuration-properties_27842758/#hivecboenable>hive.cbo.enable</a>=true;</li>
+</ul>
+<p>When any of the above conditions are not met, no distribution is performed.</p>
+<p>In the following example we distribute by the 3rd and the 1st column (birthdate, age):</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>set</span> hive.orderby.<span style=color:#66d9ef>position</span>.<span style=color:#66d9ef>alias</span><span style=color:#f92672>=</span><span style=color:#66d9ef>true</span>;
+<span style=color:#66d9ef>set</span> hive.cbo.enable<span style=color:#f92672>=</span><span style=color:#66d9ef>true</span>;
+<span style=color:#66d9ef>SELECT</span> age, name, birthdate <span style=color:#66d9ef>FROM</span> author DISTRIBUTE <span style=color:#66d9ef>BY</span> <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>1</span>;
+</code></pre></div>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>
