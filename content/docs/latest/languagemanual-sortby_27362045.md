@@ -190,7 +190,16 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
 
 ```
 
- 
+Note that columns are specified by name, not by position number. However in [HIVE-28572](https://issues.apache.org/jira/browse/HIVE-28572) and later, columns can be specified by position when configured as follows:
 
- 
+* set [hive.orderby.position.alias](https://hive.apache.org/docs/latest/configuration-properties_27842758/#hiveorderbypositionalias)=true;
+* set [hive.cbo.enable](https://hive.apache.org/docs/latest/configuration-properties_27842758/#hivecboenable)=true;
 
+When any of the above conditions are not met, no distribution is performed.
+
+In the following example we distribute by the 3rd and the 1st column (birthdate, age): 
+```sql
+set hive.orderby.position.alias=true;
+set hive.cbo.enable=true;
+SELECT age, name, birthdate FROM author DISTRIBUTE BY 3, 1;
+```
