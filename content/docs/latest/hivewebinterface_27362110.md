@@ -80,7 +80,7 @@ You should not need to edit the defaults for the Hive Web Interface. HWI uses:
 
 <property>
   <name>hive.hwi.war.file</name>
-  <value>${HIVE\_HOME}/lib/hive-hwi-<version>.war</value>
+  <value>${HIVE_HOME}/lib/hive-hwi-<version>.war</value>
   <description>This is the WAR file with the jsp content for Hive Web Interface</description>
 </property>
 
@@ -91,10 +91,10 @@ You probably want to set up [HiveDerbyServerMode]({{< ref "hivederbyservermode_2
 ### Start Up
 
 When initializing `hive` with no arguments, the CLI is invoked. Hive has an extension architecture used to start other `hive` demons.  
- Jetty requires [Apache Ant](http://ant.apache.org/) to start HWI. You should define ANT\_LIB as an environment variable or add that to the `hive` invocation.
+ Jetty requires [Apache Ant](http://ant.apache.org/) to start HWI. You should define ANT_LIB as an environment variable or add that to the `hive` invocation.
 
 ```
-export ANT\_LIB=/opt/ant/lib
+export ANT_LIB=/opt/ant/lib
 bin/hive --service hwi
 
 ```

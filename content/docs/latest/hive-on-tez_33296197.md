@@ -139,40 +139,40 @@ The query (rewritten for Hive):
 
 ```
 select
-  i\_item\_desc
-  ,i\_category
-  ,i\_class
-  ,i\_current\_price
-  ,i\_item\_id
+  i_item_desc
+  ,i_category
+  ,i_class
+  ,i_current_price
+  ,i_item_id
   ,itemrevenue
   ,itemrevenue*100/sum(itemrevenue) over
-    (partition by i\_class) as revenueratio
+    (partition by i_class) as revenueratio
 from
   (select
-     i\_item\_desc
-     ,i\_category
-     ,i\_class
-     ,i\_current\_price
-     ,i\_item\_id
-     ,sum(ws\_ext\_sales\_price) as itemrevenue
+     i_item_desc
+     ,i_category
+     ,i_class
+     ,i_current_price
+     ,i_item_id
+     ,sum(ws_ext_sales_price) as itemrevenue
    from
-     web\_sales
-     join item on (web\_sales.ws\_item\_sk = item.i\_item\_sk)
-     join date\_dim on (web\_sales.ws\_sold\_date\_sk = date\_dim.d\_date\_sk)
+     web_sales
+     join item on (web_sales.ws_item_sk = item.i_item_sk)
+     join date_dim on (web_sales.ws_sold_date_sk = date_dim.d_date_sk)
    where
-     i\_category in ('1', '2', '3')
-     and year(d\_date) = 2001 and month(d\_date) = 10
+     i_category in ('1', '2', '3')
+     and year(d_date) = 2001 and month(d_date) = 10
    group by
-     i\_item\_id
-     ,i\_item\_desc
-     ,i\_category
-     ,i\_class
-     ,i\_current\_price) tmp
+     i_item_id
+     ,i_item_desc
+     ,i_category
+     ,i_class
+     ,i_current_price) tmp
 order by
-  i\_category
-  ,i\_class
-  ,i\_item\_id
-  ,i\_item\_desc
+  i_category
+  ,i_class
+  ,i_item_id
+  ,i_item_desc
   ,revenueratio;
 
 ```
@@ -185,7 +185,7 @@ Local Work: Generate hash table for date dim
 
 Stage 1:
 
-Map: SMB join item + web\_sales, mapjoin date\_dim + web\_sales, map-side group by/aggregate
+Map: SMB join item + web_sales, mapjoin date_dim + web_sales, map-side group by/aggregate
 
 Reduce 1: Reduce side group by/aggregate, shuffle for windowing
 
@@ -199,7 +199,7 @@ Local Work: Generate hash table for date dim
 
 Stage 1:
 
-Map: SMB join item + web\_sales, mapjoin date\_dim + web\_sales, map-side group by/aggregate
+Map: SMB join item + web_sales, mapjoin date_dim + web_sales, map-side group by/aggregate
 
 Reduce: Reduce side group by/aggregate, write to HDFS
 

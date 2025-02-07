@@ -14,9 +14,9 @@ date: 2024-12-12
 	+ [Support for a Hub-Spoke Model]({{< ref "#support-for-a-hub-spoke-model" >}})
 * [Rubberbanding]({{< ref "#rubberbanding" >}})
 * [Change Management]({{< ref "#change-management" >}})
-	+ [\_files]({{< ref "#_files" >}})
+	+ [_files]({{< ref "#_files" >}})
 	+ [Solution for Rubber Banding]({{< ref "#solution-for-rubber-banding" >}})
-	+ [\_metadata]({{< ref "#_metadata" >}})
+	+ [_metadata]({{< ref "#_metadata" >}})
 * [A Need for Bootstrap]({{< ref "#a-need-for-bootstrap" >}})
 * [New Commands]({{< ref "#new-commands" >}})
 	+ [REPL DUMP]({{< ref "#repl-dump" >}})
@@ -168,17 +168,17 @@ Both of these problems, that of the 4x copy problem, and that of making sure tha
 
 However, the idea behind the snapshot is still what we really want, and if HDFS cannot support the number of snapshots that we would create, it is possible for us to do a pseudo-snapshot, so that for all files that are backing hive objects, if we detect any hive operation would move them away or modify them, we retain the original in a separate directory, similar to how we manage Trash. This pseudo-trash like capturing behaviour is what we refer to as the "change-management" piece and is the main piece that needs to be in place to solve the rubberbanding problem as well as the 4x copy problem.
 
-## \_files
+## _files
 
-Currently, when we do an EXPORT of a table, the directory structure created in this dump has, at its root, a \_metadata file that contains all the metadata state to be impressed, and then has directory structures for each partition to be impressed.
+Currently, when we do an EXPORT of a table, the directory structure created in this dump has, at its root, a _metadata file that contains all the metadata state to be impressed, and then has directory structures for each partition to be impressed.
 
-To populate each of the partition directories, it runs a CopyTask that copies the files of each of the partitions over. Now, to make sure that we do not do secondary copies, our design is very simple - instead of a CopyTask, we use a ReplCopyTask, which, will, instead of copying the files to the destination directory, will instead create a file called \_files in the destination directory with a list of each of the filenames of the original files.
+To populate each of the partition directories, it runs a CopyTask that copies the files of each of the partitions over. Now, to make sure that we do not do secondary copies, our design is very simple - instead of a CopyTask, we use a ReplCopyTask, which, will, instead of copying the files to the destination directory, will instead create a file called _files in the destination directory with a list of each of the filenames of the original files.
 
-Thus, instead of partition directories with actual data, we will instead have partition directories with \_files files that then contain the location of the original files. (We will discuss and handle what happens when the original files get moved away or deleted later, for now, it is sufficient to assume that these urls will be stable urls to the state of the files at the time we did the dump, as if it were a pseudo-snapshot.)
+Thus, instead of partition directories with actual data, we will instead have partition directories with _files files that then contain the location of the original files. (We will discuss and handle what happens when the original files get moved away or deleted later, for now, it is sufficient to assume that these urls will be stable urls to the state of the files at the time we did the dump, as if it were a pseudo-snapshot.)
 
-Now, when this export dump is imported, we need to make sure that for each \_files file loaded, we go through the contents of the \_files, and apply the copy instead to the underlying file. Also, we will wind up invoking DistCp automatically from hive when we try to copy files over from a remote cluster. (Again, this can be optimized and will be discussed in detail later, but for now, it suffices that we are able to access it.)
+Now, when this export dump is imported, we need to make sure that for each _files file loaded, we go through the contents of the _files, and apply the copy instead to the underlying file. Also, we will wind up invoking DistCp automatically from hive when we try to copy files over from a remote cluster. (Again, this can be optimized and will be discussed in detail later, but for now, it suffices that we are able to access it.)
 
-With this notion of EXPORT creating \_files as indirections to the actual files, and IMPORT loading \_files to locate the actual files needing copying, we solve the 4x copy problem.
+With this notion of EXPORT creating _files as indirections to the actual files, and IMPORT loading _files to locate the actual files needing copying, we solve the 4x copy problem.
 
 ## Solution for Rubber Banding
 
@@ -192,7 +192,7 @@ Event 100: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 Event 110: ALTER TABLE tbl DROP PARTITION (p=1);  
 Event 120: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 ```
-When loading the dump on the destination side (at a much later point), when the event 100 is replayed, the load task on the destination will try to pull the files from the <location> (the \_files contains the path of <location>), which may contain new or different data. To replicate the exact state of the source at the time event 100 occurred at the source, we do the following:
+When loading the dump on the destination side (at a much later point), when the event 100 is replayed, the load task on the destination will try to pull the files from the <location> (the _files contains the path of <location>), which may contain new or different data. To replicate the exact state of the source at the time event 100 occurred at the source, we do the following:
 
 1. When Event 100 occurs at the source, in the notification event, we store the checksum of the file(s) in the newly added partition along with the file path(s).
 2. When Event 110 occurs at the source, we move the files of the dropped partition to $cmroot/database/tbl/p=1 instead of purging them.
@@ -200,9 +200,9 @@ When loading the dump on the destination side (at a much later point), when the 
 
 Now when Event 100 is replayed at the destination at a later point, the destination calculates the checksum for file(s) in the partition path. If the checksum differs (for example in this case due to Event 110 and Event 120 that have occurred at the source), the destination looks for those files in $cmroot/database/table/p=1, and pulls them from this location to replicate the state of the source, at the time Event 100 had occurred on the source.
 
-## \_metadata
+## _metadata
 
-Currently, when we EXPORT a table or partition, we generate a \_metadata file, which contains a snapshot of the metadata state of the object in question. This \_metadata is generated at the point the EXPORT is done. For the purposes of solving rubberbanding, we now also have a need to be able to capture the metadata state of the object in question at the time an event happens. Thus, DbNotificationListener is being enhanced to also store a snapshot of the object itself, rather than just the name of the object, and at event-export time, it takes the metadata not from the metastore, but from the event data.
+Currently, when we EXPORT a table or partition, we generate a _metadata file, which contains a snapshot of the metadata state of the object in question. This _metadata is generated at the point the EXPORT is done. For the purposes of solving rubberbanding, we now also have a need to be able to capture the metadata state of the object in question at the time an event happens. Thus, DbNotificationListener is being enhanced to also store a snapshot of the object itself, rather than just the name of the object, and at event-export time, it takes the metadata not from the metastore, but from the event data.
 
 This then allows us to generate the appropriate object on the destination at the time the destination needs updating to that state, and not earlier. This, in conjunction with the file-pseudo-snapshotting that we introduce, allows us to replay state on the destination for both metadata and data.
 
@@ -217,21 +217,21 @@ There are a couple of major differences, however, between expectations we have o
 1. The scale of the data involved in an initial dump is orders more for a hive warehouse as compared to a typical mysql db.
 2. Transactional isolation & log-based approaches means that mysqldump can have a stable snapshot of the entire db/metadata during which it proceeds to dump out all dbs and tables. So, even if it takes a while to dump them out, it need not worry about the objects changing while it gets dumped. We, on the other hand, need to handle that.
 
-The first point can be solved by using our change-management semantics that we're developing, and using the lazy \_files approach rather than a CopyTask.
+The first point can be solved by using our change-management semantics that we're developing, and using the lazy _files approach rather than a CopyTask.
 
 The second part is a little more involved, and needs to do some consolidation during the dump generation. We will discuss this in short order, after a brief detour of new commands we introduce to manage the replication dump and reload.
 
 # New Commands
 
-The current implementation of replication is built upon existing commands EXPORT and IMPORT. These commands are semantically more suited to the task of exporting and importing, than of a direct notion of an applicable event log. The notion of a lazy \_files behaviour on EXPORT is not a good fit, since EXPORTs are done with the understanding that they need to be a stable copy irrespective of cleanup policies on the source. In addition, EXPORTing "events" is something that is more tenuous. EXPORTing a CREATE event is easy enough, but it is a semantic stretch to export a DROP event. Thus, to fit our needs better, and to not have to keep making the existing EXPORT and IMPORT way more complex, we introduce a new REPL command, with three modes of operation: REPL DUMP, REPL LOAD and REPL STATUS.
+The current implementation of replication is built upon existing commands EXPORT and IMPORT. These commands are semantically more suited to the task of exporting and importing, than of a direct notion of an applicable event log. The notion of a lazy _files behaviour on EXPORT is not a good fit, since EXPORTs are done with the understanding that they need to be a stable copy irrespective of cleanup policies on the source. In addition, EXPORTing "events" is something that is more tenuous. EXPORTing a CREATE event is easy enough, but it is a semantic stretch to export a DROP event. Thus, to fit our needs better, and to not have to keep making the existing EXPORT and IMPORT way more complex, we introduce a new REPL command, with three modes of operation: REPL DUMP, REPL LOAD and REPL STATUS.
 
 ## REPL DUMP
 
 #### Syntax:
 
-`REPL DUMP <repl\_policy> {REPLACE <old\_repl\_policy>} {FROM <init-evid> {TO <end-evid>} {LIMIT <num-evids>} } {WITH ('key1'='value1', 'key2'='value2')};`
+`REPL DUMP <repl_policy> {REPLACE <old_repl_policy>} {FROM <init-evid> {TO <end-evid>} {LIMIT <num-evids>} } {WITH ('key1'='value1', 'key2'='value2')};`
 
-`Replication policy: <dbname>{{.[<comma\_separated\_include\_tables\_regex\_list>]}{.[<comma\_separated\_exclude\_tables\_regex\_list>]}}`
+`Replication policy: <dbname>{{.[<comma_separated_include_tables_regex_list>]}{.[<comma_separated_exclude_tables_regex_list>]}}`
 
 This is better described via various examples of each of the pieces of the command syntax, as follows:
 
@@ -287,7 +287,7 @@ The REPL DUMP command has an optional WITH clause to set command-specific confi
 
 #### Note:
 
-Now, the dump generated will be similar to the kind of dumps generated by EXPORTs, in that it will contain a \_metadata file, but it will not contain the actual data files, instead using a \_files file as an indirection to the actual files. One more aspect of REPL DUMP is that it does not take a directory as an argument on where to dump into. Instead, it creates its own dump directory inside a root dir specified by a new HiveConf parameter, `hive.repl.rootdir` , which will configure a root directory for dumps, and returns the dumped directory as part of the return value from it. It is intended also that we will introduce a replication dumpdir cleaner which will periodically clean it up.
+Now, the dump generated will be similar to the kind of dumps generated by EXPORTs, in that it will contain a _metadata file, but it will not contain the actual data files, instead using a _files file as an indirection to the actual files. One more aspect of REPL DUMP is that it does not take a directory as an argument on where to dump into. Instead, it creates its own dump directory inside a root dir specified by a new HiveConf parameter, `hive.repl.rootdir` , which will configure a root directory for dumps, and returns the dumped directory as part of the return value from it. It is intended also that we will introduce a replication dumpdir cleaner which will periodically clean it up.
 
 This call is intended to be synchronous, and expects the caller to wait for the result.
 
@@ -299,9 +299,9 @@ When bootstrap dump is in progress, it blocks rename table/partition operations 
 
 Look up the HiveServer logs for below pair of log messages.
 
-> REPL DUMP:: Set property for Database: <db\_name>, Property: <bootstrap.dump.state.xxxx>, Value: ACTIVE
+> REPL DUMP:: Set property for Database: <db_name>, Property: <bootstrap.dump.state.xxxx>, Value: ACTIVE
 > 
-> REPL DUMP:: Reset property for Database: <db\_name>, Property: <bootstrap.dump.state.xxxx>
+> REPL DUMP:: Reset property for Database: <db_name>, Property: <bootstrap.dump.state.xxxx>
 > 
 > 
 
@@ -366,15 +366,15 @@ Approach 2 : Consolidate at source.
 
 The alternate approach, then, is to go through each of the events from evid=170 to evid=230 in our example, which are the current-event-ids at the beginning of the object dump phase and the end of the object dump phase respectively, and to use that to modify the object dumps that we've just made. Any drops will result in the dumped object being changed/deleted, and any creates will result in additional dumped objects being added. Alters will result in dumped objects being replaced by their newer equivalent. At the end of this consolidation, all objects dumped should be capable of being restored on the destination as if the state for them was 230, and incremental replication can then take over, processing event 230 onwards.
 
-This is the approach we expect to take. One further modification this will require from the current export semantics, is that currently, export exports only 1 \_metadata file per table, which contains the list of all the partitions inside it in the \_metadata file itself. Instead, now, we propose to split that up so that the \_metadata level at an object level will contain only metadata for that object. Thus, \_metadata at a table level will contain only the table object, and the individual directories inside it will contain all the required partitions, and each of those dirs will have a partition level \_metadata.
+This is the approach we expect to take. One further modification this will require from the current export semantics, is that currently, export exports only 1 _metadata file per table, which contains the list of all the partitions inside it in the _metadata file itself. Instead, now, we propose to split that up so that the _metadata level at an object level will contain only metadata for that object. Thus, _metadata at a table level will contain only the table object, and the individual directories inside it will contain all the required partitions, and each of those dirs will have a partition level _metadata.
 
 # Metastore notification API security
 
 We want to secure DbNotificationListener related metastore APIs listed below by adding an authorization logic (other APIs not affected). These three APIs are mainly used by replication operations, so are allowed to be used by admin/superuser only:
 
-1. get\_next\_notification
-2. get\_current\_notificationEventId
-3. get\_notification\_events\_count
+1. get_next_notification
+2. get_current_notificationEventId
+3. get_notification_events_count
 
 The related hive config parameter is "hive.metastore.event.db.notification.api.auth", which is set to true by default.
 

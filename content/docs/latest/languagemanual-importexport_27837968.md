@@ -35,16 +35,16 @@ The `EXPORT` and `IMPORT` commands work independently of the source and target m
 ### Export Syntax
 
 ```
-EXPORT TABLE tablename [PARTITION (part\_column="value"[, ...])] 
-  TO 'export\_target\_path' [ FOR replication('eventid') ]
+EXPORT TABLE tablename [PARTITION (part_column="value"[, ...])] 
+  TO 'export_target_path' [ FOR replication('eventid') ]
 ```
 
 ### Import Syntax
 
 ```
-IMPORT [[EXTERNAL] TABLE new\_or\_original\_tablename [PARTITION (part\_column="value"[, ...])]] 
-  FROM 'source\_path' 
-  [LOCATION 'import\_target\_path']
+IMPORT [[EXTERNAL] TABLE new_or_original_tablename [PARTITION (part_column="value"[, ...])]] 
+  FROM 'source_path' 
+  [LOCATION 'import_target_path']
 
 ```
 
@@ -63,49 +63,49 @@ For those using EXPORT for the first-time manual bootstrapping usecase, users ar
 Simple export and import:
 
 ```
-export table department to 'hdfs\_exports\_location/department';
-import from 'hdfs\_exports\_location/department';
+export table department to 'hdfs_exports_location/department';
+import from 'hdfs_exports_location/department';
 
 ```
 
 Rename table on import:
 
 ```
-export table department to 'hdfs\_exports\_location/department';
-import table imported\_dept from 'hdfs\_exports\_location/department';
+export table department to 'hdfs_exports_location/department';
+import table imported_dept from 'hdfs_exports_location/department';
 
 ```
 
 Export partition and import:
 
 ```
-export table employee partition (emp\_country="in", emp\_state="ka") to 'hdfs\_exports\_location/employee';
-import from 'hdfs\_exports\_location/employee';
+export table employee partition (emp_country="in", emp_state="ka") to 'hdfs_exports_location/employee';
+import from 'hdfs_exports_location/employee';
 
 ```
 
 Export table and import partition:
 
 ```
-export table employee to 'hdfs\_exports\_location/employee';
-import table employee partition (emp\_country="us", emp\_state="tn") from 'hdfs\_exports\_location/employee';
+export table employee to 'hdfs_exports_location/employee';
+import table employee partition (emp_country="us", emp_state="tn") from 'hdfs_exports_location/employee';
 
 ```
 
 Specify the import location:
 
 ```
-export table department to 'hdfs\_exports\_location/department';
-import table department from 'hdfs\_exports\_location/department' 
-       location 'import\_target\_location/department';
+export table department to 'hdfs_exports_location/department';
+import table department from 'hdfs_exports_location/department' 
+       location 'import_target_location/department';
 
 ```
 
 Import as an external table:
 
 ```
-export table department to 'hdfs\_exports\_location/department';
-import external table department from 'hdfs\_exports\_location/department';
+export table department to 'hdfs_exports_location/department';
+import external table department from 'hdfs_exports_location/department';
 
 ```
 

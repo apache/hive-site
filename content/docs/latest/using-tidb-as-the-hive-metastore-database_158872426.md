@@ -46,7 +46,7 @@ Creating a Hive cluster with TiDB involves the following steps:
 | Hive | 3.1.2 |
 | Hadoop | 2.6.0-cdh-5.16.1 |
 | TiDB | 4.0 |
-| Java Development Kit (JDK) | 1.8.0\_221 |
+| Java Development Kit (JDK) | 1.8.0_221 |
 
 There are no mandatory requirements for the component versions, as long as the components are compatible with each other. After you confirm that you have successfully installed Hadoop and JDK and can use them directly, you can move on to the next step.
 
@@ -71,18 +71,18 @@ flush privileges;
 4. Set the configuration item. 
 
 ```
-set global tidb\_skip\_isolation\_level\_check=1;
+set global tidb_skip_isolation_level_check=1;
 ```
 
 If you don't set the configuration item, Metastore throws the following exception when it is running: 
 
 ```
-MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error)
+MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error)
 ```
 
 ### Step 2: Configure Hive
 
-1. Download and decompress Hive. In this example, the decompression directory for Hive is ${HIVE\_HOME}.
+1. Download and decompress Hive. In this example, the decompression directory for Hive is ${HIVE_HOME}.
 2. To edit the `hive-site.xml` configuration file, run `vim ${HIVE_HOME}/conf/hive-site.xml`. (The configuration items only use the minimum configuration.)
 
 ```
@@ -121,26 +121,26 @@ MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set t
   </property>
 </configuration>
 ```
-3. To edit the hive-env.sh configuration file, run vim ${HIVE\_HOME}/conf/hive-env.sh.
+3. To edit the hive-env.sh configuration file, run vim ${HIVE_HOME}/conf/hive-env.sh.
 
 ```
-export HADOOP\_HOME=...
-export JAVA\_HOME=...
+export HADOOP_HOME=...
+export JAVA_HOME=...
 ```
 4. Copy mysql-connector-java-${version}.jar to the lib directory in Hive.
 
 ```
-cp ${MYSQL\_JDBC\_PATH}/mysql-connector-java-${version}.jar ${HIVE\_HOME}/lib
+cp ${MYSQL_JDBC_PATH}/mysql-connector-java-${version}.jar ${HIVE_HOME}/lib
 ```
 
 ### Step 3: Initialize metadata
 
-You're performing this step to create a table for Hive metadata. The SQL script is in ${HIVE\_HOME}/scripts/metastore/upgrade/mysql.
+You're performing this step to create a table for Hive metadata. The SQL script is in ${HIVE_HOME}/scripts/metastore/upgrade/mysql.
 
 To initialize metadata, run the following command.
 
 ```
-${HIVE\_HOME}/bin/schematool -dbType mysql -initSchema --verbose
+${HIVE_HOME}/bin/schematool -dbType mysql -initSchema --verbose
 ```
 
 When schemaTool completed appears in the last line, it means the metadata is successfully initialized.
@@ -150,12 +150,12 @@ When schemaTool completed appears in the last line, it means the metadata is suc
 1. Launch Metastore.
 
 ```
-${HIVE\_HOME}/bin/hive --service metastore
+${HIVE_HOME}/bin/hive --service metastore
 ```
 2. Start the Hive client for testing.
 
 ```
-${HIVE\_HOME}/bin/hive
+${HIVE_HOME}/bin/hive
 ```
 
 # Conclusion
@@ -180,7 +180,7 @@ In addition, if you're interested in our MySQL-to-TiDB migration story, check ou
 
 2. Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.
 3. Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.
-4. How to handle `MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error) ` exception? In TiDB, execute the following command `set global tidb\_skip\_isolation\_level\_check=1;` to skip check.
+4. How to handle `MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error) ` exception? In TiDB, execute the following command `set global tidb_skip_isolation_level_check=1;` to skip check.
 
  
 

@@ -23,10 +23,10 @@ To see how the JDBC interface can be used, see [sample code]({{< ref "hiveclient
 ```
 #!/bin/sh
 
-HADOOP\_CORE={{ls $HADOOP\_HOME/hadoop-*-core.jar}}
-CLASSPATH=.:$HADOOP\_CORE:$HIVE\_HOME/conf
+HADOOP_CORE={{ls $HADOOP_HOME/hadoop-*-core.jar}}
+CLASSPATH=.:$HADOOP_CORE:$HIVE_HOME/conf
 
-for i in ${HIVE\_HOME}/lib/*.jar ; do
+for i in ${HIVE_HOME}/lib/*.jar ; do
   CLASSPATH=$CLASSPATH:$i
 done
 
@@ -77,8 +77,8 @@ $ sh reporter-designer.sh
 3. Select 'Extra Class Path -> Add' to add the following jars from your local Hive and Hadoop distribution.
 
 ```
-   HIVE\_HOME/build/dist/lib/*.jar
-   HADOOP\_HOME/hadoop-*-core.jar
+   HIVE_HOME/build/dist/lib/*.jar
+   HADOOP_HOME/hadoop-*-core.jar
 ```
 4. Select 'List Drivers'. This will cause SQuirrel to parse your jars for JDBC drivers and might take a few seconds. From the 'Class Name' input box select the Hive driver:
 

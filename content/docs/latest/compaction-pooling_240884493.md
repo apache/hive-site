@@ -18,7 +18,7 @@ Compaction requests can be assigned to pools in three different ways.
 Databases, tables and partitions can be assigned to compaction pools through the
 
 ```
-hive.compactor.worker.pool={pool\_name}
+hive.compactor.worker.pool={pool_name}
 ```
 
 [Database/Table property](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties). If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set).   
@@ -29,7 +29,7 @@ If any of the above is set, it is used by the *Initiator* during the creation of
 The compaction request also can be assigned to a pool by using the ALTER TABLE COMPACT command (E.g. manual compaction). If provided, this value overrides the *hive.compactor.worker.pool* value on any level.
 
 ```
-ALTER TABLE COMPACT table\_name POOL 'pool\_name';
+ALTER TABLE COMPACT table_name POOL 'pool_name';
 ```
 
 #### Implicit pool assignment
@@ -57,7 +57,7 @@ The timeout can be disabled by setting the configuration property to 0.
 The labeled worker pools can be defined through the 
 
 ```
-hive.compactor.worker.{poolname}.threads={thread\_count} 
+hive.compactor.worker.{poolname}.threads={thread_count} 
 ```
 
 configuration setting. Please note that in this case the configuration key is also dynamic.

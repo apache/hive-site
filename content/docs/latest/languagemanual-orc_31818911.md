@@ -104,7 +104,7 @@ create table Addresses (
 
 Version 0.14.0+: CONCATENATE
 
-`[ALTER TABLE table\_name [PARTITION partition\_spec] CONCATENATE]({{< ref "#alter-table-table\_name-[partition-partition\_spec]-concatenate" >}})` can be used to merge small ORC files into a larger file, starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7509). The merge happens at the stripe level, which avoids decompressing and decoding the data.
+`[ALTER TABLE table_name [PARTITION partition_spec] CONCATENATE]({{< ref "#alter-table-table_name-[partition-partition_spec]-concatenate" >}})` can be used to merge small ORC files into a larger file, starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7509). The merge happens at the stripe level, which avoids decompressing and decoding the data.
 
 ## Serialization and Compression
 
@@ -164,13 +164,13 @@ The ORC file dump utility analyzes ORC files.  To invoke it, use this command:
 hive --orcfiledump <location-of-orc-file>
  
 // Hive version 1.1.0 and later:
-hive --orcfiledump [-d] [--rowindex <col\_ids>] <location-of-orc-file>
+hive --orcfiledump [-d] [--rowindex <col_ids>] <location-of-orc-file>
  
 // Hive version 1.2.0 and later:
-hive --orcfiledump [-d] [-t] [--rowindex <col\_ids>] <location-of-orc-file>
+hive --orcfiledump [-d] [-t] [--rowindex <col_ids>] <location-of-orc-file>
  
 // Hive version 1.3.0 and later:
-hive --orcfiledump [-j] [-p] [-d] [-t] [--rowindex <col\_ids>] [--recover] [--skip-dump] 
+hive --orcfiledump [-j] [-p] [-d] [-t] [--rowindex <col_ids>] [--recover] [--skip-dump] 
     [--backup-path <new-path>] <location-of-orc-file-or-directory>
 ```
 

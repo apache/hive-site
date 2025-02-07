@@ -50,7 +50,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 % curl -s -X PUT -HContent-type:application/json \
        -d '{ "comment":"Hello there",
-             "location":"hdfs://localhost:9000/user/hive/my\_warehouse",
+             "location":"hdfs://localhost:9000/user/hive/my_warehouse",
              "properties":{"a":"b"}}' \
        'http://localhost:50111/templeton/v1/ddl/database/newdb?user.name=rachel'
 

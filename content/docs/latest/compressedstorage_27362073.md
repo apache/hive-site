@@ -27,14 +27,14 @@ The recommended practice is to insert data into another table, which is stored a
 CREATE TABLE raw (line STRING)
    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n';
 
-CREATE TABLE raw\_sequence (line STRING)
+CREATE TABLE raw_sequence (line STRING)
    STORED AS SEQUENCEFILE;
 
 LOAD DATA LOCAL INPATH '/tmp/weblogs/20090603-access.log.gz' INTO TABLE raw;
 
 SET hive.exec.compress.output=true;
 SET io.seqfile.compression.type=BLOCK; -- NONE/RECORD/BLOCK (see below)
-INSERT OVERWRITE TABLE raw\_sequence SELECT * FROM raw;
+INSERT OVERWRITE TABLE raw_sequence SELECT * FROM raw;
 
 ```
 

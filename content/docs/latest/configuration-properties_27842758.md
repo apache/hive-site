@@ -121,7 +121,7 @@ Maximum number of reducers that will be used. If the one specified in the config
 * Default Value: (empty)
 * Added In: Hive 0.2.0 or earlier
 
-The location of hive\_cli.jar that is used when submitting jobs in a separate jvm.
+The location of hive_cli.jar that is used when submitting jobs in a separate jvm.
 
 ##### hive.aux.jars.path
 
@@ -244,12 +244,12 @@ Whether to enable the bucketed group by from bucketed partitions/tables.
 
 Whether to rewrite count distinct into 2 stages, i.e., the first stage uses multiple reducers with the count distinct key and the second stage uses a single reducer without key.
 
-##### hive.optimize.remove.sq\_count\_check
+##### hive.optimize.remove.sq_count_check
 
 * Default Value: `false`
 * Added In: Hive 3.0.0 with [HIVE-16793](https://issues.apache.org/jira/browse/HIVE-16793)
 
-Whether to remove an extra join with sq\_count\_check UDF for scalar subqueries with constant group by keys. 
+Whether to remove an extra join with sq_count_check UDF for scalar subqueries with constant group by keys. 
 
 ##### hive.multigroupby.singlemr
 
@@ -547,7 +547,7 @@ Name of the environment variable that holds the unique script operator ID in the
 * Default Value: `hive.txn.valid.txns,hive.script.operator.env.blacklist`
 * Added In: Hive 0.14.0 with [HIVE-8341](https://issues.apache.org/jira/browse/HIVE-8341)
 
-By default all values in the HiveConf object are converted to environment variables of the same name as the key (with '.' (dot) converted to '\_' (underscore)) and set as part of the script operator's environment.  However, some values can grow large or are not amenable to translation to environment variables.  This value gives a comma separated list of configuration values that will not be set in the environment when calling a script operator.  By default the valid [transaction]({{< ref "hive-transactions_40509723" >}}) list is excluded, as it can grow large and is sometimes compressed, which does not translate well to an environment variable.
+By default all values in the HiveConf object are converted to environment variables of the same name as the key (with '.' (dot) converted to '_' (underscore)) and set as part of the script operator's environment.  However, some values can grow large or are not amenable to translation to environment variables.  This value gives a comma separated list of configuration values that will not be set in the environment when calling a script operator.  By default the valid [transaction]({{< ref "hive-transactions_40509723" >}}) list is excluded, as it can grow large and is sometimes compressed, which does not translate well to an environment variable.
 
 ##### Also see:
 
@@ -600,7 +600,7 @@ Whether Hive should periodically update task progress counters during execution.
 * Default Value: `HIVE`
 * Added In: Hive 0.13.0 with [HIVE-4518](https://issues.apache.org/jira/browse/HIVE-4518)
 
-Counter group name for counters used during query execution. The counter group is used for internal Hive variables (CREATED\_FILE, FATAL\_ERROR, and so on).
+Counter group name for counters used during query execution. The counter group is used for internal Hive variables (CREATED_FILE, FATAL_ERROR, and so on).
 
 ##### hive.exec.pre.hooks
 
@@ -1407,14 +1407,14 @@ If set to true, order/sort by without limit in subqueries and views will be remo
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype)HIVE-25576](https://issues.apache.org/jira/browse/HIVE-25576?src=confmacro)
  -
- Configurable datetime formatter for unix\_timestamp, from\_unixtime
+ Configurable datetime formatter for unix_timestamp, from_unixtime
 Closed
 
 ,
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype)HIVE-27673](https://issues.apache.org/jira/browse/HIVE-27673?src=confmacro)
  -
- Configurable datetime formatter for date\_format
+ Configurable datetime formatter for date_format
 Closed
 
 The formatter to use for handling datetime values. The possible values are:
@@ -1441,9 +1441,9 @@ The style used by the hive.datetime.formatter (only applicable to DATETIME) to r
 
 Currently these configuration only affects the behavior of the following SQL functions:
 
-* unix\_timestamp(string,[string])
-* from\_unixtime
-* date\_format
+* unix_timestamp(string,[string])
+* from_unixtime
+* date_format
 
 The SIMPLE formatter exists purely for compatibility purposes with previous versions of Hive thus its use is discouraged. It suffers from known bugs that are unlikely to be fixed in subsequent versions of the product. Furthermore, using SIMPLE formatter may lead to strange behavior, and unexpected results when combined with SQL functions/operators that are using the new DATETIME formatter.
 
@@ -1481,7 +1481,7 @@ The default SerDe Hive will use for storage formats that do not specify a SerDe.
 
 See [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}}) for more information for storage formats and SerDes.
 
-##### hive.lazysimple.extended\_boolean\_literal
+##### hive.lazysimple.extended_boolean_literal
 
 * Default Value: `false`
 * Added in: Hive 0.14 with [HIVE-3635](https://issues.apache.org/jira/browse/HIVE-3635)
@@ -1598,7 +1598,7 @@ Additional values may be introduced in the future (see [HIVE-6002](https://issue
 * Default Value: 8
 * Added In: Hive 1.3.0 and 2.1.0 with [HIVE-13563](https://issues.apache.org/jira/browse/HIVE-13563)
 
-Define the ratio of base writer and delta writer in terms of STRIPE\_SIZE and BUFFER\_SIZE.
+Define the ratio of base writer and delta writer in terms of STRIPE_SIZE and BUFFER_SIZE.
 
 ##### hive.exec.orc.default.stripe.size
 
@@ -1989,7 +1989,7 @@ When configuring the max connection pool size, it is recommended to take into ac
 
 configured with embedded metastore. To get optimal performance, set config to meet the following condition
 
-(2 * pool\_size * metastore\_instances + 2 * pool\_size * HS2\_instances\_with\_embedded\_metastore) = (2 * physical\_core\_count + hard\_disk\_count).
+(2 * pool_size * metastore_instances + 2 * pool_size * HS2_instances_with_embedded_metastore) = (2 * physical_core_count + hard_disk_count).
 
 ##### datanucleus.validateTables
 
@@ -2321,7 +2321,7 @@ The path to the Kerberos Keytab file containing the metastore thrift server's se
 * Default Value: `hive-metastore/_HOST@EXAMPLE.COM`
 * Added In: Hive 0.7.0
 
-The service principal for the metastore thrift server. The special string \_HOST will be replaced automatically with the correct host name.
+The service principal for the metastore thrift server. The special string _HOST will be replaced automatically with the correct host name.
 
 Note: This principal is used by the metastore process for authentication with other services (e.g. for HDFS operations).
 
@@ -2541,14 +2541,14 @@ Whether HiveServer2 supports dynamic service discovery for its clients. To suppo
 * Default Value: `10000`
 * Added In: Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)
 
-Port number of HiveServer2 Thrift interface. Can be overridden by setting $HIVE\_SERVER2\_THRIFT\_PORT.
+Port number of HiveServer2 Thrift interface. Can be overridden by setting $HIVE_SERVER2_THRIFT_PORT.
 
 ##### hive.server2.thrift.bind.host
 
 * Default Value: `localhost`
 * Added In: Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)
 
-Bind host on which to run the HiveServer2 Thrift interface. Can be overridden by setting $HIVE\_SERVER2\_THRIFT\_BIND\_HOST.
+Bind host on which to run the HiveServer2 Thrift interface. Can be overridden by setting $HIVE_SERVER2_THRIFT_BIND_HOST.
 
 ##### hive.server2.thrift.min.worker.threads
 
@@ -2742,7 +2742,7 @@ The password for the bind domain name. This password may be specified in the con
 
 ##### hive.server2.global.init.file.location
 
-* Default Value: $HIVE\_CONF\_DIR  (typically <hive\_root>/conf)
+* Default Value: $HIVE_CONF_DIR  (typically <hive_root>/conf)
 * Added in Hive 0.14.0 with [HIVE-5160](https://issues.apache.org/jira/browse/HIVE-5160), [HIVE-7497](https://issues.apache.org/jira/browse/HIVE-7497), and [HIVE-8138](https://issues.apache.org/jira/browse/HIVE-8138)
 
 Either the location of a HiveServer2 global init file or a directory containing a .hiverc file. If the property is set, the value must be a valid path to an init file or directory where the init file is located.
@@ -2834,7 +2834,7 @@ Time (in seconds) for which HiveServer2 shutdown will wait for async threads to
 
 This setting reflects how HiveServer2 will report the table types for JDBC and other client implementations that retrieve the available tables and supported table types.
 
-HIVE: Exposes Hive's native table types like MANAGED\_TABLE, EXTERNAL\_TABLE, VIRTUAL\_VIEW  
+HIVE: Exposes Hive's native table types like MANAGED_TABLE, EXTERNAL_TABLE, VIRTUAL_VIEW  
 CLASSIC: More generic types like TABLE and VIEW
 
 ##### hive.server2.session.hook
@@ -3084,7 +3084,7 @@ Allows HiveServer2 to send progress bar update information. This is currently av
 * Default Value: (empty)
 * Added In: Hive 0.14.0 with [HIVE-8340](https://issues.apache.org/jira/browse/HIVE-8340)
 
-For the Windows operating system, Hive needs to pass the HIVE\_HADOOP\_CLASSPATH Java parameter while starting HiveServer2 using "`-hiveconf hive.hadoop.classpath=%HIVE_LIB%`". Users can set this parameter in hiveserver2.xml.
+For the Windows operating system, Hive needs to pass the HIVE_HADOOP_CLASSPATH Java parameter while starting HiveServer2 using "`-hiveconf hive.hadoop.classpath=%HIVE_LIB%`". Users can set this parameter in hiveserver2.xml.
 
 ### HiveServer2 Web UI
 
@@ -3155,10 +3155,10 @@ The path to the Kerberos Keytab file containing the HiveServer2 WebUI SPNEGO ser
 
 ##### hive.server2.webui.spnego.principal
 
-* Default Value: `HTTP/\_HOST@EXAMPLE.COM`
+* Default Value: `HTTP/_HOST@EXAMPLE.COM`
 * Added In: Hive 2.0.0 with [HIVE-12485](https://issues.apache.org/jira/browse/HIVE-12485)
 
-The HiveServer2 WebUI SPNEGO service principal. The special string \_HOST will be replaced automatically with the value of  **[hive.server2.webui.host]({{< ref "#hiveserver2webuihost" >}})**  or the correct host name.
+The HiveServer2 WebUI SPNEGO service principal. The special string _HOST will be replaced automatically with the value of  **[hive.server2.webui.host]({{< ref "#hiveserver2webuihost" >}})**  or the correct host name.
 
 #####   hive.server2.webui. explain.out put
 
@@ -3431,7 +3431,7 @@ This is the location that Hive in Tez mode will look for to find a site-wide in
 * Default Value: `hdfs:///user/`
 * Added In: Hive 0.13.0 with [HIVE-5003](https://issues.apache.org/jira/browse/HIVE-5003) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)
 
-If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{< ref "#hivejardirectory" >}})** , it will upload the Hive jar to <**hive.user.install.directory**>/<*user\_name*> and use it to run queries.
+If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{< ref "#hivejardirectory" >}})** , it will upload the Hive jar to <**hive.user.install.directory**>/<*user_name*> and use it to run queries.
 
 ##### [hive.compute.splits.in.am](http://hive.compute.splits.in.am)
 
@@ -3745,7 +3745,7 @@ Maximum allocation possible from LLAP buddy allocator. For ORC, should be as lar
 * Default Value: 8
 * Added In: Hive 2.0.0 with [HIVE-12597](https://issues.apache.org/jira/browse/HIVE-12597)
 
-Arena count for LLAP low-level cache; cache will be allocated in the steps of (size/arena\_count) bytes. This size must be <= 1Gb and >= max allocation; if it is not the case, an adjusted size will be used. Using powers of 2 is recommended.
+Arena count for LLAP low-level cache; cache will be allocated in the steps of (size/arena_count) bytes. This size must be <= 1Gb and >= max allocation; if it is not the case, an adjusted size will be used. Using powers of 2 is recommended.
 
 ##### hive.llap.io.memory.size
 
@@ -3982,7 +3982,7 @@ Frequency of WriteSet reaper runs.
 * Default Value: `1000`
 * Added In: Hive 0.13.0 with [HIVE-5843](https://issues.apache.org/jira/browse/HIVE-5843)
 
-Maximum number of transactions that can be fetched in one call to open\_txns().
+Maximum number of transactions that can be fetched in one call to open_txns().
 
 This controls how many transactions streaming agents such as [Flume](http://flume.apache.org/) or [Storm](https://storm.incubator.apache.org/) open simultaneously. The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt). Thus increasing this value decreases the number of [delta files]({{< ref "#delta-files" >}}) created by streaming agents. But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.
 
@@ -4190,7 +4190,7 @@ The maximum number of index entries to read during a query that uses the compact
 * Default Value: `true`
 * Added In: Hive 0.8.0 with [HIVE-2125](https://issues.apache.org/jira/browse/HIVE-2125)
 
-If this sets to true, Hive will throw error when doing ALTER TABLE tbl\_name [partSpec] CONCATENATE on a table/partition that has indexes on it. The reason the user want to set this to true is because it can help user to avoid handling all index drop, recreation, rebuild work. This is very helpful for tables with thousands of partitions.
+If this sets to true, Hive will throw error when doing ALTER TABLE tbl_name [partSpec] CONCATENATE on a table/partition that has indexes on it. The reason the user want to set this to true is because it can help user to avoid handling all index drop, recreation, rebuild work. This is very helpful for tables with thousands of partitions.
 
 ##### hive.optimize.index.autoupdate
 
@@ -4840,7 +4840,7 @@ Clean extra nodes at the end of the session.
 
 ##### hive.lockmgr.zookeeper.default.partition.name
 
-* Default Value: `\_\_HIVE\_DEFAULT\_ZOOKEEPER\_PARTITION\_\_`
+* Default Value: `__HIVE_DEFAULT_ZOOKEEPER_PARTITION__`
 * Added In: Hive 0.7.0 with [HIVE-1293](https://issues.apache.org/jira/browse/HIVE-1293)
 
 The default partition name when ZooKeeperHiveLockManager is the  [**hive lock manager**]({{< ref "#**hive-lock-manager**" >}}) .
@@ -4883,7 +4883,7 @@ Hive metrics subsystem implementation class.  "org.apache.hadoop.hive.common.me
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 * Deprecated in: Hive 3.0.0 with [HIVE-16206](https://issues.apache.org/jira/browse/HIVE-16206)
 
-Reporter type for metric class org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics, a comma separated list of values JMX, CONSOLE, JSON\_FILE.
+Reporter type for metric class org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics, a comma separated list of values JMX, CONSOLE, JSON_FILE.
 
 A new reporter type HADOOP2 has been added in Hive 2.1.0 with [HIVE-13480](https://issues.apache.org/jira/browse/HIVE-13480).
 
@@ -4899,14 +4899,14 @@ Comma separated list of reporter implementation classes for metric class org.apa
 * Default Value:  "`/tmp/report.json`"
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON\_FILE, this is the location of the local JSON metrics file dump. This file will get overwritten at every interval of  [**hive.service.metrics.file.frequency**]({{< ref "#**hive-service-metrics-file-frequency**" >}}).
+For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON_FILE, this is the location of the local JSON metrics file dump. This file will get overwritten at every interval of  [**hive.service.metrics.file.frequency**]({{< ref "#**hive-service-metrics-file-frequency**" >}}).
 
 ##### hive.service.metrics.file.frequency
 
 * Default Value:  5 seconds
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON\_FILE, this is the frequency of updating the JSON metrics file.
+For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON_FILE, this is the frequency of updating the JSON metrics file.
 
 ##### hive.service.metrics.hadoop2.component
 

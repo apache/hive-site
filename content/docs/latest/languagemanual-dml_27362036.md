@@ -92,7 +92,7 @@ Additional load operations are supported by Hive 3.0 onwards as Hive internally 
 * If table has partitions, however, the load command does not have them, the load would be converted into INSERT AS SELECT and assume that the last set of columns are partition columns. It will throw an error if the file does not conform to the expected schema.
 * If table is bucketed then the following rules apply:
 	+ In strict mode : launches an INSERT AS SELECT job.
-	+ In non-strict mode : if the file names conform to the naming convention (if the file belongs to bucket 0, it should be named 000000\_0 or 000000\_0\_copy\_1, or if it belongs to bucket 2 the names should be like 000002\_0 or 000002\_0\_copy\_3, etc.) then it will be a pure copy/move operation, else it will launch an INSERT AS SELECT job.
+	+ In non-strict mode : if the file names conform to the naming convention (if the file belongs to bucket 0, it should be named 000000_0 or 000000_0_copy_1, or if it belongs to bucket 2 the names should be like 000002_0 or 000002_0_copy_3, etc.) then it will be a pure copy/move operation, else it will launch an INSERT AS SELECT job.
 * *filepath* can contain subdirectories, provided each file conforms to the schema.
 * *inputformat* can be any Hive input format such as text, ORC, etc.
 * *serde* can be the associated Hive SERDE.
@@ -127,22 +127,22 @@ Query Results can be inserted into tables by using the insert clause.
 
 ```
 Standard syntax:
-INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select\_statement1 FROM from\_statement;
-INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select\_statement1 FROM from\_statement;
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1 FROM from_statement;
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1 FROM from_statement;
 
 Hive extension (multiple inserts):
-FROM from\_statement
-INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select\_statement1
-[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select\_statement2] 
-[INSERT INTO TABLE tablename2 [PARTITION ...] select\_statement2] ...;
-FROM from\_statement
-INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select\_statement1
-[INSERT INTO TABLE tablename2 [PARTITION ...] select\_statement2] 
-[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select\_statement2] ...;
+FROM from_statement
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] 
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] ...;
+FROM from_statement
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] 
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] ...;
 
 Hive extension (dynamic partition inserts):
-INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select\_statement FROM from\_statement;
-INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select\_statement FROM from\_statement;
+INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
+INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
 ```
 
 ##### Synopsis
@@ -190,9 +190,9 @@ Dynamic partition inserts are disabled by default prior to Hive 0.9.0 and enabl
 ###### Example
 
 ```
-FROM page\_view\_stg pvs
-INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country)
-       SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip, pvs.cnt
+FROM page_view_stg pvs
+INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country)
+       SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip, pvs.cnt
 
 ```
 
@@ -217,16 +217,16 @@ Query results can be inserted into filesystem directories by using a slight vari
 ```
 Standard syntax:
 INSERT OVERWRITE [LOCAL] DIRECTORY directory1
-  [ROW FORMAT row\_format] [STORED AS file\_format] (Note: Only available starting with Hive 0.11.0)
+  [ROW FORMAT row_format] [STORED AS file_format] (Note: Only available starting with Hive 0.11.0)
   SELECT ... FROM ...
 
 Hive extension (multiple inserts):
-FROM from\_statement
-INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select\_statement1
-[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select\_statement2] ...
+FROM from_statement
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
+[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select_statement2] ...
 
  
-row\_format
+row_format
   : DELIMITED [FIELDS TERMINATED BY char [ESCAPED BY char]] [COLLECTION ITEMS TERMINATED BY char]
         [MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]
         [NULL DEFINED AS char] (Note: Only available starting with Hive 0.13)
@@ -258,9 +258,9 @@ INSERT...VALUES is available starting in [Hive 0.14](https://issues.apache.org/j
 
 ```
 Standard Syntax:
-INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values\_row [, values\_row ...]
+INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values_row [, values_row ...]
  
-Where values\_row is:
+Where values_row is:
 ( value [, value ...] )
 where a value is either null or any valid SQL literal
 ```
@@ -282,7 +282,7 @@ CREATE TABLE students (name VARCHAR(64), age INT, gpa DECIMAL(3, 2))
 INSERT INTO TABLE students
   VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
 
-CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came\_from STRING)
+CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came_from STRING)
   PARTITIONED BY (datestamp STRING) CLUSTERED BY (userid) INTO 256 BUCKETS STORED AS ORC;
 
 INSERT INTO TABLE pageviews PARTITION (datestamp = '2014-09-23')

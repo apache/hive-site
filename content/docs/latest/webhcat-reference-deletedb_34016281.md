@@ -66,7 +66,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
   "errorDetail": "
-    NoSuchObjectException(message:There is no database named my\_db)
+    NoSuchObjectException(message:There is no database named my_db)
         at org.apache.hadoop.hive.metastor...
     ",
   "error": "There is no database named newdb",

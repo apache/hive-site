@@ -46,7 +46,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/property?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property?user.name=ctdean'
 
 ```
 
@@ -56,16 +56,16 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 {
  "properties": {
    "fruit": "apple",
-   "last\_modified\_by": "ctdean",
+   "last_modified_by": "ctdean",
    "hcat.osd": "org.apache.hcatalog.rcfile.RCFileOutputDriver",
    "color": "blue",
-   "last\_modified\_time": "1331620706",
+   "last_modified_time": "1331620706",
    "hcat.isd": "org.apache.hcatalog.rcfile.RCFileInputDriver",
-   "transient\_lastDdlTime": "1331620706",
+   "transient_lastDdlTime": "1331620706",
    "comment": "Best table made today",
    "country": "Albania"
  },
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 

@@ -127,7 +127,7 @@ In this document we propose to use Calcite’s cost based optimizer, Volcano, to
 
 ## STATS
 
-* histogram\_numeric(): Estimating frequency distributions: <https://cwiki.apache.org/confluence/x/CoOhAQ>
+* histogram_numeric(): Estimating frequency distributions: <https://cwiki.apache.org/confluence/x/CoOhAQ>
 * histogram() UDAF for a numerical column <https://issues.apache.org/jira/browse/HIVE-1397>
 * Built-in Aggregate Functions (UDAF): <https://cwiki.apache.org/confluence/x/-oKhAQ>
 * Annotate hive operator tree with statistics from metastore: <https://issues.apache.org/jira/browse/HIVE-5369>
@@ -363,7 +363,7 @@ We propose to introduce a new “RelOptCost” implementation “HiveVolcanoCost
 
 Class HiveVolcanoCost extends VolcanoCost {
 
-Double m\_sizeOfTuple;
+Double m_sizeOfTuple;
 
  
 

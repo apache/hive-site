@@ -35,26 +35,26 @@ There are a few different options here:
 
 The type qualifiers could simply be stored as part of the type string for a column. The qualifiers would be validated during when creating/altering the column, and they would need to be parsed when creating TypeInfo/ObjectInspectors. This approach has the advantage that no additional metastore changes would be needed, though it would be more difficult to query these type attributes if someone is querying the metastore directly, since parsing of the type string is required.
 
-#### Add additional columns to COLUMNS\_V2 table in metastore
+#### Add additional columns to COLUMNS_V2 table in metastore
 
-This approach would be similar to the attributes in the INFORMATION\_SCHEMA.COLUMNS that some DBMS catalog tables have, such as those listed below:
+This approach would be similar to the attributes in the INFORMATION_SCHEMA.COLUMNS that some DBMS catalog tables have, such as those listed below:
 
 <pre>
 
-|  CHARACTER\_MAXIMUM\_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
-|  CHARACTER\_OCTET\_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
-|  NUMERIC\_PRECISION  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
-|  NUMERIC\_SCALE  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
-|  CHARACTER\_SET\_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
-|  COLLATION\_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
+|  CHARACTER_MAXIMUM_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
+|  CHARACTER_OCTET_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
+|  NUMERIC_PRECISION  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
+|  NUMERIC_SCALE  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
+|  CHARACTER_SET_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
+|  COLLATION_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
 
 </pre>
 
-We could add new columns to the COLUMNS\_V2 table for any type qualifiers we are trying to support (initially looks like CHARACTER\_MAXIMUM\_LENGTH, NUMERIC\_PRECISION, NUMERIC\_SCALE). Advantages to this would be that it is easier to query these parameters than the first approach, though types with no parameters would still have these columns (set to null). 
+We could add new columns to the COLUMNS_V2 table for any type qualifiers we are trying to support (initially looks like CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE). Advantages to this would be that it is easier to query these parameters than the first approach, though types with no parameters would still have these columns (set to null). 
 
 #### New table with type qualifiers in megastore
 
-Rather than having to change the COLUMNS\_V2 table we could have a new table to hold the type qualifier information. This would mean no additions to the existing COLUMNS\_V2 table, and non-parameterized types would have no rows in this new table. But it would mean an extra query to this new table any time we are fetching column metadata from the metastore. 
+Rather than having to change the COLUMNS_V2 table we could have a new table to hold the type qualifier information. This would mean no additions to the existing COLUMNS_V2 table, and non-parameterized types would have no rows in this new table. But it would mean an extra query to this new table any time we are fetching column metadata from the metastore. 
 
  
 

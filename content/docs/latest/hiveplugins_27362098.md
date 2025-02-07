@@ -34,18 +34,18 @@ After compiling your code to a jar, you need to add this to the Hive classpath. 
 Once Hive is started up with your jars in the classpath, the final step is to register your function as described in [Create Function]({{< ref "#create-function" >}}):
 
 ```
-create temporary function my\_lower as 'com.example.hive.udf.Lower';
+create temporary function my_lower as 'com.example.hive.udf.Lower';
 
 ```
 
 Now you can start using it:
 
 ```
-hive> select my\_lower(title), sum(freq) from titles group by my\_lower(title);
+hive> select my_lower(title), sum(freq) from titles group by my_lower(title);
 
 ...
 
-Ended Job = job\_200906231019\_0006
+Ended Job = job_200906231019_0006
 OK
 cmo	13.0
 vp	7.0
@@ -57,7 +57,7 @@ For a more involved example, see [this page]({{< ref "genericudafcasestudy_27362
 As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-6047), you can register your function as a permanent UDF either in the current database or in a specified database, as described in [Permanent Functions]({{< ref "#permanent-functions" >}}). For example:
 
 ```
-create function my\_db.my\_lower as 'com.example.hive.udf.Lower';
+create function my_db.my_lower as 'com.example.hive.udf.Lower';
 ```
 
 ## Deploying Jars for User Defined Functions and User Defined SerDes
@@ -65,16 +65,16 @@ create function my\_db.my\_lower as 'com.example.hive.udf.Lower';
 In order to start using your UDF, you first need to add the code to the classpath:
 
 ```
-hive> add jar my\_jar.jar;
-Added my\_jar.jar to class path
+hive> add jar my_jar.jar;
+Added my_jar.jar to class path
 
 ```
 
 By default, it will look in the current directory. You can also specify a full path:
 
 ```
-hive> add jar /tmp/my\_jar.jar;
-Added /tmp/my\_jar.jar to class path
+hive> add jar /tmp/my_jar.jar;
+Added /tmp/my_jar.jar to class path
 
 ```
 
@@ -82,7 +82,7 @@ Your jar will then be on the classpath for all jobs initiated from that session.
 
 ```
 hive> list jars;
-my\_jar.jar
+my_jar.jar
 
 ```
 

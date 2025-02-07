@@ -38,7 +38,7 @@ If you are unsure which version of Avro SerDe is used, pass both **serdePropKey*
 
 Hive Configuration Directory
 
-Note that `metatool` is a command for Hive administrators and it needs direct access to the metastore RDBMS. In some environments, the RDBMS login information (especially password or the password key) is only stored on the metastore server host or in a metastore server specific config directory (with more restrictive file system permissions). In such cases, make sure you run on the metastore server machine, as the hive user, and also set the HIVE\_CONF\_DIR environment variable appropriately (for example, `export HIVE\_CONF\_DIR=*<path to metastore server config dir>*`).
+Note that `metatool` is a command for Hive administrators and it needs direct access to the metastore RDBMS. In some environments, the RDBMS login information (especially password or the password key) is only stored on the metastore server host or in a metastore server specific config directory (with more restrictive file system permissions). In such cases, make sure you run on the metastore server machine, as the hive user, and also set the HIVE_CONF_DIR environment variable appropriately (for example, `export HIVE_CONF_DIR=*<path to metastore server config dir>*`).
 
 ### Usage Example
 
@@ -58,21 +58,21 @@ Initializing HiveMetaTool..
 15/04/22 14:18:44 INFO DataNucleus.Query: Reading in results for query "org.datanucleus.store.rdbms.query.SQLQuery@0" since the connection used is closing
 15/04/22 14:18:44 INFO metastore.MetaStoreDirectSql: Using direct SQL, underlying DB is MYSQL
 15/04/22 14:18:44 INFO metastore.ObjectStore: Initialized ObjectStore
-Looking for LOCATION\_URI field in DBS table to update..
+Looking for LOCATION_URI field in DBS table to update..
 Successfully updated the following locations..
 Updated 0 records in DBS table
 Looking for LOCATION field in SDS table to update..
 Successfully updated the following locations..
 Updated 0 records in SDS table
-Looking for value of avro.schema.url key in TABLE\_PARAMS table to update..
+Looking for value of avro.schema.url key in TABLE_PARAMS table to update..
 Successfully updated the following locations..
-Updated 0 records in TABLE\_PARAMS table
-Looking for value of avro.schema.url key in SD\_PARAMS table to update..
+Updated 0 records in TABLE_PARAMS table
+Looking for value of avro.schema.url key in SD_PARAMS table to update..
 Successfully updated the following locations..
-Updated 0 records in SD\_PARAMS table
-Looking for value of avro.schema.url key in SERDE\_PARAMS table to update..
+Updated 0 records in SD_PARAMS table
+Looking for value of avro.schema.url key in SERDE_PARAMS table to update..
 Successfully updated the following locations..
-Updated 0 records in SERDE\_PARAMS table
+Updated 0 records in SERDE_PARAMS table
 ```
 
  
@@ -81,12 +81,12 @@ Using metatool to read out table information (for all metastore backends).
   
 
 ```
-HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MTableColumnStatistics';
+HIVE_CONF_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MTableColumnStatistics';
 ```
 
 ```
   
- HIVE\_CONF\_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"("+partitionName+")::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
+ HIVE_CONF_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+"."+tableName+"("+partitionName+")::"+colName+"="+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
 ```
  
 

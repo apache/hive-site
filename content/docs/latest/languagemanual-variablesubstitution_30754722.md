@@ -41,7 +41,7 @@ create table if not exists b (col int); describe ${hiveconf:a}'
 results in:
 
 ```
-Hive history file=/tmp/edward/hive\_job\_log\_edward\_201011240906\_1463048967.txt
+Hive history file=/tmp/edward/hive_job_log_edward_201011240906_1463048967.txt
 a=b
 hiveconf:a=b
 OK
@@ -76,7 +76,7 @@ ${hiveconf:x}
 
 ```
 
-Annotated examples of usage from the test case ql/src/test/queries/clientpositive/set\_processor\_namespaces.q:
+Annotated examples of usage from the test case ql/src/test/queries/clientpositive/set_processor_namespaces.q:
 
 ```
 set zzz=5;

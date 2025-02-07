@@ -98,12 +98,12 @@ Previously all files for a partition (or a table if the table is not partitioned
 
 ```
 hive> dfs -ls -R /user/hive/warehouse/t;
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:03 /user/hive/warehouse/t/base\_0000022
--rw-r--r--   1 ekoifman staff        602 2016-06-09 17:03 /user/hive/warehouse/t/base\_0000022/bucket\_00000
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:06 /user/hive/warehouse/t/delta\_0000023\_0000023\_0000
--rw-r--r--   1 ekoifman staff        611 2016-06-09 17:06 /user/hive/warehouse/t/delta\_0000023\_0000023\_0000/bucket\_00000
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t/delta\_0000024\_0000024\_0000
--rw-r--r--   1 ekoifman staff        610 2016-06-09 17:07 /user/hive/warehouse/t/delta\_0000024\_0000024\_0000/bucket\_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:03 /user/hive/warehouse/t/base_0000022
+-rw-r--r--   1 ekoifman staff        602 2016-06-09 17:03 /user/hive/warehouse/t/base_0000022/bucket_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:06 /user/hive/warehouse/t/delta_0000023_0000023_0000
+-rw-r--r--   1 ekoifman staff        611 2016-06-09 17:06 /user/hive/warehouse/t/delta_0000023_0000023_0000/bucket_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t/delta_0000024_0000024_0000
+-rw-r--r--   1 ekoifman staff        610 2016-06-09 17:07 /user/hive/warehouse/t/delta_0000024_0000024_0000/bucket_00000
 ```
 
 ### Compactor
@@ -185,7 +185,7 @@ A number of new configuration parameters have been added to the system to suppor
 | [hive.txn.heartbeat.threadpool.size](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.txn.heartbeat.threadpool.size) | *Default:* 5 | Client/HiveServer2 | The number of threads to use for heartbeating (as of [Hive 1.3.0 and 2.0.0](https://issues.apache.org/jira/browse/HIVE-12366)). |
 | [hive.timedout.txn.reaper.start]({{< ref "#hive-timedout-txn-reaper-start" >}}) | *Default:* 100s | Metastore | Time delay of first reaper (the process which aborts timed-out transactions) run after the metastore starts (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
 | [hive.timedout.txn.reaper.interval]({{< ref "#hive-timedout-txn-reaper-interval" >}}) | *Default:* 180s | Metastore | Time interval describing how often the reaper (the process which aborts timed-out transactions) runs (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
-| [hive.txn.max.open.batch]({{< ref "#hive-txn-max-open-batch" >}}) | *Default:* 1000 | Client | Maximum number of transactions that can be fetched in one call to open\_txns().1 |
+| [hive.txn.max.open.batch]({{< ref "#hive-txn-max-open-batch" >}}) | *Default:* 1000 | Client | Maximum number of transactions that can be fetched in one call to open_txns().1 |
 | [hive.max.open.txns]({{< ref "#hive-max-open-txns" >}}) | *Default:* 100000 | HiveServer2/ Metastore | Maximum number of open transactions. If current open transactions reach this limit, future open transaction requests will be rejected, until the number goes below the limit. (As of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249).) |
 | [hive.count.open.txns.interval]({{< ref "#hive-count-open-txns-interval" >}}) | *Default:* 1s | HiveServer2/ Metastore | Time in seconds between checks to count open transactions (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249)). |
 | [hive.txn.retryable.sqlex.regex]({{< ref "#hive-txn-retryable-sqlex-regex" >}}) | *Default:* "" (empty string) | HiveServer2/ Metastore | Comma separated list of regular expression patterns for SQL state, error code, and error message of retryable SQLExceptions, that's suitable for the Hive metastore database (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-12637)).For an example, see [Configuration Properties]({{< ref "#configuration-properties" >}}). |
@@ -249,7 +249,7 @@ More compaction related options can be set via TBLPROPERTIES as of [Hive 1.3.0 a
 **Example: Set compaction options in TBLPROPERTIES at table level**
 
 ```
-CREATE TABLE table\_name (
+CREATE TABLE table_name (
   id                int,
   name              string
 )
@@ -265,9 +265,9 @@ TBLPROPERTIES ("transactional"="true",
 **Example: Set compaction options in TBLPROPERTIES at request level**
 
 ```
-ALTER TABLE table\_name COMPACT 'minor' 
+ALTER TABLE table_name COMPACT 'minor' 
    WITH OVERWRITE TBLPROPERTIES ("compactor.mapreduce.map.memory.mb"="3072");  -- specify compaction map job properties
-ALTER TABLE table\_name COMPACT 'major'
+ALTER TABLE table_name COMPACT 'major'
    WITH OVERWRITE TBLPROPERTIES ("tblprops.orc.compress.size"="8192");         -- change any other Hive table properties
 ```
 

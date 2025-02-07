@@ -98,7 +98,7 @@ At this time there are are a number of concrete approaches to choose from:
 
 * [HiveRunner](https://github.com/klarna/HiveRunner): Test cases are declared using Java, Hive SQL and JUnit and can execute locally in your IDE. This library focuses on ease of use and execution speed. No local Hive/Hadoop installation required. Provides full test isolation, fine grained assertions, and seamless UDF integration (they need only be on the project classpath). The metastore is backed by an in-memory database to increase test performance.
 * [beetest](https://github.com/kawaa/Beetest): Test cases are declared using Hive SQL and 'expected' data files. Test suites are executed using a script on the command line. Apparently requires HDFS to be installed in the environment in which the tests are executed.
-* [hive\_test](https://github.com/edwardcapriolo/hive_test): Test cases are declared using Java, Hive SQL and JUnit and can execute locally in your IDE.
+* [hive_test](https://github.com/edwardcapriolo/hive_test): Test cases are declared using Java, Hive SQL and JUnit and can execute locally in your IDE.
 * [HiveQLUnit:](http://finraos.github.io/HiveQLUnit/) Test your Hive scripts inside your favourite IDE. Appears to use Spark to execute the tests.
 * [How to utilise the Hive project's internal test framework](http://dev.bizo.com/2011/04/hive-unit-testing.html).
 

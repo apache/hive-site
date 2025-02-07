@@ -26,7 +26,7 @@ date: 2024-12-12
 JdbcStorageHandler supports reading from jdbc data source in Hive. Currently writing to a jdbc data source is not supported. To use JdbcStorageHandler, you need to create an external table using JdbcStorageHandler. Here is a simple example:
 
 ```
-CREATE EXTERNAL TABLE student\_jdbc
+CREATE EXTERNAL TABLE student_jdbc
 (
   name string,
   age int,
@@ -47,7 +47,7 @@ TBLPROPERTIES (
 You can also alter table properties of the jdbc external table using alter table statement, just like other non-native Hive table:
 
 ```
-ALTER TABLE student\_jdbc SET TBLPROPERTIES ("hive.sql.dbcp.password" = "passwd");
+ALTER TABLE student_jdbc SET TBLPROPERTIES ("hive.sql.dbcp.password" = "passwd");
 ```
 
 ## Table Properties
@@ -87,7 +87,7 @@ Note complex data type: struct, map, array are not supported
 hive.sql.table / hive.sql.query defines a tabular data with a schema. The schema definition has to be the same as the table schema definition. For example, the following create table statement will fail:
 
 ```
-CREATE EXTERNAL TABLE student\_jdbc
+CREATE EXTERNAL TABLE student_jdbc
 (
   name string,
   age int,
@@ -103,11 +103,11 @@ TBLPROPERTIES (
 However, column name and column type of hive.sql.table / hive.sql.query schema may be different than the table schema. In this case, database column maps to hive column by position. If data type is different, Hive will try to convert it according to Hive table schema. For example:
 
 ```
-CREATE EXTERNAL TABLE student\_jdbc
+CREATE EXTERNAL TABLE student_jdbc
 (
   sname string,
   age int,
-  effective\_gpa decimal(4,3)
+  effective_gpa decimal(4,3)
 )
 STORED BY 'org.apache.hive.storage.jdbc.JdbcStorageHandler'
 TBLPROPERTIES (
@@ -116,7 +116,7 @@ TBLPROPERTIES (
 );
 ```
 
-Hive will try to convert the double “gpa” of underlining table STUDENT to decimal(4,3) as the effective\_gpa field of the student\_jdbc table. In case the conversion is not possible, Hive will produce null for the field.
+Hive will try to convert the double “gpa” of underlining table STUDENT to decimal(4,3) as the effective_gpa field of the student_jdbc table. In case the conversion is not possible, Hive will produce null for the field.
 
 # Auto Shipping
 
@@ -134,7 +134,7 @@ hadoop credential create host2.password -provider jceks://hdfs/user/foo/test.jce
 This will create a keystore file located on hdfs://user/foo/test.jceks which contains two keys: host1.password and host2.password. When creating table in Hive, you will need to specify “hive.sql.dbcp.password.keystore” and “hive.sql.dbcp.password.key” instead of “hive.sql.dbcp.password” in create table statement:
 
 ```
-CREATE EXTERNAL TABLE student\_jdbc
+CREATE EXTERNAL TABLE student_jdbc
 (
   name string,
   age int,
@@ -201,10 +201,10 @@ jdbc.JdbcInputFormat: split:interval:ikey[90,)
 
 Hive will pushdown computation to jdbc table aggressively, so we can make best usage of the native capacity of jdbc data source.
 
-For example, if we have another table voter\_jdbc:
+For example, if we have another table voter_jdbc:
 
 ```
-EATE EXTERNAL TABLE voter\_jdbc
+EATE EXTERNAL TABLE voter_jdbc
 (
   name string,
   age int,
@@ -225,16 +225,16 @@ TBLPROPERTIES (
 Then the following join operation will push down to mysql:
 
 ```
-select * from student\_jdbc join voter\_jdbc on student\_jdbc.name=voter\_jdbc.name;
+select * from student_jdbc join voter_jdbc on student_jdbc.name=voter_jdbc.name;
 ```
 
 This can be manifest by explain:
 
 ```
-explain select * from student\_jdbc join voter\_jdbc on student\_jdbc.name=voter\_jdbc.name;
+explain select * from student_jdbc join voter_jdbc on student_jdbc.name=voter_jdbc.name;
         . . . . . .
         TableScan
-          alias: student\_jdbc
+          alias: student_jdbc
           properties:
             hive.sql.query SELECT `t`.`name`, `t`.`age`, `t`.`gpa`, `t0`.`name` AS `name0`, `t0`.`age` AS `age0`, `t0`.`registration`, `t0`.`contribution`
 FROM (SELECT *
@@ -331,7 +331,7 @@ Create a user and associate them with a default schema. For example:
 
 ```
 CREATE LOGIN greg WITH PASSWORD = 'GregPass123!$';
-CREATE USER greg FOR LOGIN greg WITH DEFAULT\_SCHEMA=bob;
+CREATE USER greg FOR LOGIN greg WITH DEFAULT_SCHEMA=bob;
 ```
 
 Allow the user to connect to the database and run queries. For example:
@@ -443,11 +443,11 @@ insert into alice.country
 values (7, 'Japan');
 ```
 
-Create a user and associate them with a default schema <=> search\_path. For example:
+Create a user and associate them with a default schema <=> search_path. For example:
 
 ```
 CREATE ROLE greg WITH LOGIN PASSWORD 'GregPass123!$';
-ALTER ROLE greg SET search\_path TO bob;
+ALTER ROLE greg SET search_path TO bob;
 ```
 
 Grant the necessary permissions to access the schema. For example:

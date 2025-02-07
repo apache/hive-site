@@ -21,7 +21,7 @@ date: 2024-12-12
 
 * ### **Hive ACID**
 
-	+ Use sequences for TXN\_ID generation (performance)
+	+ Use sequences for TXN_ID generation (performance)
 	+ Read-only transactions optimization
 	+ Zero-wait readers
 	+ Optimistic and Pessimistic concurrency control

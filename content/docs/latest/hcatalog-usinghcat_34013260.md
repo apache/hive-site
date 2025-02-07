@@ -74,7 +74,7 @@ Without HCatalog, Sally must be manually informed by Joe when data is available,
 
 ```
 A = load '/data/rawevents/20100819/data' as (alpha:int, beta:chararray, ...);
-B = filter A by bot\_finder(zeta) = 0;
+B = filter A by bot_finder(zeta) = 0;
 ...
 store Z into 'data/processedevents/20100819/data';
 
@@ -84,7 +84,7 @@ With HCatalog, HCatalog will send a JMS message that data is available. The Pig 
 
 ```
 A = load 'rawevents' using org.apache.hive.hcatalog.pig.HCatLoader();
-B = filter A by date = '20100819' and by bot\_finder(zeta) = 0;
+B = filter A by date = '20100819' and by bot_finder(zeta) = 0;
 ...
 store Z into 'processedevents' using org.apache.hive.hcatalog.pig.HCatStorer("date=20100819");
 
@@ -99,20 +99,20 @@ Without HCatalog, Robert must alter the table to add the required partition.
 ```
 alter table processedevents add partition 20100819 hdfs://data/processedevents/20100819/data
 
-select advertiser\_id, count(clicks)
+select advertiser_id, count(clicks)
 from processedevents
 where date = '20100819'
-group by advertiser\_id;
+group by advertiser_id;
 
 ```
 
 With HCatalog, Robert does not need to modify the table structure.
 
 ```
-select advertiser\_id, count(clicks)
+select advertiser_id, count(clicks)
 from processedevents
 where date = ‘20100819’
-group by advertiser\_id;
+group by advertiser_id;
 
 ```
 

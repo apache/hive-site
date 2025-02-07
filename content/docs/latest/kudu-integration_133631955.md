@@ -34,7 +34,7 @@ To issue queries against Kudu using Hive, one optional parameter can be provided
 
 | Hive Configuration |  |
 | --- | --- |
-| ``` hive.kudu.master.addresses.default ``` | Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the *kudu.master\_addresses* table property is not set. |
+| ``` hive.kudu.master.addresses.default ``` | Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the *kudu.master_addresses* table property is not set. |
 
   
 
@@ -49,11 +49,11 @@ hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
 To access Kudu tables, a Hive table must be created using the `CREATE` command with the `STORED BY` clause. Until [HIVE-22021](https://issues.apache.org/jira/browse/HIVE-22021) is completed, the `EXTERNAL` keyword is required and will create a Hive table that references an existing Kudu table. Dropping the external Hive table will not remove the underlying Kudu table.
 
 ```
-CREATE EXTERNAL TABLE kudu\_table (foo INT, bar STRING, baz DOUBLE)
+CREATE EXTERNAL TABLE kudu_table (foo INT, bar STRING, baz DOUBLE)
 STORED BY 'org.apache.hadoop.hive.kudu.KuduStorageHandler'
 TBLPROPERTIES (
-  "kudu.table\_name"="default.kudu\_table", 
-  "kudu.master\_addresses"="localhost:7051"
+  "kudu.table_name"="default.kudu_table", 
+  "kudu.master_addresses"="localhost:7051"
 );
 ```
 
@@ -70,9 +70,9 @@ Though it is a common practice to ingest the data into Kudu tables via tools li
 ### Examples
 
 ```
-INSERT INTO kudu\_table SELECT * FROM other\_table;
+INSERT INTO kudu_table SELECT * FROM other_table;
 
-INSERT INTO TABLE kudu\_table
+INSERT INTO TABLE kudu_table
 VALUES (1, 'test 1', 1.1), (2, 'test 2', 2.2);
 ```
 

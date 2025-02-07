@@ -45,18 +45,18 @@ In this section, we present the main operations that are currently present in Hi
 The syntax to create a materialized view in Hive is very similar to the [CTAS statement](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)) syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.
 
 ```
-CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db\_name.]materialized\_view\_name
+CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
   [DISABLE REWRITE]
-  [COMMENT materialized\_view\_comment]
-  [PARTITIONED ON (col\_name, ...)]
-  [CLUSTERED ON (col\_name, ...) | DISTRIBUTED ON (col\_name, ...) SORTED ON (col\_name, ...)]
+  [COMMENT materialized_view_comment]
+  [PARTITIONED ON (col_name, ...)]
+  [CLUSTERED ON (col_name, ...) | DISTRIBUTED ON (col_name, ...) SORTED ON (col_name, ...)]
   [
-    [ROW FORMAT row\_format]
-    [STORED AS file\_format]
+    [ROW FORMAT row_format]
+    [STORED AS file_format]
       | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
-  [LOCATION hdfs\_path]
-  [TBLPROPERTIES (property\_name=property\_value, ...)]
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]
 AS
 <query>;
 ```
@@ -72,10 +72,10 @@ Materialized views can be stored in external systems, e.g., [Druid](https://cwik
 **Example:**
 
 ```
-CREATE MATERIALIZED VIEW druid\_wiki\_mv
+CREATE MATERIALIZED VIEW druid_wiki_mv
 STORED AS 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 AS
-SELECT \_\_time, page, user, c\_added, c\_removed
+SELECT __time, page, user, c_added, c_removed
 FROM src;
 ```
 
@@ -85,11 +85,11 @@ Currently we support the following operations that aid at managing the materiali
 
 ```
 -- Drops a materialized view
-DROP MATERIALIZED VIEW [db\_name.]materialized\_view\_name;
+DROP MATERIALIZED VIEW [db_name.]materialized_view_name;
 -- Shows materialized views (with optional filters)
-SHOW MATERIALIZED VIEWS [IN database\_name] ['identifier\_with\_wildcards’];
+SHOW MATERIALIZED VIEWS [IN database_name] ['identifier_with_wildcards’];
 -- Shows information about a specific materialized view
-DESCRIBE [EXTENDED | FORMATTED] [db\_name.]materialized\_view\_name;
+DESCRIBE [EXTENDED | FORMATTED] [db_name.]materialized_view_name;
 
 ```
 
@@ -102,7 +102,7 @@ Once a materialized view has been created, the optimizer will be able to exploit
 The rewriting algorithm can be enabled and disabled globally using the `hive.materializedview.rewriting and hive.materializedview.rewriting.sql` configuration properties (default value is `true`). In addition, users can selectively enable/disable materialized views for rewriting. Recall that, by default, materialized views are enabled for rewriting at creation time. To alter that behavior, the following statement can be used:
 
 ```
-ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name ENABLE|DISABLE REWRITE;
+ALTER MATERIALIZED VIEW [db_name.]materialized_view_name ENABLE|DISABLE REWRITE;
 ```
 
 Hive supports two types of rewriting algorithms:
@@ -119,7 +119,7 @@ CREATE TABLE emps (
   deptno INT,
   name VARCHAR(256),
   salary FLOAT,
-  hire\_date TIMESTAMP)
+  hire_date TIMESTAMP)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
@@ -136,10 +136,10 @@ Assume we want to obtain frequently information about employees that were hired 
 ```
 CREATE MATERIALIZED VIEW mv1
 AS
-SELECT empid, deptname, hire\_date
+SELECT empid, deptname, hire_date
 FROM emps JOIN depts
   ON (emps.deptno = depts.deptno)
-WHERE hire\_date >= '2016-01-01';
+WHERE hire_date >= '2016-01-01';
 ```
 
 Then, the following query extracting information about employees that were hired in Q1 2018 is issued to Hive:
@@ -149,8 +149,8 @@ SELECT empid, deptname
 FROM emps
 JOIN depts
   ON (emps.deptno = depts.deptno)
-WHERE hire\_date >= '2018-01-01'
-    AND hire\_date <= '2018-03-31';
+WHERE hire_date >= '2018-01-01'
+    AND hire_date <= '2018-03-31';
 ```
 
 Hive will be able to rewrite the incoming query using the materialized view, including a compensation predicate on top of the scan over the materialization. Though the rewriting happens at the algebraic level, to illustrate this example, we include the SQL statement equivalent to the rewriting using the `mv` used by Hive to answer the incoming query:
@@ -158,8 +158,8 @@ Hive will be able to rewrite the incoming query using the materialized view, inc
 ```
 SELECT empid, deptname
 FROM mv1
-WHERE hire\_date >= '2018-01-01'
-    AND hire\_date <= '2018-03-31';
+WHERE hire_date >= '2018-01-01'
+    AND hire_date <= '2018-03-31';
 ```
 
 ### Example 2
@@ -168,89 +168,89 @@ For the second example, consider the star schema based on the [SSB benchmark](ht
 
 ```
 CREATE TABLE `customer`(
-  `c\_custkey` BIGINT, 
-  `c\_name` STRING, 
-  `c\_address` STRING, 
-  `c\_city` STRING, 
-  `c\_nation` STRING, 
-  `c\_region` STRING, 
-  `c\_phone` STRING, 
-  `c\_mktsegment` STRING,
-  PRIMARY KEY (`c\_custkey`) DISABLE RELY)
+  `c_custkey` BIGINT, 
+  `c_name` STRING, 
+  `c_address` STRING, 
+  `c_city` STRING, 
+  `c_nation` STRING, 
+  `c_region` STRING, 
+  `c_phone` STRING, 
+  `c_mktsegment` STRING,
+  PRIMARY KEY (`c_custkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `dates`(
-  `d\_datekey` BIGINT, 
-  `d\_date` STRING, 
-  `d\_dayofweek` STRING, 
-  `d\_month` STRING, 
-  `d\_year` INT, 
-  `d\_yearmonthnum` INT, 
-  `d\_yearmonth` STRING, 
-  `d\_daynuminweek` INT,
-  `d\_daynuminmonth` INT,
-  `d\_daynuminyear` INT,
-  `d\_monthnuminyear` INT,
-  `d\_weeknuminyear` INT,
-  `d\_sellingseason` STRING,
-  `d\_lastdayinweekfl` INT,
-  `d\_lastdayinmonthfl` INT,
-  `d\_holidayfl` INT,
-  `d\_weekdayfl`INT,
-  PRIMARY KEY (`d\_datekey`) DISABLE RELY)
+  `d_datekey` BIGINT, 
+  `d_date` STRING, 
+  `d_dayofweek` STRING, 
+  `d_month` STRING, 
+  `d_year` INT, 
+  `d_yearmonthnum` INT, 
+  `d_yearmonth` STRING, 
+  `d_daynuminweek` INT,
+  `d_daynuminmonth` INT,
+  `d_daynuminyear` INT,
+  `d_monthnuminyear` INT,
+  `d_weeknuminyear` INT,
+  `d_sellingseason` STRING,
+  `d_lastdayinweekfl` INT,
+  `d_lastdayinmonthfl` INT,
+  `d_holidayfl` INT,
+  `d_weekdayfl`INT,
+  PRIMARY KEY (`d_datekey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `part`(
-  `p\_partkey` BIGINT, 
-  `p\_name` STRING, 
-  `p\_mfgr` STRING, 
-  `p\_category` STRING, 
-  `p\_brand1` STRING, 
-  `p\_color` STRING, 
-  `p\_type` STRING, 
-  `p\_size` INT, 
-  `p\_container` STRING,
-  PRIMARY KEY (`p\_partkey`) DISABLE RELY)
+  `p_partkey` BIGINT, 
+  `p_name` STRING, 
+  `p_mfgr` STRING, 
+  `p_category` STRING, 
+  `p_brand1` STRING, 
+  `p_color` STRING, 
+  `p_type` STRING, 
+  `p_size` INT, 
+  `p_container` STRING,
+  PRIMARY KEY (`p_partkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `supplier`(
-  `s\_suppkey` BIGINT, 
-  `s\_name` STRING, 
-  `s\_address` STRING, 
-  `s\_city` STRING, 
-  `s\_nation` STRING, 
-  `s\_region` STRING, 
-  `s\_phone` STRING,
-  PRIMARY KEY (`s\_suppkey`) DISABLE RELY)
+  `s_suppkey` BIGINT, 
+  `s_name` STRING, 
+  `s_address` STRING, 
+  `s_city` STRING, 
+  `s_nation` STRING, 
+  `s_region` STRING, 
+  `s_phone` STRING,
+  PRIMARY KEY (`s_suppkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `lineorder`(
-  `lo\_orderkey` BIGINT, 
-  `lo\_linenumber` int, 
-  `lo\_custkey` BIGINT not null DISABLE RELY,
-  `lo\_partkey` BIGINT not null DISABLE RELY,
-  `lo\_suppkey` BIGINT not null DISABLE RELY,
-  `lo\_orderdate` BIGINT not null DISABLE RELY,
-  `lo\_ordpriority` STRING, 
-  `lo\_shippriority` STRING, 
-  `lo\_quantity` DOUBLE, 
-  `lo\_extendedprice` DOUBLE, 
-  `lo\_ordtotalprice` DOUBLE, 
-  `lo\_discount` DOUBLE, 
-  `lo\_revenue` DOUBLE, 
-  `lo\_supplycost` DOUBLE, 
-  `lo\_tax` DOUBLE, 
-  `lo\_commitdate` BIGINT, 
-  `lo\_shipmode` STRING,
-  PRIMARY KEY (`lo\_orderkey`) DISABLE RELY,
-  CONSTRAINT fk1 FOREIGN KEY (`lo\_custkey`) REFERENCES `customer\_n1`(`c\_custkey`) DISABLE RELY,
-  CONSTRAINT fk2 FOREIGN KEY (`lo\_orderdate`) REFERENCES `dates\_n0`(`d\_datekey`) DISABLE RELY,
-  CONSTRAINT fk3 FOREIGN KEY (`lo\_partkey`) REFERENCES `ssb\_part\_n0`(`p\_partkey`) DISABLE RELY,
-  CONSTRAINT fk4 FOREIGN KEY (`lo\_suppkey`) REFERENCES `supplier\_n0`(`s\_suppkey`) DISABLE RELY)
+  `lo_orderkey` BIGINT, 
+  `lo_linenumber` int, 
+  `lo_custkey` BIGINT not null DISABLE RELY,
+  `lo_partkey` BIGINT not null DISABLE RELY,
+  `lo_suppkey` BIGINT not null DISABLE RELY,
+  `lo_orderdate` BIGINT not null DISABLE RELY,
+  `lo_ordpriority` STRING, 
+  `lo_shippriority` STRING, 
+  `lo_quantity` DOUBLE, 
+  `lo_extendedprice` DOUBLE, 
+  `lo_ordtotalprice` DOUBLE, 
+  `lo_discount` DOUBLE, 
+  `lo_revenue` DOUBLE, 
+  `lo_supplycost` DOUBLE, 
+  `lo_tax` DOUBLE, 
+  `lo_commitdate` BIGINT, 
+  `lo_shipmode` STRING,
+  PRIMARY KEY (`lo_orderkey`) DISABLE RELY,
+  CONSTRAINT fk1 FOREIGN KEY (`lo_custkey`) REFERENCES `customer_n1`(`c_custkey`) DISABLE RELY,
+  CONSTRAINT fk2 FOREIGN KEY (`lo_orderdate`) REFERENCES `dates_n0`(`d_datekey`) DISABLE RELY,
+  CONSTRAINT fk3 FOREIGN KEY (`lo_partkey`) REFERENCES `ssb_part_n0`(`p_partkey`) DISABLE RELY,
+  CONSTRAINT fk4 FOREIGN KEY (`lo_suppkey`) REFERENCES `supplier_n0`(`s_suppkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 ```
@@ -261,33 +261,33 @@ As you can observe, we declare multiple integrity constraints for the database, 
 CREATE MATERIALIZED VIEW mv2
 AS
 SELECT <dims>,
-    lo\_revenue,
-    lo\_extendedprice * lo\_discount AS d\_price,
-    lo\_revenue - lo\_supplycost
+    lo_revenue,
+    lo_extendedprice * lo_discount AS d_price,
+    lo_revenue - lo_supplycost
 FROM customer, dates, lineorder, part, supplier
-WHERE lo\_orderdate = d\_datekey
-    AND lo\_partkey = p\_partkey
-    AND lo\_suppkey = s\_suppkey
-    AND lo\_custkey = c\_custkey;
+WHERE lo_orderdate = d_datekey
+    AND lo_partkey = p_partkey
+    AND lo_suppkey = s_suppkey
+    AND lo_custkey = c_custkey;
 ```
 
 The materialized view above may accelerate queries that execute joins among the different tables in the database. For instance, consider the following query:
 
 ```
-SELECT SUM(lo\_extendedprice * lo\_discount)
+SELECT SUM(lo_extendedprice * lo_discount)
 FROM lineorder, dates
-WHERE lo\_orderdate = d\_datekey
-  AND d\_year = 2013
-  AND lo\_discount between 1 and 3;
+WHERE lo_orderdate = d_datekey
+  AND d_year = 2013
+  AND lo_discount between 1 and 3;
 ```
 
 Though the query does not use all tables present in the materialized view, it may be answered using the materialized view because the joins in `mv2` preserve all the rows in the `lineorder` table (we know this because of the integrity constraints). Hence, the materialized view-based rewriting produced by the algorithm would be the following:
 
 ```
-SELECT SUM(d\_price)
+SELECT SUM(d_price)
 FROM mv2
-WHERE d\_year = 2013
-  AND lo\_discount between 1 and 3;
+WHERE d_year = 2013
+  AND lo_discount between 1 and 3;
 ```
 
 ### Example 3
@@ -299,8 +299,8 @@ CREATE TABLE `wiki` (
   `time` TIMESTAMP, 
   `page` STRING, 
   `user` STRING, 
-  `characters\_added` BIGINT,
-  `characters\_removed` BIGINT)
+  `characters_added` BIGINT,
+  `characters_removed` BIGINT)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 ```
@@ -311,9 +311,9 @@ For this example, we will use Druid to store the materialized view. Assume we wa
 CREATE MATERIALIZED VIEW mv3
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 AS
-SELECT floor(time to minute) as `\_\_time`, page,
-    SUM(characters\_added) AS c\_added,
-    SUM(characters\_removed) AS c\_removed
+SELECT floor(time to minute) as `__time`, page,
+    SUM(characters_added) AS c_added,
+    SUM(characters_removed) AS c_removed
 FROM wiki
 GROUP BY floor(time to minute), page;
 ```
@@ -322,7 +322,7 @@ Then, assume we need to answer the following query that extracts the number of c
 
 ```
 SELECT floor(time to month),
-    SUM(characters\_added) AS c\_added
+    SUM(characters_added) AS c_added
 FROM wiki
 GROUP BY floor(time to month);
 ```
@@ -331,7 +331,7 @@ Hive will be able to rewrite the incoming query using `mv3` by rolling up the d
 
 ```
 SELECT floor(time to month),
-    SUM(c\_added)
+    SUM(c_added)
 FROM mv3
 GROUP BY floor(time to month);
 ```
@@ -343,7 +343,7 @@ GROUP BY floor(time to month);
 When data in the source tables used by a materialized view changes, e.g., new data is inserted or existing data is modified, we will need to refresh the contents of the materialized view to keep it up-to-date with those changes. Currently, the rebuild operation for a materialized view needs to be triggered by the user. In particular, the user should execute the following statement:
 
 ```
-ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name REBUILD;
+ALTER MATERIALIZED VIEW [db_name.]materialized_view_name REBUILD;
 ```
 
 Hive supports incremental view maintenance, i.e., only refresh data that was affected by the changes in the original source tables. Incremental view maintenance will decrease the rebuild step execution time. In addition, it will preserve LLAP cache for existing data in the materialized view.
@@ -387,7 +387,7 @@ The parameter value can be also overridden by a concrete materialized view just 
 | [HIVE-14499](https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro) | [Add HMS metrics for materialized views](https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-14499?src=confmacro) | Aug 09, 2016 | Feb 27, 2024 |  | John Sherman | Jesús Camacho Rodríguez | Major | Open | Unresolved |
 | [HIVE-18621](https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro) | [Replicate materialized views creation metadata with correct database name](https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-18621?src=confmacro) | Feb 05, 2018 | Feb 27, 2024 |  | Unassigned | Jesús Camacho Rodríguez | Minor | Open | Unresolved |
 | [HIVE-18960](https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro) | [Make Materialized view invalidation cache work with catalogs](https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-18960?src=confmacro) | Mar 14, 2018 | Mar 14, 2018 |  | Alan Gates | Alan Gates | Major | Open | Unresolved |
-| [HIVE-19114](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro) | [MV rewriting not being triggered for last query in materialized\_view\_rewrite\_4.q](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro) | Apr 05, 2018 | Feb 27, 2024 |  | Unassigned | Jesús Camacho Rodríguez | Critical | Open | Unresolved |
+| [HIVE-19114](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro) | [MV rewriting not being triggered for last query in materialized_view_rewrite_4.q](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-19114?src=confmacro) | Apr 05, 2018 | Feb 27, 2024 |  | Unassigned | Jesús Camacho Rodríguez | Critical | Open | Unresolved |
 | [HIVE-19407](https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro) | [Only support materialized views stored either as ACID or in selected custom storage handlers](https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-19407?src=confmacro) | May 03, 2018 | Feb 27, 2024 |  | Unassigned | Jesús Camacho Rodríguez | Major | Open | Unresolved |
 | [HIVE-20543](https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro) | [Support replication of Materialized views](https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-20543?src=confmacro) | Sep 12, 2018 | Aug 21, 2020 |  | Aasha Medhi | Sankar Hariappan | Major | Open | Unresolved |
 | [HIVE-20773](https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro) | [Query result cache might contain stale MV data](https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-20773?src=confmacro) | Oct 18, 2018 | Jun 23, 2021 |  | Unassigned | Oliver Draese | Critical | Open | Unresolved |
@@ -401,7 +401,7 @@ The parameter value can be also overridden by a concrete materialized view just 
 | [HIVE-22262](https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro) | [Aggregate pushdown through join may generate additional rewriting opportunities](https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-22262?src=confmacro) | Sep 27, 2019 | Feb 27, 2024 |  | Vineet Garg | Steve Carlin | Major | Open | Unresolved |
 | [HIVE-22264](https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro) | [Degenerate case where mv not being used: computing aggregate on group by field](https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-22264?src=confmacro) | Sep 27, 2019 | Sep 27, 2019 |  | Unassigned | Steve Carlin | Major | Open | Unresolved |
 | [HIVE-22265](https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro) | [Ordinals in view are not being picked up in materialized view](https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-22265?src=confmacro) | Sep 27, 2019 | Feb 11, 2020 |  | Unassigned | Steve Carlin | Critical | Open | Unresolved |
-| [HIVE-22921](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | [materialized\_view\_partitioned\_3.q relies on hive.optimize.sort.dynamic.partition property](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro)  | [Test](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | Feb 21, 2020 | Feb 27, 2024 |  | Vineet Garg | Jesús Camacho Rodríguez | Major | Open | Unresolved |
+| [HIVE-22921](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | [materialized_view_partitioned_3.q relies on hive.optimize.sort.dynamic.partition property](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro)  | [Test](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | Feb 21, 2020 | Feb 27, 2024 |  | Vineet Garg | Jesús Camacho Rodríguez | Major | Open | Unresolved |
 | [HIVE-24335](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro) | [RelOptMaterialization creates LogicalProject on top of HiveTableScan](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro) | Oct 30, 2020 | Apr 04, 2024 |  | Krisztian Kasa | Krisztian Kasa | Major | Open | Unresolved |
 
 [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues

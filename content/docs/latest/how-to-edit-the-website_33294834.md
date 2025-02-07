@@ -20,7 +20,7 @@ Apache Hive requires a review for changes to the website.
 1. Commit a change to the website's source [Markdown](http://daringfireball.net/projects/markdown/syntax) files located in <https://svn.apache.org/repos/asf/hive/cms/trunk>. Before committing test that the site still builds locally by installing the [CMS build scripts](http://apache.org/dev/cmsref.html#local-build) and running:
 
 ```
-buildsite/build\_site.pl --source-base hive-site --target-base hive-website
+buildsite/build_site.pl --source-base hive-site --target-base hive-website
 
 ```
 If deleting a file or changing the name of a file make a trivial edit to lib/path.pm or lib/view.pm to force a full site rebuild. If making a simple edit it is easier to just use the Apache bookmarklet.

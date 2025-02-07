@@ -9,7 +9,7 @@ date: 2024-12-12
 
 | **Example** | **Operators** | **Description** |
 | --- | --- | --- |
-| A[B] , A.identifier | bracket\_op([]), dot(.) | element selector, dot |
+| A[B] , A.identifier | bracket_op([]), dot(.) | element selector, dot |
 | -A | unary(+), unary(-), unary(~) | unary prefix operators |
 | A IS [NOT] (NULL|TRUE|FALSE) | IS NULL,IS NOT NULL, ... | unary suffix |
 | A ^ B | bitwise xor(^) | bitwise xor |
@@ -38,7 +38,7 @@ The following operators compare the passed operands and generate a TRUE or FALSE
 | A IS NULL | All types | TRUE if expression A evaluates to NULL, otherwise FALSE. |
 | A IS NOT NULL | All types | FALSE if expression A evaluates to NULL, otherwise TRUE. |
 | A IS [NOT] (TRUE|FALSE) | Boolean types | Evaluate to TRUE only if A meets the condition. Note: NULL is UNKNOWN, and because of that (UNKNOWN IS TRUE) and (UNKNOWN IS FALSE) both evaluate to FALSE. |
-| A [NOT] LIKE B | strings | NULL if A or B is NULL, TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The \_ character in B matches any character in A (similar to . in POSIX regular expressions) while the % character in B matches an arbitrary number of characters in A (similar to .* in posix regular expressions). For example, 'foobar' like 'foo' evaluates to FALSE whereas 'foobar' like 'foo\_ \_ \_' evaluates to TRUE and so does 'foobar' like 'foo%'. |
+| A [NOT] LIKE B | strings | NULL if A or B is NULL, TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The _ character in B matches any character in A (similar to . in POSIX regular expressions) while the % character in B matches an arbitrary number of characters in A (similar to .* in posix regular expressions). For example, 'foobar' like 'foo' evaluates to FALSE whereas 'foobar' like 'foo_ _ _' evaluates to TRUE and so does 'foobar' like 'foo%'. |
 | A RLIKE B | strings | NULL if A or B is NULL, TRUE if any (possibly empty) substring of A matches the Java regular expression B, otherwise FALSE. For example, 'foobar' RLIKE 'foo' evaluates to TRUE and so does 'foobar' RLIKE '^f.*r$'. |
 | A REGEXP B | strings | Same as RLIKE. |
 
@@ -87,9 +87,9 @@ The following functions construct instances of complex types.
 | --- | --- | --- |
 | map | (key1, value1, key2, value2, ...) | Creates a map with the given key/value pairs. |
 | struct | (val1, val2, val3, ...) | Creates a struct with the given field values. Struct field names will be col1, col2, etc |
-| named\_struct | (name1, val1, name2, val2, ...) | Creates a struct with the given field names and values. |
+| named_struct | (name1, val1, name2, val2, ...) | Creates a struct with the given field names and values. |
 | array | (val1, val2, ...) | Creates an array with the given elements. |
-| create\_union | (tag, val1, val2, ...) | Creates a union type with the value that is being pointed to by the tag parameter. |
+| create_union | (tag, val1, val2, ...) | Creates a union type with the value that is being pointed to by the tag parameter. |
 
 ### Operators on Complex Types
 

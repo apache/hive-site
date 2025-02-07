@@ -37,11 +37,11 @@ To use parallel tests you have to install Python with "argparse" and "mako"
 
 #### Global installation
 
-You can install the modules globally for all users with "easy\_install":
+You can install the modules globally for all users with "easy_install":
 
 ```
-sudo easy\_install argparse
-sudo easy\_install mako
+sudo easy_install argparse
+sudo easy_install mako
 
 ```
 
@@ -51,17 +51,17 @@ If you don't have root acces on the machine, or you don't want to pollute your
  system directories, you can install the modules in your home directory.
 
 ```
-easy\_install --prefix "~/.python\_modules" argparse
-easy\_install --prefix "~/.python\_modules" mako
+easy_install --prefix "~/.python_modules" argparse
+easy_install --prefix "~/.python_modules" mako
 
 ```
 
 You'll have to update "PYTHONPATH" environmental variable to include  
- "~/.python\_modules". You can do that by adding this line to your ".bashrc" or  
+ "~/.python_modules". You can do that by adding this line to your ".bashrc" or  
  ".zshrc":
 
 ```
-export PYTHONPATH="${PYTHONPATH}:${HOME}/.python\_modules/lib/pythonVERSION/site-packages"
+export PYTHONPATH="${PYTHONPATH}:${HOME}/.python_modules/lib/pythonVERSION/site-packages"
 
 ```
 
@@ -69,7 +69,7 @@ Where "VERSION" is Python version you're using, like "2.6" or "2.7", for example
  if you're using Python 2.6:
 
 ```
-export PYTHONPATH="${PYTHONPATH}:${HOME}/.python\_modules/lib/python2.6/site-packages"
+export PYTHONPATH="${PYTHONPATH}:${HOME}/.python_modules/lib/python2.6/site-packages"
 
 ```
 
@@ -82,7 +82,7 @@ You will have to setup SSH so you can access all test nodes without a password.
 #### Configuration file
 
 You'll need to configure which hosts the test should run on. You should put  
- your configuration file in "~/.hive\_ptest.conf". Configuration file format is  
+ your configuration file in "~/.hive_ptest.conf". Configuration file format is  
  documented in the [README](https://github.com/apache/hive/blob/trunk/testutils/ptest/README) file distributed with the test script.
 
 #### Configuration parameter for speeding up unit tests
@@ -95,7 +95,7 @@ Unit tests will run faster if the Hive configuration parameter
 You can see all possible options by running:
 
 ```
-hive\_repo/testutils/ptest/hivetest.py --help
+hive_repo/testutils/ptest/hivetest.py --help
 
 ```
 
@@ -105,7 +105,7 @@ If you want to test a patch from [Phabricator](https://reviews.facebook.net), yo
  can use this command:
 
 ```
-hive\_repo/testutils/ptest/hivetest.py --test --revision D123
+hive_repo/testutils/ptest/hivetest.py --test --revision D123
 
 ```
 
@@ -114,7 +114,7 @@ hive\_repo/testutils/ptest/hivetest.py --test --revision D123
 You can also test a patch from local file system.
 
 ```
-hive\_repo/testutils/ptest/hivetest.py --test --patch /path/to/my.patch
+hive_repo/testutils/ptest/hivetest.py --test --patch /path/to/my.patch
 
 ```
 
@@ -122,7 +122,7 @@ You can provide multiple patches if you want to. They will be applied in the
  same order they appear on the command line.
 
 ```
-hive\_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
+hive_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
 
 ```
 
@@ -130,7 +130,7 @@ hive\_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
 
 Multiple users can run parallel tests using the same configuration file without  
  problems. If you want to run different test instances simultaneously as one user you'll  
- have to export "HIVE\_PTEST\_SUFFIX" environmental variable and set it to some  
+ have to export "HIVE_PTEST_SUFFIX" environmental variable and set it to some  
  unique string for each instance.
 
 The [README](https://github.com/apache/hive/blob/trunk/testutils/ptest/README) file  
@@ -138,14 +138,14 @@ The [README](https://github.com/apache/hive/blob/trunk/testutils/ptest/README) f
  defined in your configuration file.
 
 ```
-HIVE\_PTEST\_SUFFIX=first\_run hive\_repo/testutils/ptest/hivetest.py --test &
-HIVE\_PTEST\_SUFFIX=second\_run hive\_repo/testutils/ptest/hivetest.py --test &
+HIVE_PTEST_SUFFIX=first_run hive_repo/testutils/ptest/hivetest.py --test &
+HIVE_PTEST_SUFFIX=second_run hive_repo/testutils/ptest/hivetest.py --test &
 
 ```
 
 ### Testing report
 
-The paths here assume you're using "~/hivetests" as your "master\_base\_path"; if  
+The paths here assume you're using "~/hivetests" as your "master_base_path"; if  
  you are using some other path, update the paths accordingly.
 
 After the test run ends, a test report will be generated in  
@@ -160,7 +160,7 @@ If you want to use a fixed report name instead of a timestamp, you can use
  "--report-name" switch, for example:
 
 ```
-hive\_repo/testuitls/ptest/hivetest.py --test --revision D123 --report-name D123
+hive_repo/testuitls/ptest/hivetest.py --test --revision D123 --report-name D123
 
 ```
 

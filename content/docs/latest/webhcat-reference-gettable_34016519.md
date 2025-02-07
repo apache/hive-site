@@ -58,7 +58,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command (simple)
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table?user.name=ctdean'
 
 ```
 
@@ -77,16 +77,16 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
      "type": "string"
    },
    {
-     "name": "my\_p",
+     "name": "my_p",
      "type": "string"
    },
    {
-     "name": "my\_q",
+     "name": "my_q",
      "type": "string"
    }
  ],
  "database": "default",
- "table": "my\_table"
+ "table": "my_table"
 }
 
 ```
@@ -94,7 +94,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command (extended)
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ctdean&format=extended'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ctdean&format=extended'
 
 ```
 
@@ -103,7 +103,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ```
 {
   "partitioned": true,
-  "location": "hdfs://ip-10-77-6-151.ec2.internal:8020/apps/hive/warehouse/test\_table",
+  "location": "hdfs://ip-10-77-6-151.ec2.internal:8020/apps/hive/warehouse/test_table",
   "outputFormat": "org.apache.hadoop.hive.ql.io.RCFileOutputFormat",
   "columns": [
     {
@@ -125,7 +125,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   ],
   "inputFormat": "org.apache.hadoop.hive.ql.io.RCFileInputFormat",
   "database": "default",
-  "table": "test\_table"
+  "table": "test_table"
 }
 
 ```
@@ -134,10 +134,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
-  "error": "Table xtest\_table does not exist",
+  "error": "Table xtest_table does not exist",
   "errorCode": 404,
   "database": "default",
-  "table": "xtest\_table"
+  "table": "xtest_table"
 }
 
 ```

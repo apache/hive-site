@@ -20,22 +20,22 @@ date: 2024-12-12
 Hive supports the following syntax for joining tables:
 
 ```
-join\_table:
-    table\_reference [INNER] JOIN table\_factor [join\_condition]
-  | table\_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table\_reference join\_condition
-  | table\_reference LEFT SEMI JOIN table\_reference join\_condition
-  | table\_reference CROSS JOIN table\_reference [join\_condition] (as of Hive 0.10)
+join_table:
+    table_reference [INNER] JOIN table_factor [join_condition]
+  | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition
+  | table_reference LEFT SEMI JOIN table_reference join_condition
+  | table_reference CROSS JOIN table_reference [join_condition] (as of Hive 0.10)
 
-table\_reference:
-    table\_factor
-  | join\_table
+table_reference:
+    table_factor
+  | join_table
 
-table\_factor:
-    tbl\_name [alias]
-  | table\_subquery alias
-  | ( table\_references )
+table_factor:
+    tbl_name [alias]
+  | table_subquery alias
+  | ( table_references )
 
-join\_condition:
+join_condition:
     ON expression
 
 ```
@@ -69,12 +69,12 @@ Complex expressions in ON clause are supported, starting with Hive 2.2.0 (see [H
 In particular, syntax for join conditions was restricted as follows:
 
 ```
-join\_condition:  
-    ON equality\_expression ( AND equality\_expression )*
+join_condition:  
+    ON equality_expression ( AND equality_expression )*
 ```
 
 ```
-equality\_expression:  
+equality_expression:  
     expression = expression
 ```
 ## Examples

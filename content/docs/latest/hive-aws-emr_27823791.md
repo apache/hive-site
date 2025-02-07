@@ -50,9 +50,9 @@ Amazon Elastic MapReduce provides you with multiple clients to run your Hive clu
 | --- | --- |
 | Hive Version | Log location |
 | 0.4 | /mnt/var/log/apps/hive.log |
-| 0.5 | /mnt/var/log/apps/hive\_05.log |
-| 0.7 | /mnt/var/log/apps/hive\_07.log |
-| 0.7.1 | /mnt/var/log/apps/hive\_07\_1.log |
+| 0.5 | /mnt/var/log/apps/hive_05.log |
+| 0.7 | /mnt/var/log/apps/hive_07.log |
+| 0.7.1 | /mnt/var/log/apps/hive_07_1.log |
 
 # MetaStore
 
