@@ -203,10 +203,10 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
 
 </code></pre><p>Set the environment variable <code>HIVE_HOME</code> to point to the installation directory:</p>
 <pre tabindex=0><code>  $ cd hive-x.y.z
-  $ export HIVE\_HOME={{pwd}}
+  $ export HIVE_HOME={{pwd}}
 
 </code></pre><p>Finally, add <code>$HIVE_HOME/bin</code> to your <code>PATH</code>:</p>
-<pre tabindex=0><code>  $ export PATH=$HIVE\_HOME/bin:$PATH
+<pre tabindex=0><code>  $ export PATH=$HIVE_HOME/bin:$PATH
 
 </code></pre><h3 id=building-hive-from-source>Building Hive from Source</h3>
 <p>The Hive GIT repository for the most recent Hive code is located here: <code>git clone &lt;https://git-wip-us.apache.org/repos/asf/hive.git></code> (the master branch).</p>
@@ -222,7 +222,7 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
   LICENSE
   NOTICE
   README.txt
-  RELEASE\_NOTES.txt
+  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
@@ -245,7 +245,7 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
   LICENSE
   NOTICE
   README.txt
-  RELEASE\_NOTES.txt
+  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
@@ -265,41 +265,41 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
 <li><code>export HADOOP_HOME=&lt;hadoop-install-dir></code></li>
 </ul>
 <p>In addition, you must use below HDFS commands to create <code>/tmp</code> and <code>/user/hive/warehouse</code> (aka <code>hive.metastore.warehouse.dir</code>) and set them <code>chmod g+w</code> before you can create a table in Hive.</p>
-<pre tabindex=0><code>  $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /tmp
-  $ $HADOOP\_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
-  $ $HADOOP\_HOME/bin/hadoop fs -chmod g+w   /tmp
-  $ $HADOOP\_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse
+<pre tabindex=0><code>  $ $HADOOP_HOME/bin/hadoop fs -mkdir       /tmp
+  $ $HADOOP_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
+  $ $HADOOP_HOME/bin/hadoop fs -chmod g+w   /tmp
+  $ $HADOOP_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse
 
 </code></pre><p>You may find it useful, though it&rsquo;s not necessary, to set <code>HIVE_HOME</code>:</p>
-<pre tabindex=0><code>  $ export HIVE\_HOME=&lt;hive-install-dir&gt;
+<pre tabindex=0><code>  $ export HIVE_HOME=&lt;hive-install-dir&gt;
 
 </code></pre><h4 id=running-hive-cli>Running Hive CLI</h4>
 <p>To use the Hive <a href=https://hive.apache.org/docs/latest/languagemanual-cli_27362033/>command line interface</a> (CLI) from the shell:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/bin/hive
+<pre tabindex=0><code>  $ $HIVE_HOME/bin/hive
 
 </code></pre><h4 id=running-hiveserver2-and-beeline-1>Running HiveServer2 and Beeline</h4>
 <p>Starting from Hive 2.1, we need to run the schematool command below as an initialization step. For example, we can use &ldquo;derby&rdquo; as db type. </p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/bin/schematool -dbType &lt;db type&gt; -initSchema
+<pre tabindex=0><code>  $ $HIVE_HOME/bin/schematool -dbType &lt;db type&gt; -initSchema
 
 </code></pre><p><a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a> (introduced in Hive 0.11) has its own CLI called <a href=https://hive.apache.org/docs/latest/hiveserver2-clients_30758725/>Beeline</a>.  HiveCLI is now deprecated in favor of Beeline, as it lacks the multi-user, security, and other capabilities of HiveServer2.  To run HiveServer2 and Beeline from shell:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/bin/hiveserver2
+<pre tabindex=0><code>  $ $HIVE_HOME/bin/hiveserver2
 
-  $ $HIVE\_HOME/bin/beeline -u jdbc:hive2://$HS2\_HOST:$HS2\_PORT
+  $ $HIVE_HOME/bin/beeline -u jdbc:hive2://$HS2_HOST:$HS2_PORT
 </code></pre><p>Beeline is started with the JDBC URL of the HiveServer2, which depends on the address and port where HiveServer2 was started.  By default, it will be (localhost:10000), so the address will look like jdbc:hive2://localhost:10000.</p>
 <p>Or to start Beeline and HiveServer2 in the same process for testing purpose, for a similar user experience to HiveCLI:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/bin/beeline -u jdbc:hive2://
+<pre tabindex=0><code>  $ $HIVE_HOME/bin/beeline -u jdbc:hive2://
 
 </code></pre><h4 id=running-hcatalog>Running HCatalog</h4>
 <p>To run the HCatalog server from the shell in Hive release 0.11.0 and later:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/hcatalog/sbin/hcat\_server.sh
+<pre tabindex=0><code>  $ $HIVE_HOME/hcatalog/sbin/hcat_server.sh
 
 </code></pre><p>To use the HCatalog command line interface (CLI) in Hive release 0.11.0 and later:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/hcatalog/bin/hcat
+<pre tabindex=0><code>  $ $HIVE_HOME/hcatalog/bin/hcat
 
 </code></pre><p>For more information, see <a href=https://hive.apache.org/docs/latest/hcatalog-installhcat_34013403/>HCatalog Installation from Tarball</a> and <a href=https://hive.apache.org/docs/latest/hcatalog-cli_34013932/>HCatalog CLI</a> in the <a href=https://hive.apache.org/docs/latest/hcatalog_33299065/>HCatalog manual</a>.</p>
 <h4 id=running-webhcat-templeton>Running WebHCat (Templeton)</h4>
 <p>To run the WebHCat server from the shell in Hive release 0.11.0 and later:</p>
-<pre tabindex=0><code>  $ $HIVE\_HOME/hcatalog/sbin/webhcat\_server.sh
+<pre tabindex=0><code>  $ $HIVE_HOME/hcatalog/sbin/webhcat_server.sh
 
 </code></pre><p>For more information, see <a href=https://hive.apache.org/docs/latest/webhcat-installwebhcat_34015585/>WebHCat Installation</a> in the <a href=https://hive.apache.org/docs/latest/webhcat_33299069/>WebHCat manual</a>.</p>
 <h3 id=configuration-management-overview>Configuration Management Overview</h3>
@@ -361,7 +361,7 @@ Note: In <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?page
 </ul>
 <p>To configure a different log location, set <code>hive.log.dir</code> in $HIVE_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (<code>chmod 1777 &lt;*dir*></code>).</p>
 <ul>
-<li><code>hive.log.dir=*&lt;other\_location>*</code></li>
+<li><code>hive.log.dir=*&lt;other_location>*</code></li>
 </ul>
 <p>If the user wishes, the logs can be emitted to the console by adding the arguments shown below:</p>
 <ul>
@@ -418,9 +418,9 @@ Note: In <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?page
 <h3 id=altering-and-dropping-tables>Altering and Dropping Tables</h3>
 <p>Table names can be <a href=#changed>changed</a> and columns can be <a href=#added-or-replaced>added or replaced</a>:</p>
 <pre tabindex=0><code>  hive&gt; ALTER TABLE events RENAME TO 3koobecaf;
-  hive&gt; ALTER TABLE pokes ADD COLUMNS (new\_col INT);
-  hive&gt; ALTER TABLE invites ADD COLUMNS (new\_col2 INT COMMENT 'a comment');
-  hive&gt; ALTER TABLE invites REPLACE COLUMNS (foo INT, bar STRING, baz INT COMMENT 'baz replaces new\_col2');
+  hive&gt; ALTER TABLE pokes ADD COLUMNS (new_col INT);
+  hive&gt; ALTER TABLE invites ADD COLUMNS (new_col2 INT COMMENT 'a comment');
+  hive&gt; ALTER TABLE invites REPLACE COLUMNS (foo INT, bar STRING, baz INT COMMENT 'baz replaces new_col2');
 
 </code></pre><p>Note that REPLACE COLUMNS replaces all existing columns and only changes the table&rsquo;s schema, not the data. The table must use a native SerDe. REPLACE COLUMNS can also be used to drop columns from the table&rsquo;s schema:</p>
 <pre tabindex=0><code>  hive&gt; ALTER TABLE invites REPLACE COLUMNS (foo INT COMMENT 'only keep the first column');
@@ -465,20 +465,20 @@ More are available in the Hive sources at <code>ql/src/test/queries/positive</co
 
 </code></pre><p>selects column &lsquo;foo&rsquo; from all rows of partition <code>ds=2008-08-15</code> of the <code>invites</code> table. The results are not stored anywhere, but are displayed on the console.</p>
 <p>Note that in all the examples that follow, <code>INSERT</code> (into a Hive table, local directory or HDFS directory) is optional.</p>
-<pre tabindex=0><code>  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/hdfs\_out' SELECT a.* FROM invites a WHERE a.ds='2008-08-15';
+<pre tabindex=0><code>  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/hdfs_out' SELECT a.* FROM invites a WHERE a.ds='2008-08-15';
 
 </code></pre><p>selects all rows from partition <code>ds=2008-08-15</code> of the <code>invites</code> table into an HDFS directory. The result data is in files (depending on the number of mappers) in that directory.<br>
 NOTE: partition columns if any are selected by the use of *. They can also be specified in the projection clauses.</p>
 <p>Partitioned tables must always have a partition selected in the <code>WHERE</code> clause of the statement.</p>
-<pre tabindex=0><code>  hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local\_out' SELECT a.* FROM pokes a;
+<pre tabindex=0><code>  hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/local_out' SELECT a.* FROM pokes a;
 
 </code></pre><p>selects all rows from pokes table into a local directory.</p>
 <pre tabindex=0><code>  hive&gt; INSERT OVERWRITE TABLE events SELECT a.* FROM profiles a;
   hive&gt; INSERT OVERWRITE TABLE events SELECT a.* FROM profiles a WHERE a.key &lt; 100;
-  hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/reg\_3' SELECT a.* FROM events a;
-  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg\_4' select a.invites, a.pokes FROM profiles a;
-  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg\_5' SELECT COUNT(*) FROM invites a WHERE a.ds='2008-08-15';
-  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg\_5' SELECT a.foo, a.bar FROM invites a;
+  hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/reg_3' SELECT a.* FROM events a;
+  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg_4' select a.invites, a.pokes FROM profiles a;
+  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg_5' SELECT COUNT(*) FROM invites a WHERE a.ds='2008-08-15';
+  hive&gt; INSERT OVERWRITE DIRECTORY '/tmp/reg_5' SELECT a.foo, a.bar FROM invites a;
   hive&gt; INSERT OVERWRITE LOCAL DIRECTORY '/tmp/sum' SELECT SUM(a.pc) FROM pc1 a;
 
 </code></pre><p>selects the sum of a column. The avg, min, or max can also be used. Note that for versions of Hive which don&rsquo;t include <a href=https://issues.apache.org/jira/browse/HIVE-287>HIVE-287</a>, you&rsquo;ll need to use <code>COUNT(1)</code> in place of <code>COUNT(*)</code>.</p>
@@ -505,7 +505,7 @@ Similarly – streaming can be used on the reduce side (please see the <a href=h
 <h2 id=simple-example-use-cases>Simple Example Use Cases</h2>
 <h3 id=movielens-user-ratings>MovieLens User Ratings</h3>
 <p>First, create a table with tab-delimited text file format:</p>
-<pre tabindex=0><code>CREATE TABLE u\_data (
+<pre tabindex=0><code>CREATE TABLE u_data (
   userid INT,
   movieid INT,
   rating INT,
@@ -523,10 +523,10 @@ STORED AS TEXTFILE;
 <pre tabindex=0><code>unzip ml-100k.zip
 </code></pre><p>And load <code>u.data</code> into the table that was just created:</p>
 <pre tabindex=0><code>LOAD DATA LOCAL INPATH '&lt;path&gt;/u.data'
-OVERWRITE INTO TABLE u\_data;
+OVERWRITE INTO TABLE u_data;
 
 </code></pre><p>Count the number of rows in table u_data:</p>
-<pre tabindex=0><code>SELECT COUNT(*) FROM u\_data;
+<pre tabindex=0><code>SELECT COUNT(*) FROM u_data;
 
 </code></pre><p>Note that for older versions of Hive which don&rsquo;t include <a href=https://issues.apache.org/jira/browse/HIVE-287>HIVE-287</a>, you&rsquo;ll need to use COUNT(1) in place of COUNT(*).</p>
 <p>Now we can do some complex data analysis on the table <code>u_data</code>:</p>
@@ -541,7 +541,7 @@ for line in sys.stdin:
   print '\t'.join([userid, movieid, rating, str(weekday)])
 
 </code></pre><p>Use the mapper script:</p>
-<pre tabindex=0><code>CREATE TABLE u\_data\_new (
+<pre tabindex=0><code>CREATE TABLE u_data_new (
   userid INT,
   movieid INT,
   rating INT,
@@ -549,17 +549,17 @@ for line in sys.stdin:
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t';
 
-add FILE weekday\_mapper.py;
+add FILE weekday_mapper.py;
 
-INSERT OVERWRITE TABLE u\_data\_new
+INSERT OVERWRITE TABLE u_data_new
 SELECT
   TRANSFORM (userid, movieid, rating, unixtime)
-  USING 'python weekday\_mapper.py'
+  USING 'python weekday_mapper.py'
   AS (userid, movieid, rating, weekday)
-FROM u\_data;
+FROM u_data;
 
 SELECT weekday, COUNT(*)
-FROM u\_data\_new
+FROM u_data_new
 GROUP BY weekday;
 
 </code></pre><p>Note that if you&rsquo;re using Hive 0.5.0 or earlier you will need to use <code>COUNT(1)</code> in place of <code>COUNT(*)</code>.</p>

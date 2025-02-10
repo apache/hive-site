@@ -225,7 +225,7 @@ ASF
 <li>LazySimpleSerDe: This SerDe can be used to read the same data format as MetadataTypedColumnsetSerDe and TCTLSeparatedProtocol, however, it creates Objects in a lazy way which provides better performance. Starting in <a href=https://issues.apache.org/jira/browse/HIVE-7142>Hive 0.14.0</a> it also supports read/write data with a specified encode charset, for example:</li>
 </ul>
 <pre tabindex=0><code>ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
-</code></pre><p>LazySimpleSerDe can treat &lsquo;T&rsquo;, &rsquo;t', &lsquo;F&rsquo;, &lsquo;f&rsquo;, &lsquo;1&rsquo;, and &lsquo;0&rsquo; as extended, legal boolean literals if the configuration property <a href=#hive-lazysimple-extended\_boolean\_literal>hive.lazysimple.extended_boolean_literal</a> is set to <code>true</code> (<a href=https://issues.apache.org/jira/browse/HIVE-3635>Hive 0.14.0</a> and later). The default is <code>false</code>, which means only &lsquo;TRUE&rsquo; and &lsquo;FALSE&rsquo; are treated as legal boolean literals.</p>
+</code></pre><p>LazySimpleSerDe can treat &lsquo;T&rsquo;, &rsquo;t', &lsquo;F&rsquo;, &lsquo;f&rsquo;, &lsquo;1&rsquo;, and &lsquo;0&rsquo; as extended, legal boolean literals if the configuration property <a href=#hive-lazysimple-extended_boolean_literal>hive.lazysimple.extended_boolean_literal</a> is set to <code>true</code> (<a href=https://issues.apache.org/jira/browse/HIVE-3635>Hive 0.14.0</a> and later). The default is <code>false</code>, which means only &lsquo;TRUE&rsquo; and &lsquo;FALSE&rsquo; are treated as legal boolean literals.</p>
 <ul>
 <li>ThriftSerDe: This SerDe is used to read/write Thrift serialized objects. The class file for the Thrift object must be loaded first.</li>
 <li>DynamicSerDe: This SerDe also read/write Thrift serialized objects, but it understands Thrift DDL so the schema of the object can be provided at runtime. Also it supports a lot of different protocols, including TBinaryProtocol, TJSONProtocol, TCTLSeparatedProtocol (which writes data in delimited records).</li>
@@ -378,9 +378,9 @@ ASF
 </code></pre><p>If Hive fails at runtime, try &lsquo;<code>ant very-clean package</code>&rsquo; to delete the Ivy cache before rebuilding.</p>
 <h3 id=running-hive-without-a-hadoop-cluster>Running Hive Without a Hadoop Cluster</h3>
 <p>From Thejas:</p>
-<pre tabindex=0><code>export HIVE\_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
+<pre tabindex=0><code>export HIVE_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
     --hiveconf hive.metastore.warehouse.dir=file:///tmp/warehouse \
-    --hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore\_db;create=true'
+    --hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true'
 
 </code></pre><p>Then you can run &lsquo;<code>build/dist/bin/hive</code>&rsquo; and it will work against your local file system.</p>
 <h2 id=unit-tests-and-debugging>Unit tests and debugging</h2>
@@ -432,7 +432,7 @@ ASF
 <li><code>build/ql/test/logs/groupby1.q.out</code> - Actual query result for the test. This result is compared to the expected result as part of the test.</li>
 </ul>
 <p>Run the set of unit tests matching a regex, e.g. partition_wise_fileformat tests 10-16:</p>
-<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver -Dqfile\_regex=partition\_wise\_fileformat1[0-6]
+<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver -Dqfile_regex=partition_wise_fileformat1[0-6]
 
 </code></pre><p>Note that this option matches against the basename of the test without the .q suffix.</p>
 <p>Apparently the Hive tests do not run successfully after a clean unless you run <code>ant package</code> first. Not sure why build.xml doesn&rsquo;t encode this dependency.</p>
@@ -484,15 +484,15 @@ svn diff &gt; patch.txt
 </code></pre><ul>
 <li>Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.</li>
 </ul>
-<pre tabindex=0><code>    &gt; export HIVE\_DEBUG\_PORT=8000
-    &gt; export HIVE\_DEBUG=&quot;-Xdebug -Xrunjdwp:transport=dt\_socket,address=${HIVE\_DEBUG\_PORT},server=y,suspend=y&quot;
+<pre tabindex=0><code>    &gt; export HIVE_DEBUG_PORT=8000
+    &gt; export HIVE_DEBUG=&quot;-Xdebug -Xrunjdwp:transport=dt_socket,address=${HIVE_DEBUG_PORT},server=y,suspend=y&quot;
 
 </code></pre><p>In particular HIVE_DEBUG_PORT is the port number that the JVM is listening on and the debugger will attach to. Then run the unit test as follows:</p>
-<pre tabindex=0><code>    &gt; export HADOOP\_OPTS=$HIVE\_DEBUG
+<pre tabindex=0><code>    &gt; export HADOOP_OPTS=$HIVE_DEBUG
     &gt; ant test -Dtestcase=TestCliDriver -Dqfile=&lt;mytest&gt;.q
 
 </code></pre><p>The unit test will run until it shows:</p>
-<pre tabindex=0><code>     [junit] Listening for transport dt\_socket at address: 8000
+<pre tabindex=0><code>     [junit] Listening for transport dt_socket at address: 8000
 
 </code></pre><ul>
 <li>Now, you can use jdb to attach to port 8000 to debug</li>
@@ -511,7 +511,7 @@ svn diff &gt; patch.txt
 <h4 id=debugging-without-ant-client-and-server-side>Debugging without Ant (Client and Server Side)</h4>
 <p>There is another way of debugging Hive code without going through Ant.<br>
 You need to install Hadoop and set the environment variable HADOOP_HOME to that.</p>
-<pre tabindex=0><code>    &gt; export HADOOP\_HOME=&lt;your hadoop home&gt;
+<pre tabindex=0><code>    &gt; export HADOOP_HOME=&lt;your hadoop home&gt;
  
 </code></pre><p>Then, start Hive:</p>
 <pre tabindex=0><code>    &gt;  ./build/dist/bin/hive --debug

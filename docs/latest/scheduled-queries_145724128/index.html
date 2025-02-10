@@ -284,10 +284,10 @@ create scheduled query sc1 cron '0 */10 * * * ? *' as insert into t values (1);
 -- it can be enabled using:
 alter scheduled query sc1 enabled;
 
--- inspect scheduled queries using the information\_schema
-select * from information\_schema.scheduled\_queries s where schedule\_name='sc1';
+-- inspect scheduled queries using the information_schema
+select * from information_schema.scheduled_queries s where schedule_name='sc1';
 +-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
-| s.scheduled\_query\_id  | s.schedule\_name  | s.enabled  | s.cluster\_namespace  |    s.schedule     | s.user  |  s.query  |   s.next\_execution   |
+| s.scheduled_query_id  | s.schedule_name  | s.enabled  | s.cluster_namespace  |    s.schedule     | s.user  |  s.query  |   s.next_execution   |
 +-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
 | 1                     | sc1              | true       | hive                 | 0 */10 * * * ? *  | dev     | select 1  | 2020-02-03 15:10:00  |
 +-----------------------+------------------+------------+----------------------+-------------------+---------+-----------+----------------------+
@@ -295,11 +295,11 @@ select * from information\_schema.scheduled\_queries s where schedule\_name='sc1
 -- wait 10 minutes or execute by issuing:
 alter scheduled query sc1 execute;
 
-select * from information\_schema.scheduled\_executions s where schedule\_name='sc1' order by scheduled\_execution\_id desc limit 1;
+select * from information_schema.scheduled_executions s where schedule_name='sc1' order by scheduled_execution_id desc limit 1;
 +---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
-| s.scheduled\_execution\_id  | s.schedule\_name  |                s.executor\_query\_id                 |  s.state  |     s.start\_time     |      s.end\_time      | s.elapsed  | s.error\_message  | s.last\_update\_time  |
+| s.scheduled_execution_id  | s.schedule_name  |                s.executor_query_id                 |  s.state  |     s.start_time     |      s.end_time      | s.elapsed  | s.error_message  | s.last_update_time  |
 +---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
-| 496                       | sc1              | dev\_20200203152025\_bdf3deac-0ca6-407f-b122-c637e50f99c8 | FINISHED  | 2020-02-03 15:20:23  | 2020-02-03 15:20:31  | 8          | NULL             | NULL                |
+| 496                       | sc1              | dev_20200203152025_bdf3deac-0ca6-407f-b122-c637e50f99c8 | FINISHED  | 2020-02-03 15:20:23  | 2020-02-03 15:20:31  | 8          | NULL             | NULL                |
 +---------------------------+------------------+----------------------------------------------------+-----------+----------------------+----------------------+------------+------------------+---------------------+
 
 </code></pre><h2 id=example-2-analyze-external-table-periodically>Example 2 – analyze external table periodically</h2>
@@ -325,16 +325,16 @@ desc formatted t;
 |                               | numRows                                            | 0                                                  |
 [...]
 
-create scheduled query t\_analyze cron '0 */1 * * * ? *' as analyze table t compute statistics for columns;
+create scheduled query t_analyze cron '0 */1 * * * ? *' as analyze table t compute statistics for columns;
 
 -- wait some time or execute by issuing:
-alter scheduled query t\_analyze execute;
+alter scheduled query t_analyze execute;
 
-select * from information\_schema.scheduled\_executions s where schedule\_name='ex\_analyze' order by scheduled\_execution\_id desc limit 3;
+select * from information_schema.scheduled_executions s where schedule_name='ex_analyze' order by scheduled_execution_id desc limit 3;
 +---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
-| s.scheduled\_execution\_id  | s.schedule\_name  |                s.executor\_query\_id                 |  s.state   |     s.start\_time     |      s.end\_time      | s.elapsed  | s.error\_message  |  s.last\_update\_time  |
+| s.scheduled_execution_id  | s.schedule_name  |                s.executor_query_id                 |  s.state   |     s.start_time     |      s.end_time      | s.elapsed  | s.error_message  |  s.last_update_time  |
 +---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
-| 498                       | t\_analyze       | dev\_20200203152640\_a59bc198-3ed3-4ef2-8f63-573607c9914e | FINISHED   | 2020-02-03 15:26:38  | 2020-02-03 15:28:01  | 83         | NULL             | NULL                 |
+| 498                       | t_analyze       | dev_20200203152640_a59bc198-3ed3-4ef2-8f63-573607c9914e | FINISHED   | 2020-02-03 15:26:38  | 2020-02-03 15:28:01  | 83         | NULL             | NULL                 |
 +---------------------------+------------------+----------------------------------------------------+------------+----------------------+----------------------+------------+------------------+----------------------+
 
 -- and the numrows have been updated
@@ -344,7 +344,7 @@ desc formatted t;
 [...]
 
 -- we don't want this running every minute anymore...
-alter scheduled query t\_analyze disable;
+alter scheduled query t_analyze disable;
 </code></pre><h2 id=example-3-materialized-view-rebuild>Example 3 – materialized view rebuild</h2>
 <pre tabindex=0><code>-- some settings...they might be there already
 set hive.support.concurrency=true;
@@ -359,7 +359,7 @@ CREATE TABLE emps (
   deptno INT,
   name VARCHAR(256),
   salary FLOAT,
-  hire\_date TIMESTAMP)
+  hire_date TIMESTAMP)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
  
@@ -380,24 +380,24 @@ insert into emps values (1330, 10, 'Bill', 10000, '2020-01-02');
 
 -- create mv
 CREATE MATERIALIZED VIEW mv1 AS
-  SELECT empid, deptname, hire\_date FROM emps
+  SELECT empid, deptname, hire_date FROM emps
     JOIN depts ON (emps.deptno = depts.deptno)
-    WHERE hire\_date &gt;= '2016-01-01 00:00:00';
+    WHERE hire_date &gt;= '2016-01-01 00:00:00';
 
 EXPLAIN
 SELECT empid, deptname FROM emps
 JOIN depts ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2018-01-01';
+WHERE hire_date &gt;= '2018-01-01';
 
 -- create a schedule to rebuild mv
-create scheduled query mv\_rebuild cron '0 */10 * * * ? *' defined as 
+create scheduled query mv_rebuild cron '0 */10 * * * ? *' defined as 
   alter materialized view mv1 rebuild;
 
 -- from this expalin it will be seen that the mv1 is being used
 EXPLAIN
 SELECT empid, deptname FROM emps
 JOIN depts ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2018-01-01';
+WHERE hire_date &gt;= '2018-01-01';
 
 -- insert a new record
 insert into emps values (1330, 10, 'Bill', 10000, '2020-01-02');
@@ -406,16 +406,16 @@ insert into emps values (1330, 10, 'Bill', 10000, '2020-01-02');
 EXPLAIN
 SELECT empid, deptname FROM emps
 JOIN depts ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2018-01-01';
+WHERE hire_date &gt;= '2018-01-01';
 
 -- wait 10 minutes or execute
-alter scheduled query mv\_rebuild execute;
+alter scheduled query mv_rebuild execute;
 
 -- run it again...the view should be rebuilt
 EXPLAIN
 SELECT empid, deptname FROM emps
 JOIN depts ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2018-01-01';
+WHERE hire_date &gt;= '2018-01-01';
 
 </code></pre><h2 id=example-4-ingestion>Example 4 – Ingestion</h2>
 <pre tabindex=0><code>drop table if exists t;
@@ -427,24 +427,24 @@ create table s(id integer, cnt integer);
 
 -- create an internal table and an offset table
 create table t(id integer, cnt integer);
-create table t\_offset(offset integer);
-insert into t\_offset values(0);
+create table t_offset(offset integer);
+insert into t_offset values(0);
 
 -- pretend that data is added to s
 insert into s values(1,1);
 
 -- run an ingestion...
 from (select id==offset as first,* from s
-join t\_offset on id&gt;=offset) s1
+join t_offset on id&gt;=offset) s1
 insert into t select id,cnt where first = false
-insert overwrite table t\_offset select max(s1.id);
+insert overwrite table t_offset select max(s1.id);
 
 -- configure to run ingestion every 10 minutes
 create scheduled query ingest every 10 minutes defined as
 from (select id==offset as first,* from s
-join t\_offset on id&gt;=offset) s1
+join t_offset on id&gt;=offset) s1
 insert into t select id,cnt where first = false
-insert overwrite table t\_offset select max(s1.id);
+insert overwrite table t_offset select max(s1.id);
 
 -- add some new values
 insert into s values(2,2),(3,3);

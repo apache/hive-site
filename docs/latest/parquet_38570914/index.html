@@ -174,7 +174,7 @@ ASF
 <h2 id=hiveql-syntax><strong>HiveQL Syntax</strong></h2>
 <p>A <a href=#create-table>CREATE TABLE</a> statement can specify the Parquet storage format with syntax that depends on the Hive version.</p>
 <h3 id=hive-010---012>Hive 0.10 - 0.12</h3>
-<pre tabindex=0><code>CREATE TABLE parquet\_test (
+<pre tabindex=0><code>CREATE TABLE parquet_test (
  id int,
  str string,
  mp MAP&lt;STRING,STRING&gt;,
@@ -186,7 +186,7 @@ ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'
  INPUTFORMAT 'parquet.hive.DeprecatedParquetInputFormat'
  OUTPUTFORMAT 'parquet.hive.DeprecatedParquetOutputFormat';
 </code></pre><h3 id=hive-013-and-later>Hive 0.13 and later</h3>
-<pre tabindex=0><code>CREATE TABLE parquet\_test (
+<pre tabindex=0><code>CREATE TABLE parquet_test (
  id int,
  str string,
  mp MAP&lt;STRING,STRING&gt;,

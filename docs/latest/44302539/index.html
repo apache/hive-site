@@ -358,7 +358,7 @@ set spark.serializer=org.apache.spark.serializer.KryoSerializer;
 <td>Run this command before starting Hive or HiveServer2:export HADOOP_OPTS="-Dorg.xerial.snappy.tempdir=/tmp -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib $HADOOP_OPTS"</td>
 </tr>
 <tr>
-<td>Stack trace: ExitCodeException exitCode=1: &mldr;/launch_container.sh: line 27: $PWD:$PWD/__spark__.jar:$HADOOP_CONF_DIR&mldr;/usr/hdp/${hdp.version}/hadoop/lib/hadoop-lzo-0.6.0.${hdp.version}.jar:/etc/hadoop/conf/secure:$PWD/__app__.jar:$PWD/*: bad substitution </td>
+<td>Stack trace: ExitCodeException exitCode=1: &mldr;/launch_container.sh: line 27: $PWD:$PWD/<strong>spark</strong>.jar:$HADOOP_CONF_DIR&mldr;/usr/hdp/${hdp.version}/hadoop/lib/hadoop-lzo-0.6.0.${hdp.version}.jar:/etc/hadoop/conf/secure:$PWD/<strong>app</strong>.jar:$PWD/*: bad substitution </td>
 <td>The key mapreduce.application.classpath in /etc/hadoop/conf/mapred-site.xml contains a variable which is invalid in bash.</td>
 <td>From <strong>mapreduce.application.classpath</strong> remove <code>:/usr/hdp/${hdp.version}/hadoop/lib/hadoop-lzo-0.6.0.${hdp.version}.jar</code> from <strong>/etc/hadoop/conf/mapred-site.xml</strong></td>
 </tr>
@@ -370,7 +370,7 @@ set spark.serializer=org.apache.spark.serializer.KryoSerializer;
 <tr>
 <td>java.lang.OutOfMemoryError: PermGen space with spark.master=local</td>
 <td>By default (<a href=https://issues.apache.org/jira/browse/SPARK-1879>SPARK-1879</a>), Spark&rsquo;s own launch scripts increase PermGen to 128 MB, so we need to increase PermGen in hive launch script.</td>
-<td>If use JDK7, append following in conf/hive-env.sh: <code>export HADOOP\_OPTS="$HADOOP\_OPTS -XX:MaxPermSize=128m"</code> If use JDK8, append following in Conf/hive-env.sh: <code>export HADOOP\_OPTS="$HADOOP\_OPTS -XX:MaxMetaspaceSize=512m"</code></td>
+<td>If use JDK7, append following in conf/hive-env.sh: <code>export HADOOP_OPTS="$HADOOP_OPTS -XX:MaxPermSize=128m"</code> If use JDK8, append following in Conf/hive-env.sh: <code>export HADOOP_OPTS="$HADOOP_OPTS -XX:MaxMetaspaceSize=512m"</code></td>
 </tr>
 </tbody>
 </table>

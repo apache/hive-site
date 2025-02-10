@@ -314,40 +314,40 @@ ASF
 <p>For general information about Hive data types, see <a href=https://hive.apache.org/docs/latest/languagemanual-types_27838462/>Hive Data Types</a> and <a href=#type-system>Type System</a>.</p>
 <h2 id=running-mapreduce-with-hcatalog>Running MapReduce with HCatalog</h2>
 <p>Your MapReduce program needs to be told where the Thrift server is. The easiest way to do this is to pass the location as an argument to your Java program. You need to pass the Hive and HCatalog jars to MapReduce as well, via the -libjars argument.</p>
-<pre tabindex=0><code>export HADOOP\_HOME=&lt;path\_to\_hadoop\_install&gt;
-export HCAT\_HOME=&lt;path\_to\_hcat\_install&gt;
-export HIVE\_HOME=&lt;path\_to\_hive\_install&gt;
-export LIB\_JARS=$HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar,
-$HIVE\_HOME/lib/hive-metastore-0.10.0.jar,
-$HIVE\_HOME/lib/libthrift-0.7.0.jar,
-$HIVE\_HOME/lib/hive-exec-0.10.0.jar,
-$HIVE\_HOME/lib/libfb303-0.7.0.jar,
-$HIVE\_HOME/lib/jdo2-api-2.3-ec.jar,
-$HIVE\_HOME/lib/slf4j-api-1.6.1.jar
+<pre tabindex=0><code>export HADOOP_HOME=&lt;path_to_hadoop_install&gt;
+export HCAT_HOME=&lt;path_to_hcat_install&gt;
+export HIVE_HOME=&lt;path_to_hive_install&gt;
+export LIB_JARS=$HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar,
+$HIVE_HOME/lib/hive-metastore-0.10.0.jar,
+$HIVE_HOME/lib/libthrift-0.7.0.jar,
+$HIVE_HOME/lib/hive-exec-0.10.0.jar,
+$HIVE_HOME/lib/libfb303-0.7.0.jar,
+$HIVE_HOME/lib/jdo2-api-2.3-ec.jar,
+$HIVE_HOME/lib/slf4j-api-1.6.1.jar
 
-export HADOOP\_CLASSPATH=$HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar:
-$HIVE\_HOME/lib/hive-metastore-0.10.0.jar:
-$HIVE\_HOME/lib/libthrift-0.7.0.jar:
-$HIVE\_HOME/lib/hive-exec-0.10.0.jar:
-$HIVE\_HOME/lib/libfb303-0.7.0.jar:
-$HIVE\_HOME/lib/jdo2-api-2.3-ec.jar:
-$HIVE\_HOME/conf:$HADOOP\_HOME/conf:
-$HIVE\_HOME/lib/slf4j-api-1.6.1.jar
+export HADOOP_CLASSPATH=$HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar:
+$HIVE_HOME/lib/hive-metastore-0.10.0.jar:
+$HIVE_HOME/lib/libthrift-0.7.0.jar:
+$HIVE_HOME/lib/hive-exec-0.10.0.jar:
+$HIVE_HOME/lib/libfb303-0.7.0.jar:
+$HIVE_HOME/lib/jdo2-api-2.3-ec.jar:
+$HIVE_HOME/conf:$HADOOP_HOME/conf:
+$HIVE_HOME/lib/slf4j-api-1.6.1.jar
 
-$HADOOP\_HOME/bin/hadoop --config $HADOOP\_HOME/conf jar &lt;path\_to\_jar&gt;
-&lt;main\_class&gt; -libjars $LIB\_JARS &lt;program\_arguments&gt;
+$HADOOP_HOME/bin/hadoop --config $HADOOP_HOME/conf jar &lt;path_to_jar&gt;
+&lt;main_class&gt; -libjars $LIB_JARS &lt;program_arguments&gt;
 
 </code></pre><p>This works but Hadoop will ship libjars every time you run the MapReduce program, treating the files as different cache entries, which is not efficient and may deplete the Hadoop distributed cache.</p>
 <p>Instead, you can optimize to ship libjars using HDFS locations. By doing this, Hadoop will reuse the entries in the distributed cache.</p>
-<pre tabindex=0><code>bin/hadoop fs -copyFromLocal $HCAT\_HOME/share/hcatalog/hcatalog-core-0.5.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/hive-metastore-0.10.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/libthrift-0.7.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/hive-exec-0.10.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/libfb303-0.7.0.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/jdo2-api-2.3-ec.jar /tmp
-bin/hadoop fs -copyFromLocal $HIVE\_HOME/lib/slf4j-api-1.6.1.jar /tmp
+<pre tabindex=0><code>bin/hadoop fs -copyFromLocal $HCAT_HOME/share/hcatalog/hcatalog-core-0.5.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/hive-metastore-0.10.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/libthrift-0.7.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/hive-exec-0.10.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/libfb303-0.7.0.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/jdo2-api-2.3-ec.jar /tmp
+bin/hadoop fs -copyFromLocal $HIVE_HOME/lib/slf4j-api-1.6.1.jar /tmp
 
-export LIB\_JARS=hdfs:///tmp/hcatalog-core-0.5.0.jar,
+export LIB_JARS=hdfs:///tmp/hcatalog-core-0.5.0.jar,
 hdfs:///tmp/hive-metastore-0.10.0.jar,
 hdfs:///tmp/libthrift-0.7.0.jar,
 hdfs:///tmp/hive-exec-0.10.0.jar,

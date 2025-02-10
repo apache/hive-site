@@ -241,7 +241,7 @@ ASF
 ) stored as orc tblproperties (&quot;orc.compress&quot;=&quot;NONE&quot;);
 
 </code></pre><p>Version 0.14.0+: CONCATENATE</p>
-<p><code>[ALTER TABLE table\_name [PARTITION partition\_spec] CONCATENATE](#alter-table-table\_name-[partition-partition\_spec]-concatenate)</code> can be used to merge small ORC files into a larger file, starting in <a href=https://issues.apache.org/jira/browse/HIVE-7509>Hive 0.14.0</a>. The merge happens at the stripe level, which avoids decompressing and decoding the data.</p>
+<p><code>[ALTER TABLE table_name [PARTITION partition_spec] CONCATENATE](#alter-table-table_name-[partition-partition_spec]-concatenate)</code> can be used to merge small ORC files into a larger file, starting in <a href=https://issues.apache.org/jira/browse/HIVE-7509>Hive 0.14.0</a>. The merge happens at the stripe level, which avoids decompressing and decoding the data.</p>
 <h2 id=serialization-and-compression>Serialization and Compression</h2>
 <p>The serialization of column data in an ORC file depends on whether the data type is integer or string.</p>
 <h3 id=integer-column-serialization>Integer Column Serialization</h3>
@@ -292,13 +292,13 @@ ASF
 hive --orcfiledump &lt;location-of-orc-file&gt;
  
 // Hive version 1.1.0 and later:
-hive --orcfiledump [-d] [--rowindex &lt;col\_ids&gt;] &lt;location-of-orc-file&gt;
+hive --orcfiledump [-d] [--rowindex &lt;col_ids&gt;] &lt;location-of-orc-file&gt;
  
 // Hive version 1.2.0 and later:
-hive --orcfiledump [-d] [-t] [--rowindex &lt;col\_ids&gt;] &lt;location-of-orc-file&gt;
+hive --orcfiledump [-d] [-t] [--rowindex &lt;col_ids&gt;] &lt;location-of-orc-file&gt;
  
 // Hive version 1.3.0 and later:
-hive --orcfiledump [-j] [-p] [-d] [-t] [--rowindex &lt;col\_ids&gt;] [--recover] [--skip-dump] 
+hive --orcfiledump [-j] [-p] [-d] [-t] [--rowindex &lt;col_ids&gt;] [--recover] [--skip-dump] 
     [--backup-path &lt;new-path&gt;] &lt;location-of-orc-file-or-directory&gt;
 </code></pre><p>Specifying <code>-d</code> in the command will cause it to dump the ORC file data rather than the metadata (Hive <a href=https://issues.apache.org/jira/browse/HIVE-7896>1.1.0</a> and later).</p>
 <p>Specifying <code>--rowindex</code> with a comma separated list of column ids will cause it to print <a href=#row-indexes>row indexes</a> for the specified columns, where 0 is the top level struct containing all of the columns and 1 is the first column id (Hive <a href=https://issues.apache.org/jira/browse/HIVE-7896>1.1.0</a> and later).</p>

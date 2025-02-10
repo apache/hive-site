@@ -153,13 +153,13 @@ conn.start();
 </ul>
 <pre tabindex=0><code>HiveMetaStoreClient msc = new HiveMetaStoreClient(hiveConf);
 String topicName = msc.getTable(&quot;mydb&quot;,
-                   &quot;myTbl&quot;).getParameters().get(HCatConstants.HCAT\_MSGBUS\_TOPIC\_NAME);
+                   &quot;myTbl&quot;).getParameters().get(HCatConstants.HCAT_MSGBUS_TOPIC_NAME);
 
 </code></pre><p>``</p>
 <ul>
 <li>Use the topic name to subscribe to a topic as follows:</li>
 </ul>
-<pre tabindex=0><code>Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
+<pre tabindex=0><code>Session session = conn.createSession(true, Session.SESSION_TRANSACTED);
 Destination hcatTopic = session.createTopic(topicName);
 MessageConsumer consumer = session.createConsumer(hcatTopic);
 consumer.setMessageListener(this);
@@ -172,9 +172,9 @@ consumer.setMessageListener(this);
 </ol>
 <pre tabindex=0><code>@Override
 public void onMessage(Message msg) {
-  // We are interested in only add\_partition events on this table.
+  // We are interested in only add_partition events on this table.
   // So, check message type first.
-  if(msg.getStringProperty(HCatConstants.HCAT\_EVENT).equals(HCatConstants.HCAT\_ADD\_PARTITION\_EVENT)){
+  if(msg.getStringProperty(HCatConstants.HCAT_EVENT).equals(HCatConstants.HCAT_ADD_PARTITION_EVENT)){
        Object obj = (((ObjectMessage)msg).getObject());
   }
 }
@@ -192,7 +192,7 @@ partMap.put(&quot;date&quot;,&quot;20110711&quot;);
 partMap.put(&quot;country&quot;,&quot;*&quot;);
 
 // Mark the partition as &quot;done&quot;
-msc.markPartitionForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD\_DONE);
+msc.markPartitionForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD_DONE);
 
 </code></pre><p>To receive this notification, the consumer needs to do the following:</p>
 <ol>
@@ -207,17 +207,17 @@ partMap.put(&quot;date&quot;,&quot;20110711&quot;);
 partMap.put(&quot;country&quot;,&quot;*&quot;);
 
 // Mark the partition as &quot;done&quot;
-msc.markPartitionForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD\_DONE);
+msc.markPartitionForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD_DONE);
 
 </code></pre><p>If the consumer has registered with the message bus and is currently live, it will get the callback from the message bus once the producer marks the partition as &ldquo;done&rdquo;. Alternatively, the consumer can ask explicitly for a particular partition from the metastore. The following code illustrates the usage from a consumer&rsquo;s perspective:</p>
 <pre tabindex=0><code>// Enquire to metastore whether a particular partition has been marked or not.
-boolean marked = msc.isPartitionMarkedForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD\_DONE);
+boolean marked = msc.isPartitionMarkedForEvent(&quot;mydb&quot;, &quot;mytbl&quot;, partMap, PartitionEventType.LOAD_DONE);
 
 // Or register to a message bus and get asynchronous callback.
 ConnectionFactory connFac = new ActiveMQConnectionFactory(amqurl);
 Connection conn = connFac.createConnection();
 conn.start();
-Session session = conn.createSession(true, Session.SESSION\_TRANSACTED);
+Session session = conn.createSession(true, Session.SESSION_TRANSACTED);
 Destination hcatTopic = session.createTopic(topic);
 MessageConsumer consumer = session.createConsumer(hcatTopic);
 consumer.setMessageListener(this);

@@ -141,18 +141,18 @@ ASF
 </ol>
 <h2 id=syntax>Syntax</h2>
 <pre tabindex=0><code>
-CREATE VIEW [IF NOT EXISTS] view\_name [(column\_name [COMMENT column\_comment], ...) ]
-[COMMENT table\_comment]
+CREATE VIEW [IF NOT EXISTS] view_name [(column_name [COMMENT column_comment], ...) ]
+[COMMENT table_comment]
 [PARTITIONED ON (col1, col2, ...)]
 [TBLPROPERTIES ...]
 AS SELECT ...
 
-ALTER VIEW view\_name ADD [IF NOT EXISTS] partition\_spec partition\_spec ...
+ALTER VIEW view_name ADD [IF NOT EXISTS] partition_spec partition_spec ...
 
-ALTER VIEW view\_name DROP [IF EXISTS] partition\_spec, partition\_spec, ...
+ALTER VIEW view_name DROP [IF EXISTS] partition_spec, partition_spec, ...
 
-partition\_spec:
-  : PARTITION (partition\_col = partition\_col\_value, partition\_col = partiton\_col\_value, ...)
+partition_spec:
+  : PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
 
 </code></pre><p>Notes:</p>
 <ul>
@@ -172,8 +172,8 @@ partition\_spec:
 <h1 id=hook-information>Hook Information</h1>
 <p>Although there is currently no connection between the view partition and underlying table partitions, Hive does provide dependency information as part of the hook invocation for ALTER VIEW ADD PARTITION. It does this by compiling an internal query of the form</p>
 <pre tabindex=0><code>
-SELECT * FROM view\_name
-WHERE view\_partition\_col1 = 'val1' AND view\_partition\_col=2 = 'val2' ...
+SELECT * FROM view_name
+WHERE view_partition_col1 = 'val1' AND view_partition_col=2 = 'val2' ...
 
 </code></pre><p>and then capturing the table/partition inputs for this query and passing them on to the ALTER VIEW ADD PARTITION hook results.</p>
 <p>This allows applications to track the dependencies themselves. In the future, Hive will automatically populate these dependencies into the metastore as part of <a href=https://issues.apache.org/jira/browse/HIVE-1073>HIVE-1073</a>.</p>

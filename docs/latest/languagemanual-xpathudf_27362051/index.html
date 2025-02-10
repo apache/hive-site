@@ -170,53 +170,53 @@ ASF
 <p>The <code>xpath_string()</code> function returns the text of the first matching node.</p>
 <p>Get the text for node &lsquo;a/b&rsquo;:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
 bb
 
 </code></pre><p>Get the text for node &lsquo;a&rsquo;. Because &lsquo;a&rsquo; has children nodes with text, the result is a composite of text from the children.</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
 bbcc
 
 </code></pre><p>Non-matching expression returns an empty string:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/d') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;bb&lt;/b&gt;&lt;c&gt;cc&lt;/c&gt;&lt;/a&gt;', 'a/d') FROM src LIMIT 1 ;
 
 </code></pre><p>Gets the text of the first node that matches &lsquo;//b&rsquo;:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', '//b') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', '//b') FROM src LIMIT 1 ;
 b1
 
 </code></pre><p>Gets the second matching node:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[2]') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[2]') FROM src LIMIT 1 ;
 b2
 
 </code></pre><p>Gets the text from the first node that has an attribute &lsquo;id&rsquo; with value &lsquo;b_2&rsquo;:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b id=&quot;b\_2&quot;&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[@id=&quot;b\_2&quot;]') FROM src LIMIT 1 ;
+&gt; SELECT xpath_string ('&lt;a&gt;&lt;b&gt;b1&lt;/b&gt;&lt;b id=&quot;b_2&quot;&gt;b2&lt;/b&gt;&lt;/a&gt;', 'a/b[@id=&quot;b_2&quot;]') FROM src LIMIT 1 ;
 b2
 
 </code></pre><h4 id=xpath_boolean>xpath_boolean</h4>
 <p>Returns true if the XPath expression evaluates to true, or if a matching node is found.</p>
 <p>Match found:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
+&gt; SELECT xpath_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b') FROM src LIMIT 1 ;
 true
 
 </code></pre><p>No match found:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/c') FROM src LIMIT 1 ;
+&gt; SELECT xpath_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/c') FROM src LIMIT 1 ;
 false
 
 </code></pre><p>Match found:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b = &quot;b&quot;') FROM src LIMIT 1 ;
+&gt; SELECT xpath_boolean ('&lt;a&gt;&lt;b&gt;b&lt;/b&gt;&lt;/a&gt;', 'a/b = &quot;b&quot;') FROM src LIMIT 1 ;
 true
 
 </code></pre><p>No match found:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_boolean ('&lt;a&gt;&lt;b&gt;10&lt;/b&gt;&lt;/a&gt;', 'a/b &lt; 10') FROM src LIMIT 1 ;
+&gt; SELECT xpath_boolean ('&lt;a&gt;&lt;b&gt;10&lt;/b&gt;&lt;/a&gt;', 'a/b &lt; 10') FROM src LIMIT 1 ;
 false
 
 </code></pre><h4 id=xpath_short-xpath_int-xpath_long>xpath_short, xpath_int, xpath_long</h4>
@@ -224,28 +224,28 @@ false
 <p>Mathematical operations are supported. In cases where the value overflows the return type, then the maximum value for the type is returned.</p>
 <p>No match:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_int ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
 0
 
 </code></pre><p>Non-numeric match:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_int ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
 0
-&gt; SELECT xpath\_int ('&lt;a&gt;this 2 is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;this 2 is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
 0
 
 </code></pre><p>Adding values:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/*)') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/*)') FROM src LIMIT 1 ;
 15
-&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b)') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b)') FROM src LIMIT 1 ;
 7
-&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b[@class=&quot;odd&quot;])') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;&lt;b class=&quot;odd&quot;&gt;1&lt;/b&gt;&lt;b class=&quot;even&quot;&gt;2&lt;/b&gt;&lt;b class=&quot;odd&quot;&gt;4&lt;/b&gt;&lt;c&gt;8&lt;/c&gt;&lt;/a&gt;', 'sum(a/b[@class=&quot;odd&quot;])') FROM src LIMIT 1 ;
 5
 
 </code></pre><p>Overflow:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_int ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
+&gt; SELECT xpath_int ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
 2147483647
 
 </code></pre><h4 id=xpath_float-xpath_double-xpath_number>xpath_float, xpath_double, xpath_number</h4>
@@ -253,17 +253,17 @@ false
 <p>non-numeric matches result in NaN. Note that <code>xpath_number()</code> is an alias for <code>xpath_double()</code>.</p>
 <p>No match:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_double ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
+&gt; SELECT xpath_double ('&lt;a&gt;b&lt;/a&gt;', 'a = 10') FROM src LIMIT 1 ;
 0.0
 
 </code></pre><p>Non-numeric match:</p>
 <pre tabindex=0><code>
-&gt; SELECT xpath\_double ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
+&gt; SELECT xpath_double ('&lt;a&gt;this is not a number&lt;/a&gt;', 'a') FROM src LIMIT 1 ;
 NaN
 
 </code></pre><p>A very large number:</p>
 <pre tabindex=0><code>
-SELECT xpath\_double ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
+SELECT xpath_double ('&lt;a&gt;&lt;b&gt;2000000000&lt;/b&gt;&lt;c&gt;40000000000&lt;/c&gt;&lt;/a&gt;', 'a/b * a/c') FROM src LIMIT 1 ;
 8.0E19
 
 </code></pre><h1 id=udafs>UDAFs</h1>

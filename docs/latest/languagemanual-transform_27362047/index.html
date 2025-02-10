@@ -130,7 +130,7 @@ ASF
 <p>By default, columns will be transformed to <em>STRING</em> and delimited by TAB before feeding to the user script; similarly, all NULL values will be converted to the literal string <strong>\N</strong> in order to differentiate NULL values from empty strings. The standard output of the user script will be treated as TAB-separated <em>STRING</em> columns, any cell containing only <strong>\N</strong> will be re-interpreted as a NULL, and then the resulting STRING column will be cast to the data type specified in the table declaration in the usual way. User scripts can output debug information to standard error which will be shown on the task detail page on hadoop. These defaults can be overridden with <em>ROW FORMAT &mldr;</em>.</p>
 <p>In windows, use &ldquo;cmd /c your_script&rdquo; instead of just &ldquo;your_script&rdquo;</p>
 <p>Warning</p>
-<p>It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see <a href=#regexp\_replace>REGEXP_REPLACE</a> and replace the tabs with some other character on their way into the TRANSFORM() call.</p>
+<p>It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see <a href=#regexp_replace>REGEXP_REPLACE</a> and replace the tabs with some other character on their way into the TRANSFORM() call.</p>
 <p>Warning</p>
 <p>Formally, <em>MAP &mldr;</em> and <em>REDUCE &mldr;</em> are syntactic transformations of <em>SELECT TRANSFORM ( &mldr; )</em>. In other words, they serve as comments or notes to the reader of the query. BEWARE: Use of these keywords may be <strong>dangerous</strong> as (e.g.) typing &ldquo;REDUCE&rdquo; does not force a reduce phase to occur and typing &ldquo;MAP&rdquo; does not force a new map phase!</p>
 <p>Please also see <a href=https://hive.apache.org/docs/latest/languagemanual-sortby_27362045/>Sort By / Cluster By / Distribute By</a> and Larry Ogrodnek&rsquo;s <a href=http://dev.bizo.com/2009/10/hive-map-reduce-in-java.html>blog post</a>.</p>
@@ -146,9 +146,9 @@ rowFormat
                [ESCAPED BY char]
                [LINES SEPARATED BY char]
      | 
-     SERDE serde\_name [WITH SERDEPROPERTIES 
-                            property\_name=property\_value, 
-                            property\_name=property\_value, ...])
+     SERDE serde_name [WITH SERDEPROPERTIES 
+                            property_name=property_value, 
+                            property_name=property_value, ...])
 
 outRowFormat : rowFormat
 inRowFormat : rowFormat
@@ -159,14 +159,14 @@ query:
     FROM src
     MAP expression (',' expression)*
     (inRowFormat)?
-    USING 'my\_map\_script'
+    USING 'my_map_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
-    ( clusterBy? | distributeBy? sortBy? ) src\_alias
+    ( clusterBy? | distributeBy? sortBy? ) src_alias
   )
   REDUCE expression (',' expression)*
     (inRowFormat)?
-    USING 'my\_reduce\_script'
+    USING 'my_reduce_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
 
@@ -174,14 +174,14 @@ query:
     FROM src
     SELECT TRANSFORM '(' expression (',' expression)* ')'
     (inRowFormat)?
-    USING 'my\_map\_script'
+    USING 'my_map_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
-    ( clusterBy? | distributeBy? sortBy? ) src\_alias
+    ( clusterBy? | distributeBy? sortBy? ) src_alias
   )
   SELECT TRANSFORM '(' expression (',' expression)* ')'
     (inRowFormat)? 
-    USING 'my\_reduce\_script'
+    USING 'my_reduce_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
 
@@ -190,24 +190,24 @@ query:
 <h4 id=transform-examples>TRANSFORM Examples</h4>
 <p>Example #1:</p>
 <pre tabindex=0><code>  FROM (
-    FROM pv\_users
-    MAP pv\_users.userid, pv\_users.date
-    USING 'map\_script'
+    FROM pv_users
+    MAP pv_users.userid, pv_users.date
+    USING 'map_script'
     AS dt, uid
-    CLUSTER BY dt) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    REDUCE map\_output.dt, map\_output.uid
-    USING 'reduce\_script'
+    CLUSTER BY dt) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    REDUCE map_output.dt, map_output.uid
+    USING 'reduce_script'
     AS date, count;
   FROM (
-    FROM pv\_users
-    SELECT TRANSFORM(pv\_users.userid, pv\_users.date)
-    USING 'map\_script'
+    FROM pv_users
+    SELECT TRANSFORM(pv_users.userid, pv_users.date)
+    USING 'map_script'
     AS dt, uid
-    CLUSTER BY dt) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    SELECT TRANSFORM(map\_output.dt, map\_output.uid)
-    USING 'reduce\_script'
+    CLUSTER BY dt) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    SELECT TRANSFORM(map_output.dt, map_output.uid)
+    USING 'reduce_script'
     AS date, count;
 
 </code></pre><p>Example #2</p>
@@ -224,13 +224,13 @@ query:
 <p>If there is no <em>AS</em> clause after <em>USING my_script</em>, Hive assumes that the output of the script contains 2 parts: key which is before the first tab, and value which is the rest after the first tab. Note that this is different from specifying <em>AS key, value</em> because in that case, value will only contain the portion between the first tab and the second tab if there are multiple tabs.</p>
 <p>Note that we can directly do <em>CLUSTER BY key</em> without specifying the output schema of the scripts.</p>
 <pre tabindex=0><code>  FROM (
-    FROM pv\_users
-    MAP pv\_users.userid, pv\_users.date
-    USING 'map\_script'
-    CLUSTER BY key) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    REDUCE map\_output.key, map\_output.value
-    USING 'reduce\_script'
+    FROM pv_users
+    MAP pv_users.userid, pv_users.date
+    USING 'map_script'
+    CLUSTER BY key) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    REDUCE map_output.key, map_output.value
+    USING 'reduce_script'
     AS date, count;
 
 </code></pre><h2 id=typing-the-output-of-transform>Typing the output of TRANSFORM</h2>

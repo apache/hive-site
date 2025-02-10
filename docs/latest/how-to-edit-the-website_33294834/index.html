@@ -127,7 +127,7 @@ ASF
 <ol>
 <li>Commit a change to the website&rsquo;s source <a href=http://daringfireball.net/projects/markdown/syntax>Markdown</a> files located in <a href=https://svn.apache.org/repos/asf/hive/cms/trunk>https://svn.apache.org/repos/asf/hive/cms/trunk</a>. Before committing test that the site still builds locally by installing the <a href=http://apache.org/dev/cmsref.html#local-build>CMS build scripts</a> and running:</li>
 </ol>
-<pre tabindex=0><code>buildsite/build\_site.pl --source-base hive-site --target-base hive-website
+<pre tabindex=0><code>buildsite/build_site.pl --source-base hive-site --target-base hive-website
 
 </code></pre><p>If deleting a file or changing the name of a file make a trivial edit to lib/path.pm or lib/view.pm to force a full site rebuild. If making a simple edit it is easier to just use the Apache bookmarklet.
 2. Wait a few minutes to get the email on the commits list that buildbot has rebuilt the <a href=http://hive.staging.apache.org/>staging website</a>.

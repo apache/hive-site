@@ -208,44 +208,44 @@ ASF
 <p>Reserved keywords are permitted as identifiers if you quote them as described in <a href=https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html>Supporting Quoted Identifiers in Column Names</a> (version 0.13.0 and later, see <a href=https://issues.apache.org/jira/browse/HIVE-6013>HIVE-6013</a>). Most of the keywords are reserved through <a href=https://issues.apache.org/jira/browse/HIVE-6617>HIVE-6617</a> in order to reduce the ambiguity in grammar (version 1.2.0 and later). There are two ways if the user still would like to use those reserved keywords as identifiers: (1) use quoted identifiers, (2) set <a href=#hive-support-sql11-reserved-keywords>hive.support.sql11.reserved.keywords</a>=false. (version 2.1.0 and earlier) </p>
 <h2 id=createdropalteruse-database>Create/Drop/Alter/Use Database</h2>
 <h3 id=create-database>Create Database</h3>
-<pre tabindex=0><code>CREATE [REMOTE] (DATABASE|SCHEMA) [IF NOT EXISTS] database\_name
-  [COMMENT database\_comment]
-  [LOCATION hdfs\_path]
-  [MANAGEDLOCATION hdfs\_path]
-  [WITH DBPROPERTIES (property\_name=property\_value, ...)];
+<pre tabindex=0><code>CREATE [REMOTE] (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
+  [COMMENT database_comment]
+  [LOCATION hdfs_path]
+  [MANAGEDLOCATION hdfs_path]
+  [WITH DBPROPERTIES (property_name=property_value, ...)];
 
 </code></pre><p>The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. CREATE DATABASE was added in Hive 0.6 (<a href=https://issues.apache.org/jira/browse/HIVE-675>HIVE-675</a>).  The WITH DBPROPERTIES clause was added in Hive 0.7 (<a href=https://issues.apache.org/jira/browse/HIVE-1836>HIVE-1836</a>).</p>
 <p>MANAGEDLOCATION was added to database in Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-22995>HIVE-22995</a>). LOCATION now refers to the default directory for external tables and MANAGEDLOCATION refers to the default directory for managed tables. Its recommended that MANAGEDLOCATION be within metastore.warehouse.dir so all managed tables have a common root where common governance policies. It can be used with metastore.warehouse.tenant.colocation to have it point to a directory outside the warehouse root directory to have a tenant based common root where quotas and other policies can be set. </p>
 <p>REMOTE databases were added in Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a>) for support for Data connectors. See documentation for <a href=https://cwiki.apache.org/confluence/display/Hive/Data+Connectors+in+Hive>Data connectors</a>. </p>
 <h3 id=drop-database>Drop Database</h3>
-<pre tabindex=0><code>DROP (DATABASE|SCHEMA) [IF EXISTS] database\_name [RESTRICT|CASCADE];
+<pre tabindex=0><code>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];
 
 </code></pre><p>The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. DROP DATABASE was added in Hive 0.6 (<a href=https://issues.apache.org/jira/browse/HIVE-675>HIVE-675</a>). The default behavior is RESTRICT, where DROP DATABASE will fail if the database is not empty. To drop the tables in the database as well, use DROP DATABASE &mldr; CASCADE. Support for RESTRICT and CASCADE was added in Hive 0.8 (<a href=https://issues.apache.org/jira/browse/HIVE-2090>HIVE-2090</a>).</p>
 <h3 id=alter-database>Alter Database</h3>
-<pre tabindex=0><code>ALTER (DATABASE|SCHEMA) database\_name SET DBPROPERTIES (property\_name=property\_value, ...);   -- (Note: SCHEMA added in Hive 0.14.0)
+<pre tabindex=0><code>ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, ...);   -- (Note: SCHEMA added in Hive 0.14.0)
 
-ALTER (DATABASE|SCHEMA) database\_name SET OWNER [USER|ROLE] user\_or\_role;   -- (Note: Hive 0.13.0 and later; SCHEMA added in Hive 0.14.0)
+ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;   -- (Note: Hive 0.13.0 and later; SCHEMA added in Hive 0.14.0)
  
-ALTER (DATABASE|SCHEMA) database\_name SET LOCATION hdfs\_path; -- (Note: Hive 2.2.1, 2.4.0 and later)
+ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path; -- (Note: Hive 2.2.1, 2.4.0 and later)
 
-ALTER (DATABASE|SCHEMA) database\_name SET MANAGEDLOCATION hdfs\_path; -- (Note: Hive 4.0.0 and later)
+ALTER (DATABASE|SCHEMA) database_name SET MANAGEDLOCATION hdfs_path; -- (Note: Hive 4.0.0 and later)
 
 </code></pre><p>The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. ALTER SCHEMA was added in Hive 0.14 (<a href=https://issues.apache.org/jira/browse/HIVE-6601>HIVE-6601</a>).</p>
 <p>The ALTER DATABASE &mldr; SET LOCATION statement does not move the contents of the database&rsquo;s current directory to the newly specified location. It does not change the locations associated with any tables/partitions under the specified database. It only changes the default parent-directory where new tables will be added for this database. This behaviour is analogous to how changing a table-directory does not move existing partitions to a different location.</p>
 <p>The ALTER DATABASE &mldr; SET MANAGEDLOCATION statement does not move the contents of the database&rsquo;s managed tables directories to the newly specified location. It does not change the locations associated with any tables/partitions under the specified database. It only changes the default parent-directory where new tables will be added for this database. This behaviour is analogous to how changing a table-directory does not move existing partitions to a different location.</p>
 <p>No other metadata about a database can be changed. </p>
 <h3 id=use-database>Use Database</h3>
-<pre tabindex=0><code>USE database\_name;
+<pre tabindex=0><code>USE database_name;
 USE DEFAULT;
-</code></pre><p>USE sets the current database for all subsequent HiveQL statements. To revert to the default database, use the keyword &ldquo;<code>default</code>&rdquo; instead of a database name. To check which database is currently being used: <code>SELECT [current\_database()](#current\_database--)</code> (as of <a href=https://issues.apache.org/jira/browse/HIVE-4144>Hive 0.13.0</a>).</p>
+</code></pre><p>USE sets the current database for all subsequent HiveQL statements. To revert to the default database, use the keyword &ldquo;<code>default</code>&rdquo; instead of a database name. To check which database is currently being used: <code>SELECT [current_database()](#current_database--)</code> (as of <a href=https://issues.apache.org/jira/browse/HIVE-4144>Hive 0.13.0</a>).</p>
 <p><code>USE database_name</code> was added in Hive 0.6 (<a href=https://issues.apache.org/jira/browse/HIVE-675>HIVE-675</a>).</p>
 <h2 id=createdropalter-connector>Create/Drop/Alter Connector</h2>
 <h3 id=create-connector>Create Connector</h3>
-<pre tabindex=0><code>CREATE CONNECTOR [IF NOT EXISTS] connector\_name
-  [TYPE datasource\_type]
-  [URL datasource\_url]
-  [COMMENT connector\_comment]
-  [WITH DCPROPERTIES (property\_name=property\_value, ...)];
+<pre tabindex=0><code>CREATE CONNECTOR [IF NOT EXISTS] connector_name
+  [TYPE datasource_type]
+  [URL datasource_url]
+  [COMMENT connector_comment]
+  [WITH DCPROPERTIES (property_name=property_value, ...)];
 
 </code></pre><p>Since Hive 4.0.0 via <a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a> Support for Data connectors was added in hive 4.0.0. Initial commit includes connector implementations for JDBC based datasource like MYSQL, POSTGRES, DERBY. Additional connector implementations will be added via followup commits. </p>
 <p>TYPE - Type of the remote datasource this connector connects to. for example MYSQL. The type determines the Driver class and any other params specific to this datasource.</p>
@@ -253,15 +253,15 @@ USE DEFAULT;
 <p>COMMENT - A short description for this connector.</p>
 <p>DCPROPERTIES: Contains a set of name/value pairs that are set for the connector. The credentials for the remote datasource are specified as part of the DCPROPERTIES as documented in the <a href=https://cwiki.apache.org/confluence/display/Hive/JDBC+Storage+Handler>JDBC Storage Handler</a> docs. All properties that start with a prefix of &ldquo;hive.sql&rdquo; are added to the tables mapped by this connector.</p>
 <h3 id=drop-connector>Drop Connector</h3>
-<pre tabindex=0><code>DROP CONNECTOR [IF EXISTS] connector\_name;
+<pre tabindex=0><code>DROP CONNECTOR [IF EXISTS] connector_name;
 
 </code></pre><p>Since Hive 4.0.0 via <a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a>. If there are databases that are mapped by this connector, drop still succeeds. Users will see errors when running DDLs like &ldquo;show tables&rdquo; in the mapped databases.</p>
 <h3 id=alter-connector>Alter Connector</h3>
-<pre tabindex=0><code>ALTER CONNECTOR connector\_name SET DCPROPERTIES (property\_name=property\_value, ...);
+<pre tabindex=0><code>ALTER CONNECTOR connector_name SET DCPROPERTIES (property_name=property_value, ...);
 
-ALTER CONNECTOR connector\_name SET URL new\_url;
+ALTER CONNECTOR connector_name SET URL new_url;
  
-ALTER CONNECTOR connector\_name SET OWNER [USER|ROLE] user\_or\_role;
+ALTER CONNECTOR connector_name SET OWNER [USER|ROLE] user_or_role;
 
 </code></pre><p>Since Hive 4.0.0 via <a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a></p>
 <p>The ALTER CONNECTOR &mldr; SET DCPROPERTIES replaces the existing properties with the new set of properties specified in the ALTER DDL.</p>
@@ -289,35 +289,35 @@ ALTER CONNECTOR connector\_name SET OWNER [USER|ROLE] user\_or\_role;
 <li><a href=#truncate-table>Truncate Table</a></li>
 </ul>
 <h3 id=create-table>Create Table</h3>
-<pre tabindex=0><code>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db\_name.]table\_name    -- (Note: TEMPORARY available in Hive 0.14.0 and later)
-  [(col\_name data\_type [column\_constraint\_specification] [COMMENT col\_comment], ... [constraint\_specification])]
-  [COMMENT table\_comment]
-  [PARTITIONED BY (col\_name data\_type [COMMENT col\_comment], ...)]
-  [CLUSTERED BY (col\_name, col\_name, ...) [SORTED BY (col\_name [ASC|DESC], ...)] INTO num\_buckets BUCKETS]
-  [SKEWED BY (col\_name, col\_name, ...)                  -- (Note: Available in Hive 0.10.0 and later)]
-     ON ((col\_value, col\_value, ...), (col\_value, col\_value, ...), ...)
+<pre tabindex=0><code>CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name    -- (Note: TEMPORARY available in Hive 0.14.0 and later)
+  [(col_name data_type [column_constraint_specification] [COMMENT col_comment], ... [constraint_specification])]
+  [COMMENT table_comment]
+  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]
+  [SKEWED BY (col_name, col_name, ...)                  -- (Note: Available in Hive 0.10.0 and later)]
+     ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)
      [STORED AS DIRECTORIES]
   [
-   [ROW FORMAT row\_format] 
-   [STORED AS file\_format]
+   [ROW FORMAT row_format] 
+   [STORED AS file_format]
      | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]  -- (Note: Available in Hive 0.6.0 and later)
   ]
-  [LOCATION hdfs\_path]
-  [TBLPROPERTIES (property\_name=property\_value, ...)]   -- (Note: Available in Hive 0.6.0 and later)
-  [AS select\_statement];   -- (Note: Available in Hive 0.5.0 and later; not supported for external tables)
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]   -- (Note: Available in Hive 0.6.0 and later)
+  [AS select_statement];   -- (Note: Available in Hive 0.5.0 and later; not supported for external tables)
 
-CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db\_name.]table\_name
-  LIKE existing\_table\_or\_view\_name
-  [LOCATION hdfs\_path];
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+  LIKE existing_table_or_view_name
+  [LOCATION hdfs_path];
 
-data\_type
-  : primitive\_type
-  | array\_type
-  | map\_type
-  | struct\_type
-  | union\_type  -- (Note: Available in Hive 0.7.0 and later)
+data_type
+  : primitive_type
+  | array_type
+  | map_type
+  | struct_type
+  | union_type  -- (Note: Available in Hive 0.7.0 and later)
 
-primitive\_type
+primitive_type
   : TINYINT
   | SMALLINT
   | INT
@@ -335,25 +335,25 @@ primitive\_type
   | VARCHAR     -- (Note: Available in Hive 0.12.0 and later)
   | CHAR        -- (Note: Available in Hive 0.13.0 and later)
 
-array\_type
-  : ARRAY &lt; data\_type &gt;
+array_type
+  : ARRAY &lt; data_type &gt;
 
-map\_type
-  : MAP &lt; primitive\_type, data\_type &gt;
+map_type
+  : MAP &lt; primitive_type, data_type &gt;
 
-struct\_type
-  : STRUCT &lt; col\_name : data\_type [COMMENT col\_comment], ...&gt;
+struct_type
+  : STRUCT &lt; col_name : data_type [COMMENT col_comment], ...&gt;
 
-union\_type
-   : UNIONTYPE &lt; data\_type, data\_type, ... &gt;  -- (Note: Available in Hive 0.7.0 and later)
+union_type
+   : UNIONTYPE &lt; data_type, data_type, ... &gt;  -- (Note: Available in Hive 0.7.0 and later)
 
-row\_format
+row_format
   : DELIMITED [FIELDS TERMINATED BY char [ESCAPED BY char]] [COLLECTION ITEMS TERMINATED BY char]
         [MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]
         [NULL DEFINED AS char]   -- (Note: Available in Hive 0.13 and later)
-  | SERDE serde\_name [WITH SERDEPROPERTIES (property\_name=property\_value, property\_name=property\_value, ...)]
+  | SERDE serde_name [WITH SERDEPROPERTIES (property_name=property_value, property_name=property_value, ...)]
 
-file\_format:
+file_format:
   : SEQUENCEFILE
   | TEXTFILE    -- (Default, depending on hive.default.fileformat configuration)
   | RCFILE      -- (Note: Available in Hive 0.6.0 and later)
@@ -361,20 +361,20 @@ file\_format:
   | PARQUET     -- (Note: Available in Hive 0.13.0 and later)
   | AVRO        -- (Note: Available in Hive 0.14.0 and later)
   | JSONFILE    -- (Note: Available in Hive 4.0.0 and later)
-  | INPUTFORMAT input\_format\_classname OUTPUTFORMAT output\_format\_classname
+  | INPUTFORMAT input_format_classname OUTPUTFORMAT output_format_classname
 
-column\_constraint\_specification:
-  : [ PRIMARY KEY|UNIQUE|NOT NULL|DEFAULT [default\_value]|CHECK  [check\_expression] ENABLE|DISABLE NOVALIDATE RELY/NORELY ]
+column_constraint_specification:
+  : [ PRIMARY KEY|UNIQUE|NOT NULL|DEFAULT [default_value]|CHECK  [check_expression] ENABLE|DISABLE NOVALIDATE RELY/NORELY ]
 
-default\_value:
-  : [ LITERAL|CURRENT\_USER()|CURRENT\_DATE()|CURRENT\_TIMESTAMP()|NULL ]  
+default_value:
+  : [ LITERAL|CURRENT_USER()|CURRENT_DATE()|CURRENT_TIMESTAMP()|NULL ]  
 
-constraint\_specification:
-  : [, PRIMARY KEY (col\_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
-    [, PRIMARY KEY (col\_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
-    [, CONSTRAINT constraint\_name FOREIGN KEY (col\_name, ...) REFERENCES table\_name(col\_name, ...) DISABLE NOVALIDATE 
-    [, CONSTRAINT constraint\_name UNIQUE (col\_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
-    [, CONSTRAINT constraint\_name CHECK [check\_expression] ENABLE|DISABLE NOVALIDATE RELY/NORELY ]
+constraint_specification:
+  : [, PRIMARY KEY (col_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
+    [, PRIMARY KEY (col_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
+    [, CONSTRAINT constraint_name FOREIGN KEY (col_name, ...) REFERENCES table_name(col_name, ...) DISABLE NOVALIDATE 
+    [, CONSTRAINT constraint_name UNIQUE (col_name, ...) DISABLE NOVALIDATE RELY/NORELY ]
+    [, CONSTRAINT constraint_name CHECK [check_expression] ENABLE|DISABLE NOVALIDATE RELY/NORELY ]
 </code></pre><p>CREATE TABLE creates a table with the given name. An error is thrown if a table or view with the same name already exists. You can use IF NOT EXISTS to skip the error.</p>
 <ul>
 <li>Table names and column names are case insensitive but SerDe and property names are case sensitive.
@@ -385,7 +385,7 @@ constraint\_specification:
 </ul>
 </li>
 <li>Table and column comments are string literals (single-quoted).</li>
-<li>A table created without the <a href=#external-clause>EXTERNAL clause</a> is called a <em><a href=#managed-table>managed table</a></em> because Hive manages its data. To find out if a table is managed or external, look for tableType in the output of <a href=#describe-extended-table\_name>DESCRIBE EXTENDED table_name</a>.</li>
+<li>A table created without the <a href=#external-clause>EXTERNAL clause</a> is called a <em><a href=#managed-table>managed table</a></em> because Hive manages its data. To find out if a table is managed or external, look for tableType in the output of <a href=#describe-extended-table_name>DESCRIBE EXTENDED table_name</a>.</li>
 <li>The TBLPROPERTIES clause allows you to tag the table definition with your own metadata key/value pairs. Some predefined table properties also exist, such as last_modified_user and last_modified_time which are automatically added and managed by Hive. Other predefined table properties include:
 <ul>
 <li>TBLPROPERTIES (&ldquo;comment&rdquo;="<em>table_comment</em>")</li>
@@ -406,7 +406,7 @@ constraint\_specification:
 <li>TBLPROPERTIES (&ldquo;external.table.purge&rdquo;=&ldquo;true&rdquo;) in release 4.0.0+ (<a href=https://issues.apache.org/jira/browse/HIVE-19981>HIVE-19981</a>) when set on external table would delete the data as well.</li>
 </ul>
 </li>
-<li>To specify a database for the table, either issue the <a href=#use-database\_name>USE database_name</a> statement prior to the CREATE TABLE statement (in <a href=https://issues.apache.org/jira/browse/HIVE-675>Hive 0.6</a> and later) or qualify the table name with a database name ("<code>database_name.table.name</code>" in <a href=https://issues.apache.org/jira/browse/HIVE-1517>Hive 0.7</a> and later).<br>
+<li>To specify a database for the table, either issue the <a href=#use-database_name>USE database_name</a> statement prior to the CREATE TABLE statement (in <a href=https://issues.apache.org/jira/browse/HIVE-675>Hive 0.6</a> and later) or qualify the table name with a database name ("<code>database_name.table.name</code>" in <a href=https://issues.apache.org/jira/browse/HIVE-1517>Hive 0.7</a> and later).<br>
 The keyword &ldquo;<code>default</code>&rdquo; can be used for the default database.</li>
 </ul>
 <p>See <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable>Alter Table</a> below for more information about table comments, table properties, and SerDe properties.</p>
@@ -508,7 +508,7 @@ name   varchar
 
 </code></pre><p>Now you want to partition on date. Your Hive definition could use &ldquo;dtDontQuery&rdquo; as a column name so that &ldquo;date&rdquo; can be used for partitioning (and querying).</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>create table table\_name (
+<pre tabindex=0><code>create table table_name (
   id                int,
   dtDontQuery       string,
   name              string
@@ -518,8 +518,8 @@ partitioned by (date string)
 </code></pre><p>Now your users will still query on &ldquo;<code>where date = '...'</code>&rdquo; but the second column dtDontQuery will hold the original values.</p>
 <p>Here&rsquo;s an example statement to create a partitioned table:</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-     page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>CREATE TABLE page_view(viewTime INT, userid BIGINT,
+     page_url STRING, referrer_url STRING,
      ip STRING COMMENT 'IP Address of the User')
  COMMENT 'This is the page view table'
  PARTITIONED BY(dt STRING, country STRING)
@@ -527,8 +527,8 @@ partitioned by (date string)
 
 </code></pre><p>The statement above creates the page_view table with viewTime, userid, page_url, referrer_url, and ip columns (including comments). The table is also partitioned and data is stored in sequence files. The data format in the files is assumed to be field-delimited by ctrl-A and row-delimited by newline.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-     page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>CREATE TABLE page_view(viewTime INT, userid BIGINT,
+     page_url STRING, referrer_url STRING,
      ip STRING COMMENT 'IP Address of the User')
  COMMENT 'This is the page view table'
  PARTITIONED BY(dt STRING, country STRING)
@@ -546,14 +546,14 @@ Closed</p>
 <p> ) setting table property external.table.purge=true, will also delete the data.</p>
 <p>An EXTERNAL table points to any HDFS location for its storage, rather than being stored in a folder specified by the configuration property <code>[hive.metastore.warehouse.dir](#hive-metastore-warehouse-dir)</code>.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE EXTERNAL TABLE page\_view(viewTime INT, userid BIGINT,
-     page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>CREATE EXTERNAL TABLE page_view(viewTime INT, userid BIGINT,
+     page_url STRING, referrer_url STRING,
      ip STRING COMMENT 'IP Address of the User',
      country STRING COMMENT 'country of origination')
  COMMENT 'This is the staging page view table'
  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\054'
  STORED AS TEXTFILE
- LOCATION '&lt;hdfs\_location&gt;';
+ LOCATION '&lt;hdfs_location&gt;';
 
 </code></pre><p>You can use the above statement to create a page_view table which points to any HDFS location for its storage. But you still have to make sure that the data is delimited as specified in the CREATE statement above.</p>
 <p>For another example of creating an external table, see <a href=#loading-data>Loading Data</a> in the Tutorial.</p>
@@ -567,27 +567,27 @@ Closed</p>
 <li>The target table cannot be a list bucketing table.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE new\_key\_value\_store
+<pre tabindex=0><code>CREATE TABLE new_key_value_store
    ROW FORMAT SERDE &quot;org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe&quot;
    STORED AS RCFile
    AS
-SELECT (key % 1024) new\_key, concat(key, value) key\_value\_pair
-FROM key\_value\_store
-SORT BY new\_key, key\_value\_pair;
+SELECT (key % 1024) new_key, concat(key, value) key_value_pair
+FROM key_value_store
+SORT BY new_key, key_value_pair;
 
 </code></pre><p>The above CTAS statement creates the target table new_key_value_store with the schema (new_key DOUBLE, key_value_pair STRING) derived from the results of the SELECT statement. If the SELECT statement does not specify column aliases, the column names will be automatically assigned to _col0, _col1, and _col2 etc. In addition, the new target table is created using a specific SerDe and a storage format independent of the source tables in the SELECT statement.</p>
 <p>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the SELECT statement can include one or more common table expressions (CTEs), as shown in the <a href=#select-syntax>SELECT syntax</a>. For an example, see <a href=#common-table-expression>Common Table Expression</a>.</p>
 <p>Being able to select data from one table to another is one of the most powerful features of Hive. Hive handles the conversion of the data from the source format to the destination format as the query is being executed.</p>
 <h4 id=create-table-like>Create Table Like</h4>
 <p>The LIKE form of CREATE TABLE allows you to copy an existing table definition exactly (without copying its data). In contrast to CTAS, the statement below creates a new empty_key_value_store table whose definition exactly matches the existing key_value_store in all particulars other than table name. The new table contains no rows.</p>
-<pre tabindex=0><code>CREATE TABLE empty\_key\_value\_store
-LIKE key\_value\_store [TBLPROPERTIES (property\_name=property\_value, ...)];
+<pre tabindex=0><code>CREATE TABLE empty_key_value_store
+LIKE key_value_store [TBLPROPERTIES (property_name=property_value, ...)];
 
 </code></pre><p>Before Hive 0.8.0, CREATE TABLE LIKE view_name would make a copy of the view. In Hive 0.8.0 and later releases, CREATE TABLE LIKE view_name creates a table by adopting the schema of view_name (fields and partition columns) using defaults for SerDe and file formats.</p>
 <h4 id=bucketed-sorted-tables>Bucketed Sorted Tables</h4>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-     page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>CREATE TABLE page_view(viewTime INT, userid BIGINT,
+     page_url STRING, referrer_url STRING,
      ip STRING COMMENT 'IP Address of the User')
  COMMENT 'This is the page view table'
  PARTITIONED BY(dt STRING, country STRING)
@@ -610,12 +610,12 @@ LIKE key\_value\_store [TBLPROPERTIES (property\_name=property\_value, ...)];
 <p>This can be specified on a per-table level during table creation.</p>
 <p>The following example shows one column with three skewed values, optionally with the STORED AS DIRECTORIES clause which specifies list bucketing.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE list\_bucket\_single (key STRING, value STRING)
+<pre tabindex=0><code>CREATE TABLE list_bucket_single (key STRING, value STRING)
   SKEWED BY (key) ON (1,5,6) [STORED AS DIRECTORIES];
 
 </code></pre><p>And here is an example of a table with two skewed columns.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE list\_bucket\_multiple (col1 STRING, col2 int, col3 STRING)
+<pre tabindex=0><code>CREATE TABLE list_bucket_multiple (col1 STRING, col2 int, col3 STRING)
   SKEWED BY (col1, col2) ON (('s1',1), ('s3',3), ('s13',13), ('s78',78)) [STORED AS DIRECTORIES];
 
 </code></pre><p>For corresponding ALTER TABLE statements, see <a href=#alter-table-skewed-or-stored-as-directories>Alter Table Skewed or Stored as Directories</a> below.</p>
@@ -631,14 +631,14 @@ LIKE key\_value\_store [TBLPROPERTIES (property\_name=property\_value, ...)];
 </ul>
 <p>Starting in <a href=https://issues.apache.org/jira/browse/HIVE-7313>Hive 1.1.0</a> the storage policy for temporary tables can be set to <code>memory</code>, <code>ssd</code>, or <code>default</code> with the <a href=#hive-exec-temporary-table-storage>hive.exec.temporary.table.storage</a> configuration parameter (see <a href=http://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-hdfs/ArchivalStorage.html#Storage_Types_and_Storage_Policies>HDFS Storage Types and Storage Policies</a>).</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TEMPORARY TABLE list\_bucket\_multiple (col1 STRING, col2 int, col3 STRING);
+<pre tabindex=0><code>CREATE TEMPORARY TABLE list_bucket_multiple (col1 STRING, col2 int, col3 STRING);
 
 </code></pre><h4 id=transactional-tables>Transactional Tables</h4>
 <p>Version information</p>
 <p>As of Hive 4.0 (<a href=https://issues.apache.org/jira/browse/HIVE-18453>HIVE-18453</a>).</p>
 <p>A table that supports operations with ACID semantics. See <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions>this</a> for more details about transactional tables.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TRANSACTIONAL TABLE transactional\_table\_test(key string, value string) PARTITIONED BY(ds string) STORED AS ORC;
+<pre tabindex=0><code>CREATE TRANSACTIONAL TABLE transactional_table_test(key string, value string) PARTITIONED BY(ds string) STORED AS ORC;
 </code></pre><h4 id=constraints>Constraints</h4>
 <p>Version information</p>
 <p>As of Hive 2.1.0 (<a href=https://issues.apache.org/jira/browse/HIVE-13290>HIVE-13290</a>).</p>
@@ -655,17 +655,17 @@ create table fk(id1 integer, id2 integer,
 <p>Hive includes support for UNIQUE, NOT NULL, DEFAULT and CHECK constraints. Beside UNIQUE all three type of constraints are enforced.</p>
 <p><strong>Example:</strong></p>
 <pre tabindex=0><code>create table constraints1(id1 integer UNIQUE disable novalidate, id2 integer NOT NULL, 
-  usr string DEFAULT current\_user(), price double CHECK (price &gt; 0 AND price &lt;= 1000));
+  usr string DEFAULT current_user(), price double CHECK (price &gt; 0 AND price &lt;= 1000));
 
 create table constraints2(id1 integer, id2 integer,
-  constraint c1\_unique UNIQUE(id1) disable novalidate);
+  constraint c1_unique UNIQUE(id1) disable novalidate);
 
 create table constraints3(id1 integer, id2 integer,
-  constraint c1\_check CHECK(id1 + id2 &gt; 0));
+  constraint c1_check CHECK(id1 + id2 &gt; 0));
 
 </code></pre><p>DEFAULT on complex data types such as map, struct, array is not supported.</p>
 <h3 id=drop-table>Drop Table</h3>
-<pre tabindex=0><code>DROP TABLE [IF EXISTS] table\_name [PURGE];     -- (Note: PURGE available in Hive 0.14.0 and later)
+<pre tabindex=0><code>DROP TABLE [IF EXISTS] table_name [PURGE];     -- (Note: PURGE available in Hive 0.14.0 and later)
 
 </code></pre><p>DROP TABLE removes metadata and data for this table. The data is actually moved to the .Trash/Current directory if Trash is configured (and PURGE is not specified). The metadata is completely lost.</p>
 <p>When dropping an EXTERNAL table, data in the table will <em>NOT</em> be deleted from the file system. Starting Hive 4.0.0 (</p>
@@ -683,10 +683,10 @@ Closed</p>
 <h3 id=truncate-table>Truncate Table</h3>
 <p>Version information</p>
 <p>As of Hive 0.11.0 (<a href=https://issues.apache.org/jira/browse/HIVE-446>HIVE-446</a>).</p>
-<pre tabindex=0><code>TRUNCATE [TABLE] table\_name [PARTITION partition\_spec];
+<pre tabindex=0><code>TRUNCATE [TABLE] table_name [PARTITION partition_spec];
 
-partition\_spec:
-  : (partition\_column = partition\_col\_value, partition\_column = partition\_col\_value, ...)
+partition_spec:
+  : (partition_column = partition_col_value, partition_column = partition_col_value, ...)
 
 </code></pre><p>Removes all rows from a table or partition(s). The rows will be trashed if the filesystem Trash is enabled, otherwise they are deleted (as of Hive 2.2.0 with <a href=https://issues.apache.org/jira/browse/HIVE-14626>HIVE-14626</a>). Currently the target table should be native/managed table or an exception will be thrown. User can specify partial partition_spec for truncating multiple partitions at once and omitting partition_spec will truncate all partitions in the table.</p>
 <p>Starting with HIVE 2.3.0 (<a href=https://issues.apache.org/jira/browse/HIVE-15880>HIVE-15880</a>) if the table property &ldquo;auto.purge&rdquo; (see <a href=#tblproperties>TBLPROPERTIES</a> above) is set to &ldquo;true&rdquo; the data of the table is not moved to Trash when a TRUNCATE TABLE command is issued against it and cannot be retrieved in the event of a mistaken TRUNCATE. This is applicable only for managed tables (see <a href=#managed-tables>managed tables</a>). This behavior can be turned off if the &ldquo;auto.purge&rdquo; property is unset or set to false for a managed table.</p>
@@ -755,49 +755,49 @@ partition\_spec:
 <p>Alter table statements enable you to change the structure of an existing table. You can add columns/partitions, change SerDe, add table and SerDe properties, or rename the table itself. Similarly, alter table partition statements allow you change the properties of a specific partition in the named table.</p>
 <h3 id=alter-table>Alter Table</h3>
 <h4 id=rename-table>Rename Table</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name RENAME TO new\_table\_name;
+<pre tabindex=0><code>ALTER TABLE table_name RENAME TO new_table_name;
 
 </code></pre><p>This statement lets you change the name of a table to a different name.</p>
 <p>As of version 0.6, a rename on a <a href=#managed-table>managed table</a> moves its HDFS location. Rename has been changed as of version 2.2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-14909>HIVE-14909</a>) so that a managed table&rsquo;s HDFS location is moved only if the table is created without a <a href=#location-clause>LOCATION clause</a> and under its database directory. Hive versions prior to 0.6 just renamed the table in the metastore without moving the HDFS location.</p>
 <h4 id=alter-table-properties>Alter Table Properties</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name SET TBLPROPERTIES table\_properties;
+<pre tabindex=0><code>ALTER TABLE table_name SET TBLPROPERTIES table_properties;
 
-table\_properties:
-  : (property\_name = property\_value, property\_name = property\_value, ... )
+table_properties:
+  : (property_name = property_value, property_name = property_value, ... )
 
 </code></pre><p>You can use this statement to add your own metadata to the tables. Currently last_modified_user, last_modified_time properties are automatically added and managed by Hive. Users can add their own properties to this list. You can do DESCRIBE EXTENDED TABLE to get this information.</p>
 <p>For more information, see the <a href=#tblproperties-clause>TBLPROPERTIES clause</a> in Create Table above.</p>
 <h5 id=alter-table-comment>Alter Table Comment</h5>
 <p>To change the comment of a table you have to change the <code>comment</code> property of the <code>TBLPROPERTIES</code>:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name SET TBLPROPERTIES ('comment' = new\_comment);
+<pre tabindex=0><code>ALTER TABLE table_name SET TBLPROPERTIES ('comment' = new_comment);
 
 </code></pre><h4 id=add-serde-properties>Add SerDe Properties</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] SET SERDE serde\_class\_name [WITH SERDEPROPERTIES serde\_properties];
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] SET SERDE serde_class_name [WITH SERDEPROPERTIES serde_properties];
 
-ALTER TABLE table\_name [PARTITION partition\_spec] SET SERDEPROPERTIES serde\_properties;
+ALTER TABLE table_name [PARTITION partition_spec] SET SERDEPROPERTIES serde_properties;
 
-serde\_properties:
-  : (property\_name = property\_value, property\_name = property\_value, ... )
+serde_properties:
+  : (property_name = property_value, property_name = property_value, ... )
 
 </code></pre><p>These statements enable you to change a table&rsquo;s SerDe or add user-defined metadata to the table&rsquo;s SerDe object.</p>
 <p>The SerDe properties are passed to the table&rsquo;s SerDe when it is being initialized by Hive to serialize and deserialize data. So users can store any information required for their custom SerDe here. Refer to the <a href=https://hive.apache.org/docs/latest/serde_27362059/>SerDe documentation</a> and <a href=#hive-serde>Hive SerDe</a> in the Developer Guide for more information, and see <a href=#row-format,-storage-format,-and-serde>Row Format, Storage Format, and SerDe</a> above for details about setting a table&rsquo;s SerDe and SERDEPROPERTIES in a CREATE TABLE statement.</p>
 <p>Note that both <code>property_name</code> and <code>property_value</code> must be quoted.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>ALTER TABLE table\_name SET SERDEPROPERTIES ('field.delim' = ',');
+<pre tabindex=0><code>ALTER TABLE table_name SET SERDEPROPERTIES ('field.delim' = ',');
 
 </code></pre><h4 id=remove-serde-properties>Remove SerDe Properties</h4>
 <p>Version information</p>
 <p>Remove SerDe Properties is supported as of Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-18842>HIVE-21952</a>).</p>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] UNSET SERDEPROPERTIES (property\_name, ... );
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] UNSET SERDEPROPERTIES (property_name, ... );
 
 </code></pre><p>These statements enable you to remove user-defined metadata to the table&rsquo;s SerDe object.</p>
 <p>Note that <code>property_name</code> must be quoted.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>ALTER TABLE table\_name UNSET SERDEPROPERTIES ('field.delim');
+<pre tabindex=0><code>ALTER TABLE table_name UNSET SERDEPROPERTIES ('field.delim');
 
 </code></pre><h4 id=alter-table-storage-properties>Alter Table Storage Properties</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name CLUSTERED BY (col\_name, col\_name, ...) [SORTED BY (col\_name, ...)]
-  INTO num\_buckets BUCKETS;
+<pre tabindex=0><code>ALTER TABLE table_name CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name, ...)]
+  INTO num_buckets BUCKETS;
 
 </code></pre><p>These statements change the table&rsquo;s physical storage properties.</p>
 <p>NOTE: These commands will only modify Hive&rsquo;s metadata, and will <em>NOT</em> reorganize or reformat existing data. Users should make sure the actual data layout conforms with the metadata definition.</p>
@@ -806,31 +806,31 @@ serde\_properties:
 <p>As of Hive 0.10.0 (<a href=https://issues.apache.org/jira/browse/HIVE-3072>HIVE-3072</a> and <a href=https://issues.apache.org/jira/browse/HIVE-3649>HIVE-3649</a>). See <a href=https://issues.apache.org/jira/browse/HIVE-3026>HIVE-3026</a> for additional JIRA tickets that implemented list bucketing in Hive 0.10.0 and 0.11.0.</p>
 <p>A table&rsquo;s SKEWED and STORED AS DIRECTORIES options can be changed with ALTER TABLE statements. See <a href=#skewed-tables>Skewed Tables</a> above for the corresponding CREATE TABLE syntax.</p>
 <h5 id=alter-table-skewed>Alter Table Skewed</h5>
-<pre tabindex=0><code>ALTER TABLE table\_name SKEWED BY (col\_name1, col\_name2, ...)
-  ON ([(col\_name1\_value, col\_name2\_value, ...) [, (col\_name1\_value, col\_name2\_value), ...]
+<pre tabindex=0><code>ALTER TABLE table_name SKEWED BY (col_name1, col_name2, ...)
+  ON ([(col_name1_value, col_name2_value, ...) [, (col_name1_value, col_name2_value), ...]
   [STORED AS DIRECTORIES];
 </code></pre><p>The STORED AS DIRECTORIES option determines whether a <a href=https://hive.apache.org/docs/latest/skewed-join-optimization_27847852/>skewed</a> table uses the <a href=https://hive.apache.org/docs/latest/listbucketing_27846854/>list bucketing</a> feature, which creates subdirectories for skewed values.</p>
 <h5 id=alter-table-not-skewed>Alter Table Not Skewed</h5>
-<pre tabindex=0><code>ALTER TABLE table\_name NOT SKEWED;
+<pre tabindex=0><code>ALTER TABLE table_name NOT SKEWED;
 </code></pre><p>The NOT SKEWED option makes the table non-skewed and turns off the list bucketing feature (since a list-bucketing table is always skewed). This affects partitions created after the ALTER statement, but has no effect on partitions created before the ALTER statement.</p>
 <h5 id=alter-table-not-stored-as-directories>Alter Table Not Stored as Directories</h5>
-<pre tabindex=0><code>ALTER TABLE table\_name NOT STORED AS DIRECTORIES;
+<pre tabindex=0><code>ALTER TABLE table_name NOT STORED AS DIRECTORIES;
 </code></pre><p>This turns off the list bucketing feature, although the table remains skewed.</p>
 <h5 id=alter-table-set-skewed-location>Alter Table Set Skewed Location</h5>
-<pre tabindex=0><code>ALTER TABLE table\_name SET SKEWED LOCATION (col\_name1=&quot;location1&quot; [, col\_name2=&quot;location2&quot;, ...] );
+<pre tabindex=0><code>ALTER TABLE table_name SET SKEWED LOCATION (col_name1=&quot;location1&quot; [, col_name2=&quot;location2&quot;, ...] );
 </code></pre><p>This changes the location map for list bucketing.</p>
 <h4 id=alter-table-constraints>Alter Table Constraints</h4>
 <p>Version information</p>
 <p>As of Hive release <a href=https://issues.apache.org/jira/browse/HIVE-13290>2.1.0</a>.</p>
 <p> Table constraints can be added or removed via ALTER TABLE statements.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name ADD CONSTRAINT constraint\_name PRIMARY KEY (column, ...) DISABLE NOVALIDATE;
-ALTER TABLE table\_name ADD CONSTRAINT constraint\_name FOREIGN KEY (column, ...) REFERENCES table\_name(column, ...) DISABLE NOVALIDATE RELY;
-ALTER TABLE table\_name ADD CONSTRAINT constraint\_name UNIQUE (column, ...) DISABLE NOVALIDATE;
-ALTER TABLE table\_name CHANGE COLUMN column\_name column\_name data\_type CONSTRAINT constraint\_name NOT NULL ENABLE;
-ALTER TABLE table\_name CHANGE COLUMN column\_name column\_name data\_type CONSTRAINT constraint\_name DEFAULT default\_value ENABLE;
-ALTER TABLE table\_name CHANGE COLUMN column\_name column\_name data\_type CONSTRAINT constraint\_name CHECK check\_expression ENABLE;
+<pre tabindex=0><code>ALTER TABLE table_name ADD CONSTRAINT constraint_name PRIMARY KEY (column, ...) DISABLE NOVALIDATE;
+ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY (column, ...) REFERENCES table_name(column, ...) DISABLE NOVALIDATE RELY;
+ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column, ...) DISABLE NOVALIDATE;
+ALTER TABLE table_name CHANGE COLUMN column_name column_name data_type CONSTRAINT constraint_name NOT NULL ENABLE;
+ALTER TABLE table_name CHANGE COLUMN column_name column_name data_type CONSTRAINT constraint_name DEFAULT default_value ENABLE;
+ALTER TABLE table_name CHANGE COLUMN column_name column_name data_type CONSTRAINT constraint_name CHECK check_expression ENABLE;
 
-ALTER TABLE table\_name DROP CONSTRAINT constraint\_name;
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
 </code></pre><h4 id=additional-alter-table-statements>Additional Alter Table Statements</h4>
 <p>See <a href=#alter-either-table-or-partition>Alter Either Table or Partition</a> below for more DDL statements that alter tables.</p>
 <h3 id=alter-partition>Alter Partition</h3>
@@ -838,25 +838,25 @@ ALTER TABLE table\_name DROP CONSTRAINT constraint\_name;
 <p>Version 1.2+</p>
 <p>As of Hive 1.2 (<a href=https://issues.apache.org/jira/browse/HIVE-10307>HIVE-10307</a>), the partition values specified in partition specification are type checked, converted, and normalized to conform to their column types if the property <a href=#hive-typecheck-on-insert>hive.typecheck.on.insert</a> is set to true (default). The values can be number literals.</p>
 <h4 id=add-partitions>Add Partitions</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name ADD [IF NOT EXISTS] PARTITION partition\_spec [LOCATION 'location'][, PARTITION partition\_spec [LOCATION 'location'], ...];
+<pre tabindex=0><code>ALTER TABLE table_name ADD [IF NOT EXISTS] PARTITION partition_spec [LOCATION 'location'][, PARTITION partition_spec [LOCATION 'location'], ...];
 
-partition\_spec:
-  : (partition\_column = partition\_col\_value, partition\_column = partition\_col\_value, ...)
+partition_spec:
+  : (partition_column = partition_col_value, partition_column = partition_col_value, ...)
 
 </code></pre><p>You can use ALTER TABLE ADD PARTITION to add partitions to a table. Partition values should be quoted only if they are strings. The location must be a directory inside of which data files reside. (ADD PARTITION changes the table metadata, but does not load data. If the data does not exist in the partition&rsquo;s location, queries will not return any results.) An error is thrown if the partition_spec for the table already exists. You can use IF NOT EXISTS to skip the error.</p>
 <p>Version 0.7</p>
 <p>Although it is proper syntax to have multiple partition_spec in a single ALTER TABLE, if you do this in version 0.7 your partitioning scheme will fail. That is, every query specifying a partition will always use only the first partition.</p>
 <p>Specifically, the following example will FAIL silently and without error in Hive 0.7, and all queries will go only to dt=&lsquo;2008-08-08&rsquo; partition, no matter which partition you specify.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>ALTER TABLE page\_view ADD PARTITION (dt='2008-08-08', country='us') location '/path/to/us/part080808'
+<pre tabindex=0><code>ALTER TABLE page_view ADD PARTITION (dt='2008-08-08', country='us') location '/path/to/us/part080808'
                           PARTITION (dt='2008-08-09', country='us') location '/path/to/us/part080809';
 
 </code></pre><p>In Hive 0.8 and later, you can add multiple partitions in a single ALTER TABLE statement as shown in the previous example.</p>
 <p>In Hive 0.7, if you want to add many partitions you should use the following form:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name ADD PARTITION (partCol = 'value1') location 'loc1';
-ALTER TABLE table\_name ADD PARTITION (partCol = 'value2') location 'loc2';
+<pre tabindex=0><code>ALTER TABLE table_name ADD PARTITION (partCol = 'value1') location 'loc1';
+ALTER TABLE table_name ADD PARTITION (partCol = 'value2') location 'loc2';
 ...
-ALTER TABLE table\_name ADD PARTITION (partCol = 'valueN') location 'locN';
+ALTER TABLE table_name ADD PARTITION (partCol = 'valueN') location 'locN';
 </code></pre><h5 id=dynamic-partitions>Dynamic Partitions</h5>
 <p>Partitions can be added to a table dynamically, using a Hive INSERT statement (or a Pig STORE statement). See these documents for details and examples:</p>
 <ul>
@@ -873,17 +873,17 @@ ALTER TABLE table\_name ADD PARTITION (partCol = 'valueN') location 'locN';
 <h4 id=rename-partition>Rename Partition</h4>
 <p>Version information</p>
 <p>As of Hive 0.9.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name PARTITION partition\_spec RENAME TO PARTITION partition\_spec;
+<pre tabindex=0><code>ALTER TABLE table_name PARTITION partition_spec RENAME TO PARTITION partition_spec;
 
 </code></pre><p>This statement lets you change the value of a partition column. One of use cases is that you can use this statement to normalize your legacy partition column value to conform to its type. In this case, the type conversion and normalization are not enabled for the column values in old <em>partition_spec</em> even with property <a href=#hive-typecheck-on-insert>hive.typecheck.on.insert</a> set to true (default) which allows you to specify any legacy data in form of string in the old <em>partition_spec</em>.</p>
 <h4 id=exchange-partition>Exchange Partition</h4>
 <p>Partitions can be exchanged (moved) between tables.</p>
 <p>Version information</p>
 <p>As of Hive 0.12 (<a href=https://issues.apache.org/jira/browse/HIVE-4095>HIVE-4095</a>). Multiple partitions supported in Hive versions <a href=https://issues.apache.org/jira/browse/HIVE-11745>1.2.2, 1.3.0, and 2.0.0+</a>.</p>
-<pre tabindex=0><code>-- Move partition from table\_name\_1 to table\_name\_2
-ALTER TABLE table\_name\_2 EXCHANGE PARTITION (partition\_spec) WITH TABLE table\_name\_1;
+<pre tabindex=0><code>-- Move partition from table_name_1 to table_name_2
+ALTER TABLE table_name_2 EXCHANGE PARTITION (partition_spec) WITH TABLE table_name_1;
 -- multiple partitions
-ALTER TABLE table\_name\_2 EXCHANGE PARTITION (partition\_spec, partition\_spec2, ...) WITH TABLE table\_name\_1;
+ALTER TABLE table_name_2 EXCHANGE PARTITION (partition_spec, partition_spec2, ...) WITH TABLE table_name_1;
 </code></pre><p>This statement lets you move the data in a partition from a table to another table that has the same schema and does not already have that partition.<br>
 For further details on this feature, see <a href=https://hive.apache.org/docs/latest/exchange-partition_30755801/>Exchange Partition</a> and <a href=https://issues.apache.org/jira/browse/HIVE-4095>HIVE-4095</a>.</p>
 <h4 id=discover-partitions>Discover Partitions</h4>
@@ -898,47 +898,47 @@ For further details on this feature, see <a href=https://hive.apache.org/docs/la
 <h4 id=recover-partitions-msck-repair-table>Recover Partitions (MSCK REPAIR TABLE)</h4>
 <p>Hive stores a list of partitions for each table in its metastore. If, however, new partitions are directly added to HDFS (say by using <code>hadoop fs -put</code> command) or removed from HDFS, the metastore (and hence Hive) will not be aware of these changes to partition information unless the user runs <code>ALTER TABLE table_name ADD/DROP PARTITION</code> commands on each of the newly added or removed partitions, respectively.</p>
 <p>However, users can run a metastore check command with the repair table option:</p>
-<pre tabindex=0><code>MSCK [REPAIR] TABLE table\_name [ADD/DROP/SYNC PARTITIONS];
+<pre tabindex=0><code>MSCK [REPAIR] TABLE table_name [ADD/DROP/SYNC PARTITIONS];
 
 </code></pre><p>which will update metadata about partitions to the Hive metastore for partitions for which such metadata doesn&rsquo;t already exist. The default option for MSC command is ADD PARTITIONS. With this option, it will add any partitions that exist on HDFS but not in metastore to the metastore. The DROP PARTITIONS option will remove the partition information from metastore, that is already removed from HDFS. The SYNC PARTITIONS option is equivalent to calling both ADD and DROP PARTITIONS. See <a href=https://issues.apache.org/jira/browse/HIVE-874>HIVE-874</a> and <a href=https://issues.apache.org/jira/browse/HIVE-17824>HIVE-17824</a> for more details. When there is a large number of untracked partitions, there is a provision to run MSCK REPAIR TABLE batch wise to avoid OOME (Out of Memory Error). By giving the configured batch size for the property <strong>hive.msck.repair.batch.size</strong> it can run in the batches internally. The default value of the property is zero, it means it will execute all the partitions at once. MSCK command without the REPAIR option can be used to find details about metadata mismatch metastore.</p>
 <p>The equivalent command on Amazon Elastic MapReduce (EMR)&rsquo;s version of Hive is:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name RECOVER PARTITIONS;
+<pre tabindex=0><code>ALTER TABLE table_name RECOVER PARTITIONS;
 
 </code></pre><p>Starting with Hive 1.3, MSCK will throw exceptions if directories with disallowed characters in partition values are found on HDFS. Use <strong>hive.msck.path.validation</strong> setting on the client to alter this behavior; &ldquo;skip&rdquo; will simply skip the directories. &ldquo;ignore&rdquo; will try to create partitions anyway (old behavior). This may or may not work.</p>
 <h4 id=drop-partitions>Drop Partitions</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name DROP [IF EXISTS] PARTITION partition\_spec[, PARTITION partition\_spec, ...]
+<pre tabindex=0><code>ALTER TABLE table_name DROP [IF EXISTS] PARTITION partition_spec[, PARTITION partition_spec, ...]
   [IGNORE PROTECTION] [PURGE];            -- (Note: PURGE available in Hive 1.2.0 and later, IGNORE PROTECTION not available 2.0.0 and later)
 
 </code></pre><p>You can use ALTER TABLE DROP PARTITION to drop a partition for a table. This removes the data and metadata for this partition. The data is actually moved to the .Trash/Current directory if Trash is configured, unless PURGE is specified, but the metadata is completely lost (see <a href=#drop-table>Drop Table</a> above).</p>
 <p>Version Information: PROTECTION</p>
 <p>IGNORE PROTECTION is no longer available in versions 2.0.0 and later. This functionality is replaced by using one of the several security options available with Hive (see <a href=https://hive.apache.org/docs/latest/sql-standard-based-hive-authorization_40509928/>SQL Standard Based Hive Authorization</a>). See <a href=https://issues.apache.org/jira/browse/HIVE-11145>HIVE-11145</a> for details.</p>
-<p>For tables that are protected by <a href=#no\_drop-cascade>NO_DROP CASCADE</a>, you can use the predicate IGNORE PROTECTION to drop a specified partition or set of partitions (for example, when splitting a table between two Hadoop clusters):</p>
-<pre tabindex=0><code>ALTER TABLE table\_name DROP [IF EXISTS] PARTITION partition\_spec IGNORE PROTECTION;
+<p>For tables that are protected by <a href=#no_drop-cascade>NO_DROP CASCADE</a>, you can use the predicate IGNORE PROTECTION to drop a specified partition or set of partitions (for example, when splitting a table between two Hadoop clusters):</p>
+<pre tabindex=0><code>ALTER TABLE table_name DROP [IF EXISTS] PARTITION partition_spec IGNORE PROTECTION;
 
 </code></pre><p>The above command will drop that partition regardless of protection stats.</p>
 <p>Version information: PURGE</p>
 <p>The PURGE option is added to ALTER TABLE in version 1.2.1 by <a href=https://issues.apache.org/jira/browse/HIVE-10934>HIVE-10934</a>.</p>
 <p>If PURGE is specified, the partition data does not go to the .Trash/Current directory and so cannot be retrieved in the event of a mistaken DROP:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name DROP [IF EXISTS] PARTITION partition\_spec PURGE;     -- (Note: Hive 1.2.0 and later)
+<pre tabindex=0><code>ALTER TABLE table_name DROP [IF EXISTS] PARTITION partition_spec PURGE;     -- (Note: Hive 1.2.0 and later)
 </code></pre><p>The purge option can also be specified with the table property auto.purge (see <a href=#tblproperties>TBLPROPERTIES</a> above).</p>
 <p>In Hive 0.7.0 or later, DROP returns an error if the partition doesn&rsquo;t exist, unless IF EXISTS is specified or the configuration variable <a href=#hive-exec-drop-ignorenonexistent>hive.exec.drop.ignorenonexistent</a> is set to true.</p>
-<pre tabindex=0><code>ALTER TABLE page\_view DROP PARTITION (dt='2008-08-08', country='us');
+<pre tabindex=0><code>ALTER TABLE page_view DROP PARTITION (dt='2008-08-08', country='us');
 
 </code></pre><h4 id=unarchive-partition>(Un)Archive Partition</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name ARCHIVE PARTITION partition\_spec;
-ALTER TABLE table\_name UNARCHIVE PARTITION partition\_spec;
+<pre tabindex=0><code>ALTER TABLE table_name ARCHIVE PARTITION partition_spec;
+ALTER TABLE table_name UNARCHIVE PARTITION partition_spec;
 
 </code></pre><p>Archiving is a feature to moves a partition&rsquo;s files into a Hadoop Archive (HAR). Note that only the file count will be reduced; HAR does not provide any compression. See <a href=https://hive.apache.org/docs/latest/languagemanual-archiving_27362031/>LanguageManual Archiving</a> for more information</p>
 <h3 id=alter-either-table-or-partition>Alter Either Table or Partition</h3>
 <h4 id=alter-tablepartition-file-format>Alter Table/Partition File Format</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] SET FILEFORMAT file\_format;
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] SET FILEFORMAT file_format;
 
 </code></pre><p>This statement changes the table&rsquo;s (or partition&rsquo;s) file format. For available file_format options, see the section above on <a href=#create-table>CREATE TABLE</a>. The operation only changes the table metadata. Any conversion of existing data must be done outside of Hive.</p>
 <h4 id=alter-tablepartition-location>Alter Table/Partition Location</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] SET LOCATION &quot;new location&quot;;
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] SET LOCATION &quot;new location&quot;;
 
 </code></pre><h4 id=alter-tablepartition-touch>Alter Table/Partition Touch</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name TOUCH [PARTITION partition\_spec];
+<pre tabindex=0><code>ALTER TABLE table_name TOUCH [PARTITION partition_spec];
 
 </code></pre><p>TOUCH reads the metadata, and writes it back. This has the effect of causing the pre/post execute hooks to fire. An example use case is if you have a hook that logs all the tables/partitions that were modified, along with an external script that alters the files on HDFS directly. Since the script modifies files outside of hive, the modification wouldn&rsquo;t be logged by the hook. The external script could call TOUCH to fire the hook and mark the said table or partition as modified.</p>
 <p>Also, it may be useful later if we incorporate reliable last modified times. Then touch would update that time as well.</p>
@@ -947,9 +947,9 @@ ALTER TABLE table\_name UNARCHIVE PARTITION partition\_spec;
 <p>Version information</p>
 <p>As of Hive 0.7.0 (<a href=https://issues.apache.org/jira/browse/HIVE-1413>HIVE-1413</a>). The CASCADE clause for NO_DROP was added in HIVE 0.8.0 (<a href=https://issues.apache.org/jira/browse/HIVE-2605>HIVE-2605</a>).</p>
 <p>This functionality was removed in Hive 2.0.0. This functionality is replaced by using one of the several security options available with Hive (see <a href=https://hive.apache.org/docs/latest/sql-standard-based-hive-authorization_40509928/>SQL Standard Based Hive Authorization</a>). See <a href=https://issues.apache.org/jira/browse/HIVE-11145>HIVE-11145</a> for details.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] ENABLE|DISABLE NO\_DROP [CASCADE];
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] ENABLE|DISABLE NO_DROP [CASCADE];
  
-ALTER TABLE table\_name [PARTITION partition\_spec] ENABLE|DISABLE OFFLINE;
+ALTER TABLE table_name [PARTITION partition_spec] ENABLE|DISABLE OFFLINE;
 
 </code></pre><p>Protection on data can be set at either the table or partition level. Enabling NO_DROP prevents a table from being <a href=#dropped>dropped</a>. Enabling OFFLINE prevents the data in a table or partition from being queried, but the metadata can still be accessed.</p>
 <p>If any partition in a table has NO_DROP enabled, the table cannot be dropped either. Conversely, if a table has NO_DROP enabled then partitions may be dropped, but with NO_DROP CASCADE partitions cannot be dropped either unless the <a href=#drop-partition-command>drop partition command</a> specifies IGNORE PROTECTION.</p>
@@ -959,11 +959,11 @@ ALTER TABLE table\_name [PARTITION partition\_spec] ENABLE|DISABLE OFFLINE;
 As of Hive release <a href=https://issues.apache.org/jira/browse/HIVE-13354>1.3.0 and 2.1.0</a> when <a href=https://hive.apache.org/docs/latest/hive-transactions_40509723/>transactions</a> are being used, the ALTER TABLE &mldr; COMPACT statement can include a <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>TBLPROPERTIES</a> clause that is either to change compaction MapReduce job properties or to overwrite any other Hive table properties. More details can be found <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>here</a>.<br>
 As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27056?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0-alpha-2">4.0.0-alpha-2</a> <a href=https://hive.apache.org/docs/latest/compaction-pooling_240884493/>compaction pooling</a> is available.<br>
 As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27094?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0">4.0.0</a> <a href=https://hive.apache.org/docs/latest/rebalance-compaction_240884502/>rebalance compaction</a> is available.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION (partition\_key = 'partition\_value' [, ...])]
-  COMPACT 'compaction\_type'[AND WAIT]
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])]
+  COMPACT 'compaction_type'[AND WAIT]
    [CLUSTERED INTO n BUCKETS]
-   [ORDER BY col\_list]
-   [POOL 'pool\_name']
+   [ORDER BY col_list]
+   [POOL 'pool_name']
    [WITH OVERWRITE TBLPROPERTIES (&quot;property&quot;=&quot;value&quot; [, ...])];
 </code></pre><p>In general you do not need to request compactions when <a href=https://hive.apache.org/docs/latest/hive-transactions_40509723/>Hive transactions</a> are being used, because the system will detect the need for them and initiate the compaction. However, if compaction is turned off for a table or you want to compact the table at a time the system would not choose to, ALTER TABLE can initiate the compaction. By default the statement will enqueue a request for compaction and return. To watch the progress of the compaction, use <a href=#show-compactions>SHOW COMPACTIONS</a>. As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-15920>2.2.0</a> &ldquo;AND WAIT&rdquo; may be specified to have the operation block until compaction completes.</p>
 <p>The compaction_type can be MAJOR, MINOR or REBALANCE. See the Basic Design section in <a href=#hive-transactions>Hive Transactions</a> for more information.</p>
@@ -973,12 +973,12 @@ As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27094?jql
 <h4 id=alter-tablepartition-concatenate>Alter Table/Partition Concatenate</h4>
 <p>Version information</p>
 <p>In Hive release <a href=https://issues.apache.org/jira/browse/HIVE-1950>0.8.0</a> RCFile added support for fast block level merging of small RCFiles using concatenate command. In Hive release <a href=https://issues.apache.org/jira/browse/HIVE-7509>0.14.0</a> ORC files added support fast stripe level merging of small ORC files using concatenate command.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION (partition\_key = 'partition\_value' [, ...])] CONCATENATE;
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])] CONCATENATE;
 </code></pre><p>If the table or partition contains many small RCFiles or ORC files, then the above command will merge them into larger files. In case of RCFile the merge happens at block level whereas for ORC files the merge happens at stripe level thereby avoiding the overhead of decompressing and decoding the data.</p>
 <h4 id=alter-tablepartition-update-columns>Alter Table/Partition Update columns</h4>
 <p>Version information</p>
 <p>In Hive release <a href=https://issues.apache.org/jira/browse/HIVE-15995>3.0.0</a> this command was added to let the user sync serde stored schema information to metastore.</p>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION (partition\_key = 'partition\_value' [, ...])] UPDATE COLUMNS;
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])] UPDATE COLUMNS;
 </code></pre><p>Tables that have serdes which self-describe the table schema may have different schemas in reality and the ones stored in Hive Metastore. For example when a user creates an Avro stored table using a schema url or schema literal, the schema will be inserted into HMS and then will never be changed in HMS regardless of url or literal changes within the serde. This can lead to problems especially when integrating with other Apache components.</p>
 <p>The update columns feature provides a way for the user to let any schema changes made in the serde to be synced into HMS. It works on both the table and the partitions levels, and obviously only for tables whose schema is not tracked by HMS (see metastore.serdes.using.metastore.for.schema). Using the command on these latter serde types will result in error.</p>
 <h3 id=alter-column>Alter Column</h3>
@@ -989,33 +989,33 @@ As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27094?jql
 <p>In Hive release 0.13.0 and later, by default column names can be specified within backticks (```) and contain any <a href=http://en.wikipedia.org/wiki/List_of_Unicode_characters>Unicode</a> character (<a href=https://issues.apache.org/jira/browse/HIVE-6013>HIVE-6013</a>), however, dot (<strong>.</strong>) and colon (<strong>:</strong>) yield errors on querying. Within a string delimited by backticks, all characters are treated literally except that double backticks (````) represent one backtick character. The pre-0.13.0 behavior can be used by setting <code>[hive.support.quoted.identifiers](#hive-support-quoted-identifiers)</code> to <code>none</code>, in which case backticked names are interpreted as regular expressions. See <a href=https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html>Supporting Quoted Identifiers in Column Names</a> for details.</p>
 <p>Backtick quotation enables the use of reserved keywords for column names, as well as table names.</p>
 <h4 id=change-column-nametypepositioncomment>Change Column Name/Type/Position/Comment</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name [PARTITION partition\_spec] CHANGE [COLUMN] col\_old\_name col\_new\_name column\_type
-  [COMMENT col\_comment] [FIRST|AFTER column\_name] [CASCADE|RESTRICT];
+<pre tabindex=0><code>ALTER TABLE table_name [PARTITION partition_spec] CHANGE [COLUMN] col_old_name col_new_name column_type
+  [COMMENT col_comment] [FIRST|AFTER column_name] [CASCADE|RESTRICT];
 
 </code></pre><p>This command will allow users to change a column&rsquo;s name, <a href=https://hive.apache.org/docs/latest/languagemanual-types_27838462/>data type</a>, comment, or position, or an arbitrary combination of them. The PARTITION clause is available in <a href=https://issues.apache.org/jira/browse/HIVE-7971>Hive 0.14.0</a> and later; see <a href=#upgrading-pre-hive-0-13-0-decimal-columns>Upgrading Pre-Hive 0.13.0 Decimal Columns</a> for usage. A patch for Hive 0.13 is also available (see <a href=https://issues.apache.org/jira/browse/HIVE-7971>HIVE-7971</a>).</p>
 <p>The CASCADE|RESTRICT clause is available in <a href=https://issues.apache.org/jira/browse/HIVE-8839>Hive 1.1.0</a>. ALTER TABLE CHANGE COLUMN with CASCADE command changes the columns of a table&rsquo;s metadata, and cascades the same change to all the partition metadata. RESTRICT is the default, limiting column change only to table metadata.</p>
 <p>ALTER TABLE CHANGE COLUMN CASCADE clause will override the table partition&rsquo;s column metadata regardless of the table or partition&rsquo;s <a href=#protection-mode>protection mode</a>. Use with discretion.</p>
 <p>The column change command will only modify Hive&rsquo;s metadata, and will not modify data. Users should make sure the actual data layout of the table/partition conforms with the metadata definition.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE TABLE test\_change (a int, b int, c int);
+<pre tabindex=0><code>CREATE TABLE test_change (a int, b int, c int);
 
 // First change column a's name to a1.
-ALTER TABLE test\_change CHANGE a a1 INT;
+ALTER TABLE test_change CHANGE a a1 INT;
 
 // Next change column a1's name to a2, its data type to string, and put it after column b.
-ALTER TABLE test\_change CHANGE a1 a2 STRING AFTER b;
+ALTER TABLE test_change CHANGE a1 a2 STRING AFTER b;
 // The new table's structure is:  b int, a2 string, c int.
  
 // Then change column c's name to c1, and put it as the first column.
-ALTER TABLE test\_change CHANGE c c1 INT FIRST;
+ALTER TABLE test_change CHANGE c c1 INT FIRST;
 // The new table's structure is:  c1 int, b int, a2 string.
  
 // Add a comment to column a1
-ALTER TABLE test\_change CHANGE a1 a1 INT COMMENT 'this is column a1';
+ALTER TABLE test_change CHANGE a1 a1 INT COMMENT 'this is column a1';
 </code></pre><h4 id=addreplace-columns>Add/Replace Columns</h4>
-<pre tabindex=0><code>ALTER TABLE table\_name 
-  [PARTITION partition\_spec]                 -- (Note: Hive 0.14.0 and later)
-  ADD|REPLACE COLUMNS (col\_name data\_type [COMMENT col\_comment], ...)
+<pre tabindex=0><code>ALTER TABLE table_name 
+  [PARTITION partition_spec]                 -- (Note: Hive 0.14.0 and later)
+  ADD|REPLACE COLUMNS (col_name data_type [COMMENT col_comment], ...)
   [CASCADE|RESTRICT]                         -- (Note: Hive 1.1.0 and later)
 
 </code></pre><p>ADD COLUMNS lets you add new columns to the end of the existing columns but before the partition columns. This is supported for Avro backed tables as well, for <a href=https://issues.apache.org/jira/browse/HIVE-7446>Hive 0.14</a> and later.</p>
@@ -1025,8 +1025,8 @@ ALTER TABLE test\_change CHANGE a1 a1 INT COMMENT 'this is column a1';
 <p>ALTER TABLE ADD or REPLACE COLUMNS CASCADE will override the table partition&rsquo;s column metadata regardless of the table or partition&rsquo;s <a href=#protection-mode>protection mode</a>. Use with discretion.The column change command will only modify Hive&rsquo;s metadata, and will not modify data. Users should make sure the actual data layout of the table/partition conforms with the metadata definition.</p>
 <h4 id=partial-partition-specification>Partial Partition Specification</h4>
 <p>As of Hive 0.14 (<a href=https://issues.apache.org/jira/browse/HIVE-8411>HIVE-8411</a>), users are able to provide a partial partition spec for certain above alter column statements, similar to dynamic partitioning. So rather than having to issue an alter column statement for each partition that needs to be changed:</p>
-<pre tabindex=0><code>ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
-ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+<pre tabindex=0><code>ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ...
 
 </code></pre><p>&mldr; you can change many existing partitions at once using a single ALTER statement with a partial partition specification:</p>
@@ -1034,10 +1034,10 @@ ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec\_column\_na
 SET hive.exec.dynamic.partition = true;
  
 // This will alter all existing partitions in the table with ds='2008-04-08' -- be sure you know what you are doing!
-ALTER TABLE foo PARTITION (ds='2008-04-08', hr) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds='2008-04-08', hr) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 
 // This will alter all existing partitions in the table -- be sure you know what you are doing!
-ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 </code></pre><p>Similar to dynamic partitioning, <a href=#hive-exec-dynamic-partition>hive.exec.dynamic.partition</a> must be set to true to enable use of partial partition specs during ALTER PARTITION. This is supported for the following operations:</p>
 <ul>
 <li>Change column</li>
@@ -1056,9 +1056,9 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_
 <p>Version information</p>
 <p>View support is only available in Hive 0.6 and later.</p>
 <h3 id=create-view>Create View</h3>
-<pre tabindex=0><code>CREATE VIEW [IF NOT EXISTS] [db\_name.]view\_name [(column\_name [COMMENT column\_comment], ...) ]
-  [COMMENT view\_comment]
-  [TBLPROPERTIES (property\_name = property\_value, ...)]
+<pre tabindex=0><code>CREATE VIEW [IF NOT EXISTS] [db_name.]view_name [(column_name [COMMENT column_comment], ...) ]
+  [COMMENT view_comment]
+  [TBLPROPERTIES (property_name = property_value, ...)]
   AS SELECT ...;
 
 </code></pre><p>CREATE VIEW creates a view with the given name. An error is thrown if a table or view with the same name already exists. You can use IF NOT EXISTS to skip the error.</p>
@@ -1070,36 +1070,36 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_
 <p>A view may contain ORDER BY and LIMIT clauses. If a referencing query also contains these clauses, the query-level clauses are evaluated <strong>after</strong> the view clauses (and after any other operations in the query). For example, if a view specifies LIMIT 5, and a referencing query is executed as (select * from v LIMIT 10), then at most 5 rows will be returned.</p>
 <p>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the view&rsquo;s select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select#LanguageManualSelect-SelectSyntax>SELECT syntax</a>. For examples of CTEs in CREATE VIEW statements, see <a href=https://cwiki.apache.org/confluence/display/Hive/Common+Table+Expression#CommonTableExpression-CTEinViews,CTAS,andInsertStatements>Common Table Expression</a>.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE VIEW onion\_referrers(url COMMENT 'URL of Referring page')
+<pre tabindex=0><code>CREATE VIEW onion_referrers(url COMMENT 'URL of Referring page')
   COMMENT 'Referrers to The Onion website'
   AS
-  SELECT DISTINCT referrer\_url
-  FROM page\_view
-  WHERE page\_url='http://www.theonion.com';
+  SELECT DISTINCT referrer_url
+  FROM page_view
+  WHERE page_url='http://www.theonion.com';
 
 </code></pre><p>Use <a href=#show-create-table>SHOW CREATE TABLE</a> to display the CREATE VIEW statement that created a view. As of Hive 2.2.0, <a href=#show-views>SHOW VIEWS</a> displays a list of views in a database.</p>
 <p>Version Information</p>
 <p>Originally, the file format for views was hard coded as SequenceFile. Hive 2.1.0 (<a href=https://issues.apache.org/jira/browse/HIVE-13736>HIVE-13736</a>) made views follow the same defaults as tables and indexes using the <a href=#hive-default-fileformat>hive.default.fileformat</a>and <a href=#hive-default-fileformat-managed>hive.default.fileformat.managed</a> properties.</p>
 <h3 id=drop-view>Drop View</h3>
-<pre tabindex=0><code>DROP VIEW [IF EXISTS] [db\_name.]view\_name;
+<pre tabindex=0><code>DROP VIEW [IF EXISTS] [db_name.]view_name;
 
 </code></pre><p>DROP VIEW removes metadata for the specified view. (It is illegal to use DROP TABLE on a view.)</p>
 <p>When dropping a view referenced by other views, no warning is given (the dependent views are left dangling as invalid and must be dropped or recreated by the user).</p>
 <p>In Hive 0.7.0 or later, DROP returns an error if the view doesn&rsquo;t exist, unless IF EXISTS is specified or the configuration variable <a href=#hive-exec-drop-ignorenonexistent>hive.exec.drop.ignorenonexistent</a> is set to true.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>DROP VIEW onion\_referrers;
+<pre tabindex=0><code>DROP VIEW onion_referrers;
 
 </code></pre><h3 id=alter-view-properties>Alter View Properties</h3>
-<pre tabindex=0><code>ALTER VIEW [db\_name.]view\_name SET TBLPROPERTIES table\_properties;
+<pre tabindex=0><code>ALTER VIEW [db_name.]view_name SET TBLPROPERTIES table_properties;
 
-table\_properties:
-  : (property\_name = property\_value, property\_name = property\_value, ...)
+table_properties:
+  : (property_name = property_value, property_name = property_value, ...)
 
 </code></pre><p>As with ALTER TABLE, you can use this statement to add your own metadata to a view.</p>
 <h3 id=alter-view-as-select>Alter View As Select</h3>
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-3834>Hive 0.11</a>.</p>
-<pre tabindex=0><code>ALTER VIEW [db\_name.]view\_name AS select\_statement;
+<pre tabindex=0><code>ALTER VIEW [db_name.]view_name AS select_statement;
 
 </code></pre><p>Alter View As Select changes the definition of a view, which must exist. The syntax is similar to that for CREATE VIEW and the effect is the same as for CREATE OR REPLACE VIEW.</p>
 <p>Note: The view must already exist, and if the view has partitions, it could not be replaced by Alter View As Select.</p>
@@ -1113,18 +1113,18 @@ table\_properties:
 <p>Materialized view support is only available in Hive 3.0 and later.</p>
 <p>This section provides an introduction to Hive materialized views syntax. More information about materialized view support and usage in Hive can be found <a href=https://hive.apache.org/docs/latest/materialized-views_80447331/>here</a>.</p>
 <h3 id=create-materialized-view>Create Materialized View</h3>
-<pre tabindex=0><code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db\_name.]materialized\_view\_name
+<pre tabindex=0><code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
   [DISABLE REWRITE]
-  [COMMENT materialized\_view\_comment]
-  [PARTITIONED ON (col\_name, ...)]
-  [CLUSTERED ON (col\_name, ...) | DISTRIBUTED ON (col\_name, ...) SORTED ON (col\_name, ...)]
+  [COMMENT materialized_view_comment]
+  [PARTITIONED ON (col_name, ...)]
+  [CLUSTERED ON (col_name, ...) | DISTRIBUTED ON (col_name, ...) SORTED ON (col_name, ...)]
   [
-    [ROW FORMAT row\_format]
-    [STORED AS file\_format]
+    [ROW FORMAT row_format]
+    [STORED AS file_format]
       | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
-  [LOCATION hdfs\_path]
-  [TBLPROPERTIES (property\_name=property\_value, ...)]
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]
 AS SELECT ...;
 
 </code></pre><p>CREATE MATERIALIZED VIEW creates a view with the given name. An error is thrown if a table, view or materialized view with the same name already exists. You can use IF NOT EXISTS to skip the error.</p>
@@ -1136,13 +1136,13 @@ AS SELECT ...;
 <p>Version information</p>
 <p>CLUSTERED/DISTRIBUTED/SORTED ON is supported as of Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-18842>HIVE-18842</a>).</p>
 <h3 id=drop-materialized-view>Drop Materialized View</h3>
-<pre tabindex=0><code>DROP MATERIALIZED VIEW [db\_name.]materialized\_view\_name;
+<pre tabindex=0><code>DROP MATERIALIZED VIEW [db_name.]materialized_view_name;
 
 </code></pre><p>DROP MATERIALIZED VIEW removes metadata and data for this materialized view.</p>
 <h3 id=alter-materialized-view>Alter Materialized View</h3>
 <p>Once a materialized view has been created, the optimizer will be able to exploit its definition semantics to automatically rewrite incoming queries using materialized views, and hence, accelerate query execution. </p>
 <p>Users can selectively enable/disable materialized views for rewriting. Recall that, by default, materialized views are enabled for rewriting at creation time. To alter that behavior, the following statement can be used:</p>
-<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name ENABLE|DISABLE REWRITE;
+<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db_name.]materialized_view_name ENABLE|DISABLE REWRITE;
 
 </code></pre><h2 id=createdropalterindex>Create/Drop/Alter Index</h2>
 <p>Version information</p>
@@ -1155,28 +1155,28 @@ AS SELECT ...;
 </ul>
 <p>In Hive 0.12.0 and earlier releases, the index name is case-sensitive for CREATE INDEX and DROP INDEX statements. However, ALTER INDEX requires an index name that was created with lowercase letters (see <a href=https://issues.apache.org/jira/browse/HIVE-2752>HIVE-2752</a>). This bug is fixed in <a href=https://issues.apache.org/jira/browse/HIVE-2752>Hive 0.13.0</a> by making index names case-insensitive for all HiveQL statements. For releases prior to 0.13.0, the best practice is to use lowercase letters for all index names.</p>
 <h3 id=create-index>Create Index</h3>
-<pre tabindex=0><code>CREATE INDEX index\_name
-  ON TABLE base\_table\_name (col\_name, ...)
-  AS index\_type
+<pre tabindex=0><code>CREATE INDEX index_name
+  ON TABLE base_table_name (col_name, ...)
+  AS index_type
   [WITH DEFERRED REBUILD]
-  [IDXPROPERTIES (property\_name=property\_value, ...)]
-  [IN TABLE index\_table\_name]
+  [IDXPROPERTIES (property_name=property_value, ...)]
+  [IN TABLE index_table_name]
   [
      [ ROW FORMAT ...] STORED AS ...
      | STORED BY ...
   ]
-  [LOCATION hdfs\_path]
+  [LOCATION hdfs_path]
   [TBLPROPERTIES (...)]
   [COMMENT &quot;index comment&quot;];
 
 </code></pre><p>CREATE INDEX creates an index on a table using the given list of columns as keys. See CREATE INDEX in the <a href=#indexes>Indexes</a> design document.</p>
 <h3 id=drop-index>Drop Index</h3>
-<pre tabindex=0><code>DROP INDEX [IF EXISTS] index\_name ON table\_name;
+<pre tabindex=0><code>DROP INDEX [IF EXISTS] index_name ON table_name;
 
 </code></pre><p>DROP INDEX drops the index, as well as deleting the index table.</p>
 <p>In Hive 0.7.0 or later, DROP returns an error if the index doesn&rsquo;t exist, unless IF EXISTS is specified or the configuration variable <a href=#hive-exec-drop-ignorenonexistent>hive.exec.drop.ignorenonexistent</a> is set to true.</p>
 <h3 id=alter-index>Alter Index</h3>
-<pre tabindex=0><code>ALTER INDEX index\_name ON table\_name [PARTITION partition\_spec] REBUILD;
+<pre tabindex=0><code>ALTER INDEX index_name ON table_name [PARTITION partition_spec] REBUILD;
 
 </code></pre><p>ALTER INDEX &mldr; REBUILD builds an index that was created using the WITH DEFERRED REBUILD clause, or rebuilds a previously built index. If PARTITION is specified, only that partition is rebuilt.</p>
 <h2 id=createdrop-macro>Create/Drop Macro</h2>
@@ -1190,27 +1190,27 @@ AS SELECT ...;
 Hive 0.12.0 introduced macros to HiveQL, prior to which they could only be created in Java.</li>
 </ul>
 <h3 id=create-temporary-macro>Create Temporary Macro</h3>
-<pre tabindex=0><code>CREATE TEMPORARY MACRO macro\_name([col\_name col\_type, ...]) expression;
+<pre tabindex=0><code>CREATE TEMPORARY MACRO macro_name([col_name col_type, ...]) expression;
 
 </code></pre><p>CREATE TEMPORARY MACRO creates a macro using the given optional list of columns as inputs to the expression. Macros exist for the duration of the current session.</p>
 <p><strong>Examples:</strong></p>
-<pre tabindex=0><code>CREATE TEMPORARY MACRO fixed\_number() 42;
-CREATE TEMPORARY MACRO string\_len\_plus\_two(x string) length(x) + 2;
-CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
+<pre tabindex=0><code>CREATE TEMPORARY MACRO fixed_number() 42;
+CREATE TEMPORARY MACRO string_len_plus_two(x string) length(x) + 2;
+CREATE TEMPORARY MACRO simple_add (x int, y int) x + y;
 </code></pre><h3 id=drop-temporary-macro>Drop Temporary Macro</h3>
-<pre tabindex=0><code>DROP TEMPORARY MACRO [IF EXISTS] macro\_name;
+<pre tabindex=0><code>DROP TEMPORARY MACRO [IF EXISTS] macro_name;
 
 </code></pre><p>DROP TEMPORARY MACRO returns an error if the function doesn&rsquo;t exist, unless IF EXISTS is specified.</p>
 <h2 id=createdropreload-function>Create/Drop/Reload Function</h2>
 <h3 id=temporary-functions>Temporary Functions</h3>
 <h4 id=create-temporary-function>Create Temporary Function</h4>
-<pre tabindex=0><code>CREATE TEMPORARY FUNCTION function\_name AS class\_name;
+<pre tabindex=0><code>CREATE TEMPORARY FUNCTION function_name AS class_name;
 
 </code></pre><p>This statement lets you create a function that is implemented by the class_name. You can use this function in Hive queries as long as the session lasts. You can use any class that is in the class path of Hive. You can add jars to class path by executing &lsquo;ADD JAR&rsquo; statements. Please refer to the CLI section <a href=#hive-interactive-shell-commands>Hive Interactive Shell Commands</a>, including <a href=#hive-resources>Hive Resources</a>, for more information on how to add/delete files from the Hive classpath. Using this, you can register User Defined Functions (UDF&rsquo;s).</p>
 <p>Also see <a href=https://hive.apache.org/docs/latest/hiveplugins_27362098/>Hive Plugins</a> for general information about creating custom UDFs.</p>
 <h4 id=drop-temporary-function>Drop Temporary Function</h4>
 <p>You can unregister a UDF as follows:</p>
-<pre tabindex=0><code>DROP TEMPORARY FUNCTION [IF EXISTS] function\_name;
+<pre tabindex=0><code>DROP TEMPORARY FUNCTION [IF EXISTS] function_name;
 
 </code></pre><p>In Hive 0.7.0 or later, DROP returns an error if the function doesn&rsquo;t exist, unless IF EXISTS is specified or the configuration variable <a href=#hive-exec-drop-ignorenonexistent>hive.exec.drop.ignorenonexistent</a> is set to true.</p>
 <h3 id=permanent-functions>Permanent Functions</h3>
@@ -1218,14 +1218,14 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 <h4 id=create-function>Create Function</h4>
 <p>Version information</p>
 <p>As of Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6047>HIVE-6047</a>).</p>
-<pre tabindex=0><code>CREATE FUNCTION [db\_name.]function\_name AS class\_name
-  [USING JAR|FILE|ARCHIVE 'file\_uri' [, JAR|FILE|ARCHIVE 'file\_uri'] ];
+<pre tabindex=0><code>CREATE FUNCTION [db_name.]function_name AS class_name
+  [USING JAR|FILE|ARCHIVE 'file_uri' [, JAR|FILE|ARCHIVE 'file_uri'] ];
 </code></pre><p>This statement lets you create a function that is implemented by the class_name. Jars, files, or archives which need to be added to the environment can be specified with the USING clause; when the function is referenced for the first time by a Hive session, these resources will be added to the environment as if <a href=#add-jar/file>ADD JAR/FILE</a> had been issued. If Hive is not in local mode, then the resource location must be a non-local URI such as an HDFS location.</p>
 <p>The function will be added to the database specified, or to the current database at the time that the function was created. The function can be referenced by fully qualifying the function name (db_name.function_name), or can be referenced without qualification if the function is in the current database.</p>
 <h4 id=drop-function>Drop Function</h4>
 <p>Version information</p>
 <p>As of Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6047>HIVE-6047</a>).</p>
-<pre tabindex=0><code>DROP FUNCTION [IF EXISTS] function\_name;
+<pre tabindex=0><code>DROP FUNCTION [IF EXISTS] function_name;
 </code></pre><p>DROP returns an error if the function doesn&rsquo;t exist, unless IF EXISTS is specified or the configuration variable <a href=#hive-exec-drop-ignorenonexistent>hive.exec.drop.ignorenonexistent</a> is set to true.</p>
 <h4 id=reload-function>Reload Function</h4>
 <p>Version information</p>
@@ -1238,8 +1238,8 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 <li><a href=#create-role>CREATE ROLE</a></li>
 <li><a href=#grant-role>GRANT ROLE</a></li>
 <li><a href=#revoke-role>REVOKE ROLE</a></li>
-<li><a href=#grant-privilege\_type>GRANT privilege_type</a></li>
-<li><a href=#revoke-privilege\_type>REVOKE privilege_type</a></li>
+<li><a href=#grant-privilege_type>GRANT privilege_type</a></li>
+<li><a href=#revoke-privilege_type>REVOKE privilege_type</a></li>
 <li><a href=#drop-role>DROP ROLE</a></li>
 <li><a href=#show-role-grant>SHOW ROLE GRANT</a></li>
 <li><a href=#show-grant>SHOW GRANT</a></li>
@@ -1261,8 +1261,8 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 </li>
 <li>Object Privilege Commands
 <ul>
-<li><a href=#grant-privilege\_type>GRANT privilege_type</a></li>
-<li><a href=#revoke-privilege\_type>REVOKE privilege_type</a></li>
+<li><a href=#grant-privilege_type>GRANT privilege_type</a></li>
+<li><a href=#revoke-privilege_type>REVOKE privilege_type</a></li>
 <li><a href=#show-grant>SHOW GRANT</a></li>
 </ul>
 </li>
@@ -1293,7 +1293,7 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 </ul>
 <p>These statements provide a way to query the Hive metastore for existing data and metadata accessible to this Hive system.</p>
 <h3 id=show-databases>Show Databases</h3>
-<pre tabindex=0><code>SHOW (DATABASES|SCHEMAS) [LIKE 'identifier\_with\_wildcards'];
+<pre tabindex=0><code>SHOW (DATABASES|SCHEMAS) [LIKE 'identifier_with_wildcards'];
 
 </code></pre><p>SHOW DATABASES or SHOW SCHEMAS lists all of the databases defined in the metastore. The uses of SCHEMAS and DATABASES are interchangeable – they mean the same thing.</p>
 <p>The optional LIKE clause allows the list of databases to be filtered using a regular expression. Wildcards in the regular expression can only be &lsquo;<em>&rsquo; for any character(s) or &lsquo;|&rsquo; for a choice. Examples are &lsquo;employees&rsquo;, &lsquo;emp</em>&rsquo;, &lsquo;emp*|*ees&rsquo;, all of which will match the database named &lsquo;employees&rsquo;.</p>
@@ -1306,47 +1306,47 @@ CREATE TEMPORARY MACRO simple\_add (x int, y int) x + y;
 <p>SHOW CONNECTORS lists all of the connectors defined in the metastore (depending on the user&rsquo;s access).</p>
 <h3 id=show-tablesviewsmaterialized-viewspartitionsindexes>Show Tables/Views/Materialized Views/Partitions/Indexes</h3>
 <h4 id=show-tables>Show Tables</h4>
-<pre tabindex=0><code>SHOW TABLES [IN database\_name] ['identifier\_with\_wildcards'];
+<pre tabindex=0><code>SHOW TABLES [IN database_name] ['identifier_with_wildcards'];
 
 </code></pre><p><code>SHOW TABLES</code> lists all the base tables and views in the current database (or the one explicitly named using the <code>IN</code> clause) with names matching the optional regular expression. Wildcards in the regular expression can only be &lsquo;<em>&rsquo; for any character(s) or &lsquo;|&rsquo; for a choice. Examples are &lsquo;page_view&rsquo;, &lsquo;page_v</em>&rsquo;, &lsquo;<em>view|page</em>&rsquo;, all which will match the &lsquo;page_view&rsquo; table. Matching tables are listed in alphabetical order. It is not an error if there are no matching tables found in metastore. If no regular expression is given then all tables in the selected database are listed.</p>
 <h4 id=show-views>Show Views</h4>
 <p>Version information</p>
 <p>Introduced in Hive 2.2.0 via <a href=https://issues.apache.org/jira/browse/HIVE-14558>HIVE-14558</a>.</p>
-<pre tabindex=0><code>SHOW VIEWS [IN/FROM database\_name] [LIKE 'pattern\_with\_wildcards'];
+<pre tabindex=0><code>SHOW VIEWS [IN/FROM database_name] [LIKE 'pattern_with_wildcards'];
 </code></pre><p><code>SHOW VIEWS</code> lists all the views in the current database (or the one explicitly named using the <code>IN</code> or <code>FROM</code> clause) with names matching the optional regular expression. Wildcards in the regular expression can only be &lsquo;<em>&rsquo; for any character(s) or &lsquo;|&rsquo; for a choice. Examples are &lsquo;page_view&rsquo;, &lsquo;page_v</em>&rsquo;, &lsquo;<em>view|page</em>&rsquo;, all which will match the &lsquo;page_view&rsquo; view. Matching views are listed in alphabetical order. It is not an error if no matching views are found in metastore. If no regular expression is given then all views in the selected database are listed.</p>
 <p><strong>Examples</strong></p>
 <pre tabindex=0><code>SHOW VIEWS;                                -- show all views in the current database
-SHOW VIEWS 'test\_*';                       -- show all views that start with &quot;test\_&quot;
+SHOW VIEWS 'test_*';                       -- show all views that start with &quot;test_&quot;
 SHOW VIEWS '*view2';                       -- show all views that end in &quot;view2&quot;
-SHOW VIEWS LIKE 'test\_view1|test\_view2';   -- show views named either &quot;test\_view1&quot; or &quot;test\_view2&quot;
+SHOW VIEWS LIKE 'test_view1|test_view2';   -- show views named either &quot;test_view1&quot; or &quot;test_view2&quot;
 SHOW VIEWS FROM test1;                     -- show views from database test1
 SHOW VIEWS IN test1;                       -- show views from database test1 (FROM and IN are same) 
-SHOW VIEWS IN test1 &quot;test\_*&quot;;              -- show views from database test2 that start with &quot;test\_&quot;
+SHOW VIEWS IN test1 &quot;test_*&quot;;              -- show views from database test2 that start with &quot;test_&quot;
 </code></pre><h4 id=show-materialized-views>Show Materialized Views</h4>
-<pre tabindex=0><code>SHOW MATERIALIZED VIEWS [IN/FROM database\_name] [LIKE 'pattern\_with\_wildcards’];
+<pre tabindex=0><code>SHOW MATERIALIZED VIEWS [IN/FROM database_name] [LIKE 'pattern_with_wildcards’];
 </code></pre><p><code>SHOW MATERIALIZED VIEWS</code> lists all the views in the current database (or the one explicitly named using the <code>IN</code> or <code>FROM</code> clause) with names matching the optional regular expression. It also shows additional information about the materialized view, e.g., whether rewriting is enabled, and the refresh mode for the materialized view. Wildcards in the regular expression can only be &lsquo;*&rsquo; for any character(s) or &lsquo;|&rsquo; for a choice. If no regular expression is given then all materialized views in the selected database are listed.</p>
 <h4 id=show-partitions>Show Partitions</h4>
-<pre tabindex=0><code>SHOW PARTITIONS table\_name;
+<pre tabindex=0><code>SHOW PARTITIONS table_name;
 
 </code></pre><p>SHOW PARTITIONS lists all the existing partitions for a given base table. Partitions are listed in alphabetical order.</p>
 <p>Version information</p>
 <p>As of Hive 0.6, SHOW PARTITIONS can filter the list of partitions as shown below.</p>
 <p>It is also possible to specify parts of a partition specification to filter the resulting list.</p>
 <p><strong>Examples:</strong></p>
-<pre tabindex=0><code>SHOW PARTITIONS table\_name PARTITION(ds='2010-03-03');            -- (Note: Hive 0.6 and later)
-SHOW PARTITIONS table\_name PARTITION(hr='12');                    -- (Note: Hive 0.6 and later)
-SHOW PARTITIONS table\_name PARTITION(ds='2010-03-03', hr='12');   -- (Note: Hive 0.6 and later)
+<pre tabindex=0><code>SHOW PARTITIONS table_name PARTITION(ds='2010-03-03');            -- (Note: Hive 0.6 and later)
+SHOW PARTITIONS table_name PARTITION(hr='12');                    -- (Note: Hive 0.6 and later)
+SHOW PARTITIONS table_name PARTITION(ds='2010-03-03', hr='12');   -- (Note: Hive 0.6 and later)
 
 </code></pre><p>Version information</p>
 <p>Starting with Hive 0.13.0, SHOW PARTITIONS can specify a database (<a href=https://issues.apache.org/jira/browse/HIVE-5912>HIVE-5912</a>).</p>
-<pre tabindex=0><code>SHOW PARTITIONS [db\_name.]table\_name [PARTITION(partition\_spec)];   -- (Note: Hive 0.13.0 and later)
+<pre tabindex=0><code>SHOW PARTITIONS [db_name.]table_name [PARTITION(partition_spec)];   -- (Note: Hive 0.13.0 and later)
 
 </code></pre><p><strong>Example:</strong></p>
 <pre tabindex=0><code>SHOW PARTITIONS databaseFoo.tableBar PARTITION(ds='2010-03-03', hr='12');   -- (Note: Hive 0.13.0 and later)
 
 </code></pre><p>Version information</p>
 <p>Starting with Hive 4.0.0, SHOW PARTITIONS can optionally use the WHERE/ORDER BY/LIMIT clause to filter/order/limit the resulting list (<a href=https://issues.apache.org/jira/browse/HIVE-22458>HIVE-22458</a>). These clauses work in a similar way as  they do in a SELECT statement.</p>
-<pre tabindex=0><code>SHOW PARTITIONS [db\_name.]table\_name [PARTITION(partition\_spec)] [WHERE where\_condition] [ORDER BY col\_list] [LIMIT rows];   -- (Note: Hive 4.0.0 and later)
+<pre tabindex=0><code>SHOW PARTITIONS [db_name.]table_name [PARTITION(partition_spec)] [WHERE where_condition] [ORDER BY col_list] [LIMIT rows];   -- (Note: Hive 4.0.0 and later)
 
 </code></pre><p><strong>Example:</strong></p>
 <pre tabindex=0><code>SHOW PARTITIONS databaseFoo.tableBar LIMIT 10;                                                               -- (Note: Hive 4.0.0 and later)
@@ -1356,20 +1356,20 @@ SHOW PARTITIONS databaseFoo.tableBar PARTITION(ds='2010-03-03') WHERE hr &gt;= 1
 SHOW PARTITIONS databaseFoo.tableBar WHERE hr &gt;= 10 AND ds='2010-03-03' ORDER BY hr DESC LIMIT 10;           -- (Note: Hive 4.0.0 and later)
 </code></pre><p>Note: Please use <em>hr >= 10</em>  instead of <em>hr - 10 >= 0</em>   to filter the results, as Metastore would not push the latter predicate down into the underlying storage.</p>
 <h4 id=show-tablepartition-extended>Show Table/Partition Extended</h4>
-<pre tabindex=0><code>SHOW TABLE EXTENDED [IN|FROM database\_name] LIKE 'identifier\_with\_wildcards' [PARTITION(partition\_spec)];
+<pre tabindex=0><code>SHOW TABLE EXTENDED [IN|FROM database_name] LIKE 'identifier_with_wildcards' [PARTITION(partition_spec)];
 
 </code></pre><p>SHOW TABLE EXTENDED will list information for all tables matching the given regular expression. Users cannot use regular expression for table name if a partition specification is present. This command&rsquo;s output includes basic table information and file system information like totalNumberFiles, totalFileSize, maxFileSize, minFileSize,lastAccessTime, and lastUpdateTime. If partition is present, it will output the given partition&rsquo;s file system information instead of table&rsquo;s file system information.</p>
 <p><strong>Example</strong></p>
-<pre tabindex=0><code>hive&gt; show table extended like part\_table;
+<pre tabindex=0><code>hive&gt; show table extended like part_table;
 OK
-tableName:part\_table
+tableName:part_table
 owner:thejas
-location:file:/tmp/warehouse/part\_table
+location:file:/tmp/warehouse/part_table
 inputformat:org.apache.hadoop.mapred.TextInputFormat
 outputformat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
 columns:struct columns { i32 i}
 partitioned:true
-partitionColumns:struct partition\_columns { string d}
+partitionColumns:struct partition_columns { string d}
 totalNumberFiles:1
 totalFileSize:2
 maxFileSize:2
@@ -1388,30 +1388,30 @@ SHOW TBLPROPERTIES tblname(&quot;foo&quot;);
 <h4 id=show-create-table>Show Create Table</h4>
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-967>Hive 0.10</a>.</p>
-<pre tabindex=0><code>SHOW CREATE TABLE ([db\_name.]table\_name|view\_name);
+<pre tabindex=0><code>SHOW CREATE TABLE ([db_name.]table_name|view_name);
 
 </code></pre><p>SHOW CREATE TABLE shows the CREATE TABLE statement that creates a given table, or the CREATE VIEW statement that creates a given view.</p>
 <h4 id=show-indexes>Show Indexes</h4>
 <p>Version information</p>
 <p>As of Hive 0.7.</p>
 <p>Indexing Is Removed since 3.0! See <a href=https://hive.apache.org/docs/latest/indexdev_27362104/>Indexes design document</a></p>
-<pre tabindex=0><code>SHOW [FORMATTED] (INDEX|INDEXES) ON table\_with\_index [(FROM|IN) db\_name];
+<pre tabindex=0><code>SHOW [FORMATTED] (INDEX|INDEXES) ON table_with_index [(FROM|IN) db_name];
 
 </code></pre><p>SHOW INDEXES shows all of the indexes on a certain column, as well as information about them: index name, table name, names of the columns used as keys, index table name, index type, and comment. If the FORMATTED keyword is used, then column titles are printed for each column.</p>
 <h3 id=show-columns>Show Columns</h3>
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-2909>Hive 0.10</a>.</p>
-<pre tabindex=0><code>SHOW COLUMNS (FROM|IN) table\_name [(FROM|IN) db\_name];
+<pre tabindex=0><code>SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name];
 
 </code></pre><p>SHOW COLUMNS shows all the columns in a table including partition columns.</p>
 <p>Version information</p>
-<pre tabindex=0><code>SHOW COLUMNS (FROM|IN) table\_name [(FROM|IN) db\_name]  [ LIKE 'pattern_with_wildcards'];
+<pre tabindex=0><code>SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name]  [ LIKE 'pattern_with_wildcards'];
 </code></pre><p>Added in Hive 3.0 by <a href=https://issues.apache.org/jira/browse/HIVE-18373>HIVE-18373</a>.</p>
 <p><code>SHOW COLUMNS</code> lists all the columns in the table with names matching the optional regular expression. Wildcards in the regular expression can only be &lsquo;<em>&rsquo; for any character(s) or &lsquo;|&rsquo; for a choice. Examples are &lsquo;cola&rsquo;, &lsquo;col</em>&rsquo;, &lsquo;<em>a|col</em>&rsquo;, all which will match the &lsquo;cola&rsquo; column. Matching columns are listed in alphabetical order. It is not an error if no matching columns are found in table. If no regular expression is given then all columns in the selected table are listed.</p>
 <p><strong>Examples</strong></p>
 <pre tabindex=0><code>-- SHOW COLUMNS
-CREATE DATABASE test\_db;
-USE test\_db;
+CREATE DATABASE test_db;
+USE test_db;
 CREATE TABLE foo(col1 INT, col2 INT, col3 INT, cola INT, colb INT, colc INT, a INT, b INT, c INT);
  
 -- SHOW COLUMNS basic syntax
@@ -1420,8 +1420,8 @@ SHOW COLUMNS FROM foo &quot;*&quot;;                        -- show all column i
 SHOW COLUMNS IN foo &quot;col*&quot;;                       -- show columns in foo starting with &quot;col&quot;                 OUTPUT col1,col2,col3,cola,colb,colc
 SHOW COLUMNS FROM foo '*c';                       -- show columns in foo ending with &quot;c&quot;                     OUTPUT c,colc
 SHOW COLUMNS FROM foo LIKE &quot;col1|cola&quot;;           -- show columns in foo either col1 or cola                 OUTPUT col1,cola
-SHOW COLUMNS FROM foo FROM test\_db LIKE 'col*';   -- show columns in foo starting with &quot;col&quot;                 OUTPUT col1,col2,col3,cola,colb,colc
-SHOW COLUMNS IN foo IN test\_db LIKE 'col*';       -- show columns in foo starting with &quot;col&quot; (FROM/IN same)  OUTPUT col1,col2,col3,cola,colb,colc
+SHOW COLUMNS FROM foo FROM test_db LIKE 'col*';   -- show columns in foo starting with &quot;col&quot;                 OUTPUT col1,col2,col3,cola,colb,colc
+SHOW COLUMNS IN foo IN test_db LIKE 'col*';       -- show columns in foo starting with &quot;col&quot; (FROM/IN same)  OUTPUT col1,col2,col3,cola,colb,colc
  
 -- Non existing column pattern resulting in no match
 SHOW COLUMNS IN foo &quot;nomatch*&quot;;
@@ -1445,11 +1445,11 @@ SHOW COLUMNS IN foo &quot;nomatch&quot;;
 <li><a href=#show-principals>SHOW PRINCIPALS</a></li>
 </ul>
 <h3 id=show-locks>Show Locks</h3>
-<pre tabindex=0><code>SHOW LOCKS &lt;table\_name&gt;;
-SHOW LOCKS &lt;table\_name&gt; EXTENDED;
-SHOW LOCKS &lt;table\_name&gt; PARTITION (&lt;partition\_spec&gt;);
-SHOW LOCKS &lt;table\_name&gt; PARTITION (&lt;partition\_spec&gt;) EXTENDED;
-SHOW LOCKS (DATABASE|SCHEMA) database\_name;     -- (Note: Hive 0.13.0 and later; SCHEMA added in Hive 0.14.0)
+<pre tabindex=0><code>SHOW LOCKS &lt;table_name&gt;;
+SHOW LOCKS &lt;table_name&gt; EXTENDED;
+SHOW LOCKS &lt;table_name&gt; PARTITION (&lt;partition_spec&gt;);
+SHOW LOCKS &lt;table_name&gt; PARTITION (&lt;partition_spec&gt;) EXTENDED;
+SHOW LOCKS (DATABASE|SCHEMA) database_name;     -- (Note: Hive 0.13.0 and later; SCHEMA added in Hive 0.14.0)
 </code></pre><p>SHOW LOCKS displays the locks on a table or partition. See <a href=https://hive.apache.org/docs/latest/locking_27362050/>Hive Concurrency Model</a> for information about locks.</p>
 <p>SHOW LOCKS (DATABASE|SCHEMA) is supported from Hive 0.13 for DATABASE (see <a href=https://issues.apache.org/jira/browse/HIVE-2093>HIVE-2093</a>) and Hive 0.14 for SCHEMA (see <a href=https://issues.apache.org/jira/browse/HIVE-6601>HIVE-6601</a>). SCHEMA and DATABASE are interchangeable – they mean the same thing.</p>
 <p>When <a href=https://hive.apache.org/docs/latest/hive-transactions_40509723/>Hive transactions</a> are being used, SHOW LOCKS returns this information (see <a href=https://issues.apache.org/jira/browse/HIVE-6460>HIVE-6460</a>):</p>
@@ -1482,7 +1482,7 @@ SHOW LOCKS (DATABASE|SCHEMA) database\_name;     -- (Note: Hive 0.13.0 and later
 <h3 id=show-conf>Show Conf</h3>
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-6037>Hive 0.14.0</a>.</p>
-<pre tabindex=0><code>SHOW CONF &lt;configuration\_name&gt;;
+<pre tabindex=0><code>SHOW CONF &lt;configuration_name&gt;;
 </code></pre><p>SHOW CONF returns a description of the specified <a href=https://hive.apache.org/docs/latest/configuration-properties_27842758/>configuration property</a>.</p>
 <ul>
 <li>default value</li>
@@ -1506,7 +1506,7 @@ SHOW LOCKS (DATABASE|SCHEMA) database\_name;     -- (Note: Hive 0.13.0 and later
 <h3 id=show-compactions>Show Compactions</h3>
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-6460>Hive 0.13.0</a> (see <a href=#hive-transactions>Hive Transactions</a>).</p>
-<pre tabindex=0><code>SHOW COMPACTIONS [DATABASE.][TABLE] [PARTITION (&lt;partition\_spec&gt;)] [POOL\_NAME] [TYPE] [STATE] [ORDER BY `start` DESC] [LIMIT 10];
+<pre tabindex=0><code>SHOW COMPACTIONS [DATABASE.][TABLE] [PARTITION (&lt;partition_spec&gt;)] [POOL_NAME] [TYPE] [STATE] [ORDER BY `start` DESC] [LIMIT 10];
 </code></pre><p><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-SHOWCOMPACTIONS>SHOW COMPACTIONS</a> returns a list of all compaction requests currently being <a href=#processed>processed</a> or scheduled, including this information:</p>
 <ul>
 <li>&ldquo;CompactionId&rdquo; - unique internal id (As of <a href=https://issues.apache.org/jira/browse/HIVE-16084>Hive 3.0</a>)</li>
@@ -1553,7 +1553,7 @@ SHOW COMPACTIONS tbl0
 SHOW COMPACTIONS compactionid =1
  — show all compactions with given compaction ID
 
-SHOW COMPACTIONS db1.tbl0 PARTITION (p=101,day='Monday') POOL 'pool0' TYPE 'minor' STATUS 'ready for clean' ORDER BY cq\_table DESC, cq\_state LIMIT 42
+SHOW COMPACTIONS db1.tbl0 PARTITION (p=101,day='Monday') POOL 'pool0' TYPE 'minor' STATUS 'ready for clean' ORDER BY cq_table DESC, cq_state LIMIT 42
  — show all compactions from specific database/table filtered based on pool name/type.state/status and ordered with given clause
 </code></pre><p>Compactions are initiated automatically, but can also be initiated manually with an <a href=#alter-table-compact-statement>ALTER TABLE COMPACT statement</a>.</p>
 <h2 id=describe>Describe</h2>
@@ -1571,12 +1571,12 @@ SHOW COMPACTIONS db1.tbl0 PARTITION (p=101,day='Monday') POOL 'pool0' TYPE 'mino
 <h3 id=describe-database>Describe Database</h3>
 <p>Version information</p>
 <p>As of Hive 0.7.</p>
-<pre tabindex=0><code>DESCRIBE DATABASE [EXTENDED] db\_name;
-DESCRIBE SCHEMA [EXTENDED] db\_name;     -- (Note: Hive 1.1.0 and later)
+<pre tabindex=0><code>DESCRIBE DATABASE [EXTENDED] db_name;
+DESCRIBE SCHEMA [EXTENDED] db_name;     -- (Note: Hive 1.1.0 and later)
 </code></pre><p>DESCRIBE DATABASE shows the name of the database, its comment (if one has been set), and its root location on the filesystem. The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. DESCRIBE SCHEMA is added in Hive 1.1.0 (<a href=https://issues.apache.org/jira/browse/HIVE-8803>HIVE-8803</a>).</p>
 <p>EXTENDED also shows the <a href=#database-properties>database properties</a>.</p>
 <h3 id=describe-dataconnector>Describe Dataconnector</h3>
-<pre tabindex=0><code>DESCRIBE CONNECTOR [EXTENDED] connector\_name;
+<pre tabindex=0><code>DESCRIBE CONNECTOR [EXTENDED] connector_name;
 </code></pre><p>Since Hive 4.0.0 via <a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a></p>
 <p>DESCRIBE CONNECTOR shows the name of the connector, its comment (if one has been set), and its datasource URL and datasource type. </p>
 <p>EXTENDED also shows the dataconnector&rsquo;s properties. Any clear-text passwords set will be shown in clear text as well.</p>
@@ -1584,11 +1584,11 @@ DESCRIBE SCHEMA [EXTENDED] db\_name;     -- (Note: Hive 1.1.0 and later)
 <p>There are two formats for the describe table/view/materialized view/column syntax, depending on whether or not the database is specified.</p>
 <p>If the database is not specified, the optional column information is provided after a dot:</p>
 <pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED]  
-  table\_name[.col\_name ( [.field\_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
+  table_name[.col_name ( [.field_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
                                         -- (Note: Hive 1.x.x and 0.x.x only. See &quot;Hive 2.0+: New Syntax&quot; below)
 </code></pre><p>If the database is specified, the optional column information is provided after a space:</p>
 <pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED]  
-  [db\_name.]table\_name[ col\_name ( [.field\_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
+  [db_name.]table_name[ col_name ( [.field_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
                                         -- (Note: Hive 1.x.x and 0.x.x only. See &quot;Hive 2.0+: New Syntax&quot; below)
 </code></pre><p>DESCRIBE shows the list of columns including partition columns for the given table. If the EXTENDED keyword is specified then it will show all the metadata for the table in Thrift serialized form. This is generally only useful for debugging and not for general use. If the FORMATTED keyword is specified, then it will show the metadata in a tabular format.</p>
 <p>Note: DESCRIBE EXTENDED shows the number of rows only if statistics were gathered when the data was loaded (see <a href=#newly-created-tables>Newly Created Tables</a>), and if the Hive CLI is used instead of a Thrift client or Beeline. <a href=https://issues.apache.org/jira/browse/HIVE-6285>HIVE-6285</a> will address this issue. Although ANALYZE TABLE gathers statistics after the data has been loaded (see <a href=#existing-tables>Existing Tables</a>), it does not currently provide information about the number of rows.</p>
@@ -1606,63 +1606,63 @@ DESCRIBE SCHEMA [EXTENDED] db\_name;     -- (Note: Hive 1.1.0 and later)
 <p>Version information</p>
 <p>As of Hive 0.14.0; see <a href=https://issues.apache.org/jira/browse/HIVE-7050>HIVE-7050</a> and <a href=https://issues.apache.org/jira/browse/HIVE-7051>HIVE-7051</a>. (The FOR COLUMNS option of ANALYZE TABLE is available as of <a href=https://issues.apache.org/jira/browse/HIVE-1362>Hive 0.10.0</a>.)</p>
 <p>ANALYZE TABLE <em>table_name</em> COMPUTE STATISTICS FOR COLUMNS will compute column statistics for all columns in the specified table (and for all partitions if the table is partitioned). To view the gathered column statistics, the following statements can be used:</p>
-<pre tabindex=0><code>DESCRIBE FORMATTED [db\_name.]table\_name column\_name;                              -- (Note: Hive 0.14.0 and later)
-DESCRIBE FORMATTED [db\_name.]table\_name column\_name PARTITION (partition\_spec);   -- (Note: Hive 0.14.0 to 1.x.x)
+<pre tabindex=0><code>DESCRIBE FORMATTED [db_name.]table_name column_name;                              -- (Note: Hive 0.14.0 and later)
+DESCRIBE FORMATTED [db_name.]table_name column_name PARTITION (partition_spec);   -- (Note: Hive 0.14.0 to 1.x.x)
                                                                                   -- (see &quot;Hive 2.0+: New Syntax&quot; below)
 </code></pre><p>See <a href=#statistics-in-hive:-existing-tables>Statistics in Hive: Existing Tables</a> for more information about the ANALYZE TABLE command.</p>
 <h3 id=describe-partition>Describe Partition</h3>
 <p>There are two formats for the describe partition syntax, depending on whether or not the database is specified.</p>
 <p>If the database is not specified, the optional column information is provided after a dot:</p>
-<pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED] table\_name[.column\_name] PARTITION partition\_spec;
+<pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED] table_name[.column_name] PARTITION partition_spec;
                                         -- (Note: Hive 1.x.x and 0.x.x only. See &quot;Hive 2.0+: New Syntax&quot; below)
 </code></pre><p>If the database is specified, the optional column information is provided after a space:</p>
-<pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED] [db\_name.]table\_name [column\_name] PARTITION partition\_spec;
+<pre tabindex=0><code>DESCRIBE [EXTENDED|FORMATTED] [db_name.]table_name [column_name] PARTITION partition_spec;
                                         -- (Note: Hive 1.x.x and 0.x.x only. See &quot;Hive 2.0+: New Syntax&quot; below)
 </code></pre><p>This statement lists metadata for a given partition. The output is similar to that of DESCRIBE table_name. Presently, the column information associated with a particular partition is not used while preparing plans. As of Hive 1.2 (<a href=https://issues.apache.org/jira/browse/HIVE-10307>HIVE-10307</a>), the partition column values specified in <em>partition_spec</em> are type validated, converted and normalized to their column types when <a href=#hive-typecheck-on-insert>hive.typecheck.on.insert</a> is set to true (default). These values can be number literals.</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>hive&gt; show partitions part\_table;
+<pre tabindex=0><code>hive&gt; show partitions part_table;
 OK
 d=abc
 
-hive&gt; DESCRIBE extended part\_table partition (d='abc');
+hive&gt; DESCRIBE extended part_table partition (d='abc');
 OK
 i                       int                                         
 d                       string                                      
                  
 # Partition Information          
-# col\_name              data\_type               comment             
+# col_name              data_type               comment             
                  
 d                       string                                      
                  
-Detailed Partition Information  Partition(values:[abc], dbName:default, tableName:part\_table, createTime:1459382234, lastAccessTime:0, sd:StorageDescriptor(cols:[FieldSchema(name:i, type:int, comment:null), FieldSchema(name:d, type:string, comment:null)], location:file:/tmp/warehouse/part\_table/d=abc, inputFormat:org.apache.hadoop.mapred.TextInputFormat, outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=1}), bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), parameters:{numFiles=1, COLUMN\_STATS\_ACCURATE=true, transient\_lastDdlTime=1459382234, numRows=1, totalSize=2, rawDataSize=1})   
+Detailed Partition Information  Partition(values:[abc], dbName:default, tableName:part_table, createTime:1459382234, lastAccessTime:0, sd:StorageDescriptor(cols:[FieldSchema(name:i, type:int, comment:null), FieldSchema(name:d, type:string, comment:null)], location:file:/tmp/warehouse/part_table/d=abc, inputFormat:org.apache.hadoop.mapred.TextInputFormat, outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=1}), bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), parameters:{numFiles=1, COLUMN_STATS_ACCURATE=true, transient_lastDdlTime=1459382234, numRows=1, totalSize=2, rawDataSize=1})   
 Time taken: 0.325 seconds, Fetched: 9 row(s)
 
-hive&gt; DESCRIBE formatted part\_table partition (d='abc');
+hive&gt; DESCRIBE formatted part_table partition (d='abc');
 OK
-# col\_name              data\_type               comment             
+# col_name              data_type               comment             
                  
 i                       int                                         
                  
 # Partition Information          
-# col\_name              data\_type               comment             
+# col_name              data_type               comment             
                  
 d                       string                                      
                  
 # Detailed Partition Information                 
 Partition Value:        [abc]                    
 Database:               default                  
-Table:                  part\_table               
+Table:                  part_table               
 CreateTime:             Wed Mar 30 16:57:14 PDT 2016     
 LastAccessTime:         UNKNOWN                  
 Protect Mode:           None                     
-Location:               file:/tmp/warehouse/part\_table/d=abc     
+Location:               file:/tmp/warehouse/part_table/d=abc     
 Partition Parameters:            
-        COLUMN\_STATS\_ACCURATE   true                
+        COLUMN_STATS_ACCURATE   true                
         numFiles                1                   
         numRows                 1                   
         rawDataSize             1                   
         totalSize               2                   
-        transient\_lastDdlTime   1459382234          
+        transient_lastDdlTime   1459382234          
                  
 # Storage Information            
 SerDe Library:          org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe       
@@ -1680,7 +1680,7 @@ Time taken: 0.334 seconds, Fetched: 35 row(s)
 <p>Hive 2.0+: New syntax</p>
 <p>In Hive 2.0 release onward, the describe table command has a syntax change which is backward incompatible. See <a href=https://issues.apache.org/jira/browse/HIVE-12184>HIVE-12184</a> for details.</p>
 <pre tabindex=0><code>DESCRIBE [EXTENDED | FORMATTED]
-    [db\_name.]table\_name [PARTITION partition\_spec] [col\_name ( [.field\_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
+    [db_name.]table_name [PARTITION partition_spec] [col_name ( [.field_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
 
 </code></pre><p>Warning: The new syntax could break current scripts.</p>
 <ul>
@@ -1688,8 +1688,8 @@ Time taken: 0.334 seconds, Fetched: 35 row(s)
 <li>Optional partition_spec has to appear after the table_name but prior to the optional column_name. In the previous syntax, column_name appears in between table_name and partition_spec.</li>
 </ul>
 <p><strong>Examples:</strong></p>
-<pre tabindex=0><code>DESCRIBE FORMATTED default.src\_table PARTITION (part\_col = 100) columnA;
-DESCRIBE default.src\_thrift lintString.$elem$.myint;
+<pre tabindex=0><code>DESCRIBE FORMATTED default.src_table PARTITION (part_col = 100) columnA;
+DESCRIBE default.src_thrift lintString.$elem$.myint;
 </code></pre><h2 id=abort>Abort</h2>
 <ul>
 <li><a href=#abort-transactions>Abort Transactions</a></li>

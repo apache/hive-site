@@ -195,12 +195,12 @@ ASF
 <p>Previously all files for a partition (or a table if the table is not partitioned) lived in a single directory.  With these changes, any partitions (or tables) written with an ACID aware writer will have a directory for the base files and a directory for each set of delta files.  Here is what this may look like for an unpartitioned table &ldquo;t&rdquo;:</p>
 <p><strong>Filesystem Layout for Table &ldquo;t&rdquo;</strong></p>
 <pre tabindex=0><code>hive&gt; dfs -ls -R /user/hive/warehouse/t;
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:03 /user/hive/warehouse/t/base\_0000022
--rw-r--r--   1 ekoifman staff        602 2016-06-09 17:03 /user/hive/warehouse/t/base\_0000022/bucket\_00000
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:06 /user/hive/warehouse/t/delta\_0000023\_0000023\_0000
--rw-r--r--   1 ekoifman staff        611 2016-06-09 17:06 /user/hive/warehouse/t/delta\_0000023\_0000023\_0000/bucket\_00000
-drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t/delta\_0000024\_0000024\_0000
--rw-r--r--   1 ekoifman staff        610 2016-06-09 17:07 /user/hive/warehouse/t/delta\_0000024\_0000024\_0000/bucket\_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:03 /user/hive/warehouse/t/base_0000022
+-rw-r--r--   1 ekoifman staff        602 2016-06-09 17:03 /user/hive/warehouse/t/base_0000022/bucket_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:06 /user/hive/warehouse/t/delta_0000023_0000023_0000
+-rw-r--r--   1 ekoifman staff        611 2016-06-09 17:06 /user/hive/warehouse/t/delta_0000023_0000023_0000/bucket_00000
+drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t/delta_0000024_0000024_0000
+-rw-r--r--   1 ekoifman staff        610 2016-06-09 17:07 /user/hive/warehouse/t/delta_0000024_0000024_0000/bucket_00000
 </code></pre><h3 id=compactor>Compactor</h3>
 <p>Compactor is a set of background processes running inside the Metastore to support ACID system.  It consists of Initiator, Worker, Cleaner, AcidHouseKeeperService and a few others.</p>
 <h4 id=delta-file-compaction>Delta File Compaction</h4>
@@ -613,7 +613,7 @@ drwxr-xr-x   - ekoifman staff          0 2016-06-09 17:07 /user/hive/warehouse/t
 <p>Table properties are set with the TBLPROPERTIES clause when a table is created or altered, as described in the <a href=#create-table>Create Table</a> and <a href=#alter-table-properties>Alter Table Properties</a> sections of Hive Data Definition Language. The &ldquo;<code>transactional</code>&rdquo; and &ldquo;<code>NO_AUTO_COMPACTION</code>&rdquo; table properties are case-insensitive.</p>
 <p>More compaction related options can be set via TBLPROPERTIES. They can be set at both table-level via <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Create/Drop/TruncateTable>CREATE TABLE</a>, and on request-level via <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable/PartitionCompact>ALTER TABLE/PARTITION COMPACT</a>.  These are used to override the Warehouse/table wide settings.  For example, to override an MR property to affect a compaction job, one can add &ldquo;compactor.=&rdquo; in either CREATE TABLE statement or when launching a compaction explicitly via ALTER TABLE.  The &ldquo;=&rdquo; will be set on JobConf of the compaction MR job. Similarly, &ldquo;tblprops.=&rdquo; can be used to set/override any table property which is interpreted by the code running on the cluster.  Finally, &ldquo;compactorthreshold.=&rdquo; can be used to override properties from the &ldquo;New Configuration Parameters for Transactions&rdquo; table above that end with &ldquo;.threshold&rdquo; and control when compactions are triggered by the system.  Examples:</p>
 <p><strong>Example: Set compaction options in TBLPROPERTIES at table level</strong></p>
-<pre tabindex=0><code>CREATE TABLE table\_name (
+<pre tabindex=0><code>CREATE TABLE table_name (
   id                int,
   name              string
 )
@@ -625,9 +625,9 @@ TBLPROPERTIES (&quot;transactional&quot;=&quot;true&quot;,
                                                                    -- size of base files is greater than 50%
 );
 </code></pre><p><strong>Example: Set compaction options in TBLPROPERTIES at request level</strong></p>
-<pre tabindex=0><code>ALTER TABLE table\_name COMPACT 'minor' 
+<pre tabindex=0><code>ALTER TABLE table_name COMPACT 'minor' 
    WITH OVERWRITE TBLPROPERTIES (&quot;compactor.mapreduce.map.memory.mb&quot;=&quot;3072&quot;);  -- specify compaction map job properties
-ALTER TABLE table\_name COMPACT 'major'
+ALTER TABLE table_name COMPACT 'major'
    WITH OVERWRITE TBLPROPERTIES (&quot;tblprops.orc.compress.size&quot;=&quot;8192&quot;);         -- change any other Hive table properties
 </code></pre><h1 id=talks-and-presentations>Talks and Presentations</h1>
 <p><a href="https://youtu.be/h62Bhe78jW0?t=1953">The Art of Compaction</a> by Kokila N at a Cloudera meetup.</p>

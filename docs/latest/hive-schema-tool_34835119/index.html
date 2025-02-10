@@ -182,7 +182,7 @@ usage: schemaTool
 <li>Initialize to current schema for a new Hive setup:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -initSchema
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Starting metastore schema initialization to 0.13.0
@@ -194,7 +194,7 @@ schemaTool completed
 <li>Get schema information:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Hive distribution version:       0.13.0
@@ -205,7 +205,7 @@ schemaTool completed
 <li>Attempt to get schema information with older metastore:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Hive distribution version:       0.13.0
@@ -217,7 +217,7 @@ org.apache.hadoop.hive.metastore.HiveMetaException: Failed to get schema version
 <li>Upgrade schema from an 0.10.0 release by specifying the &lsquo;from&rsquo; version:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -upgradeSchemaFrom 0.10.0
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Starting upgrade metastore schema from version 0.10.0 to 0.13.0

@@ -131,37 +131,37 @@ ASF
 <ol>
 <li>Create a connector first.</li>
 </ol>
-<pre tabindex=0><code>    CREATE CONNECTOR hiveserver\_connector TYPE 'hivejdbc' URL 'jdbc:hive2://&lt;maskedhost&gt;:10000'   
+<pre tabindex=0><code>    CREATE CONNECTOR hiveserver_connector TYPE 'hivejdbc' URL 'jdbc:hive2://&lt;maskedhost&gt;:10000'   
      WITH DCPROPERTIES (&quot;hive.sql.dbcp.username&quot;=&quot;hive&quot;, &quot;hive.sql.dbcp.password&quot;=&quot;hive&quot;);  
   
 
 </code></pre><ol start=2>
 <li>Create a database of type REMOTE in hive using the connector from Step 1. This maps a remote database named &ldquo;<code>*default*</code>&rdquo; to a hive database named &ldquo;<em><code>hiveserver_remote</code></em>&rdquo; in hive.</li>
 </ol>
-<pre tabindex=0><code>         CREATE REMOTE DATABASE hiveserver\_remote USING hiveserver\_connector   
+<pre tabindex=0><code>         CREATE REMOTE DATABASE hiveserver_remote USING hiveserver_connector   
          WITH DBPROPERTIES (&quot;connector.remoteDbName&quot;=&quot;default&quot;);  
      
    3. Use the tables in REMOTE database much like the JDBC-storagehandler based tables in hive. One big difference   
       is that the metadata for these tables are never persisted in hive. Currently, create/alter/drop table DDLs   
       are not supported in REMOTE databases.   
   
-     0: jdbc:hive2://localhost:10000&gt; USE hiveserver\_remote;
-</code></pre><p><code>0: jdbc:hive2://localhost:10000> **describe formatted test\_emr\_tbl;**</code></p>
+     0: jdbc:hive2://localhost:10000&gt; USE hiveserver_remote;
+</code></pre><p><code>0: jdbc:hive2://localhost:10000> **describe formatted test_emr_tbl;**</code></p>
 <pre tabindex=0><code>+-------------------------------+-------------------------------------------------+----------------------------------------------------+  
-|           col\_name            |                    data\_type                    |                      comment                       |  
+|           col_name            |                    data_type                    |                      comment                       |  
 +-------------------------------+-------------------------------------------------+----------------------------------------------------+  
 | tblkey                        | int                                             | from deserializer                                  |  
 | descr                         | string                                          | from deserializer                                  |  
 |                               | NULL                                            | NULL                                               |  
 | # Detailed Table Information  | NULL                                            | NULL                                               |  
-| Database:                     | emr\_db                                          | NULL                                               |  
+| Database:                     | emr_db                                          | NULL                                               |  
 | OwnerType:                    | USER                                            | NULL                                               |  
 | Owner:                        | null                                            | NULL                                               |  
 | CreateTime:                   | UNKNOWN                                         | NULL                                               |  
 | LastAccessTime:               | UNKNOWN                                         | NULL                                               |  
 | Retention:                    | 0                                               | NULL                                               |  
-| Location:                     | [file:/tmp/hive/warehouse/external/test\_emr\_tbl](http://file/tmp/hive/warehouse/external/test_emr_tbl)  | NULL                                               |  
-| Table Type:                   | EXTERNAL\_TABLE                                  | NULL                                               |  
+| Location:                     | [file:/tmp/hive/warehouse/external/test_emr_tbl](http://file/tmp/hive/warehouse/external/test_emr_tbl)  | NULL                                               |  
+| Table Type:                   | EXTERNAL_TABLE                                  | NULL                                               |  
 | Table Parameters:             | NULL                                            | NULL                                               |  
 |                               | EXTERNAL                                        | TRUE                                               |  
 |                               | hive.sql.database.type                          | HIVE                                               |  
@@ -170,8 +170,8 @@ ASF
 |                               | hive.sql.jdbc.driver                            | org.apache.hive.jdbc.HiveDriver                    |  
 |                               | hive.sql.jdbc.url                               | jdbc:hive2://&lt;maskedIP&gt;.compute-1.amazonaws.com:10000 |  
 |                               | hive.sql.schema                                 | default                                            |  
-|                               | hive.sql.table                                  | test\_emr\_tbl                                       |  
-|                               | storage\_handler                                 | org.apache.hive.storage.jdbc.JdbcStorageHandler    |  
+|                               | hive.sql.table                                  | test_emr_tbl                                       |  
+|                               | storage_handler                                 | org.apache.hive.storage.jdbc.JdbcStorageHandler    |  
 |                               | NULL                                            | NULL                                               |  
 | # Storage Information         | NULL                                            | NULL                                               |  
 | SerDe Library:                | org.apache.hive.storage.jdbc.JdbcSerDe          | NULL                                               |  
@@ -187,15 +187,15 @@ ASF
 </code></pre><p><code>33 rows selected (6.099 seconds)</code></p>
 <pre tabindex=0><code>    4. Offload the remote table to local cluster, run CTAS (example below pulls in all the data into the local table,   
        but you can pull in select columns and rows by applying predicates)
-</code></pre><p><code>0: jdbc:hive2://localhost:10000> **create table default.emr\_clone as select * from test\_emr\_tbl;**</code></p>
-<p><code>INFO  : Completed executing command(queryId=ngangam\_20240129182608\_db20e2bb-1db3-473f-9564-0d81b01228bc); Time taken: 6.492 seconds</code></p>
+</code></pre><p><code>0: jdbc:hive2://localhost:10000> **create table default.emr_clone as select * from test_emr_tbl;**</code></p>
+<p><code>INFO  : Completed executing command(queryId=ngangam_20240129182608_db20e2bb-1db3-473f-9564-0d81b01228bc); Time taken: 6.492 seconds</code></p>
 <p><code>INFO  : OK</code></p>
 <p><code>2 rows affected (14.802 seconds)</code></p>
-<p><strong><code>0: jdbc:hive2://localhost:10000> select count(*) from default.emr\_clone;</code></strong></p>
-<p><code>INFO  : Completed executing command(queryId=ngangam\_20240129182647\_7544c9d1-c68b-4a34-b6b0-910945a1dba5); Time taken: 2.344 seconds</code></p>
+<p><strong><code>0: jdbc:hive2://localhost:10000> select count(*) from default.emr_clone;</code></strong></p>
+<p><code>INFO  : Completed executing command(queryId=ngangam_20240129182647_7544c9d1-c68b-4a34-b6b0-910945a1dba5); Time taken: 2.344 seconds</code></p>
 <p><code>INFO  : OK</code></p>
 <pre tabindex=0><code>     +------+  
-     | \_c0  |  
+     | _c0  |  
      +------+  
      | 2    |  
      +------+
@@ -207,7 +207,7 @@ ASF
 <p>INFO  : Completed executing command(queryId=ngangam_20240129191217_79b9e874-197d-4c31-8164-1ec2397bbff7); Time taken: 0.001 seconds</p>
 <p>INFO  : OK</p>
 <pre tabindex=0><code>     +----------------------+---------------------+  
-     | test\_emr\_tbl.tblkey  | test\_emr\_tbl.descr  |  
+     | test_emr_tbl.tblkey  | test_emr_tbl.descr  |  
      +----------------------+---------------------+  
      | 2                    | test 2              |  
      +----------------------+---------------------+

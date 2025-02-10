@@ -202,24 +202,24 @@ ASF
 </table>
 <h2 id=example>Example</h2>
 <h3 id=curl-command>Curl Command</h3>
-<pre tabindex=0><code>% curl -s -d rename=test\_table\_2 \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ekoifman'
+<pre tabindex=0><code>% curl -s -d rename=test_table_2 \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ekoifman'
 
 </code></pre><p>Version information</p>
 <p>Prior to Hive 0.13.0, user.name was specified in POST requests as a form parameter: <code>curl -d user.name=*&lt;user>*</code>.</p>
 <p>In <a href=https://issues.apache.org/jira/browse/HIVE-6576>Hive 0.13.0</a> onward, user.name should be specified in the query string (as shown above): <code>'http://.../templeton/v1/ddl/...?user.name=*&lt;name>*'</code>. Specifying user.name as a form parameter is deprecated.</p>
 <h3 id=json-output>JSON Output</h3>
 <pre tabindex=0><code>{
- &quot;table&quot;: &quot;test\_table\_2&quot;,
+ &quot;table&quot;: &quot;test_table_2&quot;,
  &quot;database&quot;: &quot;default&quot;
 }
 
 </code></pre><h3 id=json-output-error>JSON Output (error)</h3>
 <pre tabindex=0><code>{
-  &quot;error&quot;: &quot;Table test\_table does not exist&quot;,
+  &quot;error&quot;: &quot;Table test_table does not exist&quot;,
   &quot;errorCode&quot;: 404,
   &quot;database&quot;: &quot;default&quot;,
-  &quot;table&quot;: &quot;test\_table\_2&quot;
+  &quot;table&quot;: &quot;test_table_2&quot;
 }
 
 </code></pre><p><strong>Navigation Links</strong>

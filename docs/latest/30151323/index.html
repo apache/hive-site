@@ -200,7 +200,7 @@ Support for SQL <em>grouping</em> function was added in Hive 2.3.0 too (see <a h
 </tbody>
 </table>
 <p>The following query:</p>
-<pre tabindex=0><code>SELECT key, value, GROUPING\_\_ID, count(*)
+<pre tabindex=0><code>SELECT key, value, GROUPING__ID, count(*)
 FROM T1
 GROUP BY key, value WITH ROLLUP;
 </code></pre><p>will have the following results:</p>
@@ -289,7 +289,7 @@ For the third row, both the columns are being selected (and the second column h
 <h3 id=grouping-function>Grouping function</h3>
 <p>The grouping function indicates whether an expression in a GROUP BY clause is aggregated or not for a given row. The value 0 represents a column that is part of the grouping set, while the value 1 represents a column that is not part of the grouping set. </p>
 <p>Going back to our example above, consider the following query:</p>
-<pre tabindex=0><code>SELECT key, value, GROUPING\_\_ID,
+<pre tabindex=0><code>SELECT key, value, GROUPING__ID,
   grouping(key, value), grouping(value, key), grouping(key), grouping(value),
   count(*)
 FROM T1
@@ -441,7 +441,7 @@ assumption that the orginal group by will reduce the data size.</p>
 <h3 id=grouping__id-function-before-hive-230>Grouping__ID function (before Hive 2.3.0)</h3>
 <p>Grouping__ID function was fixed in Hive 2.3.0, thus behavior before that release is different (this is expected). For each column, the function would return a value of &ldquo;0&rdquo; iif that column has been aggregated in that row, otherwise the value is &ldquo;1&rdquo;.</p>
 <p>Hence the following query:</p>
-<pre tabindex=0><code>SELECT key, value, GROUPING\_\_ID, count(*)
+<pre tabindex=0><code>SELECT key, value, GROUPING__ID, count(*)
 FROM T1
 GROUP BY key, value WITH ROLLUP;
 </code></pre><p>will have the following results.</p>

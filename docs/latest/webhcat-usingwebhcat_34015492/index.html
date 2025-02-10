@@ -169,12 +169,12 @@ Hive version 0.11.0 is the first release that includes HCatalog and its REST API
 <h4 id=specifying-username>Specifying user.name</h4>
 <p>The user.name parameter is part of POST parameters for POST calls, and part of the URL for other calls.</p>
 <p>For example, to specify user.name in a GET :table command:</p>
-<pre tabindex=0><code>% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table?user.name=ctdean'
+<pre tabindex=0><code>% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table?user.name=ctdean'
 
 </code></pre><p>And to specify user.name in a POST :table command:</p>
 <pre tabindex=0><code>% curl -s -d user.name=ctdean \
-       -d rename=test\_table\_2 \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table'
+       -d rename=test_table_2 \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table'
 
 </code></pre><h3 id=security-error-response>Security Error Response</h3>
 <p>If the user.name parameter is not supplied when required, the following error will be returned:</p>

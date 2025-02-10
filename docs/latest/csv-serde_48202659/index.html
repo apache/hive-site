@@ -133,7 +133,7 @@ ASF
 <p>This SerDe works for most CSV data, but does not handle embedded newlines. To use the SerDe, specify the fully qualified class name org.apache.hadoop.hive.serde2.OpenCSVSerde.  </p>
 <p>Documentation is based on original documentation at <a href=https://github.com/ogrodnek/csv-serde>https://github.com/ogrodnek/csv-serde</a>.</p>
 <p><strong>Create table, specify CSV properties</strong></p>
-<pre tabindex=0><code>CREATE TABLE my\_table(a string, b string, ...)
+<pre tabindex=0><code>CREATE TABLE my_table(a string, b string, ...)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
    &quot;separatorChar&quot; = &quot;\t&quot;,
@@ -142,9 +142,9 @@ WITH SERDEPROPERTIES (
 )   
 STORED AS TEXTFILE;
 </code></pre><p><strong>Default separator, quote, and escape characters if unspecified</strong></p>
-<pre tabindex=0><code>DEFAULT\_ESCAPE\_CHARACTER \
-DEFAULT\_QUOTE\_CHARACTER  &quot;
-DEFAULT\_SEPARATOR        ,
+<pre tabindex=0><code>DEFAULT_ESCAPE_CHARACTER \
+DEFAULT_QUOTE_CHARACTER  &quot;
+DEFAULT_SEPARATOR        ,
 </code></pre><p>For general information about SerDes, see <a href=#hive-serde>Hive SerDe</a> in the Developer Guide. Also see <a href=https://hive.apache.org/docs/latest/serde_27362059/>SerDe</a> for details about input and output processing.</p>
 <h3 id=versions>Versions</h3>
 <p>The CSVSerde has been built and tested against Hive 0.14 and later, and uses <a href=http://opencsv.sourceforge.net/>Open-CSV</a> 2.3 which is bundled with the Hive distribution.</p>

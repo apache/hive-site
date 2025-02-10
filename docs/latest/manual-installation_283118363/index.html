@@ -168,9 +168,9 @@ brew untap adoptopenjdk/openjdk
 <pre tabindex=0><code>mvn -version
 Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
 Maven home: /Users/yourusername/programs/apache-maven-3.6.3
-Java version: 1.8.0\_292, vendor: AdoptOpenJDK, runtime: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
-Default locale: en\_HU, platform encoding: UTF-8
-OS name: &quot;mac os x&quot;, version: &quot;10.16&quot;, arch: &quot;x86\_64&quot;, family: &quot;mac&quot;
+Java version: 1.8.0_292, vendor: AdoptOpenJDK, runtime: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre
+Default locale: en_HU, platform encoding: UTF-8
+OS name: &quot;mac os x&quot;, version: &quot;10.16&quot;, arch: &quot;x86_64&quot;, family: &quot;mac&quot;
 </code></pre><p>As you can see, even if it is an arm processor, maven thinks the architecture is Intel based.</p>
 <h3 id=protobuf>Protobuf</h3>
 <p>You have to download and compile protobuf. And also, install it into the local maven repository. Protobuf 2.5.0 is not ready for ARM. On this chipset, you will need to do some extra steps.</p>
@@ -180,9 +180,9 @@ cd protobuf-2.5.0
 ./configure
 </code></pre><p>On ARM, edit the src/google/protobuf/stubs/platform_macros.h and add arm to the part, processor architecture detection, after the last elif branch: <br>
  </p>
-<pre tabindex=0><code>#elif defined(\_\_arm64\_\_)
-#define GOOGLE\_PROTOBUF\_ARCH\_ARM 1
-#define GOOGLE\_PROTOBUF\_ARCH\_64\_BIT 1
+<pre tabindex=0><code>#elif defined(__arm64__)
+#define GOOGLE_PROTOBUF_ARCH_ARM 1
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
 </code></pre><p>Now, you can compile and install protobuf:</p>
 <pre tabindex=0><code>make
 make check
@@ -192,7 +192,7 @@ sudo make install
 </code></pre><h3 id=hadoop>Hadoop</h3>
 <p>Firstly, move through the instructions on the official documentation, single-node, pseudo-distributed configuration: <a href=https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Pseudo-Distributed_Operation>https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Pseudo-Distributed_Operation</a>.</p>
 <p>After that, set up HADOOP_HOME:</p>
-<pre tabindex=0><code>export HADOOP\_HOME=/yourpathtohadoop/hadoop-3.3.6
+<pre tabindex=0><code>export HADOOP_HOME=/yourpathtohadoop/hadoop-3.3.6
 </code></pre><h3 id=tez>Tez</h3>
 <p>Tez will require some additional steps. Hadoop uses a tez tarball but it expects it in other compressed directory structure than it is released. So we will extract the tarball and compress again. And also, we will put the extracted jars into hdfs. After that we set the necessary environment variables.</p>
 <p>Download tez, extract and re-compress the tar: </p>
@@ -201,15 +201,15 @@ tar -xzvf apache-tez-0.10.3-bin.tar.gz
 cd apache-tez-0.10.3-bin
 tar zcvf ../apache-tez-0.10.3-bin.tar.gz * &amp;&amp; cd ..
 </code></pre><p>Add the necessary tez files to hdfs</p>
-<pre tabindex=0><code>$HADOOP\_HOME/sbin/start-dfs.sh	# start hdfs
-$HADOOP\_HOME/bin/hadoop fs -mkdir -p /apps/tez
-$HADOOP\_HOME/bin/hadoop fs -put apache-tez-0.10.3-bin.tar.gz /apps/tez # copy the tarball
-$HADOOP\_HOME/bin/hadoop fs -put apache-tez-0.10.3-bin /apps/tez # copy the whole folder
-$HADOOP\_HOME/bin/hadoop fs -ls /apps/tez # verify
-$HADOOP\_HOME/sbin/stop-all.sh # stop hdfs
+<pre tabindex=0><code>$HADOOP_HOME/sbin/start-dfs.sh	# start hdfs
+$HADOOP_HOME/bin/hadoop fs -mkdir -p /apps/tez
+$HADOOP_HOME/bin/hadoop fs -put apache-tez-0.10.3-bin.tar.gz /apps/tez # copy the tarball
+$HADOOP_HOME/bin/hadoop fs -put apache-tez-0.10.3-bin /apps/tez # copy the whole folder
+$HADOOP_HOME/bin/hadoop fs -ls /apps/tez # verify
+$HADOOP_HOME/sbin/stop-all.sh # stop hdfs
 </code></pre><p>Set up TEZ_HOME and HADOOP_CLASSPATH environment variables</p>
-<pre tabindex=0><code>export TEZ\_HOME=/yourpathtotez/apache-tez-0.10.3-bin
-export HADOOP\_CLASSPATH=$TEZ\_HOME/*:$TEZ\_HOME/conf
+<pre tabindex=0><code>export TEZ_HOME=/yourpathtotez/apache-tez-0.10.3-bin
+export HADOOP_CLASSPATH=$TEZ_HOME/*:$TEZ_HOME/conf
 </code></pre><p>Create a new config file for Tez: $TEZ_HOME/conf/tez-site.xml</p>
 <pre tabindex=0><code>&lt;configuration&gt;
     &lt;property&gt;
@@ -236,13 +236,13 @@ export HADOOP\_CLASSPATH=$TEZ\_HOME/*:$TEZ\_HOME/conf
     &lt;/property&gt;
 &lt;/configuration&gt;
 </code></pre><p>Modify $HADOOP_HOME/<strong>etc/hadoop/hadoop-env.sh</strong></p>
-<pre tabindex=0><code># JAVA\_HOME
-export JAVA\_HOME=/yourpathtojavahome/javahome
+<pre tabindex=0><code># JAVA_HOME
+export JAVA_HOME=/yourpathtojavahome/javahome
 # tez
-export TEZ\_CONF\_DIR=/yourpathtotezconf/conf
-export TEZ\_JARS=/yourpathtotez/apache-tez-0.10.3-bin
-export HADOOP\_CLASSPATH=${TEZ\_CONF\_DIR}:${TEZ\_JARS}/*:${TEZ\_JARS}/lib/*:${HADOOP\_CLASSPATH}:
-${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
+export TEZ_CONF_DIR=/yourpathtotezconf/conf
+export TEZ_JARS=/yourpathtotez/apache-tez-0.10.3-bin
+export HADOOP_CLASSPATH=${TEZ_CONF_DIR}:${TEZ_JARS}/*:${TEZ_JARS}/lib/*:${HADOOP_CLASSPATH}:
+${JAVA_JDBC_LIBS}:${MAPREDUCE_LIBS}
 </code></pre><p>Modify $HADOOP_HOME/<strong>etc/hadoop/mapred-site.xml</strong></p>
 <pre tabindex=0><code>&lt;configuration&gt;
     &lt;property&gt;
@@ -251,7 +251,7 @@ ${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
     &lt;/property&gt;
     &lt;property&gt;
         &lt;name&gt;mapreduce.application.classpath&lt;/name&gt;
-        &lt;value&gt;$HADOOP\_CLASSPATH:$HADOOP\_HOME/share/hadoop/mapreduce/*:$HADOOP\_MAPRED\_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;
+        &lt;value&gt;$HADOOP_CLASSPATH:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*&lt;/value&gt;
     &lt;/property&gt;
 &lt;/configuration&gt;
 </code></pre><p>Modify $HADOOP_HOME/<strong>etc/hadoop/yarn-site.xml</strong></p>
@@ -259,11 +259,11 @@ ${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
 &lt;!-- Site specific YARN configuration properties --&gt;
   &lt;property&gt;
     &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
-    &lt;value&gt;mapreduce\_shuffle&lt;/value&gt;
+    &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
   &lt;/property&gt;
   &lt;property&gt;
     &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;
-    &lt;value&gt;JAVA\_HOME,HADOOP\_COMMON\_HOME,HADOOP\_HDFS\_HOME,HADOOP\_CONF\_DIR,CLASSPATH\_PREPEND\_DISTCACHE,HADOOP\_YARN\_HOME,HADOOP\_HOME,PATH,LANG,TZ,HADOOP\_MAPRED\_HOME&lt;/value&gt;
+    &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME&lt;/value&gt;
   &lt;/property&gt;
     &lt;property&gt;
     &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;
@@ -280,9 +280,9 @@ ${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
 &lt;/configuration&gt;
 </code></pre><p>Start hadoop</p>
 <p>If you already started hadoop before, stop it. As we configured yarn and map-reduce, we have to restart it and make sure yarn is running:</p>
-<pre tabindex=0><code>$HADOOP\_HOME/sbin/stop-all.sh
+<pre tabindex=0><code>$HADOOP_HOME/sbin/stop-all.sh
 </code></pre><p>And start hadoop:</p>
-<pre tabindex=0><code>$HADOOP\_HOME/sbin/start-all.sh
+<pre tabindex=0><code>$HADOOP_HOME/sbin/start-all.sh
 </code></pre><h2 id=installing-hive-from-a-tarball>Installing Hive from a Tarball</h2>
 <p>Start by downloading the most recent stable release of Hive from one of the Apache download mirrors (see <a href=https://hive.apache.org/downloads.html>Hive Releases</a>).</p>
 <p>Next you need to unpack the tarball. This will result in the creation of a subdirectory named <code>hive-x.y.z</code> (where <code>x.y.z</code> is the release number):</p>
@@ -290,9 +290,9 @@ ${JAVA\_JDBC\_LIBS}:${MAPREDUCE\_LIBS}
 tar -xzvf apache-hive-4.0.0-bin.tar.gz 
 </code></pre><p>Set the environment variable <code>HIVE_HOME</code> to point to the installation directory:</p>
 <pre tabindex=0><code>cd apache-hive-4.0.0-bin
-export HIVE\_HOME=/yourpathtohive/apache-hive-4.0.0-bin 
+export HIVE_HOME=/yourpathtohive/apache-hive-4.0.0-bin 
 </code></pre><p>Add <code>$HIVE_HOME/bin</code> to your <code>PATH</code>:</p>
-<pre tabindex=0><code>export PATH=$HIVE\_HOME/bin:$PATH
+<pre tabindex=0><code>export PATH=$HIVE_HOME/bin:$PATH
 </code></pre><p>Create a directory for external tables: </p>
 <pre tabindex=0><code>mkdir /yourpathtoexternaltables/warehouse
 </code></pre><p>Create a new config file for Hive: $HIVE_HOME/conf/hive-site.xml</p>
@@ -328,12 +328,12 @@ export HIVE\_HOME=/yourpathtohive/apache-hive-4.0.0-bin
     &lt;/property&gt;
 &lt;/configuration&gt;
 </code></pre><p>Initialize metastore schema. It will create a directore called metastore_db. It contains an embedded Derby database for metastore</p>
-<pre tabindex=0><code>$HIVE\_HOME/bin/schematool -dbType derby -initSchema --verbose
+<pre tabindex=0><code>$HIVE_HOME/bin/schematool -dbType derby -initSchema --verbose
 </code></pre><p>Run HiveServer2</p>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hiveserver2
+<pre tabindex=0><code>$HIVE_HOME/bin/hiveserver2
 </code></pre><p><strong>Note</strong>: you can check if it is running in Hive Server web ui: <a href=http://localhost:10002/>http://localhost:10002/</a></p>
 <p>Run beeline:</p>
-<pre tabindex=0><code>$HIVE\_HOME/bin/beeline -u 'jdbc:hive2://localhost:10000/' -n yourusername
+<pre tabindex=0><code>$HIVE_HOME/bin/beeline -u 'jdbc:hive2://localhost:10000/' -n yourusername
 </code></pre><p>As a test, create a table insert some value</p>
 <pre tabindex=0><code>create table test (message string);
 insert into test values ('Hello, from Hive!');

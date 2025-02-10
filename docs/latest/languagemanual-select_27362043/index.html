@@ -131,13 +131,13 @@ ASF
 <p><a href=https://hive.apache.org/docs/latest/languagemanual-groupby_27362038/>GROUP BY</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-sortby_27362045/>SORT/ORDER/CLUSTER/DISTRIBUTE BY</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-joins_27362039/>JOIN</a> (<a href=https://hive.apache.org/docs/latest/languagemanual-joins_27362039/>Hive Joins</a>, <a href=https://hive.apache.org/docs/latest/languagemanual-joinoptimization_33293167/>Join Optimization</a>, <a href=https://hive.apache.org/docs/latest/outerjoinbehavior_35749927/>Outer Join Behavior</a>); <a href=https://hive.apache.org/docs/latest/languagemanual-union_27362049/>UNION</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-sampling_27362042/>TABLESAMPLE</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-subqueries_27362044/>Subqueries</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-virtualcolumns_27362048/>Virtual Columns</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-udf_27362046/>Operators and UDFs</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-lateralview_27362040/>LATERAL VIEW</a>; <a href=https://hive.apache.org/docs/latest/languagemanual-windowingandanalytics_31819589/>Windowing, OVER, and Analytics</a>; <a href=https://hive.apache.org/docs/latest/common-table-expression_38572242/>Common Table Expressions</a></p>
 <h2 id=select-syntax>Select Syntax</h2>
 <pre tabindex=0><code>[WITH CommonTableExpression (, CommonTableExpression)*]    (Note: Only available starting with Hive 0.13.0)
-SELECT [ALL | DISTINCT] select\_expr, select\_expr, ...
-  FROM table\_reference
-  [WHERE where\_condition]
-  [GROUP BY col\_list]
-  [ORDER BY col\_list]
-  [CLUSTER BY col\_list
-    | [DISTRIBUTE BY col\_list] [SORT BY col\_list]
+SELECT [ALL | DISTINCT] select_expr, select_expr, ...
+  FROM table_reference
+  [WHERE where_condition]
+  [GROUP BY col_list]
+  [ORDER BY col_list]
+  [CLUSTER BY col_list
+    | [DISTRIBUTE BY col_list] [SORT BY col_list]
   ]
  [LIMIT [offset,] rows]
 
@@ -157,16 +157,16 @@ SELECT [ALL | DISTINCT] select\_expr, select\_expr, ...
 </code></pre><p>Note</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-4144>Hive 0.13.0</a>, FROM is optional (for example, <code>SELECT 1+1</code>).</p>
 <ul>
-<li>To get the current database (as of <a href=https://issues.apache.org/jira/browse/HIVE-4144>Hive 0.13.0</a>), use the <a href=#current\_database---function>current_database() function</a>:</li>
+<li>To get the current database (as of <a href=https://issues.apache.org/jira/browse/HIVE-4144>Hive 0.13.0</a>), use the <a href=#current_database---function>current_database() function</a>:</li>
 </ul>
-<pre tabindex=0><code>SELECT current\_database()
+<pre tabindex=0><code>SELECT current_database()
 </code></pre><ul>
 <li>To specify a database, either qualify the table names with database names ("<code>db_name.table_name</code>" starting in <a href=https://issues.apache.org/jira/browse/HIVE-1517>Hive 0.7</a>) or issue the <a href=#use-statement>USE statement</a> before the query statement (starting in <a href=https://issues.apache.org/jira/browse/HIVE-675>Hive 0.6</a>).</li>
 </ul>
 <p>&ldquo;<code>db_name.table_name</code>&rdquo; allows a query to access tables in different databases.</p>
 <p>USE sets the database for all subsequent HiveQL statements. Reissue it with the keyword &ldquo;<code>default</code>&rdquo; to reset to the default database.</p>
-<pre tabindex=0><code>USE database\_name;
-SELECT query\_specifications;
+<pre tabindex=0><code>USE database_name;
+SELECT query_specifications;
 USE default;
 </code></pre><h3 id=where-clause>WHERE Clause</h3>
 <p>The WHERE condition is a <a href=https://hive.apache.org/docs/latest/languagemanual-types_27838462/>boolean</a> expression. For example, the following query returns only those sales records which have an amount greater than 10 from the US region. Hive supports a number of <a href=https://hive.apache.org/docs/latest/languagemanual-udf_27362046/>operators and UDFs</a> in the WHERE clause:</p>
@@ -191,14 +191,14 @@ hive&gt; SELECT DISTINCT col1 FROM t1
 </code></pre><p>ALL and DISTINCT can also be used in a UNION clause – see <a href=#union-syntax>Union Syntax</a> for more information.</p>
 <h3 id=partition-based-queries>Partition Based Queries</h3>
 <p>In general, a SELECT query scans the entire table (other than for <a href=https://hive.apache.org/docs/latest/languagemanual-sampling_27362042/>sampling</a>). If a table created using the <a href=#partitioned-by>PARTITIONED BY</a> clause, a query can do <strong>partition pruning</strong> and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.</p>
-<pre tabindex=0><code>    SELECT page\_views.*
-    FROM page\_views
-    WHERE page\_views.date &gt;= '2008-03-01' AND page\_views.date &lt;= '2008-03-31'
+<pre tabindex=0><code>    SELECT page_views.*
+    FROM page_views
+    WHERE page_views.date &gt;= '2008-03-01' AND page_views.date &lt;= '2008-03-31'
 
 </code></pre><p>If a table page_views is joined with another table dim_users, you can specify a range of partitions in the ON clause as follows:</p>
-<pre tabindex=0><code>    SELECT page\_views.*
-    FROM page\_views JOIN dim\_users
-      ON (page\_views.user\_id = dim\_users.id AND page\_views.date &gt;= '2008-03-01' AND page\_views.date &lt;= '2008-03-31')
+<pre tabindex=0><code>    SELECT page_views.*
+    FROM page_views JOIN dim_users
+      ON (page_views.user_id = dim_users.id AND page_views.date &gt;= '2008-03-01' AND page_views.date &lt;= '2008-03-31')
 
 </code></pre><ul>
 <li>See also <a href=https://hive.apache.org/docs/latest/partition-filter-syntax_103092177/>Partition Filter Syntax</a>.</li>
@@ -221,10 +221,10 @@ hive&gt; SELECT DISTINCT col1 FROM t1
 <p>The following query returns 5 arbitrary customers</p>
 <pre tabindex=0><code>SELECT * FROM customers LIMIT 5
 </code></pre><p>The following query returns the first 5 customers to be created</p>
-<pre tabindex=0><code>SELECT * FROM customers ORDER BY create\_date LIMIT 5
+<pre tabindex=0><code>SELECT * FROM customers ORDER BY create_date LIMIT 5
 </code></pre><p> </p>
 <p>The following query returns the  3rd to the 7th customers to be created</p>
-<pre tabindex=0><code>SELECT * FROM customers ORDER BY create\_date LIMIT 2,5
+<pre tabindex=0><code>SELECT * FROM customers ORDER BY create_date LIMIT 2,5
 </code></pre><h3 id=regex-column-specification>REGEX Column Specification</h3>
 <p>A SELECT statement can take regex-based column specification in Hive releases prior to 0.13.0, or in 0.13.0 and later releases if the configuration property <code>[hive.support.quoted.identifiers](#hive-support-quoted-identifiers)</code> is set to <code>none</code>. </p>
 <ul>

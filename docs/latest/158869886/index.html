@@ -186,7 +186,7 @@ public GetTableResponse getTable(GetTableRequest grpcTableRequest) {
   // convertToThriftRequest is implemented by a different library, not in Hive code
   Table thriftGetTableRequest = convertToThriftRequest(grpcTableRequest);
   // Result is a Thrift API object    
-  GetTableResult result = HiveMetaStoreThriftServer.get\_table(thriftTable);
+  GetTableResult result = HiveMetaStoreThriftServer.get_table(thriftTable);
   return convertToThriftResponse(result);
 }
 

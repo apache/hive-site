@@ -127,7 +127,7 @@ ASF
 <ul>
 <li><a href=#rewrite-countdistinctx>Rewrite COUNT(DISTINCT(X))</a></li>
 <li><a href=#rewrite-percentile_discp-withing-grouporder-by-x>Rewrite percentile_disc(p) withing group(order by x)</a></li>
-<li><a href=#rewrite-cume\_dist---over--order-by-id->Rewrite cume_dist() over (order by id)</a></li>
+<li><a href=#rewrite-cume_dist---over--order-by-id->Rewrite cume_dist() over (order by id)</a></li>
 <li><a href=#rewrite-ntile>Rewrite NTILE</a></li>
 <li><a href=#rewrite-rank>Rewrite RANK</a></li>
 </ul>
@@ -234,66 +234,66 @@ The BI mode is about making rewrites automatically to sketch functions if possib
 <p>This feature can be toggled using the <strong>hive.optimize.bi.rewrite.countdistinct.enabled</strong> conf key</p>
 <p>The used distinct sketch family can be configured using: <strong>hive.optimize.bi.rewrite.countdistinct.sketch</strong> (currently only hll is available).</p>
 <p>This feature could rewrite</p>
-<pre tabindex=0><code>select category, count(distinct id) from sketch\_input group by category
+<pre tabindex=0><code>select category, count(distinct id) from sketch_input group by category
 </code></pre><p>to use a distinct count sketch to answer the query by rewriting it to</p>
-<pre tabindex=0><code>select category, round(ds\_hll\_estimate(ds\_hll\_sketch(id))) from sketch\_input
+<pre tabindex=0><code>select category, round(ds_hll_estimate(ds_hll_sketch(id))) from sketch_input
 </code></pre><h2 id=rewrite-percentile_discp-withing-grouporder-by-x>Rewrite percentile_disc(p) withing group(order by x)</h2>
 <p>This feature can be toggled using the<strong>hive.optimize.bi.rewrite.percentile_disc.enabled</strong> conf key</p>
 <p>The used histogram sketch family can be configured using: <strong>hive.optimize.bi.rewrite.percentile_disc.sketch</strong> (currently only kll is available).</p>
 <p>This feature could rewrite</p>
-<pre tabindex=0><code>select percentile\_disc(0.3) within group(order by id) from sketch\_input
+<pre tabindex=0><code>select percentile_disc(0.3) within group(order by id) from sketch_input
 </code></pre><p>to use a histogram sketch to answer the query by rewriting to</p>
-<pre tabindex=0><code>select ds\_kll\_quantile(ds\_kll\_sketch(id), 0.3) from sketch\_input
+<pre tabindex=0><code>select ds_kll_quantile(ds_kll_sketch(id), 0.3) from sketch_input
 </code></pre><h2 id=rewritecume_dist-over-order-by-id>Rewrite cume_dist() over (order by id)</h2>
 <p>This feature can be toggled using the**<a href=http://hive.optimize.bi>hive.optimize.bi</a>.rewrite.cume_dist.enabled** conf key</p>
 <p>The used histogram sketch family can be configured using: <a href=http://hive.optimize.bi>hive.optimize.bi</a>.rewrite.cume_dist.sketch (currently only kll is available).</p>
-<pre tabindex=0><code>select id,cume\_dist() over (order by id) from sketch\_input
+<pre tabindex=0><code>select id,cume_dist() over (order by id) from sketch_input
 </code></pre><p>to use a histogram sketch to answer the query by rewriting to</p>
-<pre tabindex=0><code>SELECT id, CAST(DS\_KLL\_RANK(t2.sketch, idVal) AS DOUBLE) 
-FROM (SELECT id, CAST(COALESCE(CAST(id AS FLOAT), 340282346638528860000000000000000000000) AS FLOAT) AS idVal FROM sketch\_input) AS t,
-(SELECT DS\_KLL\_SKETCH(CAST(`id` AS FLOAT)) AS `sketch` FROM sketch\_input) AS t2
+<pre tabindex=0><code>SELECT id, CAST(DS_KLL_RANK(t2.sketch, idVal) AS DOUBLE) 
+FROM (SELECT id, CAST(COALESCE(CAST(id AS FLOAT), 340282346638528860000000000000000000000) AS FLOAT) AS idVal FROM sketch_input) AS t,
+(SELECT DS_KLL_SKETCH(CAST(`id` AS FLOAT)) AS `sketch` FROM sketch_input) AS t2
 </code></pre><h2 id=rewrite-ntile>Rewrite NTILE</h2>
 <p>This feature can be toggled using the <strong><a href=http://hive.optimize.bi>hive.optimize.bi</a>.rewrite.ntile.enabled</strong> conf key</p>
 <p>The used histogram sketch family can be configured using: <a href=http://hive.optimize.bi>hive.optimize.bi</a>.rewrite.ntile.sketch (currently only kll is available).</p>
 <p>This feature can rewrite</p>
 <pre tabindex=0><code>select id,
        ntile(4) over (order by id
-from sketch\_input
+from sketch_input
 order by id
 </code></pre><p>To use a histogram sketch to calculate the NTILE&rsquo;s value:</p>
 <pre tabindex=0><code>select id,
-        case when ceil(ds\_kll\_cdf(ds, CAST(id AS FLOAT) )[0]*4) &lt; 1 then 1 else ceil(ds\_kll\_cdf(ds, CAST(id AS FLOAT) )[0]*4) end
-from sketch\_input
-join ( select ds\_kll\_sketch(cast(id as float)) as ds from sketch\_input ) q
+        case when ceil(ds_kll_cdf(ds, CAST(id AS FLOAT) )[0]*4) &lt; 1 then 1 else ceil(ds_kll_cdf(ds, CAST(id AS FLOAT) )[0]*4) end
+from sketch_input
+join ( select ds_kll_sketch(cast(id as float)) as ds from sketch_input ) q
 order by id
 
 select id,
                 rank() over (order by id),
-                case when ds\_kll\_n(ds) &lt; (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) then ds\_kll\_n(ds) else (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) end
+                case when ds_kll_n(ds) &lt; (ceil(ds_kll_rank(ds, CAST(id AS FLOAT) )*ds_kll_n(ds))+1) then ds_kll_n(ds) else (ceil(ds_kll_rank(ds, CAST(id AS FLOAT) )*ds_kll_n(ds))+1) end
 
 </code></pre><h2 id=rewrite-rank>Rewrite RANK</h2>
 <p>This feature can be toggled using the <strong>hive.optimize.bi.rewrite.rank.enabled</strong> conf key</p>
 <p>The used histogram sketch family can be configured using: <strong>hive.optimize.bi.rewrite.rank.sketch</strong> (currently only kll is available).</p>
 <pre tabindex=0><code>select id,
        rank() over (order by id)
-from sketch\_input
+from sketch_input
 order by id
 </code></pre><p>is rewritten to</p>
 <pre tabindex=0><code>select id,
-       case when ds\_kll\_n(ds) &lt; (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) then ds\_kll\_n(ds) else (ceil(ds\_kll\_rank(ds, CAST(id AS FLOAT) )*ds\_kll\_n(ds))+1) end
-from sketch\_input
-join ( select ds\_kll\_sketch(cast(id as float)) as ds from sketch\_input ) q
+       case when ds_kll_n(ds) &lt; (ceil(ds_kll_rank(ds, CAST(id AS FLOAT) )*ds_kll_n(ds))+1) then ds_kll_n(ds) else (ceil(ds_kll_rank(ds, CAST(id AS FLOAT) )*ds_kll_n(ds))+1) end
+from sketch_input
+join ( select ds_kll_sketch(cast(id as float)) as ds from sketch_input ) q
 order by id
 </code></pre><h1 id=examples>Examples</h1>
 <h2 id=simple-distinct-counting-examples-using-hll>Simple distinct counting examples using HLL</h2>
 <ul>
 <li>Prepare sample table</li>
 </ul>
-<pre tabindex=0><code>create table sketch\_input (id int, category char(1))
+<pre tabindex=0><code>create table sketch_input (id int, category char(1))
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
-insert into table sketch\_input values
+insert into table sketch_input values
   (1,'a'),(1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
   (6,'b'),(6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b')
 ; 
@@ -303,41 +303,41 @@ insert into table sketch\_input values
 </li>
 </ul>
 <pre tabindex=0><code>-- build sketches per category
-create temporary table sketch\_intermediate (category char(1), sketch binary);
-insert into sketch\_intermediate select category, ds\_hll\_sketch(id) from sketch\_input group by category;
+create temporary table sketch_intermediate (category char(1), sketch binary);
+insert into sketch_intermediate select category, ds_hll_sketch(id) from sketch_input group by category;
 
 -- get unique count estimates per category
-select category, ds\_hll\_estimate(sketch) from sketch\_intermediate;
+select category, ds_hll_estimate(sketch) from sketch_intermediate;
 
 -- union sketches across categories and get overall unique count estimate
-select ds\_hll\_estimate(ds\_hll\_union(sketch)) from sketch\_intermediate;
+select ds_hll_estimate(ds_hll_union(sketch)) from sketch_intermediate;
 </code></pre><ul>
 <li>
 <h3 id=use-hll-to-compute-distinct-values-without-intermediate-table>Use HLL to compute distinct values without intermediate table</h3>
 </li>
 </ul>
-<pre tabindex=0><code>select category, ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input group by category;
-select ds\_hll\_estimate(ds\_hll\_sketch(id)) from sketch\_input;
+<pre tabindex=0><code>select category, ds_hll_estimate(ds_hll_sketch(id)) from sketch_input group by category;
+select ds_hll_estimate(ds_hll_sketch(id)) from sketch_input;
 </code></pre><ul>
 <li>
 <h3 id=use-hll-to-compute-distinct-values-transparently-thru-bi-mode>Use HLL to compute distinct values transparently thru BI mode</h3>
 </li>
 </ul>
 <pre tabindex=0><code>set hive.optimize.bi.enabled=true;
-select category,count(distinct id) from sketch\_input group by category;
-select count(distinct id) from sketch\_input;
+select category,count(distinct id) from sketch_input group by category;
+select count(distinct id) from sketch_input;
 </code></pre><ul>
 <li>
 <h3 id=use-hll-to-compute-distinct-values-transparently-thru-bi-mode---while-utilizing-a-materialized-view-to-store-the-intermediate-sketches>Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.</h3>
 </li>
 </ul>
 <pre tabindex=0><code>-- create an MV to store precomputed HLL values
-create  materialized view mv\_1 as
-  select category, ds\_hll\_sketch(id) from sketch\_input group by category;
+create  materialized view mv_1 as
+  select category, ds_hll_sketch(id) from sketch_input group by category;
 
 set hive.optimize.bi.enabled=true;
-select category,count(distinct id) from sketch\_input group by category;
-select count(distinct id) from sketch\_input;
+select category,count(distinct id) from sketch_input group by category;
+select count(distinct id) from sketch_input;
 </code></pre>
 </div>
 </div>

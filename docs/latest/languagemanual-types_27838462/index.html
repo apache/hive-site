@@ -401,7 +401,7 @@ All existing datetime <a href=#udfs>UDFs</a> (month, day, year, hour, etc.) wor
 </code></pre><p>For usage, see <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-FloatingPointTypes">LanguageManual Types#Floating Point Types</a> in the Literals section below.</p>
 <h4 id=decimal-literals>Decimal Literals</h4>
 <p>Integral literals larger than BIGINT must be handled with Decimal(38,0). The Postfix BD is required. Example:</p>
-<pre tabindex=0><code>select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my\_table limit 1;
+<pre tabindex=0><code>select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my_table limit 1;
 </code></pre><h4 id=decimal-type-incompatibilities-between-hive-0120-and-0130>Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0</h4>
 <p>With the changes in the Decimal data type in Hive 0.13.0, the pre-Hive 0.13.0 columns (of type &ldquo;decimal&rdquo;) will be treated as being of type decimal(10,0).  What this means is that existing data being read from these tables will be treated as 10-digit integer values, and data being written to these tables will be converted to 10-digit integer values before being written. To avoid these issues, Hive users on 0.12 or earlier with tables containing Decimal columns will be required to migrate their tables, after upgrading to Hive 0.13.0 or later.</p>
 <h5 id=upgrading-pre-hive-0130-decimal-columns>Upgrading Pre-Hive 0.13.0 Decimal Columns</h5>
@@ -410,7 +410,7 @@ All existing datetime <a href=#udfs>UDFs</a> (month, day, year, hour, etc.) wor
 <li>Determine what precision/scale you would like to set for the decimal column in the table.</li>
 <li>For each decimal column in the table, update the column definition to the desired precision/scale using the <a href=#alter-table>ALTER TABLE</a> command:</li>
 </ol>
-<pre tabindex=0><code>ALTER TABLE foo CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+<pre tabindex=0><code>ALTER TABLE foo CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 </code></pre><p>If the table is not a partitioned table, then you are done.  If the table has partitions, then go on to step 3.
 3. If the table is a partitioned table, then find the list of partitions for the table:</p>
 <pre tabindex=0><code>SHOW PARTITIONS foo;
@@ -426,18 +426,18 @@ ds=2008-04-08/hr=12
  
 -- hive.exec.dynamic.partition needs to be set to true to enable dynamic partitioning with ALTER PARTITION
 -- This will alter all existing partitions of the table - be sure you know what you are doing!
-ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 </code></pre><p>Alternatively, this can be done one partition at a time using ALTER TABLE CHANGE COLUMN, by specifying one partition per statement (This is available in Hive 0.14 or later, with <a href=https://issues.apache.org/jira/browse/HIVE-7971>HIVE-7971</a>.):</p>
-<pre tabindex=0><code>ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
-ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+<pre tabindex=0><code>ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ...
 </code></pre><p>The Decimal datatype is discussed further in <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27838462#LanguageManualTypes-FloatingPointTypes">Floating Point Types</a> below.</p>
 <h3 id=union-types>Union Types</h3>
 <p>UNIONTYPE support is incomplete</p>
 <p>The UNIONTYPE datatype was introduced in Hive 0.7.0 (<a href=https://issues.apache.org/jira/browse/HIVE-537>HIVE-537</a>), but full support for this type in Hive remains incomplete. Queries that reference UNIONTYPE fields in JOIN (<a href=https://issues.apache.org/jira/browse/HIVE-2508>HIVE-2508</a>), WHERE, and GROUP BY clauses will fail, and Hive does not define syntax to extract the tag or value fields of a UNIONTYPE. This means that UNIONTYPEs are effectively pass-through-only.</p>
 <p>Union types can at any one point hold exactly one of their specified data types. You can create an instance of this type using the <code>create_union</code> UDF:</p>
-<pre tabindex=0><code>CREATE TABLE union\_test(foo UNIONTYPE&lt;int, double, array&lt;string&gt;, struct&lt;a:int,b:string&gt;&gt;);
-SELECT foo FROM union\_test;
+<pre tabindex=0><code>CREATE TABLE union_test(foo UNIONTYPE&lt;int, double, array&lt;string&gt;, struct&lt;a:int,b:string&gt;&gt;);
+SELECT foo FROM union_test;
 
 {0:1}
 {1:2.0}
@@ -450,9 +450,9 @@ SELECT foo FROM union\_test;
 
 </code></pre><p>The first part in the deserialized union is the <em>tag</em> which lets us know which part of the union is being used. In this example <code>0</code> means the first data_type from the definition which is an <code>int</code> and so on.</p>
 <p>To create a union you have to provide this tag to the <code>create_union</code> UDF:</p>
-<pre tabindex=0><code>SELECT create\_union(0, key), create\_union(if(key&lt;100, 0, 1), 2.0, value), create\_union(1, &quot;a&quot;, struct(2, &quot;b&quot;)) FROM src LIMIT 2;
+<pre tabindex=0><code>SELECT create_union(0, key), create_union(if(key&lt;100, 0, 1), 2.0, value), create_union(1, &quot;a&quot;, struct(2, &quot;b&quot;)) FROM src LIMIT 2;
 
-{0:&quot;238&quot;}	{1:&quot;val\_238&quot;}	{1:{&quot;col1&quot;:2,&quot;col2&quot;:&quot;b&quot;}}
+{0:&quot;238&quot;}	{1:&quot;val_238&quot;}	{1:{&quot;col1&quot;:2,&quot;col2&quot;:&quot;b&quot;}}
 {0:&quot;86&quot;}	{0:2.0}	{1:{&quot;col1&quot;:2,&quot;col2&quot;:&quot;b&quot;}}
 
 </code></pre><h2 id=literals>Literals</h2>
@@ -467,17 +467,17 @@ SELECT foo FROM union\_test;
 <p>The precision of a Decimal type is limited to 38 digits in Hive. See <a href=https://issues.apache.org/jira/browse/HIVE-4271>HIVE-4271</a> and <a href=https://issues.apache.org/jira/browse/HIVE-4320>HIVE-4320</a> for comments about the reasons for choosing this limit.</p>
 <h5 id=using-decimal-types>Using Decimal Types</h5>
 <p>You can create a table in Hive that uses the Decimal type with the following syntax:</p>
-<pre tabindex=0><code>create table decimal\_1 (t decimal);
+<pre tabindex=0><code>create table decimal_1 (t decimal);
 
 </code></pre><p>The table <code>decimal_1</code> is a table having one field of type decimal which is basically a Decimal value.</p>
 <p>You can read and write values in such a table using either the LazySimpleSerDe or the LazyBinarySerDe. For example:</p>
-<pre tabindex=0><code>alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe';
+<pre tabindex=0><code>alter table decimal_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe';
 
 </code></pre><p>or:</p>
-<pre tabindex=0><code>alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazyBinarySerDe';
+<pre tabindex=0><code>alter table decimal_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazyBinarySerDe';
 
 </code></pre><p>You can use a cast to convert a Decimal value to any other primitive type such as a BOOLEAN. For example:</p>
-<pre tabindex=0><code>select cast(t as boolean) from decimal\_2;
+<pre tabindex=0><code>select cast(t as boolean) from decimal_2;
 
 </code></pre><h5 id=mathematical-udfs>Mathematical UDFs</h5>
 <p>Decimal also supports many <a href=#arithmetic-operators>arithmetic operators</a>, <a href=#mathematical-udfs>mathematical UDFs</a> and <a href=#udafs>UDAFs</a> with the same syntax as used in the case of DOUBLE.</p>

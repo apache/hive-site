@@ -162,7 +162,7 @@ ASF
 <p>For example, in case of browser the URL will look like</p>
 <pre tabindex=0><code>jdbc:hive2://HiveServer2-host:10001/default;transportMode=http;httpPath=cliservice;auth=browser
 </code></pre><p>A token based URL will look like:</p>
-<pre tabindex=0><code>jdbc:hive2://HiveServer2-host:10001/default;transportMode=http;httpPath=cliservice;auth=token;token=&lt;token\_string&gt;
+<pre tabindex=0><code>jdbc:hive2://HiveServer2-host:10001/default;transportMode=http;httpPath=cliservice;auth=token;token=&lt;token_string&gt;
 </code></pre><p>The Jdbc connection parameters will be passed in over the connection URL. </p>
 <h5 id=sso-mode-url-validations>SSO mode URL validations</h5>
 <p>Driver makes sure that the SSO integration is only allowed when TLS enabled between driver and the server. If the SSL is not enabled, the driver should error out (or optionally warn the users based on a configuration override). Currently, both these modes will only be supported in http mode.</p>

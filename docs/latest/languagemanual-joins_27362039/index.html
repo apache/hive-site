@@ -133,22 +133,22 @@ ASF
 </ul>
 <h2 id=join-syntax>Join Syntax</h2>
 <p>Hive supports the following syntax for joining tables:</p>
-<pre tabindex=0><code>join\_table:
-    table\_reference [INNER] JOIN table\_factor [join\_condition]
-  | table\_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table\_reference join\_condition
-  | table\_reference LEFT SEMI JOIN table\_reference join\_condition
-  | table\_reference CROSS JOIN table\_reference [join\_condition] (as of Hive 0.10)
+<pre tabindex=0><code>join_table:
+    table_reference [INNER] JOIN table_factor [join_condition]
+  | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition
+  | table_reference LEFT SEMI JOIN table_reference join_condition
+  | table_reference CROSS JOIN table_reference [join_condition] (as of Hive 0.10)
 
-table\_reference:
-    table\_factor
-  | join\_table
+table_reference:
+    table_factor
+  | join_table
 
-table\_factor:
-    tbl\_name [alias]
-  | table\_subquery alias
-  | ( table\_references )
+table_factor:
+    tbl_name [alias]
+  | table_subquery alias
+  | ( table_references )
 
-join\_condition:
+join_condition:
     ON expression
 
 </code></pre><p>See <a href=#select-syntax>Select Syntax</a> for the context of this join syntax.</p>
@@ -165,9 +165,9 @@ join\_condition:
 <p>Version 2.2.0+: Complex expressions in ON clause</p>
 <p>Complex expressions in ON clause are supported, starting with Hive 2.2.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-15211>HIVE-15211</a>, <a href=https://issues.apache.org/jira/browse/HIVE-15251>HIVE-15251</a>). Prior to that, Hive did not support join conditions that are not equality conditions.</p>
 <p>In particular, syntax for join conditions was restricted as follows:</p>
-<pre tabindex=0><code>join\_condition:  
-    ON equality\_expression ( AND equality\_expression )*
-</code></pre><pre tabindex=0><code>equality\_expression:  
+<pre tabindex=0><code>join_condition:  
+    ON equality_expression ( AND equality_expression )*
+</code></pre><pre tabindex=0><code>equality_expression:  
     expression = expression
 </code></pre><h2 id=examples>Examples</h2>
 <p>Some salient points to consider when writing join queries are as follows:</p>

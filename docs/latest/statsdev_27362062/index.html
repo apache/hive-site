@@ -427,7 +427,7 @@ set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
 </code></pre><p>Queries can fail to collect stats completely accurately. There is a setting <strong><a href=#hive-stats-reliable>hive.stats.reliable</a></strong> that fails queries if the stats can&rsquo;t be reliably collected. This is <code>false</code> by default.</p>
 <h3 id=existing-tables-analyze>Existing Tables – ANALYZE</h3>
 <p>For existing tables and/or partitions, the user can issue the ANALYZE command to gather statistics and write them into Hive MetaStore. The syntax for that command is described below:</p>
-<pre tabindex=0><code>ANALYZE TABLE [db\_name.]tablename [PARTITION(partcol1[=val1], partcol2[=val2], ...)]  -- (Note: Fully support qualified table name since Hive 1.2.0, see HIVE-10007.)
+<pre tabindex=0><code>ANALYZE TABLE [db_name.]tablename [PARTITION(partcol1[=val1], partcol2[=val2], ...)]  -- (Note: Fully support qualified table name since Hive 1.2.0, see HIVE-10007.)
   COMPUTE STATISTICS 
   [FOR COLUMNS]          -- (Note: Hive 0.10.0 and later.)
   [CACHE METADATA]       -- (Note: Hive 2.1.0 and later.)
@@ -497,22 +497,22 @@ set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
 <pre tabindex=0><code> ... , parameters:{numFiles=4, numRows=500, totalSize=4096, ...}, ....
 
 </code></pre><p>If you issue the command:</p>
-<pre tabindex=0><code>desc formatted concurrent\_delete\_different partition(ds='tomorrow') name;
+<pre tabindex=0><code>desc formatted concurrent_delete_different partition(ds='tomorrow') name;
 
 </code></pre><p>the output would look like this:</p>
 <pre tabindex=0><code>+-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+
-|    col\_name     |     data\_type      |  min  |  max  | num\_nulls  | distinct\_count  | avg\_col\_len  | max\_col\_len  | num\_trues  | num\_falses  | bitvector  | comment  |
+|    col_name     |     data_type      |  min  |  max  | num_nulls  | distinct_count  | avg_col_len  | max_col_len  | num_trues  | num_falses  | bitvector  | comment  |
 +-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+
-| col\_name        | name               | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| data\_type       | varchar(50)        | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| col_name        | name               | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| data_type       | varchar(50)        | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
 | min             |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
 | max             |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| num\_nulls       | 0                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| distinct\_count  | 2                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| avg\_col\_len     | 5.0                | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| max\_col\_len     | 5                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| num\_trues       |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
-| num\_falses      |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_nulls       | 0                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| distinct_count  | 2                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| avg_col_len     | 5.0                | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| max_col_len     | 5                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_trues       |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_falses      |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
 | bitVector       |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
 | comment         | from deserializer  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
 +-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+

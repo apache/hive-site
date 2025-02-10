@@ -178,19 +178,19 @@ There is no ODBC driver available for <a href=https://hive.apache.org/docs/lates
 <p>The ODBC driver is broken on trunk!</p>
 <p>Currently the C++ Thrift client library that the ODBC driver depends on will not build on trunk. This issue is being tracked in <a href=https://issues.apache.org/jira/browse/HIVE-4433>HIVE-4433</a>. If you are using trunk prior to release 0.12 check the status of this ticket before proceeding. Also see <a href=https://issues.apache.org/jira/browse/HIVE-4492>HIVE-4492</a>.
 2. Build the Hive client by running the following command from HIVE_SRC_ROOT. This will compile and copy the libraries and header files to <code>HIVE_SRC_ROOT/build/odbc/</code>. Please keep in mind that all paths should be fully specified (no relative paths). If you encounter an &ldquo;<code>undefined reference to vtables</code>&rdquo; error, make sure that you have specified the absolute path for thrift.home.</p>
-<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT\_HOME&gt;
+<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT_HOME&gt;
  
 </code></pre><p>MVN:</p>
 <pre tabindex=0><code>$ cd odbc
 $ mvn compile -Podbc,hadoop-1 -Dthrift.home=/usr/local -Dboost.home=/usr/local
  
 </code></pre><p>You can optionally force Hive client to compile into a non-native bit architecture by specifying the additional parameter (assuming you have the proper compilation libraries):</p>
-<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT\_HOME&gt; -Dword.size=&lt;32 or 64&gt;
+<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT_HOME&gt; -Dword.size=&lt;32 or 64&gt;
  
 </code></pre><ol>
 <li>You can verify the entire Hive compilation by running the Hive test suite from HIVE_SRC_ROOT. Specifying the argument &lsquo;-Dthrift.home=&lt;THRIFT_HOME>&rsquo; will enable the tests for the Hive client. If you do NOT specify thrift.home, the Hive client tests will not be run and will just return successful.</li>
 </ol>
-<pre tabindex=0><code> $ ant test -Dthrift.home=&lt;THRIFT\_HOME&gt;
+<pre tabindex=0><code> $ ant test -Dthrift.home=&lt;THRIFT_HOME&gt;
  
 </code></pre><p>MVN:</p>
 <pre tabindex=0><code>$ cd odbc
@@ -198,7 +198,7 @@ $ mvn test -Podbc,hadoop-1 -Dthrift.home=/usr/local -Dboost.home=/usr/local
  
 </code></pre><p>You can specifically execute the Hive client tests by running the above command from <code>HIVE_SRC_ROOT/odbc/</code>. NOTE: Hive client tests require that a local Hive Server be operating on port 10000.
 2. To install the Hive client libraries onto your machine, run the following command from <code>HIVE_SRC_ROOT/odbc/</code>. NOTE: The install path defaults to <code>/usr/local</code>. While there is no current way to change this default directory from the ant build process, a manual install may be performed by skipping the command below and copying out the contents of <code>HIVE_SRC_ROOT/build/odbc/lib</code> and <code>HIVE_SRC_ROOT/build/odbc/include</code> into their local file system counterparts.</p>
-<pre tabindex=0><code> $ sudo ant install -Dthrift.home=&lt;THRIFT\_HOME&gt;
+<pre tabindex=0><code> $ sudo ant install -Dthrift.home=&lt;THRIFT_HOME&gt;
  
 </code></pre><p>NOTE: The compiled static library, libhiveclient.a, requires linking with stdc++ as well as thrift libraries to function properly.<br>
 NOTE: Currently, there is no way to specify non-system library and header directories to the unixODBC build process. Thus, the Hive client libraries and headers MUST be installed to a default system location in order for the unixODBC build process to detect these files. This issue may be remedied in the future.</p>
@@ -207,13 +207,13 @@ NOTE: Currently, there is no way to specify non-system library and header direct
 <ol>
 <li>In the unixODBC root directory, run the following command:</li>
 </ol>
-<pre tabindex=0><code> $ ./configure --enable-gui=no --prefix=&lt;unixODBC\_INSTALL\_DIR&gt;
+<pre tabindex=0><code> $ ./configure --enable-gui=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
  
 </code></pre><p>If you encounter the the errors: &ldquo;<code>redefinition of 'struct _hist_entry'</code>&rdquo; or &ldquo;<code>previous declaration of 'add_history' was here</code>&rdquo; then re-execute the configure with the following command:</p>
-<pre tabindex=0><code> $ ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC\_INSTALL\_DIR&gt;
+<pre tabindex=0><code> $ ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
  
 </code></pre><p>To force the compilation of the unixODBC API wrapper into a non-native bit architecture, modify the CC and CXX environment variables to include the appropriate flags. For example:</p>
-<pre tabindex=0><code> $ CC=&quot;gcc -m32&quot; CXX=&quot;g++ -m32&quot; ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC\_INSTALL\_DIR&gt;
+<pre tabindex=0><code> $ CC=&quot;gcc -m32&quot; CXX=&quot;g++ -m32&quot; ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
  
 </code></pre><ol start=2>
 <li>Compile the unixODBC API wrapper with the following:</li>
@@ -228,8 +228,8 @@ If you only want to obtain the Hive ODBC driver shared object library:
 3. After compilation, the driver will be located at <code>&lt;unixODBC_BUILD_DIR>/Drivers/hive/.libs/libodbchive.so.1.0.0</code>.<br>
 This may be copied to any other location as desired. Keep in mind that the Hive ODBC driver has a dependency on the Hive client shared object library: <code>libhiveclient.so</code> and <code>libthrift.so.0</code>.<br>
 You can manually install the unixODBC API wrapper by doing the following:</p>
-<pre tabindex=0><code>  $ cp &lt;unixODBC\_BUILD\_DIR&gt;/Drivers/hive/.libs/libodbchive.so.1.0.0 &lt;SYSTEM\_INSTALL\_DIR&gt;
-  $ cd &lt;SYSTEM\_INSTALL\_DIR&gt;
+<pre tabindex=0><code>  $ cp &lt;unixODBC_BUILD_DIR&gt;/Drivers/hive/.libs/libodbchive.so.1.0.0 &lt;SYSTEM_INSTALL_DIR&gt;
+  $ cd &lt;SYSTEM_INSTALL_DIR&gt;
   $ ln -s libodbchive.so.1.0.0 libodbchive.so
   $ ldconfig
   
@@ -261,11 +261,11 @@ You can manually install the unixODBC API wrapper by doing the following:</p>
 </li>
 </ol>
 <pre tabindex=0><code> [Hive]
- Driver = &lt;path\_to\_libodbchive.so&gt;
+ Driver = &lt;path_to_libodbchive.so&gt;
  Description = Hive Driver v1
  DATABASE = default
- HOST = &lt;Hive\_server\_address&gt;
- PORT = &lt;Hive\_server\_port&gt;
+ HOST = &lt;Hive_server_address&gt;
+ PORT = &lt;Hive_server_port&gt;
  FRAMED = 0
  
 </code></pre><h3 id=testing-with-isql>Testing with ISQL</h3>

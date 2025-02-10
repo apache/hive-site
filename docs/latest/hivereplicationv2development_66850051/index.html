@@ -285,8 +285,8 @@ Event 120: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION &lt;location&gt;;
 <p>The current implementation of replication is built upon existing commands EXPORT and IMPORT. These commands are semantically more suited to the task of exporting and importing, than of a direct notion of an applicable event log. The notion of a lazy _files behaviour on EXPORT is not a good fit, since EXPORTs are done with the understanding that they need to be a stable copy irrespective of cleanup policies on the source. In addition, EXPORTing &ldquo;events&rdquo; is something that is more tenuous. EXPORTing a CREATE event is easy enough, but it is a semantic stretch to export a DROP event. Thus, to fit our needs better, and to not have to keep making the existing EXPORT and IMPORT way more complex, we introduce a new REPL command, with three modes of operation: REPL DUMP, REPL LOAD and REPL STATUS.</p>
 <h2 id=repl-dump>REPL DUMP</h2>
 <h4 id=syntax>Syntax:</h4>
-<p><code>REPL DUMP &lt;repl\_policy> {REPLACE &lt;old\_repl\_policy>} {FROM &lt;init-evid> {TO &lt;end-evid>} {LIMIT &lt;num-evids>} } {WITH ('key1'='value1', 'key2'='value2')};</code></p>
-<p><code>Replication policy: &lt;dbname>{{.[&lt;comma\_separated\_include\_tables\_regex\_list>]}{.[&lt;comma\_separated\_exclude\_tables\_regex\_list>]}}</code></p>
+<p><code>REPL DUMP &lt;repl_policy> {REPLACE &lt;old_repl_policy>} {FROM &lt;init-evid> {TO &lt;end-evid>} {LIMIT &lt;num-evids>} } {WITH ('key1'='value1', 'key2'='value2')};</code></p>
+<p><code>Replication policy: &lt;dbname>{{.[&lt;comma_separated_include_tables_regex_list>]}{.[&lt;comma_separated_exclude_tables_regex_list>]}}</code></p>
 <p>This is better described via various examples of each of the pieces of the command syntax, as follows:</p>
 <p>(a) REPL DUMP sales;       REPL DUMP sales.['.*?']Replicates out sales database for bootstrap, from =0 (bootstrap case) to = with a batch size of 0, i.e. no batching.</p>
 <p>(b) REPL DUMP sales.[&lsquo;T3&rsquo;, &lsquo;[a-z]+'];</p>

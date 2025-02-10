@@ -158,11 +158,11 @@ ASF
 <pre tabindex=0><code>hive -hiveconf hive.kudu.master.addresses.default=localhost:7051
 </code></pre><h2 id=table-creation>Table Creation</h2>
 <p>To access Kudu tables, a Hive table must be created using the <code>CREATE</code> command with the <code>STORED BY</code> clause. Until <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a> is completed, the <code>EXTERNAL</code> keyword is required and will create a Hive table that references an existing Kudu table. Dropping the external Hive table will not remove the underlying Kudu table.</p>
-<pre tabindex=0><code>CREATE EXTERNAL TABLE kudu\_table (foo INT, bar STRING, baz DOUBLE)
+<pre tabindex=0><code>CREATE EXTERNAL TABLE kudu_table (foo INT, bar STRING, baz DOUBLE)
 STORED BY 'org.apache.hadoop.hive.kudu.KuduStorageHandler'
 TBLPROPERTIES (
-  &quot;kudu.table\_name&quot;=&quot;default.kudu\_table&quot;, 
-  &quot;kudu.master\_addresses&quot;=&quot;localhost:7051&quot;
+  &quot;kudu.table_name&quot;=&quot;default.kudu_table&quot;, 
+  &quot;kudu.master_addresses&quot;=&quot;localhost:7051&quot;
 );
 </code></pre><p>In the above statement, normal Hive column name and type pairs are provided as is the case with normal create table statements. The full <code>KuduStorageHandler</code> class name is provided to inform Hive that Kudu will back this Hive table. A number of TBLPROPERTIES can be provided to configure the KuduStorageHandler. The most important property is <code>kudu.table_name</code> which tells hive which Kudu table it should reference. The other common property is <code>kudu.master_addresses</code> which configures the Kudu master addresses for this table. If the <code>kudu.master_addresses</code> property is not provided, the <code>hive.kudu.master.addresses.default</code> configuration will be used. </p>
 <h2 id=impala-tables>Impala Tables</h2>
@@ -170,9 +170,9 @@ TBLPROPERTIES (
 <h2 id=data-ingest>Data Ingest</h2>
 <p>Though it is a common practice to ingest the data into Kudu tables via tools like <a href=https://nifi.apache.org/>Apache NiFi</a> or <a href=https://spark.apache.org/>Apache Spark</a> and query the data via Hive, data can also be inserted to the Kudu tables via <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries>Hive INSERT statements</a>. It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22024>HIVE-22024</a>. Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
 <h3 id=examples>Examples</h3>
-<pre tabindex=0><code>INSERT INTO kudu\_table SELECT * FROM other\_table;
+<pre tabindex=0><code>INSERT INTO kudu_table SELECT * FROM other_table;
 
-INSERT INTO TABLE kudu\_table
+INSERT INTO TABLE kudu_table
 VALUES (1, 'test 1', 1.1), (2, 'test 2', 2.2);
 </code></pre>
 </div>

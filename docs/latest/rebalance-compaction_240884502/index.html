@@ -121,16 +121,16 @@ ASF
 <li>Unlike other compaction types, rebalance compaction puts an <em>exclusive write lock</em> on the table.
 SQL example:</li>
 </ul>
-<pre tabindex=0><code>ALTER TABLE table\_name COMPACT 'REBALANCE';
+<pre tabindex=0><code>ALTER TABLE table_name COMPACT 'REBALANCE';
 </code></pre><h3 id=number-of-implicit-buckets>Number of implicit buckets</h3>
 <p>It is possible to set the desired number of implicit buckects during a rebalance compaction.</p>
 <p>SQL example:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name COMPACT 'REBALANCE' CLUSTERED INTO n BUCKETS;
+<pre tabindex=0><code>ALTER TABLE table_name COMPACT 'REBALANCE' CLUSTERED INTO n BUCKETS;
 </code></pre><p>If the bucket number is not supplied, the number of buckets will remain the same, only the data will be redistributed among them.</p>
 <h3 id=ordering>Ordering</h3>
 <p>Optionally, an order by expression can be supplied, to be able to re-order the data during the rebalance.</p>
 <p>SQL example:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name COMPACT 'REBALANCE' ORDER BY column\_name DESC;
+<pre tabindex=0><code>ALTER TABLE table_name COMPACT 'REBALANCE' ORDER BY column_name DESC;
 </code></pre><p>If the <em>order by</em> expression is not set, the ordering of the data remains the same after the compaction.</p>
 <h3 id=limitations>Limitations</h3>
 <ul>

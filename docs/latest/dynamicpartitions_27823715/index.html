@@ -212,8 +212,8 @@ ASF
 </ol>
 <p>A dynamic partitioning column could be the result of an expression. For example:</p>
 <pre tabindex=0><code>
- -- part\_col is partitioning column
- create table T as select a, concat(&quot;part\_&quot;, part\_col) from S where part\_col is not null; 
+ -- part_col is partitioning column
+ create table T as select a, concat(&quot;part_&quot;, part_col) from S where part_col is not null; 
 
 </code></pre><p>Although currently there is not restriction on the data type of the partitioning column, allowing non-primitive columns to be partitioning column probably doesn&rsquo;t make sense. The dynamic partitioning column&rsquo;s type should be derived from the expression. The data type has to be able to be converted to a string in order to be saved as a directory name in HDFS.</p>
 <ol start=2>
@@ -234,8 +234,8 @@ ASF
 <li>If there are multiple partitioning columns, their order is significant since that translates to the directory structure in HDFS: partitioned by (ds string, dept int) implies a directory structure of ds=2009-02-26/dept=2. In a DML or DDL involving partitioned table, So if a subset of partitioning columns are specified (static), we should throw an error if a dynamic partitioning column is lower. Example:</li>
 </ol>
 <pre tabindex=0><code>
- create table nzhang\_part(a string) partitioned by (ds string, dept int);
- insert overwrite nzhang\_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
+ create table nzhang_part(a string) partitioned by (ds string, dept int);
+ insert overwrite nzhang_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
 
 </code></pre>
 </div>

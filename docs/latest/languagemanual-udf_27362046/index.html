@@ -180,8 +180,8 @@ ASF
 <p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
 <p>In <a href=#beeline>Beeline</a> or the <a href=https://hive.apache.org/docs/latest/languagemanual-cli_27362033/>CLI</a>, use the commands below to show the latest documentation:</p>
 <pre tabindex=0><code>SHOW FUNCTIONS;
-DESCRIBE FUNCTION &lt;function\_name&gt;;
-DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
+DESCRIBE FUNCTION &lt;function_name&gt;;
+DESCRIBE FUNCTION EXTENDED &lt;function_name&gt;;
 
 </code></pre><p>Bug for expression caching when UDF nested in UDF or function</p>
 <p>When <a href=#hive-cache-expr-evaluation>hive.cache.expr.evaluation</a> is set to true (which is the default) a UDF can give incorrect results if it is nested in another UDF or a Hive function. This bug affects releases 0.12.0, 0.13.0, and 0.13.1. Release 0.14.0 fixed the bug (<a href=https://issues.apache.org/jira/browse/HIVE-7314>HIVE-7314</a>).</p>
@@ -1504,19 +1504,19 @@ Closed</p>
   {&quot;fruit&quot;:\[{&quot;weight&quot;:8,&quot;type&quot;:&quot;apple&quot;},{&quot;weight&quot;:9,&quot;type&quot;:&quot;pear&quot;}],
    &quot;bicycle&quot;:{&quot;price&quot;:19.95,&quot;color&quot;:&quot;red&quot;}
   },
- &quot;email&quot;:&quot;amy@only\_for\_json\_udf\_test.net&quot;,
+ &quot;email&quot;:&quot;amy@only_for_json_udf_test.net&quot;,
  &quot;owner&quot;:&quot;amy&quot;
 }
 +----+
 
 </code></pre><p>The fields of the json object can be extracted using these queries:</p>
-<pre tabindex=0><code>hive&gt; SELECT get\_json\_object(src\_json.json, '$.owner') FROM src\_json;
+<pre tabindex=0><code>hive&gt; SELECT get_json_object(src_json.json, '$.owner') FROM src_json;
 amy
 
-hive&gt; SELECT get\_json\_object(src\_json.json, '$.store.fruit\[0]') FROM src\_json;
+hive&gt; SELECT get_json_object(src_json.json, '$.store.fruit\[0]') FROM src_json;
 {&quot;weight&quot;:8,&quot;type&quot;:&quot;apple&quot;}
 
-hive&gt; SELECT get\_json\_object(src\_json.json, '$.non\_exist\_key') FROM src\_json;
+hive&gt; SELECT get_json_object(src_json.json, '$.non_exist_key') FROM src_json;
 NULL
 
 </code></pre><h2 id=built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</h2>
@@ -1890,31 +1890,31 @@ select tf.* from (select 0) t lateral view stack(2,'A',10,date '2015-01-01','B',
 <h3 id=json_tuple>json_tuple</h3>
 <p>A new json_tuple() UDTF is introduced in Hive 0.7. It takes a set of names (keys) and a JSON string, and returns a tuple of values using one function. This is much more efficient than calling GET_JSON_OBJECT to retrieve more than one key from a single JSON string. In any case where a single JSON string would be parsed more than once, your query will be more efficient if you parse it once, which is what JSON_TUPLE is for. As JSON_TUPLE is a UDTF, you will need to use the <a href=https://hive.apache.org/docs/latest/languagemanual-lateralview_27362040/>LATERAL VIEW</a> syntax in order to achieve the same goal.</p>
 <p>For example,</p>
-<pre tabindex=0><code>select a.timestamp, get\_json\_object(a.appevents, '$.eventid'), get\_json\_object(a.appenvets, '$.eventname') from log a;
+<pre tabindex=0><code>select a.timestamp, get_json_object(a.appevents, '$.eventid'), get_json_object(a.appenvets, '$.eventname') from log a;
 
 </code></pre><p>should be changed to:</p>
 <pre tabindex=0><code>select a.timestamp, b.*
-from log a lateral view json\_tuple(a.appevent, 'eventid', 'eventname') b as f1, f2;
+from log a lateral view json_tuple(a.appevent, 'eventid', 'eventname') b as f1, f2;
 
 </code></pre><h3 id=parse_url_tuple>parse_url_tuple</h3>
 <p>The parse_url_tuple() UDTF is similar to parse_url(), but can extract multiple parts of a given URL, returning the data in a tuple. Values for a particular key in QUERY can be extracted by appending a colon and the key to the partToExtract argument, for example, parse_url_tuple(&lsquo;<a href="http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1'">http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1'</a>, &lsquo;QUERY:k1&rsquo;, &lsquo;QUERY:k2&rsquo;) returns a tuple with values of &lsquo;v1&rsquo;,&lsquo;v2&rsquo;. This is more efficient than calling parse_url() multiple times. All the input parameters and output column types are string.</p>
 <pre tabindex=0><code>SELECT b.*
-FROM src LATERAL VIEW parse\_url\_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY:id') b as host, path, query, query\_id LIMIT 1;
+FROM src LATERAL VIEW parse_url_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY:id') b as host, path, query, query_id LIMIT 1;
 
 </code></pre><h2 id=grouping-and-sorting-on-fcolumn>GROUPing and SORTing on f(column)</h2>
 <p>A typical OLAP pattern is that you have a timestamp column and you want to group by daily or other less granular date windows than by second. So you might want to select concat(year(dt),month(dt)) and then group on that concat(). But if you attempt to GROUP BY or SORT BY a column on which you&rsquo;ve applied a function and alias, like this:</p>
-<pre tabindex=0><code>select f(col) as fc, count(*) from table\_name group by fc;
+<pre tabindex=0><code>select f(col) as fc, count(*) from table_name group by fc;
 
 </code></pre><p>you will get an error:</p>
 <pre tabindex=0><code>FAILED: Error in semantic analysis: line 1:69 Invalid Table Alias or Column Reference fc
 
 </code></pre><p>because you are not able to GROUP BY or SORT BY a column alias on which a function has been applied. There are two workarounds. First, you can reformulate this query with subqueries, which is somewhat complicated:</p>
 <pre tabindex=0><code>select sq.fc,col1,col2,...,colN,count(*) from
-  (select f(col) as fc,col1,col2,...,colN from table\_name) sq
+  (select f(col) as fc,col1,col2,...,colN from table_name) sq
  group by sq.fc,col1,col2,...,colN;
 
 </code></pre><p>Or you can make sure not to use a column alias, which is simpler:</p>
-<pre tabindex=0><code>select f(col) as fc, count(*) from table\_name group by f(col);
+<pre tabindex=0><code>select f(col) as fc, count(*) from table_name group by f(col);
 
 </code></pre><p>Contact Tim Ellis (tellis) at RiotGames dot com if you would like to discuss this in further detail.</p>
 <h2 id=utility-functions>Utility Functions</h2>
@@ -1944,12 +1944,12 @@ FROM src LATERAL VIEW parse\_url\_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY
 </table>
 <h2 id=udf-internals>UDF internals</h2>
 <p>The context of a UDF&rsquo;s evaluate method is one row at a time. A simple invocation of a UDF like</p>
-<pre tabindex=0><code>SELECT length(string\_col) FROM table\_name;
+<pre tabindex=0><code>SELECT length(string_col) FROM table_name;
 
 </code></pre><p>would evaluate the length of each of the string_col&rsquo;s values in the map portion of the job. The side effect of the UDF being evaluated on the map-side is that you can&rsquo;t control the order of rows which get sent to the mapper. It is the same order in which the file split sent to the mapper gets deserialized. Any reduce side operation (such as SORT BY, ORDER BY, regular JOIN, etc.) would apply to the UDFs output as if it is just another column of the table. This is fine since the context of the UDF&rsquo;s evaluate method is meant to be one row at a time.</p>
 <p>If you would like to control which rows get sent to the same UDF (and possibly in what order), you will have the urge to make the UDF evaluate during the reduce phase. This is achievable by making use of <a href=https://hive.apache.org/docs/latest/languagemanual-sortby_27362045/>DISTRIBUTE BY, DISTRIBUTE BY + SORT BY, CLUSTER BY</a>. An example query would be:</p>
-<pre tabindex=0><code>SELECT reducer\_udf(my\_col, distribute\_col, sort\_col) FROM
-(SELECT my\_col, distribute\_col, sort\_col FROM table\_name DISTRIBUTE BY distribute\_col SORT BY distribute\_col, sort\_col) t
+<pre tabindex=0><code>SELECT reducer_udf(my_col, distribute_col, sort_col) FROM
+(SELECT my_col, distribute_col, sort_col FROM table_name DISTRIBUTE BY distribute_col SORT BY distribute_col, sort_col) t
 
 </code></pre><p>However, one could argue that the very premise of your requirement to control the set of rows sent to the same UDF is to do aggregation in that UDF. In such a case, using a User Defined Aggregate Function (UDAF) is a better choice. You can read more about writing a UDAF <a href=https://hive.apache.org/docs/latest/genericudafcasestudy_27362093/>here</a>. Alternatively, you can user a custom reduce script to accomplish the same using <a href=https://hive.apache.org/docs/latest/languagemanual-transform_27362047/>Hive&rsquo;s Transform functionality</a>. Both of these options would do aggregations on the reduce side.</p>
 <h2 id=creating-custom-udfs>Creating Custom UDFs</h2>

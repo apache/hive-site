@@ -215,12 +215,12 @@ hive&gt; set mapred.job.tracker=ec2-12-34-56-78.compute-1.amazonaws.com:50002;
 <p>Now we are all setup. The sample query from TPCH (1.sql) can be tried as follows:</p>
 <pre tabindex=0><code>
 hive&gt; insert overwrite directory '/tmp/tpcresults-1.sql' 
-  select l\_returnflag, l\_linestatus, sum ( l\_quantity ) as sum\_qty, sum ( l\_extendedprice ) as sum\_base\_price,
-  sum ( l\_extendedprice * ( 1 - l\_discount )) as sub\_disc\_price, 
-  sum ( l\_extendedprice * ( 1 - l\_discount ) * ( 1 + l\_tax )) as sum\_charge,
-  avg ( l\_quantity ) as avg\_qty, avg ( l\_extendedprice ) as avg\_price, 
-  avg ( l\_discount ) as avg\_disc, count ( 1 ) as count\_order
-  from lineitem where l\_shipdate &lt;= to\_date('1998-12-01') group by l\_returnflag, l\_linestatus; 
+  select l_returnflag, l_linestatus, sum ( l_quantity ) as sum_qty, sum ( l_extendedprice ) as sum_base_price,
+  sum ( l_extendedprice * ( 1 - l_discount )) as sub_disc_price, 
+  sum ( l_extendedprice * ( 1 - l_discount ) * ( 1 + l_tax )) as sum_charge,
+  avg ( l_quantity ) as avg_qty, avg ( l_extendedprice ) as avg_price, 
+  avg ( l_discount ) as avg_disc, count ( 1 ) as count_order
+  from lineitem where l_shipdate &lt;= to_date('1998-12-01') group by l_returnflag, l_linestatus; 
 
 </code></pre><p>This launches one map-reduce job and on 10 nodes with default hadoop/hive settings - this took about 10 minutes. The results in this case are stored in HDFS and can be obtained by doing a <code>dfs -cat /tmp/tpcresults/1-2.sql/*</code> - either from bin/hadoop or from hive CLI. The query above differs from the TPCH query in skipping the order by clause - since it&rsquo;s not implemented by Hive currently.</p>
 <h2 id=storing-results-back-in-s3>Storing results back in S3</h2>
@@ -238,10 +238,10 @@ hive&gt; insert overwrite table t1 select ...;
 <h2 id=using-tmp-tables-in-hdfs>Using tmp tables in HDFS</h2>
 <p>Currently, Hive does not have any explicit support tmp tables. But tables defined over HDFS in EC2 are like tmp tables since they only last for the duration of the Hadoop cluster. Since they are likely to be much faster than accessing S3 directly - they can be used to stage data that may be accessed repeatedly during a session. For example - for the TPCH dataset - one may want to do some analysis of customer attributes against order details - and it would be first beneficial to materialize the join of these data sets and then do repeated queries against it. Here&rsquo;s some example sql that would do the same:</p>
 <pre tabindex=0><code>
-hive&gt; create table cust\_order (nationkey string, acctbal double, mktsegment string, orderstatus string, totalprice double);
-hive&gt; from customer c left outer join orders o on (c.c\_custkey = o.o\_custkey)
-  insert overwrite table cust\_order
-  select c.c\_nationkey, c.c\_acctbal, c.c\_mktsegment, o.o\_orderstatus, o.o\_totalprice;
+hive&gt; create table cust_order (nationkey string, acctbal double, mktsegment string, orderstatus string, totalprice double);
+hive&gt; from customer c left outer join orders o on (c.c_custkey = o.o_custkey)
+  insert overwrite table cust_order
+  select c.c_nationkey, c.c_acctbal, c.c_mktsegment, o.o_orderstatus, o.o_totalprice;
 
 </code></pre><h2 id=appendix>Appendix</h2>
 <p>&#171;Anchor(ConfigHell)&#187;</p>

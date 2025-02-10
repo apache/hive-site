@@ -137,12 +137,12 @@ ASF
 <p>The <code>EXPORT</code> and <code>IMPORT</code> commands work independently of the source and target metastore DBMS used; for example, they can be used between Derby and MySQL databases.</p>
 <p><code>IMPORT</code> will create target table/partition if it does not exist.  All the table properties/parameters will be that of table that was used in <code>EXPORT</code> to generate the archive.  If target exists, checks are performed that it has appropriate schema, Input/OutputFormat, etc.  If target table exists and is not partitioned, it must be empty.  If target table exists and is partitioned, partitions being imported must not exist in the table.  </p>
 <h3 id=export-syntax>Export Syntax</h3>
-<pre tabindex=0><code>EXPORT TABLE tablename [PARTITION (part\_column=&quot;value&quot;[, ...])] 
-  TO 'export\_target\_path' [ FOR replication('eventid') ]
+<pre tabindex=0><code>EXPORT TABLE tablename [PARTITION (part_column=&quot;value&quot;[, ...])] 
+  TO 'export_target_path' [ FOR replication('eventid') ]
 </code></pre><h3 id=import-syntax>Import Syntax</h3>
-<pre tabindex=0><code>IMPORT [[EXTERNAL] TABLE new\_or\_original\_tablename [PARTITION (part\_column=&quot;value&quot;[, ...])]] 
-  FROM 'source\_path' 
-  [LOCATION 'import\_target\_path']
+<pre tabindex=0><code>IMPORT [[EXTERNAL] TABLE new_or_original_tablename [PARTITION (part_column=&quot;value&quot;[, ...])]] 
+  FROM 'source_path' 
+  [LOCATION 'import_target_path']
 
 </code></pre><h3 id=replication-usage>Replication usage</h3>
 <p>The <code>EXPORT</code> and <code>IMPORT</code> commands behave slightly differently when used in the context of replication, and are intended to be used by tools that perform replication between hive warehouses. In most cases, end users will not need to use this additional tag, except when doing a manual bootstrap of a replication-destination warehouse so that an incremental replication tool can take over from that point.</p>
@@ -151,29 +151,29 @@ ASF
 <p>For those using EXPORT for the first-time manual bootstrapping usecase, users are recommended to use a " FOR replication(&lsquo;bootstrapping&rsquo;) " tag. (Advanced users note : The choice of &ldquo;bootstrapping&rdquo; here is arbitrary-ish, and could just as well have been &ldquo;foo&rdquo;. The real goal is to have a value such that all further incremental replication ids will be greater than this original id. Thus, the integral value of this initial id should be 0, and thus, any string which does not contain numbers is acceptable. Having an initial tag be &ldquo;123456&rdquo;, however, would be bad, as it could cause further updates which have a repl.last.id &lt; 123456 to not be applied.)</p>
 <h3 id=examples>Examples</h3>
 <p>Simple export and import:</p>
-<pre tabindex=0><code>export table department to 'hdfs\_exports\_location/department';
-import from 'hdfs\_exports\_location/department';
+<pre tabindex=0><code>export table department to 'hdfs_exports_location/department';
+import from 'hdfs_exports_location/department';
 
 </code></pre><p>Rename table on import:</p>
-<pre tabindex=0><code>export table department to 'hdfs\_exports\_location/department';
-import table imported\_dept from 'hdfs\_exports\_location/department';
+<pre tabindex=0><code>export table department to 'hdfs_exports_location/department';
+import table imported_dept from 'hdfs_exports_location/department';
 
 </code></pre><p>Export partition and import:</p>
-<pre tabindex=0><code>export table employee partition (emp\_country=&quot;in&quot;, emp\_state=&quot;ka&quot;) to 'hdfs\_exports\_location/employee';
-import from 'hdfs\_exports\_location/employee';
+<pre tabindex=0><code>export table employee partition (emp_country=&quot;in&quot;, emp_state=&quot;ka&quot;) to 'hdfs_exports_location/employee';
+import from 'hdfs_exports_location/employee';
 
 </code></pre><p>Export table and import partition:</p>
-<pre tabindex=0><code>export table employee to 'hdfs\_exports\_location/employee';
-import table employee partition (emp\_country=&quot;us&quot;, emp\_state=&quot;tn&quot;) from 'hdfs\_exports\_location/employee';
+<pre tabindex=0><code>export table employee to 'hdfs_exports_location/employee';
+import table employee partition (emp_country=&quot;us&quot;, emp_state=&quot;tn&quot;) from 'hdfs_exports_location/employee';
 
 </code></pre><p>Specify the import location:</p>
-<pre tabindex=0><code>export table department to 'hdfs\_exports\_location/department';
-import table department from 'hdfs\_exports\_location/department' 
-       location 'import\_target\_location/department';
+<pre tabindex=0><code>export table department to 'hdfs_exports_location/department';
+import table department from 'hdfs_exports_location/department' 
+       location 'import_target_location/department';
 
 </code></pre><p>Import as an external table:</p>
-<pre tabindex=0><code>export table department to 'hdfs\_exports\_location/department';
-import external table department from 'hdfs\_exports\_location/department';
+<pre tabindex=0><code>export table department to 'hdfs_exports_location/department';
+import external table department from 'hdfs_exports_location/department';
 
 </code></pre>
 </div>

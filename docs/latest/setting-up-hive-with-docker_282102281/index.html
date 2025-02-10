@@ -145,17 +145,17 @@ ASF
 
 </code></pre><p>Everything would be lost when the service is down. In order to save the Hive table&rsquo;s schema and data, start the container with an external Postgres and Volume to keep them,</p>
 <pre tabindex=0><code>docker run -d -p 9083:9083 --env SERVICE_NAME=metastore --env DB_DRIVER=postgres \  
-     --env SERVICE_OPTS=&quot;-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore\_db -Djavax.jdo.option.ConnectionUserName=hive -Djavax.jdo.option.ConnectionPassword=password&quot; \  
+     --env SERVICE_OPTS=&quot;-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres:5432/metastore_db -Djavax.jdo.option.ConnectionUserName=hive -Djavax.jdo.option.ConnectionPassword=password&quot; \  
      --mount source=warehouse,target=/opt/hive/data/warehouse \  
      --mount type=bind,source=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar,target=/opt/hive/lib/postgres.jar \  
      --name metastore-standalone apache/hive:4.0.0
 </code></pre><p>If you want to use your own <code>hdfs-site.xml</code> or <code>yarn-site.xml</code> for the service, you can provide the environment variable <code>HIVE_CUSTOM_CONF_DIR</code> for the command. For instance, put the custom configuration file under the directory <code>/opt/hive/conf</code>, then run,</p>
-<pre tabindex=0><code>docker run -d -p 9083:9083 --env SERVICE\_NAME=metastore --env DB\_DRIVER=postgres \
-     -v /opt/hive/conf:/hive\_custom\_conf --env HIVE\_CUSTOM\_CONF\_DIR=/hive\_custom\_conf \
+<pre tabindex=0><code>docker run -d -p 9083:9083 --env SERVICE_NAME=metastore --env DB_DRIVER=postgres \
+     -v /opt/hive/conf:/hive_custom_conf --env HIVE_CUSTOM_CONF_DIR=/hive_custom_conf \
      --mount type=bind,source=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar,target=/opt/hive/lib/postgres.jar \
      --name metastore apache/hive:4.0.0  
   
-For Hive releases before 4.0, if you want to upgrade the existing external Metastore schema to the target version, then add --env SCHEMA\_COMMAND=upgradeSchema to the command.  
+For Hive releases before 4.0, if you want to upgrade the existing external Metastore schema to the target version, then add --env SCHEMA_COMMAND=upgradeSchema to the command.  
 To skip schematool initialisation or upgrade for metastore use --env `IS_RESUME=&quot;true&quot;`, and for verbose logging set --env `VERBOSE=&quot;true&quot;.`
 </code></pre><h5 id=--hiveserver2><strong>- HiveServer2</strong></h5>
 <p>Launch the HiveServer2 with an embedded Metastore,</p>
@@ -176,10 +176,10 @@ To skip schematool initialisation or upgrade for metastore use --env `IS_RESUME=
 
 </code></pre><h5 id=--hiveserver2-metastore><strong>- HiveServer2, Metastore</strong></h5>
 <p>To get a quick overview of both HiveServer2 and Metastore, there is a <code>docker-compose.yml</code> placed under <code>packaging/src/docker</code> for this purpose, specify the <code>POSTGRES_LOCAL_PATH</code> first:</p>
-<pre tabindex=0><code>export POSTGRES\_LOCAL\_PATH=your\_local\_path\_to\_postgres\_driver
+<pre tabindex=0><code>export POSTGRES_LOCAL_PATH=your_local_path_to_postgres_driver
 </code></pre><p>Example:</p>
 <pre tabindex=0><code>mvn dependency:copy -Dartifact=&quot;org.postgresql:postgresql:42.5.1&quot; &amp;&amp; \
-export POSTGRES\_LOCAL\_PATH=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar 
+export POSTGRES_LOCAL_PATH=`mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout`/org/postgresql/postgresql/42.5.1/postgresql-42.5.1.jar 
 </code></pre><p>If you don&rsquo;t install maven or have problem in resolving the postgres driver, you can always download this jar yourself, change the <code>POSTGRES_LOCAL_PATH</code> to the path of the downloaded jar.</p>
 <p>Then,</p>
 <pre tabindex=0><code>docker compose up -d

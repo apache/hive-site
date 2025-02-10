@@ -135,14 +135,14 @@ ASF
 <p>This page explains how to use Hive to bulk load data into a new (empty) HBase table per <a href=https://issues.apache.org/jira/browse/HIVE-1295>HIVE-1295</a>. (If you&rsquo;re not using a build which contains this functionality yet, you&rsquo;ll need to build from source and make sure this patch and HIVE-1321 are both applied.)</p>
 <h2 id=overview>Overview</h2>
 <p>Ideally, bulk load from Hive into HBase would be part of <a href=https://hive.apache.org/docs/latest/hbaseintegration_27362089/>HBaseIntegration</a>, making it as simple as this:</p>
-<pre tabindex=0><code>CREATE TABLE new\_hbase\_table(rowkey string, x int, y int) 
+<pre tabindex=0><code>CREATE TABLE new_hbase_table(rowkey string, x int, y int) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (&quot;hbase.columns.mapping&quot; = &quot;:key,cf:x,cf:y&quot;);
 
 SET hive.hbase.bulk=true;
 
-INSERT OVERWRITE TABLE new\_hbase\_table
-SELECT rowkey\_expression, x, y FROM ...any\_hive\_query...;
+INSERT OVERWRITE TABLE new_hbase_table
+SELECT rowkey_expression, x, y FROM ...any_hive_query...;
 
 </code></pre><p>However, things aren&rsquo;t <em>quite</em> as straightforward as that yet. Instead, a procedure involving a series of SQL commands is required. It should still be a lot easier and more flexible than writing your own map/reduce program, and over time we hope to enhance Hive to move closer to the ideal.</p>
 <p>The procedure is based on <a href=http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/mapreduce/package-summary.html#bulk>underlying HBase recommendations</a>, and involves the following steps:</p>
@@ -182,21 +182,21 @@ hadoop dfs -put /usr/lib/hive/lib/hive-hbase-handler-VERSION.jar /user/hive/hive
 <p>In order to perform a parallel sort on the data, we need to range-partition it. The idea is to divide the space of row keys up into nearly equal-sized ranges, one per reducer which will be used in the parallel sort. The details will vary according to your source data, and you may need to run a number of exploratory Hive queries in order to come up with a good enough set of ranges. Here&rsquo;s one example:</p>
 <pre tabindex=0><code>add jar lib/hive-contrib-0.7.0.jar;
 set mapred.reduce.tasks=1;
-create temporary function row\_sequence as 
+create temporary function row_sequence as 
 'org.apache.hadoop.hive.contrib.udf.UDFRowSequence';
-select transaction\_id from
-(select transaction\_id
+select transaction_id from
+(select transaction_id
 from transactions
-tablesample(bucket 1 out of 10000 on transaction\_id) s 
-order by transaction\_id 
+tablesample(bucket 1 out of 10000 on transaction_id) s 
+order by transaction_id 
 limit 10000000) x
-where (row\_sequence() % 910000)=0
-order by transaction\_id
+where (row_sequence() % 910000)=0
+order by transaction_id
 limit 11;
 
 </code></pre><p>This works by ordering all of the rows in a .01% sample of the table (using a single reducer), and then selecting every nth row (here n=910000). The value of n is chosen by dividing the total number of rows in the sample by the desired number of ranges, e.g. 12 in this case (one more than the number of partitioning keys produced by the LIMIT clause). The assumption here is that the distribution in the sample matches the overall distribution in the table; if this is not the case, the resulting partition keys will lead to skew in the parallel sort.</p>
 <p>Once you have your sampling query defined, the next step is to save its results to a properly formatted file which will be used in a subsequent step. To do this, run commands like the following:</p>
-<pre tabindex=0><code>create external table hb\_range\_keys(transaction\_id\_range\_start string)
+<pre tabindex=0><code>create external table hb_range_keys(transaction_id_range_start string)
 row format serde 
 'org.apache.hadoop.hive.serde2.binarysortable.BinarySortableSerDe'
 stored as 
@@ -204,22 +204,22 @@ inputformat
 'org.apache.hadoop.mapred.TextInputFormat'
 outputformat 
 'org.apache.hadoop.hive.ql.io.HiveNullValueSequenceFileOutputFormat'
-location '/tmp/hb\_range\_keys';
+location '/tmp/hb_range_keys';
 
-insert overwrite table hb\_range\_keys
-select transaction\_id from
-(select transaction\_id
+insert overwrite table hb_range_keys
+select transaction_id from
+(select transaction_id
 from transactions
-tablesample(bucket 1 out of 10000 on transaction\_id) s 
-order by transaction\_id 
+tablesample(bucket 1 out of 10000 on transaction_id) s 
+order by transaction_id 
 limit 10000000) x
-where (row\_sequence() % 910000)=0
-order by transaction\_id
+where (row_sequence() % 910000)=0
+order by transaction_id
 limit 11;
 
 </code></pre><p>The first command creates an external table defining the format of the file to be created; be sure to set the serde and inputformat/outputformat exactly as specified.</p>
 <p>The second command populates it (using the sampling query previously defined). Usage of ORDER BY guarantees that a single file will be produced in directory <code>/tmp/hb_range_keys</code>. The filename is unknown, but it is necessary to reference the file by name later, so run a command such as the following to copy it to a specific name:</p>
-<pre tabindex=0><code>dfs -cp /tmp/hb\_range\_keys/* /tmp/hb\_range\_key\_list;
+<pre tabindex=0><code>dfs -cp /tmp/hb_range_keys/* /tmp/hb_range_key_list;
 
 </code></pre><h2 id=prepare-staging-location>Prepare Staging Location</h2>
 <p>The sort is going to produce a lot of data, so make sure you have sufficient space in your HDFS cluster, and choose the location where the files will be staged. We&rsquo;ll use <code>/tmp/hbsort</code> in this example.</p>
@@ -232,19 +232,19 @@ dfs -mkdir /tmp/hbsort;
 <pre tabindex=0><code>set hive.execution.engine=mr;
 set mapred.reduce.tasks=12;
 set hive.mapred.partitioner=org.apache.hadoop.mapred.lib.TotalOrderPartitioner;
-set total.order.partitioner.path=/tmp/hb\_range\_key\_list;
+set total.order.partitioner.path=/tmp/hb_range_key_list;
 set hfile.compression=gz;
 
-create table hbsort(transaction\_id string, user\_name string, amount double, ...)
+create table hbsort(transaction_id string, user_name string, amount double, ...)
 stored as
 INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.hbase.HiveHFileOutputFormat'
 TBLPROPERTIES ('hfile.family.path' = '/tmp/hbsort/cf');
 
 insert overwrite table hbsort
-select transaction\_id, user\_name, amount, ...
+select transaction_id, user_name, amount, ...
 from transactions
-cluster by transaction\_id;
+cluster by transaction_id;
 
 </code></pre><p>The CREATE TABLE creates a dummy table which controls how the output of the sort is written. Note that it uses <code>HiveHFileOutputFormat</code> to do this, with the table property <code>hfile.family.path</code> used to control the destination directory for the output. Again, be sure to set the inputformat/outputformat exactly as specified. In the example above, we select gzip (gz) compression for the result files; if you don&rsquo;t set the <code>hfile.compression</code> parameter, no compression will be performed. (The other method available is lzo, which compresses less aggressively but does not require as much CPU power.)</p>
 <p>Note that the number of reduce tasks is one more than the number of partitions - this <strong>must</strong> be true or else you will get a &ldquo;Wrong number of partitions in keyset&rdquo; error.</p>
@@ -267,9 +267,9 @@ cluster by transaction\_id;
 <p>After this script finishes, you may need to wait a minute or two for the new table to be picked up by the HBase meta scanner. Use the hbase shell to verify that the new table was created correctly, and do some sanity queries to locate individual cells and make sure they can be found.</p>
 <h2 id=map-new-table-back-into-hive>Map New Table Back Into Hive</h2>
 <p>Finally, if you&rsquo;d like to access the HBase table you just created via Hive:</p>
-<pre tabindex=0><code>CREATE EXTERNAL TABLE hbase\_transactions(transaction\_id string, user\_name string, amount double, ...) 
+<pre tabindex=0><code>CREATE EXTERNAL TABLE hbase_transactions(transaction_id string, user_name string, amount double, ...) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
-WITH SERDEPROPERTIES (&quot;hbase.columns.mapping&quot; = &quot;:key,cf:user\_name,cf:amount,...&quot;)
+WITH SERDEPROPERTIES (&quot;hbase.columns.mapping&quot; = &quot;:key,cf:user_name,cf:amount,...&quot;)
 TBLPROPERTIES(&quot;hbase.table.name&quot; = &quot;transactions&quot;);
 
 </code></pre><h2 id=followups-needed>Followups Needed</h2>

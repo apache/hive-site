@@ -388,8 +388,8 @@ ASF
 <h2 id=built-in-operators-and-functions>Built In Operators and Functions</h2>
 <p>The operators and functions listed below are not necessarily up to date. (<a href=https://hive.apache.org/docs/latest/languagemanual-udf_27362046/>Hive Operators and UDFs</a> has more current information.) In <a href=#beeline>Beeline</a> or the Hive <a href=https://hive.apache.org/docs/latest/languagemanual-cli_27362033/>CLI</a>, use these commands to show the latest documentation:</p>
 <pre tabindex=0><code>SHOW FUNCTIONS;
-DESCRIBE FUNCTION &lt;function\_name&gt;;
-DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
+DESCRIBE FUNCTION &lt;function_name&gt;;
+DESCRIBE FUNCTION EXTENDED &lt;function_name&gt;;
 
 </code></pre><p>Case-insensitive</p>
 <p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
@@ -795,8 +795,8 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
 <p>See <a href=https://hive.apache.org/docs/latest/languagemanual-ddl_27362034/>Hive Data Definition Language</a> for detailed information about creating, showing, altering, and dropping tables.</p>
 <h3 id=creating-tables>Creating Tables</h3>
 <p>An example statement that would create the page_view table mentioned above would be like:</p>
-<pre tabindex=0><code>    CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-                    page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>    CREATE TABLE page_view(viewTime INT, userid BIGINT,
+                    page_url STRING, referrer_url STRING,
                     ip STRING COMMENT 'IP Address of the User')
     COMMENT 'This is the page view table'
     PARTITIONED BY(dt STRING, country STRING)
@@ -804,8 +804,8 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
 
 </code></pre><p>In this example, the columns of the table are specified with the corresponding types. Comments can be attached both at the column level as well as at the table level. Additionally, the partitioned by clause defines the partitioning columns which are different from the data columns and are actually not stored with the data. When specified in this way, the data in the files is assumed to be delimited with ASCII 001(ctrl-A) as the field delimiter and newline as the row delimiter.</p>
 <p>The field delimiter can be parametrized if the data is not in the above format as illustrated in the following example:</p>
-<pre tabindex=0><code>    CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-                    page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>    CREATE TABLE page_view(viewTime INT, userid BIGINT,
+                    page_url STRING, referrer_url STRING,
                     ip STRING COMMENT 'IP Address of the User')
     COMMENT 'This is the page view table'
     PARTITIONED BY(dt STRING, country STRING)
@@ -815,8 +815,8 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
 
 </code></pre><p>The row delimintor currently cannot be changed since it is not determined by Hive but Hadoop delimiters.</p>
 <p>It is also a good idea to bucket the tables on certain columns so that efficient sampling queries can be executed against the data set. If bucketing is absent, random sampling can still be done on the table but it is not efficient as the query has to scan all the data. The following example illustrates the case of the page_view table that is bucketed on the userid column:</p>
-<pre tabindex=0><code>    CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-                    page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>    CREATE TABLE page_view(viewTime INT, userid BIGINT,
+                    page_url STRING, referrer_url STRING,
                     ip STRING COMMENT 'IP Address of the User')
     COMMENT 'This is the page view table'
     PARTITIONED BY(dt STRING, country STRING)
@@ -828,8 +828,8 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
     STORED AS SEQUENCEFILE;
 
 </code></pre><p>In the example above, the table is clustered by a hash function of userid into 32 buckets. Within each bucket the data is sorted in increasing order of viewTime. Such an organization allows the user to do efficient sampling on the clustered column—n this case userid. The sorting property allows internal operators to take advantage of the better-known data structure while evaluating queries with greater efficiency.</p>
-<pre tabindex=0><code>    CREATE TABLE page\_view(viewTime INT, userid BIGINT,
-                    page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>    CREATE TABLE page_view(viewTime INT, userid BIGINT,
+                    page_url STRING, referrer_url STRING,
                     friends ARRAY&lt;BIGINT&gt;, properties MAP&lt;STRING, STRING&gt;
                     ip STRING COMMENT 'IP Address of the User')
     COMMENT 'This is the page view table'
@@ -850,24 +850,24 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
 <pre tabindex=0><code>    SHOW TABLES 'page.*';
 
 </code></pre><p>To list tables with prefix &lsquo;page&rsquo;. The pattern follows Java regular expression syntax (so the period is a wildcard).</p>
-<pre tabindex=0><code>    SHOW PARTITIONS page\_view;
+<pre tabindex=0><code>    SHOW PARTITIONS page_view;
 
 </code></pre><p>To list partitions of a table. If the table is not a partitioned table then an error is thrown.</p>
-<pre tabindex=0><code>    DESCRIBE page\_view;
+<pre tabindex=0><code>    DESCRIBE page_view;
 
 </code></pre><p>To list columns and column types of table.</p>
-<pre tabindex=0><code>    DESCRIBE EXTENDED page\_view;
+<pre tabindex=0><code>    DESCRIBE EXTENDED page_view;
 
 </code></pre><p>To list columns and all other properties of table. This prints lot of information and that too not in a pretty format. Usually used for debugging.</p>
-<pre tabindex=0><code>   DESCRIBE EXTENDED page\_view PARTITION (ds='2008-08-08');
+<pre tabindex=0><code>   DESCRIBE EXTENDED page_view PARTITION (ds='2008-08-08');
 
 </code></pre><p>To list columns and all other properties of a partition. This also prints lot of information which is usually used for debugging.</p>
 <h3 id=altering-tables>Altering Tables</h3>
 <p>To rename existing table to a new name. If a table with new name already exists then an error is returned:</p>
-<pre tabindex=0><code>    ALTER TABLE old\_table\_name RENAME TO new\_table\_name;
+<pre tabindex=0><code>    ALTER TABLE old_table_name RENAME TO new_table_name;
 
 </code></pre><p>To rename the columns of an existing table. Be sure to use the same column types, and to include an entry for each preexisting column:</p>
-<pre tabindex=0><code>    ALTER TABLE old\_table\_name REPLACE COLUMNS (col1 TYPE, ...);
+<pre tabindex=0><code>    ALTER TABLE old_table_name REPLACE COLUMNS (col1 TYPE, ...);
 
 </code></pre><p>To add columns to an existing table:</p>
 <pre tabindex=0><code>    ALTER TABLE tab1 ADD COLUMNS (c1 INT COMMENT 'a new int column', c2 STRING DEFAULT 'def val');
@@ -876,30 +876,30 @@ DESCRIBE FUNCTION EXTENDED &lt;function\_name&gt;;
 <p>In the later versions, we can make the behavior of assuming certain values as opposed to throwing an error in case the column is not found in a particular partition configurable.</p>
 <h3 id=dropping-tables-and-partitions>Dropping Tables and Partitions</h3>
 <p>Dropping tables is fairly trivial. A drop on the table would implicitly drop any indexes(this is a future feature) that would have been built on the table. The associated command is:</p>
-<pre tabindex=0><code>    DROP TABLE pv\_users;
+<pre tabindex=0><code>    DROP TABLE pv_users;
 
 </code></pre><p>To dropping a partition. Alter the table to drop the partition.</p>
-<pre tabindex=0><code>    ALTER TABLE pv\_users DROP PARTITION (ds='2008-08-08')
+<pre tabindex=0><code>    ALTER TABLE pv_users DROP PARTITION (ds='2008-08-08')
 
 </code></pre><ul>
 <li>Note that any data for this table or partitions will be dropped and may not be recoverable. *</li>
 </ul>
 <h2 id=loading-data>Loading Data</h2>
 <p>There are multiple ways to load data into Hive tables. The user can create an external table that points to a specified location within <a href=http://hadoop.apache.org/common/docs/current/hdfs_design.html>HDFS</a>. In this particular usage, the user can copy a file into the specified location using the HDFS put or copy commands and create a table pointing to this location with all the relevant row format information. Once this is done, the user can transform the data and insert them into any other Hive table. For example, if the file /tmp/pv_2008-06-08.txt contains comma separated page views served on 2008-06-08, and this needs to be loaded into the page_view table in the appropriate partition, the following sequence of commands can achieve this:</p>
-<pre tabindex=0><code>    CREATE EXTERNAL TABLE page\_view\_stg(viewTime INT, userid BIGINT,
-                    page\_url STRING, referrer\_url STRING,
+<pre tabindex=0><code>    CREATE EXTERNAL TABLE page_view_stg(viewTime INT, userid BIGINT,
+                    page_url STRING, referrer_url STRING,
                     ip STRING COMMENT 'IP Address of the User',
                     country STRING COMMENT 'country of origination')
     COMMENT 'This is the staging page view table'
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '44' LINES TERMINATED BY '12'
     STORED AS TEXTFILE
-    LOCATION '/user/data/staging/page\_view';
+    LOCATION '/user/data/staging/page_view';
 
-    hadoop dfs -put /tmp/pv\_2008-06-08.txt /user/data/staging/page\_view
+    hadoop dfs -put /tmp/pv_2008-06-08.txt /user/data/staging/page_view
 
-    FROM page\_view\_stg pvs
-    INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country='US')
-    SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip
+    FROM page_view_stg pvs
+    INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country='US')
+    SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip
     WHERE pvs.country = 'US';
 
 </code></pre><p>* This code results in an error due to LINES TERMINATED BY limitation</p>
@@ -914,11 +914,11 @@ Open</p>
 <p>In the example above, nulls are inserted for the array and map types in the destination tables but potentially these can also come from the external table if the proper row formats are specified.</p>
 <p>This method is useful if there is already legacy data in HDFS on which the user wants to put some metadata so that the data can be queried and manipulated using Hive.</p>
 <p>Additionally, the system also supports syntax that can load the data from a file in the local files system directly into a Hive table where the input data format is the same as the table format. If /tmp/pv_2008-06-08_us.txt already contains the data for US, then we do not need any additional filtering as shown in the previous example. The load in this case can be done using the following syntax:</p>
-<pre tabindex=0><code>   LOAD DATA LOCAL INPATH /tmp/pv\_2008-06-08\_us.txt INTO TABLE page\_view PARTITION(date='2008-06-08', country='US')
+<pre tabindex=0><code>   LOAD DATA LOCAL INPATH /tmp/pv_2008-06-08_us.txt INTO TABLE page_view PARTITION(date='2008-06-08', country='US')
 
 </code></pre><p>The path argument can take a directory (in which case all the files in the directory are loaded), a single file name, or a wildcard (in which case all the matching files are uploaded). If the argument is a directory, it cannot contain subdirectories. Similarly, the wildcard must match file names only.</p>
 <p>In the case that the input file /tmp/pv_2008-06-08_us.txt is very large, the user may decide to do a parallel load of the data (using tools that are external to Hive). Once the file is in HDFS - the following syntax can be used to load the data into a Hive table:</p>
-<pre tabindex=0><code>   LOAD DATA INPATH '/user/data/pv\_2008-06-08\_us.txt' INTO TABLE page\_view PARTITION(date='2008-06-08', country='US')
+<pre tabindex=0><code>   LOAD DATA INPATH '/user/data/pv_2008-06-08_us.txt' INTO TABLE page_view PARTITION(date='2008-06-08', country='US')
 
 </code></pre><p>It is assumed that the array and map fields in the input.txt files are null fields for these examples.</p>
 <p>See <a href=https://hive.apache.org/docs/latest/languagemanual-dml_27362036/>Hive Data Manipulation Language</a> for more information about loading data into Hive tables, and see <a href=#external-tables>External Tables</a> for another example of creating an external table.</p>
@@ -941,7 +941,7 @@ Open</p>
 <p>The Hive query operations are documented in <a href=https://hive.apache.org/docs/latest/languagemanual-select_27362043/>Select</a>, and the insert operations are documented in <a href=#inserting-data-into-hive-tables-from-queries>Inserting data into Hive Tables from queries</a> and <a href=#writing-data-into-the-filesystem-from-queries>Writing data into the filesystem from queries</a>.</p>
 <h3 id=simple-query>Simple Query</h3>
 <p>For all the active users, one can use the query of the following form:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE user\_active
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE user_active
     SELECT user.*
     FROM user
     WHERE user.active = 1;
@@ -954,85 +954,85 @@ Open</p>
 </code></pre><p>This will be internally rewritten to some temporary file and displayed to the Hive client side.</p>
 <h3 id=partition-based-query>Partition Based Query</h3>
 <p>What partitions to use in a query is determined automatically by the system on the basis of where clause conditions on partition columns. For example, in order to get all the page_views in the month of 03/2008 referred from domain xyz.com, one could write the following query:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE xyz\_com\_page\_views
-    SELECT page\_views.*
-    FROM page\_views
-    WHERE page\_views.date &gt;= '2008-03-01' AND page\_views.date &lt;= '2008-03-31' AND
-          page\_views.referrer\_url like '%xyz.com';
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE xyz_com_page_views
+    SELECT page_views.*
+    FROM page_views
+    WHERE page_views.date &gt;= '2008-03-01' AND page_views.date &lt;= '2008-03-31' AND
+          page_views.referrer_url like '%xyz.com';
 
 </code></pre><p>Note that page_views.date is used here because the table (above) was defined with PARTITIONED BY(date DATETIME, country STRING) ; if you name your partition something different, don&rsquo;t expect .date to do what you think!</p>
 <h3 id=joins>Joins</h3>
 <p>In order to get a demographic breakdown (by gender) of page_view of 2008-03-03 one would need to join the page_view table and the user table on the userid column. This can be accomplished with a join as shown in the following query:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_users
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_users
     SELECT pv.*, u.gender, u.age
-    FROM user u JOIN page\_view pv ON (pv.userid = u.id)
+    FROM user u JOIN page_view pv ON (pv.userid = u.id)
     WHERE pv.date = '2008-03-03';
 
 </code></pre><p>In order to do outer joins the user can qualify the join with LEFT OUTER, RIGHT OUTER or FULL OUTER keywords in order to indicate the kind of outer join (left preserved, right preserved or both sides preserved). For example, in order to do a full outer join in the query above, the corresponding syntax would look like the following query:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_users
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_users
     SELECT pv.*, u.gender, u.age
-    FROM user u FULL OUTER JOIN page\_view pv ON (pv.userid = u.id)
+    FROM user u FULL OUTER JOIN page_view pv ON (pv.userid = u.id)
     WHERE pv.date = '2008-03-03';
 
 </code></pre><p>In order check the existence of a key in another table, the user can use LEFT SEMI JOIN as illustrated by the following example.</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_users
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_users
     SELECT u.*
-    FROM user u LEFT SEMI JOIN page\_view pv ON (pv.userid = u.id)
+    FROM user u LEFT SEMI JOIN page_view pv ON (pv.userid = u.id)
     WHERE pv.date = '2008-03-03';
 
 </code></pre><p>In order to join more than one tables, the user can use the following syntax:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_friends
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_friends
     SELECT pv.*, u.gender, u.age, f.friends
-    FROM page\_view pv JOIN user u ON (pv.userid = u.id) JOIN friend\_list f ON (u.id = f.uid)
+    FROM page_view pv JOIN user u ON (pv.userid = u.id) JOIN friend_list f ON (u.id = f.uid)
     WHERE pv.date = '2008-03-03';
 
 </code></pre><h3 id=aggregations>Aggregations</h3>
 <p>In order to count the number of distinct users by gender one could write the following query:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_gender\_sum
-    SELECT pv\_users.gender, count (DISTINCT pv\_users.userid)
-    FROM pv\_users
-    GROUP BY pv\_users.gender;
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_gender_sum
+    SELECT pv_users.gender, count (DISTINCT pv_users.userid)
+    FROM pv_users
+    GROUP BY pv_users.gender;
 
 </code></pre><p>Multiple aggregations can be done at the same time, however, no two aggregations can have different DISTINCT columns .e.g while the following is possible</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_gender\_agg
-    SELECT pv\_users.gender, count(DISTINCT pv\_users.userid), count(*), sum(DISTINCT pv\_users.userid)
-    FROM pv\_users
-    GROUP BY pv\_users.gender;
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_gender_agg
+    SELECT pv_users.gender, count(DISTINCT pv_users.userid), count(*), sum(DISTINCT pv_users.userid)
+    FROM pv_users
+    GROUP BY pv_users.gender;
 
 </code></pre><p>however, the following query is not allowed</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_gender\_agg
-    SELECT pv\_users.gender, count(DISTINCT pv\_users.userid), count(DISTINCT pv\_users.ip)
-    FROM pv\_users
-    GROUP BY pv\_users.gender;
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_gender_agg
+    SELECT pv_users.gender, count(DISTINCT pv_users.userid), count(DISTINCT pv_users.ip)
+    FROM pv_users
+    GROUP BY pv_users.gender;
 
 </code></pre><h3 id=multi-tablefile-inserts>Multi Table/File Inserts</h3>
 <p>The output of the aggregations or simple selects can be further sent into multiple tables or even to hadoop dfs files (which can then be manipulated using hdfs utilities). For example, if along with the gender breakdown, one needed to find the breakdown of unique page views by age, one could accomplish that with the following query:</p>
-<pre tabindex=0><code>    FROM pv\_users
-    INSERT OVERWRITE TABLE pv\_gender\_sum
-        SELECT pv\_users.gender, count\_distinct(pv\_users.userid)
-        GROUP BY pv\_users.gender
+<pre tabindex=0><code>    FROM pv_users
+    INSERT OVERWRITE TABLE pv_gender_sum
+        SELECT pv_users.gender, count_distinct(pv_users.userid)
+        GROUP BY pv_users.gender
 
-    INSERT OVERWRITE DIRECTORY '/user/data/tmp/pv\_age\_sum'
-        SELECT pv\_users.age, count\_distinct(pv\_users.userid)
-        GROUP BY pv\_users.age;
+    INSERT OVERWRITE DIRECTORY '/user/data/tmp/pv_age_sum'
+        SELECT pv_users.age, count_distinct(pv_users.userid)
+        GROUP BY pv_users.age;
 
 </code></pre><p>The first insert clause sends the results of the first group by to a Hive table while the second one sends the results to a hadoop dfs files.</p>
 <h3 id=dynamic-partition-insert>Dynamic-Partition Insert</h3>
 <p>In the previous examples, the user has to know which partition to insert into and only one partition can be inserted in one insert statement. If you want to load into multiple partitions, you have to use multi-insert statement as illustrated below.</p>
-<pre tabindex=0><code>    FROM page\_view\_stg pvs
-    INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country='US')
-           SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip WHERE pvs.country = 'US'
-    INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country='CA')
-           SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip WHERE pvs.country = 'CA'
-    INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country='UK')
-           SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip WHERE pvs.country = 'UK';
+<pre tabindex=0><code>    FROM page_view_stg pvs
+    INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country='US')
+           SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip WHERE pvs.country = 'US'
+    INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country='CA')
+           SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip WHERE pvs.country = 'CA'
+    INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country='UK')
+           SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip WHERE pvs.country = 'UK';
 
 </code></pre><p>In order to load data into all country partitions in a particular day, you have to add an insert statement for each country in the input data. This is very inconvenient since you have to have the priori knowledge of the list of countries exist in the input data and create the partitions beforehand. If the list changed for another day, you have to modify your insert DML as well as the partition creation DDLs. It is also inefficient since each insert statement may be turned into a MapReduce Job.</p>
 <p><em><a href=#dynamic-partition-insert>Dynamic-partition insert</a></em> (or multi-partition insert) is designed to solve this problem by dynamically determining which partitions should be created and populated while scanning the input table. This is a newly added feature that is only available from version 0.6.0. In the dynamic partition insert, the input column values are evaluated to determine which partition this row should be inserted into. If that partition has not been created, it will create that partition automatically. Using this feature you need only one insert statement to create and populate all necessary partitions. In addition, since there is only one insert statement, there is only one corresponding MapReduce job. This significantly improves performance and reduce the Hadoop cluster workload comparing to the multiple insert case.</p>
 <p>Below is an example of loading data to all country partitions using one insert statement:</p>
-<pre tabindex=0><code>    FROM page\_view\_stg pvs
-    INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country)
-           SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip, pvs.country
+<pre tabindex=0><code>    FROM page_view_stg pvs
+    INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country)
+           SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip, pvs.country
 
 </code></pre><p>There are several syntactic differences from the multi-insert statement:</p>
 <ul>
@@ -1060,22 +1060,22 @@ Open</p>
 <li>As stated above, there are too many dynamic partitions created by a particular mapper/reducer, a fatal error could be raised and the job will be killed. The error message looks something like:</li>
 </ul>
 <pre tabindex=0><code>    beeline&gt; set hive.exec.dynamic.partition.mode=nonstrict;
-    beeline&gt; FROM page\_view\_stg pvs
-          INSERT OVERWRITE TABLE page\_view PARTITION(dt, country)
-                 SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip,
-                        from\_unixtimestamp(pvs.viewTime, 'yyyy-MM-dd') ds, pvs.country;
+    beeline&gt; FROM page_view_stg pvs
+          INSERT OVERWRITE TABLE page_view PARTITION(dt, country)
+                 SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip,
+                        from_unixtimestamp(pvs.viewTime, 'yyyy-MM-dd') ds, pvs.country;
 ...
 2010-05-07 11:10:19,816 Stage-1 map = 0%,  reduce = 0%
-[Fatal Error] Operator FS\_28 (id=41): fatal error. Killing the job.
-Ended Job = job\_201005052204\_28178 with errors
+[Fatal Error] Operator FS_28 (id=41): fatal error. Killing the job.
+Ended Job = job_201005052204_28178 with errors
 ...
 
 </code></pre><p>The problem of this that one mapper will take a random set of rows and it is very likely that the number of distinct (dt, country) pairs will exceed the limit of hive.exec.max.dynamic.partitions.pernode. One way around it is to group the rows by the dynamic partition columns in the mapper and distribute them to the reducers where the dynamic partitions will be created. In this case the number of distinct dynamic partitions will be significantly reduced. The above example query could be rewritten to:</p>
 <pre tabindex=0><code>    beeline&gt; set hive.exec.dynamic.partition.mode=nonstrict;
-    beeline&gt; FROM page\_view\_stg pvs
-          INSERT OVERWRITE TABLE page\_view PARTITION(dt, country)
-                 SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip,
-                        from\_unixtimestamp(pvs.viewTime, 'yyyy-MM-dd') ds, pvs.country
+    beeline&gt; FROM page_view_stg pvs
+          INSERT OVERWRITE TABLE page_view PARTITION(dt, country)
+                 SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip,
+                        from_unixtimestamp(pvs.viewTime, 'yyyy-MM-dd') ds, pvs.country
                  DISTRIBUTE BY ds, country;
 
 </code></pre><p>This query will generate a MapReduce job rather than Map-only job. The SELECT-clause will be converted to a plan to the mappers and the output will be distributed to the reducers based on the value of (ds, country) pairs. The INSERT-clause will be converted to the plan in the reducer which writes to the dynamic partitions.</p>
@@ -1097,15 +1097,15 @@ Ended Job = job\_201005052204\_28178 with errors
 </ul>
 <h3 id=inserting-into-local-files>Inserting into Local Files</h3>
 <p>In certain situations you would want to write the output into a local file so that you could load it into an excel spreadsheet. This can be accomplished with the following command:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE LOCAL DIRECTORY '/tmp/pv\_gender\_sum'
-    SELECT pv\_gender\_sum.*
-    FROM pv\_gender\_sum;
+<pre tabindex=0><code>    INSERT OVERWRITE LOCAL DIRECTORY '/tmp/pv_gender_sum'
+    SELECT pv_gender_sum.*
+    FROM pv_gender_sum;
 
 </code></pre><h3 id=sampling>Sampling</h3>
 <p>The sampling clause allows the users to write queries for samples of the data instead of the whole table. Currently the sampling is done on the columns that are specified in the CLUSTERED BY clause of the CREATE TABLE statement. In the following example we choose 3rd bucket out of the 32 buckets of the pv_gender_sum table:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv\_gender\_sum\_sample
-    SELECT pv\_gender\_sum.*
-    FROM pv\_gender\_sum TABLESAMPLE(BUCKET 3 OUT OF 32);
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE pv_gender_sum_sample
+    SELECT pv_gender_sum.*
+    FROM pv_gender_sum TABLESAMPLE(BUCKET 3 OUT OF 32);
 
 </code></pre><p>In general the TABLESAMPLE syntax looks like:</p>
 <pre tabindex=0><code>    TABLESAMPLE(BUCKET x OUT OF y)
@@ -1120,56 +1120,56 @@ Ended Job = job\_201005052204\_28178 with errors
 </code></pre><p>would pick out half of the 3rd bucket.</p>
 <h3 id=union-all>Union All</h3>
 <p>The language also supports union all, for example, if we suppose there are two different tables that track which user has published a video and which user has published a comment, the following query joins the results of a union all with the user table to create a single annotated stream for all the video publishing and comment publishing events:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE TABLE actions\_users
+<pre tabindex=0><code>    INSERT OVERWRITE TABLE actions_users
     SELECT u.id, actions.date
     FROM (
         SELECT av.uid AS uid
-        FROM action\_video av
+        FROM action_video av
         WHERE av.date = '2008-06-03'
 
         UNION ALL
 
         SELECT ac.uid AS uid
-        FROM action\_comment ac
+        FROM action_comment ac
         WHERE ac.date = '2008-06-03'
         ) actions JOIN users u ON(u.id = actions.uid);
 
 </code></pre><h3 id=array-operations>Array Operations</h3>
 <p>Array columns in tables can be as follows:</p>
-<pre tabindex=0><code>CREATE TABLE array\_table (int\_array\_column ARRAY&lt;INT&gt;);
+<pre tabindex=0><code>CREATE TABLE array_table (int_array_column ARRAY&lt;INT&gt;);
 </code></pre><p>Assuming that pv.friends is of the type ARRAY (i.e. it is an array of integers), the user can get a specific element in the array by its index as shown in the following command:</p>
 <pre tabindex=0><code>    SELECT pv.friends[2]
-    FROM page\_views pv;
+    FROM page_views pv;
 
 </code></pre><p>The select expression gets the third item in the pv.friends array.</p>
 <p>The user can also get the length of the array using the size function as shown below:</p>
 <pre tabindex=0><code>   SELECT pv.userid, size(pv.friends)
-   FROM page\_view pv;
+   FROM page_view pv;
 
 </code></pre><h3 id=map-associative-arrays-operations>Map (Associative Arrays) Operations</h3>
 <p>Maps provide collections similar to associative arrays. Such structures can only be created programmatically currently. We will be extending this soon. For the purpose of the current example assume that pv.properties is of the type map&lt;String, String> i.e. it is an associative array from strings to string. Accordingly, the following query:</p>
-<pre tabindex=0><code>    INSERT OVERWRITE page\_views\_map
+<pre tabindex=0><code>    INSERT OVERWRITE page_views_map
     SELECT pv.userid, pv.properties['page type']
-    FROM page\_views pv;
+    FROM page_views pv;
 
 </code></pre><p>can be used to select the &lsquo;page_type&rsquo; property from the page_views table.</p>
 <p>Similar to arrays, the size function can also be used to get the number of elements in a map as shown in the following query:</p>
 <pre tabindex=0><code>   SELECT size(pv.properties)
-   FROM page\_view pv;
+   FROM page_view pv;
 
 </code></pre><h3 id=custom-mapreduce-scripts>Custom Map/Reduce Scripts</h3>
 <p>Users can also plug in their own custom mappers and reducers in the data stream by using features natively supported in the Hive language. for example, in order to run a custom mapper script - map_script - and a custom reducer script - reduce_script - the user can issue the following command which uses the TRANSFORM clause to embed the mapper and the reducer scripts.</p>
 <p>Note that columns will be transformed to string and delimited by TAB before feeding to the user script, and the standard output of the user script will be treated as TAB-separated string columns. User scripts can output debug information to standard error which will be shown on the task detail page on hadoop.</p>
 <pre tabindex=0><code>   FROM (
-        FROM pv\_users
-        MAP pv\_users.userid, pv\_users.date
-        USING 'map\_script'
+        FROM pv_users
+        MAP pv_users.userid, pv_users.date
+        USING 'map_script'
         AS dt, uid
-        CLUSTER BY dt) map\_output
+        CLUSTER BY dt) map_output
 
-    INSERT OVERWRITE TABLE pv\_users\_reduced
-        REDUCE map\_output.dt, map\_output.uid
-        USING 'reduce\_script'
+    INSERT OVERWRITE TABLE pv_users_reduced
+        REDUCE map_output.dt, map_output.uid
+        USING 'reduce_script'
         AS date, count;
 
 </code></pre><p>Sample map script (weekday_mapper.py )</p>
@@ -1183,54 +1183,54 @@ for line in sys.stdin:
   print ','.join([userid, str(weekday)])
 
 </code></pre><p>Of course, both MAP and REDUCE are &ldquo;syntactic sugar&rdquo; for the more general select transform. The inner query could also have been written as such:</p>
-<pre tabindex=0><code>    SELECT TRANSFORM(pv\_users.userid, pv\_users.date) USING 'map\_script' AS dt, uid CLUSTER BY dt FROM pv\_users;
+<pre tabindex=0><code>    SELECT TRANSFORM(pv_users.userid, pv_users.date) USING 'map_script' AS dt, uid CLUSTER BY dt FROM pv_users;
 
 </code></pre><p>Schema-less map/reduce: If there is no &ldquo;AS&rdquo; clause after &ldquo;USING map_script&rdquo;, Hive assumes the output of the script contains 2 parts: key which is before the first tab, and value which is the rest after the first tab. Note that this is different from specifying &ldquo;AS key, value&rdquo; because in that case value will only contains the portion between the first tab and the second tab if there are multiple tabs.</p>
 <p>In this way, we allow users to migrate old map/reduce scripts without knowing the schema of the map output. User still needs to know the reduce output schema because that has to match what is in the table that we are inserting to.</p>
 <pre tabindex=0><code>    FROM (
-        FROM pv\_users
-        MAP pv\_users.userid, pv\_users.date
-        USING 'map\_script'
-        CLUSTER BY key) map\_output
+        FROM pv_users
+        MAP pv_users.userid, pv_users.date
+        USING 'map_script'
+        CLUSTER BY key) map_output
 
-    INSERT OVERWRITE TABLE pv\_users\_reduced
+    INSERT OVERWRITE TABLE pv_users_reduced
 
-        REDUCE map\_output.dt, map\_output.uid
-        USING 'reduce\_script'
+        REDUCE map_output.dt, map_output.uid
+        USING 'reduce_script'
         AS date, count;
 
 </code></pre><p>Distribute By and Sort By: Instead of specifying &ldquo;cluster by&rdquo;, the user can specify &ldquo;distribute by&rdquo; and &ldquo;sort by&rdquo;, so the partition columns and sort columns can be different. The usual case is that the partition columns are a prefix of sort columns, but that is not required.</p>
 <pre tabindex=0><code>    FROM (
-        FROM pv\_users
-        MAP pv\_users.userid, pv\_users.date
-        USING 'map\_script'
+        FROM pv_users
+        MAP pv_users.userid, pv_users.date
+        USING 'map_script'
         AS c1, c2, c3
         DISTRIBUTE BY c2
-        SORT BY c2, c1) map\_output
+        SORT BY c2, c1) map_output
 
-    INSERT OVERWRITE TABLE pv\_users\_reduced
+    INSERT OVERWRITE TABLE pv_users_reduced
 
-        REDUCE map\_output.c1, map\_output.c2, map\_output.c3
-        USING 'reduce\_script'
+        REDUCE map_output.c1, map_output.c2, map_output.c3
+        USING 'reduce_script'
         AS date, count;
 
 </code></pre><h3 id=co-groups>Co-Groups</h3>
 <p>Amongst the user community using map/reduce, cogroup is a fairly common operation wherein the data from multiple tables are sent to a custom reducer such that the rows are grouped by the values of certain columns on the tables. With the UNION ALL operator and the CLUSTER BY specification, this can be achieved in the Hive query language in the following way. Suppose we wanted to cogroup the rows from the actions_video and action_comments table on the uid column and send them to the &lsquo;reduce_script&rsquo; custom reducer, the following syntax can be used by the user:</p>
 <pre tabindex=0><code>   FROM (
         FROM (
-                FROM action\_video av
+                FROM action_video av
                 SELECT av.uid AS uid, av.id AS id, av.date AS date
 
                UNION ALL
 
-                FROM action\_comment ac
+                FROM action_comment ac
                 SELECT ac.uid AS uid, ac.id AS id, ac.date AS date
-        ) union\_actions
-        SELECT union\_actions.uid, union\_actions.id, union\_actions.date
-        CLUSTER BY union\_actions.uid) map
+        ) union_actions
+        SELECT union_actions.uid, union_actions.id, union_actions.date
+        CLUSTER BY union_actions.uid) map
 
-    INSERT OVERWRITE TABLE actions\_reduced
-        SELECT TRANSFORM(map.uid, map.id, map.date) USING 'reduce\_script' AS (uid, id, reduced\_val);
+    INSERT OVERWRITE TABLE actions_reduced
+        SELECT TRANSFORM(map.uid, map.id, map.date) USING 'reduce_script' AS (uid, id, reduced_val);
 
 </code></pre>
 </div>

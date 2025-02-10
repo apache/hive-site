@@ -217,18 +217,18 @@ beeline&gt; !connect jdbc:hive2://localhost:10000 scott tiger
 Connecting to jdbc:hive2://localhost:10000
 Connected to: Hive (version 0.10.0)
 Driver: Hive (version 0.10.0-SNAPSHOT)
-Transaction isolation: TRANSACTION\_REPEATABLE\_READ
+Transaction isolation: TRANSACTION_REPEATABLE_READ
 0: jdbc:hive2://localhost:10000&gt; show tables;
 show tables;
 +-------------------+
-|     tab\_name      |
+|     tab_name      |
 +-------------------+
 | primitives        |
 | src               |
 | src1              |
-| src\_json          |
-| src\_sequencefile  |
-| src\_thrift        |
+| src_json          |
+| src_sequencefile  |
+| src_thrift        |
 | srcbucket         |
 | srcbucket2        |
 | srcpart           |
@@ -236,7 +236,7 @@ show tables;
 9 rows selected (1.079 seconds)
 
 </code></pre><p>You can also specify the connection parameters on command line. This means you can find the command with the connection string from your UNIX shell history. </p>
-<pre tabindex=0><code>% beeline -u jdbc:hive2://localhost:10000/default -n scott -w password\_file
+<pre tabindex=0><code>% beeline -u jdbc:hive2://localhost:10000/default -n scott -w password_file
 Hive version 0.11.0-SNAPSHOT by Apache
 
 Connecting to jdbc:hive2://localhost:10000/default
@@ -492,7 +492,7 @@ beeline&gt; !connect jdbc:hive2://&lt;host&gt;:&lt;port&gt;/&lt;db&gt;;auth=noS
 </tr>
 <tr>
 <td>**&ndash;isolation=**LEVEL</td>
-<td>Set the transaction isolation level to TRANSACTION_READ_COMMITTED or TRANSACTION_SERIALIZABLE. See the &ldquo;Field Detail&rdquo; section in the Java <a href=http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html>Connection</a> documentation.Usage: <code>beeline --isolation=TRANSACTION\_SERIALIZABLE</code></td>
+<td>Set the transaction isolation level to TRANSACTION_READ_COMMITTED or TRANSACTION_SERIALIZABLE. See the &ldquo;Field Detail&rdquo; section in the Java <a href=http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html>Connection</a> documentation.Usage: <code>beeline --isolation=TRANSACTION_SERIALIZABLE</code></td>
 </tr>
 <tr>
 <td><strong>&ndash;nullemptystring=</strong>[true/false]</td>
@@ -673,7 +673,7 @@ Please be aware that these output formats are deprecated and only maintained for
 <p>Beeline can be run disconnected from a terminal for batch processing and automation scripts using commands such as <em>nohup</em> and <em>disown</em>.</p>
 <p>Some versions of Beeline client may require a workaround to allow the <em>nohup</em> command to correctly put the Beeline process in the background without stopping it.  See <a href=https://issues.apache.org/jira/browse/HIVE-11717>HIVE-11717</a>, <a href=https://issues.apache.org/jira/browse/HIVE-6758>H</a><a href=https://issues.apache.org/jira/browse/HIVE-6758>IVE-6758</a>.</p>
 <p>The following environment variable can be updated:</p>
-<pre tabindex=0><code>export HADOOP\_CLIENT\_OPTS=&quot;$HADOOP\_CLIENT\_OPTS -Djline.terminal=jline.UnsupportedTerminal&quot;
+<pre tabindex=0><code>export HADOOP_CLIENT_OPTS=&quot;$HADOOP_CLIENT_OPTS -Djline.terminal=jline.UnsupportedTerminal&quot;
 </code></pre><p>Running with nohangup (nohup) and ampersand (&) will place the process in the background and allow the terminal to disconnect while keeping the Beeline process running.  </p>
 <pre tabindex=0><code>nohup beeline --silent=true --showHeader=true --outputformat=dsv -f query.hql &lt;/dev/null &gt; /tmp/output.log 2&gt; /tmp/error.log &amp;
 </code></pre><h1 id=jdbc>JDBC</h1>
@@ -966,23 +966,23 @@ $ javac HiveJdbcClient.java
 #     jpox-rdbms-1.2.2.jar
 # and from hadoop/build
 #     hadoop-core*.jar
-# as well as hive/build/dist/conf, any HIVE\_AUX\_JARS\_PATH set, 
+# as well as hive/build/dist/conf, any HIVE_AUX_JARS_PATH set, 
 # and hadoop jars necessary to run MR jobs (eg lzo codec)
 
 $ java -cp $CLASSPATH HiveJdbcClient
 
 </code></pre><p>Alternatively, you can run the following bash script, which will seed the data file and build your classpath before invoking the client. The script adds all the additional jars needed for using HiveServer2 in embedded mode as well.</p>
 <pre tabindex=0><code>#!/bin/bash
-HADOOP\_HOME=/your/path/to/hadoop
-HIVE\_HOME=/your/path/to/hive
+HADOOP_HOME=/your/path/to/hadoop
+HIVE_HOME=/your/path/to/hive
 
 echo -e '1\x01foo' &gt; /tmp/a.txt
 echo -e '2\x01bar' &gt;&gt; /tmp/a.txt
 
-HADOOP\_CORE=$(ls $HADOOP\_HOME/hadoop-core*.jar)
-CLASSPATH=.:$HIVE\_HOME/conf:$(hadoop classpath)
+HADOOP_CORE=$(ls $HADOOP_HOME/hadoop-core*.jar)
+CLASSPATH=.:$HIVE_HOME/conf:$(hadoop classpath)
 
-for i in ${HIVE\_HOME}/lib/*.jar ; do
+for i in ${HIVE_HOME}/lib/*.jar ; do
     CLASSPATH=$CLASSPATH:$i
 done
 
@@ -1111,12 +1111,12 @@ See examples in <a href=https://github.com/apache/hive/blob/master/beeline/src/
                public Object run()
                {
                        Connection con = null;
-                       String JDBC\_DB\_URL = &quot;jdbc:hive2://HiveHost:10000/default;&quot; ||
+                       String JDBC_DB_URL = &quot;jdbc:hive2://HiveHost:10000/default;&quot; ||
                                               &quot;principal=hive/localhost.localdomain@EXAMPLE.COM;&quot; || 
                                               &quot;kerberosAuthType=fromSubject&quot;;
                        try {
-                               Class.forName(JDBC\_DRIVER);
-                               con =  DriverManager.getConnection(JDBC\_DB\_URL);
+                               Class.forName(JDBC_DRIVER);
+                               con =  DriverManager.getConnection(JDBC_DB_URL);
                        } catch (SQLException e) {
                                e.printStackTrace();
                        } catch (ClassNotFoundException e) {
@@ -1168,8 +1168,8 @@ See examples in <a href=https://github.com/apache/hive/blob/master/beeline/src/
 <p>Select &lsquo;Extra Class Path -> Add&rsquo; to add the following jars from your local Hive and Hadoop distribution.</p>
 </li>
 </ol>
-<pre tabindex=0><code>   HIVE\_HOME/lib/hive-jdbc-*-standalone.jar
-   HADOOP\_HOME/share/hadoop/common/hadoop-common-*.jar 
+<pre tabindex=0><code>   HIVE_HOME/lib/hive-jdbc-*-standalone.jar
+   HADOOP_HOME/share/hadoop/common/hadoop-common-*.jar 
 </code></pre><p>Version information</p>
 <p>Hive JDBC standalone jars are used in Hive 0.14.0 onward (<a href=https://issues.apache.org/jira/browse/HIVE-538>HIVE-538</a>); for previous versions of Hive, use <code>HIVE_HOME/build/dist/lib/*.jar</code> instead.</p>
 <p>The hadoop-common jars are for Hadoop 2.0; for previous versions of Hadoop, use <code>HADOOP_HOME/hadoop-*-core.jar</code> instead.
@@ -1235,7 +1235,7 @@ See examples in <a href=https://github.com/apache/hive/blob/master/beeline/src/
 <p>This option is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-10339>Hive 1.2.0</a>.</p>
 <p><a href=https://issues.apache.org/jira/browse/HIVE-10339>HIVE-10339</a> introduced an option for clients to provide custom HTTP headers that can be sent to the underlying server (Hive 1.2.0 and later).</p>
 <p>JDBC connection URL:</p>
-<p><code>jdbc:hive2://&lt;host>:&lt;port>/&lt;db>;transportMode=http;httpPath=&lt;http\_endpoint>;http.header.&lt;name1>=&lt;value1>;http.header.&lt;name2>=&lt;value2></code></p>
+<p><code>jdbc:hive2://&lt;host>:&lt;port>/&lt;db>;transportMode=http;httpPath=&lt;http_endpoint>;http.header.&lt;name1>=&lt;value1>;http.header.&lt;name2>=&lt;value2></code></p>
 <p>When the above URL is specified, Beeline will call underlying requests to add an HTTP header set to <em></em> and <em></em> and another HTTP header set to <em></em> and <em></em>. This is helpful when the end user needs to send identity in an HTTP header down to intermediate servers such as Knox via Beeline for authentication, for example <code>http.header.USERNAME=&lt;value1>;http.header.PASSWORD=&lt;value2></code>.</p>
 <p>For versions earlier than 0.14, see the <a href=#version-note>version note</a> above. </p>
 <h3 id=passing-custom-http-cookie-keyvalue-pairs-via-jdbc-driver>Passing Custom HTTP Cookie Key/Value Pairs via JDBC Driver</h3>

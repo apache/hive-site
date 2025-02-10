@@ -120,7 +120,7 @@ ASF
 <p>Hive is designed to work with big data. Often in such cases, a row in a data might be very wide with hundreds of columns. Sometimes, user is just interested in few of those columns and doesn&rsquo;t want to bother about exact type information for rest of columns. In such cases, he may just declare the types of those columns as binary and Hive will not try to interpret those columns. One important thing to note is this binary type is not modeled after blob type as it exists in other systems.</p>
 <h3 id=syntax>Syntax:</h3>
 <pre tabindex=0><code>
-create table binary\_table (a string, b binary);
+create table binary_table (a string, b binary);
 
 </code></pre><h3 id=how-is-binary-represented-internally-in-hive>How is &lsquo;binary&rsquo; represented internally in Hive</h3>
 <p>Binary type in Hive will map to &lsquo;binary&rsquo; data type in thrift. </p>

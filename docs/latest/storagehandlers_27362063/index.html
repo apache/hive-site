@@ -151,26 +151,26 @@ ASF
 <p>Note that we avoid the term <em>file-based</em> in these definitions, since the form of storage used by the other system is irrelevant.</p>
 <h2 id=ddl>DDL</h2>
 <p>Storage handlers are associated with a table when it is created via the new STORED BY clause, an alternative to the existing ROW FORMAT and STORED AS clause:</p>
-<pre tabindex=0><code>CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table\_name
-  [(col\_name data\_type [COMMENT col\_comment], ...)]
-  [COMMENT table\_comment]
-  [PARTITIONED BY (col\_name data\_type [col\_comment], col\_name data\_type [COMMENT col\_comment], ...)]
-  [CLUSTERED BY (col\_name, col\_name, ...) [SORTED BY (col\_name, ...)] INTO num\_buckets BUCKETS]
+<pre tabindex=0><code>CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
+  [(col_name data_type [COMMENT col_comment], ...)]
+  [COMMENT table_comment]
+  [PARTITIONED BY (col_name data_type [col_comment], col_name data_type [COMMENT col_comment], ...)]
+  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name, ...)] INTO num_buckets BUCKETS]
   [
-   [ROW FORMAT row\_format] [STORED AS file\_format]
+   [ROW FORMAT row_format] [STORED AS file_format]
    | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
-  [LOCATION hdfs\_path]
-  [AS select\_statement]
+  [LOCATION hdfs_path]
+  [AS select_statement]
 
 </code></pre><p>When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from <a href=https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration>Hive 4.0</a>, they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.</p>
 <p>See <a href=#create-table>CREATE TABLE</a> and <a href=#row-format,-storage-format,-and-serde>Row Format, Storage Format, and SerDe</a> for more information.</p>
 <p>Example:</p>
-<pre tabindex=0><code>CREATE TABLE hbase\_table\_1(key int, value string) 
+<pre tabindex=0><code>CREATE TABLE hbase_table_1(key int, value string) 
 STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
 WITH SERDEPROPERTIES (
 &quot;hbase.columns.mapping&quot; = &quot;cf:string&quot;,
-&quot;hbase.table.name&quot; = &quot;hbase\_table\_0&quot;
+&quot;hbase.table.name&quot; = &quot;hbase_table_0&quot;
 );
 
 </code></pre><p>DROP TABLE works as usual, but ALTER TABLE is not yet supported for non-native tables.</p>

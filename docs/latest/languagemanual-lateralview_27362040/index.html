@@ -174,7 +174,7 @@ fromClause: FROM baseTable (lateralView)*
 <p>and the user would like to count the total number of times an ad appears across all pages.</p>
 <p>A lateral view with <a href=#explode-->explode()</a> can be used to convert <code>adid_list</code> into separate rows using the query:</p>
 <pre tabindex=0><code>SELECT pageid, adid
-FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
+FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid;
 
 </code></pre><p>The resulting output will be</p>
 <table>
@@ -213,7 +213,7 @@ FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid;
 </table>
 <p>Then in order to count the number of times a particular ad appears, count/group by can be used:</p>
 <pre tabindex=0><code>SELECT adid, count(1)
-FROM pageAds LATERAL VIEW explode(adid\_list) adTable AS adid
+FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid
 GROUP BY adid;
 
 </code></pre><table>

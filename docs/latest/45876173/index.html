@@ -184,19 +184,19 @@ ASF
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a>` setting.</p>
 <h3 id=creatingdroppingusing-roles>Creating/Dropping/Using Roles</h3>
 <h4 id=createdrop-role>Create/Drop Role</h4>
-<pre tabindex=0><code>CREATE ROLE role\_name
+<pre tabindex=0><code>CREATE ROLE role_name
 
-DROP ROLE role\_name
+DROP ROLE role_name
 
 </code></pre><h4 id=grantrevoke-roles>Grant/Revoke Roles</h4>
-<pre tabindex=0><code>GRANT ROLE role\_name [, role\_name] ...
-TO principal\_specification [, principal\_specification] ...
+<pre tabindex=0><code>GRANT ROLE role_name [, role_name] ...
+TO principal_specification [, principal_specification] ...
 [WITH ADMIN OPTION]
 
-REVOKE [ADMIN OPTION FOR] ROLE role\_name [, role\_name] ...
-FROM principal\_specification [, principal\_specification] ...
+REVOKE [ADMIN OPTION FOR] ROLE role_name [, role_name] ...
+FROM principal_specification [, principal_specification] ...
 
-principal\_specification:
+principal_specification:
     USER user
   | GROUP group
   | ROLE role
@@ -206,9 +206,9 @@ principal\_specification:
 <p>REVOKE ROLE will add the optional ADMIN OPTION FOR clause in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6252>HIVE-6252</a>).</p>
 <p> </p>
 <h4 id=viewing-granted-roles>Viewing Granted Roles</h4>
-<pre tabindex=0><code>SHOW ROLE GRANT principal\_specification
+<pre tabindex=0><code>SHOW ROLE GRANT principal_specification
  
-principal\_specification:
+principal_specification:
     USER user
   | GROUP group
   | ROLE role
@@ -229,30 +229,30 @@ principal\_specification:
 </ul>
 <h4 id=grantrevoke-privileges>Grant/Revoke Privileges</h4>
 <pre tabindex=0><code>GRANT
-    priv\_type [(column\_list)]
-      [, priv\_type [(column\_list)]] ...
-    [ON object\_specification]
-    TO principal\_specification [, principal\_specification] ...
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    [ON object_specification]
+    TO principal_specification [, principal_specification] ...
     [WITH GRANT OPTION]
 
 REVOKE [GRANT OPTION FOR]
-    priv\_type [(column\_list)]
-      [, priv\_type [(column\_list)]] ...
-    [ON object\_specification]
-    FROM principal\_specification [, principal\_specification] ...
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    [ON object_specification]
+    FROM principal_specification [, principal_specification] ...
 
 REVOKE ALL PRIVILEGES, GRANT OPTION
     FROM user [, user] ...
 
-priv\_type:
+priv_type:
     ALL | ALTER | UPDATE | CREATE | DROP
-  | INDEX | LOCK | SELECT | SHOW\_DATABASE 
+  | INDEX | LOCK | SELECT | SHOW_DATABASE 
  
-object\_specification:
-    TABLE tbl\_name
-  | DATABASE db\_name
+object_specification:
+    TABLE tbl_name
+  | DATABASE db_name
  
-principal\_specification:
+principal_specification:
     USER user
   | GROUP group
   | ROLE role
@@ -260,17 +260,17 @@ principal\_specification:
 <p>REVOKE <em>priv_type</em> will add the optional GRANT OPTION FOR clause in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-7404>HIVE-7404</a>).</p>
 <p> </p>
 <h4 id=viewing-granted-privileges>Viewing Granted Privileges</h4>
-<pre tabindex=0><code>SHOW GRANT principal\_specification
-[ON object\_specification [(column\_list)]]
+<pre tabindex=0><code>SHOW GRANT principal_specification
+[ON object_specification [(column_list)]]
  
-principal\_specification:
+principal_specification:
     USER user
   | GROUP group
   | ROLE role
  
-object\_specification:
-    TABLE tbl\_name
-  | DATABASE db\_name
+object_specification:
+    TABLE tbl_name
+  | DATABASE db_name
 </code></pre><p>Version</p>
 <p>The output of SHOW GRANT is in tabular format starting with Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6204>HIVE-6204</a>).</p>
 <p> </p>

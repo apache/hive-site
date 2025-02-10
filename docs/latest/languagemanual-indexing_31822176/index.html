@@ -155,42 +155,42 @@ ASF
 <p>In Hive 0.12.0 and earlier releases, the index name is case-sensitive for CREATE INDEX and DROP INDEX statements. However, ALTER INDEX requires an index name that was created with lowercase letters (see <a href=https://issues.apache.org/jira/browse/HIVE-2752>HIVE-2752</a>). This bug is fixed in <a href=https://issues.apache.org/jira/browse/HIVE-2752>Hive 0.13.0</a> by making index names case-insensitive for all HiveQL statements. For releases prior to 0.13.0, the best practice is to use lowercase letters for all index names.</p>
 <p> </p>
 <p>Create/build, show, and drop index:</p>
-<pre tabindex=0><code>CREATE INDEX table01\_index ON TABLE table01 (column2) AS 'COMPACT';
+<pre tabindex=0><code>CREATE INDEX table01_index ON TABLE table01 (column2) AS 'COMPACT';
 SHOW INDEX ON table01;
-DROP INDEX table01\_index ON table01;
+DROP INDEX table01_index ON table01;
 
 </code></pre><p>Create then build, show formatted (with column names), and drop index:</p>
-<pre tabindex=0><code>CREATE INDEX table02\_index ON TABLE table02 (column3) AS 'COMPACT' WITH DEFERRED REBUILD;
-ALTER INDEX table02\_index ON table2 REBUILD;
+<pre tabindex=0><code>CREATE INDEX table02_index ON TABLE table02 (column3) AS 'COMPACT' WITH DEFERRED REBUILD;
+ALTER INDEX table02_index ON table2 REBUILD;
 SHOW FORMATTED INDEX ON table02;
-DROP INDEX table02\_index ON table02;
+DROP INDEX table02_index ON table02;
 
 </code></pre><p>Create bitmap index, build, show, and drop:</p>
-<pre tabindex=0><code>CREATE INDEX table03\_index ON TABLE table03 (column4) AS 'BITMAP' WITH DEFERRED REBUILD;
-ALTER INDEX table03\_index ON table03 REBUILD;
+<pre tabindex=0><code>CREATE INDEX table03_index ON TABLE table03 (column4) AS 'BITMAP' WITH DEFERRED REBUILD;
+ALTER INDEX table03_index ON table03 REBUILD;
 SHOW FORMATTED INDEX ON table03;
-DROP INDEX table03\_index ON table03;
+DROP INDEX table03_index ON table03;
 
 </code></pre><p>Create index in a new table:</p>
-<pre tabindex=0><code>CREATE INDEX table04\_index ON TABLE table04 (column5) AS 'COMPACT' WITH DEFERRED REBUILD IN TABLE table04\_index\_table;
+<pre tabindex=0><code>CREATE INDEX table04_index ON TABLE table04 (column5) AS 'COMPACT' WITH DEFERRED REBUILD IN TABLE table04_index_table;
 
 </code></pre><p>Create index stored as RCFile:</p>
-<pre tabindex=0><code>CREATE INDEX table05\_index ON TABLE table05 (column6) AS 'COMPACT' STORED AS RCFILE;
+<pre tabindex=0><code>CREATE INDEX table05_index ON TABLE table05 (column6) AS 'COMPACT' STORED AS RCFILE;
 
 </code></pre><p>Create index stored as text file:</p>
-<pre tabindex=0><code>CREATE INDEX table06\_index ON TABLE table06 (column7) AS 'COMPACT' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE;
+<pre tabindex=0><code>CREATE INDEX table06_index ON TABLE table06 (column7) AS 'COMPACT' ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' STORED AS TEXTFILE;
 
 </code></pre><p>Create index with index properties:</p>
-<pre tabindex=0><code>CREATE INDEX table07\_index ON TABLE table07 (column8) AS 'COMPACT' IDXPROPERTIES (&quot;prop1&quot;=&quot;value1&quot;, &quot;prop2&quot;=&quot;value2&quot;);
+<pre tabindex=0><code>CREATE INDEX table07_index ON TABLE table07 (column8) AS 'COMPACT' IDXPROPERTIES (&quot;prop1&quot;=&quot;value1&quot;, &quot;prop2&quot;=&quot;value2&quot;);
 
 </code></pre><p>Create index with table properties:</p>
-<pre tabindex=0><code>CREATE INDEX table08\_index ON TABLE table08 (column9) AS 'COMPACT' TBLPROPERTIES (&quot;prop3&quot;=&quot;value3&quot;, &quot;prop4&quot;=&quot;value4&quot;);
+<pre tabindex=0><code>CREATE INDEX table08_index ON TABLE table08 (column9) AS 'COMPACT' TBLPROPERTIES (&quot;prop3&quot;=&quot;value3&quot;, &quot;prop4&quot;=&quot;value4&quot;);
 
 </code></pre><p>Drop index if exists:</p>
-<pre tabindex=0><code>DROP INDEX IF EXISTS table09\_index ON table09;
+<pre tabindex=0><code>DROP INDEX IF EXISTS table09_index ON table09;
 
 </code></pre><p>Rebuild index on a partition:</p>
-<pre tabindex=0><code>ALTER INDEX table10\_index ON table10 PARTITION (columnX='valueQ', columnY='valueR') REBUILD;
+<pre tabindex=0><code>ALTER INDEX table10_index ON table10 PARTITION (columnX='valueQ', columnY='valueR') REBUILD;
 </code></pre>
 </div>
 </div>

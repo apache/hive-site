@@ -135,10 +135,10 @@ ASF
 <p>The following Pig script illustrates this:</p>
 <pre tabindex=0><code>A = load 'raw' using HCatLoader(); 
 ... 
-split Z into for\_us if region='us', for\_eu if region='eu', for\_asia if region='asia'; 
-store for\_us into 'processed' using HCatStorer(&quot;ds=20110110, region=us&quot;); 
-store for\_eu into 'processed' using HCatStorer(&quot;ds=20110110, region=eu&quot;); 
-store for\_asia into 'processed' using HCatStorer(&quot;ds=20110110, region=asia&quot;); 
+split Z into for_us if region='us', for_eu if region='eu', for_asia if region='asia'; 
+store for_us into 'processed' using HCatStorer(&quot;ds=20110110, region=us&quot;); 
+store for_eu into 'processed' using HCatStorer(&quot;ds=20110110, region=eu&quot;); 
+store for_asia into 'processed' using HCatStorer(&quot;ds=20110110, region=asia&quot;); 
 
 </code></pre><p>In cases where you want to write data to multiple partitions simultaneously, this can be done by placing partition columns in the data and not specifying partition values when storing the data.</p>
 <pre tabindex=0><code>A = load 'raw' using HCatLoader(); 

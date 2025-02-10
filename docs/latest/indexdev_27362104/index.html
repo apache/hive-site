@@ -147,18 +147,18 @@ ASF
 <p>Only single-table indexes are supported. Others (such as join indexes) may be more appropriately expressed as materialized views once Hive has support for those.</p>
 <p>This document currently only covers index creation and maintenance. A follow-on will explain how indexes are used to optimize queries (building on <a href=https://hive.apache.org/docs/latest/filterpushdowndev_27362092/>FilterPushdownDev</a>).</p>
 <h2 id=create-index>CREATE INDEX</h2>
-<pre tabindex=0><code>CREATE INDEX index\_name
-ON TABLE base\_table\_name (col\_name, ...)
+<pre tabindex=0><code>CREATE INDEX index_name
+ON TABLE base_table_name (col_name, ...)
 AS 'index.handler.class.name'
 [WITH DEFERRED REBUILD]
-[IDXPROPERTIES (property\_name=property\_value, ...)]
-[IN TABLE index\_table\_name]
-[PARTITIONED BY (col\_name, ...)]
+[IDXPROPERTIES (property_name=property_value, ...)]
+[IN TABLE index_table_name]
+[PARTITIONED BY (col_name, ...)]
 [
    [ ROW FORMAT ...] STORED AS ...
    | STORED BY ...
 ]
-[LOCATION hdfs\_path]
+[LOCATION hdfs_path]
 [TBLPROPERTIES (...)]
 [COMMENT &quot;index comment&quot;]
 
@@ -190,7 +190,7 @@ AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler';
 <p>To avoid the generated name, a user-specified name such as t_x can be supplied instead:</p>
 <pre tabindex=0><code>CREATE INDEX x ON TABLE t(j)
 AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler'
-IN TABLE t\_x;
+IN TABLE t_x;
 
 </code></pre><p>Note that index names are qualified by the containing base table (like partitions), so the same index name can be used across two different tables. However, names of index tables are in the same namespace as all other tables and views, so they must be unique within the same database.</p>
 <p>An index has a storage descriptor which includes the subset of columns from the original table covered by the index. If the index representation is stored in a table, most of the other fields in the index&rsquo;s own storage descriptor (e.g. LOCATION) will be irrelevant.</p>
@@ -205,46 +205,46 @@ IN TABLE t\_x;
 <p>Here are the MySQL metastore upgrade statements.</p>
 <pre tabindex=0><code>DROP TABLE IF EXISTS {{IDXS}};
 CREATE TABLE {{IDXS}} (
-  {{INDEX\_ID}} bigint(20) NOT NULL,
-  {{CREATE\_TIME}} int(11) NOT NULL,
-  {{DEFERRED\_REBUILD}} bit(1) NOT NULL,
-  {{INDEX\_HANDLER\_CLASS}} varchar(256) DEFAULT NULL,
-  {{INDEX\_NAME}} varchar(128) DEFAULT NULL,
-  {{INDEX\_TBL\_ID}} bigint(20) DEFAULT NULL,
-  {{LAST\_ACCESS\_TIME}} int(11) NOT NULL,
-  {{ORIG\_TBL\_ID}} bigint(20) DEFAULT NULL,
-  {{SD\_ID}} bigint(20) DEFAULT NULL,
-  PRIMARY KEY ({{INDEX\_ID}}),
-  UNIQUE KEY {{UNIQUEINDEX}} ({{INDEX\_NAME}},{{ORIG\_TBL\_ID}}),
-  KEY {{IDXS\_FK1}} ({{SD\_ID}}),
-  KEY {{IDXS\_FK2}} ({{INDEX\_TBL\_ID}}),
-  KEY {{IDXS\_FK3}} ({{ORIG\_TBL\_ID}}),
-  CONSTRAINT {{IDXS\_FK3}} FOREIGN KEY ({{ORIG\_TBL\_ID}}) REFERENCES {{TBLS}} ({{TBL\_ID}}),
-  CONSTRAINT {{IDXS\_FK1}} FOREIGN KEY ({{SD\_ID}}) REFERENCES {{SDS}} ({{SD\_ID}}),
-  CONSTRAINT {{IDXS\_FK2}} FOREIGN KEY ({{INDEX\_TBL\_ID}}) REFERENCES {{TBLS}} ({{TBL\_ID}})
+  {{INDEX_ID}} bigint(20) NOT NULL,
+  {{CREATE_TIME}} int(11) NOT NULL,
+  {{DEFERRED_REBUILD}} bit(1) NOT NULL,
+  {{INDEX_HANDLER_CLASS}} varchar(256) DEFAULT NULL,
+  {{INDEX_NAME}} varchar(128) DEFAULT NULL,
+  {{INDEX_TBL_ID}} bigint(20) DEFAULT NULL,
+  {{LAST_ACCESS_TIME}} int(11) NOT NULL,
+  {{ORIG_TBL_ID}} bigint(20) DEFAULT NULL,
+  {{SD_ID}} bigint(20) DEFAULT NULL,
+  PRIMARY KEY ({{INDEX_ID}}),
+  UNIQUE KEY {{UNIQUEINDEX}} ({{INDEX_NAME}},{{ORIG_TBL_ID}}),
+  KEY {{IDXS_FK1}} ({{SD_ID}}),
+  KEY {{IDXS_FK2}} ({{INDEX_TBL_ID}}),
+  KEY {{IDXS_FK3}} ({{ORIG_TBL_ID}}),
+  CONSTRAINT {{IDXS_FK3}} FOREIGN KEY ({{ORIG_TBL_ID}}) REFERENCES {{TBLS}} ({{TBL_ID}}),
+  CONSTRAINT {{IDXS_FK1}} FOREIGN KEY ({{SD_ID}}) REFERENCES {{SDS}} ({{SD_ID}}),
+  CONSTRAINT {{IDXS_FK2}} FOREIGN KEY ({{INDEX_TBL_ID}}) REFERENCES {{TBLS}} ({{TBL_ID}})
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Table structure for table {{INDEX\_PARAMS}}
+-- Table structure for table {{INDEX_PARAMS}}
 --
 
-DROP TABLE IF EXISTS {{INDEX\_PARAMS}};
-CREATE TABLE {{INDEX\_PARAMS}} (
-  {{INDEX\_ID}} bigint(20) NOT NULL,
-  {{PARAM\_KEY}} varchar(256) NOT NULL,
-  {{PARAM\_VALUE}} varchar(767) DEFAULT NULL,
-  PRIMARY KEY ({{INDEX\_ID}},{{PARAM\_KEY}}),
-  CONSTRAINT {{INDEX\_PARAMS\_FK1}} FOREIGN KEY ({{INDEX\_ID}}) REFERENCES {{IDXS}} ({{INDEX\_ID}})
+DROP TABLE IF EXISTS {{INDEX_PARAMS}};
+CREATE TABLE {{INDEX_PARAMS}} (
+  {{INDEX_ID}} bigint(20) NOT NULL,
+  {{PARAM_KEY}} varchar(256) NOT NULL,
+  {{PARAM_VALUE}} varchar(767) DEFAULT NULL,
+  PRIMARY KEY ({{INDEX_ID}},{{PARAM_KEY}}),
+  CONSTRAINT {{INDEX_PARAMS_FK1}} FOREIGN KEY ({{INDEX_ID}}) REFERENCES {{IDXS}} ({{INDEX_ID}})
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 </code></pre><h2 id=rebuild>REBUILD</h2>
-<pre tabindex=0><code>ALTER INDEX index\_name ON table\_name [PARTITION (...)] REBUILD
+<pre tabindex=0><code>ALTER INDEX index_name ON table_name [PARTITION (...)] REBUILD
 
-</code></pre><p>For the PARTITION clause syntax, see <a href=#languagemanual-ddl#add\_partitions>LanguageManual DDL#Add_Partitions</a>.</p>
+</code></pre><p>For the PARTITION clause syntax, see <a href=#languagemanual-ddl#add_partitions>LanguageManual DDL#Add_Partitions</a>.</p>
 <p>If WITH DEFERRED REBUILD is specified on CREATE INDEX, then the newly created index is initially empty (regardless of whether the table contains any data). The ALTER INDEX &mldr; REBUILD command can be used to build the index structure for all partitions or a single partition.</p>
 <p>If data in the base table changes, then the REBUILD command must be used to bring the index up to date. This is an atomic operation, so if the table was previously indexed, and a rebuild fails, then the stale index remains untouched.</p>
 <h2 id=drop-index>DROP INDEX</h2>
-<pre tabindex=0><code>DROP INDEX index\_name ON table\_name
+<pre tabindex=0><code>DROP INDEX index_name ON table_name
 
 </code></pre><p>An index can be dropped at any time with DROP INDEX. This will also cascade to the index table (if one exists).</p>
 <p>Attempting to drop an index table directly with DROP TABLE will fail.</p>
@@ -351,7 +351,7 @@ public abstract class AbstractIndexHandler implements HiveIndexHandler
 <p>The reference implementation creates what is referred to as a &ldquo;compact&rdquo; index. This means that rather than storing the HDFS location of each occurrence of a particular value, it only stores the addresses of HDFS blocks containing that value. This is optimized for point-lookups in the case where a value typically occurs more than once in nearby rows; the index size is kept small since there are many fewer blocks than rows. The tradeoff is that extra work is required during queries in order to filter out the other rows from the indexed blocks.</p>
 <p>The compact index is stored in an index table. The index table columns consist of the indexed columns from the base table followed by a _bucketname string column (indicating the name of the file containing the indexed block) followed by an _offsets array column (indicating the block offsets within the corresponding file). The index table is stored as sorted on the indexed columns (but not on the generated columns).</p>
 <p>The reference implementation can be plugged in with</p>
-<pre tabindex=0><code>ADD JAR /path/to/hive\_idx-compact.jar;
+<pre tabindex=0><code>ADD JAR /path/to/hive_idx-compact.jar;
 CREATE INDEX ...
 AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler';
 

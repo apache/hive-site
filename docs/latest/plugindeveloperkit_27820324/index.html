@@ -146,7 +146,7 @@ BUILD SUCCESSFUL
   &lt;property name=&quot;plugin.title&quot; value=&quot;Hive PDK Test UDF Library&quot;/&gt;
   &lt;property name=&quot;plugin.version&quot; value=&quot;0.1&quot;/&gt;
   &lt;property name=&quot;plugin.vendor&quot; value=&quot;Apache Software Foundation&quot;/&gt;
-  &lt;property name=&quot;function.sql.prefix&quot; value=&quot;tp\_&quot;/&gt;
+  &lt;property name=&quot;function.sql.prefix&quot; value=&quot;tp_&quot;/&gt;
   &lt;import file=&quot;${hive.install.dir}/scripts/pdk/build-plugin.xml&quot;/&gt;
 &lt;/project&gt;
 
@@ -187,19 +187,19 @@ import org.apache.hadoop.io.Text;
  * Example UDF for rot13 transformation.
  */
 @Description(name = &quot;rot13&quot;,
-  value = &quot;\_FUNC\_(str) - Returns str with all characters transposed via rot13&quot;,
+  value = &quot;_FUNC_(str) - Returns str with all characters transposed via rot13&quot;,
   extended = &quot;Example:\n&quot;
-  + &quot;  &gt; SELECT \_FUNC\_('Facebook') FROM src LIMIT 1;\n&quot; + &quot;  'Snprobbx'&quot;)
+  + &quot;  &gt; SELECT _FUNC_('Facebook') FROM src LIMIT 1;\n&quot; + &quot;  'Snprobbx'&quot;)
 @HivePdkUnitTests(
-    setup = &quot;create table rot13\_data(s string); &quot;
-    + &quot;insert overwrite table rot13\_data select 'Facebook' from onerow;&quot;,
-    cleanup = &quot;drop table if exists rot13\_data;&quot;,
+    setup = &quot;create table rot13_data(s string); &quot;
+    + &quot;insert overwrite table rot13_data select 'Facebook' from onerow;&quot;,
+    cleanup = &quot;drop table if exists rot13_data;&quot;,
     cases = {
       @HivePdkUnitTest(
-        query = &quot;SELECT tp\_rot13('Mixed Up!') FROM onerow;&quot;,
+        query = &quot;SELECT tp_rot13('Mixed Up!') FROM onerow;&quot;,
         result = &quot;Zvkrq Hc!&quot;),
       @HivePdkUnitTest(
-        query = &quot;SELECT tp\_rot13(s) FROM rot13\_data;&quot;,
+        query = &quot;SELECT tp_rot13(s) FROM rot13_data;&quot;,
         result = &quot;Snprobbx&quot;)
     }
   )

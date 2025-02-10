@@ -155,23 +155,23 @@ modules by hand. If you&rsquo;re using Python 2.7 or newer, &ldquo;argparse&rdqu
 already included and you don&rsquo;t have to install it.</p>
 <h4 id=global-installation>Global installation</h4>
 <p>You can install the modules globally for all users with &ldquo;easy_install&rdquo;:</p>
-<pre tabindex=0><code>sudo easy\_install argparse
-sudo easy\_install mako
+<pre tabindex=0><code>sudo easy_install argparse
+sudo easy_install mako
 
 </code></pre><h4 id=local-installation>Local installation</h4>
 <p>If you don&rsquo;t have root acces on the machine, or you don&rsquo;t want to pollute your<br>
 system directories, you can install the modules in your home directory.</p>
-<pre tabindex=0><code>easy\_install --prefix &quot;~/.python\_modules&quot; argparse
-easy\_install --prefix &quot;~/.python\_modules&quot; mako
+<pre tabindex=0><code>easy_install --prefix &quot;~/.python_modules&quot; argparse
+easy_install --prefix &quot;~/.python_modules&quot; mako
 
 </code></pre><p>You&rsquo;ll have to update &ldquo;PYTHONPATH&rdquo; environmental variable to include<br>
 &ldquo;~/.python_modules&rdquo;. You can do that by adding this line to your &ldquo;.bashrc&rdquo; or<br>
 &ldquo;.zshrc&rdquo;:</p>
-<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python\_modules/lib/pythonVERSION/site-packages&quot;
+<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python_modules/lib/pythonVERSION/site-packages&quot;
 
 </code></pre><p>Where &ldquo;VERSION&rdquo; is Python version you&rsquo;re using, like &ldquo;2.6&rdquo; or &ldquo;2.7&rdquo;, for example<br>
 if you&rsquo;re using Python 2.6:</p>
-<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python\_modules/lib/python2.6/site-packages&quot;
+<pre tabindex=0><code>export PYTHONPATH=&quot;${PYTHONPATH}:${HOME}/.python_modules/lib/python2.6/site-packages&quot;
 
 </code></pre><h3 id=ssh-keys>SSH keys</h3>
 <p>You will have to setup SSH so you can access all test nodes without a password.</p>
@@ -185,20 +185,20 @@ documented in the <a href=https://github.com/apache/hive/blob/trunk/testutils/pt
 <a href=#hive-exec-submit-local-task-via-child>hive.exec.submit.local.task.via.child</a> is set to true. See <a href=https://issues.apache.org/jira/browse/HIVE-7271>HIVE-7271</a> for details.</p>
 <h2 id=usage>Usage</h2>
 <p>You can see all possible options by running:</p>
-<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --help
+<pre tabindex=0><code>hive_repo/testutils/ptest/hivetest.py --help
 
 </code></pre><h3 id=testing-a-differential-revision>Testing a Differential revision</h3>
 <p>If you want to test a patch from <a href=https://reviews.facebook.net>Phabricator</a>, you<br>
 can use this command:</p>
-<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --revision D123
+<pre tabindex=0><code>hive_repo/testutils/ptest/hivetest.py --test --revision D123
 
 </code></pre><h3 id=testing-a-patch-from-file-system>Testing a patch from file system</h3>
 <p>You can also test a patch from local file system.</p>
-<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --patch /path/to/my.patch
+<pre tabindex=0><code>hive_repo/testutils/ptest/hivetest.py --test --patch /path/to/my.patch
 
 </code></pre><p>You can provide multiple patches if you want to. They will be applied in the<br>
 same order they appear on the command line.</p>
-<pre tabindex=0><code>hive\_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
+<pre tabindex=0><code>hive_repo/testutils/ptest/hivetest.py --test --patch first.patch second.patch
 
 </code></pre><h3 id=multiple-test-runs>Multiple test runs</h3>
 <p>Multiple users can run parallel tests using the same configuration file without<br>
@@ -208,8 +208,8 @@ unique string for each instance.</p>
 <p>The <a href=https://github.com/apache/hive/blob/trunk/testutils/ptest/README>README</a> file<br>
 distributed with the test script explains how this variable affects the paths<br>
 defined in your configuration file.</p>
-<pre tabindex=0><code>HIVE\_PTEST\_SUFFIX=first\_run hive\_repo/testutils/ptest/hivetest.py --test &amp;
-HIVE\_PTEST\_SUFFIX=second\_run hive\_repo/testutils/ptest/hivetest.py --test &amp;
+<pre tabindex=0><code>HIVE_PTEST_SUFFIX=first_run hive_repo/testutils/ptest/hivetest.py --test &amp;
+HIVE_PTEST_SUFFIX=second_run hive_repo/testutils/ptest/hivetest.py --test &amp;
 
 </code></pre><h3 id=testing-report>Testing report</h3>
 <p>The paths here assume you&rsquo;re using &ldquo;~/hivetests&rdquo; as your &ldquo;master_base_path&rdquo;; if<br>
@@ -223,7 +223,7 @@ switch and the properties will be embedded in &ldquo;report.html&rdquo;. Keep in
 instead of getting a ~300k file, you&rsquo;ll get one that might be more than 10MB.</p>
 <p>If you want to use a fixed report name instead of a timestamp, you can use<br>
 &ldquo;&ndash;report-name&rdquo; switch, for example:</p>
-<pre tabindex=0><code>hive\_repo/testuitls/ptest/hivetest.py --test --revision D123 --report-name D123
+<pre tabindex=0><code>hive_repo/testuitls/ptest/hivetest.py --test --revision D123 --report-name D123
 
 </code></pre><p>This will generate report in &ldquo;~/hivetests/report/D123&rdquo;. If there was already a<br>
 report with that name it will be removed.</p>

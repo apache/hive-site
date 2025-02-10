@@ -217,13 +217,13 @@ ASF
 </table>
 <h2 id=example>Example</h2>
 <h3 id=curl-command>Curl Command</h3>
-<pre tabindex=0><code>% curl -s -X PUT -HContent-type:application/json -d '{&quot;location&quot;: &quot;loc\_a&quot;}' \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/partition/country=%27algeria%27?user.name=ctdean'
+<pre tabindex=0><code>% curl -s -X PUT -HContent-type:application/json -d '{&quot;location&quot;: &quot;loc_a&quot;}' \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/partition/country=%27algeria%27?user.name=ctdean'
 
 </code></pre><h3 id=json-output>JSON Output</h3>
 <pre tabindex=0><code>{
  &quot;partition&quot;: &quot;country='algeria'&quot;,
- &quot;table&quot;: &quot;test\_table&quot;,
+ &quot;table&quot;: &quot;test_table&quot;,
  &quot;database&quot;: &quot;default&quot;
 }
 

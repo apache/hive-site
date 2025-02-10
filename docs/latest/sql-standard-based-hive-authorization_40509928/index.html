@@ -203,11 +203,11 @@ They have privileges for running additional commands such as &ldquo;<code>create
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a>` setting.</p>
 <h3 id=role-management-commands><strong>Role Management Commands</strong></h3>
 <h4 id=create-role>Create Role</h4>
-<pre tabindex=0><code>CREATE ROLE role\_name;
+<pre tabindex=0><code>CREATE ROLE role_name;
 </code></pre><p>Creates a new role. Only the <strong>admin</strong> role has privilege for this.</p>
 <p>The role names ALL, DEFAULT and NONE are reserved.</p>
 <h4 id=drop-role>Drop Role</h4>
-<pre tabindex=0><code>DROP ROLE role\_name;
+<pre tabindex=0><code>DROP ROLE role_name;
 </code></pre><p>Drops the given role. Only the <strong>admin</strong> role has privilege for this.</p>
 <h4 id=show-current-roles>Show Current Roles</h4>
 <pre tabindex=0><code>SHOW CURRENT ROLES;
@@ -215,7 +215,7 @@ They have privileges for running additional commands such as &ldquo;<code>create
 <p>The default current roles has all roles for the user except for the <strong>admin</strong> role (even if the user belongs to the <strong>admin</strong> role as well).</p>
 <p>Any user can run this command.</p>
 <h4 id=set-role>Set Role</h4>
-<pre tabindex=0><code>SET ROLE (role\_name|ALL|NONE);
+<pre tabindex=0><code>SET ROLE (role_name|ALL|NONE);
 </code></pre><p>If a role_name is specified, then that role becomes the only role in current roles.</p>
 <p>Setting role_name to ALL refreshes the list of current roles (in case new roles were granted to the user) and sets them to the default list of roles.</p>
 <p>Setting role_name to NONE will remove all current roles from the current user. (It&rsquo;s introduced in <a href=https://issues.apache.org/jira/browse/HIVE-11780>HIVE-11780</a> and will be included in the upcoming versions 1.3.0 and 1.2.2.)</p>
@@ -225,27 +225,27 @@ They have privileges for running additional commands such as &ldquo;<code>create
 </code></pre><p>List all currently existing roles.</p>
 <p>Only the <strong>admin</strong> role has privilege for this.</p>
 <h4 id=grant-role>Grant Role</h4>
-<pre tabindex=0><code>GRANT role\_name [, role\_name] ...
-TO principal\_specification [, principal\_specification] ... 
+<pre tabindex=0><code>GRANT role_name [, role_name] ...
+TO principal_specification [, principal_specification] ... 
 [ WITH ADMIN OPTION ];
 
-principal\_specification
+principal_specification
   : USER user
   | ROLE role
 </code></pre><p>Grant one or more roles to other roles or users.</p>
 <p>If “WITH ADMIN OPTION” is specified, then the user gets privileges to grant the role to other users/roles.</p>
 <p>If the grant statement ends up creating a cycling relationship between roles, the command will fail with an error.</p>
 <h4 id=revoke-role>Revoke Role</h4>
-<pre tabindex=0><code>REVOKE [ADMIN OPTION FOR] role\_name [, role\_name] ...
-FROM principal\_specification [, principal\_specification] ... ;
+<pre tabindex=0><code>REVOKE [ADMIN OPTION FOR] role_name [, role_name] ...
+FROM principal_specification [, principal_specification] ... ;
 
-principal\_specification
+principal_specification
   : USER user
   | ROLE role
 </code></pre><p>Revokes the membership of the roles from the user/roles in the FROM clause.</p>
 <p>As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of REVOKE ADMIN OPTION FOR (<a href=https://issues.apache.org/jira/browse/HIVE-6252>HIVE-6252</a>).</p>
 <h4 id=show-role-grant>Show Role Grant</h4>
-<pre tabindex=0><code>SHOW ROLE GRANT (USER|ROLE) principal\_name;
+<pre tabindex=0><code>SHOW ROLE GRANT (USER|ROLE) principal_name;
 </code></pre><p>where <code>principal_name</code> is the name of a user or role.</p>
 <p>Lists all roles the given user or role has been granted.</p>
 <p>Currently any user can run this command. But this is likely to change in future to allow users to see only their own role grants, and additional privileges would be needed to see role grants of other users.</p>
@@ -255,19 +255,19 @@ No rows affected (0.058 seconds)
 
 0: jdbc:hive2://localhost:10000&gt; SHOW ROLE GRANT USER user1;
 +---------+---------------+----------------+----------+
-|  role   | grant\_option  |   grant\_time   | grantor  |
+|  role   | grant_option  |   grant_time   | grantor  |
 +---------+---------------+----------------+----------+
 | public  | false         | 0              |          |
 | role1   | false         | 1398284083000  | uadmin   |
 +---------+---------------+----------------+----------+
 </code></pre><h4 id=show-principals>Show Principals</h4>
-<pre tabindex=0><code>SHOW PRINCIPALS role\_name;
+<pre tabindex=0><code>SHOW PRINCIPALS role_name;
 </code></pre><p>Lists all roles and users who belong to this role.</p>
 <p>Only the <strong>admin</strong> role has privilege for this.</p>
 <h5 id=example-of-show-principals>Example of Show Principals</h5>
 <pre tabindex=0><code>0: jdbc:hive2://localhost:10000&gt; SHOW PRINCIPALS role1;
 +-----------------+-----------------+---------------+----------+---------------+----------------+
-| principal\_name  | principal\_type  | grant\_option  | grantor  | grantor\_type  |   grant\_time   |
+| principal_name  | principal_type  | grant_option  | grantor  | grantor_type  |   grant_time   |
 +-----------------+-----------------+---------------+----------+---------------+----------------+
 | role2           | ROLE            | false         | uadmin   | USER          | 1398285926000  |
 | role3           | ROLE            | true          | uadmin   | USER          | 1398285946000  |
@@ -277,35 +277,35 @@ No rows affected (0.058 seconds)
 <h3 id=object-privilege-commands>Object Privilege Commands</h3>
 <h4 id=grant>Grant</h4>
 <pre tabindex=0><code>GRANT
-    priv\_type [, priv\_type ] ...
-    ON table\_or\_view\_name
-    TO principal\_specification [, principal\_specification] ...
+    priv_type [, priv_type ] ...
+    ON table_or_view_name
+    TO principal_specification [, principal_specification] ...
     [WITH GRANT OPTION];
 </code></pre><h4 id=revoke>Revoke</h4>
 <pre tabindex=0><code>REVOKE [GRANT OPTION FOR]
-    priv\_type [, priv\_type ] ...
-    ON table\_or\_view\_name
-    FROM principal\_specification [, principal\_specification] ... ;
+    priv_type [, priv_type ] ...
+    ON table_or_view_name
+    FROM principal_specification [, principal_specification] ... ;
 
-principal\_specification
+principal_specification
   : USER user
   | ROLE role
  
-priv\_type
+priv_type
   : INSERT | SELECT | UPDATE | DELETE | ALL
 </code></pre><p>If a user is granted a privilege WITH GRANT OPTION on a table or view, then the user can also grant/revoke privileges of other users and roles on those objects. As of Hive 0.14.0, the grant option for a privilege can be removed while still keeping the privilege by using REVOKE GRANT OPTION FOR (<a href=https://issues.apache.org/jira/browse/HIVE-7404>HIVE-7404</a>).</p>
 <p>Note that in case of the REVOKE statement, the DROP-BEHAVIOR option of CASCADE is not currently supported (which is in SQL standard). As a result, the revoke statement will not drop any dependent privileges. For details on CASCADE behavior, you can check the <a href=http://www.postgresql.org/docs/8.4/static/sql-revoke.html>Postgres revoke documentation</a>.</p>
 <p>Examples:</p>
-<pre tabindex=0><code>0: jdbc:hive2://localhost:10000/default&gt; grant select on table secured\_table to role my\_role;
+<pre tabindex=0><code>0: jdbc:hive2://localhost:10000/default&gt; grant select on table secured_table to role my_role;
 No rows affected (0.046 seconds)
 
-0: jdbc:hive2://localhost:10000/default&gt; revoke update, select on table secured\_table from role my\_role;
+0: jdbc:hive2://localhost:10000/default&gt; revoke update, select on table secured_table from role my_role;
 No rows affected (0.028 seconds)
 </code></pre><p>Notice that in Hive, unlike in standard SQL, USER or ROLE must be specified in the principal_specification.</p>
 <h4 id=show-grant>Show Grant</h4>
-<pre tabindex=0><code>SHOW GRANT [principal\_specification] ON (ALL | [TABLE] table\_or\_view\_name);
+<pre tabindex=0><code>SHOW GRANT [principal_specification] ON (ALL | [TABLE] table_or_view_name);
  
-principal\_specification
+principal_specification
   : USER user
   | ROLE role
 </code></pre><p>Currently any user can run this command. But this is likely to change in the future to allow users to see only their own privileges, and additional privileges would be needed to see privileges of other users.</p>
@@ -313,7 +313,7 @@ principal\_specification
 <p>Find out the privileges user ashutosh has on table hivejiratable:</p>
 <pre tabindex=0><code>0: jdbc:hive2://localhost:10000&gt; show grant user ashutosh on table hivejiratable;
 +-----------+----------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
-| database  |     table      | partition  | column  | principal\_name  | principal\_type  | privilege  | grant\_option  |   grant\_time   | grantor  |
+| database  |     table      | partition  | column  | principal_name  | principal_type  | privilege  | grant_option  |   grant_time   | grantor  |
 +-----------+----------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
 | default   | hivejiratable  |            |         | ashutosh        | USER            | DELETE     | false         | 1398303419000  | thejas   |
 | default   | hivejiratable  |            |         | ashutosh        | USER            | SELECT     | false         | 1398303407000  | thejas   |
@@ -322,7 +322,7 @@ principal\_specification
 <p>Find out the privileges user ashutosh has on all objects:</p>
 <pre tabindex=0><code>0: jdbc:hive2://localhost:10000&gt; show grant user ashutosh on all;                               
 +-----------+-------------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
-| database  |       table       | partition  | column  | principal\_name  | principal\_type  | privilege  | grant\_option  |   grant\_time   | grantor  |
+| database  |       table       | partition  | column  | principal_name  | principal_type  | privilege  | grant_option  |   grant_time   | grantor  |
 +-----------+-------------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
 | default   | hivecontributors  |            |         | ashutosh        | USER            | DELETE     | false         | 1398303576000  | thejas   |
 | default   | hivecontributors  |            |         | ashutosh        | USER            | INSERT     | false         | 1398303576000  | thejas   |
@@ -334,7 +334,7 @@ principal\_specification
 <p>Find out the privileges all users have on table hivejiratable:</p>
 <pre tabindex=0><code>0: jdbc:hive2://localhost:10000&gt; show grant on table hivejiratable;
 +-----------+----------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
-| database  |     table      | partition  | column  | principal\_name  | principal\_type  | privilege  | grant\_option  |   grant\_time   | grantor  |
+| database  |     table      | partition  | column  | principal_name  | principal_type  | privilege  | grant_option  |   grant_time   | grantor  |
 +-----------+----------------+------------+---------+-----------------+-----------------+------------+---------------+----------------+----------+
 | default   | hivejiratable  |            |         | ashutosh        | USER            | DELETE     | false         | 1398303419000  | thejas   |
 | default   | hivejiratable  |            |         | ashutosh        | USER            | SELECT     | false         | 1398303407000  | thejas   |

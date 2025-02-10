@@ -122,7 +122,7 @@ ASF
 <h2 id=usage-examples>Usage Examples</h2>
 <h3 id=creating-tables>Creating tables</h3>
 <h4 id=movielens-user-ratings>MovieLens User Ratings</h4>
-<pre tabindex=0><code>CREATE TABLE u\_data (
+<pre tabindex=0><code>CREATE TABLE u_data (
   userid INT,
   movieid INT,
   rating INT,
@@ -132,7 +132,7 @@ FIELDS TERMINATED BY '\t'
 STORED AS TEXTFILE;
 
 </code></pre><h4 id=apache-access-log-tables>Apache Access Log Tables</h4>
-<pre tabindex=0><code>add jar ../build/contrib/hive\_contrib.jar;
+<pre tabindex=0><code>add jar ../build/contrib/hive_contrib.jar;
 
 CREATE TABLE apachelog (
   host STRING,
@@ -168,11 +168,11 @@ tar xvzf ml-data.tar+0.gz
 
 </code></pre><p>Load it in:</p>
 <pre tabindex=0><code>LOAD DATA LOCAL INPATH 'ml-data/u.data'
-OVERWRITE INTO TABLE u\_data;
+OVERWRITE INTO TABLE u_data;
 
 </code></pre><h3 id=running-queries>Running queries</h3>
 <h4 id=movielens-user-ratings-2>MovieLens User Ratings</h4>
-<pre tabindex=0><code>SELECT COUNT(1) FROM u\_data;
+<pre tabindex=0><code>SELECT COUNT(1) FROM u_data;
 
 </code></pre><h3 id=running-custom-mapreduce-jobs>Running custom map/reduce jobs</h3>
 <h4 id=movielens-user-ratings-3>MovieLens User Ratings</h4>
@@ -187,7 +187,7 @@ for line in sys.stdin:
   print '\t'.join([userid, movieid, rating, str(weekday)])
 
 </code></pre><p>Use the mapper script:</p>
-<pre tabindex=0><code>CREATE TABLE u\_data\_new (
+<pre tabindex=0><code>CREATE TABLE u_data_new (
   userid INT,
   movieid INT,
   rating INT,
@@ -195,15 +195,15 @@ for line in sys.stdin:
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY '\t';
 
-INSERT OVERWRITE TABLE u\_data\_new
+INSERT OVERWRITE TABLE u_data_new
 SELECT
   TRANSFORM (userid, movieid, rating, unixtime)
-  USING 'python weekday\_mapper.py'
+  USING 'python weekday_mapper.py'
   AS (userid, movieid, rating, weekday)
-FROM u\_data;
+FROM u_data;
 
 SELECT weekday, COUNT(1)
-FROM u\_data\_new
+FROM u_data_new
 GROUP BY weekday;
 
 </code></pre><p><strong>Note: due to a bug in the parser, you must run the &ldquo;INSERT OVERWRITE&rdquo; query on a single line</strong></p>

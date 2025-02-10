@@ -150,18 +150,18 @@ ASF
 <p>In this section, we present the main operations that are currently present in Hive for materialized views management.</p>
 <h3 id=materialized-views-creation>Materialized views creation</h3>
 <p>The syntax to create a materialized view in Hive is very similar to the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)>CTAS statement</a> syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.</p>
-<pre tabindex=0><code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db\_name.]materialized\_view\_name
+<pre tabindex=0><code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
   [DISABLE REWRITE]
-  [COMMENT materialized\_view\_comment]
-  [PARTITIONED ON (col\_name, ...)]
-  [CLUSTERED ON (col\_name, ...) | DISTRIBUTED ON (col\_name, ...) SORTED ON (col\_name, ...)]
+  [COMMENT materialized_view_comment]
+  [PARTITIONED ON (col_name, ...)]
+  [CLUSTERED ON (col_name, ...) | DISTRIBUTED ON (col_name, ...) SORTED ON (col_name, ...)]
   [
-    [ROW FORMAT row\_format]
-    [STORED AS file\_format]
+    [ROW FORMAT row_format]
+    [STORED AS file_format]
       | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
-  [LOCATION hdfs\_path]
-  [TBLPROPERTIES (property\_name=property\_value, ...)]
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]
 AS
 &lt;query&gt;;
 </code></pre><p>When a materialized view is created, its contents will be automatically populated by the results of executing the query in the statement. The materialized view creation statement is atomic, meaning that the materialized view is not seen by other users until all query results are populated.</p>
@@ -169,25 +169,25 @@ AS
 <p>The default values for SerDe and storage format when they are not specified in the materialized view creation statement (they are optional) are specified using the configuration properties <code>hive.materializedview.serde</code> and <code>hive.materializedview.fileformat</code>, respectively.</p>
 <p>Materialized views can be stored in external systems, e.g., <a href=https://cwiki.apache.org/confluence/display/Hive/Druid+Integration>Druid</a>, using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:</p>
 <p><strong>Example:</strong></p>
-<pre tabindex=0><code>CREATE MATERIALIZED VIEW druid\_wiki\_mv
+<pre tabindex=0><code>CREATE MATERIALIZED VIEW druid_wiki_mv
 STORED AS 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 AS
-SELECT \_\_time, page, user, c\_added, c\_removed
+SELECT __time, page, user, c_added, c_removed
 FROM src;
 </code></pre><h3 id=other-operations-for-materialized-view-management>Other operations for materialized view management</h3>
 <p>Currently we support the following operations that aid at managing the materialized views in Hive:</p>
 <pre tabindex=0><code>-- Drops a materialized view
-DROP MATERIALIZED VIEW [db\_name.]materialized\_view\_name;
+DROP MATERIALIZED VIEW [db_name.]materialized_view_name;
 -- Shows materialized views (with optional filters)
-SHOW MATERIALIZED VIEWS [IN database\_name] ['identifier\_with\_wildcards’];
+SHOW MATERIALIZED VIEWS [IN database_name] ['identifier_with_wildcards’];
 -- Shows information about a specific materialized view
-DESCRIBE [EXTENDED | FORMATTED] [db\_name.]materialized\_view\_name;
+DESCRIBE [EXTENDED | FORMATTED] [db_name.]materialized_view_name;
 
 </code></pre><p>The functionality of these operations will be extended in the future and more operations may be added.</p>
 <h2 id=materialized-view-based-query-rewriting>Materialized view-based query rewriting</h2>
 <p>Once a materialized view has been created, the optimizer will be able to exploit its definition semantics to automatically rewrite incoming queries using materialized views, and hence, accelerate query execution. </p>
 <p>The rewriting algorithm can be enabled and disabled globally using the <code>hive.materializedview.rewriting and hive.materializedview.rewriting.sql</code> configuration properties (default value is <code>true</code>). In addition, users can selectively enable/disable materialized views for rewriting. Recall that, by default, materialized views are enabled for rewriting at creation time. To alter that behavior, the following statement can be used:</p>
-<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name ENABLE|DISABLE REWRITE;
+<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db_name.]materialized_view_name ENABLE|DISABLE REWRITE;
 </code></pre><p>Hive supports two types of rewriting algorithms:</p>
 <ul>
 <li>Algebraic: this is part of Apache Calcite and it supports queries containing TableScan, Project, Filter, Join, and Aggregate operators. More information about this rewriting coverage can be found <a href=http://calcite.apache.org/docs/materialized_views#rewriting-using-plan-structural-information>here</a>. In the following, we include a few examples that briefly illustrate different rewritings.</li>
@@ -199,7 +199,7 @@ DESCRIBE [EXTENDED | FORMATTED] [db\_name.]materialized\_view\_name;
   deptno INT,
   name VARCHAR(256),
   salary FLOAT,
-  hire\_date TIMESTAMP)
+  hire_date TIMESTAMP)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
@@ -212,160 +212,160 @@ TBLPROPERTIES ('transactional'='true');
 </code></pre><p>Assume we want to obtain frequently information about employees that were hired in different period granularities after 2016 and their departments. We may create the following materialized view:</p>
 <pre tabindex=0><code>CREATE MATERIALIZED VIEW mv1
 AS
-SELECT empid, deptname, hire\_date
+SELECT empid, deptname, hire_date
 FROM emps JOIN depts
   ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2016-01-01';
+WHERE hire_date &gt;= '2016-01-01';
 </code></pre><p>Then, the following query extracting information about employees that were hired in Q1 2018 is issued to Hive:</p>
 <pre tabindex=0><code>SELECT empid, deptname
 FROM emps
 JOIN depts
   ON (emps.deptno = depts.deptno)
-WHERE hire\_date &gt;= '2018-01-01'
-    AND hire\_date &lt;= '2018-03-31';
+WHERE hire_date &gt;= '2018-01-01'
+    AND hire_date &lt;= '2018-03-31';
 </code></pre><p>Hive will be able to rewrite the incoming query using the materialized view, including a compensation predicate on top of the scan over the materialization. Though the rewriting happens at the algebraic level, to illustrate this example, we include the SQL statement equivalent to the rewriting using the <code>mv</code> used by Hive to answer the incoming query:</p>
 <pre tabindex=0><code>SELECT empid, deptname
 FROM mv1
-WHERE hire\_date &gt;= '2018-01-01'
-    AND hire\_date &lt;= '2018-03-31';
+WHERE hire_date &gt;= '2018-01-01'
+    AND hire_date &lt;= '2018-03-31';
 </code></pre><h3 id=example-2>Example 2</h3>
 <p>For the second example, consider the star schema based on the <a href=https://www.cs.umb.edu/~poneil/StarSchemaB.PDF>SSB benchmark</a> created by the following DDL statements:</p>
 <pre tabindex=0><code>CREATE TABLE `customer`(
-  `c\_custkey` BIGINT, 
-  `c\_name` STRING, 
-  `c\_address` STRING, 
-  `c\_city` STRING, 
-  `c\_nation` STRING, 
-  `c\_region` STRING, 
-  `c\_phone` STRING, 
-  `c\_mktsegment` STRING,
-  PRIMARY KEY (`c\_custkey`) DISABLE RELY)
+  `c_custkey` BIGINT, 
+  `c_name` STRING, 
+  `c_address` STRING, 
+  `c_city` STRING, 
+  `c_nation` STRING, 
+  `c_region` STRING, 
+  `c_phone` STRING, 
+  `c_mktsegment` STRING,
+  PRIMARY KEY (`c_custkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `dates`(
-  `d\_datekey` BIGINT, 
-  `d\_date` STRING, 
-  `d\_dayofweek` STRING, 
-  `d\_month` STRING, 
-  `d\_year` INT, 
-  `d\_yearmonthnum` INT, 
-  `d\_yearmonth` STRING, 
-  `d\_daynuminweek` INT,
-  `d\_daynuminmonth` INT,
-  `d\_daynuminyear` INT,
-  `d\_monthnuminyear` INT,
-  `d\_weeknuminyear` INT,
-  `d\_sellingseason` STRING,
-  `d\_lastdayinweekfl` INT,
-  `d\_lastdayinmonthfl` INT,
-  `d\_holidayfl` INT,
-  `d\_weekdayfl`INT,
-  PRIMARY KEY (`d\_datekey`) DISABLE RELY)
+  `d_datekey` BIGINT, 
+  `d_date` STRING, 
+  `d_dayofweek` STRING, 
+  `d_month` STRING, 
+  `d_year` INT, 
+  `d_yearmonthnum` INT, 
+  `d_yearmonth` STRING, 
+  `d_daynuminweek` INT,
+  `d_daynuminmonth` INT,
+  `d_daynuminyear` INT,
+  `d_monthnuminyear` INT,
+  `d_weeknuminyear` INT,
+  `d_sellingseason` STRING,
+  `d_lastdayinweekfl` INT,
+  `d_lastdayinmonthfl` INT,
+  `d_holidayfl` INT,
+  `d_weekdayfl`INT,
+  PRIMARY KEY (`d_datekey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `part`(
-  `p\_partkey` BIGINT, 
-  `p\_name` STRING, 
-  `p\_mfgr` STRING, 
-  `p\_category` STRING, 
-  `p\_brand1` STRING, 
-  `p\_color` STRING, 
-  `p\_type` STRING, 
-  `p\_size` INT, 
-  `p\_container` STRING,
-  PRIMARY KEY (`p\_partkey`) DISABLE RELY)
+  `p_partkey` BIGINT, 
+  `p_name` STRING, 
+  `p_mfgr` STRING, 
+  `p_category` STRING, 
+  `p_brand1` STRING, 
+  `p_color` STRING, 
+  `p_type` STRING, 
+  `p_size` INT, 
+  `p_container` STRING,
+  PRIMARY KEY (`p_partkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `supplier`(
-  `s\_suppkey` BIGINT, 
-  `s\_name` STRING, 
-  `s\_address` STRING, 
-  `s\_city` STRING, 
-  `s\_nation` STRING, 
-  `s\_region` STRING, 
-  `s\_phone` STRING,
-  PRIMARY KEY (`s\_suppkey`) DISABLE RELY)
+  `s_suppkey` BIGINT, 
+  `s_name` STRING, 
+  `s_address` STRING, 
+  `s_city` STRING, 
+  `s_nation` STRING, 
+  `s_region` STRING, 
+  `s_phone` STRING,
+  PRIMARY KEY (`s_suppkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 
 CREATE TABLE `lineorder`(
-  `lo\_orderkey` BIGINT, 
-  `lo\_linenumber` int, 
-  `lo\_custkey` BIGINT not null DISABLE RELY,
-  `lo\_partkey` BIGINT not null DISABLE RELY,
-  `lo\_suppkey` BIGINT not null DISABLE RELY,
-  `lo\_orderdate` BIGINT not null DISABLE RELY,
-  `lo\_ordpriority` STRING, 
-  `lo\_shippriority` STRING, 
-  `lo\_quantity` DOUBLE, 
-  `lo\_extendedprice` DOUBLE, 
-  `lo\_ordtotalprice` DOUBLE, 
-  `lo\_discount` DOUBLE, 
-  `lo\_revenue` DOUBLE, 
-  `lo\_supplycost` DOUBLE, 
-  `lo\_tax` DOUBLE, 
-  `lo\_commitdate` BIGINT, 
-  `lo\_shipmode` STRING,
-  PRIMARY KEY (`lo\_orderkey`) DISABLE RELY,
-  CONSTRAINT fk1 FOREIGN KEY (`lo\_custkey`) REFERENCES `customer\_n1`(`c\_custkey`) DISABLE RELY,
-  CONSTRAINT fk2 FOREIGN KEY (`lo\_orderdate`) REFERENCES `dates\_n0`(`d\_datekey`) DISABLE RELY,
-  CONSTRAINT fk3 FOREIGN KEY (`lo\_partkey`) REFERENCES `ssb\_part\_n0`(`p\_partkey`) DISABLE RELY,
-  CONSTRAINT fk4 FOREIGN KEY (`lo\_suppkey`) REFERENCES `supplier\_n0`(`s\_suppkey`) DISABLE RELY)
+  `lo_orderkey` BIGINT, 
+  `lo_linenumber` int, 
+  `lo_custkey` BIGINT not null DISABLE RELY,
+  `lo_partkey` BIGINT not null DISABLE RELY,
+  `lo_suppkey` BIGINT not null DISABLE RELY,
+  `lo_orderdate` BIGINT not null DISABLE RELY,
+  `lo_ordpriority` STRING, 
+  `lo_shippriority` STRING, 
+  `lo_quantity` DOUBLE, 
+  `lo_extendedprice` DOUBLE, 
+  `lo_ordtotalprice` DOUBLE, 
+  `lo_discount` DOUBLE, 
+  `lo_revenue` DOUBLE, 
+  `lo_supplycost` DOUBLE, 
+  `lo_tax` DOUBLE, 
+  `lo_commitdate` BIGINT, 
+  `lo_shipmode` STRING,
+  PRIMARY KEY (`lo_orderkey`) DISABLE RELY,
+  CONSTRAINT fk1 FOREIGN KEY (`lo_custkey`) REFERENCES `customer_n1`(`c_custkey`) DISABLE RELY,
+  CONSTRAINT fk2 FOREIGN KEY (`lo_orderdate`) REFERENCES `dates_n0`(`d_datekey`) DISABLE RELY,
+  CONSTRAINT fk3 FOREIGN KEY (`lo_partkey`) REFERENCES `ssb_part_n0`(`p_partkey`) DISABLE RELY,
+  CONSTRAINT fk4 FOREIGN KEY (`lo_suppkey`) REFERENCES `supplier_n0`(`s_suppkey`) DISABLE RELY)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 </code></pre><p>As you can observe, we declare multiple integrity constraints for the database, using the <code>RELY</code> keyword so they are visible to the optimizer. Now assume we want to create a materialization that denormalizes the database contents (consider <code>dims</code> to be the set of dimensions that we will be querying often):</p>
 <pre tabindex=0><code>CREATE MATERIALIZED VIEW mv2
 AS
 SELECT &lt;dims&gt;,
-    lo\_revenue,
-    lo\_extendedprice * lo\_discount AS d\_price,
-    lo\_revenue - lo\_supplycost
+    lo_revenue,
+    lo_extendedprice * lo_discount AS d_price,
+    lo_revenue - lo_supplycost
 FROM customer, dates, lineorder, part, supplier
-WHERE lo\_orderdate = d\_datekey
-    AND lo\_partkey = p\_partkey
-    AND lo\_suppkey = s\_suppkey
-    AND lo\_custkey = c\_custkey;
+WHERE lo_orderdate = d_datekey
+    AND lo_partkey = p_partkey
+    AND lo_suppkey = s_suppkey
+    AND lo_custkey = c_custkey;
 </code></pre><p>The materialized view above may accelerate queries that execute joins among the different tables in the database. For instance, consider the following query:</p>
-<pre tabindex=0><code>SELECT SUM(lo\_extendedprice * lo\_discount)
+<pre tabindex=0><code>SELECT SUM(lo_extendedprice * lo_discount)
 FROM lineorder, dates
-WHERE lo\_orderdate = d\_datekey
-  AND d\_year = 2013
-  AND lo\_discount between 1 and 3;
+WHERE lo_orderdate = d_datekey
+  AND d_year = 2013
+  AND lo_discount between 1 and 3;
 </code></pre><p>Though the query does not use all tables present in the materialized view, it may be answered using the materialized view because the joins in <code>mv2</code> preserve all the rows in the <code>lineorder</code> table (we know this because of the integrity constraints). Hence, the materialized view-based rewriting produced by the algorithm would be the following:</p>
-<pre tabindex=0><code>SELECT SUM(d\_price)
+<pre tabindex=0><code>SELECT SUM(d_price)
 FROM mv2
-WHERE d\_year = 2013
-  AND lo\_discount between 1 and 3;
+WHERE d_year = 2013
+  AND lo_discount between 1 and 3;
 </code></pre><h3 id=example-3>Example 3</h3>
 <p>For the third example, consider the database schema with a single table that stores the edit events produced by a given website:</p>
 <pre tabindex=0><code>CREATE TABLE `wiki` (
   `time` TIMESTAMP, 
   `page` STRING, 
   `user` STRING, 
-  `characters\_added` BIGINT,
-  `characters\_removed` BIGINT)
+  `characters_added` BIGINT,
+  `characters_removed` BIGINT)
 STORED AS ORC
 TBLPROPERTIES ('transactional'='true');
 </code></pre><p>For this example, we will use Druid to store the materialized view. Assume we want to execute queries over the table, however we are not interested on any information about the events at a higher time granularity level than a minute. We may create the following materialized view that rolls up the events by the minute:</p>
 <pre tabindex=0><code>CREATE MATERIALIZED VIEW mv3
 STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
 AS
-SELECT floor(time to minute) as `\_\_time`, page,
-    SUM(characters\_added) AS c\_added,
-    SUM(characters\_removed) AS c\_removed
+SELECT floor(time to minute) as `__time`, page,
+    SUM(characters_added) AS c_added,
+    SUM(characters_removed) AS c_removed
 FROM wiki
 GROUP BY floor(time to minute), page;
 </code></pre><p>Then, assume we need to answer the following query that extracts the number of characters added per month:</p>
 <pre tabindex=0><code>SELECT floor(time to month),
-    SUM(characters\_added) AS c\_added
+    SUM(characters_added) AS c_added
 FROM wiki
 GROUP BY floor(time to month);
 </code></pre><p>Hive will be able to rewrite the incoming query using <code>mv3</code> by rolling up the data of the materialized view to month granularity and projecting the information needed for the query result:</p>
 <pre tabindex=0><code>SELECT floor(time to month),
-    SUM(c\_added)
+    SUM(c_added)
 FROM mv3
 GROUP BY floor(time to month);
 </code></pre><ul>
@@ -373,7 +373,7 @@ GROUP BY floor(time to month);
 </ul>
 <h2 id=materialized-view-maintenance>Materialized view maintenance</h2>
 <p>When data in the source tables used by a materialized view changes, e.g., new data is inserted or existing data is modified, we will need to refresh the contents of the materialized view to keep it up-to-date with those changes. Currently, the rebuild operation for a materialized view needs to be triggered by the user. In particular, the user should execute the following statement:</p>
-<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db\_name.]materialized\_view\_name REBUILD;
+<pre tabindex=0><code>ALTER MATERIALIZED VIEW [db_name.]materialized_view_name REBUILD;
 </code></pre><p>Hive supports incremental view maintenance, i.e., only refresh data that was affected by the changes in the original source tables. Incremental view maintenance will decrease the rebuild step execution time. In addition, it will preserve LLAP cache for existing data in the materialized view.</p>
 <p>By default, Hive will attempt to rebuild a materialized view incrementally, falling back to full rebuild if it is not possible.</p>
 <p>Current implementation only supports incremental rebuild when there were <code>INSERT</code> operations over the source tables, while <code>UPDATE</code> and <code>DELETE</code> operations will force a full rebuild of the materialized view.</p>

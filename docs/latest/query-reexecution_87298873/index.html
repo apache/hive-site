@@ -139,7 +139,7 @@ set hive.query.reexecution.strategies=overlay;
 
 create table t(a int);
 insert into t values (1);
-select assert\_true(${hiveconf:zzz} &gt; a) from t group by a;
+select assert_true(${hiveconf:zzz} &gt; a) from t group by a;
 </code></pre><p>Every hive setting which has a prefix of &ldquo;reexec.overlay&rdquo; will be set for all reexecutions.</p>
 <p>A more real life example would be to disable join auto conversion for all reexecutions:</p>
 <pre tabindex=0><code>set reexec.overlay.hive.auto.convert.join=false;

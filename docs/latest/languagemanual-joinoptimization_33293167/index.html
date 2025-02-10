@@ -183,25 +183,25 @@ ASF
 <p>The <a href=http://www.tpc.org/tpcds/>TPC DS</a> is an example of such a schema. It models a typical retail warehouse where the events are sales and typical dimensions are date of sale, time of sale, or demographic of the purchasing party. Typical queries aggregate and filter fact tables along properties in the dimension tables.</p>
 <h3 id=star-schema-example>Star Schema Example</h3>
 <pre tabindex=0><code>Select count(*) cnt
-From store\_sales ss
-     join household\_demographics hd on (ss.ss\_hdemo\_sk = hd.hd\_demo\_sk)
-     join time\_dim t on (ss.ss\_sold\_time\_sk = t.t\_time\_sk)
-     join store s on (s.s\_store\_sk = ss.ss\_store\_sk)
+From store_sales ss
+     join household_demographics hd on (ss.ss_hdemo_sk = hd.hd_demo_sk)
+     join time_dim t on (ss.ss_sold_time_sk = t.t_time_sk)
+     join store s on (s.s_store_sk = ss.ss_store_sk)
 Where
-     t.t\_hour = 8
-     t.t\_minute &gt;= 30
-     hd.hd\_dep\_count = 2
+     t.t_hour = 8
+     t.t_minute &gt;= 30
+     hd.hd_dep_count = 2
 order by cnt;
 
 </code></pre><h3 id=prior-support-for-mapjoin>Prior Support for MAPJOIN</h3>
 <p>Hive supports MAPJOINs, which are well suited for this scenario – at least for dimensions small enough to fit in memory. Before release 0.11, a MAPJOIN could be invoked either through an optimizer hint:</p>
-<pre tabindex=0><code>select /*+ MAPJOIN(time\_dim) */ count(*) from
-store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
+<pre tabindex=0><code>select /*+ MAPJOIN(time_dim) */ count(*) from
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
 
 </code></pre><p>or via auto join conversion:</p>
 <pre tabindex=0><code>set hive.auto.convert.join=true;
 select count(*) from
-store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
 
 </code></pre><p>The default value for <a href=#hive-auto-convert-join>hive.auto.convert.join</a> was false in Hive 0.10.0.  Hive 0.11.0 changed the default to true (<a href=https://issues.apache.org/jira/browse/HIVE-3297>HIVE-3297</a>). Note that <a href=#hive-default-xml-template>hive-default.xml.template</a> incorrectly gives the default as false in Hive 0.11.0 through 0.13.1.</p>
 <p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through. The prior implementation has this division of labor:</p>
@@ -243,11 +243,11 @@ store\_sales join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
 <p>The following sections describe each of these optimizer enhancements.</p>
 <h4 id=optimize-chains-of-map-joins>Optimize Chains of Map Joins</h4>
 <p>The following query will produce two separate map-only jobs when executed:</p>
-<pre tabindex=0><code>select /*+ MAPJOIN(time\_dim, date\_dim) */ count(*) from
-store\_sales 
-join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk) 
-join date\_dim on (ss\_sold\_date\_sk = d\_date\_sk)
-where t\_hour = 8 and d\_year = 2002
+<pre tabindex=0><code>select /*+ MAPJOIN(time_dim, date_dim) */ count(*) from
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk) 
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
 
 </code></pre><p>It is likely, though, that for small dimension tables the parts of both tables needed would fit into memory at the same time. This reduces the time needed to execute this query dramatically, as the fact table is only read once instead of reading it twice and writing it to HDFS to communicate between the jobs.</p>
 <h6 id=current-and-future-optimizations>Current and Future Optimizations</h6>
@@ -266,10 +266,10 @@ set hive.auto.convert.join.noconditionaltask.size = 10000000;
 <p>The <a href=#size-configuration>size configuration</a> enables the user to control what size table can fit in memory. This value represents the sum of the sizes of tables that can be converted to hashmaps that fit in memory. Currently, n-1 tables of the join have to fit in memory for the map-join optimization to take effect. There is no check to see if the table is a compressed one or not and what the potential size of the table can be. The effect of this assumption on the results is discussed in the next section.</p>
 <p>For example, the previous query just becomes:</p>
 <pre tabindex=0><code>select count(*) from
-store\_sales 
-join time\_dim on (ss\_sold\_time\_sk = t\_time\_sk)
-join date\_dim on (ss\_sold\_date\_sk = d\_date\_sk)
-where t\_hour = 8 and d\_year = 2002
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk)
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
 
 </code></pre><p>If time_dim and date_dim fit in the size configuration provided, the respective joins are converted to map-joins. If the sum of the sizes of the tables can fit in the configured size, then the two map-joins are combined resulting in a single map-join. This reduces the number of MR-jobs required and significantly boosts the speed of execution of this query. This example can be easily extended for multi-way joins as well and will work as expected.</p>
 <p>Outer joins offer more challenges. Since a map-join operator can only stream one table, the streamed table needs to be the one from which all of the rows are required. For the left outer join, this is the table on the left side of the join; for the right outer join, the table on the right side, etc. This means that even though an inner join can be converted to a map-join, an outer join cannot be converted. An outer join can only be converted if the table(s) apart from the one that needs to be streamed can be fit in the size configuration. A full outer join cannot be converted to a map-join at all since both tables need to be streamed.</p>
@@ -305,12 +305,12 @@ org.apache.hadoop.hive.ql.optimizer.TableSizeBasedBigTableSelectorForAutoSMJ
 <p>The following query results in an index out of bounds exception because emp_person let us say for example has 1 sort column while emp_pay_history has 2 sort columns.</p>
 <p><strong>Error Hive 0.11</strong></p>
 <pre tabindex=0><code>SELECT p.*, py.*
-FROM emp\_person p INNER JOIN emp\_pay\_history py
+FROM emp_person p INNER JOIN emp_pay_history py
 ON   p.empid = py.empid
 </code></pre><p>This works fine.</p>
 <p><strong>Working query Hive 0.11</strong></p>
 <pre tabindex=0><code>SELECT p.*, py.*
-FROM emp\_pay\_history py INNER JOIN emp\_person p
+FROM emp_pay_history py INNER JOIN emp_person p
 ON   p.empid = py.empid
 
 </code></pre><p> </p>

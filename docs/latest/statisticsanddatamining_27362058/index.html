@@ -163,17 +163,17 @@ ASF
 </ol>
 <h3 id=usage>Usage</h3>
 <pre tabindex=0><code>
-SELECT context\_ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
 
 </code></pre><p>The command above will return the top-100 bigrams (2-grams) from a hypothetical table called <code>twitter</code>. The <code>tweet</code> column is assumed to contain a string with arbitrary, possibly meaningless, text. The <code>lower()</code> UDF first converts the text to lowercase for standardization, and then <code>sentences()</code> splits up the text into arrays of words. The optional fourth argument is the <strong>precision factor</strong> that control the tradeoff between memory usage and accuracy in frequency estimation. Higher values will be more accurate, but could potentially crash the JVM with an OutOfMemory error. If omitted, sensible defaults are used.</p>
 <pre tabindex=0><code>
-SELECT context\_ngrams(sentences(lower(tweet)), array(&quot;i&quot;,&quot;love&quot;,null), 100, [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), array(&quot;i&quot;,&quot;love&quot;,null), 100, [, 1000]) FROM twitter;
 
 </code></pre><p>The command above will return a list of the top 100 words that follow the phrase &ldquo;i love&rdquo; in a hypothetical database of Twitter tweets. Each <code>null</code> specifies the position of an n-gram component to estimate; therefore, every query must contain at least one <code>null</code> in the context array.</p>
 <p>Note that the following two queries are identical, but <code>ngrams()</code> will be slightly faster in practice.</p>
 <pre tabindex=0><code>
 SELECT ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
-SELECT context\_ngrams(sentences(lower(tweet)), array(null,null), 100, [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), array(null,null), 100, [, 1000]) FROM twitter;
 
 </code></pre><h3 id=example>Example</h3>
 <pre tabindex=0><code>
@@ -190,7 +190,7 @@ SELECT explode(ngrams(sentences(lower(val)), 2, 10)) AS x FROM kafka;
 {&quot;ngram&quot;:[it&quot;,&quot;was],&quot;estfrequency&quot;:15.0}
 
 </code></pre><pre tabindex=0><code>
-SELECT explode(context\_ngrams(sentences(lower(val)), array(&quot;he&quot;, null), 10)) AS x FROM kafka;
+SELECT explode(context_ngrams(sentences(lower(val)), array(&quot;he&quot;, null), 10)) AS x FROM kafka;
 {&quot;ngram&quot;:[was],&quot;estfrequency&quot;:17.0}
 {&quot;ngram&quot;:[had],&quot;estfrequency&quot;:16.0}
 {&quot;ngram&quot;:[thought],&quot;estfrequency&quot;:13.0}
@@ -215,7 +215,7 @@ SELECT explode(context\_ngrams(sentences(lower(val)), array(&quot;he&quot;, null
 </ol>
 <h3 id=usage-1>Usage</h3>
 <pre tabindex=0><code>
-SELECT histogram\_numeric(age) FROM users GROUP BY gender;
+SELECT histogram_numeric(age) FROM users GROUP BY gender;
 
 </code></pre><p>The command above is self-explanatory. Converting the output into a graphical display is a bit more involved. The following <a href=http://www.gnuplot.info/>Gnuplot</a> command should do it, assuming that you&rsquo;ve parsed the output from <code>histogram()</code> into a text file of (x,y) pairs called <code>data.txt</code>.</p>
 <pre tabindex=0><code>
@@ -223,7 +223,7 @@ plot 'data.txt' u 1:2 w impulses lw 5
 
 </code></pre><h3 id=example-1>Example</h3>
 <pre tabindex=0><code>
-SELECT explode(histogram\_numeric(val, 10)) AS x FROM normal;
+SELECT explode(histogram_numeric(val, 10)) AS x FROM normal;
 {&quot;x&quot;:-3.6505464999999995,&quot;y&quot;:20.0}
 {&quot;x&quot;:-2.7514727901960785,&quot;y&quot;:510.0}
 {&quot;x&quot;:-1.7956678951954481,&quot;y&quot;:8263.0}

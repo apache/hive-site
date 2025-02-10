@@ -182,7 +182,7 @@ set hive.stats.topk.poolsize=100;
 </code></pre><h3 id=newly-created-tables>Newly Created Tables</h3>
 <p>Suppose a partitioned table is created without skew, and data is inserted to its partitions:</p>
 <pre tabindex=0><code>CREATE TABLE table1 (key STRING, value STRING) PARTITIONED BY (ds STRING);
-INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table_src;
 
 </code></pre><p>Top K was computed for the partition while data was inserted. If the user issues the command:</p>
 <pre tabindex=0><code>DESCRIBE FORMATTED table1 partition (ds='2012-09-07');
@@ -190,7 +190,7 @@ INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table\_s
 </code></pre><p>then among the output, the following will be displayed:</p>
 <pre tabindex=0><code>...
 Skewed Columns:         [value]                  
-Skewed Values:          [[val\_348], [val\_230], [val\_401], [val\_70]]      
+Skewed Values:          [[val_348], [val_230], [val_401], [val_70]]      
 ...
 
 </code></pre><p>If the user issues the command:</p>
@@ -199,7 +199,7 @@ Skewed Values:          [[val\_348], [val\_230], [val\_401], [val\_70]]
 </code></pre><p>then among the output, there will not be skewed information, since table level top K is not available for partitioned tables.</p>
 <p>For a non-partitioned table:</p>
 <pre tabindex=0><code>CREATE TABLE table1 (key STRING, value STRING);
-INSERT OVERWRITE TABLE table1 SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 SELECT * FROM table_src;
 
 </code></pre><p>If the user issues the command:</p>
 <pre tabindex=0><code>DESCRIBE FORMATTED table1;
@@ -207,13 +207,13 @@ INSERT OVERWRITE TABLE table1 SELECT * FROM table\_src;
 </code></pre><p>then among the output, the following will be displayed:</p>
 <pre tabindex=0><code>...
 Skewed Columns:         [value]                  
-Skewed Values:          [[val\_348], [val\_230], [val\_401], [val\_70]]      
+Skewed Values:          [[val_348], [val_230], [val_401], [val_70]]      
 ...
 
 </code></pre><p>When a table is created with skew:</p>
 <pre tabindex=0><code>set hive.internal.ddl.list.bucketing.enable=true;
 CREATE TABLE table1 (key STRING, value STRING) PARTITIONED BY (ds STRING) SKEWED BY (key) on ('38', '49');
-INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table_src;
 
 </code></pre><p>Top K will not be collected, and the user specified skewed information remains. If the user issues the command:</p>
 <pre tabindex=0><code>DESCRIBE FORMATTED table1 partition (ds='2012-09-07');

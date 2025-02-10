@@ -201,9 +201,9 @@ flush privileges;
 </code></pre><ol start=4>
 <li>Set the configuration item. </li>
 </ol>
-<pre tabindex=0><code>set global tidb\_skip\_isolation\_level\_check=1;
+<pre tabindex=0><code>set global tidb_skip_isolation_level_check=1;
 </code></pre><p>If you don&rsquo;t set the configuration item, Metastore throws the following exception when it is running: </p>
-<pre tabindex=0><code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error)
+<pre tabindex=0><code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error)
 </code></pre><h3 id=step-2-configure-hive>Step 2: Configure Hive</h3>
 <ol>
 <li>Download and decompress Hive. In this example, the decompression directory for Hive is ${HIVE_HOME}.</li>
@@ -246,26 +246,26 @@ flush privileges;
 </code></pre><ol start=3>
 <li>To edit the hive-env.sh configuration file, run vim ${HIVE_HOME}/conf/hive-env.sh.</li>
 </ol>
-<pre tabindex=0><code>export HADOOP\_HOME=...
-export JAVA\_HOME=...
+<pre tabindex=0><code>export HADOOP_HOME=...
+export JAVA_HOME=...
 </code></pre><ol start=4>
 <li>Copy mysql-connector-java-${version}.jar to the lib directory in Hive.</li>
 </ol>
-<pre tabindex=0><code>cp ${MYSQL\_JDBC\_PATH}/mysql-connector-java-${version}.jar ${HIVE\_HOME}/lib
+<pre tabindex=0><code>cp ${MYSQL_JDBC_PATH}/mysql-connector-java-${version}.jar ${HIVE_HOME}/lib
 </code></pre><h3 id=step-3-initialize-metadata>Step 3: Initialize metadata</h3>
 <p>You&rsquo;re performing this step to create a table for Hive metadata. The SQL script is in ${HIVE_HOME}/scripts/metastore/upgrade/mysql.</p>
 <p>To initialize metadata, run the following command.</p>
-<pre tabindex=0><code>${HIVE\_HOME}/bin/schematool -dbType mysql -initSchema --verbose
+<pre tabindex=0><code>${HIVE_HOME}/bin/schematool -dbType mysql -initSchema --verbose
 </code></pre><p>When schemaTool completed appears in the last line, it means the metadata is successfully initialized.</p>
 <h3 id=step-4-launch-metastore-and-test>Step 4: Launch Metastore and test</h3>
 <ol>
 <li>Launch Metastore.</li>
 </ol>
-<pre tabindex=0><code>${HIVE\_HOME}/bin/hive --service metastore
+<pre tabindex=0><code>${HIVE_HOME}/bin/hive --service metastore
 </code></pre><ol start=2>
 <li>Start the Hive client for testing.</li>
 </ol>
-<pre tabindex=0><code>${HIVE\_HOME}/bin/hive
+<pre tabindex=0><code>${HIVE_HOME}/bin/hive
 </code></pre><h1 id=conclusion>Conclusion</h1>
 <p>If you use MySQL as the Hive Metastore database, as data grows in Hive, MySQL might become the bottleneck for the entire system. In this case, TiDB is a good solution, because it <strong>is compatible with the MySQL protocol and has excellent horizontal scalability.</strong> Due to its distributed architecture, <strong>TiDB far outperforms MySQL on large data sets and large numbers of concurrent queries</strong>.</p>
 <p>This post showed how to deploy a Hive cluster with TiDB as the Metastore database. We hope TiDB can help you horizontally scale your Hive Metastore to meet your growing business needs.</p>
@@ -307,7 +307,7 @@ export JAVA\_HOME=...
 <ol start=2>
 <li>Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.</li>
 <li>Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.</li>
-<li>How to handle <code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb\_skip\_isolation\_level\_check=1 to skip this error) </code> exception? In TiDB, execute the following command <code>set global tidb\_skip\_isolation\_level\_check=1;</code> to skip check.</li>
+<li>How to handle <code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error) </code> exception? In TiDB, execute the following command <code>set global tidb_skip_isolation_level_check=1;</code> to skip check.</li>
 </ol>
 </div>
 </div>

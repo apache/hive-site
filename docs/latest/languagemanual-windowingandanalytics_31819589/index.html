@@ -262,8 +262,8 @@ FROM T;
 <p>Aliases can be used as well, with or without the keyword AS:</p>
 <pre tabindex=0><code>SELECT 
  a,
- COUNT(b) OVER (PARTITION BY c) AS b\_count,
- SUM(b) OVER (PARTITION BY c) b\_sum
+ COUNT(b) OVER (PARTITION BY c) AS b_count,
+ SUM(b) OVER (PARTITION BY c) b_sum
 FROM T;
 </code></pre><h4 id=window-clause>WINDOW clause</h4>
 <pre tabindex=0><code>SELECT a, SUM(b) OVER w

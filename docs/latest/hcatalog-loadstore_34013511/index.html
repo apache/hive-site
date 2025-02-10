@@ -256,28 +256,28 @@ ASF
 <p>For Pig commands that omit <code>-useHCatalog</code>, you need to tell Pig where to find your HCatalog jars and the Hive jars used by the HCatalog client. To do this, you must define the environment variable PIG_CLASSPATH with the appropriate jars.</p>
 <p>HCatalog can tell you the jars it needs. In order to do this it needs to know where Hadoop and Hive are installed. Also, you need to tell Pig the URI for your metastore, in the PIG_OPTS variable.</p>
 <p>In the case where you have installed Hadoop and Hive via tar, you can do this:</p>
-<pre tabindex=0><code>export HADOOP\_HOME=&lt;path\_to\_hadoop\_install&gt;
+<pre tabindex=0><code>export HADOOP_HOME=&lt;path_to_hadoop_install&gt;
 
-export HIVE\_HOME=&lt;path\_to\_hive\_install&gt;
+export HIVE_HOME=&lt;path_to_hive_install&gt;
 
-export HCAT\_HOME=&lt;path\_to\_hcat\_install&gt;
+export HCAT_HOME=&lt;path_to_hcat_install&gt;
 
-export PIG\_CLASSPATH=$HCAT\_HOME/share/hcatalog/hcatalog-core*.jar:\
-$HCAT\_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
-$HIVE\_HOME/lib/hive-metastore-*.jar:$HIVE\_HOME/lib/libthrift-*.jar:\
-$HIVE\_HOME/lib/hive-exec-*.jar:$HIVE\_HOME/lib/libfb303-*.jar:\
-$HIVE\_HOME/lib/jdo2-api-*-ec.jar:$HIVE\_HOME/conf:$HADOOP\_HOME/conf:\
-$HIVE\_HOME/lib/slf4j-api-*.jar
+export PIG_CLASSPATH=$HCAT_HOME/share/hcatalog/hcatalog-core*.jar:\
+$HCAT_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
+$HIVE_HOME/lib/hive-metastore-*.jar:$HIVE_HOME/lib/libthrift-*.jar:\
+$HIVE_HOME/lib/hive-exec-*.jar:$HIVE_HOME/lib/libfb303-*.jar:\
+$HIVE_HOME/lib/jdo2-api-*-ec.jar:$HIVE_HOME/conf:$HADOOP_HOME/conf:\
+$HIVE_HOME/lib/slf4j-api-*.jar
 
-export PIG\_OPTS=-Dhive.metastore.uris=thrift://&lt;hostname&gt;:&lt;port&gt;
+export PIG_OPTS=-Dhive.metastore.uris=thrift://&lt;hostname&gt;:&lt;port&gt;
 
 </code></pre><p>Or you can pass the jars in your command line:</p>
-<pre tabindex=0><code>&lt;path\_to\_pig\_install&gt;/bin/pig -Dpig.additional.jars=\
-$HCAT\_HOME/share/hcatalog/hcatalog-core*.jar:\
-$HCAT\_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
-$HIVE\_HOME/lib/hive-metastore-*.jar:$HIVE\_HOME/lib/libthrift-*.jar:\
-$HIVE\_HOME/lib/hive-exec-*.jar:$HIVE\_HOME/lib/libfb303-*.jar:\
-$HIVE\_HOME/lib/jdo2-api-*-ec.jar:$HIVE\_HOME/lib/slf4j-api-*.jar  &lt;script.pig&gt;
+<pre tabindex=0><code>&lt;path_to_pig_install&gt;/bin/pig -Dpig.additional.jars=\
+$HCAT_HOME/share/hcatalog/hcatalog-core*.jar:\
+$HCAT_HOME/share/hcatalog/hcatalog-pig-adapter*.jar:\
+$HIVE_HOME/lib/hive-metastore-*.jar:$HIVE_HOME/lib/libthrift-*.jar:\
+$HIVE_HOME/lib/hive-exec-*.jar:$HIVE_HOME/lib/libfb303-*.jar:\
+$HIVE_HOME/lib/jdo2-api-*-ec.jar:$HIVE_HOME/lib/slf4j-api-*.jar  &lt;script.pig&gt;
 
 </code></pre><p>The version number found in each filepath will be substituted for *. For example, HCatalog release 0.5.0 uses these jars and conf files:</p>
 <ul>
@@ -314,34 +314,34 @@ C = filter A by date == '20100819' and country == 'US';
 ...
 
 </code></pre><p>To scan a whole table, for example:</p>
-<pre tabindex=0><code>a = load 'student\_data' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'student_data' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = foreach a generate name, age;
 
 </code></pre><p>Notice that the schema is automatically provided to Pig; there&rsquo;s no need to declare name and age as fields, as if you were loading from a file.</p>
 <p>To scan a single partition of the table web_logs partitioned by the column datestamp, for example:</p>
-<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp == '20110924';
 
 </code></pre><p>Pig will push the datestamp filter shown here to HCatalog, so that HCatalog knows to just scan the partition where datestamp = &lsquo;20110924&rsquo;. You can combine this filter with others via &lsquo;and&rsquo;:</p>
-<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp == '20110924' and user is not null;
 
 </code></pre><p>Pig will split the above filter, pushing the datestamp portion to HCatalog and retaining the &lsquo;<code>user is not null</code>&rsquo; part to apply itself. You can also give a more complex filter to retrieve a set of partitions.</p>
 <h4 id=filter-operators>Filter Operators</h4>
 <p>A filter can contain the operators &lsquo;and&rsquo;, &lsquo;or&rsquo;, &lsquo;()&rsquo;, &lsquo;==&rsquo;, &lsquo;!=&rsquo;, &lsquo;&lt;&rsquo;, &lsquo;>&rsquo;, &lsquo;&lt;=&rsquo; and &lsquo;>=&rsquo;.</p>
 <p>For example:</p>
-<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp &gt; '20110924';
 
 </code></pre><p>A complex filter can have various combinations of operators, such as:</p>
-<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp == '20110924' or datestamp == '20110925';
 
 </code></pre><p>These two examples have the same effect:</p>
-<pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+<pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp &gt;= '20110924' and datestamp &lt;= '20110925';
 
-</code></pre><pre tabindex=0><code>a = load 'web\_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
+</code></pre><pre tabindex=0><code>a = load 'web_logs' using org.apache.hive.hcatalog.pig.HCatLoader();
 b = filter a by datestamp &lt;= '20110925' and datestamp &gt;= '20110924';
 
 </code></pre><h2 id=hcatstorer>HCatStorer</h2>
@@ -352,9 +352,9 @@ b = filter a by datestamp &lt;= '20110925' and datestamp &gt;= '20110924';
 B = FOREACH A ...
 ...
 ...
-my\_processed\_data = ...
+my_processed_data = ...
 
-STORE my\_processed\_data INTO 'tablename'
+STORE my_processed_data INTO 'tablename'
    USING org.apache.hive.hcatalog.pig.HCatStorer();
 
 </code></pre><h4 id=assumptions-1>Assumptions</h4>
@@ -364,13 +364,13 @@ STORE my\_processed\_data INTO 'tablename'
 <p>If partition columns are present in data they need not be specified as a STORE argument. Instead HCatalog will use these values to place records in the appropriate partition(s). It is valid to specify some partition keys in the STORE statement and have other partition keys in the data.</p>
 <h3 id=store-examples>Store Examples</h3>
 <p>You can write to a non-partitioned table simply by using HCatStorer. The contents of the table will be overwritten:</p>
-<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
+<pre tabindex=0><code>store z into 'web_data' using org.apache.hive.hcatalog.pig.HCatStorer();
 
 </code></pre><p>To add one new partition to a partitioned table, specify the partition value in the store function. Pay careful attention to the quoting, as the whole string must be single quoted and separated with an equals sign:</p>
-<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer('datestamp=20110924');
+<pre tabindex=0><code>store z into 'web_data' using org.apache.hive.hcatalog.pig.HCatStorer('datestamp=20110924');
 
 </code></pre><p>To write into multiple partitions at once, make sure that the partition column is present in your data, then call HCatStorer with no argument:</p>
-<pre tabindex=0><code>store z into 'web\_data' using org.apache.hive.hcatalog.pig.HCatStorer();
+<pre tabindex=0><code>store z into 'web_data' using org.apache.hive.hcatalog.pig.HCatStorer();
   -- datestamp must be a field in the relation z
 
 </code></pre><h3 id=hcatstorer-data-types>HCatStorer Data Types</h3>
@@ -517,7 +517,7 @@ STORE my\_processed\_data INTO 'tablename'
 <td>0.13.0+</td>
 </tr>
 <tr>
-<td>1 Range check: If the Pig value is out of range for the target Hive column, by default NULL will be written and one warning per target column/type will be logged. The user may specify “<code>onOutOfRangeValue Throw</code>” to HCatStorer so that an error will be raised instead. For example:<code>store data into 'test\_tbl' using org.apache.hive.hcatalog.pig.HCatStorer('','','-onOutOfRangeValue Throw');</code>The only values for <code>onOutOfRangeValue</code> are <code>Throw</code> and <code>Null</code> (default).</td>
+<td>1 Range check: If the Pig value is out of range for the target Hive column, by default NULL will be written and one warning per target column/type will be logged. The user may specify “<code>onOutOfRangeValue Throw</code>” to HCatStorer so that an error will be raised instead. For example:<code>store data into 'test_tbl' using org.apache.hive.hcatalog.pig.HCatStorer('','','-onOutOfRangeValue Throw');</code>The only values for <code>onOutOfRangeValue</code> are <code>Throw</code> and <code>Null</code> (default).</td>
 <td></td>
 <td></td>
 <td></td>

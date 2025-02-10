@@ -315,7 +315,7 @@ The default value is <code>false</code>.</li>
 git clone --origin apache https://github.com/apache/hive
 cd hive
 # add your own fork as a remote
-git remote add GITHUB\_USER git@github.com:GITHUB\_USER/hive
+git remote add GITHUB_USER git@github.com:GITHUB_USER/hive
 </code></pre><p>You will need a separate branch to make your changes; you need to this for every PR you are doing.</p>
 <pre tabindex=0><code># fetch all changes - so you will create your feature branch on top of the current master
 git fetch --all
@@ -323,7 +323,7 @@ git fetch --all
 git branch HIVE-9999-something apache/master
 git checkout HIVE-9999-something
 # push your feature branch to your github fork - and set that branch as upstream to this branch
-git push GITHUB\_USER -u HEAD
+git push GITHUB_USER -u HEAD
 </code></pre><p>Make your change</p>
 <pre tabindex=0><code># make your changes; you should include the ticketid + message in the first commit message
 git commit -m 'HIVE-9999: Something' -a
@@ -412,7 +412,7 @@ brew install automake
 
 ./bootstrap.sh
 
-sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
 
 brew install openssl
 
@@ -430,7 +430,7 @@ curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com
 </code></pre><p>``
 3. For Linux:</p>
 <pre tabindex=0><code>cd /path/to/thrift-0.14.1
-/configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php\_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+/configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
 sudo make
 sudo make install 
 sudo mkdir -p /usr/local/share/fb303/if

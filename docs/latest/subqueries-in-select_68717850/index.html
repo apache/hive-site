@@ -117,11 +117,11 @@ ASF
 <h1 id=apache-hive--subqueries-in-select>Apache Hive : Subqueries in SELECT</h1>
 <h1 id=problem>Problem</h1>
 <p>Currently Hive doesn&rsquo;t support subqueries in a SELECT statement, for example, the following query will not run on Hive:</p>
-<pre tabindex=0><code>SELECT customer.customer\_num,
-	(SELECT SUM(ship\_charge) 
+<pre tabindex=0><code>SELECT customer.customer_num,
+	(SELECT SUM(ship_charge) 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 </code></pre><p>Recently a lot of work has been done to extend support for subqueries (<a href=https://issues.apache.org/jira/browse/HIVE-15456>HIVE-15456</a>). But this work primarily targeted extending subquery support in WHERE and HAVING clauses. We plan to continue the work done in HIVE-15456 to support subqueries in a select list (see <a href=https://issues.apache.org/jira/browse/HIVE-16091>HIVE-16091</a>).</p>
 <h1 id=assumptions>Assumptions</h1>
@@ -131,47 +131,47 @@ FROM customer
 </ul>
 <p><strong>Not Supported</strong></p>
 <pre tabindex=0><code>-- subquery in non-simple expression
-SELECT 1 + (SELECT SUM(ship\_charge) FROM orders), customer.customer\_num FROM customer
+SELECT 1 + (SELECT SUM(ship_charge) FROM orders), customer.customer_num FROM customer
  
 -- subquery in CASE
-SELECT CASE WHEN (select count(*) from store\_sales 
-                  where ss\_quantity between 1 and 20) &gt; 409437
-            THEN (select avg(ss\_ext\_list\_price) 
-                  from store\_sales 
-                  where ss\_quantity between 1 and 20) 
-            ELSE (select avg(ss\_net\_paid\_inc\_tax)
-                  from store\_sales
-                  where ss\_quantity between 1 and 20) end bucket1
+SELECT CASE WHEN (select count(*) from store_sales 
+                  where ss_quantity between 1 and 20) &gt; 409437
+            THEN (select avg(ss_ext_list_price) 
+                  from store_sales 
+                  where ss_quantity between 1 and 20) 
+            ELSE (select avg(ss_net_paid_inc_tax)
+                  from store_sales
+                  where ss_quantity between 1 and 20) end bucket1
 FROM reason
-WHERE r\_reason\_sk = 1
+WHERE r_reason_sk = 1
 </code></pre><ul>
 <li>Scalar subqueries can only return at most one row. Hive will check for this case at runtime and throw an error if not satisfied. For example the following query is invalid:</li>
 </ul>
 <p><strong>Not Supported</strong></p>
-<pre tabindex=0><code>SELECT customer.customer\_num,
-	(SELECT ship\_charge 
+<pre tabindex=0><code>SELECT customer.customer_num,
+	(SELECT ship_charge 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 </code></pre><ul>
 <li>Scalar subqueries can only have one column. Hive will check for this case during compilation and throw an error. For example the following query is invalid:</li>
 </ul>
 <p><strong>Not Supported</strong></p>
-<pre tabindex=0><code>SELECT customer.customer\_num,
-	(SELECT ship\_charge, customer\_num
+<pre tabindex=0><code>SELECT customer.customer_num,
+	(SELECT ship_charge, customer_num
 		FROM orders LIMIT 1
-	) AS total\_ship\_chg
+	) AS total_ship_chg
 FROM customer
 </code></pre><ul>
 <li>Correlated variables are only permitted in a filter, that is, a WHERE or HAVING clause. For example the following query is invalid:</li>
 </ul>
 <p><strong>Not Supported</strong></p>
-<pre tabindex=0><code>SELECT customer.customer\_num,
-	(SELECT customer.customer\_num 
+<pre tabindex=0><code>SELECT customer.customer_num,
+	(SELECT customer.customer_num 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 </code></pre><ul>
 <li>Subqueries with DISTINCT are not allowed. Since DISTINCT will be evaluated as GROUP BY , subqueries with DISTINCT are disallowed for now.</li>
@@ -181,22 +181,22 @@ FROM customer
 <ul>
 <li>Scalar subqueries, for example: </li>
 </ul>
-<pre tabindex=0><code>SELECT customer.customer\_num,
-	(SELECT SUM(ship\_charge) 
+<pre tabindex=0><code>SELECT customer.customer_num,
+	(SELECT SUM(ship_charge) 
 		FROM orders
-		WHERE customer.customer\_num = orders.customer\_num
-	) AS total\_ship\_chg
+		WHERE customer.customer_num = orders.customer_num
+	) AS total_ship_chg
 FROM customer 
 </code></pre><ul>
 <li>IN subqueries, for example:</li>
 </ul>
-<pre tabindex=0><code>SELECT p\_size IN (
-		SELECT MAX(p\_size) FROM part)
+<pre tabindex=0><code>SELECT p_size IN (
+		SELECT MAX(p_size) FROM part)
 FROM part
 </code></pre><ul>
 <li>EXISTS subqueries, for example:</li>
 </ul>
-<pre tabindex=0><code>SELECT EXISTS(SELECT p\_size FROM part)
+<pre tabindex=0><code>SELECT EXISTS(SELECT p_size FROM part)
 FROM part
 </code></pre><p>All of the above queries could be <strong>correlated</strong> or <strong>uncorrelated</strong>.</p>
 <p>Design for this will be similar to the work done in <a href=https://issues.apache.org/jira/browse/HIVE-15456>HIVE-15456</a>.</p>

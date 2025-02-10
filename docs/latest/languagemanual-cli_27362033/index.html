@@ -171,34 +171,34 @@ Usage (as it is in Hive 0.9.0):</p>
 <ul>
 <li>Example of running a query from the command line</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -e 'select a.col from tab1 a'
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -e 'select a.col from tab1 a'
 </code></pre><ul>
 <li>Example of setting Hive configuration variables</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -e 'select a.col from tab1 a' --hiveconf hive.exec.scratchdir=/home/my/hive\_scratch  --hiveconf mapred.reduce.tasks=32
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -e 'select a.col from tab1 a' --hiveconf hive.exec.scratchdir=/home/my/hive_scratch  --hiveconf mapred.reduce.tasks=32
 </code></pre><ul>
 <li>Example of dumping data out from a query into a file using silent mode</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -S -e 'select a.col from tab1 a' &gt; a.txt
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -S -e 'select a.col from tab1 a' &gt; a.txt
 </code></pre><ul>
 <li>Example of running a script non-interactively from local disk</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -f /home/my/hive-script.sql
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -f /home/my/hive-script.sql
 </code></pre><ul>
 <li>Example of running a script non-interactively from a Hadoop supported filesystem (starting in <a href=https://issues.apache.org/jira/browse/HIVE-7136>Hive 0.14</a>)</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -f hdfs://&lt;namenode&gt;:&lt;port&gt;/hive-script.sql
-$HIVE\_HOME/bin/hive -f s3://mys3bucket/s3-script.sql 
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -f hdfs://&lt;namenode&gt;:&lt;port&gt;/hive-script.sql
+$HIVE_HOME/bin/hive -f s3://mys3bucket/s3-script.sql 
 </code></pre><ul>
 <li>Example of running an initialization script before entering interactive mode</li>
 </ul>
-<pre tabindex=0><code>$HIVE\_HOME/bin/hive -i /home/my/hive-init.sql
+<pre tabindex=0><code>$HIVE_HOME/bin/hive -i /home/my/hive-init.sql
 </code></pre><h3 id=the-hiverc-file>The hiverc File</h3>
 <p>The CLI when invoked without the <code>-i</code> option will attempt to load $HIVE_HOME/bin/.hiverc and $HOME/.hiverc as initialization files.</p>
 <h3 id=logging>Logging</h3>
 <p>Hive uses log4j for logging. These logs are not emitted to the standard output by default but are instead captured to a log file specified by Hive&rsquo;s log4j properties file. By default Hive will use <code>hive-log4j.default</code> in the <code>conf/</code> directory of the Hive installation which writes out logs to <code>/tmp/&lt;userid>/hive.log</code> and uses the <code>WARN</code> level.</p>
 <p>It is often desirable to emit the logs to the standard output and/or change the logging level for debugging purposes. These can be done from the command line as follows:</p>
-<pre tabindex=0><code> $HIVE\_HOME/bin/hive --hiveconf hive.root.logger=INFO,console
+<pre tabindex=0><code> $HIVE_HOME/bin/hive --hiveconf hive.root.logger=INFO,console
 
 </code></pre><p><code>hive.root.logger</code> specifies the logging level as well as the log destination. Specifying <code>console</code> as the target sends the logs to the standard error (instead of the log file).</p>
 <p>See <a href=#hive-logging-in-getting-started>Hive Logging in Getting Started</a> for more information.</p>

@@ -118,16 +118,16 @@ ASF
 <p>This is a brief example on creating and populating bucketed tables. (For another example, see <a href=#bucketed-sorted-tables>Bucketed Sorted Tables</a>.)</p>
 <p>Bucketed tables are fantastic in that they allow much more efficient <a href=https://hive.apache.org/docs/latest/languagemanual-sampling_27362042/>sampling</a> than do non-bucketed tables, and they may later allow for time saving operations such as mapside joins. However, the bucketing specified at table creation is not enforced when the table is written to, and so it is possible for the table&rsquo;s metadata to advertise properties which are not upheld by the table&rsquo;s actual layout. This should obviously be avoided. Here&rsquo;s how to do it right.</p>
 <p>First, <a href=#table-creation>table creation</a>:</p>
-<pre tabindex=0><code>CREATE TABLE user\_info\_bucketed(user\_id BIGINT, firstname STRING, lastname STRING)
-COMMENT 'A bucketed copy of user\_info'
+<pre tabindex=0><code>CREATE TABLE user_info_bucketed(user_id BIGINT, firstname STRING, lastname STRING)
+COMMENT 'A bucketed copy of user_info'
 PARTITIONED BY(ds STRING)
-CLUSTERED BY(user\_id) INTO 256 BUCKETS;
+CLUSTERED BY(user_id) INTO 256 BUCKETS;
 
 </code></pre><p>Note that we specify a column (user_id) to base the bucketing.</p>
 <p>Then we populate the table</p>
 <pre tabindex=0><code>set hive.enforce.bucketing = true;  -- (Note: Not needed in Hive 2.x onward)
-FROM user\_id
-INSERT OVERWRITE TABLE user\_info\_bucketed
+FROM user_id
+INSERT OVERWRITE TABLE user_info_bucketed
 PARTITION (ds='2009-02-25')
 SELECT userid, firstname, lastname WHERE ds='2009-02-25';
 

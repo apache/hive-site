@@ -260,22 +260,22 @@ LOAD DATA LOCAL INPATH 'filepath' INTO TABLE tab1;
 <p>Query Results can be inserted into tables by using the insert clause.</p>
 <h5 id=syntax-1>Syntax</h5>
 <pre tabindex=0><code>Standard syntax:
-INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select\_statement1 FROM from\_statement;
-INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select\_statement1 FROM from\_statement;
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1 FROM from_statement;
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1 FROM from_statement;
 
 Hive extension (multiple inserts):
-FROM from\_statement
-INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select\_statement1
-[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select\_statement2] 
-[INSERT INTO TABLE tablename2 [PARTITION ...] select\_statement2] ...;
-FROM from\_statement
-INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select\_statement1
-[INSERT INTO TABLE tablename2 [PARTITION ...] select\_statement2] 
-[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select\_statement2] ...;
+FROM from_statement
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] 
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] ...;
+FROM from_statement
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] 
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] ...;
 
 Hive extension (dynamic partition inserts):
-INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select\_statement FROM from\_statement;
-INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select\_statement FROM from\_statement;
+INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
+INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
 </code></pre><h5 id=synopsis-1>Synopsis</h5>
 <ul>
 <li>INSERT OVERWRITE will overwrite any existing data in the table or partition
@@ -352,9 +352,9 @@ An immutable table is protected against accidental updates due to a script load
 </tbody>
 </table>
 <h6 id=example>Example</h6>
-<pre tabindex=0><code>FROM page\_view\_stg pvs
-INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country)
-       SELECT pvs.viewTime, pvs.userid, pvs.page\_url, pvs.referrer\_url, null, null, pvs.ip, pvs.cnt
+<pre tabindex=0><code>FROM page_view_stg pvs
+INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country)
+       SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip, pvs.cnt
 
 </code></pre><p>Here the <code>country</code> partition will be dynamically created by the last column from the <code>SELECT</code> clause (i.e. <code>pvs.cnt</code>). Note that the name is not used. In <code>nonstrict</code> mode the <code>dt</code> partition could also be dynamically created.</p>
 <h6 id=additional-documentation>Additional Documentation</h6>
@@ -378,16 +378,16 @@ INSERT OVERWRITE TABLE page\_view PARTITION(dt='2008-06-08', country)
 <h5 id=syntax-2>Syntax</h5>
 <pre tabindex=0><code>Standard syntax:
 INSERT OVERWRITE [LOCAL] DIRECTORY directory1
-  [ROW FORMAT row\_format] [STORED AS file\_format] (Note: Only available starting with Hive 0.11.0)
+  [ROW FORMAT row_format] [STORED AS file_format] (Note: Only available starting with Hive 0.11.0)
   SELECT ... FROM ...
 
 Hive extension (multiple inserts):
-FROM from\_statement
-INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select\_statement1
-[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select\_statement2] ...
+FROM from_statement
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
+[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select_statement2] ...
 
  
-row\_format
+row_format
   : DELIMITED [FIELDS TERMINATED BY char [ESCAPED BY char]] [COLLECTION ITEMS TERMINATED BY char]
         [MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]
         [NULL DEFINED AS char] (Note: Only available starting with Hive 0.13)
@@ -411,9 +411,9 @@ row\_format
 <p>INSERT&mldr;VALUES is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>.</p>
 <h5 id=syntax-3>Syntax</h5>
 <pre tabindex=0><code>Standard Syntax:
-INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values\_row [, values\_row ...]
+INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values_row [, values_row ...]
  
-Where values\_row is:
+Where values_row is:
 ( value [, value ...] )
 where a value is either null or any valid SQL literal
 </code></pre><h5 id=synopsis-3>Synopsis</h5>
@@ -431,7 +431,7 @@ where a value is either null or any valid SQL literal
 INSERT INTO TABLE students
   VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
 
-CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came\_from STRING)
+CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came_from STRING)
   PARTITIONED BY (datestamp STRING) CLUSTERED BY (userid) INTO 256 BUCKETS STORED AS ORC;
 
 INSERT INTO TABLE pageviews PARTITION (datestamp = '2014-09-23')

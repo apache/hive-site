@@ -224,7 +224,7 @@ gpg: Good signature from &quot;Your Name &lt;YOUR-APACHE-ID@apache.org&gt;&quot;
 </ol>
 <pre tabindex=0><code>% sftp YOUR-APACHE-ID@home.apache.org
 
-sftp&gt; cd public\_html
+sftp&gt; cd public_html
 sftp&gt; mkdir hive-storage-X.Y.Z
 sftp&gt; cd hive-storage-X.Y.Z
 sftp&gt; put hive-storage-X.Y.Z-rcR.tar.gz*
@@ -306,8 +306,8 @@ git push -u origin branch-X.Y
 <ol>
 <li>Check out the release branch with:</li>
 </ol>
-<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive\_src\_dir&gt;
-cd &lt;hive\_src\_dir&gt;
+<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive_src_dir&gt;
+cd &lt;hive_src_dir&gt;
 git checkout branch-X.Y
 </code></pre><ol start=2>
 <li>Update the <code>version</code> property value in all pom.xml files. You should remove the <code>SNAPSHOT</code> suffix and set <code>version</code> equal to <code>hive-X.Y.Z</code> where Z is the point release number in this release series (0 for the first one, in which case this step is a no-op since you already did this above when creating the branch). Use <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> to do this as follows:</li>
@@ -353,7 +353,7 @@ apache-hive-X.Y.Z-src.tar.gz: OK
 </li>
 </ol>
 <pre tabindex=0><code>% gpg --full-generate-key
-% gpg --keyserver hkp://keyserver.ubuntu.com --send-keys &lt;PUB\_KEY&gt;
+% gpg --keyserver hkp://keyserver.ubuntu.com --send-keys &lt;PUB_KEY&gt;
 % svn co --depth files https://dist.apache.org/repos/dist/release/hive
 % cd hive
 % (gpg --list-sigs &lt;NAME&gt; &amp;&amp; gpg --armor --export &lt;NAME&gt;) &gt;&gt; KEYS
@@ -464,9 +464,9 @@ git push origin :release-X.Y.Z-rcR
 </code></pre><ol start=6>
 <li>Copy the generated javadocs from the source repository to the javadocs repository, add and commit:</li>
 </ol>
-<pre tabindex=0><code>mkdir &lt;hive\_javadocs\_repo\_dir&gt;/rX.Y.Z/
-cd &lt;hive\_javadocs\_repo\_dir&gt;
-cp -r &lt;hive\_source\_dir&gt;/target/site/apidocs ./rX.Y.Z/api
+<pre tabindex=0><code>mkdir &lt;hive_javadocs_repo_dir&gt;/rX.Y.Z/
+cd &lt;hive_javadocs_repo_dir&gt;
+cp -r &lt;hive_source_dir&gt;/target/site/apidocs ./rX.Y.Z/api
 svn add rX.Y.Z
 svn commit
 </code></pre><p>If this is a bugfix release, svn rm the obsoleted version. (For eg., when committing javadocs for r0.13.1, r0.13.0 would have been removed)
@@ -476,8 +476,8 @@ svn commit
 <li>Edit files content/downloads.mdtext and javadoc.mdtext to appropriately add entries for the new release in the appropriate location. For example, for 1.2.0, the entries made were as follows:</li>
 </ol>
 <pre tabindex=0><code>./downloads.md:### 18 May 2015 : release 1.2.0 available
-./downloads.md:You can look at the complete [JIRA change log for this release][HIVE\_1\_2\_0\_CL].
-./downloads.md:[HIVE\_1\_2\_0\_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&amp;styleName=Text&amp;projectId=12310843
+./downloads.md:You can look at the complete [JIRA change log for this release][HIVE_1_2_0_CL].
+./downloads.md:[HIVE_1_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&amp;styleName=Text&amp;projectId=12310843
 ./javadoc.md:  * [Hive 1.2.0 Javadocs][r1.2.0]
 ./javadoc.md:[r1.2.0]: /javadocs/r1.2.0/api/index.html
 </code></pre><p>As you can see, you will need a release note link for this release as created previously for this section.
@@ -534,8 +534,8 @@ The Apache Hive Team
 <ol>
 <li>Check out the release branch with:</li>
 </ol>
-<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive\_src\_dir&gt;
-cd &lt;hive\_src\_dir&gt;
+<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive_src_dir&gt;
+cd &lt;hive_src_dir&gt;
 git checkout branch-X.Y
 </code></pre><ol start=2>
 <li>Increment the <code>version</code> property value in all pom.xml files and add the <code>SNAPSHOT</code> suffix. For example, if the released version was <code>0.7.0</code>, the new value should be <code>0.7.1-SNAPSHOT</code>. Please note that the <code>SNAPSHOT</code> suffix is required in order to indicate that this is an unreleased development branch. Use <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> to do this as follows:</li>

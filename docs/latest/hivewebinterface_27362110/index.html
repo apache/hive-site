@@ -191,7 +191,7 @@ ASF
 
 &lt;property&gt;
   &lt;name&gt;hive.hwi.war.file&lt;/name&gt;
-  &lt;value&gt;${HIVE\_HOME}/lib/hive-hwi-&lt;version&gt;.war&lt;/value&gt;
+  &lt;value&gt;${HIVE_HOME}/lib/hive-hwi-&lt;version&gt;.war&lt;/value&gt;
   &lt;description&gt;This is the WAR file with the jsp content for Hive Web Interface&lt;/description&gt;
 &lt;/property&gt;
 
@@ -199,7 +199,7 @@ ASF
 <h3 id=start-up>Start Up</h3>
 <p>When initializing <code>hive</code> with no arguments, the CLI is invoked. Hive has an extension architecture used to start other <code>hive</code> demons.<br>
 Jetty requires <a href=http://ant.apache.org/>Apache Ant</a> to start HWI. You should define ANT_LIB as an environment variable or add that to the <code>hive</code> invocation.</p>
-<pre tabindex=0><code>export ANT\_LIB=/opt/ant/lib
+<pre tabindex=0><code>export ANT_LIB=/opt/ant/lib
 bin/hive --service hwi
 
 </code></pre><p>Java has no direct way of demonizing. In a production environment you should create a wrapper script.</p>

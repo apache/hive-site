@@ -120,68 +120,68 @@ ASF
 set -e
 set -x
 . ${HOME}/toolchain/toolchain.sh
-export PATH=$JAVA\_HOME/bin:$MAVEN\_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
 ROOT=$PWD
 BRANCH=trunk
-export JIRA\_NAME=&quot;HIVE-${ISSUE\_NUM}&quot;
-echo $JIRA\_NAME
-export JIRA\_ROOT\_URL=&quot;https://issues.apache.org&quot;
+export JIRA_NAME=&quot;HIVE-${ISSUE_NUM}&quot;
+echo $JIRA_NAME
+export JIRA_ROOT_URL=&quot;https://issues.apache.org&quot;
 test -d hive/build/ || mkdir -p hive/build/
 cd hive/build/
 rm -rf ptest2
 svn co http://svn.apache.org/repos/asf/hive/trunk/testutils/ptest2/ ptest2
 cd ptest2
 # process the jira
-JIRA\_TEXT=$(mktemp)
-trap &quot;rm -f $JIRA\_TEXT&quot; EXIT
-curl -s -S --location --retry 3 &quot;${JIRA\_ROOT\_URL}/jira/browse/${JIRA\_NAME}&quot; &gt; $JIRA\_TEXT
-if grep -q &quot;NO PRECOMMIT TESTS&quot; $JIRA\_TEXT
+JIRA_TEXT=$(mktemp)
+trap &quot;rm -f $JIRA_TEXT&quot; EXIT
+curl -s -S --location --retry 3 &quot;${JIRA_ROOT_URL}/jira/browse/${JIRA_NAME}&quot; &gt; $JIRA_TEXT
+if grep -q &quot;NO PRECOMMIT TESTS&quot; $JIRA_TEXT
 then
-  echo &quot;Test $JIRA\_NAME has tag NO PRECOMMIT TESTS&quot;
+  echo &quot;Test $JIRA_NAME has tag NO PRECOMMIT TESTS&quot;
   exit 0
 fi
 # ensure the patch is actually in the correct state
-if ! grep -q 'Patch Available' $JIRA\_TEXT
+if ! grep -q 'Patch Available' $JIRA_TEXT
 then
-  echo &quot;$JIRA\_NAME is not \&quot;Patch Available\&quot;. Exiting.&quot;
+  echo &quot;$JIRA_NAME is not \&quot;Patch Available\&quot;. Exiting.&quot;
   exit 1
 fi
 # pull attachments from JIRA (hack stolen from hadoop since rest api doesn't show attachments)
-PATCH\_URL=$(grep -o '&quot;/jira/secure/attachment/[0-9]*/[^&quot;]*' $JIRA\_TEXT | \
+PATCH_URL=$(grep -o '&quot;/jira/secure/attachment/[0-9]*/[^&quot;]*' $JIRA_TEXT | \
   grep -v -e 'htm[l]*$' | sort | tail -1 | \
   grep -o '/jira/secure/attachment/[0-9]*/[^&quot;]*')
-if [[ -z &quot;$PATCH\_URL&quot; ]]
+if [[ -z &quot;$PATCH_URL&quot; ]]
 then
-  echo &quot;Unable to find attachment for $JIRA\_NAME&quot;
+  echo &quot;Unable to find attachment for $JIRA_NAME&quot;
   exit 1
 fi
 # ensure attachment has not already been tested
-ATTACHMENT\_ID=$(basename $(dirname $PATCH\_URL))
-if grep -q &quot;ATTACHMENT ID: $ATTACHMENT\_ID&quot; $JIRA\_TEXT
+ATTACHMENT_ID=$(basename $(dirname $PATCH_URL))
+if grep -q &quot;ATTACHMENT ID: $ATTACHMENT_ID&quot; $JIRA_TEXT
 then
-  echo &quot;Attachment $ATTACHMENT\_ID is already tested for $JIRA\_NAME&quot;
+  echo &quot;Attachment $ATTACHMENT_ID is already tested for $JIRA_NAME&quot;
   exit 1
 fi
 # validate the patch name, parse branch if needed
 shopt -s nocasematch
-PATCH\_NAME=$(basename $PATCH\_URL)
+PATCH_NAME=$(basename $PATCH_URL)
 # Test examples:
 # HIVE-123.patch HIVE-123.1.patch HIVE-123.D123.patch HIVE-123.D123.1.patch HIVE-123-tez.patch HIVE-123.1-tez.patch
 # HIVE-XXXX.patch, HIVE-XXXX.XX.patch  HIVE-XXXX.XX-branch.patch HIVE-XXXX-branch.patch
-if [[ $PATCH\_NAME =~ ^HIVE-[0-9]+(\.[0-9]+)?(-[a-z0-9-]+)?\.(patch|patch.\txt)$ ]]
+if [[ $PATCH_NAME =~ ^HIVE-[0-9]+(\.[0-9]+)?(-[a-z0-9-]+)?\.(patch|patch.\txt)$ ]]
 then
-  if [[ -n &quot;${BASH\_REMATCH[2]}&quot; ]]
+  if [[ -n &quot;${BASH_REMATCH[2]}&quot; ]]
   then
-    BRANCH=${BASH\_REMATCH[2]#*-}
+    BRANCH=${BASH_REMATCH[2]#*-}
   else
     echo &quot;Assuming branch $BRANCH&quot;
   fi
 # HIVE-XXXX.DXXXX.patch or HIVE-XXXX.DXXXX.XX.patch
-elif [[ $PATCH\_NAME =~ ^(HIVE-[0-9]+\.)?D[0-9]+(\.[0-9]+)?\.(patch|patch.\txt)$ ]]
+elif [[ $PATCH_NAME =~ ^(HIVE-[0-9]+\.)?D[0-9]+(\.[0-9]+)?\.(patch|patch.\txt)$ ]]
 then
   echo &quot;Assuming branch $BRANCH&quot;
 else
-  echo &quot;Patch $PATCH\_NAME does not appear to be a patch&quot;
+  echo &quot;Patch $PATCH_NAME does not appear to be a patch&quot;
   exit 1
 fi
 shopt -u nocasematch
@@ -201,15 +201,15 @@ case &quot;$profile&quot; in
   echo &quot;Unknown profile '$profile'&quot;
   exit 1
 esac
-TEST\_OPTS=&quot;&quot;
-if grep -q &quot;CLEAR LIBRARY CACHE&quot; $JIRA\_TEXT
+TEST_OPTS=&quot;&quot;
+if grep -q &quot;CLEAR LIBRARY CACHE&quot; $JIRA_TEXT
 then
   echo &quot;Clearing library cache before starting test&quot;
-  TEST\_OPTS=&quot;--clearLibraryCache&quot;
+  TEST_OPTS=&quot;--clearLibraryCache&quot;
 fi
 mvn clean package -DskipTests -Drat.numUnapprovedLicenses=1000 -Dmaven.repo.local=$WORKSPACE/.m2
 set +e
-java -cp &quot;target/hive-ptest-1.0-classes.jar:target/lib/*&quot; org.apache.hive.ptest.api.client.PTestClient --endpoint http://ec2-174-129-184-35.compute-1.amazonaws.com --command testStart --profile $profile --password xxx --outputDir target/ --testHandle &quot;${BUILD\_TAG##jenkins-}&quot; --patch &quot;${JIRA\_ROOT\_URL}${PATCH\_URL}&quot; --jira &quot;$JIRA\_NAME&quot; --clearLibraryCache
+java -cp &quot;target/hive-ptest-1.0-classes.jar:target/lib/*&quot; org.apache.hive.ptest.api.client.PTestClient --endpoint http://ec2-174-129-184-35.compute-1.amazonaws.com --command testStart --profile $profile --password xxx --outputDir target/ --testHandle &quot;${BUILD_TAG##jenkins-}&quot; --patch &quot;${JIRA_ROOT_URL}${PATCH_URL}&quot; --jira &quot;$JIRA_NAME&quot; --clearLibraryCache
 ret=$?
 cd target/
 if [[ -f test-results.tar.gz ]]

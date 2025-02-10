@@ -145,11 +145,11 @@ hive&gt; set har.partfile.size=1099511627776;
 
 </code></pre><p><code>hive.archive.enabled</code> controls whether archiving operations are enabled.</p>
 <p><code>hive.archive.har.parentdir.settable</code> informs Hive whether the parent directory can be set while creating the archive. In recent versions of Hadoop the <code>-p</code> option can specify the root directory of the archive. For example, if <code>/dir1/dir2/file</code> is archived with <code>/dir1</code> as the parent directory, then the resulting archive file will contain the directory structure <code>dir2/file</code>. In older versions of Hadoop (prior to 2011), this option was not available and therefore Hive must be configured to accommodate this limitation.</p>
-<p><code>har.partfile.size</code> controls the size of the files that make up the archive. The archive will contain <code>*size\_of\_partition*``/``har.partfile.size</code> files, rounded up. Higher values mean fewer files, but will result in longer archiving times due to the reduced number of mappers.</p>
+<p><code>har.partfile.size</code> controls the size of the files that make up the archive. The archive will contain <code>*size_of_partition*``/``har.partfile.size</code> files, rounded up. Higher values mean fewer files, but will result in longer archiving times due to the reduced number of mappers.</p>
 <h2 id=usage>Usage</h2>
 <h3 id=archive>Archive</h3>
 <p>Once the configuration values are set, a partition can be archived with the command:</p>
-<pre tabindex=0><code>ALTER TABLE table\_name ARCHIVE PARTITION (partition\_col = partition\_col\_value, partition\_col = partiton\_col\_value, ...)
+<pre tabindex=0><code>ALTER TABLE table_name ARCHIVE PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
 
 </code></pre><p>For example:</p>
 <pre tabindex=0><code>ALTER TABLE srcpart ARCHIVE PARTITION(ds='2008-04-08', hr='12')

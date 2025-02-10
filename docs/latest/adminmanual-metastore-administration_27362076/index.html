@@ -367,7 +367,7 @@ ASF
 <p>In remote metastore setup, all Hive Clients will make a connection to a metastore server which in turn queries the datastore (MySQL in this example) for metadata. Metastore server and client communicate using <a href=http://incubator.apache.org/thrift>Thrift</a> Protocol. Starting with Hive 0.5.0, you can start a Thrift server by executing the following command:</p>
 <pre tabindex=0><code>hive --service metastore
 </code></pre><p>In versions of Hive earlier than 0.5.0, it&rsquo;s instead necessary to run the Thrift server via direct execution of Java:</p>
-<pre tabindex=0><code>$JAVA\_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE\_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP\_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
+<pre tabindex=0><code>$JAVA_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
 </code></pre><p>If you execute Java directly, then JAVA_HOME, HIVE_HOME, HADOOP_HOME must be correctly set; CLASSPATH should contain Hadoop, Hive (lib and auxlib), and Java jars.</p>
 <p><strong>Server Configuration Parameters</strong></p>
 <p>The following example uses a<a href=#remote-metastore-database>Remote Metastore Database</a>.</p>
@@ -495,7 +495,7 @@ ASF
 </table>
 <p>If you are using MySQL as the datastore for metadata, put MySQL jdbc libraries in HIVE_HOME/lib before starting Hive Client or HiveMetastore Server.</p>
 <p>To change the metastore port, use this <code>hive</code> command:</p>
-<pre tabindex=0><code>hive --service metastore -p &lt;port\_num&gt;
+<pre tabindex=0><code>hive --service metastore -p &lt;port_num&gt;
 </code></pre><h3 id=supported-backend-databases-for-metastore>Supported Backend Databases for Metastore</h3>
 <table>
 <thead>

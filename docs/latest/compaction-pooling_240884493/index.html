@@ -121,12 +121,12 @@ ASF
 <p>Compaction requests can be assigned to pools in three different ways.</p>
 <h4 id=automatic-pool-assignment>Automatic pool assignment</h4>
 <p>Databases, tables and partitions can be assigned to compaction pools through the</p>
-<pre tabindex=0><code>hive.compactor.worker.pool={pool\_name}
+<pre tabindex=0><code>hive.compactor.worker.pool={pool_name}
 </code></pre><p><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>Database/Table property</a>. If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set). <br>
 If any of the above is set, it is used by the <em>Initiator</em> during the creation of the compaction requests.</p>
 <h4 id=manual-pool-assignment>Manual pool assignment</h4>
 <p>The compaction request also can be assigned to a pool by using the ALTER TABLE COMPACT command (E.g. manual compaction). If provided, this value overrides the <em>hive.compactor.worker.pool</em> value on any level.</p>
-<pre tabindex=0><code>ALTER TABLE COMPACT table\_name POOL 'pool\_name';
+<pre tabindex=0><code>ALTER TABLE COMPACT table_name POOL 'pool_name';
 </code></pre><h4 id=implicit-pool-assignment>Implicit pool assignment</h4>
 <p>Tables, partitions and manual compaction requests without specified pool name are implicitly assigned to the default pool.</p>
 <h3 id=pool-timeout>Pool timeout</h3>
@@ -141,7 +141,7 @@ If any of the above is set, it is used by the <em>Initiator</em> during the crea
 <p>The timeout can be disabled by setting the configuration property to 0.</p>
 <h3 id=labeled-worker-pools>Labeled worker pools</h3>
 <p>The labeled worker pools can be defined through the </p>
-<pre tabindex=0><code>hive.compactor.worker.{poolname}.threads={thread\_count} 
+<pre tabindex=0><code>hive.compactor.worker.{poolname}.threads={thread_count} 
 </code></pre><p>configuration setting. Please note that in this case the configuration key is also dynamic.</p>
 <h3 id=default-pool>Default pool</h3>
 <p>The default pool is responsible for processing the non-labeled and timed-out compaction requests. On a cluster-wide level, at least 1 worker thread on at least one node should be assigned to the default pool, otherwise compaction requests may never be processed.</p>

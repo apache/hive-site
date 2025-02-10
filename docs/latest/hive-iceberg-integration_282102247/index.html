@@ -115,76 +115,94 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-iceberg-integration>Apache Hive : Hive-Iceberg Integration</h1>
-<p>Apache Hive starting from 4.0 out of the box supports the Iceberg table format, the iceberg tables can be created like regular hive external or ACID tables, without the need of any need of adding any extra jars.</p>
+<p>Apache Hive starting from 4.0 out of the box supports the Iceberg table format, the iceberg tables can be created like regular hive external or ACID tables, without adding any extra jars.</p>
 <p><strong>Creating an Iceberg Table</strong></p>
-<p>An iceberg table can be created using <em><strong>STORED BY ICEBERG</strong></em>keywords while creating a table.</p>
+<p>An iceberg table can be created using <em><strong>STORED BY ICEBERG</strong></em> keywords while creating a table.</p>
 <ul>
 <li>Creating an Iceberg table using normal create command</li>
 </ul>
-<pre tabindex=0><code>CREATE TABLE TBL\_ICE (ID INT) STORED BY ICEBERG;
+<pre tabindex=0><code>CREATE TABLE TBL_ICE (ID INT) STORED BY ICEBERG;
 </code></pre><p>The above creates an iceberg table named &lsquo;TBL_ICE&rsquo;</p>
 <ul>
 <li>Creating an Iceberg Table using CTAS</li>
 </ul>
-<pre tabindex=0><code>CREATE TABLE TABLE\_CTAS AS SELECT * FROM SRCTABLE STORED BY ICEBERG;
+<pre tabindex=0><code>CREATE TABLE TABLE_CTAS AS SELECT * FROM SRCTABLE STORED BY ICEBERG;
 </code></pre><p>The above creates an iceberg table named &lsquo;TABLE_CTAS&rsquo; with schema & records as in &lsquo;SRCTABLE&rsquo; </p>
 <ul>
 <li>Creating an Iceberg Table using CTLT</li>
 </ul>
-<pre tabindex=0><code>CREATE TABLE\_CTLT LIKE SRCTABLE STORED BY ICEBERG;
+<pre tabindex=0><code>CREATE TABLE_CTLT LIKE SRCTABLE STORED BY ICEBERG;
 </code></pre><p>The above creates an iceberg table named &lsquo;TABLE_CTLT&rsquo; with schema same as SRCTABLE</p>
 <p><strong>Format Versions:</strong></p>
 <p>The iceberg tables support both v1 & v2 tables, the tables by default are created as v1 table unless explicitly specified. To create a v2 table (&lsquo;format-version&rsquo;=&lsquo;2&rsquo;)  can be specified as table property while creating the table</p>
 <p>Example:</p>
-<pre tabindex=0><code>CREATE TABLE V2\_TABLE (ID INT) STORED BY ICEBERG TBLPROPERTIES ('format-version'='2');
+<pre tabindex=0><code>CREATE TABLE V2_TABLE (ID INT) STORED BY ICEBERG TBLPROPERTIES ('format-version'='2');
 </code></pre><p><strong>File Formats:</strong></p>
 <p>The iceberg table currently supports three file formats: PARQUET, ORC & AVRO. The default file format is Parquet. The file format can be explicitily provided by using STORED AS while creating the table</p>
 <p>Example-1:</p>
-<pre tabindex=0><code>CREATE TABLE ORC\_TABLE (ID INT) STORED BY ICEBERG STORED AS ORC;
+<pre tabindex=0><code>CREATE TABLE ORC_TABLE (ID INT) STORED BY ICEBERG STORED AS ORC;
 </code></pre><p>The above creates a v1 iceberg table named &lsquo;ORC_TABLE&rsquo; of ORC file format.</p>
 <p>Example-2:</p>
-<pre tabindex=0><code>CREATE TABLE V2\_ORC\_TABLE (ID INT) STORED BY ICEBERG STORED AS ORC TBLPROPERTIES ('format-version'='2');
+<pre tabindex=0><code>CREATE TABLE V2_ORC_TABLE (ID INT) STORED BY ICEBERG STORED AS ORC TBLPROPERTIES ('format-version'='2');
 </code></pre><p>The above creates a v2 iceberg table named &lsquo;V2_ORC_TABLE&rsquo; of ORC file format.</p>
 <p>Similarly we can specify any of the supported file formats while creating the table,</p>
 <p><strong>Delete Modes:</strong></p>
 <p>Hive for delete, update & merge queries support both Copy-on-Write and Merge-on-Read, by default the tables are created with Merge-on-Read mode. The delete mode can be configured using the following TBLPROPERTIES:</p>
-<p>TODO: COPY ALL THREE </p>
-<p><strong>Migrating existing tables to Iceberg Tables</strong></p>
-<p>Any Hive external table can be converted into an iceberg tables, without actually rewriting the data files again. We can use ALTER TABLE CONVERT TO ICEBERG [TBLPROPERTIES] to convert any existing external table to an iceberg table.</p>
+<pre tabindex=0><code>CREATE TABLE tbl_x (id int) STORED BY ICEBERG TBLPROPERTIES (
+    'write.delete.mode'='copy-on-write',
+    'write.update.mode'='copy-on-write',
+    'write.merge.mode'='copy-on-write'
+);
+</code></pre><p><strong>Migrating existing tables to Iceberg Tables</strong></p>
+<p>Any Hive external table can be converted into an iceberg tables, without actually rewriting the data files again. We can use <em>ALTER TABLE CONVERT TO ICEBERG [TBLPROPERTIES]</em> to convert any existing external table to an iceberg table.</p>
 <pre tabindex=0><code>ALTER TABLE TABLE1 CONVERT TO ICEBERG TBLPROPERTIES ('format-version'='2');
 </code></pre><p>The above converts an existing external table &lsquo;TABLE1&rsquo; into a v2 Iceberg table, specifying the TBLPROPERTIES & format-version is option, if not specified the table will be converted into a v1 iceberg table.</p>
 <p><strong>Querying an Iceberg Table</strong></p>
 <p>Iceberg tables support all query statements similar to any other hive table.</p>
 <p>Example:</p>
-<pre tabindex=0><code>SELECT * FROM TBL\_ICE WHERE ID &gt; 5;
+<pre tabindex=0><code>SELECT * FROM TBL_ICE WHERE ID &gt; 5;
 </code></pre><p><strong>Writing data into iceberg tables</strong></p>
 <p>Iceberg tables supports all data ingestion methods supported with hive</p>
 <ul>
 <li>Insert-Into</li>
 </ul>
-<pre tabindex=0><code>INSERT INTO TBL\_ICE VALUES (1),(2),(3),(4);
+<pre tabindex=0><code>INSERT INTO TBL_ICE VALUES (1),(2),(3),(4);
 </code></pre><ul>
 <li>Insert-Overwrite</li>
 </ul>
-<pre tabindex=0><code>INSERT OVERWRITE TBL\_ICE SELECT * FROM TABLE1;
+<pre tabindex=0><code>INSERT OVERWRITE TBL_ICE SELECT * FROM TABLE1;
 </code></pre><ul>
 <li>Delete</li>
 </ul>
-<pre tabindex=0><code>DELETE FROM TBL\_ICE WHERE ID=5;
+<pre tabindex=0><code>DELETE FROM TBL_ICE WHERE ID=5;
 </code></pre><ul>
 <li>Update</li>
 </ul>
-<pre tabindex=0><code>UPDATE TBL\_ICE WHERE ID=8 SET ID=2;
+<pre tabindex=0><code>UPDATE TBL_ICE WHERE ID=8 SET ID=2;
 </code></pre><ul>
 <li>LOAD DATA</li>
 </ul>
-<pre tabindex=0><code>LOAD DATA LOCAL INPATH '/data/files/doctors.avro' OVERWRITE INTO TABLE ice\_avro;
+<pre tabindex=0><code>LOAD DATA LOCAL INPATH '/data/files/doctors.avro' OVERWRITE INTO TABLE ice_avro;
 </code></pre><p><em>If the config “hive.load.data.use.native.api” is set to “false”, hive will rather than using the Append api, will launch a Tez job to do the LOAD.</em></p>
 <p><strong>Metadata tables:</strong></p>
-<p>Hive supports the following metadata tables for Iceberg tables</p>
-<p>TODO: List them</p>
-<p>The metadata tables can be queried using the syntax ..</p>
-<p><strong>Branches & Tags:</strong></p>
+<p>Hive supports the following metadata tables for Iceberg tables
+The metadata tables can be queried using the syntax <code>&lt;DATABASE NAME>.&lt;TABLE NAME>.&lt;METADATA TABLE></code></p>
+<pre tabindex=0><code>ENTRIES                        SELECT * from db_name.tbl_name.entries;
+FILES                          SELECT * from db_name.tbl_name.files;
+HISTORY                        SELECT * from db_name.tbl_name.history;
+SNAPSHOTS                      SELECT * from db_name.tbl_name.snapshots;
+MANIFESTS                      SELECT * from db_name.tbl_name.manifests;
+PARTITIONS                     SELECT * from db_name.tbl_name.partitions;
+ALL_DATA_FILES                 SELECT * from db_name.tbl_name.all_data_files;
+ALL_MANIFESTS                  SELECT * from db_name.tbl_name.all_manifests;
+ALL_ENTRIES                    SELECT * from db_name.tbl_name.all_entries;
+DATA_FILES                     SELECT * from db_name.tbl_name.data_files;
+DELETE_FILES                   SELECT * from db_name.tbl_name.delete_files;
+METADATA_LOG_ENTRIES           SELECT * from db_name.tbl_name.metadata_log_entries;
+REFS                           SELECT * from db_name.tbl_name.refs;
+ALL_DELETE_FILES               SELECT * from db_name.tbl_name.all_delete_files;
+ALL_FILES                      SELECT * from db_name.tbl_name.all_files;
+</code></pre><p><strong>Branches & Tags:</strong></p>
 <p>Iceberg tables supports branches & tags, the details around the feature can be read <a href=https://medium.com/@ayushtkn/apache-hive-4-x-with-iceberg-branches-tags-3d52293ac0bf>here</a></p>
 </div>
 </div>

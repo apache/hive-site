@@ -147,7 +147,7 @@ ASF
 <h3 id=example>Example</h3>
 <p>As an example, consider the following <code>EXPLAIN</code> query:</p>
 <pre tabindex=0><code>EXPLAIN
-FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
+FROM src INSERT OVERWRITE TABLE dest_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
 </code></pre><p>The output of this statement contains the following parts:</p>
 <ul>
 <li>The Dependency Graph</li>
@@ -191,7 +191,7 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
             table:
                 input format: org.apache.hadoop.mapred.SequenceFileInputFormat
                 output format: org.apache.hadoop.mapred.SequenceFileOutputFormat
-                name: binary\_table
+                name: binary_table
 
   Stage: Stage-2
     Map Reduce
@@ -234,8 +234,8 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
                 table:
                     input format: org.apache.hadoop.mapred.TextInputFormat
                     output format: org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat
-                    serde: org.apache.hadoop.hive.serde2.dynamic\_type.DynamicSerDe
-                    name: dest\_g1
+                    serde: org.apache.hadoop.hive.serde2.dynamic_type.DynamicSerDe
+                    name: dest_g1
 
   Stage: Stage-0
     Move Operator
@@ -244,8 +244,8 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
             table:
                 input format: org.apache.hadoop.mapred.TextInputFormat
                 output format: org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat
-                serde: org.apache.hadoop.hive.serde2.dynamic\_type.DynamicSerDe
-                name: dest\_g1
+                serde: org.apache.hadoop.hive.serde2.dynamic_type.DynamicSerDe
+                name: dest_g1
 
 </code></pre><p>In this example there are 2 map/reduce stages (Stage-1 and Stage-2) and 1 File System related stage (Stage-0). Stage-0 basically moves the results from a temporary directory to the directory corresponding to the table dest_g1.<br>
 <code>Sort order</code> indicates the number of columns in key expressions that are used for sorting. Each &ldquo;<code>+</code>&rdquo; represents one column sorted in ascending order, and each &ldquo;<code>-</code>&rdquo; represents a column sorted in descending order.</p>
@@ -263,120 +263,120 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
 </ul>
 <p>For example, we can execute the following statement:</p>
 <pre tabindex=0><code>EXPLAIN CBO
-WITH customer\_total\_return AS
-(SELECT sr\_customer\_sk AS ctr\_customer\_sk,
-  sr\_store\_sk AS ctr\_store\_sk,
-  SUM(SR\_FEE) AS ctr\_total\_return
-  FROM store\_returns, date\_dim
-  WHERE sr\_returned\_date\_sk = d\_date\_sk
-    AND d\_year =2000
-  GROUP BY sr\_customer\_sk, sr\_store\_sk)
-SELECT c\_customer\_id
-FROM customer\_total\_return ctr1, store, customer
-WHERE ctr1.ctr\_total\_return &gt; (SELECT AVG(ctr\_total\_return)*1.2
-FROM customer\_total\_return ctr2
-WHERE ctr1.ctr\_store\_sk = ctr2.ctr\_store\_sk)
-  AND s\_store\_sk = ctr1.ctr\_store\_sk
-  AND s\_state = 'NM'
-  AND ctr1.ctr\_customer\_sk = c\_customer\_sk
-ORDER BY c\_customer\_id
+WITH customer_total_return AS
+(SELECT sr_customer_sk AS ctr_customer_sk,
+  sr_store_sk AS ctr_store_sk,
+  SUM(SR_FEE) AS ctr_total_return
+  FROM store_returns, date_dim
+  WHERE sr_returned_date_sk = d_date_sk
+    AND d_year =2000
+  GROUP BY sr_customer_sk, sr_store_sk)
+SELECT c_customer_id
+FROM customer_total_return ctr1, store, customer
+WHERE ctr1.ctr_total_return &gt; (SELECT AVG(ctr_total_return)*1.2
+FROM customer_total_return ctr2
+WHERE ctr1.ctr_store_sk = ctr2.ctr_store_sk)
+  AND s_store_sk = ctr1.ctr_store_sk
+  AND s_state = 'NM'
+  AND ctr1.ctr_customer_sk = c_customer_sk
+ORDER BY c_customer_id
 LIMIT 100
 
 </code></pre><p>The query will be optimized and Hive produces the following output:</p>
 <pre tabindex=0><code>CBO PLAN:
 HiveSortLimit(sort0=[$0], dir0=[ASC], fetch=[100])
-  HiveProject(c\_customer\_id=[$1])
+  HiveProject(c_customer_id=[$1])
     HiveJoin(condition=[AND(=($3, $7), &gt;($4, $6))], joinType=[inner], algorithm=[none], cost=[not available])
       HiveJoin(condition=[=($2, $0)], joinType=[inner], algorithm=[none], cost=[not available])
-        HiveProject(c\_customer\_sk=[$0], c\_customer\_id=[$1])
+        HiveProject(c_customer_sk=[$0], c_customer_id=[$1])
           HiveFilter(condition=[IS NOT NULL($0)])
             HiveTableScan(table=[[default, customer]], table:alias=[customer])
         HiveJoin(condition=[=($3, $1)], joinType=[inner], algorithm=[none], cost=[not available])
-          HiveProject(sr\_customer\_sk=[$0], sr\_store\_sk=[$1], $f2=[$2])
+          HiveProject(sr_customer_sk=[$0], sr_store_sk=[$1], $f2=[$2])
             HiveAggregate(group=[{1, 2}], agg#0=[sum($3)])
               HiveJoin(condition=[=($0, $4)], joinType=[inner], algorithm=[none], cost=[not available])
-                HiveProject(sr\_returned\_date\_sk=[$0], sr\_customer\_sk=[$3], sr\_store\_sk=[$7], sr\_fee=[$14])
+                HiveProject(sr_returned_date_sk=[$0], sr_customer_sk=[$3], sr_store_sk=[$7], sr_fee=[$14])
                   HiveFilter(condition=[AND(IS NOT NULL($0), IS NOT NULL($7), IS NOT NULL($3))])
-                    HiveTableScan(table=[[default, store\_returns]], table:alias=[store\_returns])
-                HiveProject(d\_date\_sk=[$0])
+                    HiveTableScan(table=[[default, store_returns]], table:alias=[store_returns])
+                HiveProject(d_date_sk=[$0])
                   HiveFilter(condition=[AND(=($6, 2000), IS NOT NULL($0))])
-                    HiveTableScan(table=[[default, date\_dim]], table:alias=[date\_dim])
-          HiveProject(s\_store\_sk=[$0])
-            HiveFilter(condition=[AND(=($24, \_UTF-16LE'NM'), IS NOT NULL($0))])
+                    HiveTableScan(table=[[default, date_dim]], table:alias=[date_dim])
+          HiveProject(s_store_sk=[$0])
+            HiveFilter(condition=[AND(=($24, _UTF-16LE'NM'), IS NOT NULL($0))])
               HiveTableScan(table=[[default, store]], table:alias=[store])
-      HiveProject(\_o\_\_c0=[*(/($1, $2), 1.2)], ctr\_store\_sk=[$0])
+      HiveProject(_o__c0=[*(/($1, $2), 1.2)], ctr_store_sk=[$0])
         HiveAggregate(group=[{1}], agg#0=[sum($2)], agg#1=[count($2)])
-          HiveProject(sr\_customer\_sk=[$0], sr\_store\_sk=[$1], $f2=[$2])
+          HiveProject(sr_customer_sk=[$0], sr_store_sk=[$1], $f2=[$2])
             HiveAggregate(group=[{1, 2}], agg#0=[sum($3)])
               HiveJoin(condition=[=($0, $4)], joinType=[inner], algorithm=[none], cost=[not available])
-                HiveProject(sr\_returned\_date\_sk=[$0], sr\_customer\_sk=[$3], sr\_store\_sk=[$7], sr\_fee=[$14])
+                HiveProject(sr_returned_date_sk=[$0], sr_customer_sk=[$3], sr_store_sk=[$7], sr_fee=[$14])
                   HiveFilter(condition=[AND(IS NOT NULL($0), IS NOT NULL($7))])
-                    HiveTableScan(table=[[default, store\_returns]], table:alias=[store\_returns])
-                HiveProject(d\_date\_sk=[$0])
+                    HiveTableScan(table=[[default, store_returns]], table:alias=[store_returns])
+                HiveProject(d_date_sk=[$0])
                   HiveFilter(condition=[AND(=($6, 2000), IS NOT NULL($0))])
-                    HiveTableScan(table=[[default, date\_dim]], table:alias=[date\_dim])
+                    HiveTableScan(table=[[default, date_dim]], table:alias=[date_dim])
 </code></pre><p>In turn, we can execute the following command:</p>
 <pre tabindex=0><code>EXPLAIN CBO COST
-WITH customer\_total\_return AS
-(SELECT sr\_customer\_sk AS ctr\_customer\_sk,
-  sr\_store\_sk AS ctr\_store\_sk,
-  SUM(SR\_FEE) AS ctr\_total\_return
-  FROM store\_returns, date\_dim
-  WHERE sr\_returned\_date\_sk = d\_date\_sk
-    AND d\_year =2000
-  GROUP BY sr\_customer\_sk, sr\_store\_sk)
-SELECT c\_customer\_id
-FROM customer\_total\_return ctr1, store, customer
-WHERE ctr1.ctr\_total\_return &gt; (SELECT AVG(ctr\_total\_return)*1.2
-FROM customer\_total\_return ctr2
-WHERE ctr1.ctr\_store\_sk = ctr2.ctr\_store\_sk)
-  AND s\_store\_sk = ctr1.ctr\_store\_sk
-  AND s\_state = 'NM'
-  AND ctr1.ctr\_customer\_sk = c\_customer\_sk
-ORDER BY c\_customer\_id
+WITH customer_total_return AS
+(SELECT sr_customer_sk AS ctr_customer_sk,
+  sr_store_sk AS ctr_store_sk,
+  SUM(SR_FEE) AS ctr_total_return
+  FROM store_returns, date_dim
+  WHERE sr_returned_date_sk = d_date_sk
+    AND d_year =2000
+  GROUP BY sr_customer_sk, sr_store_sk)
+SELECT c_customer_id
+FROM customer_total_return ctr1, store, customer
+WHERE ctr1.ctr_total_return &gt; (SELECT AVG(ctr_total_return)*1.2
+FROM customer_total_return ctr2
+WHERE ctr1.ctr_store_sk = ctr2.ctr_store_sk)
+  AND s_store_sk = ctr1.ctr_store_sk
+  AND s_state = 'NM'
+  AND ctr1.ctr_customer_sk = c_customer_sk
+ORDER BY c_customer_id
 LIMIT 100
 
 </code></pre><p>It will produce a similar plan, but the cost for each operator will be embedded next to the operator descriptors:</p>
 <pre tabindex=0><code>CBO PLAN:
 HiveSortLimit(sort0=[$0], dir0=[ASC], fetch=[100]): rowcount = 100.0, cumulative cost = {2.395588892021712E26 rows, 1.197794434438787E26 cpu, 0.0 io}, id = 1683
-  HiveProject(c\_customer\_id=[$1]): rowcount = 1.1977944344387866E26, cumulative cost = {2.395588892021712E26 rows, 1.197794434438787E26 cpu, 0.0 io}, id = 1681
+  HiveProject(c_customer_id=[$1]): rowcount = 1.1977944344387866E26, cumulative cost = {2.395588892021712E26 rows, 1.197794434438787E26 cpu, 0.0 io}, id = 1681
     HiveJoin(condition=[AND(=($3, $7), &gt;($4, $6))], joinType=[inner], algorithm=[none], cost=[not available]): rowcount = 1.1977944344387866E26, cumulative cost = {1.1977944575829254E26 rows, 4.160211553874922E10 cpu, 0.0 io}, id = 1679
       HiveJoin(condition=[=($2, $0)], joinType=[inner], algorithm=[none], cost=[not available]): rowcount = 2.3144135067474273E18, cumulative cost = {2.3144137967122499E18 rows, 1.921860676139634E10 cpu, 0.0 io}, id = 1663
-        HiveProject(c\_customer\_sk=[$0], c\_customer\_id=[$1]): rowcount = 7.2E7, cumulative cost = {2.24E8 rows, 3.04000001E8 cpu, 0.0 io}, id = 1640
+        HiveProject(c_customer_sk=[$0], c_customer_id=[$1]): rowcount = 7.2E7, cumulative cost = {2.24E8 rows, 3.04000001E8 cpu, 0.0 io}, id = 1640
           HiveFilter(condition=[IS NOT NULL($0)]): rowcount = 7.2E7, cumulative cost = {1.52E8 rows, 1.60000001E8 cpu, 0.0 io}, id = 1638
             HiveTableScan(table=[[default, customer]], table:alias=[customer]): rowcount = 8.0E7, cumulative cost = {8.0E7 rows, 8.0000001E7 cpu, 0.0 io}, id = 1055
         HiveJoin(condition=[=($3, $1)], joinType=[inner], algorithm=[none], cost=[not available]): rowcount = 2.1429754692105807E11, cumulative cost = {2.897408225471977E11 rows, 1.891460676039634E10 cpu, 0.0 io}, id = 1661
-          HiveProject(sr\_customer\_sk=[$0], sr\_store\_sk=[$1], $f2=[$2]): rowcount = 6.210443022113779E9, cumulative cost = {7.544327346205959E10 rows, 1.891460312135634E10 cpu, 0.0 io}, id = 1685
+          HiveProject(sr_customer_sk=[$0], sr_store_sk=[$1], $f2=[$2]): rowcount = 6.210443022113779E9, cumulative cost = {7.544327346205959E10 rows, 1.891460312135634E10 cpu, 0.0 io}, id = 1685
             HiveAggregate(group=[{1, 2}], agg#0=[sum($3)]): rowcount = 6.210443022113779E9, cumulative cost = {6.92328304399458E10 rows, 2.8327405501500005E8 cpu, 0.0 io}, id = 1654
               HiveJoin(condition=[=($0, $4)], joinType=[inner], algorithm=[none], cost=[not available]): rowcount = 6.2104430221137794E10, cumulative cost = {6.2246082040067795E10 rows, 2.8327405501500005E8 cpu, 0.0 io}, id = 1652
-                HiveProject(sr\_returned\_date\_sk=[$0], sr\_customer\_sk=[$3], sr\_store\_sk=[$7], sr\_fee=[$14]): rowcount = 4.198394835000001E7, cumulative cost = {1.4155904670000002E8 rows, 2.8311809440000004E8 cpu, 0.0 io}, id = 1645
+                HiveProject(sr_returned_date_sk=[$0], sr_customer_sk=[$3], sr_store_sk=[$7], sr_fee=[$14]): rowcount = 4.198394835000001E7, cumulative cost = {1.4155904670000002E8 rows, 2.8311809440000004E8 cpu, 0.0 io}, id = 1645
                   HiveFilter(condition=[AND(IS NOT NULL($0), IS NOT NULL($7), IS NOT NULL($3))]): rowcount = 4.198394835000001E7, cumulative cost = {9.957509835000001E7 rows, 1.15182301E8 cpu, 0.0 io}, id = 1643
-                    HiveTableScan(table=[[default, store\_returns]], table:alias=[store\_returns]): rowcount = 5.759115E7, cumulative cost = {5.759115E7 rows, 5.7591151E7 cpu, 0.0 io}, id = 1040
-                HiveProject(d\_date\_sk=[$0]): rowcount = 9861.615, cumulative cost = {92772.23000000001 rows, 155960.615 cpu, 0.0 io}, id = 1650
+                    HiveTableScan(table=[[default, store_returns]], table:alias=[store_returns]): rowcount = 5.759115E7, cumulative cost = {5.759115E7 rows, 5.7591151E7 cpu, 0.0 io}, id = 1040
+                HiveProject(d_date_sk=[$0]): rowcount = 9861.615, cumulative cost = {92772.23000000001 rows, 155960.615 cpu, 0.0 io}, id = 1650
                   HiveFilter(condition=[AND(=($6, 2000), IS NOT NULL($0))]): rowcount = 9861.615, cumulative cost = {82910.615 rows, 146099.0 cpu, 0.0 io}, id = 1648
-                    HiveTableScan(table=[[default, date\_dim]], table:alias=[date\_dim]): rowcount = 73049.0, cumulative cost = {73049.0 rows, 73050.0 cpu, 0.0 io}, id = 1043
-          HiveProject(s\_store\_sk=[$0]): rowcount = 230.04000000000002, cumulative cost = {2164.08 rows, 3639.04 cpu, 0.0 io}, id = 1659
-            HiveFilter(condition=[AND(=($24, \_UTF-16LE'NM'), IS NOT NULL($0))]): rowcount = 230.04000000000002, cumulative cost = {1934.04 rows, 3409.0 cpu, 0.0 io}, id = 1657
+                    HiveTableScan(table=[[default, date_dim]], table:alias=[date_dim]): rowcount = 73049.0, cumulative cost = {73049.0 rows, 73050.0 cpu, 0.0 io}, id = 1043
+          HiveProject(s_store_sk=[$0]): rowcount = 230.04000000000002, cumulative cost = {2164.08 rows, 3639.04 cpu, 0.0 io}, id = 1659
+            HiveFilter(condition=[AND(=($24, _UTF-16LE'NM'), IS NOT NULL($0))]): rowcount = 230.04000000000002, cumulative cost = {1934.04 rows, 3409.0 cpu, 0.0 io}, id = 1657
               HiveTableScan(table=[[default, store]], table:alias=[store]): rowcount = 1704.0, cumulative cost = {1704.0 rows, 1705.0 cpu, 0.0 io}, id = 1050
-      HiveProject(\_o\_\_c0=[*(/($1, $2), 1.2)], ctr\_store\_sk=[$0]): rowcount = 6.900492246793088E8, cumulative cost = {8.537206083312463E10 rows, 2.2383508777352882E10 cpu, 0.0 io}, id = 1677
+      HiveProject(_o__c0=[*(/($1, $2), 1.2)], ctr_store_sk=[$0]): rowcount = 6.900492246793088E8, cumulative cost = {8.537206083312463E10 rows, 2.2383508777352882E10 cpu, 0.0 io}, id = 1677
         HiveAggregate(group=[{1}], agg#0=[sum($2)], agg#1=[count($2)]): rowcount = 6.900492246793088E8, cumulative cost = {8.468201160844533E10 rows, 2.1003410327994267E10 cpu, 0.0 io}, id = 1675
-          HiveProject(sr\_customer\_sk=[$0], sr\_store\_sk=[$1], $f2=[$2]): rowcount = 6.900492246793088E9, cumulative cost = {8.381945007759619E10 rows, 2.1003410327994267E10 cpu, 0.0 io}, id = 1686
+          HiveProject(sr_customer_sk=[$0], sr_store_sk=[$1], $f2=[$2]): rowcount = 6.900492246793088E9, cumulative cost = {8.381945007759619E10 rows, 2.1003410327994267E10 cpu, 0.0 io}, id = 1686
             HiveAggregate(group=[{1, 2}], agg#0=[sum($3)]): rowcount = 6.900492246793088E9, cumulative cost = {7.69189578308031E10 rows, 3.01933587615E8 cpu, 0.0 io}, id = 1673
               HiveJoin(condition=[=($0, $4)], joinType=[inner], algorithm=[none], cost=[not available]): rowcount = 6.900492246793088E10, cumulative cost = {6.915590405316087E10 rows, 3.01933587615E8 cpu, 0.0 io}, id = 1671
-                HiveProject(sr\_returned\_date\_sk=[$0], sr\_customer\_sk=[$3], sr\_store\_sk=[$7], sr\_fee=[$14]): rowcount = 4.66488315E7, cumulative cost = {1.50888813E8 rows, 3.01777627E8 cpu, 0.0 io}, id = 1667
+                HiveProject(sr_returned_date_sk=[$0], sr_customer_sk=[$3], sr_store_sk=[$7], sr_fee=[$14]): rowcount = 4.66488315E7, cumulative cost = {1.50888813E8 rows, 3.01777627E8 cpu, 0.0 io}, id = 1667
                   HiveFilter(condition=[AND(IS NOT NULL($0), IS NOT NULL($7))]): rowcount = 4.66488315E7, cumulative cost = {1.042399815E8 rows, 1.15182301E8 cpu, 0.0 io}, id = 1665
-                    HiveTableScan(table=[[default, store\_returns]], table:alias=[store\_returns]): rowcount = 5.759115E7, cumulative cost = {5.759115E7 rows, 5.7591151E7 cpu, 0.0 io}, id = 1040
-                HiveProject(d\_date\_sk=[$0]): rowcount = 9861.615, cumulative cost = {92772.23000000001 rows, 155960.615 cpu, 0.0 io}, id = 1650
+                    HiveTableScan(table=[[default, store_returns]], table:alias=[store_returns]): rowcount = 5.759115E7, cumulative cost = {5.759115E7 rows, 5.7591151E7 cpu, 0.0 io}, id = 1040
+                HiveProject(d_date_sk=[$0]): rowcount = 9861.615, cumulative cost = {92772.23000000001 rows, 155960.615 cpu, 0.0 io}, id = 1650
                   HiveFilter(condition=[AND(=($6, 2000), IS NOT NULL($0))]): rowcount = 9861.615, cumulative cost = {82910.615 rows, 146099.0 cpu, 0.0 io}, id = 1648
-                    HiveTableScan(table=[[default, date\_dim]], table:alias=[date\_dim]): rowcount = 73049.0, cumulative cost = {73049.0 rows, 73050.0 cpu, 0.0 io}, id = 1043
+                    HiveTableScan(table=[[default, date_dim]], table:alias=[date_dim]): rowcount = 73049.0, cumulative cost = {73049.0 rows, 73050.0 cpu, 0.0 io}, id = 1043
 </code></pre><h3 id=the-ast-clause>The AST Clause</h3>
 <p>Outputs the query&rsquo;s Abstract Syntax Tree.</p>
 <p>Example:</p>
 <pre tabindex=0><code>EXPLAIN AST
-FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
+FROM src INSERT OVERWRITE TABLE dest_g1 SELECT src.key, sum(substr(src.value,4)) GROUP BY src.key;
 </code></pre><p>Outputs:</p>
 <pre tabindex=0><code>ABSTRACT SYNTAX TREE:
-  (TOK\_QUERY (TOK\_FROM (TOK\_TABREF src)) (TOK\_INSERT (TOK\_DESTINATION (TOK\_TAB dest\_g1)) (TOK\_SELECT (TOK\_SELEXPR (TOK\_COLREF src key)) (TOK\_SELEXPR (TOK\_FUNCTION sum (TOK\_FUNCTION substr (TOK\_COLREF src value) 4)))) (TOK\_GROUPBY (TOK\_COLREF src key))))
+  (TOK_QUERY (TOK_FROM (TOK_TABREF src)) (TOK_INSERT (TOK_DESTINATION (TOK_TAB dest_g1)) (TOK_SELECT (TOK_SELEXPR (TOK_COLREF src key)) (TOK_SELEXPR (TOK_FUNCTION sum (TOK_FUNCTION substr (TOK_COLREF src value) 4)))) (TOK_GROUPBY (TOK_COLREF src key))))
 
 </code></pre><h3 id=the-dependency-clause>The DEPENDENCY Clause</h3>
 <p>The use of <code>DEPENDENCY</code> in the <code>EXPLAIN</code> statement produces extra information about the inputs in the plan. It shows various attributes for the inputs. For example, for a query like:</p>
@@ -384,7 +384,7 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
   SELECT key, count(1) FROM srcpart WHERE ds IS NOT NULL GROUP BY key
 
 </code></pre><p>the following output is produced:</p>
-<pre tabindex=0><code>{&quot;input\_partitions&quot;:[{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=11&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=12&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=11&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=12&quot;}],&quot;input\_tables&quot;:[{&quot;tablename&quot;:&quot;default@srcpart&quot;,&quot;tabletype&quot;:&quot;MANAGED\_TABLE&quot;}]}
+<pre tabindex=0><code>{&quot;input_partitions&quot;:[{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=11&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=12&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=11&quot;},{&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=12&quot;}],&quot;input_tables&quot;:[{&quot;tablename&quot;:&quot;default@srcpart&quot;,&quot;tabletype&quot;:&quot;MANAGED_TABLE&quot;}]}
 
 </code></pre><p>The inputs contain both the tables and the partitions. Note that the table is present even if none of the partitions is accessed in the query.</p>
 <p>The dependencies show the parents in case a table is accessed via a view. Consider the following queries:</p>
@@ -392,7 +392,7 @@ FROM src INSERT OVERWRITE TABLE dest\_g1 SELECT src.key, sum(substr(src.value,4)
 EXPLAIN DEPENDENCY SELECT * FROM V1;
 
 </code></pre><p>The following output is produced:</p>
-<pre tabindex=0><code>{&quot;input\_partitions&quot;:[],&quot;input\_tables&quot;:[{&quot;tablename&quot;:&quot;default@v1&quot;,&quot;tabletype&quot;:&quot;VIRTUAL\_VIEW&quot;},{&quot;tablename&quot;:&quot;default@src&quot;,&quot;tabletype&quot;:&quot;MANAGED\_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v1]&quot;}]}
+<pre tabindex=0><code>{&quot;input_partitions&quot;:[],&quot;input_tables&quot;:[{&quot;tablename&quot;:&quot;default@v1&quot;,&quot;tabletype&quot;:&quot;VIRTUAL_VIEW&quot;},{&quot;tablename&quot;:&quot;default@src&quot;,&quot;tabletype&quot;:&quot;MANAGED_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v1]&quot;}]}
 
 </code></pre><p>As above, the inputs contain the view V1 and the table &lsquo;src&rsquo; that the view V1 refers to.</p>
 <p>All the outputs are shown if a table is being accessed via multiple parents.</p>
@@ -403,7 +403,7 @@ CREATE VIEW V4 AS
 EXPLAIN DEPENDENCY SELECT * FROM V4;
 
 </code></pre><p>The following output is produced.</p>
-<pre tabindex=0><code>{&quot;input\_partitions&quot;:[{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=11&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=12&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=11&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=12&quot;}],&quot;input\_tables&quot;:[{&quot;tablename&quot;:&quot;default@v4&quot;,&quot;tabletype&quot;:&quot;VIRTUAL\_VIEW&quot;},{&quot;tablename&quot;:&quot;default@v2&quot;,&quot;tabletype&quot;:&quot;VIRTUAL\_VIEW&quot;,&quot;tableParents&quot;:&quot;[default@v4]&quot;},{&quot;tablename&quot;:&quot;default@v1&quot;,&quot;tabletype&quot;:&quot;VIRTUAL\_VIEW&quot;,&quot;tableParents&quot;:&quot;[default@v4]&quot;},{&quot;tablename&quot;:&quot;default@src&quot;,&quot;tabletype&quot;:&quot;MANAGED\_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v4, default@v1]&quot;},{&quot;tablename&quot;:&quot;default@srcpart&quot;,&quot;tabletype&quot;:&quot;MANAGED\_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v2]&quot;}]}
+<pre tabindex=0><code>{&quot;input_partitions&quot;:[{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=11&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-08/hr=12&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=11&quot;},{&quot;partitionParents&quot;:&quot;[default@v2]&quot;,&quot;partitionName&quot;:&quot;default&lt;at:var at:name=&quot;srcpart&quot; /&gt;ds=2008-04-09/hr=12&quot;}],&quot;input_tables&quot;:[{&quot;tablename&quot;:&quot;default@v4&quot;,&quot;tabletype&quot;:&quot;VIRTUAL_VIEW&quot;},{&quot;tablename&quot;:&quot;default@v2&quot;,&quot;tabletype&quot;:&quot;VIRTUAL_VIEW&quot;,&quot;tableParents&quot;:&quot;[default@v4]&quot;},{&quot;tablename&quot;:&quot;default@v1&quot;,&quot;tabletype&quot;:&quot;VIRTUAL_VIEW&quot;,&quot;tableParents&quot;:&quot;[default@v4]&quot;},{&quot;tablename&quot;:&quot;default@src&quot;,&quot;tabletype&quot;:&quot;MANAGED_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v4, default@v1]&quot;},{&quot;tablename&quot;:&quot;default@srcpart&quot;,&quot;tabletype&quot;:&quot;MANAGED_TABLE&quot;,&quot;tableParents&quot;:&quot;[default@v2]&quot;}]}
 
 </code></pre><p>As can be seen, src is being accessed via parents v1 and v4.</p>
 <h3 id=the-authorization-clause>The AUTHORIZATION Clause</h3>
@@ -421,17 +421,17 @@ EXPLAIN DEPENDENCY SELECT * FROM V4;
   default@srcpart@ds=2008-04-09/hr=12
 OUTPUTS: 
   hdfs://localhost:9000/tmp/.../-mr-10000
-CURRENT\_USER: 
+CURRENT_USER: 
   navis
 OPERATION: 
   QUERY
-AUTHORIZATION\_FAILURES: 
-  Permission denied: Principal [name=navis, type=USER] does not have following privileges for operation QUERY [[SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.src], [SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.srcpart]]
+AUTHORIZATION_FAILURES: 
+  Permission denied: Principal [name=navis, type=USER] does not have following privileges for operation QUERY [[SELECT] on Object [type=TABLE_OR_VIEW, name=default.src], [SELECT] on Object [type=TABLE_OR_VIEW, name=default.srcpart]]
 
 </code></pre><p>With the <code>FORMATTED</code> keyword, it will be returned in JSON format.</p>
 <pre tabindex=0><code>  
 
-</code></pre><pre tabindex=0><code>&quot;OUTPUTS&quot;:[&quot;hdfs://localhost:9000/tmp/.../-mr-10000&quot;],&quot;INPUTS&quot;:[&quot;default@srcpart&quot;,&quot;default@src&quot;,&quot;default@srcpart@ds=2008-04-08/hr=11&quot;,&quot;default@srcpart@ds=2008-04-08/hr=12&quot;,&quot;default@srcpart@ds=2008-04-09/hr=11&quot;,&quot;default@srcpart@ds=2008-04-09/hr=12&quot;],&quot;OPERATION&quot;:&quot;QUERY&quot;,&quot;CURRENT\_USER&quot;:&quot;navis&quot;,&quot;AUTHORIZATION\_FAILURES&quot;:[&quot;Permission denied: Principal [name=navis, type=USER] does not have following privileges for operation QUERY [[SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.src], [SELECT] on Object [type=TABLE\_OR\_VIEW, name=default.srcpart]]&quot;]}
+</code></pre><pre tabindex=0><code>&quot;OUTPUTS&quot;:[&quot;hdfs://localhost:9000/tmp/.../-mr-10000&quot;],&quot;INPUTS&quot;:[&quot;default@srcpart&quot;,&quot;default@src&quot;,&quot;default@srcpart@ds=2008-04-08/hr=11&quot;,&quot;default@srcpart@ds=2008-04-08/hr=12&quot;,&quot;default@srcpart@ds=2008-04-09/hr=11&quot;,&quot;default@srcpart@ds=2008-04-09/hr=12&quot;],&quot;OPERATION&quot;:&quot;QUERY&quot;,&quot;CURRENT_USER&quot;:&quot;navis&quot;,&quot;AUTHORIZATION_FAILURES&quot;:[&quot;Permission denied: Principal [name=navis, type=USER] does not have following privileges for operation QUERY [[SELECT] on Object [type=TABLE_OR_VIEW, name=default.src], [SELECT] on Object [type=TABLE_OR_VIEW, name=default.srcpart]]&quot;]}
 
 </code></pre><h3 id=the-locks-clause>The LOCKS Clause</h3>
 <p>This is useful to understand what locks the system will acquire to run the specified query.  Since Hive release 3.2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-17683>HIVE-17683</a>).</p>
@@ -440,13 +440,13 @@ AUTHORIZATION\_FAILURES:
 
 </code></pre><p>Will produce output like this.</p>
 <pre tabindex=0><code>LOCK INFORMATION:
-default.source -&gt; SHARED\_READ
-default.target.p=1/q=2 -&gt; SHARED\_READ
-default.target.p=1/q=3 -&gt; SHARED\_READ
-default.target.p=2/q=2 -&gt; SHARED\_READ
-default.target.p=2/q=2 -&gt; SHARED\_WRITE
-default.target.p=1/q=3 -&gt; SHARED\_WRITE
-default.target.p=1/q=2 -&gt; SHARED\_WRITE
+default.source -&gt; SHARED_READ
+default.target.p=1/q=2 -&gt; SHARED_READ
+default.target.p=1/q=3 -&gt; SHARED_READ
+default.target.p=2/q=2 -&gt; SHARED_READ
+default.target.p=2/q=2 -&gt; SHARED_WRITE
+default.target.p=1/q=3 -&gt; SHARED_WRITE
+default.target.p=1/q=2 -&gt; SHARED_WRITE
 </code></pre><pre tabindex=0><code>  
 
 </code></pre><pre tabindex=0><code>EXPLAIN FORMATTED LOCKS &lt;sql&gt;
@@ -470,7 +470,7 @@ default.target.p=1/q=2 -&gt; SHARED\_WRITE
 <p>Example:</p>
 <p>For the below tablescan; the estimation was 500 rows; but actually the scan only yielded 13 rows.</p>
 <pre tabindex=0><code>[...]
-              TableScan [TS\_13] (rows=500/13 width=178)
+              TableScan [TS_13] (rows=500/13 width=178)
                 Output:[&quot;key&quot;,&quot;value&quot;]
 [...]
 </code></pre><h3 id=user-level-explain-output>User-level Explain Output</h3>
@@ -478,37 +478,37 @@ default.target.p=1/q=2 -&gt; SHARED\_WRITE
 <p>Since <a href=https://issues.apache.org/jira/browse/HIVE-18469>HIVE-18469</a> in Hive 3.1.0, the user-level explain extended output for any query will be shown in the WebUI / Drilldown / Query Plan after <strong>set <a href=#hive-server2-webui-explain-output>hive.server2.webui.explain.output</a>=true</strong> (default is <strong>false</strong>).</p>
 <p>Since <a href=https://issues.apache.org/jira/browse/HIVE-9780>HIVE-9780</a> in Hive 1.2.0, we support a user-level explain for Hive on Tez users. After <strong>set <a href=#hive-explain-user>hive.explain.user</a>=true</strong> (default is <strong>false</strong>) if the following query is sent, the user can see a much more clearly readable tree of operations.</p>
 <p>Since <a href=https://issues.apache.org/jira/browse/HIVE-11133>HIVE-11133</a> in Hive 3.0.0, we support a user-level explain for Hive on Spark users. A separate configuration is used for Hive-on-Spark, <strong><a href=#hive-spark-explain-user>hive.spark.explain.user</a></strong> which is set to false by default.</p>
-<pre tabindex=0><code>EXPLAIN select sum(hash(key)), sum(hash(value)) from src\_orc\_merge\_test\_part where ds='2012-01-03' and ts='2012-01-03+14:46:31'
+<pre tabindex=0><code>EXPLAIN select sum(hash(key)), sum(hash(value)) from src_orc_merge_test_part where ds='2012-01-03' and ts='2012-01-03+14:46:31'
 </code></pre><pre tabindex=0><code>Plan optimized by CBO.
 Vertex dependency in root stage
-Reducer 2 &lt;- Map 1 (SIMPLE\_EDGE)
+Reducer 2 &lt;- Map 1 (SIMPLE_EDGE)
 Stage-0
    Fetch Operator
       limit:-1
       Stage-1
          Reducer 2
-         File Output Operator [FS\_8]
+         File Output Operator [FS_8]
             compressed:false
             Statistics:Num rows: 1 Data size: 16 Basic stats: COMPLETE Column stats: NONE
             table:{&quot;serde:&quot;:&quot;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&quot;,&quot;input format:&quot;:&quot;org.apache.hadoop.mapred.TextInputFormat&quot;,&quot;output format:&quot;:&quot;org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat&quot;}
-            Group By Operator [GBY\_6]
-            |  aggregations:[&quot;sum(VALUE.\_col0)&quot;,&quot;sum(VALUE.\_col1)&quot;]
-            |  outputColumnNames:[&quot;\_col0&quot;,&quot;\_col1&quot;]
+            Group By Operator [GBY_6]
+            |  aggregations:[&quot;sum(VALUE._col0)&quot;,&quot;sum(VALUE._col1)&quot;]
+            |  outputColumnNames:[&quot;_col0&quot;,&quot;_col1&quot;]
             |  Statistics:Num rows: 1 Data size: 16 Basic stats: COMPLETE Column stats: NONE
-            |&lt;-Map 1 [SIMPLE\_EDGE]
-               Reduce Output Operator [RS\_5]
+            |&lt;-Map 1 [SIMPLE_EDGE]
+               Reduce Output Operator [RS_5]
                   sort order:
                   Statistics:Num rows: 1 Data size: 16 Basic stats: COMPLETE Column stats: NONE
-                  value expressions:\_col0 (type: bigint), \_col1 (type: bigint)
-                  Group By Operator [GBY\_4]
-                     aggregations:[&quot;sum(\_col0)&quot;,&quot;sum(\_col1)&quot;]
-                     outputColumnNames:[&quot;\_col0&quot;,&quot;\_col1&quot;]
+                  value expressions:_col0 (type: bigint), _col1 (type: bigint)
+                  Group By Operator [GBY_4]
+                     aggregations:[&quot;sum(_col0)&quot;,&quot;sum(_col1)&quot;]
+                     outputColumnNames:[&quot;_col0&quot;,&quot;_col1&quot;]
                      Statistics:Num rows: 1 Data size: 16 Basic stats: COMPLETE Column stats: NONE
-                     Select Operator [SEL\_2]
-                        outputColumnNames:[&quot;\_col0&quot;,&quot;\_col1&quot;]
+                     Select Operator [SEL_2]
+                        outputColumnNames:[&quot;_col0&quot;,&quot;_col1&quot;]
                         Statistics:Num rows: 500 Data size: 47000 Basic stats: COMPLETE Column stats: NONE
-                        TableScan [TS\_0]
-                           alias:src\_orc\_merge\_test\_part
+                        TableScan [TS_0]
+                           alias:src_orc_merge_test_part
                            Statistics:Num rows: 500 Data size: 47000 Basic stats: COMPLETE Column stats: NONE
 
 </code></pre>

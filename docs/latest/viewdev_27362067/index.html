@@ -164,11 +164,11 @@ ASF
 </ul>
 <h2 id=syntax>Syntax</h2>
 <pre tabindex=0><code>
-CREATE VIEW [IF NOT EXISTS] view\_name [(column\_name [COMMENT column\_comment], ...) ]
-[COMMENT table\_comment]
+CREATE VIEW [IF NOT EXISTS] view_name [(column_name [COMMENT column_comment], ...) ]
+[COMMENT table_comment]
 AS SELECT ...
 
-DROP VIEW view\_name
+DROP VIEW view_name
 
 </code></pre><h2 id=implementation-sketch>Implementation Sketch</h2>
 <p>The basics of view implementation are very easy due to the fact that Hive already supports subselects in the FROM clause.</p>
@@ -277,9 +277,9 @@ DROP VIEW view\_name
 <p>However, if the <code>datanucleus.autoCreateSchema</code> property is set to <code>false</code>, then the ALTER statements must be executed explicitly. (An administrator may have set this property for safety in production configurations.)</p>
 <p>In this case, execute a script such as the following against the metastore database:</p>
 <pre tabindex=0><code>
-ALTER TABLE TBLS ADD COLUMN VIEW\_ORIGINAL\_TEXT MEDIUMTEXT;
-ALTER TABLE TBLS ADD COLUMN VIEW\_EXPANDED\_TEXT MEDIUMTEXT;
-ALTER TABLE TBLS ADD COLUMN TBL\_TYPE VARCHAR(128);
+ALTER TABLE TBLS ADD COLUMN VIEW_ORIGINAL_TEXT MEDIUMTEXT;
+ALTER TABLE TBLS ADD COLUMN VIEW_EXPANDED_TEXT MEDIUMTEXT;
+ALTER TABLE TBLS ADD COLUMN TBL_TYPE VARCHAR(128);
 
 </code></pre><p>The syntax here is for MySQL, so you may need to adjust it (particularly for CLOB datatype).</p>
 <p>Note that it should be safe to execute this script and continue operations BEFORE upgrading Hive; the old Hive version will simply ignore/nullify the columns it doesn&rsquo;t recognize.</p>
@@ -287,20 +287,20 @@ ALTER TABLE TBLS ADD COLUMN TBL\_TYPE VARCHAR(128);
 <p>After the tables are altered, the new columns will contain NULL values for existing rows describing previously created tables. This is correct for VIEW_ORIGINAL_TEXT and VIEW_EXPANDED_TEXT (since views did not previously exist), but is incorrect for the TBL_TYPE column introduced by <a href=https://issues.apache.org/jira/browse/HIVE-1068>HIVE-1068</a>. The new Hive code is capable of handling this (automatically filling in the correct value for the new field when a descriptor is retrieved), but it does not &ldquo;fix&rdquo; the stored rows. This could be an issue if in the future other tools are used to retrieve information directly from the metastore database rather than accessing the metastore API.</p>
 <p>The script below can be used to fix existing rows after the tables have been altered. It should be run AFTER all Hive instances directly accessing the metastore database have been upgraded (otherwise new null values could slip in and remain forever). For safety, it is view-aware just in case a CREATE VIEW statement has already been executed, meaning it can be rerun any time after the upgrade.</p>
 <pre tabindex=0><code>
-UPDATE TBLS SET TBL\_TYPE='MANAGED\_TABLE'
-WHERE VIEW\_ORIGINAL\_TEXT IS NULL
+UPDATE TBLS SET TBL_TYPE='MANAGED_TABLE'
+WHERE VIEW_ORIGINAL_TEXT IS NULL
 AND NOT EXISTS(
-    SELECT * FROM TABLE\_PARAMS 
-    WHERE TABLE\_PARAMS.TBL\_ID=TBLS.TBL\_ID
-    AND PARAM\_KEY='EXTERNAL'
-    AND PARAM\_VALUE='TRUE'
+    SELECT * FROM TABLE_PARAMS 
+    WHERE TABLE_PARAMS.TBL_ID=TBLS.TBL_ID
+    AND PARAM_KEY='EXTERNAL'
+    AND PARAM_VALUE='TRUE'
 );
-UPDATE TBLS SET TBL\_TYPE='EXTERNAL\_TABLE'
+UPDATE TBLS SET TBL_TYPE='EXTERNAL_TABLE'
 WHERE EXISTS(
-    SELECT * FROM TABLE\_PARAMS 
-    WHERE TABLE\_PARAMS.TBL\_ID=TBLS.TBL\_ID
-    AND PARAM\_KEY='EXTERNAL'
-    AND PARAM\_VALUE='TRUE'
+    SELECT * FROM TABLE_PARAMS 
+    WHERE TABLE_PARAMS.TBL_ID=TBLS.TBL_ID
+    AND PARAM_KEY='EXTERNAL'
+    AND PARAM_VALUE='TRUE'
 );
 
 </code></pre><p>For MySQL, note that the &ldquo;safe updates&rdquo; feature will need to be disabled since these are full-table updates.</p>
