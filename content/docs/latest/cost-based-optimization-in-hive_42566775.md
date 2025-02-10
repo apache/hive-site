@@ -94,7 +94,7 @@ Calcite is an open source, Apache Licensed, query planning and execution framewo
 * Lucid DB
 * Mondrian/Pentaho
 
-![](attachments/42566775/51183721.jpg)
+![](/attachments/42566775/51183721.jpg)
 
 Calcite currently has over fifty cost based optimization rules. Some of the prominent cost based optimization rules are listed below:
 
@@ -240,7 +240,7 @@ CBO will be introduced in to Hive in three different phases. Following provides 
 
 ## Phase 1
 
- ![](attachments/42566775/51183717.jpg)
+ ![](/attachments/42566775/51183717.jpg)
 
 Statistics:
 
@@ -296,7 +296,7 @@ Calcite related enhancements:
 
 ## Phase 2
 
-![](attachments/42566775/51183718.jpg)
+![](/attachments/42566775/51183718.jpg)
 
 Statistics:
 
@@ -312,7 +312,7 @@ Cost Based Optimizations:
 
 ## Phase 3
 
-![](attachments/42566775/51183719.jpg)
+![](/attachments/42566775/51183719.jpg)
 
 ## Configuration
 

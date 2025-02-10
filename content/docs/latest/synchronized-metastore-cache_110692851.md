@@ -13,13 +13,13 @@ The problem we try to solve here is the cache consistency issue. We already buil
 
 .
 
-![](attachments/110692851/110692853.png)
+![](/attachments/110692851/110692853.png)
 
 # Data structure change
 
 The only data structure change is adding ValidWriteIdList into SharedCache.TableWrapper, which represents the transaction state of the cached table.
 
-![](attachments/110692851/110692854.png)  
+![](/attachments/110692851/110692854.png)  
 
 Note there is no db table structure change, and we don’t store extra information in db. We don’t update TBLS.WRITE_ID field as we will use db as the fact of truth. We assume db always carry the latest copy and every time we fetch from db, we will tag it with the transaction state of the query.
 
@@ -61,7 +61,7 @@ Here is a complete flow for a cache update when write happen (and illustrated in
 6. The cache update thread will further read commit event from notification log, mark writeid 12 as committed, the tag of cached table entry changed to [12:7,8]
 7. The next read from HMS 2 will serve from cache
 
-![](attachments/110692851/110692855.png)  
+![](/attachments/110692851/110692855.png)  
 
 ## Bootstrap
 

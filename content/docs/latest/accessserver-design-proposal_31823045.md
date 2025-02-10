@@ -75,7 +75,7 @@ Before discussing these modifications it is important to first understand the ba
 
 The following diagram is a block-level representation of the major submodules in HiveServer2 with horizontal boundaries signifying dependencies. Green modules existed in Hive before the HiveServer2 project commenced, while blue modules were implemented as part of the HiveServer2 project.
 
-![](attachments/31823045/31949154.png)
+![](/attachments/31823045/31949154.png)
 
 The core of HiveServer2 is the HiveSession class. This class provides a container for user session state and also manages the lifecycle of operations triggered by the user. In this context an operation is any command exposed through the CLIService API that can generate a result set. This includes the ExecuteStatement() operation and metadata operations such as GetTables() and GetSchemas(). Each of these operations is implemented by a specific Operation subclass. In order to execute Hive queries the ExecuteStatementOperation makes use of the pre-existing HiveDriver class. HiveDriver encapsulates Hive’s compiler and plan execution engine, and in most respects is very similar to Pig’s PigServer class.
 
@@ -83,7 +83,7 @@ The core of HiveServer2 is the HiveSession class. This class provides a containe
 
 The following diagram gives a quick overview of the changes required to support the Pig runtime engine in AccessServer. For simplicity we have removed Hive-specific components from the diagram such as the HiveOperation and HiveSession classes.
 
-![](attachments/31823045/31949155.png)
+![](/attachments/31823045/31949155.png)
 
 In the diagram blue denotes existing components in HiveServer2 that do not require modification. This includes the Thrift interface, JDBC/ODBC drivers, CLIService, and the Metastore.
 

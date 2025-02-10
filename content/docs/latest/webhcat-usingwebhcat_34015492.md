@@ -30,7 +30,7 @@ This document describes the HCatalog REST API, *WebHCat*, which was previously c
 
 As shown in the figure below, developers make HTTP requests to access [Hadoop](http://hadoop.apache.org/) [MapReduce](http://hadoop.apache.org/docs/stable/mapred_tutorial.html) (or [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)), [Pig](http://pig.apache.org/), [Hive](http://hive.apache.org/), and [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) from within applications. Data and code used by this API are maintained in [HDFS](http://hadoop.apache.org/docs/stable/hdfs_user_guide.html). HCatalog DDL commands are executed directly when requested. MapReduce, Pig, and Hive jobs are placed in queue by WebHCat (Templeton) servers and can be monitored for progress or stopped as required. Developers specify a location in HDFS into which Pig, Hive, and MapReduce results should be placed.
 
-![](attachments/34015492/34177184.jpg)
+![](/attachments/34015492/34177184.jpg)
 
 WebHCat or Templeton?
 

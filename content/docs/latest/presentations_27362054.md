@@ -24,43 +24,43 @@ date: 2024-12-12
 
 ## January 2016 Hive User Group Meetup
 
-* [attachments/27362054/61337098-pptx](/attachments/27362054/61337098-pptx)
-* [attachments/27362054/61337312-ppsx](/attachments/27362054/61337312-ppsx)
-* [attachments/27362054/61337398-ppsx](/attachments/27362054/61337398-ppsx)
+* [attachments/27362054/61337098-pptx](/attachments/27362054/61337098.pptx)
+* [attachments/27362054/61337312-ppsx](/attachments/27362054/61337312.ppsx)
+* [attachments/27362054/61337398-ppsx](/attachments/27362054/61337398.ppsx)
 * [Hive on Spark: now and future - Xuefu Zhang](https://cwiki.apache.org/confluence/download/attachments/27362054/Hive%20User%20Group%20Meeting%20Jan%202016.pdf?api=v2)
 
 ## November 2015 Hive Contributor Meetup
 
-* [attachments/27362054/61329032-pptx](/attachments/27362054/61329032-pptx)
-* [attachments/27362054/61329033-pptx](/attachments/27362054/61329033-pptx)
-* [attachments/27362054/61329034-pptx](/attachments/27362054/61329034-pptx)
-* [attachments/27362054/61329036-pptx](/attachments/27362054/61329036-pptx)
-* [attachments/27362054/61329038-pptx](/attachments/27362054/61329038-pptx)
+* [attachments/27362054/61329032-pptx](/attachments/27362054/61329032.pptx)
+* [attachments/27362054/61329033-pptx](/attachments/27362054/61329033.pptx)
+* [attachments/27362054/61329034-pptx](/attachments/27362054/61329034.pptx)
+* [attachments/27362054/61329036-pptx](/attachments/27362054/61329036.pptx)
+* [attachments/27362054/61329038-pptx](/attachments/27362054/61329038.pptx)
 * [attachments/27362054/61329039.pdf](/attachments/27362054/61329039.pdf)
-* [attachments/27362054/61329040-pptx](/attachments/27362054/61329040-pptx)
-* [attachments/27362054/61329311-ppsx](/attachments/27362054/61329311-ppsx)
+* [attachments/27362054/61329040-pptx](/attachments/27362054/61329040.pptx)
+* [attachments/27362054/61329311-ppsx](/attachments/27362054/61329311.ppsx)
 
 ## April 2015 Hive Contributor Meetup Presentations
 
 * [SQLLine - The tale of the twins that everyone loved too much – Julian Hyde](https://github.com/julianhyde/share/blob/master/slides/hive-sqlline-twins-2015.pdf)
 * [attachments/27362054/56131586.pdf](/attachments/27362054/56131586.pdf)
-* [attachments/27362054/55476525-pptx](/attachments/27362054/55476525-pptx)
-* [attachments/27362054/55476526-pptx](/attachments/27362054/55476526-pptx)
+* [attachments/27362054/55476525-pptx](/attachments/27362054/55476525.pptx)
+* [attachments/27362054/55476526-pptx](/attachments/27362054/55476526.pptx)
 
 ## February 2015 Hive User Meetup Presentation
 
-* [attachments/27362054/52036008-pptx](/attachments/27362054/52036008-pptx) (Szehon Ho)
+* [attachments/27362054/52036008-pptx](/attachments/27362054/52036008.pptx) (Szehon Ho)
 * [attachments/27362054/52036063.pdf](/attachments/27362054/52036063.pdf) (Ryan Desmond)
 
 ## November 2013 Hive Contributors Meetup Presentations
 
-* [attachments/27362054/35193152-pptx](/attachments/27362054/35193152-pptx) (Edward Capriolo)
-* [attachments/27362054/35193150-pptx](/attachments/27362054/35193150-pptx) (Gunther Hagleitner)
-* [attachments/27362054/35193153-pptx](/attachments/27362054/35193153-pptx) (Thejas Nair)
-* [attachments/27362054/35193154-pptx](/attachments/27362054/35193154-pptx) (Owen O'Malley)
+* [attachments/27362054/35193152-pptx](/attachments/27362054/35193152.pptx) (Edward Capriolo)
+* [attachments/27362054/35193150-pptx](/attachments/27362054/35193150.pptx) (Gunther Hagleitner)
+* [attachments/27362054/35193153-pptx](/attachments/27362054/35193153.pptx) (Thejas Nair)
+* [attachments/27362054/35193154-pptx](/attachments/27362054/35193154.pptx) (Owen O'Malley)
 * [Apache Sentry](http://www.slideshare.net/brocknoland/hive-contributors-meetup-apache-sentry) (Brock Noland)
-* [attachments/27362054/35193151-pptx](/attachments/27362054/35193151-pptx) (John Pullokkaran)
-* [attachments/27362054/35193149-pptx](/attachments/27362054/35193149-pptx) (Ashutosh Chauhan)
+* [attachments/27362054/35193151-pptx](/attachments/27362054/35193151.pptx) (John Pullokkaran)
+* [attachments/27362054/35193149-pptx](/attachments/27362054/35193149.pptx) (Ashutosh Chauhan)
 
 ## June 2013 Hadoop Summit Hive Meetup Presentations
 
@@ -190,31 +190,31 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193149-pptx](/attachments/27362054/35193149-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193149-pptx](/attachments/27362054/35193149.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193150-pptx](/attachments/27362054/35193150-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193150-pptx](/attachments/27362054/35193150.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193151-pptx](/attachments/27362054/35193151-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193151-pptx](/attachments/27362054/35193151.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193152-pptx](/attachments/27362054/35193152-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193152-pptx](/attachments/27362054/35193152.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193153-pptx](/attachments/27362054/35193153-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193153-pptx](/attachments/27362054/35193153.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193154-pptx](/attachments/27362054/35193154-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/35193154-pptx](/attachments/27362054/35193154.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/52036008-pptx](/attachments/27362054/52036008-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/52036008-pptx](/attachments/27362054/52036008.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
@@ -226,11 +226,11 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/55476525-pptx](/attachments/27362054/55476525-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/55476525-pptx](/attachments/27362054/55476525.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/55476526-pptx](/attachments/27362054/55476526-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/55476526-pptx](/attachments/27362054/55476526.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
@@ -238,23 +238,23 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329032-pptx](/attachments/27362054/61329032-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329032-pptx](/attachments/27362054/61329032.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329033-pptx](/attachments/27362054/61329033-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329033-pptx](/attachments/27362054/61329033.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329034-pptx](/attachments/27362054/61329034-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329034-pptx](/attachments/27362054/61329034.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329036-pptx](/attachments/27362054/61329036-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329036-pptx](/attachments/27362054/61329036.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329038-pptx](/attachments/27362054/61329038-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329038-pptx](/attachments/27362054/61329038.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
@@ -262,31 +262,31 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329040-pptx](/attachments/27362054/61329040-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61329040-pptx](/attachments/27362054/61329040.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329311-ppsx](/attachments/27362054/61329311-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
+[attachments/27362054/61329311-ppsx](/attachments/27362054/61329311.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337098-pptx](/attachments/27362054/61337098-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61337098-pptx](/attachments/27362054/61337098.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337312-ppsx](/attachments/27362054/61337312-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
+[attachments/27362054/61337312-ppsx](/attachments/27362054/61337312.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337313-pptx](/attachments/27362054/61337313-pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/61337313-pptx](/attachments/27362054/61337313.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337399-ppsx](/attachments/27362054/61337399-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
+[attachments/27362054/61337399-ppsx](/attachments/27362054/61337399.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337398-ppsx](/attachments/27362054/61337398-ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
+[attachments/27362054/61337398-ppsx](/attachments/27362054/61337398.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
