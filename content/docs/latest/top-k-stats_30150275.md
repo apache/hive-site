@@ -103,7 +103,7 @@ Suppose a partitioned table is created without skew, and data is inserted to its
 
 ```
 CREATE TABLE table1 (key STRING, value STRING) PARTITIONED BY (ds STRING);
-INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table_src;
 
 ```
 
@@ -119,7 +119,7 @@ then among the output, the following will be displayed:
 ```
 ...
 Skewed Columns:         [value]                  
-Skewed Values:          [[val\_348], [val\_230], [val\_401], [val\_70]]      
+Skewed Values:          [[val_348], [val_230], [val_401], [val_70]]      
 ...
 
 ```
@@ -137,7 +137,7 @@ For a non-partitioned table:
 
 ```
 CREATE TABLE table1 (key STRING, value STRING);
-INSERT OVERWRITE TABLE table1 SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 SELECT * FROM table_src;
 
 ```
 
@@ -153,7 +153,7 @@ then among the output, the following will be displayed:
 ```
 ...
 Skewed Columns:         [value]                  
-Skewed Values:          [[val\_348], [val\_230], [val\_401], [val\_70]]      
+Skewed Values:          [[val_348], [val_230], [val_401], [val_70]]      
 ...
 
 ```
@@ -163,7 +163,7 @@ When a table is created with skew:
 ```
 set hive.internal.ddl.list.bucketing.enable=true;
 CREATE TABLE table1 (key STRING, value STRING) PARTITIONED BY (ds STRING) SKEWED BY (key) on ('38', '49');
-INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table\_src;
+INSERT OVERWRITE TABLE table1 PARTITION (ds='2012-09-07') SELECT * FROM table_src;
 
 ```
 

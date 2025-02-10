@@ -10,16 +10,16 @@ date: 2024-12-12
 This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions. 
 
 * [Statistics and Data Mining in Hive]({{< ref "#statistics-and-data-mining-in-hive" >}})
-	+ [ngrams() and context\_ngrams(): N-gram frequency estimation]({{< ref "#ngrams-and-context_ngrams-n-gram-frequency-estimation" >}})
+	+ [ngrams() and context_ngrams(): N-gram frequency estimation]({{< ref "#ngrams-and-context_ngrams-n-gram-frequency-estimation" >}})
 		- [Use Cases]({{< ref "#use-cases" >}})
 		- [Usage]({{< ref "#usage" >}})
 		- [Example]({{< ref "#example" >}})
-	+ [histogram\_numeric(): Estimating frequency distributions]({{< ref "#histogram_numeric-estimating-frequency-distributions" >}})
+	+ [histogram_numeric(): Estimating frequency distributions]({{< ref "#histogram_numeric-estimating-frequency-distributions" >}})
 		- [Use Cases]({{< ref "#use-cases" >}})
 		- [Usage]({{< ref "#usage" >}})
 		- [Example]({{< ref "#example" >}})
 
-## ngrams() and context\_ngrams(): N-gram frequency estimation
+## ngrams() and context_ngrams(): N-gram frequency estimation
 
 [N-grams](http://en.wikipedia.org/wiki/N-gram) are subsequences of length **N** drawn from a longer sequence. The purpose of the `ngrams()` UDAF is to find the `k` most frequent n-grams from one or more sequences. It can be used in conjunction with the `sentences()` UDF to analyze unstructured natural language text, or the `collect()` function to analyze more general string data.
 
@@ -31,18 +31,18 @@ Contextual n-grams are similar to n-grams, but allow you to specify a 'context' 
 
  2. (ngrams) Find trending topics in text.  
 
- 3. (context\_ngrams) Extract marketing intelligence around certain words (e.g., "Twitter is \_\_\_").  
+ 3. (context_ngrams) Extract marketing intelligence around certain words (e.g., "Twitter is ___").  
 
  4. (ngrams) Find frequently accessed URL sequences.  
 
- 5. (context\_ngrams) Find frequently accessed URL sequences that start or end at a particular URL.  
+ 5. (context_ngrams) Find frequently accessed URL sequences that start or end at a particular URL.  
 
- 6. (context\_ngrams) Pre-compute common search lookaheads.
+ 6. (context_ngrams) Pre-compute common search lookaheads.
 ### Usage
 
 ```
 
-SELECT context\_ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
 
 ```
 
@@ -50,7 +50,7 @@ The command above will return the top-100 bigrams (2-grams) from a hypothetical 
 
 ```
 
-SELECT context\_ngrams(sentences(lower(tweet)), array("i","love",null), 100, [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), array("i","love",null), 100, [, 1000]) FROM twitter;
 
 ```
 
@@ -61,7 +61,7 @@ Note that the following two queries are identical, but `ngrams()` will be slight
 ```
 
 SELECT ngrams(sentences(lower(tweet)), 2, 100 [, 1000]) FROM twitter;
-SELECT context\_ngrams(sentences(lower(tweet)), array(null,null), 100, [, 1000]) FROM twitter;
+SELECT context_ngrams(sentences(lower(tweet)), array(null,null), 100, [, 1000]) FROM twitter;
 
 ```
 
@@ -85,7 +85,7 @@ SELECT explode(ngrams(sentences(lower(val)), 2, 10)) AS x FROM kafka;
 
 ```
 
-SELECT explode(context\_ngrams(sentences(lower(val)), array("he", null), 10)) AS x FROM kafka;
+SELECT explode(context_ngrams(sentences(lower(val)), array("he", null), 10)) AS x FROM kafka;
 {"ngram":[was],"estfrequency":17.0}
 {"ngram":[had],"estfrequency":16.0}
 {"ngram":[thought],"estfrequency":13.0}
@@ -99,7 +99,7 @@ SELECT explode(context\_ngrams(sentences(lower(val)), array("he", null), 10)) AS
 
 ```
 
-## histogram\_numeric(): Estimating frequency distributions
+## histogram_numeric(): Estimating frequency distributions
 
 Histograms represent frequency distributions from empirical data. The kind that is referred to here are histograms with variable-sized bins. Specifically, this UDAF will return a list of (x,y) pairs that represent histogram bin centers and heights. It's up to you to then plot them in Excel / Gnuplot / Matlab / Mathematica to get a nice graphical display.
 
@@ -112,7 +112,7 @@ Histograms represent frequency distributions from empirical data. The kind that 
 
 ```
 
-SELECT histogram\_numeric(age) FROM users GROUP BY gender;
+SELECT histogram_numeric(age) FROM users GROUP BY gender;
 
 ```
 
@@ -128,7 +128,7 @@ plot 'data.txt' u 1:2 w impulses lw 5
 
 ```
 
-SELECT explode(histogram\_numeric(val, 10)) AS x FROM normal;
+SELECT explode(histogram_numeric(val, 10)) AS x FROM normal;
 {"x":-3.6505464999999995,"y":20.0}
 {"x":-2.7514727901960785,"y":510.0}
 {"x":-1.7956678951954481,"y":8263.0}

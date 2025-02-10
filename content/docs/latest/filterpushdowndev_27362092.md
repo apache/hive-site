@@ -154,7 +154,7 @@ public class IndexSearchCondition
 The approach for passing the filter down to the input format will follow a pattern similar to what is already in place for pushing column projections down.
 
 * `org.apache.hadoop.hive.serde2.ColumnProjectionUtils` encapsulates the pushdown communication
-* classes such as `HiveInputFormat` call `ColumnProjectionUtils` to set the projection pushdown property (READ\_COLUMN\_IDS\_CONF\_STR) on a jobConf before instantiating a `RecordReader`
+* classes such as `HiveInputFormat` call `ColumnProjectionUtils` to set the projection pushdown property (READ_COLUMN_IDS_CONF_STR) on a jobConf before instantiating a `RecordReader`
 * the factory method for the `RecordReader` calls `ColumnProjectionUtils` to access this property
 
 For filter pushdown:

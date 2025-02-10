@@ -94,20 +94,20 @@ STAGE PLANS:
 	  condition map:
 	       Left Outer Join0 to 1
 	  condition expressions:
-	    0 {VALUE.\_col0}
-	    1 {VALUE.\_col0}
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
 	  filter predicates:
-	    0 {(VALUE.\_col0 > '2')}
+	    0 {(VALUE._col0 > '2')}
 	    1
 	  handleSkewJoin: false
-	  outputColumnNames: \_col0, \_col4
+	  outputColumnNames: _col0, _col4
 	  Select Operator
 	    expressions:
-		  expr: \_col0
+		  expr: _col0
 		  type: string
-		  expr: \_col4
+		  expr: _col4
 		  type: string
-	    outputColumnNames: \_col0, \_col1
+	    outputColumnNames: _col0, _col1
 	    File Output Operator
 	      compressed: false
 	      GlobalTableId: 0
@@ -160,17 +160,17 @@ STAGE PLANS:
 	  condition map:
 	       Left Outer Join0 to 1
 	  condition expressions:
-	    0 {VALUE.\_col0}
-	    1 {VALUE.\_col0}
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
 	  handleSkewJoin: false
-	  outputColumnNames: \_col0, \_col4
+	  outputColumnNames: _col0, _col4
 	  Select Operator
 	    expressions:
-		  expr: \_col0
+		  expr: _col0
 		  type: string
-		  expr: \_col4
+		  expr: _col4
 		  type: string
-	    outputColumnNames: \_col0, \_col1
+	    outputColumnNames: _col0, _col1
 	    File Output Operator
 	      compressed: false
 	      GlobalTableId: 0
@@ -224,17 +224,17 @@ STAGE PLANS:
 	  condition map:
 	       Left Outer Join0 to 1
 	  condition expressions:
-	    0 {VALUE.\_col0}
-	    1 {VALUE.\_col0}
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
 	  handleSkewJoin: false
-	  outputColumnNames: \_col0, \_col4
+	  outputColumnNames: _col0, _col4
 	  Select Operator
 	    expressions:
-		  expr: \_col0
+		  expr: _col0
 		  type: string
-		  expr: \_col4
+		  expr: _col4
 		  type: string
-	    outputColumnNames: \_col0, \_col1
+	    outputColumnNames: _col0, _col1
 	    File Output Operator
 	      compressed: false
 	      GlobalTableId: 0
@@ -284,21 +284,21 @@ STAGE PLANS:
 	  condition map:
 	       Left Outer Join0 to 1
 	  condition expressions:
-	    0 {VALUE.\_col0}
-	    1 {VALUE.\_col0}
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
 	  handleSkewJoin: false
-	  outputColumnNames: \_col0, \_col4
+	  outputColumnNames: _col0, _col4
 	  Filter Operator
 	    predicate:
-		expr: (\_col4 > '2')
+		expr: (_col4 > '2')
 		type: boolean
 	    Select Operator
 	      expressions:
-		    expr: \_col0
+		    expr: _col0
 		    type: string
-		    expr: \_col4
+		    expr: _col4
 		    type: string
-	      outputColumnNames: \_col0, \_col1
+	      outputColumnNames: _col0, _col1
 	      File Output Operator
 		compressed: false
 		GlobalTableId: 0

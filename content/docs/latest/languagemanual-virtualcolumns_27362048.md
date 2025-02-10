@@ -20,10 +20,10 @@ For block compressed file, it is the current block's file offset, which is the c
 
 Since Hive 0.8.0 the following virtual columns have been added:
 
-* ROW\_\_OFFSET\_\_INSIDE\_\_BLOCK
-* RAW\_\_DATA\_\_SIZE
-* ROW\_\_ID
-* GROUPING\_\_ID
+* ROW__OFFSET__INSIDE__BLOCK
+* RAW__DATA__SIZE
+* ROW__ID
+* GROUPING__ID
 
 It is important to note, that all of the **virtual columns listed here cannot be used for any other purpose** (i.e. table creation with columns having a virtual column will fail with "SemanticException Error 10328: Invalid column name..")
 

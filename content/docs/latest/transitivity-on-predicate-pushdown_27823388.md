@@ -73,17 +73,17 @@ STAGE PLANS:
           condition map:
                Inner Join 0 to 1
           condition expressions:
-            0 {VALUE.\_col2}
+            0 {VALUE._col2}
             1 
           handleSkewJoin: false
-          outputColumnNames: \_col2
+          outputColumnNames: _col2
           Select Operator
             Group By Operator
               aggregations:
                     expr: count()
               bucketGroup: false
               mode: hash
-              outputColumnNames: \_col0
+              outputColumnNames: _col0
               File Output Operator
                 compressed: false
                 GlobalTableId: 0
@@ -94,25 +94,25 @@ STAGE PLANS:
   Stage: Stage-2
     Map Reduce
       Alias -> Map Operator Tree:
-        file:/var/folders/nt/ng21tg0n1jl4547lw0k8lg6hq\_nw87/T/charleschen/hive\_2011-08-04\_10-59-05\_697\_8934329734633337337/-mr-10002 
+        file:/var/folders/nt/ng21tg0n1jl4547lw0k8lg6hq_nw87/T/charleschen/hive_2011-08-04_10-59-05_697_8934329734633337337/-mr-10002 
             Reduce Output Operator
               sort order: 
               tag: -1
               value expressions:
-                    expr: \_col0
+                    expr: _col0
                     type: bigint
       Reduce Operator Tree:
         Group By Operator
           aggregations:
-                expr: count(VALUE.\_col0)
+                expr: count(VALUE._col0)
           bucketGroup: false
           mode: mergepartial
-          outputColumnNames: \_col0
+          outputColumnNames: _col0
           Select Operator
             expressions:
-                  expr: \_col0
+                  expr: _col0
                   type: bigint
-            outputColumnNames: \_col0
+            outputColumnNames: _col0
             File Output Operator
               compressed: false
               GlobalTableId: 0
@@ -181,17 +181,17 @@ STAGE PLANS:
           condition map:
                Inner Join 0 to 1
           condition expressions:
-            0 {VALUE.\_col2}
+            0 {VALUE._col2}
             1
           handleSkewJoin: false
-          outputColumnNames: \_col2
+          outputColumnNames: _col2
           Select Operator
             Group By Operator
               aggregations:
                     expr: count()
               bucketGroup: false
               mode: hash
-              outputColumnNames: \_col0
+              outputColumnNames: _col0
               File Output Operator
                 compressed: false
                 GlobalTableId: 0
@@ -202,25 +202,25 @@ STAGE PLANS:
   Stage: Stage-2
     Map Reduce
       Alias -> Map Operator Tree:
-        file:/var/folders/nt/ng21tg0n1jl4547lw0k8lg6hq\_nw87/T/charleschen/hive\_2011-08-04\_10-56-09\_896\_8195257719501884918/-mr-10002
+        file:/var/folders/nt/ng21tg0n1jl4547lw0k8lg6hq_nw87/T/charleschen/hive_2011-08-04_10-56-09_896_8195257719501884918/-mr-10002
             Reduce Output Operator
               sort order:
               tag: -1
               value expressions:
-                    expr: \_col0
+                    expr: _col0
                     type: bigint
       Reduce Operator Tree:
         Group By Operator
           aggregations:
-                expr: count(VALUE.\_col0)
+                expr: count(VALUE._col0)
           bucketGroup: false
           mode: mergepartial
-          outputColumnNames: \_col0
+          outputColumnNames: _col0
           Select Operator
             expressions:
-                  expr: \_col0
+                  expr: _col0
                   type: bigint
-            outputColumnNames: \_col0
+            outputColumnNames: _col0
             File Output Operator
               compressed: false
               GlobalTableId: 0

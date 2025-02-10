@@ -13,15 +13,15 @@ date: 2024-12-12
 
 ## Transform/Map-Reduce Syntax
 
-Users can also plug in their own custom mappers and reducers in the data stream by using features natively supported in the Hive language. e.g. in order to run a custom mapper script - map\_script - and a custom reducer script - reduce\_script - the user can issue the following command which uses the TRANSFORM clause to embed the mapper and the reducer scripts.
+Users can also plug in their own custom mappers and reducers in the data stream by using features natively supported in the Hive language. e.g. in order to run a custom mapper script - map_script - and a custom reducer script - reduce_script - the user can issue the following command which uses the TRANSFORM clause to embed the mapper and the reducer scripts.
 
 By default, columns will be transformed to *STRING* and delimited by TAB before feeding to the user script; similarly, all NULL values will be converted to the literal string **\N** in order to differentiate NULL values from empty strings. The standard output of the user script will be treated as TAB-separated *STRING* columns, any cell containing only **\N** will be re-interpreted as a NULL, and then the resulting STRING column will be cast to the data type specified in the table declaration in the usual way. User scripts can output debug information to standard error which will be shown on the task detail page on hadoop. These defaults can be overridden with *ROW FORMAT ...*.
 
-In windows, use "cmd /c your\_script" instead of just "your\_script"
+In windows, use "cmd /c your_script" instead of just "your_script"
 
 Warning
 
-It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see [REGEXP\_REPLACE]({{< ref "#regexp\_replace" >}}) and replace the tabs with some other character on their way into the TRANSFORM() call.
+It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see [REGEXP_REPLACE]({{< ref "#regexp_replace" >}}) and replace the tabs with some other character on their way into the TRANSFORM() call.
 
 Warning
 
@@ -42,9 +42,9 @@ rowFormat
                [ESCAPED BY char]
                [LINES SEPARATED BY char]
      | 
-     SERDE serde\_name [WITH SERDEPROPERTIES 
-                            property\_name=property\_value, 
-                            property\_name=property\_value, ...])
+     SERDE serde_name [WITH SERDEPROPERTIES 
+                            property_name=property_value, 
+                            property_name=property_value, ...])
 
 outRowFormat : rowFormat
 inRowFormat : rowFormat
@@ -55,14 +55,14 @@ query:
     FROM src
     MAP expression (',' expression)*
     (inRowFormat)?
-    USING 'my\_map\_script'
+    USING 'my_map_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
-    ( clusterBy? | distributeBy? sortBy? ) src\_alias
+    ( clusterBy? | distributeBy? sortBy? ) src_alias
   )
   REDUCE expression (',' expression)*
     (inRowFormat)?
-    USING 'my\_reduce\_script'
+    USING 'my_reduce_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
 
@@ -70,14 +70,14 @@ query:
     FROM src
     SELECT TRANSFORM '(' expression (',' expression)* ')'
     (inRowFormat)?
-    USING 'my\_map\_script'
+    USING 'my_map_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
-    ( clusterBy? | distributeBy? sortBy? ) src\_alias
+    ( clusterBy? | distributeBy? sortBy? ) src_alias
   )
   SELECT TRANSFORM '(' expression (',' expression)* ')'
     (inRowFormat)? 
-    USING 'my\_reduce\_script'
+    USING 'my_reduce_script'
     ( AS colName (',' colName)* )?
     (outRowFormat)? (outRecordReader)?
 
@@ -93,24 +93,24 @@ Example #1:
 
 ```
   FROM (
-    FROM pv\_users
-    MAP pv\_users.userid, pv\_users.date
-    USING 'map\_script'
+    FROM pv_users
+    MAP pv_users.userid, pv_users.date
+    USING 'map_script'
     AS dt, uid
-    CLUSTER BY dt) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    REDUCE map\_output.dt, map\_output.uid
-    USING 'reduce\_script'
+    CLUSTER BY dt) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    REDUCE map_output.dt, map_output.uid
+    USING 'reduce_script'
     AS date, count;
   FROM (
-    FROM pv\_users
-    SELECT TRANSFORM(pv\_users.userid, pv\_users.date)
-    USING 'map\_script'
+    FROM pv_users
+    SELECT TRANSFORM(pv_users.userid, pv_users.date)
+    USING 'map_script'
     AS dt, uid
-    CLUSTER BY dt) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    SELECT TRANSFORM(map\_output.dt, map\_output.uid)
-    USING 'reduce\_script'
+    CLUSTER BY dt) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    SELECT TRANSFORM(map_output.dt, map_output.uid)
+    USING 'reduce_script'
     AS date, count;
 
 ```
@@ -131,19 +131,19 @@ Example #2
 
 ## Schema-less Map-reduce Scripts
 
-If there is no *AS* clause after *USING my\_script*, Hive assumes that the output of the script contains 2 parts: key which is before the first tab, and value which is the rest after the first tab. Note that this is different from specifying *AS key, value* because in that case, value will only contain the portion between the first tab and the second tab if there are multiple tabs.
+If there is no *AS* clause after *USING my_script*, Hive assumes that the output of the script contains 2 parts: key which is before the first tab, and value which is the rest after the first tab. Note that this is different from specifying *AS key, value* because in that case, value will only contain the portion between the first tab and the second tab if there are multiple tabs.
 
 Note that we can directly do *CLUSTER BY key* without specifying the output schema of the scripts.
 
 ```
   FROM (
-    FROM pv\_users
-    MAP pv\_users.userid, pv\_users.date
-    USING 'map\_script'
-    CLUSTER BY key) map\_output
-  INSERT OVERWRITE TABLE pv\_users\_reduced
-    REDUCE map\_output.key, map\_output.value
-    USING 'reduce\_script'
+    FROM pv_users
+    MAP pv_users.userid, pv_users.date
+    USING 'map_script'
+    CLUSTER BY key) map_output
+  INSERT OVERWRITE TABLE pv_users_reduced
+    REDUCE map_output.key, map_output.value
+    USING 'reduce_script'
     AS date, count;
 
 ```

@@ -97,7 +97,7 @@ CREATE TABLE kst
   OUTPUTFORMAT
   'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
   TBLPROPERTIES (
-    'avro.schema.url'='http://schema\_provider/kst.avsc');
+    'avro.schema.url'='http://schema_provider/kst.avsc');
 ```
 
 In this example we're pulling the source-of-truth reader schema from a webserver. Other options for providing the schema are described below.
@@ -116,7 +116,7 @@ boolean1        boolean from deserializer
 long1   bigint  from deserializer
 float1  float   from deserializer
 double1 double  from deserializer
-inner\_record1   struct<int\_in\_inner\_record1:int,string\_in\_inner\_record1:string> from deserializer
+inner_record1   struct<int_in_inner_record1:int,string_in_inner_record1:string> from deserializer
 enum1   string  from deserializer
 array1  array<string>   from deserializer
 map1    map<string,string>      from deserializer
@@ -145,7 +145,7 @@ CREATE TABLE kst (
     long1 bigint,
     float1 float,
     double1 double,
-    inner\_record1 struct<int\_in\_inner\_record1:int,string\_in\_inner\_record1:string>,
+    inner_record1 struct<int_in_inner_record1:int,string_in_inner_record1:string>,
     enum1 string,
     array1 array<string>,
     map1 map<string,string>,
@@ -170,7 +170,7 @@ boolean1        boolean from deserializer
 long1   bigint  from deserializer
 float1  float   from deserializer
 double1 double  from deserializer
-inner\_record1   struct<int\_in\_inner\_record1:int,string\_in\_inner\_record1:string> from deserializer
+inner_record1   struct<int_in_inner_record1:int,string_in_inner_record1:string> from deserializer
 enum1   string  from deserializer
 array1  array<string>   from deserializer
 map1    map<string,string>      from deserializer
@@ -200,7 +200,7 @@ Hive is very forgiving about types: it will attempt to store whatever value matc
 Consider the following Hive table, which covers all types of Hive data types, making it a good example:
 
 ```
-CREATE TABLE test\_serializer(string1 STRING,
+CREATE TABLE test_serializer(string1 STRING,
                              int1 INT,
                              tinyint1 TINYINT,
                              smallint1 SMALLINT,
@@ -236,7 +236,7 @@ To save this table as an Avro file, create an equivalent Avro schema (the namesp
 ```
 {
   "namespace": "com.linkedin.haivvreo",
-  "name": "test\_serializer",
+  "name": "test_serializer",
   "type": "record",
   "fields": [
     { "name":"string1", "type":"string" },
@@ -249,10 +249,10 @@ To save this table as an Avro file, create an equivalent Avro schema (the namesp
     { "name":"double1", "type":"double" },
     { "name":"list1", "type":{"type":"array", "items":"string"} },
     { "name":"map1", "type":{"type":"map", "values":"int"} },
-    { "name":"struct1", "type":{"type":"record", "name":"struct1\_name", "fields": [
+    { "name":"struct1", "type":{"type":"record", "name":"struct1_name", "fields": [
           { "name":"sInt", "type":"int" }, { "name":"sBoolean", "type":"boolean" }, { "name":"sString", "type":"string" } ] } },
     { "name":"union1", "type":["float", "boolean", "string"] },
-    { "name":"enum1", "type":{"type":"enum", "name":"enum1\_values", "symbols":["BLUE","RED", "GREEN"]} },
+    { "name":"enum1", "type":{"type":"enum", "name":"enum1_values", "symbols":["BLUE","RED", "GREEN"]} },
     { "name":"nullableint", "type":["int", "null"] },
     { "name":"bytes1", "type":"bytes" },
     { "name":"fixed1", "type":{"type":"fixed", "name":"threebytes", "size":3} }
@@ -262,7 +262,7 @@ To save this table as an Avro file, create an equivalent Avro schema (the namesp
 Then you can write it out to Avro with:
 
 ```
-CREATE TABLE as\_avro
+CREATE TABLE as_avro
   ROW FORMAT SERDE
   'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
   STORED as INPUTFORMAT
@@ -270,9 +270,9 @@ CREATE TABLE as\_avro
   OUTPUTFORMAT
   'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
   TBLPROPERTIES (
-    'avro.schema.url'='file:///path/to/the/schema/test\_serializer.avsc');
+    'avro.schema.url'='file:///path/to/the/schema/test_serializer.avsc');
  
-INSERT OVERWRITE TABLE as\_avro SELECT * FROM test\_serializer;
+INSERT OVERWRITE TABLE as_avro SELECT * FROM test_serializer;
 
 ```
 
@@ -281,7 +281,7 @@ INSERT OVERWRITE TABLE as\_avro SELECT * FROM test\_serializer;
 In Hive versions 0.14 and later, you do not need to create the Avro schema manually. The procedure shown above to save a table as an Avro file reduces to just a DDL statement followed by an insert into the table.
 
 ```
-CREATE TABLE as\_avro(string1 STRING,
+CREATE TABLE as_avro(string1 STRING,
                      int1 INT,
                      tinyint1 TINYINT,
                      smallint1 SMALLINT,
@@ -298,7 +298,7 @@ CREATE TABLE as\_avro(string1 STRING,
                      bytes1 BINARY,
                      fixed1 BINARY)
 STORED AS AVRO;
-INSERT OVERWRITE TABLE as\_avro SELECT * FROM test\_serializer;
+INSERT OVERWRITE TABLE as_avro SELECT * FROM test_serializer;
 
 ```
 
@@ -332,7 +332,7 @@ CREATE TABLE embedded
   TBLPROPERTIES (
     'avro.schema.literal'='{
       "namespace": "com.howdy",
-      "name": "some\_schema",
+      "name": "some_schema",
       "type": "record",
       "fields": [ { "name":"string1","type":"string"}]
     }');
@@ -363,7 +363,7 @@ CREATE TABLE example
 To execute this script file, assuming $SCHEMA has been defined to be the escaped schema value:
 
 ```
-hive --hiveconf schema="${SCHEMA}" -f your\_script\_file.sql
+hive --hiveconf schema="${SCHEMA}" -f your_script_file.sql
 ```
 
 Note that $SCHEMA is interpolated into the quotes to correctly handle spaces within the schema.

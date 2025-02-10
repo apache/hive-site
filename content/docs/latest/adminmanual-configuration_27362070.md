@@ -46,11 +46,11 @@ A number of configuration variables in Hive can be used by the administrator to 
 The server-specific configuration file is useful in two situations:
 1. 1. You want a different configuration for one type of server (for example – enabling authorization only in HiveServer2 and not CLI).
 	2. You want to set a configuration value only in a server-specific configuration file (for example – setting the metastore database password only in the metastore server configuration file).  
-	HiveMetastore server reads hive-site.xml as well as hivemetastore-site.xml configuration files that are available in the $HIVE\_CONF\_DIR or in the classpath. If the metastore is being used in embedded mode (i.e., hive.metastore.uris is not set or empty) in `hive` commandline or HiveServer2, the hivemetastore-site.xml gets loaded by the parent process as well.  
+	HiveMetastore server reads hive-site.xml as well as hivemetastore-site.xml configuration files that are available in the $HIVE_CONF_DIR or in the classpath. If the metastore is being used in embedded mode (i.e., hive.metastore.uris is not set or empty) in `hive` commandline or HiveServer2, the hivemetastore-site.xml gets loaded by the parent process as well.  
 	The value of hive.metastore.uris is examined to determine this, and the value should be set appropriately in hive-site.xml .  
 	Certain [metastore configuration parameters]({{< ref "#metastore-configuration-parameters" >}}) like hive.metastore.sasl.enabled, hive.metastore.kerberos.principal, hive.metastore.execute.setugi, and hive.metastore.thrift.framed.transport.enabled are used by the metastore client as well as server. For such common parameters it is better to set the values in hive-site.xml, that will help in keeping them consistent.
 	
-	HiveServer2 reads hive-site.xml as well as hiveserver2-site.xml that are available in the $HIVE\_CONF\_DIR or in the classpath.   
+	HiveServer2 reads hive-site.xml as well as hiveserver2-site.xml that are available in the $HIVE_CONF_DIR or in the classpath.   
 	If HiveServer2 is using the metastore in embedded mode, hivemetastore-site.xml also is loaded.
 	
 	The order of precedence of the config files is as follows (later one has higher precedence) –  
@@ -117,7 +117,7 @@ Version information: Metrics
 | hive.exec.compress.output | Determines whether the output of the final map/reduce job in a query is compressed or not. | false |
 | hive.exec.compress.intermediate | Determines whether the output of the intermediate map/reduce jobs in a query is compressed or not. | false |
 | hive.resource.use.hdfs.location | Reference HDFS based files/jars directly instead of copying to session based HDFS scratch directory. (As of Hive [2.2.1](https://issues.apache.org/jira/browse/HIVE-17574).) | true |
-| hive.jar.path | The location of hive\_cli.jar that is used when submitting jobs in a separate jvm. |   |
+| hive.jar.path | The location of hive_cli.jar that is used when submitting jobs in a separate jvm. |   |
 | hive.aux.jars.path | The location of the plugin jars that contain implementations of user defined functions and SerDes. |   |
 | hive.reloadable.aux.jars.path | The location of plugin jars that can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{< ref "#beeline-reload-command" >}}), without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path[for creating UDFs or SerDes](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.aux.jars.path). (As of Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-7553).) |  |
 | hive.partition.pruning | A strict value for this variable indicates that an error is thrown by the compiler in case no partition predicate is provided on a partitioned table. This is used to protect against a user inadvertently issuing a query against all the partitions of the table. | nonstrict |
@@ -152,8 +152,8 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 
 | **Variable Name** | **Description** | **Default Value** |
 | --- | --- | --- |
-| hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP\_HOME/bin/hadoop |
-| hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP\_HOME/conf |
+| hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP_HOME/bin/hadoop |
+| hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP_HOME/conf |
 | fs.default.name | The default name of the filesystem (for example, localhost for hdfs://<clustername>:8020).For YARN this configuration variable is called fs.defaultFS. | file:/// |
 | map.input.file | The filename the map is reading from. | null |
 | mapred.job.tracker | The URL to the jobtracker. If this is set to local then map/reduce is run in the local mode. | local |

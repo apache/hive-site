@@ -57,7 +57,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/jobs/job\_201112212038\_0004?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/jobs/job_201112212038_0004?user.name=ctdean'
 
 ```
 
@@ -76,25 +76,25 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
                        },
             "schedulingInfo": "NA",
             "failureInfo": "NA",
-            "jobId": "job\_201112212038\_0004",
+            "jobId": "job_201112212038_0004",
             "jobPriority": "NORMAL",
             "runState": 2,
             "jobComplete": true
            },
  "profile": {
-             "url": "http://localhost:50030/jobdetails.jsp?jobid=job\_201112212038\_0004",
+             "url": "http://localhost:50030/jobdetails.jsp?jobid=job_201112212038_0004",
              "jobID": {
                        "jtIdentifier": "201112212038",
                         "id": 4
                       },
              "user": "ctdean",
              "queueName": "default",
-             "jobFile": "hdfs://localhost:9000/tmp/hadoop-ctdean/mapred/staging/ctdean/.staging/job\_201112212038\_0004/job.xml",
+             "jobFile": "hdfs://localhost:9000/tmp/hadoop-ctdean/mapred/staging/ctdean/.staging/job_201112212038_0004/job.xml",
              "jobName": "PigLatin:DefaultJobName",
-             "jobId": "job\_201112212038\_0004"
+             "jobId": "job_201112212038_0004"
             },
- "id": "job\_201112212038\_0004",
- "parentId": "job\_201112212038\_0003",
+ "id": "job_201112212038_0004",
+ "parentId": "job_201112212038_0003",
  "percentComplete": "100% complete",
  "exitValue": 0,
  "user": "ctdean",

@@ -20,13 +20,13 @@ date: 2024-12-12
 
 ```
 [WITH CommonTableExpression (, CommonTableExpression)*]    (Note: Only available starting with Hive 0.13.0)
-SELECT [ALL | DISTINCT] select\_expr, select\_expr, ...
-  FROM table\_reference
-  [WHERE where\_condition]
-  [GROUP BY col\_list]
-  [ORDER BY col\_list]
-  [CLUSTER BY col\_list
-    | [DISTRIBUTE BY col\_list] [SORT BY col\_list]
+SELECT [ALL | DISTINCT] select_expr, select_expr, ...
+  FROM table_reference
+  [WHERE where_condition]
+  [GROUP BY col_list]
+  [ORDER BY col_list]
+  [CLUSTER BY col_list
+    | [DISTRIBUTE BY col_list] [SORT BY col_list]
   ]
  [LIMIT [offset,] rows]
 
@@ -47,10 +47,10 @@ SELECT * FROM t1 
 Note
 
 As of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144), FROM is optional (for example, `SELECT 1+1`).
-* To get the current database (as of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)), use the [current\_database() function]({{< ref "#current\_database---function" >}}):
+* To get the current database (as of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)), use the [current_database() function]({{< ref "#current_database---function" >}}):
 
 ```
-SELECT current\_database()
+SELECT current_database()
 ```
 * To specify a database, either qualify the table names with database names ("`db_name.table_name`" starting in [Hive 0.7](https://issues.apache.org/jira/browse/HIVE-1517)) or issue the [USE statement]({{< ref "#use-statement" >}}) before the query statement (starting in [Hive 0.6](https://issues.apache.org/jira/browse/HIVE-675)).
 
@@ -59,8 +59,8 @@ SELECT current\_database()
 USE sets the database for all subsequent HiveQL statements. Reissue it with the keyword "`default`" to reset to the default database.
 
 ```
-USE database\_name;
-SELECT query\_specifications;
+USE database_name;
+SELECT query_specifications;
 USE default;
 ```
 
@@ -99,21 +99,21 @@ ALL and DISTINCT can also be used in a UNION clause – see [Union Syntax]({{< 
 
 ### Partition Based Queries
 
-In general, a SELECT query scans the entire table (other than for [sampling]({{< ref "languagemanual-sampling_27362042" >}})). If a table created using the [PARTITIONED BY]({{< ref "#partitioned-by" >}}) clause, a query can do **partition pruning** and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page\_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.
+In general, a SELECT query scans the entire table (other than for [sampling]({{< ref "languagemanual-sampling_27362042" >}})). If a table created using the [PARTITIONED BY]({{< ref "#partitioned-by" >}}) clause, a query can do **partition pruning** and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.
 
 ```
-    SELECT page\_views.*
-    FROM page\_views
-    WHERE page\_views.date >= '2008-03-01' AND page\_views.date <= '2008-03-31'
+    SELECT page_views.*
+    FROM page_views
+    WHERE page_views.date >= '2008-03-01' AND page_views.date <= '2008-03-31'
 
 ```
 
-If a table page\_views is joined with another table dim\_users, you can specify a range of partitions in the ON clause as follows:
+If a table page_views is joined with another table dim_users, you can specify a range of partitions in the ON clause as follows:
 
 ```
-    SELECT page\_views.*
-    FROM page\_views JOIN dim\_users
-      ON (page\_views.user\_id = dim\_users.id AND page\_views.date >= '2008-03-01' AND page\_views.date <= '2008-03-31')
+    SELECT page_views.*
+    FROM page_views JOIN dim_users
+      ON (page_views.user_id = dim_users.id AND page_views.date >= '2008-03-01' AND page_views.date <= '2008-03-31')
 
 ```
 
@@ -159,7 +159,7 @@ SELECT * FROM customers LIMIT 5
 The following query returns the first 5 customers to be created
 
 ```
-SELECT * FROM customers ORDER BY create\_date LIMIT 5
+SELECT * FROM customers ORDER BY create_date LIMIT 5
 ```
 
  
@@ -167,7 +167,7 @@ SELECT * FROM customers ORDER BY create\_date LIMIT 5
 The following query returns the  3rd to the 7th customers to be created
 
 ```
-SELECT * FROM customers ORDER BY create\_date LIMIT 2,5
+SELECT * FROM customers ORDER BY create_date LIMIT 2,5
 ```
 
 ### REGEX Column Specification

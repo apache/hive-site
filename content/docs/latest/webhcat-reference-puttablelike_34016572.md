@@ -52,7 +52,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 % curl -s -X PUT -HContent-type:application/json -d {} \
- 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/like/test\_table\_2?user.name=ctdean'
+ 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/like/test_table_2?user.name=ctdean'
 
 ```
 
@@ -60,7 +60,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
- "table": "test\_table\_2",
+ "table": "test_table_2",
  "database": "default"
 }
 

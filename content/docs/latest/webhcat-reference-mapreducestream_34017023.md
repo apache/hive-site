@@ -43,7 +43,7 @@ As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop
 | **cmdenv** | Set an environment variable using the syntax `cmdenv=NAME=VALUE` | Optional | None |
 | **arg** | Set a program argument. | Optional | None |
 | **statusdir** | A directory where WebHCat will write the status of the Map Reduce job. If provided, it is the caller's responsibility to remove this directory when done. | Optional | None |
-| **enablelog** | If **statusdir** is set and **enablelog** is "true", collect Hadoop job configuration and logs into a directory named `$statusdir/logs` after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in `$statusdir/logs` is: `logs/$job_id` *(directory for $job\_id)* `logs/$job_id/job.xml.html` `logs/$job_id/$attempt_id` *(directory for $attempt\_id)* `logs/$job_id/$attempt_id/stderr` `logs/$job_id/$attempt_id/stdout` `logs/$job_id/$attempt_id/syslog` This parameter was introduced in Hive 0.12.0. (See [HIVE-4531](https://issues.apache.org/jira/browse/HIVE-4531).) | Optional in Hive 0.12.0+ | None |
+| **enablelog** | If **statusdir** is set and **enablelog** is "true", collect Hadoop job configuration and logs into a directory named `$statusdir/logs` after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in `$statusdir/logs` is: `logs/$job_id` *(directory for $job_id)* `logs/$job_id/job.xml.html` `logs/$job_id/$attempt_id` *(directory for $attempt_id)* `logs/$job_id/$attempt_id/stderr` `logs/$job_id/$attempt_id/stdout` `logs/$job_id/$attempt_id/syslog` This parameter was introduced in Hive 0.12.0. (See [HIVE-4531](https://issues.apache.org/jira/browse/HIVE-4531).) | Optional in Hive 0.12.0+ | None |
 | **callback** | Define a URL to be called upon job completion. You may embed a specific job ID into this URL using `$jobId`. This tag will be replaced in the callback URL with this job's job ID. | Optional | None |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
@@ -52,7 +52,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 | Name | Description |
 | --- | --- |
-| **id** | A string containing the job ID similar to "job\_201110132141\_0001". |
+| **id** | A string containing the job ID similar to "job_201110132141_0001". |
 | **info** | A JSON object containing the information returned when the job was queued. See the Hadoop documentation ([`Class TaskController`](http://hadoop.apache.org/docs/r1.2.1/api/org/apache/hadoop/mapred/TaskController.html)) for more information. |
 
 ## Example
@@ -94,10 +94,10 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 ```
 {
- "id": "job\_201111111311\_0008",
+ "id": "job_201111111311_0008",
  "info": {
           "stdout": "packageJobJar: [] [/Users/ctdean/var/hadoop/hadoop-0.20.205.0/share/hadoop/contrib/streaming/hadoop-streaming-0.20.205.0.jar...
-                    templeton-job-id:job\_201111111311\_0008
+                    templeton-job-id:job_201111111311_0008
                     ",
           "stderr": "11/11/11 13:26:43 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments
                     11/11/11 13:26:43 INFO mapred.FileInputFormat: Total input paths to process : 2
@@ -113,8 +113,8 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 % hadoop fs -ls mycounts
 Found 3 items
--rw-r--r--   1 ctdean supergroup          0 2011-11-11 13:27 /user/ctdean/mycounts/\_SUCCESS
-drwxr-xr-x   - ctdean supergroup          0 2011-11-11 13:26 /user/ctdean/mycounts/\_logs
+-rw-r--r--   1 ctdean supergroup          0 2011-11-11 13:27 /user/ctdean/mycounts/_SUCCESS
+drwxr-xr-x   - ctdean supergroup          0 2011-11-11 13:26 /user/ctdean/mycounts/_logs
 -rw-r--r--   1 ctdean supergroup         10 2011-11-11 13:27 /user/ctdean/mycounts/part-00000
 
 % hadoop fs -cat mycounts/part-00000

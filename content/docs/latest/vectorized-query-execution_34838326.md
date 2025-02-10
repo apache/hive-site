@@ -60,7 +60,7 @@ The following expressions can be vectorized when used on supported types:
 * string functions SUBSTR, CONCAT, TRIM, LTRIM, RTRIM, LOWER, UPPER, LENGTH
 * type casts
 * Hive user-defined functions, including standard and generic UDFs
-* date functions (YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, UNIX\_TIMESTAMP)
+* date functions (YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, UNIX_TIMESTAMP)
 * the IF conditional expression
 
 User-defined functions are supported using a backward compatibility bridge, so although they do run vectorized, they don't run as fast as optimized vector implementations of built-in operators and functions. Vectorized filter operations are evaluated left-to-right, so for best performance, put UDFs on the right in an ANDed list of expressions in the WHERE clause. E.g., use
@@ -105,18 +105,18 @@ STAGE PLANS:
               Group By Operator
                 aggregations: count()
                 mode: hash
-                outputColumnNames: \_col0
+                outputColumnNames: _col0
                 Statistics: Num rows: 1 Data size: 8 Basic stats: COMPLETE Column stats: COMPLETE
                 Reduce Output Operator
                   sort order: 
                   Statistics: Num rows: 1 Data size: 8 Basic stats: COMPLETE Column stats: COMPLETE
-                  value expressions: \_col0 (type: bigint)
+                  value expressions: _col0 (type: bigint)
       Execution mode: vectorized
       Reduce Operator Tree:
         Group By Operator
-          aggregations: count(VALUE.\_col0)
+          aggregations: count(VALUE._col0)
           mode: mergepartial
-          outputColumnNames: \_col0
+          outputColumnNames: _col0
           Statistics: Num rows: 1 Data size: 8 Basic stats: COMPLETE Column stats: COMPLETE
           File Output Operator
             compressed: false

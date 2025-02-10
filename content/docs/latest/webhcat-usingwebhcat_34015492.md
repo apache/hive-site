@@ -71,7 +71,7 @@ The user.name parameter is part of POST parameters for POST calls, and part of t
 For example, to specify user.name in a GET :table command:
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table?user.name=ctdean'
 
 ```
 
@@ -79,8 +79,8 @@ And to specify user.name in a POST :table command:
 
 ```
 % curl -s -d user.name=ctdean \
-       -d rename=test\_table\_2 \
-       'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table'
+       -d rename=test_table_2 \
+       'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table'
 
 ```
 

@@ -25,7 +25,7 @@ FROM src LIMIT 1;
 
 Version information
 
-As of Hive 0.9.0, java\_method() is a synonym for reflect(). See [Misc. Functions]({{< ref "#misc--functions" >}}) in Hive Operators and UDFs.
+As of Hive 0.9.0, java_method() is a synonym for reflect(). See [Misc. Functions]({{< ref "#misc--functions" >}}) in Hive Operators and UDFs.
 
 Note that Reflect UDF is non-deterministic since there is no guarantee what a specific method will return given the same parameters. So be cautious when using Reflect on the WHERE clause because that may invalidate Predicate Pushdown optimization.
 

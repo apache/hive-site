@@ -11,7 +11,7 @@ date: 2024-12-12
 * [Advanced Features]({{< ref "#advanced-features" >}})
 	+ [Multi-Group-By Inserts]({{< ref "#multi-group-by-inserts" >}})
 	+ [Map-side Aggregation for Group By]({{< ref "#map-side-aggregation-for-group-by" >}})
-	+ [Grouping Sets, Cubes, Rollups, and the GROUPING\_\_ID Function]({{< ref "#grouping-sets-cubes-rollups-and-the-grouping__id-function" >}})
+	+ [Grouping Sets, Cubes, Rollups, and the GROUPING__ID Function]({{< ref "#grouping-sets-cubes-rollups-and-the-grouping__id-function" >}})
 
 ## Group By Syntax
 
@@ -43,20 +43,20 @@ Note that for versions of Hive which don't include [HIVE-287](https://issues.apa
 In order to count the number of distinct users by gender one could write the following query:
 
 ```
-  INSERT OVERWRITE TABLE pv\_gender\_sum
-  SELECT pv\_users.gender, count (DISTINCT pv\_users.userid)
-  FROM pv\_users
-  GROUP BY pv\_users.gender;
+  INSERT OVERWRITE TABLE pv_gender_sum
+  SELECT pv_users.gender, count (DISTINCT pv_users.userid)
+  FROM pv_users
+  GROUP BY pv_users.gender;
 
 ```
 
 Multiple aggregations can be done at the same time, however, no two aggregations can have different DISTINCT columns. For example, the following is possible because count(DISTINCT) and sum(DISTINCT) specify the same column:
 
 ```
-  INSERT OVERWRITE TABLE pv\_gender\_agg
-  SELECT pv\_users.gender, count(DISTINCT pv\_users.userid), count(*), sum(DISTINCT pv\_users.userid)
-  FROM pv\_users
-  GROUP BY pv\_users.gender;
+  INSERT OVERWRITE TABLE pv_gender_agg
+  SELECT pv_users.gender, count(DISTINCT pv_users.userid), count(*), sum(DISTINCT pv_users.userid)
+  FROM pv_users
+  GROUP BY pv_users.gender;
 
 ```
 
@@ -65,10 +65,10 @@ Note that for versions of Hive which don't include [HIVE-287](https://issues.apa
 However, the following query is not allowed. We don't allow multiple DISTINCT expressions in the same query.
 
 ```
-  INSERT OVERWRITE TABLE pv\_gender\_agg
-  SELECT pv\_users.gender, count(DISTINCT pv\_users.userid), count(DISTINCT pv\_users.ip)
-  FROM pv\_users
-  GROUP BY pv\_users.gender;
+  INSERT OVERWRITE TABLE pv_gender_agg
+  SELECT pv_users.gender, count(DISTINCT pv_users.userid), count(DISTINCT pv_users.ip)
+  FROM pv_users
+  GROUP BY pv_users.gender;
 
 ```
 
@@ -130,13 +130,13 @@ Since the grouping is only done on `a`, what value of `b` should Hive display fo
 The output of the aggregations or simple selects can be further sent into multiple tables or even to hadoop dfs files (which can then be manipulated using hdfs utilitites). e.g. if along with the gender breakdown, one needed to find the breakdown of unique page views by age, one could accomplish that with the following query:
 
 ```
-  FROM pv\_users 
-  INSERT OVERWRITE TABLE pv\_gender\_sum
-    SELECT pv\_users.gender, count(DISTINCT pv\_users.userid) 
-    GROUP BY pv\_users.gender 
-  INSERT OVERWRITE DIRECTORY '/user/facebook/tmp/pv\_age\_sum'
-    SELECT pv\_users.age, count(DISTINCT pv\_users.userid) 
-    GROUP BY pv\_users.age; 
+  FROM pv_users 
+  INSERT OVERWRITE TABLE pv_gender_sum
+    SELECT pv_users.gender, count(DISTINCT pv_users.userid) 
+    GROUP BY pv_users.gender 
+  INSERT OVERWRITE DIRECTORY '/user/facebook/tmp/pv_age_sum'
+    SELECT pv_users.age, count(DISTINCT pv_users.userid) 
+    GROUP BY pv_users.age; 
 
 ```
 
@@ -153,11 +153,11 @@ The output of the aggregations or simple selects can be further sent into multip
 
 Note that for versions of Hive which don't include [HIVE-287](https://issues.apache.org/jira/browse/HIVE-287), you'll need to use COUNT(1) in place of COUNT(*).
 
-### Grouping Sets, Cubes, Rollups, and the GROUPING\_\_ID Function
+### Grouping Sets, Cubes, Rollups, and the GROUPING__ID Function
 
 Version
 
-Grouping sets, CUBE and ROLLUP operators, and the GROUPING\_\_ID function were added in Hive release 0.10.0.
+Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive release 0.10.0.
 
 See [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "30151323" >}}) for information about these aggregation operators.
 
@@ -166,7 +166,7 @@ Also see the JIRAs:
 * [HIVE-2397](https://issues.apache.org/jira/browse/HIVE-2397) Support with rollup option for group by
 * [HIVE-3433](https://issues.apache.org/jira/browse/HIVE-3433) Implement CUBE and ROLLUP operators in Hive
 * [HIVE-3471](https://issues.apache.org/jira/browse/HIVE-3471) Implement grouping sets in Hive
-* [HIVE-3613](https://issues.apache.org/jira/browse/HIVE-3613) Implement grouping\_id function
+* [HIVE-3613](https://issues.apache.org/jira/browse/HIVE-3613) Implement grouping_id function
 
 New in Hive release 0.11.0:
 

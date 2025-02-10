@@ -19,7 +19,7 @@ date: 2024-12-12
 		- [Hive Resources]({{< ref "#hive-resources" >}})
 * [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
 
-$HIVE\_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
+$HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
 
 # Deprecation in favor of Beeline CLI
 
@@ -69,38 +69,38 @@ See [Variable Substitution]({{< ref "languagemanual-variablesubstitution_3075472
 * Example of running a query from the command line
 
 ```
-$HIVE\_HOME/bin/hive -e 'select a.col from tab1 a'
+$HIVE_HOME/bin/hive -e 'select a.col from tab1 a'
 ```
 * Example of setting Hive configuration variables
 
 ```
-$HIVE\_HOME/bin/hive -e 'select a.col from tab1 a' --hiveconf hive.exec.scratchdir=/home/my/hive\_scratch  --hiveconf mapred.reduce.tasks=32
+$HIVE_HOME/bin/hive -e 'select a.col from tab1 a' --hiveconf hive.exec.scratchdir=/home/my/hive_scratch  --hiveconf mapred.reduce.tasks=32
 ```
 * Example of dumping data out from a query into a file using silent mode
 
 ```
-$HIVE\_HOME/bin/hive -S -e 'select a.col from tab1 a' > a.txt
+$HIVE_HOME/bin/hive -S -e 'select a.col from tab1 a' > a.txt
 ```
 * Example of running a script non-interactively from local disk
 
 ```
-$HIVE\_HOME/bin/hive -f /home/my/hive-script.sql
+$HIVE_HOME/bin/hive -f /home/my/hive-script.sql
 ```
 * Example of running a script non-interactively from a Hadoop supported filesystem (starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7136))
 
 ```
-$HIVE\_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql
-$HIVE\_HOME/bin/hive -f s3://mys3bucket/s3-script.sql 
+$HIVE_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql
+$HIVE_HOME/bin/hive -f s3://mys3bucket/s3-script.sql 
 ```
 * Example of running an initialization script before entering interactive mode
 
 ```
-$HIVE\_HOME/bin/hive -i /home/my/hive-init.sql
+$HIVE_HOME/bin/hive -i /home/my/hive-init.sql
 ```
 
 ### The hiverc File
 
-The CLI when invoked without the `-i` option will attempt to load $HIVE\_HOME/bin/.hiverc and $HOME/.hiverc as initialization files.
+The CLI when invoked without the `-i` option will attempt to load $HIVE_HOME/bin/.hiverc and $HOME/.hiverc as initialization files.
 
 ### Logging
 
@@ -109,7 +109,7 @@ Hive uses log4j for logging. These logs are not emitted to the standard output b
 It is often desirable to emit the logs to the standard output and/or change the logging level for debugging purposes. These can be done from the command line as follows:
 
 ```
- $HIVE\_HOME/bin/hive --hiveconf hive.root.logger=INFO,console
+ $HIVE_HOME/bin/hive --hiveconf hive.root.logger=INFO,console
 
 ```
 
@@ -150,7 +150,7 @@ Use ";" (semicolon) to terminate commands. Comments in scripts can be specified 
 | set | Prints a list of configuration variables that are overridden by the user or Hive. |
 | set -v | Prints all Hadoop and Hive configuration variables. |
 | add FILE[S] <filepath> <filepath>*  add JAR[S] <filepath> <filepath>*  add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| add FILE[S] <ivyurl> <ivyurl>*  add JAR[S] <ivyurl> <ivyurl>*  add ARCHIVE[S] <ivyurl> <ivyurl>*  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query\_string. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| add FILE[S] <ivyurl> <ivyurl>*  add JAR[S] <ivyurl> <ivyurl>*  add ARCHIVE[S] <ivyurl> <ivyurl>*  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
 | list FILE[S]  list JAR[S]  list ARCHIVE[S] | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
 | list FILE[S] <filepath>*  list JAR[S] <filepath>*  list ARCHIVE[S] <filepath>* | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
 | delete FILE[S] <filepath>*  delete JAR[S] <filepath>*  delete ARCHIVE[S] <filepath>* | Removes the resource(s) from the distributed cache. |
@@ -207,13 +207,13 @@ Example:
 
 Version 1.2.0
 
-As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), resources can be added and deleted using [Ivy](http://ant.apache.org/ivy/) URLs of the form ivy://group:module:version?query\_string.
+As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), resources can be added and deleted using [Ivy](http://ant.apache.org/ivy/) URLs of the form ivy://group:module:version?query_string.
 
 * *group* – Which module group the module comes from. Translates directly to a Maven groupId or an Ivy Organization.
 * *module* – The name of the module to load. Translates directly to a Maven artifactId or an Ivy artifact.
 * *version* – The version of the module to use. Any version or * (for latest) or an Ivy Range can be used.
 
-Various parameters can be passed in the *query\_string* to configure how and which jars are added to the artifactory. The parameters are in the form of key value pairs separated by '&'.
+Various parameters can be passed in the *query_string* to configure how and which jars are added to the artifactory. The parameters are in the form of key value pairs separated by '&'.
 
 Usage:  
 

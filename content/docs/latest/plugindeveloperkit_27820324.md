@@ -58,7 +58,7 @@ To create your own plugin, you can follow the patterns from the example plugin. 
   <property name="plugin.title" value="Hive PDK Test UDF Library"/>
   <property name="plugin.version" value="0.1"/>
   <property name="plugin.vendor" value="Apache Software Foundation"/>
-  <property name="function.sql.prefix" value="tp\_"/>
+  <property name="function.sql.prefix" value="tp_"/>
   <import file="${hive.install.dir}/scripts/pdk/build-plugin.xml"/>
 </project>
 
@@ -97,19 +97,19 @@ import org.apache.hadoop.io.Text;
  * Example UDF for rot13 transformation.
  */
 @Description(name = "rot13",
-  value = "\_FUNC\_(str) - Returns str with all characters transposed via rot13",
+  value = "_FUNC_(str) - Returns str with all characters transposed via rot13",
   extended = "Example:\n"
-  + "  > SELECT \_FUNC\_('Facebook') FROM src LIMIT 1;\n" + "  'Snprobbx'")
+  + "  > SELECT _FUNC_('Facebook') FROM src LIMIT 1;\n" + "  'Snprobbx'")
 @HivePdkUnitTests(
-    setup = "create table rot13\_data(s string); "
-    + "insert overwrite table rot13\_data select 'Facebook' from onerow;",
-    cleanup = "drop table if exists rot13\_data;",
+    setup = "create table rot13_data(s string); "
+    + "insert overwrite table rot13_data select 'Facebook' from onerow;",
+    cleanup = "drop table if exists rot13_data;",
     cases = {
       @HivePdkUnitTest(
-        query = "SELECT tp\_rot13('Mixed Up!') FROM onerow;",
+        query = "SELECT tp_rot13('Mixed Up!') FROM onerow;",
         result = "Zvkrq Hc!"),
       @HivePdkUnitTest(
-        query = "SELECT tp\_rot13(s) FROM rot13\_data;",
+        query = "SELECT tp_rot13(s) FROM rot13_data;",
         result = "Snprobbx")
     }
   )

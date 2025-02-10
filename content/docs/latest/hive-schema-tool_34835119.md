@@ -98,7 +98,7 @@ The dbType "`mssql`" was added in Hive 0.13.1 with [HIVE-6862](https://issues.ap
 
 ```
 $ schematool -dbType derby -initSchema
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Starting metastore schema initialization to 0.13.0
@@ -111,7 +111,7 @@ schemaTool completed
 
 ```
 $ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Hive distribution version:       0.13.0
@@ -123,7 +123,7 @@ schemaTool completed
 
 ```
 $ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Hive distribution version:       0.13.0
@@ -137,7 +137,7 @@ Since the older metastore doesn't store the version information, the tool report
 
 ```
 $ schematool -dbType derby -upgradeSchemaFrom 0.10.0
-Metastore connection URL:        jdbc:derby:;databaseName=metastore\_db;create=true
+Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
 Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
 Metastore connection User:       APP
 Starting upgrade metastore schema from version 0.10.0 to 0.13.0

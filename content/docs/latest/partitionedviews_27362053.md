@@ -30,18 +30,18 @@ This is a followup to [ViewDev]({{< ref "viewdev_27362067" >}}) for adding parti
 
 ```
 
-CREATE VIEW [IF NOT EXISTS] view\_name [(column\_name [COMMENT column\_comment], ...) ]
-[COMMENT table\_comment]
+CREATE VIEW [IF NOT EXISTS] view_name [(column_name [COMMENT column_comment], ...) ]
+[COMMENT table_comment]
 [PARTITIONED ON (col1, col2, ...)]
 [TBLPROPERTIES ...]
 AS SELECT ...
 
-ALTER VIEW view\_name ADD [IF NOT EXISTS] partition\_spec partition\_spec ...
+ALTER VIEW view_name ADD [IF NOT EXISTS] partition_spec partition_spec ...
 
-ALTER VIEW view\_name DROP [IF EXISTS] partition\_spec, partition\_spec, ...
+ALTER VIEW view_name DROP [IF EXISTS] partition_spec, partition_spec, ...
 
-partition\_spec:
-  : PARTITION (partition\_col = partition\_col\_value, partition\_col = partiton\_col\_value, ...)
+partition_spec:
+  : PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
 
 ```
 
@@ -75,8 +75,8 @@ Although there is currently no connection between the view partition and underly
 
 ```
 
-SELECT * FROM view\_name
-WHERE view\_partition\_col1 = 'val1' AND view\_partition\_col=2 = 'val2' ...
+SELECT * FROM view_name
+WHERE view_partition_col1 = 'val1' AND view_partition_col=2 = 'val2' ...
 
 ```
 

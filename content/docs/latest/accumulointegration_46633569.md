@@ -60,24 +60,24 @@ To access Accumulo tables, a Hive table must be created using the `CREATE` comma
 Each Hive row maps to a set of Accumulo keys with the same row ID. One column in the Hive row is designated as a "special" column which is used as the Accumulo row ID. All other Hive columns in the row have some mapping to Accumulo column (column family and qualifier) where the Hive column value is placed in the Accumulo value.
 
 ```
-CREATE TABLE accumulo\_table(rowid STRING, name STRING, age INT, weight DOUBLE, height INT)
+CREATE TABLE accumulo_table(rowid STRING, name STRING, age INT, weight DOUBLE, height INT)
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
 WITH SERDEPROPERTIES('accumulo.columns.mapping' = ':rowid,person:name,person:age,person:weight,person:height');
 ```
 
 In the above statement, normal Hive column name and type pairs are provided as is the case with normal create table statements. The full AccumuloStorageHandler class name is provided to inform Hive that Accumulo will back this Hive table. A number of properties can be provided to configure the AccumuloStorageHandler via SERDEPROPERTIES or TBLPROPERTIES. The most important property is "accumulo.columns.mapping" which controls how the Hive columns map to Accumulo columns. In this case, the "row" Hive column is used to populate the Accumulo row ID component of the Accumulo Key, while the other Hive columns (name, age, weight and height) are all columns within the Accumulo row.
 
-For the above schema in the "accumulo\_table", we could envision a single row in the table:
+For the above schema in the "accumulo_table", we could envision a single row in the table:
 
 ```
-hive> select * from accumulo\_table;
+hive> select * from accumulo_table;
 row1	Steve	32	200	72
 ```
 
 The above record would be serialized into Accumulo Key-Value pairs in the following manner given the declared accumulo.columns.mapping:
 
 ```
-user@accumulo accumulo\_table> scan
+user@accumulo accumulo_table> scan
 row1	person:age []	32
 row1	person:height []	72
 row1	person:name []	Steve
@@ -88,7 +88,7 @@ The power of the column mapping is that multiple Hive tables with differing colu
 
 ## Column Mapping
 
-The column mapping string is comma-separated list of encoded values whose offset corresponds to the Hive schema for the table. The order of the columns in the Hive schema can be arbitrary as long as the elements in the column mapping align to the intended Hive column. For those familiar with Accumulo, each element in the column mapping string resembles a column\_family:column\_qualifier; however, there are a few different variants that allow for different control.
+The column mapping string is comma-separated list of encoded values whose offset corresponds to the Hive schema for the table. The order of the columns in the Hive schema can be arbitrary as long as the elements in the column mapping align to the intended Hive column. For those familiar with Accumulo, each element in the column mapping string resembles a column_family:column_qualifier; however, there are a few different variants that allow for different control.
 
 1. A single column
 	1. This places the value for the Hive column into the Accumulo value with the given column family and column qualifier.
@@ -162,13 +162,13 @@ The following options are also valid to be used with SERDEPROPERTIES or TABLEPRO
 
 ### Override the Accumulo table name
 
-Create a user table, consisting of some unique key for a user, a user ID, and a username. The Accumulo row ID is from the Hive column, the user ID column is written to the "f" column family and "userid" column qualifier, and the username column to the "f" column family and the "nickname" column qualifier. Instead of using the "users" Accumulo table, it is overridden in the TBLPROPERTIES to use the Accumulo table "hive\_users" instead.
+Create a user table, consisting of some unique key for a user, a user ID, and a username. The Accumulo row ID is from the Hive column, the user ID column is written to the "f" column family and "userid" column qualifier, and the username column to the "f" column family and the "nickname" column qualifier. Instead of using the "users" Accumulo table, it is overridden in the TBLPROPERTIES to use the Accumulo table "hive_users" instead.
 
 ```
 CREATE TABLE users(key int, userid int, username string) 
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
 WITH SERDEPROPERTIES ("accumulo.columns.mapping" = ":rowID,f:userid,f:nickname")
-WITH TBLPROPERTIES ("accumulo.table.name" = "hive\_users");
+WITH TBLPROPERTIES ("accumulo.table.name" = "hive_users");
 ```
 
 ### Store a Hive map with binary serialization
@@ -176,7 +176,7 @@ WITH TBLPROPERTIES ("accumulo.table.name" = "hive\_users");
 Using an asterisk in the column mapping string, a Hive map can be expanded from a single Accumulo Key-Value pair to multiple Key-Value pairs. The Hive Map is a parameterized type: in the below case, the key is a string, and the value integer. The default serialization is overriden from 'string' to 'binary' which means that the integers in the value of the Hive map will be stored as a series of bytes instead of the UTF-8 string representation.
 
 ```
-CREATE TABLE hive\_map(key int, value map<string,int>) 
+CREATE TABLE hive_map(key int, value map<string,int>) 
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
 WITH SERDEPROPERTIES (
   "accumulo.columns.mapping" = ":rowID,cf:*",
@@ -189,9 +189,9 @@ WITH SERDEPROPERTIES (
 Creating the Hive table with the external keyword decouples the lifecycle of the Accumulo table from that of the Hive table. Creating this table assumes that the Accumulo table "countries" already exists. This is a very useful way to use Hive to manage tables that are created and populated by some external tool (e.g. A MapReduce job). When the Hive table countries is deleted, the Accumulo table will not be deleted. Additionally, the external keyword can also be useful when creating multiple Hive tables with different options that operate on the same underlying Accumulo table.
 
 ```
-CREATE EXTERNAL TABLE countries(key string, name string, country string, country\_id int)
+CREATE EXTERNAL TABLE countries(key string, name string, country string, country_id int)
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
-WITH SERDEPROPERTIES ("accumulo.columns.mapping" = ":rowID,info:name,info:country,info:country\_id");
+WITH SERDEPROPERTIES ("accumulo.columns.mapping" = ":rowID,info:name,info:country,info:country_id");
 ```
 
 ### Create an indexed table
@@ -199,26 +199,26 @@ WITH SERDEPROPERTIES ("accumulo.columns.mapping" = ":rowID,info:name,info:countr
 To take advantage of indexing, Hive uses another Accumulo table is used to create a lexicographically-sorted search term index for each field allowing for very efficient exact match and bounded range searches.
 
 ```
-CREATE TABLE company\_stats (
+CREATE TABLE company_stats (
    rowid string,
-   active\_entry boolean,
-   num\_offices tinyint,
-   num\_personel smallint,
-   total\_manhours int,
-   num\_shareholders bigint,
-   eff\_rating float,
-   err\_rating double,
-   yearly\_production decimal,
-   start\_date date,
+   active_entry boolean,
+   num_offices tinyint,
+   num_personel smallint,
+   total_manhours int,
+   num_shareholders bigint,
+   eff_rating float,
+   err_rating double,
+   yearly_production decimal,
+   start_date date,
    address varchar(100),
    phone char(13),
-   last\_update timestamp )
+   last_update timestamp )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.accumulo.serde.AccumuloSerDe'
 STORED BY 'org.apache.hadoop.hive.accumulo.AccumuloStorageHandler'
 WITH SERDEPROPERTIES (
    "accumulo.columns.mapping" = ":rowID,a:act,a:off,a:per,a:mhs,a:shs,a:eff,a:err,a:yp,a:sd,a:addr,a:ph,a:lu”,
-   "accumulo.table.name"="company\_stats",
-   "accumulo.indextable.name"="company\_stats\_idx"
+   "accumulo.table.name"="company_stats",
+   "accumulo.indextable.name"="company_stats_idx"
  );
 ```
 

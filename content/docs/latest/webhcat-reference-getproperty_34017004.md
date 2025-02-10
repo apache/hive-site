@@ -48,7 +48,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table/property/fruit?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property/fruit?user.name=ctdean'
 
 ```
 
@@ -59,7 +59,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
  "property": {
    "fruit": "apple"
  },
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 
@@ -69,10 +69,10 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
-  "error": "Table test\_table does not exist",
+  "error": "Table test_table does not exist",
   "errorCode": 404,
   "database": "default",
-  "table": "test\_table"
+  "table": "test_table"
 }
 
 ```

@@ -48,7 +48,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s -X DELETE 'http://localhost:50111/templeton/v1/ddl/database/default/table/test\_table?user.name=ctdean'
+% curl -s -X DELETE 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ctdean'
 
 ```
 
@@ -56,7 +56,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 {
- "table": "test\_table",
+ "table": "test_table",
  "database": "default"
 }
 

@@ -59,7 +59,7 @@ Configuration values specific to running the Metastore with various RDBMSs, embe
 | metastore.schema.verification | hive.metastore.schema.verification | true | Enforce metastore schema version consistency. When set to true: verify that version information stored in the RDBMS is compatible with the version of the Metastore jar. Also disable automatic schema migration. Users are required to manually migrate the schema after upgrade, which ensures proper schema migration. This setting is strongly recommended in production.When set to false: warn if the version information stored in RDBMS doesn't match the version of the Metastore jar and allow auto schema migration. |
 | metastore.hmshandler.retry.attempts | hive.hmshandler.retry.attempts | 10 | The number of times to retry a call to the meastore when there is a connection error. |
 | metastore.hmshandler.retry.interval | hive.hmshandler.retry.interval | 2 sec | Time between retry attempts. |
-| metastore.log4j.file | hive.log4j.file | none | Log4j configuration file. If unset will look for `metastore-log4j2.properties` in $METASTORE\_HOME/conf |
+| metastore.log4j.file | hive.log4j.file | none | Log4j configuration file. If unset will look for `metastore-log4j2.properties` in $METASTORE_HOME/conf |
 | metastore.stats.autogather | hive.stats.autogather | true | Whether to automatically gather basic statistics during insert commands. |
 
 ## RDBMS
@@ -137,7 +137,7 @@ The Metastore service is stateless.  This allows you to start multiple instance
 
 TODO: Need to fill in details for setting up with Kerberos, SSL, etc.
 
-CLIENT\_KERBEROS\_PRINCIPAL, KERBEROS\_*, SSL*, USE\_SSL, USE\_THRIFT\_SASL
+CLIENT_KERBEROS_PRINCIPAL, KERBEROS_*, SSL*, USE_SSL, USE_THRIFT_SASL
 
 ## Running the Metastore Without Hive
 
@@ -167,16 +167,16 @@ Details about all properties for the CachedStore can be found on [Configuration
 
 ## Less Commonly Changed Configuration Parameters
 
-BATCHED\_RETRIEVE\_*, CLIENT\_CONNECT\_RETRY\_DELAY, FILTER\_HOOK, SERDES\_USING\_METASTORE\_FOR\_SCHEMA, SERVER\_*\_THREADS, 
+BATCHED_RETRIEVE_*, CLIENT_CONNECT_RETRY_DELAY, FILTER_HOOK, SERDES_USING_METASTORE_FOR_SCHEMA, SERVER_*_THREADS, 
 
 ```
-THREAD\_POOL\_SIZE
+THREAD_POOL_SIZE
 ```
-Security: EXECUTE\_SET\_UGI, metastore.authorization.storage.checks
+Security: EXECUTE_SET_UGI, metastore.authorization.storage.checks
 
-Setting up Caching: CACHED*, CATALOGS\_TO\_CACHE & AGGREGATE\_STATS\_CACHE*
+Setting up Caching: CACHED*, CATALOGS_TO_CACHE & AGGREGATE_STATS_CACHE*
 
-Transactions: MAX\_OPEN\_TXNS, TXNS\_*
+Transactions: MAX_OPEN_TXNS, TXNS_*
 
  
 

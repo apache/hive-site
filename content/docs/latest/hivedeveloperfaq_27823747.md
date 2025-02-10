@@ -77,7 +77,7 @@ For FAQ about how to run tests, see [Testing]({{< ref "#testing" >}}) below.
 
 ### Maven settings
 
-You might have to set the following Maven options on certain systems to get build working: Set MAVEN\_OPTS to "-Xmx2g -XX:MaxPermSize=256M".
+You might have to set the following Maven options on certain systems to get build working: Set MAVEN_OPTS to "-Xmx2g -XX:MaxPermSize=256M".
 
 ### How to build all source?
 
@@ -142,7 +142,7 @@ $ mvn eclipse:eclipse -DdownloadSources -DdownloadJavadocs
 
 ```
 
-In Eclipse define M2\_REPO in Preferences -> Java -> Build Path -> Classpath Variables to either:
+In Eclipse define M2_REPO in Preferences -> Java -> Build Path -> Classpath Variables to either:
 
 **Mac Example**
 
@@ -314,14 +314,14 @@ cd itests/qtest
 mvn test -Dtest=TestNegativeCliDriver -Dqfile=alter1.q 
 ```
 
-To run all of the clientpositive tests that match a regex, for example the partition\_wise\_fileformat tests
+To run all of the clientpositive tests that match a regex, for example the partition_wise_fileformat tests
 
 ```
 cd itests/qtest
-mvn test -Dtest=TestCliDriver -Dqfile\_regex=partition\_wise\_fileformat.* 
+mvn test -Dtest=TestCliDriver -Dqfile_regex=partition_wise_fileformat.* 
 
 # Alternatively, you can specify comma separated list with "-Dqfile" argument
-mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile='vectorization\_0.q,vectorization\_17.q,vectorization\_8.q'
+mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile='vectorization_0.q,vectorization_17.q,vectorization_8.q'
 ```
 
 To run a single contrib test alter1.q and overwrite the result file
@@ -336,11 +336,11 @@ mvn test -Dtest=TestContribCliDriver -Dqfile=alter1.q -Dtest.output.overwrite=tr
 To run test test with a specified DB it is possible by adding "-Dtest.metastore.db" parameter like in the following commands:
 
 ```
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition\_params\_postgres.q -Dtest.metastore.db=postgres
+mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=postgres
 
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition\_params\_postgres.q -Dtest.metastore.db=mssql
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition\_params\_postgres.q -Dtest.metastore.db=mysql
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition\_params\_postgres.q -Dtest.metastore.db=oracle -Ditest.jdbc.jars=/path/to/your/god/damn/oracle/jdbc/driver/ojdbc6.jar
+mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mssql
+mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mysql
+mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=oracle -Ditest.jdbc.jars=/path/to/your/god/damn/oracle/jdbc/driver/ojdbc6.jar
 ```
 
 Without specifying -Dqfile it will run all .q files .
@@ -349,7 +349,7 @@ Without specifying -Dqfile it will run all .q files .
 
 ```
 cd itests/qtest
-mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt\_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" test -Dtest=TestCliDriver -Dqfile=<test>.q
+mvn -Dmaven.surefire.debug="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000 -Xnoagent -Djava.compiler=NONE" test -Dtest=TestCliDriver -Dqfile=<test>.q
 ```
 
 ### How do I modify the init script when testing?
@@ -359,13 +359,13 @@ The option to skip the init script or supply a custom init script was added in H
 To skip initialization:
 
 ```
-mvn test -Dtest=TestCliDriver -Phadoop-2 -Dqfile=test\_to\_run.q  -DinitScript=
+mvn test -Dtest=TestCliDriver -Phadoop-2 -Dqfile=test_to_run.q  -DinitScript=
 ```
 
 To supply a custom script:
 
 ```
-mvn test -Dtest=TestCliDriver -Phadoop-2 -Dtest.output.overwrite=true -Dqfile=test\_to\_run.q  -DinitScript=custom\_script.sql
+mvn test -Dtest=TestCliDriver -Phadoop-2 -Dtest.output.overwrite=true -Dqfile=test_to_run.q  -DinitScript=custom_script.sql
 ```
 
 ### How do I update the output of a CliDriver testcase?
@@ -384,14 +384,14 @@ Assume that you have a file like below which you'd like to re-generate output fi
 
 ```
 head -2 /tmp/failed-TestCliDriver-file-tests
-org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_allcolref\_in\_udf
-org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver\_annotate\_stats\_join
+org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_allcolref_in_udf
+org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver_annotate_stats_join
 ```
 
 You can re-generate all those output files in batches of 20 with the command below
 
 ```
-egrep 'TestCliDriver' /tmp/failed-TestCliDriver-file-tests | perl -pe 's@.*testCliDriver\_@@g' | awk '{print $1 ".q"}' | xargs -n 30 | perl -pe 's@ @,@g' | xargs -I{} mvn test -Dtest=TestCliDriver -Dtest.output.overwrite=true -Dqfile={}
+egrep 'TestCliDriver' /tmp/failed-TestCliDriver-file-tests | perl -pe 's@.*testCliDriver_@@g' | awk '{print $1 ".q"}' | xargs -n 30 | perl -pe 's@ @,@g' | xargs -I{} mvn test -Dtest=TestCliDriver -Dtest.output.overwrite=true -Dqfile={}
 ```
 
 To do the same from the output of a precommit result, with multiple drivers, you can do
@@ -400,9 +400,9 @@ To do the same from the output of a precommit result, with multiple drivers, you
 import re
 from itertools import groupby
 s = """
-org.apache.hadoop.hive.cli.TestBeeLineDriver.testCliDriver[drop\_with\_concurrency] (batchId=231)
+org.apache.hadoop.hive.cli.TestBeeLineDriver.testCliDriver[drop_with_concurrency] (batchId=231)
 org.apache.hadoop.hive.cli.TestCliDriver.testCliDriver[comments] (batchId=35)
-org.apache.hadoop.hive.cli.TestMiniLlapLocalCliDriver.testCliDriver[vector\_if\_expr] (batchId=141)
+org.apache.hadoop.hive.cli.TestMiniLlapLocalCliDriver.testCliDriver[vector_if_expr] (batchId=141)
 """
 PAT = re.compile("org.apache.hadoop.hive.cli.([^\.]*).*\[([^\]]*).*")
 l = [PAT.match(x.strip()) for x in s.split("\n") if x.strip()]
@@ -509,7 +509,7 @@ You can debug into a single JUnit test in [Eclipse](https://www.eclipse.org/user
 Another useful method to debug these tests is to attach a remote debugger. When you run the test, enable the debug mode for surefire by passing in "`-Dmaven.surefire.debug`". Additional details on how to turning on debugging for surefire can be found [here](http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html). Now when you run the tests, it will wait with a message similar to
 
 ```
-Listening for transport dt\_socket at address: 5005
+Listening for transport dt_socket at address: 5005
 ```
 
 Note that this assumes that you are still using the default port 5005 for surefire. Otherwise you might see a different port. Once you see this message, in Eclipse right click on the project you want to debug, go to "Debug As -> Debug Configurations -> Remote Java Application" and hit the "+" sign on far left top. This should bring up a dialog box. Make sure that the host is "localhost" and the port is "5005". Before you start debugging, make sure that you have set appropriate debug breakpoints in the code. Once ready, hit "Debug". Now if you go back to the terminal, you should see the tests running and they will stop at the breakpoints that you set for debugging.
@@ -520,14 +520,14 @@ You can also interactively debug your queries in Hive by attaching a remote debu
 
 ```
 $ beeline --debug
-Listening for transport dt\_socket at address: 8000
+Listening for transport dt_socket at address: 8000
 ```
 
 Once you see this message, in Eclipse right click on the project you want to debug, go to "Debug As -> Debug Configurations -> Remote Java Application" and hit the "+" sign on far left top. This should bring up a dialog box. Make sure that the host is the host on which the Beeline CLI is running and the port is "8000". Before you start debugging, make sure that you have set appropriate debug breakpoints in the code. Once ready, hit "Debug". The remote debugger should attach to Beeline and proceed.
 
 ```
 $ beeline --debug
-Listening for transport dt\_socket at address: 8000
+Listening for transport dt_socket at address: 8000
 Beeline version 1.2.0 by Apache Hive
 beeline>
 ```

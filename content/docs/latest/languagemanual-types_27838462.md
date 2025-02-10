@@ -226,7 +226,7 @@ For usage, see [LanguageManual Types#Floating Point Types](https://cwiki.apache.
 Integral literals larger than BIGINT must be handled with Decimal(38,0). The Postfix BD is required. Example:
 
 ```
-select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my\_table limit 1;
+select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my_table limit 1;
 ```
 #### Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0
 
@@ -240,7 +240,7 @@ If the user was on Hive 0.12.0 or earlier and created tables with decimal column
 2. For each decimal column in the table, update the column definition to the desired precision/scale using the [ALTER TABLE]({{< ref "#alter-table" >}}) command:
 
 ```
-ALTER TABLE foo CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ```
 
 If the table is not a partitioned table, then you are done.  If the table has partitions, then go on to step 3.
@@ -262,7 +262,7 @@ SET hive.exec.dynamic.partition = true;
  
 -- hive.exec.dynamic.partition needs to be set to true to enable dynamic partitioning with ALTER PARTITION
 -- This will alter all existing partitions of the table - be sure you know what you are doing!
-ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ```
 
   
@@ -270,8 +270,8 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec\_column\_name dec\_column\_
 Alternatively, this can be done one partition at a time using ALTER TABLE CHANGE COLUMN, by specifying one partition per statement (This is available in Hive 0.14 or later, with [HIVE-7971](https://issues.apache.org/jira/browse/HIVE-7971).):
 
 ```
-ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
-ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec\_column\_name dec\_column\_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
+ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ...
 ```
 
@@ -286,8 +286,8 @@ The UNIONTYPE datatype was introduced in Hive 0.7.0 ([HIVE-537](https://issues.a
 Union types can at any one point hold exactly one of their specified data types. You can create an instance of this type using the `create_union` UDF:
 
 ```
-CREATE TABLE union\_test(foo UNIONTYPE<int, double, array<string>, struct<a:int,b:string>>);
-SELECT foo FROM union\_test;
+CREATE TABLE union_test(foo UNIONTYPE<int, double, array<string>, struct<a:int,b:string>>);
+SELECT foo FROM union_test;
 
 {0:1}
 {1:2.0}
@@ -300,14 +300,14 @@ SELECT foo FROM union\_test;
 
 ```
 
-The first part in the deserialized union is the *tag* which lets us know which part of the union is being used. In this example `0` means the first data\_type from the definition which is an `int` and so on.
+The first part in the deserialized union is the *tag* which lets us know which part of the union is being used. In this example `0` means the first data_type from the definition which is an `int` and so on.
 
 To create a union you have to provide this tag to the `create_union` UDF:
 
 ```
-SELECT create\_union(0, key), create\_union(if(key<100, 0, 1), 2.0, value), create\_union(1, "a", struct(2, "b")) FROM src LIMIT 2;
+SELECT create_union(0, key), create_union(if(key<100, 0, 1), 2.0, value), create_union(1, "a", struct(2, "b")) FROM src LIMIT 2;
 
-{0:"238"}	{1:"val\_238"}	{1:{"col1":2,"col2":"b"}}
+{0:"238"}	{1:"val_238"}	{1:{"col1":2,"col2":"b"}}
 {0:"86"}	{0:2.0}	{1:{"col1":2,"col2":"b"}}
 
 ```
@@ -337,7 +337,7 @@ The precision of a Decimal type is limited to 38 digits in Hive. See [HIVE-4271]
 You can create a table in Hive that uses the Decimal type with the following syntax:
 
 ```
-create table decimal\_1 (t decimal);
+create table decimal_1 (t decimal);
 
 ```
 
@@ -346,21 +346,21 @@ The table `decimal_1` is a table having one field of type decimal which is basic
 You can read and write values in such a table using either the LazySimpleSerDe or the LazyBinarySerDe. For example:
 
 ```
-alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe';
+alter table decimal_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe';
 
 ```
 
 or:
 
 ```
-alter table decimal\_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazyBinarySerDe';
+alter table decimal_1 set serde 'org.apache.hadoop.hive.serde2.lazy.LazyBinarySerDe';
 
 ```
 
 You can use a cast to convert a Decimal value to any other primitive type such as a BOOLEAN. For example:
 
 ```
-select cast(t as boolean) from decimal\_2;
+select cast(t as boolean) from decimal_2;
 
 ```
 
@@ -410,7 +410,7 @@ Casting is supported between decimal values and any other primitive type such as
 
 ##### Testing Decimal Types
 
-Two new tests have been added as part of the TestCliDriver framework within Hive. They are decimal\_1.q and decimal\_2.q. Other tests such as udf7.q cover the gamut of UDFs mentioned above.
+Two new tests have been added as part of the TestCliDriver framework within Hive. They are decimal_1.q and decimal_2.q. Other tests such as udf7.q cover the gamut of UDFs mentioned above.
 
 More tests need to be added that demonstrate failure or when certain types of casts are prevented (for example, casting to date). There is some ambiguity in the round function because the rounding of Decimal does not work exactly as the SQL standard, and therefore it has been omitted in the current work.
 

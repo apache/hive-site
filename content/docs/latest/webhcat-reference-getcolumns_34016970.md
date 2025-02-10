@@ -46,7 +46,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 ### Curl Command
 
 ```
-% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my\_table/column?user.name=ctdean'
+% curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/column?user.name=ctdean'
 
 ```
 
@@ -65,16 +65,16 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
      "type": "string"
    },
    {
-     "name": "my\_p",
+     "name": "my_p",
      "type": "string"
    },
    {
-     "name": "my\_q",
+     "name": "my_q",
      "type": "string"
    }
  ],
  "database": "default",
- "table": "my\_table"
+ "table": "my_table"
 }
 
 ```

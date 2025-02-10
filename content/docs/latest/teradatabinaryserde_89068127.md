@@ -49,32 +49,32 @@ Here is a bash script example for how to call TPT FastExport:
 **TPT FastExport script example**
 
 ```
-query\_table=foo.teradata\_binary\_table
-data\_date=20180108
-select\_statement="SELECT * FROM $query\_table WHERE transaction\_date BETWEEN DATE '2018-01-01' AND DATE '2018-01-08' AND is\_deleted=0"
-select\_statement=${select\_statement//\'/\'\'}  # Do not put double quote here
-output\_path=/data/foo/bar/${data\_date}
-num\_chunks=4
+query_table=foo.teradata_binary_table
+data_date=20180108
+select_statement="SELECT * FROM $query_table WHERE transaction_date BETWEEN DATE '2018-01-01' AND DATE '2018-01-08' AND is_deleted=0"
+select_statement=${select_statement//\'/\'\'}  # Do not put double quote here
+output_path=/data/foo/bar/${data_date}
+num_chunks=4
 
-tbuild -C -f $td\_export\_template\_file -v ${tpt\_job\_var\_file} \
-  -u "ExportSelectStmt='${select\_statement}',FormatType=Formatted,DataFileCount=${num\_chunks},
-  FileWriterDirectoryPath='${output\_path},FileWriterFileName='${query\_table}.${data\_date}.teradata',
-  SourceTableName='${query\_table}'"
+tbuild -C -f $td_export_template_file -v ${tpt_job_var_file} \
+  -u "ExportSelectStmt='${select_statement}',FormatType=Formatted,DataFileCount=${num_chunks},
+  FileWriterDirectoryPath='${output_path},FileWriterFileName='${query_table}.${data_date}.teradata',
+  SourceTableName='${query_table}'"
 ```
 
-The **td\_export\_template\_file** looks like below with proper **Format, MaxDecimalDigits,** and**DateForm** in place:
+The **td_export_template_file** looks like below with proper **Format, MaxDecimalDigits,** and**DateForm** in place:
 
   
 
-**td\_export\_template\_file**
+**td_export_template_file**
 
 ```
 USING CHARACTER SET UTF8
-DEFINE JOB EXPORT\_TO\_BINARY\_FORMAT
+DEFINE JOB EXPORT_TO_BINARY_FORMAT
 DESCRIPTION 'Export to the INDICDATA file'
 (
-  /* https://www.info.teradata.com/HTMLPubs/DB\_TTU\_16\_00/Load\_and\_Unload\_Utilities/B035-2436%E2%80%90086K/2436ch03.05.3.html */
-  APPLY TO OPERATOR ($FILE\_WRITER()[@DataFileCount] ATTR
+  /* https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/Load_and_Unload_Utilities/B035-2436%E2%80%90086K/2436ch03.05.3.html */
+  APPLY TO OPERATOR ($FILE_WRITER()[@DataFileCount] ATTR
     (
     IndicatorMode = 'Y',
     OpenMode      = 'Write',
@@ -93,20 +93,20 @@ DESCRIPTION 'Export to the INDICDATA file'
     TdpId             = @SourceTdpId,
     UserName          = @SourceUserName,
     UserPassword      = @SourceUserPassword,
-    QueryBandSessInfo = 'Action=TPT\_EXPORT;SourceTable=@SourceTableName;Format=@FormatType;'
+    QueryBandSessInfo = 'Action=TPT_EXPORT;SourceTable=@SourceTableName;Format=@FormatType;'
     )
   );
 );
 ```
 
-The login credential is supplied in tpt\_job\_var\_file instead of via command line:
+The login credential is supplied in tpt_job_var_file instead of via command line:
 
-**tpt\_job\_var\_file**
+**tpt_job_var_file**
 
 ```
- SourceUserName=<td\_use>
-,SourceUserPassword=<td\_pass>
-,SourceTdpId=<td\_pid>
+ SourceUserName=<td_use>
+,SourceUserPassword=<td_pass>
+,SourceTdpId=<td_pid>
 ```
 
 #### Using BTEQ
@@ -120,8 +120,8 @@ SET SESSION DATEFORM=INTEGERDATE;
 .SET SESSION CHARSET UTF8
 .decimaldigits 38
 
-.export indicdata recordlength=max1mb file=td\_data\_with\_1mb\_rowsize.dat
-select * from foo.teradata\_binary\_table order by test\_int;
+.export indicdata recordlength=max1mb file=td_data_with_1mb_rowsize.dat
+select * from foo.teradata_binary_table order by test_int;
 .export reset
 ```
 
@@ -144,38 +144,38 @@ SET SESSION DATEFORM=INTEGERDATE;
 .SET SESSION CHARSET UTF8
 .decimaldigits 38
 
-.IMPORT INDICDATA RECORDLENGTH=MAX1MB FILE=td\_data\_with\_1mb\_rowsize.teradata
+.IMPORT INDICDATA RECORDLENGTH=MAX1MB FILE=td_data_with_1mb_rowsize.teradata
 .REPEAT *
 USING(
-      test\_tinyint BYTEINT,
-      test\_smallint SMALLINT,
-      test\_int INTEGER,
-      test\_bigint BIGINT,
-      test\_double FLOAT,
-      test\_decimal DECIMAL(15,2),
-      test\_date DATE,
-      test\_timestamp TIMESTAMP(6),
-      test\_char CHAR(3),  -- CHAR(1) will occupy 3 bytes
-      test\_varchar VARCHAR(40),
-      test\_binary VARBYTE(500)
+      test_tinyint BYTEINT,
+      test_smallint SMALLINT,
+      test_int INTEGER,
+      test_bigint BIGINT,
+      test_double FLOAT,
+      test_decimal DECIMAL(15,2),
+      test_date DATE,
+      test_timestamp TIMESTAMP(6),
+      test_char CHAR(3),  -- CHAR(1) will occupy 3 bytes
+      test_varchar VARCHAR(40),
+      test_binary VARBYTE(500)
 )
-INSERT INTO foo.stg\_teradata\_binary\_table
+INSERT INTO foo.stg_teradata_binary_table
 (
- test\_tinyint, test\_smallint, test\_int, test\_bigint, test\_double, test\_decimal,
- test\_date, test\_timestamp, test\_char, test\_varchar, test\_binary
+ test_tinyint, test_smallint, test_int, test_bigint, test_double, test_decimal,
+ test_date, test_timestamp, test_char, test_varchar, test_binary
 )
 values (
-:test\_tinyint,
-:test\_smallint,
-:test\_int,
-:test\_bigint,
-:test\_double,
-:test\_decimal,
-:test\_date,
-:test\_timestamp,
-:test\_char,
-:test\_varchar,
-:test\_binary
+:test_tinyint,
+:test_smallint,
+:test_int,
+:test_bigint,
+:test_double,
+:test_decimal,
+:test_date,
+:test_timestamp,
+:test_char,
+:test_varchar,
+:test_binary
 );
 
 .IMPORT RESET
@@ -192,46 +192,46 @@ Here is a bash script example for how to call TPT FastLoad.
 **TPT FastLoad script example**
 
 ```
-staging\_database=foo
-staging\_table=stg\_table\_name\_up\_to\_30\_chars
-table\_name\_less\_than\_26chars=stg\_table\_name\_up\_to\_30\_c
-file\_dir=/data/foo/bar
-job\_id=<my\_job\_execution\_id>
+staging_database=foo
+staging_table=stg_table_name_up_to_30_chars
+table_name_less_than_26chars=stg_table_name_up_to_30_c
+file_dir=/data/foo/bar
+job_id=<my_job_execution_id>
 
-tbuild -C -f $td\_import\_template\_file -v ${tpt\_job\_var\_file} \
-  -u "TargetWorkingDatabase='${staging\_database}',TargetTable='${staging\_table}',
-     SourceDirectoryPath='${file\_dir}',SourceFileName='*.teradata.gz',
+tbuild -C -f $td_import_template_file -v ${tpt_job_var_file} \
+  -u "TargetWorkingDatabase='${staging_database}',TargetTable='${staging_table}',
+     SourceDirectoryPath='${file_dir}',SourceFileName='*.teradata.gz',
      FileInstances=8,LoadInstances=1,
-     Substr26TargetTable='${table\_name\_less\_than\_26chars}',
-     TargetQueryBandSessInfo='TptLoad=${staging\_table};JobId=${job\_id};'"
+     Substr26TargetTable='${table_name_less_than_26chars}',
+     TargetQueryBandSessInfo='TptLoad=${staging_table};JobId=${job_id};'"
 ```
 
   
 
-The **td\_import\_template\_file** looks like:
+The **td_import_template_file** looks like:
 
   
 
-**td\_import\_template\_file**
+**td_import_template_file**
 
 ```
 USING CHARACTER SET @Characterset
-DEFINE JOB LOAD\_JOB
+DEFINE JOB LOAD_JOB
 DESCRIPTION 'Loading Data From File To Teradata Table'
 (
-set LogTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'\_LT';
-set ErrorTable1=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'\_ET';
-set ErrorTable2=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'\_UT';
-set WorkTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'\_WT';
-set ErrorTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'\_ET';
+set LogTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_LT';
+set ErrorTable1=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_ET';
+set ErrorTable2=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_UT';
+set WorkTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_WT';
+set ErrorTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_ET';
 
-set LoadPrivateLogName=@TargetTable||'\_load.log'
-set UpdatePrivateLogName=@TargetTable||'\_update.log'
-set StreamPrivateLogName=@TargetTable||'\_stream.log'
-set InserterPrivateLogName=@TargetTable||'\_inserter.log'
-set FileReaderPrivateLogName=@TargetTable||'\_filereader.log'
+set LoadPrivateLogName=@TargetTable||'_load.log'
+set UpdatePrivateLogName=@TargetTable||'_update.log'
+set StreamPrivateLogName=@TargetTable||'_stream.log'
+set InserterPrivateLogName=@TargetTable||'_inserter.log'
+set FileReaderPrivateLogName=@TargetTable||'_filereader.log'
 
-STEP PRE\_PROCESSING\_DROP\_ERROR\_TABLES
+STEP PRE_PROCESSING_DROP_ERROR_TABLES
 (
 APPLY
 ('release mload '||@TargetTable||';'),
@@ -246,18 +246,18 @@ TO OPERATOR ($DDL);
 STEP LOADING
 (
     APPLY $INSERT TO OPERATOR ($LOAD() [@LoadInstances])
-    SELECT * FROM OPERATOR ($FILE\_READER() [@FileInstances]);
+    SELECT * FROM OPERATOR ($FILE_READER() [@FileInstances]);
 );
 );
 ```
 
   
 
-Please set the correct values in **tpt\_job\_var\_file**, such as **SourceFormat**, **DateForm**, **MaxDecimalDigits**. Here is an example:
+Please set the correct values in **tpt_job_var_file**, such as **SourceFormat**, **DateForm**, **MaxDecimalDigits**. Here is an example:
 
   
 
-**tpt\_job\_var\_file**
+**tpt_job_var_file**
 
 ```
  Characterset='UTF8'
@@ -277,9 +277,9 @@ Please set the correct values in **tpt\_job\_var\_file**, such as **SourceForm
 ,UpdateBufferSize=1024
 ,LoadInstances=1
 
-,TargetTdpId=<td\_pid>
-,TargetUserName=<td\_user>
-,TargetUserPassword=<td\_pass>
+,TargetTdpId=<td_pid>
+,TargetUserName=<td_user>
+,TargetUserPassword=<td_pass>
 ```
 
   
@@ -291,18 +291,18 @@ Please set the correct values in **tpt\_job\_var\_file**, such as **SourceForm
 **Create table with specific Teradata properties**
 
 ```
-CREATE TABLE `teradata\_binary\_table\_1mb`(
-  `test\_tinyint` tinyint,
-  `test\_smallint` smallint,
-  `test\_int` int,
-  `test\_bigint` bigint,
-  `test\_double` double,
-  `test\_decimal` decimal(15,2),
-  `test\_date` date,
-  `test\_timestamp` timestamp,
-  `test\_char` char(1),
-  `test\_varchar` varchar(40),
-  `test\_binary` binary
+CREATE TABLE `teradata_binary_table_1mb`(
+  `test_tinyint` tinyint,
+  `test_smallint` smallint,
+  `test_int` int,
+  `test_bigint` bigint,
+  `test_double` double,
+  `test_decimal` decimal(15,2),
+  `test_date` date,
+  `test_timestamp` timestamp,
+  `test_char` char(1),
+  `test_varchar` varchar(40),
+  `test_binary` binary
  )
 ROW FORMAT SERDE
   'org.apache.hadoop.hive.serde2.teradata.TeradataBinarySerde'

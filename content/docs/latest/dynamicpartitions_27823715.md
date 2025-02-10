@@ -116,8 +116,8 @@ The above example shows the case of all DP columns in CTAS. If you want put some
 
 ```
 
- -- part\_col is partitioning column
- create table T as select a, concat("part\_", part\_col) from S where part\_col is not null; 
+ -- part_col is partitioning column
+ create table T as select a, concat("part_", part_col) from S where part_col is not null; 
 
 ```
 
@@ -131,7 +131,7 @@ Although currently there is not restriction on the data type of the partitioning
 * string value could contains special characters that is reserved in FS path names (such as '/' or '..').
 * what should we do for partition column ObjectInspector?
 
- We need to define a UDF (say hive\_qname\_partition(T.part\_col)) to take a primitive typed value and convert it to a qualified partition name.
+ We need to define a UDF (say hive_qname_partition(T.part_col)) to take a primitive typed value and convert it to a qualified partition name.
 
  3) Due to 2), this dynamic partitioning scheme qualifies as a hash-based partitioning scheme, except that we define the hash function to be as close as  
 
@@ -141,8 +141,8 @@ the input value. We should allow users to plugin their own UDF for the partition
 
 ```
 
- create table nzhang\_part(a string) partitioned by (ds string, dept int);
- insert overwrite nzhang\_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
+ create table nzhang_part(a string) partitioned by (ds string, dept int);
+ insert overwrite nzhang_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
 
 ```
 

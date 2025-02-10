@@ -263,7 +263,7 @@ These are the simple steps needed for creating test cases for your new UDAF/UDF:
 
 ```
 
-ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q -Doverwrite=true
+ant test -Dtestcase=TestCliDriver -Dqfile=udaf_XXXXX.q -Doverwrite=true
 
 ```
 
@@ -271,7 +271,7 @@ ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q -Doverwrite=true
 
 ```
 
-ant test -Dtestcase=TestCliDriver -Dqfile=udaf\_XXXXX.q
+ant test -Dtestcase=TestCliDriver -Dqfile=udaf_XXXXX.q
 
 ```
 

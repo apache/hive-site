@@ -39,9 +39,9 @@ The current release supports the following functions for windowing and analytics
 	* LAG
 		+ The number of rows to lag can optionally be specified. If the number of rows to lag is not specified, the lag is one row.
 		+ Returns null when the lag for the current row extends before the beginning of the window.
-	* FIRST\_VALUE
+	* FIRST_VALUE
 		+ This takes at most two parameters. The first parameter is the column for which you want the first value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
-	* LAST\_VALUE
+	* LAST_VALUE
 		+ This takes at most two parameters. The first parameter is the column for which you want the last value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
 2. The OVER clause
 	* OVER with standard aggregates:
@@ -73,10 +73,10 @@ The current release supports the following functions for windowing and analytics
 		Lead and Lag functions.
 3. Analytics functions
 	* RANK
-	* ROW\_NUMBER
-	* DENSE\_RANK
-	* CUME\_DIST
-	* PERCENT\_RANK
+	* ROW_NUMBER
+	* DENSE_RANK
+	* CUME_DIST
+	* PERCENT_RANK
 	* NTILE
 4. Distinct support in Hive 2.1.0 and later (see [HIVE-9534](https://issues.apache.org/jira/browse/HIVE-9534))
 
@@ -174,8 +174,8 @@ Aliases can be used as well, with or without the keyword AS:
 ```
 SELECT 
  a,
- COUNT(b) OVER (PARTITION BY c) AS b\_count,
- SUM(b) OVER (PARTITION BY c) b\_sum
+ COUNT(b) OVER (PARTITION BY c) AS b_count,
+ SUM(b) OVER (PARTITION BY c) b_sum
 FROM T;
 ```
 
