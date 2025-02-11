@@ -251,6 +251,84 @@ change the <code>POSTGRES_LOCAL_PATH</code> to the path of the downloaded jar. T
   <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>sum</span>(b) <span style=color:#66d9ef>from</span> hive_example;
 </code></pre></div></li>
 </ul>
+<h4 id=sys-schema-and-information_schema-schema><code>sys</code> Schema and <code>information_schema</code> Schema</h4>
+<p><code>Hive Schema Tool</code> is located in the Docker Image at <code>/opt/hive/bin/schematool</code>.</p>
+<p>By default, system schemas such as <code>information_schema</code> for HiveServer2 are not created.
+To create system schemas for a HiveServer2 instance,
+users need to configure the Hive Metastore Server used by HiveServer2 to use a database other than the embedded Derby.
+The following text discusses how to configure HiveServer2 when the Hive Metastore Server is in different locations.</p>
+<h5 id=hiveserver2-with-embedded-hive-metastore-server>HiveServer2 with embedded Hive Metastore Server</h5>
+<p>Assuming <code>Maven</code> and <code>Docker CE</code> are installed, a possible use case is as follows.
+Create a <code>compose.yaml</code> file in the current directory,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>services</span>:
+  <span style=color:#f92672>some-postgres</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>postgres:17.2-bookworm</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>POSTGRES_PASSWORD</span>: <span style=color:#e6db74>&#34;example&#34;</span>
+  <span style=color:#f92672>hiveserver2-standalone</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>apache/hive:4.0.1</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>some-postgres</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>SERVICE_NAME</span>: <span style=color:#ae81ff>hiveserver2</span>
+      <span style=color:#f92672>DB_DRIVER</span>: <span style=color:#ae81ff>postgres</span>
+      <span style=color:#f92672>SERVICE_OPTS</span>: &gt;-<span style=color:#e6db74>
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionUserName=postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionPassword=example</span>        
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>~/.m2/repository/org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar:/opt/hive/lib/postgres.jar</span>
+</code></pre></div><p>Then execute the shell command as follows to initialize the system schemas in HiveServer2.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mvn dependency:get -Dartifact<span style=color:#f92672>=</span>org.postgresql:postgresql:42.7.5
+docker compose up -d
+docker compose exec hiveserver2-standalone /bin/bash
+/opt/hive/bin/schematool -initSchema -dbType hive -metaDbType postgres -url jdbc:hive2://localhost:10000/default
+exit
+</code></pre></div><h5 id=hiveserver2-using-a-remote-hive-metastore-server>HiveServer2 using a remote Hive Metastore Server</h5>
+<p>Assuming <code>Maven</code> and <code>Docker CE</code> are installed, a possible use case is as follows.
+Create a <code>compose.yaml</code> file in the current directory,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>services</span>:
+  <span style=color:#f92672>some-postgres</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>postgres:17.2-bookworm</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>POSTGRES_PASSWORD</span>: <span style=color:#e6db74>&#34;example&#34;</span>
+  <span style=color:#f92672>metastore-standalone</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>apache/hive:4.0.1</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>some-postgres</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>SERVICE_NAME</span>: <span style=color:#ae81ff>metastore</span>
+      <span style=color:#f92672>DB_DRIVER</span>: <span style=color:#ae81ff>postgres</span>
+      <span style=color:#f92672>SERVICE_OPTS</span>: &gt;-<span style=color:#e6db74>
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionUserName=postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionPassword=example</span>        
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>~/.m2/repository/org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar:/opt/hive/lib/postgres.jar</span>
+  <span style=color:#f92672>hiveserver2-standalone</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>apache/hive:4.0.1</span>
+    <span style=color:#f92672>depends_on</span>:
+      - <span style=color:#ae81ff>metastore-standalone</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#f92672>SERVICE_NAME</span>: <span style=color:#ae81ff>hiveserver2</span>
+      <span style=color:#f92672>IS_RESUME</span>: <span style=color:#66d9ef>true</span>
+      <span style=color:#f92672>SERVICE_OPTS</span>: &gt;-<span style=color:#e6db74>
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionUserName=postgres
+</span><span style=color:#e6db74>        -Djavax.jdo.option.ConnectionPassword=example
+</span><span style=color:#e6db74>        -Dhive.metastore.uris=thrift://metastore-standalone:9083</span>        
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>~/.m2/repository/org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar:/opt/hive/lib/postgres.jar</span>
+</code></pre></div><p>Then execute the shell command as follows to initialize the system schemas in HiveServer2.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mvn dependency:get -Dartifact<span style=color:#f92672>=</span>org.postgresql:postgresql:42.7.5
+docker compose up -d
+docker compose exec hiveserver2-standalone /bin/bash
+/opt/hive/bin/schematool -initSchema -dbType hive -metaDbType postgres -url jdbc:hive2://localhost:10000/default
+exit
+</code></pre></div>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>
