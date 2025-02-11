@@ -160,7 +160,7 @@ ASF
 <h2 id=overview>Overview</h2>
 <p>The overall design of the gRPC support in Hive Metastore is illustrated in Fig.1. On the server side, based on user configuration, the Hive Metastore Server can listen on a port for Thrift or gRPC request. The lifecycle of a Thrift request has not been changed. For a gRPC request, the new <em>HiveMetastoreGrpcServer</em> will translate an incoming gRPC request into a Thrift request, transparently pass it to <em>HiveMetastoreThriftServer</em>, and translate the response back into gRPC.</p>
 <p>On the client side, a similar design is used to support converting outgoing requests from Thrift to gRPC. </p>
-<p><img src=attachments/158869886/158869888.png alt></p>
+<p><img src=/attachments/158869886/158869888.png alt></p>
 <p>Figure 1. An overview of the new gRPC endpoint of Hive Metastore. <em>Clarification: The only network I/O that occurs is between the user and serving processes in</em> <em>HiveMetaStore</em> <em>(gRPC, Thrift, or both).</em></p>
 <p>The implementation details are described in the following sections.</p>
 <h2 id=implementation>Implementation</h2>

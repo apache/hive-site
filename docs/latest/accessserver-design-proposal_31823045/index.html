@@ -154,11 +154,11 @@ ASF
 <p>Before discussing these modifications it is important to first understand the basic design of HiveServer2.</p>
 <h3 id=hiveserver2-design-overview>HiveServer2 Design Overview</h3>
 <p>The following diagram is a block-level representation of the major submodules in HiveServer2 with horizontal boundaries signifying dependencies. Green modules existed in Hive before the HiveServer2 project commenced, while blue modules were implemented as part of the HiveServer2 project.</p>
-<p><img src=attachments/31823045/31949154.png alt></p>
+<p><img src=/attachments/31823045/31949154.png alt></p>
 <p>The core of HiveServer2 is the HiveSession class. This class provides a container for user session state and also manages the lifecycle of operations triggered by the user. In this context an operation is any command exposed through the CLIService API that can generate a result set. This includes the ExecuteStatement() operation and metadata operations such as GetTables() and GetSchemas(). Each of these operations is implemented by a specific Operation subclass. In order to execute Hive queries the ExecuteStatementOperation makes use of the pre-existing HiveDriver class. HiveDriver encapsulates Hive’s compiler and plan execution engine, and in most respects is very similar to Pig’s PigServer class.</p>
 <h3 id=accessserver-design>AccessServer Design</h3>
 <p>The following diagram gives a quick overview of the changes required to support the Pig runtime engine in AccessServer. For simplicity we have removed Hive-specific components from the diagram such as the HiveOperation and HiveSession classes.</p>
-<p><img src=attachments/31823045/31949155.png alt></p>
+<p><img src=/attachments/31823045/31949155.png alt></p>
 <p>In the diagram blue denotes existing components in HiveServer2 that do not require modification. This includes the Thrift interface, JDBC/ODBC drivers, CLIService, and the Metastore.</p>
 <p>Orange denotes existing HiveServer2 components that must be modified. We need to modify the SessionManager in order to support pluggable session factories. Note that the CLIService API already allows clients to request a specific Session type via a set of configuration parameters that are part of the OpenSession call.</p>
 <p>Yellow denotes new components that must be fashioned from scratch: the PigSession class and the set of Pig Operation classes. The following implementation details relevant to these classes are worth noting:</p>

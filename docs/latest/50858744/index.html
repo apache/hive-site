@@ -144,7 +144,7 @@ ASF
 </ul>
 <p>Each processor box shows the triggering condition, either a Hive configuration property, or the presence of a certain operator in the tree.  So, you can see how to trigger a particular join by following its path through processors and making sure all configurations are triggered and the given operator has been created by previous processors.  There are further conditions to do the transform listed on the top, (ie, size of table, etc), that are not be explained by this document, and can be referred from documents of individual joins.</p>
 <h3 id=figure-1-join-processors-for-hive-on-mapreduce>Figure 1. Join Processors for Hive on MapReduce</h3>
-<p><img src="attachments/50858744/51183928.png?effects=border-simple,blur-border" alt></p>
+<p><img src="/attachments/50858744/51183928.png?effects=border-simple,blur-border" alt></p>
 <p>The input arrow at top before any Processor is always an operator-plan for common-join, which is shown as follows.  In other words, this is the original join plan if none of the optimizer processors are activated.</p>
 <p><img src=https://lh5.googleusercontent.com/6XjRKhcU5NqlT2-45wDW9f3lS188yRFFLzTVcPK77RKrrV6P2Box7n_qLxse7tdaH968Pnfg29ErRWzFWgYclNIwNFBus91eqoCGddM4hTmm8R-n2q39k3RtoH_1y7Jm5g alt></p>
 <p>The ‘exit’ arrows of the join paths shown in Figure 1 are the various optimized join variants.  There are of course other exit paths, in which the plan remains unchanged as a common-join upon falling out of any processor’s pre-req checks, but they are not shown to simplify the diagram.</p>
@@ -305,7 +305,7 @@ ASF
 <li>Hive on Spark’s SMB to MapJoin conversion path is simplified, by directly converting to MapJoin if eligible.</li>
 </ul>
 <h3 id=figure-2-join-processors-for-hive-on-spark>Figure 2: Join Processors for Hive on Spark</h3>
-<p><img src="attachments/50858744/51183929.png?effects=border-simple,blur-border" alt></p>
+<p><img src="/attachments/50858744/51183929.png?effects=border-simple,blur-border" alt></p>
 <p>Again, we first explore some of the interesting processors:</p>
 <p> </p>
 <ul>

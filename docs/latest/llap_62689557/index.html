@@ -145,7 +145,7 @@ Functionality such as caching, pre-fetching, some query processing and access co
 <p>Similar to the DataNode, LLAP daemons can be used by other applications as well, especially if a relational view on the data is preferred over file-centric processing. The daemon is also open through optional APIs (e.g., InputFormat) that can be leveraged by other data processing frameworks as a building block.</p>
 <p>Last, but not least, fine-grained column-level access control – a key requirement for mainstream adoption of Hive – fits nicely into this model.</p>
 <p>The diagram below shows an example execution with LLAP. Tez AM orchestrates overall execution. The initial stage of the query is pushed into LLAP. In the reduce stage, large shuffles are performed in separate containers. Multiple queries and applications can access LLAP concurrently.</p>
-<p><img src=attachments/62689557/65871225.png alt></p>
+<p><img src=/attachments/62689557/65871225.png alt></p>
 <h2 id=persistent-daemon>Persistent Daemon</h2>
 <p>To facilitate caching and JIT optimization, and to eliminate most of the startup costs, a daemon runs on the worker nodes on the cluster. The daemon handles I/O, caching, and query fragment execution.</p>
 <ul>

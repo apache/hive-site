@@ -169,7 +169,7 @@ ASF
 <p>The default stripe size is 250 MB. Large stripe sizes enable large, efficient reads from HDFS.</p>
 <p>The file footer contains a list of stripes in the file, the number of rows per stripe, and each column&rsquo;s data type. It also contains column-level aggregates count, min, max, and sum.</p>
 <p>This diagram illustrates the ORC file structure:</p>
-<p><img src=attachments/31818911/31948932.png alt></p>
+<p><img src=/attachments/31818911/31948932.png alt></p>
 <h3 id=stripe-structure>Stripe Structure</h3>
 <p>As shown in the diagram, each stripe in an ORC file holds index data, row data, and a stripe footer.</p>
 <p>The <strong>stripe footer</strong> contains a directory of stream locations. <strong>Row data</strong> is used in table scans.</p>
