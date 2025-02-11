@@ -29,7 +29,7 @@ HCatalog is a table and storage management layer for Hadoop that enables users w
 
 HCatalog supports reading and writing files in any format for which a SerDe (serializer-deserializer) can be written. By default, HCatalog supports RCFile, CSV, JSON, and SequenceFile, and ORC file formats. To use a custom format, you must provide the InputFormat, OutputFormat, and SerDe.
 
-![](attachments/34013260/34177026.jpg)
+![](/attachments/34013260/34177026.jpg)
 
 ## HCatalog Architecture
 

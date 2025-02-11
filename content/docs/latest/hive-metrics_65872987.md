@@ -11,7 +11,7 @@ The metrics that Hive collects can be viewed in the [HiveServer2 Web UI]({{< ref
 
 The metrics dump will display any metric available over JMX encoded in JSON: 
 
-![](attachments/65872987/65874398.png)
+![](/attachments/65872987/65874398.png)
 
 Alternatively the metrics can be written directly into HDFS, a JSON file on the local file system where the HS2 instance is running or to the console by enabling the corresponding metric reporters. By default only the JMX and the JSON file reporter are enabled.
 

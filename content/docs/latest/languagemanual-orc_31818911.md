@@ -53,7 +53,7 @@ The file footer contains a list of stripes in the file, the number of rows per s
 
 This diagram illustrates the ORC file structure:
 
-![](attachments/31818911/31948932.png)
+![](/attachments/31818911/31948932.png)
 
 ### Stripe Structure
 

@@ -280,7 +280,7 @@ The interface is currently under development with [HIVE-12338](https://issues.a
 
   
 
-![](attachments/30758712/61336258.png)
+![](/attachments/30758712/61336258.png)
 
 ## Python Client Driver
 

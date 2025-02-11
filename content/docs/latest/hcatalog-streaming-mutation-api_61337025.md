@@ -118,7 +118,7 @@ Although this API is concerned with writing changes to data, as previously state
 
 # Example
 
-![](attachments/61337025/61337024.png?effects=border-simple,blur-border)
+![](/attachments/61337025/61337024.png?effects=border-simple,blur-border)
 
 So to recap, the sequence of events required to apply mutations to a dataset using the API is:
 
