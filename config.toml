@@ -58,3 +58,6 @@ theme = 'hive'
     cbo = "https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive"
     llap = "https://cwiki.apache.org/confluence/display/Hive/LLAP"
     iceberg = "https://iceberg.apache.org/docs/latest/hive/"
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
