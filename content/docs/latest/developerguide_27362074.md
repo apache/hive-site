@@ -5,44 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : DeveloperGuide
 
-# Developer Guide
-
-* [Developer Guide]({{< ref "#developer-guide" >}})
-	+ [Code Organization and a Brief Architecture]({{< ref "#code-organization-and-a-brief-architecture" >}})
-		- [Introduction]({{< ref "#introduction" >}})
-		- [Hive SerDe]({{< ref "#hive-serde" >}})
-			* [How to Write Your Own SerDe]({{< ref "#how-to-write-your-own-serde" >}})
-			* [ObjectInspector]({{< ref "#objectinspector" >}})
-			* [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}})
-		- [MetaStore]({{< ref "#metastore" >}})
-		- [Query Processor]({{< ref "#query-processor" >}})
-			* [Compiler]({{< ref "#compiler" >}})
-			* [Parser]({{< ref "#parser" >}})
-			* [TypeChecking]({{< ref "#typechecking" >}})
-			* [Semantic Analysis]({{< ref "#semantic-analysis" >}})
-			* [Plan generation]({{< ref "#plan-generation" >}})
-			* [Task generation]({{< ref "#task-generation" >}})
-			* [Execution Engine]({{< ref "#execution-engine" >}})
-			* [Plan]({{< ref "#plan" >}})
-			* [Operators]({{< ref "#operators" >}})
-			* [UDFs and UDAFs]({{< ref "#udfs-and-udafs" >}})
-	+ [Compiling and Running Hive]({{< ref "#compiling-and-running-hive" >}})
-		- [Default Mode]({{< ref "#default-mode" >}})
-		- [Advanced Mode]({{< ref "#advanced-mode" >}})
-		- [Running Hive Without a Hadoop Cluster]({{< ref "#running-hive-without-a-hadoop-cluster" >}})
-	+ [Unit tests and debugging]({{< ref "#unit-tests-and-debugging" >}})
-		- [Layout of the unit tests]({{< ref "#layout-of-the-unit-tests" >}})
-		- [Running unit tests]({{< ref "#running-unit-tests" >}})
-		- [Adding new unit tests]({{< ref "#adding-new-unit-tests" >}})
-		- [Debugging Hive Code]({{< ref "#debugging-hive-code" >}})
-			* [Debugging Client-Side Code]({{< ref "#debugging-client-side-code" >}})
-			* [Debugging Server-Side Code]({{< ref "#debugging-server-side-code" >}})
-			* [Debugging without Ant (Client and Server Side)]({{< ref "#debugging-without-ant-client-and-server-side" >}})
-	+ [Pluggable interfaces]({{< ref "#pluggable-interfaces" >}})
-		- [File Formats]({{< ref "#file-formats" >}})
-		- [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}})
-		- [Map-Reduce Scripts]({{< ref "#map-reduce-scripts" >}})
-		- [UDFs and UDAFs - how to add new UDFs and UDAFs]({{< ref "#udfs-and-udafs---how-to-add-new-udfs-and-udafs" >}})
+{{< toc >}}
 
 ## Code Organization and a Brief Architecture
 
@@ -287,95 +250,6 @@ Then you can run '`build/dist/bin/hive`' and it will work against your local fil
 ### Layout of the unit tests
 
 Hive uses [JUnit](http://junit.org/) for unit tests. Each of the 3 main components of Hive have their unit test implementations in the corresponding src/test directory e.g. trunk/metastore/src/test has all the unit tests for metastore, trunk/serde/src/test has all the unit tests for serde and trunk/ql/src/test has all the unit tests for the query processor. The metastore and serde unit tests provide the TestCase implementations for JUnit. The query processor tests on the other hand are generated using Velocity. The main directories under trunk/ql/src/test that contain these tests and the corresponding results are as follows:
-
-* Test Queries:
-	+ queries/clientnegative - This directory contains the query files (.q files) for the negative test cases. These are run through the CLI classes and therefore test the entire query processor stack.
-	+ queries/clientpositive - This directory contains the query files (.q files) for the positive test cases. Thesre are run through the CLI classes and therefore test the entire query processor stack.
-	+ qureies/positive (Will be deprecated) - This directory contains the query files (.q files) for the positive test cases for the compiler. These only test the compiler and do not run the execution code.
-	+ queries/negative (Will be deprecated) - This directory contains the query files (.q files) for the negative test cases for the compiler. These only test the compiler and do not run the execution code.
-* Test Results:
-	+ results/clientnegative - The expected results from the queries in queries/clientnegative.
-	+ results/clientpositive - The expected results from the queries in queries/clientpositive.
-	+ results/compiler/errors - The expected results from the queries in queries/negative.
-	+ results/compiler/parse - The expected Abstract Syntax Tree output for the queries in queries/positive.
-	+ results/compiler/plan - The expected query plans for the queries in queries/positive.
-* Velocity Templates to Generate the Tests:
-	+ templates/TestCliDriver.vm - Generates the tests from queries/clientpositive.
-	+ templates/TestNegativeCliDriver.vm - Generates the tests from queries/clientnegative.
-	+ templates/TestParse.vm - Generates the tests from queries/positive.
-	+ templates/TestParseNegative.vm - Generates the tests from queries/negative.
-
-### Running unit tests
-
-Ant to Maven
-
-As of version [0.13](https://issues.apache.org/jira/browse/HIVE-5107) Hive uses Maven instead of Ant for its build. The following instructions are not up to date.
-
-See the [Hive Developer FAQ]({{< ref "#hive-developer-faq" >}}) for updated instructions.
-
-Run all tests:
-
-```
-ant package test
-
-```
-
-Run all positive test queries:
-
-```
-ant test -Dtestcase=TestCliDriver
-
-```
-
-Run a specific positive test query:
-
-```
-ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q
-
-```
-
-The above test produces the following files:
-
-* `build/ql/test/TEST-org.apache.hadoop.hive.cli.TestCliDriver.txt` - Log output for the test. This can be helpful when examining test failures.
-* `build/ql/test/logs/groupby1.q.out` - Actual query result for the test. This result is compared to the expected result as part of the test.
-
-Run the set of unit tests matching a regex, e.g. partition_wise_fileformat tests 10-16:
-
-```
-ant test -Dtestcase=TestCliDriver -Dqfile_regex=partition_wise_fileformat1[0-6]
-
-```
-
-Note that this option matches against the basename of the test without the .q suffix.
-
-Apparently the Hive tests do not run successfully after a clean unless you run `ant package` first. Not sure why build.xml doesn't encode this dependency.
-
-### Adding new unit tests
-
-Ant to Maven
-
-As of version [0.13](https://issues.apache.org/jira/browse/HIVE-5107) Hive uses Maven instead of Ant for its build. The following instructions are not up to date.
-
-See the [Hive Developer FAQ]({{< ref "#hive-developer-faq" >}}) for updated instructions. See also [Tips for Adding New Tests in Hive]({{< ref "tipsforaddingnewtests_27362060" >}}) and [How to Contribute: Add a Unit Test]({{< ref "#how-to-contribute:-add-a-unit-test" >}}).
-
-First, write a new myname.q in ql/src/test/queries/clientpositive.
-
-Then, run the test with the query and overwrite the result (useful when you add a new test).
-
-```
-ant test -Dtestcase=TestCliDriver -Dqfile=myname.q -Doverwrite=true
-
-```
-
-Then we can create a patch by:
-
-```
-svn add ql/src/test/queries/clientpositive/myname.q ql/src/test/results/clientpositive/myname.q.out
-svn diff > patch.txt
-
-```
-
-Similarly, to add negative client tests, write a new query input file in ql/src/test/queries/clientnegative and run the same command, this time specifying the testcase name as TestNegativeCliDriver instead of TestCliDriver. Note that for negative client tests, the output file if created using the overwrite flag can be be found in the directory ql/src/test/results/clientnegative.
 
 ### Debugging Hive Code
 

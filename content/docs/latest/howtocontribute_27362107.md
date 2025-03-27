@@ -9,29 +9,7 @@ date: 2024-12-12
 
 This page describes the mechanics of *how* to contribute software to Apache Hive. For ideas about *what* you might contribute, please see open tickets in [Jira](https://issues.apache.org/jira/browse/HIVE).
 
-* [How to Contribute to Apache Hive]({{< ref "#how-to-contribute-to-apache-hive" >}})
-	+ [Getting the Source Code]({{< ref "#getting-the-source-code" >}})
-	+ [Becoming a Contributor]({{< ref "#becoming-a-contributor" >}})
-	+ [Making Changes]({{< ref "#making-changes" >}})
-		- [Coding Conventions]({{< ref "#coding-conventions" >}})
-		- [Understanding Maven]({{< ref "#understanding-maven" >}})
-		- [Understanding Hive Branches]({{< ref "#understanding-hive-branches" >}})
-		- [Hadoop Dependencies]({{< ref "#hadoop-dependencies" >}})
-			* [branch-1]({{< ref "#branch-1" >}})
-			* [branch-2]({{< ref "#branch-2" >}})
-		- [Unit Tests]({{< ref "#unit-tests" >}})
-		- [Add a Unit Test]({{< ref "#add-a-unit-test" >}})
-			* [Java Unit Test]({{< ref "#java-unit-test" >}})
-			* [Query Unit Test]({{< ref "#query-unit-test" >}})
-			* [Beeline Query Unit Test]({{< ref "#beeline-query-unit-test" >}})
-		- [Debugging]({{< ref "#debugging" >}})
-		- [Submitting a PR]({{< ref "#submitting-a-pr" >}})
-		- [Fetching a PR from Github]({{< ref "#fetching-a-pr-from-github" >}})
-	+ [Contributing Your Work]({{< ref "#contributing-your-work" >}})
-	+ [JIRA]({{< ref "#jira" >}})
-		- [Guidelines]({{< ref "#guidelines" >}})
-	+ [Generating Thrift Code]({{< ref "#generating-thrift-code" >}})
-	+ [See Also]({{< ref "#see-also" >}})
+{{< toc >}}
 
 ## Getting the Source Code
 
@@ -165,42 +143,7 @@ To test a particular component of Hive:
 
 #### Query Unit Test
 
-If the new feature can be tested using a Hive query in the command line, we just need to add a new `*.q` file and a new `*.q.out` file.
-
-If the feature is added in `ql` (query language):
-
-* Add a new `XXXXXX.q` file in `ql/src/test/queries/clientpositive`. (Optionally, add a new `XXXXXX.q` file for a query that is expected to fail in `ql/src/test/queries/clientnegative`.)
-* Run `mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=XXXXXX.q -Dtest.output.overwrite=true`. This will generate a new `XXXXXX.q.out` file in `ql/src/test/results/clientpositive`.
-	+ If you want to run multiple .q files in the test run, you can specify comma separated .q files, for example `-Dqfile="X1.q,X2.q"`. You can also specify a Java regex, for example `-Dqfile_regex='join.*'`. (Note that it takes Java regex, i.e., `'join.*`'`` and not `'join*'`.) The regex match first removes the `.q` from the file name before matching regex, so specifying `join*.q` will not work.
-
-If the feature is added in `contrib`:
-
-* Do the steps above, replacing `ql` with `contrib`, and `TestCliDriver` with `TestContribCliDriver`.
-
-See the FAQ "[How do I add a test case?]({{< ref "#how-do-i-add-a-test-case?" >}})" for more details.
-
-#### Beeline Query Unit Test
-
-Legacy query test Drivers (all of them except TestBeeLineDriver) uses HiveCli to run the tests. TestBeeLineDriver runs the tests using the [Beeline client]({{< ref "#beeline-client" >}}). Creates a specific database for them, so the tests can run parallel. Running the tests you have the following configuration options:
-
-* `-Dqfile=XXXXXX.q`  - To run one or more specific query file tests. For the exact format, check the Query Unit Test paragraph. If not provided only those query files from `ql/src/test/queries/clientpositive` directory will be run which are mentioned in `itests/src/test/resources/testconfiguration.properties` in the `beeline.positive.include` parameter.
-* `-Dtest.output.overwrite=true` - This will rewrite the output of the q.out files in `ql/src/test/results/clientpositive/beeline`. The default value is false, and it will check the current output against the golden files
-* `-Dtest.beeline.compare.portable` - If this parameter is true, the generated and the golden query output files will be filtered before comparing them. This way the existing query tests can be run against different configurations using the same golden output files. The result of the following commands will be filtered out from the output files: EXPLAIN, DESCRIBE, DESCRIBE EXTENDED, DESCRIBE FORMATTED, SHOW TABLES, SHOW FORMATTED INDEXES and SHOW DATABASES.  
-The default value is `false`.
-* `-Djunit.parallel.threads=1` - The number of the parallel threads running the tests. The default is `1`. There were some flakiness caused by parallelization
-* `-Djunit.parallel.timeout=10` - The tests are terminated after the given timeout. The parameter is set in minutes and the default is 10 minutes. (As of [HIVE 3.0.0](https://issues.apache.org/jira/browse/HIVE-17072).)
-* The BeeLine tests could run against an existing cluster. Or if not provided, then against a MiniHS2 cluster created during the tests.
-	+ `-Dtest.beeline.url` - The jdbc url which should be used to connect to the existing cluster. If not set then a MiniHS2 cluster will be created instead.
-	+ `-Dtest.beeline.user` - The user which should be used to connect to the cluster. If not set `"user"` will be used.
-	+ `-Dtest.beeline.password` - The password which should be used to connect to the cluster. If not set `"password"` will be used.
-	+ `-Dtest.data.dir` - The test data directory on the cluster. If not set `<HIVEROOT>/data/files` will be used.
-	+ `-Dtest.results.dir` - The test results directory to compare against. If not set the default configuration will be used.
-	+ `-Dtest.init.script` - The test init script. If not set the default configuration will be used.
-	+ `-Dtest.beeline.shared.database` - If true, then the default database will be used, otherwise a test-specific database will be created for every run. The default value is false.
-
-### Debugging
-
-Please see [Debugging Hive code]({{< ref "#debugging-hive-code" >}}) in Development Guide.
+[You can write test cases and verify the output with LLAP, Tez, Iceberg, etc.](/development/qtest/)
 
 ### Submitting a PR
 
