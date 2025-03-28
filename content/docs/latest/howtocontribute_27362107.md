@@ -141,9 +141,9 @@ To test a particular component of Hive:
 * Add a new class (name must start with `Test`) in the component's `*/src/test/java` directory.
 * To test only the new testcase, run `mvn test -Dtest=TestAbc` (where `TestAbc` is the name of the new class), which will be faster than `mvn test` which tests all testcases.
 
-#### Query Unit Test
+#### Query File Test
 
-[You can write test cases and verify the output with LLAP, Tez, Iceberg, etc.](/development/qtest/)
+[You can run end-to-end integration tests using LLAP, Tez, Iceberg, etc.](/development/qtest/)
 
 ### Submitting a PR
 

@@ -1,5 +1,5 @@
 ---
-title: "QFile Query Unit Test"
+title: "Query File Test"
 date: 2025-03-28
 draft: false
 aliases: [/qtest.html]
@@ -23,9 +23,9 @@ aliases: [/qtest.html]
   specific language governing permissions and limitations
   under the License. -->
 
-# QFile Query Unit Test
+# Query File Test
 
-QFile Query Unit Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.
+Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.
 
 {{< toc >}}
 
@@ -85,7 +85,7 @@ $ mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
 
 ### Using test data
 
-Adding `--! qt:dataset:{table name}`, Query Unit Test automatically sets up a test table. [You can find the table definitions here](https://github.com/apache/hive/tree/master/data/files/datasets).
+Adding `--! qt:dataset:{table name}`, Query File Test automatically sets up a test table. [You can find the table definitions here](https://github.com/apache/hive/tree/master/data/files/datasets).
 
 ```sql
 --! qt:dataset:src
@@ -182,7 +182,7 @@ You can override the mapping through [itests/src/test/resources/testconfiguratio
 
 ### Locations of log files
 
-The Query Unit Test framework outputs log files in the following paths.
+The Query File Test framework outputs log files in the following paths.
 
 - `itests/{qtest, qtest-accumulo, qtest-iceberg, qtest-kudu}/target/surefire-reports`
 - From the root of the source tree: `find . -name hive.log`
@@ -201,7 +201,7 @@ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params
 
 ### Remote debug
 
-Remote debugging with Query Unit Test is a potent tool for debugging Hive.
+Remote debugging with Query File Test is a potent tool for debugging Hive.
 
 ```sh
 $ mvn -Dmaven.surefire.debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:5005" test -Dtest=TestCliDriver -Dqfile=<test>.q
