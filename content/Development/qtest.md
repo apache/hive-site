@@ -36,10 +36,7 @@ Query File Test is a JUnit-based integration test suite for Apache Hive. Develop
 You have to compile Hive's source codes ahead of time.
 
 ```sh
-$ cd /path/to/hive
-$ mvn clean install -DskipTests
-$ cd itests
-$ mvn clean install -DskipTests
+$ mvn clean install -Dmaven.javadoc.skip=true -DskipTests -Pitests
 ```
 
 ### Add a QFile
@@ -133,7 +130,7 @@ If you use TestIcebergLlapLocalCliDriver, you have to go to `itest/qtest-iceberg
 
 ```sh
 $ cd itest/qtest-iceberg
-$ mvn test -Dtest=TestIcebergLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile_regex=iceberg_bucket_map_join_8
+$ mvn test -Dtest=TestIcebergLlapLocalCliDriver -Dqfile_regex=iceberg_bucket_map_join_8
 ```
 
 ### How to let Jenkins run specific drivers
@@ -201,24 +198,8 @@ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params
 
 ### Remote debug
 
-Remote debugging with Query File Test is a potent tool for debugging Hive.
+Remote debugging with Query File Test is a potent tool for debugging Hive. With the following command, Query File Test listens to port 5005 and waits for a debugger to be attached.
 
 ```sh
-$ mvn -Dmaven.surefire.debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=localhost:5005" test -Dtest=TestCliDriver -Dqfile=<test>.q
-```
-
-### How do I modify the init script when testing?
-
-Hive 2.0 added the option to skip the init script or supply a custom init script (see HIVE-11538).
-
-To skip initialization:
-
-```sh
-mvn test -Dtest=TestCliDriver -Phadoop-2 -Dqfile=test_to_run.q  -DinitScript=
-```
-
-To supply a custom script:
-
-```sh
-mvn test -Dtest=TestCliDriver -Phadoop-2 -Dtest.output.overwrite=true -Dqfile=test_to_run.q  -DinitScript=custom_script.sql
+$ mvn -Dmaven.surefire.debug test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=<test>.q
 ```
