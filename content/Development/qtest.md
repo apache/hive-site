@@ -185,7 +185,7 @@ The Query File Test framework outputs log files in the following paths.
 - From the root of the source tree: `find . -name hive.log`
 
 
-### How do I run with Postgre/MySQL/Oracle?
+### How to use PostgreSQL/MySQL/Oracle as a backend database for Hive Metastore
 
 To run a test with a specified DB, it is possible by adding the "-Dtest.metastore.db" parameter like in the following commands:
 
