@@ -123,8 +123,8 @@ ASF
 <h1 id=apache-hive--howtocontribute>Apache Hive : HowToContribute</h1>
 <h1 id=how-to-contribute-to-apache-hive>How to Contribute to Apache Hive</h1>
 <p>This page describes the mechanics of <em>how</em> to contribute software to Apache Hive. For ideas about <em>what</em> you might contribute, please see open tickets in <a href=https://issues.apache.org/jira/browse/HIVE>Jira</a>.</p>
-<ul>
-<li><a href=#how-to-contribute-to-apache-hive>How to Contribute to Apache Hive</a>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
 <li><a href=#getting-the-source-code>Getting the Source Code</a></li>
 <li><a href=#becoming-a-contributor>Becoming a Contributor</a></li>
@@ -133,21 +133,9 @@ ASF
 <li><a href=#coding-conventions>Coding Conventions</a></li>
 <li><a href=#understanding-maven>Understanding Maven</a></li>
 <li><a href=#understanding-hive-branches>Understanding Hive Branches</a></li>
-<li><a href=#hadoop-dependencies>Hadoop Dependencies</a>
-<ul>
-<li><a href=#branch-1>branch-1</a></li>
-<li><a href=#branch-2>branch-2</a></li>
-</ul>
-</li>
+<li><a href=#hadoop-dependencies>Hadoop Dependencies</a></li>
 <li><a href=#unit-tests>Unit Tests</a></li>
-<li><a href=#add-a-unit-test>Add a Unit Test</a>
-<ul>
-<li><a href=#java-unit-test>Java Unit Test</a></li>
-<li><a href=#query-unit-test>Query Unit Test</a></li>
-<li><a href=#beeline-query-unit-test>Beeline Query Unit Test</a></li>
-</ul>
-</li>
-<li><a href=#debugging>Debugging</a></li>
+<li><a href=#add-a-unit-test>Add a Unit Test</a></li>
 <li><a href=#submitting-a-pr>Submitting a PR</a></li>
 <li><a href=#fetching-a-pr-from-github>Fetching a PR from Github</a></li>
 </ul>
@@ -161,8 +149,8 @@ ASF
 <li><a href=#generating-thrift-code>Generating Thrift Code</a></li>
 <li><a href=#see-also>See Also</a></li>
 </ul>
-</li>
-</ul>
+</nav>
+</aside>
 <h2 id=getting-the-source-code>Getting the Source Code</h2>
 <p>First of all, you need the Hive source code.</p>
 <p>Get the source code on your local drive using git. See <a href=#understanding-hive-branches>Understanding Hive Branches</a> below to understand which branch you should be using.</p>
@@ -275,45 +263,8 @@ mvn test -Dtest=SomeTest
 <li>Add a new class (name must start with <code>Test</code>) in the component&rsquo;s <code>*/src/test/java</code> directory.</li>
 <li>To test only the new testcase, run <code>mvn test -Dtest=TestAbc</code> (where <code>TestAbc</code> is the name of the new class), which will be faster than <code>mvn test</code> which tests all testcases.</li>
 </ul>
-<h4 id=query-unit-test>Query Unit Test</h4>
-<p>If the new feature can be tested using a Hive query in the command line, we just need to add a new <code>*.q</code> file and a new <code>*.q.out</code> file.</p>
-<p>If the feature is added in <code>ql</code> (query language):</p>
-<ul>
-<li>Add a new <code>XXXXXX.q</code> file in <code>ql/src/test/queries/clientpositive</code>. (Optionally, add a new <code>XXXXXX.q</code> file for a query that is expected to fail in <code>ql/src/test/queries/clientnegative</code>.)</li>
-<li>Run <code>mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=XXXXXX.q -Dtest.output.overwrite=true</code>. This will generate a new <code>XXXXXX.q.out</code> file in <code>ql/src/test/results/clientpositive</code>.
-<ul>
-<li>If you want to run multiple .q files in the test run, you can specify comma separated .q files, for example <code>-Dqfile="X1.q,X2.q"</code>. You can also specify a Java regex, for example <code>-Dqfile_regex='join.*'</code>. (Note that it takes Java regex, i.e., <code>'join.*</code>'`` and not <code>'join*'</code>.) The regex match first removes the <code>.q</code> from the file name before matching regex, so specifying <code>join*.q</code> will not work.</li>
-</ul>
-</li>
-</ul>
-<p>If the feature is added in <code>contrib</code>:</p>
-<ul>
-<li>Do the steps above, replacing <code>ql</code> with <code>contrib</code>, and <code>TestCliDriver</code> with <code>TestContribCliDriver</code>.</li>
-</ul>
-<p>See the FAQ &ldquo;<a href=#how-do-i-add-a-test-case?>How do I add a test case?</a>&rdquo; for more details.</p>
-<h4 id=beeline-query-unit-test>Beeline Query Unit Test</h4>
-<p>Legacy query test Drivers (all of them except TestBeeLineDriver) uses HiveCli to run the tests. TestBeeLineDriver runs the tests using the <a href=#beeline-client>Beeline client</a>. Creates a specific database for them, so the tests can run parallel. Running the tests you have the following configuration options:</p>
-<ul>
-<li><code>-Dqfile=XXXXXX.q</code>  - To run one or more specific query file tests. For the exact format, check the Query Unit Test paragraph. If not provided only those query files from <code>ql/src/test/queries/clientpositive</code> directory will be run which are mentioned in <code>itests/src/test/resources/testconfiguration.properties</code> in the <code>beeline.positive.include</code> parameter.</li>
-<li><code>-Dtest.output.overwrite=true</code> - This will rewrite the output of the q.out files in <code>ql/src/test/results/clientpositive/beeline</code>. The default value is false, and it will check the current output against the golden files</li>
-<li><code>-Dtest.beeline.compare.portable</code> - If this parameter is true, the generated and the golden query output files will be filtered before comparing them. This way the existing query tests can be run against different configurations using the same golden output files. The result of the following commands will be filtered out from the output files: EXPLAIN, DESCRIBE, DESCRIBE EXTENDED, DESCRIBE FORMATTED, SHOW TABLES, SHOW FORMATTED INDEXES and SHOW DATABASES.<br>
-The default value is <code>false</code>.</li>
-<li><code>-Djunit.parallel.threads=1</code> - The number of the parallel threads running the tests. The default is <code>1</code>. There were some flakiness caused by parallelization</li>
-<li><code>-Djunit.parallel.timeout=10</code> - The tests are terminated after the given timeout. The parameter is set in minutes and the default is 10 minutes. (As of <a href=https://issues.apache.org/jira/browse/HIVE-17072>HIVE 3.0.0</a>.)</li>
-<li>The BeeLine tests could run against an existing cluster. Or if not provided, then against a MiniHS2 cluster created during the tests.
-<ul>
-<li><code>-Dtest.beeline.url</code> - The jdbc url which should be used to connect to the existing cluster. If not set then a MiniHS2 cluster will be created instead.</li>
-<li><code>-Dtest.beeline.user</code> - The user which should be used to connect to the cluster. If not set <code>"user"</code> will be used.</li>
-<li><code>-Dtest.beeline.password</code> - The password which should be used to connect to the cluster. If not set <code>"password"</code> will be used.</li>
-<li><code>-Dtest.data.dir</code> - The test data directory on the cluster. If not set <code>&lt;HIVEROOT>/data/files</code> will be used.</li>
-<li><code>-Dtest.results.dir</code> - The test results directory to compare against. If not set the default configuration will be used.</li>
-<li><code>-Dtest.init.script</code> - The test init script. If not set the default configuration will be used.</li>
-<li><code>-Dtest.beeline.shared.database</code> - If true, then the default database will be used, otherwise a test-specific database will be created for every run. The default value is false.</li>
-</ul>
-</li>
-</ul>
-<h3 id=debugging>Debugging</h3>
-<p>Please see <a href=#debugging-hive-code>Debugging Hive code</a> in Development Guide.</p>
+<h4 id=query-file-testqtest>Query File Test(qtest)</h4>
+<p><a href=/development/qtest/>You can run end-to-end integration tests using LLAP, Tez, Iceberg, etc.</a></p>
 <h3 id=submitting-a-pr>Submitting a PR</h3>
 <p>There are many excellent howtos about how to submit pullrequests for github projects. The following is one way to approach it:</p>
 <p>Setting up a repo with 2 remotes; I would recommend to use the github user as the remote name - as it may make things easier if you need to add someone else&rsquo;s repo as well.</p>

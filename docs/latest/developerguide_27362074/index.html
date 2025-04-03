@@ -121,35 +121,15 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--developerguide>Apache Hive : DeveloperGuide</h1>
-<h1 id=developer-guide>Developer Guide</h1>
-<ul>
-<li><a href=#developer-guide>Developer Guide</a>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
 <li><a href=#code-organization-and-a-brief-architecture>Code Organization and a Brief Architecture</a>
 <ul>
 <li><a href=#introduction>Introduction</a></li>
-<li><a href=#hive-serde>Hive SerDe</a>
-<ul>
-<li><a href=#how-to-write-your-own-serde>How to Write Your Own SerDe</a></li>
-<li><a href=#objectinspector>ObjectInspector</a></li>
-<li><a href=#registration-of-native-serdes>Registration of Native SerDes</a></li>
-</ul>
-</li>
+<li><a href=#hive-serde>Hive SerDe</a></li>
 <li><a href=#metastore>MetaStore</a></li>
-<li><a href=#query-processor>Query Processor</a>
-<ul>
-<li><a href=#compiler>Compiler</a></li>
-<li><a href=#parser>Parser</a></li>
-<li><a href=#typechecking>TypeChecking</a></li>
-<li><a href=#semantic-analysis>Semantic Analysis</a></li>
-<li><a href=#plan-generation>Plan generation</a></li>
-<li><a href=#task-generation>Task generation</a></li>
-<li><a href=#execution-engine>Execution Engine</a></li>
-<li><a href=#plan>Plan</a></li>
-<li><a href=#operators>Operators</a></li>
-<li><a href=#udfs-and-udafs>UDFs and UDAFs</a></li>
-</ul>
-</li>
+<li><a href=#query-processor>Query Processor</a></li>
 </ul>
 </li>
 <li><a href=#compiling-and-running-hive>Compiling and Running Hive</a>
@@ -162,15 +142,7 @@ ASF
 <li><a href=#unit-tests-and-debugging>Unit tests and debugging</a>
 <ul>
 <li><a href=#layout-of-the-unit-tests>Layout of the unit tests</a></li>
-<li><a href=#running-unit-tests>Running unit tests</a></li>
-<li><a href=#adding-new-unit-tests>Adding new unit tests</a></li>
-<li><a href=#debugging-hive-code>Debugging Hive Code</a>
-<ul>
-<li><a href=#debugging-client-side-code>Debugging Client-Side Code</a></li>
-<li><a href=#debugging-server-side-code>Debugging Server-Side Code</a></li>
-<li><a href=#debugging-without-ant-client-and-server-side>Debugging without Ant (Client and Server Side)</a></li>
-</ul>
-</li>
+<li><a href=#debugging-hive-code>Debugging Hive Code</a></li>
 </ul>
 </li>
 <li><a href=#pluggable-interfaces>Pluggable interfaces</a>
@@ -182,8 +154,8 @@ ASF
 </ul>
 </li>
 </ul>
-</li>
-</ul>
+</nav>
+</aside>
 <h2 id=code-organization-and-a-brief-architecture>Code Organization and a Brief Architecture</h2>
 <h3 id=introduction>Introduction</h3>
 <p>Hive has 3 main components:</p>
@@ -391,70 +363,7 @@ ASF
 </code></pre><p>Then you can run &lsquo;<code>build/dist/bin/hive</code>&rsquo; and it will work against your local file system.</p>
 <h2 id=unit-tests-and-debugging>Unit tests and debugging</h2>
 <h3 id=layout-of-the-unit-tests>Layout of the unit tests</h3>
-<p>Hive uses <a href=http://junit.org/>JUnit</a> for unit tests. Each of the 3 main components of Hive have their unit test implementations in the corresponding src/test directory e.g. trunk/metastore/src/test has all the unit tests for metastore, trunk/serde/src/test has all the unit tests for serde and trunk/ql/src/test has all the unit tests for the query processor. The metastore and serde unit tests provide the TestCase implementations for JUnit. The query processor tests on the other hand are generated using Velocity. The main directories under trunk/ql/src/test that contain these tests and the corresponding results are as follows:</p>
-<ul>
-<li>Test Queries:
-<ul>
-<li>queries/clientnegative - This directory contains the query files (.q files) for the negative test cases. These are run through the CLI classes and therefore test the entire query processor stack.</li>
-<li>queries/clientpositive - This directory contains the query files (.q files) for the positive test cases. Thesre are run through the CLI classes and therefore test the entire query processor stack.</li>
-<li>qureies/positive (Will be deprecated) - This directory contains the query files (.q files) for the positive test cases for the compiler. These only test the compiler and do not run the execution code.</li>
-<li>queries/negative (Will be deprecated) - This directory contains the query files (.q files) for the negative test cases for the compiler. These only test the compiler and do not run the execution code.</li>
-</ul>
-</li>
-<li>Test Results:
-<ul>
-<li>results/clientnegative - The expected results from the queries in queries/clientnegative.</li>
-<li>results/clientpositive - The expected results from the queries in queries/clientpositive.</li>
-<li>results/compiler/errors - The expected results from the queries in queries/negative.</li>
-<li>results/compiler/parse - The expected Abstract Syntax Tree output for the queries in queries/positive.</li>
-<li>results/compiler/plan - The expected query plans for the queries in queries/positive.</li>
-</ul>
-</li>
-<li>Velocity Templates to Generate the Tests:
-<ul>
-<li>templates/TestCliDriver.vm - Generates the tests from queries/clientpositive.</li>
-<li>templates/TestNegativeCliDriver.vm - Generates the tests from queries/clientnegative.</li>
-<li>templates/TestParse.vm - Generates the tests from queries/positive.</li>
-<li>templates/TestParseNegative.vm - Generates the tests from queries/negative.</li>
-</ul>
-</li>
-</ul>
-<h3 id=running-unit-tests>Running unit tests</h3>
-<p>Ant to Maven</p>
-<p>As of version <a href=https://issues.apache.org/jira/browse/HIVE-5107>0.13</a> Hive uses Maven instead of Ant for its build. The following instructions are not up to date.</p>
-<p>See the <a href=#hive-developer-faq>Hive Developer FAQ</a> for updated instructions.</p>
-<p>Run all tests:</p>
-<pre tabindex=0><code>ant package test
-
-</code></pre><p>Run all positive test queries:</p>
-<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver
-
-</code></pre><p>Run a specific positive test query:</p>
-<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q
-
-</code></pre><p>The above test produces the following files:</p>
-<ul>
-<li><code>build/ql/test/TEST-org.apache.hadoop.hive.cli.TestCliDriver.txt</code> - Log output for the test. This can be helpful when examining test failures.</li>
-<li><code>build/ql/test/logs/groupby1.q.out</code> - Actual query result for the test. This result is compared to the expected result as part of the test.</li>
-</ul>
-<p>Run the set of unit tests matching a regex, e.g. partition_wise_fileformat tests 10-16:</p>
-<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver -Dqfile_regex=partition_wise_fileformat1[0-6]
-
-</code></pre><p>Note that this option matches against the basename of the test without the .q suffix.</p>
-<p>Apparently the Hive tests do not run successfully after a clean unless you run <code>ant package</code> first. Not sure why build.xml doesn&rsquo;t encode this dependency.</p>
-<h3 id=adding-new-unit-tests>Adding new unit tests</h3>
-<p>Ant to Maven</p>
-<p>As of version <a href=https://issues.apache.org/jira/browse/HIVE-5107>0.13</a> Hive uses Maven instead of Ant for its build. The following instructions are not up to date.</p>
-<p>See the <a href=#hive-developer-faq>Hive Developer FAQ</a> for updated instructions. See also <a href=https://hive.apache.org/docs/latest/tipsforaddingnewtests_27362060/>Tips for Adding New Tests in Hive</a> and <a href=#how-to-contribute:-add-a-unit-test>How to Contribute: Add a Unit Test</a>.</p>
-<p>First, write a new myname.q in ql/src/test/queries/clientpositive.</p>
-<p>Then, run the test with the query and overwrite the result (useful when you add a new test).</p>
-<pre tabindex=0><code>ant test -Dtestcase=TestCliDriver -Dqfile=myname.q -Doverwrite=true
-
-</code></pre><p>Then we can create a patch by:</p>
-<pre tabindex=0><code>svn add ql/src/test/queries/clientpositive/myname.q ql/src/test/results/clientpositive/myname.q.out
-svn diff &gt; patch.txt
-
-</code></pre><p>Similarly, to add negative client tests, write a new query input file in ql/src/test/queries/clientnegative and run the same command, this time specifying the testcase name as TestNegativeCliDriver instead of TestCliDriver. Note that for negative client tests, the output file if created using the overwrite flag can be be found in the directory ql/src/test/results/clientnegative.</p>
+<p>Hive uses <a href=http://junit.org/>JUnit</a> for unit tests. Each of the 3 main components of Hive have their unit test implementations in the corresponding src/test directory e.g. trunk/metastore/src/test has all the unit tests for metastore, trunk/serde/src/test has all the unit tests for serde and trunk/ql/src/test has all the unit tests for the query processor. The metastore and serde unit tests provide the TestCase implementations for JUnit.</p>
 <h3 id=debugging-hive-code>Debugging Hive Code</h3>
 <p>Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.</p>
 <h4 id=debugging-client-side-code>Debugging Client-Side Code</h4>

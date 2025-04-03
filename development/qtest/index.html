@@ -1,0 +1,351 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Query File Test(qtest)</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/DesignDocs>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors>Resources for Contributors</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToRelease>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=query-file-testqtest>Query File Test(qtest)</h1>
+<p>Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#tutorial-how-to-run-a-specific-test-case>Tutorial: How to run a specific test case</a>
+<ul>
+<li><a href=#preparation>Preparation</a></li>
+<li><a href=#run-a-test-case>Run a test case</a></li>
+</ul>
+</li>
+<li><a href=#tutorial-how-to-add-a-new-test-case>Tutorial: How to add a new test case</a>
+<ul>
+<li><a href=#add-a-qfile>Add a QFile</a></li>
+<li><a href=#generate-a-result-file>Generate a result file</a></li>
+<li><a href=#verify-the-new-result-file>Verify the new result file</a></li>
+</ul>
+</li>
+<li><a href=#commandline-options>Commandline options</a>
+<ul>
+<li><a href=#test-options>Test options</a></li>
+<li><a href=#test-iceberg-accumulo-or-kudu>Test Iceberg, Accumulo, or Kudu</a></li>
+</ul>
+</li>
+<li><a href=#qtestoptionhandler-prepost-processor>QTestOptionHandler: pre/post-processor</a>
+<ul>
+<li><a href=#using-test-data>Using test data</a></li>
+<li><a href=#mask-non-deterministic-outputs>Mask non-deterministic outputs</a></li>
+</ul>
+</li>
+<li><a href=#advanced>Advanced</a>
+<ul>
+<li><a href=#locations-of-log-files>Locations of log files</a></li>
+<li><a href=#negative-tests>Negative tests</a></li>
+<li><a href=#how-to-specify-drivers>How to specify drivers</a></li>
+<li><a href=#how-to-use-postgresqlmysqloracle-as-a-backend-database-for-hive-metastore>How to use PostgreSQL/MySQL/Oracle as a backend database for Hive Metastore</a></li>
+<li><a href=#remote-debug>Remote debug</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=tutorial-how-to-run-a-specific-test-case>Tutorial: How to run a specific test case</h2>
+<h3 id=preparation>Preparation</h3>
+<p>You have to compile Hive&rsquo;s source codes ahead of time.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn clean install -Dmaven.javadoc.skip<span style=color:#f92672>=</span>true -DskipTests -Pitests
+</code></pre></div><h3 id=run-a-test-case>Run a test case</h3>
+<p>Let&rsquo;s try to run <a href=https://github.com/apache/hive/blob/master/ql/src/test/queries/clientpositive/alter1.q>alter1.q</a>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestMiniLlapLocalCliDriver -Dqfile<span style=color:#f92672>=</span>alter1.q
+</code></pre></div><p>The test should successfully finish.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#f92672>[</span>INFO<span style=color:#f92672>]</span> Results:
+<span style=color:#f92672>[</span>INFO<span style=color:#f92672>]</span>
+<span style=color:#f92672>[</span>INFO<span style=color:#f92672>]</span> Tests run: 1, Failures: 0, Errors: 0, Skipped: <span style=color:#ae81ff>0</span>
+</code></pre></div><h2 id=tutorial-how-to-add-a-new-test-case>Tutorial: How to add a new test case</h2>
+<h3 id=add-a-qfile>Add a QFile</h3>
+<p>A QFile includes a set of SQL statements that you want to test. Typically, we should put a new file in <code>ql/src/test/queries/clientpositive</code>.</p>
+<p>Let&rsquo;s say you created the following file.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cat ql/src/test/queries/clientpositive/aaa.q
+SELECT 1;
+</code></pre></div><h3 id=generate-a-result-file>Generate a result file</h3>
+<p>You can generate the expected output with <code>-Dtest.output.overwrite=true</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestMiniLlapLocalCliDriver -Dtest.output.overwrite<span style=color:#f92672>=</span>true -Dqfile<span style=color:#f92672>=</span>aaa.q
+...
+$ cat ql/src/test/results/clientpositive/llap/aaa.q.out
+PREHOOK: query: SELECT <span style=color:#ae81ff>1</span>
+PREHOOK: type: QUERY
+PREHOOK: Input: _dummy_database@_dummy_table
+<span style=color:#75715e>#### A masked pattern was here ####</span>
+POSTHOOK: query: SELECT <span style=color:#ae81ff>1</span>
+POSTHOOK: type: QUERY
+POSTHOOK: Input: _dummy_database@_dummy_table
+<span style=color:#75715e>#### A masked pattern was here ####</span>
+<span style=color:#ae81ff>1</span>
+</code></pre></div><h3 id=verify-the-new-result-file>Verify the new result file</h3>
+<p>You can ensure the generated result file is correct by rerunning the test case without <code>-Dtest.output.overwrite=true</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestMiniLlapLocalCliDriver -Dqfile<span style=color:#f92672>=</span>aaa.q
+</code></pre></div><h2 id=commandline-options>Commandline options</h2>
+<h3 id=test-options>Test options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test</td>
+<td>The class name of the test driver</td>
+<td><code>-Dtest=TestMiniLlapLocalCliDriver</code></td>
+</tr>
+<tr>
+<td>qfile</td>
+<td>The name(s) of Query Files</td>
+<td><code>-Dqfile=alter1.q</code>, <code>-Dqfile=alter1.q,alter2.q</code></td>
+</tr>
+<tr>
+<td>qfile_regex</td>
+<td>The pattern to list Query Files</td>
+<td><code>-Dqfile_regex=alter[0-9]</code></td>
+</tr>
+<tr>
+<td>test.output.overwrite</td>
+<td>Whether you want to (re)generate result files or not</td>
+<td><code>-Dtest.output.overwrite=true</code></td>
+</tr>
+<tr>
+<td>test.metastore.db</td>
+<td>Which RDBMS to be used as a metastore backend</td>
+<td>See <a href=#how-to-use-postgresqlmysqloracle-as-a-backend-database-for-hive-metastore>How to use PostgreSQL/MySQL/Oracle as a backend database for Hive Metastore</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id=test-iceberg-accumulo-or-kudu>Test Iceberg, Accumulo, or Kudu</h3>
+<p>Most test drivers are available in the <code>itest/qtest</code> project. However, there are some exceptional ones.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Project</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TestAccumuloCliDriver</td>
+<td>itest/qtest-accumulo</td>
+</tr>
+<tr>
+<td>TestIcebergCliDriver</td>
+<td>itest/qtest-iceberg</td>
+</tr>
+<tr>
+<td>TestIcebergLlapLocalCliDriver</td>
+<td>itest/qtest-iceberg</td>
+</tr>
+<tr>
+<td>TestIcebergLlapLocalCompactorCliDriver</td>
+<td>itest/qtest-iceberg</td>
+</tr>
+<tr>
+<td>TestIcebergNegativeCliDriver</td>
+<td>itest/qtest-iceberg</td>
+</tr>
+<tr>
+<td>TestKuduCliDriver</td>
+<td>itest/qtest-kudu</td>
+</tr>
+<tr>
+<td>TestKuduNegativeCliDriver</td>
+<td>itest/qtest-kudu</td>
+</tr>
+</tbody>
+</table>
+<p>When you use <code>TestIcebergLlapLocalCliDriver</code>, you have to specify <code>-pl itest/qtest-iceberg</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn test -Pitests -pl itests/qtest-iceberg -Dtest<span style=color:#f92672>=</span>TestIcebergLlapLocalCliDriver -Dqfile_regex<span style=color:#f92672>=</span>iceberg_bucket_map_join_8
+</code></pre></div><h2 id=qtestoptionhandler-prepost-processor>QTestOptionHandler: pre/post-processor</h2>
+<p>We extend JUnit by implementing <a href=https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestOptionHandler.java>QTestOptionHandlers</a>, which are custom pre-processors and post-processors. This section explains a couple of typical processors.</p>
+<h3 id=using-test-data>Using test data</h3>
+<p>Adding <code>--! qt:dataset:{table name}</code>, <a href=https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/dataset/QTestDatasetHandler.java>QTestDatasetHandler</a> automatically sets up a test table. You can find the table definitions <a href=https://github.com/apache/hive/tree/master/data/files/datasets>here</a>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#75715e>--! qt:dataset:src
+</span><span style=color:#75715e></span><span style=color:#66d9ef>SELECT</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>FROM</span> src;
+</code></pre></div><h3 id=mask-non-deterministic-outputs>Mask non-deterministic outputs</h3>
+<p>Some test cases generate random results. <a href=https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestReplaceHandler.java>QTestReplaceHandler</a> masks such a non-deterministic part. You can use it with a special comment prefixed with <code>--! qt:replace:</code>.</p>
+<p>For example, the result of <code>CURRENT_DATE</code> changes every day. Using the comment, the output will be <code>non-deterministic-output #Masked#</code>, which is stable across executions.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#75715e>--! qt:replace:/(non-deterministic-output\s)[0-9]{4}-[0-9]{2}-[0-9]{2}/$1#Masked#/
+</span><span style=color:#75715e></span><span style=color:#66d9ef>SELECT</span> <span style=color:#e6db74>&#39;non-deterministic-output&#39;</span>, <span style=color:#66d9ef>CURRENT_DATE</span>();
+</code></pre></div><h2 id=advanced>Advanced</h2>
+<h3 id=locations-of-log-files>Locations of log files</h3>
+<p>The Query File Test framework outputs log files in the following paths.</p>
+<ul>
+<li><code>itests/{qtest, qtest-accumulo, qtest-iceberg, qtest-kudu}/target/surefire-reports</code></li>
+<li>From the root of the source tree: <code>find . -name hive.log</code></li>
+</ul>
+<h3 id=negative-tests>Negative tests</h3>
+<p>Negative drivers allow us to make sure that a test case fails expectedly. For example, the query in <a href=https://github.com/apache/hive/blob/master/ql/src/test/queries/clientnegative/strict_timestamp_to_numeric.q>strict_timestamp_to_numeric.q</a> must fail based on Hive’s specifications. We can use <code>TestNegativeLlapLocalCliDriver</code>, <code>TestIcebergNegativeCliDriver</code>, and so on.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn -Pitests -pl itests/qtest test -Dtest<span style=color:#f92672>=</span>TestNegativeLlapLocalCliDriver -Dqfile<span style=color:#f92672>=</span>strict_timestamp_to_numeric.q
+</code></pre></div><h3 id=how-to-specify-drivers>How to specify drivers</h3>
+<p>We define the default mapping of Query Files and test drivers using <a href=https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties>testconfiguration.properties</a> and <a href=https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/cli/control/CliConfigs.java>CliConfigs</a>. For example, <code>TestMiniLlapLocalCliDriver</code> is the default driver for query files stored in <code>ql/src/test/queries/clientpositive</code>. <a href=https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity>The hive-precommit Jenkins job</a> also follows the mapping.</p>
+<p>You can override the mapping through <a href=https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties>testconfiguration.properties</a>. For example, if you want to test <code>ql/src/test/queries/clientpositive/aaa.q</code> not by LLAP but by Tez, you must include the file name in <code>minitez.query.files</code> and generate the result file with <code>-Dtest=TestMiniTezCliDriver</code>.</p>
+<p>In most cases, we should use <code>TestMiniLlapLocalCliDriver</code> for positive tests and <code>TestNegativeLlapLocalCliDriver</code> for negative tests.</p>
+<h3 id=how-to-use-postgresqlmysqloracle-as-a-backend-database-for-hive-metastore>How to use PostgreSQL/MySQL/Oracle as a backend database for Hive Metastore</h3>
+<p>To run a test with a specified DB, it is possible by adding the &ldquo;-Dtest.metastore.db&rdquo; parameter like in the following commands:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestCliDriver -Dqfile<span style=color:#f92672>=</span>partition_params_postgres.q -Dtest.metastore.db<span style=color:#f92672>=</span>postgres
+$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestCliDriver -Dqfile<span style=color:#f92672>=</span>partition_params_postgres.q -Dtest.metastore.db<span style=color:#f92672>=</span>mssql
+$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestCliDriver -Dqfile<span style=color:#f92672>=</span>partition_params_postgres.q -Dtest.metastore.db<span style=color:#f92672>=</span>mysql
+$ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>TestCliDriver -Dqfile<span style=color:#f92672>=</span>partition_params_postgres.q -Dtest.metastore.db<span style=color:#f92672>=</span>oracle -Ditest.jdbc.jars<span style=color:#f92672>=</span>/path/to/your/god/damn/oracle/jdbc/driver/ojdbc6.jar
+</code></pre></div><h3 id=remote-debug>Remote debug</h3>
+<p>Remote debugging with Query File Test is a potent tool for debugging Hive. With the following command, Query File Test listens to port 5005 and waits for a debugger to be attached.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn -Pitests -pl itests/qtest -Dmaven.surefire.debug test -Dtest<span style=color:#f92672>=</span>TestMiniLlapLocalCliDriver -Dqfile<span style=color:#f92672>=</span>alter1.q
+</code></pre></div>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
