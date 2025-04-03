@@ -1,5 +1,5 @@
 ---
-title: "Query File Test"
+title: "Query File Test(qtest)"
 date: 2025-03-28
 draft: false
 aliases: [/qtest.html]
@@ -23,7 +23,7 @@ aliases: [/qtest.html]
   specific language governing permissions and limitations
   under the License. -->
 
-# Query File Test
+# Query File Test(qtest)
 
 Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.
 
@@ -95,30 +95,6 @@ You can ensure the generated result file is correct by rerunning the test case w
 $ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
 ```
 
-## QTestOptionHandler: pre/post-processor
-
-We extend JUnit by adding [QTestOptionHandlers](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestOptionHandler.java), which are custom pre-processors and post-processors. This section explains a couple of typical processors.
-
-### Using test data
-
-Adding `--! qt:dataset:{table name}`, [QTestDatasetHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/dataset/QTestDatasetHandler.java) automatically sets up a test table. You can find the table definitions [here](https://github.com/apache/hive/tree/master/data/files/datasets).
-
-```sql
---! qt:dataset:src
-SELECT * FROM src;
-```
-
-### Mask non-deterministic outputs
-
-Some test cases generate random results. [QTestReplaceHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestReplaceHandler.java) masks such a non-deterministic part. You can use it with a special comment prefixed with `--! qt:replace:`.
-
-For example, the result of `CURRENT_DATE` changes every day. Using the comment, the output will be `non-deterministic-output #Masked#`, which is stable across executions.
-
-```sql
---! qt:replace:/(non-deterministic-output\s)[0-9]{4}-[0-9]{2}-[0-9]{2}/$1#Masked#/
-SELECT 'non-deterministic-output', CURRENT_DATE();
-```
-
 ## Commandline options
 
 ### Run multiple test cases
@@ -151,47 +127,37 @@ If you use TestIcebergLlapLocalCliDriver, you have to go to `itest/qtest-iceberg
 $ mvn test -Pitests -pl itests/qtest-iceberg -Dtest=TestIcebergLlapLocalCliDriver -Dqfile_regex=iceberg_bucket_map_join_8
 ```
 
-### How to let Jenkins run specific drivers
+### How to specify drivers
 
-[The hive-precommit Jenkins job](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity) uses the following drivers for each directory by default.
+We define the default mapping of Query Files and test drivers using [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties) and [CliConfigs](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/cli/control/CliConfigs.java). For example, we use TestMiniLlapLocalCliDriver to process Query Files stored in `ql/src/test/queries/clientpositive` by default. [The hive-precommit Jenkins job](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity) also follows the definitions.
 
-| Driver | Query File's Location |
-|-|-|
-| TestMiniLlapLocalCliDriver | ql/src/test/queries/clientpositive |
-| TestNegativeLlapLocalCliDriver | ql/src/test/queries/clientnegative |
-| TestTezTPCDS30TBPerfCliDriver | ql/src/test/queries/clientpositive/perf |
-| TestParseNegativeDriver | ql/src/test/queries/negative |
-| TestAccumuloCliDriver | accumulo-handler/src/test/queries/positive |
-| TestContribCliDriver | contrib/src/test/queries/clientpositive |
-| TestContribNegativeCliDriver | contrib/src/test/queries/clientnegative |
-| TestHBaseCliDriver | hbase-handler/src/test/queries/positive |
-| TestHBaseNegativeCliDriver | hbase-handler/src/test/queries/negative |
-| TestIcebergCliDriver | iceberg/iceberg-handler/src/test/queries/positive |
-| TestIcebergNegativeCliDriver | iceberg/iceberg-handler/src/test/queries/negative |
-| TestBlobstoreCliDriver | itests/hive-blobstore/src/test/queries/clientpositive |
-| TestBlobstoreNegativeCliDriver | itests/hive-blobstore/src/test/queries/clientnegative |
-| TestKuduCliDriver | kudu-handler/src/test/queries/positive |
-| TestKuduNegativeCliDriver | kudu-handler/src/test/queries/negative |
+You can override the mapping through [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties). For example, if you want to test `ql/src/test/queries/clientpositive/aaa.q` not by LLAP but by Tez, you must include the file name in `minitez.query.files` and generate the result file with `-Dtest=TestMiniTezCliDriver`.
 
-You can override the mapping through [itests/src/test/resources/testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties). For example, if you want to test `ql/src/test/queries/clientpositive/aaa.q` not by LLAP but by Tez, you have to include the file name in `minitez.query.files` and generate the result file with `-Dtest=TestMiniLlapLocalCliDriver`.
+In most cases, we should use `TestMiniLlapLocalCliDriver` for positive tests and `TestNegativeLlapLocalCliDriver` for negative tests.
 
-| Driver | Query File's Location | Property |
-|-|-|-|
-| TestCliDriver | ql/src/test/queries/clientpositive | mr.query.files |
-| TestMinimrCliDriver | ql/src/test/queries/clientpositive | minimr.query.files |
-| TestMiniTezCliDriver | ql/src/test/queries/clientpositive | minitez.query.files, minitez.query.files.shared |
-| TestMiniLlapCliDriver | ql/src/test/queries/clientpositive | minillap.query.files |
-| TestMiniDruidCliDriver | ql/src/test/queries/clientpositive | druid.query.files |
-| TestMiniDruidKafkaCliDriver | ql/src/test/queries/clientpositive | druid.kafka.query.files |
-| TestMiniHiveKafkaCliDriver | ql/src/test/queries/clientpositive | hive.kafka.query.files |
-| TestMiniLlapLocalCompactorCliDriver | ql/src/test/queries/clientpositive | compaction.query.files |
-| TestEncryptedHDFSCliDriver | ql/src/test/queries/clientpositive | encrypted.query.files |
-| TestBeeLineDriver | ql/src/test/queries/clientpositive | beeline.positive.include, beeline.query.files.shared |
-| TestErasureCodingHDFSCliDriver | ql/src/test/queries/clientpositive | erasurecoding.only.query.files |
-| MiniDruidLlapLocalCliDriver | ql/src/test/queries/clientpositive | druid.llap.local.query.files |
-| TestNegativeLlapCliDriver | ql/src/test/queries/clientnegative | llap.query.negative.files |
-| TestIcebergLlapLocalCliDriver | iceberg/iceberg-handler/src/test/queries/positive | iceberg.llap.query.files |
-| IcebergLlapLocalCompactorCliConfig | iceberg/iceberg-handler/src/test/queries/positive | iceberg.llap.query.compactor.files |
+## QTestOptionHandler: pre/post-processor
+
+We extend JUnit by adding [QTestOptionHandlers](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestOptionHandler.java), which are custom pre-processors and post-processors. This section explains a couple of typical processors.
+
+### Using test data
+
+Adding `--! qt:dataset:{table name}`, [QTestDatasetHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/dataset/QTestDatasetHandler.java) automatically sets up a test table. You can find the table definitions [here](https://github.com/apache/hive/tree/master/data/files/datasets).
+
+```sql
+--! qt:dataset:src
+SELECT * FROM src;
+```
+
+### Mask non-deterministic outputs
+
+Some test cases generate random results. [QTestReplaceHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestReplaceHandler.java) masks such a non-deterministic part. You can use it with a special comment prefixed with `--! qt:replace:`.
+
+For example, the result of `CURRENT_DATE` changes every day. Using the comment, the output will be `non-deterministic-output #Masked#`, which is stable across executions.
+
+```sql
+--! qt:replace:/(non-deterministic-output\s)[0-9]{4}-[0-9]{2}-[0-9]{2}/$1#Masked#/
+SELECT 'non-deterministic-output', CURRENT_DATE();
+```
 
 ## Advanced
 
