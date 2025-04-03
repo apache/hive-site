@@ -159,6 +159,14 @@ The Query File Test framework outputs log files in the following paths.
 - `itests/{qtest, qtest-accumulo, qtest-iceberg, qtest-kudu}/target/surefire-reports`
 - From the root of the source tree: `find . -name hive.log`
 
+### Negative tests
+
+Negative drivers allow us to make sure that a test case fails expectedly. For example, the query in [strict_timestamp_to_numeric.q](https://github.com/apache/hive/blob/master/ql/src/test/queries/clientnegative/strict_timestamp_to_numeric.q) must fail based on Hive’s specifications. We can use `TestNegativeLlapLocalCliDriver`, `TestIcebergNegativeCliDriver`, and so on.
+
+```sh
+$ mvn -Pitests -pl itests/qtest test -Dtest=TestNegativeLlapLocalCliDriver -Dqfile=strict_timestamp_to_numeric.q
+```
+
 ### How to specify drivers
 
 We define the default mapping of Query Files and test drivers using [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties) and [CliConfigs](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/cli/control/CliConfigs.java). For example, we use TestMiniLlapLocalCliDriver to process Query Files stored in `ql/src/test/queries/clientpositive` by default. [The hive-precommit Jenkins job](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity) also follows the definitions.
@@ -172,10 +180,10 @@ In most cases, we should use `TestMiniLlapLocalCliDriver` for positive tests and
 To run a test with a specified DB, it is possible by adding the "-Dtest.metastore.db" parameter like in the following commands:
 
 ```sh
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=postgres
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mssql
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mysql
-mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=oracle -Ditest.jdbc.jars=/path/to/your/god/damn/oracle/jdbc/driver/ojdbc6.jar
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=postgres
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mssql
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=mysql
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params_postgres.q -Dtest.metastore.db=oracle -Ditest.jdbc.jars=/path/to/your/god/damn/oracle/jdbc/driver/ojdbc6.jar
 ```
 
 ### Remote debug
