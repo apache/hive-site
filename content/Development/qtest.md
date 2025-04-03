@@ -87,7 +87,7 @@ POSTHOOK: Input: _dummy_database@_dummy_table
 1
 ```
 
-### Verify the result file
+### Verify the new result file
 
 You can ensure the generated result file is correct by rerunning the test case without `-Dtest.output.overwrite=true`.
 
@@ -95,11 +95,13 @@ You can ensure the generated result file is correct by rerunning the test case w
 $ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
 ```
 
-## Helpful magic comments
+## QTestOptionHandler: pre/post-processor
+
+We extend JUnit by adding [QTestOptionHandlers](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestOptionHandler.java), which are custom pre-processors and post-processors. This section explains a couple of typical processors.
 
 ### Using test data
 
-Adding `--! qt:dataset:{table name}`, Query File Test automatically sets up a test table. [You can find the table definitions here](https://github.com/apache/hive/tree/master/data/files/datasets).
+Adding `--! qt:dataset:{table name}`, [QTestDatasetHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/dataset/QTestDatasetHandler.java) automatically sets up a test table. You can find the table definitions [here](https://github.com/apache/hive/tree/master/data/files/datasets).
 
 ```sql
 --! qt:dataset:src
@@ -108,9 +110,9 @@ SELECT * FROM src;
 
 ### Mask non-deterministic outputs
 
-Some test cases might generate non-deterministic results. You can mask the non-deterministic part using a special comment prefixed with `--! qt:replace:`.
+Some test cases generate random results. [QTestReplaceHandler](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/ql/qoption/QTestReplaceHandler.java) masks such a non-deterministic part. You can use it with a special comment prefixed with `--! qt:replace:`.
 
-For example, the result of `CURRENT_DATE` changes every day. Using the comment, the output will be `non-deterministic-output #Masked#` , which is stable.
+For example, the result of `CURRENT_DATE` changes every day. Using the comment, the output will be `non-deterministic-output #Masked#`, which is stable across executions.
 
 ```sql
 --! qt:replace:/(non-deterministic-output\s)[0-9]{4}-[0-9]{2}-[0-9]{2}/$1#Masked#/
