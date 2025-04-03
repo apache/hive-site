@@ -97,21 +97,20 @@ $ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=a
 
 ## Commandline options
 
-### Run multiple test cases
+### Test options
 
-We sometimes want to run multiple test cases in parallel. The `qfile_regex` option helps query relevant test cases using a regular expression.
-
-For example, if you wanted to regenerate the result files of `alter1.q`, `alter2.q`, and so on, you would trigger the following command.
-
-```sh
-$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile_regex=alter[0-9]
-```
+| Option | Description | Example |
+|-|-|-|
+| qfile | The name(s) of Query Files | `-Dqfile=alter1.q`, `-Dqfile=alter1.q, alter2.q` |
+| qfile_regex | The pattern to list Query Files | `-Dqfile_regex=alter[0-9]` |
+| test.output.overwrite | Whether you want to (re)generate result files or not | `-Dtest.output.overwrite=true` |
+| test.metastore.db | Which RDBMS to be used as a metastore backend | See the following section |
 
 ### Test Iceberg, Accumulo, or Kudu
 
-Most test drivers are available in the `itest/qtest` directory. However, you must be in a different directory when using the following drivers.
+Most test drivers are available in the `itest/qtest` project. However, there are some exceptional cases.
 
-| Driver | Directory |
+| Driver | Project |
 |-|-|
 | TestAccumuloCliDriver | itest/qtest-accumulo |
 | TestIcebergCliDriver | itest/qtest-iceberg |
@@ -121,19 +120,11 @@ Most test drivers are available in the `itest/qtest` directory. However, you mus
 | TestKuduCliDriver | itest/qtest-kudu |
 | TestKuduNegativeCliDriver | itest/qtest-kudu |
 
-If you use TestIcebergLlapLocalCliDriver, you have to go to `itest/qtest-iceberg`.
+If you use TestIcebergLlapLocalCliDriver, you have to choose `itest/qtest-iceberg`.
 
 ```sh
 $ mvn test -Pitests -pl itests/qtest-iceberg -Dtest=TestIcebergLlapLocalCliDriver -Dqfile_regex=iceberg_bucket_map_join_8
 ```
-
-### How to specify drivers
-
-We define the default mapping of Query Files and test drivers using [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties) and [CliConfigs](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/cli/control/CliConfigs.java). For example, we use TestMiniLlapLocalCliDriver to process Query Files stored in `ql/src/test/queries/clientpositive` by default. [The hive-precommit Jenkins job](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity) also follows the definitions.
-
-You can override the mapping through [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties). For example, if you want to test `ql/src/test/queries/clientpositive/aaa.q` not by LLAP but by Tez, you must include the file name in `minitez.query.files` and generate the result file with `-Dtest=TestMiniTezCliDriver`.
-
-In most cases, we should use `TestMiniLlapLocalCliDriver` for positive tests and `TestNegativeLlapLocalCliDriver` for negative tests.
 
 ## QTestOptionHandler: pre/post-processor
 
@@ -168,6 +159,13 @@ The Query File Test framework outputs log files in the following paths.
 - `itests/{qtest, qtest-accumulo, qtest-iceberg, qtest-kudu}/target/surefire-reports`
 - From the root of the source tree: `find . -name hive.log`
 
+### How to specify drivers
+
+We define the default mapping of Query Files and test drivers using [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties) and [CliConfigs](https://github.com/apache/hive/blob/master/itests/util/src/main/java/org/apache/hadoop/hive/cli/control/CliConfigs.java). For example, we use TestMiniLlapLocalCliDriver to process Query Files stored in `ql/src/test/queries/clientpositive` by default. [The hive-precommit Jenkins job](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity) also follows the definitions.
+
+You can override the mapping through [testconfiguration.properties](https://github.com/apache/hive/blob/master/itests/src/test/resources/testconfiguration.properties). For example, if you want to test `ql/src/test/queries/clientpositive/aaa.q` not by LLAP but by Tez, you must include the file name in `minitez.query.files` and generate the result file with `-Dtest=TestMiniTezCliDriver`.
+
+In most cases, we should use `TestMiniLlapLocalCliDriver` for positive tests and `TestNegativeLlapLocalCliDriver` for negative tests.
 
 ### How to use PostgreSQL/MySQL/Oracle as a backend database for Hive Metastore
 
