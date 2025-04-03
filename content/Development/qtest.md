@@ -29,7 +29,7 @@ Query File Test is a JUnit-based integration test suite for Apache Hive. Develop
 
 {{< toc >}}
 
-## Tutorial: How to add a new test case
+## Tutorial: How to run a specific test case
 
 ### Preparation
 
@@ -38,6 +38,24 @@ You have to compile Hive's source codes ahead of time.
 ```sh
 $ mvn clean install -Dmaven.javadoc.skip=true -DskipTests -Pitests
 ```
+
+### Run a test case
+
+Let's try to run [alter1.q](https://github.com/apache/hive/blob/master/ql/src/test/queries/clientpositive/alter1.q).
+
+```sh
+$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=alter1.q
+```
+
+The test should successfully finish.
+
+```sh
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+```
+
+## Tutorial: How to add a new test case
 
 ### Add a QFile
 
@@ -52,11 +70,10 @@ SELECT 1;
 
 ### Generate a result file
 
-You can generate the expected output using JUnit.
+You can generate the expected output with `-Dtest.output.overwrite=true`.
 
 ```sh
-$ cd /path/to/hive/itests/qtest
-$ mvn test -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile=aaa.q
+$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile=aaa.q
 ...
 $ cat ql/src/test/results/clientpositive/llap/aaa.q.out
 PREHOOK: query: SELECT 1
@@ -72,10 +89,10 @@ POSTHOOK: Input: _dummy_database@_dummy_table
 
 ### Verify the result file
 
-You can ensure the generated result file is correct by rerunning the test case without `test.output.overwrite=true`.
+You can ensure the generated result file is correct by rerunning the test case without `-Dtest.output.overwrite=true`.
 
 ```sh
-$ mvn test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
+$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
 ```
 
 ## Helpful magic comments
