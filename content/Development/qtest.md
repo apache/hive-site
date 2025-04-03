@@ -44,7 +44,7 @@ $ mvn clean install -Dmaven.javadoc.skip=true -DskipTests -Pitests
 Let's try to run [alter1.q](https://github.com/apache/hive/blob/master/ql/src/test/queries/clientpositive/alter1.q).
 
 ```sh
-$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=alter1.q
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=alter1.q
 ```
 
 The test should successfully finish.
@@ -73,7 +73,7 @@ SELECT 1;
 You can generate the expected output with `-Dtest.output.overwrite=true`.
 
 ```sh
-$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile=aaa.q
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile=aaa.q
 ...
 $ cat ql/src/test/results/clientpositive/llap/aaa.q.out
 PREHOOK: query: SELECT 1
@@ -92,7 +92,7 @@ POSTHOOK: Input: _dummy_database@_dummy_table
 You can ensure the generated result file is correct by rerunning the test case without `-Dtest.output.overwrite=true`.
 
 ```sh
-$ mvn -Pitests -pl itests/qtest test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=aaa.q
 ```
 
 ## Helpful magic comments
@@ -126,7 +126,7 @@ We sometimes want to run multiple test cases in parallel. The `qfile_regex` opti
 For example, if you wanted to regenerate the result files of `alter1.q`, `alter2.q`, and so on, you would trigger the following command.
 
 ```sh
-$ mvn test -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile_regex=alter[0-9]
+$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dtest.output.overwrite=true -Dqfile_regex=alter[0-9]
 ```
 
 ### Test Iceberg, Accumulo, or Kudu
@@ -146,8 +146,7 @@ Most test drivers are available in the `itest/qtest` directory. However, you mus
 If you use TestIcebergLlapLocalCliDriver, you have to go to `itest/qtest-iceberg`.
 
 ```sh
-$ cd itest/qtest-iceberg
-$ mvn test -Dtest=TestIcebergLlapLocalCliDriver -Dqfile_regex=iceberg_bucket_map_join_8
+$ mvn test -Pitests -pl itests/qtest-iceberg -Dtest=TestIcebergLlapLocalCliDriver -Dqfile_regex=iceberg_bucket_map_join_8
 ```
 
 ### How to let Jenkins run specific drivers
@@ -218,5 +217,5 @@ mvn test -Pitests -pl itests/qtest -Dtest=TestCliDriver -Dqfile=partition_params
 Remote debugging with Query File Test is a potent tool for debugging Hive. With the following command, Query File Test listens to port 5005 and waits for a debugger to be attached.
 
 ```sh
-$ mvn -Dmaven.surefire.debug test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=<test>.q
+$ mvn -Pitests -pl itests/qtest -Dmaven.surefire.debug test -Dtest=TestMiniLlapLocalCliDriver -Dqfile=<test>.q
 ```
