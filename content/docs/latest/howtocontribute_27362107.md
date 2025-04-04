@@ -120,7 +120,7 @@ On this page we assume you are building from the master branch and do not includ
 
 ### Unit Tests
 
-When submitting a patch it's highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by [Hive PreCommit Patch Testing]({{< ref "hive-precommit-patch-testing_33295252" >}}). [Hive Developer FAQ]({{< ref "hivedeveloperfaq_27823747" >}}) describes how to execute a specific set of tests.
+When submitting a patch it's highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by [hive-precommit on Jenkins](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity). [Hive Developer FAQ]({{< ref "hivedeveloperfaq_27823747" >}}) describes how to execute a specific set of tests.
 
 ```
 mvn clean install -DskipTests
@@ -351,15 +351,6 @@ Contributors should join the [Hive mailing lists](https://hive.apache.org/commun
 
 ## See Also
 
-* [Apache contributor documentation](http://www.apache.org/dev/contributors.html)
+* [Apache contributor documentation](https://infra.apache.org/contributors.html)
 * [Apache voting documentation](http://www.apache.org/foundation/voting.html)
-* [How to edit the website]({{< ref "how-to-edit-the-website_33294834" >}})
-
-  
-
-  
-
- 
-
- 
-
+* [GitHub repository of this website](https://github.com/apache/hive-site)
