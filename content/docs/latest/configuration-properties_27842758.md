@@ -5139,7 +5139,7 @@ If Hive is running in test mode, don't sample the above comma separated list of 
 * Default Value: `true`
 * Added In: Hive 0.14.0 with [HIVE-7271](https://issues.apache.org/jira/browse/HIVE-7271)
 
-Determines whether local tasks (typically mapjoin hashtable generation phase) run in a separate JVM (`true` recommended) or not. Avoids the overhead of spawning new JVMs, but can lead to out-of-memory issues.  A  `false`  setting is only useful when running  [unit tests]({{< ref "unit-test-parallel-execution_27833687" >}}) . See [HIVE-7271](https://issues.apache.org/jira/browse/HIVE-7271) for details.
+Determines whether local tasks (typically mapjoin hashtable generation phase) run in a separate JVM (`true` recommended) or not. Avoids the overhead of spawning new JVMs, but can lead to out-of-memory issues. See [HIVE-7271](https://issues.apache.org/jira/browse/HIVE-7271) for details.
 
 # HCatalog Configuration Properties
 

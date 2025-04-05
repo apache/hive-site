@@ -19,7 +19,6 @@ Information for Hive developers is available in these documents:
 	+ [Moving files]({{< ref "#moving-files" >}})
 	+ [Building Hive]({{< ref "#building-hive" >}})
 	+ [Testing Hive]({{< ref "#testing-hive" >}})
-	+ [MiniDriver and Beeline tests]({{< ref "minidriver-tests_38571221" >}})
 * [Plugin Developer Kit]({{< ref "plugindeveloperkit_27820324" >}})
 * [Writing UDTFs]({{< ref "developerguide-udtf_27362086" >}})
 * [Hive on Spark: Getting Started]({{< ref "44302539" >}})
