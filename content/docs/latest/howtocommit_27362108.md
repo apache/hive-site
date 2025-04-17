@@ -57,10 +57,15 @@ When you commit/merge a Pull Request, please:
 
 1. Ensure that the Pull Request has a +1 vote, and that **24 hours have elapsed since the first +1 vote was cast** on the Pull Request. Note that this rule appears in the Hive Bylaws. Do not ignore it.
 2. Include the Jira issue id in the commit message, along with a short description of the change. Be sure to get the issue id right, in order to have proper links between Jira and GitHub.
-3. Append the PR id, in the commit subject to track the relation between the commit and the respective PR.
-4. Add `Co-authored-by: Ayush Saxena <ayushsaxena@apache.org>` in the body of the message if multiple people contributed to the PR.
+3. Append the Pull Request id, in the commit subject to track the relation between the commit and the respective Pull Request.
+4. Add `Co-authored-by: Ayush Saxena <ayushsaxena@apache.org>` in the body of the message if multiple people contributed to the Pull Request.
 5. Resolve the JIRA issue as fixed, and **set the "Fix Version"** to the release in which the change will appear. If a patch is backported to a point release (such as 1.0.2) then multiple fix versions should be set so that the automated release notes can list the Jira issue for the point release as well as the primary release.
-6. Thank the contributor(s), the reviewers, and the reporter of the issue (if different from the contributor). It is easier to thank the people in GitHub by mentioning their GitHub ids under the respective PR.
+6. Thank the contributor(s), the reviewers, and the reporter of the issue (if different from the contributor). It is easier to thank the people in GitHub by mentioning their GitHub ids under the respective Pull Request.
+
+Below you can find a sample commit message that adheres to the guidelines outlined here.
+```
+HIVE-27424: Display dependency:tree in GitHub actions (#5756)
+```
 
 #### Committing Documentation
 
