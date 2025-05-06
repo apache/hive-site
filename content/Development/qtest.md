@@ -2,7 +2,6 @@
 title: "Query File Test(qtest)"
 date: 2025-03-28
 draft: false
-aliases: [/qtest.html]
 ---
 
 <!---

@@ -51,4 +51,3 @@ jobs:
           publish_dir: ./public
           publish_branch: asf-site
           destination_dir: ./
-          keep_files: true

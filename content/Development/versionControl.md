@@ -2,7 +2,9 @@
 title: "Version Control"
 date: 2022-09-14T00:34:39+05:30
 draft: false
-aliases: [/version_control.html]
+aliases:
+- /version_control.html
+- /developement/versioncontrol/
 ---
 
 <!---
