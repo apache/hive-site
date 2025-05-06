@@ -159,6 +159,7 @@ ASF
 <li><a href=#remote-debug>Remote debug</a></li>
 </ul>
 </li>
+<li><a href=#tips-for-adding-new-tests-in-hive>Tips for Adding New Tests in Hive</a></li>
 </ul>
 </nav>
 </aside>
@@ -310,7 +311,15 @@ $ mvn test -Pitests -pl itests/qtest -Dtest<span style=color:#f92672>=</span>Tes
 </code></pre></div><h3 id=remote-debug>Remote debug</h3>
 <p>Remote debugging with Query File Test is a potent tool for debugging Hive. With the following command, Query File Test listens to port 5005 and waits for a debugger to be attached.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ mvn -Pitests -pl itests/qtest -Dmaven.surefire.debug test -Dtest<span style=color:#f92672>=</span>TestMiniLlapLocalCliDriver -Dqfile<span style=color:#f92672>=</span>alter1.q
-</code></pre></div>
+</code></pre></div><h2 id=tips-for-adding-new-tests-in-hive>Tips for Adding New Tests in Hive</h2>
+<p>Following are a few rules of thumb that should be followed when adding new test cases in Hive that require the introduction of new query file(s). Of course, these rules should not be applied if they invalidate the purpose of your test to begin with. These are generally helpful in keeping the test queries concise, minimizing the redundancies where possible, and ensuring that cascading failures due to a single test failure do not occur.</p>
+<ul>
+<li>Instead of creating your own data file for loading into a new table, use existing data from staged tables like <code>src</code>.</li>
+<li>If your test requires a <code>SELECT</code> query, keep it as simple as possible, and minimize the number of queries to keep overall test time down; avoid repeating scenarios which are already covered by existing tests.</li>
+<li>When you do need to use a <code>SELECT</code> statement, make sure you use the <code>ORDER BY</code> clause to minimize the chances of spurious diffs due to output order differences leading to test failures.</li>
+<li>Limit your test to one table unless you require multiple tables specifically.</li>
+<li>Make sure that you name your query file appropriately with a descriptive name.</li>
+</ul>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

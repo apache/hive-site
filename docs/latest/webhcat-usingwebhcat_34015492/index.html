@@ -148,7 +148,7 @@ ASF
 <p>The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.<br>
 Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.</p>
 <h2 id=introduction-to-webhcat>Introduction to WebHCat</h2>
-<p>This document describes the HCatalog REST API, <em>WebHCat</em>, which was previously called <em>Templeton</em>. If you are looking for a Hive GUI instead of an API, see <a href=https://hive.apache.org/docs/latest/hivewebinterface_27362110/>Hive Web Interface</a> (removed in release 2.2.0).</p>
+<p>This document describes the HCatalog REST API, <em>WebHCat</em>, which was previously called <em>Templeton</em>.</p>
 <p>As shown in the figure below, developers make HTTP requests to access <a href=http://hadoop.apache.org/>Hadoop</a> <a href=http://hadoop.apache.org/docs/stable/mapred_tutorial.html>MapReduce</a> (or <a href=http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html>YARN</a>), <a href=http://pig.apache.org/>Pig</a>, <a href=http://hive.apache.org/>Hive</a>, and <a href=#hcatalog-ddl>HCatalog DDL</a> from within applications. Data and code used by this API are maintained in <a href=http://hadoop.apache.org/docs/stable/hdfs_user_guide.html>HDFS</a>. HCatalog DDL commands are executed directly when requested. MapReduce, Pig, and Hive jobs are placed in queue by WebHCat (Templeton) servers and can be monitored for progress or stopped as required. Developers specify a location in HDFS into which Pig, Hive, and MapReduce results should be placed.</p>
 <p><img src=/attachments/34015492/34177184.jpg alt></p>
 <p>WebHCat or Templeton?</p>
