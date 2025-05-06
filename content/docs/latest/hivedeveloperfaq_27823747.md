@@ -25,12 +25,6 @@ $ perl -i -pe 's<at:var at:name="MyCLass" />MyClass@g' MyClass.java
 
 ```
 
-### How do I add a new MiniDriver test?
-
-See [MiniDriver Tests]({{< ref "minidriver-tests_38571221" >}}) for information about MiniDriver and Beeline tests.
-
-For FAQ about how to run tests, see [Testing]({{< ref "#testing" >}}) below.
-
 ## Building
 
 * See [Getting Started: Building Hive from Source](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-BuildingHivefromSource) for detailed information about building Hive releases 0.13 and later with [Maven](http://maven.apache.org/).
