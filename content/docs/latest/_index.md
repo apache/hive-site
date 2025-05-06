@@ -92,7 +92,6 @@ date: 2024-12-12
 	+ [ReflectUDF]({{< ref "reflectudf_30754716" >}})
 * [HiveQL]({{< ref "hiveql_27362097" >}})
 * [HiveServer]({{< ref "hiveserver_27362111" >}})
-* [HiveWebInterface]({{< ref "hivewebinterface_27362110" >}})
 * [Home]({{< ref "home_27362069" >}})
 ![](images/icons/contenttypes/home_page_16.png)
 	+ [AccumuloIntegration]({{< ref "accumulointegration_46633569" >}})
