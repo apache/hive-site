@@ -2,6 +2,8 @@
 title: "QuickStarted"
 date: 2023-05-12T17:51:06+05:30
 draft: false
+aliases:
+- /developement/quickstart/
 ---
 
 ### Introduction
