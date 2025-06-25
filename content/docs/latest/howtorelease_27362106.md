@@ -254,6 +254,15 @@ git push origin release-X.Y.Z-rcR
 % cd packaging/target
 % shasum -a 256 apache-hive-X.Y.Z-bin.tar.gz > apache-hive-X.Y.Z-bin.tar.gz.sha256
 % shasum -a 256 apache-hive-X.Y.Z-src.tar.gz > apache-hive-X.Y.Z-src.tar.gz.sha256
+
+% cd ../../standalone-metastore/target
+% shasum -a 256 apache-hive-standalone-metastore-X.Y.Z-src.tar.gz > apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
+
+% cd ../metastore-server/
+% mvn package -DskipTests -Pdocker -Dmaven.javadoc.skip=true -DcreateChecksum=true
+
+% cd target
+% shasum -a 256 apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz > apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
 ```
 
 Note: If you build from the existing project, make sure there are no empty directories or the "*.iml" files in the apache-hive-X.Y.Z-src.tar.gz.
@@ -266,6 +275,11 @@ apache-hive-X.Y.Z-bin.tar.gz: OK
 % shasum -a 256 -c apache-hive-X.Y.Z-src.tar.gz.sha256
 apache-hive-X.Y.Z-src.tar.gz: OK
 
+% shasum -a 256 -c apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
+apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz: OK
+
+% shasum -a 256 -c apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
+apache-hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
 ```
 4. Check that release file looks ok -- e.g., install it and run examples from tutorial.
 5. Setup your PGP keys for signing the release, if you don't have them already.
@@ -285,7 +299,8 @@ apache-hive-X.Y.Z-src.tar.gz: OK
 ```
 % gpg --armor --output apache-hive-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-X.Y.Z-bin.tar.gz
 % gpg --armor --output apache-hive-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-X.Y.Z-src.tar.gz
-
+% gpg --armor --output apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz
+% gpg --armor --output apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-standalone-metastore-X.Y.Z-src.tar.gz
 ```
 7. Follow instructions in <https://www.apache.org/dev/release-publishing.html#distribution> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<https://dist.apache.org/repos/dist/dev/hive/>). Make sure to create a new directory for the release candidate. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
 
@@ -296,9 +311,14 @@ cd dist
 svn update --set-depth empty dev
 svn update --set-depth empty dev/hive
 mkdir dev/hive/hive-X.Y.Z/
-
 cp <hive-source-dir>/packaging/target/apache-hive-X.Y.Z*.tar.gz* dev/hive/hive-X.Y.Z/
+
+mkdir dev/hive/hive-standalone-metastore-X.Y.Z/
+cp <hive-source-dir>/standalone-metastore/target/apache-hive-standalone-metastore-server-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
+cp <hive-source-dir>/standalone-metastore/metastore-server/target/apache-hive-standalone-metastore-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
+
 svn add dev/hive/hive-X.Y.Z
+svn add dev/hive/hive-standalone-metastore-X.Y.Z
 svn commit -m "Hive X.Y.Z release" 
 ```
 8. Publish Maven artifacts to the Apache staging repository. Make sure to have this [setup](http://www.apache.org/dev/publishing-maven-artifacts.html#dev-env) for Apache releases. Use committer [setting.xml](https://maven.apache.org/developers/committer-settings.html).
@@ -327,8 +347,10 @@ Apache Hive X.Y.Z Release Candidate N is available here:
 https://people.apache.org/~you/hive-X.Y.Z-candidate-N
 
 The checksums are these:
-- ff60286044d2f3faa8ad1475132cdcecf4ce9ed8faf1ed4e56a6753ebc3ab585  apache-hive-4.0.0-alpha-1-bin.tar.gz
-- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-4.0.0-alpha-1-src.tar.gz
+- ff60286044d2f3faa8ad1475132cdcecf4ce9ed8faf1ed4e56a6753ebc3ab585  apache-hive-4.1.0-bin.tar.gz
+- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-4.1.0-src.tar.gz
+- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-standalone-metastore-server-4.1.0-bin.tar.gz
+- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-standalone-metastore-4.1.0-src.tar.gz
 
 Maven artifacts are available here:
 
@@ -360,8 +382,10 @@ or
 wget https://people.apache.org/keys/group/hive.asc
 
 gpg --import <keys file>
-gpg --verify hive-X.Y.Z-bin.tar.gz.asc  hive-X.Y.Z-bin.tar.gz
-gpg --verify hive-X.Y.Z.tar.gz.asc  hive-X.Y.Z.tar.gz
+gpg --verify apache-hive-X.Y.Z-bin.tar.gz.asc apache-hive-X.Y.Z-bin.tar.gz
+gpg --verify apache-hive-X.Y.Z-src.tar.gz.asc apache-hive-X.Y.Z-src.tar.gz
+gpg --verify apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.asc apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz
+gpg --verify apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.asc apache-hive-standalone-metastore-X.Y.Z-src.tar.gz
 
 ```
 2. Verifying the sha256 checksum:  
@@ -487,7 +511,8 @@ The Apache Hive Team
 According to the [INFRA archival g](https://infra.apache.org/release-distribution.html#archival)[uidelines](https://infra.apache.org/release-distribution.html#archival) old releases should be removed from the main [download site of the project](https://downloads.apache.org/hive/) following. Check the respective guidelines and perform the necessary cleanup.
 
 ```
-svn del -m "Archiving release Apache Hive 4.0.0-beta-1" https://dist.apache.org/repos/dist/release/hive/hive-4.0.0-beta-1/ 
+svn del -m "Archiving release Apache Hive X.Y.Z" https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z/ 
+svn del -m "Archiving release Apache Hive Standalone Metastore X.Y.Z" https://dist.apache.org/repos/dist/release/hive/hive-standalone-metastore-X.Y.Z/ 
 ```
 
   
