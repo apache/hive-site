@@ -40,7 +40,7 @@ Sample Usage:
 ```
   hive> show processlist;
 +------------+------------+-------------------+---------------------------------------+--------------------------+------------------------+----------------------------------------------------+----------+--------------------------+-------------------+---------------+
-| User Name  |  Ip Addr   | Execution Engine  |              Session Id               | Session Active Time (s)  | Session Idle Time (s)  |                      Query ID                      |  State   |   Opened Timestamp (s)   | Elapsed Time (s)  |  Runtime (s)  |
+| User Name  |  Ip Addr   | Execution Engine  |              Session Id               | Session Active Time  | Session Idle Time  |                      Query ID    |  State   |   Opened Timestamp | Elapsed Time  |  Runtime  |
 +------------+------------+-------------------+---------------------------------------+--------------------------+------------------------+----------------------------------------------------+----------+--------------------------+-------------------+---------------+
 | hive       | 127.0.0.1  | tez               | 6a8a476b-e1be-4711-b012-5b3b53a4b835  | 722                      | 2                      | rtrivedi_20241205154341_67a6c539-d8c5-4560-a04b-144f24f405c4 | RUNNING  | 2024-12-05 15:43:41.753  | 2                 | Not finished  |
 | hive       | 127.0.0.1  | tez               | 94e4670b-0cb6-4b10-8343-ac5d0d8d3ab6  | 54                       | 1                      | rtrivedi_20241205154342_8a73c7c5-4152-4848-b528-4e7708c964ef | RUNNING  | 2024-12-05 15:43:42.985  | 1                 | Not finished  |
