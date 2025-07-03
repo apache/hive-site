@@ -134,7 +134,7 @@ sftp> quit
 ```
 % git checkout storage-release-X.Y.Z-rcR
 % cd storage-api
-% mvn -Papache-release -DskipTests clean deploy
+% mvn clean deploy -Papache-release -DskipTests
 ```
 2. Login to Nexus and close the repository. Mark the repository as released.
 3. Create the final tag (be very careful, tags in "rel/" are not changeable).
@@ -249,7 +249,7 @@ git push origin release-X.Y.Z-rcR
 2. Build the release (binary and source versions) after running unit tests. Manually create the sha256 files.
 
 ```
-% mvn install -Pdist,iceberg -DskipTests -Dmaven.javadoc.skip=true -DcreateChecksum=true
+% mvn clean install -Pdist -DskipTests -Dmaven.javadoc.skip=true
 
 % cd packaging/target
 % shasum -a 256 apache-hive-X.Y.Z-bin.tar.gz > apache-hive-X.Y.Z-bin.tar.gz.sha256
@@ -259,7 +259,7 @@ git push origin release-X.Y.Z-rcR
 % shasum -a 256 apache-hive-standalone-metastore-X.Y.Z-src.tar.gz > apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
 
 % cd ../metastore-server/
-% mvn package -DskipTests -Pdocker -Dmaven.javadoc.skip=true -DcreateChecksum=true
+% mvn package -DallModules -DskipTests -Dmaven.javadoc.skip=true
 
 % cd target
 % shasum -a 256 apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz > apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
@@ -328,7 +328,7 @@ svn commit -m "Hive X.Y.Z release"
 **Note**: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=<PRIV_KEY>
 
 ```
-% mvn deploy -DskipTests -Papache-release,iceberg -Dmaven.javadoc.skip=true
+% mvn deploy -Papache-release -DskipTests -Dmaven.javadoc.skip=true
 
 ```
 9. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and "close" the staged repository. This makes the artifacts available at a temporary URL.
@@ -421,7 +421,7 @@ svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apach
 4. In your base hive source directory, generate javadocs as follows:
 
 ```
-mvn clean install javadoc:javadoc javadoc:aggregate -DskipTests -Pjavadoc,iceberg
+mvn clean install javadoc:javadoc javadoc:aggregate -Pjavadoc -DskipTests
 ```
 
 After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs
