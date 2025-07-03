@@ -244,7 +244,7 @@ sftp&gt; quit
 </ol>
 <pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
 % cd storage-api
-% mvn -Papache-release -DskipTests clean deploy
+% mvn clean deploy -Papache-release -DskipTests
 </code></pre><ol start=2>
 <li>Login to Nexus and close the repository. Mark the repository as released.</li>
 <li>Create the final tag (be very careful, tags in &ldquo;rel/&rdquo; are not changeable).</li>
@@ -337,7 +337,7 @@ git push origin release-X.Y.Z-rcR
 <li>Make sure your release notes have been updated for any new commits, and go through the previous steps if necessary.</li>
 <li>Build the release (binary and source versions) after running unit tests. Manually create the sha256 files.</li>
 </ol>
-<pre tabindex=0><code>% mvn install -Pdist,iceberg -DskipTests -Dmaven.javadoc.skip=true -DcreateChecksum=true
+<pre tabindex=0><code>% mvn clean install -Pdist -DskipTests -Dmaven.javadoc.skip=true
 
 % cd packaging/target
 % shasum -a 256 apache-hive-X.Y.Z-bin.tar.gz &gt; apache-hive-X.Y.Z-bin.tar.gz.sha256
@@ -347,7 +347,7 @@ git push origin release-X.Y.Z-rcR
 % shasum -a 256 apache-hive-standalone-metastore-X.Y.Z-src.tar.gz &gt; apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
 
 % cd ../metastore-server/
-% mvn package -DskipTests -Pdocker -Dmaven.javadoc.skip=true -DcreateChecksum=true
+% mvn package -DallModules -DskipTests -Dmaven.javadoc.skip=true
 
 % cd target
 % shasum -a 256 apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz &gt; apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
@@ -409,7 +409,7 @@ svn commit -m &quot;Hive X.Y.Z release&quot;
 </ol>
 <p><strong>Note</strong>: If you get an error <code>gpg: signing failed: Inappropriate ioctl for device,</code> try doing <code>export GPG_TTY=$(tty)</code></p>
 <p><strong>Note</strong>: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=&lt;PRIV_KEY></p>
-<pre tabindex=0><code>% mvn deploy -DskipTests -Papache-release,iceberg -Dmaven.javadoc.skip=true
+<pre tabindex=0><code>% mvn deploy -Papache-release -DskipTests -Dmaven.javadoc.skip=true
 
 </code></pre><ol start=9>
 <li>Login to the <a href=https://repository.apache.org/index.html#stagingRepositories>Apache Nexus server</a> and &ldquo;close&rdquo; the staged repository. This makes the artifacts available at a temporary URL.</li>
@@ -487,7 +487,7 @@ git push origin :release-X.Y.Z-rcR
 <li>Wait till the release propagates to the mirrors and appears under: <a href=https://dlcdn.apache.org/hive/>https://dlcdn.apache.org/hive/</a></li>
 <li>In your base hive source directory, generate javadocs as follows:</li>
 </ol>
-<pre tabindex=0><code>mvn clean install javadoc:javadoc javadoc:aggregate -DskipTests -Pjavadoc,iceberg
+<pre tabindex=0><code>mvn clean install javadoc:javadoc javadoc:aggregate -Pjavadoc -DskipTests
 </code></pre><p>After you run this, you should have javadocs present in your &lt;hive_source_dir>/target/site/apidocs
 5. Check out the javadocs svn repository as follows:</p>
 <pre tabindex=0><code>svn co --depth empty https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs
