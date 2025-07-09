@@ -7,8 +7,7 @@ date: 2024-12-12
 
 *This page is prepared for Hive committers. You need committer rights to create a new Hive release.*
 
-## 
-* 
+##
 * [Storage API Release]({{< ref "#storage-api-release" >}})
 	+ [Storage API Prepare Master Branch]({{< ref "#storage-api-prepare-master-branch" >}})
 	+ [Storage API Branching]({{< ref "#storage-api-branching" >}})
@@ -149,7 +148,6 @@ sftp> quit
 [INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro)
  -
  [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to see issue details
- 
 
  solved the issue.
 
@@ -255,14 +253,9 @@ git push origin release-X.Y.Z-rcR
 % shasum -a 256 apache-hive-X.Y.Z-bin.tar.gz > apache-hive-X.Y.Z-bin.tar.gz.sha256
 % shasum -a 256 apache-hive-X.Y.Z-src.tar.gz > apache-hive-X.Y.Z-src.tar.gz.sha256
 
-% cd ../../standalone-metastore/target
-% shasum -a 256 apache-hive-standalone-metastore-X.Y.Z-src.tar.gz > apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
-
-% cd ../metastore-server/
-% mvn package -DallModules -DskipTests -Dmaven.javadoc.skip=true
-
-% cd target
-% shasum -a 256 apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz > apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
+% cd ../../standalone-metastore/packaging/target
+% shasum -a 256 hive-standalone-metastore-X.Y.Z-bin.tar.gz > hive-standalone-metastore-X.Y.Z-bin.tar.gz.sha256
+% shasum -a 256 hive-standalone-metastore-X.Y.Z-src.tar.gz > hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
 ```
 
 Note: If you build from the existing project, make sure there are no empty directories or the "*.iml" files in the apache-hive-X.Y.Z-src.tar.gz.
@@ -275,11 +268,11 @@ apache-hive-X.Y.Z-bin.tar.gz: OK
 % shasum -a 256 -c apache-hive-X.Y.Z-src.tar.gz.sha256
 apache-hive-X.Y.Z-src.tar.gz: OK
 
-% shasum -a 256 -c apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.sha256
-apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz: OK
+% shasum -a 256 -c hive-standalone-metastore-X.Y.Z-bin.tar.gz.sha256
+hive-standalone-metastore-X.Y.Z-bin.tar.gz: OK
 
-% shasum -a 256 -c apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
-apache-hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
+% shasum -a 256 -c hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
+hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
 ```
 4. Check that release file looks ok -- e.g., install it and run examples from tutorial.
 5. Setup your PGP keys for signing the release, if you don't have them already.
@@ -299,8 +292,8 @@ apache-hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
 ```
 % gpg --armor --output apache-hive-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-X.Y.Z-bin.tar.gz
 % gpg --armor --output apache-hive-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-X.Y.Z-src.tar.gz
-% gpg --armor --output apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz
-% gpg --armor --output apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-standalone-metastore-X.Y.Z-src.tar.gz
+% gpg --armor --output hive-standalone-metastore-X.Y.Z-bin.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-bin.tar.gz
+% gpg --armor --output hive-standalone-metastore-X.Y.Z-src.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-src.tar.gz
 ```
 7. Follow instructions in <https://www.apache.org/dev/release-publishing.html#distribution> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<https://dist.apache.org/repos/dist/dev/hive/>). Make sure to create a new directory for the release candidate. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
 
@@ -314,8 +307,7 @@ mkdir dev/hive/hive-X.Y.Z/
 cp <hive-source-dir>/packaging/target/apache-hive-X.Y.Z*.tar.gz* dev/hive/hive-X.Y.Z/
 
 mkdir dev/hive/hive-standalone-metastore-X.Y.Z/
-cp <hive-source-dir>/standalone-metastore/target/apache-hive-standalone-metastore-server-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
-cp <hive-source-dir>/standalone-metastore/metastore-server/target/apache-hive-standalone-metastore-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
+cp <hive-source-dir>/standalone-metastore/packaging/target/hive-standalone-metastore-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
 
 svn add dev/hive/hive-X.Y.Z
 svn add dev/hive/hive-standalone-metastore-X.Y.Z
@@ -329,7 +321,6 @@ svn commit -m "Hive X.Y.Z release"
 
 ```
 % mvn deploy -Papache-release -DskipTests -Dmaven.javadoc.skip=true
-
 ```
 9. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and "close" the staged repository. This makes the artifacts available at a temporary URL.
 
@@ -349,8 +340,8 @@ https://people.apache.org/~you/hive-X.Y.Z-candidate-N
 The checksums are these:
 - ff60286044d2f3faa8ad1475132cdcecf4ce9ed8faf1ed4e56a6753ebc3ab585  apache-hive-4.1.0-bin.tar.gz
 - 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-4.1.0-src.tar.gz
-- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-standalone-metastore-server-4.1.0-bin.tar.gz
-- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-standalone-metastore-4.1.0-src.tar.gz
+- 8d3a82be5670199c9c21f4766fdb3c49749cc8db6b517e0e73ac9f16dc7d3ef9  hive-standalone-metastore-4.1.0-bin.tar.gz
+- f47be1263f2d8bb09e2e626b66b979d29135c978ba1dd29f682bb21a08455b60  hive-standalone-metastore-4.1.0-src.tar.gz
 
 Maven artifacts are available here:
 
@@ -368,7 +359,6 @@ Voting will conclude in 72 hours.
 Hive PMC Members: Please test and vote.
 
 Thanks.
-
 ```
 
 ### Verifying the Release Candidate
@@ -384,9 +374,9 @@ wget https://people.apache.org/keys/group/hive.asc
 gpg --import <keys file>
 gpg --verify apache-hive-X.Y.Z-bin.tar.gz.asc apache-hive-X.Y.Z-bin.tar.gz
 gpg --verify apache-hive-X.Y.Z-src.tar.gz.asc apache-hive-X.Y.Z-src.tar.gz
-gpg --verify apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz.asc apache-hive-standalone-metastore-server-X.Y.Z-bin.tar.gz
-gpg --verify apache-hive-standalone-metastore-X.Y.Z-src.tar.gz.asc apache-hive-standalone-metastore-X.Y.Z-src.tar.gz
 
+gpg --verify hive-standalone-metastore-X.Y.Z-bin.tar.gz.asc hive-standalone-metastore-X.Y.Z-bin.tar.gz
+gpg --verify hive-standalone-metastore-X.Y.Z-src.tar.gz.asc hive-standalone-metastore-X.Y.Z-src.tar.gz
 ```
 2. Verifying the sha256 checksum:  
 See the step under Building.
@@ -410,9 +400,6 @@ If errors happen while "git tag -s", try to configure the git signing key by "gi
 [INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro)
  -
  [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to see issue details
- 
-
-)
 
 ```
 svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m "Move hive-X.Y.Z release from dev to release"
@@ -503,7 +490,6 @@ possible.
 Regards,
 
 The Apache Hive Team
-
 ```
 
 ### Archive old releases
@@ -514,8 +500,6 @@ According to the [INFRA archival g](https://infra.apache.org/release-distributio
 svn del -m "Archiving release Apache Hive X.Y.Z" https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z/ 
 svn del -m "Archiving release Apache Hive Standalone Metastore X.Y.Z" https://dist.apache.org/repos/dist/release/hive/hive-standalone-metastore-X.Y.Z/ 
 ```
-
-  
 
 ### Preparing Branch for Future Maintenance Release
 
@@ -541,8 +525,3 @@ For example, if you are working on branch-3 and have just released Hive 3.2 and 
 ## See Also
 
 * [Apache Releases FAQ](http://www.apache.org/dev/release.html)
-
- 
-
- 
-
