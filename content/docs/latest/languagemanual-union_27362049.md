@@ -5,13 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Union
 
-* [Union Syntax]({{< ref "#union-syntax" >}})
-	+ [UNION within a FROM Clause]({{< ref "#union-within-a-from-clause" >}})
-	+ [Unions in DDL and Insert Statements]({{< ref "#unions-in-ddl-and-insert-statements" >}})
-	+ [Applying Subclauses]({{< ref "#applying-subclauses" >}})
-	+ [Column Aliases for Schema Matching]({{< ref "#column-aliases-for-schema-matching" >}})
-	+ [Column Type Conversion]({{< ref "#column-type-conversion" >}})
-	+ [Version Information]({{< ref "#version-information" >}})
+{{< toc >}}
 
 ## Union Syntax
 

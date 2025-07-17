@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DeleteTable
 
-# Delete Table — DELETE ddl/database/:db/table/:table
-
-* [Delete Table — DELETE ddl/database/:db/table/:table]({{< ref "#delete-table--delete-ddldatabasedbtabletable" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

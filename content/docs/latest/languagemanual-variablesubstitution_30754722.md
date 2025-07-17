@@ -5,12 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual VariableSubstitution
 
-# 
-* 
-* [Introduction]({{< ref "#introduction" >}})
-* [Using Variables]({{< ref "#using-variables" >}})
-* [Substitution During Query Construction]({{< ref "#substitution-during-query-construction" >}})
-* [Disabling Variable Substitution]({{< ref "#disabling-variable-substitution" >}})
+{{< toc >}}
 
 # Introduction
 

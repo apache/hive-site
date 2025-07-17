@@ -5,19 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : HiveServer2 Overview
 
-* [Introduction]({{< ref "#introduction" >}})
-* [HS2 Architecture]({{< ref "#hs2-architecture" >}})
-	+ [Server]({{< ref "#server" >}})
-	+ [Transport]({{< ref "#transport" >}})
-	+ [Protocol]({{< ref "#protocol" >}})
-	+ [Processor]({{< ref "#processor" >}})
-* [Dependencies of HS2]({{< ref "#dependencies-of-hs2" >}})
-* [JDBC Client]({{< ref "#jdbc-client" >}})
-* [Source Code Description]({{< ref "#source-code-description" >}})
-	+ [Server Side]({{< ref "#server-side" >}})
-	+ [Client Side]({{< ref "#client-side" >}})
-	+ [Interaction between Client and Server]({{< ref "#interaction-between-client-and-server" >}})
-* [Resources]({{< ref "#resources" >}})
+{{< toc >}}
 
 # Introduction
 

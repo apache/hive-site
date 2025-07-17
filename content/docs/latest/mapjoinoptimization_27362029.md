@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : MapJoinOptimization
 
-**Index** 
-
-* [1. Map Join Optimization]({{< ref "#1-map-join-optimization" >}})
-	+ [1.1 Using Distributed Cache to Propagate Hashtable File]({{< ref "#11-using-distributed-cache-to-propagate-hashtable-file" >}})
-	+ [1.2 Removing JDBM]({{< ref "#12-removing-jdbm" >}})
-	+ [1.3 Performance Evaluation]({{< ref "#13-performance-evaluation" >}})
-* [2. Converting Join into Map Join Automatically]({{< ref "#2-converting-join-into-map-join-automatically" >}})
-	+ [2.1 New Join Execution Flow]({{< ref "#21-new-join-execution-flow" >}})
-	+ [2.2 Resolving the Join Operation at Run Time]({{< ref "#22-resolving-the-join-operation-at-run-time" >}})
-	+ [2.3 Backup Task]({{< ref "#23-backup-task" >}})
-	+ [2.4 Performance Evaluation]({{< ref "#24-performance-evaluation" >}})
+{{< toc >}}
 
 # 1. Map Join Optimization
 

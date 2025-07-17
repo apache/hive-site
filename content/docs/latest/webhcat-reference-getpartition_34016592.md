@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetPartition
 
-# Describe Partition — GET ddl/database/:db/table/:table/partition/:partition
-
-* [Describe Partition — GET ddl/database/:db/table/:table/partition/:partition]({{< ref "#describe-partition--get-ddldatabasedbtabletablepartitionpartition" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

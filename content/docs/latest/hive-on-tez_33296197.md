@@ -5,39 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Hive on Tez
 
-* [Overview]({{< ref "#overview" >}})
-	+ [Multiple reduce stages]({{< ref "#multiple-reduce-stages" >}})
-	+ [Pipelining]({{< ref "#pipelining" >}})
-	+ [In memory versus disk writes]({{< ref "#in-memory-versus-disk-writes" >}})
-	+ [Joins]({{< ref "#joins" >}})
-	+ [Fine-tuned algorithms]({{< ref "#fine-tuned-algorithms" >}})
-	+ [Limit processing]({{< ref "#limit-processing" >}})
-* [Scope]({{< ref "#scope" >}})
-* [Functional requirements of phase I]({{< ref "#functional-requirements-of-phase-i" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Plan with TEZ]({{< ref "#plan-with-tez" >}})
-		- [Plan without TEZ]({{< ref "#plan-without-tez" >}})
-* [Design]({{< ref "#design" >}})
-	+ [Summary of changes]({{< ref "#summary-of-changes" >}})
-	+ [Execution layer]({{< ref "#execution-layer" >}})
-		- [Job submission]({{< ref "#job-submission" >}})
-		- [Job monitoring]({{< ref "#job-monitoring" >}})
-		- [Job diagnostics]({{< ref "#job-diagnostics" >}})
-		- [Counters]({{< ref "#counters" >}})
-		- [Job execution]({{< ref "#job-execution" >}})
-	+ [Query planning]({{< ref "#query-planning" >}})
-		- [MapRedWork]({{< ref "#mapredwork" >}})
-		- [Semantic analysis and logical optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
-		- [Physical Optimizations and Task generation]({{< ref "#physical-optimizations-and-task-generation" >}})
-		- [Local Job Runner]({{< ref "#local-job-runner" >}})
-		- [Number of tasks]({{< ref "#number-of-tasks" >}})
-		- [Explain statements]({{< ref "#explain-statements" >}})
-		- [Hive variables]({{< ref "#hive-variables" >}})
-	+ [Build infrastructure]({{< ref "#build-infrastructure" >}})
-	+ [Testing]({{< ref "#testing" >}})
-		- [Mini Tez Cluster]({{< ref "#mini-tez-cluster" >}})
-* [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
-	+ [Hive-Tez Compatibility]({{< ref "#hive-tez-compatibility" >}})
+{{< toc >}}
 
 # Overview
 

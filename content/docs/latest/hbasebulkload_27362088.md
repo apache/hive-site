@@ -3,23 +3,11 @@ title: "Apache Hive : HBaseBulkLoad"
 date: 2024-12-12
 ---
 
-# Apache Hive : HBaseBulkLoad
-
-# Hive HBase Bulk Load
-
-* [Hive HBase Bulk Load]({{< ref "#hive-hbase-bulk-load" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Decide on Target HBase Schema]({{< ref "#decide-on-target-hbase-schema" >}})
-	+ [Estimate Resources Needed]({{< ref "#estimate-resources-needed" >}})
-	+ [Add necessary JARs]({{< ref "#add-necessary-jars" >}})
-	+ [Prepare Range Partitioning]({{< ref "#prepare-range-partitioning" >}})
-	+ [Prepare Staging Location]({{< ref "#prepare-staging-location" >}})
-	+ [Sort Data]({{< ref "#sort-data" >}})
-	+ [Run HBase Script]({{< ref "#run-hbase-script" >}})
-	+ [Map New Table Back Into Hive]({{< ref "#map-new-table-back-into-hive" >}})
-	+ [Followups Needed]({{< ref "#followups-needed" >}})
+# Apache Hive : HBase Bulk Load
 
 This page explains how to use Hive to bulk load data into a new (empty) HBase table per [HIVE-1295](https://issues.apache.org/jira/browse/HIVE-1295). (If you're not using a build which contains this functionality yet, you'll need to build from source and make sure this patch and HIVE-1321 are both applied.)
+
+{{< toc >}}
 
 ## Overview
 

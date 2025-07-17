@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Configuration
 
-* [Configuring Hive]({{< ref "#configuring-hive" >}})
-	+ [hive-site.xml and hive-default.xml.template]({{< ref "#hive-sitexml-and-hive-defaultxmltemplate" >}})
-	+ [Temporary Folders]({{< ref "#temporary-folders" >}})
-	+ [Log Files]({{< ref "#log-files" >}})
-	+ [Derby Server Mode]({{< ref "#derby-server-mode" >}})
-	+ [Configuration Variables]({{< ref "#configuration-variables" >}})
-* [Removing Hive Metastore Password from Hive Configuration]({{< ref "#removing-hive-metastore-password-from-hive-configuration" >}})
-* [Configuring HCatalog and WebHCat]({{< ref "#configuring-hcatalog-and-webhcat" >}})
-	+ [HCatalog]({{< ref "#hcatalog" >}})
-	+ [WebHCat]({{< ref "#webhcat" >}})
+{{< toc >}}
 
 ## Configuring Hive
 

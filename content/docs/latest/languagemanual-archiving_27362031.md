@@ -5,18 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Archiving
 
-# Archiving for File Count Reduction
+Archiving for File Count Reduction.
 
-Note: Archiving should be considered an advanced command due to the caveats involved.
-
-* [Archiving for File Count Reduction]({{< ref "#archiving-for-file-count-reduction" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Settings]({{< ref "#settings" >}})
-	+ [Usage]({{< ref "#usage" >}})
-		- [Archive]({{< ref "#archive" >}})
-		- [Unarchive]({{< ref "#unarchive" >}})
-	+ [Cautions and Limitations]({{< ref "#cautions-and-limitations" >}})
-	+ [Under the Hood]({{< ref "#under-the-hood" >}})
+{{< toc >}}
 
 ## Overview
 
@@ -24,7 +15,8 @@ Due to the design of HDFS, the number of files in the filesystem directly affect
 
 The use of [Hadoop Archives](http://hadoop.apache.org/docs/stable1/hadoop_archives.html) is one approach to reducing the number of files in partitions. Hive has built-in support to convert files in existing partitions to a Hadoop Archive (HAR) so that a partition that may once have consisted of 100's of files can occupy just ~3 files (depending on settings). However, the trade-off is that queries may be slower due to the additional overhead in reading from the HAR.
 
-Note that archiving does NOT compress the files – HAR is analogous to the Unix tar command.
+Note: Archiving does NOT compress the files – HAR is analogous to the Unix tar command.
+Note: Archiving should be considered an advanced command due to the caveats involved.
 
 ## Settings
 

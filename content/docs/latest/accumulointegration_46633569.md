@@ -3,24 +3,9 @@ title: "Apache Hive : AccumuloIntegration"
 date: 2024-12-12
 ---
 
-# Apache Hive : AccumuloIntegration
+# Apache Hive : Accumulo Integration
 
-# Hive Accumulo Integration
-
-* [Hive Accumulo Integration]({{< ref "#hive-accumulo-integration" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Implementation]({{< ref "#implementation" >}})
-	+ [Accumulo Configuration]({{< ref "#accumulo-configuration" >}})
-	+ [Usage]({{< ref "#usage" >}})
-	+ [Column Mapping]({{< ref "#column-mapping" >}})
-	+ [Indexing]({{< ref "#indexing" >}})
-	+ [Other options]({{< ref "#other-options" >}})
-	+ [Examples]({{< ref "#examples" >}})
-		- [Override the Accumulo table name]({{< ref "#override-the-accumulo-table-name" >}})
-		- [Store a Hive map with binary serialization]({{< ref "#store-a-hive-map-with-binary-serialization" >}})
-		- [Register an external table]({{< ref "#register-an-external-table" >}})
-		- [Create an indexed table]({{< ref "#create-an-indexed-table" >}})
-	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
+{{< toc >}}
 
 ## Overview
 

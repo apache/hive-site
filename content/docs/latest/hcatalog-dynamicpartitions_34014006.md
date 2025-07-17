@@ -3,16 +3,9 @@ title: "Apache Hive : HCatalog DynamicPartitions"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog DynamicPartitions
+# Apache Hive : HCatalog Dynamic Partitioning
 
-# Dynamic Partitioning
-
-* [Dynamic Partitioning]({{< ref "#dynamic-partitioning" >}})
-	+ [Overview]({{< ref "#overview" >}})
-		- [External Tables]({{< ref "#external-tables" >}})
-		- [Hive Dynamic Partitions]({{< ref "#hive-dynamic-partitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+{{< toc >}}
 
 ## Overview
 

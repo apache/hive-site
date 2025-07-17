@@ -5,63 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : HiveServer2 Clients
 
-* [Beeline – Command Line Shell]({{< ref "#beeline--command-line-shell" >}})
-	+ [Beeline Example]({{< ref "#beeline-example" >}})
-	+ [Beeline Commands]({{< ref "#beeline-commands" >}})
-	+ [Beeline Properties]({{< ref "#beeline-properties" >}})
-	+ [Beeline Hive Commands]({{< ref "#beeline-hive-commands" >}})
-	+ [Beeline Command Options]({{< ref "#beeline-command-options" >}})
-	+ [Output Formats]({{< ref "#output-formats" >}})
-		- [table]({{< ref "#table" >}})
-		- [vertical]({{< ref "#vertical" >}})
-		- [xmlattr]({{< ref "#xmlattr" >}})
-		- [xmlelements]({{< ref "#xmlelements" >}})
-		- [json]({{< ref "#json" >}})
-		- [jsonfile]({{< ref "#jsonfile" >}})
-		- [Separated-Value Output Formats]({{< ref "#separated-value-output-formats" >}})
-			* [csv2, tsv2, dsv]({{< ref "#csv2-tsv2-dsv" >}})
-				+ [Quoting in csv2, tsv2 and dsv Formats]({{< ref "#quoting-in-csv2,-tsv2-and-dsv-formats" >}})
-			* [csv, tsv]({{< ref "#csv,-tsv" >}})
-	+ [HiveServer2 Logging]({{< ref "#hiveserver2-logging" >}})
-	+ [Cancelling the Query]({{< ref "#cancelling-the-query" >}})
-	+ [Background Query in Terminal Script]({{< ref "#background-query-in-terminal-script" >}})
-* [JDBC]({{< ref "#jdbc" >}})
-	+ [Connection URLs]({{< ref "#connection-urls" >}})
-		- [Connection URL Format]({{< ref "#connection-url-format" >}})
-		- [Connection URL for Remote or Embedded Mode]({{< ref "#connection-url-for-remote-or-embedded-mode" >}})
-		- [Connection URL When HiveServer2 Is Running in HTTP Mode]({{< ref "#connection-url-when-hiveserver2-is-running-in-http-mode" >}})
-		- [Connection URL When SSL Is Enabled in HiveServer2]({{< ref "#connection-url-when-ssl-is-enabled-in-hiveserver2" >}})
-		- [Connection URL When ZooKeeper Service Discovery Is Enabled]({{< ref "#connection-url-when-zookeeper-service-discovery-is-enabled" >}})
-		- [Named Connection URLs]({{< ref "#named-connection-urls" >}})
-		- [Reconnecting]({{< ref "#reconnecting" >}})
-		- [Using hive-site.xml to automatically connect to HiveServer2]({{< ref "#using-hive-sitexml-to-automatically-connect-to-hiveserver2" >}})
-		- [Using beeline-site.xml to automatically connect to HiveServer2]({{< ref "#using-beeline-sitexml-to-automatically-connect-to-hiveserver2" >}})
-		- [Using JDBC]({{< ref "#using-jdbc" >}})
-			* [JDBC Client Sample Code]({{< ref "#jdbc-client-sample-code" >}})
-			* [Running the JDBC Sample Code]({{< ref "#running-the-jdbc-sample-code" >}})
-	+ [JDBC Data Types]({{< ref "#jdbc-data-types" >}})
-	+ [JDBC Client Setup for a Secure Cluster]({{< ref "#jdbc-client-setup-for-a-secure-cluster" >}})
-		- [Multi-User Scenarios and Programmatic Login to Kerberos KDC]({{< ref "#multi-user-scenarios-and-programmatic-login-to-kerberos-kdc" >}})
-			* [Using Kerberos with a Pre-Authenticated Subject]({{< ref "#using-kerberos-with-a-pre-authenticated-subject" >}})
-	+ [JDBC Fetch Size]({{< ref "#jdbc-fetch-size" >}})
-* [Python Client]({{< ref "#python-client" >}})
-* [Ruby Client]({{< ref "#ruby-client" >}})
-* [Integration with SQuirrel SQL Client]({{< ref "#integration-with-squirrel-sql-client" >}})
-* [Integration with SQL Developer]({{< ref "#integration-with-sql-developer" >}})
-* [Integration with DbVisSoftware's DbVisualizer]({{< ref "#integration-with-dbvissoftwares-dbvisualizer" >}})
-* [Advanced Features for Integration with Other Tools]({{< ref "#advanced-features-for-integration-with-other-tools" >}})
-	+ [Supporting Cookie Replay in HTTP Mode]({{< ref "#supporting-cookie-replay-in-http-mode" >}})
-	+ [Using 2-way SSL in HTTP Mode]({{< ref "#using-2-way-ssl-in-http-mode" >}})
-	+ [Passing HTTP Header Key/Value Pairs via JDBC Driver]({{< ref "#passing-http-header-keyvalue-pairs-via-jdbc-driver" >}})
-	+ [Passing Custom HTTP Cookie Key/Value Pairs via JDBC Driver]({{< ref "#passing-custom-http-cookie-keyvalue-pairs-via-jdbc-driver" >}})
+This page describes the different clients supported by [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}).
 
-This page describes the different clients supported by [HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}}).  Other documentation for HiveServer2 includes:
+{{< toc >}}
 
-* [HiveServer2 Overview]({{< ref "hiveserver2-overview_65147648" >}})
-* [Setting Up HiveServer2]({{< ref "setting-up-hiveserver2_30758712" >}})
-* [Hive Configuration Properties:  HiveServer2]({{< ref "#hive-configuration-properties:- hiveserver2" >}})
-
-Version
+# Version information
 
 Introduced in Hive version 0.11. See [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).
 

@@ -3,35 +3,9 @@ title: "Apache Hive : HCatalog LoadStore"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog LoadStore
-
-# Load and Store Interfaces
-
-* [Load and Store Interfaces]({{< ref "#load-and-store-interfaces" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [Running Pig]({{< ref "#running-pig" >}})
-	+ [HCatLoader]({{< ref "#hcatloader" >}})
-		- [Usage]({{< ref "#usage" >}})
-			* [Assumptions]({{< ref "#assumptions" >}})
-		- [HCatLoader Data Types]({{< ref "#hcatloader-data-types" >}})
-			* [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
-			* [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
-		- [Running Pig with HCatalog]({{< ref "#running-pig-with-hcatalog" >}})
-			* [The -useHCatalog Flag]({{< ref "#the--usehcatalog-flag" >}})
-			* [Jars and Configuration Files]({{< ref "#jars-and-configuration-files" >}})
-			* [Authentication]({{< ref "#authentication" >}})
-		- [Load Examples]({{< ref "#load-examples" >}})
-			* [Filter Operators]({{< ref "#filter-operators" >}})
-	+ [HCatStorer]({{< ref "#hcatstorer" >}})
-		- [Usage]({{< ref "#usage" >}})
-			* [Assumptions]({{< ref "#assumptions" >}})
-		- [Store Examples]({{< ref "#store-examples" >}})
-		- [HCatStorer Data Types]({{< ref "#hcatstorer-data-types" >}})
-			* [Types in Hive 0.12.0 and Earlier]({{< ref "#types-in-hive-0120-and-earlier" >}})
-			* [Types in Hive 0.13.0 and Later]({{< ref "#types-in-hive-0130-and-later" >}})
-	+ [Data Type Mappings]({{< ref "#data-type-mappings" >}})
-		- [Primitive Types]({{< ref "#primitive-types" >}})
-		- [Complex Types]({{< ref "#complex-types" >}})
+# Apache Hive : HCatalog Load and Store Interfaces
+ 
+{{< toc >}}
 
 ## Set Up
 

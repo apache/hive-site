@@ -5,24 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual WindowingAndAnalytics
 
-# Windowing and Analytics Functions
-
-* [Windowing and Analytics Functions]({{< ref "#windowing-and-analytics-functions" >}})
-	+ [Enhancements to Hive QL]({{< ref "#enhancements-to-hive-ql" >}})
-	+ [Examples]({{< ref "#examples" >}})
-		- [PARTITION BY with one partitioning column, no ORDER BY or window specification]({{< ref "#partition-by-with-one-partitioning-column-no-order-by-or-window-specification" >}})
-		- [PARTITION BY with two partitioning columns, no ORDER BY or window specification]({{< ref "#partition-by-with-two-partitioning-columns-no-order-by-or-window-specification" >}})
-		- [PARTITION BY with one partitioning column, one ORDER BY column, and no window specification]({{< ref "#partition-by-with-one-partitioning-column-one-order-by-column-and-no-window-specification" >}})
-		- [PARTITION BY with two partitioning columns, two ORDER BY columns, and no window specification]({{< ref "#partition-by-with-two-partitioning-columns-two-order-by-columns-and-no-window-specification" >}})
-		- [PARTITION BY with partitioning, ORDER BY, and window specification]({{< ref "#partition-by-with-partitioning-order-by-and-window-specification" >}})
-		- [WINDOW clause]({{< ref "#window-clause" >}})
-		- [LEAD using default 1 row lead and not specifying default value]({{< ref "#lead-using-default-1-row-lead-and-not-specifying-default-value" >}})
-		- [LAG specifying a lag of 3 rows and default value of 0]({{< ref "#lag-specifying-a-lag-of-3-rows-and-default-value-of-0" >}})
-		- [Distinct counting for each partition]({{< ref "#distinct-counting-for-each-partition" >}})
+{{< toc >}}
 
 ## Enhancements to Hive QL
-
-Version
 
 Introduced in Hive version 0.11.
 

@@ -5,23 +5,10 @@ date: 2024-12-12
 
 # Apache Hive : Datasketches Integration
 
-* [Sketch functions]({{< ref "#sketch-functions" >}})
-	+ [Naming convention]({{< ref "#naming-convention" >}})
-	+ [List declared sketch functions]({{< ref "#list-declared-sketch-functions" >}})
-* [Integration with materialized views]({{< ref "#integration-with-materialized-views" >}})
-* [BI mode]({{< ref "#bi-mode" >}})
-	+ [Rewrite COUNT(DISTINCT(X))]({{< ref "#rewrite-countdistinctx" >}})
-	+ [Rewrite percentile_disc(p) withing group(order by x)]({{< ref "#rewrite-percentile_discp-withing-grouporder-by-x" >}})
-	+ [Rewrite cume_dist() over (order by id)]({{< ref "#rewrite-cume_dist---over--order-by-id-" >}})
-	+ [Rewrite NTILE]({{< ref "#rewrite-ntile" >}})
-	+ [Rewrite RANK]({{< ref "#rewrite-rank" >}})
-* [Examples]({{< ref "#examples" >}})
-	+ [Simple distinct counting examples using HLL]({{< ref "#simple-distinct-counting-examples-using-hll" >}})
-
-  
-
 Apache DataSketches (<https://datasketches.apache.org/>) is integrated into Hive via [HIVE-22939](https://issues.apache.org/jira/browse/HIVE-22939).  
 This enables various kind of sketch operations thru regular sql statement.
+
+{{< toc >}}
 
 # Sketch functions
 

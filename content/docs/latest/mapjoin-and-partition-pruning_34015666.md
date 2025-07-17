@@ -5,14 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : MapJoin and Partition Pruning
 
-* [Overview]({{< ref "#overview" >}})
-	+ [Problem]({{< ref "#problem" >}})
-	+ [Proposed Solution]({{< ref "#proposed-solution" >}})
-	+ [Possible Extensions]({{< ref "#possible-extensions" >}})
-* [Optimization Details]({{< ref "#optimization-details" >}})
-	+ [Compile Time]({{< ref "#compile-time" >}})
-	+ [Runtime]({{< ref "#runtime" >}})
-	+ [Pseudo Code]({{< ref "#pseudo-code" >}})
+{{< toc >}}
 
 # Overview
 

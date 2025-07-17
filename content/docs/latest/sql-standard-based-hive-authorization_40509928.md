@@ -5,29 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : SQL Standard Based Hive Authorization
 
-  
-
-* [Status of Hive Authorization before Hive 0.13]({{< ref "#status-of-hive-authorization-before-hive-013" >}})
-* [SQL Standards Based Hive Authorization (New in Hive 0.13)]({{< ref "#sql-standards-based-hive-authorization--new-in-hive-0-13-" >}})
-	+ [Restrictions on Hive Commands and Statements]({{< ref "#restrictions-on-hive-commands-and-statements" >}})
-	+ [Privileges]({{< ref "#privileges" >}})
-	+ [Objects]({{< ref "#objects" >}})
-	+ [Object Ownership]({{< ref "#object-ownership" >}})
-	+ [Users and Roles]({{< ref "#users-and-roles" >}})
-		- [Names of Users and Roles]({{< ref "#names-of-users-and-roles" >}})
-		- [Role Management Commands]({{< ref "#role-management-commands" >}})
-	+ [Managing Object Privileges]({{< ref "#managing-object-privileges" >}})
-		- [Object Privilege Commands]({{< ref "#object-privilege-commands" >}})
-		- [Examples of Managing Object Privileges]({{< ref "#examples-of-managing-object-privileges" >}})
-	+ [Privileges Required for Hive Operations]({{< ref "#privileges-required-for-hive-operations" >}})
-	+ [Configuration]({{< ref "#configuration" >}})
-		- [For Hive 0.13.x]({{< ref "#for-hive-013x" >}})
-		- [For Hive 0.14 and Newer]({{< ref "#for-hive-014-and-newer" >}})
-	+ [Known Issues]({{< ref "#known-issues" >}})
-		- [Hive 0.13]({{< ref "#hive-013" >}})
-		- [Hive 0.13.1]({{< ref "#hive-0131" >}})
-	+ [References]({{< ref "#references" >}})
-	+ [Troubleshooting]({{< ref "#troubleshooting" >}})
+{{< toc >}}
 
 # Status of Hive Authorization before Hive 0.13
 

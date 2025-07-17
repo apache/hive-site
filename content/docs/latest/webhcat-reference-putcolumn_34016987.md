@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutColumn
 
-# Create Column — PUT ddl/database/:db/table/:table/column/:column
-
-* [Create Column — PUT ddl/database/:db/table/:table/column/:column]({{< ref "#create-column--put-ddldatabasedbtabletablecolumncolumn" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

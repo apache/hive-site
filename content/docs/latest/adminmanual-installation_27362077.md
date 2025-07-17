@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Installation
 
-* [Installing Hive]({{< ref "#installing-hive" >}})
-	+ [Installing from a Tarball]({{< ref "#installing-from-a-tarball" >}})
-	+ [Installing from Source Code (Hive 1.2.0 and Later)]({{< ref "#installing-from-source-code-hive-120-and-later" >}})
-	+ [Installing from Source Code (Hive 0.13.0 and Later)]({{< ref "#installing-from-source-code-hive-0130-and-later" >}})
-	+ [Installing from Source Code (Hive 0.12.0 and Earlier)]({{< ref "#installing-from-source-code-hive-0120-and-earlier" >}})
-* [Next Steps]({{< ref "#next-steps" >}})
-	+ [Hive CLI and Beeline CLI]({{< ref "#hive-cli-and-beeline-cli" >}})
-	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
-* [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
-	+ [HCatalog]({{< ref "#hcatalog" >}})
-	+ [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
+{{< toc >}}
 
 # Installing Hive
 

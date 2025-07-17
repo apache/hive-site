@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutTableLike
 
-# Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable
-
-* [Create Table Like — PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "#create-table-like--put-ddldatabasedbtableexistingtablelikenewtable" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

@@ -5,23 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : ListBucketing
 
-* [Goal]({{< ref "#goal" >}})
-	+ [Basic Partitioning]({{< ref "#basic-partitioning" >}})
-	+ [List Bucketing]({{< ref "#list-bucketing" >}})
-	+ [Skewed Table vs. List Bucketing Table]({{< ref "#skewed-table-vs-list-bucketing-table" >}})
-	+ [List Bucketing Validation]({{< ref "#list-bucketing-validation" >}})
-		- [DDL]({{< ref "#ddl" >}})
-		- [DML]({{< ref "#dml" >}})
-		- [Alter Table Concatenate]({{< ref "#alter-table-concatenate" >}})
-	+ [Hive Enhancements]({{< ref "#hive-enhancements" >}})
-		- [Create Table]({{< ref "#create-table" >}})
-		- [Alter Table]({{< ref "#alter-table" >}})
-			* [Alter Table Skewed]({{< ref "#alter-table-skewed" >}})
-			* [Alter Table Not Skewed]({{< ref "#alter-table-not-skewed" >}})
-			* [Alter Table Not Stored as Directories]({{< ref "#alter-table-not-stored-as-directories" >}})
-			* [Alter Table Set Skewed Location]({{< ref "#alter-table-set-skewed-location" >}})
-		- [Design]({{< ref "#design" >}})
-* [Implementation]({{< ref "#implementation" >}})
+{{< toc >}}
 
 # Goal
 

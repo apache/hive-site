@@ -5,20 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Authorization
 
-Hive Authorization
-
-* [Introduction]({{< ref "#introduction" >}})
-* [Hive Authorization Options]({{< ref "#hive-authorization-options" >}})
-	+ [Use Cases]({{< ref "#use-cases" >}})
-	+ [Overview of Authorization Modes]({{< ref "#overview-of-authorization-modes" >}})
-		- [1 Storage Based Authorization in the Metastore Server]({{< ref "#1-storage-based-authorization-in-the-metastore-server" >}})
-			* [Fall Back Authorizer]({{< ref "#fall-back-authorizer" >}})
-		- [2 SQL Standards Based Authorization in HiveServer2]({{< ref "#2-sql-standards-based-authorization-in-hiveserver2" >}})
-		- [3 Authorization using Apache Ranger & Sentry]({{< ref "#3-authorization-using-apache-ranger--sentry" >}})
-		- [4 Old default Hive Authorization (Legacy Mode)]({{< ref "#4-old-default-hive-authorization-legacy-mode" >}})
-	+ [Addressing Authorization Needs of Multiple Use Cases]({{< ref "#addressing-authorization-needs-of-multiple-use-cases" >}})
-* [Explain Authorization]({{< ref "#explain-authorization" >}})
-* [More Information]({{< ref "#more-information" >}})
+{{< toc >}}
 
 ## Introduction
 

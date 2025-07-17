@@ -5,19 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2
 
-* [User and Group Filter Support with LDAP]({{< ref "#user-and-group-filter-support-with-ldap" >}})
-	+ [Group Membership]({{< ref "#group-membership" >}})
-		- [hive.server2.authentication.ldap.groupDNPattern]({{< ref "#hiveserver2authenticationldapgroupdnpattern" >}})
-		- [hive.server2.authentication.ldap.groupFilter]({{< ref "#hiveserver2authenticationldapgroupfilter" >}})
-		- [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}})
-		- [hive.server2.authentication.ldap.groupClassKey]({{< ref "#hiveserver2authenticationldapgroupclasskey" >}})
-	+ [User Search List]({{< ref "#user-search-list" >}})
-		- [hive.server2.authentication.ldap.userDNPattern]({{< ref "#hiveserver2authenticationldapuserdnpattern" >}})
-		- [hive.server2.authentication.ldap.userFilter]({{< ref "#hiveserver2authenticationldapuserfilter" >}})
-	+ [Custom Query String]({{< ref "#custom-query-string" >}})
-		- [hive.server2.authentication.ldap.customLDAPQuery]({{< ref "#hiveserver2authenticationldapcustomldapquery" >}})
-		- [Support for Groups in Custom LDAP Query]({{< ref "#support-for-groups-in-custom-ldap-query" >}})
-	+ [Order of Precedence]({{< ref "#order-of-precedence" >}})
+{{< toc >}}
 
 ## User and Group Filter Support with LDAP
 

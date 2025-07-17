@@ -5,15 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : PartitionedViews
 
-* [Use Cases]({{< ref "#use-cases" >}})
-	+ [Approaches]({{< ref "#approaches" >}})
-	+ [Syntax]({{< ref "#syntax" >}})
-	+ [Metastore]({{< ref "#metastore" >}})
-	+ [Strict Mode]({{< ref "#strict-mode" >}})
-	+ [View Definition Changes]({{< ref "#view-definition-changes" >}})
-* [Hook Information]({{< ref "#hook-information" >}})
-
 This is a followup to [ViewDev]({{< ref "viewdev_27362067" >}}) for adding partition-awareness to views.
+
+{{< toc >}}
 
 # Use Cases
 

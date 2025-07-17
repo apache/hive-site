@@ -5,19 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : TeradataBinarySerde
 
-* [Availability]({{< ref "#availability" >}})
-* [Overview]({{< ref "#overview" >}})
-* [How to export]({{< ref "#how-to-export" >}})
-	+ [Using TPT FastExport]({{< ref "#using-tpt-fastexport" >}})
-	+ [Using BTEQ]({{< ref "#using-bteq" >}})
-* [How to import]({{< ref "#how-to-import" >}})
-	+ [Using BTEQ]({{< ref "#using-bteq" >}})
-	+ [Using TPT FastLoad]({{< ref "#using-tpt-fastload" >}})
-* [Usage]({{< ref "#usage" >}})
-	+ [Table Creating]({{< ref "#table-creating" >}})
-	+ [Table Properties]({{< ref "#table-properties" >}})
-	+ [Teradata to Hive Type Conversion]({{< ref "#teradata-to-hive-type-conversion" >}})
-	+ [Serde Restriction]({{< ref "#serde-restriction" >}})
+{{< toc >}}
 
 ### Availability
 

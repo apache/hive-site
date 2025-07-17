@@ -5,14 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive MetaTool
 
-* [Hive MetaTool]({{< ref "#hive-metatool" >}})
-	+ [The metatool Command]({{< ref "#the-metatool-command" >}})
-	+ [Usage Example]({{< ref "#usage-example" >}})
-
-## Hive MetaTool
-
-Version 0.10.0 and later
-
 Introduced in Hive 0.10.0. See [HIVE-3056](https://issues.apache.org/jira/browse/HIVE-3056) and [HIVE-3443](https://issues.apache.org/jira/browse/HIVE-3443).
 
 The Hive MetaTool enables administrators to do bulk updates on the location fields in database, table, and partition records in the metastore.  It provides the following functionality:

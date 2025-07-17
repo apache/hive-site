@@ -5,12 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Configure
 
-# WebHCat Configuration
-
-* [WebHCat Configuration]({{< ref "#webhcat-configuration" >}})
-	+ [Configuration Files]({{< ref "#configuration-files" >}})
-	+ [Configuration Variables]({{< ref "#configuration-variables" >}})
-		- [Default Values]({{< ref "#default-values" >}})
+{{< toc >}}
 
 ## Configuration Files
 

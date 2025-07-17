@@ -7,53 +7,7 @@ date: 2024-12-12
 
 # Hive Data Manipulation Language
 
-* [Hive Data Manipulation Language]({{< ref "#hive-data-manipulation-language" >}})
-	+ [Loading files into tables]({{< ref "#loading-files-into-tables" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Inserting data into Hive Tables from queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-		- [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
-			* [Example]({{< ref "#example" >}})
-			* [Additional Documentation]({{< ref "#additional-documentation" >}})
-	+ [Writing data into the filesystem from queries]({{< ref "#writing-data-into-the-filesystem-from-queries" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Inserting values into tables from SQL]({{< ref "#inserting-values-into-tables-from-sql" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Examples]({{< ref "#examples" >}})
-	+ [Update]({{< ref "#update" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Delete]({{< ref "#delete" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Notes]({{< ref "#notes" >}})
-	+ [Merge]({{< ref "#merge" >}})
-		- [Syntax]({{< ref "#syntax" >}})
-		- [Synopsis]({{< ref "#synopsis" >}})
-		- [Performance Note]({{< ref "#performance-note" >}})
-		- [Notes]({{< ref "#notes" >}})
-		- [Examples]({{< ref "#examples" >}})
-
-There are multiple ways to modify data in Hive:
-
-* [LOAD](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Loadingfilesintotables)
-* INSERT
-	+ [into Hive tables from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingdataintoHiveTablesfromqueries)
-	+ [into directories from queries](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Writingdataintothefilesystemfromqueries)
-	+ [into Hive tables from SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingintotablesfromSQL)
-* [UPDATE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Update)
-* [DELETE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Delete)
-* [MERGE](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Merge)
-
-[EXPORT and IMPORT]({{< ref "languagemanual-importexport_27837968" >}}) commands are also available (as of [Hive 0.8](https://issues.apache.org/jira/browse/HIVE-1918)).
+{{< toc >}}
 
 ### Loading files into tables
 

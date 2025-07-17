@@ -5,34 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : Druid Integration
 
-* [Introduction]({{< ref "#introduction" >}})
-	+ [Objectives]({{< ref "#objectives" >}})
-* [Preliminaries]({{< ref "#preliminaries" >}})
-	+ [Druid]({{< ref "#druid" >}})
-	+ [Storage Handlers]({{< ref "#storage-handlers" >}})
-* [Usage]({{< ref "#usage" >}})
-	+ [Discovery and management of Druid datasources from Hive]({{< ref "#discovery-and-management-of-druid-datasources-from-hive" >}})
-		- [Create tables linked to existing Druid datasources]({{< ref "#create-tables-linked-to-existing-druid-datasources" >}})
-		- [Create Druid datasources from Hive]({{< ref "#create-druid-datasources-from-hive" >}})
-		- [Druid kafka ingestion from Hive]({{< ref "#druid-kafka-ingestion-from-hive" >}})
-			* [Start/Stop/Reset Druid Kafka ingestion]({{< ref "#startstopreset-druid-kafka-ingestion" >}})
-		- [INSERT, INSERT OVERWRITE and DROP statements]({{< ref "#insert-insert-overwrite-and-drop-statements" >}})
-		- [Queries completely executed in Druid]({{< ref "#queries-completely-executed-in-druid" >}})
-			* [Select queries]({{< ref "#select-queries" >}})
-			* [Timeseries queries]({{< ref "#timeseries-queries" >}})
-			* [GroupBy queries]({{< ref "#groupby-queries" >}})
-		- [Queries across Druid and Hive]({{< ref "#queries-across-druid-and-hive" >}})
-* [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
+This page documents the work done for the integration between Druid and Hive introduced in Hive 2.2.0 ([HIVE-14217](https://issues.apache.org/jira/browse/HIVE-14217)). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.
 
- 
-
-Version information
-
-Druid integration is introduced in Hive 2.2.0 ([HIVE-14217](https://issues.apache.org/jira/browse/HIVE-14217)). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.
-
-# Introduction
-
-This page documents the work done for the integration between Druid and Hive, which was started in [HIVE-14217](https://issues.apache.org/jira/browse/HIVE-14217).
+{{< toc >}}
 
 ## Objectives
 

@@ -5,14 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Notification
 
-# Notification
+{{< toc >}}
 
-* [Notification]({{< ref "#notification" >}})
-	+ [Notification for a New Partition]({{< ref "#notification-for-a-new-partition" >}})
-	+ [Notification for a Set of Partitions]({{< ref "#notification-for-a-set-of-partitions" >}})
-	+ [Server Configuration]({{< ref "#server-configuration" >}})
-		- [Enable JMS Notifications]({{< ref "#enable-jms-notifications" >}})
-		- [Topic Names]({{< ref "#topic-names" >}})
+## Overview
 
 Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them. The current version of HCatalog supports two kinds of events:
 

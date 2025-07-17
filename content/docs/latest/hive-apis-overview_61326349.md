@@ -5,22 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : Hive APIs Overview
 
-  
-
 This page aims to catalogue and describe the various public facing APIs exposed by Hive in order to inform developers wishing to integrate their applications and frameworks with the Hive ecosystem. To date the following APIs have been identified in the Hive project that are either considered public, or widely used in the public domain:
 
-* [API categories]({{< ref "#api-categories" >}})
-	+ [Operation based APIs]({{< ref "#operation-based-apis" >}})
-	+ [Query based APIs]({{< ref "#query-based-apis" >}})
-* [Available APIs]({{< ref "#available-apis" >}})
-	+ [HCatClient (Java)]({{< ref "#hcatclient-java" >}})
-	+ [HCatalog Storage Handlers (Java)]({{< ref "#hcatalog-storage-handlers-java" >}})
-	+ [HCatalog CLI (Command Line)]({{< ref "#hcatalog-cli-command-line" >}})
-	+ [Metastore (Java)]({{< ref "#metastore-java" >}})
-	+ [WebHCat (REST)]({{< ref "#webhcat-rest" >}})
-	+ [Streaming Data Ingest (Java)]({{< ref "#streaming-data-ingest-java" >}})
-	+ [Streaming Mutation (Java)]({{< ref "#streaming-mutation-java" >}})
-	+ [hive-jdbc (JDBC)]({{< ref "#hive-jdbc-jdbc" >}})
+{{< toc >}}
 
 # API categories
 

@@ -5,15 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Unit Testing Hive SQL
 
-* [Motivations]({{< ref "#motivations" >}})
-* [Challenges]({{< ref "#challenges" >}})
-* [Modularisation]({{< ref "#modularisation" >}})
-	+ [Encapsulation of column level logic]({{< ref "#encapsulation-of-column-level-logic" >}})
-	+ [Encapsulation of set level logic]({{< ref "#encapsulation-of-set-level-logic" >}})
-* [Tools and frameworks]({{< ref "#tools-and-frameworks" >}})
-* [Useful practices]({{< ref "#useful-practices" >}})
-* [Relevant issues]({{< ref "#relevant-issues" >}})
-* [Other Hive unit testing concerns]({{< ref "#other-hive-unit-testing-concerns" >}})
+{{< toc >}}
 
 # Motivations
 

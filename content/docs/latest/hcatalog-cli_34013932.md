@@ -3,26 +3,9 @@ title: "Apache Hive : HCatalog CLI"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog CLI
+# Apache Hive : HCatalog Command Line Interface
 
-# Command Line Interface
-
-* [Command Line Interface]({{< ref "#command-line-interface" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
-		- [Owner Permissions]({{< ref "#owner-permissions" >}})
-		- [Hive CLI]({{< ref "#hive-cli" >}})
-	+ [HCatalog DDL]({{< ref "#hcatalog-ddl" >}})
-		- [Create/Drop/Alter Table]({{< ref "#createdropalter-table" >}})
-		- [Create/Drop/Alter View]({{< ref "#createdropalter-view" >}})
-		- [Show/Describe]({{< ref "#showdescribe" >}})
-		- [Create/Drop Index]({{< ref "#createdrop-index" >}})
-		- [Create/Drop Function]({{< ref "#createdrop-function" >}})
-		- ["dfs" Command and "set" Command]({{< ref "#dfs-set-cmd" >}})
-		- [Other Commands]({{< ref "#other-commands" >}})
-	+ [CLI Errors]({{< ref "#cli-errors" >}})
-		- [Authentication]({{< ref "#authentication" >}})
-		- [Error Log]({{< ref "#error-log" >}})
+{{< toc >}}
 
 ## Set Up
 

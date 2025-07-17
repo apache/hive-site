@@ -5,18 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference MapReduceStream
 
-# MapReduce Streaming Job — POST mapreduce/streaming
-
-* [MapReduce Streaming Job — POST mapreduce/streaming]({{< ref "#mapreduce-streaming-job--post-mapreducestreaming" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Code and Data Setup]({{< ref "#code-and-data-setup" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [Example Results]({{< ref "#example-results" >}})
+{{< toc >}}
 
 ## Description
 

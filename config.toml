@@ -61,3 +61,11 @@ theme = 'hive'
 
 [outputs]
     home = ["HTML", "RSS", "JSON"]
+[markup]
+    [markup.tableOfContents]
+        endLevel = 3
+        ordered = false
+# Ideally we should start from level 2 but various pages
+# contain multiple level-1 headers at the moment that
+# should be displayed in the table of contents
+        startLevel = 1

@@ -5,29 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual DDL
 
-Hive Data Definition Language
-
-* [Overview]({{< ref "#overview" >}})
-* [Keywords, Non-reserved Keywords and Reserved Keywords]({{< ref "#keywords-non-reserved-keywords-and-reserved-keywords" >}})
-* [Create/Drop/Alter/Use Database]({{< ref "#createdropalteruse-database" >}})
-* [Create/Drop/Alter Connector]({{< ref "#createdropalter-connector" >}})
-* [Create/Drop/Truncate Table]({{< ref "#createdroptruncate-table" >}})
-* [Alter Table/Partition/Column]({{< ref "#alter-tablepartitioncolumn" >}})
-* [Create/Drop/Alter View]({{< ref "#createdropalter-view" >}})
-* [Create/Drop/Alter Materialized View]({{< ref "#createdropalter-materialized-view" >}})
-* [Create/Drop/Alter Index]({{< ref "#create/drop/alter-index" >}})
-* [Create/Drop Macro]({{< ref "#createdrop-macro" >}})
-* [Create/Drop/Reload Function]({{< ref "#createdropreload-function" >}})
-* [Create/Drop/Grant/Revoke Roles and Privileges]({{< ref "#createdropgrantrevoke-roles-and-privileges" >}})
-* [Show]({{< ref "#show" >}})
-* [Describe]({{< ref "#describe" >}})
-* [Abort]({{< ref "#abort" >}})
-
-- [Scheduled queries]({{< ref "#scheduled-queries" >}})
-
-- [Datasketches integration]({{< ref "#datasketches-integration" >}})
-
-- [HCatalog and WebHCat DDL]({{< ref "#hcatalog-and-webhcat-ddl" >}})
+{{< toc >}}
 
 ## Overview
 
@@ -426,9 +404,7 @@ In the previous examples the data is stored in <hive.metastore.warehouse.dir>/pa
 #### External Tables
 
 The EXTERNAL keyword lets you create a table and provide a LOCATION so that Hive does not use a default location for this table. This comes in handy if you already have data generated. When dropping an EXTERNAL table, data in the table is *NOT* deleted from the file system. Starting Hive 4.0.0 (
-
-[![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981?src=confmacro)
- -
+[HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981))
  Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed
 
@@ -648,9 +624,7 @@ DROP TABLE [IF EXISTS] table_name [PURGE];     -- (Note: PURGE available in Hive
 DROP TABLE removes metadata and data for this table. The data is actually moved to the .Trash/Current directory if Trash is configured (and PURGE is not specified). The metadata is completely lost.
 
 When dropping an EXTERNAL table, data in the table will *NOT* be deleted from the file system. Starting Hive 4.0.0 (
-
-[![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype)HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981?src=confmacro)
- -
+[HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981))
  Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed
 

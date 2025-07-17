@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Explain
 
-* [EXPLAIN Syntax]({{< ref "#explain-syntax" >}})
-	+ [Example]({{< ref "#example" >}})
-	+ [The CBO Clause]({{< ref "#the-cbo-clause" >}})
-	+ [The AST Clause]({{< ref "#the-ast-clause" >}})
-	+ [The DEPENDENCY Clause]({{< ref "#the-dependency-clause" >}})
-	+ [The AUTHORIZATION Clause]({{< ref "#the-authorization-clause" >}})
-	+ [The LOCKS Clause]({{< ref "#the-locks-clause" >}})
-	+ [The VECTORIZATION Clause]({{< ref "#the-vectorization-clause" >}})
-	+ [The ANALYZE Clause]({{< ref "#the-analyze-clause" >}})
-	+ [User-level Explain Output]({{< ref "#user-level-explain-output" >}})
+{{< toc >}}
 
 ## EXPLAIN Syntax
 

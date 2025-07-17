@@ -5,28 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Streaming Data Ingest
 
-* [Hive 3 Streaming API]({{< ref "#hive-3-streaming-api" >}})
-* [Hive HCatalog Streaming API]({{< ref "#hive-hcatalog-streaming-api" >}})
-	+ [Streaming Mutation API]({{< ref "#streaming-mutation-api" >}})
-* [Streaming Requirements]({{< ref "#streaming-requirements" >}})
-* [Limitations]({{< ref "#limitations" >}})
-* [API Usage]({{< ref "#api-usage" >}})
-	+ [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
-		- [HiveEndPoint]({{< ref "#hiveendpoint" >}})
-		- [StreamingConnection]({{< ref "#streamingconnection" >}})
-		- [TransactionBatch]({{< ref "#transactionbatch" >}})
-			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
-		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
-		- [RecordWriter]({{< ref "#recordwriter" >}})
-		- [DelimitedInputWriter]({{< ref "#delimitedinputwriter" >}})
-		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
-		- [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
-		- [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
-	+ [Error Handling]({{< ref "#error-handling" >}})
-* [Example – Non-secure Mode]({{< ref "#example-–-non-secure-mode" >}})
-* [Example – Secure Streaming]({{< ref "#example-–-secure-streaming" >}})
-* [Knowledge Base]({{< ref "#knowledge-base" >}})
+{{< toc >}}
 
 # Hive 3 Streaming API
 

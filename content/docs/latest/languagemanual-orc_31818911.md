@@ -5,20 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual ORC
 
-# ORC Files
+{{< toc >}}
 
-* [ORC Files]({{< ref "#orc-files" >}})
-	+ [ORC File Format]({{< ref "#orc-file-format" >}})
-		- [File Structure]({{< ref "#file-structure" >}})
-		- [Stripe Structure]({{< ref "#stripe-structure" >}})
-	+ [HiveQL Syntax]({{< ref "#hiveql-syntax" >}})
-	+ [Serialization and Compression]({{< ref "#serialization-and-compression" >}})
-		- [Integer Column Serialization]({{< ref "#integer-column-serialization" >}})
-		- [String Column Serialization]({{< ref "#string-column-serialization" >}})
-		- [Compression]({{< ref "#compression" >}})
-	+ [ORC File Dump Utility]({{< ref "#orc-file-dump-utility" >}})
-	+ [ORC Configuration Parameters]({{< ref "#orc-configuration-parameters" >}})
-* [ORC Format Specification]({{< ref "#orc-format-specification" >}})
+# ORC Files
 
 ## ORC File Format
 

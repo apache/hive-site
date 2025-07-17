@@ -3,36 +3,17 @@ title: "Apache Hive : HBaseIntegration"
 date: 2024-12-12
 ---
 
-# Apache Hive : HBaseIntegration
+# Apache Hive : HBase Integration
 
-# Hive HBase Integration
+This page documents the Hive/HBase integration support originally introduced in [HIVE-705](https://issues.apache.org/jira/browse/HIVE-705). This feature allows Hive QL statements to access [HBase](http://hadoop.apache.org/hbase) tables for both read (SELECT) and write (INSERT). It is even possible to combine access to HBase tables with native Hive tables via joins and unions.
 
-* [Hive HBase Integration]({{< ref "#hive-hbase-integration" >}})
-	
-		- [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})+ [Introduction]({{< ref "#introduction" >}})
-	+ [Storage Handlers]({{< ref "#storage-handlers" >}})
-	+ [Usage]({{< ref "#usage" >}})
-	+ [Column Mapping]({{< ref "#column-mapping" >}})
-		- [Multiple Columns and Families]({{< ref "#multiple-columns-and-families" >}})
-		- [Hive MAP to HBase Column Family]({{< ref "#hive-map-to-hbase-column-family" >}})
-		- [Hive MAP to HBase Column Prefix]({{< ref "#hive-map-to-hbase-column-prefix" >}})
-			* [Hiding Column Prefixes]({{< ref "#hiding-column-prefixes" >}})
-		- [Illegal: Hive Primitive to HBase Column Family]({{< ref "#illegal-hive-primitive-to-hbase-column-family" >}})
-		- [Example with Binary Columns]({{< ref "#example-with-binary-columns" >}})
-		- [Simple Composite Row Keys]({{< ref "#simple-composite-row-keys" >}})
-		- [Complex Composite Row Keys and HBaseKeyFactory]({{< ref "#complex-composite-row-keys-and-hbasekeyfactory" >}})
-		- [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}})
-	+ [Put Timestamps]({{< ref "#put-timestamps" >}})
-	+ [Key Uniqueness]({{< ref "#key-uniqueness" >}})
-	+ [Overwrite]({{< ref "#overwrite" >}})
-	+ [Potential Followups]({{< ref "#potential-followups" >}})
-	+ [Build]({{< ref "#build" >}})
-	+ [Tests]({{< ref "#tests" >}})
-	+ [Links]({{< ref "#links" >}})
-	+ [Acknowledgements]({{< ref "#acknowledgements" >}})
-	+ [Open Issues (JIRA)]({{< ref "#open-issues-jira" >}})
+A presentation is available from the [HBase HUG10 Meetup](http://wiki.apache.org/hadoop/Hive/Presentations?action=AttachFile&do=get&target=HiveHBase-HUG10.ppt)
 
-Version information
+This feature is a work in progress, and suggestions for its improvement are very welcome.
+
+{{< toc >}}
+
+## Version Information
 
 ### Avro Data Stored in HBase Columns
 
@@ -41,14 +22,6 @@ As of Hive 0.9.0 the HBase integration requires at least HBase 0.92, earlier ver
 Version information
 
 Hive 1.x will remain compatible with HBase 0.98.x and lower versions. Hive 2.x will be compatible with HBase 1.x and higher. (See [HIVE-10990](https://issues.apache.org/jira/browse/HIVE-10990) for details.) Consumers wanting to work with HBase 1.x using Hive 1.x will need to compile Hive 1.x stream code themselves.
-
-## Introduction
-
-This page documents the Hive/HBase integration support originally introduced in [HIVE-705](https://issues.apache.org/jira/browse/HIVE-705). This feature allows Hive QL statements to access [HBase](http://hadoop.apache.org/hbase) tables for both read (SELECT) and write (INSERT). It is even possible to combine access to HBase tables with native Hive tables via joins and unions.
-
-A presentation is available from the [HBase HUG10 Meetup](http://wiki.apache.org/hadoop/Hive/Presentations?action=AttachFile&do=get&target=HiveHBase-HUG10.ppt)
-
-This feature is a work in progress, and suggestions for its improvement are very welcome.
 
 ## Storage Handlers
 

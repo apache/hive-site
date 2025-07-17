@@ -5,32 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : Scheduled Queries
 
- 
-* [Maintaining scheduled queries]({{< ref "#maintaining-scheduled-queries" >}})
-	+ [Create Scheduled query syntax]({{< ref "#create-scheduled-query-syntax" >}})
-	+ [Alter Scheduled query syntax]({{< ref "#alter-scheduled-query-syntax" >}})
-	+ [Drop syntax]({{< ref "#drop-syntax" >}})
-	+ [scheduleSpecification syntax]({{< ref "#schedulespecification-syntax" >}})
-		- [CRON based schedule syntax]({{< ref "#cron-based-schedule-syntax" >}})
-		- [EVERY based schedule syntax]({{< ref "#every-based-schedule-syntax" >}})
-	+ [ExecutedAs syntax]({{< ref "#executedas-syntax" >}})
-	+ [enableSpecification syntax]({{< ref "#enablespecification-syntax" >}})
-	+ [Defined AS syntax]({{< ref "#defined-as-syntax" >}})
-	+ [executeSpec syntax]({{< ref "#executespec-syntax" >}})
-* [System tables/views]({{< ref "#system-tablesviews" >}})
-	+ [information_schema.scheduled_queries]({{< ref "#information_schemascheduled_queries" >}})
-	+ [information_schema.scheduled_executions]({{< ref "#information_schemascheduled_executions" >}})
-		- [Execution states]({{< ref "#execution-states" >}})
-* [Configuration]({{< ref "#configuration" >}})
-	+ [Hive metastore related configuration]({{< ref "#hive-metastore-related-configuration" >}})
-	+ [HiveServer2 related configuration]({{< ref "#hiveserver2-related-configuration" >}})
-* [Examples]({{< ref "#examples" >}})
-	+ [Example 1 – basic example of using schedules]({{< ref "#example-1-–-basic-example-of-using-schedules" >}})
-	+ [Example 2 – analyze external table periodically]({{< ref "#example-2-–-analyze-external-table-periodically" >}})
-	+ [Example 3 – materialized view rebuild]({{< ref "#example-3-–-materialized-view-rebuild" >}})
-	+ [Example 4 – Ingestion]({{< ref "#example-4-–-ingestion" >}})
+{{< toc >}}
 
-**Intro**
+# Introduction
 
 Executing statements periodically can be usefull in
 

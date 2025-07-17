@@ -3,23 +3,11 @@ title: "Apache Hive : WebHCat InstallWebHCat"
 date: 2024-12-12
 ---
 
-# Apache Hive : WebHCat InstallWebHCat
+# Apache Hive : WebHCat Installation
 
-# WebHCat Installation
-
-* [WebHCat Installation]({{< ref "#webhcat-installation" >}})
-	+ [WebHCat Installed with Hive]({{< ref "#webhcat-installed-with-hive" >}})
-	+ [WebHCat Installation Procedure]({{< ref "#webhcat-installation-procedure" >}})
-	+ [Server Commands]({{< ref "#server-commands" >}})
-	+ [Requirements]({{< ref "#requirements" >}})
-	+ [Hadoop Distributed Cache]({{< ref "#hadoop-distributed-cache" >}})
-	+ [Permissions]({{< ref "#permissions" >}})
-	+ [Secure Cluster]({{< ref "#secure-cluster" >}})
-	+ [Proxy User Support]({{< ref "#proxy-user-support" >}})
+{{< toc >}}
 
 ## WebHCat Installed with Hive
-
-Version
 
 WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.
 

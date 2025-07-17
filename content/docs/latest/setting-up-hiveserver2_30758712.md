@@ -5,33 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Setting Up HiveServer2
 
-# HiveServer2
-
-* [HiveServer2]({{< ref "#hiveserver2" >}})
-	+ [How to Configure]({{< ref "#how-to-configure" >}})
-		- [Configuration Properties in the hive-site.xml File]({{< ref "#configuration-properties-in-the-hive-site-xml-file" >}})
-		- [Running in HTTP Mode]({{< ref "#running-in-http-mode" >}})
-			* [Cookie Based Authentication]({{< ref "#cookie-based-authentication" >}})
-		- [Optional Global Init File]({{< ref "#optional-global-init-file" >}})
-		- [Logging Configuration]({{< ref "#logging-configuration" >}})
-	+ [How to Start]({{< ref "#how-to-start" >}})
-		- [Usage Message]({{< ref "#usage-message" >}})
-	+ [Authentication/Security Configuration]({{< ref "#authenticationsecurity-configuration" >}})
-		- [Configuration]({{< ref "#configuration" >}})
-		- [Impersonation]({{< ref "#impersonation" >}})
-		- [Integrity/Confidentiality Protection]({{< ref "#integrity/confidentiality-protection" >}})
-		- [SSL Encryption]({{< ref "#ssl-encryption" >}})
-			* [Setting up SSL with self-signed certificates]({{< ref "#setting-up-ssl-with-self-signed-certificates" >}})
-			* [Selectively disabling SSL protocol versions]({{< ref "#selectively-disabling-ssl-protocol-versions" >}})
-		- [Pluggable Authentication Modules (PAM)]({{< ref "#pluggable-authentication-modules--pam-" >}})
-		- [Setting up HiveServer2 job credential provider]({{< ref "#setting-up-hiveserver2-job-credential-provider" >}})
-	+ [Scratch Directory Management]({{< ref "#scratch-directory-management" >}})
-		- [Configuration Properties]({{< ref "#configuration-properties" >}})
-		- [ClearDanglingScratchDir Tool]({{< ref "#cleardanglingscratchdir-tool" >}})
-	+ [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}})
-	+ [Python Client Driver]({{< ref "#python-client-driver" >}})
-	+ [Ruby Client Driver]({{< ref "#ruby-client-driver" >}})
-
 [HiveServer2](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver_27362111" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
 * The Thrift interface definition language (IDL) for HiveServer2 is available at <https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>.
@@ -39,7 +12,9 @@ date: 2024-12-12
 
 This document describes how to set up the server. How to use a client with this server is described in the [HiveServer2 Clients document]({{< ref "hiveserver2-clients_30758725" >}}).
 
-Version
+{{< toc >}}
+
+## Version information
 
 Introduced in Hive version 0.11. See [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).
 

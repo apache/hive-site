@@ -5,29 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : HowToRelease
 
-*This page is prepared for Hive committers. You need committer rights to create a new Hive release.*
+{{< toc >}}
 
-##
-* [Storage API Release]({{< ref "#storage-api-release" >}})
-	+ [Storage API Prepare Master Branch]({{< ref "#storage-api-prepare-master-branch" >}})
-	+ [Storage API Branching]({{< ref "#storage-api-branching" >}})
-	+ [Making Storage API Release Artifacts]({{< ref "#making-storage-api-release-artifacts" >}})
-	+ [Publishing the Storage API Artifacts]({{< ref "#publishing-the-storage-api-artifacts" >}})
-	+ [Preparing Branch for further development]({{< ref "#preparing-branch-for-further-development" >}})
-	+ [Cleaning Up Storage API Artifacts]({{< ref "#cleaning-up-storage-api-artifacts" >}})
-* [Hive Release]({{< ref "#hive-release" >}})
-	+ [Preparation]({{< ref "#preparation" >}})
-	+ [Branching]({{< ref "#branching" >}})
-	+ [Updating Release Branch]({{< ref "#updating-release-branch" >}})
-	+ [Building]({{< ref "#building" >}})
-	+ [Voting]({{< ref "#voting" >}})
-	+ [Verifying the Release Candidate]({{< ref "#verifying-the-release-candidate" >}})
-	+ [Publishing]({{< ref "#publishing" >}})
-	+ [Archive old releases]({{< ref "#archive-old-releases" >}})
-	+ [Preparing Branch for Future Maintenance Release]({{< ref "#preparing-branch-for-future-maintenance-release" >}})
-* [See Also]({{< ref "#see-also" >}})
+## Introduction
 
-Hadoop Version Warning
+This page is prepared for Hive committers. You need committer rights to create a new Hive release. 
 
 This page assumes you are releasing from the master branch, and thus omits the use of Maven profiles to determine which version of Hadoop you are building against. If you are releasing from branch-1, you will need to add `-Phadoop-2` to most of your Maven commands.
 
@@ -144,12 +126,7 @@ sftp> quit
 % git push origin rel/storage-release-X.Y.Z
 ```
 4. Add the artifacts to Hive's dist area. There might be a problem with the size of the artifact. 
-
-[INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro)
- -
- [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to see issue details
-
- solved the issue.
+[INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055) solved the issue.
 
 ```
 % svn checkout https://dist.apache.org/repos/dist/release/hive hive-dist
@@ -395,11 +372,7 @@ git push origin :release-X.Y.Z-rcR
 ```
 
 If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.
-2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts(
-
-[INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro)
- -
- [Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to see issue details
+2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055))
 
 ```
 svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m "Move hive-X.Y.Z release from dev to release"
