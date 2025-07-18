@@ -5,25 +5,13 @@ date: 2024-12-12
 
 # Apache Hive : Bylaws
 
-# Apache Hive Project Bylaws
-
-* [Apache Hive Project Bylaws]({{< ref "#apache-hive-project-bylaws" >}})
-	+ [Roles and Responsibilities]({{< ref "#roles-and-responsibilities" >}})
-		- [Users]({{< ref "#users" >}})
-		- [Committers]({{< ref "#committers" >}})
-		- [Submodule Committers]({{< ref "#submodule-committers" >}})
-		- [Project Management Committee]({{< ref "#project-management-committee" >}})
-	+ [Decision Making]({{< ref "#decision-making" >}})
-		- [Voting]({{< ref "#voting" >}})
-		- [Approvals]({{< ref "#approvals" >}})
-		- [Vetoes]({{< ref "#vetoes" >}})
-		- [Actions]({{< ref "#actions" >}})
-
 This document defines the bylaws under which the Apache Hive project operates. It defines the roles and responsibilities of the project, who may vote, how voting works, how conflicts are resolved, etc.
 
 Hive is a project of the [Apache Software Foundation](http://www.apache.org/foundation/). The foundation holds the copyright on Apache code including the code in the Hive codebase. The [foundation FAQ](http://www.apache.org/foundation/faq.html) explains the operation and background of the foundation.
 
 Hive is typical of Apache projects in that it operates under a set of principles, known collectively as the 'Apache Way'. If you are new to Apache development, please refer to the [Incubator Project](http://incubator.apache.org/) for more information on how Apache projects operate.
+
+{{< toc >}}
 
 ## Roles and Responsibilities
 
