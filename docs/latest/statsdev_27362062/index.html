@@ -120,10 +120,12 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--statsdev>Apache Hive : StatsDev</h1>
-<h1 id=statistics-in-hive>Statistics in Hive</h1>
+<h1 id=apache-hive--statistics>Apache Hive : Statistics</h1>
+<p>This document describes the support of statistics for Hive tables (see <a href=http://issues.apache.org/jira/browse/HIVE-33>HIVE-33</a>).</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#statistics-in-hive>Statistics in Hive</a>
+<li><a href=#apache-hive--statistics>Apache Hive : Statistics</a>
 <ul>
 <li><a href=#motivation>Motivation</a></li>
 <li><a href=#scope>Scope</a>
@@ -139,19 +141,20 @@ ASF
 <ul>
 <li><a href=#configuration-variables>Configuration Variables</a></li>
 <li><a href=#newly-created-tables>Newly Created Tables</a></li>
-<li><a href=#existing-tables-–-analyze>Existing Tables – ANALYZE</a></li>
+<li><a href=#existing-tables-analyze>Existing Tables – ANALYZE</a></li>
 </ul>
 </li>
 <li><a href=#examples>Examples</a>
 <ul>
-<li><a href=#analyze-table-table1-cache-metadata>ANALYZE TABLE CACHE METADATA</a></li>
+<li><a href=#analyze-table-table1-cache-metadata>ANALYZE TABLE &lt;table1> CACHE METADATA</a></li>
 </ul>
 </li>
 <li><a href=#current-status-jira>Current Status (JIRA)</a></li>
 </ul>
 </li>
 </ul>
-<p>This document describes the support of statistics for Hive tables (see <a href=http://issues.apache.org/jira/browse/HIVE-33>HIVE-33</a>).</p>
+</nav>
+</aside>
 <h2 id=motivation>Motivation</h2>
 <p>Statistics such as the number of rows of a table or partition and the histograms of a particular interesting column are important in many ways. One of the key use cases of statistics is query optimization. Statistics serve as the input to the cost functions of the optimizer so that it can compare different plans and choose among them. Statistics may sometimes meet the purpose of the users' queries. Users can quickly get the answers for some of their queries by only querying stored statistics rather than firing long-running execution plans. Some examples are getting the quantile of the users' age distribution, the top 10 apps that are used by people, and the number of distinct sessions.</p>
 <h2 id=scope>Scope</h2>

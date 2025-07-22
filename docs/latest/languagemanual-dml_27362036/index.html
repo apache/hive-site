@@ -122,84 +122,28 @@ ASF
 <div class=docs>
 <h1 id=apache-hive--languagemanual-dml>Apache Hive : LanguageManual DML</h1>
 <h1 id=hive-data-manipulation-language>Hive Data Manipulation Language</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--languagemanual-dml>Apache Hive : LanguageManual DML</a></li>
 <li><a href=#hive-data-manipulation-language>Hive Data Manipulation Language</a>
 <ul>
-<li><a href=#loading-files-into-tables>Loading files into tables</a>
+<li>
 <ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#notes>Notes</a></li>
-</ul>
-</li>
-<li><a href=#inserting-data-into-hive-tables-from-queries>Inserting data into Hive Tables from queries</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#notes>Notes</a></li>
-<li><a href=#dynamic-partition-inserts>Dynamic Partition Inserts</a>
-<ul>
-<li><a href=#example>Example</a></li>
-<li><a href=#additional-documentation>Additional Documentation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#writing-data-into-the-filesystem-from-queries>Writing data into the filesystem from queries</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#notes>Notes</a></li>
-</ul>
-</li>
-<li><a href=#inserting-values-into-tables-from-sql>Inserting values into tables from SQL</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#examples>Examples</a></li>
-</ul>
-</li>
-<li><a href=#update>Update</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#notes>Notes</a></li>
-</ul>
-</li>
-<li><a href=#delete>Delete</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#notes>Notes</a></li>
-</ul>
-</li>
-<li><a href=#merge>Merge</a>
-<ul>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#synopsis>Synopsis</a></li>
-<li><a href=#performance-note>Performance Note</a></li>
-<li><a href=#notes>Notes</a></li>
-<li><a href=#examples>Examples</a></li>
+<li><a href=#loading-files-into-tables>Loading files into tables</a></li>
+<li><a href=#inserting-data-into-hive-tables-from-queries>Inserting data into Hive Tables from queries</a></li>
+<li><a href=#writing-data-into-the-filesystem-from-queries>Writing data into the filesystem from queries</a></li>
+<li><a href=#inserting-values-into-tables-from-sql>Inserting values into tables from SQL</a></li>
+<li><a href=#update>Update</a></li>
+<li><a href=#delete>Delete</a></li>
+<li><a href=#merge>Merge</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>There are multiple ways to modify data in Hive:</p>
-<ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Loadingfilesintotables">LOAD</a></li>
-<li>INSERT
-<ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingdataintoHiveTablesfromqueries">into Hive tables from queries</a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Writingdataintothefilesystemfromqueries">into directories from queries</a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-InsertingintotablesfromSQL">into Hive tables from SQL</a></li>
-</ul>
-</li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Update">UPDATE</a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Delete">DELETE</a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-Merge">MERGE</a></li>
-</ul>
-<p><a href=https://hive.apache.org/docs/latest/languagemanual-importexport_27837968/>EXPORT and IMPORT</a> commands are also available (as of <a href=https://issues.apache.org/jira/browse/HIVE-1918>Hive 0.8</a>).</p>
+</nav>
+</aside>
 <h3 id=loading-files-into-tables>Loading files into tables</h3>
 <p>Hive does not do any transformation while loading data into tables. Load operations are currently pure copy/move operations that move datafiles into locations corresponding to Hive tables.</p>
 <h5 id=syntax>Syntax</h5>

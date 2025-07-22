@@ -121,14 +121,6 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--developerguide-udtf>Apache Hive : DeveloperGuide UDTF</h1>
-<h1 id=writing-udtfs>Writing UDTF&rsquo;s</h1>
-<ul>
-<li><a href=#writing-udtfs>Writing UDTF&rsquo;s</a>
-<ul>
-<li><a href=#genericudtf-interface>GenericUDTF Interface</a></li>
-</ul>
-</li>
-</ul>
 <h2 id=genericudtf-interface>GenericUDTF Interface</h2>
 <p>A custom UDTF can be created by extending the GenericUDTF abstract class and then implementing the <code>initialize</code>, <code>process</code>, and possibly <code>close</code> methods. The <code>initialize</code> method is called by Hive to notify the UDTF the argument types to expect. The UDTF must then return an object inspector corresponding to the row objects that the UDTF will generate. Once <code>initialize()</code> has been called, Hive will give rows to the UDTF using the <code>process()</code> method. While in <code>process()</code>, the UDTF can produce and forward rows to other operators by calling <code>forward()</code>. Lastly, Hive will call the <code>close()</code> method when all the rows have passed to the UDTF.</p>
 <p>UDTF Example:</p>

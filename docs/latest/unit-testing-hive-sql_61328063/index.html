@@ -121,20 +121,33 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--unit-testing-hive-sql>Apache Hive : Unit Testing Hive SQL</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--unit-testing-hive-sql>Apache Hive : Unit Testing Hive SQL</a></li>
 <li><a href=#motivations>Motivations</a></li>
 <li><a href=#challenges>Challenges</a></li>
 <li><a href=#modularisation>Modularisation</a>
+<ul>
+<li>
 <ul>
 <li><a href=#encapsulation-of-column-level-logic>Encapsulation of column level logic</a></li>
 <li><a href=#encapsulation-of-set-level-logic>Encapsulation of set level logic</a></li>
 </ul>
 </li>
+</ul>
+</li>
 <li><a href=#tools-and-frameworks>Tools and frameworks</a></li>
 <li><a href=#useful-practices>Useful practices</a></li>
 <li><a href=#relevant-issues>Relevant issues</a></li>
-<li><a href=#other-hive-unit-testing-concerns>Other Hive unit testing concerns</a></li>
+<li><a href=#other-hive-unit-testing-concerns>Other Hive unit testing concerns</a>
+<ul>
+<li><a href=#comments>Comments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=motivations>Motivations</h1>
 <p>Hive is widely applied as a solution to numerous distinct problem types in the domain of big data. Quite clearly it is often used for the ad hoc querying of large datasets. However it is also used to implement ETL type processes. Unlike ad hoc queries, the Hive SQL written for ETLs has some distinct attributes:</p>
 <ul>

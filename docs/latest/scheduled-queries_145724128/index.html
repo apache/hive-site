@@ -121,7 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--scheduled-queries>Apache Hive : Scheduled Queries</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--scheduled-queries>Apache Hive : Scheduled Queries</a></li>
+<li><a href=#introduction>Introduction</a></li>
 <li><a href=#maintaining-scheduled-queries>Maintaining scheduled queries</a>
 <ul>
 <li><a href=#create-scheduled-query-syntax>Create Scheduled query syntax</a></li>
@@ -129,7 +133,7 @@ ASF
 <li><a href=#drop-syntax>Drop syntax</a></li>
 <li><a href=#schedulespecification-syntax>scheduleSpecification syntax</a>
 <ul>
-<li><a href=#cron-based-schedule-syntax>CRON based schedule syntax</a></li>
+<li><a href=#cron-based-schedulesyntax>CRON based schedule syntax</a></li>
 <li><a href=#every-based-schedule-syntax>EVERY based schedule syntax</a></li>
 </ul>
 </li>
@@ -157,14 +161,16 @@ ASF
 </li>
 <li><a href=#examples>Examples</a>
 <ul>
-<li><a href=#example-1-–-basic-example-of-using-schedules>Example 1 – basic example of using schedules</a></li>
-<li><a href=#example-2-–-analyze-external-table-periodically>Example 2 – analyze external table periodically</a></li>
-<li><a href=#example-3-–-materialized-view-rebuild>Example 3 – materialized view rebuild</a></li>
-<li><a href=#example-4-–-ingestion>Example 4 – Ingestion</a></li>
+<li><a href=#example-1-basic-example-of-using-schedules>Example 1 – basic example of using schedules</a></li>
+<li><a href=#example-2-analyze-external-table-periodically>Example 2 – analyze external table periodically</a></li>
+<li><a href=#example-3-materialized-view-rebuild>Example 3 – materialized view rebuild</a></li>
+<li><a href=#example-4-ingestion>Example 4 – Ingestion</a></li>
 </ul>
 </li>
 </ul>
-<p><strong>Intro</strong></p>
+</nav>
+</aside>
+<h1 id=introduction>Introduction</h1>
 <p>Executing statements periodically can be usefull in</p>
 <ul>
 <li>Pulling informations from external systems</li>

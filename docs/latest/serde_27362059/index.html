@@ -121,7 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--serde>Apache Hive : SerDe</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--serde>Apache Hive : SerDe</a></li>
 <li><a href=#serde-overview>SerDe Overview</a>
 <ul>
 <li><a href=#built-in-and-custom-serdes>Built-in and Custom SerDes</a>
@@ -135,8 +138,14 @@ ASF
 </li>
 <li><a href=#input-processing>Input Processing</a></li>
 <li><a href=#output-processing>Output Processing</a></li>
-<li><a href=#additional-notes>Additional Notes</a></li>
+<li><a href=#additional-notes>Additional Notes</a>
+<ul>
+<li><a href=#comments>Comments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=serde-overview>SerDe Overview</h1>
 <p>SerDe is short for Serializer/Deserializer. Hive uses the SerDe interface for IO. The interface handles both serialization and deserialization and also interpreting the results of serialization as individual fields for processing.</p>
 <p>A SerDe allows Hive to read in data from a table, and write it back out to HDFS in any custom format. Anyone can write their own SerDe for their own data formats.</p>

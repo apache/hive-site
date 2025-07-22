@@ -121,8 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--druid-integration>Apache Hive : Druid Integration</h1>
+<p>This page documents the work done for the integration between Druid and Hive introduced in Hive 2.2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#introduction>Introduction</a>
+<li><a href=#apache-hive--druid-integration>Apache Hive : Druid Integration</a>
 <ul>
 <li><a href=#objectives>Objectives</a></li>
 </ul>
@@ -139,19 +142,9 @@ ASF
 <ul>
 <li><a href=#create-tables-linked-to-existing-druid-datasources>Create tables linked to existing Druid datasources</a></li>
 <li><a href=#create-druid-datasources-from-hive>Create Druid datasources from Hive</a></li>
-<li><a href=#druid-kafka-ingestion-from-hive>Druid kafka ingestion from Hive</a>
-<ul>
-<li><a href=#startstopreset-druid-kafka-ingestion>Start/Stop/Reset Druid Kafka ingestion</a></li>
-</ul>
-</li>
+<li><a href=#druid-kafka-ingestion-from-hive>Druid kafka ingestion from Hive</a></li>
 <li><a href=#insert-insert-overwrite-and-drop-statements>INSERT, INSERT OVERWRITE and DROP statements</a></li>
-<li><a href=#queries-completely-executed-in-druid>Queries completely executed in Druid</a>
-<ul>
-<li><a href=#select-queries>Select queries</a></li>
-<li><a href=#timeseries-queries>Timeseries queries</a></li>
-<li><a href=#groupby-queries>GroupBy queries</a></li>
-</ul>
-</li>
+<li><a href=#queries-completely-executed-in-druid>Queries completely executed in Druid</a></li>
 <li><a href=#queries-across-druid-and-hive>Queries across Druid and Hive</a></li>
 </ul>
 </li>
@@ -159,11 +152,8 @@ ASF
 </li>
 <li><a href=#open-issues-jira>Open Issues (JIRA)</a></li>
 </ul>
-<p> </p>
-<p>Version information</p>
-<p>Druid integration is introduced in Hive 2.2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.</p>
-<h1 id=introduction>Introduction</h1>
-<p>This page documents the work done for the integration between Druid and Hive, which was started in <a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>.</p>
+</nav>
+</aside>
 <h2 id=objectives>Objectives</h2>
 <p>Our main <strong>goal</strong> is to be able to index data from Hive into Druid, and to be able to query Druid datasources from Hive. Completing this work will bring benefits to the Druid and Hive systems alike:</p>
 <ul>

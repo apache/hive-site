@@ -121,45 +121,38 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--theta-join>Apache Hive : Theta Join</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--theta-join>Apache Hive : Theta Join</a>
 <ul>
 <li><a href=#preliminaries>Preliminaries</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
-<li><a href=#specific-use-cases>Specific Use Cases</a>
-<ul>
-<li><a href=#geo-location>Geo-Location</a></li>
-<li><a href=#side-table-similarity>Side-Table Similarity</a></li>
-</ul>
-</li>
-<li><a href=#requirements>Requirements</a>
-<ul>
-<li><a href=#goals>Goals</a></li>
-<li><a href=#specific-non-goals>Specific Non-Goals</a></li>
-</ul>
-</li>
+<li><a href=#specific-use-cases>Specific Use Cases</a></li>
+<li><a href=#requirements>Requirements</a></li>
 </ul>
 </li>
 <li><a href=#literature-review>Literature Review</a>
 <ul>
-<li><a href=#map-reduce-merge:-simplified-relational-data-processing-on-large-clusters-[1]>Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]</a></li>
-<li><a href=#efficient-parallel-set-similarity-joins-using-mapreduce-[2]>Efficient Parallel Set-Similarity Joins Using MapReduce [2]</a></li>
-<li><a href=#processing-theta-joins-using-mapreduce-[3]>Processing Theta-Joins using MapReduce [3]</a></li>
-<li><a href=#efficient-multi-way-theta-join-processing-using-mapreduce-[4]>Efficient Multi-way Theta-Join Processing Using MapReduce [4]</a></li>
+<li><a href=#map-reduce-merge-simplified-relational-data-processing-on-large-clusters-1>Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]</a></li>
+<li><a href=#efficient-parallel-set-similarity-joins-using-mapreduce-2>Efficient Parallel Set-Similarity Joins Using MapReduce [2]</a></li>
+<li><a href=#processing-theta-joins-using-mapreduce-3>Processing Theta-Joins using MapReduce [3]</a></li>
+<li><a href=#efficient-multi-way-theta-join-processing-using-mapreduce-4>Efficient Multi-way Theta-Join Processing Using MapReduce [4]</a></li>
 </ul>
 </li>
 <li><a href=#design>Design</a>
 <ul>
 <li><a href=#map-side>Map-side</a></li>
-<li><a href=#reduce-side>Reduce-side</a>
-<ul>
-<li><a href=#mapper>Mapper</a></li>
-<li><a href=#reducer>Reducer</a></li>
-</ul>
-</li>
+<li><a href=#reduce-side>Reduce-side</a></li>
 </ul>
 </li>
 <li><a href=#references>References</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=preliminaries>Preliminaries</h2>
 <h3 id=overview>Overview</h3>
 <p><a href=https://issues.apache.org/jira/browse/HIVE-556>HIVE-556</a> requests that Hive support non-equality joins commonly called theta joins. Theta joins cover all kinds of non-equality joins such as &lt;, &lt;=, >, >=, &lt;>, LIKE, RLIKE, and Generic UDF.</p>

@@ -121,16 +121,69 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--cost-based-optimization-in-hive>Apache Hive : Cost-based optimization in Hive</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--cost-based-optimization-in-hive>Apache Hive : Cost-based optimization in Hive</a></li>
 <li><a href=#abstract>Abstract</a></li>
 <li><a href=#1-introduction>1. INTRODUCTION</a></li>
-<li><a href=#2-related-work>2. RELATED WORK</a></li>
-<li><a href=#3-background>3. BACKGROUND</a></li>
-<li><a href=#4-implementation-details>4. Implementation details</a></li>
+<li><a href=#2-related-work>2. RELATED WORK</a>
+<ul>
+<li><a href=#stats>STATS</a></li>
+<li><a href=#papers>PAPERS</a></li>
+</ul>
+</li>
+<li><a href=#3-background>3. BACKGROUND</a>
+<ul>
+<li><a href=#hive-query-optimization-issues>Hive Query optimization issues</a></li>
+<li><a href=#tez>TEZ</a></li>
+<li><a href=#join-algorithms-in-hive>Join algorithms in Hive</a>
+<ul>
+<li><a href=#multi-way-join>Multi way Join</a></li>
+<li><a href=#common-join>Common Join</a></li>
+<li><a href=#map-join>Map Join</a></li>
+<li><a href=#bucket-map-join>Bucket Map Join</a></li>
+<li><a href=#smb-join>SMB Join</a></li>
+<li><a href=#skew-join>Skew Join</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#4-implementation-details>4. Implementation details</a>
+<ul>
+<li><a href=#phase-1>Phase 1</a></li>
+<li><a href=#phase-2>Phase 2</a></li>
+<li><a href=#phase-3>Phase 3</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#proposed-cost-model>Proposed Cost Model</a>
+<ul>
+<li><a href=#table-scan>Table Scan</a></li>
+<li><a href=#common-join-1>Common Join</a></li>
+<li><a href=#map-join-1>Map Join</a></li>
+<li><a href=#bucket-map-join-1>Bucket Map Join</a></li>
+<li><a href=#smb-join-1>SMB Join</a></li>
+<li><a href=#skew-join-1>Skew Join</a></li>
+<li><a href=#distinctgroup-by>Distinct/Group By</a></li>
+<li><a href=#union-all>Union All</a></li>
+<li><a href=#filterhaving>Filter/Having</a></li>
+<li><a href=#select>Select</a></li>
+<li><a href=#filter-selectivity>Filter Selectivity</a></li>
+<li><a href=#join-cardinality-without-histogram>Join Cardinality (without Histogram)</a></li>
+<li><a href=#distinct-estimation>Distinct Estimation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href=#5-phase-1--work-items>5. Phase 1 – Work Items</a></li>
 <li><a href=#open-issues>Open Issues</a></li>
-<li><a href=#reference>Reference</a></li>
+<li><a href=#reference>Reference</a>
+<ul>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=abstract>Abstract</h1>
 <p>Apache Hadoop is a framework for the distributed processing of large data sets using clusters of computers typically composed of commodity hardware. Over last few years Apache Hadoop has become the de facto platform for distributed data processing using commodity hardware. Apache Hive is a popular SQL interface for data processing using Apache Hadoop.</p>
 <p> </p>

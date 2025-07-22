@@ -121,9 +121,12 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--howtorelease>Apache Hive : HowToRelease</h1>
-<p><em>This page is prepared for Hive committers. You need committer rights to create a new Hive release.</em></p>
-<h2 id=heading></h2>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--howtorelease>Apache Hive : HowToRelease</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
 <li><a href=#storage-api-release>Storage API Release</a>
 <ul>
 <li><a href=#storage-api-prepare-master-branch>Storage API Prepare Master Branch</a></li>
@@ -149,7 +152,12 @@ ASF
 </li>
 <li><a href=#see-also>See Also</a></li>
 </ul>
-<p>Hadoop Version Warning</p>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=introduction>Introduction</h2>
+<p>This page is prepared for Hive committers. You need committer rights to create a new Hive release.</p>
 <p>This page assumes you are releasing from the master branch, and thus omits the use of Maven profiles to determine which version of Hadoop you are building against. If you are releasing from branch-1, you will need to add <code>-Phadoop-2</code> to most of your Maven commands.</p>
 <h2 id=storage-api-release>Storage API Release</h2>
 <p>The Hive projects has two products that are released separately:</p>
@@ -252,11 +260,9 @@ sftp&gt; quit
 % git tag -s rel/storage-release-X.Y.Z -m &quot;Hive Storage API X.Y.Z&quot;
 % git push origin rel/storage-release-X.Y.Z
 </code></pre><ol start=4>
-<li>Add the artifacts to Hive&rsquo;s dist area. There might be a problem with the size of the artifact.</li>
+<li>Add the artifacts to Hive&rsquo;s dist area. There might be a problem with the size of the artifact.
+<a href=https://issues.apache.org/jira/browse/INFRA-23055>INFRA-23055</a> solved the issue.</li>
 </ol>
-<h2 id=infra-23055httpsissuesapacheorgjirabrowseinfra-23055srcconfmacro><a href="https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro">INFRA-23055</a></h2>
-<p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to see issue details</p>
-<p>solved the issue.</p>
 <pre tabindex=0><code>% svn checkout https://dist.apache.org/repos/dist/release/hive hive-dist
 % cd hive-dist
 % mkdir hive-storage-X.Y.Z
@@ -469,9 +475,7 @@ git push origin rel/release-X.Y.Z
 git tag -d release-X.Y.Z-rcR
 git push origin :release-X.Y.Z-rcR
 </code></pre><p>If errors happen while &ldquo;git tag -s&rdquo;, try to configure the git signing key by &ldquo;git config user.signingkey your_gpg_key_id&rdquo; then rerun the command.
-2. Move the release artifacts to the release area of the project (<a href=https://dist.apache.org/repos/dist/release/hive/>https://dist.apache.org/repos/dist/release/hive/</a>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts(</p>
-<h2 id=infra-23055httpsissuesapacheorgjirabrowseinfra-23055srcconfmacro-1><a href="https://issues.apache.org/jira/browse/INFRA-23055?src=confmacro">INFRA-23055</a></h2>
-<p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to see issue details</p>
+2. Move the release artifacts to the release area of the project (<a href=https://dist.apache.org/repos/dist/release/hive/>https://dist.apache.org/repos/dist/release/hive/</a>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts(<a href=https://issues.apache.org/jira/browse/INFRA-23055>INFRA-23055</a>)</p>
 <pre tabindex=0><code>svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m &quot;Move hive-X.Y.Z release from dev to release&quot;
 </code></pre><ol start=3>
 <li>Wait till the release propagates to the mirrors and appears under: <a href=https://dlcdn.apache.org/hive/>https://dlcdn.apache.org/hive/</a></li>

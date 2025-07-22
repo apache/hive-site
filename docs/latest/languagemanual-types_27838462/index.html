@@ -120,10 +120,11 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--languagemanual-types>Apache Hive : LanguageManual Types</h1>
-<h1 id=hive-data-types>Hive Data Types</h1>
+<h1 id=apache-hive--languagemanual-data-types>Apache Hive : LanguageManual Data Types</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-data-types>Hive Data Types</a>
+<li><a href=#apache-hive--languagemanual-data-types>Apache Hive : LanguageManual Data Types</a>
 <ul>
 <li><a href=#overview>Overview</a>
 <ul>
@@ -136,44 +137,20 @@ ASF
 </li>
 <li><a href=#column-types>Column Types</a>
 <ul>
-<li><a href=#integral-types--tinyint,-smallint,-int/integer,-bigint->Integral Types (TINYINT, SMALLINT, INT/INTEGER, BIGINT)</a></li>
-<li></li>
+<li><a href=#integral-types-tinyintsmallintintintegerbigint>Integral Types (<code>TINYINT</code>, <code>SMALLINT</code>, <code>INT/INTEGER</code>, <code>BIGINT</code>)</a></li>
+<li><a href=#heading></a></li>
 <li><a href=#strings>Strings</a></li>
 <li><a href=#varchar>Varchar</a></li>
 <li><a href=#char>Char</a></li>
-<li><a href=#timestamps>Timestamps</a>
-<ul>
-<li><a href=#casting-dates>Casting Dates</a></li>
-</ul>
-</li>
+<li><a href=#timestamps>Timestamps</a></li>
 <li><a href=#intervals>Intervals</a></li>
-<li><a href=#decimals>Decimals</a>
-<ul>
-<li><a href=#decimal-literals>Decimal Literals</a></li>
-<li><a href=#decimal-type-incompatibilities-between-hive-0120-and-0130>Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0</a>
-<ul>
-<li><a href=#upgrading-pre-hive-0130-decimal-columns>Upgrading Pre-Hive 0.13.0 Decimal Columns</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href=#decimals>Decimals</a></li>
 <li><a href=#union-types>Union Types</a></li>
 </ul>
 </li>
 <li><a href=#literals>Literals</a>
 <ul>
-<li><a href=#floating-point-types>Floating Point Types</a>
-<ul>
-<li><a href=#decimal-types>Decimal Types</a>
-<ul>
-<li><a href=#using-decimal-types>Using Decimal Types</a></li>
-<li><a href=#mathematical-udfs>Mathematical UDFs</a></li>
-<li><a href=#casting-decimal-values>Casting Decimal Values</a></li>
-<li><a href=#testing-decimal-types>Testing Decimal Types</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href=#floating-point-types>Floating Point Types</a></li>
 </ul>
 </li>
 <li><a href=#handling-of-null-values>Handling of NULL Values</a></li>
@@ -182,6 +159,8 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=overview>Overview</h2>
 <p>This lists all supported data types in Hive. See <a href=#type-system>Type System</a> in the <a href=https://hive.apache.org/docs/latest/tutorial_27362061/>Tutorial</a> for additional information.</p>
 <p>For data types supported by HCatalog, see:</p>

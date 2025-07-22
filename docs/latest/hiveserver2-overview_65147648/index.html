@@ -121,7 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hiveserver2-overview>Apache Hive : HiveServer2 Overview</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hiveserver2-overview>Apache Hive : HiveServer2 Overview</a></li>
 <li><a href=#introduction>Introduction</a></li>
 <li><a href=#hs2-architecture>HS2 Architecture</a>
 <ul>
@@ -142,6 +145,8 @@ ASF
 </li>
 <li><a href=#resources>Resources</a></li>
 </ul>
+</nav>
+</aside>
 <h1 id=introduction>Introduction</h1>
 <p>HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer>HiveServer1</a> which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
 <p>HS2 is a single process running as a composite service, which includes the Thrift-based Hive service (TCP or HTTP) and a <a href=http://www.eclipse.org/jetty/>Jetty</a> web server for web UI. </p>

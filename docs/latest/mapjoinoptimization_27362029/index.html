@@ -121,8 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--mapjoinoptimization>Apache Hive : MapJoinOptimization</h1>
-<p><strong>Index</strong></p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--mapjoinoptimization>Apache Hive : MapJoinOptimization</a></li>
 <li><a href=#1-map-join-optimization>1. Map Join Optimization</a>
 <ul>
 <li><a href=#11-using-distributed-cache-to-propagate-hashtable-file>1.1 Using Distributed Cache to Propagate Hashtable File</a></li>
@@ -139,6 +141,8 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h1 id=1-map-join-optimization>1. Map Join Optimization</h1>
 <h2 id=11-using-distributed-cache-to-propagate-hashtable-file>1.1 Using Distributed Cache to Propagate Hashtable File</h2>
 <p>Previously, when 2 large data tables need to do a join, there will be 2 different Mappers to sort these tables based on the join key and emit an intermediate file, and the Reducer will take the intermediate file as input file and do the real join work. This join mechanism (referred to as Common Join) is perfect with two large data size. But if one the join tables is small enough to fit into the Mapper‚ A&rsquo;s memory, then there is no need to launch the Reducer. Actually, the Reducer stage is very expensive for the performance because the Map/Reduce framework needs to sort and merge the intermediate files. So the basic idea of Map Join is to hold the data of small table in Mapper‚A&rsquo;s memory and do the join work in Map stage, which saves the Reduce stage. The previous implementation (before optimization) is shown here:</p>

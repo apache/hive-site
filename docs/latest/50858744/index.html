@@ -121,6 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-on-spark-join-design-master>Apache Hive : Hive on Spark: Join Design Master</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-spark-join-design-master>Apache Hive : Hive on Spark: Join Design Master</a>
 <ul>
 <li><a href=#purpose-and-prerequisites>Purpose and Prerequisites</a></li>
 <li><a href=#mapreduce-summary>MapReduce Summary</a>
@@ -135,7 +139,12 @@ ASF
 <li><a href=#figure-2-join-processors-for-hive-on-spark>Figure 2: Join Processors for Hive on Spark</a></li>
 </ul>
 </li>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=purpose-and-prerequisites>Purpose and Prerequisites</h2>
 <p>The purpose of this document is to summarize the findings of all the research of different joins and describe a unified design to attack the problem in Spark.  It will identify the optimization processors will be involved and their responsibilities.</p>
 <p>It is not the purpose to go in depth for design of the various join implementations in Spark, such as the common-join (<a href=https://issues.apache.org/jira/browse/HIVE-7384>HIVE-7384</a>), or the optimized join variants like mapjoin (<a href=https://issues.apache.org/jira/browse/HIVE-7613>HIVE-7613</a>), skew-join (<a href=https://issues.apache.org/jira/browse/HIVE-8406>HIVE-8406</a>) or SMB mapjoin (<a href=https://issues.apache.org/jira/browse/HIVE-8202>HIVE-8202</a>).  It will be helpful to refer to the design documents attached on JIRA for those details before reading this document, as they will also contain some background of how they are implemented in MapReduce and comparisons.  Lastly, it will also be helpful to read the overall <a href=https://hive.apache.org/docs/latest/hive-on-spark_42567714/>Hive on Spark</a> design doc before reading this document.</p>

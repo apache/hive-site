@@ -120,11 +120,13 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--languagemanual-udf>Apache Hive : LanguageManual UDF</h1>
-<h1 id=hive-operators-and-user-defined-functions-udfs>Hive Operators and User-Defined Functions (UDFs)</h1>
+<h1 id=apache-hive--languagemanual-operators-and-user-defined-functions>Apache Hive : LanguageManual Operators and User-Defined Functions</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-operators-and-user-defined-functions-udfs>Hive Operators and User-Defined Functions (UDFs)</a>
+<li><a href=#apache-hive--languagemanual-operators-and-user-defined-functions>Apache Hive : LanguageManual Operators and User-Defined Functions</a>
 <ul>
+<li><a href=#overview>Overview</a></li>
 <li><a href=#built-in-operators>Built-in Operators</a>
 <ul>
 <li><a href=#operators-precedences>Operators Precedences</a></li>
@@ -138,37 +140,20 @@ ASF
 </li>
 <li><a href=#built-in-functions>Built-in Functions</a>
 <ul>
-<li><a href=#mathematical-functions>Mathematical Functions</a>
-<ul>
-<li><a href=#mathematical-functions-and-operators-for-decimal-datatypes>Mathematical Functions and Operators for Decimal Datatypes</a></li>
-</ul>
-</li>
+<li><a href=#mathematical-functions>Mathematical Functions</a></li>
 <li><a href=#collection-functions>Collection Functions</a></li>
 <li><a href=#type-conversion-functions>Type Conversion Functions</a></li>
 <li><a href=#date-functions>Date Functions</a></li>
 <li><a href=#conditional-functions>Conditional Functions</a></li>
 <li><a href=#string-functions>String Functions</a></li>
 <li><a href=#data-masking-functions>Data Masking Functions</a></li>
-<li><a href=#misc-functions>Misc. Functions</a>
-<ul>
-<li><a href=#xpath>xpath</a></li>
-<li><a href=#get_json_object>get_json_object</a></li>
-</ul>
-</li>
+<li><a href=#misc-functions>Misc. Functions</a></li>
 </ul>
 </li>
 <li><a href=#built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</a></li>
 <li><a href=#built-in-table-generating-functions-udtf>Built-in Table-Generating Functions (UDTF)</a>
 <ul>
-<li><a href=#usage-examples>Usage Examples</a>
-<ul>
-<li><a href=#explode--array->explode (array)</a></li>
-<li><a href=#explode--map->explode (map)</a></li>
-<li><a href=#posexplode--array->posexplode (array)</a></li>
-<li><a href=#inline--array-of-structs->inline (array of structs)</a></li>
-<li><a href=#stack--values->stack (values)</a></li>
-</ul>
-</li>
+<li><a href=#usage-examples>Usage Examples</a></li>
 <li><a href=#explode>explode</a></li>
 <li><a href=#posexplode>posexplode</a></li>
 <li><a href=#json_tuple>json_tuple</a></li>
@@ -179,10 +164,13 @@ ASF
 <li><a href=#utility-functions>Utility Functions</a></li>
 <li><a href=#udf-internals>UDF internals</a></li>
 <li><a href=#creating-custom-udfs>Creating Custom UDFs</a></li>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
 </li>
 </ul>
-<p>Case-insensitive</p>
+</nav>
+</aside>
+<h2 id=overview>Overview</h2>
 <p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
 <p>In <a href=#beeline>Beeline</a> or the <a href=https://hive.apache.org/docs/latest/languagemanual-cli_27362033/>CLI</a>, use the commands below to show the latest documentation:</p>
 <pre tabindex=0><code>SHOW FUNCTIONS;
@@ -1002,11 +990,8 @@ DESCRIBE FUNCTION EXTENDED &lt;function_name&gt;;
 <ul>
 <li>dayofyear(date) is date_format(date, &lsquo;D&rsquo;)</li>
 </ul>
-<p>As of Hive 4.0.0 (</p>
-<h2 id=hive-27673httpsissuesapacheorgjirabrowsehive-27673srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-27673?src=confmacro">HIVE-27673</a></h2>
-<p>Configurable datetime formatter for date_format
-Closed</p>
-<p>), the &ldquo;hive.datetime.formatter&rdquo; property can be used to control the underlying formatter implementation, and as a consequence the accepted patterns and their behavior. Prior versions always used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. |</p>
+<p>As of Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-27673>HIVE-27673</a>
+), the &ldquo;hive.datetime.formatter&rdquo; property can be used to control the underlying formatter implementation, and as a consequence the accepted patterns and their behavior. Prior versions always used <a href=https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html>https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html</a> as the underlying formatter. |</p>
 <h3 id=conditional-functions>Conditional Functions</h3>
 <table>
 <thead>

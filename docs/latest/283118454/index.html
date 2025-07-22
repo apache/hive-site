@@ -122,7 +122,10 @@ ASF
 <div class=docs>
 <h1 id=apache-hive--hcatalog-streaming-mutation-api-copy>Apache Hive : HCatalog Streaming Mutation API (Copy)</h1>
 <p>A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions>ACID</a> feature. It is introduced in Hive 2.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-10165>HIVE-10165</a>).</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hcatalog-streaming-mutation-api-copy>Apache Hive : HCatalog Streaming Mutation API (Copy)</a></li>
 <li><a href=#background>Background</a></li>
 <li><a href=#structure>Structure</a></li>
 <li><a href=#data-requirements>Data Requirements</a></li>
@@ -135,8 +138,14 @@ ASF
 </ul>
 </li>
 <li><a href=#reading-data>Reading Data</a></li>
-<li><a href=#example>Example</a></li>
+<li><a href=#example>Example</a>
+<ul>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=background>Background</h1>
 <p>In certain data processing use cases it is necessary to modify existing data when new facts arrive. An example of this is the classic ETL merge where a copy of a data set is kept in sync with a master by the frequent application of deltas. The deltas describe the mutations (inserts, updates, deletes) that have occurred to the master since the previous sync. To implement such a case using Hadoop traditionally demands that the partitions containing records targeted by the mutations be rewritten. This is a coarse approach; a partition containing millions of records might be rebuilt because of a single record change. Additionally these partitions cannot be restated atomically; at some point the old partition data must be swapped with the new partition data. When this swap occurs, usually by issuing an HDFS <code>rm</code> followed by a <code>mv</code>, the possibility exists where the data appears to be unavailable and hence any downstream jobs consuming the data might unexpectedly fail. Therefore data processing patterns that restate raw data on HDFS cannot operate robustly without some external mechanism to orchestrate concurrent access to changing data.</p>
 <p>The availability of ACID tables in Hive provides a mechanism that both enables concurrent access to data stored in HDFS (so long as it&rsquo;s in the ORC+ACID format) and also permits row level mutations on records within a table, without the need to rewrite the existing data. But while Hive itself supports <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> commands, and the ORC format can support large batches of mutations in a transaction, Hive&rsquo;s execution engine currently submits each individual mutation operation in a separate transaction and issues table scans (M/R jobs) to execute them. It does not currently scale to the demands of processing large deltas in an atomic manner. Furthermore it would be advantageous to extend atomic batch mutation capabilities beyond Hive by making them available to other data processing frameworks. The Streaming Mutation API does just this.</p>

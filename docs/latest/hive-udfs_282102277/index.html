@@ -121,6 +121,14 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-udfs>Apache Hive : Hive UDFs</h1>
+<p>Hive User-Defined Functions (UDFs) are custom functions developed in Java and seamlessly integrated with Apache Hive. UDFs are routines designed to accept parameters, execute a specific action, and return the resulting value. The return value can either be a single scalar row or a complete result set, depending on the UDF&rsquo;s code and the implemented interface. UDFs represent a powerful capability that enhances classical SQL functionality by allowing the integration of custom code, providing Hive users with a versatile toolset. Apache Hive comes equipped with a variety of built-in UDFs that users can leverage. Similar to other SQL-based solutions, Hive also offers functionality to expand its already rich set of UDFs by incorporating custom ones as needed.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-udfs>Apache Hive : Hive UDFs</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#available-function>Available function</a>
 <ul>
 <li><a href=#built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</a></li>
 <li><a href=#built-in-table-generating-functions-udtf>Built-in Table-Generating Functions (UDTF)</a></li>
@@ -135,8 +143,13 @@ ASF
 <li><a href=#geospatial>Geospatial</a></li>
 <li><a href=#creating-custom-udfs>Creating Custom UDF&rsquo;s</a></li>
 </ul>
-<p>Hive User-Defined Functions (UDFs) are custom functions developed in Java and seamlessly integrated with Apache Hive. UDFs are routines designed to accept parameters, execute a specific action, and return the resulting value. The return value can either be a single scalar row or a complete result set, depending on the UDF&rsquo;s code and the implemented interface. UDFs represent a powerful capability that enhances classical SQL functionality by allowing the integration of custom code, providing Hive users with a versatile toolset. Apache Hive comes equipped with a variety of built-in UDFs that users can leverage. Similar to other SQL-based solutions, Hive also offers functionality to expand its already rich set of UDFs by incorporating custom ones as needed.</p>
-<p>Important</p>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=overview>Overview</h2>
 <p>Every UDF&rsquo;s evaluate method is one row at a time! This means if your UDFs has complex code, it could introduce performance issue in execution time.</p>
 <p>To gain an understanding of UDFs, let&rsquo;s begin with an example to comprehend their execution pattern.</p>
 <p><strong>UDF&rsquo;s in action</strong></p>
@@ -145,6 +158,7 @@ ASF
 <p>As we see how a built-in UDF works let&rsquo;s see what kind of built-in UDFs the Apache Hive has.</p>
 <p>Tipp</p>
 <p>All Hive keywords are <strong>case-insensitive</strong>, including the names of Hive operators and functions. I.e: length and LENGTH are also accepted by the Hive.</p>
+<h2 id=available-function>Available function</h2>
 <h3 id=built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</h3>
 <p>Hive Aggregate Functions (UDAF) take multiple rows as input and return a single row as output. Depending on the functionality it mostly aggregates the values and returns a single result. These functions are mainly used in the GROUP BY statements.</p>
 <p>These functions can be used without GROUP BY as well. </p>

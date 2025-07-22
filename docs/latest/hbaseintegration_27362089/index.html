@@ -120,30 +120,32 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--hbaseintegration>Apache Hive : HBaseIntegration</h1>
-<h1 id=hive-hbase-integration>Hive HBase Integration</h1>
+<h1 id=apache-hive--hbase-integration>Apache Hive : HBase Integration</h1>
+<p>This page documents the Hive/HBase integration support originally introduced in <a href=https://issues.apache.org/jira/browse/HIVE-705>HIVE-705</a>. This feature allows Hive QL statements to access <a href=http://hadoop.apache.org/hbase>HBase</a> tables for both read (SELECT) and write (INSERT). It is even possible to combine access to HBase tables with native Hive tables via joins and unions.</p>
+<p>A presentation is available from the <a href="http://wiki.apache.org/hadoop/Hive/Presentations?action=AttachFile&do=get&target=HiveHBase-HUG10.ppt">HBase HUG10 Meetup</a></p>
+<p>This feature is a work in progress, and suggestions for its improvement are very welcome.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li>
-<p><a href=#hive-hbase-integration>Hive HBase Integration</a></p>
-<pre><code>  - [Avro Data Stored in HBase Columns](#avro-data-stored-in-hbase-columns)+ [Introduction](#introduction)
-</code></pre>
+<li><a href=#apache-hive--hbase-integration>Apache Hive : HBase Integration</a>
 <ul>
+<li><a href=#version-information>Version Information</a>
+<ul>
+<li><a href=#avro-data-stored-in-hbase-columns>Avro Data Stored in HBase Columns</a></li>
+</ul>
+</li>
 <li><a href=#storage-handlers>Storage Handlers</a></li>
 <li><a href=#usage>Usage</a></li>
 <li><a href=#column-mapping>Column Mapping</a>
 <ul>
 <li><a href=#multiple-columns-and-families>Multiple Columns and Families</a></li>
 <li><a href=#hive-map-to-hbase-column-family>Hive MAP to HBase Column Family</a></li>
-<li><a href=#hive-map-to-hbase-column-prefix>Hive MAP to HBase Column Prefix</a>
-<ul>
-<li><a href=#hiding-column-prefixes>Hiding Column Prefixes</a></li>
-</ul>
-</li>
+<li><a href=#hive-map-to-hbase-column-prefix>Hive MAP to HBase Column Prefix</a></li>
 <li><a href=#illegal-hive-primitive-to-hbase-column-family>Illegal: Hive Primitive to HBase Column Family</a></li>
 <li><a href=#example-with-binary-columns>Example with Binary Columns</a></li>
 <li><a href=#simple-composite-row-keys>Simple Composite Row Keys</a></li>
 <li><a href=#complex-composite-row-keys-and-hbasekeyfactory>Complex Composite Row Keys and HBaseKeyFactory</a></li>
-<li><a href=#avro-data-stored-in-hbase-columns>Avro Data Stored in HBase Columns</a></li>
+<li><a href=#avro-data-stored-in-hbase-columns-1>Avro Data Stored in HBase Columns</a></li>
 </ul>
 </li>
 <li><a href=#put-timestamps>Put Timestamps</a></li>
@@ -158,15 +160,13 @@ ASF
 </ul>
 </li>
 </ul>
-<p>Version information</p>
+</nav>
+</aside>
+<h2 id=version-information>Version Information</h2>
 <h3 id=avro-data-stored-in-hbase-columns>Avro Data Stored in HBase Columns</h3>
 <p>As of Hive 0.9.0 the HBase integration requires at least HBase 0.92, earlier versions of Hive were working with HBase 0.89/0.90</p>
 <p>Version information</p>
 <p>Hive 1.x will remain compatible with HBase 0.98.x and lower versions. Hive 2.x will be compatible with HBase 1.x and higher. (See <a href=https://issues.apache.org/jira/browse/HIVE-10990>HIVE-10990</a> for details.) Consumers wanting to work with HBase 1.x using Hive 1.x will need to compile Hive 1.x stream code themselves.</p>
-<h2 id=introduction>Introduction</h2>
-<p>This page documents the Hive/HBase integration support originally introduced in <a href=https://issues.apache.org/jira/browse/HIVE-705>HIVE-705</a>. This feature allows Hive QL statements to access <a href=http://hadoop.apache.org/hbase>HBase</a> tables for both read (SELECT) and write (INSERT). It is even possible to combine access to HBase tables with native Hive tables via joins and unions.</p>
-<p>A presentation is available from the <a href="http://wiki.apache.org/hadoop/Hive/Presentations?action=AttachFile&do=get&target=HiveHBase-HUG10.ppt">HBase HUG10 Meetup</a></p>
-<p>This feature is a work in progress, and suggestions for its improvement are very welcome.</p>
 <h2 id=storage-handlers>Storage Handlers</h2>
 <p>Before proceeding, please read <a href=https://hive.apache.org/docs/latest/storagehandlers_27362063/>StorageHandlers</a> for an overview of the generic storage handler framework on which HBase integration depends.</p>
 <h2 id=usage>Usage</h2>

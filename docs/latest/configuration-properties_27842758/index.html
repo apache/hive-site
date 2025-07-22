@@ -121,57 +121,52 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--configuration-properties>Apache Hive : Configuration Properties</h1>
-<h1 id=hive-configuration-properties>Hive Configuration Properties</h1>
+<p>This document describes the Hive user configuration properties (sometimes called <em>parameters</em>, <em>variables</em>, or <em>options</em>), and notes which releases introduced new properties.</p>
+<p>The canonical list of configuration properties is managed in the <code>HiveConf</code> Java class, so refer to the <code>HiveConf.java</code> file for a complete list of configuration properties available in your Hive release.</p>
+<p>For information about how to use these configuration properties, see <a href=#configuring-hive>Configuring Hive</a>. That document also describes administrative configuration properties for setting up Hive in the <a href=#configuration-variables>Configuration Variables</a> section. <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin>Hive Metastore Administration</a> describes additional configuration properties for the metastore.</p>
+<p>Version information</p>
+<p>As of Hive 0.14.0 ( <a href=https://issues.apache.org/jira/browse/HIVE-7211>HIVE-7211</a> ), a configuration name that starts with &ldquo;hive.&rdquo; is regarded as a Hive system property. With the <a href=#hiveconfvalidation>hive.conf.validation</a> option true (default), any attempts to set a configuration property that starts with &ldquo;hive.&rdquo; which is not registered to the Hive system will throw an exception.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-configuration-properties>Hive Configuration Properties</a>
+<li><a href=#apache-hive--configuration-properties>Apache Hive : Configuration Properties</a>
 <ul>
 <li><a href=#query-and-ddl-execution>Query and DDL Execution</a>
 <ul>
+<li></li>
 <li><a href=#datetime>Datetime</a></li>
-<li><a href=#serdes-and-io>SerDes and I/O</a>
-<ul>
-<li><a href=#serdes>SerDes</a></li>
-<li><a href=#io>I/O</a></li>
-</ul>
-</li>
-<li><a href=#file-formats>File Formats</a>
-<ul>
-<li><a href=#rcfile-format>RCFile Format</a></li>
-<li><a href=#orc-file-format>ORC File Format</a></li>
-<li><a href=#parquet>Parquet</a></li>
-<li><a href=#avro>Avro</a></li>
-</ul>
-</li>
+<li><a href=#serdes-and-io>SerDes and I/O</a></li>
+<li><a href=#file-formats>File Formats</a></li>
 <li><a href=#vectorization>Vectorization</a></li>
 </ul>
 </li>
 <li><a href=#metastore>MetaStore</a>
 <ul>
+<li></li>
 <li><a href=#hive-metastore-connection-pooling-configuration>Hive Metastore Connection Pooling Configuration</a></li>
 <li><a href=#hive-metastore-hbase>Hive Metastore HBase</a></li>
 </ul>
 </li>
 <li><a href=#hiveserver2>HiveServer2</a>
 <ul>
+<li></li>
 <li><a href=#hiveserver2-web-ui>HiveServer2 Web UI</a></li>
 </ul>
 </li>
 <li><a href=#spark>Spark</a>
 <ul>
+<li></li>
 <li><a href=#remote-spark-driver>Remote Spark Driver</a></li>
 </ul>
 </li>
-<li><a href=#tez>Tez</a></li>
+<li><a href=#tez>Tez</a>
+<ul>
+<li></li>
+</ul>
+</li>
 <li><a href=#llap>LLAP</a>
 <ul>
-<li><a href=#llap-client>LLAP Client</a></li>
-<li><a href=#llap-web-services>LLAP Web Services</a></li>
-<li><a href=#llap-cache>LLAP Cache</a></li>
-<li><a href=#llap-io>LLAP I/O</a></li>
-<li><a href=#llap-cbo>LLAP CBO</a></li>
-<li><a href=#llap-metrics>LLAP Metrics</a></li>
-<li><a href=#llap-udf-security>LLAP UDF Security</a></li>
-<li><a href=#llap-security>LLAP Security</a></li>
+<li></li>
 </ul>
 </li>
 <li><a href=#transactions-and-compactor>Transactions and Compactor</a>
@@ -181,45 +176,82 @@ ASF
 <li><a href=#compaction-history>Compaction History</a></li>
 </ul>
 </li>
-<li><a href=#indexing>Indexing</a></li>
+<li><a href=#indexing>Indexing</a>
+<ul>
+<li></li>
+</ul>
+</li>
 <li><a href=#statistics>Statistics</a>
 <ul>
-<li><a href=#runtime-filtering>Runtime Filtering</a></li>
+<li></li>
 </ul>
 </li>
 <li><a href=#authentication-and-authorization>Authentication and Authorization</a>
 <ul>
-<li><a href=#restrictedhiddeninternal-list-and-whitelist>Restricted/Hidden/Internal List and Whitelist</a>
-<ul>
-<li><a href=#whitelist-for-sql-standard-based-hive-authorization>Whitelist for SQL Standard Based Hive Authorization</a></li>
-</ul>
-</li>
+<li><a href=#restrictedhiddeninternal-list-and-whitelist>Restricted/Hidden/Internal List and Whitelist</a></li>
 <li><a href=#hive-client-security>Hive Client Security</a></li>
 <li><a href=#hive-metastore-security>Hive Metastore Security</a></li>
 <li><a href=#sql-standard-based-authorization>SQL Standard Based Authorization</a></li>
 </ul>
 </li>
-<li><a href=#archiving>Archiving</a></li>
-<li><a href=#locking>Locking</a></li>
-<li><a href=#metrics>Metrics</a></li>
-<li><a href=#clustering>Clustering</a></li>
+<li><a href=#archiving>Archiving</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#locking>Locking</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#metrics>Metrics</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#clustering>Clustering</a>
+<ul>
+<li></li>
+</ul>
+</li>
 <li><a href=#regions>Regions</a></li>
-<li><a href=#command-line-interface>Command Line Interface</a></li>
-<li><a href=#hbase-storagehandler>HBase StorageHandler</a></li>
-<li><a href=#hive-web-interface--hwi---component-removed-as-of-hive-2-2-0->Hive Web Interface (HWI) (component removed as of Hive 2.2.0)</a></li>
-<li><a href=#replication>Replication</a></li>
-<li><a href=#blobstore-ie-amazon-s3>Blobstore (i.e. Amazon S3)</a></li>
-<li><a href=#test-properties>Test Properties</a></li>
+<li><a href=#command-line-interface>Command Line Interface</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#hbase-storagehandler>HBase StorageHandler</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#hive-web-interface-hwi-component-removed-as-of-hive-220httpsissuesapacheorgjirabrowsehive-15622>Hive Web Interface (HWI) (component removed as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-15622>2.2.0</a>)</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#replication>Replication</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#blobstore-ie-amazon-s3>Blobstore (i.e. Amazon S3)</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#test-properties>Test Properties</a>
+<ul>
+<li></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href=#hcatalog-configuration-properties>HCatalog Configuration Properties</a></li>
 <li><a href=#webhcat-configuration-properties>WebHCat Configuration Properties</a></li>
 </ul>
-<p>This document describes the Hive user configuration properties (sometimes called <em>parameters</em>, <em>variables</em>, or <em>options</em>), and notes which releases introduced new properties.</p>
-<p>The canonical list of configuration properties is managed in the <code>HiveConf</code> Java class, so refer to the <code>HiveConf.java</code> file for a complete list of configuration properties available in your Hive release.</p>
-<p>For information about how to use these configuration properties, see <a href=#configuring-hive>Configuring Hive</a>. That document also describes administrative configuration properties for setting up Hive in the <a href=#configuration-variables>Configuration Variables</a> section. <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin>Hive Metastore Administration</a> describes additional configuration properties for the metastore.</p>
-<p>Version information</p>
-<p>As of Hive 0.14.0 ( <a href=https://issues.apache.org/jira/browse/HIVE-7211>HIVE-7211</a> ), a configuration name that starts with &ldquo;hive.&rdquo; is regarded as a Hive system property. With the <a href=#hiveconfvalidation>hive.conf.validation</a> option true (default), any attempts to set a configuration property that starts with &ldquo;hive.&rdquo; which is not registered to the Hive system will throw an exception.</p>
+</nav>
+</aside>
 <h2 id=query-and-ddl-execution>Query and DDL Execution</h2>
 <h5 id=hiveexecutionengine>hive.execution.engine</h5>
 <ul>
@@ -1369,15 +1401,8 @@ Setting to 0.13 gives division behavior in Hive 0.13 and later releases: int / i
 <h5 id=hivedatetimeformatter>hive.datetime.formatter</h5>
 <ul>
 <li>Default Value: <code>DATETIME</code></li>
-<li>Added In: Hive 4.0.0 with</li>
+<li>Added In: Hive 4.0.0 with <a href=https://issues.apache.org/jira/browse/HIVE-25576>HIVE-25576</a>, <a href=https://issues.apache.org/jira/browse/HIVE-27673>HIVE-27673</a></li>
 </ul>
-<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21140avatartypeissuetypehive-25576httpsissuesapacheorgjirabrowsehive-25576srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-25576?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype" alt>HIVE-25576</a></h2>
-<p>Configurable datetime formatter for unix_timestamp, from_unixtime
-Closed</p>
-<p>,</p>
-<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21140avatartypeissuetypehive-27673httpsissuesapacheorgjirabrowsehive-27673srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-27673?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype" alt>HIVE-27673</a></h2>
-<p>Configurable datetime formatter for date_format
-Closed</p>
 <p>The formatter to use for handling datetime values. The possible values are:</p>
 <ul>
 <li>DATETIME: For using java.time.format.DateTimeFormatter</li>
@@ -3097,10 +3122,10 @@ With negative value, it&rsquo;s checked for all of the operations regardless of 
 <ul>
 <li><strong><a href=#hiveexecutionengine>hive.execution.engine</a></strong></li>
 <li>
-<h5 id=hivemapjoinoptimizedhashtablehahahugoshortcode-s263-hbhb><a href=#hivemapjoinoptimizedhashtable>hive.mapjoin.optimized.hashtable</a></h5>
+<h5 id=hivemapjoinoptimizedhashtablehahahugoshortcode-s209-hbhb><a href=#hivemapjoinoptimizedhashtable>hive.mapjoin.optimized.hashtable</a></h5>
 </li>
 <li>
-<h5 id=hivemapjoinoptimizedhashtablewbsizehahahugoshortcode-s264-hbhb><a href=#hivemapjoinoptimizedhashtablewbsize>hive.mapjoin.optimized.hashtable.wbsize</a></h5>
+<h5 id=hivemapjoinoptimizedhashtablewbsizehahahugoshortcode-s210-hbhb><a href=#hivemapjoinoptimizedhashtablewbsize>hive.mapjoin.optimized.hashtable.wbsize</a></h5>
 </li>
 <li><strong><a href=#hiveserver2tezdefaultqueues>hive.server2.tez.default.queues</a></strong></li>
 <li><strong><a href=#hiveserver2tezsessionsperdefaultqueue>hive.server2.tez.sessions.per.default.queue</a></strong></li>

@@ -121,8 +121,13 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--materialized-views>Apache Hive : Materialized views</h1>
+<p>This page documents the work done for the supporting materialized views in Apache Hive.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#introduction>Introduction</a>
+<li><a href=#apache-hive--materialized-views>Apache Hive : Materialized views</a>
+<ul>
+<li><a href=#version-information>Version information</a>
 <ul>
 <li><a href=#objectives>Objectives</a></li>
 </ul>
@@ -144,10 +149,12 @@ ASF
 <li><a href=#materialized-view-lifecycle>Materialized view lifecycle</a></li>
 <li><a href=#open-issues-jira>Open issues (JIRA)</a></li>
 </ul>
-<p>Version information</p>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=version-information>Version information</h2>
 <p>Materialized views support is introduced in Hive 3.0.0.</p>
-<h2 id=introduction>Introduction</h2>
-<p>This page documents the work done for the supporting materialized views in Apache Hive.</p>
 <h3 id=objectives>Objectives</h3>
 <p>Traditionally, one of the most powerful techniques used to accelerate query processing in data warehouses is the pre-computation of relevant summaries or materialized views.</p>
 <p>The initial implementation introduced in Apache Hive 3.0.0 focuses on introducing materialized views and automatic query rewriting based on those materializations in the project. In particular, materialized views can be stored natively in Hive or in other systems such as Druid using custom storage handlers, and they can seamlessly exploit new exciting Hive features such as LLAP acceleration. Then the optimizer relies in Apache Calcite to automatically produce full and partial rewritings for a large set of query expressions comprising projections, filters, join, and aggregation operations.</p>

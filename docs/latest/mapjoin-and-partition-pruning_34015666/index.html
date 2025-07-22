@@ -121,15 +121,24 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--mapjoin-and-partition-pruning>Apache Hive : MapJoin and Partition Pruning</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--mapjoin-and-partition-pruning>Apache Hive : MapJoin and Partition Pruning</a></li>
 <li><a href=#overview>Overview</a>
+<ul>
+<li>
 <ul>
 <li><a href=#problem>Problem</a></li>
 <li><a href=#proposed-solution>Proposed Solution</a></li>
 <li><a href=#possible-extensions>Possible Extensions</a></li>
 </ul>
 </li>
+</ul>
+</li>
 <li><a href=#optimization-details>Optimization Details</a>
+<ul>
+<li>
 <ul>
 <li><a href=#compile-time>Compile Time</a></li>
 <li><a href=#runtime>Runtime</a></li>
@@ -137,6 +146,10 @@ ASF
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=overview>Overview</h1>
 <p>In Hive, Map-Join is a technique that materializes data for all tables involved in the join except for the largest table and then large table is streamed over the materialized data from small tables. Map-Join is often a good join approach for star-schema joins where the fact table will be streamed over materialized dimension tables.</p>
 <h3 id=problem>Problem</h3>

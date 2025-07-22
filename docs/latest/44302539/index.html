@@ -121,6 +121,13 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-on-spark-getting-started>Apache Hive : Hive on Spark: Getting Started</h1>
+<p>Hive on Spark provides Hive with the ability to utilize <a href=http://spark.apache.org/>Apache Spark</a> as its execution engine.</p>
+<pre tabindex=0><code>set hive.execution.engine=spark;
+</code></pre><p>Hive on Spark was added in <a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-spark-getting-started>Apache Hive : Hive on Spark: Getting Started</a>
 <ul>
 <li><a href=#version-compatibility>Version Compatibility</a></li>
 <li><a href=#spark-installation>Spark Installation</a></li>
@@ -138,10 +145,13 @@ ASF
 <li><a href=#common-issues-green-are-resolved-will-be-removed-from-this-list>Common Issues (Green are resolved, will be removed from this list)</a></li>
 <li><a href=#recommended-configuration>Recommended Configuration</a></li>
 <li><a href=#design-documents>Design documents</a></li>
+<li><a href=#attachments>Attachments:</a></li>
+<li><a href=#comments>Comments:</a></li>
 </ul>
-<p>Hive on Spark provides Hive with the ability to utilize <a href=http://spark.apache.org/>Apache Spark</a> as its execution engine.</p>
-<pre tabindex=0><code>set hive.execution.engine=spark;
-</code></pre><p>Hive on Spark was added in <a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>.</p>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=version-compatibility>Version Compatibility</h2>
 <p>Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed. Below is a list of Hive versions and their corresponding compatible Spark versions.</p>
 <table>

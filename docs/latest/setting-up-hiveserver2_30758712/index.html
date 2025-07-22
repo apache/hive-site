@@ -121,40 +121,31 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--setting-up-hiveserver2>Apache Hive : Setting Up HiveServer2</h1>
-<h1 id=hiveserver2>HiveServer2</h1>
+<p><a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>HiveServer2</a> (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>here</a>). The current implementation, based on Thrift RPC, is an improved version of <a href=https://hive.apache.org/docs/latest/hiveserver_27362111/>HiveServer</a> and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
 <ul>
-<li><a href=#hiveserver2>HiveServer2</a>
+<li>The Thrift interface definition language (IDL) for HiveServer2 is available at <a href=https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift</a>.</li>
+<li>Thrift documentation is available at <a href=http://thrift.apache.org/docs/>http://thrift.apache.org/docs/</a>.</li>
+</ul>
+<p>This document describes how to set up the server. How to use a client with this server is described in the <a href=https://hive.apache.org/docs/latest/hiveserver2-clients_30758725/>HiveServer2 Clients document</a>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--setting-up-hiveserver2>Apache Hive : Setting Up HiveServer2</a>
+<ul>
+<li><a href=#version-information>Version information</a></li>
 <li><a href=#how-to-configure>How to Configure</a>
 <ul>
-<li><a href=#configuration-properties-in-the-hive-site-xml-file>Configuration Properties in the hive-site.xml File</a></li>
-<li><a href=#running-in-http-mode>Running in HTTP Mode</a>
-<ul>
-<li><a href=#cookie-based-authentication>Cookie Based Authentication</a></li>
-</ul>
-</li>
-<li><a href=#optional-global-init-file>Optional Global Init File</a></li>
-<li><a href=#logging-configuration>Logging Configuration</a></li>
+<li></li>
 </ul>
 </li>
 <li><a href=#how-to-start>How to Start</a>
 <ul>
-<li><a href=#usage-message>Usage Message</a></li>
+<li></li>
 </ul>
 </li>
 <li><a href=#authenticationsecurity-configuration>Authentication/Security Configuration</a>
 <ul>
-<li><a href=#configuration>Configuration</a></li>
-<li><a href=#impersonation>Impersonation</a></li>
-<li><a href=#integrity/confidentiality-protection>Integrity/Confidentiality Protection</a></li>
-<li><a href=#ssl-encryption>SSL Encryption</a>
-<ul>
-<li><a href=#setting-up-ssl-with-self-signed-certificates>Setting up SSL with self-signed certificates</a></li>
-<li><a href=#selectively-disabling-ssl-protocol-versions>Selectively disabling SSL protocol versions</a></li>
-</ul>
-</li>
-<li><a href=#pluggable-authentication-modules--pam->Pluggable Authentication Modules (PAM)</a></li>
-<li><a href=#setting-up-hiveserver2-job-credential-provider>Setting up HiveServer2 job credential provider</a></li>
+<li></li>
 </ul>
 </li>
 <li><a href=#scratch-directory-management>Scratch Directory Management</a>
@@ -166,16 +157,13 @@ ASF
 <li><a href=#web-ui-for-hiveserver2>Web UI for HiveServer2</a></li>
 <li><a href=#python-client-driver>Python Client Driver</a></li>
 <li><a href=#ruby-client-driver>Ruby Client Driver</a></li>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
 </li>
 </ul>
-<p><a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>HiveServer2</a> (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>here</a>). The current implementation, based on Thrift RPC, is an improved version of <a href=https://hive.apache.org/docs/latest/hiveserver_27362111/>HiveServer</a> and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
-<ul>
-<li>The Thrift interface definition language (IDL) for HiveServer2 is available at <a href=https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift</a>.</li>
-<li>Thrift documentation is available at <a href=http://thrift.apache.org/docs/>http://thrift.apache.org/docs/</a>.</li>
-</ul>
-<p>This document describes how to set up the server. How to use a client with this server is described in the <a href=https://hive.apache.org/docs/latest/hiveserver2-clients_30758725/>HiveServer2 Clients document</a>.</p>
-<p>Version</p>
+</nav>
+</aside>
+<h2 id=version-information>Version information</h2>
 <p>Introduced in Hive version 0.11. See <a href=https://issues.apache.org/jira/browse/HIVE-2935>HIVE-2935</a>.</p>
 <h2 id=how-to-configure>How to Configure</h2>
 <h4 id=configuration-properties-in-the-hive-sitexml-file><strong>Configuration Properties in the <code>hive-site.xml</code> File</strong></h4>

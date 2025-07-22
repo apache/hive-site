@@ -121,8 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--query-reexecution>Apache Hive : Query ReExecution</h1>
-<p>Query reexecution provides a facility to re-run the query multiple times in case of an unfortunate event happens.</p>
+<p>Query reexecution provides a facility to re-run the query multiple times in case of an unfortunate event happens. Introduced in Hive 3.0 (<a href=https://issues.apache.org/jira/browse/HIVE-17626>HIVE-17626</a>)</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--query-reexecution>Apache Hive : Query ReExecution</a></li>
 <li><a href=#reexecition-strategies>ReExecition strategies</a>
 <ul>
 <li><a href=#overlay>Overlay</a></li>
@@ -132,7 +135,8 @@ ASF
 </li>
 <li><a href=#configuration>Configuration</a></li>
 </ul>
-<p>Introduced in Hive 3.0 (<a href=https://issues.apache.org/jira/browse/HIVE-17626>HIVE-17626</a>)</p>
+</nav>
+</aside>
 <h1 id=reexecition-strategies>ReExecition strategies</h1>
 <h2 id=overlay>Overlay</h2>
 <p>Enables to change the hive settings for all reexecutions which will be happening. It works by adding a configuration subtree as an overlay to the actual hive settings(reexec.overlay.*)</p>

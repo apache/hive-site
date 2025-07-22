@@ -120,10 +120,13 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--hcatalog-storageformats>Apache Hive : HCatalog StorageFormats</h1>
-<h1 id=storage-formats>Storage Formats</h1>
+<h1 id=apache-hive--hcatalog-storage-formats>Apache Hive : HCatalog Storage Formats</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#storage-formats>Storage Formats</a>
+<li><a href=#apache-hive--hcatalog-storage-formats>Apache Hive : HCatalog Storage Formats</a>
+<ul>
+<li>
 <ul>
 <li><a href=#serdes-and-storage-formats>SerDes and Storage Formats</a></li>
 <li><a href=#usage-from-hive>Usage from Hive</a></li>
@@ -131,6 +134,10 @@ ASF
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h3 id=serdes-and-storage-formats>SerDes and Storage Formats</h3>
 <p>HCatalog uses Hive&rsquo;s SerDe class to serialize and deserialize data. SerDes are provided for RCFile, CSV text, JSON text, and SequenceFile formats. Check the <a href=https://hive.apache.org/docs/latest/serde_27362059/>SerDe documentation</a> for additional SerDes that might be included in new versions. For example, the <a href=https://hive.apache.org/docs/latest/avroserde_27850707/>Avro SerDe</a> was added in Hive 0.9.1, the <a href=https://hive.apache.org/docs/latest/languagemanual-orc_31818911/>ORC</a> file format was added in Hive 0.11.0, and <a href=https://hive.apache.org/docs/latest/parquet_38570914/>Parquet</a> was added in Hive 0.10.0 (plug-in) and Hive 0.13.0 (native).</p>
 <p>Users can write SerDes for custom formats using these instructions:</p>

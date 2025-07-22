@@ -121,9 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-transactions-hive-acid>Apache Hive : Hive Transactions (Hive ACID)</h1>
-<h1 id=acid-and-transactions-in-hive>ACID and Transactions in Hive</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#acid-and-transactions-in-hive>ACID and Transactions in Hive</a>
+<li><a href=#apache-hive--hive-transactions-hive-acid>Apache Hive : Hive Transactions (Hive ACID)</a>
 <ul>
 <li><a href=#what-is-acid-and-why-should-you-use-it>What is ACID and why should you use it?</a></li>
 <li><a href=#limitations>Limitations</a></li>
@@ -132,23 +133,14 @@ ASF
 <li><a href=#basic-design>Basic Design</a>
 <ul>
 <li><a href=#base-and-delta-directories>Base and Delta Directories</a></li>
-<li><a href=#compactor>Compactor</a>
-<ul>
-<li><a href=#delta-file-compaction>Delta File Compaction</a></li>
-<li><a href=#initiator>Initiator</a></li>
-<li><a href=#worker>Worker</a></li>
-<li><a href=#cleaner>Cleaner</a></li>
-<li><a href=#acidhousekeeperservice>AcidHouseKeeperService</a></li>
-<li><a href=#show-compactions>SHOW COMPACTIONS</a></li>
-</ul>
-</li>
+<li><a href=#compactor>Compactor</a></li>
 <li><a href=#transactionlock-manager>Transaction/Lock Manager</a></li>
 </ul>
 </li>
 <li><a href=#configuration>Configuration</a>
 <ul>
 <li><a href=#new-configuration-parameters-for-transactions>New Configuration Parameters for Transactions</a></li>
-<li><a href=#configuration-values-to-set-for-hive-acid--insert,-update,-delete->Configuration Values to Set for Hive ACID (INSERT, UPDATE, DELETE)</a></li>
+<li><a href=#configuration-values-to-set-for-hive-acid-insert-update-delete>Configuration Values to Set for Hive ACID (<em>INSERT, UPDATE, DELETE)</em></a></li>
 <li><a href=#configuration-values-to-set-for-compaction>Configuration Values to Set for Compaction</a></li>
 <li><a href=#compaction-pooling>Compaction pooling</a></li>
 </ul>
@@ -158,6 +150,8 @@ ASF
 </li>
 <li><a href=#talks-and-presentations>Talks and Presentations</a></li>
 </ul>
+</nav>
+</aside>
 <h2 id=what-is-acid-and-why-should-you-use-it>What is ACID and why should you use it?</h2>
 <p>ACID stands for four traits of database transactions:  Atomicity (an operation either succeeds completely or fails, it does not leave partial data), Consistency (once an application performs an operation the results of that operation are visible to it in every subsequent operation), <a href=https://en.wikipedia.org/wiki/Isolation_(database_systems)>Isolation</a> (an incomplete operation by one user does not cause unexpected side effects for other users), and Durability (once an operation is complete it will be preserved even in the face of machine or system failure).  These traits have long been expected of database systems as part of their transaction functionality.  </p>
 <p>Transactions with ACID semantics have been added to Hive to address the following use cases:</p>

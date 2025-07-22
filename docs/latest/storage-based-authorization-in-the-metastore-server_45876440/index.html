@@ -121,27 +121,29 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--storage-based-authorization-in-the-metastore-server>Apache Hive : Storage Based Authorization in the Metastore Server</h1>
-<ul>
-<li><a href=#storage-based-authorization-in-the-metastore-server>Storage Based Authorization in the Metastore Server</a>
-<ul>
-<li><a href=#the-need-for-metastore-server-security>The Need for Metastore Server Security</a></li>
-<li><a href=#storage-based-authorization>Storage Based Authorization</a></li>
-<li><a href=#configuration-parameters-for-metastore-security>Configuration Parameters for Metastore Security</a>
-<ul>
-<li><a href=#sample-hive-site-xml:-default-settings>Sample hive-site.xml: Default Settings</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id=storage-based-authorization-in-the-metastore-server>Storage Based Authorization in the Metastore Server</h1>
 <p>The metastore server security feature with storage based authorization was added to Hive in release 0.10. This feature was introduced previously in <a href=https://hive.apache.org/docs/latest/hcatalog-authorization_34014782/>HCatalog</a>.</p>
-<p>Version 0.10.0</p>
 <p><a href=https://issues.apache.org/jira/browse/HIVE-3705>HIVE-3705</a> added metastore server security to Hive in release 0.10.0.</p>
 <ul>
 <li>For additional information about storage based authorization in the metastore server, see the HCatalog document <a href=https://hive.apache.org/docs/latest/hcatalog-authorization_34014782/>Storage Based Authorization</a>.</li>
 <li>For an overview of Hive authorization models and other security options, see the <a href=https://hive.apache.org/docs/latest/languagemanual-authorization_27362032/>Authorization</a> document.</li>
 </ul>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--storage-based-authorization-in-the-metastore-server>Apache Hive : Storage Based Authorization in the Metastore Server</a>
+<ul>
+<li><a href=#the-need-for-metastore-server-security>The Need for Metastore Server Security</a></li>
+<li><a href=#storage-based-authorization>Storage Based Authorization</a></li>
+<li><a href=#configuration-parameters-for-metastore-security>Configuration Parameters for Metastore Security</a>
+<ul>
+<li><a href=#sample-hive-sitexml-default-settings>Sample hive-site.xml:  Default Settings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=the-need-for-metastore-server-security>The Need for Metastore Server Security</h2>
 <p>When multiple clients access the same metastore in a backing database, such as MySQL, the database connection credentials may be visible in the <code>hive-site.xml</code> configuration file. A malicious or incompetent user could cause serious damage to metadata even though the underlying data is protected by HDFS access controls.</p>
 <p>Also, when a Hive metastore server uses Thrift to communicate with clients and has a backing database for metadata storage and persistence, the authentication and authorization done on the client side cannot guarantee security on the metastore side. To provide security for metadata, Hive release 0.10 added authorization capability to the metastore. (See <a href=https://issues.apache.org/jira/browse/HIVE-3705>HIVE-3705</a>.) </p>

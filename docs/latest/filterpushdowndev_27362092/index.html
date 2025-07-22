@@ -120,12 +120,13 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--filterpushdowndev>Apache Hive : FilterPushdownDev</h1>
-<h1 id=filter-pushdown>Filter Pushdown</h1>
+<h1 id=apache-hive--filter-pushdown>Apache Hive : Filter Pushdown</h1>
+<p>This document explains how we are planning to add support in Hive&rsquo;s optimizer for pushing filters down into physical access methods. This is an important optimization for minimizing the amount of data scanned and processed by an access method (e.g. for an indexed key lookup), as well as reducing the amount of data passed into Hive for further query evaluation.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#filter-pushdown>Filter Pushdown</a>
+<li><a href=#apache-hive--filter-pushdown>Apache Hive : Filter Pushdown</a>
 <ul>
-<li><a href=#introduction>Introduction</a></li>
 <li><a href=#use-cases>Use Cases</a></li>
 <li><a href=#components-involved>Components Involved</a></li>
 <li><a href=#primary-filter-representation>Primary Filter Representation</a></li>
@@ -136,8 +137,8 @@ ASF
 </ul>
 </li>
 </ul>
-<h2 id=introduction>Introduction</h2>
-<p>This document explains how we are planning to add support in Hive&rsquo;s optimizer for pushing filters down into physical access methods. This is an important optimization for minimizing the amount of data scanned and processed by an access method (e.g. for an indexed key lookup), as well as reducing the amount of data passed into Hive for further query evaluation.</p>
+</nav>
+</aside>
 <h2 id=use-cases>Use Cases</h2>
 <p>Below are the main use cases we are targeting.</p>
 <ul>

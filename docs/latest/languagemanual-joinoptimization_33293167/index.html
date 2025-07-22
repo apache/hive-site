@@ -120,53 +120,25 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--languagemanual-joinoptimization>Apache Hive : LanguageManual JoinOptimization</h1>
-<h1 id=join-optimization>Join Optimization</h1>
+<h1 id=apache-hive--languagemanual-join-optimization>Apache Hive : LanguageManual Join Optimization</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#join-optimization>Join Optimization</a>
+<li><a href=#apache-hive--languagemanual-join-optimization>Apache Hive : LanguageManual Join Optimization</a>
 <ul>
 <li><a href=#improvements-to-the-hive-optimizer>Improvements to the Hive Optimizer</a></li>
 <li><a href=#star-join-optimization>Star Join Optimization</a>
 <ul>
 <li><a href=#star-schema-example>Star Schema Example</a></li>
-<li><a href=#prior-support-for-mapjoin>Prior Support for MAPJOIN</a>
-<ul>
-<li><a href=#limitations-of-prior-implementation>Limitations of Prior Implementation</a></li>
-</ul>
-</li>
-<li><a href=#enhancements-for-star-joins>Enhancements for Star Joins</a>
-<ul>
-<li>
-<p><a href=#optimize-chains-of-map-joins>Optimize Chains of Map Joins</a></p>
-<ul>
-<li><a href=#current-and-future-optimizations>Current and Future Optimizations</a></li>
-</ul>
-</li>
-<li>
-<p><a href=#optimize-auto-join-conversion>Optimize Auto Join Conversion</a></p>
-<pre><code>  - [Current Optimization](#current-optimization)+ [Auto Conversion to SMB Map Join](#auto-conversion-to-smb-map-join)
-  - [SMB Join across Tables with Different Keys](#smb-join-across-tables-with-different-keys)
-</code></pre>
-</li>
-<li>
-<p><a href=#generate-hash-tables-on-the-task-side>Generate Hash Tables on the Task Side</a></p>
-<ul>
-<li><a href=#pros-and-cons-of-client-side-hash-tables>Pros and Cons of Client-Side Hash Tables</a></li>
-<li><a href=#task-side-generation-of-hash-tables>Task-Side Generation of Hash Tables</a>
-<ul>
-<li><a href=#further-options-for-optimization>Further Options for Optimization</a></li>
+<li><a href=#prior-support-for-mapjoin>Prior Support for MAPJOIN</a></li>
+<li><a href=#enhancements-for-star-joins>Enhancements for Star Joins</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>For a general discussion of Hive joins including syntax, examples, and restrictions, see the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins>Joins</a> wiki doc.</p>
+</nav>
+</aside>
 <h2 id=improvements-to-the-hive-optimizer>Improvements to the Hive Optimizer</h2>
 <p>Version</p>
 <p>The join optimizations described here were added in Hive version 0.11.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3784>HIVE-3784</a> and related JIRAs.</p>

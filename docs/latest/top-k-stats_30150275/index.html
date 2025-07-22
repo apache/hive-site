@@ -120,10 +120,12 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--top-k-stats>Apache Hive : Top K Stats</h1>
-<h1 id=column-level-top-k-statistics>Column Level Top K Statistics</h1>
+<h1 id=apache-hive--column-level-top-k-statistics>Apache Hive : Column Level Top K Statistics</h1>
+<p>This document is an addition to <a href=https://cwiki.apache.org/confluence/display/Hive/StatsDev>Statistics in Hive</a>. It describes the support of collecting column level top K values for Hive tables (see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>).</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#column-level-top-k-statistics>Column Level Top K Statistics</a>
+<li><a href=#apache-hive--column-level-top-k-statistics>Apache Hive : Column Level Top K Statistics</a>
 <ul>
 <li><a href=#scope>Scope</a></li>
 <li><a href=#implementation>Implementation</a></li>
@@ -138,7 +140,8 @@ ASF
 </ul>
 </li>
 </ul>
-<p>This document is an addition to <a href=https://cwiki.apache.org/confluence/display/Hive/StatsDev>Statistics in Hive</a>. It describes the support of collecting column level top K values for Hive tables (see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>).</p>
+</nav>
+</aside>
 <h2 id=scope>Scope</h2>
 <p>In addition to the partition statistics, column level top K values can also be estimated for Hive tables.<br>
 The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify <a href=https://cwiki.apache.org/confluence/display/Hive/ListBucketing>skew</a>. This works for both newly created and existing tables.<br>

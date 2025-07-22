@@ -121,32 +121,28 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--adminmanual-metastore-administration>Apache Hive : AdminManual Metastore Administration</h1>
-<h2 id=hive-metastore-administration>Hive Metastore Administration</h2>
+<p>This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see <a href=https://hive.apache.org/docs/latest/adminmanual-metastore-3-0-administration_75978150/>AdminManual Metastore 3.0 Administration</a></p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-metastore-administration>Hive Metastore Administration</a>
+<li><a href=#apache-hive--adminmanual-metastore-administration>Apache Hive : AdminManual Metastore Administration</a>
 <ul>
-<li><a href=#introduction>Introduction</a>
+<li>
 <ul>
-<li><a href=#basic-configuration-parameters>Basic Configuration Parameters</a></li>
-<li><a href=#additional-configuration-parameters>Additional Configuration Parameters</a></li>
-<li><a href=#data-nucleus-auto-start>Data Nucleus Auto Start</a></li>
-<li><a href=#default-configuration>Default Configuration</a></li>
-</ul>
-</li>
+<li><a href=#introduction>Introduction</a></li>
 <li><a href=#localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</a></li>
 <li><a href=#remote-metastore-database>Remote Metastore Database</a></li>
 <li><a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a></li>
-<li><a href=#remote-metastore-server>Remote Metastore Server</a>
-<ul>
-<li><a href=#client-configuration-parameters>Client Configuration Parameters</a></li>
-</ul>
-</li>
+<li><a href=#remote-metastore-server>Remote Metastore Server</a></li>
 <li><a href=#supported-backend-databases-for-metastore>Supported Backend Databases for Metastore</a></li>
 <li><a href=#metastore-schema-consistency-and-upgrades>Metastore Schema Consistency and Upgrades</a></li>
 </ul>
 </li>
 </ul>
-<p>This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see <a href=https://hive.apache.org/docs/latest/adminmanual-metastore-3-0-administration_75978150/>AdminManual Metastore 3.0 Administration</a></p>
+</li>
+</ul>
+</nav>
+</aside>
 <h3 id=introduction>Introduction</h3>
 <p>All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using <a href=http://www.datanucleus.org/>JPOX</a> ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of <a href=#supported-databases>supported databases</a> in section below.</p>
 <p>You can find an E/R diagram for the metastore <a href=https://issues.apache.org/jira/secure/attachment/12471108/HiveMetaStore.pdf>here</a>.</p>

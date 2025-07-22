@@ -121,7 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-on-tez>Apache Hive : Hive on Tez</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hive-on-tez>Apache Hive : Hive on Tez</a></li>
 <li><a href=#overview>Overview</a>
 <ul>
 <li><a href=#multiple-reduce-stages>Multiple reduce stages</a></li>
@@ -176,10 +179,16 @@ ASF
 </li>
 <li><a href=#installation-and-configuration>Installation and Configuration</a>
 <ul>
+<li>
+<ul>
 <li><a href=#hive-tez-compatibility>Hive-Tez Compatibility</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=overview>Overview</h1>
 <p><a href=http://tez.apache.org/>Tez</a> is a new application framework built on Hadoop Yarn that can execute complex directed acyclic graphs of general data processing tasks. In many ways it can be thought of as a more flexible and powerful successor of the map-reduce framework.</p>
 <p>It generalizes map and reduce tasks by exposing interfaces for generic data processing tasks, which consist of a triplet of interfaces: input, output and processor. These tasks are the vertices in the execution graph. Edges (i.e.: data connections between tasks) are first class citizens in Tez and together with the input/output interfaces greatly increase the flexibility of how data is transferred between tasks.</p>

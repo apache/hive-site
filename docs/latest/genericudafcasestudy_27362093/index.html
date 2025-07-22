@@ -120,28 +120,21 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--genericudafcasestudy>Apache Hive : GenericUDAFCaseStudy</h1>
-<h1 id=writing-genericudafs-a-tutorial>Writing GenericUDAFs: A Tutorial</h1>
+<h1 id=apache-hive--tutorial-to-write-a-genericudaf>Apache Hive : Tutorial to write a GenericUDAF</h1>
 <p>User-Defined Aggregation Functions (UDAFs) are an excellent way to integrate advanced data-processing into Hive. Hive allows two varieties of UDAFs: simple and generic. Simple UDAFs, as the name implies, are rather simple to write, but incur performance penalties because of the use of <a href=http://java.sun.com/docs/books/tutorial/reflect/index.html>Java Reflection</a>, and do not allow features such as variable-length argument lists. Generic UDAFs allow all these features, but are perhaps not quite as intuitive to write as Simple UDAFs.</p>
 <p>This tutorial walks through the development of the <code>histogram()</code> UDAF, which computes a histogram with a fixed, user-specified number of bins, using a constant amount of memory and time linear in the input size. It demonstrates a number of features of Generic UDAFs, such as a complex return type (an array of structures), and type checking on the input. The assumption is that the reader wants to write a UDAF for eventual submission to the Hive open-source project, so steps such as modifying the function registry in Hive and writing <code>.q</code> tests are also included. If you just want to write a UDAF, debug and deploy locally, see <a href=http://wiki.apache.org/hadoop/Hive/HivePlugins>this page</a>.</p>
 <p><strong>NOTE:</strong> In this tutorial, we walk through the creation of a <code>histogram()</code> function. Starting with the 0.6.0 release of Hive, this appears as the built-in function <code>histogram_numeric()</code>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#writing-genericudafs-a-tutorial>Writing GenericUDAFs: A Tutorial</a>
+<li><a href=#apache-hive--tutorial-to-write-a-genericudaf>Apache Hive : Tutorial to write a GenericUDAF</a>
 <ul>
 <li><a href=#preliminaries>Preliminaries</a></li>
 <li><a href=#writing-the-source>Writing the source</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
 <li><a href=#writing-the-resolver>Writing the resolver</a></li>
-<li><a href=#writing-the-evaluator>Writing the evaluator</a>
-<ul>
-<li><a href=#getnewaggregationbuffer>getNewAggregationBuffer</a></li>
-<li><a href=#iterate>iterate</a></li>
-<li><a href=#terminatepartial>terminatePartial</a></li>
-<li><a href=#merge>merge</a></li>
-<li><a href=#terminate>terminate</a></li>
-</ul>
-</li>
+<li><a href=#writing-the-evaluator>Writing the evaluator</a></li>
 </ul>
 </li>
 <li><a href=#modifying-the-function-registry>Modifying the function registry</a></li>
@@ -156,6 +149,8 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=preliminaries>Preliminaries</h2>
 <p>Make sure you have the latest Hive trunk by running <code>svn up</code> in your Hive directory. More detailed instructions on downloading and setting up Hive can be found at <a href=http://wiki.apache.org/hadoop/Hive/GettingStarted>Getting Started</a> . Your local copy of Hive should work by running <code>build/dist/bin/hive</code> from the Hive root directory, and you should have some tables of data loaded into your local instance for testing whatever UDAF you have in mind. For this example, assume that a table called <code>normal</code> exists with a single <code>double</code> column called <code>val</code>, containing a large number of random number drawn from the standard normal distribution.</p>
 <p>The files we will be editing or creating are as follows, relative to the Hive root:</p>

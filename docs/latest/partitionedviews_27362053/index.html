@@ -121,7 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--partitionedviews>Apache Hive : PartitionedViews</h1>
+<p>This is a followup to <a href=https://hive.apache.org/docs/latest/viewdev_27362067/>ViewDev</a> for adding partition-awareness to views.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--partitionedviews>Apache Hive : PartitionedViews</a></li>
 <li><a href=#use-cases>Use Cases</a>
 <ul>
 <li><a href=#approaches>Approaches</a></li>
@@ -133,7 +137,8 @@ ASF
 </li>
 <li><a href=#hook-information>Hook Information</a></li>
 </ul>
-<p>This is a followup to <a href=https://hive.apache.org/docs/latest/viewdev_27362067/>ViewDev</a> for adding partition-awareness to views.</p>
+</nav>
+</aside>
 <h1 id=use-cases>Use Cases</h1>
 <ol>
 <li>An administrator wants to create a set of views as a table/column renaming layer on top of an existing set of base tables, without breaking any existing dependencies on those tables. To read-only users, the views should behave exactly the same as the underlying tables in every way. Among other things, this means users should be able to browse available partitions.</li>

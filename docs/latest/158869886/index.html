@@ -121,9 +121,14 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--enabling-grpc-in-hivehive-metastore-proposal>Apache Hive : Enabling gRPC in Hive/Hive Metastore (Proposal)</h1>
-<p>Contacts: Cameron Moberg (Google), Zhou Fang (Google), Feng Lu (Google), Thejas Nair (Cloudera), Vihang Karajgaonkar (Cloudera), Naveen Gangam (Cloudera)</p>
-<p>Last upated: 7/31/2020</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--enabling-grpc-in-hivehive-metastore-proposal>Apache Hive : Enabling gRPC in Hive/Hive Metastore (Proposal)</a>
+<ul>
+<li><a href=#contacts>Contacts</a></li>
+</ul>
+</li>
 <li><a href=#objective>Objective</a></li>
 <li><a href=#background>Background</a></li>
 <li><a href=#design>Design</a>
@@ -132,25 +137,23 @@ ASF
 <li><a href=#implementation>Implementation</a>
 <ul>
 <li><a href=#pluggable-grpc-support>Pluggable gRPC Support</a></li>
-<li><a href=#hive-metastore-server>Hive Metastore Server</a>
-<ul>
-<li><a href=#class-change>Class Change</a></li>
-<li><a href=#config-changes>Config Changes</a></li>
-</ul>
-</li>
-<li><a href=#hive-metastore-client>Hive Metastore Client</a>
-<ul>
-<li><a href=#class-change>Class Change</a></li>
-<li><a href=#configuration-changes>Configuration Changes</a></li>
-</ul>
-</li>
+<li><a href=#hive-metastore-server>Hive Metastore Server</a></li>
+<li><a href=#hive-metastore-client>Hive Metastore Client</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href=#summary>Summary</a></li>
-<li><a href=#future-work>Future Work</a></li>
+<li><a href=#future-work>Future Work</a>
+<ul>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=contacts>Contacts</h2>
+<p>Cameron Moberg (Google), Zhou Fang (Google), Feng Lu (Google), Thejas Nair (Cloudera), Vihang Karajgaonkar (Cloudera), Naveen Gangam (Cloudera)</p>
 <h1 id=objective>Objective</h1>
 <ul>
 <li>To modernize <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+3.0+Administration>Hive Metastore’s</a> interface with a state-of-the-art serving layer based on gRPC while also keeping it backwards compatible with Thrift for minimal upgrade toil;</li>

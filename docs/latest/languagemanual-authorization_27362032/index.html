@@ -121,30 +121,26 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--languagemanual-authorization>Apache Hive : LanguageManual Authorization</h1>
-<p>Hive Authorization</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-authorization>Apache Hive : LanguageManual Authorization</a>
 <ul>
 <li><a href=#introduction>Introduction</a></li>
 <li><a href=#hive-authorization-options>Hive Authorization Options</a>
 <ul>
 <li><a href=#use-cases>Use Cases</a></li>
-<li><a href=#overview-of-authorization-modes>Overview of Authorization Modes</a>
-<ul>
-<li><a href=#1-storage-based-authorization-in-the-metastore-server>1 Storage Based Authorization in the Metastore Server</a>
-<ul>
-<li><a href=#fall-back-authorizer>Fall Back Authorizer</a></li>
-</ul>
-</li>
-<li><a href=#2-sql-standards-based-authorization-in-hiveserver2>2 SQL Standards Based Authorization in HiveServer2</a></li>
-<li><a href=#3-authorization-using-apache-ranger--sentry>3 Authorization using Apache Ranger & Sentry</a></li>
-<li><a href=#4-old-default-hive-authorization-legacy-mode>4 Old default Hive Authorization (Legacy Mode)</a></li>
-</ul>
-</li>
+<li><a href=#overview-of-authorization-modes>Overview of Authorization Modes</a></li>
 <li><a href=#addressing-authorization-needs-of-multiple-use-cases>Addressing Authorization Needs of Multiple Use Cases</a></li>
 </ul>
 </li>
 <li><a href=#explain-authorization>Explain Authorization</a></li>
 <li><a href=#more-information>More Information</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=introduction>Introduction</h2>
 <p>Note that this documentation is referring to Authorization which is verifying if a user has permission to perform a certain action, and not about Authentication (verifying the identity of the user). Strong authentication for tools like the <a href=https://hive.apache.org/docs/latest/languagemanual-cli_27362033/>Hive command line</a> is provided through the use of Kerberos. There are additional authentication options for users of <a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a>.</p>
 <h2 id=hive-authorization-options>Hive Authorization Options</h2>

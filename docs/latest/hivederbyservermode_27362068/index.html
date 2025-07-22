@@ -120,10 +120,15 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--hivederbyservermode>Apache Hive : HiveDerbyServerMode</h1>
-<h1 id=hive-using-derby-in-server-mode>Hive Using Derby in Server Mode</h1>
+<h1 id=apache-hive--using-derby-in-server-mode>Apache Hive : Using Derby in Server Mode</h1>
+<p>Hive in embedded mode has a limitation of one active user at a time. You may want to run <a href=http://db.apache.org/derby/>Derby</a> as a Network Server, this way multiple users can access it simultaneously from different systems.</p>
+<p>See <a href=#metadata-store>Metadata Store</a> and <a href=#embedded-metastore>Embedded Metastore</a> for more information.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-using-derby-in-server-mode>Hive Using Derby in Server Mode</a>
+<li><a href=#apache-hive--using-derby-in-server-mode>Apache Hive : Using Derby in Server Mode</a>
+<ul>
+<li>
 <ul>
 <li><a href=#download-derby>Download Derby</a></li>
 <li><a href=#set-environment>Set Environment</a></li>
@@ -135,8 +140,10 @@ ASF
 </ul>
 </li>
 </ul>
-<p>Hive in embedded mode has a limitation of one active user at a time. You may want to run <a href=http://db.apache.org/derby/>Derby</a> as a Network Server, this way multiple users can access it simultaneously from different systems.</p>
-<p>See <a href=#metadata-store>Metadata Store</a> and <a href=#embedded-metastore>Embedded Metastore</a> for more information.</p>
+</li>
+</ul>
+</nav>
+</aside>
 <h3 id=download-derby>Download Derby</h3>
 <p>It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of <code>derby.log</code> contains the version.</p>
 <p>My structure looks like this:</p>

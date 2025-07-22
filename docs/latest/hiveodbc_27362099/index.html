@@ -120,10 +120,13 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--hiveodbc>Apache Hive : HiveODBC</h1>
-<h1 id=hive-odbc-driver>Hive ODBC Driver</h1>
+<h1 id=apache-hive--odbc-driver>Apache Hive : ODBC Driver</h1>
+<p>These instructions are for the Hive ODBC driver available in Hive for <a href=https://hive.apache.org/docs/latest/hiveserver_27362111/>HiveServer1</a>.<br>
+There is no ODBC driver available for <a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a> as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-odbc-driver>Hive ODBC Driver</a>
+<li><a href=#apache-hive--odbc-driver>Apache Hive : ODBC Driver</a>
 <ul>
 <li><a href=#introduction>Introduction</a>
 <ul>
@@ -146,11 +149,11 @@ ASF
 </ul>
 </li>
 </ul>
-<p>These instructions are for the Hive ODBC driver available in Hive for <a href=https://hive.apache.org/docs/latest/hiveserver_27362111/>HiveServer1</a>.<br>
-There is no ODBC driver available for <a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a> as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.</p>
-<p><strong>HiveServer was removed from Hive releases starting with Hive 1.0.0. See <a href=https://issues.apache.org/jira/browse/HIVE-6977>HIVE-6977</a>. Please switch over to HiveServer2.</strong></p>
+</nav>
+</aside>
 <h2 id=introduction>Introduction</h2>
 <p>The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface. This driver will NOT be built as a part of the typical Hive build process and will need to be compiled and built separately according to the instructions below.</p>
+<p><strong>HiveServer was removed from Hive releases starting with Hive 1.0.0. See <a href=https://issues.apache.org/jira/browse/HIVE-6977>HIVE-6977</a>. Please switch over to HiveServer2.</strong></p>
 <h3 id=suggested-reading>Suggested Reading</h3>
 <p>This guide assumes you are already familiar with the following:</p>
 <ul>

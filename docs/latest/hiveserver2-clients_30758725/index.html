@@ -121,37 +121,27 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hiveserver2-clients>Apache Hive : HiveServer2 Clients</h1>
+<p>This page describes the different clients supported by <a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hiveserver2-clients>Apache Hive : HiveServer2 Clients</a></li>
+<li><a href=#version-information>Version information</a></li>
 <li><a href=#beeline--command-line-shell>Beeline – Command Line Shell</a>
+<ul>
+<li>
 <ul>
 <li><a href=#beeline-example>Beeline Example</a></li>
 <li><a href=#beeline-commands>Beeline Commands</a></li>
 <li><a href=#beeline-properties>Beeline Properties</a></li>
 <li><a href=#beeline-hive-commands>Beeline Hive Commands</a></li>
 <li><a href=#beeline-command-options>Beeline Command Options</a></li>
-<li><a href=#output-formats>Output Formats</a>
-<ul>
-<li><a href=#table>table</a></li>
-<li><a href=#vertical>vertical</a></li>
-<li><a href=#xmlattr>xmlattr</a></li>
-<li><a href=#xmlelements>xmlelements</a></li>
-<li><a href=#json>json</a></li>
-<li><a href=#jsonfile>jsonfile</a></li>
-<li><a href=#separated-value-output-formats>Separated-Value Output Formats</a>
-<ul>
-<li><a href=#csv2-tsv2-dsv>csv2, tsv2, dsv</a>
-<ul>
-<li><a href=#quoting-in-csv2,-tsv2-and-dsv-formats>Quoting in csv2, tsv2 and dsv Formats</a></li>
-</ul>
-</li>
-<li><a href=#csv,-tsv>csv, tsv</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href=#output-formats>Output Formats</a></li>
 <li><a href=#hiveserver2-logging>HiveServer2 Logging</a></li>
 <li><a href=#cancelling-the-query>Cancelling the Query</a></li>
 <li><a href=#background-query-in-terminal-script>Background Query in Terminal Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href=#jdbc>JDBC</a>
@@ -163,26 +153,17 @@ ASF
 <li><a href=#connection-url-when-hiveserver2-is-running-in-http-mode>Connection URL When HiveServer2 Is Running in HTTP Mode</a></li>
 <li><a href=#connection-url-when-ssl-is-enabled-in-hiveserver2>Connection URL When SSL Is Enabled in HiveServer2</a></li>
 <li><a href=#connection-url-when-zookeeper-service-discovery-is-enabled>Connection URL When ZooKeeper Service Discovery Is Enabled</a></li>
-<li><a href=#named-connection-urls>Named Connection URLs</a></li>
-<li><a href=#reconnecting>Reconnecting</a></li>
+<li><a href=#named-connection-urls><strong>Named Connection URLs</strong></a></li>
+<li><a href=#reconnecting><strong>Reconnecting</strong></a></li>
 <li><a href=#using-hive-sitexml-to-automatically-connect-to-hiveserver2>Using hive-site.xml to automatically connect to HiveServer2</a></li>
 <li><a href=#using-beeline-sitexml-to-automatically-connect-to-hiveserver2>Using beeline-site.xml to automatically connect to HiveServer2</a></li>
-<li><a href=#using-jdbc>Using JDBC</a>
-<ul>
-<li><a href=#jdbc-client-sample-code>JDBC Client Sample Code</a></li>
-<li><a href=#running-the-jdbc-sample-code>Running the JDBC Sample Code</a></li>
-</ul>
-</li>
+<li><a href=#using-jdbc>Using JDBC</a></li>
 </ul>
 </li>
 <li><a href=#jdbc-data-types>JDBC Data Types</a></li>
 <li><a href=#jdbc-client-setup-for-a-secure-cluster>JDBC Client Setup for a Secure Cluster</a>
 <ul>
-<li><a href=#multi-user-scenarios-and-programmatic-login-to-kerberos-kdc>Multi-User Scenarios and Programmatic Login to Kerberos KDC</a>
-<ul>
-<li><a href=#using-kerberos-with-a-pre-authenticated-subject>Using Kerberos with a Pre-Authenticated Subject</a></li>
-</ul>
-</li>
+<li><a href=#multi-user-scenarios-and-programmatic-login-to-kerberos-kdc>Multi-User Scenarios and Programmatic Login to Kerberos KDC</a></li>
 </ul>
 </li>
 <li><a href=#jdbc-fetch-size>JDBC Fetch Size</a></li>
@@ -195,6 +176,8 @@ ASF
 <li><a href=#integration-with-dbvissoftwares-dbvisualizer>Integration with DbVisSoftware&rsquo;s DbVisualizer</a></li>
 <li><a href=#advanced-features-for-integration-with-other-tools>Advanced Features for Integration with Other Tools</a>
 <ul>
+<li>
+<ul>
 <li><a href=#supporting-cookie-replay-in-http-mode>Supporting Cookie Replay in HTTP Mode</a></li>
 <li><a href=#using-2-way-ssl-in-http-mode>Using 2-way SSL in HTTP Mode</a></li>
 <li><a href=#passing-http-header-keyvalue-pairs-via-jdbc-driver>Passing HTTP Header Key/Value Pairs via JDBC Driver</a></li>
@@ -202,13 +185,11 @@ ASF
 </ul>
 </li>
 </ul>
-<p>This page describes the different clients supported by <a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>HiveServer2</a>.  Other documentation for HiveServer2 includes:</p>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hiveserver2-overview_65147648/>HiveServer2 Overview</a></li>
-<li><a href=https://hive.apache.org/docs/latest/setting-up-hiveserver2_30758712/>Setting Up HiveServer2</a></li>
-<li><a href=#hive-configuration-properties:- hiveserver2>Hive Configuration Properties:  HiveServer2</a></li>
+</li>
 </ul>
-<p>Version</p>
+</nav>
+</aside>
+<h1 id=version-information>Version information</h1>
 <p>Introduced in Hive version 0.11. See <a href=https://issues.apache.org/jira/browse/HIVE-2935>HIVE-2935</a>.</p>
 <h1 id=beeline--command-line-shell>Beeline – Command Line Shell</h1>
 <p>HiveServer2 supports a command shell Beeline that works with HiveServer2. It&rsquo;s a JDBC client that is based on the SQLLine CLI (<a href=http://sqlline.sourceforge.net/>http://sqlline.sourceforge.net/</a>). There’s detailed <a href=http://sqlline.sourceforge.net/#manual>documentation</a> of SQLLine which is applicable to Beeline as well.</p>

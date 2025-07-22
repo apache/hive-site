@@ -120,13 +120,11 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--groupbywithrollup>Apache Hive : GroupByWithRollup</h1>
-<h1 id=group-by-with-rollup>Group By With Rollup</h1>
-<p>References:</p>
-<p><a href=https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt>Original design doc</a></p>
-<p><a href=https://issues.apache.org/jira/browse/HIVE-2397>HIVE-2397</a></p>
+<h1 id=apache-hive--group-by-with-rollup>Apache Hive : Group By With Rollup</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#group-by-with-rollup>Group By With Rollup</a>
+<li><a href=#apache-hive--group-by-with-rollup>Apache Hive : Group By With Rollup</a>
 <ul>
 <li><a href=#terminology>Terminology</a></li>
 <li><a href=#design>Design</a>
@@ -139,9 +137,12 @@ ASF
 <li><a href=#no-map-aggr--skew--distinct--rollup>No Map Aggr & Skew & Distinct & Rollup</a></li>
 </ul>
 </li>
+<li><a href=#references>References</a></li>
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=terminology>Terminology</h2>
 <ul>
 <li>(No) Map Aggr: Shorthand for whether the configuration variable hive.map.aggr is set to true or false, meaning mapside aggregation is allowed or not respectively.</li>
@@ -209,6 +210,11 @@ ASF
 <p>Reducer 3:</p>
 <p>*Final (list-based) group by operator to perform final aggregations</p>
 <p>Note that if there are no group by keys or distinct keys, Reducer 2 and Mapper 3 are removed from the plan and the reduce sink operator in Mapper 2 does not spray. Also, note that the reason for Mapper 2 spraying is that if the skew in the data existed in a column that is not immediately nulled by the rollup (e.g. if we the group by keys are columns g1, g2, g3 in that order, we are concerned with the case where the skew exists in column g1 or g2) the skew may continue to exist after the hash aggregation, so we spray.</p>
+<h2 id=references>References</h2>
+<ul>
+<li><a href=https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt>Original design doc</a></li>
+<li><a href=https://issues.apache.org/jira/browse/HIVE-2397>HIVE-2397</a></li>
+</ul>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

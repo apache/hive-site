@@ -121,54 +121,30 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--avroserde>Apache Hive : AvroSerDe</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--avroserde>Apache Hive : AvroSerDe</a>
 <ul>
 <li>
-<p><a href=#availability>Availability</a></p>
-</li>
-<li>
-<p><a href=#overview-–-working-with-avro-from-hive>Overview – Working with Avro from Hive</a></p>
-</li>
-<li>
-<p><a href=#requirements>Requirements</a></p>
-</li>
-<li>
-<p><a href=#avro-to-hive-type-conversion>Avro to Hive type conversion</a></p>
-</li>
-<li>
-<p><a href=#creating-avro-backed-hive-tables>Creating Avro-backed Hive tables</a></p>
 <ul>
-<li><a href=#all-hive-versions>All Hive versions</a></li>
-<li><a href=#hive-014-and-later-versions>Hive 0.14 and later versions</a></li>
+<li><a href=#availability>Availability</a></li>
+<li><a href=#overview-working-with-avro-from-hive>Overview – Working with Avro from Hive</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#avro-to-hive-type-conversion>Avro to Hive type conversion</a></li>
+<li><a href=#creating-avro-backed-hive-tables>Creating Avro-backed Hive tables</a></li>
+<li><a href=#writing-tables-to-avro-files>Writing tables to Avro files</a></li>
+<li><a href=#specifying-the-avro-schema-for-a-table>Specifying the Avro schema for a table</a></li>
+<li><a href=#hbase-integration>HBase Integration</a></li>
+<li><a href=#if-something-goes-wrong>If something goes wrong</a></li>
+<li><a href=#faq>FAQ</a></li>
 </ul>
 </li>
-<li>
-<p><a href=#writing-tables-to-avro-files>Writing tables to Avro files</a></p>
-<pre><code>  - [Example](#example)+ [All Hive versions](#all-hive-versions)
-</code></pre>
-<ul>
-<li><a href=#hive-014-and-later>Hive 0.14 and later</a></li>
-<li><a href=#avro-file-extension>Avro file extension</a></li>
 </ul>
 </li>
-<li>
-<p><a href=#specifying-the-avro-schema-for-a-table>Specifying the Avro schema for a table</a></p>
-<ul>
-<li><a href=#use-avroschemaurl>Use avro.schema.url</a></li>
-<li><a href=#use-schemaliteral-and-embed-the-schema-in-the-create-statement>Use schema.literal and embed the schema in the create statement</a></li>
-<li><a href=#use-avroschemaliteral-and-pass-the-schema-into-the-script>Use avro.schema.literal and pass the schema into the script</a></li>
-<li><a href=#use-none-to-ignore-either-avroschemaliteral-or-avroschemaurl>Use none to ignore either avro.schema.literal or avro.schema.url</a></li>
 </ul>
-</li>
-<li>
-<p><a href=#hbase-integration>HBase Integration</a></p>
-</li>
-<li>
-<p><a href=#if-something-goes-wrong>If something goes wrong</a></p>
-</li>
-<li>
-<p><a href=#faq>FAQ</a></p>
-</li>
-</ul>
+</nav>
+</aside>
 <h3 id=availability>Availability</h3>
 <p>Earliest version AvroSerde is available</p>
 <p>The AvroSerde is available in Hive 0.9.1 and greater.</p>

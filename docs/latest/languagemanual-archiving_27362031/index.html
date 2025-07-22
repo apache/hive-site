@@ -121,10 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--languagemanual-archiving>Apache Hive : LanguageManual Archiving</h1>
-<h1 id=archiving-for-file-count-reduction>Archiving for File Count Reduction</h1>
-<p>Note: Archiving should be considered an advanced command due to the caveats involved.</p>
+<p>Archiving for File Count Reduction.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#archiving-for-file-count-reduction>Archiving for File Count Reduction</a>
+<li><a href=#apache-hive--languagemanual-archiving>Apache Hive : LanguageManual Archiving</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
 <li><a href=#settings>Settings</a></li>
@@ -139,10 +140,13 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=overview>Overview</h2>
 <p>Due to the design of HDFS, the number of files in the filesystem directly affects the memory consumption in the namenode. While normally not a problem for small clusters, memory usage may hit the limits of accessible memory on a single machine when there are >50-100 million files. In such situations, it is advantageous to have as few files as possible.</p>
 <p>The use of <a href=http://hadoop.apache.org/docs/stable1/hadoop_archives.html>Hadoop Archives</a> is one approach to reducing the number of files in partitions. Hive has built-in support to convert files in existing partitions to a Hadoop Archive (HAR) so that a partition that may once have consisted of 100&rsquo;s of files can occupy just ~3 files (depending on settings). However, the trade-off is that queries may be slower due to the additional overhead in reading from the HAR.</p>
-<p>Note that archiving does NOT compress the files – HAR is analogous to the Unix tar command.</p>
+<p>Note: Archiving does NOT compress the files – HAR is analogous to the Unix tar command.
+Note: Archiving should be considered an advanced command due to the caveats involved.</p>
 <h2 id=settings>Settings</h2>
 <p>There are 3 settings that should be configured before archiving is used. (Example values are shown.)</p>
 <pre tabindex=0><code>hive&gt; set hive.archive.enabled=true;

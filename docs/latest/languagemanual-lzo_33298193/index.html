@@ -120,16 +120,17 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--languagemanual-lzo>Apache Hive : LanguageManual LZO</h1>
-<h1 id=lzo-compression>LZO Compression</h1>
+<h1 id=apache-hive--languagemanual-lzo-compression>Apache Hive : LanguageManual LZO Compression</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#lzo-compression>LZO Compression</a>
+<li><a href=#apache-hive--languagemanual-lzo-compression>Apache Hive : LanguageManual LZO Compression</a>
 <ul>
 <li><a href=#general-lzo-concepts>General LZO Concepts</a></li>
 <li><a href=#prerequisites>Prerequisites</a>
 <ul>
 <li><a href=#lzolzop-installations>Lzo/Lzop Installations</a></li>
-<li><a href=#core-site-xml>core-site.xml</a></li>
+<li><a href=#core-sitexml><code>core-site.xml</code></a></li>
 <li><a href=#table-definition>Table Definition</a></li>
 </ul>
 </li>
@@ -142,6 +143,8 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=general-lzo-concepts>General LZO Concepts</h2>
 <p>LZO is a lossless data compression library that favors speed over compression ratio. See <a href=http://www.oberhumer.com/opensource/lzo>http://www.oberhumer.com/opensource/lzo</a> and <a href=http://www.lzop.org>http://www.lzop.org</a> for general information about LZO and see <a href=https://hive.apache.org/docs/latest/compressedstorage_27362073/>Compressed Data Storage</a> for information about compression in Hive.</p>
 <p>Imagine a simple data file that has three columns</p>

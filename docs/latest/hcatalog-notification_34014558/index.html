@@ -121,10 +121,12 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hcatalog-notification>Apache Hive : HCatalog Notification</h1>
-<h1 id=notification>Notification</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#notification>Notification</a>
+<li><a href=#apache-hive--hcatalog-notification>Apache Hive : HCatalog Notification</a>
 <ul>
+<li><a href=#overview>Overview</a></li>
 <li><a href=#notification-for-a-new-partition>Notification for a New Partition</a></li>
 <li><a href=#notification-for-a-set-of-partitions>Notification for a Set of Partitions</a></li>
 <li><a href=#server-configuration>Server Configuration</a>
@@ -136,6 +138,9 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
+<h2 id=overview>Overview</h2>
 <p>Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them. The current version of HCatalog supports two kinds of events:</p>
 <ul>
 <li>Notification when a new partition is added</li>

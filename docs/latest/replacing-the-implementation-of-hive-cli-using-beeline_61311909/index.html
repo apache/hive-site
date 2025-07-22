@@ -121,9 +121,11 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--replacing-the-implementation-of-hive-cli-using-beeline>Apache Hive : Replacing the Implementation of Hive CLI Using Beeline</h1>
-<h2 id=heading></h2>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li></li>
+<li><a href=#apache-hive--replacing-the-implementation-of-hive-cli-using-beeline>Apache Hive : Replacing the Implementation of Hive CLI Using Beeline</a>
+<ul>
 <li><a href=#why-replace-the-existing-hive-cli>Why Replace the Existing Hive CLI?</a></li>
 <li><a href=#hive-cli-functionality-support>Hive CLI Functionality Support</a>
 <ul>
@@ -135,6 +137,10 @@ ASF
 </li>
 <li><a href=#performance-impacts>Performance Impacts</a></li>
 </ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h2 id=why-replace-the-existing-hive-cli>Why Replace the Existing Hive CLI?</h2>
 <p><a href=#hive-cli>Hive CLI</a> is a legacy tool which had two main use cases. The first is that it served as a thick client for SQL on Hadoop and the second is that it served as a command line tool for Hive Server (the original Hive server, now often referred to as &ldquo;HiveServer1&rdquo;). Hive Server has been deprecated and removed from the Hive code base as of Hive 1.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6977>HIVE-6977</a>) and replaced with HiveServer2 (<a href=https://issues.apache.org/jira/browse/HIVE-2935>HIVE-2935</a>), so the second use case no longer applies. For the first use case, <a href=#beeline>Beeline</a> provides or is supposed to provide equal functionality, yet is implemented differently from Hive CLI.</p>
 <p>Ideally, Hive CLI should be deprecated as the Hive community has long recommended using the Beeline plus HiveServer2 configuration; however, because of the wide use of Hive CLI, we instead are replacing Hive CLI&rsquo;s implementation with a new Hive CLI on top of Beeline plus embedded HiveServer2 (<a href=https://issues.apache.org/jira/browse/HIVE-10511>HIVE-10511</a>) so that the Hive community only needs to maintain a single code path. In this way, the new Hive CLI is just an alias to Beeline at both the shell script level and the high code level. The goal is that no or minimal changes are required from existing user scripts using Hive CLI.</p>

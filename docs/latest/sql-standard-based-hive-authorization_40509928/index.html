@@ -121,18 +121,21 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--sql-standard-based-hive-authorization>Apache Hive : SQL Standard Based Hive Authorization</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--sql-standard-based-hive-authorization>Apache Hive : SQL Standard Based Hive Authorization</a></li>
 <li><a href=#status-of-hive-authorization-before-hive-013>Status of Hive Authorization before Hive 0.13</a></li>
-<li><a href=#sql-standards-based-hive-authorization--new-in-hive-0-13->SQL Standards Based Hive Authorization (New in Hive 0.13)</a>
+<li><a href=#sql-standards-based-hiveauthorization-new-in-hive-013>SQL Standards Based Hive Authorization (New in Hive 0.13)</a>
 <ul>
-<li><a href=#restrictions-on-hive-commands-and-statements>Restrictions on Hive Commands and Statements</a></li>
+<li><a href=#restrictions-on-hivecommands-and-statements>Restrictions on Hive Commands and Statements</a></li>
 <li><a href=#privileges>Privileges</a></li>
 <li><a href=#objects>Objects</a></li>
 <li><a href=#object-ownership>Object Ownership</a></li>
 <li><a href=#users-and-roles>Users and Roles</a>
 <ul>
 <li><a href=#names-of-users-and-roles>Names of Users and Roles</a></li>
-<li><a href=#role-management-commands>Role Management Commands</a></li>
+<li><a href=#role-management-commands><strong>Role Management Commands</strong></a></li>
 </ul>
 </li>
 <li><a href=#managing-object-privileges>Managing Object Privileges</a>
@@ -141,7 +144,7 @@ ASF
 <li><a href=#examples-of-managing-object-privileges>Examples of Managing Object Privileges</a></li>
 </ul>
 </li>
-<li><a href=#privileges-required-for-hive-operations>Privileges Required for Hive Operations</a></li>
+<li><a href=#privileges-required-for-hiveoperations>Privileges Required for Hive Operations</a></li>
 <li><a href=#configuration>Configuration</a>
 <ul>
 <li><a href=#for-hive-013x>For Hive 0.13.x</a></li>
@@ -156,9 +159,12 @@ ASF
 </li>
 <li><a href=#references>References</a></li>
 <li><a href=#troubleshooting>Troubleshooting</a></li>
+<li><a href=#attachments>Attachments:</a></li>
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h1 id=status-of-hive-authorization-before-hive-013>Status of Hive Authorization before Hive 0.13</h1>
 <p>The <a href=#default-authorization-in-hive>default authorization in Hive</a> is not designed with the intent to protect against malicious users accessing data they should not be accessing. It only helps in preventing users from accidentally doing operations they are not supposed to do. It is also incomplete because it does not have authorization checks for many operations including the grant statement. The authorization checks happen during Hive query compilation. But as the user is allowed to execute dfs commands, user-defined functions and shell commands, it is possible to bypass the client security checks.</p>
 <p>Hive also has support for storage based authorization, which is commonly used to add authorization to metastore server API calls (see <a href=#storage-based-authorization-in-the-metastore-server>Storage Based Authorization in the Metastore Server</a>). As of Hive 0.12.0 it can be used on the client side as well. While it can protect the metastore against changes by malicious users, it does not support fine grained access control (column or row level).</p>

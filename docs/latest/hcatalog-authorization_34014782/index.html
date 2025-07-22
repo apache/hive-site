@@ -121,8 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hcatalog-authorization>Apache Hive : HCatalog Authorization</h1>
-<h1 id=storage-based-authorization>Storage Based Authorization</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hcatalog-authorization>Apache Hive : HCatalog Authorization</a></li>
 <li><a href=#storage-based-authorization>Storage Based Authorization</a>
 <ul>
 <li><a href=#default-authorization-model-of-hive>Default Authorization Model of Hive</a></li>
@@ -138,6 +140,9 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
+<h1 id=storage-based-authorization>Storage Based Authorization</h1>
 <h2 id=default-authorization-model-of-hive>Default Authorization Model of Hive</h2>
 <p>The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table. It is described in more detail in <a href=https://hive.apache.org/docs/latest/languagemanual-authorization_27362032/>Hive Authorization</a> and <a href=https://hive.apache.org/docs/latest/45876173/>Hive deprecated authorization mode / Legacy Mode</a>.</p>
 <p>This RDBMS style of authorization is not very suitable for the typical use cases in Hadoop because of the following differences in implementation:</p>

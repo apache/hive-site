@@ -122,10 +122,17 @@ ASF
 <div class=docs>
 <h1 id=apache-hive--streaming-data-ingest-v2>Apache Hive : Streaming Data Ingest V2</h1>
 <p>Starting in release Hive 3.0.0, <a href=https://hive.apache.org/docs/latest/streaming-data-ingest_40509746/>Streaming Data Ingest</a> is deprecated and is replaced by newer V2 API (<a href=https://issues.apache.org/jira/browse/HIVE-19205>HIVE-19205</a>). </p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--streaming-data-ingest-v2>Apache Hive : Streaming Data Ingest V2</a></li>
 <li><a href=#hive-streaming-api>Hive Streaming API</a>
 <ul>
+<li>
+<ul>
 <li><a href=#streaming-mutation-api-deprecation-and-removal>Streaming Mutation API Deprecation and Removal</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href=#streaming-requirements>Streaming Requirements</a></li>
@@ -134,11 +141,7 @@ ASF
 <ul>
 <li><a href=#transaction-and-connection-management>Transaction and Connection Management</a>
 <ul>
-<li><a href=#hivestreamingconnection>HiveStreamingConnection</a>
-<ul>
-<li><a href=#usage-guidelines>Usage Guidelines</a></li>
-</ul>
-</li>
+<li><a href=#hivestreamingconnection>HiveStreamingConnection</a></li>
 <li><a href=#notes-about-the-hiveconf-object>Notes about the HiveConf Object</a></li>
 </ul>
 </li>
@@ -156,6 +159,8 @@ ASF
 </li>
 <li><a href=#example>Example</a></li>
 </ul>
+</nav>
+</aside>
 <h1 id=hive-streaming-api>Hive Streaming API</h1>
 <p>Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. </p>
 <p>Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table. Once data is committed it becomes immediately visible to all Hive queries initiated subsequently.</p>

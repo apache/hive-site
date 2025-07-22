@@ -121,23 +121,67 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--tutorial>Apache Hive : Tutorial</h1>
-<h1 id=hive-tutorial><strong>Hive Tutorial</strong></h1>
-<hr>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#hive-tutorial>Hive Tutorial</a></li>
+<li><a href=#apache-hive--tutorial>Apache Hive : Tutorial</a></li>
 <li><a href=#concepts>Concepts</a>
 <ul>
 <li><a href=#what-is-hive>What Is Hive</a></li>
 <li><a href=#what-hive-is-not>What Hive Is NOT</a></li>
 <li><a href=#getting-started>Getting Started</a></li>
 <li><a href=#data-units>Data Units</a></li>
-<li><a href=#type-system>Type System</a></li>
-<li><a href=#built-in-operators-and-functions>Built In Operators and Functions</a></li>
+<li><a href=#type-system>Type System</a>
+<ul>
+<li><a href=#primitive-types>Primitive Types</a></li>
+<li><a href=#complex-types>Complex Types</a></li>
+<li><a href=#timestamp>Timestamp</a></li>
+</ul>
+</li>
+<li><a href=#built-in-operators-and-functions>Built In Operators and Functions</a>
+<ul>
+<li><a href=#built-in-operators>Built In Operators</a></li>
+<li><a href=#built-in-functions>Built In Functions</a></li>
+</ul>
+</li>
 <li><a href=#language-capabilities>Language Capabilities</a></li>
 </ul>
 </li>
-<li><a href=#usage-and-examples>Usage and Examples</a></li>
+<li><a href=#usage-and-examples>Usage and Examples</a>
+<ul>
+<li><a href=#creating-showing-altering-and-dropping-tables>Creating, Showing, Altering, and Dropping Tables</a>
+<ul>
+<li><a href=#creating-tables>Creating Tables</a></li>
+<li><a href=#browsing-tables-and-partitions>Browsing Tables and Partitions</a></li>
+<li><a href=#altering-tables>Altering Tables</a></li>
+<li><a href=#dropping-tables-and-partitions>Dropping Tables and Partitions</a></li>
 </ul>
+</li>
+<li><a href=#loading-data>Loading Data</a></li>
+<li><a href=#httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21140avatartypeissuetypehive-5999httpsissuesapacheorgjirabrowsehive-5999srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-5999?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype" alt>HIVE-5999</a></a></li>
+<li><a href=#httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21133avatartypeissuetypehive-11996httpsissuesapacheorgjirabrowsehive-11996srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-11996?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21133&avatarType=issuetype" alt>HIVE-11996</a></a></li>
+<li><a href=#querying-and-inserting-data>Querying and Inserting Data</a>
+<ul>
+<li><a href=#simple-query>Simple Query</a></li>
+<li><a href=#partition-based-query>Partition Based Query</a></li>
+<li><a href=#joins>Joins</a></li>
+<li><a href=#aggregations>Aggregations</a></li>
+<li><a href=#multi-tablefile-inserts>Multi Table/File Inserts</a></li>
+<li><a href=#dynamic-partition-insert>Dynamic-Partition Insert</a></li>
+<li><a href=#inserting-into-local-files>Inserting into Local Files</a></li>
+<li><a href=#sampling>Sampling</a></li>
+<li><a href=#union-all>Union All</a></li>
+<li><a href=#array-operations>Array Operations</a></li>
+<li><a href=#map-associative-arrays-operations>Map (Associative Arrays) Operations</a></li>
+<li><a href=#custom-mapreduce-scripts>Custom Map/Reduce Scripts</a></li>
+<li><a href=#co-groups>Co-Groups</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
 <h1 id=concepts>Concepts</h1>
 <h2 id=what-is-hive>What Is Hive</h2>
 <p>Hive is a data warehousing infrastructure based on <a href=http://hadoop.apache.org/>Apache Hadoop</a>. Hadoop provides massive scale out and fault tolerance capabilities for data storage and processing on commodity hardware.</p>

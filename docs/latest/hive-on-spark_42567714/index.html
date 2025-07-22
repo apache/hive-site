@@ -121,7 +121,10 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--hive-on-spark>Apache Hive : Hive on Spark</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
+<li><a href=#apache-hive--hive-on-spark>Apache Hive : Hive on Spark</a></li>
 <li><a href=#1-introduction>1. Introduction</a>
 <ul>
 <li><a href=#11-motivation>1.1 Motivation</a></li>
@@ -167,6 +170,8 @@ ASF
 </li>
 <li><a href=#4-summary>4. Summary</a></li>
 </ul>
+</nav>
+</aside>
 <h1 id=1-introduction>1. Introduction</h1>
 <p>We propose modifying Hive to add Spark as a third execution backend(<a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>), parallel to MapReduce and Tez.</p>
 <p>Spark is an open-source data analytics cluster computing framework that’s built outside of Hadoop&rsquo;s two-stage MapReduce paradigm but on top of HDFS. Spark’s primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop InputFormats (such as HDFS files) or by transforming other RDDs. By being applied by a series of transformations such as groupBy and filter, or actions such as count and save that are provided by Spark, RDDs can be processed and analyzed to fulfill what MapReduce jobs can do without having intermediate stages.</p>

@@ -120,11 +120,12 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--statisticsanddatamining>Apache Hive : StatisticsAndDataMining</h1>
-<h1 id=statistics-and-data-mining-in-hive>Statistics and Data Mining in Hive</h1>
+<h1 id=apache-hive--statistics-and-data-mining>Apache Hive : Statistics and Data Mining</h1>
 <p>This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#statistics-and-data-mining-in-hive>Statistics and Data Mining in Hive</a>
+<li><a href=#apache-hive--statistics-and-data-mining>Apache Hive : Statistics and Data Mining</a>
 <ul>
 <li><a href=#ngrams-and-context_ngrams-n-gram-frequency-estimation>ngrams() and context_ngrams(): N-gram frequency estimation</a>
 <ul>
@@ -135,14 +136,16 @@ ASF
 </li>
 <li><a href=#histogram_numeric-estimating-frequency-distributions>histogram_numeric(): Estimating frequency distributions</a>
 <ul>
-<li><a href=#use-cases>Use Cases</a></li>
-<li><a href=#usage>Usage</a></li>
-<li><a href=#example>Example</a></li>
+<li><a href=#use-cases-1>Use Cases</a></li>
+<li><a href=#usage-1>Usage</a></li>
+<li><a href=#example-1>Example</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=ngrams-and-context_ngrams-n-gram-frequency-estimation>ngrams() and context_ngrams(): N-gram frequency estimation</h2>
 <p><a href=http://en.wikipedia.org/wiki/N-gram>N-grams</a> are subsequences of length <strong>N</strong> drawn from a longer sequence. The purpose of the <code>ngrams()</code> UDAF is to find the <code>k</code> most frequent n-grams from one or more sequences. It can be used in conjunction with the <code>sentences()</code> UDF to analyze unstructured natural language text, or the <code>collect()</code> function to analyze more general string data.</p>
 <p>Contextual n-grams are similar to n-grams, but allow you to specify a &lsquo;context&rsquo; string around which n-grams are to be estimated. For example, you can specify that you&rsquo;re only interested in finding the most common two-word phrases in text that follow the context &ldquo;I love&rdquo;. You could achieve the same result by manually stripping sentences of non-contextual content and then passing them to <code>ngrams()</code>, but <code>context_ngrams()</code> makes it much easier.</p>

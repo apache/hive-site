@@ -120,54 +120,27 @@ ASF
 </header>
 <div class=content>
 <div class=docs>
-<h1 id=apache-hive--hcatalog-loadstore>Apache Hive : HCatalog LoadStore</h1>
-<h1 id=load-and-store-interfaces>Load and Store Interfaces</h1>
+<h1 id=apache-hive--hcatalog-load-and-store-interfaces>Apache Hive : HCatalog Load and Store Interfaces</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
 <ul>
-<li><a href=#load-and-store-interfaces>Load and Store Interfaces</a>
+<li><a href=#apache-hive--hcatalog-load-and-store-interfaces>Apache Hive : HCatalog Load and Store Interfaces</a>
 <ul>
 <li><a href=#set-up>Set Up</a></li>
 <li><a href=#running-pig>Running Pig</a></li>
 <li><a href=#hcatloader>HCatLoader</a>
 <ul>
-<li><a href=#usage>Usage</a>
-<ul>
-<li><a href=#assumptions>Assumptions</a></li>
-</ul>
-</li>
-<li><a href=#hcatloader-data-types>HCatLoader Data Types</a>
-<ul>
-<li><a href=#types-in-hive-0120-and-earlier>Types in Hive 0.12.0 and Earlier</a></li>
-<li><a href=#types-in-hive-0130-and-later>Types in Hive 0.13.0 and Later</a></li>
-</ul>
-</li>
-<li><a href=#running-pig-with-hcatalog>Running Pig with HCatalog</a>
-<ul>
-<li><a href=#the--usehcatalog-flag>The -useHCatalog Flag</a></li>
-<li><a href=#jars-and-configuration-files>Jars and Configuration Files</a></li>
-<li><a href=#authentication>Authentication</a></li>
-</ul>
-</li>
-<li><a href=#load-examples>Load Examples</a>
-<ul>
-<li><a href=#filter-operators>Filter Operators</a></li>
-</ul>
-</li>
+<li><a href=#usage>Usage</a></li>
+<li><a href=#hcatloader-data-types>HCatLoader Data Types</a></li>
+<li><a href=#running-pig-with-hcatalog>Running Pig with HCatalog</a></li>
+<li><a href=#load-examples>Load Examples</a></li>
 </ul>
 </li>
 <li><a href=#hcatstorer>HCatStorer</a>
 <ul>
-<li><a href=#usage>Usage</a>
-<ul>
-<li><a href=#assumptions>Assumptions</a></li>
-</ul>
-</li>
+<li><a href=#usage-1>Usage</a></li>
 <li><a href=#store-examples>Store Examples</a></li>
-<li><a href=#hcatstorer-data-types>HCatStorer Data Types</a>
-<ul>
-<li><a href=#types-in-hive-0120-and-earlier>Types in Hive 0.12.0 and Earlier</a></li>
-<li><a href=#types-in-hive-0130-and-later>Types in Hive 0.13.0 and Later</a></li>
-</ul>
-</li>
+<li><a href=#hcatstorer-data-types>HCatStorer Data Types</a></li>
 </ul>
 </li>
 <li><a href=#data-type-mappings>Data Type Mappings</a>
@@ -179,6 +152,8 @@ ASF
 </ul>
 </li>
 </ul>
+</nav>
+</aside>
 <h2 id=set-up>Set Up</h2>
 <p>The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables. No HCatalog-specific setup is required for these interfaces.</p>
 <p><strong>Note</strong>: HCatalog is not thread safe.</p>

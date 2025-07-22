@@ -121,35 +121,114 @@ ASF
 <div class=content>
 <div class=docs>
 <h1 id=apache-hive--languagemanual-ddl>Apache Hive : LanguageManual DDL</h1>
-<p>Hive Data Definition Language</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-ddl>Apache Hive : LanguageManual DDL</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
 <li><a href=#keywords-non-reserved-keywords-and-reserved-keywords>Keywords, Non-reserved Keywords and Reserved Keywords</a></li>
-<li><a href=#createdropalteruse-database>Create/Drop/Alter/Use Database</a></li>
-<li><a href=#createdropalter-connector>Create/Drop/Alter Connector</a></li>
-<li><a href=#createdroptruncate-table>Create/Drop/Truncate Table</a></li>
-<li><a href=#alter-tablepartitioncolumn>Alter Table/Partition/Column</a></li>
-<li><a href=#createdropalter-view>Create/Drop/Alter View</a></li>
-<li><a href=#createdropalter-materialized-view>Create/Drop/Alter Materialized View</a></li>
-<li><a href=#create/drop/alter-index>Create/Drop/Alter Index</a></li>
-<li><a href=#createdrop-macro>Create/Drop Macro</a></li>
-<li><a href=#createdropreload-function>Create/Drop/Reload Function</a></li>
-<li><a href=#createdropgrantrevoke-roles-and-privileges>Create/Drop/Grant/Revoke Roles and Privileges</a></li>
-<li><a href=#show>Show</a></li>
-<li><a href=#describe>Describe</a></li>
-<li><a href=#abort>Abort</a></li>
-</ul>
+<li><a href=#createdropalteruse-database>Create/Drop/Alter/Use Database</a>
 <ul>
-<li>
-<p><a href=#scheduled-queries>Scheduled queries</a></p>
+<li><a href=#create-database>Create Database</a></li>
+<li><a href=#drop-database>Drop Database</a></li>
+<li><a href=#alter-database>Alter Database</a></li>
+<li><a href=#use-database>Use Database</a></li>
+</ul>
 </li>
-<li>
-<p><a href=#datasketches-integration>Datasketches integration</a></p>
+<li><a href=#createdropalter-connector>Create/Drop/Alter Connector</a>
+<ul>
+<li><a href=#create-connector>Create Connector</a></li>
+<li><a href=#drop-connector>Drop Connector</a></li>
+<li><a href=#alter-connector>Alter Connector</a></li>
+</ul>
 </li>
-<li>
-<p><a href=#hcatalog-and-webhcat-ddl>HCatalog and WebHCat DDL</a></p>
+<li><a href=#createdroptruncate-table>Create/Drop/Truncate Table</a>
+<ul>
+<li><a href=#create-table>Create Table</a></li>
+<li><a href=#drop-table>Drop Table</a></li>
+<li><a href=#truncate-table>Truncate Table</a></li>
+</ul>
+</li>
+<li><a href=#alter-tablepartitioncolumn>Alter Table/Partition/Column</a>
+<ul>
+<li><a href=#alter-table>Alter Table</a></li>
+<li><a href=#alter-partition>Alter Partition</a></li>
+<li><a href=#alter-either-table-or-partition>Alter Either Table or Partition</a></li>
+<li><a href=#alter-column>Alter Column</a></li>
+</ul>
+</li>
+<li><a href=#createdropalter-view>Create/Drop/Alter View</a>
+<ul>
+<li><a href=#create-view>Create View</a></li>
+<li><a href=#drop-view>Drop View</a></li>
+<li><a href=#alter-view-properties>Alter View Properties</a></li>
+<li><a href=#alter-view-as-select>Alter View As Select</a></li>
+</ul>
+</li>
+<li><a href=#createdropalter-materialized-view>Create/Drop/Alter Materialized View</a>
+<ul>
+<li><a href=#create-materialized-view>Create Materialized View</a></li>
+<li><a href=#drop-materialized-view>Drop Materialized View</a></li>
+<li><a href=#alter-materialized-view>Alter Materialized View</a></li>
+</ul>
+</li>
+<li><a href=#createdropalterindex>Create/Drop/Alter Index</a>
+<ul>
+<li><a href=#create-index>Create Index</a></li>
+<li><a href=#drop-index>Drop Index</a></li>
+<li><a href=#alter-index>Alter Index</a></li>
+</ul>
+</li>
+<li><a href=#createdrop-macro>Create/Drop Macro</a>
+<ul>
+<li><a href=#create-temporary-macro>Create Temporary Macro</a></li>
+<li><a href=#drop-temporary-macro>Drop Temporary Macro</a></li>
+</ul>
+</li>
+<li><a href=#createdropreload-function>Create/Drop/Reload Function</a>
+<ul>
+<li><a href=#temporary-functions>Temporary Functions</a></li>
+<li><a href=#permanent-functions>Permanent Functions</a></li>
+</ul>
+</li>
+<li><a href=#createdropgrantrevoke-roles-and-privileges>Create/Drop/Grant/Revoke Roles and Privileges</a></li>
+<li><a href=#show>Show</a>
+<ul>
+<li><a href=#show-databases>Show Databases</a></li>
+<li><a href=#show-connectors>Show Connectors</a></li>
+<li><a href=#show-tablesviewsmaterialized-viewspartitionsindexes>Show Tables/Views/Materialized Views/Partitions/Indexes</a></li>
+<li><a href=#show-columns>Show Columns</a></li>
+<li><a href=#show-functions>Show Functions</a></li>
+<li><a href=#show-granted-roles-and-privileges>Show Granted Roles and Privileges</a></li>
+<li><a href=#show-locks>Show Locks</a></li>
+<li><a href=#show-conf>Show Conf</a></li>
+<li><a href=#show-transactions>Show Transactions</a></li>
+<li><a href=#show-compactions>Show Compactions</a></li>
+</ul>
+</li>
+<li><a href=#describe>Describe</a>
+<ul>
+<li><a href=#describe-database>Describe Database</a></li>
+<li><a href=#describe-dataconnector>Describe Dataconnector</a></li>
+<li><a href=#describe-tableviewmaterialized-viewcolumn>Describe Table/View/Materialized View/Column</a></li>
+<li><a href=#describe-partition>Describe Partition</a></li>
+<li><a href=#hive-20-syntax-change>Hive 2.0+: Syntax Change</a></li>
+</ul>
+</li>
+<li><a href=#abort>Abort</a>
+<ul>
+<li><a href=#abort-transactions>Abort Transactions</a></li>
+</ul>
 </li>
 </ul>
+</li>
+<li><a href=#scheduled-queries>Scheduled queries</a></li>
+<li><a href=#datasketches-integration>Datasketches integration</a></li>
+<li><a href=#hcatalog-and-webhcat-ddl>HCatalog and WebHCat DDL</a></li>
+</ul>
+</nav>
+</aside>
 <h2 id=overview>Overview</h2>
 <p>HiveQL DDL statements are documented here, including:</p>
 <ul>
@@ -545,9 +624,9 @@ STORED AS SEQUENCEFILE;
 </code></pre><p>The above statement lets you create the same table as the previous table.</p>
 <p>In the previous examples the data is stored in &lt;hive.metastore.warehouse.dir>/page_view. Specify a value for the key <code>[hive.metastore.warehouse.dir](#hive-metastore-warehouse-dir)</code> in the Hive config file hive-site.xml.</p>
 <h4 id=external-tables>External Tables</h4>
-<p>The EXTERNAL keyword lets you create a table and provide a LOCATION so that Hive does not use a default location for this table. This comes in handy if you already have data generated. When dropping an EXTERNAL table, data in the table is <em>NOT</em> deleted from the file system. Starting Hive 4.0.0 (</p>
-<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehive-19981httpsissuesapacheorgjirabrowsehive-19981srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-19981?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt>HIVE-19981</a></h2>
-<p>Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
+<p>The EXTERNAL keyword lets you create a table and provide a LOCATION so that Hive does not use a default location for this table. This comes in handy if you already have data generated. When dropping an EXTERNAL table, data in the table is <em>NOT</em> deleted from the file system. Starting Hive 4.0.0 (
+<a href=https://issues.apache.org/jira/browse/HIVE-19981>HIVE-19981</a>)
+Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed</p>
 <p> ) setting table property external.table.purge=true, will also delete the data.</p>
 <p>An EXTERNAL table points to any HDFS location for its storage, rather than being stored in a folder specified by the configuration property <code>[hive.metastore.warehouse.dir](#hive-metastore-warehouse-dir)</code>.</p>
@@ -674,9 +753,9 @@ create table constraints3(id1 integer, id2 integer,
 <pre tabindex=0><code>DROP TABLE [IF EXISTS] table_name [PURGE];     -- (Note: PURGE available in Hive 0.14.0 and later)
 
 </code></pre><p>DROP TABLE removes metadata and data for this table. The data is actually moved to the .Trash/Current directory if Trash is configured (and PURGE is not specified). The metadata is completely lost.</p>
-<p>When dropping an EXTERNAL table, data in the table will <em>NOT</em> be deleted from the file system. Starting Hive 4.0.0 (</p>
-<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehive-19981httpsissuesapacheorgjirabrowsehive-19981srcconfmacro-1><a href="https://issues.apache.org/jira/browse/HIVE-19981?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt>HIVE-19981</a></h2>
-<p>Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
+<p>When dropping an EXTERNAL table, data in the table will <em>NOT</em> be deleted from the file system. Starting Hive 4.0.0 (
+<a href=https://issues.apache.org/jira/browse/HIVE-19981>HIVE-19981</a>)
+Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed</p>
 <p> ) setting table property external.table.purge=true, will also delete the data.</p>
 <p>When dropping a table referenced by views, no warning is given (the views are left dangling as invalid and must be dropped or recreated by the user).</p>
