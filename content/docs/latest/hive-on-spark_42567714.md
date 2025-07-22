@@ -5,38 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Hive on Spark
 
-* [1. Introduction]({{< ref "#1-introduction" >}})
-	+ [1.1 Motivation]({{< ref "#11-motivation" >}})
-	+ [1.2 Design Principle]({{< ref "#12-design-principle" >}})
-	+ [1.3 Comparison with Shark and Spark SQL]({{< ref "#13-comparison-with-shark-and-spark-sql" >}})
-	+ [1.4 Other Considerations]({{< ref "#14-other-considerations" >}})
-* [2. High-Level Functionality]({{< ref "#2-high-level-functionality" >}})
-	+ [2.1 A New Execution Engine]({{< ref "#21-a-new-execution-engine" >}})
-	+ [2.2 Spark Configuration]({{< ref "#22-spark-configuration" >}})
-	+ [2.3 Miscellaneous Functionality]({{< ref "#23-miscellaneous-functionality" >}})
-* [3. Hive-Level Design]({{< ref "#3-hive-level-design" >}})
-	+ [3.1 Query Planning]({{< ref "#31-query-planning" >}})
-	+ [3.2 Job Execution]({{< ref "#32-job-execution" >}})
-	+ [3.3 Design Considerations]({{< ref "#33-design-considerations" >}})
-		- [Table as RDD]({{< ref "#table-as-rdd" >}})
-		- [SparkWork]({{< ref "#sparkwork" >}})
-		- [SparkTask]({{< ref "#sparktask" >}})
-		- [Shuffle, Group, and Sort]({{< ref "#shuffle-group-and-sort" >}})
-		- [Join]({{< ref "#join" >}})
-		- [Number of Tasks]({{< ref "#number-of-tasks" >}})
-		- [Local MapReduce Tasks]({{< ref "#local-mapreduce-tasks" >}})
-		- [Semantic Analysis and Logical Optimizations]({{< ref "#semantic-analysis-and-logical-optimizations" >}})
-		- [Job Diagnostics]({{< ref "#job-diagnostics" >}})
-		- [Counters and Metrics]({{< ref "#counters-and-metrics" >}})
-		- [Explain Statements]({{< ref "#explain-statements" >}})
-		- [Hive Variables]({{< ref "#hive-variables" >}})
-		- [Union]({{< ref "#union" >}})
-		- [Concurrency and Thread Safety]({{< ref "#concurrency-and-thread-safety" >}})
-		- [Build Infrastructure]({{< ref "#build-infrastructure" >}})
-		- [Mini Spark Cluster]({{< ref "#mini-spark-cluster" >}})
-		- [Testing]({{< ref "#testing" >}})
-	+ [3.4 Potentially Required Work from Spark]({{< ref "#34-potentially-required-work-from-spark" >}})
-* [4. Summary]({{< ref "#4-summary" >}})
+{{< toc >}}
 
 # 1. Introduction
 

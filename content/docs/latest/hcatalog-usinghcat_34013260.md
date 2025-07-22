@@ -3,22 +3,11 @@ title: "Apache Hive : HCatalog UsingHCat"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog UsingHCat
+# Apache Hive : HCatalog Usage
 
-# Using HCatalog
+{{< toc >}}
 
-* [Using HCatalog]({{< ref "#using-hcatalog" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [HCatalog Architecture]({{< ref "#hcatalog-architecture" >}})
-		- [Interfaces]({{< ref "#interfaces" >}})
-		- [Data Model]({{< ref "#data-model" >}})
-	+ [Data Flow Example]({{< ref "#data-flow-example" >}})
-		- [First: Copy Data to the Grid]({{< ref "#first-copy-data-to-the-grid" >}})
-		- [Second: Prepare the Data]({{< ref "#second-prepare-the-data" >}})
-		- [Third: Analyze the Data]({{< ref "#third-analyze-the-data" >}})
-	+ [HCatalog Web API]({{< ref "#hcatalog-web-api" >}})
-
-Version information
+## Version information
 
 HCatalog graduated from the Apache incubator and merged with the Hive project on March 26, 2013.  
  Hive version 0.11.0 is the first release that includes HCatalog.

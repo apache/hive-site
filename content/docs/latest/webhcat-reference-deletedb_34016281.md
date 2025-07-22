@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DeleteDB
 
-# Delete Database — DELETE ddl/database/:db
-
-* [Delete Database — DELETE ddl/database/:db]({{< ref "#delete-database--delete-ddldatabasedb" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output-error" >}})
+{{< toc >}}
 
 ## Description
 

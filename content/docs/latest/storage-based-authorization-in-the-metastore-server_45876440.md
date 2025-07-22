@@ -5,24 +5,14 @@ date: 2024-12-12
 
 # Apache Hive : Storage Based Authorization in the Metastore Server
 
-* [Storage Based Authorization in the Metastore Server]({{< ref "#storage-based-authorization-in-the-metastore-server" >}})
-	+ [The Need for Metastore Server Security]({{< ref "#the-need-for-metastore-server-security" >}})
-	+ [Storage Based Authorization]({{< ref "#storage-based-authorization" >}})
-	+ [Configuration Parameters for Metastore Security]({{< ref "#configuration-parameters-for-metastore-security" >}})
-		- [Sample hive-site.xml: Default Settings]({{< ref "#sample-hive-site-xml:-default-settings" >}})
-
-  
-
-# Storage Based Authorization in the Metastore Server
-
 The metastore server security feature with storage based authorization was added to Hive in release 0.10. This feature was introduced previously in [HCatalog]({{< ref "hcatalog-authorization_34014782" >}}).
-
-Version 0.10.0
 
 [HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705) added metastore server security to Hive in release 0.10.0.
 
 * For additional information about storage based authorization in the metastore server, see the HCatalog document [Storage Based Authorization]({{< ref "hcatalog-authorization_34014782" >}}).
 * For an overview of Hive authorization models and other security options, see the [Authorization]({{< ref "languagemanual-authorization_27362032" >}}) document.
+
+{{< toc >}}
 
 ## The Need for Metastore Server Security
 

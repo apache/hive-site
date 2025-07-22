@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Select
 
-* [Select Syntax]({{< ref "#select-syntax" >}})
-	+ [WHERE Clause]({{< ref "#where-clause" >}})
-	+ [ALL and DISTINCT Clauses]({{< ref "#all-and-distinct-clauses" >}})
-	+ [Partition Based Queries]({{< ref "#partition-based-queries" >}})
-	+ [HAVING Clause]({{< ref "#having-clause" >}})
-	+ [LIMIT Clause]({{< ref "#limit-clause" >}})
-	+ [REGEX Column Specification]({{< ref "#regex-column-specification" >}})
-	+ [More Select Syntax]({{< ref "#more-select-syntax" >}})
-
-[GROUP BY]({{< ref "languagemanual-groupby_27362038" >}}); [SORT/ORDER/CLUSTER/DISTRIBUTE BY]({{< ref "languagemanual-sortby_27362045" >}}); [JOIN]({{< ref "languagemanual-joins_27362039" >}}) ([Hive Joins]({{< ref "languagemanual-joins_27362039" >}}), [Join Optimization]({{< ref "languagemanual-joinoptimization_33293167" >}}), [Outer Join Behavior]({{< ref "outerjoinbehavior_35749927" >}})); [UNION]({{< ref "languagemanual-union_27362049" >}}); [TABLESAMPLE]({{< ref "languagemanual-sampling_27362042" >}}); [Subqueries]({{< ref "languagemanual-subqueries_27362044" >}}); [Virtual Columns]({{< ref "languagemanual-virtualcolumns_27362048" >}}); [Operators and UDFs]({{< ref "languagemanual-udf_27362046" >}}); [LATERAL VIEW]({{< ref "languagemanual-lateralview_27362040" >}}); [Windowing, OVER, and Analytics]({{< ref "languagemanual-windowingandanalytics_31819589" >}}); [Common Table Expressions]({{< ref "common-table-expression_38572242" >}})
+{{< toc >}}
 
 ## Select Syntax
 

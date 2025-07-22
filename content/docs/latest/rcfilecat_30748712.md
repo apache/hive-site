@@ -5,13 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : RCFileCat
 
-# RCFileCat
-
-* [RCFileCat]({{< ref "#rcfilecat" >}})
-	+ [Data]({{< ref "#data" >}})
-	+ [Metadata]({{< ref "#metadata" >}})
-
 $HIVE_HOME/bin/hive --rcfilecat is a shell utility which can be used to print data or metadata from [RC files]({{< ref "rcfile_58851803" >}}).
+
+{{< toc >}}
 
 ## Data
 

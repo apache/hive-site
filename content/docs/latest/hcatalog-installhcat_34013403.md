@@ -3,15 +3,9 @@ title: "Apache Hive : HCatalog InstallHCat"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog InstallHCat
+# Apache Hive : HCatalog Installation from Tarball
 
-# Installation from Tarball
-
-* [Installation from Tarball]({{< ref "#installation-from-tarball" >}})
-	+ [HCatalog Installed with Hive]({{< ref "#hcatalog-installed-with-hive" >}})
-	+ [HCatalog Command Line]({{< ref "#hcatalog-command-line" >}})
-	+ [HCatalog Client Jars]({{< ref "#hcatalog-client-jars" >}})
-	+ [HCatalog Server]({{< ref "#hcatalog-server" >}})
+{{< toc >}}
 
 ## HCatalog Installed with Hive
 

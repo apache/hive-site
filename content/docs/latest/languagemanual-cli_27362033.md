@@ -3,23 +3,11 @@ title: "Apache Hive : LanguageManual Cli"
 date: 2024-12-12
 ---
 
-# Apache Hive : LanguageManual Cli
-
-# Hive CLI
-
-* [Hive CLI]({{< ref "#hive-cli" >}})
-* [Deprecation in favor of Beeline CLI]({{< ref "#deprecation-in-favor-of-beeline-cli" >}})
-	+ [Hive Command Line Options]({{< ref "#hive-command-line-options" >}})
-		- [Examples]({{< ref "#examples" >}})
-		- [The hiverc File]({{< ref "#the-hiverc-file" >}})
-		- [Logging]({{< ref "#logging" >}})
-		- [Tool to Clear Dangling Scratch Directories]({{< ref "#tool-to-clear-dangling-scratch-directories" >}})
-	+ [Hive Batch Mode Commands]({{< ref "#hive-batch-mode-commands" >}})
-	+ [Hive Interactive Shell Commands]({{< ref "#hive-interactive-shell-commands" >}})
-		- [Hive Resources]({{< ref "#hive-resources" >}})
-* [HCatalog CLI]({{< ref "#hcatalog-cli" >}})
+# Apache Hive : LanguageManual Hive CLI
 
 $HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
+
+{{< toc >}}
 
 # Deprecation in favor of Beeline CLI
 

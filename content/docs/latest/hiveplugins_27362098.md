@@ -3,10 +3,9 @@ title: "Apache Hive : HivePlugins"
 date: 2024-12-12
 ---
 
-# Apache Hive : HivePlugins
+# Apache Hive : Plugins
 
-* [Creating Custom UDFs]({{< ref "#creating-custom-udfs" >}})
-* [Deploying Jars for User Defined Functions and User Defined SerDes]({{< ref "#deploying-jars-for-user-defined-functions-and-user-defined-serdes" >}})
+{{< toc >}}
 
 ## Creating Custom UDFs
 

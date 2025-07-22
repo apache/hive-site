@@ -5,24 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Manual Installation
 
-* [Installing, configuring and running Hive]({{< ref "#installing-configuring-and-running-hive" >}})
-	+ [Prerequisites]({{< ref "#prerequisites" >}})
-	+ [Install the prerequisites]({{< ref "#install-the-prerequisites" >}})
-		- [Java 8]({{< ref "#java-8" >}})
-		- [Maven:]({{< ref "#maven" >}})
-		- [Protobuf]({{< ref "#protobuf" >}})
-		- [Hadoop]({{< ref "#hadoop" >}})
-		- [Tez]({{< ref "#tez" >}})
-	+ [Extra hadoop configurations to make everything working]({{< ref "#extra-hadoop-configurations-to-make-everything-working" >}})
-	+ [Installing Hive from a Tarball]({{< ref "#installing-hive-from-a-tarball" >}})
-	+ [Installing from Source Code]({{< ref "#installing-from-source-code" >}})
-    + [Installing with old version hadoop(greater than or equal 3.1.0)]({{< ref "#installing-with-old-version-hadoopgreater-than-or-equal-310" >}})
-	+ [Next Steps]({{< ref "#next-steps" >}})
-	+ [Beeline CLI]({{< ref "#beeline-cli" >}})
-	+ [Hive Metastore]({{< ref "#hive-metastore" >}})
-	+ [HCatalog and WebHCat]({{< ref "#hcatalog-and-webhcat" >}})
-		- [HCatalog]({{< ref "#hcatalog" >}})
-		- [WebHCat (Templeton)]({{< ref "#webhcat-templeton" >}})
+{{< toc >}}
 
 # Installing, configuring and running Hive
 

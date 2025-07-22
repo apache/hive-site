@@ -5,64 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Configuration Properties
 
-# Hive Configuration Properties
-
-* [Hive Configuration Properties]({{< ref "#hive-configuration-properties" >}})
-	+ [Query and DDL Execution]({{< ref "#query-and-ddl-execution" >}})
-		- [Datetime]({{< ref "#datetime" >}})
-		- [SerDes and I/O]({{< ref "#serdes-and-io" >}})
-			* [SerDes]({{< ref "#serdes" >}})
-			* [I/O]({{< ref "#io" >}})
-		- [File Formats]({{< ref "#file-formats" >}})
-			* [RCFile Format]({{< ref "#rcfile-format" >}})
-			* [ORC File Format]({{< ref "#orc-file-format" >}})
-			* [Parquet]({{< ref "#parquet" >}})
-			* [Avro]({{< ref "#avro" >}})
-		- [Vectorization]({{< ref "#vectorization" >}})
-	+ [MetaStore]({{< ref "#metastore" >}})
-		- [Hive Metastore Connection Pooling Configuration]({{< ref "#hive-metastore-connection-pooling-configuration" >}})
-		- [Hive Metastore HBase]({{< ref "#hive-metastore-hbase" >}})
-	+ [HiveServer2]({{< ref "#hiveserver2" >}})
-		- [HiveServer2 Web UI]({{< ref "#hiveserver2-web-ui" >}})
-	+ [Spark]({{< ref "#spark" >}})
-		- [Remote Spark Driver]({{< ref "#remote-spark-driver" >}})
-	+ [Tez]({{< ref "#tez" >}})
-	+ [LLAP]({{< ref "#llap" >}})
-		- [LLAP Client]({{< ref "#llap-client" >}})
-		- [LLAP Web Services]({{< ref "#llap-web-services" >}})
-		- [LLAP Cache]({{< ref "#llap-cache" >}})
-		- [LLAP I/O]({{< ref "#llap-io" >}})
-		- [LLAP CBO]({{< ref "#llap-cbo" >}})
-		- [LLAP Metrics]({{< ref "#llap-metrics" >}})
-		- [LLAP UDF Security]({{< ref "#llap-udf-security" >}})
-		- [LLAP Security]({{< ref "#llap-security" >}})
-	+ [Transactions and Compactor]({{< ref "#transactions-and-compactor" >}})
-		- [Transactions]({{< ref "#transactions" >}})
-		- [Compactor]({{< ref "#compactor" >}})
-		- [Compaction History]({{< ref "#compaction-history" >}})
-	+ [Indexing]({{< ref "#indexing" >}})
-	+ [Statistics]({{< ref "#statistics" >}})
-		- [Runtime Filtering]({{< ref "#runtime-filtering" >}})
-	+ [Authentication and Authorization]({{< ref "#authentication-and-authorization" >}})
-		- [Restricted/Hidden/Internal List and Whitelist]({{< ref "#restrictedhiddeninternal-list-and-whitelist" >}})
-			* [Whitelist for SQL Standard Based Hive Authorization]({{< ref "#whitelist-for-sql-standard-based-hive-authorization" >}})
-		- [Hive Client Security]({{< ref "#hive-client-security" >}})
-		- [Hive Metastore Security]({{< ref "#hive-metastore-security" >}})
-		- [SQL Standard Based Authorization]({{< ref "#sql-standard-based-authorization" >}})
-	+ [Archiving]({{< ref "#archiving" >}})
-	+ [Locking]({{< ref "#locking" >}})
-	+ [Metrics]({{< ref "#metrics" >}})
-	+ [Clustering]({{< ref "#clustering" >}})
-	+ [Regions]({{< ref "#regions" >}})
-	+ [Command Line Interface]({{< ref "#command-line-interface" >}})
-	+ [HBase StorageHandler]({{< ref "#hbase-storagehandler" >}})
-	+ [Hive Web Interface (HWI) (component removed as of Hive 2.2.0)]({{< ref "#hive-web-interface--hwi---component-removed-as-of-hive-2-2-0-" >}})
-	+ [Replication]({{< ref "#replication" >}})
-	+ [Blobstore (i.e. Amazon S3)]({{< ref "#blobstore-ie-amazon-s3" >}})
-	+ [Test Properties]({{< ref "#test-properties" >}})
-* [HCatalog Configuration Properties]({{< ref "#hcatalog-configuration-properties" >}})
-* [WebHCat Configuration Properties]({{< ref "#webhcat-configuration-properties" >}})
-
 This document describes the Hive user configuration properties (sometimes called *parameters*, *variables*, or *options*), and notes which releases introduced new properties.
 
 The canonical list of configuration properties is managed in the `HiveConf` Java class, so refer to the `HiveConf.java` file for a complete list of configuration properties available in your Hive release.
@@ -72,6 +14,8 @@ For information about how to use these configuration properties, see [Configurin
 Version information
 
 As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{< ref "#hiveconfvalidation" >}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
+
+{{< toc >}}
 
 ## Query and DDL Execution
 
@@ -1403,19 +1347,7 @@ If set to true, order/sort by without limit in subqueries and views will be remo
 ##### hive.datetime.formatter
 
 * Default Value: `DATETIME`
-* Added In: Hive 4.0.0 with 
-
-[![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype)HIVE-25576](https://issues.apache.org/jira/browse/HIVE-25576?src=confmacro)
- -
- Configurable datetime formatter for unix_timestamp, from_unixtime
-Closed
-
-,
-
-[![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype)HIVE-27673](https://issues.apache.org/jira/browse/HIVE-27673?src=confmacro)
- -
- Configurable datetime formatter for date_format
-Closed
+* Added In: Hive 4.0.0 with [HIVE-25576](https://issues.apache.org/jira/browse/HIVE-25576), [HIVE-27673](https://issues.apache.org/jira/browse/HIVE-27673)
 
 The formatter to use for handling datetime values. The possible values are:
 

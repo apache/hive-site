@@ -5,26 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Metastore 3.0 Administration
 
-Metastore 3.0 Administration
-
-* [Version Note]({{< ref "#version-note" >}})
-* [Introduction]({{< ref "#introduction" >}})
-	+ [Changes From Hive 2 to Hive 3]({{< ref "#changes-from-hive-2-to-hive-3" >}})
-* [General Configuration]({{< ref "#general-configuration" >}})
-* [RDBMS]({{< ref "#rdbms" >}})
-	+ [Option 1: Embedding Derby]({{< ref "#option-1-embedding-derby" >}})
-	+ [Option 2: External RDBMS]({{< ref "#option-2-external-rdbms" >}})
-		- [Supported RDBMSs]({{< ref "#supported-rdbmss" >}})
-	+ [Installing and Upgrading the Metastore Schema]({{< ref "#installing-and-upgrading-the-metastore-schema" >}})
-* [Running the Metastore]({{< ref "#running-the-metastore" >}})
-	+ [Embedded Mode]({{< ref "#embedded-mode" >}})
-	+ [Metastore Server]({{< ref "#metastore-server" >}})
-		- [High Availability]({{< ref "#high-availability" >}})
-		- [Securing the Service]({{< ref "#securing-the-service" >}})
-* [Running the Metastore Without Hive]({{< ref "#running-the-metastore-without-hive" >}})
-* [Performance Optimizations]({{< ref "#performance-optimizations" >}})
-	+ [CachedStore]({{< ref "#cachedstore" >}})
-* [Less Commonly Changed Configuration Parameters]({{< ref "#less-commonly-changed-configuration-parameters" >}})
+{{< toc >}}
 
 ## Version Note
 

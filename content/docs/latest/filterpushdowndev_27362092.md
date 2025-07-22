@@ -3,23 +3,11 @@ title: "Apache Hive : FilterPushdownDev"
 date: 2024-12-12
 ---
 
-# Apache Hive : FilterPushdownDev
-
-# Filter Pushdown
-
-* [Filter Pushdown]({{< ref "#filter-pushdown" >}})
-	+ [Introduction]({{< ref "#introduction" >}})
-	+ [Use Cases]({{< ref "#use-cases" >}})
-	+ [Components Involved]({{< ref "#components-involved" >}})
-	+ [Primary Filter Representation]({{< ref "#primary-filter-representation" >}})
-	+ [Other Filter Representations]({{< ref "#other-filter-representations" >}})
-	+ [Filter Passing]({{< ref "#filter-passing" >}})
-	+ [Filter Collection]({{< ref "#filter-collection" >}})
-	+ [Filter Decomposition]({{< ref "#filter-decomposition" >}})
-
-## Introduction
+# Apache Hive : Filter Pushdown
 
 This document explains how we are planning to add support in Hive's optimizer for pushing filters down into physical access methods. This is an important optimization for minimizing the amount of data scanned and processed by an access method (e.g. for an indexed key lookup), as well as reducing the amount of data passed into Hive for further query evaluation.
+
+{{< toc >}}
 
 ## Use Cases
 

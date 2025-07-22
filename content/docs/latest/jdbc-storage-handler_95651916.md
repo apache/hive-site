@@ -5,21 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : JDBC Storage Handler
 
-# 
-* 
-* [Syntax]({{< ref "#syntax" >}})
-	+ [Table Properties]({{< ref "#table-properties" >}})
-	+ [Supported Data Type]({{< ref "#supported-data-type" >}})
-	+ [Column/Type Mapping]({{< ref "#columntype-mapping" >}})
-* [Auto Shipping]({{< ref "#auto-shipping" >}})
-* [Securing Password]({{< ref "#securing-password" >}})
-* [Partitioning]({{< ref "#partitioning" >}})
-* [Computation Pushdown]({{< ref "#computation-pushdown" >}})
-* [Using a Non-default Schema]({{< ref "#using-a-non-default-schema" >}})
-	+ [MariaDB]({{< ref "#mariadb" >}})
-	+ [MS SQL]({{< ref "#ms-sql" >}})
-	+ [Oracle]({{< ref "#oracle" >}})
-	+ [PostgreSQL]({{< ref "#postgresql" >}})
+{{< toc >}}
 
 # Syntax
 

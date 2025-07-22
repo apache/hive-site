@@ -5,29 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : HiveReplicationDevelopment
 
-* [Introduction]({{< ref "#introduction" >}})
-	+ [Purposes of Replication]({{< ref "#purposes-of-replication" >}})
-		- [Disaster Recovery]({{< ref "#disaster-recovery" >}})
-		- [Load Balancing]({{< ref "#load-balancing" >}})
-	+ [Replication Taxonomy]({{< ref "#replication-taxonomy" >}})
-		- [Transaction Source]({{< ref "#transaction-source" >}})
-			* [Primary-Copy]({{< ref "#primary-copy" >}})
-			* [Update-Anywhere]({{< ref "#update-anywhere" >}})
-		- [Synchronization Strategy]({{< ref "#synchronization-strategy" >}})
-			* [Eager]({{< ref "#eager" >}})
-			* [Lazy]({{< ref "#lazy" >}})
-* [Design]({{< ref "#design" >}})
-	+ [Taxonomy Design Choices]({{< ref "#taxonomy-design-choices" >}})
-		- [Primary-Copy vs Update-Anywhere]({{< ref "#primary-copy-vs-update-anywhere" >}})
-		- [Eager vs Lazy]({{< ref "#eager-vs-lazy" >}})
-	+ [Other Design Choices]({{< ref "#other-design-choices" >}})
-	+ [Basic Approach]({{< ref "#basic-approach" >}})
-* [Implementation]({{< ref "#implementation" >}})
-	+ [Events]({{< ref "#events" >}})
-	+ [Event IDs, State IDs, and Sequencing of Exports/Imports]({{< ref "#event-ids-state-ids-and-sequencing-of-exportsimports" >}})
-	+ [Handling of Events]({{< ref "#handling-of-events" >}})
-* [Future Features]({{< ref "#future-features" >}})
-* [References]({{< ref "#references" >}})
+{{< toc >}}
 
 # Introduction
 

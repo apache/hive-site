@@ -3,15 +3,9 @@ title: "Apache Hive : HCatalog ReaderWriter"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog ReaderWriter
+# Apache Hive : HCatalog Reader and Writer Interfaces
 
-# Reader and Writer Interfaces
-
-* [Reader and Writer Interfaces]({{< ref "#reader-and-writer-interfaces" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [HCatReader]({{< ref "#hcatreader" >}})
-	+ [HCatWriter]({{< ref "#hcatwriter" >}})
-	+ [Complete Example Program]({{< ref "#complete-example-program" >}})
+{{< toc >}}
 
 ## Overview
 

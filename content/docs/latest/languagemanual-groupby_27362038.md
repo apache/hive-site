@@ -5,13 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual GroupBy
 
-* [Group By Syntax]({{< ref "#group-by-syntax" >}})
-	+ [Simple Examples]({{< ref "#simple-examples" >}})
-	+ [Select statement and group by clause]({{< ref "#select-statement-and-group-by-clause" >}})
-* [Advanced Features]({{< ref "#advanced-features" >}})
-	+ [Multi-Group-By Inserts]({{< ref "#multi-group-by-inserts" >}})
-	+ [Map-side Aggregation for Group By]({{< ref "#map-side-aggregation-for-group-by" >}})
-	+ [Grouping Sets, Cubes, Rollups, and the GROUPING__ID Function]({{< ref "#grouping-sets-cubes-rollups-and-the-grouping__id-function" >}})
+{{< toc >}}
 
 ## Group By Syntax
 

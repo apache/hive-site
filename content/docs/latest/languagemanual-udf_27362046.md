@@ -3,49 +3,11 @@ title: "Apache Hive : LanguageManual UDF"
 date: 2024-12-12
 ---
 
-# Apache Hive : LanguageManual UDF
+# Apache Hive : LanguageManual Operators and User-Defined Functions
 
-# Hive Operators and User-Defined Functions (UDFs)
+{{< toc >}}
 
-* [Hive Operators and User-Defined Functions (UDFs)]({{< ref "#hive-operators-and-user-defined-functions-udfs" >}})
-	+ [Built-in Operators]({{< ref "#built-in-operators" >}})
-		- [Operators Precedences]({{< ref "#operators-precedences" >}})
-		- [Relational Operators]({{< ref "#relational-operators" >}})
-		- [Arithmetic Operators]({{< ref "#arithmetic-operators" >}})
-		- [Logical Operators]({{< ref "#logical-operators" >}})
-		- [String Operators]({{< ref "#string-operators" >}})
-		- [Complex Type Constructors]({{< ref "#complex-type-constructors" >}})
-		- [Operators on Complex Types]({{< ref "#operators-on-complex-types" >}})
-	+ [Built-in Functions]({{< ref "#built-in-functions" >}})
-		- [Mathematical Functions]({{< ref "#mathematical-functions" >}})
-			* [Mathematical Functions and Operators for Decimal Datatypes]({{< ref "#mathematical-functions-and-operators-for-decimal-datatypes" >}})
-		- [Collection Functions]({{< ref "#collection-functions" >}})
-		- [Type Conversion Functions]({{< ref "#type-conversion-functions" >}})
-		- [Date Functions]({{< ref "#date-functions" >}})
-		- [Conditional Functions]({{< ref "#conditional-functions" >}})
-		- [String Functions]({{< ref "#string-functions" >}})
-		- [Data Masking Functions]({{< ref "#data-masking-functions" >}})
-		- [Misc. Functions]({{< ref "#misc-functions" >}})
-			* [xpath]({{< ref "#xpath" >}})
-			* [get_json_object]({{< ref "#get_json_object" >}})
-	+ [Built-in Aggregate Functions (UDAF)]({{< ref "#built-in-aggregate-functions-udaf" >}})
-	+ [Built-in Table-Generating Functions (UDTF)]({{< ref "#built-in-table-generating-functions-udtf" >}})
-		- [Usage Examples]({{< ref "#usage-examples" >}})
-			* [explode (array)]({{< ref "#explode--array-" >}})
-			* [explode (map)]({{< ref "#explode--map-" >}})
-			* [posexplode (array)]({{< ref "#posexplode--array-" >}})
-			* [inline (array of structs)]({{< ref "#inline--array-of-structs-" >}})
-			* [stack (values)]({{< ref "#stack--values-" >}})
-		- [explode]({{< ref "#explode" >}})
-		- [posexplode]({{< ref "#posexplode" >}})
-		- [json_tuple]({{< ref "#json_tuple" >}})
-		- [parse_url_tuple]({{< ref "#parse_url_tuple" >}})
-	+ [GROUPing and SORTing on f(column)]({{< ref "#grouping-and-sorting-on-fcolumn" >}})
-	+ [Utility Functions]({{< ref "#utility-functions" >}})
-	+ [UDF internals]({{< ref "#udf-internals" >}})
-	+ [Creating Custom UDFs]({{< ref "#creating-custom-udfs" >}})
-
-Case-insensitive
+## Overview
 
 All Hive keywords are case-insensitive, including the names of Hive operators and functions.
 
@@ -284,13 +246,7 @@ The following built-in date functions are supported in Hive:
 | string | date_format(date/timestamp/string ts, string pattern) | Converts a date/timestamp/string to a value of string using the specified pattern (as of Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-10276)). The accepted patterns and their behavior depend on the underlying formatter implementation. The pattern argument should be constant. Example: date_format('2015-04-08', 'y') = '2015'.date_format can be used to implement other UDFs, e.g.:* dayname(date) is date_format(date, 'EEEE')
 * dayofyear(date) is date_format(date, 'D')
 
-As of Hive 4.0.0 (
-
-[HIVE-27673](https://issues.apache.org/jira/browse/HIVE-27673?src=confmacro)
- -
- Configurable datetime formatter for date_format
-Closed
-
+As of Hive 4.0.0 ([HIVE-27673](https://issues.apache.org/jira/browse/HIVE-27673)
 ), the "hive.datetime.formatter" property can be used to control the underlying formatter implementation, and as a consequence the accepted patterns and their behavior. Prior versions always used <https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html> as the underlying formatter. |
 
 ### Conditional Functions

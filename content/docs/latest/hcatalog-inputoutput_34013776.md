@@ -3,23 +3,9 @@ title: "Apache Hive : HCatalog InputOutput"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog InputOutput
+# Apache Hive : HCatalog Input and Output Interfaces
 
-# Input and Output Interfaces
-
-* [Input and Output Interfaces]({{< ref "#input-and-output-interfaces" >}})
-	+ [Set Up]({{< ref "#set-up" >}})
-	+ [HCatInputFormat]({{< ref "#hcatinputformat" >}})
-		- [API]({{< ref "#api" >}})
-	+ [HCatOutputFormat]({{< ref "#hcatoutputformat" >}})
-		- [API]({{< ref "#api" >}})
-	+ [HCatRecord]({{< ref "#hcatrecord" >}})
-	+ [Running MapReduce with HCatalog]({{< ref "#running-mapreduce-with-hcatalog" >}})
-		- [Authentication]({{< ref "#authentication" >}})
-		- [Read Example]({{< ref "#read-example" >}})
-		- [Filter Operators]({{< ref "#filter-operators" >}})
-		- [Scan Filter]({{< ref "#scan-filter" >}})
-		- [Write Filter]({{< ref "#write-filter" >}})
+{{< toc >}}
 
 ## Set Up
 

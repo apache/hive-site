@@ -5,45 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : GettingStarted
 
-Table of Contents
-
-* [Installation and Configuration]({{< ref "#installation-and-configuration" >}})
-	
-		- [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})+ [Requirements]({{< ref "#requirements" >}})
-	+ [Installing Hive from a Stable Release]({{< ref "#installing-hive-from-a-stable-release" >}})
-	+ [Building Hive from Source]({{< ref "#building-hive-from-source" >}})
-		- [Compile Hive on master]({{< ref "#compile-hive-on-master" >}})
-		- [Compile Hive on branch-1]({{< ref "#compile-hive-on-branch-1" >}})
-		- [Compile Hive Prior to 0.13 on Hadoop 0.20]({{< ref "#compile-hive-prior-to-013-on-hadoop-020" >}})
-		- [Compile Hive Prior to 0.13 on Hadoop 0.23]({{< ref "#compile-hive-prior-to-013-on-hadoop-023" >}})
-	+ [Running Hive]({{< ref "#running-hive" >}})
-		- [Running Hive CLI]({{< ref "#running-hive-cli" >}})
-		- [Running HiveServer2 and Beeline]({{< ref "#running-hiveserver2-and-beeline" >}})
-		- [Running HCatalog]({{< ref "#running-hcatalog" >}})
-		- [Running WebHCat (Templeton)]({{< ref "#running-webhcat-templeton" >}})
-	+ [Configuration Management Overview]({{< ref "#configuration-management-overview" >}})
-	+ [Runtime Configuration]({{< ref "#runtime-configuration" >}})
-	+ [Hive, Map-Reduce and Local-Mode]({{< ref "#hive-map-reduce-and-local-mode" >}})
-	+ [Hive Logging]({{< ref "#hive-logging" >}})
-		- [HiveServer2 Logs]({{< ref "#hiveserver2-logs" >}})
-		- [Audit Logs]({{< ref "#audit-logs" >}})
-		- [Perf Logger]({{< ref "#perf-logger" >}})
-* [DDL Operations]({{< ref "#ddl-operations" >}})
-	+ [Creating Hive Tables]({{< ref "#creating-hive-tables" >}})
-	+ [Browsing through Tables]({{< ref "#browsing-through-tables" >}})
-	+ [Altering and Dropping Tables]({{< ref "#altering-and-dropping-tables" >}})
-	+ [Metadata Store]({{< ref "#metadata-store" >}})
-* [DML Operations]({{< ref "#dml-operations" >}})
-* [SQL Operations]({{< ref "#sql-operations" >}})
-	+ [Example Queries]({{< ref "#example-queries" >}})
-		- [SELECTS and FILTERS]({{< ref "#selects-and-filters" >}})
-		- [GROUP BY]({{< ref "#group-by" >}})
-		- [JOIN]({{< ref "#join" >}})
-		- [MULTITABLE INSERT]({{< ref "#multitable-insert" >}})
-		- [STREAMING]({{< ref "#streaming" >}})
-* [Simple Example Use Cases]({{< ref "#simple-example-use-cases" >}})
-	+ [MovieLens User Ratings]({{< ref "#movielens-user-ratings" >}})
-	+ [Apache Weblog Data]({{< ref "#apache-weblog-data" >}})
+{{< toc >}}
 
 ## Installation and Configuration
 

@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference MapReduceJar
 
-# MapReduce Job — POST mapreduce/jar
-
-* [MapReduce Job — POST mapreduce/jar]({{< ref "#mapreduce-job--post-mapreducejar" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Code and Data Setup]({{< ref "#code-and-data-setup" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

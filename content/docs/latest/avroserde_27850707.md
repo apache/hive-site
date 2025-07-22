@@ -5,26 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : AvroSerDe
 
-* [Availability]({{< ref "#availability" >}})
-* [Overview – Working with Avro from Hive]({{< ref "#overview-–-working-with-avro-from-hive" >}})
-* [Requirements]({{< ref "#requirements" >}})
-* [Avro to Hive type conversion]({{< ref "#avro-to-hive-type-conversion" >}})
-* [Creating Avro-backed Hive tables]({{< ref "#creating-avro-backed-hive-tables" >}})
-	+ [All Hive versions]({{< ref "#all-hive-versions" >}})
-	+ [Hive 0.14 and later versions]({{< ref "#hive-014-and-later-versions" >}})
-* [Writing tables to Avro files]({{< ref "#writing-tables-to-avro-files" >}})
-	
-		- [Example]({{< ref "#example" >}})+ [All Hive versions]({{< ref "#all-hive-versions" >}})
-	+ [Hive 0.14 and later]({{< ref "#hive-014-and-later" >}})
-	+ [Avro file extension]({{< ref "#avro-file-extension" >}})
-* [Specifying the Avro schema for a table]({{< ref "#specifying-the-avro-schema-for-a-table" >}})
-	+ [Use avro.schema.url]({{< ref "#use-avroschemaurl" >}})
-	+ [Use schema.literal and embed the schema in the create statement]({{< ref "#use-schemaliteral-and-embed-the-schema-in-the-create-statement" >}})
-	+ [Use avro.schema.literal and pass the schema into the script]({{< ref "#use-avroschemaliteral-and-pass-the-schema-into-the-script" >}})
-	+ [Use none to ignore either avro.schema.literal or avro.schema.url]({{< ref "#use-none-to-ignore-either-avroschemaliteral-or-avroschemaurl" >}})
-* [HBase Integration]({{< ref "#hbase-integration" >}})
-* [If something goes wrong]({{< ref "#if-something-goes-wrong" >}})
-* [FAQ]({{< ref "#faq" >}})
+{{< toc >}}
 
 ### Availability
 

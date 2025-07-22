@@ -5,15 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Replacing the Implementation of Hive CLI Using Beeline
 
-## 
-* 
-* [Why Replace the Existing Hive CLI?]({{< ref "#why-replace-the-existing-hive-cli" >}})
-* [Hive CLI Functionality Support]({{< ref "#hive-cli-functionality-support" >}})
-	+ [Hive CLI Options Support]({{< ref "#hive-cli-options-support" >}})
-	+ [Examples]({{< ref "#examples" >}})
-	+ [Hive CLI Interactive Shell Commands Support]({{< ref "#hive-cli-interactive-shell-commands-support" >}})
-	+ [Hive CLI Configuration Support]({{< ref "#hive-cli-configuration-support" >}})
-* [Performance Impacts]({{< ref "#performance-impacts" >}})
+{{< toc >}}
 
 ## Why Replace the Existing Hive CLI?
 

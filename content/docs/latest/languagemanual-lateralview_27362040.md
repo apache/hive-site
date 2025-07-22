@@ -5,11 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual LateralView
 
-* [Lateral View Syntax]({{< ref "#lateral-view-syntax" >}})
-* [Description]({{< ref "#description" >}})
-* [Example]({{< ref "#example" >}})
-* [Multiple Lateral Views]({{< ref "#multiple-lateral-views" >}})
-* [Outer Lateral Views]({{< ref "#outer-lateral-views" >}})
+{{< toc >}}
 
 ## Lateral View Syntax
 

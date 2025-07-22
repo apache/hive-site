@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Hive
 
-# Hive Job — POST hive
-
-* [Hive Job — POST hive]({{< ref "#hive-job--post-hive" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [Example Results]({{< ref "#example-results" >}})
+{{< toc >}}
 
 ## Description
 

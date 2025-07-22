@@ -5,14 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : DynamicPartitions
 
-# Dynamic Partitions
-
-* [Dynamic Partitions]({{< ref "#dynamic-partitions" >}})
-	+ [Documentation]({{< ref "#documentation" >}})
-	+ [Terminology]({{< ref "#terminology" >}})
-	+ [Syntax]({{< ref "#syntax" >}})
-	+ [Design]({{< ref "#design" >}})
-	+ [Design issues]({{< ref "#design-issues" >}})
+{{< toc >}}
 
 ## Documentation
 

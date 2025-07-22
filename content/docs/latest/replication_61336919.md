@@ -5,13 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Replication
 
-* [Overview]({{< ref "#overview" >}})
-* [Potential Uses]({{< ref "#potential-uses" >}})
-* [Prerequisites]({{< ref "#prerequisites" >}})
-* [Limitations]({{< ref "#limitations" >}})
-* [Configuration]({{< ref "#configuration" >}})
-* [Typical Mode of Operation]({{< ref "#typical-mode-of-operation" >}})
-* [Replication to AWS/EMR/S3]({{< ref "#replication-to-awsemrs3" >}})
+{{< toc >}}
 
 ## Overview
 

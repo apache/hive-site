@@ -5,28 +5,13 @@ date: 2024-12-12
 
 # Apache Hive : Materialized views
 
-* [Introduction]({{< ref "#introduction" >}})
-	+ [Objectives]({{< ref "#objectives" >}})
-* [Management of materialized views in Hive]({{< ref "#management-of-materialized-views-in-hive" >}})
-	+ [Materialized views creation]({{< ref "#materialized-views-creation" >}})
-	+ [Other operations for materialized view management]({{< ref "#other-operations-for-materialized-view-management" >}})
-* [Materialized view-based query rewriting]({{< ref "#materialized-view-based-query-rewriting" >}})
-	+ [Example 1]({{< ref "#example-1" >}})
-	+ [Example 2]({{< ref "#example-2" >}})
-	+ [Example 3]({{< ref "#example-3" >}})
-* [Materialized view maintenance]({{< ref "#materialized-view-maintenance" >}})
-* [Materialized view lifecycle]({{< ref "#materialized-view-lifecycle" >}})
-* [Open issues (JIRA)]({{< ref "#open-issues-jira" >}})
+This page documents the work done for the supporting materialized views in Apache Hive.
 
-  
+{{< toc >}}
 
-Version information
+## Version information
 
 Materialized views support is introduced in Hive 3.0.0.
-
-## Introduction
-
-This page documents the work done for the supporting materialized views in Apache Hive.
 
 ### Objectives
 

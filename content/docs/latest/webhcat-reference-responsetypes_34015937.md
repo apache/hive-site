@@ -5,17 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference ResponseTypes
 
-# Response Types — GET :version
-
-* [Response Types — GET :version]({{< ref "#response-types--get-version" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
-		- [JSON Output (error)]({{< ref "#json-output-error" >}})
+{{< toc >}}
 
 ## Description
 

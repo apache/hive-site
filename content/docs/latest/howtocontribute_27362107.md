@@ -3,9 +3,7 @@ title: "Apache Hive : HowToContribute"
 date: 2024-12-12
 ---
 
-# Apache Hive : HowToContribute
-
-# How to Contribute to Apache Hive
+# Apache Hive : How to Contribute
 
 This page describes the mechanics of *how* to contribute software to Apache Hive. For ideas about *what* you might contribute, please see open tickets in [Jira](https://issues.apache.org/jira/browse/HIVE).
 

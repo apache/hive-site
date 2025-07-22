@@ -5,23 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Metastore Administration
 
-## Hive Metastore Administration
-
-* [Hive Metastore Administration]({{< ref "#hive-metastore-administration" >}})
-	+ [Introduction]({{< ref "#introduction" >}})
-		- [Basic Configuration Parameters]({{< ref "#basic-configuration-parameters" >}})
-		- [Additional Configuration Parameters]({{< ref "#additional-configuration-parameters" >}})
-		- [Data Nucleus Auto Start]({{< ref "#data-nucleus-auto-start" >}})
-		- [Default Configuration]({{< ref "#default-configuration" >}})
-	+ [Local/Embedded Metastore Database (Derby)]({{< ref "#localembedded-metastore-database-derby" >}})
-	+ [Remote Metastore Database]({{< ref "#remote-metastore-database" >}})
-	+ [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}})
-	+ [Remote Metastore Server]({{< ref "#remote-metastore-server" >}})
-		- [Client Configuration Parameters]({{< ref "#client-configuration-parameters" >}})
-	+ [Supported Backend Databases for Metastore]({{< ref "#supported-backend-databases-for-metastore" >}})
-	+ [Metastore Schema Consistency and Upgrades]({{< ref "#metastore-schema-consistency-and-upgrades" >}})
-
 This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see [AdminManual Metastore 3.0 Administration]({{< ref "adminmanual-metastore-3-0-administration_75978150" >}})
+
+{{< toc >}}
 
 ### Introduction
 

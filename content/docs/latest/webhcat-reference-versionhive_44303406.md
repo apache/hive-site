@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference VersionHive
 
-# Hive Version — GET version/hive
-
-* [Hive Version — GET version/hive]({{< ref "#hive-version--get-versionhive" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

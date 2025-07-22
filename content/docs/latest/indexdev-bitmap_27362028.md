@@ -3,16 +3,9 @@ title: "Apache Hive : IndexDev Bitmap"
 date: 2024-12-12
 ---
 
-# Apache Hive : IndexDev Bitmap
+# Apache Hive : Bitmap Indexing
 
-= Bitmap Indexing =
-
-* [Introduction]({{< ref "#introduction" >}})
-* [Approach]({{< ref "#approach" >}})
-* [Proposal]({{< ref "#proposal" >}})
-	+ [First implementation]({{< ref "#first-implementation" >}})
-	+ [Second iteration]({{< ref "#second-iteration" >}})
-* [Example]({{< ref "#example" >}})
+{{< toc >}}
 
 ## Introduction
 

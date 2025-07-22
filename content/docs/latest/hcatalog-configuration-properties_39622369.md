@@ -5,14 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Configuration Properties
 
-* [Setup]({{< ref "#setup" >}})
-* [Storage Directives]({{< ref "#storage-directives" >}})
-* [Cache Behaviour Directives]({{< ref "#cache-behaviour-directives" >}})
-* [Input Split Generation Behaviour]({{< ref "#input-split-generation-behaviour" >}})
-* [Data Promotion Behaviour]({{< ref "#data-promotion-behaviour" >}})
-* [HCatRecordReader Error Tolerance Behaviour]({{< ref "#hcatrecordreader-error-tolerance-behaviour" >}})
-
 Apache HCatalog's behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish. 
+
+{{< toc >}}
 
 ## Setup
 

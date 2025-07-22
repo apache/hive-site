@@ -3,21 +3,11 @@ title: "Apache Hive : HowToCommit"
 date: 2024-12-12
 ---
 
-# Apache Hive : HowToCommit
-
-# Guide for Hive Committers
-
-* [Guide for Hive Committers]({{< ref "#guide-for-hive-committers" >}})
-	+ [New committers]({{< ref "#new-committers" >}})
-	+ [Review]({{< ref "#review" >}})
-	+ [Reject]({{< ref "#reject" >}})
-	+ [PreCommit runs, and committing patches]({{< ref "#precommit-runs-and-committing-patches" >}})
-	+ [Commit]({{< ref "#commit" >}})
-		- [Committing Documentation]({{< ref "#committing-documentation" >}})
-	+ [Backporting commits to previous branches]({{< ref "#backporting-commits-to-previous-branches" >}})
-	+ [Dialog]({{< ref "#dialog" >}})
+# Apache Hive : Guide for Committers
 
 This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "/community/becomingcommitter" >}}))
+
+{{< toc >}}
 
 ## New committers
 

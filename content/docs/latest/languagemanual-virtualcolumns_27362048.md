@@ -5,8 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual VirtualColumns
 
-* [Virtual Columns]({{< ref "#virtual-columns" >}})
-	+ [Simple Examples]({{< ref "#simple-examples" >}})
+{{< toc >}}
 
 ## Virtual Columns
 

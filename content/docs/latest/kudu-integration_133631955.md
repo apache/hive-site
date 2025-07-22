@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Kudu Integration
 
-# Hive Kudu Integration
-
-* [Hive Kudu Integration]({{< ref "#hive-kudu-integration" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Implementation]({{< ref "#implementation" >}})
-	+ [Hive Configuration]({{< ref "#hive-configuration" >}})
-	+ [Table Creation]({{< ref "#table-creation" >}})
-	+ [Impala Tables]({{< ref "#impala-tables" >}})
-	+ [Data Ingest]({{< ref "#data-ingest" >}})
-		- [Examples]({{< ref "#examples" >}})
+{{< toc >}}
 
 ## Overview
 

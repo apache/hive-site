@@ -5,8 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual SubQueries
 
-* [Subqueries in the FROM Clause]({{< ref "#subqueries-in-the-from-clause" >}})
-* [Subqueries in the WHERE Clause]({{< ref "#subqueries-in-the-where-clause" >}})
+{{< toc >}}
 
 # Subqueries in the FROM Clause
 

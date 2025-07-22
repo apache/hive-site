@@ -3,22 +3,13 @@ title: "Apache Hive : HiveDerbyServerMode"
 date: 2024-12-12
 ---
 
-# Apache Hive : HiveDerbyServerMode
-
-# Hive Using Derby in Server Mode
-
-* [Hive Using Derby in Server Mode]({{< ref "#hive-using-derby-in-server-mode" >}})
-	+ [Download Derby]({{< ref "#download-derby" >}})
-	+ [Set Environment]({{< ref "#set-environment" >}})
-	+ [Starting Derby]({{< ref "#starting-derby" >}})
-	+ [Configure Hive to Use Network Derby]({{< ref "#configure-hive-to-use-network-derby" >}})
-	+ [Copy Derby Jar Files]({{< ref "#copy-derby-jar-files" >}})
-	+ [Start Up Hive]({{< ref "#start-up-hive" >}})
-	+ [The Result]({{< ref "#the-result" >}})
+# Apache Hive : Using Derby in Server Mode
 
 Hive in embedded mode has a limitation of one active user at a time. You may want to run [Derby](http://db.apache.org/derby/) as a Network Server, this way multiple users can access it simultaneously from different systems.
 
 See [Metadata Store]({{< ref "#metadata-store" >}}) and [Embedded Metastore]({{< ref "#embedded-metastore" >}}) for more information.
+
+{{< toc >}}
 
 ### Download Derby
 

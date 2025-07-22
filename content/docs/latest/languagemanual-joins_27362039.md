@@ -5,15 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Joins
 
-# Hive Joins
-
-* [Hive Joins]({{< ref "#hive-joins" >}})
-	+ [Join Syntax]({{< ref "#join-syntax" >}})
-	+ [Examples]({{< ref "#examples" >}})
-	+ [MapJoin Restrictions]({{< ref "#mapjoin-restrictions" >}})
-	+ [Join Optimization]({{< ref "#join-optimization" >}})
-		- [Predicate Pushdown in Outer Joins]({{< ref "#predicate-pushdown-in-outer-joins" >}})
-		- [Enhancements in Hive Version 0.11]({{< ref "#enhancements-in-hive-version-011" >}})
+{{< toc >}}
 
 ## Join Syntax
 

@@ -3,41 +3,9 @@ title: "Apache Hive : LanguageManual Types"
 date: 2024-12-12
 ---
 
-# Apache Hive : LanguageManual Types
+# Apache Hive : LanguageManual Data Types
 
-# Hive Data Types
-
-* [Hive Data Types]({{< ref "#hive-data-types" >}})
-	+ [Overview]({{< ref "#overview" >}})
-		- [Numeric Types]({{< ref "#numeric-types" >}})
-		- [Date/Time Types]({{< ref "#datetime-types" >}})
-		- [String Types]({{< ref "#string-types" >}})
-		- [Misc Types]({{< ref "#misc-types" >}})
-		- [Complex Types]({{< ref "#complex-types" >}})
-	+ [Column Types]({{< ref "#column-types" >}})
-		- [Integral Types (TINYINT, SMALLINT, INT/INTEGER, BIGINT)]({{< ref "#integral-types--tinyint,-smallint,-int/integer,-bigint-" >}})
-		- 
-		- [Strings]({{< ref "#strings" >}})
-		- [Varchar]({{< ref "#varchar" >}})
-		- [Char]({{< ref "#char" >}})
-		- [Timestamps]({{< ref "#timestamps" >}})
-			* [Casting Dates]({{< ref "#casting-dates" >}})
-		- [Intervals]({{< ref "#intervals" >}})
-		- [Decimals]({{< ref "#decimals" >}})
-			* [Decimal Literals]({{< ref "#decimal-literals" >}})
-			* [Decimal Type Incompatibilities between Hive 0.12.0 and 0.13.0]({{< ref "#decimal-type-incompatibilities-between-hive-0120-and-0130" >}})
-				+ [Upgrading Pre-Hive 0.13.0 Decimal Columns]({{< ref "#upgrading-pre-hive-0130-decimal-columns" >}})
-		- [Union Types]({{< ref "#union-types" >}})
-	+ [Literals]({{< ref "#literals" >}})
-		- [Floating Point Types]({{< ref "#floating-point-types" >}})
-			* [Decimal Types]({{< ref "#decimal-types" >}})
-				+ [Using Decimal Types]({{< ref "#using-decimal-types" >}})
-				+ [Mathematical UDFs]({{< ref "#mathematical-udfs" >}})
-				+ [Casting Decimal Values]({{< ref "#casting-decimal-values" >}})
-				+ [Testing Decimal Types]({{< ref "#testing-decimal-types" >}})
-	+ [Handling of NULL Values]({{< ref "#handling-of-null-values" >}})
-	+ [Change Types]({{< ref "#change-types" >}})
-	+ [Allowed Implicit Conversions]({{< ref "#allowed-implicit-conversions" >}})
+{{< toc >}}
 
 ## Overview
 

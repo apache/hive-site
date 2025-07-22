@@ -3,14 +3,9 @@ title: "Apache Hive : HCatalog StorageFormats"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog StorageFormats
+# Apache Hive : HCatalog Storage Formats
 
-# Storage Formats
-
-* [Storage Formats]({{< ref "#storage-formats" >}})
-	+ [SerDes and Storage Formats]({{< ref "#serdes-and-storage-formats" >}})
-	+ [Usage from Hive]({{< ref "#usage-from-hive" >}})
-	+ [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}})
+{{< toc >}}
 
 ### SerDes and Storage Formats
 

@@ -5,20 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Presentations
 
- 
-
-* [Hive Meetups]({{< ref "#hive-meetups" >}})
-	+ [January 2016 Hive User Group Meetup]({{< ref "#january-2016-hive-user-group-meetup" >}})
-	+ [November 2015 Hive Contributor Meetup]({{< ref "#november-2015-hive-contributor-meetup" >}})
-	+ [April 2015 Hive Contributor Meetup Presentations]({{< ref "#april-2015-hive-contributor-meetup-presentations" >}})
-	+ [February 2015 Hive User Meetup Presentation]({{< ref "#february-2015-hive-user-meetup-presentation" >}})
-	+ [November 2013 Hive Contributors Meetup Presentations]({{< ref "#november-2013-hive-contributors-meetup-presentations" >}})
-	+ [June 2013 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2013-hadoop-summit-hive-meetup-presentations" >}})
-	+ [February 2013 Hive User Group Meetup]({{< ref "#february-2013-hive-user-group-meetup" >}})
-	+ [June 2012 Hadoop Summit Hive Meetup Presentations]({{< ref "#june-2012-hadoop-summit-hive-meetup-presentations" >}})
-	+ [November 2011 NYC Hive Meetup Presentations]({{< ref "#november-2011-nyc-hive-meetup-presentations" >}})
-* [Older Hive Presentations]({{< ref "#older-hive-presentations" >}})
-* [Related Work]({{< ref "#related-work" >}})
+{{< toc >}}
 
 # Hive Meetups
 

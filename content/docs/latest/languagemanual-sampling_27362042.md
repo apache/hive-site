@@ -5,9 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Sampling
 
-* [Sampling Syntax]({{< ref "#sampling-syntax" >}})
-	+ [Sampling Bucketized Table]({{< ref "#sampling-bucketized-table" >}})
-	+ [Block Sampling]({{< ref "#block-sampling" >}})
+{{< toc >}}
 
 ## Sampling Syntax
 

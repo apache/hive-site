@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Job
 
-# Job Information — GET jobs/:jobid
-
-* [Job Information — GET jobs/:jobid]({{< ref "#job-information--get-jobsjobid" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

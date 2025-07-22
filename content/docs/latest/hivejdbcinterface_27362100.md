@@ -3,17 +3,13 @@ title: "Apache Hive : HiveJDBCInterface"
 date: 2024-12-12
 ---
 
-# Apache Hive : HiveJDBCInterface
-
-# Hive JDBC Driver
-
-* [Hive JDBC Driver]({{< ref "#hive-jdbc-driver" >}})
-	+ [Integration with Pentaho]({{< ref "#integration-with-pentaho" >}})
-	+ [Integration with SQuirrel SQL Client]({{< ref "#integration-with-squirrel-sql-client" >}})
+# Apache Hive : JDBC Driver
 
 The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.
 
 To see how the JDBC interface can be used, see [sample code]({{< ref "hiveclient_27362101" >}}).
+
+{{< toc >}}
 
 ### Integration with Pentaho
 

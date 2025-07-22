@@ -5,37 +5,15 @@ date: 2024-12-12
 
 # Apache Hive : HiveReplicationv2Development
 
-* [Issues with the Current Replication System]({{< ref "#issues-with-the-current-replication-system" >}})
-	+ [Slowness]({{< ref "#slowness" >}})
-	+ [Requiring Staging Directories with Full Copies (4xcopy Problem)]({{< ref "#requiring-staging-directories-with-full-copies-4xcopy-problem" >}})
-	+ [Unsuitable for Load-Balancing Use Cases]({{< ref "#unsuitable-for-load-balancing-use-cases" >}})
-	+ [Incompatibility with ACID]({{< ref "#incompatibility-with-acid" >}})
-	+ [Dependency on External Tools To Do a Lot]({{< ref "#dependency-on-external-tools-to-do-a-lot" >}})
-	+ [Support for a Hub-Spoke Model]({{< ref "#support-for-a-hub-spoke-model" >}})
-* [Rubberbanding]({{< ref "#rubberbanding" >}})
-* [Change Management]({{< ref "#change-management" >}})
-	+ [_files]({{< ref "#_files" >}})
-	+ [Solution for Rubber Banding]({{< ref "#solution-for-rubber-banding" >}})
-	+ [_metadata]({{< ref "#_metadata" >}})
-* [A Need for Bootstrap]({{< ref "#a-need-for-bootstrap" >}})
-* [New Commands]({{< ref "#new-commands" >}})
-	+ [REPL DUMP]({{< ref "#repl-dump" >}})
-		- [Syntax:]({{< ref "#syntax" >}})
-		- [Return values:]({{< ref "#return-values" >}})
-		- [Note:]({{< ref "#note" >}})
-	+ [REPL LOAD]({{< ref "#repl-load" >}})
-		- [Return values:]({{< ref "#return-values" >}})
-	+ [REPL STATUS]({{< ref "#repl-status" >}})
-		- [Return values:]({{< ref "#return-values" >}})
-* [Bootstrap, Revisited]({{< ref "#bootstrap-revisited" >}})
-* [Metastore notification API security]({{< ref "#metastore-notification-api-security" >}})
-* [Setup/Configuration]({{< ref "#setupconfiguration" >}})
-
 This document describes the second version of Hive Replication. Please refer to the [first version of Hive Replication]({{< ref "hivereplicationdevelopment_55155632" >}}) for details on prior implementation.
 
 This work is under development and interfaces are subject to change. This has been designed for use in conjunction with external orchestration tools, which would be responsible for co-ordinating the right sequence of commands between source and target clusters, fault tolerance/failure handling, and also providing correct configuration options that are necessary to be able to do cross cluster replication.
 
-**As of Hive 3.0.0 release : only managed table replication where Hive user owns the table contents is supported. External tables, ACID tables, statistics and constraint replication are not supported.**
+{{< toc >}}
+
+# Version information
+
+As of Hive 3.0.0 release : only managed table replication where Hive user owns the table contents is supported. External tables, ACID tables, statistics and constraint replication are not supported.
 
 # Issues with the Current Replication System
 

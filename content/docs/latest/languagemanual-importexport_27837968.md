@@ -3,18 +3,11 @@ title: "Apache Hive : LanguageManual ImportExport"
 date: 2024-12-12
 ---
 
-# Apache Hive : LanguageManual ImportExport
+# Apache Hive : LanguageManual Import/Export
 
-# Import/Export
+{{< toc >}}
 
-* [Import/Export]({{< ref "#importexport" >}})
-	+ [Overview]({{< ref "#overview" >}})
-	+ [Export Syntax]({{< ref "#export-syntax" >}})
-	+ [Import Syntax]({{< ref "#import-syntax" >}})
-	+ [Replication usage]({{< ref "#replication-usage" >}})
-	+ [Examples]({{< ref "#examples" >}})
-
-Version
+### Version information
 
 The `EXPORT` and `IMPORT` commands were added in Hive 0.8.0 (see [HIVE-1918](https://issues.apache.org/jira/browse/HIVE-1918)).
 

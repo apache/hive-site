@@ -5,16 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutProperty
 
-# Set Property — PUT ddl/database/:db/table/:table/property/:property
-
-* [Set Property — PUT ddl/database/:db/table/:table/property/:property]({{< ref "#set-property--put-ddldatabasedbtabletablepropertyproperty" >}})
-	+ [Description]({{< ref "#description" >}})
-	+ [URL]({{< ref "#url" >}})
-	+ [Parameters]({{< ref "#parameters" >}})
-	+ [Results]({{< ref "#results" >}})
-	+ [Example]({{< ref "#example" >}})
-		- [Curl Command]({{< ref "#curl-command" >}})
-		- [JSON Output]({{< ref "#json-output" >}})
+{{< toc >}}
 
 ## Description
 

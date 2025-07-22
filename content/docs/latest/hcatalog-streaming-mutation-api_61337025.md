@@ -7,16 +7,7 @@ date: 2024-12-12
 
 A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s [ACID](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions) feature. It is introduced in Hive 2.0.0 ([HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)).
 
-* [Background]({{< ref "#background" >}})
-* [Structure]({{< ref "#structure" >}})
-* [Data Requirements]({{< ref "#data-requirements" >}})
-* [Streaming Requirements]({{< ref "#streaming-requirements" >}})
-* [Record Layout]({{< ref "#record-layout" >}})
-* [Connection and Transaction Management]({{< ref "#connection-and-transaction-management" >}})
-* [Writing Data]({{< ref "#writing-data" >}})
-	+ [Dynamic Partition Creation]({{< ref "#dynamic-partition-creation" >}})
-* [Reading Data]({{< ref "#reading-data" >}})
-* [Example]({{< ref "#example" >}})
+{{< toc >}}
 
 # Background
 

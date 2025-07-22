@@ -352,6 +352,11 @@ li {
   font-size: 1.2rem;
 }
 
+/* Hide empty list bullets inside the table of contents */
+.table-of-contents li:not(:has(a)) {
+    display: none;
+}
+
 pre,
 code {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

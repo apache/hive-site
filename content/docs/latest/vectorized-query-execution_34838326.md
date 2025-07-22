@@ -5,13 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Vectorized Query Execution
 
-* [Introduction]({{< ref "#introduction" >}})
-* [Using Vectorized Query Execution]({{< ref "#using-vectorized-query-execution" >}})
-	+ [Enabling vectorized execution]({{< ref "#enabling-vectorized-execution" >}})
-	+ [Supported data types and operations]({{< ref "#supported-data-types-and-operations" >}})
-	+ [Seeing whether vectorization is used for a query]({{< ref "#seeing-whether-vectorization-is-used-for-a-query" >}})
-* [Limitations]({{< ref "#limitations" >}})
-* [Version Information]({{< ref "#version-information" >}})
+{{< toc >}}
 
 # Introduction
 

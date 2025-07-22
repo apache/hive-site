@@ -7,23 +7,7 @@ date: 2024-12-12
 
 Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data-ingest_40509746" >}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
 
-* [Hive Streaming API]({{< ref "#hive-streaming-api" >}})
-	+ [Streaming Mutation API Deprecation and Removal]({{< ref "#streaming-mutation-api-deprecation-and-removal" >}})
-* [Streaming Requirements]({{< ref "#streaming-requirements" >}})
-* [Limitations]({{< ref "#limitations" >}})
-* [API Usage]({{< ref "#api-usage" >}})
-	+ [Transaction and Connection Management]({{< ref "#transaction-and-connection-management" >}})
-		- [HiveStreamingConnection]({{< ref "#hivestreamingconnection" >}})
-			* [Usage Guidelines]({{< ref "#usage-guidelines" >}})
-		- [Notes about the HiveConf Object]({{< ref "#notes-about-the-hiveconf-object" >}})
-	+ [I/O – Writing Data]({{< ref "#io--writing-data" >}})
-		- [RecordWriter]({{< ref "#recordwriter" >}})
-		- [StrictDelimitedInputWriter]({{< ref "#strictdelimitedinputwriter" >}})
-		- [StrictJsonWriter]({{< ref "#strictjsonwriter" >}})
-		- [StrictRegexWriter]({{< ref "#strictregexwriter" >}})
-		- [AbstractRecordWriter]({{< ref "#abstractrecordwriter" >}})
-	+ [Error Handling]({{< ref "#error-handling" >}})
-* [Example]({{< ref "#example" >}})
+{{< toc >}}
 
 # Hive Streaming API
 

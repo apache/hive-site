@@ -5,16 +5,9 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Authorization
 
-# Storage Based Authorization
+{{< toc >}}
 
-* [Storage Based Authorization]({{< ref "#storage-based-authorization" >}})
-	+ [Default Authorization Model of Hive]({{< ref "#default-authorization-model-of-hive" >}})
-	+ [Storage-System Based Authorization Model]({{< ref "#storage-system-based-authorization-model" >}})
-		- [Minimum Permissions]({{< ref "#minimum-permissions" >}})
-		- [Unused DDL for Permissions]({{< ref "#unused-ddl-for-permissions" >}})
-	+ [Configuring Storage-System Based Authorization]({{< ref "#configuring-storage-system-based-authorization" >}})
-	+ [Creating New Tables or Databases]({{< ref "#creating-new-tables-or-databases" >}})
-	+ [Known Issues]({{< ref "#known-issues" >}})
+# Storage Based Authorization
 
 ## Default Authorization Model of Hive
 

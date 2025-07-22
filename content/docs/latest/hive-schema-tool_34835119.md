@@ -5,10 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Hive Schema Tool
 
-* [Metastore Schema Verification]({{< ref "#metastore-schema-verification" >}})
-* [The Hive Schema Tool]({{< ref "#the-hive-schema-tool" >}})
-	+ [The schematool Command]({{< ref "#the-schematool-command" >}})
-	+ [Usage Examples]({{< ref "#usage-examples" >}})
+{{< toc >}}
 
 ## Metastore Schema Verification
 

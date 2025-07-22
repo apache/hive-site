@@ -5,10 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Column Statistics in Hive
 
-*** [Introduction]({{< ref "#introduction" >}})
-* [HiveQL changes]({{< ref "#hiveql-changes" >}})
-* [Metastore Schema]({{< ref "#metastore-schema" >}})
-* [Metastore Thrift API]({{< ref "#metastore-thrift-api" >}})**
+{{< toc >}}
 
 ### **Introduction**
 

@@ -3,34 +3,11 @@ title: "Apache Hive : Hive Transactions"
 date: 2024-12-12
 ---
 
-# Apache Hive : Hive Transactions
+# Apache Hive : ACID Transactions
 
-# ACID and Transactions in Hive
+{{< toc >}}
 
-* [ACID and Transactions in Hive]({{< ref "#acid-and-transactions-in-hive" >}})
-	+ [What is ACID and why should you use it?]({{< ref "#what-is-acid-and-why-should-you-use-it" >}})
-	+ [Limitations]({{< ref "#limitations" >}})
-	+ [Streaming APIs]({{< ref "#streaming-apis" >}})
-	+ [Grammar Changes]({{< ref "#grammar-changes" >}})
-	+ [Basic Design]({{< ref "#basic-design" >}})
-		- [Base and Delta Directories]({{< ref "#base-and-delta-directories" >}})
-		- [Compactor]({{< ref "#compactor" >}})
-			* [Delta File Compaction]({{< ref "#delta-file-compaction" >}})
-			* [Initiator]({{< ref "#initiator" >}})
-			* [Worker]({{< ref "#worker" >}})
-			* [Cleaner]({{< ref "#cleaner" >}})
-			* [AcidHouseKeeperService]({{< ref "#acidhousekeeperservice" >}})
-			* [SHOW COMPACTIONS]({{< ref "#show-compactions" >}})
-		- [Transaction/Lock Manager]({{< ref "#transactionlock-manager" >}})
-	+ [Configuration]({{< ref "#configuration" >}})
-		- [New Configuration Parameters for Transactions]({{< ref "#new-configuration-parameters-for-transactions" >}})
-		- [Configuration Values to Set for INSERT, UPDATE, DELETE]({{< ref "#configuration-values-to-set-for-insert,-update,-delete" >}})
-		- [Configuration Values to Set for Compaction]({{< ref "#configuration-values-to-set-for-compaction" >}})
-		- [Compaction pooling]({{< ref "#compaction-pooling" >}})
-	+ [Table Properties]({{< ref "#table-properties" >}})
-* [Talks and Presentations]({{< ref "#talks-and-presentations" >}})
-
-Hive 3 Warning
+## Upgrade to Hive 3+
 
 Any transactional tables created by a Hive version prior to Hive 3 require Major Compaction to be run on every partition before upgrading to 3.0.  More precisely, any partition which has had any update/delete/merge statements executed on it since the last Major Compaction, has to undergo another Major Compaction.  No more update/delete/merge may happen on this partition until after Hive is upgraded to Hive 3.
 

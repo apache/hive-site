@@ -3,25 +3,9 @@ title: "Apache Hive : GroupByWithRollup"
 date: 2024-12-12
 ---
 
-# Apache Hive : GroupByWithRollup
+# Apache Hive : Group By With Rollup
 
-# Group By With Rollup
-
-References:   
-
-[Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)   
-
-[HIVE-2397](https://issues.apache.org/jira/browse/HIVE-2397) 
-
-* [Group By With Rollup]({{< ref "#group-by-with-rollup" >}})
-	+ [Terminology]({{< ref "#terminology" >}})
-	+ [Design]({{< ref "#design" >}})
-		- [Map Aggr & No Skew:]({{< ref "#map-aggr--no-skew" >}})
-		- [Map Aggr & Skew]({{< ref "#map-aggr--skew" >}})
-		- [No Map Aggr & No Skew & No Rollup]({{< ref "#no-map-aggr--no-skew--no-rollup" >}})
-		- [No Map Aggr & No Skew & With Rollup]({{< ref "#no-map-aggr--no-skew--with-rollup" >}})
-		- [No Map Aggr & Skew & (No Distinct or No Rollup)]({{< ref "#no-map-aggr--skew--no-distinct-or-no-rollup" >}})
-		- [No Map Aggr & Skew & Distinct & Rollup]({{< ref "#no-map-aggr--skew--distinct--rollup" >}})
+{{< toc >}}
 
 ## Terminology
 
@@ -152,7 +136,7 @@ Reducer 3:
 
 Note that if there are no group by keys or distinct keys, Reducer 2 and Mapper 3 are removed from the plan and the reduce sink operator in Mapper 2 does not spray. Also, note that the reason for Mapper 2 spraying is that if the skew in the data existed in a column that is not immediately nulled by the rollup (e.g. if we the group by keys are columns g1, g2, g3 in that order, we are concerned with the case where the skew exists in column g1 or g2) the skew may continue to exist after the hash aggregation, so we spray.
 
- 
+## References
 
- 
-
+* [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
+* [HIVE-2397](https://issues.apache.org/jira/browse/HIVE-2397)
