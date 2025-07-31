@@ -33,9 +33,7 @@ Old releases can be found in the [archives][HIVE_ARCHIVES].
 ---
 
 * #### 31 July 2025:  release 4.1.0 available
-  * Starting from version 4.1.x, JDK 17 is supported.
-  * This version also released a standalone metastore binary package and a standalone metastore Docker image.
-  * This version improves Iceberg table support and adds metastore-based rest catalog server functionality.
+  * Apache Hive 4.1.x adds JDK 17 support and provides the Hive Metastore as a standalone component available in both binary and Docker image formats. Key improvements include enhanced Iceberg table support (storage-partitioned joins, partition-level column statistics, table compaction), IPv6 compatibility, a REST-based catalog server backed by the Hive Metastore, and upgraded Calcite to 1.33.0 for better query optimization.
   * This release works with Hadoop 3.4.1, Tez 0.10.5.
   * You can look at the complete [JIRA change log for this release][HIVE_4_1_0_CL].
 
