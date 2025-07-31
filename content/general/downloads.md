@@ -32,6 +32,11 @@ Old releases can be found in the [archives][HIVE_ARCHIVES].
 ## News
 ---
 
+* #### 31 July 2025:  release 4.1.0 available
+  * Apache Hive 4.1.x adds JDK 17 support and provides the Hive Metastore as a standalone component available in both binary and Docker image formats. Key improvements include enhanced Iceberg table support (storage-partitioned joins, partition-level column statistics, table compaction), IPv6 compatibility, a REST-based catalog server backed by the Hive Metastore, and upgraded Calcite to 1.33.0 for better query optimization.
+  * This release works with Hadoop 3.4.1, Tez 0.10.5.
+  * You can look at the complete [JIRA change log for this release][HIVE_4_1_0_CL].
+
 * #### 08 October 2024: EOL for release 3.x line
 
 The Apache Hive Community has voted to declare the 3.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. \
@@ -223,6 +228,7 @@ Hive users for these two versions are encouraged to upgrade.
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
 [HIVE_ARCHIVES]: https://archive.apache.org/dist/hive/
+[HIVE_4_1_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353994&styleName=Text&projectId=12310843
 [HIVE_4_0_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12354786&styleName=Text&projectId=12310843
 [HIVE_4_0_0_CL]:https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12343343&styleName=Text&projectId=12310843
 [HIVE_4_0_0_B_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353351&styleName=Text&projectId=12310843
