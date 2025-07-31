@@ -303,7 +303,7 @@ svn commit -m "Hive X.Y.Z release"
 
 ### Voting
 
-1. Call a release vote on dev at hive.apache.org.
+Call a release vote on dev at hive.apache.org.
 
 ```
 From: you@apache.org
@@ -336,6 +336,53 @@ Voting will conclude in 72 hours.
 Hive PMC Members: Please test and vote.
 
 Thanks.
+```
+
+After the vote finishes, count *all* votes and send out the result in a separate thread.
+
+```
+From: you@apache.org
+To: dev@hive.apache.org
+Subject: [RESULT][VOTE] Apache Hive X.Y.Z Release Candidate N
+
+Thanks to everyone who has tested the release candidate and given their comments and votes.
+
+The tally is as follows.
+
+N binding +1s:
+<names>
+
+N non-binding +1s:
+<names>
+
+No 0s or -1s.
+
+Therefore, I am delighted to announce that the proposal to release Apache Hive X.Y.Z has passed.
+
+Thanks everyone. We’ll now publish and announce the release.
+
+[There was some feedback during voting. I shall open a separate
+thread to discuss.]
+```
+
+For transparency and accountability purposes, all votes must be counted including zeros, and negative votes. In case questions arise later, there is a clear audit trail about who supported or opposed the release.
+Even though non-binding votes do not count for publishing the release, naming the voters acknowledges participation, encourages involvement, and shows active community engagement.
+Moreover, sharing the result in a separate thread improves clarity since it clearly separates the voting process from the result. It also provides a permanent reference point for the result without extra noise that may appear in the voting thread and can be used later for audit trails.
+
+In case problems are discovered with a release candidate, the release manager should send an appropriate email in a separate thread.
+
+```
+From: you@apache.org
+To: dev@hive.apache.org
+Subject: [CANCEL][VOTE] Apache Hive X.Y.Z Release Candidate N
+
+Thanks to everyone who has tested the release candidate and given their comments and votes.
+
+I am cancelling the vote for Release Candidate N due to:
+HIVE-XXXXXX:
+HIVE-YYYYYY:
+
+I will prepare another a release candidate once the above issues are resolved.
 ```
 
 ### Verifying the Release Candidate
