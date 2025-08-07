@@ -20,23 +20,50 @@
     <div id="large-header" class="large-header">
         <canvas id="canvas"></canvas>
         <div class="main-title">
-            <a href="{{.Site.BaseURL}}"><img src="{{.Site.BaseURL}}{{ .Site.Params.hiveLogo }}" width="550" height="300"  alt="Apache Software Foundation"></a>
-            <h1 class="text-outline black-text">Apache  Hive </h1>
-            <h4 class="thin"> The Apache Hive ™ is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale and
-                facilitates reading, writing, and managing petabytes of data residing in distributed storage using SQL.</h4>
-            <a href="{{ .Site.Params.banner.github }}" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Github <i class="fab fa-github" style="font-size:35px"></i></button>
-            </a>
-            <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.mailinglists }}" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Mail <i class="fa-solid fa-envelope" style="font-size:35px"></i></button>
-            </a>
-            <a href="{{ .Site.Params.banner.docker }}" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Docker <i class="fab fa-docker" style='font-size:35px'></i></button>
-            </a>
-            <a href="{{ .Site.Params.banner.jira }}" class="icon-block">
-                <button class="custom-button banner-button-style" role="button">Community <i class='fa-solid fa-comments' style='font-size:35px'></i></button>
-            </a>
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <a href="{{.Site.BaseURL}}">
+                        <img src="{{.Site.BaseURL}}{{ .Site.Params.hiveLogo }}" width="450" height="250" alt="Apache Hive Logo" class="responsive-logo">
+                    </a>
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">Apache Hive</h1>
+                    <p class="hero-subtitle">Distributed Data Warehouse at Massive Scale</p>
+                    <p class="hero-description">
+                        The Apache Hive™ is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale and
+                        facilitates reading, writing, and managing petabytes of data residing in distributed storage using SQL.
+                    </p>
+                </div>
+                <div class="hero-actions">
+                    <div class="primary-actions">
+                        <a href="{{ .Site.Params.navbar.gettingStarted }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i> Get Started
+                        </a>
+                        <a href="{{ .Site.Params.banner.github }}" class="btn btn-outline-light btn-lg">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                    <div class="secondary-actions">
+                        <a href="{{ .Site.Params.banner.docker }}" class="action-link">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </a>
+                        <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.mailinglists }}" class="action-link">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Mailing Lists</span>
+                        </a>
+                        <a href="{{ .Site.Params.banner.jira }}" class="action-link">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>Community</span>
+                        </a>
+                        <a href="{{ .Site.Params.navbar.latest }}" class="action-link">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <script  src="{{ .Site.BaseURL }}/js/script.js"></script>
+    <script src="{{ .Site.BaseURL }}/js/script.js"></script>
 </banner>

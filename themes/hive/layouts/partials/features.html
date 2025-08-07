@@ -18,171 +18,254 @@
 
 <features class="container text-style white-background">
     <div>
+        <!-- What is Hive Section -->
         <div class="row feature-intro">
-            <div class="row section-header-style">
-                <h2 class="section-header-text" style="text-align: center;">What is Hive?</h2>
-            </div>
-            <p>
-                Apache Hive is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale.
-                Hive Metastore(HMS) provides a central repository of metadata that can easily be analyzed to make informed,
-                data driven decisions, and therefore it is a critical component of many data lake architectures.
-
-                Hive is built on top of Apache Hadoop and supports storage on S3, adls, gs etc though hdfs.
-                Hive allows users to read, write, and manage petabytes of data using SQL.
-            </p>
-        </div>
-        <div class="row section-header-style">
-            <h2 class="section-header-text" style="text-align: center;">Key Features</h2>
-        </div>
-        <div class="row divs">
-            {{- partial "hs2terminal.html" . -}}
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">HiveServer2 (HS2)</h2>
-                <p>
-                    HS2 supports multi-client concurrency and authentication.
-                    It is designed to provide better support for open API clients like JDBC and ODBC.
-                </p>
-                <a href="{{ .Site.Params.features.hs2 }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-        </div>
-
-        <div class="row divs">
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive Metastore Server (HMS)</h2>
-                <p>
-                    The Hive Metastore (HMS) is a central repository of metadata for Hive tables and partitions in a relational database,
-                    and provides clients (including Hive, Impala and Spark) access to this information using the metastore service API.
-                    It has become a building block for data lakes that utilize the diverse world of open-source software, such as Apache Spark and Presto.
-                    In fact, a whole ecosystem of tools, open-source and otherwise, are built around the Hive Metastore, some of which this diagram illustrates.
-                </p>
-                <a href="{{ .Site.Params.features.hms }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-            <div class="col-md">
-                <a href="{{ .Site.Params.features.hms }}">
-                    <img src="{{.Site.BaseURL}}/images/HMS.jpg" width="600" height="400"  alt="Apache Software Foundation"></a>
-                </a>
+            <div class="col-12">
+                <div class="section-header-style text-center mb-5">
+                    <h2 class="section-header-text">What is Apache Hive?</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="intro-content">
+                    <p class="lead text-center mb-4">
+                        Apache Hive is a distributed, fault-tolerant data warehouse system that enables analytics at a massive scale.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="intro-point">
+                                <i class="fas fa-database intro-icon"></i>
+                                <h5>Central Metadata Repository</h5>
+                                <p>Hive Metastore (HMS) provides a central repository of metadata that can easily be analyzed to make informed, data driven decisions, making it a critical component of many data lake architectures.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="intro-point">
+                                <i class="fas fa-code intro-icon"></i>
+                                <h5>SQL Analytics at Scale</h5>
+                                <p>Built on top of Apache Hadoop with support for S3, ADLS, GS and more. Hive allows users to read, write, and manage petabytes of data using familiar SQL syntax.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row divs">
-            <div class="col-md ">
-                <a href="{{ .Site.Params.features.acidTxn }}">
-                    <img src="{{.Site.BaseURL}}/images/hiveAcid.svg" width="300" height="300"  alt="Apache Software Foundation"></a>
-                </a>
-            </div>
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive ACID</h2>
-                <p>
-                    Hive provides full ACID support for <a href="https://orc.apache.org/">ORC</a> tables and insert only support to all other formats.
-                </p>
-                <a href="{{ .Site.Params.features.acidTxn }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
+        <!-- Key Features Section -->
+        <div class="row section-header-style mt-5">
+            <div class="col-12 text-center">
+                <h2 class="section-header-text">Key Features & Capabilities</h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">Powerful tools for modern data analytics and management</p>
             </div>
         </div>
 
-        <div class="row divs">
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive Data Compaction</h2>
-                <p>
-                    Query-based and MR-based data compactions are supported out-of-the-box.
-                </p>
-                <a href="{{ .Site.Params.features.compactions }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-            <div class="col-md">
-                {{- partial "compaction.html" . -}}
-            </div>
-        </div>
-
-        <div class="row divs">
-            <div class="col-md ">
-                <a href="{{ .Site.Params.features.iceberg }}">
-                    <img src="{{.Site.BaseURL}}/images/hiveIceberg.png" width="500" height="250"  alt="Apache Software Foundation"></a>
-                </a>
-            </div>
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive Iceberg</h2>
-                <p>
-                    Hive provides out of the box support for Apache Iceberg Tables, a cloud-native,
-                    high-performance open table format, via Hive StorageHandler.
-                </p>
-                <a href="{{ .Site.Params.features.iceberg }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-        </div>
-
-
-        <div class="row divs">
-
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Security and Observability</h2>
-                <p>
-                    Apache Hive supports kerberos auth and integrates with Apache Ranger and Apache Atlas for security and
-                    observability.
-                </p>
-                <a href="https://atlas.apache.org/1.2.0/Hook-Hive.html" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-            <div  class="col-md">
-                <img src="{{.Site.BaseURL}}/images/ker.jpeg" width="200" height="150"  alt="Apache Software Foundation"></a>
-                <img src="{{.Site.BaseURL}}/images/atlas.png" width="400" height="100"  alt="Apache Software Foundation"></a>
-                <img src="{{.Site.BaseURL}}/images/ranger.png" width="400" height="100"  alt="Apache Software Foundation"></a>
-            </div>
-        </div>
-        <div class="row divs">
-            <div class="col-md">
-                <img src="{{.Site.BaseURL}}/images/llap.png" width="600" height="350"  alt="Apache Software Foundation"></a>
-            </div>
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive LLAP</h2>
-                <p>
-                    Apache Hive enables interactive and subsecond SQL through Low Latency Analytical Processing (LLAP),
-                    introduced in Hive 2.0 that makes Hive faster by using persistent query infrastructure and optimized data caching
-                </p>
-                <a href="{{ .Site.Params.features.llap }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
+        <!-- Feature Grid -->
+        <div class="features-grid">
+            <!-- HiveServer2 -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6">
+                    {{- partial "hs2terminal.html" . -}}
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="feature-title">HiveServer2 (HS2)</h3>
+                        <p class="feature-description">
+                            HS2 supports multi-client concurrency and authentication with better support for open API clients like JDBC and ODBC, enabling seamless integration with business intelligence tools and applications.
+                        </p>
+                        <a href="{{ .Site.Params.features.hs2 }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-        </div>
-        <div class="row divs">
-
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Query planner and Cost based Optimizer</h2>
-                <p>
-                    Hive uses Apache Calcite's cost based query optimizer (CBO) and query execution framework to optimize sql queries.
-                </p>
-                <a href="{{ .Site.Params.features.cbo }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
-            </div>
-            <div class="col-md">
-                {{- partial "explain.html" . -}}
-            </div>
-        </div>
-
-        <div class="row divs">
-            <div class="col-md">
-                {{- partial "repl.html" . -}}
-            </div>
-            <div class="col-md feature-border">
-                <h2 class="topic-text-style">Hive Replication</h2>
-                <p>
-                    Hive supports bootstap and incremental replication for backup and recovery.
-                </p>
-                <a href="{{ .Site.Params.features.repl }}" class="icon-block">
-                    <button class="custom-button feature-button-style" role="button">Learn More</button>
-                </a>
+            <!-- Hive Metastore -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6 order-md-2">
+                    <div class="feature-image">
+                        <img src="{{.Site.BaseURL}}/images/HMS.jpg" alt="Hive Metastore" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h3 class="feature-title">Hive Metastore Server (HMS)</h3>
+                        <p class="feature-description">
+                            The central repository of metadata for Hive tables and partitions, providing clients including Hive, Impala, and Spark access through the metastore service API. A fundamental building block for modern data lakes.
+                        </p>
+                        <a href="{{ .Site.Params.features.hms }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
+            <!-- ACID Transactions -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6">
+                    <div class="feature-image">
+                        <img src="{{.Site.BaseURL}}/images/hiveAcid.svg" alt="Hive ACID" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">ACID Transactions</h3>
+                        <p class="feature-description">
+                            Full ACID support for ORC tables and insert-only support for all other formats, ensuring data consistency and reliability in concurrent environments.
+                        </p>
+                        <a href="{{ .Site.Params.features.acidTxn }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Compaction -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6 order-md-2">
+                    <div class="feature-visual">
+                        {{- partial "compaction.html" . -}}
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Data Compaction</h3>
+                        <p class="feature-description">
+                            Query-based and MapReduce-based data compactions are supported out-of-the-box, optimizing storage efficiency and query performance.
+                        </p>
+                        <a href="{{ .Site.Params.features.compactions }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apache Iceberg Integration -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6">
+                    <div class="feature-image">
+                        <img src="{{.Site.BaseURL}}/images/hiveIceberg.png" alt="Hive Iceberg Integration" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3 class="feature-title">Apache Iceberg Support</h3>
+                        <p class="feature-description">
+                            Out-of-the-box support for Apache Iceberg tables, a cloud-native, high-performance open table format, via Hive StorageHandler for modern data lake architectures.
+                        </p>
+                        <a href="{{ .Site.Params.features.iceberg }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security & Observability -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6 order-md-2">
+                    <div class="security-logos">
+                        <img src="{{.Site.BaseURL}}/images/ker.jpeg" alt="Kerberos" class="security-logo">
+                        <img src="{{.Site.BaseURL}}/images/atlas.png" alt="Apache Atlas" class="security-logo">
+                        <img src="{{.Site.BaseURL}}/images/ranger.png" alt="Apache Ranger" class="security-logo">
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="feature-title">Security & Observability</h3>
+                        <p class="feature-description">
+                            Enterprise-grade security with Kerberos authentication and seamless integration with Apache Ranger for authorization and Apache Atlas for data lineage and governance.
+                        </p>
+                        <a href="https://atlas.apache.org/1.2.0/Hook-Hive.html" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LLAP -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6">
+                    <div class="feature-image">
+                        <img src="{{.Site.BaseURL}}/images/llap.png" alt="LLAP" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="feature-title">Low Latency Analytics (LLAP)</h3>
+                        <p class="feature-description">
+                            Interactive and sub-second SQL queries through persistent query infrastructure and optimized data caching, making Hive suitable for real-time analytics workloads.
+                        </p>
+                        <a href="{{ .Site.Params.features.llap }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost-Based Optimizer -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6 order-md-2">
+                    <div class="feature-visual">
+                        {{- partial "explain.html" . -}}
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Cost-Based Optimizer</h3>
+                        <p class="feature-description">
+                            Apache Calcite's cost-based query optimizer (CBO) and execution framework automatically optimize SQL queries for optimal performance and resource utilization.
+                        </p>
+                        <a href="{{ .Site.Params.features.cbo }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Replication -->
+            <div class="row feature-row align-items-center mb-5">
+                <div class="col-md-6">
+                    <div class="feature-visual">
+                        {{- partial "repl.html" . -}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-content">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Data Replication</h3>
+                        <p class="feature-description">
+                            Bootstrap and incremental replication capabilities for robust backup and disaster recovery, ensuring business continuity and data protection.
+                        </p>
+                        <a href="{{ .Site.Params.features.repl }}" class="feature-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </features>
