@@ -237,6 +237,7 @@ git push origin release-X.Y.Z-rcR
 ```
 
 Note: If you build from the existing project, make sure there are no empty directories or the "*.iml" files in the apache-hive-X.Y.Z-src.tar.gz.
+
 3. Verify that the SHA 256 checksums are valid:
 
 ```
@@ -423,13 +424,15 @@ Once [three PMC members have voted for a release](http://www.apache.org/foundati
 1. Tag the release and delete the release candidate tag. Do it from the release branch:
 
 ```
-git tag -s rel/release-X.Y.Z -m "HiveX.Y.Z release."
+git tag -s rel/release-X.Y.Z -m "Hive X.Y.Z release."
 git push origin rel/release-X.Y.Z
 git tag -d release-X.Y.Z-rcR
 git push origin :release-X.Y.Z-rcR
 ```
+**NOTE:**  
+If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.  
+This step (`git push origin rel/release-X.Y.Z`) will trigger the Hive Docker image build and upload to Docker Hub on the [Hive Action Page](https://github.com/apache/hive/actions/workflows/docker-GA-images.yml). If the image build fails, click **Re-run** on the Actions page to retry or manually build and upload it. Finally, verify whether the image has been successfully uploaded by checking the [Docker Hub](https://hub.docker.com/r/apache/hive/tags).
 
-If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.
 2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055)). You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
 
 ```
@@ -443,7 +446,8 @@ svn mv https://dist.apache.org/repos/dist/dev/hive/hive-standalone-metastore-X.Y
 mvn clean install javadoc:javadoc javadoc:aggregate -Pjavadoc -DskipTests
 ```
 
-After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs
+After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs.
+
 5. Check out the javadocs svn repository as follows:
 
 ```
@@ -460,6 +464,7 @@ svn commit -m "Hive X.Y.Z javadocs"
 ```
 
 If this is a bugfix release, svn rm the obsoleted version. (For eg., when committing javadocs for r0.13.1, r0.13.0 would have been removed)
+
 7. Prepare to edit the website.
 
 ```
