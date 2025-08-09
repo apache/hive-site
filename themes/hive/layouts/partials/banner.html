@@ -36,7 +36,7 @@
                 </div>
                 <div class="hero-actions">
                     <div class="primary-actions">
-                        <a href="{{ .Site.Params.navbar.gettingStarted }}" class="btn btn-primary btn-lg">
+                        <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.gettingStarted }}" class="btn btn-primary btn-lg">
                             <i class="fas fa-rocket"></i> Get Started
                         </a>
                         <a href="{{ .Site.Params.banner.github }}" class="btn btn-outline-light btn-lg">
@@ -56,7 +56,7 @@
                             <i class="fa-solid fa-comments"></i>
                             <span>Community</span>
                         </a>
-                        <a href="{{ .Site.Params.navbar.latest }}" class="action-link">
+                        <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.latest }}" class="action-link">
                             <i class="fas fa-book"></i>
                             <span>Documentation</span>
                         </a>
