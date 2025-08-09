@@ -1,5 +1,116 @@
 {{ define "main" }}
-    <div class="docs">
-    {{ .Content }}
-    </div>
+<div class="docs-container">
+    <!-- Docs Sidebar -->
+    <aside class="docs-sidebar">
+        <div class="docs-sidebar-header">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+        </div>
+        
+        <nav class="docs-nav">
+            <div class="docs-nav-section">
+                <h4>Quick Start</h4>
+                <ul>
+                    <li><a href="/docs/javadocs/"><i class="fas fa-code"></i> API Documentation</a></li>
+                    <li><a href="/development/gettingstarted/"><i class="fas fa-rocket"></i> Getting Started</a></li>
+                    <li><a href="/development/quickstart/"><i class="fas fa-zap"></i> Quick Start Guide</a></li>
+                </ul>
+            </div>
+            
+            <div class="docs-nav-section">
+                <h4>Development</h4>
+                <ul>
+                    <li><a href="/development/versioncontrol/"><i class="fab fa-git-alt"></i> Version Control</a></li>
+                    <li><a href="/development/qtest/"><i class="fas fa-vial"></i> Testing</a></li>
+                </ul>
+            </div>
+            
+            <div class="docs-nav-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="/community/mailinglists/"><i class="fas fa-envelope"></i> Mailing Lists</a></li>
+                    <li><a href="/community/issuetracking/"><i class="fas fa-bug"></i> Issue Tracking</a></li>
+                    <li><a href="/community/people/"><i class="fas fa-users"></i> People</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="docs-sidebar-footer">
+            <div class="docs-version">
+                <i class="fas fa-tag"></i> Latest Version
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="docs-main{{ if not (and .TableOfContents (gt (len .TableOfContents) 200)) }} docs-main-full{{ end }}">
+        <article class="docs-content">
+            <!-- Breadcrumb Navigation -->
+            <nav class="docs-breadcrumb">
+                <ol>
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/docs/">Documentation</a></li>
+                    <li class="active">{{ .Title }}</li>
+                </ol>
+            </nav>
+            
+            <!-- Content Header -->
+            <header class="docs-header">
+                <h1 class="docs-title">{{ .Title }}</h1>
+                {{ if .Date }}
+                <div class="docs-meta">
+                    <span class="docs-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        Last updated: {{ .Date.Format "January 2, 2006" }}
+                    </span>
+                </div>
+                {{ end }}
+            </header>
+            
+            <!-- Table of Contents (only show if content is substantial) -->
+            {{ if gt (len .TableOfContents) 100 }}
+            <div class="docs-toc">
+                <h4><i class="fas fa-list"></i> Table of Contents</h4>
+                {{ .TableOfContents }}
+            </div>
+            {{ end }}
+            
+            <!-- Article Content -->
+            <div class="docs-article">
+                {{ .Content }}
+            </div>
+            
+            <!-- Article Footer -->
+            <footer class="docs-footer">
+                <div class="docs-feedback">
+                    <h4><i class="fas fa-comment"></i> Feedback</h4>
+                    <p>Was this page helpful? Let us know how we can improve.</p>
+                    <div class="docs-feedback-buttons">
+                        <button class="btn btn-feedback btn-positive">
+                            <i class="fas fa-thumbs-up"></i> Yes
+                        </button>
+                        <button class="btn btn-feedback btn-negative">
+                            <i class="fas fa-thumbs-down"></i> No
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="docs-edit">
+                    <a href="https://github.com/apache/hive-site/edit/main/content/{{ .File.Path }}" class="btn btn-outline">
+                        <i class="fab fa-github"></i> Edit this page on GitHub
+                    </a>
+                </div>
+            </footer>
+        </article>
+        
+        <!-- Right Sidebar (Table of Contents) - only for longer documents -->
+        {{ if and .TableOfContents (gt (len .TableOfContents) 200) }}
+        <aside class="docs-toc-sidebar">
+            <div class="docs-toc-sticky">
+                <h4><i class="fas fa-list"></i> On this page</h4>
+                {{ .TableOfContents }}
+            </div>
+        </aside>
+        {{ end }}
+    </main>
+</div>
 {{ end }}
