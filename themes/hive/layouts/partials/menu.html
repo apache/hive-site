@@ -28,7 +28,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ .Site.Params.navbar.release }}" id="navbarDropdown" role="button" aria-expanded="false">
+                        <a class="nav-link" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.release }}" id="navbarDropdown" role="button" aria-expanded="false">
                             Releases
                         </a>
                     </li>
@@ -38,7 +38,7 @@
                             Documentation
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-			    <li><a class="dropdown-item" href="{{ .Site.Params.navbar.latest }}">Latest</a></li>
+			    <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.latest }}">Latest</a></li>
                             <li><a class="dropdown-item" href="{{.Site.BaseURL}}{{ .Site.Params.navbar.javaDocs }}">Javadocs</a></li>
                             <li><a class="dropdown-item" href="{{ .Site.Params.navbar.languageManual }}">Language Manual</a></li>
                         </ul>
