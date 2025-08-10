@@ -19,13 +19,13 @@
 <replication class="col-md">
     <div id="repl" data-termynal data-ty-typeDelay="40" data-ty-lineDelay="70" style="width: 830px; font-size: 0.9em;" >
         <span data-ty="input">jdbc:hive2://> repl dump src with (</span>
-        <span data-ty="input">. . .>   'hive.repl.dump.version'= '2',</span>
-        <span data-ty="input">. . .>   'hive.repl.rootdir'= 'hdfs://&lt;host&gt;:&lt;port&gt;/user/replDir/d1'</span>
-        <span data-ty="input">. . .> );</span>
+        <span data-ty="multiline_input">'hive.repl.dump.version'= '2',</span>
+        <span data-ty="multiline_input">'hive.repl.rootdir'= 'hdfs://&lt;host&gt;:&lt;port&gt;/user/replDir/d1'</span>
+        <span data-ty="multiline_input">);</span>
         <span data-ty>Done!</span>
         <span data-ty="input">jdbc:hive2://> repl load src into tgt with (</span>
-        <span data-ty="input">. . .>   'hive.repl.rootdir'= 'hdfs://&lt;host&gt;:&lt;port&gt;/user/replDir/d1'</span>
-        <span data-ty="input">. . .> );</span>
+        <span data-ty="multiline_input">'hive.repl.rootdir'= 'hdfs://&lt;host&gt;:&lt;port&gt;/user/replDir/d1'</span>
+        <span data-ty="multiline_input">);</span>
         <span data-ty>Done!</span>
     </div>
 </replication>

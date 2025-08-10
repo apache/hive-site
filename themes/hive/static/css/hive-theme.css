@@ -2514,4 +2514,52 @@ features.container {
     }
 }
 
+/* ======================================
+   ANNOUNCEMENTS PAGE STYLES
+   ====================================== */
+
+/* Announcements Banner */
+.announcement-banner {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 1px solid #b8dabc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-banner .alert-heading {
+    color: #155724;
+    font-weight: 600;
+}
+
+.announcement-banner p {
+    color: #155724;
+    margin-bottom: 1rem;
+}
+
+.announcement-banner .btn {
+    margin-right: 0.5rem;
+}
+
+
+/* ======================================
+   TERMYNAL MULTILINE INPUT STYLES
+   ====================================== */
+
+[data-ty="multiline_input"]:before,
+[data-ty-prompt]:before {
+    margin-right: 0.75em;
+    color: var(--color-text-subtle);
+}
+
+[data-ty="multiline_input"]:before {
+    content: '>';
+    text-align: left;
+}
+
+[data-termynal] {
+    padding: 75px 25px 35px;
+}
+
 

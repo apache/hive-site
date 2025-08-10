@@ -1,0 +1,133 @@
+<!---
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License. -->
+
+<!-- New Release Announcement Banner -->
+<div class="release-banner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="banner-content">
+                    <span class="badge badge-success me-2">NEW RELEASE</span>
+                    <strong>Apache Hive 4.1.0 is now available!</strong>
+                    <span class="banner-details">Featuring JDK 17 support, enhanced Iceberg integration, and improved performance.</span>
+                </div>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="banner-actions">
+                    <a href="{{.Site.BaseURL}}{{ .Site.Params.navbar.release }}" class="btn btn-banner-primary">
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <a href="{{.Site.BaseURL}}/announcements/" class="btn btn-banner-secondary">
+                        <i class="fas fa-info-circle"></i> Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.release-banner {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.banner-details {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+.banner-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-banner-primary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-banner-primary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-banner-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-banner-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .banner-content {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .banner-actions {
+        justify-content: center;
+    }
+    
+    .btn-banner-primary,
+    .btn-banner-secondary {
+        padding: 0.5rem 1.2rem;
+    }
+}
+</style>
