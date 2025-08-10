@@ -50,6 +50,7 @@ theme = 'hive'
     gettingStarted = "/development/gettingstarted/"
     docker = "/development/quickstart/"
     blogs = "https://hive.blog.apache.org/"
+    announcements = "/general/downloads/#31-july-2025--release-410-available"
 
 [params.features]
     acidTxn = "https://cwiki.apache.org/confluence/display/hive/hive+transactions"
