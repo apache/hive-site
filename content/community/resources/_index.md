@@ -1,4 +1,4 @@
 ---
-title: "Documentation"
+title: "Resources"
 date: 2025-07-24
 ---
