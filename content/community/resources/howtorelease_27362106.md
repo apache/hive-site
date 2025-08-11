@@ -256,7 +256,6 @@ hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
 4. Check that release file looks ok -- e.g., install it and run examples from tutorial.
 5. Setup your PGP keys for signing the release, if you don't have them already.
 	1. See <https://www.apache.org/dev/release-signing.html>, <https://www.apache.org/dev/openpgp.html>.
-    2. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you. 
 
 ```
 % gpg --full-generate-key
@@ -433,7 +432,7 @@ git push origin :release-X.Y.Z-rcR
 If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.  
 This step (`git push origin rel/release-X.Y.Z`) will trigger the Hive Docker image build and upload to Docker Hub on the [Hive Action Page](https://github.com/apache/hive/actions/workflows/docker-GA-images.yml). If the image build fails, click **Re-run** on the Actions page to retry or manually build and upload it. Finally, verify whether the image has been successfully uploaded by checking the [Docker Hub](https://hub.docker.com/r/apache/hive/tags).
 
-2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055)). You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
+2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055)).
 
 ```
 svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m "Move hive-X.Y.Z release from dev to release"
@@ -532,7 +531,7 @@ The Apache Hive Team
 
 ### Archive old releases
 
-According to the [INFRA archival g](https://infra.apache.org/release-distribution.html#archival)[uidelines](https://infra.apache.org/release-distribution.html#archival) old releases should be removed from the main [download site of the project](https://downloads.apache.org/hive/) following. Check the respective guidelines and perform the necessary cleanup. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
+According to the [INFRA archival g](https://infra.apache.org/release-distribution.html#archival)[uidelines](https://infra.apache.org/release-distribution.html#archival) old releases should be removed from the main [download site of the project](https://downloads.apache.org/hive/) following. Check the respective guidelines and perform the necessary cleanup.
 
 ```
 svn del -m "Archiving release Apache Hive X.Y.Z" https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z/ 
