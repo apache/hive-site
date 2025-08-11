@@ -57,7 +57,7 @@ project and contribute your expertise.
 * Become a [Hive Fan on Facebook][HIVE_FACEBOOK]
 * Follow [@ApacheHive on Twitter][HIVE_TWITTER]
 
-[GETTING_STARTED]: /development/gettingstarted_27362090/
+[GETTING_STARTED]: /development/gettingstarted-latest/
 [APACHE_HADOOP]: http://hadoop.apache.org
 [ISSUE_TRACKING]: /community/issuetracking/
 [MAILING_LISTS]: /community/mailinglists/

@@ -1,9 +1,9 @@
 ---
-title: "Apache Hive : HCatalog Streaming Mutation API (Copy)"
+title: "Apache Hive : HCatalog Streaming Mutation API"
 date: 2024-12-12
 ---
 
-# Apache Hive : HCatalog Streaming Mutation API (Copy)
+# Apache Hive : HCatalog Streaming Mutation API
 
 A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s [ACID](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions) feature. It is introduced in Hive 2.0.0 ([HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)).
 
@@ -109,7 +109,7 @@ Although this API is concerned with writing changes to data, as previously state
 
 # Example
 
-![](/attachments/283118454/283118455.png?effects=border-simple,blur-border)
+![](/attachments/61337025/61337024.png?effects=border-simple,blur-border)
 
 So to recap, the sequence of events required to apply mutations to a dataset using the API is:
 
