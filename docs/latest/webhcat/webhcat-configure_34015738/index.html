@@ -1,0 +1,373 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : WebHCat Configure</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--webhcat-configure>Apache Hive : WebHCat Configure</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--webhcat-configure>Apache Hive : WebHCat Configure</a>
+<ul>
+<li><a href=#configuration-files>Configuration Files</a></li>
+<li><a href=#configuration-variables>Configuration Variables</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=configuration-files>Configuration Files</h2>
+<p>The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.</p>
+<p>The WebHCat-specific configuration is split into two layers:</p>
+<ol>
+<li><strong>webhcat-default.xml</strong> – All the configuration variables that WebHCat needs. This file sets the defaults that ship with WebHCat and should only be changed by WebHCat developers. Do not copy this file or change it to maintain local installation settings. Because webhcat-default.xml is present in the WebHCat war file, editing a local copy of it will not change the configuration.</li>
+<li><strong>webhcat-site.xml</strong> – The (possibly empty) configuration file in which the system administrator can set variables for their Hadoop cluster. Create this file and maintain entries in it for configuration variables that require you to override default values based on your local installation.</li>
+</ol>
+<p>Note</p>
+<p>The WebHCat server will require restart after any change to the configuration.</p>
+<p>The configuration files are loaded in this order with later files overriding earlier ones:</p>
+<ul>
+<li>To find the configuration files, WebHCat first attempts to load a file from the <code>CLASSPATH</code> and then looks in the directory specified in the <code>TEMPLETON_HOME</code> environment variable.</li>
+</ul>
+<p>Configuration files may access the special environment variable <code>env</code> for all environment variables. For example, the Pig executable could be specified using:</p>
+<pre tabindex=0><code>${env.PIG_HOME}/bin/pig
+
+</code></pre><p>Configuration variables that use a filesystem path try to have reasonable defaults. However, it&rsquo;s always safe to specify the full and complete path if there is any uncertainty.</p>
+<p>Log File Location</p>
+<p>The webhcat-log4j.properties file sets the location of the log files created by WebHCat and some other properties of the logging system.</p>
+<h2 id=configuration-variables>Configuration Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>templeton.port</strong></td>
+<td>The HTTP port for the main server.</td>
+</tr>
+<tr>
+<td><strong>templeton.hadoop.config.dir</strong></td>
+<td>The path to the Hadoop configuration.</td>
+</tr>
+<tr>
+<td><em>Obsolete:</em> <strong>templeton.jar</strong></td>
+<td>The path to the WebHCat jar file. (<a href=https://issues.apache.org/jira/browse/HIVE-6549>Not used in recent releases, so removed in Hive 0.14.0.</a>)</td>
+</tr>
+<tr>
+<td><strong>templeton.libjars</strong></td>
+<td>Jars to add to the classpath.</td>
+</tr>
+<tr>
+<td><strong>templeton.override.jars</strong></td>
+<td>Jars to add to the <code>HADOOP_CLASSPATH</code> for all Map Reduce jobs. These jars must exist on HDFS.</td>
+</tr>
+<tr>
+<td><strong>templeton.override.enabled</strong></td>
+<td>Enable the override path in <strong>templeton.override.jars</strong>.</td>
+</tr>
+<tr>
+<td><strong>templeton.streaming.jar</strong></td>
+<td>The HDFS path to the Hadoop streaming jar file.</td>
+</tr>
+<tr>
+<td><strong>templeton.hadoop</strong></td>
+<td>The path to the Hadoop executable.</td>
+</tr>
+<tr>
+<td><strong>templeton.pig.archive</strong></td>
+<td>The path to the Pig archive.</td>
+</tr>
+<tr>
+<td><strong>templeton.pig.path</strong></td>
+<td>The path to the Pig executable.</td>
+</tr>
+<tr>
+<td><strong>templeton.hcat</strong></td>
+<td>The path to the HCatalog executable.</td>
+</tr>
+<tr>
+<td><strong>templeton.hive.archive</strong></td>
+<td>The path to the Hive archive.</td>
+</tr>
+<tr>
+<td><strong>templeton.hive.path</strong></td>
+<td>The path to the Hive executable.</td>
+</tr>
+<tr>
+<td><strong>templeton.hive.properties</strong></td>
+<td>Properties to set when running Hive (during job submission).  This is expected to be a comma-separated prop=value list. If some value is itself a comma-separated list, the escape character is &lsquo;' (from <a href=https://issues.apache.org/jira/browse/HIVE-4576>Hive 0.13.1</a> onward).To use it in a cluster with Kerberos security enabled, set <code>hive.metastore.sasl.enabled=false</code> and add <code>hive.metastore.execute.setugi=true</code>. Using localhost in metastore URI does not work with Kerberos security.</td>
+</tr>
+<tr>
+<td><strong>templeton.exec.encoding</strong></td>
+<td>The encoding of the stdout and stderr data.</td>
+</tr>
+<tr>
+<td><strong>templeton.exec.timeout</strong></td>
+<td>How long in milliseconds a program is allowed to run on the WebHCat box.</td>
+</tr>
+<tr>
+<td><strong>templeton.exec.max-procs</strong></td>
+<td>The maximum number of processes allowed to run at once.</td>
+</tr>
+<tr>
+<td><strong>templeton.exec.max-output-bytes</strong></td>
+<td>The maximum number of bytes from stdout or stderr stored in ram.</td>
+</tr>
+<tr>
+<td><strong>templeton.controller.mr.child.opts</strong></td>
+<td>Java options to be passed to WebHCat controller map task.</td>
+</tr>
+<tr>
+<td><strong>templeton.exec.envs</strong></td>
+<td>The environment variables passed through to exec.</td>
+</tr>
+<tr>
+<td><strong>templeton.zookeeper.hosts</strong></td>
+<td>ZooKeeper servers, as comma-separated host:port pairs.</td>
+</tr>
+<tr>
+<td><strong>templeton.zookeeper.session-timeout</strong></td>
+<td>ZooKeeper session timeout in milliseconds.</td>
+</tr>
+<tr>
+<td><strong>templeton.callback.retry.interval</strong></td>
+<td>How long to wait between callback retry attempts in milliseconds.</td>
+</tr>
+<tr>
+<td><strong>templeton.callback.retry.attempts</strong></td>
+<td>How many times to retry the callback.</td>
+</tr>
+<tr>
+<td><strong>templeton.storage.class</strong></td>
+<td>The class to use as storage.</td>
+</tr>
+<tr>
+<td><strong>templeton.storage.root</strong></td>
+<td>The path to the directory to use for storage.</td>
+</tr>
+<tr>
+<td><strong>templeton.hdfs.cleanup.interval</strong></td>
+<td>The maximum delay between a thread&rsquo;s cleanup checks.</td>
+</tr>
+<tr>
+<td><strong>templeton.hdfs.cleanup.maxage</strong></td>
+<td>The maximum age of a WebHCat job.</td>
+</tr>
+<tr>
+<td><strong>templeton.zookeeper.cleanup.interval</strong></td>
+<td>The maximum delay between a thread&rsquo;s cleanup checks.</td>
+</tr>
+<tr>
+<td><strong>templeton.zookeeper.cleanup.maxage</strong></td>
+<td>The maximum age of a WebHCat job.</td>
+</tr>
+<tr>
+<td><strong>templeton.kerberos.secret</strong></td>
+<td>The secret used to sign the HTTP cookie value. The default value is a random value. Unless multiple WebHCat instances need to share the secret the random value is adequate.</td>
+</tr>
+<tr>
+<td><strong>templeton.kerberos.principal</strong></td>
+<td>The Kerberos principal to used by the server. As stated by the Kerberos SPNEGO specification, it should be <code>USER/${HOSTNAME}@{REALM</code>}. It does not have a default value.</td>
+</tr>
+<tr>
+<td><strong>templeton.kerberos.keytab</strong></td>
+<td>The keytab file containing the credentials for the Kerberos principal.</td>
+</tr>
+<tr>
+<td><strong>templeton.hadoop.queue.name</strong></td>
+<td>MapReduce queue name where WebHCat map-only jobs will be submitted to. Can be used to avoid a deadlock where all map slots in the cluster are taken over by Templeton launcher tasks.Versions: <a href=https://issues.apache.org/jira/browse/HIVE-4679>Hive 0.12.0</a> and later.</td>
+</tr>
+<tr>
+<td><strong>templeton.mapper.memory.mb</strong></td>
+<td>WebHCat controller job&rsquo;s Launch mapper&rsquo;s memory limit in megabytes. When submitting a controller job, WebHCat will overwrite <code>mapreduce.map.memory.mb</code> with this value. If empty, WebHCat will not set <code>mapreduce.map.memory.mb</code> when submitting the controller job, therefore the configuration in mapred-site.xml will be used.Versions: <a href=https://issues.apache.org/jira/browse/HIVE-7155>Hive 0.14.0</a> and later.</td>
+</tr>
+<tr>
+<td><strong>templeton.frame.options.filter</strong></td>
+<td>Adds web server protection from clickjacking using X-Frame-Options header. The possible values are DENY, SAMEORIGIN, ALLOW-FROM .Versions: <a href=https://issues.apache.org/jira/browse/HIVE-17679>Hive 3.0.0</a> and later.</td>
+</tr>
+</tbody>
+</table>
+<h4 id=default-values>Default Values</h4>
+<p>Some of the default values for WebHCat configuration variables depend on the release number. For the default values in the Hive release you are using, see the webhcat-default.xml file. It can be found in the SVN repository at:</p>
+<ul>
+<li><a href=http://svn.apache.org/repos/asf/hive/branches/branch->http://svn.apache.org/repos/asf/hive/branches/branch-</a><em>&lt;release_number></em>/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml</li>
+</ul>
+<p>where <em>&lt;release_number></em> is 0.11, 0.12, and so on. Prior to Hive 0.11, WebHCat was in the Apache incubator.</p>
+<p>For example:</p>
+<ul>
+<li>Hive 0.12.0:  <a href=http://svn.apache.org/repos/asf/hive/branches/branch-0.12/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml>http://svn.apache.org/repos/asf/hive/branches/branch-0.12/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml</a></li>
+<li>Hive 0.13.0:  <a href=http://svn.apache.org/repos/asf/hive/branches/branch-0.13/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml>http://svn.apache.org/repos/asf/hive/branches/branch-0.13/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml</a></li>
+</ul>
+<p>Default values prior to Hive 0.11 are listed in the HCatalog 0.5.0 documentation:</p>
+<ul>
+<li>HCatalog 0.5.0:  <a href=http://hive.apache.org/javadocs/hcat-r0.5.0/configuration.html#Variables>WebHCat Configuration Variables</a></li>
+</ul>
+<p> </p>
+<p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat_34015585/>Installation</a><br>
+Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference_34015762/>Reference</a></p>
+<p>Hive configuration: <a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration_27362070/>Configuring Hive</a>, <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties>Hive Configuration Properties</a>, <a href=#thrift-server-setup>Thrift Server Setup</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

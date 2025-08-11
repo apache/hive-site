@@ -1,0 +1,507 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive Operators</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-operators>Apache Hive : Hive Operators</h1>
+<h3 id=operators-precedences>Operators Precedences</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Example</strong></th>
+<th><strong>Operators</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A[B] , A.identifier</td>
+<td>bracket_op([]), dot(.)</td>
+<td>element selector, dot</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>unary(+), unary(-), unary(~)</td>
+<td>unary prefix operators</td>
+</tr>
+<tr>
+<td>A IS [NOT] (NULL</td>
+<td>TRUE</td>
+<td>FALSE)</td>
+</tr>
+<tr>
+<td>A ^ B</td>
+<td>bitwise xor(^)</td>
+<td>bitwise xor</td>
+</tr>
+<tr>
+<td>A * B</td>
+<td>star(*), divide(/), mod(%), div(DIV)</td>
+<td>multiplicative operators</td>
+</tr>
+<tr>
+<td>A + B</td>
+<td>plus(+), minus(-)</td>
+<td>additive operators</td>
+</tr>
+<tr>
+<td>A</td>
+<td></td>
+<td>B</td>
+</tr>
+<tr>
+<td>A & B</td>
+<td>bitwise and(&)</td>
+<td>bitwise and</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>bitwise or(</td>
+</tr>
+</tbody>
+</table>
+<h3 id=relational-operators>Relational Operators</h3>
+<p>The following operators compare the passed operands and generate a TRUE or FALSE value depending on whether the comparison between the operands holds.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Operand types</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A = B</td>
+<td>All primitive types</td>
+<td>TRUE if expression A is equal to expression B otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A == B</td>
+<td>All primitive types</td>
+<td>Synonym for the = operator.</td>
+</tr>
+<tr>
+<td>A &lt;=> B</td>
+<td>All primitive types</td>
+<td>Returns same result with EQUAL(=) operator for non-null operands, but returns TRUE if both are NULL, FALSE if one of them is NULL. </td>
+</tr>
+<tr>
+<td>A &lt;> B</td>
+<td>All primitive types</td>
+<td>NULL if A or B is NULL, TRUE if expression A is NOT equal to expression B, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A != B</td>
+<td>All primitive types</td>
+<td>Synonym for the &lt;> operator.</td>
+</tr>
+<tr>
+<td>A &lt; B</td>
+<td>All primitive types</td>
+<td>NULL if A or B is NULL, TRUE if expression A is less than expression B, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A &lt;= B</td>
+<td>All primitive types</td>
+<td>NULL if A or B is NULL, TRUE if expression A is less than or equal to expression B, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A > B</td>
+<td>All primitive types</td>
+<td>NULL if A or B is NULL, TRUE if expression A is greater than expression B, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A >= B</td>
+<td>All primitive types</td>
+<td>NULL if A or B is NULL, TRUE if expression A is greater than or equal to expression B, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A [NOT] BETWEEN B AND C</td>
+<td>All primitive types</td>
+<td>NULL if A, B, or C is NULL, TRUE if A is greater than or equal to B AND A less than or equal to C, otherwise FALSE. This can be inverted by using the NOT keyword. </td>
+</tr>
+<tr>
+<td>A IS NULL</td>
+<td>All types</td>
+<td>TRUE if expression A evaluates to NULL, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>A IS NOT NULL</td>
+<td>All types</td>
+<td>FALSE if expression A evaluates to NULL, otherwise TRUE.</td>
+</tr>
+<tr>
+<td>A IS [NOT] (TRUE</td>
+<td>FALSE)</td>
+<td>Boolean types</td>
+</tr>
+<tr>
+<td>A [NOT] LIKE B</td>
+<td>strings</td>
+<td>NULL if A or B is NULL, TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The _ character in B matches any character in A (similar to . in POSIX regular expressions) while the % character in B matches an arbitrary number of characters in A (similar to .* in posix regular expressions). For example, &lsquo;foobar&rsquo; like &lsquo;foo&rsquo; evaluates to FALSE whereas &lsquo;foobar&rsquo; like &lsquo;foo_ _ _&rsquo; evaluates to TRUE and so does &lsquo;foobar&rsquo; like &lsquo;foo%&rsquo;.</td>
+</tr>
+<tr>
+<td>A RLIKE B</td>
+<td>strings</td>
+<td>NULL if A or B is NULL, TRUE if any (possibly empty) substring of A matches the Java regular expression B, otherwise FALSE. For example, &lsquo;foobar&rsquo; RLIKE &lsquo;foo&rsquo; evaluates to TRUE and so does &lsquo;foobar&rsquo; RLIKE &lsquo;^f.*r$&rsquo;.</td>
+</tr>
+<tr>
+<td>A REGEXP B</td>
+<td>strings</td>
+<td>Same as RLIKE.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=arithmetic-operators>Arithmetic Operators</h3>
+<p>The following operators support various common arithmetic operations on the operands. All return number types; if any of the operands are NULL, then the result is also NULL.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Operand types</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A + B</td>
+<td>All number types</td>
+<td>Gives the result of adding A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. For example, since every integer is a float, therefore float is a containing type of integer so the + operator on a float and an int will result in a float.</td>
+</tr>
+<tr>
+<td>A - B</td>
+<td>All number types</td>
+<td>Gives the result of subtracting B from A. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+</tr>
+<tr>
+<td>A * B</td>
+<td>All number types</td>
+<td>Gives the result of multiplying A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. Note that if the multiplication causes overflow, you will have to cast one of the operators to a type higher in the type hierarchy.</td>
+</tr>
+<tr>
+<td>A / B</td>
+<td>All number types</td>
+<td>Gives the result of dividing A by B. The result is a double type in most cases. When A and B are both integers, the result is a double type except when the <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.compat>hive.compat</a> configuration parameter is set to &ldquo;0.13&rdquo; or &ldquo;latest&rdquo; in which case the result is a decimal type.</td>
+</tr>
+<tr>
+<td>A DIV B</td>
+<td>Integer types</td>
+<td>Gives the integer part resulting from dividing A by B. E.g 17 div 3 results in 5.</td>
+</tr>
+<tr>
+<td>A % B</td>
+<td>All number types</td>
+<td>Gives the remainder resulting from dividing A by B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+</tr>
+<tr>
+<td>A & B</td>
+<td>All number types</td>
+<td>Gives the result of bitwise AND of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+</tr>
+<tr>
+<td>A</td>
+<td>B</td>
+<td>All number types</td>
+</tr>
+<tr>
+<td>A ^ B</td>
+<td>All number types</td>
+<td>Gives the result of bitwise XOR of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+</tr>
+<tr>
+<td>~A</td>
+<td>All number types</td>
+<td>Gives the result of bitwise NOT of A. The type of the result is the same as the type of A.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=logical-operators>Logical Operators</h3>
+<p>The following operators provide support for creating logical expressions. All of them return a boolean TRUE, FALSE, or NULL depending upon the boolean values of the operands. NULL behaves as an &ldquo;unknown&rdquo; flag, so if the result depends on the state of an unknown, the result itself is unknown.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Operand types</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A AND B</td>
+<td>boolean</td>
+<td>TRUE if both A and B are TRUE, otherwise FALSE. NULL if A or B is NULL.</td>
+</tr>
+<tr>
+<td>A OR B</td>
+<td>boolean</td>
+<td>TRUE if either A or B or both are TRUE, FALSE OR NULL is NULL, otherwise FALSE.</td>
+</tr>
+<tr>
+<td>NOT A</td>
+<td>boolean</td>
+<td>TRUE if A is FALSE or NULL if A is NULL. Otherwise FALSE.</td>
+</tr>
+<tr>
+<td>! A</td>
+<td>boolean</td>
+<td>Same as NOT A.</td>
+</tr>
+<tr>
+<td>A IN (val1, val2, &mldr;)</td>
+<td>boolean</td>
+<td>TRUE if A is equal to any of the values.</td>
+</tr>
+<tr>
+<td>A NOT IN (val1, val2, &mldr;)</td>
+<td>boolean</td>
+<td>TRUE if A is not equal to any of the values. </td>
+</tr>
+<tr>
+<td>[NOT] EXISTS (subquery)</td>
+<td>boolean</td>
+<td>TRUE if the subquery returns at least one row.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=string-operator>String Operator</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Operand types</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td></td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<h3 id=complex-type-constructors>Complex Type Constructors</h3>
+<p>The following functions construct instances of complex types.</p>
+<table>
+<thead>
+<tr>
+<th>Constructor Function</th>
+<th>Operands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map</td>
+<td>(key1, value1, key2, value2, &mldr;)</td>
+<td>Creates a map with the given key/value pairs.</td>
+</tr>
+<tr>
+<td>struct</td>
+<td>(val1, val2, val3, &mldr;)</td>
+<td>Creates a struct with the given field values. Struct field names will be col1, col2, etc</td>
+</tr>
+<tr>
+<td>named_struct</td>
+<td>(name1, val1, name2, val2, &mldr;)</td>
+<td>Creates a struct with the given field names and values.</td>
+</tr>
+<tr>
+<td>array</td>
+<td>(val1, val2, &mldr;)</td>
+<td>Creates an array with the given elements.</td>
+</tr>
+<tr>
+<td>create_union</td>
+<td>(tag, val1, val2, &mldr;)</td>
+<td>Creates a union type with the value that is being pointed to by the tag parameter.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=operators-on-complex-types>Operators on Complex Types</h3>
+<p>The following operators provide mechanisms to access elements in Complex Types.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Operator</strong></th>
+<th><strong>Operand types</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A[n]</td>
+<td>A is an Array and n is an int</td>
+<td>Returns the nth element in the array A. The first element has index 0. For example, if A is an array comprising of [&lsquo;foo&rsquo;, &lsquo;bar&rsquo;] then A[0] returns &lsquo;foo&rsquo; and A[1] returns &lsquo;bar&rsquo;.</td>
+</tr>
+<tr>
+<td>M[key]</td>
+<td>M is a Map&lt;K, V> and key has type K</td>
+<td>Returns the value corresponding to the key in the map. For example, if M is a map comprising of {&lsquo;f&rsquo; -> &lsquo;foo&rsquo;, &lsquo;b&rsquo; -> &lsquo;bar&rsquo;, &lsquo;all&rsquo; -> &lsquo;foobar&rsquo;} then M[&lsquo;all&rsquo;] returns &lsquo;foobar&rsquo;.</td>
+</tr>
+<tr>
+<td>S.x</td>
+<td>S is a struct</td>
+<td>Returns the x field of S. For example for the struct foobar {int foo, int bar}, foobar.foo returns the integer stored in the foo field of the struct.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,853 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Druid Integration</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--druid-integration>Apache Hive : Druid Integration</h1>
+<p>This page documents the work done for the integration between Druid and Hive introduced in Hive 2.2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--druid-integration>Apache Hive : Druid Integration</a>
+<ul>
+<li><a href=#objectives>Objectives</a></li>
+</ul>
+</li>
+<li><a href=#preliminaries>Preliminaries</a>
+<ul>
+<li><a href=#druid>Druid</a></li>
+<li><a href=#storage-handlers>Storage Handlers</a></li>
+</ul>
+</li>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#discovery-and-management-of-druid-datasources-from-hive>Discovery and management of Druid datasources from Hive</a>
+<ul>
+<li><a href=#create-tables-linked-to-existing-druid-datasources>Create tables linked to existing Druid datasources</a></li>
+<li><a href=#create-druid-datasources-from-hive>Create Druid datasources from Hive</a></li>
+<li><a href=#druid-kafka-ingestion-from-hive>Druid kafka ingestion from Hive</a></li>
+<li><a href=#insert-insert-overwrite-and-drop-statements>INSERT, INSERT OVERWRITE and DROP statements</a></li>
+<li><a href=#queries-completely-executed-in-druid>Queries completely executed in Druid</a></li>
+<li><a href=#queries-across-druid-and-hive>Queries across Druid and Hive</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#open-issues-jira>Open Issues (JIRA)</a></li>
+</ul>
+</nav>
+</aside>
+<h2 id=objectives>Objectives</h2>
+<p>Our main <strong>goal</strong> is to be able to index data from Hive into Druid, and to be able to query Druid datasources from Hive. Completing this work will bring benefits to the Druid and Hive systems alike:</p>
+<ul>
+<li><em>Efficient execution of OLAP queries in Hive.</em> Druid is a system specially well tailored towards the execution of OLAP queries on event data. Hive will be able to take advantage of its efficiency for the execution of this type of queries.</li>
+<li><em>Introducing a SQL interface on top of Druid.</em> Druid queries are expressed in JSON, and Druid is queried through a REST API over HTTP. Once a user has declared a Hive table that is stored in Druid, we will be able to transparently generate Druid JSON queries from the input Hive SQL queries.</li>
+<li><em>Being able to execute complex operations on Druid data.</em> There are multiple operations that Druid does not support natively yet, e.g. joins. Putting Hive on top of Druid will enable the execution of more complex queries on Druid data sources.</li>
+<li><em>Indexing complex query results in Druid using Hive.</em> Currently, indexing in Druid is usually done through MapReduce jobs. We will enable Hive to index the results of a given query directly into Druid, e.g., as a new table or a materialized view (<a href=https://issues.apache.org/jira/browse/HIVE-10459>HIVE-10459</a>), and start querying and using that dataset immediately.</li>
+</ul>
+<p>The initial implementation, started in <a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>, focused on 1) enabling the discovery of data that is already stored in Druid from Hive, and 2) being able to query that data, trying to make use of Druid advanced querying capabilities. For instance, we put special emphasis on pushing as much computation as possible to Druid, and being able to recognize the type of queries for which Druid is specially efficient, e.g. <em><a href=http://druid.io/docs/0.9.1.1/querying/timeseriesquery.html>timeseries</a></em> or <em><a href=http://druid.io/docs/0.9.1.1/querying/groupbyquery.html>groupBy</a></em> queries.</p>
+<p>Future work after the first step is completed is being listed in <a href=https://issues.apache.org/jira/browse/HIVE-14473>HIVE-14473</a>. If you want to collaborate on this effort, a list of remaining issues can be found at the end of this document.</p>
+<h1 id=preliminaries>Preliminaries</h1>
+<p>Before going into further detail, we introduce some background that the reader needs to be aware of in order to understand this document.</p>
+<h2 id=druid>Druid</h2>
+<p>Druid is an open-source analytics data store designed for business intelligence (OLAP) queries on event data. Druid provides low latency (real-time) data ingestion, flexible data exploration, and fast data aggregation. Existing Druid deployments have scaled to trillions of events and petabytes of data. Druid is most commonly used to power user-facing analytic applications. You can find more information about Druid <a href=http://druid.io/>here</a>. </p>
+<h2 id=storage-handlers>Storage Handlers</h2>
+<p>You can find an overview of Hive Storage Handlers <a href=https://hive.apache.org/development/desingdocs/storagehandlers_27362063/>here</a>; the integration of Druid with Hive depends upon that framework.</p>
+<h1 id=usage>Usage</h1>
+<p>For the running examples, we use the <em><a href=http://druid.io/docs/latest/tutorials/tutorial-batch.html>wikiticker</a></em> dataset included in the quickstart tutorial of Druid.</p>
+<h2 id=discovery-and-management-of-druid-datasources-from-hive>Discovery and management of Druid datasources from Hive</h2>
+<p>First we focus on the discovery and management of Druid datasources from Hive.</p>
+<h3 id=create-tables-linked-to-existing-druid-datasources>Create tables linked to existing Druid datasources</h3>
+<p>Assume that we have already stored the <em>wikiticker</em> dataset mentioned previously in Druid, and the address of the Druid broker is <em>10.5.0.10:8082</em>.</p>
+<p>First, you need to set the Hive property <code>hive.druid.broker.address.default</code> in your configuration to point to the broker address:</p>
+<pre tabindex=0><code>SET hive.druid.broker.address.default=10.5.0.10:8082;
+</code></pre><p>Then, to create a table that we can query from Hive, we execute the following statement in Hive:</p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE druid_table_1
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
+TBLPROPERTIES (&quot;druid.datasource&quot; = &quot;wikiticker&quot;);
+</code></pre><p>Observe that you need to specify the <em>datasource</em> as TBLPROPERTIES using the <code>druid.datasource</code> property. Further, observe that the table needs to be created as <em>EXTERNAL</em>, as data is stored in Druid. The table is just a logical entity that we will use to express our queries, but <em>there is no data movement when we create the table</em>. In fact, what happened under the hood when you execute that statement, is that Hive sends a <em><a href=http://druid.io/docs/0.9.1.1/querying/segmentmetadataquery.html>segment metadata</a></em> query to Druid in order to discover the schema (columns and their types) of the data source. Retrieval of other information that might be useful such as statistics e.g. number of rows, is in our roadmap, but it is not supported yet. Finally, note that if we change the Hive property value for the default broker address, queries on this table will automatically run against the new broker address, as the address is not stored with the table.</p>
+<p>If we execute a <em>DESCRIBE</em> statement, we can actually see the information about the table:</p>
+<pre tabindex=0><code>hive&gt; DESCRIBE FORMATTED druid_table_1;
+OK
+# col_name            	data_type           	comment
+__time              	timestamp           	from deserializer
+added               	bigint              	from deserializer
+channel             	string              	from deserializer
+cityname            	string              	from deserializer
+comment             	string              	from deserializer
+count               	bigint              	from deserializer
+countryisocode      	string              	from deserializer
+countryname         	string              	from deserializer
+deleted             	bigint              	from deserializer
+delta               	bigint              	from deserializer
+isanonymous         	string              	from deserializer
+isminor             	string              	from deserializer
+isnew               	string              	from deserializer
+isrobot             	string              	from deserializer
+isunpatrolled       	string              	from deserializer
+metrocode           	string              	from deserializer
+namespace           	string              	from deserializer
+page                	string              	from deserializer
+regionisocode       	string              	from deserializer
+regionname          	string              	from deserializer
+user                	string              	from deserializer
+user_unique         	string              	from deserializer
+# Detailed Table Information
+Database:           	druid
+Owner:              	user1
+CreateTime:         	Thu Aug 18 19:09:10 BST 2016
+LastAccessTime:     	UNKNOWN
+Retention:          	0
+Location:           	hdfs:/tmp/user1/hive/warehouse/druid.db/druid_table_1
+Table Type:         	EXTERNAL_TABLE
+Table Parameters:
+	COLUMN_STATS_ACCURATE	{\&quot;BASIC_STATS\&quot;:\&quot;true\&quot;}
+	EXTERNAL            	TRUE
+	druid.datasource    	wikiticker
+	numFiles            	0
+	numRows             	0
+	rawDataSize         	0
+	storage_handler     	org.apache.hadoop.hive.druid.DruidStorageHandler
+	totalSize           	0
+	transient_lastDdlTime	1471543750
+# Storage Information
+SerDe Library:      	org.apache.hadoop.hive.druid.serde.DruidSerDe
+InputFormat:        	null
+OutputFormat:       	null
+Compressed:         	No
+Num Buckets:        	-1
+Bucket Columns:     	[]
+Sort Columns:       	[]
+Storage Desc Params:
+	serialization.format	1
+Time taken: 0.111 seconds, Fetched: 55 row(s)
+</code></pre><p>We can see there are three different groups of columns corresponding to the Druid categories: the <strong>timestamp</strong> column (<code>__time</code>) mandatory in Druid, the <strong>dimension</strong> columns (whose type is STRING), and the <strong>metrics</strong> columns (all the rest).</p>
+<h3 id=create-druid-datasources-from-hive>Create Druid datasources from Hive</h3>
+<p>If we want to manage the data in the Druid datasources from Hive, there are multiple possible scenarios.</p>
+<p>For instance, we might want to create an empty table backed by Druid using a <em>CREATE TABLE</em> statement and then append and overwrite data using <em>INSERT</em> and <em>INSERT OVERWRITE</em> Hive statements, respectively.</p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE druid_table_1
+(`__time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
+
+</code></pre><p>Another possible scenario is that our data is stored in Hive tables and we want to preprocess it and create Druid datasources from Hive to accelerate our SQL query workload. We can do that by executing a <em>Create Table As Select</em> (CTAS) statement. For example:</p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE druid_table_1
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
+AS
+&lt;select `timecolumn` as `__time`, `dimension1`, `dimension2`, `metric1`, `metric2`....&gt;;
+</code></pre><p>Observe that we still create three different groups of columns corresponding to the Druid categories: the <strong>timestamp</strong> column (<code>__time</code>) mandatory in Druid, the <strong>dimension</strong> columns (whose type is STRING), and the <strong>metrics</strong> columns (all the rest).</p>
+<p>In both statements, the column types (either specified statically for <em>CREATE TABLE</em> statements or inferred from the query result for <em>CTAS</em> statements) are used to infer the corresponding Druid column category.</p>
+<p>Further, note that if we do not specify the value for the <code>druid.datasource</code> property, Hive automatically uses the fully qualified name of the table to create the corresponding datasource with the same name.</p>
+<p>Version Info</p>
+<p><strong>Version 2.2.0: CREATE TABLE syntax when data is managed via hive.</strong></p>
+<pre tabindex=0><code>CREATE TABLE druid_table_1
+(`__time` TIMESTAMP, `dimension1` STRING, `dimension2` STRING, `metric1` INT, `metric2` FLOAT)
+STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler';
+</code></pre><p> NOTE - Before Hive 3.0.0, we do not use <em>EXTERNAL</em> tables and do not specify the value for the <code>druid.datasource</code> property.</p>
+<p><strong>For versions 3.0.0+, All Druid tables are EXTERNAL (<a href=https://issues.apache.org/jira/browse/HIVE-20085>HIVE-20085</a>).</strong></p>
+<h3 id=druid-kafka-ingestion-from-hive>Druid kafka ingestion from Hive</h3>
+<p>Version Info</p>
+<p>Integration with Druid Kafka Indexing Service is introduced in Hive 3.0.0 (<a href=https://jira.apache.org/jira/browse/HIVE-18976>HIVE-18976</a>).</p>
+<p><a href=http://druid.io/docs/latest/development/extensions-core/kafka-ingestion.html>Druid Kafka Indexing Service</a> supports exactly-once ingestion from Kafka topic by managing the creation and lifetime of Kafka indexing tasks. We can manage Druid Kafka Ingestion using Hive <em>CREATE TABLE</em> statement as shown below.</p>
+<p><strong>Druid Kafka Ingestion</strong></p>
+<pre tabindex=0><code>CREATE EXTERNAL TABLE druid_kafka_table_1(`__time` timestamp,`dimension1` string, `dimension1` string, `metric1` int, `metric2 double ....)
+        STORED BY 'org.apache.hadoop.hive.druid.DruidStorageHandler'
+        TBLPROPERTIES (
+        &quot;kafka.bootstrap.servers&quot; = &quot;localhost:9092&quot;,
+        &quot;kafka.topic&quot; = &quot;topic1&quot;,
+        &quot;druid.kafka.ingestion.useEarliestOffset&quot; = &quot;true&quot;,
+        &quot;druid.kafka.ingestion.maxRowsInMemory&quot; = &quot;5&quot;,
+        &quot;druid.kafka.ingestion.startDelay&quot; = &quot;PT1S&quot;,
+        &quot;druid.kafka.ingestion.period&quot; = &quot;PT1S&quot;,
+        &quot;druid.kafka.ingestion.consumer.retries&quot; = &quot;2&quot;
+        );
+
+</code></pre><p> </p>
+<p>Observe that we specified kafka topic name and kafka bootstrap servers as part of the table properties. Other tunings for <a href=http://druid.io/docs/latest/development/extensions-core/kafka-ingestion.html>Druid Kafka Indexing Service</a> can also be specified by prefixing them with <em>&lsquo;druid.kafka.ingestion.&rsquo;  e.g.</em> to configure duration of druid ingestion tasks we can add*&ldquo;druid.kafka.ingestion.taskDuration&rdquo; = &ldquo;PT60S&rdquo;* as a table property. </p>
+<h5 id=startstopreset-druid-kafka-ingestion>Start/Stop/Reset Druid Kafka ingestion</h5>
+<p>We can Start/Stop/Reset druid kafka ingestion using sql statement shown below. </p>
+<pre tabindex=0><code>ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'START');
+ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'STOP');
+ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'RESET');
+</code></pre><p>Note: Reseting the ingestion will reset the kafka consumer offset maintained by druid to the next offset. The consumer offsets maintained by druid will be reset to either the earliest or latest offset depending on <em>druid.kafka.ingestion.useEarliestOffset</em></p>
+<p> table property. This can cause duplicate/missing events. We typically only need to reset kafka ingestion when messages in Kafka at the current consumer offsets are no longer available for consumption and therefore won&rsquo;t be ingested into Druid.</p>
+<h3 id=insert-insert-overwrite-and-drop-statements>INSERT, INSERT OVERWRITE and DROP statements</h3>
+<p>Version Info</p>
+<p><strong>Version 2.2.0 : These statements are supported by Hive managed tables (not external) backed by Druid.</strong></p>
+<p><strong>For versions 3.0.0+, All Druid tables are EXTERNAL (<a href=https://issues.apache.org/jira/browse/HIVE-20085>HIVE-20085</a>) and these statements are supported for any table.</strong></p>
+<p><strong>Querying Druid from Hive</strong></p>
+<p>Once we have created our first table stored in Druid using the <code>DruidStorageHandler</code>, we are ready to execute our queries against Druid.</p>
+<p>When we express a query over a Druid table, Hive tries to <em>rewrite</em> the query to be executed efficiently by pushing as much computation as possible to Druid. This task is accomplished by the <a href=https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive>cost optimizer</a> based in <a href=http://calcite.apache.org/>Apache Calcite</a>, which identifies patterns in the plan and apply rules to rewrite the input query into a new equivalent query with (hopefully) more operations executed in Druid.</p>
+<p>In particular, we implemented our extension to the optimizer in <a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>, which builds upon the work initiated in <a href=https://issues.apache.org/jira/browse/CALCITE-1121>CALCITE-1121</a>, and extends its logic to identify more complex query patterns (<em>timeseries</em> queries), translate filters on the <em>time</em> dimension to Druid intervals, push limit into Druid <em>select</em> queries, etc.</p>
+<p>Currently, we support the recognition of <em>timeseries</em>, <em>groupBy,</em> and s<strong>elect</strong> queries.</p>
+<p>Once we have completed the optimization, the (sub)plan of operators that needs to be executed by Druid is translated into a valid Druid JSON query, and passed as a property to the Hive physical TableScan operator. The Druid query will be executed within the TableScan operator, which will generate the records out of the Druid query results.</p>
+<p>We generate a single Hive split with the corresponding Druid query for <em>timeseries</em>and <em>groupBy</em>, from which we generate the records. Thus, the degree of parallelism is 1 in these cases. However, for simple <em>select</em> queries without limit (although they might still contain filters or projections), we partition the original query into <em>x</em> queries and generate one split for each of them, thus incrementing the degree of parallelism for these queries, which usually return a large number of results, to <em>x</em>.</p>
+<p> </p>
+<p>Consider that depending on the query, it might not be possible to push any computation to Druid. However, <em>our contract is that the query should always be executed</em>. Thus, in those cases, Hive will send a <em>select</em> query to Druid, which basically will read all the segments from Druid, generate records, and then execute the rest of Hive operations on those records. This is also the approach that will be followed if the cost optimizer is disabled (<em><strong>not recommended</strong></em>).</p>
+<h3 id=queries-completely-executed-in-druid>Queries completely executed in Druid</h3>
+<p>We focus first on queries that can be pushed completely into Druid. In these cases, we end up with a simple plan consisting of a TableScan and a Fetch operator on top. Thus, there is no overhead related to launching containers for the execution.</p>
+<h4 id=select-queries>Select queries</h4>
+<p>We start with the simplest type of Druid query: <em><a href=http://druid.io/docs/0.9.1.1/querying/selectquery.html>select</a></em> queries. Basically, a <em>select</em> query will be equivalent to a scan operation on the data sources, although operations such as projection, filter, or limit can still be pushed into this type of query.</p>
+<p>Consider the following query, a simple select query for 10 rows consisting of all the columns of the table:</p>
+<pre tabindex=0><code>SELECT * FROM druid_table_1 LIMIT 10;
+</code></pre><p>The Hive plan for the query will be the following:</p>
+<pre tabindex=0><code>hive&gt; EXPLAIN
+    &gt; SELECT * FROM druid_table_1 LIMIT 10;
+OK
+Plan optimized by CBO.
+Stage-0
+  Fetch Operator
+    limit:-1
+    Select Operator [SEL_1]
+      Output:[&quot;_col0&quot;,&quot;_col1&quot;,&quot;_col2&quot;,&quot;_col3&quot;,&quot;_col4&quot;,&quot;_col5&quot;,&quot;_col6&quot;,&quot;_col7&quot;,&quot;_col8&quot;,&quot;_col9&quot;,&quot;_col10&quot;,&quot;_col11&quot;,&quot;_col12&quot;,&quot;_col13&quot;,&quot;_col14&quot;,&quot;_col15&quot;,&quot;_col16&quot;,&quot;_col17&quot;,&quot;_col18&quot;,&quot;_col19&quot;,&quot;_col20&quot;,&quot;_col21&quot;]
+      TableScan [TS_0]
+        Output:[&quot;__time&quot;,&quot;added&quot;,&quot;channel&quot;,&quot;cityname&quot;,&quot;comment&quot;,&quot;count&quot;,&quot;countryisocode&quot;,&quot;countryname&quot;,&quot;deleted&quot;,&quot;delta&quot;,&quot;isanonymous&quot;,&quot;isminor&quot;,&quot;isnew&quot;,&quot;isrobot&quot;,&quot;isunpatrolled&quot;,&quot;metrocode&quot;,&quot;namespace&quot;,&quot;page&quot;,&quot;regionisocode&quot;,&quot;regionname&quot;,&quot;user&quot;,&quot;user_unique&quot;],properties:{&quot;druid.query.json&quot;:&quot;{\&quot;queryType\&quot;:\&quot;select\&quot;,\&quot;dataSource\&quot;:\&quot;wikiticker\&quot;,\&quot;descending\&quot;:\&quot;false\&quot;,\&quot;intervals\&quot;:[\&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00\&quot;],\&quot;dimensions\&quot;:[\&quot;channel\&quot;,\&quot;cityname\&quot;,\&quot;comment\&quot;,\&quot;countryisocode\&quot;,\&quot;countryname\&quot;,\&quot;isanonymous\&quot;,\&quot;isminor\&quot;,\&quot;isnew\&quot;,\&quot;isrobot\&quot;,\&quot;isunpatrolled\&quot;,\&quot;metrocode\&quot;,\&quot;namespace\&quot;,\&quot;page\&quot;,\&quot;regionisocode\&quot;,\&quot;regionname\&quot;,\&quot;user\&quot;,\&quot;user_unique\&quot;],\&quot;metrics\&quot;:[\&quot;added\&quot;,\&quot;count\&quot;,\&quot;deleted\&quot;,\&quot;delta\&quot;],\&quot;pagingSpec\&quot;:{\&quot;threshold\&quot;:10},\&quot;context\&quot;:{\&quot;druid.query.fetch\&quot;:true}}&quot;,&quot;druid.query.type&quot;:&quot;select&quot;}
+Time taken: 0.141 seconds, Fetched: 10 row(s)
+</code></pre><p>Observe that the Druid query is in the properties attached to the TableScan. For readability, we format it properly:</p>
+<pre tabindex=0><code>{
+  &quot;queryType&quot;:&quot;select&quot;,
+  &quot;dataSource&quot;:&quot;wikiticker&quot;,
+  &quot;descending&quot;:&quot;false&quot;,
+  &quot;intervals&quot;:[&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00&quot;],
+  &quot;dimensions&quot;: 
+    [&quot;channel&quot;,&quot;cityname&quot;,&quot;comment&quot;,&quot;countryisocode&quot;,
+     &quot;countryname&quot;,&quot;isanonymous&quot;,&quot;isminor&quot;,&quot;isnew&quot;,
+     &quot;isrobot&quot;,&quot;isunpatrolled&quot;,&quot;metrocode&quot;,&quot;namespace&quot;,
+     &quot;page&quot;,&quot;regionisocode&quot;,&quot;regionname&quot;,&quot;user&quot;,&quot;user_unique&quot;
+    ],
+  &quot;metrics&quot;:[&quot;added&quot;,&quot;count&quot;,&quot;deleted&quot;,&quot;delta&quot;],
+  &quot;pagingSpec&quot;:{&quot;threshold&quot;:10}
+}
+</code></pre><p>Observe that we get to push the limit into the Druid query (<code>threshold</code>). Observe as well that as we do not specify a filter on the timestamp dimension for the data source, we generate an interval that covers the range (−∞,+∞).</p>
+<p> </p>
+<p>In Druid, the timestamp column plays a central role. In fact, Druid allows to filter on the time dimension using the <code>intervals</code> property for all those queries. This is very important, as the time intervals determine the nodes that store the Druid data. Thus, specifying a precise range minimizes the number of nodes hit by the broken for a certain query. Inspired by Druid <a href=https://github.com/druid-io/druid/pull/2880>PR-2880</a>, we implemented the intervals extraction from the filter conditions in the logical plan of a query. For instance, consider the following query:</p>
+<pre tabindex=0><code>SELECT `__time`
+FROM druid_table_1
+WHERE `__time` &gt;= '2010-01-01 00:00:00' AND `__time` &lt;= '2011-01-01 00:00:00'
+LIMIT 10;
+</code></pre><p>The Druid query generated for the SQL query above is the following (we omit the plan, as it is a simple TableScan operator).</p>
+<pre tabindex=0><code>{
+  &quot;queryType&quot;:&quot;select&quot;,
+  &quot;dataSource&quot;:&quot;wikiticker&quot;,
+  &quot;descending&quot;:&quot;false&quot;,
+  &quot;intervals&quot;:[&quot;2010-01-01T00:00:00.000Z/2011-01-01T00:00:00.001Z&quot;],
+  &quot;dimensions&quot;:[],
+  &quot;metrics&quot;:[],
+  &quot;pagingSpec&quot;:{&quot;threshold&quot;:10}
+}
+</code></pre><p>Observe that we infer correctly the interval for the specified dates, <code>2010-01-01T00:00:00.000Z/2011-01-01T00:00:00.001Z</code>, because in Druid the starting date of the interval is included, but the closing date is not. We also support recognition of multiple interval ranges, for instance in the following SQL query:</p>
+<pre tabindex=0><code>SELECT `__time`
+FROM druid_table_1
+WHERE (`__time` BETWEEN '2010-01-01 00:00:00' AND '2011-01-01 00:00:00')
+    OR (`__time` BETWEEN '2012-01-01 00:00:00' AND '2013-01-01 00:00:00')
+LIMIT 10;
+</code></pre><p>Furthermore we can infer overlapping intervals too. Finally, the filters that are not specified on the time dimension will be translated into valid Druid filters and included within the query using the <code>filter</code> property.</p>
+<h4 id=timeseries-queries>Timeseries queries</h4>
+<p><em><a href=http://druid.io/docs/0.9.1.1/querying/timeseriesquery.html>Timeseries</a></em> is one of the types of queries that Druid can execute very efficiently. The following SQL query translates directly into a Druid <em>timeseries</em> query:</p>
+<pre tabindex=0><code>-- GRANULARITY: MONTH
+SELECT `floor_month`(`__time`), max(delta), sum(added)
+FROM druid_table_1
+GROUP BY `floor_month`(`__time`);
+</code></pre><p>Basically, we group by a given time granularity and calculate the aggregation results for each resulting group. In particular, the <code>floor_month</code> function over the timestamp dimension __<code>time</code> represents the Druid month granularity format. Currently, we support <code>floor_year</code>, <code>floor_quarter</code>, <code>floor_month</code>, <code>floor_week</code>, <code>floor_day</code>, <code>floor_hour</code>, <code>floor_minute</code>, and <code>floor_second</code> granularities. In addition, we support two special types of granularities, <code>all</code> and <code>none</code>, which we describe below. We plan to extend our integration work to support other important Druid custom granularity constructs, such as <a href=http://druid.io/docs/0.9.1.1/querying/granularities.html><em>duration</em> and <em>period</em> granularities</a>.</p>
+<p>The Hive plan for the query will be the following:</p>
+<pre tabindex=0><code>hive&gt; EXPLAIN
+    &gt; SELECT `floor_month`(`__time`), max(delta), sum(added)
+    &gt; FROM druid_table_1
+    &gt; GROUP BY `floor_month`(`__time`);
+OK
+Plan optimized by CBO.
+Stage-0
+  Fetch Operator
+    limit:-1
+    Select Operator [SEL_1]
+      Output:[&quot;_col0&quot;,&quot;_col1&quot;,&quot;_col2&quot;]
+      TableScan [TS_0]
+        Output:[&quot;__time&quot;,&quot;$f1&quot;,&quot;$f2&quot;],
+        properties:{&quot;druid.query.json&quot;:&quot;{\&quot;queryType\&quot;:\&quot;timeseries\&quot;,\&quot;dataSource\&quot;:\&quot;wikiticker\&quot;,\&quot;descending\&quot;:\&quot;false\&quot;,\&quot;granularity\&quot;:\&quot;MONTH\&quot;,\&quot;aggregations\&quot;:[{\&quot;type\&quot;:\&quot;longMax\&quot;,\&quot;name\&quot;:\&quot;$f1\&quot;,\&quot;fieldName\&quot;:\&quot;delta\&quot;},{\&quot;type\&quot;:\&quot;longSum\&quot;,\&quot;name\&quot;:\&quot;$f2\&quot;,\&quot;fieldName\&quot;:\&quot;added\&quot;}],\&quot;intervals\&quot;:[\&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00\&quot;]}&quot;,&quot;druid.query.type&quot;:&quot;timeseries&quot;}
+Time taken: 0.116 seconds, Fetched: 10 row(s)
+</code></pre><p>Observe that the Druid query is in the properties attached to the TableScan. For readability, we format it properly:</p>
+<pre tabindex=0><code>{
+  &quot;queryType&quot;:&quot;timeseries&quot;,
+  &quot;dataSource&quot;:&quot;wikiticker&quot;,
+  &quot;descending&quot;:&quot;false&quot;,
+  &quot;granularity&quot;:&quot;MONTH&quot;,
+  &quot;aggregations&quot;:[
+    {&quot;type&quot;:&quot;longMax&quot;, &quot;name&quot;:&quot;$f1&quot;, &quot;fieldName&quot;:&quot;delta&quot;},
+    {&quot;type&quot;:&quot;longSum&quot;, &quot;name&quot;:&quot;$f2&quot;, &quot;fieldName&quot;:&quot;added&quot;}
+  ],
+  &quot;intervals&quot;:[&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00&quot;]
+}
+</code></pre><p>Observe that the granularity for the Druid query is <code>MONTH</code>.</p>
+<p> </p>
+<p>One rather special case is <code>all</code> granularity, which we introduce by example below. Consider the following query:</p>
+<pre tabindex=0><code>-- GRANULARITY: ALL
+SELECT max(delta), sum(added)
+FROM druid_table_1;
+</code></pre><p>As it will do an aggregation on the complete dataset, it translates into a <em>timeseries</em> query with granularity <code>all</code>. In particular, the equivalent Druid query attached to the TableScan operator is the following:</p>
+<pre tabindex=0><code>{
+  &quot;queryType&quot;:&quot;timeseries&quot;,
+  &quot;dataSource&quot;:&quot;wikiticker&quot;,
+  &quot;descending&quot;:&quot;false&quot;,
+  &quot;granularity&quot;:&quot;ALL&quot;,
+  &quot;aggregations&quot;:[
+    {&quot;type&quot;:&quot;longMax&quot;, &quot;name&quot;:&quot;$f1&quot;, &quot;fieldName&quot;:&quot;delta&quot;},
+    {&quot;type&quot;:&quot;longSum&quot;, &quot;name&quot;:&quot;$f2&quot;, &quot;fieldName&quot;:&quot;added&quot;}
+  ],
+  &quot;intervals&quot;:[&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00&quot;]
+}
+</code></pre><h4 id=groupby-queries>GroupBy queries</h4>
+<p>The final type of queries we currently support is <em><a href=http://druid.io/docs/0.9.1.1/querying/groupbyquery.html>groupBy</a></em>. This kind of query is more expressive than <em>timeseries</em> queries; however, they are less performant. Thus, we only fall back to <em>groupBy</em> queries when we cannot transform into <em>timeseries</em> queries.</p>
+<p>For instance, the following SQL query will generate a Druid <em>groupBy</em> query:</p>
+<pre tabindex=0><code>SELECT max(delta), sum(added)
+FROM druid_table_1
+GROUP BY `channel`, `user`;
+</code></pre><pre tabindex=0><code>{
+  &quot;queryType&quot;:&quot;groupBy&quot;,
+  &quot;dataSource&quot;:&quot;wikiticker&quot;,
+  &quot;granularity&quot;:&quot;ALL&quot;,
+  &quot;dimensions&quot;:[&quot;channel&quot;,&quot;user&quot;],
+  &quot;aggregations&quot;:[
+    {&quot;type&quot;:&quot;longMax&quot;,&quot;name&quot;:&quot;$f2&quot;,&quot;fieldName&quot;:&quot;delta&quot;},
+    {&quot;type&quot;:&quot;longSum&quot;,&quot;name&quot;:&quot;$f3&quot;,&quot;fieldName&quot;:&quot;added&quot;}],
+  &quot;intervals&quot;:[&quot;-146136543-09-08T08:22:17.096-00:01:15/146140482-04-24T16:36:27.903+01:00&quot;]
+}
+</code></pre><h3 id=queries-across-druid-and-hive>Queries across Druid and Hive</h3>
+<p>Finally, we provide an example of a query that runs across Druid and Hive. In particular, let us create a second table in Hive with some data:</p>
+<pre tabindex=0><code>CREATE TABLE hive_table_1 (col1 INT, col2 STRING);
+INSERT INTO hive_table_1 VALUES(1, '#en.wikipedia');
+</code></pre><p>Assume we want to execute the following query:</p>
+<pre tabindex=0><code>SELECT a.channel, b.col1
+FROM
+(
+  SELECT `channel`, max(delta) as m, sum(added)
+  FROM druid_table_1
+  GROUP BY `channel`, `floor_year`(`__time`)
+  ORDER BY m DESC
+  LIMIT 1000
+) a
+JOIN
+(
+  SELECT col1, col2
+  FROM hive_table_1
+) b
+ON a.channel = b.col2;
+</code></pre><p>The query is a simple join on columns <code>channel</code> and <code>col2</code>. The subquery <code>a</code> is executed completely in Druid as a <em>groupBy</em> query. Then the results are joined in Hive with the results of results of subquery <code>b</code>. The query plan and execution in Tez is shown in the following:</p>
+<pre tabindex=0><code>hive&gt; explain
+    &gt; SELECT a.channel, b.col1
+    &gt; FROM
+    &gt; (
+    &gt;   SELECT `channel`, max(delta) as m, sum(added)
+    &gt;   FROM druid_table_1
+    &gt;   GROUP BY `channel`, `floor_year`(`__time`)
+    &gt;   ORDER BY m DESC
+    &gt;   LIMIT 1000
+    &gt; ) a
+    &gt; JOIN
+    &gt; (
+    &gt;   SELECT col1, col2
+    &gt;   FROM hive_table_1
+    &gt; ) b
+    &gt; ON a.channel = b.col2;
+OK
+Plan optimized by CBO.
+Vertex dependency in root stage
+Map 2 &lt;- Map 1 (BROADCAST_EDGE)
+Stage-0
+  Fetch Operator
+    limit:-1
+    Stage-1
+      Map 2
+      File Output Operator [FS_11]
+        Select Operator [SEL_10] (rows=1 width=0)
+          Output:[&quot;_col0&quot;,&quot;_col1&quot;]
+          Map Join Operator [MAPJOIN_16] (rows=1 width=0)
+            Conds:RS_7._col0=SEL_6._col1(Inner),HybridGraceHashJoin:true,Output:[&quot;_col0&quot;,&quot;_col2&quot;]
+          &lt;-Map 1 [BROADCAST_EDGE]
+            BROADCAST [RS_7]
+              PartitionCols:_col0
+              Filter Operator [FIL_2] (rows=1 width=0)
+                predicate:_col0 is not null
+                Select Operator [SEL_1] (rows=1 width=0)
+                  Output:[&quot;_col0&quot;]
+                  TableScan [TS_0] (rows=1 width=0)
+                    druid@druid_table_1,druid_table_1,Tbl:PARTIAL,Col:NONE,Output:[&quot;channel&quot;],properties:{&quot;druid.query.json&quot;:&quot;{\&quot;queryType\&quot;:\&quot;groupBy\&quot;,\&quot;dataSource\&quot;:\&quot;wikiticker\&quot;,\&quot;granularity\&quot;:\&quot;all\&quot;,\&quot;dimensions\&quot;:[{\&quot;type\&quot;:\&quot;default\&quot;,\&quot;dimension\&quot;:\&quot;channel\&quot;},{\&quot;type\&quot;:\&quot;extraction\&quot;,\&quot;dimension\&quot;:\&quot;__time\&quot;,\&quot;outputName\&quot;:\&quot;floor_year\&quot;,\&quot;extractionFn\&quot;:{\&quot;type\&quot;:\&quot;timeFormat\&quot;,\&quot;format\&quot;:\&quot;yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\&quot;,\&quot;granularity\&quot;:\&quot;year\&quot;,\&quot;timeZone\&quot;:\&quot;UTC\&quot;,\&quot;locale\&quot;:\&quot;en-US\&quot;}}],\&quot;limitSpec\&quot;:{\&quot;type\&quot;:\&quot;default\&quot;,\&quot;limit\&quot;:1000,\&quot;columns\&quot;:[{\&quot;dimension\&quot;:\&quot;$f2\&quot;,\&quot;direction\&quot;:\&quot;descending\&quot;,\&quot;dimensionOrder\&quot;:\&quot;numeric\&quot;}]},\&quot;aggregations\&quot;:[{\&quot;type\&quot;:\&quot;doubleMax\&quot;,\&quot;name\&quot;:\&quot;$f2\&quot;,\&quot;fieldName\&quot;:\&quot;delta\&quot;},{\&quot;type\&quot;:\&quot;doubleSum\&quot;,\&quot;name\&quot;:\&quot;$f3\&quot;,\&quot;fieldName\&quot;:\&quot;added\&quot;}],\&quot;intervals\&quot;:[\&quot;1900-01-01T00:00:00.000/3000-01-01T00:00:00.000\&quot;]}&quot;,&quot;druid.query.type&quot;:&quot;groupBy&quot;}
+          &lt;-Select Operator [SEL_6] (rows=1 width=15)
+              Output:[&quot;_col0&quot;,&quot;_col1&quot;]
+              Filter Operator [FIL_15] (rows=1 width=15)
+                predicate:col2 is not null
+                TableScan [TS_4] (rows=1 width=15)
+                  druid@hive_table_1,hive_table_1,Tbl:COMPLETE,Col:NONE,Output:[&quot;col1&quot;,&quot;col2&quot;]
+Time taken: 0.924 seconds, Fetched: 31 row(s)
+hive&gt; SELECT a.channel, b.col1
+    &gt; FROM
+    &gt; (
+    &gt;   SELECT `channel`, max(delta) as m, sum(added)
+    &gt;   FROM druid_table_1
+    &gt;   GROUP BY `channel`, `floor_year`(`__time`)
+    &gt;   ORDER BY m DESC
+    &gt;   LIMIT 1000
+    &gt; ) a
+    &gt; JOIN
+    &gt; (
+    &gt;   SELECT col1, col2
+    &gt;   FROM hive_table_1
+    &gt; ) b
+    &gt; ON a.channel = b.col2;
+Query ID = user1_20160818202329_e9a8b3e8-18d3-49c7-bfe0-99d38d2402d3
+Total jobs = 1
+Launching Job 1 out of 1
+2016-08-18 20:23:30 Running Dag: dag_1471548210492_0001_1
+2016-08-18 20:23:30 Starting to run new task attempt: attempt_1471548210492_0001_1_00_000000_0
+Status: Running (Executing on YARN cluster with App id application_1471548210492_0001)
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Map 2 .......... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================&gt;&gt;] 100%  ELAPSED TIME: 0.15 s
+----------------------------------------------------------------------------------------------
+2016-08-18 20:23:31 Completed running task attempt: attempt_1471548210492_0001_1_00_000000_0
+OK
+#en.wikipedia	1
+Time taken: 1.835 seconds, Fetched: 2 row(s)
+</code></pre><p> </p>
+<h1 id=open-issues-jira>Open Issues (JIRA)</h1>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Summary</th>
+<th>T</th>
+<th>Created</th>
+<th>Updated</th>
+<th>Due</th>
+<th>Assignee</th>
+<th>Reporter</th>
+<th>P</th>
+<th>Status</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro">HIVE-14473</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro">Druid integration II</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14473?src=confmacro">New Feature</a></td>
+<td>Aug 08, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro">HIVE-14543</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro">Create Druid table without specifying data source</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14543?src=confmacro">Sub-task</a></td>
+<td>Aug 16, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro">HIVE-14597</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro">Support for Druid custom granularities</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14597?src=confmacro">Sub-task</a></td>
+<td>Aug 22, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Minor</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro">HIVE-14722</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro">Support creating vector row batches from Druid</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-14722?src=confmacro">Sub-task</a></td>
+<td>Sep 08, 2016</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro">HIVE-15584</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro">Early bail out when we use CTAS and Druid source already exists</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15584?src=confmacro">Sub-task</a></td>
+<td>Jan 11, 2017</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Slim Bouguerra</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Minor</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro">HIVE-15640</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro">Hive/Druid integration: null handling for metrics</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-15640?src=confmacro">Bug</a></td>
+<td>Jan 16, 2017</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Critical</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro">HIVE-16121</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro">Add flag to allow approximate results coming from Druid</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16121?src=confmacro">Improvement</a></td>
+<td>Mar 06, 2017</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro">HIVE-16816</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro">Chained Group by support for druid.</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-16816?src=confmacro">Sub-task</a></td>
+<td>Jun 02, 2017</td>
+<td>Feb 23, 2018</td>
+<td></td>
+<td>Slim Bouguerra</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro">HIVE-17716</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro">Not pushing postaggregations into Druid due to CAST on constant</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-17716?src=confmacro">Improvement</a></td>
+<td>Oct 05, 2017</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro">HIVE-18668</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro">Really shade guava in ql</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18668?src=confmacro">Bug</a></td>
+<td>Feb 09, 2018</td>
+<td>Oct 21, 2022</td>
+<td></td>
+<td>Zoltan Haindrich</td>
+<td>Zoltan Haindrich</td>
+<td>Major</td>
+<td>Patch Available</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro">HIVE-18731</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro">Add Documentations about this feature.</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-18731?src=confmacro">Sub-task</a></td>
+<td>Feb 16, 2018</td>
+<td>Oct 17, 2018</td>
+<td></td>
+<td>Slim Bouguerra</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro">HIVE-19044</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro">Duplicate field names within Druid Query Generated by Calcite plan</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19044?src=confmacro">Bug</a></td>
+<td>Mar 25, 2018</td>
+<td>Apr 05, 2018</td>
+<td></td>
+<td>Slim Bouguerra</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Patch Available</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro">HIVE-19201</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro">Hive doesn&rsquo;t read Druid data correctly</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19201?src=confmacro">Bug</a></td>
+<td>Apr 13, 2018</td>
+<td>Oct 05, 2018</td>
+<td>Apr 17, 2018</td>
+<td>Unassigned</td>
+<td>Tournadre</td>
+<td>Blocker</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro">HIVE-19300</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro">Skip Druid/JDBC rules in optimizer when there are no Druid/JDBC sources</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19300?src=confmacro">Improvement</a></td>
+<td>Apr 25, 2018</td>
+<td>Feb 27, 2024</td>
+<td></td>
+<td>Unassigned</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro">HIVE-19672</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro">Column Names mismatch between native Druid Tables and Hive External table map</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-19672?src=confmacro">Bug</a></td>
+<td>May 23, 2018</td>
+<td>Oct 21, 2022</td>
+<td></td>
+<td>Unassigned</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro">HIVE-20426</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro">Upload Druid Test Runner logs from Build Slaves</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20426?src=confmacro">Improvement</a></td>
+<td>Aug 20, 2018</td>
+<td>Aug 20, 2018</td>
+<td></td>
+<td>Vineet Garg</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro">HIVE-20468</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro">Add ability to skip creating druid bitmap indexes for specific string dimensions</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20468?src=confmacro">New Feature</a></td>
+<td>Aug 27, 2018</td>
+<td>Aug 27, 2018</td>
+<td></td>
+<td>Nishant Bangarwa</td>
+<td>Nishant Bangarwa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro">HIVE-20469</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro">Do not rollup PK/FK columns when indexing to druid.</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20469?src=confmacro">Improvement</a></td>
+<td>Aug 27, 2018</td>
+<td>Oct 10, 2018</td>
+<td></td>
+<td>Nishant Bangarwa</td>
+<td>Nishant Bangarwa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro">HIVE-20687</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro">Cancel Running Druid Query when a hive query is cancelled.</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro">Improvement</a></td>
+<td>Oct 03, 2018</td>
+<td>Oct 05, 2018</td>
+<td></td>
+<td>Nishant Bangarwa</td>
+<td>Nishant Bangarwa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro">HIVE-20997</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro">Make Druid Cluster start on random ports.</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro">Sub-task</a></td>
+<td>Dec 03, 2018</td>
+<td>Dec 04, 2018</td>
+<td></td>
+<td>Slim Bouguerra</td>
+<td>Slim Bouguerra</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to retrieve your issues</p>
+<p>Showing 20 out of
+<a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+12330863++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC+&src=confmacro">28 issues</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

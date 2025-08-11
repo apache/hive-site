@@ -1,0 +1,861 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : StatsDev</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--statistics>Apache Hive : Statistics</h1>
+<p>This document describes the support of statistics for Hive tables (see <a href=http://issues.apache.org/jira/browse/HIVE-33>HIVE-33</a>).</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--statistics>Apache Hive : Statistics</a>
+<ul>
+<li><a href=#motivation>Motivation</a></li>
+<li><a href=#scope>Scope</a>
+<ul>
+<li><a href=#table-and-partition-statistics>Table and Partition Statistics</a></li>
+<li><a href=#column-statistics>Column Statistics</a></li>
+<li><a href=#top-k-statistics>Top K Statistics</a></li>
+</ul>
+</li>
+<li><a href=#quick-overview>Quick overview</a></li>
+<li><a href=#implementation>Implementation</a></li>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#configuration-variables>Configuration Variables</a></li>
+<li><a href=#newly-created-tables>Newly Created Tables</a></li>
+<li><a href=#existing-tables-analyze>Existing Tables – ANALYZE</a></li>
+</ul>
+</li>
+<li><a href=#examples>Examples</a>
+<ul>
+<li><a href=#analyze-table-table1-cache-metadata>ANALYZE TABLE &lt;table1> CACHE METADATA</a></li>
+</ul>
+</li>
+<li><a href=#current-status-jira>Current Status (JIRA)</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=motivation>Motivation</h2>
+<p>Statistics such as the number of rows of a table or partition and the histograms of a particular interesting column are important in many ways. One of the key use cases of statistics is query optimization. Statistics serve as the input to the cost functions of the optimizer so that it can compare different plans and choose among them. Statistics may sometimes meet the purpose of the users' queries. Users can quickly get the answers for some of their queries by only querying stored statistics rather than firing long-running execution plans. Some examples are getting the quantile of the users' age distribution, the top 10 apps that are used by people, and the number of distinct sessions.</p>
+<h2 id=scope>Scope</h2>
+<h3 id=table-and-partition-statistics>Table and Partition Statistics</h3>
+<p>The first milestone in supporting statistics was to support table and partition level statistics. Table and partition statistics are now stored in the Hive Metastore for either newly created or existing tables. The following statistics are currently supported for partitions:</p>
+<ul>
+<li>Number of rows</li>
+<li>Number of files</li>
+<li>Size in Bytes</li>
+</ul>
+<p>For tables, the same statistics are supported with the addition of the number of partitions of the table.</p>
+<p>Version: Table and partition statistics</p>
+<p>Table and partition level statistics were added in Hive 0.7.0 by <a href=https://issues.apache.org/jira/browse/HIVE-1361>HIVE-1361</a>.</p>
+<h3 id=column-statistics>Column Statistics</h3>
+<p>The second milestone was to support column level statistics. See <a href=https://hive.apache.org/development/desingdocs/column-statistics-in-hive_29131019/>Column Statistics in Hive</a> in the Design Documents.</p>
+<p>Supported column stats are:</p>
+<table>
+<thead>
+<tr>
+<th><strong>BooleanColumnStatsData</strong></th>
+<th><strong>DoubleColumnStatsData</strong></th>
+<th><strong>LongColumnStatsData</strong></th>
+<th><strong>StringColumnStatsData</strong></th>
+<th><strong>BinaryColumnStatsData</strong></th>
+<th><strong>DecimalColumnStatsData</strong></th>
+<th><strong>Date</strong></th>
+<th><strong>DateColumnStatsData</strong></th>
+<th><strong>Timestamp</strong></th>
+<th><strong>TimestampColumnStatsData</strong></th>
+<th><strong>union ColumnStatisticsData</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1: required i64 numTrues,</td>
+<td>1: optional double lowValue,</td>
+<td>1: optional i64 lowValue,</td>
+<td>1: required i64 maxColLen,</td>
+<td>1: required i64 maxColLen,</td>
+<td>1: optional Decimal lowValue,</td>
+<td>1: required i64 daysSinceEpoch</td>
+<td>1: optional Date lowValue,</td>
+<td>1: required i64 secondsSinceEpoch</td>
+<td>1: optional Timestamp lowValue,</td>
+<td>1: BooleanColumnStatsData booleanStats,</td>
+</tr>
+<tr>
+<td>2: required i64 numFalses,</td>
+<td>2: optional double highValue,</td>
+<td>2: optional i64 highValue,</td>
+<td>2: required double avgColLen,</td>
+<td>2: required double avgColLen,</td>
+<td>2: optional Decimal highValue,</td>
+<td></td>
+<td>2: optional Date highValue,</td>
+<td></td>
+<td>2: optional Timestamp highValue,</td>
+<td>2: LongColumnStatsData longStats,</td>
+</tr>
+<tr>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td>3: required i64 numNulls,</td>
+<td></td>
+<td>3: required i64 numNulls,</td>
+<td></td>
+<td>3: required i64 numNulls,</td>
+<td>3: DoubleColumnStatsData doubleStats,</td>
+</tr>
+<tr>
+<td>4: optional binary bitVectors</td>
+<td>4: required i64 numDVs,</td>
+<td>4: required i64 numDVs,</td>
+<td>4: required i64 numDVs,</td>
+<td>4: optional binary bitVectors</td>
+<td>4: required i64 numDVs,</td>
+<td></td>
+<td>4: required i64 numDVs,</td>
+<td></td>
+<td>4: required i64 numDVs,</td>
+<td>4: StringColumnStatsData stringStats,</td>
+</tr>
+<tr>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td>5: optional binary bitVectors,</td>
+<td>5: optional binary bitVectors</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td></td>
+<td>5: optional binary bitVectors,</td>
+<td>5: BinaryColumnStatsData binaryStats,</td>
+</tr>
+<tr>
+<td></td>
+<td>6: optional binary histogram</td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td></td>
+<td>6: optional binary histogram</td>
+<td>6: DecimalColumnStatsData decimalStats,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>7: DateColumnStatsData dateStats,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>8: TimestampColumnStatsData timestampStats</td>
+</tr>
+</tbody>
+</table>
+<p>Version: Column statistics</p>
+<p>Column level statistics were added in Hive 0.10.0 by <a href=https://issues.apache.org/jira/browse/HIVE-1362>HIVE-1362</a>.</p>
+<h3 id=top-k-statistics>Top K Statistics</h3>
+<p><a href=https://hive.apache.org/development/desingdocs/top-k-stats_30150275/>Column level top K statistics</a> are still pending; see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>.</p>
+<h2 id=quick-overview>Quick overview</h2>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Stored in</th>
+<th>Collected by</th>
+<th>Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of partition the dataset consists of</td>
+<td>Fictional metastore property: <strong>numPartitions</strong></td>
+<td>computed during displaying the properties of a partitioned table</td>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-16315>Hive 2.3</a></td>
+</tr>
+<tr>
+<td>Number of files the dataset consists of</td>
+<td>Metastore table property: <strong>numFiles</strong></td>
+<td>Automatically during Metastore operations</td>
+<td></td>
+</tr>
+<tr>
+<td>Total size of the dataset as its seen at the filesystem level</td>
+<td>Metastore table property: <strong>totalSize</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Uncompressed size of the dataset</td>
+<td>Metastore table property: <strong>rawDataSize</strong></td>
+<td>Computed, these are the basic statistics. Calculated automatically when <a href=#hive-stats-autogather>hive.stats.autogather</a> is enabled.Can be collected manually by: ANALYZE TABLE &mldr; COMPUTE STATISTICS</td>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-2185>Hive 0.8</a></td>
+</tr>
+<tr>
+<td>Number of rows the dataset consist of</td>
+<td>Metastore table property: <strong>numRows</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Column level statistics</td>
+<td>Metastore; TAB_COL_STATS table</td>
+<td>Computed, Calculated automatically when <a href=#hive-stats-column-autogather>hive.stats.column.autogather</a> is enabled.Can be collected manually by: ANALYZE TABLE &mldr; COMPUTE STATISTICS FOR COLUMNS</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id=implementation>Implementation</h2>
+<p>The way the statistics are calculated is similar for both newly created and existing tables.</p>
+<p>For newly created tables, the job that creates a new table is a MapReduce job. During the creation, every mapper while copying the rows from the source table in the FileSink operator, gathers statistics for the rows it encounters and publishes them into a Database (possibly <a href=http://www.mysql.com/>MySQL</a>). At the end of the MapReduce job, published statistics are aggregated and stored in the MetaStore.</p>
+<p>A similar process happens in the case of already existing tables, where a Map-only job is created and every mapper while processing the table in the TableScan operator, gathers statistics for the rows it encounters and the same process continues.</p>
+<p>It is clear that there is a need for a database that stores temporary gathered statistics. Currently there are two implementations, one is using <a href=http://www.mysql.com/>MySQL</a> and the other is using <a href=http://wiki.apache.org/hadoop/Hbase>HBase</a>. There are two pluggable interfaces IStatsPublisher and IStatsAggregator that the developer can implement to support any other storage. The interfaces are listed below:</p>
+<pre tabindex=0><code>package org.apache.hadoop.hive.ql.stats;
+
+import org.apache.hadoop.conf.Configuration;
+
+/**
+ * An interface for any possible implementation for publishing statics.
+ */
+
+public interface IStatsPublisher {
+
+  /**
+ * This method does the necessary initializations according to the implementation requirements.
+   */
+  public boolean init(Configuration hconf);
+
+  /**
+ * This method publishes a given statistic into a disk storage, possibly HBase or MySQL.
+   *
+ * rowID : a string identification the statistics to be published then gathered, possibly the table name + the partition specs.
+   *
+ * key : a string noting the key to be published. Ex: &quot;numRows&quot;.
+   *
+ * value : an integer noting the value of the published key.
+ * */
+  public boolean publishStat(String rowID, String key, String value);
+
+  /**
+ * This method executes the necessary termination procedures, possibly closing all database connections.
+   */
+  public boolean terminate();
+
+}
+
+</code></pre><pre tabindex=0><code>package org.apache.hadoop.hive.ql.stats;
+
+import org.apache.hadoop.conf.Configuration;
+
+/**
+ * An interface for any possible implementation for gathering statistics.
+ */
+
+public interface IStatsAggregator {
+
+  /**
+ * This method does the necessary initializations according to the implementation requirements.
+   */
+  public boolean init(Configuration hconf);
+
+  /**
+ * This method aggregates a given statistic from a disk storage.
+ * After aggregation, this method does cleaning by removing all records from the disk storage that have the same given rowID.
+   *
+ * rowID : a string identification the statistic to be gathered, possibly the table name + the partition specs.
+   *
+ * key : a string noting the key to be gathered. Ex: &quot;numRows&quot;.
+   *
+ * */
+  public String aggregateStats(String rowID, String key);
+
+  /**
+ * This method executes the necessary termination procedures, possibly closing all database connections.
+   */
+  public boolean terminate();
+
+}
+
+</code></pre><h2 id=usage>Usage</h2>
+<h3 id=configuration-variables>Configuration Variables</h3>
+<p>See <a href=#statistics>Statistics</a> in <a href=https://hive.apache.org/docs/latest/user/configuration-properties_27842758/>Configuration Properties</a> for a list of the variables that configure Hive table statistics. <a href=#configuring-hive>Configuring Hive</a> describes how to use the variables.</p>
+<h3 id=newly-created-tables>Newly Created Tables</h3>
+<p>For newly created tables and/or partitions (that are populated through the <a href=http://wiki.apache.org/hadoop/Hive/LanguageManual/DML#Inserting_data_into_Hive_Tables_from_queries>INSERT OVERWRITE</a> command), statistics are automatically computed by default. The user has to explicitly set the boolean variable <strong><a href=#hive-stats-autogather>hive.stats.autogather</a></strong> to <strong>false</strong> so that statistics are not automatically computed and stored into Hive MetaStore.</p>
+<pre tabindex=0><code>set hive.stats.autogather=false;
+
+</code></pre><p>The user can also specify the implementation to be used for the storage of temporary statistics setting the variable <strong><a href=#hive-stats-dbclass>hive.stats.dbclass</a></strong>. For example, to set HBase as the implementation of temporary statistics storage (the default is <code>jdbc:derby</code> or <code>fs</code>, depending on the Hive version) the user should issue the following command:</p>
+<pre tabindex=0><code>set hive.stats.dbclass=hbase;
+
+</code></pre><p>In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable <strong><a href=#hive-stats-dbconnectionstring>hive.stats.dbconnectionstring</a></strong>. Also the user should specify the appropriate JDBC driver by setting the variable <strong><a href=#hive-stats-jdbcdriver>hive.stats.jdbcdriver</a></strong>.</p>
+<pre tabindex=0><code>set hive.stats.dbclass=jdbc:derby;
+set hive.stats.dbconnectionstring=&quot;jdbc:derby:;databaseName=TempStatsStore;create=true&quot;;
+set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
+
+</code></pre><p>Queries can fail to collect stats completely accurately. There is a setting <strong><a href=#hive-stats-reliable>hive.stats.reliable</a></strong> that fails queries if the stats can&rsquo;t be reliably collected. This is <code>false</code> by default.</p>
+<h3 id=existing-tables-analyze>Existing Tables – ANALYZE</h3>
+<p>For existing tables and/or partitions, the user can issue the ANALYZE command to gather statistics and write them into Hive MetaStore. The syntax for that command is described below:</p>
+<pre tabindex=0><code>ANALYZE TABLE [db_name.]tablename [PARTITION(partcol1[=val1], partcol2[=val2], ...)]  -- (Note: Fully support qualified table name since Hive 1.2.0, see HIVE-10007.)
+  COMPUTE STATISTICS 
+  [FOR COLUMNS]          -- (Note: Hive 0.10.0 and later.)
+  [CACHE METADATA]       -- (Note: Hive 2.1.0 and later.)
+  [NOSCAN];
+
+</code></pre><p>When the user issues that command, he may or may not specify the partition specs. If the user doesn&rsquo;t specify any partition specs, statistics are gathered for the table as well as all the partitions (if any). If certain partition specs are specified, then statistics are gathered for only those partitions. When computing statistics across all partitions, the partition columns still need to be listed. As of <a href=https://issues.apache.org/jira/browse/HIVE-10007>Hive 1.2.0</a>, Hive fully supports qualified table name in this command. User can only compute the statistics for a table under current database if a non-qualified table name is used.</p>
+<p>When the optional parameter NOSCAN is specified, the command won&rsquo;t scan files so that it&rsquo;s supposed to be fast. Instead of all statistics, it just gathers the following statistics:</p>
+<ul>
+<li>Number of files</li>
+<li>Physical size in bytes</li>
+</ul>
+<p>Version 0.10.0: FOR COLUMNS</p>
+<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-1362>Hive 0.10.0</a>, the optional parameter FOR COLUMNS computes column statistics for all columns in the specified table (and for all partitions if the table is partitioned). See <a href=https://hive.apache.org/development/desingdocs/column-statistics-in-hive_29131019/>Column Statistics in Hive</a> for details.</p>
+<p>To display these statistics, use DESCRIBE FORMATTED [<em>db_name</em>.]<em>table_name</em> <em>column_name</em> [PARTITION (<em>partition_spec</em>)].</p>
+<h2 id=examples>Examples</h2>
+<p>Suppose table Table1 has 4 partitions with the following specs:</p>
+<ul>
+<li>Partition1: (ds=&lsquo;2008-04-08&rsquo;, hr=11)</li>
+<li>Partition2: (ds=&lsquo;2008-04-08&rsquo;, hr=12)</li>
+<li>Partition3: (ds=&lsquo;2008-04-09&rsquo;, hr=11)</li>
+<li>Partition4: (ds=&lsquo;2008-04-09&rsquo;, hr=12)</li>
+</ul>
+<p>and you issue the following command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr=11) COMPUTE STATISTICS;
+
+</code></pre><p>then statistics are gathered for partition3 (ds=&lsquo;2008-04-09&rsquo;, hr=11) only.</p>
+<p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr=11) COMPUTE STATISTICS FOR COLUMNS;
+
+</code></pre><p>then column statistics are gathered for all columns for partition3 (ds=&lsquo;2008-04-09&rsquo;, hr=11). This is available in Hive 0.10.0 and later.</p>
+<p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr) COMPUTE STATISTICS;
+
+</code></pre><p>then statistics are gathered for partitions 3 and 4 only (hr=11 and hr=12).</p>
+<p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr) COMPUTE STATISTICS FOR COLUMNS;
+
+</code></pre><p>then column statistics for all columns are gathered for partitions 3 and 4 only (Hive 0.10.0 and later).</p>
+<p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds, hr) COMPUTE STATISTICS;
+
+</code></pre><p>then statistics are gathered for all four partitions.</p>
+<p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds, hr) COMPUTE STATISTICS FOR COLUMNS;
+
+</code></pre><p>then column statistics for all columns are gathered for all four partitions (Hive 0.10.0 and later).</p>
+<p>For a non-partitioned table, you can issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 COMPUTE STATISTICS;
+
+</code></pre><p>to gather statistics of the table.</p>
+<p>For a non-partitioned table, you can issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 COMPUTE STATISTICS FOR COLUMNS;
+
+</code></pre><p>to gather column statistics of the table (Hive 0.10.0 and later).</p>
+<p>If Table1 is a partitioned table,  then for basic statistics you have to specify partition specifications like above in the analyze statement. Otherwise a semantic analyzer exception will be thrown.</p>
+<p>However for column statistics, if no partition specification is given in the analyze statement, statistics for all partitions are computed.</p>
+<p>You can view the stored statistics by issuing the <a href="http://wiki.apache.org/hadoop/Hive/LanguageManual/DDL?highlight=(describe)#Describe_Partition">DESCRIBE</a> command. Statistics are stored in the Parameters array. Suppose you issue the analyze command for the whole table Table1, then issue the command:</p>
+<pre tabindex=0><code>DESCRIBE EXTENDED TABLE1;
+
+</code></pre><p>then among the output, the following would be displayed:</p>
+<pre tabindex=0><code> ... , parameters:{numPartitions=4, numFiles=16, numRows=2000, totalSize=16384, ...}, ....
+
+</code></pre><p>If you issue the command:</p>
+<pre tabindex=0><code>DESCRIBE EXTENDED TABLE1 PARTITION(ds='2008-04-09', hr=11);
+
+</code></pre><p>then among the output, the following would be displayed:</p>
+<pre tabindex=0><code> ... , parameters:{numFiles=4, numRows=500, totalSize=4096, ...}, ....
+
+</code></pre><p>If you issue the command:</p>
+<pre tabindex=0><code>desc formatted concurrent_delete_different partition(ds='tomorrow') name;
+
+</code></pre><p>the output would look like this:</p>
+<pre tabindex=0><code>+-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+
+|    col_name     |     data_type      |  min  |  max  | num_nulls  | distinct_count  | avg_col_len  | max_col_len  | num_trues  | num_falses  | bitvector  | comment  |
++-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+
+| col_name        | name               | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| data_type       | varchar(50)        | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| min             |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| max             |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_nulls       | 0                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| distinct_count  | 2                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| avg_col_len     | 5.0                | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| max_col_len     | 5                  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_trues       |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| num_falses      |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| bitVector       |                    | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
+| comment         | from deserializer  | NULL  | NULL  | NULL       | NULL            | NULL         | NULL         | NULL       | NULL        | NULL       | NULL     |
++-----------------+--------------------+-------+-------+------------+-----------------+--------------+--------------+------------+-------------+------------+----------+
+</code></pre><p>If you issue the command:</p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 PARTITION(ds='2008-04-09', hr) COMPUTE STATISTICS NOSCAN;
+
+</code></pre><p>then statistics, number of files and physical size in bytes are gathered for partitions 3 and 4 only.</p>
+<h3 id=analyze-table-table1-cache-metadata>ANALYZE TABLE &lt;table1> CACHE METADATA</h3>
+<p>Feature not implemented</p>
+<p>Hive Metastore on HBase was discontinued and removed in Hive 3.0.0. See <a href=https://hive.apache.org/development/desingdocs/hbasemetastoredevelopmentguide_55151960/>HBaseMetastoreDevelopmentGuide</a></p>
+<p>When Hive metastore is configured to use HBase, this command explicitly caches file metadata in HBase metastore.  </p>
+<p><em>The goal of this feature is to cache file metadata (e.g. ORC file footers) to avoid reading lots of files from HDFS at split generation time, as well as potentially cache some information about splits (e.g. grouping based on location that would be good for some short time) to further speed up the generation and achieve better cache locality with consistent splits.</em></p>
+<pre tabindex=0><code>ANALYZE TABLE Table1 CACHE METADATA;
+</code></pre><p>See feature details in <a href=https://issues.apache.org/jira/secure/attachment/12749746/HBase%20metastore%20split%20cache.pdf>HBase Metastore Split Cache</a> and (<a href=https://issues.apache.org/jira/browse/HIVE-12075>HIVE-12075</a>)</p>
+<h2 id=current-status-jira>Current Status (JIRA)</h2>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>Key</th>
+<th>Summary</th>
+<th>Assignee</th>
+<th>Reporter</th>
+<th>P</th>
+<th>Status</th>
+<th>Resolution</th>
+<th>Created</th>
+<th>Updated</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">HIVE-28363</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28363?src=confmacro">Improve heuristics of FilterStatsRule without column stats</a></td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Jul 08, 2024</td>
+<td>Sep 28, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">HIVE-28124</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-28124?src=confmacro">Do not allow non-numeric values in Hive table stats during an alter table</a></td>
+<td>Miklos Szurap</td>
+<td>Miklos Szurap</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Mar 18, 2024</td>
+<td>Mar 18, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">HIVE-27479</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27479?src=confmacro">Incorrect filter selectivity of BETWEEN expressions when using histograms</a></td>
+<td>Ryan Johnson</td>
+<td>Ryan Johnson</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Jul 01, 2023</td>
+<td>Jul 03, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">HIVE-27142</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27142?src=confmacro">Map Join not working as expected when joining non-native tables with native tables</a></td>
+<td>Syed Shameerur Rahman</td>
+<td>Syed Shameerur Rahman</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Mar 15, 2023</td>
+<td>Jul 10, 2024</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">HIVE-27065</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27065?src=confmacro">Exception in partition column statistics update with SQL Server db when histogram statistics is not enabled</a></td>
+<td>Venugopal Reddy K</td>
+<td>Venugopal Reddy K</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Feb 10, 2023</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">HIVE-27000</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-27000?src=confmacro">Improve the modularity of the *ColumnStatsMerger classes</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jan 30, 2023</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">HIVE-26772</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26772?src=confmacro">Add support for specific column statistics to ANALYZE TABLE command</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Nov 23, 2022</td>
+<td>Nov 23, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">HIVE-26370</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26370?src=confmacro">Check stats are up-to-date when getting materialized view state</a></td>
+<td>shahbaz</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Won&rsquo;t Fix</td>
+<td>Jul 05, 2022</td>
+<td>Oct 21, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">HIVE-26313</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26313?src=confmacro">Aggregate all column statistics into a single field in metastore</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>In Progress</td>
+<td>Unresolved</td>
+<td>Jun 10, 2022</td>
+<td>Mar 20, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Sub-task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">HIVE-26297</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26297?src=confmacro">Refactoring ColumnStatsAggregator classes to reduce warnings</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Minor</td>
+<td>Resolved</td>
+<td>Abandoned</td>
+<td>Jun 07, 2022</td>
+<td>Dec 15, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">HIVE-26277</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26277?src=confmacro">NPEs and rounding issues in ColumnStatsAggregator classes</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jun 01, 2022</td>
+<td>Nov 16, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">HIVE-26221</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26221?src=confmacro">Add histogram-based column statistics</a></td>
+<td>Alessandro Solimando</td>
+<td>Alessandro Solimando</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>May 11, 2022</td>
+<td>Aug 15, 2023</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">HIVE-26066</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-26066?src=confmacro">Remove deprecated GenericUDAFComputeStats</a></td>
+<td>Unassigned</td>
+<td>Alessandro Solimando</td>
+<td>Minor</td>
+<td>Resolved</td>
+<td>Duplicate</td>
+<td>Mar 24, 2022</td>
+<td>Mar 24, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Sub-task</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">HIVE-25918</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25918?src=confmacro">Invalid stats after multi inserting into the same partition</a></td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Resolved</td>
+<td>Fixed</td>
+<td>Feb 01, 2022</td>
+<td>Feb 22, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">HIVE-25771</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25771?src=confmacro">Stats may be incorrect under concurrent inserts if direct-insert is Off</a></td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Dec 03, 2021</td>
+<td>Dec 03, 2021</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">HIVE-25654</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-25654?src=confmacro">Stats of transactional table updated when transaction is rolled back</a></td>
+<td>Unassigned</td>
+<td>Krisztian Kasa</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Oct 27, 2021</td>
+<td>Oct 27, 2021</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">HIVE-24056</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-24056?src=confmacro">Column stats gather stage as part of import table command plan generation</a></td>
+<td>Ashish Sharma</td>
+<td>Ashish Sharma</td>
+<td>Major</td>
+<td>In Progress</td>
+<td>Unresolved</td>
+<td>Aug 21, 2020</td>
+<td>Aug 21, 2020</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Improvement</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">HIVE-23901</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23901?src=confmacro">Overhead of Logger in ColumnStatsMerger damage the performance</a></td>
+<td>Yu-Wen Lai</td>
+<td>Yu-Wen Lai</td>
+<td>Major</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jul 23, 2020</td>
+<td>Nov 17, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">HIVE-23887</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro">Reset table level basic/column stats during import.</a></td>
+<td>Ashish Sharma</td>
+<td>Ashish Sharma</td>
+<td>Minor</td>
+<td>Closed</td>
+<td>Fixed</td>
+<td>Jul 21, 2020</td>
+<td>Nov 17, 2022</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Bug</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">HIVE-23796</a></td>
+<td><a href="https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro">Multiple insert overwrite into a partitioned table doesn&rsquo;t gather column statistics for all partitions</a></td>
+<td>Unassigned</td>
+<td>Yu-Wen Lai</td>
+<td>Major</td>
+<td>Open</td>
+<td>Unresolved</td>
+<td>Jul 02, 2020</td>
+<td>Jul 02, 2020</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b">Authenticate</a> to retrieve your issues</p>
+<p>Showing 20 out of
+<a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22Statistics%22%29&tempMax=1000&src=confmacro">306 issues</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive Metadata Caching Proposal</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-metadata-caching-proposal>Apache Hive : Hive Metadata Caching Proposal</h1>
+<h2 id=why-metastore-cache>Why Metastore Cache</h2>
+<p>During Hive 2 benchmark, we find Hive metastore operation take a lot of time and thus slow down Hive compilation. In some extreme case, it takes much longer than the actual query run time. Especially, we find the latency of cloud db is very high and 90% of total query runtime is waiting for metastore SQL database operations. Based on this observation, the metastore operation performance will be greatly enhanced if we have a memory structure which cache the database query result.</p>
+<h2 id=server-side-vs-client-side-cache>Server side vs client side cache</h2>
+<p>We are thinking about two possible locations of cache. One is on metastore client side, the other is on metastore server side. Both client side and server side cache needs to be a singleton and shared within the JVM. Let’s take Metastore server side cache as an example and illustrated below:</p>
+<p><img src=https://lh6.googleusercontent.com/qtleiaHa_6m5Qv8VdvdVzAO23lThXljKODtu0uNJDanrRteYOfR-ss6HhBnByFz4XjmYbXUzqKRRExgM1t56xrBUP2sEwVsncMTT2zVrxwlI-63NMQUeqCErWN4DRkTz7wEHmn_5 alt=ms2.png></p>
+<p>Here we show two HiveServer2 instances using a single remote metastore. The metastore server will have a cache and thus shared by both HiveServer2 instances. In practice, we usually use HiveServer2 with embedded metastore. In this picture, metastore server code lives inside HS2 JVM instance and metastore server cache is shared within the HiveServer2:</p>
+<p><img src=https://lh6.googleusercontent.com/yDtScj5Ls99DYNBW6Z5KAqxFQscGsnfSoT7o20TZkA4OYYoiaFdJjqKwBa437pmygEx72e7KWmkeqFm-0Z2I2c-sWeYYi8YdAU1oSiCIPVOPDPhB8yNpGepO1jbgH0kE7Bq8_8KR alt=ms1.png></p>
+<p>On the other hand, Metastore client side lives in client JVM and will go away once the client is gone.</p>
+<p><img src=https://lh3.googleusercontent.com/tlk0QJCfWASyjKpDkwdU1qur5f1DI0MIFuVgy-3vrmiXFtOe7ztZQH7gA-PkpW58FAFnNrVkfhd7FtywPzl2wCTvhD9rj2vFuykUArz6XDBw1zmRNF2oKaBQQgs51Vvio1GOdwsN alt=ms3.png></p>
+<p>If we are using HiveServer2 with embedded metastore, both client side and server side cache doesn’t make much difference as we only use one copy of the cache on HiveServer2. We need to make sure if we choose to implement both client side and server side cache, only one cache is used so that we don’t waste extra memory.</p>
+<p>In general, metastore client cache has better performance in case of a cache hit since it further avoids a network roundtrip to the metastore server. Metastore server cache has a better cache hit rate as it is shared by more clients. Client and server side cache is independent and there is nothing to prevent us to implementing both. However, our experiment shows the major bottleneck is the database query not the network traffic. That favors us to focus on metastore server cache in our initial effort.</p>
+<h2 id=cache-consistency>Cache Consistency</h2>
+<p>If we have cache in two or more JVM instance, we need to deal with cache consistency problem. For example, suppose both metastore server A and B caches table X, and at a moment, client changes table X via metastore A. Metastore A could invalidate the cached table X and maintain a consistent cache. However, metastore B does not realize the change and continue to use the stale cached table X. We can certainly adopt a cache eviction policy to invalidate old entries, but there is an inevitable lag.</p>
+<p>To address this issue, we envision several approaches to invalidate stale cache on remote JVM:</p>
+<ol>
+<li>Time based synchronization. Cache will be refreshed periodically from the database. However, we need to make sure cache is consistent during the refresh. This is part of the current implementation.</li>
+<li>Metastore has an event log (currently used for implementing replication v2). The event log captures all the changes to the metadata object. So we shall be able to monitor the event log on every cache instance and invalidate changed entries (</li>
+</ol>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehttpsissuesapacheorgjirabrowsehive-18056srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-18056?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt></a></h2>
+<p>CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
+Closed</p>
+<p>). This might have a minor lag due to the event propagation, but that should be much shorter than the cache eviction.
+3. Maintain a unique id for every object in SQL database (eg, modified timestamp, version id, or md5 signature), which is different every time we change the object in SQL database. We will check the DB if the object is changed for every cache access. However, even check the timestamp in SQL database might take some time if the database latency is high
+4. In addition, we might optionally add a “flush cache” statement in Hive in case user want to enforce a cache flush. However, this should be an admin privilege statement and will complicate our security model.</p>
+<p>If the requirements present, we can also work on implementing a cache consistency protocol among multiple metastore instances. Such a protocol will need to replicate changes to all the active metastore before finally committing the change and responding to a client write/update request (perhaps using something similar to a two phase commit protocol). ## Case Study: Presto</p>
+<p>Presto has a global metastore client cache in its coordinator (HiveServer 2 equivalent). Note Presto currently only has 1 coordinator in a cluster so it does not suffer cache consistency problem if user only changes objects via Presto. However, if user also changes objects in metastore via Hive, it suffers the same issue.</p>
+<p>Presto adopts a Guava based LRU cache which has the default expiration of 1h and default max entry of 10000 (tunable). The cached metastore is pluggable. The cached metastore client and non cached version are both an implementation of a common interface and either can be activated by a config.</p>
+<p>Presto has the following cache:</p>
+<ul>
+<li>Point lookup cache</li>
+</ul>
+<ul>
+<li>databaseCache</li>
+<li>tableCache</li>
+<li>partitionCache</li>
+<li>userRolesCache</li>
+<li>userTablePrivileges</li>
+</ul>
+<ul>
+<li>Range scan cache</li>
+</ul>
+<ul>
+<li>databaseNamesCache: regex -> database names, facilitates database search</li>
+<li>tableNamesCache</li>
+<li>viewNamesCache</li>
+<li>partitionNamesCache: table name -> partition names</li>
+</ul>
+<ul>
+<li>Other</li>
+</ul>
+<ul>
+<li>partitionFilterCache: PS -> partition names, facilitates partition pruning</li>
+</ul>
+<p>For every partition filter condition, Presto breaks it down into tupleDomain and remainder:</p>
+<p>AddExchanges.planTableScan:</p>
+<p>           DomainTranslator.ExtractionResult decomposedPredicate = DomainTranslator.fromPredicate(</p>
+<p>                   metadata,</p>
+<p>                   session,</p>
+<p>                   deterministicPredicate,</p>
+<p>                   types);</p>
+<p>   public static class ExtractionResult</p>
+<p>   {</p>
+<p>       private final TupleDomain tupleDomain;</p>
+<p>       private final Expression remainingExpression;</p>
+<p>   }</p>
+<p>tupleDomain is a mapping of column -> range or exact value. When converting to PS, any range will be converted into wildcard and only exact value will be considered:</p>
+<p>HivePartitionManager.getFilteredPartitionNames:</p>
+<p>       for (HiveColumnHandle partitionKey : partitionKeys) {</p>
+<p>           if (domain != null && domain.isNullableSingleValue()) {</p>
+<p>                   filter.add(((Slice) value).toStringUtf8());</p>
+<p>           else {</p>
+<p>               filter.add(PARTITION_VALUE_WILDCARD);</p>
+<p>           }</p>
+<p>       }</p>
+<p>For example, the expression “state = CA and date between ‘201612’ and ‘201701’ will be broken down to PS (state = CA) and remainder date between ‘201612’ and ‘201701’. Presto will retrieve the partitions with state = CA from the PS -> partition name cache and partition object cache, and evaluates “date between ‘201612’ and ‘201701’ for every partitions returned. This is a good balance compare to caching partition names for every expression.</p>
+<h2 id=our-approach>Our Approach</h2>
+<p>Our design is a metastore server side cache and we will do metastore invalidation upon receiving metastore events. The reason for both choices are discussed in the above sections.</p>
+<p>Further, in our design, metastore will read all metastore objects once at startup time (prewarm) and there is no eviction of the metastore objects ever since. The only time we change cache is when user requested a change through metastore client (eg, alter table, alter partition), and upon receiving metastore event of changes made by other metastore server. Note that during prewarm (which can take a long time if the metadata size is large), we will allow the metastore to server requests. If a table has already been cached, the requests for that table (and its partitions and statistics) can be served from the cache. If the table has not been prewarmed yet, the requests for that table will be served from the database (</p>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehttpsissuesapacheorgjirabrowsehive-18264srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-18264?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt></a></h2>
+<p>CachedStore: Store cached partitions/col stats within the table cache and make prewarm non-blocking
+Resolved</p>
+<p>).</p>
+<p>Currently, the size of the metastore cache can be restricted by a combination of cache whitelist and blacklist patterns (</p>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehttpsissuesapacheorgjirabrowsehive-18056srcconfmacro-1><a href="https://issues.apache.org/jira/browse/HIVE-18056?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt></a></h2>
+<p>CachedStore: Have a whitelist/blacklist config to allow selective caching of tables/partitions and allow read while prewarming
+Closed</p>
+<p>). Before a table is cached, it is checked against these filters to decide if it can be cached or not. Similarly, when a table is read, if it does not pass the above filters, it is read from the database and not the cache.</p>
+<h3 id=quantitative-study-memory-footprint-and-prewarm-time>Quantitative study: memory footprint and prewarm time</h3>
+<p>The major concern in this approach is how much memory the metastore cache will consume and how much latency at startup time to read all metastore objects (prewarm). For that, we did some quantitative experiments.</p>
+<p>In our experiments, we adopted some memory optimizations discussed below, which is separating table/partition and storage descriptor. We only cache database/table/partition objects and not count column statistics/permanent functions/constraints. In our setting, the memory footprint is dominated by partition objects which aggregates to 58M (shown in the table below). This does not discount the fact that many strings can be interned and shared by multiple objects, which could save an additional 20% according to HIVE-16079.</p>
+<p> </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td>count</td>
+<td>Avg size (byte)</td>
+</tr>
+<tr>
+<td>table</td>
+<td>895</td>
+<td>1576</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>97,863</td>
+<td>591</td>
+</tr>
+<tr>
+<td>storagedescriptor</td>
+<td>412</td>
+<td>680</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>If we have 6G memory reserved for metastore cache, we could afford 10,000,000 partition objects and which we think is enough for majority use cases. In case we are out of the memory boundary, we could switch to a non-cached metastore and don’t crash.</p>
+<p>We also tested the prewarm time in the same setting. It takes metastore 25 seconds to load all databases/tables/partitions from MySql database. Note in slow database such as Azure, the number could be much bigger but we have not tested yet. Metastore would only open listening port after prewarm. All metastore client request will be rejected before prewarm is done.</p>
+<h3 id=memory-optimization>Memory Optimization</h3>
+<p>We plan to adopt two memory optimization techniques.</p>
+<p>The first one is to separate storage descriptor from table/partition. This is the same technique we used in HBaseMetastore work and is based on the observation major components of storage descriptors are shared. The only storage descriptor components which might change from partition to partition is the location and parameters. We extract both components from shared storage descriptors and stored in partition level instead.</p>
+<p>The second technique is intern shared string as suggested in HIVE-16079, which is based on the observation most strings in parameters are the same.</p>
+<h3 id=cached-objects>Cached Objects</h3>
+<p>The key objects to store in the cache are</p>
+<ul>
+<li>Db</li>
+<li>Table</li>
+<li>Partition</li>
+<li>Permanent functions</li>
+<li>Constraints</li>
+<li>ColumnStats</li>
+</ul>
+<p>We will cache thrift objects in cache, so we can simply implement a wrapper on top of the RawStore API.</p>
+<p>We don’t plan to cache roles and privileges as we are in favor of external access control system such as Ranger, and put lesser focus on SQLStdAuth.</p>
+<h3 id=cache-update>Cache Update</h3>
+<p>For local metastore request that changes an object, such as alter table/alter partition, the change request will write through to the wrapped RawStore object. In the mean time, we should be able to update the cache without further fetching data back from SQL database.</p>
+<p>For remote metastore updates, we will either use a periodical synchronization (current approach), or monitor event log and fetch affected objects from SQL database (</p>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21146avatartypeissuetypehive-18661httpsissuesapacheorgjirabrowsehive-18661srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-18661?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21146&avatarType=issuetype" alt>HIVE-18661</a></h2>
+<p>CachedStore: Use metastore notification log events to update cache
+Resolved</p>
+<p>). Both options are discussed already in “Cache Consistency” section.</p>
+<h3 id=aggregated-statistics>Aggregated Statistics</h3>
+<p>We already have aggregated stats module in ObjectStore (</p>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21140avatartypeissuetypehive-10382httpsissuesapacheorgjirabrowsehive-10382srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-10382?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype" alt>HIVE-10382</a></h2>
+<p>Aggregate stats cache for RDBMS based metastore codepath
+Closed</p>
+<p>). However, the base column statistics is not cached and needs to fetch from SQL database everytime needed. We plan to port aggregated stats module to CachedStore to use cached column statistics to do the calculation. One design choice yet to make is whether we need to cache aggregated stats, or calculate them on the fly in the CachedStore assuming all column stats are in memory. But in either case, once we turn on aggregate stats in CacheStore, we shall turn off it in ObjectStore (already have a switch) so we don’t do it twice.</p>
+<h3 id=getpartitionsbyexpr>getPartitionsByExpr</h3>
+<p>This is one of the most important operations in Hive metastore we want to optimize. The ObjectStore already have the ability to evaluate an expression against a list of partitions in memory. We plan to adopt the same approach. The assumption is even though we need to evaluate expression of every partitions of the table in memory, calculation time is still much lesser than database access time even though we can push some expression conditions to sql database. This is supported by some initial testing (shown below), but need to evaluate more in the future. In case it becomes a problem, a memory index to accelerate in memory expression evaluation is possible.</p>
+<h3 id=architecture>Architecture</h3>
+<p>CachedStore will implement a RawStore interface. CachedStore internally wraps a real RawStore implementation which could be anything (either ObjectStore, or HBaseStore). In HiveServer2 embedded metastore or standalone metastore setting, we will set hive.metastore.rawstore.impl to CachedStore, and hive.metastore.cached.rawstore.impl (the wrapped RawStore) to ObjectStore. If we are using HiveCli with embedded metastore, we might want to skip CachedStore since we might not want prewarm latency.</p>
+<h3 id=potential-issues>Potential Issues</h3>
+<p>There are maybe some potential issue or unimplemented featrue in the initial version due to time limitation:</p>
+<ol>
+<li>Remote metastore invalidation by monitoring event queue. Discussed above and may not make it in version 1</li>
+<li>getPartitionsByFilter may not be implemented. This API takes a string form of expression which we need to parse and evaluate in metastore. This API is only used in HCatalog and for backward compatibility. Hive itself will use getPartitionsByExpr which takes a binary form of expression and already addressed</li>
+<li>It is better to have a cache memory estimation, so we can control the memory usage of cache. However, memory estimation could be tricky especially considering interned string. In the initial version, we might only put a limit on the number of partitions, as we saw the memory usage is dominant by partition.</li>
+<li>In current design, once cache usage exceeds threshold (number of partitions exceeds threshold, or memory usage exceeds threshold in future version), Metastore will exit. If the metastore is still running with missing cache, some operations such as getPartitionsByExpr would produce wrong result. One potential optimization is we evict cache in table level, i.e., once memory is full, evict some tables alongs with all its partitions. When we want a missing table/partition, retrieve the table along with all partitions from SQL database. This is possible but adds a lot of complexity to the current design. We might only consider it if we observe memory footprint is excessive in the future.</li>
+<li>In prewarm, we fetch all partitions of a table in one SQL operation. This might or might not be a problem. However, fetching partition one by one is either not an option as it would take excessive long time. We might need to find some way to address it (like paging) if this becomes a problem</li>
+</ol>
+<h3 id=compare-to-presto>Compare to Presto</h3>
+<p>In our design, we sacrifice prewarm time and memory footprint in change of simplicity and better runtime performance. By monitoring event queue, and can solve the remote metastore consistency issue which is missing in Presto. Architecture level, CachedStore is a lightweight cache layer wrapping the real RawStore, with this design, there’s nothing prevent us to implement alternative cache strategy in addition to our current approach.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

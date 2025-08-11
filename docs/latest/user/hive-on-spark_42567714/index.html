@@ -1,0 +1,350 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive on Spark</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-on-spark>Apache Hive : Hive on Spark</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-spark>Apache Hive : Hive on Spark</a></li>
+<li><a href=#1-introduction>1. Introduction</a>
+<ul>
+<li><a href=#11-motivation>1.1 Motivation</a></li>
+<li><a href=#12-design-principle>1.2 Design Principle</a></li>
+<li><a href=#13-comparison-with-shark-and-spark-sql>1.3 Comparison with Shark and Spark SQL</a></li>
+<li><a href=#14-other-considerations>1.4 Other Considerations</a></li>
+</ul>
+</li>
+<li><a href=#2-high-level-functionality>2. High-Level Functionality</a>
+<ul>
+<li><a href=#21-a-new-execution-engine>2.1 A New Execution Engine</a></li>
+<li><a href=#22-spark-configuration>2.2 Spark Configuration</a></li>
+<li><a href=#23-miscellaneous-functionality>2.3 Miscellaneous Functionality</a></li>
+</ul>
+</li>
+<li><a href=#3-hive-level-design>3. Hive-Level Design</a>
+<ul>
+<li><a href=#31-query-planning>3.1 Query Planning</a></li>
+<li><a href=#32-job-execution>3.2 Job Execution</a></li>
+<li><a href=#33-design-considerations>3.3 Design Considerations</a>
+<ul>
+<li><a href=#table-as-rdd>Table as RDD</a></li>
+<li><a href=#sparkwork>SparkWork</a></li>
+<li><a href=#sparktask>SparkTask</a></li>
+<li><a href=#shuffle-group-and-sort>Shuffle, Group, and Sort</a></li>
+<li><a href=#join>Join</a></li>
+<li><a href=#number-of-tasks>Number of Tasks</a></li>
+<li><a href=#local-mapreduce-tasks>Local MapReduce Tasks</a></li>
+<li><a href=#semantic-analysis-and-logical-optimizations>Semantic Analysis and Logical Optimizations</a></li>
+<li><a href=#job-diagnostics>Job Diagnostics</a></li>
+<li><a href=#counters-and-metrics>Counters and Metrics</a></li>
+<li><a href=#explain-statements>Explain Statements</a></li>
+<li><a href=#hive-variables>Hive Variables</a></li>
+<li><a href=#union>Union</a></li>
+<li><a href=#concurrency-and-thread-safety>Concurrency and Thread Safety</a></li>
+<li><a href=#build-infrastructure>Build Infrastructure</a></li>
+<li><a href=#mini-spark-cluster>Mini Spark Cluster</a></li>
+<li><a href=#testing>Testing</a></li>
+</ul>
+</li>
+<li><a href=#34-potentially-required-work-from-spark>3.4 Potentially Required Work from Spark</a></li>
+</ul>
+</li>
+<li><a href=#4-summary>4. Summary</a></li>
+</ul>
+</nav>
+</aside>
+<h1 id=1-introduction>1. Introduction</h1>
+<p>We propose modifying Hive to add Spark as a third execution backend(<a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>), parallel to MapReduce and Tez.</p>
+<p>Spark is an open-source data analytics cluster computing framework that’s built outside of Hadoop&rsquo;s two-stage MapReduce paradigm but on top of HDFS. Spark’s primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop InputFormats (such as HDFS files) or by transforming other RDDs. By being applied by a series of transformations such as groupBy and filter, or actions such as count and save that are provided by Spark, RDDs can be processed and analyzed to fulfill what MapReduce jobs can do without having intermediate stages.</p>
+<p>SQL queries can be easily translated into Spark transformation and actions, as demonstrated in Shark and Spark SQL. In fact, many primitive transformations and actions are SQL-oriented such as join and count.</p>
+<p>More information about Spark can be found here:</p>
+<ul>
+<li>Apache Spark page: <a href=http://spark.apache.org/>http://spark.apache.org/</a></li>
+<li>Apache Spark blogpost: <a href=http://blog.cloudera.com/blog/2013/11/putting-spark-to-use-fast-in-memory-computing-for-your-big-data-applications/>http://blog.cloudera.com/blog/2013/11/putting-spark-to-use-fast-in-memory-computing-for-your-big-data-applications/</a></li>
+<li>Apache Spark JavaDoc:  <a href=http://spark.apache.org/docs/1.0.0/api/java/index.html>http://spark.apache.org/docs/1.0.0/api/java/index.html</a></li>
+</ul>
+<h2 id=11-motivation>1.1 Motivation</h2>
+<p>Here are the main motivations for enabling Hive to run on Spark:</p>
+<ol>
+<li>Spark user benefits: This feature is very valuable to users who are already using Spark for other data processing and machine learning needs. Standardizing on one execution backend is convenient for operational management, and makes it easier to develop expertise to debug issues and make enhancements.</li>
+<li>Greater Hive adoption: Following the previous point, this brings Hive into the Spark user base as a SQL on Hadoop option, further increasing Hive’s adoption.</li>
+<li>Performance: Hive queries, especially those involving multiple reducer stages, will run faster, thus improving user experience as Tez does.</li>
+</ol>
+<p>It is not a goal for the Spark execution backend to replace Tez or MapReduce. It is healthy for the Hive project for multiple backends to coexist. Users have a choice whether to use Tez, Spark or MapReduce. Each has different strengths depending on the use case. And the success of Hive does not completely depend on the success of either Tez or Spark.</p>
+<h2 id=12-design-principle>1.2 Design Principle</h2>
+<p>The main design principle is to have no or limited impact on Hive’s existing code path and thus no functional or performance impact. That is, users choosing to run Hive on either MapReduce or Tez will have existing functionality and code paths as they do today. In addition, plugging in Spark at the execution layer keeps code sharing at maximum and contains the maintenance cost, so Hive community does not need to make specialized investments for Spark.</p>
+<p>Meanwhile, users opting for Spark as the execution engine will automatically have all the rich functional features that Hive provides. Future features (such as new data types, UDFs, logical optimization, etc) added to Hive should be automatically available to those users without any customization work to be done done in Hive’s Spark execution engine.</p>
+<h2 id=13-comparison-with-shark-and-spark-sql>1.3 Comparison with Shark and Spark SQL</h2>
+<p>There are two related projects in the Spark ecosystem that provide Hive QL support on Spark: Shark and Spark SQL.</p>
+<ul>
+<li>The Shark project translates query plans generated by Hive into its own representation and executes them over Spark.</li>
+<li>Spark SQL is a feature in Spark. It uses Hive’s parser as the frontend to provide Hive QL support. Spark application developers can easily express their data processing logic in SQL, as well as the other Spark operators, in their code. Spark SQL supports a different use case than Hive.</li>
+</ul>
+<p>Compared with Shark and Spark SQL, our approach by design supports all existing Hive features, including Hive QL (and any future extension), and Hive’s integration with authorization, monitoring, auditing, and other operational tools.</p>
+<h2 id=14-other-considerations>1.4 Other Considerations</h2>
+<p>We know that a new execution backend is a major undertaking. It inevitably adds complexity and maintenance cost, even though the design avoids touching the existing code paths. And Hive will now have unit tests running against MapReduce, Tez, and Spark. We think that the benefit outweighs the cost. From an infrastructure point of view, we can get sponsorship for more hardware to do continuous integration.</p>
+<p>Lastly, Hive on Tez has laid some important groundwork that will be very helpful to support a new execution engine such as Spark. This project here will certainly benefit from that. On the other hand, Spark is a framework that’s very different from either MapReduce or Tez. Thus, it’s very likely to find gaps and hiccups during the integration. It’s expected that Hive community will work closely with Spark community to ensure the success of the integration.</p>
+<h1 id=2-high-level-functionality>2. High-Level Functionality</h1>
+<h2 id=21-a-new-execution-engine>2.1 A New Execution Engine</h2>
+<p>We will introduce a new execution, Spark, in addition to existing MapReduce and Tez. To use Spark as an execution engine in Hive, set the following:</p>
+<p>set hive.execution.engine=spark;</p>
+<p>The default value for this configuration is still “mr”. Hive continues to work on MapReduce and Tez as is on clusters that don&rsquo;t have spark.</p>
+<p>The new execution engine should support all Hive queries without requiring any modification of the queries. Query result should be functionally equivalent to that from either MapReduce or Tez.</p>
+<h2 id=22-spark-configuration>2.2 Spark Configuration</h2>
+<p>When Spark is configured as Hive&rsquo;s execution, a few configuration variables will be introduced such as the master URL of the Spark cluster. However, they can be completely ignored if Spark isn’t configured as the execution engine.</p>
+<h2 id=23-miscellaneous-functionality>2.3 Miscellaneous Functionality</h2>
+<ol>
+<li>Hive will display a task execution plan that’s similar to that being displayed in “explain”     command for MapReduce and Tez.</li>
+<li>Hive will give appropriate feedback to the user about progress and completion status of the query when running queries on Spark.</li>
+<li>The user will be able to get statistics and diagnostic information as before (counters, logs, and debug info on the console).</li>
+</ol>
+<h1 id=3-hive-level-design>3. Hive-Level Design</h1>
+<p>As noted in the introduction, this project takes a different approach from that of Shark or Spark SQL in the sense that we are not going to implement SQL semantics using Spark&rsquo;s primitives. On the contrary, we will implement it using MapReduce primitives. The only new thing here is that these MapReduce primitives will be executed in Spark. In fact, only a few of Spark&rsquo;s primitives will be used in this design.</p>
+<p>The approach of executing Hive’s MapReduce primitives on Spark that is different from what Shark or Spark SQL does has the following direct advantages:</p>
+<ol>
+<li>Spark users will automatically get the whole set of Hive’s rich features, including any new features that Hive might introduce in the future.</li>
+<li>This approach avoids or reduces the necessity of any customization work in Hive’s Spark execution engine.</li>
+<li>It will also limit the scope of the project and reduce long-term maintenance by keeping Hive-on-Spark congruent to Hive MapReduce and Tez.</li>
+</ol>
+<p>The main work to implement the Spark execution engine for Hive lies in two folds: query planning, where Hive operator plan from semantic analyzer is further translated a task plan that Spark can execute, and query execution, where the generated Spark plan gets actually executed in the Spark cluster. Of course, there are other functional pieces, miscellaneous yet indispensable such as monitoring, counters, statistics, etc. Some important design details are thus also outlined below.</p>
+<p>It’s worth noting that though Spark is written largely in Scala, it provides client APIs in several languages including Java. Naturally we choose Spark Java APIs for the integration, and no Scala knowledge is needed for this project.</p>
+<h2 id=31-query-planning>3.1 Query Planning</h2>
+<p>Currently for a given user query Hive semantic analyzer generates an operator plan that&rsquo;s composed of a graph of logical operators such as TableScanOperator, ReduceSink, FileSink, GroupByOperator, etc. MapReduceCompiler compiles a graph of MapReduceTasks and other helper tasks (such as MoveTask) from the logical, operator plan. Tez behaves similarly, yet generates a TezTask that combines otherwise multiple MapReduce tasks into a single Tez task.</p>
+<p>For Spark, we will introduce SparkCompiler, parallel to MapReduceCompiler and TezCompiler. Its main responsibility is to compile from Hive logical operator plan a plan that can be execute on Spark. Thus, we will have SparkTask, depicting a job that will be executed in a Spark cluster, and SparkWork, describing the plan of a Spark task. Thus, SparkCompiler translates a Hive&rsquo;s operator plan into a SparkWork instance.</p>
+<p>During the task plan generation, SparkCompiler may perform physical optimizations that&rsquo;s suitable for Spark. However, for first phase of the implementation, we will focus less on this unless it&rsquo;s easy and obvious. Further optimization can be done down the road in an incremental manner as we gain more and more knowledge and experience with Spark.</p>
+<p>How to generate SparkWork from Hive’s operator plan is left to the implementation. However, there seems to be a lot of common logics between Tez and Spark as well as between MapReduce and Spark. If feasible, we will extract the common logic and package it into a shareable form, leaving the specific     implementations to each task compiler, without destabilizing either MapReduce or Tez.   </p>
+<h2 id=32-job-execution>3.2 Job Execution</h2>
+<p>A SparkTask instance can be executed by Hive&rsquo;s task execution framework in the same way as for other tasks. Internally, the SparkTask.execute() method will make RDDs and functions out of a SparkWork instance, and submit the execution to the Spark cluster via a Spark client.</p>
+<p>Once the Spark work is submitted to the Spark cluster, Spark client will continue to monitor the job execution and report progress. A Spark job can be monitored via SparkListener APIs. Currently not available in Spark Java API, We expect they will be made available soon with the help from Spark community.</p>
+<p>With SparkListener APIs, we will add a SparkJobMonitor class that handles printing of status as well as reporting the final result. This class provides similar functions as HadoopJobExecHelper used for MapReduce processing, or TezJobMonitor used for Tez job processing, and will also retrieve and print the top level exception thrown at execution time, in case of job failure.</p>
+<p>Spark job submission is done via a SparkContext object that’s instantiated with user’s configuration. When a SparkTask is executed by Hive, such context object is created in the current user session. With the context object, RDDs corresponding to Hive tables are created and MapFunction and ReduceFunction (more details below) that are built from Hive’s SparkWork and applied to the RDDs. Job execution is triggered by applying a foreach() transformation on the RDDs with a dummy function.</p>
+<p>One SparkContext per user session is right thing to do, but it seems that Spark assumes one SparkContext per application because of some thread-safety issues. We expect that Spark community will be able to address this issue timely.</p>
+<h2 id=33-design-considerations>3.3 Design Considerations</h2>
+<p>This section covers the main design considerations for a number of important components, either new that will be introduced or existing that deserves special treatment. For other existing components that aren’t named out, such as UDFs and custom Serdes, we expect that special considerations are either not needed or insignificant.</p>
+<h3 id=table-as-rdd>Table as RDD</h3>
+<p>A Hive table is nothing but a bunch of files and folders on HDFS. Spark primitives are applied to RDDs. Thus, naturally Hive tables will be treated as RDDs in the Spark execution engine. However, Hive table is more complex than a HDFS file. It can have partitions and buckets, dealing with heterogeneous input formats and schema evolution. As a result, the treatment may not be that simple, potentially having complications, which we need to be aware of.</p>
+<p>It&rsquo;s possible we need to extend Spark&rsquo;s Hadoop RDD and implement a Hive-specific RDD. While RDD extension seems easy in Scala, this can be challenging as Spark&rsquo;s Java APIs lack such capability. We will find out if RDD extension is needed and if so we will need help from Spark community on the Java APIs.</p>
+<h3 id=sparkwork>SparkWork</h3>
+<p>As discussed above, SparkTask will use SparkWork, which describes the task plan that the Spark job is going to execute upon. SparkWork will be very similar to TezWork, which is basically composed of MapWork at the leaves and ReduceWork (occassionally, UnionWork) in all other nodes.</p>
+<p>Defining SparkWork in terms of MapWork and ReduceWork makes the new concept easier to be understood. The “explain” command will show a pattern that Hive users are familiar with.</p>
+<h3 id=sparktask>SparkTask</h3>
+<p>To execute the work described by a SparkWork instance, some further translation is necessary, as MapWork and ReduceWork are MapReduce-oriented concepts, and implementing them with Spark requires some traverse of the plan and generation of Spark constructs (RDDs, functions). How to traverse and translate the plan is left to the implementation, but this is very Spark specific, thus having no exposure to or impact on other components.</p>
+<p>Above mentioned MapFunction will be made from MapWork, specifically, the operator chain starting from ExecMapper.map() method. ExecMapper class implements MapReduce Mapper interface, but the implementation in Hive contains some code that can be reused for Spark. Therefore, we will likely extract the common code into a separate class, MapperDriver, to be shared by both MapReduce and Spark. Note that this is just a matter of refactoring rather than redesigning.</p>
+<p>(Tez probably had the same situation. However, Tez has chosen to create a separate class, RecordProcessor, to do something similar.)</p>
+<p>Similarly, ReduceFunction will be made of ReduceWork instance from SparkWork. To Spark, ReduceFunction has no difference from MapFunction, but the function&rsquo;s implementation will be different, made of the operator chain starting from ExecReducer.reduce(). Also because some code in ExecReducer are to be reused, likely we will extract the common code into a separate class, ReducerDriver, so as to be shared by both MapReduce and Spark.</p>
+<p>All functions, including MapFunction and ReduceFunction needs to be serializable as Spark needs to ship them to the cluster. This could be tricky as how to package the functions impacts the serialization of the functions, and Spark is implicit on this.</p>
+<p>Note that Spark&rsquo;s built-in map and reduce transformation operators are functional with respect to each record. For example,  Hive&rsquo;s operators, however, need to be initialized before being called to process rows and be closed when done processing. MapFunction and ReduceFunction will have to perform all those in a single call() method. For the purpose of using Spark as an alternate execution backend for Hive, we will be using the mapPartitions transformation operator on RDDs, which provides an iterator on a whole partition of data. With the iterator in control, Hive can initialize the operator chain before processing the first row, and de-initialize it after all input is consumed.</p>
+<p>It&rsquo;s worth noting that during the prototyping Spark caches function globally in certain cases, thus keeping stale state of the function. Such culprit is hard to detect and hopefully Spark will be more specific in documenting features down the road.</p>
+<h3 id=shuffle-group-and-sort>Shuffle, Group, and Sort</h3>
+<p>While this comes for “free” for MapReduce and Tez, we will need to provide an equivalent for Spark. Fortunately, Spark provides a few transformations that are suitable to substitute MapReduce’s shuffle capability, such as partitionBy, groupByKey, and sortByKey. Transformation partitionBy does pure shuffling (no grouping or sorting), groupByKey does shuffling and grouping, and sortByKey() does shuffling plus sorting. Therefore, for each ReduceSinkOperator in SparkWork, we will need to inject one of the transformations.</p>
+<p>Having the capability of selectively choosing the exact shuffling behavior provides opportunities for optimization. For instance, Hive&rsquo;s groupBy doesn&rsquo;t require the key to be sorted, but MapReduce does it nevertheless. In Spark, we can choose sortByKey only if necessary key order is important (such as for SQL order by).</p>
+<p>While sortByKey provides no grouping, it’s easy to group the keys as rows with the same key will come consecutively. On the other hand,  groupByKey clusters the keys in a collection, which naturally fits the MapReduce’s reducer interface.</p>
+<p>As Hive is more sophisticated in using MapReduce keys to implement operations that’s not directly available such as join, above mentioned transformations may not behave exactly as Hive needs. Thus, we need to be diligent in identifying potential issues as we move forward.</p>
+<p>Finally, it seems that Spark community is in the process of improving/changing the shuffle related APIs. Thus, this part of design is subject to change. Please refer to <a href=https://issues.apache.org/jira/browse/SPARK-2044>https://issues.apache.org/jira/browse/SPARK-2044</a> for the details on Spark shuffle-related improvement.</p>
+<h3 id=join>Join</h3>
+<p>It’s rather complicated in implementing join in MapReduce world, as manifested in Hive. Hive has reduce-side join as well as map-side join (including map-side hash lookup and map-side sorted merge). We will keep Hive’s join implementations. However, extra attention needs to be paid on the shuffle behavior (key generation, partitioning, sorting, etc), since Hive extensively uses MapReduce’s shuffling in implementing reduce-side join. It’s expected that Spark is, or will be, able to provide flexible control over the shuffling, as pointed out in the previous section(<a href="https://docs.google.com/a/cloudera.com/document/d/11xXVgma6UPa32cW_W64BwBssnA0d6RX4jUsATOzgkcw/edit#heading=h.rnmzzu57lmuh">Shuffle, Group, and Sort</a>).</p>
+<p>See: <a href=https://hive.apache.org/development/desingdocs/50858744/>Hive on Spark: Join Design Master</a> for detailed design.</p>
+<h3 id=number-of-tasks>Number of Tasks</h3>
+<p>As specified above, Spark transformations such as partitionBy will be used to connect mapper-side’s operations to reducer-side’s operations. The number of partitions can be optionally given for those transformations, which basically dictates the number of reducers.</p>
+<p>The determination of the number of reducers will be the same as it’s for MapReduce and Tez.</p>
+<h3 id=local-mapreduce-tasks>Local MapReduce Tasks</h3>
+<p>While we could see the benefits of running local jobs on Spark, such as avoiding sinking data to a file and then reading it from the file to memory, in the short term, those tasks will still be executed the same way as it is today. This means that Hive will always have to submit MapReduce jobs when executing locally. However, this can be further investigated and evaluated down the road.</p>
+<p>The same applies for presenting the query result to the user. Presently, a fetch operator is used on the client side to fetch rows from the temporary file (produced by FileSink in the query plan). It&rsquo;s possible to have the FileSink to generate an in-memory RDD instead and the fetch operator can directly read rows from the RDD. Again this can be investigated and implemented as a future work.   </p>
+<h3 id=semantic-analysis-and-logical-optimizations>Semantic Analysis and Logical Optimizations</h3>
+<p>Neither semantic analyzer nor any logical optimizations will change. Physical optimizations and MapReduce plan generation have already been moved out to separate classes as part of Hive on Tez work.</p>
+<h3 id=job-diagnostics>Job Diagnostics</h3>
+<p>Basic “job succeeded/failed” as well as progress will be as discussed in “Job monitoring”. Hive’s current way of trying to fetch additional information about failed jobs may not be available immediately, but this is another area that needs more research.</p>
+<p>Spark provides WebUI for each SparkContext while it’s running. Note that this information is only available for the duration of the application by default. To view the web UI after the fact, set spark.eventLog.enabled to true before starting the application. This configures Spark to log Spark events that encode the information displayed in the UI to persisted storage.</p>
+<p>Spark’s Standalone Mode cluster manager also has its own web UI. If an application has logged events over the course of its lifetime, then the Standalone master’s web UI will automatically re-render the application’s UI after the application has finished.</p>
+<p>If Spark is run on Mesos or YARN, it is still possible to reconstruct the UI of a finished application through Spark’s history server, provided that the application’s event logs exist.</p>
+<p>For more information about Spark monitoring, visit<a href=http://spark.apache.org/docs/latest/monitoring.html>http://spark.apache.org/docs/latest/monitoring.html</a>.</p>
+<h3 id=counters-and-metrics>Counters and Metrics</h3>
+<p>Spark has accumulators which are variables that are only “added” to through an associative operation and can therefore be efficiently supported in parallel. They can be used to implement counters (as in MapReduce) or sums. Spark natively supports accumulators of numeric value types and standard mutable collections, and programmers can add support for new types. In Hive, we may use Spark accumulators to implement Hadoop counters, but this may not be done right way.</p>
+<p>Spark publishes runtime metrics for a running job. However, it’s very likely that the metrics are different from either MapReduce or Tez, not to mention the way to extract the metrics. The topic around this deserves a separate document, but this can be certainly improved upon incrementally.</p>
+<h3 id=explain-statements>Explain Statements</h3>
+<p>Explain statements will be similar to that of TezWork.</p>
+<h3 id=hive-variables>Hive Variables</h3>
+<p>Hive variables will continue to work as it is today. The variables will be passed through to the execution engine as before. However, some execution engine related variables may not be applicable to Spark, in which case, they will be simply ignored.</p>
+<h3 id=union>Union</h3>
+<p>While it&rsquo;s mentioned above that we will use MapReduce primitives to implement SQL semantics in the Spark execution engine, union is one exception. While it&rsquo;s possible to implement it with MapReduce primitives, it takes up to three MapReduce jobs to union two datasets. Using Spark&rsquo;s union transformation should significantly reduce the execution time and promote interactivity.</p>
+<p>In fact, Tez has already deviated from MapReduce practice with respect to union. There is an existing UnionWork where a union operator is translated to a work unit.</p>
+<h3 id=concurrency-and-thread-safety>Concurrency and Thread Safety</h3>
+<p>Spark launches mappers and reducers differently from MapReduce in that a worker may process multiple HDFS splits in a single JVM. However, Hive’s map-side operator tree or reduce-side operator tree operates in a single thread in an exclusive JVM. Reusing the operator trees and putting them in a shared JVM with each other will more than likely cause concurrency and thread safety issues. Such problems, such as static variables, have surfaced in the initial prototyping. For instance, variable ExecMapper.done is used to determine if a mapper has finished its work. If two ExecMapper instances exist in a single JVM, then one mapper that finishes earlier will prematurely terminate the other also. We expect there will be a fair amount of work to make these operator tree thread-safe and contention-free. However, this work should not have any impact on other execution engines.</p>
+<h3 id=build-infrastructure>Build Infrastructure</h3>
+<p>There will be a new “ql” dependency on Spark. Currently Spark client library comes in a single jar. The spark jar will be handled the same way Hadoop jars are handled: they will be used during compile, but not included in the final distribution. Rather we will depend on them being installed separately. The spark jar will only have to be present to run Spark jobs, they are not needed for either MapReduce or Tez execution.</p>
+<p>On the other hand, to run Hive code on Spark, certain Hive libraries and their dependencies need to be distributed to Spark cluster by calling SparkContext.addJar() method. As Spark also depends on Hadoop and other libraries, which might be present in Hive’s dependents yet with different versions, there might be some challenges in identifying and resolving library conflicts. Jetty libraries posted such a challenge during the prototyping.</p>
+<h3 id=mini-spark-cluster>Mini Spark Cluster</h3>
+<p>Spark jobs can be run local by giving “local” as the master URL. Most testing will be performed in this mode. In the same time, Spark offers a way to run jobs in a local cluster, a cluster made of a given number of processes in the local machine. We will further determine if this is a good way to run Hive’s Spark-related tests.</p>
+<h3 id=testing>Testing</h3>
+<p>Testing, including pre-commit testing, is the same as for Tez. Currently Hive has a coverage problem as there are a few variables that requires full regression suite run, such as Tez vs MapReduce, vectorization on vs off, etc. We propose rotating those variables in pre-commit test run so that enough coverage is in place while testing time isn’t prolonged.</p>
+<h2 id=34-potentially-required-work-from-spark>3.4 Potentially Required Work from Spark</h2>
+<p>During the course of prototyping and design, a few issues on Spark have been identified, as shown throughout the document. Potentially more, but the following is a summary of improvement that’s needed from Spark community for the project:</p>
+<ol>
+<li>Job monitoring API in Java.</li>
+<li>SparkContext thread safety issue.</li>
+<li>Improve shuffle functionality and API.</li>
+<li>Potentially, Java API for extending RDD.</li>
+</ol>
+<h1 id=4-summary>4. Summary</h1>
+<p>It can be seen from above analysis that the project of Spark on Hive is simple and clean in terms of functionality and design, while complicated and involved in implementation, which may take significant time and resources. Therefore, we are going to take a phased approach and expect that the work on optimization and improvement will be on-going in a relatively long period of time while all basic functionality will be there in the first phase.</p>
+<p>Secondly, we expect the integration between Hive and Spark will not be always smooth. Functional gaps may be identified and problems may arise. We anticipate that Hive community and Spark community will work closely to resolve any obstacles that might come on the way.</p>
+<p>Nevertheless, we believe that the impact on existing code path is minimal. While Spark execution engine may take some time to stabilize, MapReduce and Tez should continue working as it is.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

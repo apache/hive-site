@@ -1,0 +1,324 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LLAP</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--llap>Apache Hive : LLAP</h1>
+<p>Live Long And Process (LLAP) functionality was added in Hive 2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-7926>HIVE-7926</a> and associated tasks). <a href=https://issues.apache.org/jira/browse/HIVE-9850>HIVE-9850</a> links documentation, features, and issues for this enhancement.
+For configuration of LLAP, see the LLAP Section of <a href=#configuration-properties>Configuration Properties</a>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--llap>Apache Hive : LLAP</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#persistent-daemon>Persistent Daemon</a></li>
+<li><a href=#execution-engine>Execution Engine</a></li>
+<li><a href=#query-fragment-execution>Query Fragment Execution</a></li>
+<li><a href=#io>I/O</a></li>
+<li><a href=#caching>Caching</a></li>
+<li><a href=#workload-management>Workload Management</a></li>
+<li><a href=#acid-support>ACID Support</a></li>
+<li><a href=#security>Security</a></li>
+<li><a href=#monitoring>Monitoring</a></li>
+<li><a href=#web-services>Web Services</a></li>
+<li><a href=#slider-on-yarn-deployment>SLIDER on YARN Deployment</a></li>
+<li><a href=#llap-status>LLAP Status</a></li>
+<li><a href=#resources>Resources</a></li>
+<li><a href=#attachments>Attachments:</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=overview>Overview</h2>
+<p>Hive has become significantly faster thanks to various features and improvements that were built by the community in recent years, including <a href=https://hive.apache.org/development/desingdocs/hive-on-tez_33296197/>Tez</a> and <a href=https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive_42566775/>Cost-based-optimization</a>. The following were needed to take Hive to the next level:</p>
+<ul>
+<li>Asynchronous spindle-aware IO</li>
+<li>Pre-fetching and caching of column chunks</li>
+<li>Multi-threaded JIT-friendly operator pipelines</li>
+</ul>
+<p>Also known as Live Long and Process, LLAP provides a hybrid execution model.  It consists of a long-lived daemon which replaces direct interactions with the HDFS DataNode, and a tightly integrated DAG-based framework.<br>
+Functionality such as caching, pre-fetching, some query processing and access control are moved into the daemon.  Small/short queries are largely processed by this daemon directly, while any heavy lifting will be performed in standard YARN containers.</p>
+<p>Similar to the DataNode, LLAP daemons can be used by other applications as well, especially if a relational view on the data is preferred over file-centric processing. The daemon is also open through optional APIs (e.g., InputFormat) that can be leveraged by other data processing frameworks as a building block.</p>
+<p>Last, but not least, fine-grained column-level access control – a key requirement for mainstream adoption of Hive – fits nicely into this model.</p>
+<p>The diagram below shows an example execution with LLAP. Tez AM orchestrates overall execution. The initial stage of the query is pushed into LLAP. In the reduce stage, large shuffles are performed in separate containers. Multiple queries and applications can access LLAP concurrently.</p>
+<p><img src=/attachments/62689557/65871225.png alt></p>
+<h2 id=persistent-daemon>Persistent Daemon</h2>
+<p>To facilitate caching and JIT optimization, and to eliminate most of the startup costs, a daemon runs on the worker nodes on the cluster. The daemon handles I/O, caching, and query fragment execution.</p>
+<ul>
+<li><strong>These nodes are stateless.</strong> Any request to an LLAP node contains the data location and metadata. It processes local and remote locations; locality is the caller’s responsibility (YARN).</li>
+<li><strong>Recovery/resiliency.</strong> Failure and recovery is simplified because any data node can still be used to process any fragment of the input data. The Tez AM can thus simply rerun failed fragments on the cluster.</li>
+<li><strong>Communication between nodes.</strong> LLAP nodes are able to share data (e.g., fetching partitions, broadcasting fragments). This is realized with the same mechanisms used in Tez.</li>
+</ul>
+<h2 id=execution-engine>Execution Engine</h2>
+<p>LLAP works within existing, process-based Hive execution to preserve the scalability and versatility of Hive. It does not replace the existing execution model but rather enhances it.</p>
+<ul>
+<li><strong>The daemons are optional.</strong> Hive can work without them and also is able to bypass them even if they are deployed and operational. Feature parity with regard to language features is maintained.</li>
+<li><strong>External orchestration and execution engines.</strong> LLAP is not an execution engine (like MapReduce or Tez). Overall execution is scheduled and monitored by an existing Hive execution engine (such as Tez) transparently over both LLAP nodes, as well as regular containers. Obviously, LLAP level of support depends on each individual execution engine (starting with Tez). MapReduce support is not planned, but other engines may be added later. Other frameworks like Pig also have the choice of using LLAP daemons.</li>
+<li><strong>Partial execution.</strong> The result of the work performed by an LLAP daemon can either form part of the result of a Hive query, or be passed on to external Hive tasks, depending on the query.</li>
+<li><strong>Resource Management.</strong> YARN remains responsible for the management and allocation of resources. The <a href=https://issues.apache.org/jira/browse/YARN-1488>YARN container delegation</a> model is used to allow the transfer of allocated resources to LLAP. To avoid the limitations of JVM memory settings, cached data is kept off-heap, as well as large buffers for processing (e.g., group by, joins). This way, the daemon can use a small amount of memory, and additional resources (i.e., CPU and memory) will be assigned based on workload.</li>
+</ul>
+<h2 id=query-fragment-execution>Query Fragment Execution</h2>
+<p>For partial execution as described above, LLAP nodes execute “query fragments” such as filters, projections, data transformations, partial aggregates, sorting, bucketing, hash joins/semi-joins, etc. Only Hive code and blessed UDFs are accepted in LLAP. No code is localized and executed on the fly. This is done for stability and security reasons.</p>
+<ul>
+<li><strong>Parallel execution.</strong> An LLAP node allows parallel execution for multiple query fragments from different queries and sessions.</li>
+<li><strong>Interface.</strong> Users can access LLAP nodes directly via client API. They are able to specify relational transformations and read data via record-oriented streams.</li>
+</ul>
+<h2 id=io>I/O</h2>
+<p>The daemon off-loads I/O and transformation from compressed format to separate threads. The data is passed on to execution as it becomes ready, so the previous batches can be processed while the next ones are being prepared. The data is passed to execution in a simple RLE-encoded columnar format that is ready for vectorized processing; this is also the caching format, with the intent to minimize copying between I/O, cache, and execution.</p>
+<ul>
+<li><strong>Multiple file formats.</strong> I/O and caching depend on some knowledge of the underlying file format (especially if it is to be done efficiently). Therefore, similar to Vectorization work, different file formats will be supported through plugins specific to each format (starting with ORC). Additionally, a generic, less-efficient plugin may be added that supports any Hive input format. The plugins have to maintain metadata and transform the raw data to column chunks.</li>
+<li><strong>Predicates and bloom filters.</strong> SARGs and bloom filters are pushed down to storage layer, if they are supported.</li>
+</ul>
+<h2 id=caching>Caching</h2>
+<p>The daemon caches metadata for input files, as well as the data. The metadata and index information can be cached even for data that is not currently cached. Metadata is stored in process in Java objects; cached data is stored in the format described in the <a href=#i/o-section>I/O section</a>, and kept off-heap (see <a href=#resource-management>Resource management</a>).</p>
+<ul>
+<li><strong>Eviction policy.</strong> The eviction policy is tuned for analytical workloads with frequent (partial) table-scans. Initially, a simple policy like LRFU is used. The policy is pluggable.</li>
+<li><strong>Caching granularity.</strong> Column-chunks are the unit of data in the cache. This achieves a compromise between low-overhead processing and storage efficiency. The granularity of the chunks depends on the particular file format and execution engine (Vectorized Row Batch size, ORC stripe, etc.).</li>
+</ul>
+<p>A bloom filter is automatically created to provide Dynamic Runtime Filtering.</p>
+<h2 id=workload-management>Workload Management</h2>
+<p>YARN is used to obtain resources for different workloads. Once resources (CPU, memory, etc.) have been obtained from YARN for a specific workload, the execution engine can choose to delegate these resources to LLAP, or to launch Hive executors in separate processes. Resource enforcement via YARN has the advantage of ensuring that nodes do not get overloaded, either by LLAP or by other containers. The daemons themselves is under YARN’s control.</p>
+<h2 id=acid-support>ACID Support</h2>
+<p>LLAP is aware of transactions. The merging of delta files to produce a certain state of the tables is performed before the data is placed in cache.</p>
+<p>Multiple versions are possible and the request specifies which version is to be used. This has the benefit of doing the merge asynchronously and only once for cached data, thus avoiding the hit on the operator pipeline.</p>
+<h2 id=security>Security</h2>
+<p>LLAP servers are a natural place to enforce access control at a more fine-grained level than “per file”. Since the daemons know which columns and records are processed, policies on these objects can be enforced. This is not intended to replace the current mechanisms, but rather to enhance and open them up to other applications as well.</p>
+<h2 id=monitoring>Monitoring</h2>
+<p>Configurations for LLAP monitoring are stored in resources.json, appConfig.json, metainfo.xml which are embedded into <a href=https://github.com/apache/hive/blob/master/llap-server/src/main/resources/templates.py>templates.py</a> used by Slider. </p>
+<p>LLAP Monitor Daemon runs on YARN container, similar to LLAP Daemon, and listens on the same port.  <br>
+The LLAP Metrics Collection Server collects JMX metrics from all LLAP Daemons periodically.  <br>
+The list of LLAP Daemons are extracted from the Zookeeper server which launched in the cluster. </p>
+<h2 id=web-services>Web Services</h2>
+<p><a href=https://issues.apache.org/jira/browse/HIVE-9814>HIVE-9814</a> introduces the following web services:</p>
+<p>JSON JMX data - /jmx<br>
+JVM Stack Traces of all threads - /stacks<br>
+XML Configuration from llap-daemon-site - /conf </p>
+<p><a href=https://issues.apache.org/jira/browse/HIVE-13398>HIVE-13398</a> introduces the following web services:</p>
+<p>LLAP Status - /status<br>
+LLAP Peers - /peers </p>
+<p> </p>
+<p><em>/status example</em></p>
+<pre tabindex=0><code>curl localhost:15002/status
+
+{
+  &quot;status&quot; : &quot;STARTED&quot;,
+  &quot;uptime&quot; : 139093,
+  &quot;build&quot; : &quot;2.1.0-SNAPSHOT from 77474581df4016e3899a986e079513087a945674 by gopal source checksum a9caa5faad5906d5139c33619f1368bb&quot;
+}
+</code></pre><p> </p>
+<p><em>/peers example</em></p>
+<pre tabindex=0><code>curl localhost:15002/peers
+{
+  &quot;dynamic&quot; : true,
+  &quot;identity&quot; : &quot;718264f1-722e-40f1-8265-ac25587bf336&quot;,
+  &quot;peers&quot; : [ 
+ {
+    &quot;identity&quot; : &quot;940d6838-4dd7-4e85-95cc-5a6a2c537c04&quot;,
+    &quot;host&quot; : &quot;sandbox121.hortonworks.com&quot;,
+    &quot;management-port&quot; : 15004,
+    &quot;rpc-port&quot; : 15001,
+    &quot;shuffle-port&quot; : 15551,
+    &quot;resource&quot; : {
+      &quot;vcores&quot; : 24,
+      &quot;memory&quot; : 128000
+    },
+    &quot;host&quot; : &quot;sandbox121.hortonworks.com&quot;
+  }, 
+]
+}
+</code></pre><p> </p>
+<h2 id=slider-on-yarn-deployment>SLIDER on YARN Deployment</h2>
+<p>LLAP can be deployed via <a href=https://cwiki.apache.org/confluence/display/SLIDER/Slider+Home>Slider</a>, which bypasses node installation and related complexities <a href=https://issues.apache.org/jira/browse/HIVE-9883>(HIVE-9883</a>).</p>
+<h2 id=llap-status>LLAP Status</h2>
+<p><a href=https://issues.apache.org/jira/browse/AMBARI-16149>AMBARI-16149</a> introduces LLAP app status, available with HiveServer2.</p>
+<p>Example usage.</p>
+<pre tabindex=0><code>/current/hive-server2-hive2/bin/hive --service llapstatus --name {llap_app_name} [-f] [-w] [-i] [-t]
+</code></pre><pre tabindex=0><code> -f,--findAppTimeout &lt;findAppTimeout&gt;                 Amount of time(s) that the tool will sleep to wait for the YARN application to start. negative values=wait
+                                                      forever, 0=Do not wait. default=20s
+ -H,--help                                            Print help information
+    --hiveconf &lt;property=value&gt;                       Use value for given property. Overridden by explicit parameters
+ -i,--refreshInterval &lt;refreshInterval&gt;               Amount of time in seconds to wait until subsequent status checks in watch mode. Valid only for watch mode.
+                                                      (Default 1s)
+ -n,--name &lt;name&gt;                                     LLAP cluster name
+ -o,--outputFile &lt;outputFile&gt;                         File to which output should be written (Default stdout)
+ -r,--runningNodesThreshold &lt;runningNodesThreshold&gt;   When watch mode is enabled (-w), wait until the specified threshold of nodes are running (Default 1.0
+                                                      which means 100% nodes are running)
+ -t,--watchTimeout &lt;watchTimeout&gt;                     Exit watch mode if the desired state is not attained until the specified timeout. (Default 300s)
+ -w,--watch                                           Watch mode waits until all LLAP daemons are running or subset of the nodes are running (threshold can be
+                                                      specified via -r option) (Default wait until all nodes are running)
+</code></pre><p>Version information</p>
+<p>The findAppTimeout option was added in release 2.1.0 with <a href=https://issues.apache.org/jira/browse/HIVE-13643>HIVE-13643</a>:<code>-f</code> or <code>--``findAppTimeout</code>.</p>
+<p>The watch and running nodes options were added in release 2.2.0 with <a href=https://issues.apache.org/jira/browse/HIVE-15217>HIVE-15217</a> and <a href=https://issues.apache.org/jira/browse/HIVE-15651>HIVE-15651</a>: <code>-w</code> or <code>--watch</code>, <code>-i</code> or <code>--refreshInterval</code>, <code>-t</code> or <code>--watchTimeout</code>, and <code>-r</code> or <code>--runningNodesThreshold</code>.</p>
+<p> </p>
+<h2 id=resources>Resources</h2>
+<p><a href=https://issues.apache.org/jira/secure/attachment/12665704/LLAPdesigndocument.pdf>LLAP Design Document</a></p>
+<p><a href="https://cwiki.apache.org/confluence/download/attachments/27362054/LLAP-Meetup-Nov.ppsx?version=1&modificationDate=1447885307000&api=v2">Hive Contributor Meetup Presentation</a></p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<p>Save</p>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

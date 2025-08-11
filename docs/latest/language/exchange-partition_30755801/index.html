@@ -1,0 +1,216 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Exchange Partition</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--exchange-partition>Apache Hive : Exchange Partition</h1>
+<p>The EXCHANGE PARTITION command will move a partition from a source table to target table and alter each table&rsquo;s metadata.  The Exchange Partition feature is implemented as part of <a href=https://issues.apache.org/jira/browse/HIVE-4095>HIVE-4095</a>. Exchanging multiple partitions is supported in Hive versions 1.2.2, 1.3.0, and 2.0.0+ as part of <a href=https://issues.apache.org/jira/browse/HIVE-11745>HIVE-11745</a>.</p>
+<p>When the command is executed, the source table&rsquo;s partition folder in HDFS will be renamed to move it to the destination table&rsquo;s partition folder.  The Hive metastore will be updated to change the metadata of the source and destination tables accordingly.</p>
+<p>The partition specification can be fully or <a href=#partially-specified>partially specified</a>.</p>
+<p>See <a href=#language-manual-ddl>Language Manual DDL</a> for additional information on the Exchange Partition feature.</p>
+<h4 id=constraints>Constraints</h4>
+<ul>
+<li>
+<p>The destination table cannot contain the partition to be exchanged.</p>
+</li>
+<li>
+<p>The operation fails in the presence of an index.</p>
+</li>
+<li>
+<p>Exchange partition is not allowed with transactional tables either as source or destination. Alternatively, use <a href=#load-data>LOAD DATA</a> or <a href=#insert-overwrite>INSERT OVERWRITE</a> commands to move partitions across transactional tables.</p>
+</li>
+<li>
+<p>This command requires both the source and destination table names to have the same table schema.  <br>
+If the schemas are different, the following exception is thrown:</p>
+</li>
+</ul>
+<p><code>The tables have different schemas. Their partitions cannot be exchanged</code></p>
+<h4 id=syntax>Syntax</h4>
+<pre tabindex=0><code>ALTER TABLE &lt;dest_table&gt; EXCHANGE PARTITION (&lt;[partial] partition spec&gt;) WITH TABLE &lt;src_table&gt;
+
+</code></pre><h4 id=example-usagebasic>Example Usage – Basic</h4>
+<pre tabindex=0><code>--Create two tables, partitioned by ds
+CREATE TABLE T1(a string, b string) PARTITIONED BY (ds string);
+CREATE TABLE T2(a string, b string) PARTITIONED BY (ds string);
+ALTER TABLE T1 ADD PARTITION (ds='1');
+
+--Move partition from T1 to T2
+ALTER TABLE T2 EXCHANGE PARTITION (ds='1') WITH TABLE T1;
+</code></pre><h4 id=example-usagepartial-partition-spec-exchanging-multiple-partitions>Example Usage – Partial Partition Spec (Exchanging Multiple Partitions)</h4>
+<pre tabindex=0><code>--Create two tables with multiple partition columns.
+CREATE TABLE T1 (a string, b string) PARTITIONED BY (ds string, hr string);
+CREATE TABLE T2 (a string, b string) PARTITIONED BY (ds string, hr string);
+ALTER TABLE T1 ADD PARTITION (ds = '1', hr = '00');
+ALTER TABLE T1 ADD PARTITION (ds = '1', hr = '01');
+ALTER TABLE T1 ADD PARTITION (ds = '1', hr = '03');
+
+--Alter the table, moving all the three partitions data where ds='1' from table T1 to table T2 (ds=1) 
+ALTER TABLE T2 EXCHANGE PARTITION (ds='1') WITH TABLE T1;
+</code></pre><p><em>Note that the schema for T1 is being used for the newly created partition T2(ds=1). Either all the partitions of T1 will get created or the whole operation will fail. All partitions of T1 are dropped.</em></p>
+<h4 id=example-usagepartition-spec-with-multiple-partition-columns>Example Usage – Partition Spec With Multiple Partition Columns</h4>
+<pre tabindex=0><code>-- Create two tables with multiple partition columns.
+CREATE TABLE T1 (a int) PARTITIONED BY (d1 int, d2 int);
+CREATE TABLE T2 (a int) PARTITIONED BY (d1 int, d2 int);
+ALTER TABLE T1 ADD PARTITION (d1=1, d2=2);
+
+-- Alter the table, moving partition data d1=1, d2=2 from table T1 to table T2
+ALTER TABLE T2 EXCHANGE PARTITION (d1 = 1, d2 = 2) WITH TABLE T1;
+
+</code></pre>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HowToRelease</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--howtorelease>Apache Hive : HowToRelease</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--howtorelease>Apache Hive : HowToRelease</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#storage-api-release>Storage API Release</a>
+<ul>
+<li><a href=#storage-api-prepare-master-branch>Storage API Prepare Master Branch</a></li>
+<li><a href=#storage-api-branching>Storage API Branching</a></li>
+<li><a href=#making-storage-api-release-artifacts>Making Storage API Release Artifacts</a></li>
+<li><a href=#publishing-the-storage-api-artifacts>Publishing the Storage API Artifacts</a></li>
+<li><a href=#preparing-branch-for-further-development>Preparing Branch for further development</a></li>
+<li><a href=#cleaning-up-storage-api-artifacts>Cleaning Up Storage API Artifacts</a></li>
+</ul>
+</li>
+<li><a href=#hive-release>Hive Release</a>
+<ul>
+<li><a href=#preparation>Preparation</a></li>
+<li><a href=#branching>Branching</a></li>
+<li><a href=#updating-release-branch>Updating Release Branch</a></li>
+<li><a href=#building>Building</a></li>
+<li><a href=#voting>Voting</a></li>
+<li><a href=#verifying-the-release-candidate>Verifying the Release Candidate</a></li>
+<li><a href=#publishing>Publishing</a></li>
+<li><a href=#archive-old-releases>Archive old releases</a></li>
+<li><a href=#preparing-branch-for-future-maintenance-release>Preparing Branch for Future Maintenance Release</a></li>
+</ul>
+</li>
+<li><a href=#see-also>See Also</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=introduction>Introduction</h2>
+<p>This page is prepared for Hive committers. You need committer rights to create a new Hive release.</p>
+<p>This page assumes you are releasing from the master branch, and thus omits the use of Maven profiles to determine which version of Hadoop you are building against. If you are releasing from branch-1, you will need to add <code>-Phadoop-2</code> to most of your Maven commands.</p>
+<h2 id=storage-api-release>Storage API Release</h2>
+<p>The Hive projects has two products that are released separately:</p>
+<ol>
+<li>Storage-API – the vectorization and predicate push down classes</li>
+<li>Hive – the rest of Hive</li>
+</ol>
+<p>Most Hive releases will require a new storage-api release and the storage-api currently releases faster than Hive, so has higher version numbers.</p>
+<h3 id=storage-api-prepare-master-branch>Storage API Prepare Master Branch</h3>
+<p>Skip this section if this is NOT the first release in a series (i.e., release X.Y.0).</p>
+<ol>
+<li>Check out the master branch</li>
+</ol>
+<pre tabindex=0><code>git checkout master
+</code></pre><ol start=2>
+<li>Increment the value of the <code>version</code> property in the storage-api/pom.xml file. For example, if the current value is 2.5.0<code>-SNAPSHOT</code>, the new value should be 2.6.0<code>-SNAPSHOT</code>. Please note that the <code>SNAPSHOT</code> suffix is required in order to indicate that this is an unreleased development branch.</li>
+<li>Update the storage-api.version property in the root pom.xml and standalone-metastore/pom.xml to the new value from the step above.</li>
+<li>Verify that the build is working with changes.</li>
+<li>Commit these changes to master with a comment &ldquo;Preparing for storage-api X.Y+1.0 development&rdquo;.</li>
+</ol>
+<h3 id=storage-api-branching>Storage API Branching</h3>
+<p>Skip this section if this is NOT the first release in a series (i.e., release X.Y.0).</p>
+<ol>
+<li>Notify developers on the #hive IRC channel and dev@hive mailing lists that you are about to branch a release.</li>
+<li>Create a branch for the release series: </li>
+</ol>
+<pre tabindex=0><code>git checkout -b storage-branch-X.Y origin/master
+</code></pre><ol start=3>
+<li>Update the <code>version</code> property value in the storage-api/pom.xml file. You should remove the <code>SNAPSHOT</code> suffix and set <code>version</code> equal to <code>X.Y.Z</code> where <code>Z</code> is the point release number in this release series (0 for the first one, in which case this step is a no-op since you already did this above when creating the branch). Use <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> to do this as follows:</li>
+<li>Verify that the build is working with changes.</li>
+<li>Commit these changes with a comment &ldquo;Preparing for storage-api X.Y.Z release&rdquo;.</li>
+<li>Tag the release candidate (<code>R</code> is the release candidate number, and also starts from 0):</li>
+</ol>
+<pre tabindex=0><code>git commit -a -m &quot;Preparing for storage-api X.Y.Z release&quot;
+git push -u origin storage-branch-X.Y
+git tag -a storage-release-X.Y.Z-rcR -m &quot;Hive Storage API X.Y.Z-rcR release.&quot;
+git push origin storage-release-X.Y.Z-rcR 
+</code></pre><h3 id=making-storage-api-release-artifacts>Making Storage API Release Artifacts</h3>
+<ol>
+<li>Make sure your release notes have been updated for any new commits, and go through the previous steps if necessary.</li>
+<li>Create and publish the tag:</li>
+</ol>
+<pre tabindex=0><code>git tag storage-release-X.Y.Z-rcR -m &quot;Hive Storage API X.Y.Z-rcR release.&quot;
+git push origin storage-release-X.Y.Z-rcR 
+</code></pre><ol start=3>
+<li>Build the release (binary and source versions) after running unit tests. Manually create the sha file.</li>
+</ol>
+<pre tabindex=0><code>% wget https://github.com/apache/hive/archive/storage-release-X.Y.Z-rcR.tar.gz
+% tar xzvf storage-release-X.Y.Z-rcR.tar.gz
+% mv storage-release-X.Y.Z-rcR/storage-api hive-storage-X.Y.Z
+% tar czvf hive-storage-X.Y.Z-rcR.tar.gz hive-storage-X.Y.Z
+% shasum -a 256 hive-storage-X.Y.Z-rcR.tar.gz &gt; hive-storage-X.Y.Z-rcR.tar.gz.sha256
+</code></pre><ol start=4>
+<li>
+<p>Setup your PGP keys for signing the release, if you don&rsquo;t have them already.</p>
+<ol>
+<li>See <a href=https://www.apache.org/dev/release-signing.html>https://www.apache.org/dev/release-signing.html</a>, <a href=https://www.apache.org/dev/openpgp.html>https://www.apache.org/dev/openpgp.html</a>.</li>
+</ol>
+</li>
+<li>
+<p>Sign the release (see <a href=http://www.apache.org/dev/mirror-step-by-step.html?Step-By-Step>Step-By-Step Guide to Mirroring Releases</a> for more information).</p>
+</li>
+</ol>
+<pre tabindex=0><code>% gpg --armor --detach-sig hive-storage-X.Y.Z-rcR.tar.gz
+</code></pre><ol start=6>
+<li>Check the signatures.</li>
+</ol>
+<pre tabindex=0><code>% shasum -c hive-storage-X.Y.Z-rcR.tar.gz.sha256
+hive-storage-X.Y.Z-rcR.tar.gz: OK
+
+% gpg hive-storage-X.Y.Z-rcR.tar.gz.asc
+gpg: assuming signed data in `hive-storage-X.Y.Z-rcR.tar.gz'
+gpg: Signature made Fri Apr 28 12:50:03 2017 PDT using RSA key ID YOUR-KEY-ID
+gpg: Good signature from &quot;Your Name &lt;YOUR-APACHE-ID@apache.org&gt;&quot;
+</code></pre><ol start=7>
+<li>Copy release files to a public place.</li>
+</ol>
+<pre tabindex=0><code>% sftp YOUR-APACHE-ID@home.apache.org
+
+sftp&gt; cd public_html
+sftp&gt; mkdir hive-storage-X.Y.Z
+sftp&gt; cd hive-storage-X.Y.Z
+sftp&gt; put hive-storage-X.Y.Z-rcR.tar.gz*
+sftp&gt; quit
+</code></pre><ol start=8>
+<li>Send email to <a href>dev@hive.apache.org</a> calling the vote.</li>
+</ol>
+<h3 id=publishing-the-storage-api-artifacts>Publishing the Storage API Artifacts</h3>
+<ol>
+<li>After the release vote passes, push the artifacts to Nexus.  (If you get an error <code>gpg: signing failed: Inappropriate ioctl for device</code> trying doing <code>export GPG_TTY=$(tty)</code> .)</li>
+</ol>
+<pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
+% cd storage-api
+% mvn clean deploy -Papache-release -DskipTests
+</code></pre><ol start=2>
+<li>Login to Nexus and close the repository. Mark the repository as released.</li>
+<li>Create the final tag (be very careful, tags in &ldquo;rel/&rdquo; are not changeable).</li>
+</ol>
+<pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
+% git tag -s rel/storage-release-X.Y.Z -m &quot;Hive Storage API X.Y.Z&quot;
+% git push origin rel/storage-release-X.Y.Z
+</code></pre><ol start=4>
+<li>Add the artifacts to Hive&rsquo;s dist area. There might be a problem with the size of the artifact.
+<a href=https://issues.apache.org/jira/browse/INFRA-23055>INFRA-23055</a> solved the issue.</li>
+</ol>
+<pre tabindex=0><code>% svn checkout https://dist.apache.org/repos/dist/release/hive hive-dist
+% cd hive-dist
+% mkdir hive-storage-X.Y.Z
+% cd hive-storage-X.Y.Z
+% wget https://home.apache.org/~YOUR-APACHE-ID/hive-storage-X.Y.Z/hive-storage-X.Y.Z-rcR.tar.gz{,.sha256,.asc}
+% svn add .
+% svn commit
+</code></pre><h3 id=preparing-branch-for-further-development>Preparing Branch for further development</h3>
+<ol>
+<li>Edit storage-api/pom.xml to change version to X.Y.Z+1-SNAPSHOT.</li>
+<li>Edit pom.xml to change storage-api.version to X.Y.Z+1-SNAPSHOT.</li>
+<li>Commit the changes back</li>
+</ol>
+<pre tabindex=0><code>% git commit -a -s -m 'Preparing for development post-X.Y.Z.'
+% git push origin storage-branch-X.Y
+</code></pre><h3 id=cleaning-up-storage-api-artifacts>Cleaning Up Storage API Artifacts</h3>
+<ol>
+<li>Delete the storage-release-X.Y.Z-rcR tags.</li>
+<li>Delete the artifacts from home.apache.org.</li>
+</ol>
+<h2 id=hive-release>Hive Release</h2>
+<h3 id=preparation>Preparation</h3>
+<ol>
+<li>Bulk update Jira to unassign from this release all issues that are open non-blockers and send follow-up notification to the developer list that this was done. There are two kinds of JIRAs that need to be taken care of:
+<ol>
+<li>Unresolved JIRAs with Target Version/s or Fix Version/s (legacy) set to the release in question.</li>
+<li>Resolved/closed(!) JIRAs with Target Version/s, but not Fix Version/s set to the release in question (e.g. a JIRA targets 2.0.0 and 1.3.0, but was only committed to 2.0.0).</li>
+</ol>
+</li>
+<li>Run &lsquo;mvn clean apache-rat:check&rsquo; and examine the generated report for any files, especially .java files which should all have Apache license headers. Note also, that each individual component will have a rat.txt inside it when you run this – be sure to check ql/target/rat.txt, for example. Add the license header to any file that is missing it (open a jira and submit a patch).</li>
+<li>Update copyright date in NOTICE. If any components mentioned in them have updated versions, you would need to update the copyright dates for those. (Thejas comment: It sounds like entries are needed in NOTICE only if the license requires such attribution. See <a href=https://www.apache.org/legal/src-headers.html#notice>https://www.apache.org/legal/src-headers.html#notice</a>.)</li>
+</ol>
+<h3 id=branching>Branching</h3>
+<p>Skip this section if this is NOT the first release in a series (i.e., release X.Y.0).</p>
+<ol>
+<li>Notify developers on the #hive IRC channel and dev@hive mailing lists that you are about to branch a release.</li>
+<li>Create a branch for the release series: </li>
+</ol>
+<pre tabindex=0><code>git checkout -b branch-X.Y origin/master
+git push -u origin branch-X.Y
+</code></pre><ol start=3>
+<li>Increment the value of the <code>version</code> property in all pom.xml files. For example, if the current value is <code>0.7.0-SNAPSHOT</code>, the new value should be <code>0.8.0-SNAPSHOT</code>. Please note that the <code>SNAPSHOT</code> suffix is required in order to indicate that this is an unreleased development branch. This can be accomplished with a single command using <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> as follows: </li>
+</ol>
+<pre tabindex=0><code>mvn versions:set -DnewVersion=X.Y.0-SNAPSHOT -DgenerateBackupPoms=false
+</code></pre><ol start=4>
+<li>Make changes to metastore upgrade scripts. See <a href=https://issues.apache.org/jira/browse/HIVE-6555>HIVE-6555</a> on how this was done for HIVE 0.13.</li>
+<li>Verify that the build is working with changes.</li>
+<li>Commit these changes to master with a comment &ldquo;Preparing for X.Y+1.0 development&rdquo;.</li>
+</ol>
+<h3 id=updating-release-branch>Updating Release Branch</h3>
+<p>These operations take place in the release branch.</p>
+<ol>
+<li>Check out the release branch with:</li>
+</ol>
+<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive_src_dir&gt;
+cd &lt;hive_src_dir&gt;
+git checkout branch-X.Y
+</code></pre><ol start=2>
+<li>Update the <code>version</code> property value in all pom.xml files. You should remove the <code>SNAPSHOT</code> suffix and set <code>version</code> equal to <code>hive-X.Y.Z</code> where Z is the point release number in this release series (0 for the first one, in which case this step is a no-op since you already did this above when creating the branch). Use <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> to do this as follows:</li>
+</ol>
+<pre tabindex=0><code>mvn versions:set -DnewVersion=0.7.0 -DgenerateBackupPoms=false
+</code></pre><p>Make sure to update the version property in standalone-metastore/pom.xml and upgrade-acid/pom.xml.
+3. Remove the storage-api from the list of modules to build in the top level pom.xml. Set the storage-api.version property to the release of storage-api that you are using for your release. Make sure to set the storage-api.version property in standalone-metastore/pom.xml as well.
+4. Update the the value of the <code>TRACKING_BRANCH</code> field in the <code>.reviewboardrc</code> file to point to the <code>origin/branch-X.Y</code>.
+5. Verify that the build is working with changes.
+6. Commit these changes with a comment &ldquo;Preparing for X.Y.Z release&rdquo;.
+7. If not already done, merge desired patches from trunk into the branch and commit these changes. Avoid usage of &ldquo;git merge&rdquo; to avoid too many merge commits. Either request the committer who committed that patch in master to commit to this branch, or commit it yourself, or try doing a git cherry-pick for trivial patches. Specifics of this step can be laid down by the release manager.
+8. You probably also want to commit a patch (on both trunk and branch) which updates README.txt to bring it up to date (at a minimum, search+replacing references to the version number). Also check NOTICE to see if anything needs to be updated for recent library dependency changes or additions.
+1. Select all of the JIRAs for the current release that aren&rsquo;t FIXED and do bulk update to clear the &lsquo;Fixed Version&rsquo; field.
+2. Likewise, use JIRA&rsquo;s <a href="https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310843">Release Notes</a> link to generate content for the RELEASE_NOTES.txt file. Be sure to select &lsquo;Text&rsquo; format. (It&rsquo;s OK to do this with a direct commit rather than a patch.)
+3. Update the release notes in trunk with the release notes in branch.
+9. Tag the release candidate (R is the release candidate number, and also starts from 0):</p>
+<pre tabindex=0><code>git tag -a release-X.Y.Z-rcR -m &quot;Hive X.Y.Z-rcR release.&quot;
+git push origin release-X.Y.Z-rcR 
+</code></pre><h3 id=building>Building</h3>
+<ol>
+<li>Make sure your release notes have been updated for any new commits, and go through the previous steps if necessary.</li>
+<li>Build the release (binary and source versions) after running unit tests. Manually create the sha256 files.</li>
+</ol>
+<pre tabindex=0><code>% mvn clean install -Pdist -DskipTests -Dmaven.javadoc.skip=true
+
+% cd packaging/target
+% shasum -a 256 apache-hive-X.Y.Z-bin.tar.gz &gt; apache-hive-X.Y.Z-bin.tar.gz.sha256
+% shasum -a 256 apache-hive-X.Y.Z-src.tar.gz &gt; apache-hive-X.Y.Z-src.tar.gz.sha256
+
+% cd ../../standalone-metastore/packaging/target
+% shasum -a 256 hive-standalone-metastore-X.Y.Z-bin.tar.gz &gt; hive-standalone-metastore-X.Y.Z-bin.tar.gz.sha256
+% shasum -a 256 hive-standalone-metastore-X.Y.Z-src.tar.gz &gt; hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
+</code></pre><p>Note: If you build from the existing project, make sure there are no empty directories or the &ldquo;*.iml&rdquo; files in the apache-hive-X.Y.Z-src.tar.gz.
+3. Verify that the SHA 256 checksums are valid:</p>
+<pre tabindex=0><code>% shasum -a 256 -c apache-hive-X.Y.Z-bin.tar.gz.sha256
+apache-hive-X.Y.Z-bin.tar.gz: OK
+
+% shasum -a 256 -c apache-hive-X.Y.Z-src.tar.gz.sha256
+apache-hive-X.Y.Z-src.tar.gz: OK
+
+% shasum -a 256 -c hive-standalone-metastore-X.Y.Z-bin.tar.gz.sha256
+hive-standalone-metastore-X.Y.Z-bin.tar.gz: OK
+
+% shasum -a 256 -c hive-standalone-metastore-X.Y.Z-src.tar.gz.sha256
+hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
+</code></pre><ol start=4>
+<li>Check that release file looks ok &ndash; e.g., install it and run examples from tutorial.</li>
+<li>Setup your PGP keys for signing the release, if you don&rsquo;t have them already.
+<ol>
+<li>See <a href=https://www.apache.org/dev/release-signing.html>https://www.apache.org/dev/release-signing.html</a>, <a href=https://www.apache.org/dev/openpgp.html>https://www.apache.org/dev/openpgp.html</a>.</li>
+</ol>
+</li>
+</ol>
+<pre tabindex=0><code>% gpg --full-generate-key
+% gpg --keyserver hkp://keyserver.ubuntu.com --send-keys &lt;PUB_KEY&gt;
+% svn co --depth files https://dist.apache.org/repos/dist/release/hive
+% cd hive
+% (gpg --list-sigs &lt;NAME&gt; &amp;&amp; gpg --armor --export &lt;NAME&gt;) &gt;&gt; KEYS
+% svn add KEYS
+% svn commit -m 'Adding &lt;FullName&gt;'s key'
+</code></pre><ol start=6>
+<li>Sign the release (see <a href=http://www.apache.org/dev/mirror-step-by-step.html?Step-By-Step>Step-By-Step Guide to Mirroring Releases</a> for more information).</li>
+</ol>
+<pre tabindex=0><code>% gpg --armor --output apache-hive-X.Y.Z-bin.tar.gz.asc --detach-sig apache-hive-X.Y.Z-bin.tar.gz
+% gpg --armor --output apache-hive-X.Y.Z-src.tar.gz.asc --detach-sig apache-hive-X.Y.Z-src.tar.gz
+% gpg --armor --output hive-standalone-metastore-X.Y.Z-bin.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-bin.tar.gz
+% gpg --armor --output hive-standalone-metastore-X.Y.Z-src.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-src.tar.gz
+</code></pre><ol start=7>
+<li>Follow instructions in <a href=https://www.apache.org/dev/release-publishing.html#distribution>https://www.apache.org/dev/release-publishing.html#distribution</a> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<a href=https://dist.apache.org/repos/dist/dev/hive/>https://dist.apache.org/repos/dist/dev/hive/</a>). Make sure to create a new directory for the release candidate. You may need PMC privileges to do this step – if you do not have such privileges, please ping a <a href=http://hive.apache.org/people.html>PMC member</a> to do this for you.</li>
+</ol>
+<pre tabindex=0><code>svn co --depth empty https://dist.apache.org/repos/dist
+cd dist
+
+svn update --set-depth empty dev
+svn update --set-depth empty dev/hive
+mkdir dev/hive/hive-X.Y.Z/
+cp &lt;hive-source-dir&gt;/packaging/target/apache-hive-X.Y.Z*.tar.gz* dev/hive/hive-X.Y.Z/
+
+mkdir dev/hive/hive-standalone-metastore-X.Y.Z/
+cp &lt;hive-source-dir&gt;/standalone-metastore/packaging/target/hive-standalone-metastore-X.Y.Z*.tar.gz* dev/hive/hive-standalone-metastore-X.Y.Z/
+
+svn add dev/hive/hive-X.Y.Z
+svn add dev/hive/hive-standalone-metastore-X.Y.Z
+svn commit -m &quot;Hive X.Y.Z release&quot; 
+</code></pre><ol start=8>
+<li>Publish Maven artifacts to the Apache staging repository. Make sure to have this <a href=http://www.apache.org/dev/publishing-maven-artifacts.html#dev-env>setup</a> for Apache releases. Use committer <a href=https://maven.apache.org/developers/committer-settings.html>setting.xml</a>.</li>
+</ol>
+<p><strong>Note</strong>: If you get an error <code>gpg: signing failed: Inappropriate ioctl for device,</code> try doing <code>export GPG_TTY=$(tty)</code></p>
+<p><strong>Note</strong>: if you have multiple gpg keys, you may need to specify which key to use via -Dgpg.keyname=&lt;PRIV_KEY></p>
+<pre tabindex=0><code>% mvn deploy -Papache-release -DskipTests -Dmaven.javadoc.skip=true
+</code></pre><ol start=9>
+<li>Login to the <a href=https://repository.apache.org/index.html#stagingRepositories>Apache Nexus server</a> and &ldquo;close&rdquo; the staged repository. This makes the artifacts available at a temporary URL.</li>
+</ol>
+<h3 id=voting>Voting</h3>
+<p>Call a release vote on dev at hive.apache.org.</p>
+<pre tabindex=0><code>From: you@apache.org
+To: dev@hive.apache.org
+Subject: [VOTE] Apache Hive X.Y.Z Release Candidate N
+
+Apache Hive X.Y.Z Release Candidate N is available here:
+
+https://people.apache.org/~you/hive-X.Y.Z-candidate-N
+
+The checksums are these:
+- ff60286044d2f3faa8ad1475132cdcecf4ce9ed8faf1ed4e56a6753ebc3ab585  apache-hive-4.1.0-bin.tar.gz
+- 07f30371df5f624352fa1d0fa50fd981a4dec6d4311bb340bace5dd7247d3015  apache-hive-4.1.0-src.tar.gz
+- 8d3a82be5670199c9c21f4766fdb3c49749cc8db6b517e0e73ac9f16dc7d3ef9  hive-standalone-metastore-4.1.0-bin.tar.gz
+- f47be1263f2d8bb09e2e626b66b979d29135c978ba1dd29f682bb21a08455b60  hive-standalone-metastore-4.1.0-src.tar.gz
+
+Maven artifacts are available here:
+
+https://repository.apache.org/content/repositories/orgapachehive-121/
+
+The tag release-X.Y.Z-rcR has been applied to the source for this release in github, you can see it at
+https://github.com/apache/hive/tree/release-X.Y.Z-rcR
+
+The git commit hash is:
+
+https://github.com/apache/hive/commit/357d4906f5c806d585fd84db57cf296e12e6049b 
+
+Voting will conclude in 72 hours.
+
+Hive PMC Members: Please test and vote.
+
+Thanks.
+</code></pre><p>After the vote finishes, count <em>all</em> votes and send out the result in a separate thread.</p>
+<pre tabindex=0><code>From: you@apache.org
+To: dev@hive.apache.org
+Subject: [RESULT][VOTE] Apache Hive X.Y.Z Release Candidate N
+
+Thanks to everyone who has tested the release candidate and given their comments and votes.
+
+The tally is as follows.
+
+N binding +1s:
+&lt;names&gt;
+
+N non-binding +1s:
+&lt;names&gt;
+
+No 0s or -1s.
+
+Therefore, I am delighted to announce that the proposal to release Apache Hive X.Y.Z has passed.
+
+Thanks everyone. We’ll now publish and announce the release.
+
+[There was some feedback during voting. I shall open a separate
+thread to discuss.]
+</code></pre><p>For transparency and accountability purposes, all votes must be counted including zeros, and negative votes. In case questions arise later, there is a clear audit trail about who supported or opposed the release.
+Even though non-binding votes do not count for publishing the release, naming the voters acknowledges participation, encourages involvement, and shows active community engagement.
+Moreover, sharing the result in a separate thread improves clarity since it clearly separates the voting process from the result. It also provides a permanent reference point for the result without extra noise that may appear in the voting thread and can be used later for audit trails.</p>
+<p>In case problems are discovered with a release candidate, the release manager should send an appropriate email in a separate thread.</p>
+<pre tabindex=0><code>From: you@apache.org
+To: dev@hive.apache.org
+Subject: [CANCEL][VOTE] Apache Hive X.Y.Z Release Candidate N
+
+Thanks to everyone who has tested the release candidate and given their comments and votes.
+
+I am cancelling the vote for Release Candidate N due to:
+HIVE-XXXXXX:
+HIVE-YYYYYY:
+
+I will prepare another a release candidate once the above issues are resolved.
+</code></pre><h3 id=verifying-the-release-candidate>Verifying the Release Candidate</h3>
+<ol>
+<li>Verifying the PGP signature:</li>
+</ol>
+<pre tabindex=0><code>#get the hive committers keys file
+wget https://www.apache.org/dist/hive/KEYS 
+or 
+wget https://people.apache.org/keys/group/hive.asc
+
+gpg --import &lt;keys file&gt;
+gpg --verify apache-hive-X.Y.Z-bin.tar.gz.asc apache-hive-X.Y.Z-bin.tar.gz
+gpg --verify apache-hive-X.Y.Z-src.tar.gz.asc apache-hive-X.Y.Z-src.tar.gz
+
+gpg --verify hive-standalone-metastore-X.Y.Z-bin.tar.gz.asc hive-standalone-metastore-X.Y.Z-bin.tar.gz
+gpg --verify hive-standalone-metastore-X.Y.Z-src.tar.gz.asc hive-standalone-metastore-X.Y.Z-src.tar.gz
+</code></pre><ol start=2>
+<li>Verifying the sha256 checksum:<br>
+See the step under Building.</li>
+</ol>
+<h3 id=publishing>Publishing</h3>
+<p>Once <a href=http://www.apache.org/foundation/voting.html#ReleaseVotes>three PMC members have voted for a release</a>, it may be published.</p>
+<ol>
+<li>Tag the release and delete the release candidate tag. Do it from the release branch:</li>
+</ol>
+<pre tabindex=0><code>git tag -s rel/release-X.Y.Z -m &quot;HiveX.Y.Z release.&quot;
+git push origin rel/release-X.Y.Z
+git tag -d release-X.Y.Z-rcR
+git push origin :release-X.Y.Z-rcR
+</code></pre><p>If errors happen while &ldquo;git tag -s&rdquo;, try to configure the git signing key by &ldquo;git config user.signingkey your_gpg_key_id&rdquo; then rerun the command.
+2. Move the release artifacts to the release area of the project (<a href=https://dist.apache.org/repos/dist/release/hive/>https://dist.apache.org/repos/dist/release/hive/</a>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts(<a href=https://issues.apache.org/jira/browse/INFRA-23055>INFRA-23055</a>)</p>
+<pre tabindex=0><code>svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m &quot;Move hive-X.Y.Z release from dev to release&quot;
+</code></pre><ol start=3>
+<li>Wait till the release propagates to the mirrors and appears under: <a href=https://dlcdn.apache.org/hive/>https://dlcdn.apache.org/hive/</a></li>
+<li>In your base hive source directory, generate javadocs as follows:</li>
+</ol>
+<pre tabindex=0><code>mvn clean install javadoc:javadoc javadoc:aggregate -Pjavadoc -DskipTests
+</code></pre><p>After you run this, you should have javadocs present in your &lt;hive_source_dir>/target/site/apidocs
+5. Check out the javadocs svn repository as follows:</p>
+<pre tabindex=0><code>svn co --depth empty https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs
+</code></pre><ol start=6>
+<li>Copy the generated javadocs from the source repository to the javadocs repository, add and commit:</li>
+</ol>
+<pre tabindex=0><code>mkdir &lt;hive_javadocs_repo_dir&gt;/rX.Y.Z/
+cd &lt;hive_javadocs_repo_dir&gt;
+cp -r &lt;hive_source_dir&gt;/target/site/apidocs ./rX.Y.Z/api
+svn add rX.Y.Z
+svn commit
+</code></pre><p>If this is a bugfix release, svn rm the obsoleted version. (For eg., when committing javadocs for r0.13.1, r0.13.0 would have been removed)
+7. Prepare to edit the website.</p>
+<pre tabindex=0><code>git clone https://github.com/apache/hive-site.git
+</code></pre><ol start=8>
+<li>Edit files content/downloads.mdtext and javadoc.mdtext to appropriately add entries for the new release in the appropriate location. For example, for 1.2.0, the entries made were as follows:</li>
+</ol>
+<pre tabindex=0><code>./downloads.md:### 18 May 2015 : release 1.2.0 available
+./downloads.md:You can look at the complete [JIRA change log for this release][HIVE_1_2_0_CL].
+./downloads.md:[HIVE_1_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&amp;styleName=Text&amp;projectId=12310843
+./javadoc.md:  * [Hive 1.2.0 Javadocs][r1.2.0]
+./javadoc.md:[r1.2.0]: /javadocs/r1.2.0/api/index.html
+</code></pre><p>As you can see, you will need a release note link for this release as created previously for this section.
+9. Push your changes to the <a href=https://github.com/apache/hive-site/tree/gh-pages>https://github.com/apache/hive-site/tree/gh-pages</a> branch, and you can preview the results at <a href=https://apache.github.io/hive-site/>https://apache.github.io/hive-site/</a>. If everything is ok, then you can push your changes to <a href=https://github.com/apache/hive-site/tree/main>https://github.com/apache/hive-site/tree/main</a> branch and see the results at <a href=https://hive.apache.org/>https://hive.apache.org/</a> site.
+10. Update JIRA
+1. Ensure that only issues in the &ldquo;Fixed&rdquo; state have a &ldquo;Fix Version&rdquo; set to release X.Y.Z.
+2. Release the version. Visit the <a href="https://issues.apache.org/jira/projects/HIVE?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased">releases page</a>.  Select the version number you are releasing, and hit the release button. You need to have the &ldquo;Admin&rdquo; role in Hive&rsquo;s Jira for this step and the next.
+3. Close issues resolved in the release. Disable mail notifications for this bulk change.
+11. Login to the <a href=https://repository.apache.org/index.html#stagingRepositories>Apache Nexus server</a> and mark the release candidate artifacts as released.
+12. Add the release in <a href=https://reporter.apache.org/addrelease.html?hive>Apache Committee Report Helper</a> for the next board report to pick that up automatically.
+13. Check whether the <a href=https://hub.docker.com/r/apache/hive>Docker image</a> for the release is present or not.
+14. Send a release announcement to Hive <code>user</code> and <code>dev</code> lists as well as the Apache <code>announce</code> list. This email should be sent from your Apache email address:</p>
+<pre tabindex=0><code>From: you@apache.org
+To: user@hive.apache.org, dev@hive.apache.org, announce@apache.org
+Subject: [ANNOUNCE] Apache Hive X.Y.Z Released
+
+The Apache Hive team is proud to announce the release of Apache Hive
+version X.Y.Z.
+
+The Apache Hive (TM) data warehouse software facilitates querying and
+managing large datasets residing in distributed storage. Built on top
+of Apache Hadoop (TM), it provides, among others:
+
+* Tools to enable easy data extract/transform/load (ETL)
+
+* A mechanism to impose structure on a variety of data formats
+
+* Access to files stored either directly in Apache HDFS (TM) or in other
+  data storage systems such as Apache HBase (TM)
+
+* Massively parallel query execution via Apache Tez
+
+For Hive release details and downloads, please visit:
+https://hive.apache.org/downloads.html
+
+Hive X.Y.Z Release Notes are available here: [UPDATE THIS LINK]
+https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12310843&amp;version=12316178
+
+For the Docker image, check:
+https://hub.docker.com/r/apache/hive/tags
+
+We would like to thank the many contributors who made this release
+possible.
+
+Regards,
+
+The Apache Hive Team
+</code></pre><h3 id=archive-old-releases>Archive old releases</h3>
+<p>According to the <a href=https://infra.apache.org/release-distribution.html#archival>INFRA archival g</a><a href=https://infra.apache.org/release-distribution.html#archival>uidelines</a> old releases should be removed from the main <a href=https://downloads.apache.org/hive/>download site of the project</a> following. Check the respective guidelines and perform the necessary cleanup.</p>
+<pre tabindex=0><code>svn del -m &quot;Archiving release Apache Hive X.Y.Z&quot; https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z/ 
+svn del -m &quot;Archiving release Apache Hive Standalone Metastore X.Y.Z&quot; https://dist.apache.org/repos/dist/release/hive/hive-standalone-metastore-X.Y.Z/ 
+</code></pre><h3 id=preparing-branch-for-future-maintenance-release>Preparing Branch for Future Maintenance Release</h3>
+<p>After the release has been completed, prepare the branch for the next development cycle.</p>
+<ol>
+<li>Check out the release branch with:</li>
+</ol>
+<pre tabindex=0><code>git clone https://git-wip-us.apache.org/repos/asf/hive.git/ &lt;hive_src_dir&gt;
+cd &lt;hive_src_dir&gt;
+git checkout branch-X.Y
+</code></pre><ol start=2>
+<li>Increment the <code>version</code> property value in all pom.xml files and add the <code>SNAPSHOT</code> suffix. For example, if the released version was <code>0.7.0</code>, the new value should be <code>0.7.1-SNAPSHOT</code>. Please note that the <code>SNAPSHOT</code> suffix is required in order to indicate that this is an unreleased development branch. Use <a href=http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html>Maven&rsquo;s Versions plugin</a> to do this as follows:</li>
+</ol>
+<pre tabindex=0><code>mvn versions:set -DnewVersion=0.7.1-SNAPSHOT -DgenerateBackupPoms=false
+</code></pre><ol start=3>
+<li>If the release number you are preparing moves the major (first) or minor (second) number, update the Hive version name in the poms.  In both <code>pom.xml</code> and <code>standalone-metastore/pom.xml</code> search for the property <code>hive.version.shortname</code>.  This should match the new version number.  <br>
+For example, if you are working on branch-3 and have just released Hive 3.2 and are preparing the branch for Hive 3.3 development, you need to update both poms to have <code>&lt;hive.version.shortname>3.3.0&lt;/hive.shortname.version></code>.  If however you are working on branch-3.1 and have just released Hive 3.1.2 and are preparing the branch for 3.1.3 development, this is not necessary.</li>
+<li>Verify that the build is working with changes.</li>
+<li>Commit these changes with a comment &ldquo;Preparing for X.Y.Z+1 development&rdquo;.</li>
+</ol>
+<h2 id=see-also>See Also</h2>
+<ul>
+<li><a href=http://www.apache.org/dev/release.html>Apache Releases FAQ</a></li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

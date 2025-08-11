@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Hive Outer Join Behavior</title>
+<!-- 2013-11-27 Wed 15:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="author" content="Harish Butani"/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Hive Outer Join Behavior</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Definitions:</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This based on writeup of <a href="http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html">DB2 Outer Join behavior</a>.
+</p>
+
+<dl class="org-dl">
+<dt> Preserved Row table </dt><dd>In an Outer Join this is the table that must
+return all rows. So for left outer joins this is the <i>Left</i>
+table, for right outer joins, it is the <i>Right</i> table, and for
+full outer both tables are <i>Preserved Row</i> tables.
+</dd>
+<dt> Null Supplying tables </dt><dd>this is the table that can that has nulls
+filled in for its columns. In the non full outer case, this is
+the other table in the Join. For full outer both tables are also
+<i>Null Supplying</i> tables.
+</dd>
+<dt> During Join predicate </dt><dd>these are predicates that are in the Join
+<b>On</b> clause. For e.g. 'R1 join R2 on R1.x = 5'. The predicate
+'R1.x = 5' is a <i>During Join predicate</i>
+</dd>
+<dt> After Join predicate </dt><dd>these are predicates that are in the Where
+clause. 
+</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Predicate Pushdown Rules</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The logic can be summarized by these 2 rules:
+</p>
+<ol class="org-ol">
+<li><b>During Join Predicates</b> cannot be pushed past <b>Preserved Row tables</b>.
+</li>
+<li><b>After Join Predicates</b> cannot be pushed past <b>Null Supplying
+tables</b>.
+</li>
+</ol>
+
+<p>
+This captured in the following table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="left"/>
+
+<col class="left"/>
+
+<col class="left"/>
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">Preserved Row Table</th>
+<th scope="col" class="left">Null Supplying Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Join</td>
+<td class="left">Case J1:</td>
+<td class="left">Case J2:</td>
+</tr>
+
+<tr>
+<td class="left">Predicate</td>
+<td class="left">Not Pushed</td>
+<td class="left">Pushed</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Where</td>
+<td class="left">Case W1:</td>
+<td class="left">Case W2:</td>
+</tr>
+
+<tr>
+<td class="left">Predicate</td>
+<td class="left">Pushed</td>
+<td class="left">Not Pushed</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Hive implementation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Hive enforces these Rules by:
+</p>
+<dl class="org-dl">
+<dt> Rule 1 </dt><dd>During <b>QBJoinTree</b> construction in Plan Gen, the parse
+Join Condition logic applies this rule.
+</dd>
+<dt> Rule 2 </dt><dd>During <b>JoinPPD</b> (Join Predicate Pushdown) the get
+Qualified Alias logic applies this rule.
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Examples</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Given Src(Key String, Value String) the following Left outer Join
+examples show that Hive has the correct behavior.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Case J1: Join Predicate on Preserved Row table</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sql">explain 
+select s1.key, s2.key 
+from src s1 left join src s2 on s1.key &gt; '2';
+
+STAGE DEPENDENCIES:
+  Stage-1 is a root stage
+  Stage-0 is a root stage
+
+STAGE PLANS:
+  Stage: Stage-1
+    Map Reduce
+      Alias -&gt; Map Operator Tree:
+	s1
+	  TableScan
+	    alias: s1
+	    Reduce Output Operator
+	      sort order:
+	      tag: 0
+	      value expressions:
+		    expr: key
+		    type: string
+	s2
+	  TableScan
+	    alias: s2
+	    Reduce Output Operator
+	      sort order:
+	      tag: 1
+	      value expressions:
+		    expr: key
+		    type: string
+      Reduce Operator Tree:
+	Join Operator
+	  condition map:
+	       Left Outer Join0 to 1
+	  condition expressions:
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
+	  filter predicates:
+	    0 {(VALUE._col0 &gt; '2')}
+	    1
+	  handleSkewJoin: false
+	  outputColumnNames: _col0, _col4
+	  Select Operator
+	    expressions:
+		  expr: _col0
+		  type: string
+		  expr: _col4
+		  type: string
+	    outputColumnNames: _col0, _col1
+	    File Output Operator
+	      compressed: false
+	      GlobalTableId: 0
+	      table:
+		  input format: org.apache.hadoop.mapred.TextInputFormat
+		  output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+		  serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Case J2: Join Predicate on Null Supplying table</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-sql">explain 
+select s1.key, s2.key 
+from src s1 left join src s2 on s2.key &gt; '2';
+
+STAGE PLANS:
+  Stage: Stage-1
+    Map Reduce
+      Alias -&gt; Map Operator Tree:
+	s1
+	  TableScan
+	    alias: s1
+	    Reduce Output Operator
+	      sort order:
+	      tag: 0
+	      value expressions:
+		    expr: key
+		    type: string
+	s2
+	  TableScan
+	    alias: s2
+	    Filter Operator
+	      predicate:
+		  expr: (key &gt; '2')
+		  type: boolean
+	      Reduce Output Operator
+		sort order:
+		tag: 1
+		value expressions:
+		      expr: key
+		      type: string
+      Reduce Operator Tree:
+	Join Operator
+	  condition map:
+	       Left Outer Join0 to 1
+	  condition expressions:
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
+	  handleSkewJoin: false
+	  outputColumnNames: _col0, _col4
+	  Select Operator
+	    expressions:
+		  expr: _col0
+		  type: string
+		  expr: _col4
+		  type: string
+	    outputColumnNames: _col0, _col1
+	    File Output Operator
+	      compressed: false
+	      GlobalTableId: 0
+	      table:
+		  input format: org.apache.hadoop.mapred.TextInputFormat
+		  output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+		  serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Case W1: Where Predicate on Preserved Row table</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+
+<pre class="src src-sql">explain 
+select s1.key, s2.key 
+from src s1 left join src s2 
+where s1.key &gt; '2';
+
+STAGE PLANS:
+  Stage: Stage-1
+    Map Reduce
+      Alias -&gt; Map Operator Tree:
+	s1
+	  TableScan
+	    alias: s1
+	    Filter Operator
+	      predicate:
+		  expr: (key &gt; '2')
+		  type: boolean
+	      Reduce Output Operator
+		sort order:
+		tag: 0
+		value expressions:
+		      expr: key
+		      type: string
+	s2
+	  TableScan
+	    alias: s2
+	    Reduce Output Operator
+	      sort order:
+	      tag: 1
+	      value expressions:
+		    expr: key
+		    type: string
+      Reduce Operator Tree:
+	Join Operator
+	  condition map:
+	       Left Outer Join0 to 1
+	  condition expressions:
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
+	  handleSkewJoin: false
+	  outputColumnNames: _col0, _col4
+	  Select Operator
+	    expressions:
+		  expr: _col0
+		  type: string
+		  expr: _col4
+		  type: string
+	    outputColumnNames: _col0, _col1
+	    File Output Operator
+	      compressed: false
+	      GlobalTableId: 0
+	      table:
+		  input format: org.apache.hadoop.mapred.TextInputFormat
+		  output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+		  serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Case W2: Where Predicate on Null Supplying table</h3>
+<div class="outline-text-3" id="text-3-4">
+<div class="org-src-container">
+
+<pre class="src src-sql">explain
+select s1.key, s2.key 
+from src s1 left join src s2 
+where s2.key &gt; '2';
+
+STAGE PLANS:
+  Stage: Stage-1
+    Map Reduce
+      Alias -&gt; Map Operator Tree:
+	s1
+	  TableScan
+	    alias: s1
+	    Reduce Output Operator
+	      sort order:
+	      tag: 0
+	      value expressions:
+		    expr: key
+		    type: string
+	s2
+	  TableScan
+	    alias: s2
+	    Reduce Output Operator
+	      sort order:
+	      tag: 1
+	      value expressions:
+		    expr: key
+		    type: string
+      Reduce Operator Tree:
+	Join Operator
+	  condition map:
+	       Left Outer Join0 to 1
+	  condition expressions:
+	    0 {VALUE._col0}
+	    1 {VALUE._col0}
+	  handleSkewJoin: false
+	  outputColumnNames: _col0, _col4
+	  Filter Operator
+	    predicate:
+		expr: (_col4 &gt; '2')
+		type: boolean
+	    Select Operator
+	      expressions:
+		    expr: _col0
+		    type: string
+		    expr: _col4
+		    type: string
+	      outputColumnNames: _col0, _col1
+	      File Output Operator
+		compressed: false
+		GlobalTableId: 0
+		table:
+		    input format: org.apache.hadoop.mapred.TextInputFormat
+		    output format: org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat
+		    serde: org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe
+
+  Stage: Stage-0
+    Fetch Operator
+      limit: -1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Harish Butani</p>
+<p class="date">Created: 2013-11-27 Wed 15:42</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.3)</p>
+<p class="xhtml-validation"><a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a></p>
+</div>
+</body>
+</html>

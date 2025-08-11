@@ -1,0 +1,323 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HCatalog CLI</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hcatalog-command-line-interface>Apache Hive : HCatalog Command Line Interface</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hcatalog-command-line-interface>Apache Hive : HCatalog Command Line Interface</a>
+<ul>
+<li><a href=#set-up>Set Up</a></li>
+<li><a href=#hcatalog-cli>HCatalog CLI</a>
+<ul>
+<li><a href=#owner-permissions>Owner Permissions</a></li>
+<li><a href=#hive-cli>Hive CLI</a></li>
+</ul>
+</li>
+<li><a href=#hcatalog-ddl>HCatalog DDL</a>
+<ul>
+<li><a href=#createdropalter-table>Create/Drop/Alter Table</a></li>
+<li><a href=#createdropalter-view>Create/Drop/Alter View</a></li>
+<li><a href=#showdescribe>Show/Describe</a></li>
+<li><a href=#createdrop-index>Create/Drop Index</a></li>
+<li><a href=#createdrop-function>Create/Drop Function</a></li>
+<li><a href=#dfs-set-cmd>&ldquo;dfs&rdquo; Command and &ldquo;set&rdquo; Command</a></li>
+<li><a href=#other-commands>Other Commands</a></li>
+</ul>
+</li>
+<li><a href=#cli-errors>CLI Errors</a>
+<ul>
+<li><a href=#authentication>Authentication</a></li>
+<li><a href=#error-log>Error Log</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=set-up>Set Up</h2>
+<p>The HCatalog command line interface (CLI) can be invoked as <code>HIVE_HOME=</code><em>hive_home hcat_home</em><code>/bin/hcat</code> where <em>hive_home</em> is the directory where Hive has been installed and <em>hcat_home</em> is the directory where HCatalog has been installed.</p>
+<p>If you are using BigTop&rsquo;s rpms or debs you can invoke the CLI by doing <code>/usr/bin/hcat</code>.</p>
+<h2 id=hcatalog-cli>HCatalog CLI</h2>
+<p>The HCatalog CLI supports these command line options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Usage</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>-g</strong></td>
+<td><code>hcat -g mygroup ...</code></td>
+<td>Tells HCatalog that the table which needs to be created must have group &ldquo;mygroup&rdquo;.</td>
+</tr>
+<tr>
+<td><strong>-p</strong></td>
+<td><code>hcat -p rwxr-xr-x ...</code></td>
+<td>Tells HCatalog that the table which needs to be created must have permissions &ldquo;rwxr-xr-x&rdquo;.</td>
+</tr>
+<tr>
+<td><strong>-f</strong></td>
+<td><code>hcat -f myscript.hcatalog ...</code></td>
+<td>Tells HCatalog that myscript.hcatalog is a file containing DDL commands to execute.</td>
+</tr>
+<tr>
+<td><strong>-e</strong></td>
+<td><code>hcat -e 'create table mytable(a int);' ...</code></td>
+<td>Tells HCatalog to treat the following string as a DDL command and execute it.</td>
+</tr>
+<tr>
+<td><strong>-D</strong></td>
+<td><code>hcat -D</code><em>key</em><code>=</code><em>value</em> <code>...</code></td>
+<td>Passes the key-value pair to HCatalog as a Java System Property.</td>
+</tr>
+<tr>
+<td> </td>
+<td><code>hcat</code></td>
+<td>Prints a usage message.</td>
+</tr>
+</tbody>
+</table>
+<p>Note the following:</p>
+<ul>
+<li>The <strong>-g</strong> and <strong>-p</strong> options are not mandatory.</li>
+<li>Only one <strong>-e</strong> or <strong>-f</strong> option can be provided, not both.</li>
+<li>The order of options is immaterial; you can specify the options in any order.</li>
+</ul>
+<p>If no option is provided, then a usage message is printed:</p>
+<pre tabindex=0><code>Usage:  hcat  { -e &quot;&lt;query&gt;&quot; | -f &lt;filepath&gt; }  [-g &lt;group&gt;] [-p &lt;perms&gt;] [-D&lt;name&gt;=&lt;value&gt;]
+
+</code></pre><h3 id=owner-permissions>Owner Permissions</h3>
+<p>When using the HCatalog CLI, you cannot specify a permission string without read permissions for owner, such as <code>-wxrwxr-x</code>, because the string begins with &ldquo;<code>-</code>&rdquo;. If such a permission setting is desired, you can use the octal version instead, which in this case would be 375. Also, any other kind of permission string where the owner has read permissions (for example <code>r-x-----</code> or <code>r--r--r--</code>) will work fine.</p>
+<h3 id=hive-cli>Hive CLI</h3>
+<p>Many <code>hcat</code> commands can be issued as <code>hive</code> commands, including all HCatalog DDL commands. The Hive CLI includes some commands that are not available in the HCatalog CLI. Note these differences:</p>
+<ul>
+<li>&ldquo;<code>hcat -g</code>&rdquo; and &ldquo;<code>hcat -p</code>&rdquo; for table group and permission settings are only available in the HCatalog CLI.</li>
+<li><code>hcat</code> uses the <code>-p</code> flag for permissions but <code>hive</code> uses it to specify a port number.</li>
+<li><code>hcat</code> uses the <code>-D</code> flag <em>without a space</em> to define key=value pairs but <code>hive</code> uses <code>-d</code> or <code>--define</code> with a space (also <code>--hivevar</code>).<br>
+For example, &ldquo;<code>hcat -DA=B</code>&rdquo; versus &ldquo;<code>hive -d A=B</code>&rdquo;.</li>
+<li><code>hcat</code> without any flags prints a help message but <code>hive</code> uses the <code>-H</code> flag or <code>--help</code>.</li>
+</ul>
+<p>The Hive CLI is documented <a href=https://hive.apache.org/docs/latest/language/languagemanual-cli_27362033/>here</a>.</p>
+<h2 id=hcatalog-ddl>HCatalog DDL</h2>
+<p>HCatalog supports all <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl_27362034/>Hive Data Definition Language</a> except those operations that require running a MapReduce job. For commands that are supported, any variances are noted below.</p>
+<p>HCatalog does not support the following Hive DDL and other HiveQL commands:</p>
+<ul>
+<li>ALTER INDEX &mldr; REBUILD</li>
+<li>CREATE TABLE &mldr; AS SELECT</li>
+<li>ALTER TABLE &mldr; CONCATENATE</li>
+<li>ALTER TABLE ARCHIVE/UNARCHIVE PARTITION</li>
+<li>ANALYZE TABLE &mldr; COMPUTE STATISTICS</li>
+<li>IMPORT FROM &mldr;</li>
+<li>EXPORT TABLE</li>
+</ul>
+<p>For information about using WebHCat for DDL commands, see <a href=#url-format>URL Format</a> and <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl_34016001/>WebHCat Reference: DDL Resources</a>.</p>
+<h3 id=createdropalter-table>Create/Drop/Alter Table</h3>
+<h4 id=create-table>CREATE TABLE</h4>
+<p>If you create a table with a CLUSTERED BY clause you will not be able to write to it with Pig or MapReduce. This is because they do not understand how to partition the table, so attempting to write to it would cause data corruption.</p>
+<h4 id=create-table-as-select>CREATE TABLE AS SELECT</h4>
+<p>Not supported. Throws an exception with the message &ldquo;Operation Not Supported&rdquo;.</p>
+<h4 id=drop-table>DROP TABLE</h4>
+<p>Supported. Behavior the same as Hive.</p>
+<h4 id=alter-table>ALTER TABLE</h4>
+<p>Supported except for the REBUILD and CONCATENATE options. Behavior the same as Hive.</p>
+<h3 id=createdropalter-view>Create/Drop/Alter View</h3>
+<p><strong>Note:</strong> Pig and MapReduce cannot read from or write to views.</p>
+<h4 id=create-view>CREATE VIEW</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h4 id=drop-view>DROP VIEW</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h4 id=alter-view>ALTER VIEW</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h3 id=showdescribe>Show/Describe</h3>
+<h4 id=show-tables>SHOW TABLES</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h4 id=show-partitions>SHOW PARTITIONS</h4>
+<p>Not supported. Throws an exception with message &ldquo;Operation Not Supported&rdquo;.</p>
+<h4 id=show-functions>SHOW FUNCTIONS</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h4 id=describe>DESCRIBE</h4>
+<p>Supported. Behavior same as Hive.</p>
+<h3 id=createdrop-index>Create/Drop Index</h3>
+<p>CREATE and DROP INDEX operations are supported.</p>
+<p><strong>Note:</strong> Pig and MapReduce cannot write to a table that has auto rebuild on, because Pig and MapReduce do not know how to rebuild the index.</p>
+<h3 id=createdrop-function>Create/Drop Function</h3>
+<p>CREATE and DROP FUNCTION operations are supported, but created functions must still be registered in Pig and placed in CLASSPATH for MapReduce.</p>
+<h3 id=dfs-set-cmd>&ldquo;dfs&rdquo; Command and &ldquo;set&rdquo; Command</h3>
+<p>Supported. Behavior same as Hive.</p>
+<h3 id=other-commands>Other Commands</h3>
+<p>Any command not listed above is NOT supported and throws an exception with the message &ldquo;Operation Not Supported&rdquo;.</p>
+<h2 id=cli-errors>CLI Errors</h2>
+<h3 id=authentication>Authentication</h3>
+<p>If a failure results in a message like &ldquo;2010-11-03 16:17:28,225 WARN hive.metastore &mldr; - Unable to connect metastore with URI thrift://&mldr;&rdquo; in <code>/tmp/</code><em></em><code>/hive.log</code>, then make sure you have run &ldquo;<code>kinit</code> <em></em><code>@FOO.COM</code>&rdquo; to get a Kerberos ticket and to be able to authenticate to the HCatalog server.</p>
+<h3 id=error-log>Error Log</h3>
+<p>If other errors occur while using the HCatalog CLI, more detailed messages are written to /tmp/<em></em>/hive.log.</p>
+<p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-readerwriter_34013921/>Reader and Writer Interfaces</a><br>
+Next: <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-storageformats_34013997/>Storage Formats</a></p>
+<p>Hive command line interface: <a href=https://hive.apache.org/docs/latest/language/languagemanual-cli_27362033/>Hive CLI</a><br>
+Hive DDL commands: <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl_27362034/>Hive Data Definition Language</a><br>
+WebHCat DDL resources: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl_34016001/>WebHCat Reference: DDL</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

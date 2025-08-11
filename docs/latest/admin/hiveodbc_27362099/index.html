@@ -1,0 +1,539 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HiveODBC</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--odbc-driver>Apache Hive : ODBC Driver</h1>
+<p>These instructions are for the Hive ODBC driver available in Hive for <a href=https://hive.apache.org/docs/latest/admin/hiveserver_27362111/>HiveServer1</a>.<br>
+There is no ODBC driver available for <a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2_30758712/>HiveServer2</a> as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--odbc-driver>Apache Hive : ODBC Driver</a>
+<ul>
+<li><a href=#introduction>Introduction</a>
+<ul>
+<li><a href=#suggested-reading>Suggested Reading</a></li>
+<li><a href=#software-requirements>Software Requirements</a></li>
+<li><a href=#driver-architecture>Driver Architecture</a></li>
+</ul>
+</li>
+<li><a href=#building-and-setting-up-odbc-components>Building and Setting Up ODBC Components</a>
+<ul>
+<li><a href=#hive-client-buildsetup>Hive Client Build/Setup</a></li>
+<li><a href=#unixodbc-api-wrapper-buildsetup>unixODBC API Wrapper Build/Setup</a></li>
+<li><a href=#connecting-the-driver-to-a-driver-manager>Connecting the Driver to a Driver Manager</a></li>
+<li><a href=#testing-with-isql>Testing with ISQL</a></li>
+<li><a href=#build-libodbchiveso-for-3rd-party-driver-manager>Build libodbchive.so for 3rd Party Driver Manager</a></li>
+<li><a href=#troubleshooting>Troubleshooting</a></li>
+</ul>
+</li>
+<li><a href=#current-status>Current Status</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=introduction>Introduction</h2>
+<p>The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface. This driver will NOT be built as a part of the typical Hive build process and will need to be compiled and built separately according to the instructions below.</p>
+<p><strong>HiveServer was removed from Hive releases starting with Hive 1.0.0. See <a href=https://issues.apache.org/jira/browse/HIVE-6977>HIVE-6977</a>. Please switch over to HiveServer2.</strong></p>
+<h3 id=suggested-reading>Suggested Reading</h3>
+<p>This guide assumes you are already familiar with Hive and in particular with the following:</p>
+<ul>
+<li><a href=https://hive.apache.org/docs/latest/admin/hiveserver_27362111/>Hive Server</a></li>
+<li><a href=http://wiki.apache.org/thrift/>Thrift</a></li>
+<li><a href=http://msdn.microsoft.com/en-us/library/ms714177(VS.85).aspx>ODBC API</a></li>
+<li><a href=http://www.unixodbc.org/>unixODBC</a></li>
+</ul>
+<h3 id=software-requirements>Software Requirements</h3>
+<p>The following software components are needed for the successful compilation and operation of the Hive ODBC driver:</p>
+<ul>
+<li><strong>Hive Server</strong> – a service through which clients may remotely issue Hive commands and requests. The Hive ODBC driver depends on Hive Server to perform the core set of database interactions. Hive Server is built as part of the Hive build process. More information regarding Hive Server usage can be found <a href=https://hive.apache.org/docs/latest/admin/hiveserver_27362111/>here</a>.</li>
+<li><strong>Apache Thrift</strong> – a scalable cross-language software framework that enables the Hive ODBC driver (specifically the Hive client) to communicate with the Hive Server. See this link for the details on <a href=http://wiki.apache.org/thrift/ThriftInstallation>Thrift Installation</a>. The Hive ODBC driver was developed with Thrift trunk version r790732, but the latest revision should also be fine. Make sure you note the Thrift install path during the Thrift build process as this information will be needed during the Hive client build process. The Thrift install path will be referred to as THRIFT_HOME.</li>
+</ul>
+<h3 id=driver-architecture>Driver Architecture</h3>
+<p>Internally, the Hive ODBC Driver contains two separate components: Hive client, and the unixODBC API wrapper.</p>
+<ul>
+<li><strong>Hive client</strong> – provides a set of C-compatible library functions to interact with Hive Server in a pattern similar to those dictated by the ODBC specification. However, Hive client was designed to be independent of unixODBC or any ODBC specific headers, allowing it to be used in any number of generic cases beyond ODBC.</li>
+<li><strong>unixODBC API wrapper</strong> – provides a layer on top of Hive client that directly implements the ODBC API standard. The unixODBC API wrapper will be compiled into a shared object library, which will be the final form of the Hive ODBC driver. The wrapper files will remain a file attachment on the associated JIRA until it can be checked into the unixODBC code repository: <a href=https://issues.apache.org/jira/browse/HIVE-187>HIVE-187</a>, <a href=https://issues.apache.org/jira/browse/HIVE-1101>HIVE-1101</a>.</li>
+</ul>
+<h2 id=building-and-setting-up-odbc-components>Building and Setting Up ODBC Components</h2>
+<p>NOTE: Hive client needs to be built and installed before the unixODBC API wrapper can compile successfully.</p>
+<h3 id=hive-client-buildsetup>Hive Client Build/Setup</h3>
+<p>In order to build and install the Hive client:</p>
+<ol>
+<li>Checkout and setup the latest version of Apache Hive from the Subversion or Git source code repository. For more details, see <a href=https://hive.apache.org/development/gettingstarted_27362090/>Getting Started with Hive</a>. From this point onwards, the path to the Hive root directory will be referred to as HIVE_SRC_ROOT.</li>
+</ol>
+<p>Using a tarball source release</p>
+<p>If you are compiling against source code contained in the tarball release package then HIVE_SRC_ROOT refers to the &lsquo;src&rsquo; subdirectory.</p>
+<p>The ODBC driver is broken on trunk!</p>
+<p>Currently the C++ Thrift client library that the ODBC driver depends on will not build on trunk. This issue is being tracked in <a href=https://issues.apache.org/jira/browse/HIVE-4433>HIVE-4433</a>. If you are using trunk prior to release 0.12 check the status of this ticket before proceeding. Also see <a href=https://issues.apache.org/jira/browse/HIVE-4492>HIVE-4492</a>.
+2. Build the Hive client by running the following command from HIVE_SRC_ROOT. This will compile and copy the libraries and header files to <code>HIVE_SRC_ROOT/build/odbc/</code>. Please keep in mind that all paths should be fully specified (no relative paths). If you encounter an &ldquo;<code>undefined reference to vtables</code>&rdquo; error, make sure that you have specified the absolute path for thrift.home.</p>
+<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT_HOME&gt;
+ 
+</code></pre><p>MVN:</p>
+<pre tabindex=0><code>$ cd odbc
+$ mvn compile -Podbc,hadoop-1 -Dthrift.home=/usr/local -Dboost.home=/usr/local
+ 
+</code></pre><p>You can optionally force Hive client to compile into a non-native bit architecture by specifying the additional parameter (assuming you have the proper compilation libraries):</p>
+<pre tabindex=0><code> $ ant compile-cpp -Dthrift.home=&lt;THRIFT_HOME&gt; -Dword.size=&lt;32 or 64&gt;
+ 
+</code></pre><ol>
+<li>You can verify the entire Hive compilation by running the Hive test suite from HIVE_SRC_ROOT. Specifying the argument &lsquo;-Dthrift.home=&lt;THRIFT_HOME>&rsquo; will enable the tests for the Hive client. If you do NOT specify thrift.home, the Hive client tests will not be run and will just return successful.</li>
+</ol>
+<pre tabindex=0><code> $ ant test -Dthrift.home=&lt;THRIFT_HOME&gt;
+ 
+</code></pre><p>MVN:</p>
+<pre tabindex=0><code>$ cd odbc
+$ mvn test -Podbc,hadoop-1 -Dthrift.home=/usr/local -Dboost.home=/usr/local
+ 
+</code></pre><p>You can specifically execute the Hive client tests by running the above command from <code>HIVE_SRC_ROOT/odbc/</code>. NOTE: Hive client tests require that a local Hive Server be operating on port 10000.
+2. To install the Hive client libraries onto your machine, run the following command from <code>HIVE_SRC_ROOT/odbc/</code>. NOTE: The install path defaults to <code>/usr/local</code>. While there is no current way to change this default directory from the ant build process, a manual install may be performed by skipping the command below and copying out the contents of <code>HIVE_SRC_ROOT/build/odbc/lib</code> and <code>HIVE_SRC_ROOT/build/odbc/include</code> into their local file system counterparts.</p>
+<pre tabindex=0><code> $ sudo ant install -Dthrift.home=&lt;THRIFT_HOME&gt;
+ 
+</code></pre><p>NOTE: The compiled static library, libhiveclient.a, requires linking with stdc++ as well as thrift libraries to function properly.<br>
+NOTE: Currently, there is no way to specify non-system library and header directories to the unixODBC build process. Thus, the Hive client libraries and headers MUST be installed to a default system location in order for the unixODBC build process to detect these files. This issue may be remedied in the future.</p>
+<h3 id=unixodbc-api-wrapper-buildsetup>unixODBC API Wrapper Build/Setup</h3>
+<p>After you have built and installed the Hive client, you can now install the unixODBC API wrapper:</p>
+<ol>
+<li>In the unixODBC root directory, run the following command:</li>
+</ol>
+<pre tabindex=0><code> $ ./configure --enable-gui=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
+ 
+</code></pre><p>If you encounter the the errors: &ldquo;<code>redefinition of 'struct _hist_entry'</code>&rdquo; or &ldquo;<code>previous declaration of 'add_history' was here</code>&rdquo; then re-execute the configure with the following command:</p>
+<pre tabindex=0><code> $ ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
+ 
+</code></pre><p>To force the compilation of the unixODBC API wrapper into a non-native bit architecture, modify the CC and CXX environment variables to include the appropriate flags. For example:</p>
+<pre tabindex=0><code> $ CC=&quot;gcc -m32&quot; CXX=&quot;g++ -m32&quot; ./configure --enable-gui=no --enable-readline=no --prefix=&lt;unixODBC_INSTALL_DIR&gt;
+ 
+</code></pre><ol start=2>
+<li>Compile the unixODBC API wrapper with the following:</li>
+</ol>
+<pre tabindex=0><code> $ make
+ 
+</code></pre><p>If you want to completely install unixODBC and all related drivers, run the following from the unixODBC root directory:</p>
+<pre tabindex=0><code>  $ sudo make install
+  
+</code></pre><p>If your system complains about <code>undefined symbols</code> during unixODBC testing (such as with <code>isql</code> or <code>odbcinst</code>) after installation, try running <code>ldconfig</code> to update your dynamic linker&rsquo;s runtime libraries.<br>
+If you only want to obtain the Hive ODBC driver shared object library:
+3. After compilation, the driver will be located at <code>&lt;unixODBC_BUILD_DIR>/Drivers/hive/.libs/libodbchive.so.1.0.0</code>.<br>
+This may be copied to any other location as desired. Keep in mind that the Hive ODBC driver has a dependency on the Hive client shared object library: <code>libhiveclient.so</code> and <code>libthrift.so.0</code>.<br>
+You can manually install the unixODBC API wrapper by doing the following:</p>
+<pre tabindex=0><code>  $ cp &lt;unixODBC_BUILD_DIR&gt;/Drivers/hive/.libs/libodbchive.so.1.0.0 &lt;SYSTEM_INSTALL_DIR&gt;
+  $ cd &lt;SYSTEM_INSTALL_DIR&gt;
+  $ ln -s libodbchive.so.1.0.0 libodbchive.so
+  $ ldconfig
+  
+</code></pre><h3 id=connecting-the-driver-to-a-driver-manager>Connecting the Driver to a Driver Manager</h3>
+<p>This portion assumes that you have already built and installed both the Hive client and the unixODBC API wrapper shared libraries on the current machine. To connect the Hive ODBC driver to a previously installed Driver Manager (such as the one provided by unixODBC or a separate application):</p>
+<ol>
+<li>
+<p>Locate the odbc.ini file associated with the Driver Manager (DM).</p>
+<ol>
+<li>If you are installing the driver on the system DM, then you can run the following command to print the locations of DM configuration files.</li>
+</ol>
+<pre tabindex=0><code>  $ odbcinst -j
+  unixODBC 2.2.14
+  DRIVERS............: /usr/local/etc/odbcinst.ini
+  SYSTEM DATA SOURCES: /usr/local/etc/odbc.ini
+  FILE DATA SOURCES..: /usr/local/etc/ODBCDataSources
+  USER DATA SOURCES..: /home/ehwang/.odbc.ini
+  SQLULEN Size.......: 8
+  SQLLEN Size........: 8
+  SQLSETPOSIROW Size.: 8
+
+</code></pre><p>``
+2. If you are installing the driver on an application DM, then you have to help yourself on this one <img src=images/icons/emoticons/wink.svg alt=(wink)>. Hint: try looking in the installation directory of your application.
+* Keep in mind that an application&rsquo;s DM can exist simultaneously with the system DM and will likely use its own configuration files, such as odbc.ini.
+* Also, note that some applications do not have their own DMs and simply use the system DM.</p>
+</li>
+<li>
+<p>Add the following section to the DM&rsquo;s corresponding odbc.ini:</p>
+</li>
+</ol>
+<pre tabindex=0><code> [Hive]
+ Driver = &lt;path_to_libodbchive.so&gt;
+ Description = Hive Driver v1
+ DATABASE = default
+ HOST = &lt;Hive_server_address&gt;
+ PORT = &lt;Hive_server_port&gt;
+ FRAMED = 0
+ 
+</code></pre><h3 id=testing-with-isql>Testing with ISQL</h3>
+<p>Once you have installed the necessary Hive ODBC libraries and added a Hive entry in your system&rsquo;s default odbc.ini, you will be able to interactively test the driver with isql:</p>
+<pre tabindex=0><code>$ isql -v Hive
+
+</code></pre><p>If your system does not have isql, you can obtain it by installing the entirety of unixODBC. If you encounter an error saying that the shared libraries cannot be opened by isql, use the <code>ldd</code> tool to ensure that all dynamic library dependencies are resolved and use the <code>file</code> tool to ensure that isql and all necessary libraries are compiled into the same architecture (32 or 64 bit).</p>
+<h3 id=build-libodbchiveso-for-3rd-party-driver-manager>Build libodbchive.so for 3rd Party Driver Manager</h3>
+<p>If you want to build libodbchive.so for other Driver Manager (for example, MicroStrategy uses DataDirect ODBC libraries which contains its own Driver Manager), you need to configure and build libodbchive.so against that Driver Manager (libodbc.so and libodbcinst.so).</p>
+<p>If you have the 3rd party Driver Manager installed, the easiest way to do that is to find the installation directory containing libodbc.so and libodbcinst.so, and set that directory to LD_LIBRARY_PATH. Then you need to run configure and make for the Hive ODBC driver. After you get the libodbchive.so, make sure the 3rd party application can access the dynamic library libodbchive.so, libthrift.so and libhiveclient.so (through LD_LIBRARY_PATH or ldconfig).</p>
+<p>If you build libodbchive.so for the 3rd party Driver Manager, isql may not work with the same set of .so files. So you may need to compile a different libodbchive.so for each Driver Manager.</p>
+<h3 id=troubleshooting>Troubleshooting</h3>
+<ul>
+<li>Hive client build process
+<ul>
+<li>&ldquo;libthrift.a: could not read symbols: Bad value&rdquo; or &ldquo;relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object&rdquo;?
+<ul>
+<li>Try recompiling your Apache Thrift libraries with the -fPIC option for your C++ compiler</li>
+</ul>
+</li>
+<li>&ldquo;undefined reference to vtable&rdquo; ?
+<ul>
+<li>Make sure that your Apache Thrift libraries are being included from the proper Thrift directory and that it has the same architecture (32 or 64 bit) as the Hive client.</li>
+<li>Also, check to make sure you are providing a fully qualified path for the thrift.home parameter.</li>
+</ul>
+</li>
+<li>In general, <code>ldd</code>, <code>file</code>, and <code>nm</code> are essential unix tools for debugging problems with shared object libraries. If you don&rsquo;t know what they are, use <code>man</code> to get more details.</li>
+</ul>
+</li>
+</ul>
+<h2 id=current-status>Current Status</h2>
+<ul>
+<li>Comments: Please keep in mind that this is still an initial version and is still very rough around the edges. However, it provides basic ODBC 3.51 API support for connecting, executing queries, fetching, etc. This driver has been successfully tested on 32-bit and 64-bit linux machines with iSQL. It has also been tested with partial success on enterprise applications such as MicroStrategy. Due to licensing reasons, the unixODBC API wrapper files will be uploaded as a separate JIRA attachment that will not be part of this code repository.</li>
+<li>Limitations:
+<ul>
+<li>Only support for Linux operating systems</li>
+<li>No support for Unicode</li>
+<li>No support for asynchronous execution of queries</li>
+<li>Does not support pattern matching for functions such as SQLColumns and SQLTables; requires exact matches.</li>
+<li>Hive Server is currently not thread safe (see JIRA HIVE-80: <a href=https://issues.apache.org/jira/browse/HIVE-80>https://issues.apache.org/jira/browse/HIVE-80</a>). This will prevent the driver from safely making multiple connections to the same Hive Server. We need to resolve this issue to allow the driver to operate properly.</li>
+<li>Hive Server&rsquo;s getSchema() function seems to have trouble with certain types of queries (such as &ldquo;SELECT * &mldr;&rdquo; or &ldquo;EXPLAIN&rdquo;), and so the Hive ODBC driver sometimes has difficulties with these queries as well.</li>
+</ul>
+</li>
+<li>ODBC API Function Support (does anyone know how to remove the linking from the function names?):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SQLAllocConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocEnv</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocHandle</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLAllocStmt</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLBindCol</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLBindParameter</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLCancel</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLColAttribute</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLColumns</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDescribeCol</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDescribeParam</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLDisconnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLDriverConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLError</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExecDirect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExecute</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLExtendedFetch</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLFetch</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFetchScroll</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeConnect</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeEnv</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeHandle</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLFreeStmt</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLGetConnectAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLGetData</code></td>
+<td>supported (however, SQLSTATE not returning values)</td>
+</tr>
+<tr>
+<td><code>SQLGetDiagField</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLGetDiagRec</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLGetInfo</code></td>
+<td>partially supported; (to get MSTR v9 running)</td>
+</tr>
+<tr>
+<td><code>SQLMoreResults</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLNumParams</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLNumResultCols</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLParamOptions</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLPrepare</code></td>
+<td>supported; but does not permit parameter markers</td>
+</tr>
+<tr>
+<td><code>SQLRowCount</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetConnectAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetConnectOption</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetEnvAttr</code></td>
+<td>Limited support</td>
+</tr>
+<tr>
+<td><code>SQLSetStmtAttr</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLSetStmtOption</code></td>
+<td>NOT supported</td>
+</tr>
+<tr>
+<td><code>SQLTables</code></td>
+<td>supported</td>
+</tr>
+<tr>
+<td><code>SQLTransact</code></td>
+<td>NOT supported</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

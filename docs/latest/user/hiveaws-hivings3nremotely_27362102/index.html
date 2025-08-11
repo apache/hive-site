@@ -1,0 +1,303 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HiveAws HivingS3nRemotely</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hiveaws-hivings3nremotely>Apache Hive : HiveAws HivingS3nRemotely</h1>
+<p>= Querying S3 files from your PC (using EC2, Hive and Hadoop) =</p>
+<h2 id=usage-scenario>Usage Scenario</h2>
+<p>The scenario being covered here goes as follows:</p>
+<ul>
+<li>A user has data stored in S3 - for example Apache log files archived in the cloud, or databases backed up into S3.</li>
+<li>The user would like to declare tables over the data sets here and issue SQL queries against them</li>
+<li>These SQL queries should be executed using computed resources provisioned from EC2. Ideally, the compute resources can be provisioned in proportion to the compute costs of the queries</li>
+<li>Results from such queries that need to be retained for the long term can be stored back in S3</li>
+</ul>
+<p>This tutorial walks through the steps required to accomplish this. Please send email to the hive-users mailing list in case of any problems with this tutorial.</p>
+<h2 id=required-software>Required Software</h2>
+<p>On the client side (PC), the following are required:</p>
+<ul>
+<li>Any version of Hive that incorporates <a href=https://issues.apache.org/jira/browse/HIVE-467>HIVE-467<img src=images/icons/linkext7.gif alt></a>. (As of this writing - the relevant patches are not committed. For convenience sake - a Hive distribution with this patch can be downloaded from <a href=http://jsensarma.com/downloads/hive-s3-ec2.tar.gz>here<img src=images/icons/linkext7.gif alt></a>.)</li>
+<li>A version of Hadoop ec2 scripts (src/contrib/ec2/bin) with a fix for <a href=https://issues.apache.org/jira/browse/HADOOP-5839>here<img src=images/icons/linkext7.gif alt></a>]. Again - since the relevant patches are not committed yet - a version of Hadoop-19 ec2 scripts with the relevant patches applied can be downloaded from [[http:&ndash;jsensarma.com-downloads-hadoop-0.19-ec2-remote.tar.gz]. These scripts must be used to launch hadoop clusters in EC2.</li>
+</ul>
+<p>Hive requires a local directory of Hadoop to run (specified using environment variable HADOOP_HOME). This can be a version of Hadoop compatible with the one running on the EC2 clusters. This recipe has been tried with hadoop distribution created from from branch-19.</p>
+<p>It is assumed that the user can successfully launch Hive CLI (<code>bin/hive</code> from the Hive distribution) at this point.</p>
+<h2 id=hive-setup>Hive Setup</h2>
+<p>A few Hadoop configuration variables are required to be specified for all Hive sessions. These can be set using the hive cli as follows:</p>
+<pre tabindex=0><code>
+hive&gt; set hadoop.socks.server=localhost:2600; 
+hive&gt; set hadoop.rpc.socket.factory.class.default=org.apache.hadoop.net.SocksSocketFactory;
+hive&gt; set hadoop.job.ugi=root,root;
+hive&gt; set mapred.map.tasks=40;
+hive&gt; set mapred.reduce.tasks=-1;
+hive&gt; set fs.s3n.awsSecretAccessKey=2GAHKWG3+1wxcqyhpj5b1Ggqc0TIxj21DKkidjfz
+hive&gt; set fs.s3n.awsAccessKeyId=1B5JYHPQCXW13GWKHAG2
+
+</code></pre><p><strong>The values assigned to s3n keys are just an example and need to be filled in by the user as per their account details.</strong> Explanation for the rest of the values can be found in <a href=#configuration-guide>Configuration Guide</a> section below.</p>
+<p>Instead of specifying these command lines each time the CLI is bought up - we can store these persistently within <code>hive-site.xml</code> in the <code>conf/</code> directory of the Hive installation (from where they will be picked up each time the CLI is launched.</p>
+<h2 id=example-public-data-sets>Example Public Data Sets</h2>
+<p>Some example data files are provided in the S3 bucket <code>data.s3ndemo.hive</code>. We will use them for the sql examples in this tutorial:</p>
+<ul>
+<li><code>s3n://data.s3ndemo.hive/kv</code> - Key Value pairs in a text file</li>
+<li><code>s3n://data.s3ndemo.hive/pkv</code> - Key Value pairs in a directories that are partitioned by date</li>
+<li><code>s3n://data.s3ndemo.hive/tpch/*</code> - Eight directories containing data corresponding to the eight tables used by <a href=http://tpc.org/tpch/>TPCH benchmark<img src=images/icons/linkext7.gif alt></a>. The data is generated for a scale 10 (approx 10GB) database using the standard <code>dbgen</code> utility provided by TPCH.</li>
+</ul>
+<h2 id=setting-up-tables-ddl-statements>Setting up tables (DDL Statements)</h2>
+<p>In this example - we will use HDFS as the default table store for Hive. We will make Hive tables over the files in S3 using the <code>external tables</code> functionality in Hive. Executing DDL commands does not require a functioning Hadoop cluster (since we are just setting up metadata):</p>
+<ul>
+<li>Declare a simple table containing key-value pairs:</li>
+<li>
+<pre tabindex=0><code>
+</code></pre></li>
+</ul>
+<p>hive> create external table kv (key int, values string) location &lsquo;s3n://data.s3ndemo.hive/kv&rsquo;;</p>
+<pre tabindex=0><code>* Declare a partitioned table over a nested directory containing key-value pairs and associate table partitions with dirs:
+* ```
+
+hive&gt; create external table pkv (key int, values string) partitioned by (insertdate string);
+hive&gt; alter table pkv add partition (insertdate='2008-01-01') location 's3n://data.s3ndemo.hive/pkv/2008-01-01';
+
+</code></pre><ul>
+<li>Declare a table over a TPCH table:</li>
+<li>
+<pre tabindex=0><code>
+</code></pre></li>
+</ul>
+<p>hive> create external table lineitem (
+l_orderkey int, l_partkey int, l_suppkey int, l_linenumber int, l_quantity double,
+l_extendedprice double, l_discount double, l_tax double, l_returnflag string,
+l_linestatus string, l_shipdate string, l_commitdate string, l_receiptdate string,
+l_shipinstruct string, l_shipmode string, l_comment string)
+row format delimited fields terminated by &lsquo;|&rsquo;
+location &lsquo;s3n://data.s3ndemo.hive/tpch/lineitem&rsquo;;</p>
+<pre tabindex=0><code>
+The TPCH DDL statements are slightly modified versions of the original TPCH statements (since Hive does not support all the data types used in TPCH). All the TPCH DDL statements for Hive can be be found ^TpchDdlForHive.sql
+
+## Executing Queries
+
+Hive can execute some queries without a Hadoop cluster. For example:
+
+</code></pre><p>hive> select * from kv limit 10;</p>
+<pre tabindex=0><code>
+`select *` queries with limit clauses can be performed locally on the Hive CLI itself. If you are doing this - please note that:
+
+* `fs.default.name` should be set to `[file:///![](images/icons/linkext7.gif)](https://hive.apache.org/)` in case CLI is not configured to use a working Hadoop cluster
+* **Please Please do not select all the rows from large data sets**. This will cause large amount of data to be downloaded from S3 to outside AWS and incur charges on the host account for these data sets!
+
+Of course - the real fun is in doing some non-trivial queries using map-reduce. For this we will need a Hadoop cluster (finally!):
+
+1. Start a Hadoop cluster on EC2 (using directions from [Hadoop-EC2 tutorial![](images/icons/linkext7.gif)](http://wiki.apache.org/hadoop/AmazonEC2) - but making sure to use a version of ec2 scripts with HADOOP-5839 applied! User is free to allocate any number of nodes they wish - although this tutorial was tried out with 10 nodes.
+2. Note down the public hostnames of the master node. For example, the public hostname maybe something like:
+
+* `ec2-12-34-56-78.compute-1.amazonaws.com`  
+
+ 1.#3 Point the Hive CLI to use this Hadoop cluster by executing:
+* ```
+
+hive&gt; set fs.default.name=hdfs://ec2-12-34-56-78.compute-1.amazonaws.com:50001;
+hive&gt; set mapred.job.tracker=ec2-12-34-56-78.compute-1.amazonaws.com:50002;
+
+</code></pre><p>1.#4 Set up a ssh tunnel via port 2600 to the Hadoop master. This can be done by executing the following from another terminal/window:</p>
+<ul>
+<li><code>$ ssh -i &lt;path to Hadoop private key path> -D 2600 ec2-12-34-56-78.compute-1.amazonaws.com</code></li>
+</ul>
+<p>Now we are all setup. The sample query from TPCH (1.sql) can be tried as follows:</p>
+<pre tabindex=0><code>
+hive&gt; insert overwrite directory '/tmp/tpcresults-1.sql' 
+  select l_returnflag, l_linestatus, sum ( l_quantity ) as sum_qty, sum ( l_extendedprice ) as sum_base_price,
+  sum ( l_extendedprice * ( 1 - l_discount )) as sub_disc_price, 
+  sum ( l_extendedprice * ( 1 - l_discount ) * ( 1 + l_tax )) as sum_charge,
+  avg ( l_quantity ) as avg_qty, avg ( l_extendedprice ) as avg_price, 
+  avg ( l_discount ) as avg_disc, count ( 1 ) as count_order
+  from lineitem where l_shipdate &lt;= to_date('1998-12-01') group by l_returnflag, l_linestatus; 
+
+</code></pre><p>This launches one map-reduce job and on 10 nodes with default hadoop/hive settings - this took about 10 minutes. The results in this case are stored in HDFS and can be obtained by doing a <code>dfs -cat /tmp/tpcresults/1-2.sql/*</code> - either from bin/hadoop or from hive CLI. The query above differs from the TPCH query in skipping the order by clause - since it&rsquo;s not implemented by Hive currently.</p>
+<h2 id=storing-results-back-in-s3>Storing results back in S3</h2>
+<p>The results could also have been stored as a file in S3 directly, for example, we could alter the previous insert clause to read as:</p>
+<pre tabindex=0><code>
+hive&gt; insert overwrite directory 's3n://target-bucket/tpcresults-1.sql';
+
+</code></pre><p>As another alternative, one could have created an external table over S3 and stored the results directly in it, for example:</p>
+<pre tabindex=0><code>
+hive&gt; create external table t1 (flag string, status string, double ...)
+  location 's3n://jssarma/tpcresults-1.sql';
+hive&gt; insert overwrite table t1 select ...;
+
+</code></pre><p>Similarly, one could have stored the results back in a partition in an partitioned external table as well.</p>
+<h2 id=using-tmp-tables-in-hdfs>Using tmp tables in HDFS</h2>
+<p>Currently, Hive does not have any explicit support tmp tables. But tables defined over HDFS in EC2 are like tmp tables since they only last for the duration of the Hadoop cluster. Since they are likely to be much faster than accessing S3 directly - they can be used to stage data that may be accessed repeatedly during a session. For example - for the TPCH dataset - one may want to do some analysis of customer attributes against order details - and it would be first beneficial to materialize the join of these data sets and then do repeated queries against it. Here&rsquo;s some example sql that would do the same:</p>
+<pre tabindex=0><code>
+hive&gt; create table cust_order (nationkey string, acctbal double, mktsegment string, orderstatus string, totalprice double);
+hive&gt; from customer c left outer join orders o on (c.c_custkey = o.o_custkey)
+  insert overwrite table cust_order
+  select c.c_nationkey, c.c_acctbal, c.c_mktsegment, o.o_orderstatus, o.o_totalprice;
+
+</code></pre><h2 id=appendix>Appendix</h2>
+<p>&#171;Anchor(ConfigHell)&#187;</p>
+<h3 id=configuration-guide>Configuration Guide</h3>
+<p>The socket related options allow Hive CLI to communicate with the Hadoop cluster using a ssh tunnel (that will be established later). The job.ugi is specified to avoid issues with permissions on HDFS. <code>mapred.map.tasks</code> specification is a hack that works around <a href=https://issues.apache.org/jira/browse/HADOOP-5861>HADOOP-5861<img src=images/icons/linkext7.gif alt></a> and may need to be set higher for large clusters. <code>mapred.reduce.tasks</code> is specified to let Hive determine the number of reducers (see <a href=https://issues.apache.org/jira/browse/HIVE-490>HIVE-490<img src=images/icons/linkext7.gif alt></a>).</p>
+<h3 id=links>Links</h3>
+<ul>
+<li>Unknown macro: {link-to} Hive and AWS</li>
+</ul>
+<p>presents general landscape and alternative on running Hive queries in AWS.</p>
+<ul>
+<li><a href=http://jsensarma.com/blog/2009/05/14/hive-hadoop-s3-ec2-it-works/>On issues and lessons learned during this integration effort<img src=images/icons/linkext7.gif alt></a></li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

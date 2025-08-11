@@ -1,0 +1,248 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive MetaTool</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-metatool>Apache Hive : Hive MetaTool</h1>
+<p>Introduced in Hive 0.10.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3056>HIVE-3056</a> and <a href=https://issues.apache.org/jira/browse/HIVE-3443>HIVE-3443</a>.</p>
+<p>The Hive MetaTool enables administrators to do bulk updates on the location fields in database, table, and partition records in the metastore.  It provides the following functionality:</p>
+<ul>
+<li>Ability to search and replace the HDFS NN (NameNode) location in metastore records that reference the NN. One use is to transition a Hive deployment to <a href=https://issues.apache.org/jira/browse/HDFS-1623>HDFS HA NN</a> (HDFS High Availability NameNode).</li>
+<li>A command line tool to execute <a href=http://www.datanucleus.org/products/datanucleus/jdo/jdoql.html>JDOQL</a> against the metastore. The ability to execute JDOQL against the metastore can be a useful debugging tool for both users and Hive developers.</li>
+</ul>
+<h3 id=the-metatool-command>The <code>metatool</code> Command</h3>
+<p>The <code>metatool</code> command invokes the Hive MetaTool with these options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-listFSRoot</code></td>
+<td>Print the location of the current file system root (NameNode). The value is prefixed with <code>hdfs:// scheme</code>.</td>
+</tr>
+<tr>
+<td><code>-updateLocation &lt;new-loc> &lt;old-loc></code></td>
+<td>Update records in the Hive metastore to point to a new NameNode location (file system root location). Both <em>new-loc</em> and <em>old-loc</em> should be valid URIs with valid host names and schemes. For upgrading to HDFS HA NN, <em>new-loc</em> should match the value of the <code>dfs.nameservices</code> property. The <em>old-loc</em> should match the value returned by the <strong>listFSRoot</strong> option.When run with the <strong>dryRun</strong> option, changes are displayed but are not persisted. When run with the <strong>serdepropKey</strong>/<strong>tablePropKey</strong> option, <strong>updateLocation</strong> looks for the <em>serde-prop-key</em>/<em>table-prop-key</em> that is specified and updates its value if found.</td>
+</tr>
+<tr>
+<td><code>-serdePropKey &lt;serde-prop-key></code></td>
+<td>Specify a SerDe property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Haivvero schema URL, specify schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-tablePropKey &lt;table-prop-key></code></td>
+<td>Specify a table property key whose value field may reference the HDFS NameNode location and hence may require an update. For example to update the Avro SerDe schema URL, specify avro.schema.url for this argument.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-dryRun</code></td>
+<td>Perform a dry run of <strong>updateLocation</strong> changes. The <strong>updateLocation</strong> changes are displayed but not persisted.This option is valid only with the <strong>updateLocation</strong> option.</td>
+</tr>
+<tr>
+<td><code>-executeJDOQL &lt;query-string></code></td>
+<td>Execute the given JDOQL query.</td>
+</tr>
+<tr>
+<td><code>-help</code></td>
+<td>Print a list of command options and their descriptions.</td>
+</tr>
+</tbody>
+</table>
+<p>If you are unsure which version of Avro SerDe is used, pass both <strong>serdePropKey</strong> and <strong>tablePropKey</strong> arguments with their respective values for the keys to <strong>updateLocation</strong>.</p>
+<p>Hive Configuration Directory</p>
+<p>Note that <code>metatool</code> is a command for Hive administrators and it needs direct access to the metastore RDBMS. In some environments, the RDBMS login information (especially password or the password key) is only stored on the metastore server host or in a metastore server specific config directory (with more restrictive file system permissions). In such cases, make sure you run on the metastore server machine, as the hive user, and also set the HIVE_CONF_DIR environment variable appropriately (for example, <code>export HIVE_CONF_DIR=*&lt;path to metastore server config dir>*</code>).</p>
+<h3 id=usage-example>Usage Example</h3>
+<p>The following <code>metatool</code> command uses the <strong>updateLocation</strong>, <strong>tablePropKey</strong>, and <strong>serdePropKey</strong> options to update the NameNode location to hdfs://localhost:9000 from hdfs://namenode2:8020.</p>
+<pre tabindex=0><code>./hive --service metatool -updateLocation hdfs://localhost:9000 hdfs://namenode2:8020 -tablePropKey avro.schema.url -serdePropKey avro.schema.url
+Initializing HiveMetaTool..
+15/04/22 14:18:42 INFO metastore.ObjectStore: ObjectStore, initialize called
+15/04/22 14:18:42 INFO DataNucleus.Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+15/04/22 14:18:42 INFO DataNucleus.Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+15/04/22 14:18:43 INFO metastore.ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes=&quot;Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order&quot;
+15/04/22 14:18:43 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MFieldSchema&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.
+15/04/22 14:18:43 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MOrder&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.
+15/04/22 14:18:44 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MFieldSchema&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.
+15/04/22 14:18:44 INFO DataNucleus.Datastore: The class &quot;org.apache.hadoop.hive.metastore.model.MOrder&quot; is tagged as &quot;embedded-only&quot; so does not have its own datastore table.
+15/04/22 14:18:44 INFO DataNucleus.Query: Reading in results for query &quot;org.datanucleus.store.rdbms.query.SQLQuery@0&quot; since the connection used is closing
+15/04/22 14:18:44 INFO metastore.MetaStoreDirectSql: Using direct SQL, underlying DB is MYSQL
+15/04/22 14:18:44 INFO metastore.ObjectStore: Initialized ObjectStore
+Looking for LOCATION_URI field in DBS table to update..
+Successfully updated the following locations..
+Updated 0 records in DBS table
+Looking for LOCATION field in SDS table to update..
+Successfully updated the following locations..
+Updated 0 records in SDS table
+Looking for value of avro.schema.url key in TABLE_PARAMS table to update..
+Successfully updated the following locations..
+Updated 0 records in TABLE_PARAMS table
+Looking for value of avro.schema.url key in SD_PARAMS table to update..
+Successfully updated the following locations..
+Updated 0 records in SD_PARAMS table
+Looking for value of avro.schema.url key in SERDE_PARAMS table to update..
+Successfully updated the following locations..
+Updated 0 records in SERDE_PARAMS table
+</code></pre><p> </p>
+<p>Using metatool to read out table information (for all metastore backends).</p>
+<pre tabindex=0><code>HIVE_CONF_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+&quot;.&quot;+tableName+&quot;::&quot;+colName+&quot;=&quot;+numDVs from org.apache.hadoop.hive.metastore.model.MTableColumnStatistics';
+</code></pre><pre tabindex=0><code>  
+ HIVE_CONF_DIR=/etc/hive/conf/conf.server/ hive --service metatool -executeJDOQL 'select dbName+&quot;.&quot;+tableName+&quot;(&quot;+partitionName+&quot;)::&quot;+colName+&quot;=&quot;+numDVs from org.apache.hadoop.hive.metastore.model.MPartitionColumnStatistics';
+</code></pre><p> </p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

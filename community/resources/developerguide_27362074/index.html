@@ -1,0 +1,497 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : DeveloperGuide</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--developerguide>Apache Hive : DeveloperGuide</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--developerguide>Apache Hive : DeveloperGuide</a>
+<ul>
+<li><a href=#code-organization-and-a-brief-architecture>Code Organization and a Brief Architecture</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#hive-serde>Hive SerDe</a></li>
+<li><a href=#metastore>MetaStore</a></li>
+<li><a href=#query-processor>Query Processor</a></li>
+</ul>
+</li>
+<li><a href=#compiling-and-running-hive>Compiling and Running Hive</a>
+<ul>
+<li><a href=#default-mode>Default Mode</a></li>
+<li><a href=#advanced-mode>Advanced Mode</a></li>
+<li><a href=#running-hive-without-a-hadoop-cluster>Running Hive Without a Hadoop Cluster</a></li>
+</ul>
+</li>
+<li><a href=#unit-tests-and-debugging>Unit tests and debugging</a>
+<ul>
+<li><a href=#layout-of-the-unit-tests>Layout of the unit tests</a></li>
+<li><a href=#debugging-hive-code>Debugging Hive Code</a></li>
+</ul>
+</li>
+<li><a href=#pluggable-interfaces>Pluggable interfaces</a>
+<ul>
+<li><a href=#file-formats>File Formats</a></li>
+<li><a href=#serde---how-to-add-a-new-serde>SerDe - how to add a new SerDe</a></li>
+<li><a href=#map-reduce-scripts>Map-Reduce Scripts</a></li>
+<li><a href=#udfs-and-udafs---how-to-add-new-udfs-and-udafs>UDFs and UDAFs - how to add new UDFs and UDAFs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=code-organization-and-a-brief-architecture>Code Organization and a Brief Architecture</h2>
+<h3 id=introduction>Introduction</h3>
+<p>Hive has 3 main components:</p>
+<ul>
+<li>Serializers/Deserializers (trunk/serde) - This component has the framework libraries that allow users to develop serializers and deserializers for their own data formats. This component also contains some builtin serialization/deserialization families.</li>
+<li>MetaStore (trunk/metastore) - This component implements the metadata server, which is used to hold all the information about the tables and partitions that are in the warehouse.</li>
+<li>Query Processor (trunk/ql) - This component implements the processing framework for converting SQL to a graph of map/reduce jobs and the execution time framework to run those jobs in the order of dependencies.</li>
+</ul>
+<p>Apart from these major components, Hive also contains a number of other components. These are as follows:</p>
+<ul>
+<li>Command Line Interface (trunk/cli) - This component has all the java code used by the Hive command line interface.</li>
+<li>Hive Server (trunk/service) - This component implements all the APIs that can be used by other clients (such as JDBC drivers) to talk to Hive.</li>
+<li>Common (trunk/common) - This component contains common infrastructure needed by the rest of the code. Currently, this contains all the java sources for managing and passing Hive configurations(HiveConf) to all the other code components.</li>
+<li>Ant Utilities (trunk/ant) - This component contains the implementation of some ant tasks that are used by the build infrastructure.</li>
+<li>Scripts (trunk/bin) - This component contains all the scripts provided in the distribution including the scripts to run the Hive CLI (bin/hive).</li>
+</ul>
+<p>The following top level directories contain helper libraries, packaged configuration files etc..:</p>
+<ul>
+<li>trunk/conf - This directory contains the packaged hive-default.xml and hive-site.xml.</li>
+<li>trunk/data - This directory contains some data sets and configurations used in the Hive tests.</li>
+<li>trunk/ivy - This directory contains the Ivy files used by the build infrastructure to manage dependencies on different Hadoop versions.</li>
+<li>trunk/lib - This directory contains the run time libraries needed by Hive.</li>
+<li>trunk/testlibs - This directory contains the junit.jar used by the JUnit target in the build infrastructure.</li>
+<li>trunk/testutils (Deprecated)</li>
+</ul>
+<h3 id=hive-serde>Hive SerDe</h3>
+<p>What is a SerDe?</p>
+<ul>
+<li>SerDe is a short name for &ldquo;Serializer and Deserializer.&rdquo;</li>
+<li>Hive uses SerDe (and FileFormat) to read and write table rows.</li>
+<li>HDFS files &ndash;> InputFileFormat &ndash;> &lt;key, value> &ndash;> Deserializer &ndash;> Row object</li>
+<li>Row object &ndash;> Serializer &ndash;> &lt;key, value> &ndash;> OutputFileFormat &ndash;> HDFS files</li>
+</ul>
+<p>Note that the &ldquo;key&rdquo; part is ignored when reading, and is always a constant when writing. Basically row object is stored into the &ldquo;value&rdquo;.</p>
+<p>One principle of Hive is that Hive does not own the HDFS file format. Users should be able to directly read the HDFS files in the Hive tables using other tools or use other tools to directly write to HDFS files that can be loaded into Hive through &ldquo;CREATE EXTERNAL TABLE&rdquo; or can be loaded into Hive through &ldquo;LOAD DATA INPATH,&rdquo; which just move the file into Hive&rsquo;s table directory.</p>
+<p>Note that org.apache.hadoop.hive.serde is the deprecated old SerDe library. Please look at org.apache.hadoop.hive.serde2 for the latest version.</p>
+<p>Hive currently uses these FileFormat classes to read and write HDFS files:</p>
+<ul>
+<li>TextInputFormat/HiveIgnoreKeyTextOutputFormat: These 2 classes read/write data in plain text file format.</li>
+<li>SequenceFileInputFormat/SequenceFileOutputFormat: These 2 classes read/write data in Hadoop SequenceFile format.</li>
+</ul>
+<p>Hive currently uses these SerDe classes to serialize and deserialize data:</p>
+<ul>
+<li>MetadataTypedColumnsetSerDe: This SerDe is used to read/write delimited records like CSV, tab-separated control-A separated records (sorry, quote is not supported yet).</li>
+<li>LazySimpleSerDe: This SerDe can be used to read the same data format as MetadataTypedColumnsetSerDe and TCTLSeparatedProtocol, however, it creates Objects in a lazy way which provides better performance. Starting in <a href=https://issues.apache.org/jira/browse/HIVE-7142>Hive 0.14.0</a> it also supports read/write data with a specified encode charset, for example:</li>
+</ul>
+<pre tabindex=0><code>ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
+</code></pre><p>LazySimpleSerDe can treat &lsquo;T&rsquo;, &rsquo;t', &lsquo;F&rsquo;, &lsquo;f&rsquo;, &lsquo;1&rsquo;, and &lsquo;0&rsquo; as extended, legal boolean literals if the configuration property <a href=#hive-lazysimple-extended_boolean_literal>hive.lazysimple.extended_boolean_literal</a> is set to <code>true</code> (<a href=https://issues.apache.org/jira/browse/HIVE-3635>Hive 0.14.0</a> and later). The default is <code>false</code>, which means only &lsquo;TRUE&rsquo; and &lsquo;FALSE&rsquo; are treated as legal boolean literals.</p>
+<ul>
+<li>ThriftSerDe: This SerDe is used to read/write Thrift serialized objects. The class file for the Thrift object must be loaded first.</li>
+<li>DynamicSerDe: This SerDe also read/write Thrift serialized objects, but it understands Thrift DDL so the schema of the object can be provided at runtime. Also it supports a lot of different protocols, including TBinaryProtocol, TJSONProtocol, TCTLSeparatedProtocol (which writes data in delimited records).</li>
+</ul>
+<p>Also:</p>
+<ul>
+<li>For JSON files, <a href=#jsonserde>JsonSerDe</a> was added in Hive 0.12.0. An Amazon SerDe is available at <code>s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar</code> for releases prior to 0.12.0.</li>
+<li>An <a href=https://hive.apache.org/docs/latest/user/avroserde_27850707/>Avro SerDe</a> was added in Hive 0.9.1.  Starting in Hive 0.14.0 its specification is implicit with the STORED AS AVRO clause.</li>
+<li>A SerDe for the <a href=https://hive.apache.org/docs/latest/language/languagemanual-orc_31818911/>ORC</a> file format was added in Hive 0.11.0.</li>
+<li>A SerDe for <a href=https://hive.apache.org/docs/latest/user/parquet_38570914/>Parquet</a> was added via plug-in in Hive 0.10 and natively in Hive 0.13.0.</li>
+<li>A SerDe for <a href=https://cwiki.apache.org/confluence/display/Hive/CSV+Serde>CSV</a> was added in Hive 0.14.</li>
+</ul>
+<p>See <a href=https://hive.apache.org/docs/latest/user/serde_27362059/>SerDe</a> for detailed information about input and output processing. Also see <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-storageformats_34013997/>Storage Formats</a> in the <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog_33299065/>HCatalog manual</a>, including <a href=#ctas-issue-with-json-serde>CTAS Issue with JSON SerDe</a>. For information about how to create a table with a custom or native SerDe, see <a href=#row-format,-storage-format,-and-serde>Row Format, Storage Format, and SerDe</a>.</p>
+<h4 id=how-to-write-your-own-serde>How to Write Your Own SerDe</h4>
+<ul>
+<li>In most cases, users want to write a Deserializer instead of a SerDe, because users just want to read their own data format instead of writing to it.</li>
+<li>For example, the RegexDeserializer will deserialize the data using the configuration parameter &lsquo;regex&rsquo;, and possibly a list of column names (see serde2.MetadataTypedColumnsetSerDe). Please see serde2/Deserializer.java for details.</li>
+<li>If your SerDe supports DDL (basically, SerDe with parameterized columns and column types), you probably want to implement a Protocol based on DynamicSerDe, instead of writing a SerDe from scratch. The reason is that the framework passes DDL to SerDe through &ldquo;Thrift DDL&rdquo; format, and it&rsquo;s non-trivial to write a &ldquo;Thrift DDL&rdquo; parser.</li>
+<li>For examples, see <a href=#serde---how-to-add-a-new-serde>SerDe - how to add a new SerDe</a> below.</li>
+</ul>
+<p>Some important points about SerDe:</p>
+<ul>
+<li>SerDe, not the DDL, defines the table schema. Some SerDe implementations use the DDL for configuration, but the SerDe can also override that.</li>
+<li>Column types can be arbitrarily nested arrays, maps, and structures.</li>
+<li>The callback design of ObjectInspector allows lazy deserialization with CASE/IF or when using complex or nested types.</li>
+</ul>
+<h4 id=objectinspector>ObjectInspector</h4>
+<p>Hive uses ObjectInspector to analyze the internal structure of the row object and also the structure of the individual columns.</p>
+<p>ObjectInspector provides a uniform way to access complex objects that can be stored in multiple formats in the memory, including:</p>
+<ul>
+<li>Instance of a Java class (Thrift or native Java)</li>
+<li>A standard Java object (we use java.util.List to represent Struct and Array, and use java.util.Map to represent Map)</li>
+<li>A lazily-initialized object (for example, a Struct of string fields stored in a single Java string object with starting offset for each field)</li>
+</ul>
+<p>A complex object can be represented by a pair of ObjectInspector and Java Object. The ObjectInspector not only tells us the structure of the Object, but also gives us ways to access the internal fields inside the Object.</p>
+<p>NOTE: Apache Hive recommends that custom ObjectInspectors created for use with custom SerDes have a no-argument constructor in addition to their normal constructors for serialization purposes. See <a href=https://issues.apache.org/jira/browse/HIVE-5380>HIVE-5380</a> for more details.</p>
+<h4 id=registration-of-native-serdes>Registration of Native SerDes</h4>
+<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-5976>Hive 0.14</a>a registration mechanism has been introduced for native Hive SerDes.  This allows dynamic binding between a &ldquo;STORED AS&rdquo; keyword in place of a triplet of {SerDe, InputFormat, and OutputFormat} specification, in <a href=#createtable>CreateTable</a> statements.</p>
+<p>The following mappings have been added through this registration mechanism:</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STORED AS AVRO /STORED AS AVROFILE</td>
+<td><code>ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.avro.AvroSerDe'``STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'</code></td>
+</tr>
+<tr>
+<td>STORED AS ORC /STORED AS ORCFILE</td>
+<td><code>ROW FORMAT SERDE````'org.apache.hadoop.hive.ql.io.orc.OrcSerde````'``STORED AS INPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat````'``OUTPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat````'</code></td>
+</tr>
+<tr>
+<td>STORED AS PARQUET /STORED AS PARQUETFILE</td>
+<td><code>ROW FORMAT SERDE```'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe```'``STORED AS INPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat```'``OUTPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat```'</code></td>
+</tr>
+<tr>
+<td>STORED AS RCFILE</td>
+<td><code>STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileOutputFormat'</code></td>
+</tr>
+<tr>
+<td>STORED AS SEQUENCEFILE</td>
+<td><code>STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileOutputFormat'</code></td>
+</tr>
+<tr>
+<td>STORED AS TEXTFILE</td>
+<td><code>STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.TextInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'</code></td>
+</tr>
+</tbody>
+</table>
+<p>To add a new native SerDe with STORED AS keyword, follow these steps:</p>
+<ol>
+<li>Create a storage format descriptor class extending from <a href=https://github.com/apache/hive/blob/trunk/ql/src/java/org/apache/hadoop/hive/ql/io/AbstractStorageFormatDescriptor.java>AbstractStorageFormatDescriptor.java</a> that returns a &ldquo;stored as&rdquo; keyword and the names of InputFormat, OutputFormat, and SerDe classes.</li>
+<li>Add the name of the storage format descriptor class to the <a href=https://github.com/apache/hive/blob/trunk/ql/src/main/resources/META-INF/services/org.apache.hadoop.hive.ql.io.StorageFormatDescriptor>StorageFormatDescriptor</a> registration file.</li>
+</ol>
+<h3 id=metastore>MetaStore</h3>
+<p>MetaStore contains metadata regarding tables, partitions and databases. This is used by Query Processor during plan generation.</p>
+<ul>
+<li>Metastore Server - This is the Thrift server (interface defined in metastore/if/hive_metastore.if) that services metadata requests from clients. It delegates most of the requests underlying meta data store and the Hadoop file system which contains data.</li>
+<li>Object Store - ObjectStore class handles access to the actual metadata is stored in the SQL store. The current implementation uses JPOX ORM solution which is based of JDA specification. It can be used with any database that is supported by JPOX. New meta stores (file based or xml based) can added by implementing the interface MetaStore. FileStore is a partial implementation of an older version of metastore which may be deprecated soon.</li>
+<li>Metastore Client - There are python, java, php Thrift clients in metastore/src. Java generated client is extended with HiveMetaStoreClient which is used by Query Processor (ql/metadta). This is the main interface to all other Hive components.</li>
+</ul>
+<h3 id=query-processor>Query Processor</h3>
+<p>The following are the main components of the Hive Query Processor:</p>
+<ul>
+<li>Parse and SemanticAnalysis (ql/parse) - This component contains the code for parsing SQL, converting it into Abstract Syntax Trees, converting the Abstract Syntax Trees into Operator Plans and finally converting the operator plans into a directed graph of tasks which are executed by Driver.java.</li>
+<li>Optimizer (ql/optimizer) - This component contains some simple rule based optimizations like pruning non referenced columns from table scans (column pruning) that the Hive Query Processor does while converting SQL to a series of map/reduce tasks.</li>
+<li>Plan Components (ql/plan) - This component contains the classes (which are called descriptors), that are used by the compiler (Parser, SemanticAnalysis and Optimizer) to pass the information to operator trees that is used by the execution code.</li>
+<li>MetaData Layer (ql/metadata) - This component is used by the query processor to interface with the MetaStore in order to retrieve information about tables, partitions and the columns of the table. This information is used by the compiler to compile SQL to a series of map/reduce tasks.</li>
+<li>Map/Reduce Execution Engine (ql/exec) - This component contains all the query operators and the framework that is used to invoke those operators from within the map/reduces tasks.</li>
+<li>Hadoop Record Readers, Input and Output Formatters for Hive (ql/io) - This component contains the record readers and the input, output formatters that Hive registers with a Hadoop Job.</li>
+<li>Sessions (ql/session) - A rudimentary session implementation for Hive.</li>
+<li>Type interfaces (ql/typeinfo) - This component provides all the type information for table columns that is retrieved from the MetaStore and the SerDes.</li>
+<li>Hive Function Framework (ql/udf) - Framework and implementation of Hive operators, Functions and Aggregate Functions. This component also contains the interfaces that a user can implement to create user defined functions.</li>
+<li>Tools (ql/tools) - Some simple tools provided by the query processing framework. Currently, this component contains the implementation of the lineage tool that can parse the query and show the source and destination tables of the query.</li>
+</ul>
+<h4 id=compiler>Compiler</h4>
+<h4 id=parser>Parser</h4>
+<h4 id=typechecking>TypeChecking</h4>
+<h4 id=semantic-analysis>Semantic Analysis</h4>
+<h4 id=plan-generation>Plan generation</h4>
+<h4 id=task-generation>Task generation</h4>
+<h4 id=execution-engine>Execution Engine</h4>
+<h4 id=plan>Plan</h4>
+<h4 id=operators>Operators</h4>
+<h4 id=udfs-and-udafs>UDFs and UDAFs</h4>
+<p>A helpful overview of the Hive query processor can be found in this <a href=http://www.slideshare.net/nzhang/hive-anatomy>Hive Anatomy slide deck</a>.</p>
+<h2 id=compiling-and-running-hive>Compiling and Running Hive</h2>
+<p>Ant to Maven</p>
+<p>As of version <a href=https://issues.apache.org/jira/browse/HIVE-5107>0.13</a> Hive uses Maven instead of Ant for its build. The following instructions are not up to date.</p>
+<p>See the <a href=https://hive.apache.org/community/resources/hivedeveloperfaq_27823747/>Hive Developer FAQ</a> for updated instructions.</p>
+<p>Hive can be made to compile against different versions of Hadoop.</p>
+<h3 id=default-mode>Default Mode</h3>
+<p>From the root of the source tree:</p>
+<pre tabindex=0><code>ant package
+
+</code></pre><p>will make Hive compile against Hadoop version 0.19.0. Note that:</p>
+<ul>
+<li>Hive uses Ivy to download the hadoop-0.19.0 distribution. However once downloaded, it&rsquo;s cached and not downloaded multiple times.</li>
+<li>This will create a distribution directory in build/dist (relative to the source root) from where one can launch Hive. This distribution should only be used to execute queries against Hadoop branch 0.19. (Hive is not sensitive to minor revisions of Hadoop versions).</li>
+</ul>
+<h3 id=advanced-mode>Advanced Mode</h3>
+<ul>
+<li>One can specify a custom distribution directory by using:</li>
+</ul>
+<pre tabindex=0><code>ant -Dtarget.dir=&lt;my-install-dir&gt; package
+
+</code></pre><ul>
+<li>One can specify a version of Hadoop other than 0.19.0 by using (using 0.17.1 as an example):</li>
+</ul>
+<pre tabindex=0><code>ant -Dhadoop.version=0.17.1 package
+
+</code></pre><ul>
+<li>One can also compile against a custom version of the Hadoop tree (only release 0.4 and above). This is also useful if running Ivy is problematic (in disconnected mode for example) - but a Hadoop tree is available. This can be done by specifying the root of the Hadoop source tree to be used, for example:</li>
+</ul>
+<pre tabindex=0><code>ant -Dhadoop.root=~/src/hadoop-19/build/hadoop-0.19.2-dev -Dhadoop.version=0.19.2-dev
+
+</code></pre><p>note that:</p>
+<ul>
+<li>Hive&rsquo;s build script assumes that <code>hadoop.root</code> is pointing to a distribution tree for Hadoop created by running ant package in Hadoop.</li>
+<li><code>hadoop.version</code> must match the version used in building Hadoop.</li>
+</ul>
+<p>In this particular example - <code>~/src/hadoop-19</code> is a checkout of the Hadoop 19 branch that uses <code>0.19.2-dev</code> as default version and creates a distribution directory in <code>build/hadoop-0.19.2-dev</code> by default.</p>
+<p>Run Hive from the command line with &lsquo;<code>$HIVE_HOME/bin/hive</code>&rsquo;, where <code>$HIVE_HOME</code> is typically <code>build/dist</code> under your Hive repository top-level directory.</p>
+<pre tabindex=0><code>$ build/dist/bin/hive
+
+</code></pre><p>If Hive fails at runtime, try &lsquo;<code>ant very-clean package</code>&rsquo; to delete the Ivy cache before rebuilding.</p>
+<h3 id=running-hive-without-a-hadoop-cluster>Running Hive Without a Hadoop Cluster</h3>
+<p>From Thejas:</p>
+<pre tabindex=0><code>export HIVE_OPTS='--hiveconf mapred.job.tracker=local --hiveconf fs.default.name=file:///tmp \
+    --hiveconf hive.metastore.warehouse.dir=file:///tmp/warehouse \
+    --hiveconf javax.jdo.option.ConnectionURL=jdbc:derby:;databaseName=/tmp/metastore_db;create=true'
+
+</code></pre><p>Then you can run &lsquo;<code>build/dist/bin/hive</code>&rsquo; and it will work against your local file system.</p>
+<h2 id=unit-tests-and-debugging>Unit tests and debugging</h2>
+<h3 id=layout-of-the-unit-tests>Layout of the unit tests</h3>
+<p>Hive uses <a href=http://junit.org/>JUnit</a> for unit tests. Each of the 3 main components of Hive have their unit test implementations in the corresponding src/test directory e.g. trunk/metastore/src/test has all the unit tests for metastore, trunk/serde/src/test has all the unit tests for serde and trunk/ql/src/test has all the unit tests for the query processor. The metastore and serde unit tests provide the TestCase implementations for JUnit.</p>
+<h3 id=debugging-hive-code>Debugging Hive Code</h3>
+<p>Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.</p>
+<h4 id=debugging-client-side-code>Debugging Client-Side Code</h4>
+<p>The client-side code runs on your local machine so you can easily debug it using Eclipse the same way you debug any regular local Java code. Here are the steps to debug code within a unit test.</p>
+<ul>
+<li>Make sure that you have run <code>ant model-jar</code> in hive/metastore and <code>ant gen-test</code> in hive since the last time you ran <code>ant clean</code>.</li>
+<li>To run all of the unit tests for the CLI:
+<ul>
+<li>Open up TestCliDriver.java</li>
+<li>Click Run->Debug Configurations, select TestCliDriver, and click Debug.</li>
+</ul>
+</li>
+<li>To run a single test within TestCliDriver.java:
+<ul>
+<li>Begin running the whole TestCli suite as before.</li>
+<li>Once it finishes the setup and starts executing the JUnit tests, stop the test execution.</li>
+<li>Find the desired test in the JUnit pane,</li>
+<li>Right click on that test and select Debug.</li>
+</ul>
+</li>
+</ul>
+<h4 id=debugging-server-side-code>Debugging Server-Side Code</h4>
+<p>The server-side code is distributed and runs on the Hadoop cluster, so debugging server-side Hive code is a little bit complicated. In addition to printing to log files using log4j, you can also attach the debugger to a different JVM under unit test (single machine mode). Below are the steps on how to debug on server-side code.</p>
+<ul>
+<li>Compile Hive code with javac.debug=on. Under Hive checkout directory:</li>
+</ul>
+<pre tabindex=0><code>    &gt; ant -Djavac.debug=on package
+
+</code></pre><p>If you have already built Hive without javac.debug=on, you can clean the build and then run the above command.</p>
+<pre tabindex=0><code>    &gt; ant clean  # not necessary if the first time to compile
+    &gt; ant -Djavac.debug=on package
+
+</code></pre><ul>
+<li>Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.</li>
+</ul>
+<pre tabindex=0><code>    &gt; export HIVE_DEBUG_PORT=8000
+    &gt; export HIVE_DEBUG=&quot;-Xdebug -Xrunjdwp:transport=dt_socket,address=${HIVE_DEBUG_PORT},server=y,suspend=y&quot;
+
+</code></pre><p>In particular HIVE_DEBUG_PORT is the port number that the JVM is listening on and the debugger will attach to. Then run the unit test as follows:</p>
+<pre tabindex=0><code>    &gt; export HADOOP_OPTS=$HIVE_DEBUG
+    &gt; ant test -Dtestcase=TestCliDriver -Dqfile=&lt;mytest&gt;.q
+
+</code></pre><p>The unit test will run until it shows:</p>
+<pre tabindex=0><code>     [junit] Listening for transport dt_socket at address: 8000
+
+</code></pre><ul>
+<li>Now, you can use jdb to attach to port 8000 to debug</li>
+</ul>
+<pre tabindex=0><code>    &gt; jdb -attach 8000
+
+</code></pre><p>or if you are running Eclipse and the Hive projects are already imported, you can debug with Eclipse. Under Eclipse Run -> Debug Configurations, find &ldquo;Remote Java Application&rdquo; at the bottom of the left panel. There should be a MapRedTask configuration already. If there is no such configuration, you can create one with the following property:</p>
+<pre><code>+ Name: any task such as MapRedTask
++ Project: the Hive project that you imported.
++ Connection Type: Standard (Socket Attach)
++ Connection Properties:
+	- Host: localhost
+	- Port: 8000  
+	 Then hit the &quot;Debug&quot; button and Eclipse will attach to the JVM listening on port 8000 and continue running till the end. If you define breakpoints in the source code before hitting the &quot;Debug&quot; button, it will stop there. The rest is the same as debugging client-side Hive.
+</code></pre>
+<h4 id=debugging-without-ant-client-and-server-side>Debugging without Ant (Client and Server Side)</h4>
+<p>There is another way of debugging Hive code without going through Ant.<br>
+You need to install Hadoop and set the environment variable HADOOP_HOME to that.</p>
+<pre tabindex=0><code>    &gt; export HADOOP_HOME=&lt;your hadoop home&gt;
+ 
+</code></pre><p>Then, start Hive:</p>
+<pre tabindex=0><code>    &gt;  ./build/dist/bin/hive --debug
+ 
+</code></pre><p>It will then act similar to the debugging steps outlines in Debugging Hive code. It is faster since there is no need to compile Hive code,<br>
+and go through Ant. It can be used to debug both client side and server side Hive.</p>
+<p>If you want to debug a particular query, start Hive and perform the steps needed before that query. Then start Hive again in debug to debug that query.</p>
+<pre tabindex=0><code>    &gt;  ./build/dist/bin/hive
+    &gt;  perform steps before the query
+ 
+</code></pre><pre tabindex=0><code>    &gt;  ./build/dist/bin/hive --debug
+    &gt;  run the query
+ 
+</code></pre><p>Note that the local file system will be used, so the space on your machine will not be released automatically (unlike debugging via Ant, where the tables created in test are automatically dropped at the end of the test). Make sure to either drop the tables explicitly, or drop the data from /User/hive/warehouse.</p>
+<h2 id=pluggable-interfaces>Pluggable interfaces</h2>
+<h3 id=file-formats>File Formats</h3>
+<p>Please refer to <a href=http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook>Hive User Group Meeting August 2009</a> Page 59-63.</p>
+<h3 id=serde---how-to-add-a-new-serde>SerDe - how to add a new SerDe</h3>
+<p>Please refer to <a href=http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook>Hive User Group Meeting August 2009</a> Page 64-70.</p>
+<h3 id=map-reduce-scripts>Map-Reduce Scripts</h3>
+<p>Please refer to <a href=http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook>Hive User Group Meeting August 2009</a> Page 71-73.</p>
+<h3 id=udfs-and-udafs---how-to-add-new-udfs-and-udafs>UDFs and UDAFs - how to add new UDFs and UDAFs</h3>
+<p>Please refer to <a href=http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook>Hive User Group Meeting August 2009</a> Page 74-87.</p>
+<p> </p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

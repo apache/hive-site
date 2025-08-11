@@ -1,0 +1,668 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive deprecated authorization mode / Legacy Mode</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-deprecated-authorization-mode--legacy-mode>Apache Hive : Hive deprecated authorization mode / Legacy Mode</h1>
+<p>This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to <a href=https://hive.apache.org/docs/latest/language/sql-standard-based-hive-authorization_40509928/>SQL Standard authorization</a> in Hive 2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-12429>HIVE-12429</a>).</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-deprecated-authorization-mode--legacy-mode>Apache Hive : Hive deprecated authorization mode / Legacy Mode</a>
+<ul>
+<li>
+<ul>
+<li><a href=#disclaimer>Disclaimer</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#users-groups-and-roles>Users, Groups, and Roles</a></li>
+<li><a href=#creatingdroppingusing-roles>Creating/Dropping/Using Roles</a></li>
+<li><a href=#privileges>Privileges</a></li>
+<li><a href=#hive-operations-and-required-privileges>Hive Operations and Required Privileges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h3 id=disclaimer>Disclaimer</h3>
+<p>Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.  See the <a href=https://hive.apache.org/docs/latest/language/languagemanual-authorization_27362032/>Hive authorization main page</a> for the secure options.</p>
+<h3 id=prerequisites>Prerequisites</h3>
+<p>In order to use Hive authorization, there are two parameters that should be set in <code>hive-site.xml</code>:</p>
+<pre tabindex=0><code>&lt;property&gt;
+  &lt;name&gt;hive.security.authorization.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+  &lt;description&gt;enable or disable the hive client authorization&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hive.security.authorization.createtable.owner.grants&lt;/name&gt;
+  &lt;value&gt;ALL&lt;/value&gt;
+  &lt;description&gt;the privileges automatically granted to the owner whenever a table gets created. 
+   An example like &quot;select,drop&quot; will grant select and drop privilege to the owner of the table&lt;/description&gt;
+&lt;/property&gt;
+
+</code></pre><p>Note that, by default, the <a href=#hive-security-authorization-createtable-owner-grants>hive.security.authorization.createtable.owner.grants</a> are set to null, which would result in the creator of a table having no access to the table.</p>
+<h3 id=users-groups-and-roles>Users, Groups, and Roles</h3>
+<p>At the core of Hive&rsquo;s authorization system are users, groups, and roles. Roles allow administrators to give a name to a set of grants which can be easily reused. A role may be assigned to users, groups, and other roles. For example, consider a system with the following users and groups:</p>
+<ul>
+<li>: </li>
+<li>user_all_dbs: group_db1, group_db2</li>
+<li>user_db1: group_db1</li>
+<li>user_db2: group_db2</li>
+</ul>
+<p>If we wanted to restrict each user to a specific set of databases, we could use roles to build the authorization mechanism. The administrator would create two roles, called role_db1 and role_db2. The role_db1 role would provide privileges just for the first database, and the role_db2 role would provide privileges just for the second database. The administrator could then grant the role_db1 role to group_db1, or explicitly for the users in the group, and do the same for role_db2 with the users of the second database. In order to allow users who need to see all databases to get their appropriate privileges, a third role could be created called role_all_dbs, which would be granted role_db1 and role_db2. When user_all_dbs is granted the role_all_dbs role, the user implicitly is granted all the privileges of role_db1 and role_db2.</p>
+<p>Hive roles must be created manually before being used, unlike users and groups. Users and groups are managed by the hive.security.authenticator.manager. When a user connects to a Metastore Server and issues a query, the Metastore will determine the username of the connecting user, and the groups associated with that ushive.security.authorization.ername. That information is then used to determine if the user should have access to the metadata being requested, by comparing the required privileges of the Hive operation to the user privileges using the following rules:</p>
+<ul>
+<li>User privileges (Has the privilege been granted to the user)</li>
+<li>Group privileges (Does the user belong to any groups that the privilege has been granted to)</li>
+<li>Role privileges (Does the user or any of the groups that the user belongs to have a role that grants the privilege)</li>
+</ul>
+<p>By default, the Metastore uses the HadoopDefaultAuthenticator for determing user -> group mappings, which determines authorization by using the Unix usernames and groups on the machine where the Metastore is running. To make this more clear, consider a scenario where a user foo is a member of group bar on the machine running the Hive CLI, and connects to a Metastore running on a separate server that also has a user named foo, but on the Metastore Server, foo is a member of group baz. When an operation is executed, the Metastore will determine foo to be in the group baz.</p>
+<p>Taking this a step further, it is also possible for the groups that a user belongs to on the Metastore Server may differ from the groups that the same user belongs to, as determined by HDFS. This could be the case if Hive or HDFS are configured to use non-default user -> group mappers, or the Metastore and the Namenode both use the defaults, but the processes are running on different machines, and the user -> group mappings are not the same on each machine.</p>
+<p>It is important to realize that Hive Metastore only controls authorization for metadata, and the underlying data is controlled by HDFS, so if permissions and privileges between the two systems are not in sync, users may have access to metadata, but not the physical data. If the user -> group mappings across the Metastore and Namenode are not in sync, as in the scenarios above, a user may have the privileges required to access a table according to the Metastore, but may not have permission to access the underlying files according to the Namenode. This could also happen due to administrator intervention, if permissions on the files were changed by hand, but Metastore grants had not been updated.</p>
+<h4 id=names-of-users-and-roles>Names of Users and Roles</h4>
+<p>Role names are case sensitive. In Hive 0.13, however, there was a bug that caused it to have case insensitive behavior. That issue has been fixed in <a href=https://issues.apache.org/jira/browse/HIVE-7846>Hive 0.14</a>.</p>
+<p>User names are also case sensitive. Unlike role names, user names are not managed within Hive.</p>
+<p>Quoted Identifiers in Version 0.13.0+</p>
+<p>As of Hive 0.13.0, user and role names may optionally be surrounded by backtick characters (<code>) when the configuration parameter </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>column<code> (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>none`, or in Hive 0.12.0 and earlier, only alphanumeric and underscore characters are permitted in user names and role names.</p>
+<p>For details, see <a href=https://issues.apache.org/jira/browse/HIVE-6013>HIVE-6013</a> and <a href=https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html>Supporting Quoted Identifiers in Column Names</a>.</p>
+<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a>` setting.</p>
+<h3 id=creatingdroppingusing-roles>Creating/Dropping/Using Roles</h3>
+<h4 id=createdrop-role>Create/Drop Role</h4>
+<pre tabindex=0><code>CREATE ROLE role_name
+
+DROP ROLE role_name
+
+</code></pre><h4 id=grantrevoke-roles>Grant/Revoke Roles</h4>
+<pre tabindex=0><code>GRANT ROLE role_name [, role_name] ...
+TO principal_specification [, principal_specification] ...
+[WITH ADMIN OPTION]
+
+REVOKE [ADMIN OPTION FOR] ROLE role_name [, role_name] ...
+FROM principal_specification [, principal_specification] ...
+
+principal_specification:
+    USER user
+  | GROUP group
+  | ROLE role
+
+</code></pre><p>Version</p>
+<p>GRANT ROLE added the optional WITH ADMIN OPTION clause in Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-5923>HIVE-5923</a>).</p>
+<p>REVOKE ROLE will add the optional ADMIN OPTION FOR clause in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6252>HIVE-6252</a>).</p>
+<p> </p>
+<h4 id=viewing-granted-roles>Viewing Granted Roles</h4>
+<pre tabindex=0><code>SHOW ROLE GRANT principal_specification
+ 
+principal_specification:
+    USER user
+  | GROUP group
+  | ROLE role
+</code></pre><p>Version</p>
+<p>The output of SHOW ROLE GRANT is in tabular format starting with Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6204>HIVE-6204</a>).</p>
+<h3 id=privileges>Privileges</h3>
+<p>The following privileges are supported in Hive:</p>
+<ul>
+<li>ALL - Gives users all privileges</li>
+<li>ALTER - Allows users to modify the metadata of an object</li>
+<li>UPDATE - Allows users to modify the physical data of an object</li>
+<li>CREATE - Allows users to create objects. For a database, this means users can create tables, and for a table, this means users can create partitions</li>
+<li>DROP - Allows users to drop objects</li>
+<li>INDEX - Allows users to create indexes on an object (Note: this is not currently implemented)</li>
+<li>LOCK - Allows users to lock or unlock tables when concurrency is enabled</li>
+<li>SELECT - Allows users to access data for objects</li>
+<li>SHOW_DATABASE - Allows users to view available databases</li>
+</ul>
+<h4 id=grantrevoke-privileges>Grant/Revoke Privileges</h4>
+<pre tabindex=0><code>GRANT
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    [ON object_specification]
+    TO principal_specification [, principal_specification] ...
+    [WITH GRANT OPTION]
+
+REVOKE [GRANT OPTION FOR]
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    [ON object_specification]
+    FROM principal_specification [, principal_specification] ...
+
+REVOKE ALL PRIVILEGES, GRANT OPTION
+    FROM user [, user] ...
+
+priv_type:
+    ALL | ALTER | UPDATE | CREATE | DROP
+  | INDEX | LOCK | SELECT | SHOW_DATABASE 
+ 
+object_specification:
+    TABLE tbl_name
+  | DATABASE db_name
+ 
+principal_specification:
+    USER user
+  | GROUP group
+  | ROLE role
+</code></pre><p>Version</p>
+<p>REVOKE <em>priv_type</em> will add the optional GRANT OPTION FOR clause in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-7404>HIVE-7404</a>).</p>
+<p> </p>
+<h4 id=viewing-granted-privileges>Viewing Granted Privileges</h4>
+<pre tabindex=0><code>SHOW GRANT principal_specification
+[ON object_specification [(column_list)]]
+ 
+principal_specification:
+    USER user
+  | GROUP group
+  | ROLE role
+ 
+object_specification:
+    TABLE tbl_name
+  | DATABASE db_name
+</code></pre><p>Version</p>
+<p>The output of SHOW GRANT is in tabular format starting with Hive 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6204>HIVE-6204</a>).</p>
+<p> </p>
+<h3 id=hive-operations-and-required-privileges>Hive Operations and Required Privileges</h3>
+<p>As of the release of Hive 0.7, only these operations require permissions, according to org.apache.hadoop.hive.ql.plan.HiveOperation:</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Operation</th>
+<th style=text-align:center>ALTER</th>
+<th style=text-align:center>UPDATE</th>
+<th style=text-align:center>CREATE</th>
+<th style=text-align:center>DROP</th>
+<th style=text-align:center>INDEX</th>
+<th style=text-align:center>LOCK</th>
+<th style=text-align:center>SELECT</th>
+<th style=text-align:center>SHOW_DATABASE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>LOAD</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>EXPORT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>IMPORT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>CREATE TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>CREATE TABLE AS SELECT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>DROP TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>SELECT</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ADD COLUMN</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE REPLACE COLUMN</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE RENAME</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ADD PARTITION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE DROP PARTITION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE ARCHIVE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE UNARCHIVE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET PROPERTIES</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET SERDEPROPERTIES</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE CLUSTER BY</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE PROTECT MODE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION PROTECT MODE</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET FILEFORMAT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION SET FILEFORMAT</td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE SET LOCATION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION SET LOCATION</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER TABLE CONCATENATE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>ALTER PARTITION CONCATENATE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>SHOW DATABASES</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+</tr>
+<tr>
+<td style=text-align:center>LOCK TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+<tr>
+<td style=text-align:center>UNLOCK TABLE</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+<td style=text-align:center>X</td>
+<td style=text-align:center> </td>
+<td style=text-align:center> </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive on Spark: Getting Started</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-on-spark-getting-started>Apache Hive : Hive on Spark: Getting Started</h1>
+<p>Hive on Spark provides Hive with the ability to utilize <a href=http://spark.apache.org/>Apache Spark</a> as its execution engine.</p>
+<pre tabindex=0><code>set hive.execution.engine=spark;
+</code></pre><p>Hive on Spark was added in <a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-spark-getting-started>Apache Hive : Hive on Spark: Getting Started</a>
+<ul>
+<li><a href=#version-compatibility>Version Compatibility</a></li>
+<li><a href=#spark-installation>Spark Installation</a></li>
+<li><a href=#configuring-yarn>Configuring YARN</a></li>
+<li><a href=#configuring-hive>Configuring Hive</a>
+<ul>
+<li><a href=#configuration-property-details>Configuration property details</a></li>
+</ul>
+</li>
+<li><a href=#configuring-spark>Configuring Spark</a>
+<ul>
+<li><a href=#tuning-details>Tuning Details</a></li>
+</ul>
+</li>
+<li><a href=#common-issues-green-are-resolved-will-be-removed-from-this-list>Common Issues (Green are resolved, will be removed from this list)</a></li>
+<li><a href=#recommended-configuration>Recommended Configuration</a></li>
+<li><a href=#design-documents>Design documents</a></li>
+<li><a href=#attachments>Attachments:</a></li>
+<li><a href=#comments>Comments:</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=version-compatibility>Version Compatibility</h2>
+<p>Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed. Below is a list of Hive versions and their corresponding compatible Spark versions.</p>
+<table>
+<thead>
+<tr>
+<th>Hive Version</th>
+<th>Spark Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>master</td>
+<td>2.3.0</td>
+</tr>
+<tr>
+<td>3.0.x</td>
+<td>2.3.0</td>
+</tr>
+<tr>
+<td>2.3.x</td>
+<td>2.0.0</td>
+</tr>
+<tr>
+<td>2.2.x</td>
+<td>1.6.0</td>
+</tr>
+<tr>
+<td>2.1.x</td>
+<td>1.6.0</td>
+</tr>
+<tr>
+<td>2.0.x</td>
+<td>1.5.0</td>
+</tr>
+<tr>
+<td>1.2.x</td>
+<td>1.3.1</td>
+</tr>
+<tr>
+<td>1.1.x</td>
+<td>1.2.0</td>
+</tr>
+</tbody>
+</table>
+<h2 id=spark-installation>Spark Installation</h2>
+<p>Follow instructions to install Spark:  </p>
+<p> YARN Mode: <a href=http://spark.apache.org/docs/latest/running-on-yarn.html>http://spark.apache.org/docs/latest/running-on-yarn.html</a> <br>
+Standalone Mode: <a href=https://spark.apache.org/docs/latest/spark-standalone.html>https://spark.apache.org/docs/latest/spark-standalone.html</a></p>
+<p>Hive on Spark supports <a href=http://spark.apache.org/docs/latest/running-on-yarn.html>Spark on YARN</a> mode as default.</p>
+<p>For the installation perform the following tasks:</p>
+<ol>
+<li>
+<p>Install Spark (either download pre-built Spark, or build assembly from source).</p>
+<ul>
+<li>Install/build a compatible version.  Hive root <code>pom.xml</code>&rsquo;s &lt;spark.version> defines what version of Spark it was built/tested with.</li>
+<li>Install/build a compatible distribution.  Each version of Spark has several distributions, corresponding with different versions of Hadoop.</li>
+<li>Once Spark is installed, find and keep note of the &lt;spark-assembly-*.jar> location.</li>
+<li>Note that you must have a version of Spark which does <strong>not</strong> include the Hive jars. Meaning one which was not built with the Hive profile. If you will use Parquet tables, it&rsquo;s recommended to also enable the &ldquo;parquet-provided&rdquo; profile. Otherwise there could be conflicts in Parquet dependency. To remove Hive jars from the installation, simply use the following command under your Spark repository:</li>
+</ul>
+<p>Prior to Spark 2.0.0:</p>
+<pre tabindex=0><code>./make-distribution.sh --name &quot;hadoop2-without-hive&quot; --tgz &quot;-Pyarn,hadoop-provided,hadoop-2.4,parquet-provided&quot;
+</code></pre><p>``</p>
+<p>Since Spark 2.0.0:</p>
+<pre tabindex=0><code>./dev/make-distribution.sh --name &quot;hadoop2-without-hive&quot; --tgz &quot;-Pyarn,hadoop-provided,hadoop-2.7,parquet-provided&quot;
+</code></pre><p>``</p>
+<p>Since Spark 2.3.0:</p>
+<pre tabindex=0><code>./dev/make-distribution.sh --name &quot;hadoop2-without-hive&quot; --tgz &quot;-Pyarn,hadoop-provided,hadoop-2.7,parquet-provided,orc-provided&quot;
+</code></pre><p>``</p>
+</li>
+<li>
+<p>Start Spark cluster</p>
+<ul>
+<li>Keep note of the .  This can be found in Spark master WebUI.</li>
+</ul>
+</li>
+</ol>
+<h2 id=configuring-yarn>Configuring YARN</h2>
+<p>Instead of the <a href=https://hadoop.apache.org/docs/r2.4.1/hadoop-yarn/hadoop-yarn-site/CapacityScheduler.html>capacity scheduler</a>, the <a href=https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/FairScheduler.html>fair scheduler</a> is required.  This fairly distributes an equal share of resources for jobs in the YARN cluster.</p>
+<p>yarn.resourcemanager.scheduler.class=org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</p>
+<h2 id=configuring-hive>Configuring Hive</h2>
+<ol>
+<li>
+<p>To add the Spark dependency to Hive:</p>
+<ul>
+<li>Prior to Hive 2.2.0, link the spark-assembly jar to <code>HIVE_HOME/lib</code>.</li>
+<li>Since Hive 2.2.0, Hive on Spark runs with Spark 2.0.0 and above, which doesn&rsquo;t have an assembly jar.
+<ul>
+<li>To run with YARN mode (either yarn-client or yarn-cluster), link the following jars to <code>HIVE_HOME/lib</code>.
+<ul>
+<li>scala-library</li>
+<li>spark-core</li>
+<li>spark-network-common</li>
+</ul>
+</li>
+<li>To run with LOCAL mode (for debugging only), link the following jars in addition to those above to <code>HIVE_HOME/lib</code>.
+<ul>
+<li>chill-java  chill  jackson-module-paranamer  jackson-module-scala  jersey-container-servlet-core</li>
+<li>jersey-server  json4s-ast  kryo-shaded  minlog  scala-xml  spark-launcher</li>
+<li>spark-network-shuffle  spark-unsafe  xbean-asm5-shaded</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Configure Hive execution engine to use Spark:</p>
+</li>
+</ol>
+<pre tabindex=0><code>set hive.execution.engine=spark;
+</code></pre><p>See the <a href=#spark-section-of-hive-configuration-properties>Spark section of Hive Configuration Properties</a> for other properties for configuring Hive and the Remote Spark Driver.
+3. Configure Spark-application configs for Hive.  See: <a href=http://spark.apache.org/docs/latest/configuration.html>http://spark.apache.org/docs/latest/configuration.html</a>.  This can be done either by adding a file &ldquo;spark-defaults.conf&rdquo; with these properties to the Hive classpath, or by setting them on Hive configuration (<code>hive-site.xml</code>). For instance:</p>
+<pre tabindex=0><code>set spark.master=&lt;Spark Master URL&gt;
+set spark.eventLog.enabled=true;
+set spark.eventLog.dir=&lt;Spark event log folder (must exist)&gt;
+set spark.executor.memory=512m;              
+set spark.serializer=org.apache.spark.serializer.KryoSerializer;
+</code></pre><h3 id=configuration-property-details>Configuration property details</h3>
+<pre><code>* `spark.executor.memory`: Amount of memory to use per executor process.
+* `spark.executor.cores`: Number of cores per executor.
+* `spark.yarn.executor.memoryOverhead`: The amount of off heap memory (in megabytes) to be allocated per executor, when running Spark on Yarn. This is memory that accounts for things like VM overheads, interned strings, other native overheads, etc. In addition to the executor's memory, the container in which the executor is launched needs some extra memory for system processes, and this is what this overhead is for.
+* `spark.executor.instances`: The number of executors assigned to each application.
+* `spark.driver.memory`: The amount of memory assigned to the Remote Spark Context (RSC). We recommend 4GB.
+* `spark.yarn.driver.memoryOverhead`: We recommend 400 (MB).
+</code></pre>
+<ol start=4>
+<li>
+<p>Allow Yarn to cache necessary spark dependency jars on nodes so that it does not need to be distributed each time when an application runs.</p>
+<ul>
+<li>Prior to Hive 2.2.0, upload spark-assembly jar to hdfs file(for example: hdfs://xxxx:8020/spark-assembly.jar) and add following in hive-site.xml</li>
+</ul>
+<pre tabindex=0><code>&lt;property&gt;
+  &lt;name&gt;spark.yarn.jar&lt;/name&gt;
+  &lt;value&gt;hdfs://xxxx:8020/spark-assembly.jar&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>``</p>
+<ul>
+<li>Hive 2.2.0, upload all jars in $SPARK_HOME/jars to hdfs folder(for example:hdfs:///xxxx:8020/spark-jars) and add following in hive-site.xml</li>
+</ul>
+<pre tabindex=0><code>&lt;property&gt;
+  &lt;name&gt;spark.yarn.jars&lt;/name&gt;
+  &lt;value&gt;hdfs://xxxx:8020/spark-jars/*&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>``</p>
+</li>
+</ol>
+<h2 id=configuring-spark>Configuring Spark</h2>
+<p>Setting executor memory size is more complicated than simply setting it to be as large as possible. There are several things that need to be taken into consideration:</p>
+<ul>
+<li>More executor memory means it can enable mapjoin optimization for more queries.</li>
+<li>More executor memory, on the other hand, becomes unwieldy from GC perspective.</li>
+<li>Some experiments shows that HDFS client doesn’t handle concurrent writers well, so it may face race condition if executor cores are too many.</li>
+</ul>
+<p>The following settings need to be tuned for the cluster, these may also apply to submission of Spark jobs outside of Hive on Spark:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.executor.cores</td>
+<td>Between 5-7, See tuning details section</td>
+</tr>
+<tr>
+<td>spark.executor.memory</td>
+<td>yarn.nodemanager.resource.memory-mb * (spark.executor.cores / yarn.nodemanager.resource.cpu-vcores) </td>
+</tr>
+<tr>
+<td>spark.yarn.executor.memoryOverhead</td>
+<td>15-20% of spark.executor.memory</td>
+</tr>
+<tr>
+<td>spark.executor.instances</td>
+<td>Depends on spark.executor.memory + spark.yarn.executor.memoryOverhead, see tuning details section.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=tuning-details>Tuning Details</h3>
+<p>When running Spark on YARN mode, we generally recommend setting spark.executor.cores to be 5, 6 or 7, depending on what the typical node is divisible by. For instance, if yarn.nodemanager.resource.cpu-vcores is 19, then 6 is a better choice (all executors can only have the same number of cores, here if we chose 5, then every executor only gets 3 cores; if we chose 7, then only 2 executors are used, and 5 cores will be wasted). If it’s 20, then 5 is a better choice (since this way you’ll get 4 executors, and no core is wasted).</p>
+<p>For <code>spark.executor.memory</code>, we recommend to calculate yarn.nodemanager.resource.memory-mb * (spark.executor.cores / yarn.nodemanager.resource.cpu-vcores) then split that between spark.executor.memory and <code>spark.yarn.executor.memoryOverhead</code>. According to our experiment, we recommend setting <code>spark.yarn.executor.memoryOverhead</code> to be around 15-20% of the total memory.</p>
+<p>After you’ve decided on how much memory each executor receives, you need to decide how many executors will be allocated to queries. In the GA release Spark dynamic executor allocation will be supported. However for this beta only static resource allocation can be used. Based on the physical memory in each node and the configuration of  <code>spark.executor.memory</code> and <code>spark.yarn.executor.memoryOverhead</code>, you will need to choose the number of instances and set <code>spark.executor.instances</code>.</p>
+<p>Now a real world example. Assuming 10 nodes with 64GB of memory per node with 12 virtual cores, e.g., <code>yarn.nodemanager.resource.cpu-vcores=12</code>. One node will be used as the master and as such the cluster will have 9 slave nodes. We’ll configure <code>spark.executor.cores</code> to 6. Given 64GB of ram <code>yarn.nodemanager.resource.memory-mb</code> will be 50GB. We’ll determine the amount of memory for each executor as follows: 50GB * (6/12) = 25GB. We’ll assign 20% to <code>spark.yarn.executor.memoryOverhead</code>, or 5120, and 80% to <code>spark.executor.memory</code>, or 20GB.</p>
+<p>On this 9 node cluster we’ll have two executors per host. As such we can configure <code>spark.executor.instances</code> somewhere between 2 and 18. A value of 18 would utilize the entire cluster.</p>
+<h2 id=common-issues-green-are-resolved-will-be-removed-from-this-list>Common Issues (Green are resolved, will be removed from this list)</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Cause</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error: Could not find or load main class org.apache.spark.deploy.SparkSubmit</td>
+<td>Spark dependency not correctly set.</td>
+<td>Add Spark dependency to Hive, see Step 1 <a href=#above>above</a>.</td>
+</tr>
+<tr>
+<td>org.apache.spark.SparkException: Job aborted due to stage failure: Task 5.0:0 had a not serializable result: java.io.NotSerializableException: org.apache.hadoop.io.BytesWritable</td>
+<td>Spark serializer not set to Kryo.</td>
+<td>Set spark.serializer to be org.apache.spark.serializer.KryoSerializer, see Step 3 <a href=#above>above</a>.</td>
+</tr>
+<tr>
+<td>[ERROR] Terminal initialization failed; falling back to unsupportedjava.lang.IncompatibleClassChangeError: Found class jline.Terminal, but interface was expected</td>
+<td>Hive has upgraded to Jline2 but jline 0.94 exists in the Hadoop lib.</td>
+<td>1. Delete jline from the Hadoop lib directory (it&rsquo;s only pulled in transitively from ZooKeeper). 2. export HADOOP_USER_CLASSPATH_FIRST=true 3. If this error occurs during mvn test, perform a mvn clean install on the root project and itests directory.</td>
+</tr>
+<tr>
+<td>Spark executor gets killed all the time and Spark keeps retrying the failed stage; you may find similar information in the YARN nodemanager log.WARN org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl: Container [pid=217989,containerID=container_1421717252700_0716_01_50767235] is running beyond physical memory limits. Current usage: 43.1 GB of 43 GB physical memory used; 43.9 GB of 90.3 GB virtual memory used. Killing container.</td>
+<td>For Spark on YARN, nodemanager would kill Spark executor if it used more memory than the configured size of &ldquo;spark.executor.memory&rdquo; + &ldquo;spark.yarn.executor.memoryOverhead&rdquo;.</td>
+<td>Increase &ldquo;spark.yarn.executor.memoryOverhead&rdquo; to make sure it covers the executor off-heap memory usage.</td>
+</tr>
+<tr>
+<td>Run query and get an error like:FAILED: Execution Error, return code 3 from org.apache.hadoop.hive.ql.exec.spark.SparkTaskIn Hive logs, it shows:java.lang.NoClassDefFoundError: Could not initialize class org.xerial.snappy.Snappy  at org.xerial.snappy.SnappyOutputStream.(SnappyOutputStream.java:79)</td>
+<td>Happens on Mac (not officially supported).This is a general Snappy issue with Mac and is not unique to Hive on Spark, but workaround is noted here because it is needed for startup of Spark client.</td>
+<td>Run this command before starting Hive or HiveServer2:export HADOOP_OPTS="-Dorg.xerial.snappy.tempdir=/tmp -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib $HADOOP_OPTS"</td>
+</tr>
+<tr>
+<td>Stack trace: ExitCodeException exitCode=1: &mldr;/launch_container.sh: line 27: $PWD:$PWD/<strong>spark</strong>.jar:$HADOOP_CONF_DIR&mldr;/usr/hdp/${hdp.version}/hadoop/lib/hadoop-lzo-0.6.0.${hdp.version}.jar:/etc/hadoop/conf/secure:$PWD/<strong>app</strong>.jar:$PWD/*: bad substitution </td>
+<td>The key mapreduce.application.classpath in /etc/hadoop/conf/mapred-site.xml contains a variable which is invalid in bash.</td>
+<td>From <strong>mapreduce.application.classpath</strong> remove <code>:/usr/hdp/${hdp.version}/hadoop/lib/hadoop-lzo-0.6.0.${hdp.version}.jar</code> from <strong>/etc/hadoop/conf/mapred-site.xml</strong></td>
+</tr>
+<tr>
+<td>Exception in thread &ldquo;Driver&rdquo; scala.MatchError: java.lang.NoClassDefFoundError: org/apache/hadoop/mapreduce/TaskAttemptContext (of class java.lang.NoClassDefFoundError)  at org.apache.spark.deploy.yarn.ApplicationMaster$$anon$2.run(ApplicationMaster.scala:432)</td>
+<td>MR is not on the YARN classpath.</td>
+<td>If on HDP change from <strong>/hdp/apps/${hdp.version}/mapreduce/mapreduce.tar.gz#mr-framework</strong> to <strong>/hdp/apps/2.2.0.0-2041/mapreduce/mapreduce.tar.gz#mr-framework</strong></td>
+</tr>
+<tr>
+<td>java.lang.OutOfMemoryError: PermGen space with spark.master=local</td>
+<td>By default (<a href=https://issues.apache.org/jira/browse/SPARK-1879>SPARK-1879</a>), Spark&rsquo;s own launch scripts increase PermGen to 128 MB, so we need to increase PermGen in hive launch script.</td>
+<td>If use JDK7, append following in conf/hive-env.sh: <code>export HADOOP_OPTS="$HADOOP_OPTS -XX:MaxPermSize=128m"</code> If use JDK8, append following in Conf/hive-env.sh: <code>export HADOOP_OPTS="$HADOOP_OPTS -XX:MaxMetaspaceSize=512m"</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id=recommended-configuration>Recommended Configuration</h2>
+<p>See <a href=https://issues.apache.org/jira/browse/HIVE-9153>HIVE-9153</a> for details on these settings.</p>
+<pre tabindex=0><code>mapreduce.input.fileinputformat.split.maxsize=750000000
+hive.vectorized.execution.enabled=true
+
+hive.cbo.enable=true
+hive.optimize.reducededuplication.min.reducer=4
+hive.optimize.reducededuplication=true
+hive.orc.splits.include.file.footer=false
+hive.merge.mapfiles=true
+hive.merge.sparkfiles=false
+hive.merge.smallfiles.avgsize=16000000
+hive.merge.size.per.task=256000000
+hive.merge.orcfile.stripe.level=true
+hive.auto.convert.join=true
+hive.auto.convert.join.noconditionaltask=true
+hive.auto.convert.join.noconditionaltask.size=894435328
+hive.optimize.bucketmapjoin.sortedmerge=false
+hive.map.aggr.hash.percentmemory=0.5
+hive.map.aggr=true
+hive.optimize.sort.dynamic.partition=false
+hive.stats.autogather=true
+hive.stats.fetch.column.stats=true
+hive.vectorized.execution.reduce.enabled=false
+hive.vectorized.groupby.checkinterval=4096
+hive.vectorized.groupby.flush.percent=0.1
+hive.compute.query.using.stats=true
+hive.limit.pushdown.memory.usage=0.4
+hive.optimize.index.filter=true
+hive.exec.reducers.bytes.per.reducer=67108864
+hive.smbjoin.cache.rows=10000
+hive.exec.orc.default.stripe.size=67108864
+hive.fetch.task.conversion=more
+hive.fetch.task.conversion.threshold=1073741824
+hive.fetch.task.aggr=false
+mapreduce.input.fileinputformat.list-status.num-threads=5
+spark.kryo.referenceTracking=false
+spark.kryo.classesToRegister=org.apache.hadoop.hive.ql.io.HiveKey,org.apache.hadoop.io.BytesWritable,org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch
+</code></pre><p>See <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Spark>Spark section of configuration page</a> for additional properties.</p>
+<h2 id=design-documents>Design documents</h2>
+<ul>
+<li><a href=https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf>Hive on Spark: Overall Design</a> from <a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7272</a></li>
+<li><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Join+Design+Master>Hive on Spark: Join Design (HIVE-7613)</a></li>
+<li><a href=https://issues.apache.org/jira/browse/HIVE-9449>Hive on Spark Configuration (HIVE-9449)</a></li>
+<li><a href=/attachments/44302539/53575687.pdf>attachments/44302539/53575687.pdf</a></li>
+</ul>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt>
+<a href=/attachments/44302539/53575687.pdf>attachments/44302539/53575687.pdf</a> (application/pdf)</p>
+<h2 id=comments>Comments:</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>Spark has its own property to control whether to merge small files. Set hive.merge.sparkfiles=true to merge small files.</td>
+</tr>
+</tbody>
+</table>
+<p>Posted by lirui at Jan 15, 2015 01:34
+|</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

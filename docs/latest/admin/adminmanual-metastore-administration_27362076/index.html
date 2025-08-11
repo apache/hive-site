@@ -1,0 +1,584 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : AdminManual Metastore Administration</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--adminmanual-metastore-administration>Apache Hive : AdminManual Metastore Administration</h1>
+<p>This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration_75978150/>AdminManual Metastore 3.0 Administration</a></p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--adminmanual-metastore-administration>Apache Hive : AdminManual Metastore Administration</a>
+<ul>
+<li>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</a></li>
+<li><a href=#remote-metastore-database>Remote Metastore Database</a></li>
+<li><a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a></li>
+<li><a href=#remote-metastore-server>Remote Metastore Server</a></li>
+<li><a href=#supported-backend-databases-for-metastore>Supported Backend Databases for Metastore</a></li>
+<li><a href=#metastore-schema-consistency-and-upgrades>Metastore Schema Consistency and Upgrades</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h3 id=introduction>Introduction</h3>
+<p>All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using <a href=http://www.datanucleus.org/>JPOX</a> ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of <a href=#supported-databases>supported databases</a> in section below.</p>
+<p>You can find an E/R diagram for the metastore <a href=https://issues.apache.org/jira/secure/attachment/12471108/HiveMetaStore.pdf>here</a>.</p>
+<p>There are 2 different ways to setup the metastore server and metastore database using different Hive configurations:</p>
+<p>Configuration options for <strong>metastore database</strong> where metadata is persisted:</p>
+<ul>
+<li><a href=#localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</a></li>
+<li><a href=#remote-metastore-database>Remote Metastore Database</a></li>
+</ul>
+<p>Configuration options for <strong>metastore server</strong>:</p>
+<ul>
+<li><a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a></li>
+<li><a href=#remote-metastore-server>Remote Metastore Server</a></li>
+</ul>
+<h4 id=basic-configuration-parameters>Basic Configuration Parameters</h4>
+<p>The relevant configuration parameters are shown here. (Non-metastore parameters are described in <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration>Configuring Hive</a>. Also see the Language Manual&rsquo;s <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties>Hive Configuration Properties</a>, including <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-MetaStore>Metastore</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a>.)</p>
+<p>Also see hivemetastore-site.xml documentation under <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration>Configuring Hive</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Configuration Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>javax.jdo.option.ConnectionURL</td>
+<td>JDBC connection string for the data store which contains metadata</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionDriverName</td>
+<td>JDBC Driver class name for the data store which contains metadata</td>
+</tr>
+<tr>
+<td>hive.metastore.uris</td>
+<td>Hive connects to one of these URIs to make metadata requests to a remote Metastore (comma separated list of URIs)</td>
+</tr>
+<tr>
+<td>hive.metastore.local</td>
+<td>local or remote metastore (removed as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-2585>0.10</a>: If <code>hive.metastore.uris</code> is empty <code>local</code> mode is assumed, <code>remote</code> otherwise)</td>
+</tr>
+<tr>
+<td>hive.metastore.warehouse.dir</td>
+<td>URI of the default location for native tables</td>
+</tr>
+</tbody>
+</table>
+<p>The Hive metastore is stateless and thus there can be multiple instances to achieve High Availability. Using <code>hive.metastore.uris</code> it is possible to specify multiple remote metastores. Hive will use the first one from the list by default but will pick a random one on connection failure and will try to reconnect.</p>
+<h4 id=additional-configuration-parameters>Additional Configuration Parameters</h4>
+<p>The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the <code>HiveConf</code> Java class for current Hive configuration options, and see the <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-MetaStore>Metastore</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a> sections of the Language Manual&rsquo;s <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties>Hive Configuration Properties</a> for user-friendly descriptions of the metastore parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Configuration Parameter</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive.metastore.metadb.dir</td>
+<td>The location of filestore metadata base directory. (Functionality removed in 0.4.0 with <a href=https://issues.apache.org/jira/browse/HIVE-143>HIVE-143</a>.)</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.metastore.rawstore.impl</td>
+<td>Name of the class that implements the org.apache.hadoop.hive.metastore.rawstore interface. This class is used to store and retrieval of raw metadata objects such as table, database. (Hive 0.8.1 and later.)</td>
+<td> </td>
+</tr>
+<tr>
+<td>org.jpox.autoCreateSchema</td>
+<td>Creates necessary schema on startup if one doesn&rsquo;t exist. (The schema includes tables, columns, and so on.) Set to false after creating it once.</td>
+<td> </td>
+</tr>
+<tr>
+<td>org.jpox.fixedDatastore</td>
+<td>Whether the datastore schema is fixed.</td>
+<td> </td>
+</tr>
+<tr>
+<td>datanucleus.autoStartMechanism</td>
+<td>Whether to initialize on startup.</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.metastore.ds.connection.url.hook</td>
+<td>Name of the hook to use for retriving the JDO connection URL. If empty, the value in javax.jdo.option.ConnectionURL is used as the connection URL. (Hive 0.6 and later.)</td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.metastore.ds.retry.attempts</td>
+<td>The number of times to retry a call to the backing datastore if there were a connection error.(Hive 0.6 through 0.12; removed in 0.13.0 – use hive.hmshandler.retry.attempts instead.)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>hive.metastore.ds.retry.interval</td>
+<td>The number of miliseconds between datastore retry attempts.(Hive 0.6 through 0.12; removed in 0.13.0 – use hive.hmshandler.retry.interval instead.)</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>hive.metastore.server.min.threads</td>
+<td>Minimum number of worker threads in the Thrift server&rsquo;s pool.(Hive 0.6 and later.)</td>
+<td>200</td>
+</tr>
+<tr>
+<td>hive.metastore.server.max.threads</td>
+<td>Maximum number of worker threads in the Thrift server&rsquo;s pool.(Hive 0.6 and later.)</td>
+<td>100000 since Hive 0.8.1</td>
+</tr>
+<tr>
+<td>hive.metastore.filter.hook</td>
+<td>Metastore hook class for further filtering the metadata read results on client side.(<a href=https://issues.apache.org/jira/browse/HIVE-8612>Hive 1.1.0</a> and later.)</td>
+<td>org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl</td>
+</tr>
+<tr>
+<td>hive.metastore.port</td>
+<td>Hive metastore listener port.(<a href=https://issues.apache.org/jira/browse/HIVE-9365>Hive 1.3.0</a> and later.)</td>
+<td>9083</td>
+</tr>
+</tbody>
+</table>
+<h4 id=data-nucleus-auto-start>Data Nucleus Auto Start</h4>
+<p>Configuring datanucleus.autoStartMechanism is highly recommended</p>
+<p>Configuring auto start for data nucleus is highly recommended. See <a href=https://issues.apache.org/jira/browse/HIVE-4762>HIVE-4762</a> for more details.</p>
+<pre tabindex=0><code> &lt;property&gt;
+    &lt;name&gt;datanucleus.autoStartMechanism&lt;/name&gt;
+    &lt;value&gt;SchemaTable&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre><h4 id=default-configuration>Default Configuration</h4>
+<p>The default configuration sets up an embedded metastore which is used in unit tests and is described in the next section. More practical options are described in the subsequent sections.</p>
+<h3 id=localembedded-metastore-database-derby>Local/Embedded Metastore Database (Derby)</h3>
+<p><strong>An embedded metastore database is mainly used for unit tests. Only one process can connect to the metastore database at a time, so it is not really a practical solution but works well for unit tests.</strong></p>
+<p>For unit tests <a href=#localembedded-metastore-server>Local/Embedded Metastore Server</a> configuration for the metastore server is used in conjunction with embedded database.</p>
+<p>Derby is the default database for the embedded metastore.</p>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>javax.jdo.option.ConnectionURL</td>
+<td><code>jdbc:derby:;databaseName=../build/test/junit_metastore_db;create=true</code></td>
+<td>Derby database located at hive/trunk/build&mldr;</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionDriverName</td>
+<td><code>org.apache.derby.jdbc.EmbeddedDriver</code></td>
+<td>Derby embeded JDBC driver class.</td>
+</tr>
+<tr>
+<td>hive.metastore.warehouse.dir</td>
+<td><code>file://${user.dir}/../build/ql/test/data/warehouse</code></td>
+<td>Unit test data goes in here on your local filesystem.</td>
+</tr>
+</tbody>
+</table>
+<p>If you want to run Derby as a network server so the metastore can be accessed from multiple nodes, see <a href=https://cwiki.apache.org/confluence/display/Hive/HiveDerbyServerMode>Hive Using Derby in Server Mode</a>.</p>
+<h3 id=remote-metastore-database>Remote Metastore Database</h3>
+<p>In this configuration, you would use a traditional standalone RDBMS server. The following example configuration will set up a metastore in a MySQL server. This configuration of metastore database is recommended for any real use.</p>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>javax.jdo.option.ConnectionURL</td>
+<td><code>jdbc:mysql://&lt;host name>/&lt;database name>?createDatabaseIfNotExist=true</code></td>
+<td>metadata is stored in a MySQL server</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionDriverName</td>
+<td><code>com.mysql.jdbc.Driver</code></td>
+<td>MySQL JDBC driver class</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionUserName</td>
+<td><code>&lt;user name></code></td>
+<td>user name for connecting to MySQL server</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionPassword</td>
+<td><code>&lt;password></code></td>
+<td>password for connecting to MySQL server</td>
+</tr>
+</tbody>
+</table>
+<h3 id=localembedded-metastore-server>Local/Embedded Metastore Server</h3>
+<p>In local/embedded metastore setup, the metastore server component is used like a library within the Hive Client. Each Hive Client will open a connection to the database and make SQL queries against it. Make sure that the database is accessible from the machines where Hive queries are executed since this is a local store. Also make sure the JDBC client library is in the classpath of Hive Client. This configuration is often used with HiveServer2 (to use embedded metastore only with HiveServer2 add &ldquo;&ndash;hiveconf hive.metastore.uris=' &lsquo;&rdquo; in command line parameters of the hiveserver2 start command or use hiveserver2-site.xml (available in Hive 0.14)).</p>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive.metastore.uris</td>
+<td><em>not needed because this is local store</em></td>
+<td> </td>
+</tr>
+<tr>
+<td>hive.metastore.local</td>
+<td><code>true</code></td>
+<td>this is local store (removed in Hive 0.10, see <a href=#configuration-description>configuration description</a> section)</td>
+</tr>
+<tr>
+<td>hive.metastore.warehouse.dir</td>
+<td><code>&lt;base hdfs path></code></td>
+<td>Points to default location of non-external Hive tables in HDFS.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=remote-metastore-server>Remote Metastore Server</h3>
+<p>In remote metastore setup, all Hive Clients will make a connection to a metastore server which in turn queries the datastore (MySQL in this example) for metadata. Metastore server and client communicate using <a href=http://incubator.apache.org/thrift>Thrift</a> Protocol. Starting with Hive 0.5.0, you can start a Thrift server by executing the following command:</p>
+<pre tabindex=0><code>hive --service metastore
+</code></pre><p>In versions of Hive earlier than 0.5.0, it&rsquo;s instead necessary to run the Thrift server via direct execution of Java:</p>
+<pre tabindex=0><code>$JAVA_HOME/bin/java  -Xmx1024m -Dlog4j.configuration=file://$HIVE_HOME/conf/hms-log4j.properties -Djava.library.path=$HADOOP_HOME/lib/native/Linux-amd64-64/ -cp $CLASSPATH org.apache.hadoop.hive.metastore.HiveMetaStore
+</code></pre><p>If you execute Java directly, then JAVA_HOME, HIVE_HOME, HADOOP_HOME must be correctly set; CLASSPATH should contain Hadoop, Hive (lib and auxlib), and Java jars.</p>
+<p><strong>Server Configuration Parameters</strong></p>
+<p>The following example uses a<a href=#remote-metastore-database>Remote Metastore Database</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>javax.jdo.option.ConnectionURL</td>
+<td><code>jdbc:mysql://&lt;host name>/&lt;database name>?createDatabaseIfNotExist=true</code></td>
+<td>metadata is stored in a MySQL server</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionDriverName</td>
+<td><code>com.mysql.jdbc.Driver</code></td>
+<td>MySQL JDBC driver class</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionUserName</td>
+<td><code>&lt;user name></code></td>
+<td>user name for connecting to MySQL server</td>
+</tr>
+<tr>
+<td>javax.jdo.option.ConnectionPassword</td>
+<td><code>&lt;password></code></td>
+<td>password for connecting to MySQL server</td>
+</tr>
+<tr>
+<td>hive.metastore.warehouse.dir</td>
+<td><code>&lt;base hdfs path></code></td>
+<td>default location for Hive tables.</td>
+</tr>
+<tr>
+<td>hive.metastore.thrift.bind.host</td>
+<td>&lt;host_name></td>
+<td>Host name to bind the metastore service to. When empty, &ldquo;localhost&rdquo; is used. This configuration is available Hive 4.0.0 onwards.</td>
+</tr>
+</tbody>
+</table>
+<p>From Hive 3.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-16452>HIVE-16452</a>) onwards the metastore database stores a GUID which can be queried using the Thrift API get_metastore_db_uuid by metastore clients in order to identify the backend database instance. This API can be accessed by the HiveMetaStoreClient using the method getMetastoreDbUuid().</p>
+<h4 id=client-configuration-parameters><strong>Client Configuration Parameters</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive.metastore.uris</td>
+<td><code>thrift://&lt;host_name>:&lt;port></code></td>
+<td>host and port for the Thrift metastore server. If hive.metastore.thrift.bind.host is specified, host should be same as that configuration. Read more about this in dynamic service discovery configuration parameters.</td>
+</tr>
+<tr>
+<td>hive.metastore.local</td>
+<td><code>false</code></td>
+<td>Metastore is remote.  Note: This is no longer needed as of Hive 0.10.  Setting <em>hive.metastore.uri</em> is sufficient.</td>
+</tr>
+<tr>
+<td>hive.metastore.warehouse.dir</td>
+<td><code>&lt;base hdfs path></code></td>
+<td>Points to default location of non-external Hive tables in HDFS.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dynamic Service Discovery Configuration Parameters</strong></p>
+<p>From Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-20794>HIVE-20794</a>) onwards, similar to HiveServer2, a ZooKeeper service can be used for dynamic service discovery of a remote metastore server. Following parameters are used by both metastore server and client.</p>
+<table>
+<thead>
+<tr>
+<th>Config Param</th>
+<th>Config Value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hive.metastore.service.discovery.mode</td>
+<td>service discovery mode</td>
+<td>When it is set to &ldquo;zookeeper&rdquo;, ZooKeeper is used for dynamic service discovery of a remote metastore. In that case, a metastore adds itself to the ZooKeeper when it is started and removes itself when it shuts down. By default it is empty. Both the client and server should have same value for this parameter.</td>
+</tr>
+<tr>
+<td>hive.metastore.uris</td>
+<td>&lt;host_name>:, &lt;host_name>:, &mldr;</td>
+<td>One or more host and port pairs of ZooKeeper servers forming a ZooKeeper ensemble. Used when hive.metastore.service.discovery.mode is set to &ldquo;zookeeper&rdquo;. The configuration is not used by server otherwise. If all the servers are using the same port you may specify the port using hive.metastore.zookeeper.client.port instead of specifying it with every server separately. Both the client and server should have same value for this parameter.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.client.port</td>
+<td></td>
+<td>Port number when same port number is used by all the ZooKeeper servers in the ensemble. Both the client and server should have same value for this parameter.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.namespace</td>
+<td></td>
+<td>The parent node under which all ZooKeeper nodes for metastores are created.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.session.timeout</td>
+<td></td>
+<td>ZooKeeper client&rsquo;s session timeout (in milliseconds). The client is disconnected if a heartbeat is not sent in the timeout.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.connection.timeout</td>
+<td></td>
+<td>ZooKeeper client&rsquo;s connection timeout in seconds. Connection timeout * hive.metastore.zookeeper.connection.max.retries with exponential backoff is when curator client deems connection is lost to zookeeper.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.connection.max.retries</td>
+<td></td>
+<td>Max number of times to retry when connecting to the ZooKeeper server.</td>
+</tr>
+<tr>
+<td>hive.metastore.zookeeper.connection.basesleeptime</td>
+<td></td>
+<td>Initial amount of time (in milliseconds) to wait between retries when connecting to the ZooKeeper server when using ExponentialBackoffRetry policy.</td>
+</tr>
+</tbody>
+</table>
+<p>If you are using MySQL as the datastore for metadata, put MySQL jdbc libraries in HIVE_HOME/lib before starting Hive Client or HiveMetastore Server.</p>
+<p>To change the metastore port, use this <code>hive</code> command:</p>
+<pre tabindex=0><code>hive --service metastore -p &lt;port_num&gt;
+</code></pre><h3 id=supported-backend-databases-for-metastore>Supported Backend Databases for Metastore</h3>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Minimum Supported Version</th>
+<th>Name for Parameter Values</th>
+<th>See Also</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>5.6.17</td>
+<td><code>mysql</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Postgres</td>
+<td>9.1.13</td>
+<td><code>postgres</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>11g</td>
+<td><code>oracle</code></td>
+<td><a href=#hive-metastore-orm-retrievemapnullsasemptystrings>hive.metastore.orm.retrieveMapNullsAsEmptyStrings</a></td>
+</tr>
+<tr>
+<td>MS SQL Server</td>
+<td>2008 R2</td>
+<td><code>mssql</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id=metastore-schema-consistency-and-upgrades>Metastore Schema Consistency and Upgrades</h3>
+<p>Version</p>
+<p>Introduced in Hive 0.12.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3764>HIVE-3764</a>.</p>
+<p>Hive now records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to accesss the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default. Hive will not attempt to change the metastore schema implicitly. When you execute a Hive query against an old schema, it will fail to access the metastore.</p>
+<p>To suppress the schema check and allow the metastore to implicitly modify the schema, you need to set a configuration property <code>hive.metastore.schema.verification</code> to false in <code>hive-site.xml</code>.</p>
+<p>Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details <a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool_34835119/>here</a>.</p>
+<p>Save</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

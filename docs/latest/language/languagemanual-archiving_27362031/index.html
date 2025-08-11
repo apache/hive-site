@@ -1,0 +1,231 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LanguageManual Archiving</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--languagemanual-archiving>Apache Hive : LanguageManual Archiving</h1>
+<p>Archiving for File Count Reduction.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-archiving>Apache Hive : LanguageManual Archiving</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#settings>Settings</a></li>
+<li><a href=#usage>Usage</a>
+<ul>
+<li><a href=#archive>Archive</a></li>
+<li><a href=#unarchive>Unarchive</a></li>
+</ul>
+</li>
+<li><a href=#cautions-and-limitations>Cautions and Limitations</a></li>
+<li><a href=#under-the-hood>Under the Hood</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=overview>Overview</h2>
+<p>Due to the design of HDFS, the number of files in the filesystem directly affects the memory consumption in the namenode. While normally not a problem for small clusters, memory usage may hit the limits of accessible memory on a single machine when there are >50-100 million files. In such situations, it is advantageous to have as few files as possible.</p>
+<p>The use of <a href=http://hadoop.apache.org/docs/stable1/hadoop_archives.html>Hadoop Archives</a> is one approach to reducing the number of files in partitions. Hive has built-in support to convert files in existing partitions to a Hadoop Archive (HAR) so that a partition that may once have consisted of 100&rsquo;s of files can occupy just ~3 files (depending on settings). However, the trade-off is that queries may be slower due to the additional overhead in reading from the HAR.</p>
+<p>Note: Archiving does NOT compress the files – HAR is analogous to the Unix tar command.
+Note: Archiving should be considered an advanced command due to the caveats involved.</p>
+<h2 id=settings>Settings</h2>
+<p>There are 3 settings that should be configured before archiving is used. (Example values are shown.)</p>
+<pre tabindex=0><code>hive&gt; set hive.archive.enabled=true;
+hive&gt; set hive.archive.har.parentdir.settable=true;
+hive&gt; set har.partfile.size=1099511627776;
+
+</code></pre><p><code>hive.archive.enabled</code> controls whether archiving operations are enabled.</p>
+<p><code>hive.archive.har.parentdir.settable</code> informs Hive whether the parent directory can be set while creating the archive. In recent versions of Hadoop the <code>-p</code> option can specify the root directory of the archive. For example, if <code>/dir1/dir2/file</code> is archived with <code>/dir1</code> as the parent directory, then the resulting archive file will contain the directory structure <code>dir2/file</code>. In older versions of Hadoop (prior to 2011), this option was not available and therefore Hive must be configured to accommodate this limitation.</p>
+<p><code>har.partfile.size</code> controls the size of the files that make up the archive. The archive will contain <code>*size_of_partition*``/``har.partfile.size</code> files, rounded up. Higher values mean fewer files, but will result in longer archiving times due to the reduced number of mappers.</p>
+<h2 id=usage>Usage</h2>
+<h3 id=archive>Archive</h3>
+<p>Once the configuration values are set, a partition can be archived with the command:</p>
+<pre tabindex=0><code>ALTER TABLE table_name ARCHIVE PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
+
+</code></pre><p>For example:</p>
+<pre tabindex=0><code>ALTER TABLE srcpart ARCHIVE PARTITION(ds='2008-04-08', hr='12')
+
+</code></pre><p>Once the command is issued, a mapreduce job will perform the archiving. Unlike Hive queries, there is no output on the CLI to indicate process.</p>
+<h3 id=unarchive>Unarchive</h3>
+<p>The partition can be reverted back to its original files with the unarchive command:</p>
+<pre tabindex=0><code>ALTER TABLE srcpart UNARCHIVE PARTITION(ds='2008-04-08', hr='12')
+
+</code></pre><h2 id=cautions-and-limitations>Cautions and Limitations</h2>
+<ul>
+<li>In some older versions of Hadoop, HAR had a few bugs that could cause data loss or other errors. Be sure that these patches are integrated into your version of Hadoop:</li>
+</ul>
+<p><a href=https://issues.apache.org/jira/browse/HADOOP-6591>https://issues.apache.org/jira/browse/HADOOP-6591</a> (fixed in Hadoop 0.21.0)</p>
+<p><a href=https://issues.apache.org/jira/browse/MAPREDUCE-1548>https://issues.apache.org/jira/browse/MAPREDUCE-1548</a> (fixed in Hadoop 0.22.0)</p>
+<p><a href=https://issues.apache.org/jira/browse/MAPREDUCE-2143>https://issues.apache.org/jira/browse/MAPREDUCE-2143</a> (fixed in Hadoop 0.22.0)</p>
+<p><a href=https://issues.apache.org/jira/browse/MAPREDUCE-1752>https://issues.apache.org/jira/browse/MAPREDUCE-1752</a> (fixed in Hadoop 0.23.0)</p>
+<ul>
+<li>The HarFileSystem class still has a bug that has yet to be fixed:</li>
+</ul>
+<p><a href=https://issues.apache.org/jira/browse/MAPREDUCE-1877>https://issues.apache.org/jira/browse/MAPREDUCE-1877</a> (moved to <a href=https://issues.apache.org/jira/browse/HADOOP-10906>https://issues.apache.org/jira/browse/HADOOP-10906</a> in 2014)</p>
+<p>Hive comes with the HiveHarFileSystem class that addresses some of these issues, and is by default the value for <code>fs.har.impl</code>. Keep this in mind if you&rsquo;re rolling your own version of HarFileSystem:</p>
+<ul>
+<li>The default HiveHarFileSystem.getFileBlockLocations() has <strong>no locality</strong>. That means it may introduce higher network loads or reduced performance.</li>
+<li>Archived partitions cannot be overwritten with INSERT OVERWRITE. The partition must be unarchived first.</li>
+<li>If two processes attempt to archive the same partition at the same time, bad things could happen. (Need to implement concurrency support.)</li>
+</ul>
+<h2 id=under-the-hood>Under the Hood</h2>
+<p>Internally, when a partition is archived, a HAR is created using the files from the partition&rsquo;s original location (such as <code>/warehouse/table/ds=1</code>). The parent directory of the partition is specified to be the same as the original location and the resulting archive is named &lsquo;data.har&rsquo;. The archive is moved under the original directory (such as <code>/warehouse/table/ds=1/data.har</code>), and the partition&rsquo;s location is changed to point to the archive.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : TeradataBinarySerde</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--teradatabinaryserde>Apache Hive : TeradataBinarySerde</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--teradatabinaryserde>Apache Hive : TeradataBinarySerde</a>
+<ul>
+<li>
+<ul>
+<li><a href=#availability>Availability</a></li>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#how-to-export>How to export</a></li>
+<li><a href=#how-to-import>How to import</a></li>
+<li><a href=#usage>Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h3 id=availability>Availability</h3>
+<p>Earliest version CSVSerde is available</p>
+<p>The TeradataBinarySerDe is available in <a href=https://issues.apache.org/jira/browse/HIVE-20225>Hive 2.4</a> or greater.</p>
+<h3 id=overview>Overview</h3>
+<p>Teradata can use TPT(<a href=https://info.teradata.com/htmlpubs/DB_TTU_16_00/index.html#page/Load_and_Unload_Utilities%2FB035-2436%25E2%2580%2590086K%2F2436title.html%23>Teradata Parallel Transporter</a>) or BTEQ(<a href=https://developer.teradata.com/sites/all/files/documentation/linked_docs/2414020A_BTEQ-Reference-13.10.pdf>Basic Teradata Query</a>) to export and import data files compressed by gzip in very high speed. However such binary files are encoded in Teradata’s proprietary format and can’t be directly consumed by Hive without a customized SerDe.</p>
+<p>The TeradataBinarySerde enables users to read or write Teradata binary data as Hive Tables:</p>
+<ul>
+<li>Directly consume the Teradata Binary data file which is exported by TPT/BTEQ and then registered in Hive</li>
+<li>Generate the Teradata Binary data file in Hive and directly load it via TPT/BTEQ into Teradata</li>
+</ul>
+<h3 id=how-to-export>How to export</h3>
+<p>The TeradataBinarySerde supports data files in &lsquo;Formatted&rsquo; or &lsquo;Formatted4&rsquo; mode with the restrictions </p>
+<ul>
+<li><a href=https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/index.html#page/Query_Management_Tools%2FB035-2414-086K%2FINDICATORMODE_CMDS_2414.html%23wwID0EIUZO>INDICDATA</a> format is used (please don&rsquo;t use DATA)</li>
+<li>Maximum decimal digits = 38 (please don&rsquo;t use 18)</li>
+<li>Date format = integer (please don&rsquo;t use ANSI)</li>
+</ul>
+<h4 id=using-tpt-fastexport>Using TPT FastExport</h4>
+<p>Here is a bash script example for how to call TPT FastExport:</p>
+<p><strong>TPT FastExport script example</strong></p>
+<pre tabindex=0><code>query_table=foo.teradata_binary_table
+data_date=20180108
+select_statement=&quot;SELECT * FROM $query_table WHERE transaction_date BETWEEN DATE '2018-01-01' AND DATE '2018-01-08' AND is_deleted=0&quot;
+select_statement=${select_statement//\'/\'\'}  # Do not put double quote here
+output_path=/data/foo/bar/${data_date}
+num_chunks=4
+
+tbuild -C -f $td_export_template_file -v ${tpt_job_var_file} \
+  -u &quot;ExportSelectStmt='${select_statement}',FormatType=Formatted,DataFileCount=${num_chunks},
+  FileWriterDirectoryPath='${output_path},FileWriterFileName='${query_table}.${data_date}.teradata',
+  SourceTableName='${query_table}'&quot;
+</code></pre><p>The <strong>td_export_template_file</strong> looks like below with proper <strong>Format, MaxDecimalDigits,</strong> and<strong>DateForm</strong> in place:</p>
+<p><strong>td_export_template_file</strong></p>
+<pre tabindex=0><code>USING CHARACTER SET UTF8
+DEFINE JOB EXPORT_TO_BINARY_FORMAT
+DESCRIPTION 'Export to the INDICDATA file'
+(
+  /* https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/Load_and_Unload_Utilities/B035-2436%E2%80%90086K/2436ch03.05.3.html */
+  APPLY TO OPERATOR ($FILE_WRITER()[@DataFileCount] ATTR
+    (
+    IndicatorMode = 'Y',
+    OpenMode      = 'Write',
+    Format        = @FormatType,
+    DirectoryPath = @FileWriterDirectoryPath,
+    FileName      = @FileWriterFileName,
+    IOBufferSize  = 2048000
+    )
+  )
+  SELECT * FROM OPERATOR ($EXPORT()[1] ATTR
+    (
+    SelectStmt        = @ExportSelectStmt,
+    MaxDecimalDigits  = 38,
+    DateForm          = 'INTEGERDATE',  /* ANSIDATE is hard to load in BTEQ */
+    SpoolMode         = 'NoSpool',
+    TdpId             = @SourceTdpId,
+    UserName          = @SourceUserName,
+    UserPassword      = @SourceUserPassword,
+    QueryBandSessInfo = 'Action=TPT_EXPORT;SourceTable=@SourceTableName;Format=@FormatType;'
+    )
+  );
+);
+</code></pre><p>The login credential is supplied in tpt_job_var_file instead of via command line:</p>
+<p><strong>tpt_job_var_file</strong></p>
+<pre tabindex=0><code> SourceUserName=&lt;td_use&gt;
+,SourceUserPassword=&lt;td_pass&gt;
+,SourceTdpId=&lt;td_pid&gt;
+</code></pre><h4 id=using-bteq>Using BTEQ</h4>
+<p>TheBTEQ script looks like below with proper <strong>INDICDATA</strong>, <strong>Format</strong>, <strong>MaxDecimalDigits</strong>, and <strong>DateForm</strong> in place and by default, <strong>recordlength=max64</strong> (<strong>Formatted</strong>) is applied, so <strong>MAX1MB</strong> must be explicitly specified when &lsquo;<strong>Formatted4</strong>&rsquo; mode is required.</p>
+<p><strong>BTEQ script example</strong></p>
+<pre tabindex=0><code>SET SESSION DATEFORM=INTEGERDATE;
+.SET SESSION CHARSET UTF8
+.decimaldigits 38
+
+.export indicdata recordlength=max1mb file=td_data_with_1mb_rowsize.dat
+select * from foo.teradata_binary_table order by test_int;
+.export reset
+</code></pre><h3 id=how-to-import>How to import</h3>
+<h4 id=using-bteq-1>Using BTEQ</h4>
+<p>When <strong>unicode</strong> is used, the CHAR(n) column must be specified as CHAR(n x 3) in the <strong>USING()</strong> section. For example, <code>test_char</code> is defined as <code>CHAR(1) CHARACTER SET UNICODE</code> in DDL, when loading via BTEQ, it needs to occupy up to 3 bytes, therefore it appears as <code>CHAR(3)</code> in the USING().</p>
+<p>If n x 3 rule is not applied, BTEQ can encounter the error like &ldquo;Failure 2673 The source parcel length does not match data that was defined.&rdquo;</p>
+<p>Here is the sample BTEQ script with proper <strong>INDICDATA</strong>, <strong>Format</strong>, <strong>MaxDecimalDigits</strong>, and <strong>DateForm</strong>to load a &lsquo;<strong>RECORDLENGTH=MAX1MB</strong>&rsquo; data file:</p>
+<p><strong>BTEQ script example</strong></p>
+<pre tabindex=0><code>SET SESSION DATEFORM=INTEGERDATE;
+.SET SESSION CHARSET UTF8
+.decimaldigits 38
+
+.IMPORT INDICDATA RECORDLENGTH=MAX1MB FILE=td_data_with_1mb_rowsize.teradata
+.REPEAT *
+USING(
+      test_tinyint BYTEINT,
+      test_smallint SMALLINT,
+      test_int INTEGER,
+      test_bigint BIGINT,
+      test_double FLOAT,
+      test_decimal DECIMAL(15,2),
+      test_date DATE,
+      test_timestamp TIMESTAMP(6),
+      test_char CHAR(3),  -- CHAR(1) will occupy 3 bytes
+      test_varchar VARCHAR(40),
+      test_binary VARBYTE(500)
+)
+INSERT INTO foo.stg_teradata_binary_table
+(
+ test_tinyint, test_smallint, test_int, test_bigint, test_double, test_decimal,
+ test_date, test_timestamp, test_char, test_varchar, test_binary
+)
+values (
+:test_tinyint,
+:test_smallint,
+:test_int,
+:test_bigint,
+:test_double,
+:test_decimal,
+:test_date,
+:test_timestamp,
+:test_char,
+:test_varchar,
+:test_binary
+);
+
+.IMPORT RESET
+</code></pre><h4 id=using-tpt-fastload>Using TPT FastLoad</h4>
+<p><strong>tbuild</strong> can load multiple gzip files in parallel, this makes TPT the best choice to bulk load big data files. </p>
+<p>Here is a bash script example for how to call TPT FastLoad.</p>
+<p><strong>TPT FastLoad script example</strong></p>
+<pre tabindex=0><code>staging_database=foo
+staging_table=stg_table_name_up_to_30_chars
+table_name_less_than_26chars=stg_table_name_up_to_30_c
+file_dir=/data/foo/bar
+job_id=&lt;my_job_execution_id&gt;
+
+tbuild -C -f $td_import_template_file -v ${tpt_job_var_file} \
+  -u &quot;TargetWorkingDatabase='${staging_database}',TargetTable='${staging_table}',
+     SourceDirectoryPath='${file_dir}',SourceFileName='*.teradata.gz',
+     FileInstances=8,LoadInstances=1,
+     Substr26TargetTable='${table_name_less_than_26chars}',
+     TargetQueryBandSessInfo='TptLoad=${staging_table};JobId=${job_id};'&quot;
+</code></pre><p>The <strong>td_import_template_file</strong> looks like:</p>
+<p><strong>td_import_template_file</strong></p>
+<pre tabindex=0><code>USING CHARACTER SET @Characterset
+DEFINE JOB LOAD_JOB
+DESCRIPTION 'Loading Data From File To Teradata Table'
+(
+set LogTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_LT';
+set ErrorTable1=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_ET';
+set ErrorTable2=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_UT';
+set WorkTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_WT';
+set ErrorTable=@TargetWorkingDatabase||'.'||@Substr26TargetTable||'_ET';
+
+set LoadPrivateLogName=@TargetTable||'_load.log'
+set UpdatePrivateLogName=@TargetTable||'_update.log'
+set StreamPrivateLogName=@TargetTable||'_stream.log'
+set InserterPrivateLogName=@TargetTable||'_inserter.log'
+set FileReaderPrivateLogName=@TargetTable||'_filereader.log'
+
+STEP PRE_PROCESSING_DROP_ERROR_TABLES
+(
+APPLY
+('release mload '||@TargetTable||';'),
+('drop table '||@LogTable||';'),
+('drop table '||@ErrorTable||';'),
+('drop table '||@ErrorTable1||';'),
+('drop table '||@ErrorTable2||';'),
+('drop table '||@WorkTable||';')
+TO OPERATOR ($DDL);
+);
+
+STEP LOADING
+(
+    APPLY $INSERT TO OPERATOR ($LOAD() [@LoadInstances])
+    SELECT * FROM OPERATOR ($FILE_READER() [@FileInstances]);
+);
+);
+</code></pre><p>Please set the correct values in <strong>tpt_job_var_file</strong>, such as <strong>SourceFormat</strong>, <strong>DateForm</strong>, <strong>MaxDecimalDigits</strong>. Here is an example:</p>
+<p><strong>tpt_job_var_file</strong></p>
+<pre tabindex=0><code> Characterset='UTF8'
+,DateForm='integerDate'
+,MaxDecimalDigits=38
+
+,TargetErrorLimit=100
+,TargetErrorList=['3807','2580', '3706']
+,TargetBufferSize=1024
+,TargetDataEncryption='off'
+,SourceOpenMode='Read'
+,SourceFormat='Formatted'
+,SourceIndicatorMode='Y'
+,SourceMultipleReaders='Y'
+
+,LoadBufferSize=1024
+,UpdateBufferSize=1024
+,LoadInstances=1
+
+,TargetTdpId=&lt;td_pid&gt;
+,TargetUserName=&lt;td_user&gt;
+,TargetUserPassword=&lt;td_pass&gt;
+</code></pre><h3 id=usage>Usage</h3>
+<h4 id=table-creating>Table Creating</h4>
+<p><strong>Create table with specific Teradata properties</strong></p>
+<pre tabindex=0><code>CREATE TABLE `teradata_binary_table_1mb`(
+  `test_tinyint` tinyint,
+  `test_smallint` smallint,
+  `test_int` int,
+  `test_bigint` bigint,
+  `test_double` double,
+  `test_decimal` decimal(15,2),
+  `test_date` date,
+  `test_timestamp` timestamp,
+  `test_char` char(1),
+  `test_varchar` varchar(40),
+  `test_binary` binary
+ )
+ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.teradata.TeradataBinarySerde'
+STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.TeradataBinaryFileInputFormat'
+OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.TeradataBinaryFileOutputFormat'
+TBLPROPERTIES (
+  'teradata.timestamp.precision'='6',
+  'teradata.char.charset'='UNICODE',
+  'teradata.row.length'='1MB'
+);
+</code></pre><p><strong>Default Teradata properties</strong></p>
+<pre tabindex=0><code>'teradata.timestamp.precision'='6',
+'teradata.char.charset'='UNICODE',
+'teradata.row.length'='64KB'
+</code></pre><h4 id=table-properties>Table Properties</h4>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Property Value Set</th>
+<th>Default Property Value</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teradata.row.length</td>
+<td>(64KB, 1MB)</td>
+<td>64KB</td>
+<td><strong>64KB</strong> corresponds to <strong>Formatted</strong> mode<strong>1MB</strong> corresponds to <strong>Formatted4</strong> mode</td>
+</tr>
+<tr>
+<td>teradata.char.charset</td>
+<td>(UNICODE, LATIN)</td>
+<td>UNICODE</td>
+<td>This decides how many bytes per char for CHAR data type3 bytes per char for UNICODE2 bytes per char for LATINAll the fields with CHAR type are controlled by this property (no separate specifying supported)</td>
+</tr>
+<tr>
+<td>teradata.timestamp.precision</td>
+<td>0-6</td>
+<td>6</td>
+<td>This decides how many bytes for TIMESTAMP data type. More details is <a href=https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/index.html#page/SQL_Reference/B035-1143-160K/bjd1472241378006.html>here</a>.All the fields with TIMESTAMP are controlled by this property (no separate specifying supported)</td>
+</tr>
+</tbody>
+</table>
+<h4 id=teradata-to-hive-type-conversion>Teradata to Hive Type Conversion</h4>
+<table>
+<thead>
+<tr>
+<th>Teradata Data Type</th>
+<th>Teradata Data Type Definition</th>
+<th>Hive Type</th>
+<th>Hive Data Type Definition</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DATE</strong></td>
+<td><em>DATE</em></td>
+<td><strong>DATE</strong></td>
+<td><em>DATE</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>TIMESTAMP</strong></td>
+<td><em>TIMESTAMP(X)</em></td>
+<td><strong>TIMESTAMP</strong></td>
+<td><em>TIMESTAMP</em></td>
+<td>The decoding of TIMESTAMP precision is controlled by the table property <strong>teradata.timestamp.precision</strong></td>
+</tr>
+<tr>
+<td><strong>BYTEINT</strong></td>
+<td><em>BYTEINT</em></td>
+<td><strong>TINYINT</strong></td>
+<td><em>TINYINT</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>SMALLINT</strong></td>
+<td><em>SMALLINT</em></td>
+<td><strong>SMALLINT</strong></td>
+<td><em>SMALLINT</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>INTEGER</strong></td>
+<td>*INTEGER</td>
+<td>INT*</td>
+<td><strong>INT</strong></td>
+<td>*INT</td>
+</tr>
+<tr>
+<td><strong>BIGINT</strong></td>
+<td><em>BIGINT</em></td>
+<td><strong>BIGINT</strong></td>
+<td><em>BIGINT</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>FLOAT</strong></td>
+<td><em>FLOAT</em></td>
+<td><strong>DOUBLE</strong></td>
+<td><em>DOUBLE</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>DECIMAL</strong></td>
+<td><em>DECIMAL(N,M)**&ndash;Default DECIMAL(5, 0)</em></td>
+<td><strong>DECIMAL</strong></td>
+<td><em>DECIMAL(N,M)**&ndash;Default DECIMAL(10, 0)</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>VARCHAR</strong></td>
+<td><em>VARCHAR(X)</em></td>
+<td><strong>VARCHAR</strong></td>
+<td><em>VARCHAR(X)</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>CHAR</strong></td>
+<td><em>CHAR(X)</em></td>
+<td><strong>CHAR</strong></td>
+<td><em>CHAR(X)</em></td>
+<td>The decoding of each CHAR is controlled by the table property <strong>teradata.char.charset</strong></td>
+</tr>
+<tr>
+<td><strong>VARBYTE</strong></td>
+<td><em>VARBYTE(X)</em></td>
+<td><strong>BINARY</strong></td>
+<td><em>BINARY</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id=serde-restriction>Serde Restriction</h4>
+<p>The TeradataBinarySerde has several restrictions:</p>
+<ul>
+<li>Only support simple data type listed above, other data type like INTERVAL, TIME, NUMBER, CLOB, BLOB in Teradata are not yet supported.</li>
+<li>Doesn&rsquo;t support the complex data type such as ARRAY, MAP.</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

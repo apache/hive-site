@@ -1,0 +1,533 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : CAST...FORMAT with SQL:2016 datetime formats</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--castformat-with-sql2016-datetime-formats>Apache Hive : CAST&mldr;FORMAT with SQL:2016 datetime formats</h1>
+<h2 id=usage>Usage</h2>
+<pre tabindex=0><code>CAST(&lt;timestamp/date&gt; AS &lt;varchar/char/string&gt; [FORMAT &lt;template&gt;])  
+CAST(&lt;varchar/char/string&gt; AS &lt;timestamp/date&gt; [FORMAT &lt;template&gt;])
+</code></pre><h2 id=example>Example</h2>
+<pre tabindex=0><code>select cast(dt as string format 'DD-MM-YYYY')  
+select cast('01-05-2017' as date format 'DD-MM-YYYY')
+</code></pre><h2 id=template-elements-aka-tokens-aka-patterns-aka-sql2016-datetime-formats>Template elements, a.k.a. Tokens, a.k.a Patterns a.k.a SQL:2016 Datetime Formats</h2>
+<h3 id=notes>Notes</h3>
+<p>For all tokens:</p>
+<ul>
+<li>Patterns are case-insensitive, except AM/PM and T/Z. See these sections for more details.</li>
+<li>For string to datetime conversion, no duplicate format tokens are allowed, including tokens<br>
+that have the same meaning but different lengths (&ldquo;Y&rdquo; and &ldquo;YY&rdquo; conflict) or different<br>
+behaviors (&ldquo;RR&rdquo; and &ldquo;YY&rdquo; conflict).</li>
+</ul>
+<p>For all numeric tokens:</p>
+<ul>
+<li>The &ldquo;expected length&rdquo; of input/output is the number of tokens in the character (e.g. &ldquo;YYY&rdquo;: 3,<br>
+&ldquo;Y&rdquo;: 1, and so on), with some exceptions (see map SPECIAL_LENGTHS).</li>
+<li>For string to datetime conversion, inputs of fewer digits than expected are accepted if<br>
+followed by a delimiter, e.g. format=&ldquo;YYYY-MM-DD&rdquo;, input=&ldquo;19-1-1&rdquo;, output=2019-01-01 00:00:00.</li>
+<li>For datetime to string conversion, output is left padded with zeros, e.g. format=&ldquo;DD SSSSS&rdquo;,<br>
+input=2019-01-01 00:00:03, output=&ldquo;01 00003&rdquo;.</li>
+</ul>
+<h3 id=accepted-format-tokens>Accepted format tokens</h3>
+<p>Note: - &ldquo;|&rdquo; means &ldquo;or&rdquo;.</p>
+<ul>
+<li>&ldquo;Delimiter&rdquo; for numeric tokens means any non-numeric character or end of input.</li>
+<li>The words token and pattern are used interchangeably.</li>
+</ul>
+<h5 id=a1-numeric-temporal-tokens>A.1. Numeric temporal tokens</h5>
+<p>YYYY<br>
+4-digit year</p>
+<ul>
+<li>For string to datetime conversion, prefix digits for 1, 2, and 3-digit inputs are obtained<br>
+from current date<br>
+E.g. input=‘9-01-01’, pattern =‘YYYY-MM-DD’, current year=2020, output=2029-01-01 00:00:00</li>
+</ul>
+<p>YYY<br>
+Last 3 digits of a year</p>
+<ul>
+<li>Gets the prefix digit from current date.</li>
+<li>Can accept fewer digits than 3, similarly to YYYY.</li>
+</ul>
+<p>YY<br>
+Last 2 digits of a year</p>
+<ul>
+<li>Gets the 2 prefix digits from current date.</li>
+<li>Can accept fewer digits than 2, similarly to YYYY.</li>
+</ul>
+<p>Y<br>
+Last digit of a year</p>
+<ul>
+<li>Gets the 3 prefix digits from current date.</li>
+</ul>
+<p>RRRR<br>
+4-digit rounded year</p>
+<ul>
+<li>String to datetime conversion:</li>
+<li>If 2 digits are provided then acts like RR.</li>
+<li>If 1,3 or 4 digits provided then acts like YYYY.</li>
+<li>For datetime to string conversion, acts like YYYY.</li>
+</ul>
+<p>RR<br>
+2-digit rounded year<br>
+-String to datetime conversion:</p>
+<ul>
+<li>Semantics:<br>
+Input: Last 2 digits of current year: First 2 digits of output:<br>
+0 to 49 00 to 49 First 2 digits of current year<br>
+0 to 49 50 to 99 First 2 digits of current year + 1<br>
+50 to 99 00 to 49 First 2 digits of current year - 1<br>
+50 to 99 50 to 99 First 2 digits of current year</li>
+<li>If 1-digit year is provided followed by a delimiter, falls back to YYYY with 1-digit year<br>
+input.</li>
+<li>For datetime to string conversion, acts like YY.</li>
+</ul>
+<p>MM<br>
+Month (1-12)</p>
+<ul>
+<li>For string to datetime conversion, conflicts with DDD, MONTH, MON.</li>
+</ul>
+<p>DD<br>
+Day of month (1-31)</p>
+<ul>
+<li>For string to datetime conversion, conflicts with DDD.</li>
+</ul>
+<p>DDD<br>
+Day of year (1-366)</p>
+<ul>
+<li>For string to datetime conversion, conflicts with DD and MM.</li>
+</ul>
+<p>HH<br>
+Hour of day (1-12)</p>
+<ul>
+<li>If no AM/PM provided then defaults to AM.</li>
+<li>In string to datetime conversion, conflicts with SSSSS and HH24.</li>
+</ul>
+<p>HH12<br>
+Hour of day (1-12)<br>
+See HH.</p>
+<p>HH24<br>
+Hour of day (0-23)</p>
+<ul>
+<li>In string to datetime conversion, conflicts with SSSSS, HH12 and AM/PM.</li>
+</ul>
+<p>MI<br>
+Minute of hour (0-59)</p>
+<ul>
+<li>In string to datetime conversion, conflicts with SSSSS.</li>
+</ul>
+<p>SS<br>
+Second of minute (0-59)</p>
+<ul>
+<li>In string to datetime conversion, conflicts with SSSSS.</li>
+</ul>
+<p>SSSSS<br>
+Second of Day (0-86399)</p>
+<ul>
+<li>In string to datetime conversion, conflicts with SS, HH, HH12, HH24, MI, AM/PM.</li>
+</ul>
+<p>FF[1..9]<br>
+Fraction of second</p>
+<ul>
+<li>1..9 indicates the number of decimal digits. &ldquo;FF&rdquo; (no number of digits specified) is also<br>
+accepted.</li>
+<li>In datetime to string conversion, &ldquo;FF&rdquo; will omit trailing zeros, or output &ldquo;0&rdquo; if subsecond<br>
+value is 0.</li>
+<li>In string to datetime conversion, fewer digits than expected are accepted if followed by a<br>
+delimiter. &ldquo;FF&rdquo; acts like &ldquo;FF9&rdquo;.</li>
+</ul>
+<p>AM|A.M.|PM|P.M.<br>
+Meridiem indicator (or AM/PM)</p>
+<ul>
+<li>Datetime to string conversion:</li>
+<li>AM and PM mean the exact same thing in the pattern.<br>
+e.g. input=2019-01-01 20:00, format=“AM”, output=“PM”.</li>
+<li>Retains the exact format (capitalization and length) provided in the pattern string. If p.m.<br>
+is in the pattern, we expect a.m. or p.m. in the output; if AM is in the pattern, we expect<br>
+AM or PM in the output. If the case is mixed (Am or aM) then the output case will match the<br>
+case of the pattern&rsquo;s first character (Am => AM, aM => am).</li>
+<li>String to datetime conversion:</li>
+<li>Conflicts with HH24 and SSSSS.</li>
+<li>It doesn&rsquo;t matter which meridian indicator is in the pattern.<br>
+E.g. input=&ldquo;2019-01-01 11:00 p.m.&rdquo;, pattern=&ldquo;YYYY-MM-DD HH12:MI AM&rdquo;,<br>
+output=2019-01-01 23:00:00</li>
+<li>If FX is enabled, input length has to match the pattern&rsquo;s length. e.g. pattern=AM input=A.M.<br>
+is not accepted, but input=pm is.</li>
+<li>Not listed as a character temporal because of special status: does not get padded with spaces<br>
+upon formatting, and case is handled differently at datetime to string conversion.</li>
+</ul>
+<p>D<br>
+Day of week (1-7)</p>
+<ul>
+<li>1 means Sunday, 2 means Monday, and so on.</li>
+<li>Not allowed in string to datetime conversion.</li>
+</ul>
+<p>Q<br>
+Quarter of year (1-4)</p>
+<ul>
+<li>Not allowed in string to datetime conversion.</li>
+</ul>
+<p>WW<br>
+Aligned week of year (1-53)</p>
+<ul>
+<li>1st week begins on January 1st and ends on January 7th, and so on.</li>
+<li>Not allowed in string to datetime conversion.</li>
+</ul>
+<p>W<br>
+Aligned week of month (1-5)</p>
+<ul>
+<li>1st week starts on the 1st of the month and ends on the 7th, and so on.</li>
+<li>Not allowed in string to datetime conversion.</li>
+</ul>
+<p>IYYY<br>
+4-digit ISO 8601 week-numbering year</p>
+<ul>
+<li>Returns the year relating to the ISO week number (IW), which is the full week (Monday to<br>
+Sunday) which contains January 4 of the Gregorian year.</li>
+<li>Behaves similarly to YYYY in that for datetime to string conversion, prefix digits for 1, 2,<br>
+and 3-digit inputs are obtained from current week-numbering year.</li>
+<li>For string to datetime conversion, requires IW and ID|DAY|DY. Conflicts with all other date<br>
+patterns (see &ldquo;List of Date-Based Patterns&rdquo;).</li>
+</ul>
+<p>IYY<br>
+Last 3 digits of ISO 8601 week-numbering year</p>
+<ul>
+<li>See IYYY.</li>
+<li>Behaves similarly to YYY in that for datetime to string conversion, prefix digit is obtained<br>
+from current week-numbering year and can accept 1 or 2-digit input.</li>
+</ul>
+<p>IY<br>
+Last 2 digits of ISO 8601 week-numbering year</p>
+<ul>
+<li>See IYYY.</li>
+<li>Behaves similarly to YY in that for datetime to string conversion, prefix digits are obtained<br>
+from current week-numbering year and can accept 1-digit input.</li>
+</ul>
+<p>I<br>
+Last digit of ISO 8601 week-numbering year</p>
+<ul>
+<li>See IYYY.</li>
+<li>Behaves similarly to Y in that for datetime to string conversion, prefix digits are obtained<br>
+from current week-numbering year.</li>
+</ul>
+<p>IW<br>
+ISO 8601 week of year (1-53)</p>
+<ul>
+<li>Begins on the Monday closest to January 1 of the year.</li>
+<li>For string to datetime conversion, if the input week does not exist in the input year, an<br>
+error will be thrown. e.g. the 2019 week-year has 52 weeks; with pattern=&ldquo;iyyy-iw-id&rdquo;<br>
+input=&ldquo;2019-53-2&rdquo; is not accepted.</li>
+<li>For string to datetime conversion, requires IYYY|IYY|IY|I and ID|DAY|DY. Conflicts with all other<br>
+date patterns (see &ldquo;List of Date-Based Patterns&rdquo;).</li>
+</ul>
+<p>ID<br>
+ISO 8601 day of week (1-7)</p>
+<ul>
+<li>1 is Monday, and so on.</li>
+<li>For string to datetime conversion, requires IYYY|IYY|IY|I and IW. Conflicts with all other<br>
+date patterns (see &ldquo;List of Date-Based Patterns&rdquo;).</li>
+</ul>
+<h5 id=a2-character-temporals>A.2. Character temporals</h5>
+<p>Temporal elements, but spelled out.</p>
+<ul>
+<li>For datetime to string conversion, the pattern&rsquo;s case must match one of the listed formats<br>
+(e.g. mOnTh is not accepted) to avoid ambiguity. Output is right padded with trailing spaces<br>
+unless the pattern is marked with the fill mode modifier (FM).</li>
+<li>For string to datetime conversion, the case of the pattern does not matter.</li>
+</ul>
+<p>MONTH|Month|month<br>
+Name of month of year</p>
+<ul>
+<li>For datetime to string conversion, will include trailing spaces up to length 9 (length of<br>
+longest month of year name: &ldquo;September&rdquo;). Case is taken into account according to the<br>
+following example (pattern => output):</li>
+<li>MONTH => JANUARY</li>
+<li>Month => January</li>
+<li>month => january</li>
+<li>For string to datetime conversion, neither the case of the pattern nor the case of the input<br>
+are taken into account.</li>
+<li>For string to datetime conversion, conflicts with MM and MON.</li>
+</ul>
+<p>MON|Mon|mon<br>
+Abbreviated name of month of year</p>
+<ul>
+<li>For datetime to string conversion, case is taken into account according to the following<br>
+example (pattern => output):</li>
+<li>MON => JAN</li>
+<li>Mon => Jan</li>
+<li>mon => jan</li>
+<li>For string to datetime conversion, neither the case of the pattern nor the case of the input<br>
+are taken into account.</li>
+<li>For string to datetime conversion, conflicts with MM and MONTH.</li>
+</ul>
+<p>DAY|Day|day<br>
+Name of day of week</p>
+<ul>
+<li>For datetime to string conversion, will include trailing spaces until length is 9 (length of<br>
+longest day of week name: &ldquo;Wednesday&rdquo;). Case is taken into account according to the following<br>
+example (pattern => output):</li>
+<li>DAY = SUNDAY</li>
+<li>Day = Sunday</li>
+<li>day = sunday</li>
+<li>For string to datetime conversion, neither the case of the pattern nor the case of the input<br>
+are taken into account.</li>
+<li>Not allowed in string to datetime conversion except with IYYY|IYY|IY|I and IW.</li>
+</ul>
+<p>DY|Dy|dy<br>
+Abbreviated name of day of week</p>
+<ul>
+<li>For datetime to string conversion, case is taken into account according to the following<br>
+example (pattern => output):</li>
+<li>DY = SUN</li>
+<li>Dy = Sun</li>
+<li>dy = sun</li>
+<li>For string to datetime conversion, neither the case of the pattern nor the case of the input<br>
+are taken into account.</li>
+<li>Not allowed in string to datetime conversion except with IYYY|IYY|IY|I and IW.</li>
+</ul>
+<h5 id=b-time-zone-tokens>B. Time zone tokens</h5>
+<p>TZH<br>
+Time zone offset hour (-15 to +15)</p>
+<ul>
+<li>3-character-long input is expected: 1 character for the sign and 2 digits for the value.<br>
+e.g. “+10”, “-05”</li>
+<li>2-digit input is accepted without the sign, e.g. “04”.</li>
+<li>Both these 2 and 3-digit versions are accepted even if not followed by separators.</li>
+<li>Disabled for timestamp to string and date to string conversion, as timestamp and date are time<br>
+zone agnostic.</li>
+</ul>
+<p>TZM<br>
+Time zone offset minute (0-59)</p>
+<ul>
+<li>For string to datetime conversion:</li>
+<li>TZH token is required.</li>
+<li>Unsigned; sign comes from TZH.</li>
+<li>Therefore time zone offsets like “-30” minutes should be expressed thus: input=“-00:30”<br>
+pattern=“TZH:TZM”.</li>
+<li>Disabled for timestamp to string and date to string conversion, as timestamp and date are time<br>
+zone agnostic.</li>
+</ul>
+<h5 id=c-separators>C. Separators</h5>
+<p>-|.|/|,|'|;|:|<br>
+Separator</p>
+<ul>
+<li>Uses loose matching. Existence of a sequence of separators in the format should match the<br>
+existence of a sequence of separators in the input regardless of the types of the separator or<br>
+the length of the sequence where length > 1. E.g. input=“2019-. ;10/10”, pattern=“YYYY-MM-DD”<br>
+is valid; input=“20191010”, pattern=“YYYY-MM-DD” is not valid.</li>
+<li>If the last separator character in the separator substring is &ldquo;-&rdquo; and is immediately followed<br>
+by a time zone hour (tzh) token, it&rsquo;s a negative sign and not counted as a separator, UNLESS<br>
+this is the only possible separator character in the separator substring (in which case it is<br>
+not counted as the tzh&rsquo;s negative sign).</li>
+<li>If the whole pattern string is delimited by single quotes (''), then the apostrophe separator<br>
+(') must be escaped with a single backslash: (').</li>
+</ul>
+<h5 id=d-iso-8601-delimiters>D. ISO 8601 delimiters</h5>
+<p>T|Z<br>
+ISO 8601 delimiter</p>
+<ul>
+<li>Serves as a delimiter.</li>
+<li>Function is to support formats like “YYYY-MM-DDTHH24:MI:SS.FF9Z”, “YYYY-MM-DD-HH24:MI:SSZ”</li>
+<li>For datetime to string conversion, output is always capitalized (&ldquo;T&rdquo;), even if lowercase (&ldquo;t&rdquo;)<br>
+is provided in the pattern.</li>
+<li>For string to datetime conversion, case of input and pattern may differ.</li>
+</ul>
+<h5 id=e-nested-strings-text>E. Nested strings (Text)</h5>
+<p>– Surround with double quotes (") in the pattern. Note, if the whole pattern string is delimited<br>
+by double quotes, then the double quotes must be escaped with a single backslash: (").</p>
+<ul>
+<li>In order to include a literal double quote character within the nested string, the double<br>
+quote character must be escaped with a double backslash: (\”). If the whole pattern string is<br>
+delimited by double quotes, then escape with a triple backslash: (\")</li>
+<li>If the whole pattern string is delimited by single quotes, literal single<br>
+quotes/apostrophes (') in the nested string must be escaped with a single backslash: (')</li>
+<li>For datetime to string conversion, we simply include the string in the output, preserving the<br>
+characters' case.</li>
+<li>For string to datetime conversion, the information is lost as the nested string won’t be part<br>
+of the resulting datetime object. However, the nested string has to match the related part of<br>
+the input string, except case may differ.</li>
+</ul>
+<h5 id=f-format-modifier-tokens>F. Format modifier tokens</h5>
+<p>FM<br>
+Fill mode modifier</p>
+<ul>
+<li>Default for string to datetime conversion. Inputs of fewer digits than expected are accepted<br>
+if followed by a delimiter:<br>
+e.g. format=&ldquo;YYYY-MM-DD&rdquo;, input=&ldquo;19-1-1&rdquo;, output=2019-01-01 00:00:00</li>
+<li>For datetime to string conversion, padding (trailing spaces for text data and leading zeroes<br>
+for numeric data) is omitted for the temporal element immediately following an &ldquo;FM&rdquo; in the<br>
+pattern string. If the element following is not a temporal element (for example, if &ldquo;FM&rdquo;<br>
+precedes a separator), an error will be thrown.<br>
+e.g. pattern=FMHH12:MI:FMSS, input=2019-01-01 01:01:01, output=1:01:1</li>
+<li>Modifies FX so that lack of leading zeroes are accepted for the element immediately following<br>
+an &ldquo;FM&rdquo; in the pattern string.</li>
+</ul>
+<p>FX<br>
+Format exact modifier</p>
+<ul>
+<li>Default for datetime to string conversion. Numeric output is left padded with zeros, and<br>
+non-numeric output except for AM/PM is right padded with spaces up to expected length.</li>
+<li>Applies to the whole pattern.</li>
+<li>Rules applied at string to datetime conversion:</li>
+<li>Separators must match exactly, down to the character.</li>
+<li>Numeric input can&rsquo;t omit leading zeroes. This rule does not apply to elements (tokens)<br>
+immediately preceded by an &ldquo;FM.&rdquo;</li>
+<li>AM/PM input length has to match the pattern&rsquo;s length. e.g. pattern=AM input=A.M. is not<br>
+accepted, but input=pm is.</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive APIs Overview</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-apis-overview>Apache Hive : Hive APIs Overview</h1>
+<p>This page aims to catalogue and describe the various public facing APIs exposed by Hive in order to inform developers wishing to integrate their applications and frameworks with the Hive ecosystem. To date the following APIs have been identified in the Hive project that are either considered public, or widely used in the public domain:</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-apis-overview>Apache Hive : Hive APIs Overview</a></li>
+<li><a href=#api-categories>API categories</a>
+<ul>
+<li><a href=#operation-based-apis>Operation based APIs</a></li>
+<li><a href=#query-based-apis>Query based APIs</a></li>
+</ul>
+</li>
+<li><a href=#available-apis>Available APIs</a>
+<ul>
+<li><a href=#hcatclient-java>HCatClient (Java)</a></li>
+<li><a href=#hcatalog-storage-handlers-java>HCatalog Storage Handlers (Java)</a></li>
+<li><a href=#hcatalog-cli-command-line>HCatalog CLI (Command Line)</a></li>
+<li><a href=#metastore-java>Metastore (Java)</a></li>
+<li><a href=#webhcat-rest>WebHCat (REST)</a></li>
+<li><a href=#streaming-data-ingest-java>Streaming Data Ingest (Java)</a></li>
+<li><a href=#streaming-mutation-java>Streaming Mutation (Java)</a></li>
+<li><a href=#hive-jdbc-jdbc>hive-jdbc (JDBC)</a></li>
+<li><a href=#comments>Comments:</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h1 id=api-categories>API categories</h1>
+<p>The APIs can be segmented into two conceptual categories: operation based APIs and query based APIs.</p>
+<h2 id=operation-based-apis>Operation based APIs</h2>
+<p>Operation based APIs expose many tightly scoped methods that each implement a very specific Hive operation. Such methods usually accept and return strongly typed values appropriate to their respective operation. The implementations of the operations usually target very specific layers or subsystems within Hive and are therefore likely to be efficient in use. However, the outcome of an operation may diverge from that of the equivalent HQL as the different code paths may be invoked in each case. Operation based APIs are used for constructing processes that need to interact in a repetitive, declarative manner and provide a greater degree of compile-time checking.</p>
+<h2 id=query-based-apis>Query based APIs</h2>
+<p>Query based APIs permit the submission and execution of some subset of HQL. It is often necessary for the API client to parse and interpret any returned values as the return types are frequently quite broad in scope. The implementations of such APIs usually target the &lsquo;query language&rsquo; subsystem of Hive which parses the query and executes it as needed. Given that most query based APIs share a similar execution pathway, it is likely that any operation submitted via the API will have a similar outcome to equivalent HQL submitted via the Hive CLI. Query based APIs are often used for constructing processes where Hive API operations are created dynamically or where an HQL equivalent outcome is important. Drawbacks of this type of API include: lack of compile time checking, possible inefficiencies in working at a higher level of abstraction, and potential susceptibility to SQL-injection like attacks.</p>
+<h1 id=available-apis>Available APIs</h1>
+<h2 id=hcatclient-java>HCatClient (Java)</h2>
+<p>Operation based Java API that presents a number of DDL type operations, however it is not as comprehensive as the Metastore API. The HCatClient was intended to be the Java based entry point to WebHCat HCatalog API although this was never realised. Currently <code>HCatClientHMSImpl</code> is the only concrete implementation of the API; it integrates directly with the Metastore using the Metastore API and does not utilise WebHCat whatsoever despite being packaged inside the WebHCat project. The <code>HCatClientHMSImpl</code> was originally provided as a reference implementation but it has over time gained traction as a public client. Anecdotally, it is now the preferred API for issuing DDL type operations from external programs; and feature contributions are encouraged. There is some minimal documentation on the HCatalog wiki in the form of a <a href=https://cwiki.apache.org/confluence/display/HCATALOG/Design+Document+-+Java+APIs+for+HCatalog+DDL+Commands>design document</a> describing the interface but not the implementation.</p>
+<h2 id=hcatalog-storage-handlers-java>HCatalog Storage Handlers (Java)</h2>
+<p>Operation based Java API. This is well <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput_34013776/>documented on the wiki</a>.</p>
+<p>TODO</p>
+<p>Requires overview.</p>
+<h2 id=hcatalog-cli-command-line>HCatalog CLI (Command Line)</h2>
+<p>Query based API. This is well <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-cli_34013932/>documented on the wiki</a>.</p>
+<p>Hive community has been working deprecating Hive Cli. Hcatalog Cli is similar to Hive Cli and will be deprecated.</p>
+<h2 id=metastore-java>Metastore (Java)</h2>
+<p>A Thrift operation based API with Java bindings, described by the <code>IMetaStoreClient</code> interface. The API decouples the metastore storage layer from other Hive internals. Because Hive itself uses this internally, it is required to implement a comprehensive feature set which makes it attractive to developers who might find the other APIs lacking. It was not originally intended to be a public API although it became public in version 1.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-3280>HIVE-3280</a>) and there is a proposal that it be documented more fully (<a href=https://issues.apache.org/jira/browse/HIVE-9363>HIVE-9363</a>). Anecdotally, its use outside of the Hive project is not currently recommended.</p>
+<p>TODO: API usage</p>
+<p>There are numerous ways of instantiating the metastore API including: <code>HCatUtil.getHiveMetastoreClient()</code>, <code>new HiveMetaStoreClient.HiveMetaStoreClient(...)</code>. It may be useful to make some recommendations on the preferred approach.</p>
+<h2 id=webhcat-rest>WebHCat (REST)</h2>
+<p>WebHCat is a REST operation based API for <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog_33299065/>HCatalog</a>. This is well <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference_34015762/>documented on the wiki</a>.</p>
+<p>This not actively maintained and likely not be supported in future releases. For job submission, consider using Oozie or similar tools. For DDL, use JDBC.</p>
+<h2 id=streaming-data-ingest-java>Streaming Data Ingest (Java)</h2>
+<p>Operation based Java API focused on the writing of continuous streams of data into transactional tables using Hive’s <a href=https://hive.apache.org/docs/latest/user/hive-transactions_40509723/>ACID</a> feature. New data is inserted into tables using small batches and short-lived transactions. Documented <a href=https://hive.apache.org/docs/latest/user/streaming-data-ingest_40509746/>on the wiki</a> and has <a href=http://htmlpreview.github.io/?https://github.com/apache/hive/blob/master/hcatalog/streaming/src/java/org/apache/hive/hcatalog/streaming/package.html>package level Javadoc</a>. Introduced in Hive version 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-5687>HIVE-5687</a>).</p>
+<h2 id=streaming-mutation-java>Streaming Mutation (Java)</h2>
+<p>Operation based Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s <a href=https://hive.apache.org/docs/latest/user/hive-transactions_40509723/>ACID</a> feature. Large volumes of mutations are applied atomically in a single long-lived transaction. Documented <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-streaming-mutation-api_61337025/>on the wiki</a>. Scheduled for release in Hive version 2.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-10165>HIVE-10165</a><a href=https://issues.apache.org/jira/browse/HIVE-5687>).</a></p>
+<h2 id=hive-jdbc-jdbc>hive-jdbc (JDBC)</h2>
+<p>JDBC API supported by Hive. It supports most of the functionality in JDBC spec.</p>
+<h2 id=comments>Comments:</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>Page created after <a href="https://issues.apache.org/jira/browse/HIVE-12285?focusedCommentId=14981551&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-14981551">an interesting discussion</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Posted by teabot at Oct 30, 2015 17:09
+|</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

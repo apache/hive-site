@@ -1,0 +1,414 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Streaming Data Ingest</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--streaming-data-ingest>Apache Hive : Streaming Data Ingest</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--streaming-data-ingest>Apache Hive : Streaming Data Ingest</a></li>
+<li><a href=#hive-3-streaming-api>Hive 3 Streaming API</a></li>
+<li><a href=#hive-hcatalog-streaming-api>Hive HCatalog Streaming API</a>
+<ul>
+<li>
+<ul>
+<li><a href=#streaming-mutation-api>Streaming Mutation API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#streaming-requirements>Streaming Requirements</a></li>
+<li><a href=#limitations>Limitations</a></li>
+<li><a href=#api-usage>API Usage</a>
+<ul>
+<li><a href=#transaction-and-connection-management>Transaction and Connection Management</a>
+<ul>
+<li><a href=#hiveendpoint>HiveEndPoint</a></li>
+<li><a href=#streamingconnection>StreamingConnection</a></li>
+<li><a href=#transactionbatch>TransactionBatch</a></li>
+<li><a href=#notes-about-the-hiveconf-object>Notes about the HiveConf Object</a></li>
+</ul>
+</li>
+<li><a href=#io--writing-data>I/O – Writing Data</a>
+<ul>
+<li><a href=#recordwriter>RecordWriter</a></li>
+<li><a href=#delimitedinputwriter>DelimitedInputWriter</a></li>
+<li><a href=#strictjsonwriter>StrictJsonWriter</a></li>
+<li><a href=#strictregexwriter>StrictRegexWriter</a></li>
+<li><a href=#abstractrecordwriter>AbstractRecordWriter</a></li>
+</ul>
+</li>
+<li><a href=#error-handling>Error Handling</a></li>
+</ul>
+</li>
+<li><a href=#example-non-secure-mode>Example – Non-secure Mode</a></li>
+<li><a href=#example-securestreaming>Example – Secure Streaming</a></li>
+<li><a href=#knowledge-base>Knowledge Base</a></li>
+</ul>
+</nav>
+</aside>
+<h1 id=hive-3-streaming-api>Hive 3 Streaming API</h1>
+<p><a href=https://cwiki.apache.org/confluence/display/Hive/Streaming+Data+Ingest+V2>Hive 3 Streaming API Documentation</a> - new API available in Hive 3</p>
+<h1 id=hive-hcatalog-streaming-api>Hive HCatalog Streaming API</h1>
+<p>Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. Insertion of new data into an existing partition is not permitted. Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table. Once data is committed it becomes immediately visible to all Hive queries initiated subsequently.</p>
+<p>This API is intended for streaming clients such as <a href=http://flume.apache.org/>Flume</a> and <a href=https://storm.incubator.apache.org/>Storm</a>, which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see <a href=https://hive.apache.org/docs/latest/user/hive-transactions_40509723/>Hive Transactions</a>).</p>
+<p>The Classes and interfaces part of the Hive streaming API are broadly categorized into two sets. The first set provides support for connection and transaction management while the second set provides I/O support. Transactions are managed by the metastore. Writes are performed directly to HDFS.</p>
+<p>Streaming to <strong>unpartitioned</strong> tables is also supported. The API supports Kerberos authentication starting in <a href=https://issues.apache.org/jira/browse/HIVE-7508>Hive 0.14</a>.</p>
+<p><strong>Note on packaging</strong>: The APIs are defined in the Java package org.apache.hive.hcatalog.streaming and part of the <em>hive-hcatalog-streaming</em> Maven module in Hive.</p>
+<h3 id=streaming-mutation-api>Streaming Mutation API</h3>
+<p>Starting in release 2.0.0, Hive offers another API for mutating (insert/update/delete) records into transactional tables using Hive’s ACID feature. See <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-streaming-mutation-api_61337025/>HCatalog Streaming Mutation API</a> for details and a comparison with the streaming data ingest API that is described in this document.</p>
+<h1 id=streaming-requirements>Streaming Requirements</h1>
+<p>A few things are required to use streaming.</p>
+<ol>
+<li>The following settings are required in hive-site.xml to enable ACID support for streaming:
+<ol>
+<li><strong>hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</strong></li>
+<li><strong>hive.compactor.initiator.on = true</strong>(See more important details <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>here</a>)</li>
+<li><strong>hive.compactor.cleaner.on = true</strong> (From Hive 4.0.0 onwards. See more important details <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>here</a>)</li>
+<li><strong>hive.compactor.worker.threads</strong> > <strong>0</strong></li>
+</ol>
+</li>
+<li><em>“stored as orc”</em> must be specified during <a href=#table-creation>table creation</a>. Only <a href=https://hive.apache.org/docs/latest/language/languagemanual-orc_31818911/>ORC storage format</a> is supported currently.</li>
+<li>tblproperties(&ldquo;transactional&rdquo;=&ldquo;true&rdquo;) must be set on the table during creation.</li>
+<li>The Hive table must be <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl-bucketedtables_27362035/>bucketed</a>, but not sorted. So something like “clustered by (colName) into <em>10</em> buckets” must be specified during table creation. The number of buckets is ideally the same as the number of streaming writers.</li>
+<li>User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.</li>
+<li>(Temporary requirements) <strong>When issuing queries</strong> on streaming tables, the client needs to set
+<ol>
+<li><strong>hive.vectorized.execution.enabled</strong>  to  <strong>false</strong> (for Hive version &lt; 0.14.0)</li>
+<li><strong>hive.input.format</strong>  to  <strong>org.apache.hadoop.hive.ql.io.HiveInputFormat</strong></li>
+</ol>
+</li>
+</ol>
+<h1 id=limitations>Limitations</h1>
+<p>Out of the box, currently, the streaming API only provides support for streaming delimited input data (such as CSV, tab separated, etc.) and JSON (strict syntax) formatted data. Support for other input formats can be provided by additional implementations of the <em>RecordWriter</em> interface.</p>
+<p>Currently only ORC is supported for the format of the destination table.</p>
+<h1 id=api-usage>API Usage</h1>
+<h2 id=transaction-and-connection-management>Transaction and Connection Management</h2>
+<h3 id=hiveendpoint>HiveEndPoint</h3>
+<p>The class HiveEndPoint describes a Hive End Point to connect to. This describes the database, table and partition names. Invoking the newConnection method on it establishes a connection to the Hive MetaStore for streaming purposes. It returns a StreamingConnection object. Multiple connections can be established on the same endpoint. StreamingConnection can then be used to initiate new transactions for performing I/O.</p>
+<p>It is very likely that in a setup where data is being streamed continuously the data is added into new partitions periodically. Either the Hive admin can pre-create the necessary partitions or the streaming clients can create them as needed. HiveEndPoint.newConnection() accepts a boolean argument to indicate whether the partition should be auto created. Partition creation being an atomic action, multiple clients can race to create the partition, but only one will succeed, so streaming clients do not have to synchronize when creating a partition.</p>
+<p>Transactions are implemented slightly differently than traditional database systems. Each transaction has an id and multiple transactions are grouped into a “Transaction Batch”. This helps grouping records from multiple transactions into fewer files (rather than 1 file per transaction). After connection, a streaming client first requests a new batch of transactions. In response it receives a set of Transaction Ids that are part of the transaction batch. Subsequently the client proceeds to consume one transaction id at a time by initiating new Transactions. The client will write() one or more records per transaction and either commits or aborts the current transaction before switching to the next one. Each TransactionBatch.write() invocation automatically associates the I/O attempt with the current Txn ID. The user of the streaming client process, needs to have write permissions to the partition or table. Kerberos based authentication is required to acquire connections as a specific user. See <a href=#secure-streaming-example>secure streaming example</a> below.</p>
+<p><strong>Concurrency Note:</strong> I/O can be performed on multiple TransactionBatches concurrently. However the transactions within a transaction batch must be consumed sequentially.</p>
+<p>See the <a href=http://hive.apache.org/javadocs/r1.2.1/api/org/apache/hive/hcatalog/streaming/HiveEndPoint.html>Javadoc for HiveEndPoint</a> for more information.  Generally a user will establish the destination info with HiveEndPoint object and then calls <em>newConnection</em> to make a connection and get back a StreamingConnection object.</p>
+<h3 id=streamingconnection>StreamingConnection</h3>
+<p>The StreamingConnection class is used to acquire batches of transactions.  Once the connection has been provided by HiveEndPoint the application will generally enter a loop where it calls <em>fetchTransactionBatch</em> and writes a series of transactions.  When closing down, the application should call <em>close</em>.  See the <a href=http://hive.apache.org/javadocs/r1.2.1/api/org/apache/hive/hcatalog/streaming/StreamingConnection.html>Javadoc</a> for more information.  </p>
+<h3 id=transactionbatch>TransactionBatch</h3>
+<p>TransactionBatch is used to write a series of transactions. There is one file created on HDFS per TxnBatch in each bucket. The API examines each record to decide which bucket it belongs to and writes it to the appropriate bucket. If the table has 5 buckets, there will be 5 files (some of them could be empty) for the TxnBatch (before compaction kicks in).  Prior to <a href=https://issues.apache.org/jira/browse/HIVE-11983>Hive 1.3.0</a>, a bug in the API&rsquo;s bucket computation logic caused incorrect distribution of records into buckets, which could lead to incorrect data returned from queries using bucket join algorithms.</p>
+<p>For each transaction in the TxnBatch, the application calls <em>beginNextTransaction</em>, <em>write,</em> and then <em>commit</em> or <em>abort</em> as appropriate. See the <a href=http://hive.apache.org/javadocs/r1.2.1/api/org/apache/hive/hcatalog/streaming/TransactionBatch.html>Javadoc</a> for details.  A Transaction cannot include data from more than one partition.</p>
+<p>Transactions in a TransactionBatch are eventually expired by the Metastore if not committed or aborted after <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>hive.txn.timeout</a> secs. TrasnactionBatch class provides a <strong>heartbeat()</strong> method to prolong the lifetime of unused transactions in the batch.  A good rule of thumb is to send call heartbeat() at (hive.txn.timeout/2) intervals after creating a TransactionBatch.  This is sufficient to keep an inactive transaction alive but not load the metastore unnecessarily.</p>
+<h4 id=usage-guidelines>Usage Guidelines</h4>
+<p>Generally, the more events are included in each transaction the more throughput can be achieved.  It&rsquo;s common commit either after a certain number of events or after a certain time interval, whichever comes first.  The later ensures that when event flow rate is variable, transactions don&rsquo;t stay open too long.  There is no practical limit on how much data can be included in a single transaction.  The only concern is amount of data which will need to be replayed if the transaction fails.  The concept of a TransactionBatch serves to reduce the number of files created by SteramingAPI in HDFS.  Since all transactions in a given batch write to the same physical file (per bucket), a partition can only be compacted up to the the level of the earliest transaction of any batch which contains an open transaction.  Thus TranactionBatches should not be made excessively large.  It makes sense to include a timer to close a TransactionBatch (even if it has unused transactions) after some amount of time.</p>
+<p><strong>Note:</strong> <a href=https://issues.apache.org/jira/browse/HIVE-12307>Hive 1.3.0</a> onwards, invoking TxnBatch.close() will cause all unused transaction in the current TxnBatch to be aborted.</p>
+<h3 id=notes-about-the-hiveconf-object>Notes about the HiveConf Object</h3>
+<p>HiveEndPoint.newConnection() accepts a HiveConf argument. This can either be set to null, or a pre-created HiveConf object can be provided. If this is null, a HiveConf object will be created internally and used for the connection. When a HiveConf object is instantiated, if the directory containing the hive-site.xml is part of the java classpath, then the HiveConf object will be initialized with values from it. If no hive-site.xml is found, then the object will be initialized with defaults. Pre-creating this object and reusing it across multiple connections may have a noticeable impact on performance if connections are being opened very frequently (for example several times a second). Secure connection relies on &lsquo;<a href=#hive-metastore-kerberos-principal>hive.metastore.kerberos.principal</a>&rsquo; being set correctly in the HiveConf object.</p>
+<p>Regardless of what values are set in hive-site.xml or custom HiveConf, the API will internally override some settings in it to ensure correct streaming behavior. The below is the list of settings that are overridden:</p>
+<ul>
+<li><strong>hive.txn.manager</strong> = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</li>
+<li><strong>hive.support.concurrency</strong> = true</li>
+<li><strong>hive.metastore.execute.setugi</strong> = true</li>
+<li><strong>hive.execution.engine</strong> = mr</li>
+</ul>
+<h2 id=io--writing-data>I/O – Writing Data</h2>
+<p>These classes and interfaces provide support for writing the data to Hive within a transaction.</p>
+<h3 id=recordwriter>RecordWriter</h3>
+<p>RecordWriter is the base interface implemented by all Writers. A Writer is responsible for taking a record in the form of a byte[] containing data in a known format (such as CSV) and writing it out in the format supported by Hive streaming. A RecordWriter may reorder or drop fields from the incoming record if necessary to map them to the corresponding columns in the Hive Table.  A streaming client will instantiate an appropriate RecordWriter type and pass it to TransactionBatch. The streaming client does not directly interact with RecordWriter therafter. The TransactionBatch will thereafter use and manage the RecordWriter instance to perform I/O.  See the <a href=http://hive.apache.org/javadocs/r1.2.1/api/index.html?org/apache/hive/hcatalog/streaming/RecordWriter.html>Javadoc</a> for details.</p>
+<p>A RecordWriter&rsquo;s primary functions are:</p>
+<ol>
+<li>Modify input record: This may involve dropping fields from input data if they don’t have corresponding table columns, adding nulls in case of missing fields for certain columns, and changing the order of incoming fields to match the order of fields in the table. This task requires understanding of incoming data format. Not all formats (for example JSON, which includes field names in the data) need this step.</li>
+<li>Encode modified record: The encoding involves serialization using an appropriate <a href=https://hive.apache.org/docs/latest/user/serde_27362059/>Hive SerDe</a>.</li>
+<li>Identify the bucket to which the record belongs</li>
+<li>Write encoded record to Hive using the <a href=https://hive.apache.org/javadocs/r1.2.1/api/org/apache/hadoop/hive/ql/io/AcidOutputFormat.html>AcidOutputFormat</a>&rsquo;s record updater for the appropriate bucket.</li>
+</ol>
+<h3 id=delimitedinputwriter>DelimitedInputWriter</h3>
+<p>Class DelimitedInputWriter implements the RecordWriter interface. It accepts input records that in delimited formats (such as CSV) and writes them to Hive. It reorders the fields if needed, and converts the record into an Object using LazySimpleSerde, which is then passed on to the underlying AcidOutputFormat&rsquo;s record updater for the appropriate bucket.  See <a href=http://hive.apache.org/javadocs/r1.2.1/api/index.html?org/apache/hive/hcatalog/streaming/DelimitedInputWriter.html>Javadoc</a>.</p>
+<h3 id=strictjsonwriter>StrictJsonWriter</h3>
+<p>Class StrictJsonWriter  implements the RecordWriter interface. It accepts input records that in strict JSON format and writes them to Hive. It converts the JSON record directly into an Object using JsonSerde, which is then passed on to the underlying AcidOutputFormat&rsquo;s record updater for the appropriate bucket.  See <a href=http://hive.apache.org/javadocs/r1.2.1/api/index.html?org/apache/hive/hcatalog/streaming/StrictJsonWriter.html>Javadoc</a>.</p>
+<h3 id=strictregexwriter>StrictRegexWriter</h3>
+<p>Class StrictRegexWriter implements the RecordWriter interface. It accepts input records, regex that in text format and writes them to Hive. It converts the text record using proper regex directly into an Object using RegexSerDe, which is then passed on to the underlying AcidOutputFormat&rsquo;s record updater for the appropriate bucket. See <a href=http://hive.apache.org/javadocs/r1.2.2/api/index.html?org/apache/hive/hcatalog/streaming/StrictRegexWriter.html>Javadoc</a>.  Available in <a href=https://issues.apache.org/jira/browse/HIVE-15691>Hive 1.2.2+ and 2.3.0+</a><a href=http://hive.apache.org/javadocs/r1.2.1/api/index.html?org/apache/hive/hcatalog/streaming/StrictRegexWriter.html>.</a></p>
+<h3 id=abstractrecordwriter>AbstractRecordWriter</h3>
+<p>This is a base class that contains some of the common code needed by RecordWriter objects such as schema lookup and computing the bucket into which a record should belong.</p>
+<h2 id=error-handling>Error Handling</h2>
+<p>It&rsquo;s imperative for proper functioning of the system that the client of this API handle errors correctly.  Once a <code>TransactionBatch</code> is obtained, if any exception is thrown from <code>TransactionBatch</code> (except <code>SerializationError</code>) should cause the client to call <code>TransactionBatch.abort()</code> to abort current transaction and then <code>TransactionBatch.close()</code> and start a new batch to write more data and/or redo the work of the last transaction during which the failure occurred.  Not following this may, in rare cases, cause file corruption.  Furthermore, <code>StreamingException</code> should ideally cause the client to perform exponential back off before starting new batch.  This will help the cluster stabilize since the most likely reason for these failures is HDFS overload.</p>
+<p><code>SerializationError</code> indicates that a given tuple could not be parsed.  The client may choose to throw away such tuples or send them to a dead letter queue.  After seeing this exception, more data can be written to the current transaction and further transactions in the same <code>TransactionBatch</code>.</p>
+<h1 id=example-non-secure-mode>Example – Non-secure Mode</h1>
+<pre tabindex=0><code>///// Stream five records in two transactions /////
+ 
+// Assumed HIVE table Schema:
+create table alerts ( id int , msg string )
+     partitioned by (continent string, country string)
+     clustered by (id) into 5 buckets
+     stored as orc tblproperties(&quot;transactional&quot;=&quot;true&quot;); // currently ORC is required for streaming
+ 
+ 
+//-------   MAIN THREAD  ------- //
+String dbName = &quot;testing&quot;;
+String tblName = &quot;alerts&quot;;
+ArrayList&lt;String&gt; partitionVals = new ArrayList&lt;String&gt;(2);
+partitionVals.add(&quot;Asia&quot;);
+partitionVals.add(&quot;India&quot;);
+String serdeClass = &quot;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&quot;;
+ 
+HiveEndPoint hiveEP = new HiveEndPoint(&quot;thrift://x.y.com:9083&quot;, dbName, tblName, partitionVals);
+
+.. spin up threads ..
+
+//-------   Thread 1  -------//
+StreamingConnection connection = hiveEP.newConnection(true);
+DelimitedInputWriter writer =
+                     new DelimitedInputWriter(fieldNames,&quot;,&quot;, hiveEP);
+TransactionBatch txnBatch = connection.fetchTransactionBatch(10, writer);
+
+///// Batch 1 - First TXN
+txnBatch.beginNextTransaction();
+txnBatch.write(&quot;1,Hello streaming&quot;.getBytes());
+txnBatch.write(&quot;2,Welcome to streaming&quot;.getBytes());
+txnBatch.commit();
+
+if(txnBatch.remainingTransactions() &gt; 0) {
+///// Batch 1 - Second TXN
+txnBatch.beginNextTransaction();
+txnBatch.write(&quot;3,Roshan Naik&quot;.getBytes());
+txnBatch.write(&quot;4,Alan Gates&quot;.getBytes());
+txnBatch.write(&quot;5,Owen O’Malley&quot;.getBytes());
+txnBatch.commit();
+
+txnBatch.close();
+connection.close();
+}
+
+txnBatch = connection.fetchTransactionBatch(10, writer);
+
+///// Batch 2 - First TXN
+txnBatch.beginNextTransaction();
+txnBatch.write(&quot;6,David Schorow&quot;.getBytes());
+txnBatch.write(&quot;7,Sushant Sowmyan&quot;.getBytes());
+txnBatch.commit();
+
+if(txnBatch.remainingTransactions() &gt; 0) {
+///// Batch 2 - Second TXN
+txnBatch.beginNextTransaction();
+txnBatch.write(&quot;8,Ashutosh Chauhan&quot;.getBytes());
+txnBatch.write(&quot;9,Thejas Nair&quot; getBytes());
+txnBatch.commit();
+
+txnBatch.close();
+}
+
+connection.close();
+
+//-------   Thread 2  -------//
+
+StreamingConnection connection2 = hiveEP.newConnection(true);
+DelimitedInputWriter writer2 =
+                     new DelimitedInputWriter(fieldNames,&quot;,&quot;, hiveEP);
+TransactionBatch txnBatch2= connection.fetchTransactionBatch(10, writer2);
+
+///// Batch 1 - First TXN
+txnBatch2.beginNextTransaction();
+txnBatch2.write(&quot;21,Venkat Ranganathan&quot;.getBytes());
+txnBatch2.write(&quot;22,Bowen Zhang&quot;.getBytes());
+txnBatch2.commit();
+
+///// Batch 1 - Second TXN
+txnBatch2.beginNextTransaction();
+txnBatch2.write(&quot;23,Venkatesh Seetaram&quot;.getBytes());
+txnBatch2.write(&quot;24,Deepesh Khandelwal&quot;.getBytes());
+txnBatch2.commit();
+
+txnBatch2.close();
+connection.close();
+
+txnBatch = connection.fetchTransactionBatch(10, writer);
+
+///// Batch 2 - First TXN
+txnBatch.beginNextTransaction();
+txnBatch.write(&quot;26,David Schorow&quot;.getBytes());
+txnBatch.write(&quot;27,Sushant Sowmyan&quot;.getBytes());
+txnBatch.commit();
+
+txnBatch2.close();
+connection2.close();
+</code></pre><h1 id=example-securestreaming>Example – Secure Streaming</h1>
+<p>To connect via Kerberos to a secure Hive metastore, a UserGroupInformation (UGI) object is required. This UGI object must be acquired externally and passed as argument to the EndPoint.newConnection. All subsequent internal operations carried out using that connection object, such as acquiring transaction batch, writes and commits, will be will be automatically wrapped internally in a ugi.doAs block as necessary.</p>
+<p>**Important:**To connect using Kerberos, the &lsquo;authenticatedUser&rsquo; argument to EndPoint.newConnection() should have been used to do a Kerberos login.  Additionally the &lsquo;hive.metastore.kerberos.principal&rsquo; setting should be set correctly either in hive-site.xml or in the &lsquo;conf&rsquo; argument (if not null). If using hive-site.xml, its directory should be included in the classpath.</p>
+<pre tabindex=0><code>import org.apache.hadoop.security.UserGroupInformation;
+
+HiveEndPoint hiveEP2 = ... ;
+UserGroupInformation ugi = .. authenticateWithKerberos(principal,keytab);
+StreamingConnection secureConn = hiveEP2.newConnection(true, null, ugi);
+
+DelimitedInputWriter writer3 = new DelimitedInputWriter(fieldNames, &quot;,&quot;, hiveEP2);
+
+TransactionBatch txnBatch3= secureConn.fetchTransactionBatch(10, writer3);
+
+///// Batch 1 - First TXN – over secure connection
+txnBatch3.beginNextTransaction();
+txnBatch3.write(&quot;28,Eric Baldeschwieler&quot;.getBytes());
+txnBatch3.write(&quot;29,Ari Zilka&quot;.getBytes());
+txnBatch3.commit();
+
+txnBatch3.close();
+secureConn.close();
+</code></pre><h1 id=knowledge-base>Knowledge Base</h1>
+<ul>
+<li><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TalksandPresentations>Talks and Presentations</a></li>
+<li><a href=https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html>Lessons learnt from NiFi streaming data to Hive transactional tables</a></li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

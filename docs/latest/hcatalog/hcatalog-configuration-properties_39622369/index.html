@@ -1,0 +1,304 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HCatalog Configuration Properties</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hcatalog-configuration-properties>Apache Hive : HCatalog Configuration Properties</h1>
+<p>Apache HCatalog&rsquo;s behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish. </p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hcatalog-configuration-properties>Apache Hive : HCatalog Configuration Properties</a>
+<ul>
+<li><a href=#setup>Setup</a></li>
+<li><a href=#storage-directives>Storage Directives</a></li>
+<li><a href=#cache-behaviour-directives>Cache Behaviour Directives</a></li>
+<li><a href=#input-split-generation-behaviour>Input Split Generation Behaviour</a></li>
+<li><a href=#data-promotion-behaviour>Data Promotion Behaviour</a></li>
+<li><a href=#hcatrecordreader-error-tolerance-behaviour>HCatRecordReader Error Tolerance Behaviour</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=setup>Setup</h2>
+<p>The properties described in this page are meant to be job-level properties set on HCatalog through the jobConf passed into it. This means that this page is relevant for Pig users of <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore_34013511/>HCatLoader/HCatStorer</a>, or MapReduce users of <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput_34013776/>HCatInputFormat/HCatOutputFormat</a>. For a MapReduce user of HCatalog, these must be present as key-values in the Configuration (JobConf/Job/JobContext) used to instantiate HCatOutputFormat or HCatInputFormat. For Pig users of HCatStorer, these parameters are set using the Pig &ldquo;set&rdquo; command before instantiating an HCatLoader/HCatStorer.</p>
+<h2 id=storage-directives>Storage Directives</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> hcat.pig.storer.external.location</td>
+<td>not set</td>
+<td>An override to specify where HCatStorer will write to, defined from Pig jobs, either directly by the user, or by using org.apache.hive.hcatalog.pig.HCatStorerWrapper. HCatalog will write to this specified directory, rather than writing to the table or partition directory calculated by the metadata. This will be used in lieu of the table directory if this is a table-level write (unpartitioned table write) or in lieu of the partition directory if this is a partition-level write. This parameter is used only for non-dynamic-partitioning jobs which have multiple write destinations.</td>
+</tr>
+<tr>
+<td> hcat.dynamic.partitioning.custom.pattern</td>
+<td>not set</td>
+<td>For a dynamic partitioning job, simply specifying a custom directory is not sufficient since the job writes to multiple destinations, and thus, instead of a directory specification, it requires a pattern specification. That is where this parameter comes in. For example, given a table partitioned by the keys country and state, with a root directory location of /apps/hive/warehouse/geo/, a dynamic partition write into this table that writes partitions (country=US,state=CA) & (country=IN,state=KA) would create two directories: /apps/hive/warehouse/geo/country=US/state=CA/ and /apps/hive/warehouse/geo/country=IN/state=KA/. However, specifying hcat.dynamic.partitioning.custom.pattern="/ext/geo/${country}-${state}" would create the following two partition directories: /ext/geo/US-CA and /ext/geo/IN-KA. Thus, it allows the user to specify a custom directory location pattern for all writes, and will interpolate each variable it sees when attempting to create a destination location for the partitions. See <a href=#dynamic-partitioning:-external-tables>Dynamic Partitioning: External Tables</a> for another example.</td>
+</tr>
+<tr>
+<td>hcat.append.limit(Hive 0.15.0 and later)</td>
+<td>not set</td>
+<td>hcat.append.limit allows an HCatalog user to specify a custom append limit. By default, while appending to an existing directory HCatalog will attempt to avoid naming clashes and try to append <code>_a_*NNN*</code>, where <em><code>NNN</code></em> is a number, to the desired filename to avoid clashes. However, by default, it only tries for <em><code>NNN</code></em> from 0 to 999 before giving up. This can cause an issue for some tables with an extraordinarily large number of files. Ideally, this should be fixed by the user changing their usage pattern and doing some manner of compaction; however, setting this parameter can be used as a temporary fix to increase that limit. (Added in Hive 0.15.0 with <a href=https://issues.apache.org/jira/browse/HIVE-9381>HIVE-9381</a>.)</td>
+</tr>
+<tr>
+<td>hcat.input.ignore.invalid.path</td>
+<td>false</td>
+<td>hcat.input.ignore.invalid.path allows an HCatalog user to specify whether to ignore the path and return an empty result for it when trying to get a split for an invalid input path. The default is false, and user gets an InvalidInputException if the input path is invalid. (Added in Hive 2.1.0 with <a href=https://issues.apache.org/jira/browse/HIVE-13509>HIVE-13509</a>.)</td>
+</tr>
+</tbody>
+</table>
+<h2 id=cache-behaviour-directives>Cache Behaviour Directives</h2>
+<p>HCatalog maintains a cache of HiveClients to talk to the metastore, managing a cache of 1 metastore client per thread, defaulting to an expiry of 120 seconds. For people that wish to modify the behaviour of this cache, a few parameters are provided:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hcatalog.hive.client.cache.expiry.time</td>
+<td>120</td>
+<td>Allows users to override the expiry time specified – this is an int, and specifies the number of seconds until a cache entry expires.</td>
+</tr>
+<tr>
+<td>hcatalog.hive.client.cache.disabled</td>
+<td>false</td>
+<td>Allows people to disable the cache altogether if they wish to. This is useful in highly multithreaded use cases. </td>
+</tr>
+</tbody>
+</table>
+<p>Note: The two above properties begin with &ldquo;hcatalog.&rdquo; rather than &ldquo;hcat.&rdquo;</p>
+<h2 id=input-split-generation-behaviour>Input Split Generation Behaviour</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hcat.desired.partition.num.splits</td>
+<td>not set</td>
+<td>This is a hint/guidance that can be provided to HCatalog to pass on to underlying InputFormats, to produce a &ldquo;desired&rdquo; number of splits per partition. This is useful for increasing parallelism by increasing the number of splits generated on a few large files. It is not as useful in cases where we would want to reduce the number of splits for a large number of files. It is not at all useful in cases where there are a large number of partitions that this job will read. Also note that this is merely an optimization hint, and it is not guaranteed that the underlying layer will be capable of using this optimization. Additionally, MapReduce parameters mapred.min.split.size and mapred.max.split.size can be used in conjunction with this parameter to tweak or optimize jobs.</td>
+</tr>
+</tbody>
+</table>
+<h2 id=data-promotion-behaviour>Data Promotion Behaviour</h2>
+<p>In some cases (such as some older versions of Pig), users of HCatalog may not support all the datatypes supported by Hive. There are a few configuration parameters provided to handle data promotions and conversions which allow them to read data through HCatalog. On the write side, it is expected that the user pass in HCatRecords with valid datatypes that match the schema.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hcat.data.convert.boolean.to.integer</td>
+<td>false</td>
+<td>promotes boolean to int on read from HCatalog</td>
+</tr>
+<tr>
+<td>hcat.data.tiny.small.int.promotion</td>
+<td>false</td>
+<td>promotes tinyint or smallint to int on read from HCatalog</td>
+</tr>
+</tbody>
+</table>
+<h2 id=hcatrecordreader-error-tolerance-behaviour>HCatRecordReader Error Tolerance Behaviour</h2>
+<p>While reading, it is understandable that data might contain errors, but we may not want to completely abort a task due to a couple of errors. These parameters configure how many errors HCatalog can accept before failing the task.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hcat.input.bad.record.threshold</td>
+<td>0.0001f</td>
+<td>A float parameter defaults to 0.0001f, which means it can deal with 1 error every 10,000 rows and still not error out. Any greater and it will.</td>
+</tr>
+<tr>
+<td>hcat.input.bad.record.min</td>
+<td>2</td>
+<td>An int parameter defaults to 2, which is the minimum number of bad records encountered before applying the hcat.input.bad.record.threshold parameter. This is to prevent an initial or early bad record from causing a task abort because the ratio of errors was too high. </td>
+</tr>
+</tbody>
+</table>
+<p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-installhcat_34013403/>Installation from Tarball</a><br>
+Next: <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore_34013511/>Load and Store Interfaces</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LanguageManual JoinOptimization</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--languagemanual-join-optimization>Apache Hive : LanguageManual Join Optimization</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-join-optimization>Apache Hive : LanguageManual Join Optimization</a>
+<ul>
+<li><a href=#improvements-to-the-hive-optimizer>Improvements to the Hive Optimizer</a></li>
+<li><a href=#star-join-optimization>Star Join Optimization</a>
+<ul>
+<li><a href=#star-schema-example>Star Schema Example</a></li>
+<li><a href=#prior-support-for-mapjoin>Prior Support for MAPJOIN</a></li>
+<li><a href=#enhancements-for-star-joins>Enhancements for Star Joins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=improvements-to-the-hive-optimizer>Improvements to the Hive Optimizer</h2>
+<p>Version</p>
+<p>The join optimizations described here were added in Hive version 0.11.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3784>HIVE-3784</a> and related JIRAs.</p>
+<p>This document describes optimizations of Hive&rsquo;s query execution planning to improve the efficiency of joins and reduce the need for user hints.</p>
+<p>Hive automatically recognizes various use cases and optimizes for them. Hive 0.11 improves the optimizer for these cases:</p>
+<ul>
+<li>Joins where one side fits in memory. In the new optimization:
+<ul>
+<li>that side is loaded into memory as a hash table</li>
+<li>only the larger table needs to be scanned</li>
+<li>fact tables have a smaller footprint in memory</li>
+</ul>
+</li>
+<li>Star-schema joins</li>
+<li>Hints are no longer needed for many cases.</li>
+<li>Map joins are automatically picked up by the optimizer.</li>
+</ul>
+<h2 id=star-join-optimization>Star Join Optimization</h2>
+<p>A simple schema for decision support systems or data warehouses is the star schema, where events are collected in large <em>fact tables</em>, while smaller supporting tables (<em>dimensions</em>) are used to describe the data.</p>
+<p>The <a href=http://www.tpc.org/tpcds/>TPC DS</a> is an example of such a schema. It models a typical retail warehouse where the events are sales and typical dimensions are date of sale, time of sale, or demographic of the purchasing party. Typical queries aggregate and filter fact tables along properties in the dimension tables.</p>
+<h3 id=star-schema-example>Star Schema Example</h3>
+<pre tabindex=0><code>Select count(*) cnt
+From store_sales ss
+     join household_demographics hd on (ss.ss_hdemo_sk = hd.hd_demo_sk)
+     join time_dim t on (ss.ss_sold_time_sk = t.t_time_sk)
+     join store s on (s.s_store_sk = ss.ss_store_sk)
+Where
+     t.t_hour = 8
+     t.t_minute &gt;= 30
+     hd.hd_dep_count = 2
+order by cnt;
+
+</code></pre><h3 id=prior-support-for-mapjoin>Prior Support for MAPJOIN</h3>
+<p>Hive supports MAPJOINs, which are well suited for this scenario – at least for dimensions small enough to fit in memory. Before release 0.11, a MAPJOIN could be invoked either through an optimizer hint:</p>
+<pre tabindex=0><code>select /*+ MAPJOIN(time_dim) */ count(*) from
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
+
+</code></pre><p>or via auto join conversion:</p>
+<pre tabindex=0><code>set hive.auto.convert.join=true;
+select count(*) from
+store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
+
+</code></pre><p>The default value for <a href=#hive-auto-convert-join>hive.auto.convert.join</a> was false in Hive 0.10.0.  Hive 0.11.0 changed the default to true (<a href=https://issues.apache.org/jira/browse/HIVE-3297>HIVE-3297</a>). Note that <a href=#hive-default-xml-template>hive-default.xml.template</a> incorrectly gives the default as false in Hive 0.11.0 through 0.13.1.</p>
+<p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through. The prior implementation has this division of labor:</p>
+<ul>
+<li>Local work:
+<ul>
+<li>read records via standard table scan (including filters and projections) from source on local machine</li>
+<li>build hashtable in memory</li>
+<li>write hashtable to local disk</li>
+<li>upload hashtable to dfs</li>
+<li>add hashtable to distributed cache</li>
+</ul>
+</li>
+<li>Map task
+<ul>
+<li>read hashtable from local disk (distributed cache) into memory</li>
+<li>match records' keys against hashtable</li>
+<li>combine matches and write to output</li>
+</ul>
+</li>
+<li>No reduce task</li>
+</ul>
+<h4 id=limitations-of-prior-implementation>Limitations of Prior Implementation</h4>
+<p>The MAPJOIN implementation prior to Hive 0.11 has these limitations:</p>
+<ul>
+<li>The mapjoin operator can only handle one key at a time; that is, it can perform a multi-table join, but only if all the tables are joined on the same key. (Typical star schema joins do not fall into this category.)</li>
+<li>Hints are cumbersome for users to apply correctly and auto conversion doesn&rsquo;t have enough logic to consistently predict if a MAPJOIN will fit into memory or not.</li>
+<li>A chain of MAPJOINs is not coalesced into a single map-only job, unless the query is written as a cascading sequence of <code>mapjoin(table, subquery(mapjoin(table, subquery....)</code>. Auto conversion never produces a single map-only job.</li>
+<li>The hashtable for the mapjoin operator has to be generated for each run of the query, which involves downloading all the data to the Hive client machine as well as uploading the generated hashtable files.</li>
+</ul>
+<h3 id=enhancements-for-star-joins>Enhancements for Star Joins</h3>
+<p>The optimizer enhancements in Hive 0.11 focus on efficient processing of the joins needed in star schema configurations. The initial work was limited to star schema joins where all dimension tables after filtering and projecting fit into memory at the same time. Scenarios where only some of the dimension tables fit into memory are now implemented as well (<a href=https://issues.apache.org/jira/browse/HIVE-3996>HIVE-3996</a>).</p>
+<p>The join optimizations can be grouped into three parts:</p>
+<ul>
+<li>Execute chains of mapjoins in the operator tree in a single map-only job, when maphints are used.</li>
+<li>Extend optimization to the auto-conversion case (generating an appropriate backup plan when optimizing).</li>
+<li>Generate in-memory hashtable completely on the task side. (Future work.)</li>
+</ul>
+<p>The following sections describe each of these optimizer enhancements.</p>
+<h4 id=optimize-chains-of-map-joins>Optimize Chains of Map Joins</h4>
+<p>The following query will produce two separate map-only jobs when executed:</p>
+<pre tabindex=0><code>select /*+ MAPJOIN(time_dim, date_dim) */ count(*) from
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk) 
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
+
+</code></pre><p>It is likely, though, that for small dimension tables the parts of both tables needed would fit into memory at the same time. This reduces the time needed to execute this query dramatically, as the fact table is only read once instead of reading it twice and writing it to HDFS to communicate between the jobs.</p>
+<h6 id=current-and-future-optimizations>Current and Future Optimizations</h6>
+<ol>
+<li>Merge M*-MR patterns into a single MR.</li>
+<li>Merge MJ->MJ into a single MJ when possible.</li>
+<li>Merge MJ* patterns into a single Map stage as a chain of MJ operators. (Not yet implemented.)</li>
+</ol>
+<p>If <code>[hive.auto.convert.join](#hive-auto-convert-join)</code> is set to true the optimizer not only converts joins to mapjoins but also merges MJ* patterns as much as possible.</p>
+<h4 id=optimize-auto-join-conversion>Optimize Auto Join Conversion</h4>
+<p>When auto join is enabled, there is no longer a need to provide the map-join hints in the query. The auto join option can be enabled with two configuration parameters:</p>
+<pre tabindex=0><code>set hive.auto.convert.join.noconditionaltask = true;
+set hive.auto.convert.join.noconditionaltask.size = 10000000;
+
+</code></pre><p>The default for <code>[hive.auto.convert.join.noconditionaltask](#hive-auto-convert-join-noconditionaltask)</code> is true which means auto conversion is enabled. (Originally the default was false – see <a href=https://issues.apache.org/jira/browse/HIVE-3784>HIVE-3784</a> – but it was changed to true by <a href=https://issues.apache.org/jira/browse/HIVE-4146>HIVE-4146</a> before Hive 0.11.0 was released.)</p>
+<p>The <a href=#size-configuration>size configuration</a> enables the user to control what size table can fit in memory. This value represents the sum of the sizes of tables that can be converted to hashmaps that fit in memory. Currently, n-1 tables of the join have to fit in memory for the map-join optimization to take effect. There is no check to see if the table is a compressed one or not and what the potential size of the table can be. The effect of this assumption on the results is discussed in the next section.</p>
+<p>For example, the previous query just becomes:</p>
+<pre tabindex=0><code>select count(*) from
+store_sales 
+join time_dim on (ss_sold_time_sk = t_time_sk)
+join date_dim on (ss_sold_date_sk = d_date_sk)
+where t_hour = 8 and d_year = 2002
+
+</code></pre><p>If time_dim and date_dim fit in the size configuration provided, the respective joins are converted to map-joins. If the sum of the sizes of the tables can fit in the configured size, then the two map-joins are combined resulting in a single map-join. This reduces the number of MR-jobs required and significantly boosts the speed of execution of this query. This example can be easily extended for multi-way joins as well and will work as expected.</p>
+<p>Outer joins offer more challenges. Since a map-join operator can only stream one table, the streamed table needs to be the one from which all of the rows are required. For the left outer join, this is the table on the left side of the join; for the right outer join, the table on the right side, etc. This means that even though an inner join can be converted to a map-join, an outer join cannot be converted. An outer join can only be converted if the table(s) apart from the one that needs to be streamed can be fit in the size configuration. A full outer join cannot be converted to a map-join at all since both tables need to be streamed.</p>
+<p>Auto join conversion also affects the sort-merge-bucket joins.</p>
+<p>Version 0.13.0 and later</p>
+<p>Hive 0.13.0 introduced <code>[hive.auto.convert.join.use.nonstaged](#hive-auto-convert-join-use-nonstaged)</code> with a default of false (<a href=https://issues.apache.org/jira/browse/HIVE-6144>HIVE-6144</a>).</p>
+<p>For conditional joins, if the input stream from a small alias can be directly applied to the join operator without filtering or projection, then it does not need to be pre-staged in the distributed cache via a MapReduce local task. Setting <code>hive.auto.convert.join.use.nonstaged</code> to true avoids pre-staging in those cases.</p>
+<h6 id=current-optimization>Current Optimization</h6>
+<ol>
+<li>Group as many MJ operators as possible into one MJ.</li>
+</ol>
+<p>As Hive goes through the conversion to map-joins for join operators based on the configuration flags, an effort is made at the end of these conversions to group as many together as possible. Going through in a sequence, if the sum of the sizes of the tables participating in the individual map-join operators is within the limit configured by the <code>noConditionalTask.size</code> flag, these MJ operators are combined together. This ensures more speedup with regard to these queries.</p>
+<h5 id=auto-conversion-to-smb-map-join>Auto Conversion to SMB Map Join</h5>
+<p>Sort-Merge-Bucket (SMB) joins can be converted to SMB map joins as well. SMB joins are used wherever the tables are sorted and bucketed. The join boils down to just merging the already sorted tables, allowing this operation to be faster than an ordinary map-join. However, if the tables are partitioned, there could be a slow down as each mapper would need to get a very small chunk of a partition which has a single key.</p>
+<p>The following configuration settings enable the conversion of an SMB to a map-join SMB:</p>
+<pre tabindex=0><code>set hive.auto.convert.sortmerge.join=true;
+set hive.optimize.bucketmapjoin = true;
+set hive.optimize.bucketmapjoin.sortedmerge = true;
+
+</code></pre><p>There is an option to set the big table selection policy using the following configuration:</p>
+<pre tabindex=0><code>set hive.auto.convert.sortmerge.join.bigtable.selection.policy 
+    = org.apache.hadoop.hive.ql.optimizer.TableSizeBasedBigTableSelectorForAutoSMJ;
+
+</code></pre><p>By default, the selection policy is average partition size. The big table selection policy helps determine which table to choose for only streaming, as compared to hashing and streaming.</p>
+<p>The available selection policies are:</p>
+<pre tabindex=0><code>org.apache.hadoop.hive.ql.optimizer.AvgPartitionSizeBasedBigTableSelectorForAutoSMJ (default)
+org.apache.hadoop.hive.ql.optimizer.LeftmostBigTableSelectorForAutoSMJ
+org.apache.hadoop.hive.ql.optimizer.TableSizeBasedBigTableSelectorForAutoSMJ
+
+</code></pre><p>The names describe their uses. This is especially useful for the fact-fact join (query 82 in the <a href=http://www.tpc.org/tpcds/>TPC DS</a> benchmark).</p>
+<h6 id=smb-join-across-tables-with-different-keys>SMB Join across Tables with Different Keys</h6>
+<p>If the tables have differing number of keys, for example Table A has 2 SORT columns and Table B has 1 SORT column, then you might get an index out of bounds exception.</p>
+<p>The following query results in an index out of bounds exception because emp_person let us say for example has 1 sort column while emp_pay_history has 2 sort columns.</p>
+<p><strong>Error Hive 0.11</strong></p>
+<pre tabindex=0><code>SELECT p.*, py.*
+FROM emp_person p INNER JOIN emp_pay_history py
+ON   p.empid = py.empid
+</code></pre><p>This works fine.</p>
+<p><strong>Working query Hive 0.11</strong></p>
+<pre tabindex=0><code>SELECT p.*, py.*
+FROM emp_pay_history py INNER JOIN emp_person p
+ON   p.empid = py.empid
+
+</code></pre><p> </p>
+<h4 id=generate-hash-tables-on-the-task-side>Generate Hash Tables on the Task Side</h4>
+<p>Future work will make it possible to generate in-memory hashtables completely on the task side.</p>
+<h5 id=pros-and-cons-of-client-side-hash-tables>Pros and Cons of Client-Side Hash Tables</h5>
+<p>Generating the hashtable (or multiple hashtables for multitable joins) on the client machine has drawbacks. (The <em>client machine</em> is the host that is used to run the Hive client and submit jobs.)</p>
+<ul>
+<li><strong>Data locality:</strong> The client machine typically is not a data node. All the data accessed is remote and has to be read via the network.</li>
+<li><strong>Specs:</strong> For the same reason, it is not clear what the specifications of the machine running this processing will be. It might have limitations in memory, hard drive, or CPU that the task nodes do not have.</li>
+<li><strong>HDFS upload:</strong> The data has to be brought back to the cluster and replicated via the distributed cache to be used by task nodes.</li>
+</ul>
+<p>Pre-processing the hashtables on the client machine also has some benefits:</p>
+<ul>
+<li>What is stored in the distributed cache is likely to be smaller than the original table (filter and projection).</li>
+<li>In contrast, loading hashtables directly on the task nodes using the distributed cache means larger objects in the cache, potentially reducing opportunities for using MAPJOIN.</li>
+</ul>
+<h5 id=task-side-generation-of-hash-tables>Task-Side Generation of Hash Tables</h5>
+<p>When the hashtables are generated completely on the task side, all task nodes have to access the original data source to generate the hashtable. Since in the normal case this will happen in parallel it will not affect latency, but Hive has a concept of storage handlers and having many tasks access the same external data source (HBase, database, etc.) might overwhelm or slow down the source.</p>
+<h6 id=further-options-for-optimization>Further Options for Optimization</h6>
+<ol>
+<li>Increase the replication factor on dimension tables.</li>
+<li>Use the distributed cache to hold dimension tables.</li>
+</ol>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

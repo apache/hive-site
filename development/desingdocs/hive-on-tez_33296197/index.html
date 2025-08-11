@@ -1,0 +1,439 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive on Tez</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease_27362106/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-on-tez>Apache Hive : Hive on Tez</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-tez>Apache Hive : Hive on Tez</a></li>
+<li><a href=#overview>Overview</a>
+<ul>
+<li><a href=#multiple-reduce-stages>Multiple reduce stages</a></li>
+<li><a href=#pipelining>Pipelining</a></li>
+<li><a href=#in-memory-versus-disk-writes>In memory versus disk writes</a></li>
+<li><a href=#joins>Joins</a></li>
+<li><a href=#fine-tuned-algorithms>Fine-tuned algorithms</a></li>
+<li><a href=#limit-processing>Limit processing</a></li>
+</ul>
+</li>
+<li><a href=#scope>Scope</a></li>
+<li><a href=#functional-requirements-of-phase-i>Functional requirements of phase I</a>
+<ul>
+<li><a href=#example>Example</a>
+<ul>
+<li><a href=#plan-with-tez>Plan with TEZ</a></li>
+<li><a href=#plan-without-tez>Plan without TEZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#design>Design</a>
+<ul>
+<li><a href=#summary-of-changes>Summary of changes</a></li>
+<li><a href=#execution-layer>Execution layer</a>
+<ul>
+<li><a href=#job-submission>Job submission</a></li>
+<li><a href=#job-monitoring>Job monitoring</a></li>
+<li><a href=#job-diagnostics>Job diagnostics</a></li>
+<li><a href=#counters>Counters</a></li>
+<li><a href=#job-execution>Job execution</a></li>
+</ul>
+</li>
+<li><a href=#query-planning>Query planning</a>
+<ul>
+<li><a href=#mapredwork>MapRedWork</a></li>
+<li><a href=#semantic-analysis-and-logical-optimizations>Semantic analysis and logical optimizations</a></li>
+<li><a href=#physical-optimizations-and-task-generation>Physical Optimizations and Task generation</a></li>
+<li><a href=#local-job-runner>Local Job Runner</a></li>
+<li><a href=#number-of-tasks>Number of tasks</a></li>
+<li><a href=#explain-statements>Explain statements</a></li>
+<li><a href=#hive-variables>Hive variables</a></li>
+</ul>
+</li>
+<li><a href=#build-infrastructure>Build infrastructure</a></li>
+<li><a href=#testing>Testing</a>
+<ul>
+<li><a href=#mini-tez-cluster>Mini Tez Cluster</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#installation-and-configuration>Installation and Configuration</a>
+<ul>
+<li>
+<ul>
+<li><a href=#hive-tez-compatibility>Hive-Tez Compatibility</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h1 id=overview>Overview</h1>
+<p><a href=http://tez.apache.org/>Tez</a> is a new application framework built on Hadoop Yarn that can execute complex directed acyclic graphs of general data processing tasks. In many ways it can be thought of as a more flexible and powerful successor of the map-reduce framework.</p>
+<p>It generalizes map and reduce tasks by exposing interfaces for generic data processing tasks, which consist of a triplet of interfaces: input, output and processor. These tasks are the vertices in the execution graph. Edges (i.e.: data connections between tasks) are first class citizens in Tez and together with the input/output interfaces greatly increase the flexibility of how data is transferred between tasks.</p>
+<p>Tez also greatly extends the possible ways of which individual tasks can be linked together; In fact any arbitrary DAG can be executed directly in Tez.</p>
+<p>In Tez parlance a map-reduce job is basically a simple DAG consisting of a single map and reduce vertice connected by a “bipartite” edge (i.e.: the edge connects every map task to every reduce task). Map input and reduce outputs are HDFS inputs and outputs respectively. The map output class locally sorts and partitions the data by a certain key, while the reduce input class merge-sorts its data on the same key.</p>
+<p>Tez also provides what basically is a map-reduce compat layer that let’s one run MR jobs on top of the new execution layer by implementing Map/Reduce concepts on the new execution framework.</p>
+<p>More information about Tez can be found here:</p>
+<ul>
+<li>Tez website: <a href=http://tez.apache.org/>http://tez.apache.org/</a></li>
+<li>Tez design doc: <a href=https://issues.apache.org/jira/browse/TEZ-65>https://issues.apache.org/jira/browse/TEZ-65</a></li>
+<li>Tez presentation: <a href="http://www.youtube.com/watch?v=9ZLLzlsz7h8">http://www.youtube.com/watch?v=9ZLLzlsz7h8</a></li>
+<li>Tez slides: <a href=http://www.slideshare.net/Hadoop_Summit/murhty-saha-june26255pmroom212>http://www.slideshare.net/Hadoop_Summit/murhty-saha-june26255pmroom212</a></li>
+</ul>
+<p>Hive uses map-reduce as its execution engine. Any query will produce a graph of MR jobs potentially interspersed with some local/client-side work. This leads to many inefficiencies in the planning and execution of queries. Here are some examples that can be improved by using the more flexible Tez primitives:</p>
+<h2 id=multiple-reduce-stages>Multiple reduce stages</h2>
+<p>Whenever a query has multiple reduce sinks (that cannot be combined, i.e.: no correlation between the partition keys), Hive will break the plan apart and submit one MR job per sink. All of the MR jobs in this chain need to be scheduled one-by-one and each one has to re-read the output of the previous job from HDFS and shuffle it. In Tez several reduce sinks can be linked directly and data can be pipelined without the need of temporary HDFS files. This pattern is referred to as MRR (Map - reduce - reduce*).</p>
+<h2 id=pipelining>Pipelining</h2>
+<p>More than just MRR, Tez allows for sending the entire query plan at once thus enabling the framework to allocate resources more intelligently as well as pipelining data through the various stages. This is a huge improvement for more complicated queries as it eliminates IO/sync barriers and scheduling overhead between individual stages. An example would be a query that aggregates two tables in subqueries in the from clause and joins the resulting relations.</p>
+<h2 id=in-memory-versus-disk-writes>In memory versus disk writes</h2>
+<p>Currently any shuffle is performed the same way regardless of the data size. Sorted partitions are written to disk, pulled by the reducers, merge-sorted and then fed into the reducers. Tez allows for small datasets to be handled entirely in memory, while no such optimization is available in map-reduce. Many warehousing queries sort or aggregate small datasets after the heavy lifting is done. These would benefit from an in memory shuffle.</p>
+<h2 id=joins>Joins</h2>
+<p>Distributed join algorithms are difficult to express in map-reduce. A regular shuffle join for instance has to process different inputs in the same map task, use tags to be written to disk for distinguishing tables, use secondary sort to get the rows from each table in a predictable order, etc. Tez is a much more natural platform to implement these algorithms.</p>
+<p>For example: It is possible to have one Tez task take multiple bipartite edges as input thus exposing the input relations directly to the join implementation. The case where multiple tasks feed into the same shuffle join task will be referred to as multi-parent shuffle join.</p>
+<h2 id=fine-tuned-algorithms>Fine-tuned algorithms</h2>
+<p>All sorting in map-reduce happens using the same binary sort, regardless of the data type. Hive might for instance choose to use a more effective integer-only sort when possible. Tez makes that available.</p>
+<p>Since Hive uses map-reduce to compute aggregations, processing will always boil down to a sort-merge even though we’re not actually interested in the sort order. Tez will allow for more efficient hash-based algorithms to do the same.</p>
+<h2 id=limit-processing>Limit processing</h2>
+<p>Tez allows complete control over the processing, including being able to stop processing when limits are met (without simply skipping records or relying on file formats/input formats.) It’s also possible to define specific edge semantics, which could be used to provide a generic top-k edge to simplify “limit” processing.</p>
+<h1 id=scope>Scope</h1>
+<p>The rest of this document describes the first phase of Hive/Tez integration. The goals are:</p>
+<ul>
+<li>Bring Tez concepts and primitives into Hive, make them available to all Hive developers</li>
+<li>Take advantage of TEZ through MRR (Multiple reduce-stage jobs)</li>
+<li>Take advantage of TEZ through MPJ (multi-parent shuffle joins)</li>
+</ul>
+<p>Limiting the integration to the fairly simple MRR/MPJ pattern will require minimal changes to the planner and execution framework while speeding up a wide variety of queries. At the same time it will allow us to build a solid foundation for future improvements.</p>
+<h1 id=functional-requirements-of-phase-i>Functional requirements of phase I</h1>
+<ul>
+<li>Hive continues to work <strong>as is</strong> on clusters that do not have TEZ.
+<ul>
+<li>MR revisions 20, 20S, 23 continue to work unchanged.</li>
+</ul>
+</li>
+<li>Hive can optionally submit MR jobs to TEZ without any additional improvements.
+<ul>
+<li>Hive can treat TEZ like just another Hadoop 23 instance.</li>
+</ul>
+</li>
+<li>Hive can optionally detect chains of MR jobs and optimize them to a single DAG of the form MR* and submit it to TEZ.</li>
+<li>Hive can optionally detect when a join has multiple parent tasks and combine them into a single DAG of a tree shape.</li>
+<li>Hive will display the MRR optimization in explain plans.</li>
+<li>Hive will give appropriate feedback to the user about progress and completion status of the query when running MRR queries.</li>
+<li>The user will be able to get statistics and diagnostic information as before (counters, logs, debug info on the console).</li>
+<li>Hive has unit tests to cover all new functionality.</li>
+</ul>
+<p>The following things are out of scope for the first phase:</p>
+<ul>
+<li>Local tasks will still run as MR only.</li>
+<li>Only Map and Reduce Tez tasks with SimpleEdges will be used (i.e.: no new tasks, new input/output/processors, no new edge types).</li>
+<li>No multi-output task optimizations will be introduced.</li>
+</ul>
+<p>One new configuration variable will be introduced:</p>
+<ul>
+<li><del>hive.optimize.tez</del> <br>
+hive.execution.engine (changed in <a href=https://issues.apache.org/jira/browse/HIVE-6103>HIVE-6103</a>)
+<ul>
+<li><del>True</del> <br>
+tez: Submit native TEZ dags, optimized for MRR/MPJ</li>
+<li><del>False</del> <br>
+mr (default): Submit single map, single reduce plans</li>
+</ul>
+</li>
+<li>Update:  Several configuration variables were introduced in Hive 0.13.0.  See the <a href=#tez-section>Tez section</a> in Configuration Properties.</li>
+</ul>
+<p>Note: It is possible to execute an MR plan against TEZ. In order to do so, one simply has to change the following variable (assuming Tez is installed on the cluster):</p>
+<ul>
+<li>mapreduce.framework.name = yarn-tez</li>
+</ul>
+<h2 id=example>Example</h2>
+<p>Here’s a TPC-DS query and plans with and without Tez optimizations enabled:</p>
+<p>The query (rewritten for Hive):</p>
+<pre tabindex=0><code>select
+  i_item_desc
+  ,i_category
+  ,i_class
+  ,i_current_price
+  ,i_item_id
+  ,itemrevenue
+  ,itemrevenue*100/sum(itemrevenue) over
+    (partition by i_class) as revenueratio
+from
+  (select
+     i_item_desc
+     ,i_category
+     ,i_class
+     ,i_current_price
+     ,i_item_id
+     ,sum(ws_ext_sales_price) as itemrevenue
+   from
+     web_sales
+     join item on (web_sales.ws_item_sk = item.i_item_sk)
+     join date_dim on (web_sales.ws_sold_date_sk = date_dim.d_date_sk)
+   where
+     i_category in ('1', '2', '3')
+     and year(d_date) = 2001 and month(d_date) = 10
+   group by
+     i_item_id
+     ,i_item_desc
+     ,i_category
+     ,i_class
+     ,i_current_price) tmp
+order by
+  i_category
+  ,i_class
+  ,i_item_id
+  ,i_item_desc
+  ,revenueratio;
+
+</code></pre><h3 id=plan-with-tez>Plan with TEZ</h3>
+<p>Stage 0:</p>
+<p>Local Work: Generate hash table for date dim</p>
+<p>Stage 1:</p>
+<p>Map: SMB join item + web_sales, mapjoin date_dim + web_sales, map-side group by/aggregate</p>
+<p>Reduce 1: Reduce side group by/aggregate, shuffle for windowing</p>
+<p>Reduce 2: Compute windowing function, shuffle for order by</p>
+<p>Reduce 3: Order by, write to HDFS</p>
+<h3 id=plan-without-tez>Plan without TEZ</h3>
+<p>Local Work: Generate hash table for date dim</p>
+<p>Stage 1:</p>
+<p>Map: SMB join item + web_sales, mapjoin date_dim + web_sales, map-side group by/aggregate</p>
+<p>Reduce: Reduce side group by/aggregate, write to HDFS</p>
+<p>Stage 2:</p>
+<p>Map: Read tmp file, shuffle for windowing</p>
+<p>Reduce: Compute windowing function, write to HDFS</p>
+<p>Stage 3:</p>
+<p>Map: Read tmp file, shuffle for order by</p>
+<p>Reduce: Order by, write to HDFS</p>
+<h1 id=design>Design</h1>
+<h2 id=summary-of-changes>Summary of changes</h2>
+<p>Changes that impact current Hive code paths:</p>
+<ul>
+<li>Split MR compilation from SemanticAnalyzer (simple)</li>
+<li>Break MapRedWork into MapWork and ReduceWork (straight forward but a number of changes)</li>
+<li>Move execution specific classes from exec to exec.mr package (simple)</li>
+<li>Move some functions from ExecDriver to exec.Utilities to share between Tez and MR</li>
+<li>Build system: Add Tez dependencies and Tez testing</li>
+</ul>
+<p>I believe that all of these are valuable by themselves and make the code cleaner and easier to maintain. Especially the second item will touch quite a few places in the code though. None of them change functionality.</p>
+<p>New code paths (only active when running Tez):</p>
+<ul>
+<li>Execution: TezWork, TezTask, TezJobMonitor (small)</li>
+<li>Planning: Compiler to generate TezTasks, Perform physical optimizations on Tez (large)</li>
+</ul>
+<p>The following outlines the changes across the various Hive components:</p>
+<h2 id=execution-layer>Execution layer</h2>
+<p>We’ve initially investigated to add Tez as a simple shim option to the code base. This didn’t work out mostly because Tez’ API is very different from the MR api. It does not make much sense to move the entire “execute” infrastructure to the shim layer. That would require large code changes with little benefit. Instead there will be separate “Task” implementations for MR and TEZ and Hive will decide at runtime which implementation to use.</p>
+<p>We’re planning to have two packages:</p>
+<ul>
+<li>org.apache.hadoop.hive.ql.exec.mr</li>
+<li>org.apache.hadoop.hive.ql.exec.tez</li>
+</ul>
+<p>Both will contain implementations of the Task interface, which is used to encapsulate units of work to be scheduled and executed by the Driver class.</p>
+<p>Both of these packages will have classes for job monitoring and job diagnostics, although they are package private and do not follow a common interface.</p>
+<h3 id=job-submission>Job submission</h3>
+<p>Currently ExecDriver and MapRedTask (both are of type “Task”) will submit map-reduce work via JobClient (either via local-job runner or against the cluster). All MR specific job submission concepts are hidden behind these classes.</p>
+<p>We will add a TezTask as the entry point for Tez execution. TezTask will hide building of the job DAG and orchestrate monitoring and diagnostics of DAG execution.</p>
+<p>Hive’s driver will still deal with a graph of Tasks to handle execution. No changes are required to handle this. The only difference is that now the planner might transparently add TezTasks to the mix at runtime.</p>
+<h3 id=job-monitoring>Job monitoring</h3>
+<p>We will add a TezJobMonitor class that handles printing of status as well as reporting the final result. This class provides similar functions than HadoopJobExecHelper used for MR processing. TezJobMonitor will also retrieve and print the top level exception thrown at execution time.</p>
+<h3 id=job-diagnostics>Job diagnostics</h3>
+<p>Basic ‘job succeeded/failed’ as well as progress will be as discussed in “Job monitoring”.  Hive’s current way of trying to fetch additional information about failed jobs will not be available in phase I.</p>
+<p>Currently Tez offers limited debugging support once a job is complete. The only way to get access to detailed logs, counters, etc is to look at the log of the AM, find the appropriate url for specific task logs and access them through copy and paste. This will change over time and historical logging information will be accessible, but for the first phase debugging support will be limited.</p>
+<h3 id=counters>Counters</h3>
+<p>API for retrieving counters will be different in Tez and we will thus add a shim api for that. Incrementing counters at execution time will work unchanged.</p>
+<h3 id=job-execution>Job execution</h3>
+<p>The basic execution flow will remain unchanged in phase I. ExecMapper/ExecReducer will be used through Tez’ MR compat layer. The operator plan + settings will be communicated via ‘scratch dir’ as before. ExecMapper/Reducer will load and configure themselves accordingly.</p>
+<h2 id=query-planning>Query planning</h2>
+<h3 id=mapredwork>MapRedWork</h3>
+<p>MapRedWork is where we currently record all information about the MR job during compile/optimize time.</p>
+<p>This class will be refactored to capture Map information and reduce information separately (in MapWork and ReduceWork). This requires quite a few - albeit straight-forward - changes to both planning and execution.</p>
+<p>The refactor has benefits for pure MR execution as well. It removes the need for Mappers/Reducers to load and de-serialize information they don’t use and it makes it easier to read and maintain the code, because it clearly delineates what information is used at what stage.</p>
+<p>MapWork and ReduceWork will be shared by both MapRedWork and TezWork. MapRedWork is basically a composition of 1M + 0-1R, while TezWork is a tree of Map/ReduceWork with MapWork classes as leaves only.</p>
+<p>As discussed above, TezTask will use TezWork, while MapRedTask and ExecDriver will use MapReduceWork.</p>
+<h3 id=semantic-analysis-and-logical-optimizations>Semantic analysis and logical optimizations</h3>
+<p>Neither semantic analyzer nor any logical optimizations will change. Physical optimizations and MR plan generation are currently also done in the SemanticAnalyzer and will be moved out to separate classes.</p>
+<h3 id=physical-optimizations-and-task-generation>Physical Optimizations and Task generation</h3>
+<p>The MapReduceCompiler does two things at the same time right now. After breaking down the operator plan into map-reduce tasks, it optimizes the number of tasks and also performs physical optimizations (picks join implementations, total order sort, etc).</p>
+<p>In order to limit the impact of Tez, we will provide a separate implementation: TezCompiler. The Tez compiler will attempt to perform most physical optimizations at the plan level, leaving the breakdown of the plan into Tez jobs for a second round of optimizations.</p>
+<p>Later we may decide to use that physical optimizer (at the plan level) for both MR and Tez, while leaving specific optimizations in the two layers.</p>
+<h3 id=local-job-runner>Local Job Runner</h3>
+<p>In the short term Tez will not support a “LocalTezDagRunner”. That means that Hive will always have to submit MR jobs when executing locally. In order to avoid replanning the query after execution has started in Tez mode some optimizations for converting stages to local jobs will not be available.</p>
+<h3 id=number-of-tasks>Number of tasks</h3>
+<p>Some MR jobs have a predetermined number of reducers. This happens for order by (numReducers = 1) and scenarios where bucketing is used (numReducers = numBuckets). The user can also set the number of reducers manually. The same numbers will be used for each reduce tasks. Initially there will be no way for the user to set different numbers of reducers for each of the separate reduce stages. There is already a ticket (HIVE-3946) to address this shortcoming which can be used for both Tez and MR.</p>
+<p>In most cases Hive will determine the number of reducers by looking at the input size of a particular MR job. Hive will then guess the correct number of reducers. The same guess will be used for subsequent reduce phases in a Tez plan. Ultimately, this number will have to be determined using statistics which is out of scope, but applies equally to MR and Tez.</p>
+<h3 id=explain-statements>Explain statements</h3>
+<p>Explain statements are driven (in part) off of fields in the MapReduceWork. Part of extending/refactoring MapReduceWork will be to add sufficient information to print the correct operator trees in explain for Tez.</p>
+<h3 id=hive-variables>Hive variables</h3>
+<p>The “set” mechanism for Hive variables will not change. The variables will be passed through to the execution engine as before. However, Hive will not shim or map any mapreduce variables. If a variable is not supported in Hive it will be silently ignored.</p>
+<h2 id=build-infrastructure>Build infrastructure</h2>
+<p>There will be a new “ql” dependency on Tez. The jars will be handled the same way Hadoop jars are handled, i.e.: They will be used during compile, but not included in the final distribution. Rather we will depend on them being installed separately. The jars will only have to be present to run Tez jobs, they are not needed for regular MR execution.</p>
+<h2 id=testing>Testing</h2>
+<h3 id=mini-tez-cluster>Mini Tez Cluster</h3>
+<p>Mini Tez Cluster will initially be the only way to run Tez during unit tests. LocalRunner is not yet available. If mr.rev is set to tez all MiniMr tests will run against Tez.</p>
+<h1 id=installation-and-configuration>Installation and Configuration</h1>
+<p>For information about how to set up Tez on a Hadoop 2 cluster, see <a href=https://github.com/apache/incubator-tez/blob/branch-0.2.0/INSTALL.txt>https://github.com/apache/incubator-tez/blob/branch-0.2.0/INSTALL.txt</a>. </p>
+<p>For information about how to configure Hive 0.13.0+ for Tez, see the release notes for <a href=https://issues.apache.org/jira/browse/HIVE-6098>HIVE-6098, Merge Tez branch into trunk</a>.  Also see <a href=#configuration-properties:-tez>Configuration Properties: Tez</a> for descriptions of all the Tez parameters.</p>
+<h3 id=hive-tez-compatibility>Hive-Tez Compatibility</h3>
+<p>For a list of Hive and Tez releases that are compatible with each other, see <a href=https://hive.apache.org/development/desingdocs/hive-tez-compatibility_59689974/>Hive-Tez Compatibility</a>.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
