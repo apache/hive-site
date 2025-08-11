@@ -59,7 +59,7 @@ HIVE-27424: Display dependency:tree in GitHub actions (#5756)
 
 #### Committing Documentation
 
-Hive's official documentation is hosted at [Github-Hive-Site](https://github.com/apache/hive). To commit major documentation changes you must raise a Pull Request to the hive-site repo.
+Hive's official documentation is hosted at [Github-Hive-Site](https://github.com/apache/hive-site). To commit major documentation changes you must raise a Pull Request to the hive-site repo.
 
 Changes committed to the hive site repo will automatically get published on: <https://hive.apache.org/>
 
