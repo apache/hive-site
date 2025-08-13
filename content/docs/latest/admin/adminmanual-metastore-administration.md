@@ -203,9 +203,3 @@ To suppress the schema check and allow the metastore to implicitly modify the sc
 
 Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details [here]({{< ref "hive-schema-tool" >}}).
 
-Save
-
- 
-
- 
-

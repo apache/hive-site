@@ -80,11 +80,3 @@ At this time it is not possible to replicate to tables on EMR that have a path l
   </property>
 ```
 
- 
-
-Save
-
- 
-
- 
-

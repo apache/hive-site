@@ -67,17 +67,3 @@ Operation based Java API focused on mutating (insert/update/delete) records into
 
 JDBC API supported by Hive. It supports most of the functionality in JDBC spec.
 
-## Comments:
-
-|  |
-| --- |
-| 
-Page created after [an interesting discussion](https://issues.apache.org/jira/browse/HIVE-12285?focusedCommentId=14981551&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-14981551).
-
- Posted by teabot at Oct 30, 2015 17:09
-  |
-
- 
-
- 
-

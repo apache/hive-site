@@ -190,22 +190,6 @@ The watch and running nodes options were added in release 2.2.0 with [HIVE-15217
 
 [Hive Contributor Meetup Presentation](https://cwiki.apache.org/confluence/download/attachments/27362054/LLAP-Meetup-Nov.ppsx?version=1&modificationDate=1447885307000&api=v2)
 
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)

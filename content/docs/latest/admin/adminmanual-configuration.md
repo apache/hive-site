@@ -212,13 +212,3 @@ For Hive releases prior to 0.11.0, see the "Thrift Server Setup" section in the 
 
 For information about configuring WebHCat, see [WebHCat Configuration]({{< ref "webhcat-configure" >}}).
 
- 
-
- 
-
-Save
-
- 
-
- 
-

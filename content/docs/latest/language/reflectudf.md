@@ -29,17 +29,3 @@ As of Hive 0.9.0, java_method() is a synonym for reflect(). See [Misc. Functions
 
 Note that Reflect UDF is non-deterministic since there is no guarantee what a specific method will return given the same parameters. So be cautious when using Reflect on the WHERE clause because that may invalidate Predicate Pushdown optimization.
 
-## Comments:
-
-|  |
-| --- |
-| 
-This doc comes from the Hive xdocs, with minor edits. It is included here because the xdocs are currently unavailable (Feb. 2013).
-
- Posted by leftyl at Feb 21, 2013 09:30
-  |
-
- 
-
- 
-

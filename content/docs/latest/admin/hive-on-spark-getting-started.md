@@ -238,19 +238,4 @@ See [Spark section of configuration page](https://cwiki.apache.org/confluence/di
 
 ![](images/icons/bullet_blue.gif)
 [attachments/44302539/53575687.pdf](/attachments/44302539/53575687.pdf) (application/pdf)
-   
-
-## Comments:
-
-|  |
-| --- |
-| 
-Spark has its own property to control whether to merge small files. Set hive.merge.sparkfiles=true to merge small files.
-
- Posted by lirui at Jan 15, 2015 01:34
-  |
-
- 
-
- 
 
