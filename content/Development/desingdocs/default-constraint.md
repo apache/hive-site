@@ -104,7 +104,7 @@ Along with this logic change we foresee the following changes:
 
 ## Further Work
 
-[HIVE-19059](https://issues.apache.org/jira/browse/HIVE-19059) adds the keyword DEFAULT to enable users to add DEFAULT values in INSERT and UPDATE statements without specifying the column schema.  See [DEFAULT Keyword (HIVE-19059)]({{< ref "75977362" >}}).
+[HIVE-19059](https://issues.apache.org/jira/browse/HIVE-19059) adds the keyword DEFAULT to enable users to add DEFAULT values in INSERT and UPDATE statements without specifying the column schema.  See [DEFAULT Keyword (HIVE-19059)]({{< ref "default-keyword" >}}).
 
  
 

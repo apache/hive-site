@@ -39,7 +39,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Atomic Insert/Update/Delete](https://issues.apache.org/jira/browse/HIVE-5317) ([HIVE-5317](https://issues.apache.org/jira/browse/HIVE-5317))
 * [Transaction Manager](https://issues.apache.org/jira/browse/HIVE-5843) ([HIVE-5843](https://issues.apache.org/jira/browse/HIVE-5843))
 * [SQL Standard based secure authorization](https://cwiki.apache.org/confluence/download/attachments/27362075/SQL+standard+authorization+hive.pdf) ([HIVE-5837](https://issues.apache.org/jira/browse/HIVE-5837))
-* [Hybrid Hybrid Grace Hash Join]({{< ref "50860526" >}}) ([HIVE-9277](https://issues.apache.org/jira/browse/HIVE-9277))
+* [Hybrid Hybrid Grace Hash Join]({{< ref "hybrid-grace-hash-join-v1-0" >}}) ([HIVE-9277](https://issues.apache.org/jira/browse/HIVE-9277))
 * [LLAP Daemons]({{< ref "llap" >}}) ([HIVE-7926](https://issues.apache.org/jira/browse/HIVE-7926))
 * [Support for Hive Replication]({{< ref "hivereplicationdevelopment" >}}) ([HIVE-7973](https://issues.apache.org/jira/browse/HIVE-7973))
 
@@ -47,12 +47,12 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 
 * [Column Level Top K Statistics]({{< ref "top-k-stats" >}}) ([HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421))
 * [Hive on Spark](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292))
-* [Hive on Spark: Join Design (HIVE-7613)]({{< ref "50858744" >}})
+* [Hive on Spark: Join Design (HIVE-7613)]({{< ref "hive-on-spark-join-design-master" >}})
 * [Improve ACID Performance](https://issues.apache.org/jira/secure/attachment/12823582/Design.Document.Improving%20ACID%20performance%20in%20Hive.02.docx) – download docx file ([HIVE-14035](https://issues.apache.org/jira/browse/HIVE-14035), [HIVE-14199](https://issues.apache.org/jira/browse/HIVE-14199), [HIVE-14233](https://issues.apache.org/jira/browse/HIVE-14233))
-* [Query Results Caching]({{< ref "75963441" >}}) ([HIVE-18513](https://issues.apache.org/jira/browse/HIVE-18513))
-* [Default Constraint]({{< ref "75969407" >}}) [(HIVE-18726)](https://issues.apache.org/jira/browse/HIVE-18726)
+* [Query Results Caching]({{< ref "query-results-caching" >}}) ([HIVE-18513](https://issues.apache.org/jira/browse/HIVE-18513))
+* [Default Constraint]({{< ref "default-constraint" >}}) [(HIVE-18726)](https://issues.apache.org/jira/browse/HIVE-18726)
 * [Different TIMESTAMP types]({{< ref "different-timestamp-types" >}}) ([HIVE-21348](https://issues.apache.org/jira/browse/HIVE-21348))
-* [Support SAML 2.0 authentication]({{< ref "170266662" >}}) ([HIVE-24543](https://issues.apache.org/jira/browse/HIVE-24543))
+* [Support SAML 2.0 authentication]({{< ref "support-saml-2-0-authentication-mode" >}}) ([HIVE-24543](https://issues.apache.org/jira/browse/HIVE-24543))
 
 ## Proposed
 
@@ -69,8 +69,8 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Updatable Views]({{< ref "updatableviews" >}}) ([HIVE-1143](https://issues.apache.org/jira/browse/HIVE-1143))
 * [Phase 2 of Replication Development]({{< ref "hivereplicationv2development" >}}) ([HIVE-14841](https://issues.apache.org/jira/browse/HIVE-14841))
 * [Subqueries in SELECT]({{< ref "subqueries-in-select" >}}) ([HIVE-16091](https://issues.apache.org/jira/browse/HIVE-16091))
-* [DEFAULT keyword](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=75977362) [(HIVE-19059)](https://issues.apache.org/jira/browse/HIVE-19059)
-* [Hive remote databases/tables]({{< ref "80452092" >}})
+* [DEFAULT keyword](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=default-keyword) [(HIVE-19059)](https://issues.apache.org/jira/browse/HIVE-19059)
+* [Hive remote databases/tables]({{< ref "hive-remote-databases-tables" >}})
 
 ## Incomplete
 
@@ -78,7 +78,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 
 ## Abandoned
 
-* [Hive across Multiple Data Centers (Physical Clusters)]({{< ref "27837073" >}})
+* [Hive across Multiple Data Centers (Physical Clusters)]({{< ref "hive-across-multiple-data-centers" >}})
 * [Metastore on HBase]({{< ref "hbasemetastoredevelopmentguide" >}}) ([HIVE-9452](https://issues.apache.org/jira/browse/HIVE-9452))
 
 ## Other

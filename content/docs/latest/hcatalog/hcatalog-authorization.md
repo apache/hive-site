@@ -11,7 +11,7 @@ date: 2024-12-12
 
 ## Default Authorization Model of Hive
 
-The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table. It is described in more detail in [Hive Authorization]({{< ref "languagemanual-authorization" >}}) and [Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}}).
+The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table. It is described in more detail in [Hive Authorization]({{< ref "languagemanual-authorization" >}}) and [Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}}).
 
 This RDBMS style of authorization is not very suitable for the typical use cases in Hadoop because of the following differences in implementation:
 

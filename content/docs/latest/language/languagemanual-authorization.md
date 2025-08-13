@@ -81,7 +81,7 @@ You also get many advanced features using them. For example, with Ranger you can
 
 #### 4 Old default Hive Authorization (Legacy Mode)
 
-[Hive Old Default Authorization]({{< ref "45876173" >}}) (was default before Hive 2.0.0) is the authorization mode that has been available in earlier versions of Hive. However, this mode does not have a complete access control model, leaving many security gaps unaddressed. For example, the permissions needed to grant privileges for a user are not defined, and any user can grant themselves access to a table or database.
+[Hive Old Default Authorization]({{< ref "hive-deprecated-authorization-mode" >}}) (was default before Hive 2.0.0) is the authorization mode that has been available in earlier versions of Hive. However, this mode does not have a complete access control model, leaving many security gaps unaddressed. For example, the permissions needed to grant privileges for a user are not defined, and any user can grant themselves access to a table or database.
 
 This model is similar to the SQL standards based authorization mode, in that it provides grant/revoke statement-based access control. However, the access control policy is different from SQL standards based authorization, and they are not compatible. Use of this mode is also supported for Hive command line users. However, for reasons mentioned under the discussion of SQL standards based authorization (above), it is not a secure mode of authorization for the Hive command line.
 
@@ -104,7 +104,7 @@ For detailed information about the Hive authorization modes, see:
 * [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) 
 	+ also see [HCatalog Authorization]({{< ref "hcatalog-authorization" >}})
 * [SQL Standard Based Hive Authorization]({{< ref "sql-standard-based-hive-authorization" >}})
-* [Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}})
+* [Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}})
 	+ also see the [design document]({{< ref "authdev" >}}) and [Security]({{< ref "security" >}})
 
  

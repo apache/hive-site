@@ -46,14 +46,14 @@ This is the Hive Language Manual.  For other Hive documentation, see the Hive w
 	+ [Sampling]({{< ref "languagemanual-sampling" >}})
 	+ [Virtual Columns]({{< ref "languagemanual-virtualcolumns" >}})
 	+ [Windowing and Analytics Functions]({{< ref "languagemanual-windowingandanalytics" >}})
-	+ [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "30151323" >}})
-	+ Procedural Language:  [Hive HPL/SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=59690156)
+	+ [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "enhanced-aggregation-cube-grouping-and-rollup" >}})
+	+ Procedural Language:  [Hive HPL/SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=hive-hpl-sql)
 	+ [Explain Execution Plan]({{< ref "languagemanual-explain" >}})
 * [Locks]({{< ref "locking" >}})
 * [Authorization]({{< ref "languagemanual-authorization" >}})
 	+ [Storage Based Authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}})
 	+ [SQL Standard Based Authorization]({{< ref "sql-standard-based-hive-authorization" >}})
-	+ [Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}})
+	+ [Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}})
 * [Configuration Properties]({{< ref "configuration-properties" >}})
 
  

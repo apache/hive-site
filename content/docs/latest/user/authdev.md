@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : AuthDev
 
-This is the design document for the [original Hive authorization mode]({{< ref "45876173" >}}). See [Authorization]({{< ref "languagemanual-authorization" >}}) for an overview of authorization modes, which include [storage based authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) and [SQL standards based authorization]({{< ref "sql-standard-based-hive-authorization" >}}).
+This is the design document for the [original Hive authorization mode]({{< ref "hive-deprecated-authorization-mode" >}}). See [Authorization]({{< ref "languagemanual-authorization" >}}) for an overview of authorization modes, which include [storage based authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) and [SQL standards based authorization]({{< ref "sql-standard-based-hive-authorization" >}}).
 
 {{< toc >}}
 

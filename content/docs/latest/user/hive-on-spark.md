@@ -158,7 +158,7 @@ Finally, it seems that Spark community is in the process of improving/changing t
 
 It’s rather complicated in implementing join in MapReduce world, as manifested in Hive. Hive has reduce-side join as well as map-side join (including map-side hash lookup and map-side sorted merge). We will keep Hive’s join implementations. However, extra attention needs to be paid on the shuffle behavior (key generation, partitioning, sorting, etc), since Hive extensively uses MapReduce’s shuffling in implementing reduce-side join. It’s expected that Spark is, or will be, able to provide flexible control over the shuffling, as pointed out in the previous section([Shuffle, Group, and Sort](https://docs.google.com/a/cloudera.com/document/d/11xXVgma6UPa32cW_W64BwBssnA0d6RX4jUsATOzgkcw/edit#heading=h.rnmzzu57lmuh)).
 
-See: [Hive on Spark: Join Design Master]({{< ref "50858744" >}}) for detailed design.
+See: [Hive on Spark: Join Design Master]({{< ref "hive-on-spark-join-design-master" >}}) for detailed design.
 
 ### Number of Tasks
 

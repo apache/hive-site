@@ -9,7 +9,7 @@ This page collects some resources and pointers for various efforts underway to a
 
 Authorization modes
 
-The links below refer to the [original Hive authorization mode]({{< ref "45876173" >}}). See [Authorization]({{< ref "languagemanual-authorization" >}}) for an overview of authorization modes, which include [storage based authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) and [SQL standards based authorization]({{< ref "sql-standard-based-hive-authorization" >}}).
+The links below refer to the [original Hive authorization mode]({{< ref "hive-deprecated-authorization-mode" >}}). See [Authorization]({{< ref "languagemanual-authorization" >}}) for an overview of authorization modes, which include [storage based authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) and [SQL standards based authorization]({{< ref "sql-standard-based-hive-authorization" >}}).
 
 * [Thoughts on security from Venkatesh](https://issues.apache.org/jira/secure/attachment/12453831/HiveSecurityThoughts.pdf)
 * [Howl's approach for persisting and validating DDL authorization via HDFS permissions](http://mail-archives.apache.org/mod_mbox/hadoop-hive-dev/201007.mbox/%3C11ED50FC7C760F4EA9F44109C531617D06F692E6@SNV-EXVS06.ds.corp.yahoo.com%3E)

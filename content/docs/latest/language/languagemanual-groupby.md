@@ -153,7 +153,7 @@ Version
 
 Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive release 0.10.0.
 
-See [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "30151323" >}}) for information about these aggregation operators.
+See [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "enhanced-aggregation-cube-grouping-and-rollup" >}}) for information about these aggregation operators.
 
 Also see the JIRAs:
 

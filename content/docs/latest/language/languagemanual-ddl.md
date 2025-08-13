@@ -1592,7 +1592,7 @@ As of [HIVE-2573](https://issues.apache.org/jira/browse/HIVE-2573), creating per
 
 ## Create/Drop/Grant/Revoke Roles and Privileges
 
-[Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}}) has information about these DDL statements:
+[Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}}) has information about these DDL statements:
 
 * [CREATE ROLE]({{< ref "#create-role" >}})
 * [GRANT ROLE]({{< ref "#grant-role" >}})
@@ -1911,7 +1911,7 @@ SHOW FUNCTIONS lists all the user defined and builtin functions, filtered by the
 
 ### Show Granted Roles and Privileges
 
-[Hive deprecated authorization mode / Legacy Mode]({{< ref "45876173" >}}) has information about these SHOW statements:
+[Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}}) has information about these SHOW statements:
 
 * [SHOW ROLE GRANT]({{< ref "#show-role-grant" >}})
 * [SHOW GRANT]({{< ref "#show-grant" >}})

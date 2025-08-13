@@ -28,7 +28,7 @@ Chooses execution engine. Options are: `mr` (Map Reduce, default), `tez` ([Tez](
 
 While `mr` remains the default engine for historical reasons, it is itself a historical engine and is deprecated in the Hive 2 line ([HIVE-12300](https://issues.apache.org/jira/browse/HIVE-12300)). It may be removed without further warning.
 
-See [Hive on Tez]({{< ref "hive-on-tez" >}}) and [Hive on Spark]({{< ref "44302539" >}}) for more information, and see the [Tez section]({{< ref "#tez-section" >}}) and the [Spark section]({{< ref "#spark-section" >}}) below for their configuration properties.
+See [Hive on Tez]({{< ref "hive-on-tez" >}}) and [Hive on Spark]({{< ref "hive-on-spark-getting-started" >}}) for more information, and see the [Tez section]({{< ref "#tez-section" >}}) and the [Spark section]({{< ref "#spark-section" >}}) below for their configuration properties.
 
 ##### hive.execution.mode
 
@@ -3126,7 +3126,7 @@ Set this to true to to display statistics and log file for MapReduce tasks in th
 
 ## Spark
 
-[Apache Spark](http://spark.apache.org/) was added in Hive [1.1.0]({{< ref "#1-1-0" >}}) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292) and the merge-to-trunk JIRA's [HIVE-9257](https://issues.apache.org/jira/browse/HIVE-9257), [9352](https://issues.apache.org/jira/browse/HIVE-9352), [9448](https://issues.apache.org/jira/browse/HIVE-9448)). For information see the design document [Hive on Spark]({{< ref "hive-on-spark" >}}) and [Hive on Spark: Getting Started.]({{< ref "44302539" >}})
+[Apache Spark](http://spark.apache.org/) was added in Hive [1.1.0]({{< ref "#1-1-0" >}}) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292) and the merge-to-trunk JIRA's [HIVE-9257](https://issues.apache.org/jira/browse/HIVE-9257), [9352](https://issues.apache.org/jira/browse/HIVE-9352), [9448](https://issues.apache.org/jira/browse/HIVE-9448)). For information see the design document [Hive on Spark]({{< ref "hive-on-spark" >}}) and [Hive on Spark: Getting Started.]({{< ref "hive-on-spark-getting-started" >}})
 
 To configure Hive execution to Spark, set the following property to "`spark`":
 

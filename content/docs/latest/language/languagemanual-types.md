@@ -144,7 +144,7 @@ Dates were introduced in Hive 0.12.0 ([HIVE-4055](https://issues.apache.org/jira
 
 #### Casting Dates
 
-Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{< ref "122917025" >}}).
+Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{< ref "cast-format-with-sql2016-datetime-formats" >}}).
 
 | Valid casts to/from Date type | Result |
 | --- | --- |

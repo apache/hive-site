@@ -36,7 +36,7 @@ Hive offers APIs for streaming data ingest and streaming mutation:
 
 * [Hive HCatalog Streaming API]({{< ref "streaming-data-ingest" >}})
 * [Hive Streaming API](https://cwiki.apache.org/confluence/display/Hive/Streaming+Data+Ingest+V2) (Since Hive 3)
-* [HCatalog Streaming Mutation API (Copy)]({{< ref "283118454" >}}) (available in Hive 2.0.0 and later)
+* [HCatalog Streaming Mutation API (Copy)]({{< ref "HCatalog-Streaming-Mutation-API" >}}) (available in Hive 2.0.0 and later)
 
 A comparison of these two APIs is available in the [Background]({{< ref "#background" >}}) section of the Streaming Mutation document.
 
