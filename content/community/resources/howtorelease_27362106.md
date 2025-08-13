@@ -202,6 +202,7 @@ mvn versions:set -DnewVersion=0.7.0 -DgenerateBackupPoms=false
 ```
 
 Make sure to update the version property in standalone-metastore/pom.xml and upgrade-acid/pom.xml.
+
 3. Remove the storage-api from the list of modules to build in the top level pom.xml. Set the storage-api.version property to the release of storage-api that you are using for your release. Make sure to set the storage-api.version property in standalone-metastore/pom.xml as well.
 4. Update the the value of the `TRACKING_BRANCH` field in the `.reviewboardrc` file to point to the `origin/branch-X.Y`.
 5. Verify that the build is working with changes.
@@ -236,6 +237,7 @@ git push origin release-X.Y.Z-rcR
 ```
 
 Note: If you build from the existing project, make sure there are no empty directories or the "*.iml" files in the apache-hive-X.Y.Z-src.tar.gz.
+
 3. Verify that the SHA 256 checksums are valid:
 
 ```
@@ -272,7 +274,7 @@ hive-standalone-metastore-X.Y.Z-src.tar.gz: OK
 % gpg --armor --output hive-standalone-metastore-X.Y.Z-bin.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-bin.tar.gz
 % gpg --armor --output hive-standalone-metastore-X.Y.Z-src.tar.gz.asc --detach-sig hive-standalone-metastore-X.Y.Z-src.tar.gz
 ```
-7. Follow instructions in <https://www.apache.org/dev/release-publishing.html#distribution> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<https://dist.apache.org/repos/dist/dev/hive/>). Make sure to create a new directory for the release candidate. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
+7. Follow instructions in <https://www.apache.org/dev/release-publishing.html#distribution> to push the new release artifacts (tar.gz, tar.gz.asc, tar.gz.sha256) to the SVN staging area of the project (<https://dist.apache.org/repos/dist/dev/hive/>). Make sure to create a new directory for the release candidate.
 
 ```
 svn co --depth empty https://dist.apache.org/repos/dist
@@ -312,7 +314,8 @@ Subject: [VOTE] Apache Hive X.Y.Z Release Candidate N
 
 Apache Hive X.Y.Z Release Candidate N is available here:
 
-https://people.apache.org/~you/hive-X.Y.Z-candidate-N
+https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z/
+https://dist.apache.org/repos/dist/dev/hive/hive-standalone-metastore-X.Y.Z/
 
 The checksums are these:
 - ff60286044d2f3faa8ad1475132cdcecf4ce9ed8faf1ed4e56a6753ebc3ab585  apache-hive-4.1.0-bin.tar.gz
@@ -331,9 +334,17 @@ The git commit hash is:
 
 https://github.com/apache/hive/commit/357d4906f5c806d585fd84db57cf296e12e6049b 
 
-Voting will conclude in 72 hours.
+The vote is open for the next 72 hours and passes if a majority of at least
+three +1 PMC votes are cast.
 
-Hive PMC Members: Please test and vote.
+(Only PMC members have binding votes, however, other community members
+are encouraged to cast non-binding votes.)
+
+[ ] +1 Release this package as Apache Hive X.Y.Z
+[ ] +0
+[ ] -1 Do not release this because...
+
+Please download, verify, and test.
 
 Thanks.
 ```
@@ -412,17 +423,20 @@ Once [three PMC members have voted for a release](http://www.apache.org/foundati
 1. Tag the release and delete the release candidate tag. Do it from the release branch:
 
 ```
-git tag -s rel/release-X.Y.Z -m "HiveX.Y.Z release."
+git tag -s rel/release-X.Y.Z -m "Hive X.Y.Z release."
 git push origin rel/release-X.Y.Z
 git tag -d release-X.Y.Z-rcR
 git push origin :release-X.Y.Z-rcR
 ```
+**NOTE:**  
+If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.  
+This step (`git push origin rel/release-X.Y.Z`) will trigger the Hive Docker image build and upload to Docker Hub on the [Hive Action Page](https://github.com/apache/hive/actions/workflows/docker-GA-images.yml). If the image build fails, click **Re-run** on the Actions page to retry or manually build and upload it. Finally, verify whether the image has been successfully uploaded by checking the [Docker Hub](https://hub.docker.com/r/apache/hive/tags).
 
-If errors happen while "git tag -s", try to configure the git signing key by "git config user.signingkey your_gpg_key_id" then rerun the command.
-2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055))
+2. Move the release artifacts to the release area of the project (<https://dist.apache.org/repos/dist/release/hive/>). Using svn mv command is important otherwise you may hit size limitations applying to artifacts([INFRA-23055](https://issues.apache.org/jira/browse/INFRA-23055)).
 
 ```
 svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-X.Y.Z -m "Move hive-X.Y.Z release from dev to release"
+svn mv https://dist.apache.org/repos/dist/dev/hive/hive-standalone-metastore-X.Y.Z https://dist.apache.org/repos/dist/release/hive/hive-standalone-metastore-X.Y.Z -m "Move hive-standalone-metastore-X.Y.Z release from dev to release"
 ```
 3. Wait till the release propagates to the mirrors and appears under: <https://dlcdn.apache.org/hive/>
 4. In your base hive source directory, generate javadocs as follows:
@@ -431,7 +445,8 @@ svn mv https://dist.apache.org/repos/dist/dev/hive/hive-X.Y.Z https://dist.apach
 mvn clean install javadoc:javadoc javadoc:aggregate -Pjavadoc -DskipTests
 ```
 
-After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs
+After you run this, you should have javadocs present in your <hive_source_dir>/target/site/apidocs.
+
 5. Check out the javadocs svn repository as follows:
 
 ```
@@ -440,14 +455,15 @@ svn co --depth empty https://svn.apache.org/repos/infra/websites/production/hive
 6. Copy the generated javadocs from the source repository to the javadocs repository, add and commit:
 
 ```
-mkdir <hive_javadocs_repo_dir>/rX.Y.Z/
-cd <hive_javadocs_repo_dir>
+mkdir ./javadocs/rX.Y.Z/
+cd javadocs
 cp -r <hive_source_dir>/target/site/apidocs ./rX.Y.Z/api
 svn add rX.Y.Z
-svn commit
+svn commit -m "Hive X.Y.Z javadocs"
 ```
 
 If this is a bugfix release, svn rm the obsoleted version. (For eg., when committing javadocs for r0.13.1, r0.13.0 would have been removed)
+
 7. Prepare to edit the website.
 
 ```
@@ -464,13 +480,14 @@ git clone https://github.com/apache/hive-site.git
 ```
 
 As you can see, you will need a release note link for this release as created previously for this section.
+
 9. Push your changes to the <https://github.com/apache/hive-site/tree/gh-pages> branch, and you can preview the results at <https://apache.github.io/hive-site/>. If everything is ok, then you can push your changes to <https://github.com/apache/hive-site/tree/main> branch and see the results at <https://hive.apache.org/> site.
 10. Update JIRA
 	1. Ensure that only issues in the "Fixed" state have a "Fix Version" set to release X.Y.Z.
 	2. Release the version. Visit the [releases page](https://issues.apache.org/jira/projects/HIVE?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased).  Select the version number you are releasing, and hit the release button. You need to have the "Admin" role in Hive's Jira for this step and the next.
 	3. Close issues resolved in the release. Disable mail notifications for this bulk change.
 11. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and mark the release candidate artifacts as released.
-12. Add the release in [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?hive) for the next board report to pick that up automatically.
+12. Add the release in [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?hive) for the next board report to pick that up automatically. You may need PMC privileges to do this step – if you do not have such privileges, please ping a [PMC member](http://hive.apache.org/people.html) to do this for you.
 13. Check whether the [Docker image](https://hub.docker.com/r/apache/hive) for the release is present or not.
 14. Send a release announcement to Hive `user` and `dev` lists as well as the Apache `announce` list. This email should be sent from your Apache email address:
 
