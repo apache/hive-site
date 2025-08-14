@@ -260,13 +260,3 @@ DataWorks Summit 2018, San Jose, CA, USA - Covers Hive 3 and ACID V2 features
 * [Slides](https://www.slideshare.net/Hadoop_Summit/transactional-operations-in-apache-hive-present-and-future-102803358)
 * [Video](https://www.youtube.com/watch?v=GyzU9wG0cFQ&t=834s)
 
-  
-
-Save
-
-Save
-
- 
-
- 
-

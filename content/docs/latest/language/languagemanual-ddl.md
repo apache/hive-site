@@ -2298,15 +2298,3 @@ For information about DDL in HCatalog and WebHCat, see:
 * [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) in the [HCatalog manual]({{< ref "hcatalog-base" >}})
 * [WebHCat DDL Resources]({{< ref "webhcat-reference-allddl" >}}) in the [WebHCat manual]({{< ref "webhcat-base" >}})
 
-  
-
-Save
-
-Save
-
-  
-
- 
-
- 
-

@@ -411,11 +411,3 @@ When [hive.metastore.disallow.incompatible.col.type.changes]({{< ref "#hive-meta
 | date to | false | false | false | false | false | false | false | false | false | true | true | false | true | false |
 | binary to | false | false | false | false | false | false | false | false | false | false | false | false | false | true |
 
-  
-
-Save
-
- 
-
- 
-
