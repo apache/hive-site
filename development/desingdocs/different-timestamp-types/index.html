@@ -1,0 +1,247 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Different TIMESTAMP types</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--different-timestamp-types>Apache Hive : Different TIMESTAMP types</h1>
+<h1 id=overview>Overview</h1>
+<p>The following overview depicts the desired timestamp semantics in comparison to the SQL standard and selected database vendors:</p>
+<p><img src=https://lh5.googleusercontent.com/STiRHzKlJLL_UuXRLsbb5m2QVxhOwTLMBIYP9PEusaAwd-vjLqe2wg8KzSWz0f8qazpOV2ODfkHnG_CV7_0pdVtbZK3uqu9Wlqtao3OqXwaB6wRPSl6qlnrHLyVYgSCCDmPy3vw0 alt></p>
+<h1 id=timestamp-and-timestamp-without-time-zone>TIMESTAMP and TIMESTAMP WITHOUT TIME ZONE</h1>
+<p>The TIMESTAMP and TIMESTAMP WITHOUT TIME ZONE types shall behave like the <a href=https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html>LocalDateTime</a> class of Java, i.e., each value is a recording of what can be seen on a calendar and a clock hanging on the wall, for example &ldquo;1969-07-20 16:17:39&rdquo;. It can be decomposed into year, month, day, hour, minute and seconds fields, but with no time zone information available, it does not correspond to any specific point in time.</p>
+<p>This behaviour is consistent with the SQL standard (revisions 2003 and higher).</p>
+<h1 id=timestamp-with-local-time-zone>TIMESTAMP WITH LOCAL TIME ZONE</h1>
+<p>The TIMESTAMP WITH LOCAL TIME ZONE type shall behave like the <a href=https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html>Instant</a> class of Java, i.e., each value identifies a single time instant, but does not contain any explicit timezone information. To achieve this semantics, the processing of timestamp literals involves an implicit normalization from the session-local time zone to a predefined one (typically but not necessarily UTC), while displaying the stored timestamps involves an implicit conversion from the predefined time zone to the session-local one. Although a predefined time zone (typically UTC) was explicitly mentioned above, it is not a part of the individual values but of the definition of the whole type instead. As such, every value that gets stored has to be normalized to this predefined time zone and therefore its original time zone information gets lost.</p>
+<p>For example, if the calendar and clock hanging on the wall shows 1969-07-20 16:17:39 according to Eastern Daylight Time, that must be stored as &ldquo;1969-07-20 20:17:39&rdquo;, because that UTC time corresponds to the same instant. When reading that value back, we no longer know that it originated from an EDT time and we can only display it in some fixed time zone (either local or UTC or specified by the user).</p>
+<p>This behaviour is consistent with some major DB engines, which is the best we can do as no type is defined by the SQL standard that would have this behaviour.</p>
+<h1 id=timestamp-with-time-zone>TIMESTAMP WITH TIME ZONE</h1>
+<p>The TIMESTAMP WITH TIME ZONE type shall behave like the <a href=https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html>OffsetDateTime</a> class of Java, i.e., each individual value includes a time zone offset as well. This definition leads to timestamps that not only identify specific time instants unambiguously, but also allow retrieval of the originating time zone offset.</p>
+<p>If we stored the same timestamp as above using this semantics, then the original timestamp literal could be reconstructed including some time zone information, for example &ldquo;1969-07-20 16:17:39 (UTC -04:00)&rdquo;. (The primary fields are typically still stored normalized to UTC to make comparison of timestamps more efficient, but this is an implementation detail and does not affect the behaviour of the type.)</p>
+<p>This behaviour is consistent with the SQL standard (revisions 2003 and higher).</p>
+<h1 id=comparison>Comparison</h1>
+<p>Let&rsquo;s summarize the example of how the different semantics described above apply to a value inserted into a SQL table.</p>
+<p>If the timestamp literal &lsquo;1969-07-20 16:17:39&rsquo; is inserted in Washington D.C. and then queried from Paris, it might be shown in the following ways based on timestamp semantics:</p>
+<table>
+<thead>
+<tr>
+<th>SQL type</th>
+<th>Semantics</th>
+<th>Result</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIMESTAMP [WITHOUT TIME ZONE]</td>
+<td>LocalDateTime</td>
+<td>1969-07-20 16:17:39</td>
+<td>Displayed like the original timestamp literal.</td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH LOCAL TIME ZONE</td>
+<td>Instant</td>
+<td>1969-07-20 21:17:39</td>
+<td>Differs from the original timestamp literal, but refers to the same time instant.</td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>OffsetDateTime</td>
+<td>1969-07-20 16:17:39 (UTC -04:00)</td>
+<td>Displayed like the original literal but showing the time zone offset as well.</td>
+</tr>
+</tbody>
+</table>
+<p>Of course, the different semantics do not only affect the textual representations but perhaps more importantly SQL function behavior as well. These allow users to take advantage of timestamps in different ways or to explicitly create different textual representations instead of the implicit ones shown above.</p>
+<p>In fact, even the implicit textual representations could be different than shown above, for example Instant could be displayed normalized to UTC or OffsetDateTime could be adjusted to the local time zone by default. The examples shown above are just common ways of creating an implicit textual representation for the different semantics, but the truly important difference lies in what details can and what details can not be reconstructed from the different semantics:</p>
+<p>Reconstructible details:</p>
+<table>
+<thead>
+<tr>
+<th>SQL type</th>
+<th>Semantics</th>
+<th style=text-align:center>Local clock reading</th>
+<th style=text-align:center>Time instant</th>
+<th style=text-align:center>Time zone offset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TIMESTAMP [WITHOUT TIME ZONE]</td>
+<td>LocalDateTime</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center></td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH LOCAL TIME ZONE</td>
+<td>Instant</td>
+<td style=text-align:center></td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center></td>
+</tr>
+<tr>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>OffsetDateTime</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center>✓</td>
+<td style=text-align:center>✓</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

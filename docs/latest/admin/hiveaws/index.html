@@ -1,0 +1,242 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HiveAws</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hiveaws>Apache Hive : HiveAws</h1>
+<p>= Hive and Amazon Web Services =</p>
+<h2 id=background>Background</h2>
+<p>This document explores the different ways of leveraging Hive on Amazon Web Services - namely <a href=http://aws.amazon.com/s3>S3</a>, <a href=http://aws.amazon.com/EC2>EC2</a> and <a href=http://aws.amazon.com/elasticmapreduce/>Elastic Map-Reduce</a>.</p>
+<p>Hadoop already has a long tradition of being run on EC2 and S3. These are well documented in the links below which are a must read:</p>
+<ul>
+<li><a href=http://wiki.apache.org/hadoop/AmazonS3>Hadoop and S3</a></li>
+<li><a href=http://wiki.apache.org/hadoop/AmazonEC2>Amazon and EC2</a></li>
+</ul>
+<p>The second document also has pointers on how to get started using EC2 and S3. For people who are new to S3 - there&rsquo;s a few helpful notes in <a href=#s3-for-n00bs-section>S3 for n00bs section</a> below. The rest of the documentation below assumes that the reader can launch a hadoop cluster in EC2, copy files into and out of S3 and run some simple Hadoop jobs.</p>
+<h2 id=introduction-to-hive-and-aws>Introduction to Hive and AWS</h2>
+<p>There are three separate questions to consider when running Hive on AWS:</p>
+<ol>
+<li>Where to run the <a href=http://wiki.apache.org/hadoop/Hive/LanguageManual/Cli>Hive CLI</a> from and store the metastore db (that contains table and schema definitions).</li>
+<li>How to define Hive tables over existing datasets (potentially those that are already in S3)</li>
+<li>How to dispatch Hive queries (which are all executed using one or more map-reduce programs) to a Hadoop cluster running in EC2.</li>
+</ol>
+<p>We walk you through the choices involved here and show some practical case studies that contain detailed setup and configuration instructions.</p>
+<h2 id=running-the-hive-cli>Running the Hive CLI</h2>
+<p>The CLI takes in Hive queries, compiles them into a plan (commonly, but not always, consisting of map-reduce jobs) and then submits them to a Hadoop Cluster. While it depends on Hadoop libraries for this purpose - it is otherwise relatively independent of the Hadoop cluster itself. For this reason the CLI can be run from any node that has a Hive distribution, a Hadoop distribution, a Java Runtime Engine. It can submit jobs to any compatible hadoop cluster (whose version matches that of the Hadoop libraries that Hive is using) that it can connect to. The Hive CLI also needs to access table metadata. By default this is persisted by Hive via an embedded Derby database into a folder named metastore_db on the local file system (however state can be persisted in any database - including remote mysql instances).</p>
+<p>There are two choices on where to run the Hive CLI from:</p>
+<ol>
+<li>
+<p>Run Hive CLI from within EC2 - the Hadoop master node being the obvious choice. There are several problems with this approach:</p>
+<ul>
+<li>Lack of comprehensive AMIs that bundle different versions of Hive and Hadoop distributions (and the difficulty in doing so considering the large number of such combinations). <a href=http://www.cloudera.com/hadoop-ec2>Cloudera</a> provides some AMIs that bundle Hive with Hadoop - although the choice in terms of Hive and Hadoop versions may be restricted.</li>
+<li>Any required map-reduce scripts may also need to be copied to the master/Hive node.</li>
+<li>If the default Derby database is used - then one has to think about persisting state beyond the lifetime of one hadoop cluster. S3 is an obvious choice - but the user must restore and backup Hive metadata at the launch and termination of the Hadoop cluster.</li>
+</ul>
+</li>
+<li>
+<p>Run Hive CLI remotely from outside EC2. In this case, the user installs a Hive distribution on a personal workstation, - the main trick with this option is connecting to the Hadoop cluster - both for submitting jobs and for reading and writing files to HDFS. The section on <a href=http://wiki.apache.org/hadoop/AmazonEC2#FromRemoteMachine>Running jobs from a remote machine</a> details how this can be done. Case Study 1 goes into the setup for this in more detail. This option solves the problems mentioned above:</p>
+</li>
+</ol>
+<ul>
+<li>Stock Hadoop AMIs can be used. The user can run any version of Hive on their workstation, launch a Hadoop cluster with the desired Hadoop version etc. on EC2 and start running queries.</li>
+<li>Map-reduce scripts are automatically pushed by Hive into Hadoop&rsquo;s distributed cache at job submission time and do not need to be copied to the Hadoop machines.</li>
+<li>Hive Metadata can be stored on local disk painlessly.</li>
+</ul>
+<p>However - the one downside of Option 2 is that jar files are copied over to the Hadoop cluster for each map-reduce job. This can cause high latency in job submission as well as incur some AWS network transmission costs. Option 1 seems suitable for advanced users who have figured out a stable Hadoop and Hive (and potentially external libraries) configuration that works for them and can create a new AMI with the same.</p>
+<h2 id=loading-data-into-hive-tables>Loading Data into Hive Tables</h2>
+<p>It is useful to go over the main storage choices for Hadoop/EC2 environment:</p>
+<ul>
+<li>
+<p>S3 is an excellent place to store data for the long term. There are a couple of choices on how S3 can be used:</p>
+<ul>
+<li>Data can be either stored as files within S3 using tools like aws and s3curl as detailed in <a href=#s3-for-n00bs-section>S3 for n00bs section</a>. This suffers from the restriction of 5G limit on file size in S3. But the nice thing is that there are probably scores of tools that can help in copying/replicating data to S3 in this manner. Hadoop is able to read/write such files using the S3N filesystem.</li>
+<li>Alternatively Hadoop provides a block based file system using S3 as a backing store. This does not suffer from the 5G max file size restriction. However - Hadoop utilities and libraries must be used for reading/writing such files.</li>
+</ul>
+</li>
+<li>
+<p>HDFS instance on the local drives of the machines in the Hadoop cluster. The lifetime of this is restricted to that of the Hadoop instance - hence this is not suitable for long lived data. However it should provide data that can be accessed much faster and hence is a good choice for intermediate/tmp data.</p>
+</li>
+</ul>
+<p>Considering these factors, the following makes sense in terms of Hive tables:</p>
+<ol>
+<li>
+<p>For long-lived tables, use S3 based storage mechanisms</p>
+</li>
+<li>
+<p>For intermediate data and tmp tables, use HDFS</p>
+</li>
+</ol>
+<p>Case Study 1 shows you how to achieve such an arrangement using the S3N filesystem.</p>
+<p>If the user is running Hive CLI from their personal workstation - they can also use Hive&rsquo;s &lsquo;load data local&rsquo; commands as a convenient alternative (to dfs commands) to copy data from their local filesystems (accessible from their workstation) into tables defined over either HDFS or S3.</p>
+<h2 id=submitting-jobs-to-a-hadoop-cluster>Submitting jobs to a Hadoop cluster</h2>
+<p>This applies particularly when Hive CLI is run remotely. A single Hive CLI session can switch across different hadoop clusters (especially as clusters are bought up and terminated). Only two configuration variables:</p>
+<ul>
+<li><code>fs.default.name</code></li>
+<li><code>mapred.job.tracker</code></li>
+</ul>
+<p>need to be changed to point the CLI from one Hadoop cluster to another. Beware though that tables stored in previous HDFS instance will not be accessible as the CLI switches from one cluster to another. Again - more details can be found in Case Study 1.</p>
+<h2 id=case-studies>Case Studies</h2>
+<ol>
+<li>Querying files in S3 using EC2, Hive and Hadoop</li>
+</ol>
+<h2 id=appendix>Appendix</h2>
+<p>&#171;Anchor(S3n00b)&#187;</p>
+<h3 id=s3-for-n00bs>S3 for n00bs</h3>
+<p>One of the things useful to understand is how S3 is used as a file system normally. Each S3 bucket can be considered as a root of a File System. Different files within this filesystem become objects stored in S3 - where the path name of the file (path components joined with &lsquo;/') become the S3 key within the bucket and file contents become the value. Different tools like [S3Fox|https:&ndash;addons.mozilla.org-en-US-firefox-addon-3247] and native S3 !FileSystem in Hadoop (s3n) show a directory structure that&rsquo;s implied by the common prefixes found in the keys. Not all tools are able to create an empty directory. In particular - S3Fox does (by creating a empty key representing the directory). Other popular tools like <a href=http://timkay.com/aws/>aws</a>, <a href=http://s3tools.org/s3cmd>s3cmd</a> and <a href="http://developer.amazonwebservices.com/connect/entry.jspa?externalID=128">s3curl</a> provide convenient ways of accessing S3 from the command line - but don&rsquo;t have the capability of creating empty directories.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hbase execution plans for RawStore partition filter condition</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hbase-execution-plans-for-rawstore-partition-filter-condition>Apache Hive : Hbase execution plans for RawStore partition filter condition</h1>
+<p>(Apologies for this doc being organized properly, I thought something is better than nothing - Thejas)</p>
+<p>This is part of metastore on hbase work - </p>
+<h2 id=httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21140avatartypeissuetypehive-9452httpsissuesapacheorgjirabrowsehive-9452srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-9452?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21140&avatarType=issuetype" alt>HIVE-9452</a></h2>
+<p>Use HBase to store Hive metadata
+Open</p>
+<p>Functionality needed</p>
+<p>RawStore functions that support partition filtering are the following -</p>
+<ul>
+<li>getPartitionsByExpr</li>
+<li>getPartitionsByFilter (takes filter string as argument, used from hcatalog)</li>
+</ul>
+<p>We need to generate a query execution plan in terms of Hbase scan api calls for a given filter condition.</p>
+<h2 id=notes-about-the-api-to-be-supported>Notes about the api to be supported</h2>
+<p>getPartitionsByExpr - Current partition expression evaluation path ExprNodeGenericFuncDesc represents the partition filter expression in the plan</p>
+<ol>
+<li>It is serialized into byte[] and Metastore api is invoked with the byte[].</li>
+<li>ObjectStore processing of expression -</li>
+<li>deserializes the byte[], prints it to convert it to Filter string</li>
+<li>Converts Filter string to ExpressionTree using parser (Filter.g)</li>
+<li>Walk ExpressionTree to create sql query (in direct sql)</li>
+</ol>
+<p>getPartitionsByFilter - Evaluation of it is similar, it just skips the steps required to create the filter string. We certainly need the ability to work with filter string to support this function.</p>
+<p>Why do we convert from ExprNodeGenericFuncDesc to kryo serialized byte[] and not to the filter string ?</p>
+<p>Filter expressions supported currently</p>
+<p>Leaf Operators : =, >, &lt;, &lt;=, >=, LIKE, !=</p>
+<p>Logical Operators : AND, OR</p>
+<p>Partition table in hbase</p>
+<p>Partition information is stored in with the key as a delimited string consisting of - db name, table name, partition values</p>
+<p>The value contains rest of the partition information. (side note: do we need the partition values in the value part?)</p>
+<h1 id=implementation>Implementation</h1>
+<p>Serialization format of partition table key in hbase</p>
+<p>Desirable properties for key serialization format -</p>
+<ol>
+<li>It should be possible to perform filter operations on the keys without deserializing the fields (LIKE operator is not common, so its ok if we have to deserialize for that one)</li>
+<li>The real order for the partition keys and the byte order for the keys should match</li>
+<li>It should be possible to efficiently extract the relevant portion of the key for filters. ie, It should be possible to find the begin and end of bytes representing a partition value without checking every preceding byte.</li>
+</ol>
+<p>BinarySortableSerDe satisfies these requirements except for number 3. Meeting requirement 3 might need some index information to be stored in end of the serialized key.</p>
+<p>Limitations with current storage format (no secondary keys)</p>
+<p>If there are multiple partition keys for a table, and partition filter condition does not have a condition on the first partition key, we would end up scanning all partitions for the table to find the matches. For this case, we need support for secondary indexes on the table. While we could implement this using a second table, the lack of support for atomic operations across rows/tables is a problem. We would need some level of transaction support in hbase to be able to create secondary indexes reliably.</p>
+<p>Filtering the partitions</p>
+<p>The hbase api’s used will depend on the filtering condition -</p>
+<ol>
+<li>For simple partition filtering conditions on initial partition column, that check for a particular partition or a range of partition, we can convert them into a simple Hbase Scan operation without any Filter  (new Scan(byte[] startRow, byte[] stopRow))</li>
+<li>In case of more complex queries involving additional partition columns, we need to use a scan filter with conditions on remaining columns as well. ie, new Scan(byte[] startRow, byte[] stopRow) + Scan.setFilter(..)</li>
+<li>If there are no conditions on the first partition column, then all partitions on the table would need to be scanned. In that case, start and end rows will be based only on the db+table prefix of the key.</li>
+</ol>
+<p>Filters with top level “OR” conditions - Each of the conditions under OR should be evaluated to see which of the above api call pattern suits them. If any one of the conditions requires no 3 call pattern, it makes sense to represent the entire filter condition using api call pattern 3.</p>
+<p>Examples of conversion of query plan to hbase api calls</p>
+<ul>
+<li>merge function below does a set-union</li>
+<li>p1 represents the first partition column</li>
+<li>The scan(startRow, endRow) scans from startRow to row before endRow. ie, it represents rows where (r >= startRow and r &lt; endRow). But it can be made to represent (r > startRow) by adding a zero byte to startRow, and made to represent (r &lt;= endRow) by adding zero byte to endRow. ie, the plans for >= and > are similar, &lt;= and = are similar.</li>
+<li>All keys corresponding to a partitions of a table have a common prefix of “db + tablename”. That is referred to as “X” in following examples.</li>
+</ul>
+<p> </p>
+<p>| Filter expression | HBase calls |
+| p1 > 10 and p1 &lt; 20 | Scan(X10+, X20) |
+| p1 = 10 (if single partition column) | Scan(X10, X10+). Optimized? : Get(X10) |
+| Similar case as above, if all partition columns are specified | |
+| p1 = 10 (multiple partition column) | Scan(X10, X+) |
+| p1 = 9 or p1 = 10 | merge( get(X9), get(X10)) |
+| p1 > 10 or p1 &lt; 20 | merge(scan(X10, X+), scan(X  ,X20)) |
+| (condition on columns other than first partition column) : condition1 | Scan(X, X+).setFilter(genFilter(condition1)) |
+| p1 > 10 and condition1 | scan(X10, X+).setFilter(genFilter(condition1)) |
+| p1 &lt; 20 and condition1 | Scan(X , X20).setFilter(genFilter(condition1)) |
+| p1 > 10 and p1 > 20 and p1 &lt; 30 and p1 &lt; 40 | Scan(X20+, X30) |
+| p1 > 10 and (p1 > 20 or c1 = 5) =>(p1 > 10 and p1 > 20) or (p1 > 10 and c1 =5) | merge(Scan(X20+, X+), Scan(X10+,X+).setFilter(genFilter(c1 = 5))) |
+| (special case with OR condition, if one of the conditions results in full table scan): condition1 or condition2 | Scan(X).filter(getCombinedFilter(condition1, condition2) (ie, convert to a full table scan with filter) |
+| (general case with OR condition): condition1 or condition2 | merge( getResult(condition1), getResult(condition2)) |
+| c1 and (c2 or c3) | (c1 and c2) or (c1 and c3) |
+| (c1 or c2) and (c3 or c4) | (c1 and c3) or (c2 and c3) or (c1 and c4) or (c2 and c4) |</p>
+<p> </p>
+<p>Relevant classes :</p>
+<p>Input:</p>
+<p>ExpressionTree (existing) - TreeNodes for AND/OR expressions. Leaf Node for leaf expressions with  =,&lt; &mldr;</p>
+<p>Output:</p>
+<p> public static abstract class FilterPlan {</p>
+<p>   abstract FilterPlan and(FilterPlan other);</p>
+<p>   abstract FilterPlan or(FilterPlan other);</p>
+<p>   abstract List getPlans();</p>
+<p> }</p>
+<p>// represents a union of multiple ScanPlan</p>
+<p>MultiScanPlan extends FilterPlan</p>
+<p>ScanPlan extends FilterPlan</p>
+<p>   // represent Scan start</p>
+<p>   private ScanMarker startMarker ;</p>
+<p>   // represent Scan end</p>
+<p>   private ScanMarker endMarker ;</p>
+<p>   private ScanFilter filter;</p>
+<p>public FilterPlan and(FilterPlan other) {</p>
+<p>// calls this.and(otherScanPlan) on each scan plan in other</p>
+<p>}</p>
+<p>private ScanPlan and(ScanPlan other) {</p>
+<p>  // combines start marker and end marker and filters of this and other</p>
+<p>}</p>
+<p>public FilterPlan or(FilterPlan other) {</p>
+<p>  // just create a new FilterPlan from other, with this additional plan</p>
+<p>}</p>
+<p>PartitionFilterGenerator -</p>
+<p> /**</p>
+<p>  * Visitor for ExpressionTree.</p>
+<p>  * It first generates the ScanPlan for the leaf nodes. The higher level nodes are</p>
+<p>  * either AND or OR operations. It then calls FilterPlan.and and FilterPlan.or with</p>
+<p>  * the child nodes to generate the plans for higher level nodes.</p>
+<p>  */</p>
+<p>Initial implementation: Convert from from ExpressionTree to Hbase filter, thereby implementing both getPartitionsByFilter and getPartitionsByExpr</p>
+<p>A new custom Filter class implementation needs to be created. Filter class implements Writable, and the hbase expression to be evaluated is serialized</p>
+<p>We can potentially create the filter directly from ExprNodeGenericFuncDesc in case of the new fastpath config is set.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : PluginDeveloperKit</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--plugindeveloperkit>Apache Hive : PluginDeveloperKit</h1>
+<h1 id=hive-plugin-developer-kit>Hive Plugin Developer Kit</h1>
+<p>This page explains Apache Hive&rsquo;s Plugin Developer Kit, or PDK. This allows developers to build and test Hive plugins without having to set up a Hive source build; only a Hive binary release is needed.</p>
+<p>The PDK is planned for inclusion in the Hive 0.8.0 release; until that is available, please download a recent snapshot build from <a href=http://jenkins-ci.org>Jenkins</a>; make sure it includes <a href=https://issues.apache.org/jira/browse/HIVE-2244>HIVE-2244</a>.</p>
+<p>Currently, the PDK is only targeted at user defined functions (including UDAF&rsquo;s and UDTF&rsquo;S), although it may be possible to use it for building other kinds of plugins such as serdes, input/output formats, storage handlers and index handlers. The PDK&rsquo;s test framework currently only supports automated testing of UDF&rsquo;s.</p>
+<h2 id=example-plugin>Example Plugin</h2>
+<p>To demonstrate the PDK in action, the Hive release includes an <code>examples/test-plugin</code> directory. You can build the test plugin by changing to that directory and running</p>
+<pre tabindex=0><code>ant -Dhive.install.dir=../..
+
+</code></pre><p>This will create a <code>build</code> subdirectory containing the compiled plugin: <code>pdk-test-udf-0.1.jar</code>. There&rsquo;s also a <code>build/metadata</code> directory containing <code>add-jar.sql</code> (demonstrating the command to use to load the plugin jar) and <code>class-registration.sql</code> (demonstrating the commands to use for loading the UDF&rsquo;s from the plugin). The .sql files can be passed via the Hive CLI&rsquo;s <code>-i</code> command-line parameter in order to be run as initialization scripts.</p>
+<p>You can run the tests associated with the plugin via</p>
+<pre tabindex=0><code>ant -Dhive.install.dir=../.. test
+
+</code></pre><p>If all is well, you should see output like</p>
+<pre tabindex=0><code>Buildfile: /hive-0.8.0-SNAPSHOT/examples/test-plugin/build.xml
+
+get-class-list:
+
+test:
+    [junit] Running org.apache.hive.pdk.PluginTest
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 38.955 sec
+
+BUILD SUCCESSFUL
+
+</code></pre><p>The example plugin is also built and tested as part of the main Hive build in order to verify that the PDK is operating as expected.</p>
+<h2 id=your-own-plugin>Your Own Plugin</h2>
+<p>To create your own plugin, you can follow the patterns from the example plugin. Let&rsquo;s take a closer look at it. First, the <code>build.xml</code>:</p>
+<pre tabindex=0><code>&lt;project name=&quot;pdktest&quot; default=&quot;package&quot;&gt;
+  &lt;property name=&quot;plugin.libname&quot; value=&quot;pdk-test-udf&quot;/&gt;
+  &lt;property name=&quot;plugin.title&quot; value=&quot;Hive PDK Test UDF Library&quot;/&gt;
+  &lt;property name=&quot;plugin.version&quot; value=&quot;0.1&quot;/&gt;
+  &lt;property name=&quot;plugin.vendor&quot; value=&quot;Apache Software Foundation&quot;/&gt;
+  &lt;property name=&quot;function.sql.prefix&quot; value=&quot;tp_&quot;/&gt;
+  &lt;import file=&quot;${hive.install.dir}/scripts/pdk/build-plugin.xml&quot;/&gt;
+&lt;/project&gt;
+
+</code></pre><p>All this buildfile does is define some variable settings and then import a build script from the PDK, which does the rest (including defining the package and test targets used for building and testing the plugin). So for your own plugin, change the variable settings accordingly, and set hive.install.dir to the location where you&rsquo;ve installed the Hive release.</p>
+<p>The imported PDK buildfile assumes a few things about the structure of your plugin source structure:</p>
+<ul>
+<li>your-plugin-root
+<ul>
+<li>build.xml</li>
+<li>src
+<ul>
+<li>Java source files</li>
+</ul>
+</li>
+<li>test
+<ul>
+<li>setup.sql</li>
+<li>cleanup.sql</li>
+<li>any datafiles needed by your tests</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>For the example plugin, a datafile onerow.txt contains a single row of data; setup.sql creates a table named onerow and loads the datafile, whereas cleanup.sql drops the onerow table. The onerow table is convenient for testing UDF&rsquo;s.</p>
+<h2 id=annotations>Annotations</h2>
+<p>Now let&rsquo;s take a look at the source code for a UDF.</p>
+<pre tabindex=0><code>package org.apache.hive.pdktest;
+
+import org.apache.hive.pdk.HivePdkUnitTest;
+import org.apache.hive.pdk.HivePdkUnitTests;
+
+import org.apache.hadoop.hive.ql.exec.Description;
+import org.apache.hadoop.hive.ql.exec.UDF;
+import org.apache.hadoop.io.Text;
+
+/**
+ * Example UDF for rot13 transformation.
+ */
+@Description(name = &quot;rot13&quot;,
+  value = &quot;_FUNC_(str) - Returns str with all characters transposed via rot13&quot;,
+  extended = &quot;Example:\n&quot;
+  + &quot;  &gt; SELECT _FUNC_('Facebook') FROM src LIMIT 1;\n&quot; + &quot;  'Snprobbx'&quot;)
+@HivePdkUnitTests(
+    setup = &quot;create table rot13_data(s string); &quot;
+    + &quot;insert overwrite table rot13_data select 'Facebook' from onerow;&quot;,
+    cleanup = &quot;drop table if exists rot13_data;&quot;,
+    cases = {
+      @HivePdkUnitTest(
+        query = &quot;SELECT tp_rot13('Mixed Up!') FROM onerow;&quot;,
+        result = &quot;Zvkrq Hc!&quot;),
+      @HivePdkUnitTest(
+        query = &quot;SELECT tp_rot13(s) FROM rot13_data;&quot;,
+        result = &quot;Snprobbx&quot;)
+    }
+  )
+public class Rot13 extends UDF {
+  private Text t = new Text();
+
+  public Rot13() {
+  }
+
+  public Text evaluate(Text s) {
+    StringBuilder out = new StringBuilder(s.getLength());
+    char[] ca = s.toString().toCharArray();
+    for (char c : ca) {
+      if (c &gt;= 'a' &amp;&amp; c &lt;= 'm') {
+        c += 13;
+      } else if (c &gt;= 'n' &amp;&amp; c &lt;= 'z') {
+        c -= 13;
+      } else if (c &gt;= 'A' &amp;&amp; c &lt;= 'M') {
+        c += 13;
+      } else if (c &gt;= 'N' &amp;&amp; c &lt;= 'Z') {
+        c -= 13;
+      }
+      out.append(c);
+    }
+    t.set(out.toString());
+    return t;
+  }
+}
+
+</code></pre><p>The annotations are interpreted by the PDK as follows:</p>
+<ul>
+<li>@Description: provides metadata to Hive about a UDF&rsquo;s syntax and usage. Only classes with this annotation will be included in the generated class-registration.sql</li>
+<li>@HivePdkUnitTests: enumerates one or more test cases, and also specifies optional setup and cleanup commands to run before and after the test cases.</li>
+<li>@HivePdkUnitTest: specifies one test case, consisting of the query to run and the expected result</li>
+</ul>
+<p>Annotations allow the code and tests to be kept close together. This is good for small tests; if your tests are very complicated, you may want to set up your own scripting around the Hive CLI.</p>
+<h2 id=test-execution>Test Execution</h2>
+<p>The PDK executes tests as follows:</p>
+<ol>
+<li>Run top-level cleanup.sql (in case a previous test failed in the middle)</li>
+<li>Run top-level setup.sql</li>
+<li>For each class with @HivePdkUnitTests annotation
+<ol>
+<li>Run class cleanup (if any)</li>
+<li>Run class setup (if any)</li>
+<li>For each @HivePdkUnitTest annotation, run query and verify that actual result matches expected result</li>
+<li>Run class cleanup (if any)</li>
+</ol>
+</li>
+<li>Run top-level cleanup.sql</li>
+</ol>
+<p>If you encounter problems during test execution, look in the file <code>TEST-org.apache.hive.pdk.PluginTest.txt</code> for details.</p>
+<h2 id=futures>Futures</h2>
+<ul>
+<li>support annotations for other plugin types</li>
+<li>add more annotations for automatically validating function parameters at runtime (instead of requiring the developer to write imperative Java code for this)</li>
+<li>add Eclipse support</li>
+<li>move Hive builtins to use PDK for more convenient testing (<a href=https://issues.apache.org/jira/browse/HIVE-2523>HIVE-2523</a>)</li>
+<li>command-line option for invoking a single testcase</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

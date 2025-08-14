@@ -1,0 +1,480 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Hive on Spark: Join Design Master</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--hive-on-spark-join-design-master>Apache Hive : Hive on Spark: Join Design Master</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hive-on-spark-join-design-master>Apache Hive : Hive on Spark: Join Design Master</a>
+<ul>
+<li><a href=#purpose-and-prerequisites>Purpose and Prerequisites</a></li>
+<li><a href=#mapreduce-summary>MapReduce Summary</a>
+<ul>
+<li><a href=#figure-1-join-processors-for-hive-on-mapreduce>Figure 1. Join Processors for Hive on MapReduce</a></li>
+</ul>
+</li>
+<li><a href=#tez-comparison>Tez Comparison</a></li>
+<li><a href=#spark-mapjoin>Spark MapJoin</a></li>
+<li><a href=#spark-join-design>Spark Join Design</a>
+<ul>
+<li><a href=#figure-2-join-processors-for-hive-on-spark>Figure 2: Join Processors for Hive on Spark</a></li>
+</ul>
+</li>
+<li><a href=#attachments>Attachments:</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=purpose-and-prerequisites>Purpose and Prerequisites</h2>
+<p>The purpose of this document is to summarize the findings of all the research of different joins and describe a unified design to attack the problem in Spark.  It will identify the optimization processors will be involved and their responsibilities.</p>
+<p>It is not the purpose to go in depth for design of the various join implementations in Spark, such as the common-join (<a href=https://issues.apache.org/jira/browse/HIVE-7384>HIVE-7384</a>), or the optimized join variants like mapjoin (<a href=https://issues.apache.org/jira/browse/HIVE-7613>HIVE-7613</a>), skew-join (<a href=https://issues.apache.org/jira/browse/HIVE-8406>HIVE-8406</a>) or SMB mapjoin (<a href=https://issues.apache.org/jira/browse/HIVE-8202>HIVE-8202</a>).  It will be helpful to refer to the design documents attached on JIRA for those details before reading this document, as they will also contain some background of how they are implemented in MapReduce and comparisons.  Lastly, it will also be helpful to read the overall <a href=https://hive.apache.org/docs/latest/user/hive-on-spark/>Hive on Spark</a> design doc before reading this document.</p>
+<h2 id=mapreduce-summary>MapReduce Summary</h2>
+<p>This section summarizes plan-generation of different joins of Hive on MapReduce, which will serve as a model for Spark.  We aim to support most of these join optimizations.  Priority will be for the automatically-optimized joins, followed by those that need user input, such as hints and metadata.</p>
+<p>Over the years, there have been lots of join optimization introduced to Hive beyond the common-join, via Processors (partial transformation of operator-tree or work tree).  The following diagram (Figure 1) shows the relationships of different Processors, each of which does a small part in transforming an operator-tree from common-join to one of the optimized join work-trees (mapjoin, bucket mapjoin, SMB mapjoin, or skewjoin).</p>
+<p>Processors are represented by boxes in the following diagram:  They are split into three types:</p>
+<ul>
+<li>Logical optimization processor (Green):  Deals with pure operator-tree (no physical works).</li>
+<li>Work-generation processor (Blue):  Deals with operator-tree and takes part in forming a physical work-tree.</li>
+<li>Physical optimization processor (Red):  Deals with fully-formed physical work-tree.</li>
+</ul>
+<p>Each processor box shows the triggering condition, either a Hive configuration property, or the presence of a certain operator in the tree.  So, you can see how to trigger a particular join by following its path through processors and making sure all configurations are triggered and the given operator has been created by previous processors.  There are further conditions to do the transform listed on the top, (ie, size of table, etc), that are not be explained by this document, and can be referred from documents of individual joins.</p>
+<h3 id=figure-1-join-processors-for-hive-on-mapreduce>Figure 1. Join Processors for Hive on MapReduce</h3>
+<p><img src="/attachments/50858744/51183928.png?effects=border-simple,blur-border" alt></p>
+<p>The input arrow at top before any Processor is always an operator-plan for common-join, which is shown as follows.  In other words, this is the original join plan if none of the optimizer processors are activated.</p>
+<p><img src=https://lh5.googleusercontent.com/6XjRKhcU5NqlT2-45wDW9f3lS188yRFFLzTVcPK77RKrrV6P2Box7n_qLxse7tdaH968Pnfg29ErRWzFWgYclNIwNFBus91eqoCGddM4hTmm8R-n2q39k3RtoH_1y7Jm5g alt></p>
+<p>The ‘exit’ arrows of the join paths shown in Figure 1 are the various optimized join variants.  There are of course other exit paths, in which the plan remains unchanged as a common-join upon falling out of any processor’s pre-req checks, but they are not shown to simplify the diagram.</p>
+<p>Description of the some important Processors follows.  Again, there’s no space to describe them all, so few key ones are chosen.</p>
+<ul>
+<li>SortedBucketMapJoinProc: This logical optimization processor handles auto-conversion of common-join operator-tree to SMB join operator-tree, for further processing.</li>
+</ul>
+<p><img src=https://lh3.googleusercontent.com/vEyeVd9osItYVMQD9QdyW9Yhg_CTTcCWstOboqDAiNkLoEt096giFXXbJ6IRXXIPzuraJDuefpP8ZVjBPStR7n0VUYkNiNXxTuPkT2clFHjGQomwKQOyd8OlEZFmfFBiiQ alt>to<img src=https://lh6.googleusercontent.com/R3akhcjTnYUlBlScZbhlILMQKEzKX_lGd1wHQCL8z9F6PhIf_fODRcAHh2Z1vW0_5bEuHbnheKo0iPr7tX2jxHKzTGigXIm5BFb0mjt9jxJzh5_Ba0KzYHCGamopDnyGfQ alt></p>
+<ul>
+<li>MapJoinProcessor: This logical optimization processor handles initial conversion of common-join operator-tree to mapjoin operator-tree, for further-processing, when user has given hints to identify the small tables.</li>
+</ul>
+<p><img src=https://lh3.googleusercontent.com/vEyeVd9osItYVMQD9QdyW9Yhg_CTTcCWstOboqDAiNkLoEt096giFXXbJ6IRXXIPzuraJDuefpP8ZVjBPStR7n0VUYkNiNXxTuPkT2clFHjGQomwKQOyd8OlEZFmfFBiiQ alt>to<img src=https://lh6.googleusercontent.com/5lb1EC5zNUPY2KBa0odFOXmuIKeSH4CES8dSbbb1lBUMwdwoJdoF4tuNdA4Vb_sJWZdLdeagos2Wofk2TqcZZ8MXcGwKDfhhq8tQiIPRuSxOYUQM2RLJzYpVKFiWIHDllw alt></p>
+<ul>
+<li>MapJoinFactory: This follows MapJoinProcessor as part of work-generation phase.  It handles the work-tree created from that, adding a local work to identify the small-tables.  It also follows after SortedBucketMapJoinProc in the SMB MapJoin path as part of its work-generation phase in a similar way, also adding a local work to identify the small tables for SMB MapJoin.</li>
+</ul>
+<p>MapJoinFactory MapJoin processing:</p>
+<p><img src=https://lh6.googleusercontent.com/5lb1EC5zNUPY2KBa0odFOXmuIKeSH4CES8dSbbb1lBUMwdwoJdoF4tuNdA4Vb_sJWZdLdeagos2Wofk2TqcZZ8MXcGwKDfhhq8tQiIPRuSxOYUQM2RLJzYpVKFiWIHDllw alt>to<img src=https://lh6.googleusercontent.com/v-7vDaIMWSn6D-EPvUfjJClMpza8hJNfUcBnVlHYMfQoBBYI96JBPTss9seuEuAbNFy_DioIIoSzcxpYrmMULciChgthw9Np9OuzNDMiBZKIFrlrJMG6lDzKVWIfATTfTQ alt></p>
+<p>MapJoinFactory SMB MapJoin processing:</p>
+<p><img src=https://lh6.googleusercontent.com/R3akhcjTnYUlBlScZbhlILMQKEzKX_lGd1wHQCL8z9F6PhIf_fODRcAHh2Z1vW0_5bEuHbnheKo0iPr7tX2jxHKzTGigXIm5BFb0mjt9jxJzh5_Ba0KzYHCGamopDnyGfQ alt>to <img src=https://lh5.googleusercontent.com/O4IZC0pipupTQxh9dxFum1-sSVFOvKLQvSElXHScGShSLVpLftSSB1UT_FY7bxmkK2XfA_KuExUCDEYnM2Dsk7jw5LPJpmY_K5o9mmEvHvi6VE4CKzSIXYMtAHF_8ZuV2A alt></p>
+<ul>
+<li>CommonJoinResolver:  This handles auto-conversions of joins to mapjoins and goes a separate path than hint-based mapjoin conversions.  This takes a working common-join work tree already generated from the common-join operator-tree, and creates an alternative work-tree.  The new work-tree consists of a mapwork rooted at the big table.  Pointers to the small table are retained in the new work via the LocalWork data structure.</li>
+</ul>
+<p> </p>
+<p><img src=https://lh4.googleusercontent.com/zd6-KZbQYo3Gw5YymR_lywLFbnLa78UdS9-oTH-uozqKulyuDSS1xFdo2SzFQPWFnqg7jSVWyQXiBp2ZDqaiKDZVyA293lQoOjXsTCMmmK925eIPasiTCnC2OXEiIfkODg alt>to: <img src=https://lh6.googleusercontent.com/9O1QU47n5quyJ4gne3No9BvK8mREfDUOe2evjItRe6oZdPUBin9M4nrTPt2QaiJTaBEbzbJH68sp47I7gK2_NTQM9phVHnBhYbdUT0vTv6oHJ79CQRGAQk49GvuRD6D65A alt></p>
+<ul>
+<li>MapJoinResolver:  Here, the two mapjoin paths (hint and non-hint mapjoins) unite again.  One last step for both results is to make it ready for physical execution on MR cluster, described in detail in below section “Spark MapJoin”.  The MapJoinResolver separates the single work into two works.  First a local MapRedWork dealing with small tables, ending with HashTableSink writing the hashmap files.  Then a MapRedWork dealing with big table, loading from small-table hashmap files via HashTableDummyOp.</li>
+</ul>
+<p><img src=https://lh6.googleusercontent.com/lQIaQRRy1g1y6ke6bnbDOU2YJw_O1Zc9ayXYPyAZlvBp6EJwU8COq2T84vu0g5M-Mow_qId_4-BQZj6YqExUNKD4KNGGULSZIq7qZeMr1R4rgefkJ7eKQYxxXB3ti3yKFA alt>to <img src=https://lh5.googleusercontent.com/hxeqXQlbKmoqkaisHbEq3OY3NMPpm3WIqCkLb0zrt3XvJf66dzlEQCR9H5ZOO51ayx30IKI395gdcLS9FqOkF4e5DjZNY2j4bwG7TWKDIniizIDCRMArWGhe_y90iiUgcw alt></p>
+<p>A brief summary of all the processor-paths of possible join plans shown in Figure 1:</p>
+<ol>
+<li>
+<p>Skewjoin (compile-time)</p>
+</li>
+<li>
+<p>SkewJoinOptimizer: From a common-join operator tree, creates two join operator-trees connected by union operator.  These will represent a join with skew key, and a join without it.</p>
+</li>
+<li>
+<p>One or both reduce-side join might be converted to mapjoin by CommonJoinResolver, see auto-mapjoin for more details.</p>
+</li>
+<li>
+<p>Skewjoin (runtime)</p>
+</li>
+<li>
+<p>SkewJoinResolver:  Create conditional work after the original common-join work, which is a list of mapjoin works.  These will handle the skew keys.</p>
+</li>
+<li>
+<p>MapJoinResolver: Final preparation for mapjoin works as described.</p>
+</li>
+<li>
+<p>Auto-mapjoin</p>
+</li>
+<li>
+<p>CommonJoinResolver:  Convert common-join operator tree to mapjoin operator-tree, with big/small table(s) identified on the Mapjoin operator, as described.</p>
+</li>
+<li>
+<p>MapJoinResolver: Final preparation for mapjoin works as described.</p>
+</li>
+<li>
+<p>Map join query with hints</p>
+</li>
+<li>
+<p>MapJoinProcessor:  Convert common-join operator tree to mapjoin operator-tree, with big/small table(s) identified on the Mapjoin operator, as described.</p>
+</li>
+<li>
+<p>MapJoinFactory: Adds localWork pointing to small tables in mapjoin work, as described.</p>
+</li>
+<li>
+<p>MapJoinResolver:  Final preparation for mapjoin works as described.</p>
+</li>
+<li>
+<p>Bucket map join query with hints.</p>
+</li>
+<li>
+<p>MapJoinProcessor:  Convert common-join operator tree to mapjoin operator-tree, with big/small table(s) identified on the Mapjoin operator, as described.</p>
+</li>
+<li>
+<p>BucketMapJoinProcessor:  Add bucketing information to MapJoin op.</p>
+</li>
+<li>
+<p>MapJoinFactory: Adds localWork pointing to small tables in mapjoin work, as described.</p>
+</li>
+<li>
+<p>MapJoinResolver:  Final preparation for mapjoin works as described.</p>
+</li>
+<li>
+<p>SMB join query with hints</p>
+</li>
+<li>
+<p>MapJoinProcessor:  Convert common-join operator tree to mapjoin operator-tree, with big/small table(s) identified on the Mapjoin operator, as described.</p>
+</li>
+<li>
+<p>SortedBucketMapJoinProc:  Convert mapjoin operator-tree to SMBMapJoin operator-tree.  Add DummyOp to small-tables.</p>
+</li>
+<li>
+<p>MapJoinFactory:  Adds localWork pointing to small tables in SMBMapjoin work, as described.</p>
+</li>
+<li>
+<p>May be converted back to MapJoin (see #8 for details).</p>
+</li>
+<li>
+<p>Auto-SMB join</p>
+</li>
+<li>
+<p>SortedMergeBucketMapJoinProc: Convert mapjoin operator-tree to SMBMapJoin operator-tree.  Add DummyOp to small-tables.</p>
+</li>
+<li>
+<p>MapJoinFactory:  Adds localWork pointing to small tables in SMBMapjoin work, as described.</p>
+</li>
+<li>
+<p>May be converted to MapJoin (see #8 for details).</p>
+</li>
+<li>
+<p>SMB join that converts to mapjoin</p>
+</li>
+<li>
+<p>SMBJoin operator-tree constructed as mentioned in #6, #7 above.</p>
+</li>
+<li>
+<p>SortedMergeJoinResolver:  For each possible big-table candidate, create a mapjoin work.  These will have LocalWork data structures to keep track of small-tables.  Create ConditionalWork with all of these mapjoin works (with the original SMBJoin work as the backup task of each one), and the original SMBJoin work as the last option.</p>
+</li>
+<li>
+<p>MapJoinResolver: For each mapjoin work created, final preparation as described.</p>
+</li>
+</ol>
+<h2 id=tez-comparison>Tez Comparison</h2>
+<p>Hive on Tez is still evolving.  They currently disable all logical-optimizer processors, and use a processor called “ConvertJoinMapJoin” located in the work-generation phase.  It utilitzes stats annotated on the operator-tree to make some decisions as to what join to take.  It will directly create plans for the following joins:</p>
+<ul>
+<li>MapJoin</li>
+<li>SMBJoin</li>
+</ul>
+<p>These look different than MapReduce plans, and are based on the Tez physical feature “broadcast-edge”.  See JIRA’s of those joins for more details.</p>
+<h2 id=spark-mapjoin>Spark MapJoin</h2>
+<p> </p>
+<p>For most of the joins for Hive on Spark, the overall execution will be similar to MR for the first cut.  Thus, a similar work-tree as in MR will be generated, though encapsulated in SparkWork(s) instead of MapRedWork(s).</p>
+<p>One difference is implementation of mapjoin, which is worth spending some time discussing.  Recall the mapjoin work-tree in MapReduce:</p>
+<p><img src=https://lh3.googleusercontent.com/kOU9rPef4U2D8ugPv_RCfIIgCmbmOWZ1sftxUgycIVpr8kak6En9XZOCBHubOJhsZZjcrcgDfMXCYpScdOpx9tRHmORFG8661G9SMvOngBpFGY-yJRDIf9Zy_HDftQlUmg alt></p>
+<ol>
+<li>Run the MapredLocalWork containing small-table(s)’ operator-tree, ending it with a HashTableSink op that dumps to file.  This is made into a distributed cache.</li>
+<li>Run the MapWork for the big table, which will populate small-table hashmap from the distributed cache file using HashTableDummy’s loader.</li>
+</ol>
+<p>Spark mapjoin has a choice to take advantage of faster Spark functionality like broadcast-variable, or use something similar to distributed-cache.  A discussion for choosing MR-style distributed cache is given in “small-table broadcasting” document in <a href=https://issues.apache.org/jira/browse/HIVE-7613>HIVE-7613</a>, though broadcast-variable support might be added in future.  Here is the plan that we want.</p>
+<p> </p>
+<p><img src=https://lh5.googleusercontent.com/0E0yZCzxLwhv-uYLypQy0DIOWck7SdiNZY-kjPd_Oui3YdxY623_CJrdCz1d-jv3Hl5JRaAKTOle8PX9MH1h8ifNVEITP40kp-KONMlVcUubEN9zCiZj0kgD9FWil7R3OA alt></p>
+<ol>
+<li>Run the small-table SparkWorks on Spark cluster, which dump to hashmap file (this is main difference with MR, as the small-table work is distributed).</li>
+<li>Run the SparkWork for the big table on Spark cluster.  Mappers will lookup the small-table hashmap from the file using HashTableDummy’s loader.</li>
+</ol>
+<p>For bucket map-join, each bucket of each small table goes to a separate file, and each mapper of big-table loads the specific bucket-file(s) of corresponding buckets for each small table.</p>
+<h2 id=spark-join-design>Spark Join Design</h2>
+<p>Let’s redraw the processor diagram for Hive on Spark.  There are several other points to note in this section:</p>
+<ul>
+<li>Logical optimizers are mostly re-used from Hive on MapReduce, directly or slightly modified.</li>
+<li>GenSparkWork is the first of the work-generator processors, which creates SparkWorks.</li>
+</ul>
+<p>There are also some minor differences (improvements) over original MapReduce, beyond the one mentioned in Spark MapJoin section.</p>
+<ul>
+<li>Hive on Spark supports automatic bucket mapjoin, which is not supported in MapReduce.  This is done in extra logic via SparkMapJoinOptimizer and SparkMapJoinResolver.</li>
+<li>Hive on Spark’s SMB to MapJoin conversion path is simplified, by directly converting to MapJoin if eligible.</li>
+</ul>
+<h3 id=figure-2-join-processors-for-hive-on-spark>Figure 2: Join Processors for Hive on Spark</h3>
+<p><img src="/attachments/50858744/51183929.png?effects=border-simple,blur-border" alt></p>
+<p>Again, we first explore some of the interesting processors:</p>
+<p> </p>
+<ul>
+<li>SparkSortMergeJoinOptimizer: Like SortrtedBucketMapJoinProc, this logical optimization processor handles auto-conversion of common-join to SMB join operator-tree, for further processing.</li>
+</ul>
+<p> </p>
+<p> </p>
+<p><img src=https://lh3.googleusercontent.com/vEyeVd9osItYVMQD9QdyW9Yhg_CTTcCWstOboqDAiNkLoEt096giFXXbJ6IRXXIPzuraJDuefpP8ZVjBPStR7n0VUYkNiNXxTuPkT2clFHjGQomwKQOyd8OlEZFmfFBiiQ alt>to<img src=https://lh6.googleusercontent.com/R3akhcjTnYUlBlScZbhlILMQKEzKX_lGd1wHQCL8z9F6PhIf_fODRcAHh2Z1vW0_5bEuHbnheKo0iPr7tX2jxHKzTGigXIm5BFb0mjt9jxJzh5_Ba0KzYHCGamopDnyGfQ alt></p>
+<ul>
+<li>SparkSortMergeMapJoinFactory:  This takes a MapWork with operator-tree already with a SMBMapJoin operator and big/small table(s) identified, and creates a LocalWork pointing at small tables.</li>
+</ul>
+<p><img src=https://lh6.googleusercontent.com/UN6Bj_2uZZ7eSutia3T0xZ3xhsXy7VbxLbAOQeEwRQD5gAG9U4VgaFeqyIYq5r0szLRwliuEMHIBYaMJ6Ogx7S_qvQSfIceHC9MP80zvTJBgQs2S3bIYOwTtlCO8dm5reQ alt>to  <img src=https://lh4.googleusercontent.com/MjkiEe6ND6tKcDXiwheTNuVpo_SWMqyp1c3HKOTQeYhc0hv6figAMMHaedyZQGMVD1uJ4uhsfkxZoGcdyic2wOXLv4YluTi2omBgulRphW9D9tdkNwtyhqKksQVL4_3-sg alt></p>
+<ul>
+<li>SparkMapJoinProcessor: Like MapJoinProcessor, this logical optimization processor handles initial conversion of common-join to mapjoin, for further-processing, when user has given hints to identify the small tables.  Final operator-tree is just a bit different than with MapReduce, with ReduceSinks of small table branch(es) still attached.</li>
+</ul>
+<p><img src=https://lh3.googleusercontent.com/vEyeVd9osItYVMQD9QdyW9Yhg_CTTcCWstOboqDAiNkLoEt096giFXXbJ6IRXXIPzuraJDuefpP8ZVjBPStR7n0VUYkNiNXxTuPkT2clFHjGQomwKQOyd8OlEZFmfFBiiQ alt>to<img src=https://lh5.googleusercontent.com/nIUUtvmkxTXSo4YvC4iXxkJudeGOtYBfbTjalgjUPcTUC1fJbRcVC5jksG_YYKcPNhRrvMRWWVZm0CdyuNmKBL5M2seQMtLJXlaZvGj6JS9EMVeQWW8MUezcarrtSKE3mw alt></p>
+<p> </p>
+<ul>
+<li>SparkMapJoinOptimizer: Similar to MapReduce’s MapJoinProcessor and Tez’s ConvertJoinMapJoin, this will transform a common join operator-tree to a mapjoin operator-tree, by identifying the big and small tables via stats.  Like Tez’s processor, it removes the reduce-sinks from the big-table’s branch but keeps them for the small-tables.</li>
+</ul>
+<p><img src=https://lh4.googleusercontent.com/V5rzrMpn5bldQNiHksNHlo2uyfp1Q5XhVEv5pF_-UCYhmQ0c2yjSDrPa3azrxbbdNqX6SCXmF-gVotVaJuL89oV4uja-dgjKT-3j-8xyJ-_oEOJoqiIqA33aq9pEFptHjw alt>to<img src=https://lh4.googleusercontent.com/XyKZUOw8phFv1MsLsLOfPIHzIMnPxPe3RfMDtxGF0kCTF-qkejyV4tVsu9eI_n_ud54BRz5uYvFvOsb0SF9YogOYe45KRrFSrY1mJVw-3fv2SqndbKkREfFYeAojHSUEhw alt></p>
+<ul>
+<li>GenSparkWork/SparkReduceSinkMapJoinProc: During the work-generation phase, a combination of these processors will draw the appropriate work boundaries around the mapjoin operator tree.  It also transforms ReduceSinks into HashTableSinks.</li>
+</ul>
+<p><img src=https://lh6.googleusercontent.com/BPzPNEF0N801KCIoZKYwu9XvVXsroUodOxaGV1vPcHWlW6Cs62NHkQau5C9SexoOMJRMVzMPnDPqaiZ54ZnU60aN7h33J3gK5AVE08Cgz_Kow5vxlM3MW789vSR4Z1cu4Q alt>to<img src=https://lh3.googleusercontent.com/McqEtWtWDoyvf8ZRv-7LCR0QGTVhx2yGZBrUfE4JSQbOjdHPilZGh96PAHyaVstdQKBESBt4BaY8XIp8unhpV515i9B1uz_49D9naCJfcltBpTyDJ_iGzrT0bg5mEDn3Wg alt></p>
+<ul>
+<li>SparkMapJoinResolver: Again, the various mapjoin paths (hint and automatic) converge at this final processor before execution on Spark cluster.  This takes a single SparkWork with MapJoin operator and big/small table(s) identified, and splits it into dependent SparkWorks, with the small-table SparkWork(s) being parents of the big-table SparkWork.  This will be sent to Spark cluster to run mapjoin as described in the section “Spark MapJoin”.  The LocalWork data structure is created within the dependent (big-table) SparkWork to contain HashTableDummy’s which load small-table hashmap files.</li>
+</ul>
+<p> </p>
+<p><img src=https://lh3.googleusercontent.com/OmwdjBXH8Uw6pBvi2OGQkZ301TkHzmfzhuMV9fOL1czSQeip_cCgbg-ihUd-KKxwwJJurkFQCZeQbFyrLWAiUX2Ry0uWPUKmxinG1YKvJ7FfgjYjpXyeaLCE4nmp24pmlA alt>to: <img src=https://lh4.googleusercontent.com/k9YPLYJSaULuwfmHZY3Y50QhLYE91BN5NTPUoHqEKzkE6xihEH66aSIIgE30Ay2TWfnqkJBnK7cTnKjif06SZZ_sLK44frnebWFRw4wNh-Sz05HQDrfQ9_4HNYHb94jncA alt></p>
+<p> </p>
+<p>And the summary of each join plan’s processor path of Figure 2.</p>
+<ol>
+<li>
+<p>Compile-time skewjoin without mapjoin: Logical optimizer completely re-used from MapReduce.</p>
+</li>
+<li>
+<p>SkewJoinOptimizer: This logical-optimizer processor is reused, to create two join plans out of one connected by union.</p>
+</li>
+<li>
+<p>Follows auto-conversion to MapJoin path.</p>
+</li>
+<li>
+<p>SMB MapJoin (with hints): again, logical optimizers are mostly similar to those in MapReduce.</p>
+</li>
+<li>
+<p>SparkMapJoinProcessor/BucketMapJoinOptimizer/SparkSMBJoinHintOptimizer: Almost identical to MapReduce versions, these transform the operator tree to include SMBMapJoinOp with big/small table(s) identified.</p>
+</li>
+<li>
+<p>GenSparkWork:  Generate the SparkWork, which is an SMBMapJoin operator-tree rooted at big-table TS.</p>
+</li>
+<li>
+<p>SparkSortMergeJoinFactory: Attach Localwork data structure pointing to small tables in the SMBMapJoin work as described.</p>
+</li>
+<li>
+<p>SMB MapJoin (without hints): again, logical optimizers are mostly similar to those in MapReduce</p>
+</li>
+<li>
+<p>SparkSortMergeJoinOptimizer: Almost identical to MapReduce version, this transforms the common-join operator tree to SMB mapjoin operator-tree, with big/small table(s) identified on SMBMapJoin operator, as described.</p>
+</li>
+<li>
+<p>GenSparkWork:  Generate the SparkWork, which is an SMBMapJoin operator-tree rooted at big-table TS.</p>
+</li>
+<li>
+<p>SparkSortMergeJoinFactory: Attach Localwork data structure pointing to small tables in the SMBMapJoin work as described.</p>
+</li>
+<li>
+<p>Auto-mapjoin:  Mostly a rewrite, unable to reuse the MapReduce processors.</p>
+</li>
+<li>
+<p>SparkMapJoinOptimizer:  Based on stats, converts a common-join operator tree to mapjoin operator-tree, with big/small table(s) identified in MapJoinOp, as described.</p>
+</li>
+<li>
+<p>GenSparkWork:  Generate the SparkWork, which has MapJoin operator-trees rooted at various table TS’s.</p>
+</li>
+<li>
+<p>SparkMapJoinResolver: Create two SparkWorks to achieve the mapjoin, as described.</p>
+</li>
+<li>
+<p>Mapjoin via hints: again, logical optimizers are mostly similar to those in MapReduce</p>
+</li>
+<li>
+<p>SparkMapJoinProcessor: Almost identical to MapReduce version, this transforms the common-join operator tree to mapjoin operator-tree, with big/small table(s) identified in MapJoinOp, as described.</p>
+</li>
+<li>
+<p>GenSparkWork:   Generate the SparkWork, which has MapJoin operator-trees rooted at various table TS’s.</p>
+</li>
+<li>
+<p>SparkMapJoinResolver: Create two SparkWorks to achieve the mapjoin, as described.</p>
+</li>
+<li>
+<p>SMB joins converted to mapjoin:</p>
+</li>
+<li>
+<p>This route is avoided unlike in MapReduce.  If conditions are met, join is directly sent to SparkMapJoinOptimizer and SparkMapJoinResolver, just like a normal auto-mapjoin.</p>
+</li>
+<li>
+<p>Skew join (runtime):</p>
+</li>
+<li>
+<p>SparkSkewJoinResolver:  Takes a SparkWork with common join, and turn it in a conditional work.  Then add additional SparkWork with mapjoin operator-tree as backups in the conditional work.  These will handle the skew keys.</p>
+</li>
+<li>
+<p>SparkMapJoinResolver:  For each backup SparkWork with mapjoin, create two SparkWorks to achieve the mapjoin, as described.</p>
+</li>
+<li>
+<p>Auto-bucket join</p>
+</li>
+<li>
+<p>SparkMapJoinOptimizer:  Extra logic here beyond auto-mapjoin conversion to support auto-bucket mapjoin conversion.</p>
+</li>
+<li>
+<p>SparkMapJoinResolver:  Extra logic here beyond auto-mapjoin conversion to support auto-bucket mapjoin conversion.</p>
+</li>
+</ol>
+<h2 id=attachments>Attachments:</h2>
+<p><img src=images/icons/bullet_blue.gif alt></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

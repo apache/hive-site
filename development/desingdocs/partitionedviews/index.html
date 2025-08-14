@@ -1,0 +1,230 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : PartitionedViews</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--partitionedviews>Apache Hive : PartitionedViews</h1>
+<p>This is a followup to <a href=https://hive.apache.org/development/desingdocs/viewdev/>ViewDev</a> for adding partition-awareness to views.</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--partitionedviews>Apache Hive : PartitionedViews</a></li>
+<li><a href=#use-cases>Use Cases</a>
+<ul>
+<li><a href=#approaches>Approaches</a></li>
+<li><a href=#syntax>Syntax</a></li>
+<li><a href=#metastore>Metastore</a></li>
+<li><a href=#strict-mode>Strict Mode</a></li>
+<li><a href=#view-definition-changes>View Definition Changes</a></li>
+</ul>
+</li>
+<li><a href=#hook-information>Hook Information</a></li>
+</ul>
+</nav>
+</aside>
+<h1 id=use-cases>Use Cases</h1>
+<ol>
+<li>An administrator wants to create a set of views as a table/column renaming layer on top of an existing set of base tables, without breaking any existing dependencies on those tables. To read-only users, the views should behave exactly the same as the underlying tables in every way. Among other things, this means users should be able to browse available partitions.</li>
+<li>A base table is partitioned on columns (ds,hr) for date and hour. Besides this fine-grained partitioning, users would also like to see a virtual table of coarse-grained (date-only) partitioning in which the partition for a given date only appears after all of the hour-level partitions of that day have been fully loaded.</li>
+<li>A view is defined on a complex join+union+aggregation of a number of underlying base tables and other views, all of which are themselves partitioned. The top-level view should also be partitioned accordingly, with a new partition not appearing until corresponding partitions have been loaded for all of the underlying tables.</li>
+</ol>
+<h2 id=approaches>Approaches</h2>
+<ol>
+<li>One possible approach mentioned in <a href=https://issues.apache.org/jira/browse/HIVE-1079>HIVE-1079</a> is to infer view partitions automatically based on the partitions of the underlying tables. A command such as SHOW PARTITIONS could then synthesize virtual partition descriptors on the fly. This is fairly easy to do for use case #1, but potentially very difficult for use cases #2 and #3. So for now, we are punting on this approach.</li>
+<li>Instead, per <a href=https://issues.apache.org/jira/browse/HIVE-1941>HIVE-1941</a>, we will require users to explicitly declare view partitioning as part of CREATE VIEW, and explicitly manage partition metadata via ALTER VIEW ADD|DROP PARTITION. This allows all of the use cases to be satisfied (while placing more burden on the user, and taking up more metastore space). With this approach, there is no real connection between view partitions and underlying table partitions; it&rsquo;s even possible to create a partitioned view on an unpartitioned table, or to have data in the view which is not covered by any view partition. One downside here is that a UI will not be able to show last access time and physical information such as file size when browsing available partitions. (In theory, stats could work via an explicit ANALYZE, but analyzing a view would need some work.)</li>
+</ol>
+<h2 id=syntax>Syntax</h2>
+<pre tabindex=0><code>
+CREATE VIEW [IF NOT EXISTS] view_name [(column_name [COMMENT column_comment], ...) ]
+[COMMENT table_comment]
+[PARTITIONED ON (col1, col2, ...)]
+[TBLPROPERTIES ...]
+AS SELECT ...
+
+ALTER VIEW view_name ADD [IF NOT EXISTS] partition_spec partition_spec ...
+
+ALTER VIEW view_name DROP [IF EXISTS] partition_spec, partition_spec, ...
+
+partition_spec:
+  : PARTITION (partition_col = partition_col_value, partition_col = partiton_col_value, ...)
+
+</code></pre><p>Notes:</p>
+<ul>
+<li>Whereas CREATE TABLE uses PARTITIONED BY, CREATE VIEW uses PARTITIONED ON. This difference is intentional because in CREATE TABLE, the PARTITIONED BY clause specifies additional column definitions which are appended to the non-partitioning columns. With CREATE VIEW, the PARTITIONED ON clause references (by name) columns already produced by the view definition. Only column names appear in PARTITIONED ON; no types etc. However, to match the CREATE TABLE convention of trailing partitioning columns, the columns referenced by the PARTITIONED ON clause must be the last columns in the view definition, and their order in the PARTITIONED ON clause must match their order in the view definition.</li>
+<li>The ALTER VIEW ADD/DROP partition syntax is identical to ALTER TABLE, except that it is illegal to specify a LOCATION clause.</li>
+<li>Other ALTER TABLE commands which operate on partitions (e.g. TOUCH/ARCHIVE) are not supported. (But maybe we need to support TOUCH?)</li>
+</ul>
+<h2 id=metastore>Metastore</h2>
+<p>When storing view partition descriptors in the metastore, Hive omits the storage descriptor entirely. This is because there is no data associated with the view partition, so there is no need to keep track of partition-level column descriptors for table schema evolution, nor a partition location.</p>
+<h2 id=strict-mode>Strict Mode</h2>
+<p>Hive strict mode (enabled with hive.mapred.mode=strict) prevents execution of queries lacking a partition predicate. This only applies to base table partitions. What does this mean?</p>
+<p>Suppose you have table T1 partitioned on C1, and view V1 which selects FROM T1 WHERE C1=5. Then a query such as SELECT * FROM V1 will succeed even in strict mode, since the predicate inside of the view constrains C1.</p>
+<p>Likewise, suppose you have view V2 which selects from T1 (with no WHERE clause) and is partitioned on C2. Then a query such as SELECT * FROM V2 WHERE C2=3 will fail; even though the view partition column is constrained, there is no predicate on the underlying T1&rsquo;s partition column C1.</p>
+<h2 id=view-definition-changes>View Definition Changes</h2>
+<p>Currently, changing a view definition requires dropping the view and recreating it. This implies dropping and recreating all existing partitions as well, which could be very expensive.</p>
+<p>This implies that followup support for <a href=https://issues.apache.org/jira/browse/HIVE-1078>CREATE OR REPLACE VIEW</a> is very important, and that it needs to preserve existing partitions (after validating that they are still compatible with the new view definition).</p>
+<h1 id=hook-information>Hook Information</h1>
+<p>Although there is currently no connection between the view partition and underlying table partitions, Hive does provide dependency information as part of the hook invocation for ALTER VIEW ADD PARTITION. It does this by compiling an internal query of the form</p>
+<pre tabindex=0><code>
+SELECT * FROM view_name
+WHERE view_partition_col1 = 'val1' AND view_partition_col=2 = 'val2' ...
+
+</code></pre><p>and then capturing the table/partition inputs for this query and passing them on to the ALTER VIEW ADD PARTITION hook results.</p>
+<p>This allows applications to track the dependencies themselves. In the future, Hive will automatically populate these dependencies into the metastore as part of <a href=https://issues.apache.org/jira/browse/HIVE-1073>HIVE-1073</a>.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

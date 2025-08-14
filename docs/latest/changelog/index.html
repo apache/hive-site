@@ -1,0 +1,2478 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : ChangeLog</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--changelog>Apache Hive : ChangeLog</h1>
+<h2 id=release-400---2024-03-29>Release 4.0.0 - 2024-03-29</h2>
+<h3 id=new-features>NEW FEATURES:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27850>HIVE-27850</a></td>
+<td>Iceberg: Major QB Compaction</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Dmitriy Fingerman</td>
+<td>Dmitriy Fingerman</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26222>HIVE-26222</a></td>
+<td>Native GeoSpatial Support in Hive</td>
+<td>Major</td>
+<td>Hive, HiveServer2</td>
+<td>mahesh kumar behera</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27980>HIVE-27980</a></td>
+<td>Hive Iceberg Compaction: add support for OPTIMIZE TABLE syntax</td>
+<td>Major</td>
+<td>.</td>
+<td>Dmitriy Fingerman</td>
+<td>Dmitriy Fingerman</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26435>HIVE-26435</a></td>
+<td>Add method for collecting HMS meta summary</td>
+<td>Major</td>
+<td>.</td>
+<td>Ruyi Zheng</td>
+<td>Hongdan Zhu</td>
+</tr>
+</tbody>
+</table>
+<h3 id=improvements>IMPROVEMENTS:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26666>HIVE-26666</a></td>
+<td>Filter out compactions by id to minimise expense of db operations</td>
+<td>Major</td>
+<td>.</td>
+<td>KIRTI RUGE</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27563>HIVE-27563</a></td>
+<td>Add typeof UDF</td>
+<td>Minor</td>
+<td>UDF</td>
+<td>John Sherman</td>
+<td>John Sherman</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27575>HIVE-27575</a></td>
+<td>MASK_HASH UDF generate a log per row</td>
+<td>Major</td>
+<td>UDF</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27396>HIVE-27396</a></td>
+<td>Use -strict argument for Thrift code generation to prevent compatibility issues</td>
+<td>Major</td>
+<td>Build Infrastructure</td>
+<td>Joe McDonnell</td>
+<td>Joe McDonnell</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27554>HIVE-27554</a></td>
+<td>Validate URL used by SSO workflow for JDBC connection</td>
+<td>Minor</td>
+<td>JDBC</td>
+<td>Henri Biestro</td>
+<td>Henri Biestro</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27516>HIVE-27516</a></td>
+<td>Add programatically added DAG scoped properties to DAG Configuration</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27586>HIVE-27586</a></td>
+<td>Parse dates from strings ignoring trailing (potentialy) invalid chars</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27578>HIVE-27578</a></td>
+<td>Refactor genJoinRelNode to use genAllRexNode instead of genAllExprNodeDesc</td>
+<td>Major</td>
+<td>.</td>
+<td>Soumyakanti Das</td>
+<td>Soumyakanti Das</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27600>HIVE-27600</a></td>
+<td>Reduce filesystem calls in OrcFileMergeOperator</td>
+<td>Minor</td>
+<td>Hive</td>
+<td>Yi Zhang</td>
+<td>Yi Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-25576>HIVE-25576</a></td>
+<td>Configurable datetime formatter for unix_timestamp, from_unixtime</td>
+<td>Major</td>
+<td>.</td>
+<td>Ashish Sharma</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27585>HIVE-27585</a></td>
+<td>Upgrade kryo serialization lib to latest version</td>
+<td>Minor</td>
+<td>Serializers/Deserializers</td>
+<td>Suprith Chandrashekharachar</td>
+<td>Suprith Chandrashekharachar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27595>HIVE-27595</a></td>
+<td>Improve efficiency in the filtering hooks</td>
+<td>Minor</td>
+<td>HiveServer2</td>
+<td>Naveen Gangam</td>
+<td>Henri Biestro</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27645>HIVE-27645</a></td>
+<td>Clean test cases by refactoring assertFalse(equals()) using assertNotEquals & @Test(excepted) using assertThrows</td>
+<td>Minor</td>
+<td>.</td>
+<td>Taher Ghaleb</td>
+<td>Taher Ghaleb</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27599>HIVE-27599</a></td>
+<td>ConvertAstToSearchArg improvement with output and typo in comments</td>
+<td>Major</td>
+<td>Server Infrastructure</td>
+<td>xy</td>
+<td>xy</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27627>HIVE-27627</a></td>
+<td>Iceberg: Insert into/overwrite partition support</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27525>HIVE-27525</a></td>
+<td>Ease the write permissions on external table during create table operation</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Sai Hemanth Gantasala</td>
+<td>Riju Trivedi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27665>HIVE-27665</a></td>
+<td>Change Filter Parser on HMS to allow backticks</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Steve Carlin</td>
+<td>Steve Carlin</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27461>HIVE-27461</a></td>
+<td>HiveMetaStoreAuthorizer should log the root cause of checkPrivileges</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27661>HIVE-27661</a></td>
+<td>Auth mode inferred from the Authorization header</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Gergely Farkas</td>
+<td>Gergely Farkas</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27309>HIVE-27309</a></td>
+<td>Large number of partitions and small files causes OOM in query coordinator</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Rajesh Balamohan</td>
+<td>Dmitriy Fingerman</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27656>HIVE-27656</a></td>
+<td>Upgrade jansi.version to 2.4.0</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27673>HIVE-27673</a></td>
+<td>Configurable datetime formatter for date_format</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27664>HIVE-27664</a></td>
+<td>AlterTableSetLocationAnalyzer threw a confusing exception &ldquo;Cannot connect to namenode&rdquo;</td>
+<td>Major</td>
+<td>.</td>
+<td>xiongyinke</td>
+<td>xiongyinke</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27564>HIVE-27564</a></td>
+<td>Add log for ZooKeeperTokenStore</td>
+<td>Major</td>
+<td>.</td>
+<td>lvyanquan</td>
+<td>lvyanquan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27694>HIVE-27694</a></td>
+<td>Include HiveIcebergSerDe in default list of serdes using HMS</td>
+<td>Minor</td>
+<td>Standalone Metastore</td>
+<td>Naveen Gangam</td>
+<td>Naveen Gangam</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27696>HIVE-27696</a></td>
+<td>Docker build from source should include iceberg profile</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-21100>HIVE-21100</a></td>
+<td>Allow flattening of table subdirectories resulted when using TEZ engine and UNION clause</td>
+<td>Major</td>
+<td>.</td>
+<td>George Pachitariu</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27646>HIVE-27646</a></td>
+<td>Iceberg: Retry query when concurrent write queries fail due to conflicting writes</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27672>HIVE-27672</a></td>
+<td>Iceberg: Truncate partition support</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27729>HIVE-27729</a></td>
+<td>Iceberg: Check Iceberg type in AlterTableExecuteAnalyzer</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27406>HIVE-27406</a></td>
+<td>CompactionTxnHandler cleanup</td>
+<td>Major</td>
+<td>Hive</td>
+<td>László Végh</td>
+<td>László Végh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27752>HIVE-27752</a></td>
+<td>Remove DagUtils duplicate class</td>
+<td>Minor</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>Akshat Mathur</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27757>HIVE-27757</a></td>
+<td>Upgrade hadoop to 3.3.6</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27723>HIVE-27723</a></td>
+<td>Prevent localizing the same original file more than once if symlinks are present</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27771>HIVE-27771</a></td>
+<td>Iceberg: Allow expire snapshot by time range</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27755>HIVE-27755</a></td>
+<td>Quote identifiers in SQL emitted by SchemaTool for MySQL</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27793>HIVE-27793</a></td>
+<td>Iceberg: Support setting current snapshot with SnapshotRef</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27799>HIVE-27799</a></td>
+<td>Bump org.apache.zookeeper:zookeeper from 3.7.1 to 3.7.2</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td></td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27182>HIVE-27182</a></td>
+<td>tez_union_with_udf.q with TestMiniTezCliDriver is flaky</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27686>HIVE-27686</a></td>
+<td>Use ORC 1.8.5.</td>
+<td>Major</td>
+<td>.</td>
+<td>Zoltán Rátkai</td>
+<td>Zoltán Rátkai</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27802>HIVE-27802</a></td>
+<td>Simplify TestTezSessionState.testSymlinkedLocalFilesAreLocalizedOnce</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27786>HIVE-27786</a></td>
+<td>Iceberg: Eliminate engine.hive.enabled table property</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27346>HIVE-27346</a></td>
+<td>Getting exception for wildcard (*) search for database and table name</td>
+<td>Major</td>
+<td>.</td>
+<td>Hongdan Zhu</td>
+<td>Hongdan Zhu</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27731>HIVE-27731</a></td>
+<td>Perform metadata delete when only static filters are present</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27826>HIVE-27826</a></td>
+<td>Upgrade to Parquet 1.13.1</td>
+<td>Major</td>
+<td>Parquet</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27780>HIVE-27780</a></td>
+<td>Implement direct SQL for get_all_functions</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27825>HIVE-27825</a></td>
+<td>Better error message for an empty quoted identifier</td>
+<td>Minor</td>
+<td>Parser</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-24815>HIVE-24815</a></td>
+<td>Remove &ldquo;IDXS&rdquo; Table from Metastore Schema</td>
+<td>Major</td>
+<td>Metastore, Standalone Metastore</td>
+<td>Hunter Logan</td>
+<td>Riju Trivedi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27779>HIVE-27779</a></td>
+<td>Iceberg: Drop partition support</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27789>HIVE-27789</a></td>
+<td>Iceberg: Add a way to expire snapshots with retain last</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27593>HIVE-27593</a></td>
+<td>Iceberg: Keep iceberg properties in sync with hms properties</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27864>HIVE-27864</a></td>
+<td>Update plugin for SBOM generation to 2.7.10</td>
+<td>Major</td>
+<td>.</td>
+<td>Vinod Anandan</td>
+<td>Vinod Anandan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27762>HIVE-27762</a></td>
+<td>Don&rsquo;t fall back to jdo query in ObjectStore if direct sql throws unrecoverable exception</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27819>HIVE-27819</a></td>
+<td>Iceberg: Upgrade iceberg version to 1.4.2</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27869>HIVE-27869</a></td>
+<td>Iceberg: Select on HadoopTable fails at HiveIcebergStorageHandler#canProvideColStats</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27828>HIVE-27828</a></td>
+<td>Iceberg integration: enable copy on write update when split update is on</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27877>HIVE-27877</a></td>
+<td>Bump org.apache.avro:avro from 1.11.1 to 1.11.3</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td></td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27889>HIVE-27889</a></td>
+<td>Bump org.apache.santuario:xmlsec from 2.3.0 to 2.3.4</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td></td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27871>HIVE-27871</a></td>
+<td>Fix some formatting problems is YarnQueueHelper</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>Mahesh Raju Somalaraju</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27896>HIVE-27896</a></td>
+<td>Remove common-lang usage</td>
+<td>Major</td>
+<td>.</td>
+<td>Cheng Pan</td>
+<td>Cheng Pan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27906>HIVE-27906</a></td>
+<td>Iceberg: Implement Delete Orphan Files</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27912>HIVE-27912</a></td>
+<td>Include Iceberg module in nightly builds</td>
+<td>Major</td>
+<td>.</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27903>HIVE-27903</a></td>
+<td>Iceberg: Implement Expire Snapshot with default table properties</td>
+<td>Major</td>
+<td>Hive</td>
+<td>JK Pasimuthu</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27633>HIVE-27633</a></td>
+<td>HMS: MTable to Table process reduces view related SQL</td>
+<td>Minor</td>
+<td>Metastore</td>
+<td>dzcxzl</td>
+<td>dzcxzl</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26630>HIVE-26630</a></td>
+<td>Introduce copy-on-write DML implementations for Iceberg tables</td>
+<td>Major</td>
+<td>.</td>
+<td>Ádám Szita</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27918>HIVE-27918</a></td>
+<td>Iceberg: Push transforms for clustering during table writes</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27894>HIVE-27894</a></td>
+<td>Enhance HMS Handler Logs for all &lsquo;get_partition&rsquo; functions.</td>
+<td>Major</td>
+<td>.</td>
+<td>Shivangi Jha</td>
+<td>Shivangi Jha</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27905>HIVE-27905</a></td>
+<td>Some GenericUDFs wrongly cast ObjectInspectors</td>
+<td>Major</td>
+<td>.</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27935>HIVE-27935</a></td>
+<td>Add qtest for Avro invalid schema and field names</td>
+<td>Major</td>
+<td>.</td>
+<td>Akshat Mathur</td>
+<td>Akshat Mathur</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27856>HIVE-27856</a></td>
+<td>Change the default value of hive.optimize.cte.materialize.threshold to -1</td>
+<td>Major</td>
+<td>.</td>
+<td>Seonggon Namgung</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27936>HIVE-27936</a></td>
+<td>Disable flaky test testBootstrapAcidTablesDuringIncrementalWithConcurrentWrites</td>
+<td>Major</td>
+<td>Testing Infrastructure</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27803>HIVE-27803</a></td>
+<td>Bump org.apache.avro:avro from 1.11.1 to 1.11.3</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td></td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27934>HIVE-27934</a></td>
+<td>Fix incorrect description about the execution framework in README.md</td>
+<td>Minor</td>
+<td>.</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27690>HIVE-27690</a></td>
+<td>Handle casting NULL literal to complex type</td>
+<td>Major</td>
+<td>.</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27919>HIVE-27919</a></td>
+<td>Constant reduction in CBO does not work for FROM_UNIXTIME, DATE_ADD, DATE_SUB, TO_UNIX_TIMESTAMP</td>
+<td>Major</td>
+<td>CBO</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-23558>HIVE-23558</a></td>
+<td>Remove compute_stats UDAF</td>
+<td>Major</td>
+<td>Statistics</td>
+<td>Jesús Camacho Rodríguez</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27961>HIVE-27961</a></td>
+<td>Beeline will print duplicate stats info when hive.tez.exec.print.summary is true</td>
+<td>Minor</td>
+<td>.</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27530>HIVE-27530</a></td>
+<td>Implement direct SQL for alter partitions to improve performance</td>
+<td>Major</td>
+<td>.</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27925>HIVE-27925</a></td>
+<td>HiveConf: unify ConfVars enum and use underscore for better readability</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>Kokila N</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27969>HIVE-27969</a></td>
+<td>Add verbose logging for schematool and metastore service for Docker container</td>
+<td>Major</td>
+<td>.</td>
+<td>Akshat Mathur</td>
+<td>Akshat Mathur</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27978>HIVE-27978</a></td>
+<td>Tests in hive-unit module are not running again</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27911>HIVE-27911</a></td>
+<td>Drop database query failing with Invalid ACL Exception</td>
+<td>Major</td>
+<td>.</td>
+<td>KIRTI RUGE</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27937>HIVE-27937</a></td>
+<td>Clarifying comments and xml configs around tez container size</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27977>HIVE-27977</a></td>
+<td>Fix ordering flakiness in TestHplSqlViaBeeLine</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27023>HIVE-27023</a></td>
+<td>Add setting to disable hive session being started during Hive Cli startup</td>
+<td>Minor</td>
+<td>.</td>
+<td>Alagappan Maruthappan</td>
+<td>Alagappan Maruthappan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27827>HIVE-27827</a></td>
+<td>Improve performance of direct SQL implement for getPartitionsByFilter</td>
+<td>Major</td>
+<td>.</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27994>HIVE-27994</a></td>
+<td>Optimize renaming the partitioned table</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27979>HIVE-27979</a></td>
+<td>HMS alter_partitions log adds table name</td>
+<td>Minor</td>
+<td>Standalone Metastore</td>
+<td>dzcxzl</td>
+<td>dzcxzl</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28008>HIVE-28008</a></td>
+<td>ParquetFileReader is not closed in ParquetHiveSerDe.readSchema</td>
+<td>Minor</td>
+<td>Hive</td>
+<td>Michal Lorek</td>
+<td>Michal Lorek</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27991>HIVE-27991</a></td>
+<td>Utilise FanoutWriters when inserting records in an Iceberg table when the records are unsorted</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27984>HIVE-27984</a></td>
+<td>Support backward compatibility of hms thrift struct about column stats</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27481>HIVE-27481</a></td>
+<td>TxnHandler cleanup</td>
+<td>Major</td>
+<td>Hive</td>
+<td>László Végh</td>
+<td>László Végh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28038>HIVE-28038</a></td>
+<td>Disable fallback to jdo for DeadlineException</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27958>HIVE-27958</a></td>
+<td>Refactor DirectSqlUpdatePart class</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27992>HIVE-27992</a></td>
+<td>Upgrade to tez 0.10.3</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26445>HIVE-26445</a></td>
+<td>Use tez.local.mode.without.network for qtests</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27022>HIVE-27022</a></td>
+<td>Split removeDuplicateCompletedTxnComponents away from AcidHouseKeeper and onto a separate timer</td>
+<td>Major</td>
+<td>.</td>
+<td>Jason Phelps</td>
+<td>Taraka Rama Rao Lethavadla</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28071>HIVE-28071</a></td>
+<td>Sync jetty version across modules</td>
+<td>Minor</td>
+<td>.</td>
+<td>Raghav Aggarwal</td>
+<td>Raghav Aggarwal</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28015>HIVE-28015</a></td>
+<td>Iceberg: Add identifier-field-ids support in Hive</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Denys Kuzmenko</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28081>HIVE-28081</a></td>
+<td>Code refine on ClearDanglingScratchDir::removeLocalTmpFiles</td>
+<td>Trivial</td>
+<td>.</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28064>HIVE-28064</a></td>
+<td>Add cause to ParseException for diagnosability purposes</td>
+<td>Major</td>
+<td>Parser</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28056>HIVE-28056</a></td>
+<td>Bump com.jayway.jsonpath:json-path from 2.8.0 to 2.9.0</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28078>HIVE-28078</a></td>
+<td>TestTxnDbUtil should generate csv files when we query the metastore database</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Zsolt Miskolczi</td>
+<td>Zsolt Miskolczi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27692>HIVE-27692</a></td>
+<td>Explore removing the always task from embedded HMS</td>
+<td>Major</td>
+<td>Standalone Metastore</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27405>HIVE-27405</a></td>
+<td>Throw out the detail error Invalid partition name to the clients</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Taraka Rama Rao Lethavadla</td>
+<td>Taraka Rama Rao Lethavadla</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27845>HIVE-27845</a></td>
+<td>Upgrade protobuf to 3.24.4 to fix CVEs</td>
+<td>Major</td>
+<td>.</td>
+<td>Akshat Mathur</td>
+<td>tanishqchugh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28080>HIVE-28080</a></td>
+<td>Propagate statistics from a source table to the materialized CTE</td>
+<td>Major</td>
+<td>Query Planning</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28090>HIVE-28090</a></td>
+<td>correct desc of <code>hive.metastore.disallow.incompatible.col.type.changes</code></td>
+<td>Major</td>
+<td>.</td>
+<td>zzzzming95</td>
+<td>zzzzming95</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28083>HIVE-28083</a></td>
+<td>Enable HMS client/query cache for EXPLAIN queries</td>
+<td>Minor</td>
+<td>Hive</td>
+<td>Soumyakanti Das</td>
+<td>Soumyakanti Das</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-25972>HIVE-25972</a></td>
+<td>HIVE_VECTORIZATION_USE_ROW_DESERIALIZE in hiveconf.java imply default value is false，in fact the default value is &lsquo;true&rsquo;</td>
+<td>Major</td>
+<td>Configuration, Hive</td>
+<td>lkl</td>
+<td>Kokila N</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28093>HIVE-28093</a></td>
+<td>Re-execute DAG in case of NoCurrentDAGException</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28051>HIVE-28051</a></td>
+<td>LLAP: cleanup local folders on startup and periodically</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+</tbody>
+</table>
+<h3 id=bug-fixes>BUG FIXES:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26837>HIVE-26837</a></td>
+<td>CTLT with hive.create.as.external.legacy as true creates managed table instead of external table</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Ramesh Kumar Thangarajan</td>
+<td>Ramesh Kumar Thangarajan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27562>HIVE-27562</a></td>
+<td>Iceberg: Fetching virtual columns failing</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27487>HIVE-27487</a></td>
+<td>NPE in Hive JDBC storage handler</td>
+<td>Major</td>
+<td>JDBC storage handler</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27582>HIVE-27582</a></td>
+<td>Do not cache HBase table input format in FetchOperator</td>
+<td>Major</td>
+<td>.</td>
+<td>Ganesha Shreedhara</td>
+<td>Ganesha Shreedhara</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27304>HIVE-27304</a></td>
+<td>Exclude CTAS condition while forming storage handler url permissions in HS2 authorizer.</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Sai Hemanth Gantasala</td>
+<td>Sai Hemanth Gantasala</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-24771>HIVE-24771</a></td>
+<td>Fix hang of TransactionalKafkaWriterTest</td>
+<td>Major</td>
+<td>.</td>
+<td>Zoltan Haindrich</td>
+<td>Kokila N</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27631>HIVE-27631</a></td>
+<td>Fix CCE when set fs.hdfs.impl other than DistributedFileSystem</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Baolong Mao</td>
+<td>Baolong Mao</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-22961>HIVE-22961</a></td>
+<td>Drop function in Hive should not send request for drop database to Ranger plugin.</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Sam An</td>
+<td>Riju Trivedi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27463>HIVE-27463</a></td>
+<td>Non-daemon thread prevents HMS from exiting when failed to start thrift server</td>
+<td>Minor</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27536>HIVE-27536</a></td>
+<td>Merge task must be invoked after optimisation for external CTAS queries</td>
+<td>Major</td>
+<td>.</td>
+<td>Sourabh Badhya</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27566>HIVE-27566</a></td>
+<td>Fix some yarn cluster options for tests</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27632>HIVE-27632</a></td>
+<td>ClassCast Exception in Vectorization converting decimal64 to decimal</td>
+<td>Major</td>
+<td>Vectorization</td>
+<td>Riju Trivedi</td>
+<td>Stephen Carlin</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27539>HIVE-27539</a></td>
+<td>Drop renamed external table fails when hive.metastore.try.direct.sql.ddl is disabled</td>
+<td>Major</td>
+<td>.</td>
+<td>Venugopal Reddy K</td>
+<td>Venugopal Reddy K</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-21213>HIVE-21213</a></td>
+<td>Acid table bootstrap replication needs to handle directory created by compaction with txn id</td>
+<td>Major</td>
+<td>Hive, HiveServer2, repl</td>
+<td>mahesh kumar behera</td>
+<td>mahesh kumar behera</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27667>HIVE-27667</a></td>
+<td>Fix get partitions with max_parts</td>
+<td>Major</td>
+<td>Metastore</td>
+<td>Yuming Wang</td>
+<td>Yuming Wang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27657>HIVE-27657</a></td>
+<td>Change hive.fetch.task.conversion.threshold default value</td>
+<td>Major</td>
+<td>.</td>
+<td>Mayank Kunwar</td>
+<td>Mayank Kunwar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26961>HIVE-26961</a></td>
+<td>Fix improper replication metric count when hive.repl.filter.transactions is set to true.</td>
+<td>Major</td>
+<td>.</td>
+<td>Rakshith C</td>
+<td>Rakshith C</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27642>HIVE-27642</a></td>
+<td>StartMiniHS2Cluster fails to run due to missing JDBC driver with Postgres</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zoltán Rátkai</td>
+<td>Zoltán Rátkai</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27643>HIVE-27643</a></td>
+<td>Exclude compaction queries from ranger policies</td>
+<td>Critical</td>
+<td>.</td>
+<td>László Végh</td>
+<td>László Végh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-17350>HIVE-17350</a></td>
+<td>metrics errors when retrying HS2 startup</td>
+<td>Major</td>
+<td>.</td>
+<td>Sergey Shelukhin</td>
+<td>Mayank Kunwar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27648>HIVE-27648</a></td>
+<td>CREATE TABLE with CHECK constraint fails with SemanticException</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Soumyakanti Das</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-24606>HIVE-24606</a></td>
+<td>Multi-stage materialized CTEs can lose intermediate data</td>
+<td>Major</td>
+<td>Query Planning</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27138>HIVE-27138</a></td>
+<td>MapJoinOperator throws NPE when computing OuterJoin with filter expressions on small table</td>
+<td>Blocker</td>
+<td>.</td>
+<td>Seonggon Namgung</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27675>HIVE-27675</a></td>
+<td>Support keystore/truststore types for hive to zookeeper integration points</td>
+<td>Major</td>
+<td>HiveServer2, JDBC, Standalone Metastore</td>
+<td>Naveen Gangam</td>
+<td>Naveen Gangam</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27730>HIVE-27730</a></td>
+<td>Bump org.xerial.snappy:snappy-java from 1.1.10.1 to 1.1.10.4</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td></td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27738>HIVE-27738</a></td>
+<td>SchemaTool picks incorrect schema script after 4.0.0-beta-1 release</td>
+<td>Major</td>
+<td>.</td>
+<td>KIRTI RUGE</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27649>HIVE-27649</a></td>
+<td>Support ORDER BY clause in subqueries with set operators</td>
+<td>Major</td>
+<td>Parser</td>
+<td>Nicolas Richard</td>
+<td>Nicolas Richard</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27760>HIVE-27760</a></td>
+<td>WHERE condition on DATE type partitioning column leads to wrong results</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Dayakar M</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27728>HIVE-27728</a></td>
+<td>Changed behavior for alter table rename partition from legacy tables</td>
+<td>Major</td>
+<td>.</td>
+<td>Naveen Gangam</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27733>HIVE-27733</a></td>
+<td>Intermittent ConcurrentModificationException in HiveServer2</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Henri Biestro</td>
+<td>Henri Biestro</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27764>HIVE-27764</a></td>
+<td>Authentication does not work behind Knox gateway because the &ldquo;WWW-Authenticate: Negotiate&rdquo; response header is missing</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Gergely Farkas</td>
+<td>Gergely Farkas</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27695>HIVE-27695</a></td>
+<td>Intermittent OOM when running TestMiniTezCliDriver</td>
+<td>Major</td>
+<td>Test</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26828>HIVE-26828</a></td>
+<td>Fix OOM for hybridgrace_hashjoin_2.q</td>
+<td>Major</td>
+<td>Test, Tez</td>
+<td>Alessandro Solimando</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27798>HIVE-27798</a></td>
+<td>Correct configuration item in hive-site.xml in docker.</td>
+<td>Major</td>
+<td>.</td>
+<td>易霖威</td>
+<td>易霖威</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27772>HIVE-27772</a></td>
+<td>UNIX_TIMESTAMP should return NULL when date fields are out of bounds</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27682>HIVE-27682</a></td>
+<td>AlterTableAlterPartitionOperation cannot change the type if the column has default partition</td>
+<td>Minor</td>
+<td>HiveServer2</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27777>HIVE-27777</a></td>
+<td>CBO fails on multi insert overwrites with common group expression</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Steve Carlin</td>
+<td>Steve Carlin</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27651>HIVE-27651</a></td>
+<td>Upgrade hbase version</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27324>HIVE-27324</a></td>
+<td>Hive query with NOT IN condition is giving incorrect results when the sub query table contains the null value.</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Shobika Selvaraj</td>
+<td>Diksha</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27114>HIVE-27114</a></td>
+<td>Provide a configurable filter for removing useless properties in Partition objects from listPartitions HMS Calls</td>
+<td>Major</td>
+<td>.</td>
+<td>Naresh P R</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27113>HIVE-27113</a></td>
+<td>Increasing default for hive.thrift.client.max.message.size to 2 GB</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Riju Trivedi</td>
+<td>Riju Trivedi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27846>HIVE-27846</a></td>
+<td>Tests under hive-unit module are not running</td>
+<td>Major</td>
+<td>Testing Infrastructure</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27849>HIVE-27849</a></td>
+<td>Replication tests using ivy fail after the upgrade to 2.5.2</td>
+<td>Major</td>
+<td>.</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27866>HIVE-27866</a></td>
+<td>JDBC: HttpRequestInterceptorBase should not add an empty &ldquo;Cookie:&rdquo; header to the request if no custom cookies have been specified</td>
+<td>Major</td>
+<td>JDBC</td>
+<td>Gergely Farkas</td>
+<td>Gergely Farkas</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27862>HIVE-27862</a></td>
+<td>Map propertyContent to a wrong column in package.jdo</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27679>HIVE-27679</a></td>
+<td>Ranger Yarn Queue policies are not applying correctly, rework done for HIVE-26352</td>
+<td>Major</td>
+<td>.</td>
+<td>Mahesh Raju Somalaraju</td>
+<td>Mahesh Raju Somalaraju</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27865>HIVE-27865</a></td>
+<td>HMS in http mode shuts down silently with no errors</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27885>HIVE-27885</a></td>
+<td>Cast decimal from string with space without digits before dot returns NULL</td>
+<td>Major</td>
+<td>.</td>
+<td>Naresh P R</td>
+<td>Naresh P R</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27867>HIVE-27867</a></td>
+<td>Incremental materialized view throws NPE whew Iceberg source table is empty</td>
+<td>Major</td>
+<td>.</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27662>HIVE-27662</a></td>
+<td>Incorrect parsing of nested complex types containing map during vectorized text processing</td>
+<td>Major</td>
+<td>Vectorization</td>
+<td>Raghav Aggarwal</td>
+<td>Raghav Aggarwal</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27890>HIVE-27890</a></td>
+<td>Tez Progress bar is not displayed in Beeline upon setting session level execution engine to Tez</td>
+<td>Major</td>
+<td>Beeline</td>
+<td>Shivangi Jha</td>
+<td>Shivangi Jha</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27713>HIVE-27713</a></td>
+<td>Iceberg: metadata location overrides can cause data breach</td>
+<td>Major</td>
+<td>Authorization, Iceberg integration</td>
+<td>Janos Kovacs</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27797>HIVE-27797</a></td>
+<td>Transactions that got timed out are not getting logged as &lsquo;ABORTED&rsquo; in NOTIFICATION_LOG</td>
+<td>Major</td>
+<td>repl, Transactions</td>
+<td>Taraka Rama Rao Lethavadla</td>
+<td>Taraka Rama Rao Lethavadla</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27093>HIVE-27093</a></td>
+<td>Fix NPE in initialize() of Partition class</td>
+<td>Critical</td>
+<td>.</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27893>HIVE-27893</a></td>
+<td>Add a range validator in hive.metastore.batch.retrieve.max to only have values greater than 0</td>
+<td>Major</td>
+<td>.</td>
+<td>Vikram Ahuja</td>
+<td>Vikram Ahuja</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27240>HIVE-27240</a></td>
+<td>NPE on Hive Hook Proto Log Writer</td>
+<td>Critical</td>
+<td>Hive</td>
+<td>Shubham Sharma</td>
+<td>Shubham Sharma</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27658>HIVE-27658</a></td>
+<td>Error resolving join keys during conversion to dynamic partition hashjoin</td>
+<td>Major</td>
+<td>Query Planning</td>
+<td>xiaojunxiang</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27555>HIVE-27555</a></td>
+<td>Upgrade issues with Kudu table on backend db</td>
+<td>Critical</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-24730>HIVE-24730</a></td>
+<td>Shims classes override values from hive-site.xml and tez-site.xml silently</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27446>HIVE-27446</a></td>
+<td>Exception when rebuild materialized view incrementally in presence of delete operations</td>
+<td>Major</td>
+<td>CBO, Materialized views</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27801>HIVE-27801</a></td>
+<td>Exists subquery rewrite results in a wrong plan</td>
+<td>Critical</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27943>HIVE-27943</a></td>
+<td>NPE in VectorMapJoinCommonOperator.setUpHashTable when running query with join on date</td>
+<td>Major</td>
+<td>Query Processor</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27930>HIVE-27930</a></td>
+<td>Insert/Load overwrite table partition does not clean up directory before overwriting</td>
+<td>Major</td>
+<td>.</td>
+<td>Kiran Velumuri</td>
+<td>Kiran Velumuri</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27892>HIVE-27892</a></td>
+<td>Hive &ldquo;insert overwrite table&rdquo; for multiple partition table issue</td>
+<td>Major</td>
+<td>.</td>
+<td>Mayank Kunwar</td>
+<td>Mayank Kunwar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-24219>HIVE-24219</a></td>
+<td>Disable flaky TestStreaming</td>
+<td>Major</td>
+<td>.</td>
+<td>Peter Varga</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27952>HIVE-27952</a></td>
+<td>Hive fails to create SslContextFactory when KeyStore has multiple certificates</td>
+<td>Major</td>
+<td>.</td>
+<td>Seonggon Namgung</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27876>HIVE-27876</a></td>
+<td>Incorrect query results on tables with ClusterBy & SortBy</td>
+<td>Major</td>
+<td>.</td>
+<td>Naresh P R</td>
+<td>Ramesh Kumar Thangarajan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27963>HIVE-27963</a></td>
+<td>Build failure when license-maven-plugin downloads bsd-license.php</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Akshat Mathur</td>
+<td>Akshat Mathur</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27161>HIVE-27161</a></td>
+<td>MetaException when executing CTAS query in Druid storage handler</td>
+<td>Critical</td>
+<td>Druid integration</td>
+<td>Stamatis Zampetakis</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-25803>HIVE-25803</a></td>
+<td>URL Mapping appends default Fs scheme even for LOCAL DIRECTORY ops</td>
+<td>Critical</td>
+<td>Authorization, HiveServer2</td>
+<td>Soumitra Sulav</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27804>HIVE-27804</a></td>
+<td>Implement batching in getPartition calls which returns partition list along with auth info</td>
+<td>Major</td>
+<td>.</td>
+<td>Vikram Ahuja</td>
+<td>Vikram Ahuja</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27967>HIVE-27967</a></td>
+<td>Iceberg: Fix dynamic runtime filtering</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27966>HIVE-27966</a></td>
+<td>Disable flaky testFetchResultsOfLogWithOrientation</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27916>HIVE-27916</a></td>
+<td>Increase tez.am.resource.memory.mb for TestIcebergCliDrver to 512MB</td>
+<td>Major</td>
+<td>Test</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27948>HIVE-27948</a></td>
+<td>Wrong results when using materialized views with non-deterministic/dynamic functions</td>
+<td>Critical</td>
+<td>CBO, Materialized views</td>
+<td>Stamatis Zampetakis</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27988>HIVE-27988</a></td>
+<td>Do not convert FullOuterJoin with filter to MapJoin</td>
+<td>Critical</td>
+<td>HiveServer2</td>
+<td>Denys Kuzmenko</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27951>HIVE-27951</a></td>
+<td>hcatalog dynamic partitioning fails with partition already exist error when exist parent partitions path</td>
+<td>Critical</td>
+<td>HCatalog</td>
+<td>Yi Zhang</td>
+<td>Yi Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27974>HIVE-27974</a></td>
+<td>Fix flaky test - TestReplicationMetricCollector.testSuccessStageFailure</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zsolt Miskolczi</td>
+<td>Zsolt Miskolczi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27989>HIVE-27989</a></td>
+<td>Wrong database name in MetaException from MetastoreDefaultTransformer.java</td>
+<td>Minor</td>
+<td>.</td>
+<td>Riza Suminto</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27857>HIVE-27857</a></td>
+<td>Do not check write permission while dropping external table or partition</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27492>HIVE-27492</a></td>
+<td>HPL/SQL built-in functions like sysdate not working</td>
+<td>Major</td>
+<td>hpl/sql</td>
+<td>Dayakar M</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27999>HIVE-27999</a></td>
+<td>Run Sonar analysis using Java 17</td>
+<td>Major</td>
+<td>.</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-21520>HIVE-21520</a></td>
+<td>Query &ldquo;Submit plan&rdquo; time reported is incorrect</td>
+<td>Trivial</td>
+<td>.</td>
+<td>Rajesh Balamohan</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27749>HIVE-27749</a></td>
+<td>SchemaTool initSchema fails on Mariadb 10.2</td>
+<td>Critical</td>
+<td>Standalone Metastore</td>
+<td>Stamatis Zampetakis</td>
+<td>Sourabh Badhya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28013>HIVE-28013</a></td>
+<td>No space left on device when running precommit tests</td>
+<td>Blocker</td>
+<td>Testing Infrastructure</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27960>HIVE-27960</a></td>
+<td>Invalid function error when using custom udaf</td>
+<td>Major</td>
+<td>Hive</td>
+<td>gaoxiong</td>
+<td>gaoxiong</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27489>HIVE-27489</a></td>
+<td>HPL/SQL does not support table aliases on column names in loops</td>
+<td>Major</td>
+<td>hpl/sql</td>
+<td>Dayakar M</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28009>HIVE-28009</a></td>
+<td>Shared work optimizer ignores schema merge setting in case of virtual column difference</td>
+<td>Major</td>
+<td>Query Planning</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26713>HIVE-26713</a></td>
+<td>StringExpr ArrayIndexOutOfBoundsException with LIKE &lsquo;%xxx%&rsquo;</td>
+<td>Major</td>
+<td>storage-api</td>
+<td>Ryu Kobayashi</td>
+<td>Ryu Kobayashi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27942>HIVE-27942</a></td>
+<td>Missing aux jar errors during LLAP launch</td>
+<td>Minor</td>
+<td>Hive, llap</td>
+<td>Shubham Sharma</td>
+<td>Shubham Sharma</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27993>HIVE-27993</a></td>
+<td>Netty4 ShuffleHandler: should use 1 boss thread</td>
+<td>Major</td>
+<td>llap</td>
+<td>Anmol Sundaram</td>
+<td>Anmol Sundaram</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27914>HIVE-27914</a></td>
+<td>Fix the missing partitions judgement in drop_partitions_req</td>
+<td>Major</td>
+<td>.</td>
+<td>Wechar</td>
+<td>Wechar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28017>HIVE-28017</a></td>
+<td>Add generated protobuf code</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28000>HIVE-28000</a></td>
+<td>Hive QL : &ldquo;not in&rdquo; clause gives incorrect results when type coercion cannot take place.</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Anmol Sundaram</td>
+<td>Anmol Sundaram</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27938>HIVE-27938</a></td>
+<td>Iceberg: Fix java.lang.ClassCastException during vectorized reads on partition columns</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28004>HIVE-28004</a></td>
+<td>DELETE on ACID table failed with NoClassDefFoundError: com/sun/tools/javac/util/List</td>
+<td>Blocker</td>
+<td>Transactions</td>
+<td>Butao Zhang</td>
+<td>László Végh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28053>HIVE-28053</a></td>
+<td>Incorrect shading configuration for beeline jar-with-dependencies</td>
+<td>Major</td>
+<td>Beeline</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26818>HIVE-26818</a></td>
+<td>Beeline module misses transitive dependencies due to shading</td>
+<td>Major</td>
+<td>Beeline</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28052>HIVE-28052</a></td>
+<td>Iceberg: Major QB Compaction fails with ClassNotFoundException: org.springframework.core.ErrorCoded</td>
+<td>Major</td>
+<td>.</td>
+<td>Butao Zhang</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28054>HIVE-28054</a></td>
+<td>SemanticException for join condition in subquery</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Soumyakanti Das</td>
+<td>Soumyakanti Das</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28057>HIVE-28057</a></td>
+<td>Iceberg: Branches with non-lowercase characters can&rsquo;t be accessed</td>
+<td>Major</td>
+<td>.</td>
+<td>Attila Turoczy</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28050>HIVE-28050</a></td>
+<td>Disable Incremental non aggregated materialized view rebuild in presence of delete operations</td>
+<td>Major</td>
+<td>Materialized views</td>
+<td>Krisztian Kasa</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28065>HIVE-28065</a></td>
+<td>Upgrade Bouncy castle to bcprov-jdk18on 1.77</td>
+<td>Major</td>
+<td>.</td>
+<td>Araika Singh</td>
+<td>Araika Singh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27950>HIVE-27950</a></td>
+<td>STACK UDTF returns wrong results when # of argument is not a multiple of N</td>
+<td>Major</td>
+<td>.</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27778>HIVE-27778</a></td>
+<td>Alter table command gives error after computer stats is run with Impala</td>
+<td>Major</td>
+<td>.</td>
+<td>Kokila N</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27924>HIVE-27924</a></td>
+<td>Incremental rebuild goes wrong when inserts and deletes overlap between the source tables</td>
+<td>Critical</td>
+<td>Materialized views</td>
+<td>Wenhao Li</td>
+<td>Krisztian Kasa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28021>HIVE-28021</a></td>
+<td>Iceberg: Attempting to create a table with a percent symbol fails</td>
+<td>Minor</td>
+<td>Iceberg integration</td>
+<td>Tim Thorpe</td>
+<td>Tim Thorpe</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28084>HIVE-28084</a></td>
+<td>Iceberg: COW fix for Merge operation</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27490>HIVE-27490</a></td>
+<td>HPL/SQL says it support default value for parameters but not considering them when no value is passed</td>
+<td>Major</td>
+<td>hpl/sql</td>
+<td>Dayakar M</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27775>HIVE-27775</a></td>
+<td>DirectSQL and JDO results are different when fetching partitions by timestamp in DST shift</td>
+<td>Critical</td>
+<td>Standalone Metastore</td>
+<td>Stamatis Zampetakis</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28073>HIVE-28073</a></td>
+<td>Upgrade jackson version to 2.16.1</td>
+<td>Major</td>
+<td>.</td>
+<td>Araika Singh</td>
+<td>Araika Singh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28102>HIVE-28102</a></td>
+<td>Iceberg: Invoke validateDataFilesExist for RowDelta operations</td>
+<td>Major</td>
+<td>.</td>
+<td>Zoltán Borók-Nagy</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28076>HIVE-28076</a></td>
+<td>Selecting data from a bucketed table with decimal column type throwing NPE.</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Dayakar M</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28123>HIVE-28123</a></td>
+<td>Add Generated Protobuf code for 3.24.4 Upgrade</td>
+<td>Major</td>
+<td>.</td>
+<td>Indhumathi Muthumurugesh</td>
+<td>Indhumathi Muthumurugesh</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28034>HIVE-28034</a></td>
+<td>HiveConf: unify ConfVars enum and use underscore for better readability - pt2 leftovers</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>Kokila N</td>
+</tr>
+</tbody>
+</table>
+<h3 id=tests>TESTS:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27431>HIVE-27431</a></td>
+<td>Clean invalid properties in test module</td>
+<td>Minor</td>
+<td>Test</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27747>HIVE-27747</a></td>
+<td>Generalize TestSchemaToolForMetastore to run on every supported DBMS</td>
+<td>Major</td>
+<td>Tests</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27745>HIVE-27745</a></td>
+<td>Add unit test to ensure short version is inline with full version</td>
+<td>Major</td>
+<td>.</td>
+<td>KIRTI RUGE</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28001>HIVE-28001</a></td>
+<td>Fix the flaky test TestLeaderElection</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27556>HIVE-27556</a></td>
+<td>Add Unit Test for KafkaStorageHandlerInfo</td>
+<td>Major</td>
+<td>kafka integration, StorageHandler</td>
+<td>Kokila N</td>
+<td>Kokila N</td>
+</tr>
+</tbody>
+</table>
+<h3 id=sub-tasks>SUB-TASKS:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27031>HIVE-27031</a></td>
+<td>Iceberg: Implement Copy-On-Write for Delete queries</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27523>HIVE-27523</a></td>
+<td>Implement array_union UDF in Hive</td>
+<td>Major</td>
+<td>.</td>
+<td>Taraka Rama Rao Lethavadla</td>
+<td>Taraka Rama Rao Lethavadla</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27277>HIVE-27277</a></td>
+<td>Set up github actions workflow to build and push docker image to docker hub</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27630>HIVE-27630</a></td>
+<td>Iceberg: Fast forward branch</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27654>HIVE-27654</a></td>
+<td>Iceberg: Cherry-Pick commit to a branch</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27670>HIVE-27670</a></td>
+<td>Failed to build the image locally on Apple silicon</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27322>HIVE-27322</a></td>
+<td>Iceberg: metadata location overrides can cause data breach - custom location to AuthZ</td>
+<td>Blocker</td>
+<td>Iceberg integration</td>
+<td>Janos Kovacs</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27716>HIVE-27716</a></td>
+<td>Precommit: Save log files for first 10 failures</td>
+<td>Major</td>
+<td>.</td>
+<td>László Bodor</td>
+<td>László Bodor</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27711>HIVE-27711</a></td>
+<td>Allow creating a branch from tag name</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27702>HIVE-27702</a></td>
+<td>Remove PowerMock from beeline and upgrade mockito to 4.11</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zsolt Miskolczi</td>
+<td>Mayank Kunwar</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27736>HIVE-27736</a></td>
+<td>Remove PowerMock from itests-jmh and upgrade mockito</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Zsolt Miskolczi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27705>HIVE-27705</a></td>
+<td>Remove PowerMock from service (hive-service) and upgrade mockito to 4.11</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zsolt Miskolczi</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27701>HIVE-27701</a></td>
+<td>Remove PowerMock from llap-client and upgrade mockito to 4.11</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zsolt Miskolczi</td>
+<td>Zsolt Miskolczi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27704>HIVE-27704</a></td>
+<td>Remove PowerMock from jdbc-handler and upgrade mockito to 4.11</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Zsolt Miskolczi</td>
+<td>KIRTI RUGE</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26455>HIVE-26455</a></td>
+<td>Remove PowerMockito from hive-exec</td>
+<td>Minor</td>
+<td>Hive</td>
+<td>Zsolt Miskolczi</td>
+<td>Zsolt Miskolczi</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27399>HIVE-27399</a></td>
+<td>Add lateral view support for CBO</td>
+<td>Major</td>
+<td>HiveServer2</td>
+<td>Steve Carlin</td>
+<td>Steve Carlin</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27597>HIVE-27597</a></td>
+<td>Implement JDBC Connector for HiveServer</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Naveen Gangam</td>
+<td>Naveen Gangam</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27783>HIVE-27783</a></td>
+<td>Iceberg: Implement Copy-On-Write for Update queries</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27006>HIVE-27006</a></td>
+<td>ParallelEdgeFixer inserts misconfigured operator and does not connect it in Tez DAG</td>
+<td>Major</td>
+<td>.</td>
+<td>Seonggon Namgung</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-26621>HIVE-26621</a></td>
+<td>TPC-DS query 2 fails with java.lang.RuntimeException: cannot find field _col0 from []</td>
+<td>Major</td>
+<td>.</td>
+<td>Sungwoo Park</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27794>HIVE-27794</a></td>
+<td>Iceberg: Implement Copy-On-Write for Merge queries</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27269>HIVE-27269</a></td>
+<td>VectorizedMapJoin returns wrong result for TPC-DS query 97</td>
+<td>Critical</td>
+<td>.</td>
+<td>Seonggon Namgung</td>
+<td>Seonggon Namgung</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27714>HIVE-27714</a></td>
+<td>Iceberg: metadata location overrides can cause data breach - handling default locations</td>
+<td>Critical</td>
+<td>Authorization, Iceberg integration</td>
+<td>Janos Kovacs</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27926>HIVE-27926</a></td>
+<td>Iceberg: Allow restricting Iceberg data file reads to table location</td>
+<td>Blocker</td>
+<td>Iceberg integration</td>
+<td>Janos Kovacs</td>
+<td>Ayush Saxena</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27955>HIVE-27955</a></td>
+<td>Missing Postgres driver when start services from Docker compose</td>
+<td>Major</td>
+<td>.</td>
+<td>Zhihua Deng</td>
+<td>Zhihua Deng</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28016>HIVE-28016</a></td>
+<td>Iceberg: NULL column values handling in COW mode</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27880>HIVE-27880</a></td>
+<td>Iceberg: Support creating a branch on an empty table</td>
+<td>Major</td>
+<td>Iceberg integration</td>
+<td>Butao Zhang</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27929>HIVE-27929</a></td>
+<td>Run TPC-DS queries and validate results correctness</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Simhadri Govindappa</td>
+</tr>
+</tbody>
+</table>
+<h3 id=other>OTHER:</h3>
+<table>
+<thead>
+<tr>
+<th>JIRA</th>
+<th>Summary</th>
+<th>Priority</th>
+<th>Component</th>
+<th>Reporter</th>
+<th>Contributor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27589>HIVE-27589</a></td>
+<td>Iceberg: Branches of Merge/Update statements should be committed atomically</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27638>HIVE-27638</a></td>
+<td>Preparing for 4.0.0-beta-2 development</td>
+<td>Major</td>
+<td>.</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-22618>HIVE-22618</a></td>
+<td>Fix checkstyle violations for ParseUtils</td>
+<td>Minor</td>
+<td>Query Processor</td>
+<td>Shohei Okumiya</td>
+<td>Shohei Okumiya</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27558>HIVE-27558</a></td>
+<td>HBase table query does not push BETWEEN predicate to storage layer</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Dayakar M</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27526>HIVE-27526</a></td>
+<td>Cleaner should honor compaction writeIdHwm</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27687>HIVE-27687</a></td>
+<td>Logger variable should be static final as its creation takes more time in query compilation</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Ramesh Kumar Thangarajan</td>
+<td>Ramesh Kumar Thangarajan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27843>HIVE-27843</a></td>
+<td>Add QueryOperation to Hive proto logger for post execution hook information</td>
+<td>Major</td>
+<td>.</td>
+<td>Ramesh Kumar Thangarajan</td>
+<td>Ramesh Kumar Thangarajan</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27907>HIVE-27907</a></td>
+<td>Upgrade aws-java-sdk version in HIVE</td>
+<td>Minor</td>
+<td>.</td>
+<td>Devaspati Krishnatri</td>
+<td>Devaspati Krishnatri</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-27824>HIVE-27824</a></td>
+<td>Upgrade ivy to 2.5.2 and htmlunit to 2.70.0</td>
+<td>Major</td>
+<td>Hive</td>
+<td>Devaspati Krishnatri</td>
+<td>Devaspati Krishnatri</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28005>HIVE-28005</a></td>
+<td>Remove upgrade-acid module</td>
+<td>Major</td>
+<td>.</td>
+<td>Ayush Saxena</td>
+<td>Butao Zhang</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28030>HIVE-28030</a></td>
+<td>LLAP util code refactor</td>
+<td>Major</td>
+<td>.</td>
+<td>Denys Kuzmenko</td>
+<td>Denys Kuzmenko</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28020>HIVE-28020</a></td>
+<td>Iceberg: Upgrade iceberg version to 1.4.3</td>
+<td>Major</td>
+<td>.</td>
+<td>Simhadri Govindappa</td>
+<td>Simhadri Govindappa</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28043>HIVE-28043</a></td>
+<td>Upgrade ZooKeeper to 3.8.3</td>
+<td>Major</td>
+<td>.</td>
+<td>Anmol Sundaram</td>
+<td>Anmol Sundaram</td>
+</tr>
+<tr>
+<td><a href=https://issues.apache.org/jira/browse/HIVE-28063>HIVE-28063</a></td>
+<td>Drop PerfLogger#setPerfLogger method and unused fields/methods</td>
+<td>Major</td>
+<td>Hive, Standalone Metastore</td>
+<td>Stamatis Zampetakis</td>
+<td>Stamatis Zampetakis</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

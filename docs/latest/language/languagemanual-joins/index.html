@@ -1,0 +1,368 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LanguageManual Joins</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--languagemanual-joins>Apache Hive : LanguageManual Joins</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-joins>Apache Hive : LanguageManual Joins</a>
+<ul>
+<li><a href=#join-syntax>Join Syntax</a></li>
+<li><a href=#examples>Examples</a></li>
+<li><a href=#mapjoin-restrictions>MapJoin Restrictions</a></li>
+<li><a href=#join-optimization>Join Optimization</a>
+<ul>
+<li><a href=#predicate-pushdown-in-outer-joins>Predicate Pushdown in Outer Joins</a></li>
+<li><a href=#enhancements-in-hive-version-011>Enhancements in Hive Version 0.11</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=join-syntax>Join Syntax</h2>
+<p>Hive supports the following syntax for joining tables:</p>
+<pre tabindex=0><code>join_table:
+    table_reference [INNER] JOIN table_factor [join_condition]
+  | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition
+  | table_reference LEFT SEMI JOIN table_reference join_condition
+  | table_reference CROSS JOIN table_reference [join_condition] (as of Hive 0.10)
+
+table_reference:
+    table_factor
+  | join_table
+
+table_factor:
+    tbl_name [alias]
+  | table_subquery alias
+  | ( table_references )
+
+join_condition:
+    ON expression
+
+</code></pre><p>See <a href=#select-syntax>Select Syntax</a> for the context of this join syntax.</p>
+<p>Version 0.13.0+: Implicit join notation</p>
+<p>Implicit join notation is supported starting with Hive 0.13.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-5558>HIVE-5558</a>). This allows the FROM clause to join a comma-separated list of tables, omitting the JOIN keyword. For example:</p>
+<p><code>SELECT * FROM table1 t1, table2 t2, table3 t3 WHERE t1.id = t2.id AND t2.id = t3.id AND t1.zipcode = '02535';</code></p>
+<p>Version 0.13.0+: Unqualified column references</p>
+<p>Unqualified column references are supported in join conditions, starting with Hive 0.13.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-6393>HIVE-6393</a>). Hive attempts to resolve these against the inputs to a Join. If an unqualified column reference resolves to more than one table, Hive will flag it as an ambiguous reference.</p>
+<p>For example:</p>
+<p><code>CREATE TABLE a (k1 string, v1 string);</code><br>
+<code>CREATE TABLE b (k2 string, v2 string);</code></p>
+<p><code>SELECT k1, v1, k2, v2</code><br>
+<code>FROM a JOIN b ON k1 = k2;</code></p>
+<p>Version 2.2.0+: Complex expressions in ON clause</p>
+<p>Complex expressions in ON clause are supported, starting with Hive 2.2.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-15211>HIVE-15211</a>, <a href=https://issues.apache.org/jira/browse/HIVE-15251>HIVE-15251</a>). Prior to that, Hive did not support join conditions that are not equality conditions.</p>
+<p>In particular, syntax for join conditions was restricted as follows:</p>
+<pre tabindex=0><code>join_condition:  
+    ON equality_expression ( AND equality_expression )*
+</code></pre><pre tabindex=0><code>equality_expression:  
+    expression = expression
+</code></pre><h2 id=examples>Examples</h2>
+<p>Some salient points to consider when writing join queries are as follows:</p>
+<ul>
+<li>Complex join expressions are allowed e.g.</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.* FROM a JOIN b ON (a.id = b.id)
+</code></pre><pre tabindex=0><code>  SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
+</code></pre><pre tabindex=0><code>  SELECT a.* FROM a LEFT OUTER JOIN b ON (a.id &lt;&gt; b.id)
+</code></pre><p>are valid joins.</p>
+<ul>
+<li>More than 2 tables can be joined in the same query e.g.</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+</code></pre><p>is a valid join.</p>
+<ul>
+<li>Hive converts joins over multiple tables into a single map/reduce job if for every table the same column is used in the join clauses e.g.</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+</code></pre><p>is converted into a single map/reduce job as only key1 column for b is involved in the join. On the other hand</p>
+<pre tabindex=0><code>  SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+</code></pre><p>is converted into two map/reduce jobs because key1 column from b is used in the first join condition and key2 column from b is used in the second one. The first map/reduce job joins a with b and the results are then joined with c in the second map/reduce job.</p>
+<ul>
+<li>In every map/reduce stage of the join, the last table in the sequence is streamed through the reducers where as the others are buffered. Therefore, it helps to reduce the memory needed in the reducer for buffering the rows for a particular value of the join key by organizing the tables such that the largest tables appear last in the sequence. e.g. in</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+</code></pre><p>all the three tables are joined in a single map/reduce job and the values for a particular value of the key for tables a and b are buffered in the memory in the reducers. Then for each row retrieved from c, the join is computed with the buffered rows. Similarly for</p>
+<pre tabindex=0><code>  SELECT a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key2)
+
+</code></pre><p>there are two map/reduce jobs involved in computing the join. The first of these joins a with b and buffers the values of a while streaming the values of b in the reducers. The second of one of these jobs buffers the results of the first join while streaming the values of c through the reducers.</p>
+<ul>
+<li>In every map/reduce stage of the join, the table to be streamed can be specified via a hint. e.g. in</li>
+</ul>
+<pre tabindex=0><code>  SELECT /*+ STREAMTABLE(a) */ a.val, b.val, c.val FROM a JOIN b ON (a.key = b.key1) JOIN c ON (c.key = b.key1)
+
+</code></pre><p>all the three tables are joined in a single map/reduce job and the values for a particular value of the key for tables b and c are buffered in the memory in the reducers. Then for each row retrieved from a, the join is computed with the buffered rows. If the STREAMTABLE hint is omitted, Hive streams the rightmost table in the join.</p>
+<ul>
+<li>LEFT, RIGHT, and FULL OUTER joins exist in order to provide more control over ON clauses for which there is no match. For example, this query:</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)
+
+</code></pre><p>will return a row for every row in a. This output row will be a.val,b.val when there is a b.key that equals a.key, and the output row will be a.val,NULL when there is no corresponding b.key. Rows from b which have no corresponding a.key will be dropped. The syntax &ldquo;FROM a LEFT OUTER JOIN b&rdquo; must be written on one line in order to understand how it works&ndash;a is to the LEFT of b in this query, and so all rows from a are kept; a RIGHT OUTER JOIN will keep all rows from b, and a FULL OUTER JOIN will keep all rows from a and all rows from b. OUTER JOIN semantics should conform to standard SQL specs.</p>
+<ul>
+<li>Joins occur BEFORE WHERE CLAUSES. So, if you want to restrict the OUTPUT of a join, a requirement should be in the WHERE clause, otherwise it should be in the JOIN clause. A big point of confusion for this issue is partitioned tables:</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val, b.val FROM a LEFT OUTER JOIN b ON (a.key=b.key)
+  WHERE a.ds='2009-07-07' AND b.ds='2009-07-07'
+
+</code></pre><p>will join a on b, producing a list of a.val and b.val. The WHERE clause, however, can also reference other columns of a and b that are in the output of the join, and then filter them out. However, whenever a row from the JOIN has found a key for a and no key for b, all of the columns of b will be NULL, <strong>including the ds column</strong>. This is to say, you will filter out all rows of join output for which there was no valid b.key, and thus you have outsmarted your LEFT OUTER requirement. In other words, the LEFT OUTER part of the join is irrelevant if you reference any column of b in the WHERE clause. Instead, when OUTER JOINing, use this syntax:</p>
+<pre tabindex=0><code>  SELECT a.val, b.val FROM a LEFT OUTER JOIN b
+  ON (a.key=b.key AND b.ds='2009-07-07' AND a.ds='2009-07-07')
+
+</code></pre><p>..the result is that the output of the join is pre-filtered, and you won&rsquo;t get post-filtering trouble for rows that have a valid a.key but no matching b.key. The same logic applies to RIGHT and FULL joins.</p>
+<ul>
+<li>Joins are NOT commutative! Joins are left-associative regardless of whether they are LEFT or RIGHT joins.</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.val1, a.val2, b.val, c.val
+  FROM a
+  JOIN b ON (a.key = b.key)
+  LEFT OUTER JOIN c ON (a.key = c.key)
+
+</code></pre><p>&mldr;first joins a on b, throwing away everything in a or b that does not have a corresponding key in the other table. The reduced table is then joined on c. This provides unintuitive results if there is a key that exists in both a and c but not b: The whole row (including a.val1, a.val2, and a.key) is dropped in the &ldquo;a JOIN b&rdquo; step because it is not in b. The result does not have a.key in it, so when it is LEFT OUTER JOINed with c, c.val does not make it in because there is no c.key that matches an a.key (because that row from a was removed). Similarly, if this were a RIGHT OUTER JOIN (instead of LEFT), we would end up with an even weirder effect: NULL, NULL, NULL, c.val, because even though we specified a.key=c.key as the join key, we dropped all rows of a that did not match the first JOIN.<br>
+To achieve the more intuitive effect, we should instead do FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).</p>
+<ul>
+<li>LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. As of Hive 0.13 the IN/NOT IN/EXISTS/NOT EXISTS operators are supported using <a href=https://hive.apache.org/docs/latest/language/languagemanual-subqueries/>subqueries</a> so most of these JOINs don&rsquo;t have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN are that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.</li>
+</ul>
+<pre tabindex=0><code>  SELECT a.key, a.value
+  FROM a
+  WHERE a.key in
+   (SELECT b.key
+    FROM B);
+
+</code></pre><p>can be rewritten to:</p>
+<pre tabindex=0><code>   SELECT a.key, a.val
+   FROM a LEFT SEMI JOIN b ON (a.key = b.key)
+
+</code></pre><ul>
+<li>If all but one of the tables being joined are small, the join can be performed as a map only job. The query</li>
+</ul>
+<pre tabindex=0><code>  SELECT /*+ MAPJOIN(b) */ a.key, a.value
+  FROM a JOIN b ON a.key = b.key
+
+</code></pre><p>does not need a reducer. For every mapper of A, B is read completely. The restriction is that <strong>a FULL/RIGHT OUTER JOIN b</strong> cannot be performed.</p>
+<ul>
+<li>If the tables being joined are bucketized on the join columns, and the number of buckets in one table is a multiple of the number of buckets in the other table, the buckets can be joined with each other. If table A has 4 buckets and table B has 4 buckets, the following join</li>
+</ul>
+<pre tabindex=0><code>  SELECT /*+ MAPJOIN(b) */ a.key, a.value
+  FROM a JOIN b ON a.key = b.key
+
+</code></pre><p>can be done on the mapper only. Instead of fetching B completely for each mapper of A, only the required buckets are fetched. For the query above, the mapper processing bucket 1 for A will only fetch bucket 1 of B. It is not the default behavior, and is governed by the following parameter</p>
+<pre tabindex=0><code>  set hive.optimize.bucketmapjoin = true
+
+</code></pre><ul>
+<li>If the tables being joined are sorted and bucketized on the join columns, and they have the same number of buckets, a sort-merge join can be performed. The corresponding buckets are joined with each other at the mapper. If both A and B have 4 buckets,</li>
+</ul>
+<pre tabindex=0><code>  SELECT /*+ MAPJOIN(b) */ a.key, a.value
+  FROM A a JOIN B b ON a.key = b.key
+
+</code></pre><p>can be done on the mapper only. The mapper for the bucket for A will traverse the corresponding bucket for B. This is not the default behavior, and the following parameters need to be set:</p>
+<pre tabindex=0><code>  set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
+  set hive.optimize.bucketmapjoin = true;
+  set hive.optimize.bucketmapjoin.sortedmerge = true;
+
+</code></pre><h2 id=mapjoin-restrictions>MapJoin Restrictions</h2>
+<ul>
+<li>If all but one of the tables being joined are small, the join can be performed as a map only job. The query</li>
+</ul>
+<pre tabindex=0><code>  SELECT /*+ MAPJOIN(b) */ a.key, a.value
+  FROM a JOIN b ON a.key = b.key
+
+</code></pre><p>does not need a reducer. For every mapper of A, B is read completely.</p>
+<ul>
+<li>The following is not supported.
+<ul>
+<li>Union Followed by a MapJoin</li>
+<li>Lateral View Followed by a MapJoin</li>
+<li>Reduce Sink (Group By/Join/Sort By/Cluster By/Distribute By) Followed by MapJoin</li>
+<li>MapJoin Followed by Union</li>
+<li>MapJoin Followed by Join</li>
+<li>MapJoin Followed by MapJoin</li>
+</ul>
+</li>
+<li>The configuration variable hive.auto.convert.join (if set to true) automatically converts the joins to mapjoins at runtime if possible, and it should be used instead of the mapjoin hint. The mapjoin hint should only be used for the following query.
+<ul>
+<li>If all the inputs are bucketed or sorted, and the join should be converted to a bucketized map-side join or bucketized sort-merge join.</li>
+</ul>
+</li>
+<li>Consider the possibility of multiple mapjoins on different keys:</li>
+</ul>
+<pre tabindex=0><code>select /*+MAPJOIN(smallTableTwo)*/ idOne, idTwo, value FROM
+  ( select /*+MAPJOIN(smallTableOne)*/ idOne, idTwo, value FROM
+    bigTable JOIN smallTableOne on (bigTable.idOne = smallTableOne.idOne)                                                   
+  ) firstjoin                                                             
+  JOIN                                                                  
+  smallTableTwo ON (firstjoin.idTwo = smallTableTwo.idTwo)                       
+
+</code></pre><p>The above query is not supported. Without the mapjoin hint, the above query would be executed as 2 map-only jobs. If the user knows in advance that the inputs are small enough to fit in memory, the following configurable parameters can be used to make sure that the query executes in a single map-reduce job.</p>
+<pre><code>+ hive.auto.convert.join.noconditionaltask - Whether Hive enable the optimization about converting common join into mapjoin based on the input file size. If this paramater is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the specified size, the join is directly converted to a mapjoin (there is no conditional task).
++ hive.auto.convert.join.noconditionaltask.size - If hive.auto.convert.join.noconditionaltask is off, this parameter does not take affect. However, if it is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than this size, the join is directly converted to a mapjoin(there is no conditional task). The default is 10MB.
+</code></pre>
+<h2 id=join-optimization>Join Optimization</h2>
+<h3 id=predicate-pushdown-in-outer-joins>Predicate Pushdown in Outer Joins</h3>
+<p>See <a href=https://hive.apache.org/development/desingdocs/outerjoinbehavior/>Hive Outer Join Behavior</a> for information about predicate pushdown in outer joins.</p>
+<h3 id=enhancements-in-hive-version-011>Enhancements in Hive Version 0.11</h3>
+<p>See <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization>Join Optimization</a> for information about enhancements to join optimization introduced in Hive version 0.11.0. The use of hints is de-emphasized in the enhanced optimizations (<a href=https://issues.apache.org/jira/browse/HIVE-3784>HIVE-3784</a> and related JIRAs).</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : LanguageManual DML</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--languagemanual-dml>Apache Hive : LanguageManual DML</h1>
+<h1 id=hive-data-manipulation-language>Hive Data Manipulation Language</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--languagemanual-dml>Apache Hive : LanguageManual DML</a></li>
+<li><a href=#hive-data-manipulation-language>Hive Data Manipulation Language</a>
+<ul>
+<li>
+<ul>
+<li><a href=#loading-files-into-tables>Loading files into tables</a></li>
+<li><a href=#inserting-data-into-hive-tables-from-queries>Inserting data into Hive Tables from queries</a></li>
+<li><a href=#writing-data-into-the-filesystem-from-queries>Writing data into the filesystem from queries</a></li>
+<li><a href=#inserting-values-into-tables-from-sql>Inserting values into tables from SQL</a></li>
+<li><a href=#update>Update</a></li>
+<li><a href=#delete>Delete</a></li>
+<li><a href=#merge>Merge</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h3 id=loading-files-into-tables>Loading files into tables</h3>
+<p>Hive does not do any transformation while loading data into tables. Load operations are currently pure copy/move operations that move datafiles into locations corresponding to Hive tables.</p>
+<h5 id=syntax>Syntax</h5>
+<pre tabindex=0><code>LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]
+
+LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)] [INPUTFORMAT 'inputformat' SERDE 'serde'] (3.0 or later)
+</code></pre><h5 id=synopsis>Synopsis</h5>
+<p>Load operations prior to Hive 3.0 are pure copy/move operations that move datafiles into locations corresponding to Hive tables.</p>
+<ul>
+<li><em>filepath</em> can be:
+<ul>
+<li>a relative path, such as <code>project/data1</code></li>
+<li>an absolute path, such as <code>/user/hive/project/data1</code></li>
+<li>a full URI with scheme and (optionally) an authority, such as <code>hdfs://namenode:9000/user/hive/project/data1</code></li>
+</ul>
+</li>
+<li>The target being loaded to can be a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns.</li>
+<li><em>filepath</em> can refer to a file (in which case Hive will move the file into the table) or it can be a directory (in which case Hive will move all the files within that directory into the table). In either case, <em>filepath</em> addresses a set of files.</li>
+<li>If the keyword LOCAL is specified, then:
+<ul>
+<li>the load command will look for <em>filepath</em> in the local file system. If a relative path is specified, it will be interpreted relative to the user&rsquo;s current working directory. The user can specify a full URI for local files as well - for example: <code>&lt;file:///user/hive/project/data1></code></li>
+<li>the load command will try to copy all the files addressed by <em>filepath</em> to the target filesystem. The target file system is inferred by looking at the location attribute of the table. The copied data files will then be moved to the table.</li>
+<li>Note: If you run this command against a HiveServer2 instance then the local path refers to a path on the HiveServer2 instance. HiveServer2 must have the proper permissions to access that file.</li>
+</ul>
+</li>
+<li>If the keyword LOCAL is <em>not</em> specified, then Hive will either use the full URI of <em>filepath</em>, if one is specified, or will apply the following rules:
+<ul>
+<li>If scheme or authority are not specified, Hive will use the scheme and authority from the hadoop configuration variable <code>fs.default.name</code> that specifies the Namenode URI.</li>
+<li>If the path is not absolute, then Hive will interpret it relative to <code>/user/&lt;username></code></li>
+<li>Hive will <em>move</em> the files addressed by <em>filepath</em> into the table (or partition)</li>
+</ul>
+</li>
+<li>If the OVERWRITE keyword is used then the contents of the target table (or partition) will be deleted and replaced by the files referred to by <em>filepath</em>; otherwise the files referred by <em>filepath</em> will be added to the table.</li>
+</ul>
+<p>Additional load operations are supported by Hive 3.0 onwards as Hive internally rewrites the load into an INSERT AS SELECT.</p>
+<ul>
+<li>If table has partitions, however, the load command does not have them, the load would be converted into INSERT AS SELECT and assume that the last set of columns are partition columns. It will throw an error if the file does not conform to the expected schema.</li>
+<li>If table is bucketed then the following rules apply:
+<ul>
+<li>In strict mode : launches an INSERT AS SELECT job.</li>
+<li>In non-strict mode : if the file names conform to the naming convention (if the file belongs to bucket 0, it should be named 000000_0 or 000000_0_copy_1, or if it belongs to bucket 2 the names should be like 000002_0 or 000002_0_copy_3, etc.) then it will be a pure copy/move operation, else it will launch an INSERT AS SELECT job.</li>
+</ul>
+</li>
+<li><em>filepath</em> can contain subdirectories, provided each file conforms to the schema.</li>
+<li><em>inputformat</em> can be any Hive input format such as text, ORC, etc.</li>
+<li><em>serde</em> can be the associated Hive SERDE.</li>
+<li>Both <em>inputformat</em> and <em>serde</em> are case sensitive.</li>
+</ul>
+<p>Example of such a schema:</p>
+<pre tabindex=0><code>CREATE TABLE tab1 (col1 int, col2 int) PARTITIONED BY (col3 int) STORED AS ORC;
+LOAD DATA LOCAL INPATH 'filepath' INTO TABLE tab1;
+</code></pre><p>Here, partition information is missing which would otherwise give an error, however, if the file(s) located at <em>filepath</em> conform to the table schema such that each row ends with partition column(s) then the load will rewrite into an INSERT AS SELECT job.</p>
+<p>The uncompressed data should look like this:</p>
+<p>(1,2,3), (2,3,4), (4,5,3) etc.</p>
+<h5 id=notes>Notes</h5>
+<ul>
+<li><em>filepath</em> cannot contain subdirectories (except for Hive 3.0 or later, as described above).</li>
+<li>If the keyword LOCAL is not given, <em>filepath</em> must refer to files within the same filesystem as the table&rsquo;s (or partition&rsquo;s) location.</li>
+<li>Hive does some minimal checks to make sure that the files being loaded match the target table. Currently it checks that if the table is stored in sequencefile format, the files being loaded are also sequencefiles, and vice versa.</li>
+<li>A bug that prevented loading a file when its name includes the &ldquo;+&rdquo; character is fixed in release 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6048>HIVE-6048</a>).</li>
+<li>Please read <a href=https://hive.apache.org/docs/latest/user/compressedstorage/>CompressedStorage</a> if your datafile is compressed.</li>
+</ul>
+<h3 id=inserting-data-into-hive-tables-from-queries>Inserting data into Hive Tables from queries</h3>
+<p>Query Results can be inserted into tables by using the insert clause.</p>
+<h5 id=syntax-1>Syntax</h5>
+<pre tabindex=0><code>Standard syntax:
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1 FROM from_statement;
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1 FROM from_statement;
+
+Hive extension (multiple inserts):
+FROM from_statement
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] 
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] ...;
+FROM from_statement
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] 
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] ...;
+
+Hive extension (dynamic partition inserts):
+INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
+INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) select_statement FROM from_statement;
+</code></pre><h5 id=synopsis-1>Synopsis</h5>
+<ul>
+<li>INSERT OVERWRITE will overwrite any existing data in the table or partition
+<ul>
+<li>unless <code>IF NOT EXISTS</code> is provided for a partition (as of Hive <a href=https://issues.apache.org/jira/browse/HIVE-2612>0.9.0</a>).</li>
+<li>As of Hive 2.3.0 (<a href=https://issues.apache.org/jira/browse/HIVE-15880>HIVE-15880</a>), if the table has <code>TBLPROPERTIES ("auto.purge"="true")</code> the previous data of the table is not moved to Trash when INSERT OVERWRITE query is run against the table. This functionality is applicable only for managed tables (see <a href=#managed-tables>managed tables</a>) and is turned off when &ldquo;auto.purge&rdquo; property is unset or set to false.</li>
+</ul>
+</li>
+<li>INSERT INTO will append to the table or partition, keeping the existing data intact. (Note: INSERT INTO syntax is only available starting in version 0.8.)
+<ul>
+<li>As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-6406>0.13.0</a>, a table can be made <em><strong>immutable</strong></em> by creating it with <code>TBLPROPERTIES ("immutable"="true")</code>. The default is &ldquo;immutable&rdquo;=&ldquo;false&rdquo;.<br>
+INSERT INTO behavior into an immutable table is disallowed if any data is already present, although INSERT INTO still works if the immutable table is empty. The behavior of INSERT OVERWRITE is not affected by the &ldquo;immutable&rdquo; table property.<br>
+An immutable table is protected against accidental updates due to a script loading data into it being run multiple times by mistake. The first insert into an immutable table succeeds and successive inserts fail, resulting in only one set of data in the table, instead of silently succeeding with multiple copies of the data in the table.</li>
+</ul>
+</li>
+<li>Inserts can be done to a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns. If <a href=#hive-typecheck-on-insert>hive.typecheck.on.insert</a> is set to true, these values are validated, converted and normalized to conform to their column types (Hive <a href=https://issues.apache.org/jira/browse/HIVE-5297>0.12.0</a> onward).</li>
+<li>Multiple insert clauses (also known as <em>Multi Table Insert</em>) can be specified in the same query.</li>
+<li>The output of each of the select statements is written to the chosen table (or partition). Currently the OVERWRITE keyword is mandatory and implies that the contents of the chosen table or partition are replaced with the output of corresponding select statement.</li>
+<li>The output format and serialization class is determined by the table&rsquo;s metadata (as specified via DDL commands on the table).</li>
+<li>As of <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>, if a table has an OutputFormat that implements AcidOutputFormat and the system is configured to use a <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>transaction</a> manager that implements ACID, then INSERT OVERWRITE will be disabled for that table.  This is to avoid users unintentionally overwriting transaction history.  The same functionality can be achieved by using <a href=#truncate-table>TRUNCATE TABLE</a> (for non-partitioned tables) or <a href=#drop-partition>DROP PARTITION</a> followed by INSERT INTO.</li>
+<li>As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9353>1.1.0</a> the TABLE keyword is optional.</li>
+<li>As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-9481>1.2.0</a> each INSERT INTO T can take a column list like INSERT INTO T (z, x, c1).  See Description of <a href=https://issues.apache.org/jira/browse/HIVE-9481>HIVE-9481</a> for examples.</li>
+<li>As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-19908>3.1.0</a> INSERT OVERWRITE from a source with UNION ALL on full CRUD ACID tables is not allowed.</li>
+</ul>
+<h5 id=notes-1>Notes</h5>
+<ul>
+<li>Multi Table Inserts minimize the number of data scans required. Hive can insert data into multiple tables by scanning the input data just once (and applying different query operators) to the input data.</li>
+<li>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select#LanguageManualSelect-SelectSyntax>SELECT syntax</a>. For an example, see <a href=https://cwiki.apache.org/confluence/display/Hive/Common+Table+Expression#CommonTableExpression-CTEinViews,CTAS,andInsertStatements>Common Table Expression</a>.</li>
+</ul>
+<h5 id=dynamic-partition-inserts>Dynamic Partition Inserts</h5>
+<p>Version information</p>
+<p>This information reflects the situation in Hive 0.12; dynamic partition inserts were added in Hive 0.6.</p>
+<p>In the dynamic partition inserts, users can give partial partition specifications, which means just specifying the list of partition column names in the PARTITION clause. The column values are optional. If a partition column value is given, we call this a static partition, otherwise it is a dynamic partition. Each dynamic partition column has a corresponding input column from the select statement. This means that the dynamic partition creation is determined by the value of the input column. The dynamic partition columns must be <strong>specified last</strong> among the columns in the SELECT statement and <strong>in the same order</strong> in which they appear in the PARTITION() clause. As of Hive 3.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-19083>HIVE-19083</a>) there is no need to specify dynamic partition columns. Hive will automatically generate partition specification if it is not specified.</p>
+<p>Dynamic partition inserts are disabled by default prior to Hive 0.9.0 and enabled by default in Hive <a href=https://issues.apache.org/jira/browse/HIVE-2835>0.9.0</a> and later. These are the relevant configuration properties for dynamic partition inserts:</p>
+<table>
+<thead>
+<tr>
+<th>Configuration property</th>
+<th>Default</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hive.exec.dynamic.partition</code></td>
+<td><code>true</code></td>
+<td>Needs to be set to <code>true</code> to enable dynamic partition inserts</td>
+</tr>
+<tr>
+<td><code>hive.exec.dynamic.partition.mode</code></td>
+<td><code>strict</code></td>
+<td>In <code>strict</code> mode, the user must specify at least one static partition in case the user accidentally overwrites all partitions, in <code>nonstrict</code> mode all partitions are allowed to be dynamic</td>
+</tr>
+<tr>
+<td><code>hive.exec.max.dynamic.partitions.pernode</code></td>
+<td>100</td>
+<td>Maximum number of dynamic partitions allowed to be created in each mapper/reducer node</td>
+</tr>
+<tr>
+<td><code>hive.exec.max.dynamic.partitions</code></td>
+<td>1000</td>
+<td>Maximum number of dynamic partitions allowed to be created in total</td>
+</tr>
+<tr>
+<td><code>hive.exec.max.created.files</code></td>
+<td>100000</td>
+<td>Maximum number of HDFS files created by all mappers/reducers in a MapReduce job</td>
+</tr>
+<tr>
+<td><code>hive.error.on.empty.partition</code></td>
+<td><code>false</code></td>
+<td>Whether to throw an exception if dynamic partition insert generates empty results</td>
+</tr>
+</tbody>
+</table>
+<h6 id=example>Example</h6>
+<pre tabindex=0><code>FROM page_view_stg pvs
+INSERT OVERWRITE TABLE page_view PARTITION(dt='2008-06-08', country)
+       SELECT pvs.viewTime, pvs.userid, pvs.page_url, pvs.referrer_url, null, null, pvs.ip, pvs.cnt
+
+</code></pre><p>Here the <code>country</code> partition will be dynamically created by the last column from the <code>SELECT</code> clause (i.e. <code>pvs.cnt</code>). Note that the name is not used. In <code>nonstrict</code> mode the <code>dt</code> partition could also be dynamically created.</p>
+<h6 id=additional-documentation>Additional Documentation</h6>
+<ul>
+<li><a href=https://hive.apache.org/development/desingdocs/dynamicpartitions/>Design Document</a>
+<ul>
+<li><a href=https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt>Original design doc</a></li>
+<li><a href=https://issues.apache.org/jira/browse/HIVE-936>HIVE-936</a></li>
+</ul>
+</li>
+<li><a href=#tutorial:-dynamic-partition-insert>Tutorial: Dynamic-Partition Insert</a></li>
+<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-dynamicpartitions/>HCatalog Dynamic Partitioning</a>
+<ul>
+<li><a href=#usage-with-pig>Usage with Pig</a></li>
+<li><a href=#usage-from-mapreduce>Usage from MapReduce</a></li>
+</ul>
+</li>
+</ul>
+<h3 id=writing-data-into-the-filesystem-from-queries>Writing data into the filesystem from queries</h3>
+<p>Query results can be inserted into filesystem directories by using a slight variation of the syntax above:</p>
+<h5 id=syntax-2>Syntax</h5>
+<pre tabindex=0><code>Standard syntax:
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1
+  [ROW FORMAT row_format] [STORED AS file_format] (Note: Only available starting with Hive 0.11.0)
+  SELECT ... FROM ...
+
+Hive extension (multiple inserts):
+FROM from_statement
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
+[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select_statement2] ...
+
+ 
+row_format
+  : DELIMITED [FIELDS TERMINATED BY char [ESCAPED BY char]] [COLLECTION ITEMS TERMINATED BY char]
+        [MAP KEYS TERMINATED BY char] [LINES TERMINATED BY char]
+        [NULL DEFINED AS char] (Note: Only available starting with Hive 0.13)
+</code></pre><h5 id=synopsis-2>Synopsis</h5>
+<ul>
+<li>Directory can be a full URI. If scheme or authority are not specified, Hive will use the scheme and authority from the hadoop configuration variable <code>fs.default.name</code> that specifies the Namenode URI.</li>
+<li>If LOCAL keyword is used, Hive will write data to the directory on the local file system.</li>
+<li>Data written to the filesystem is serialized as text with columns separated by ^A and rows separated by newlines. If any of the columns are not of primitive type, then those columns are serialized to JSON format.</li>
+</ul>
+<h5 id=notes-2>Notes</h5>
+<ul>
+<li>INSERT OVERWRITE statements to directories, local directories, and tables (or partitions) can all be used together within the same query.</li>
+<li>INSERT OVERWRITE statements to HDFS filesystem directories are the best way to extract large amounts of data from Hive. Hive can write to HDFS directories in parallel from within a map-reduce job.</li>
+<li>The directory is, as you would expect, OVERWRITten; in other words, if the specified path exists, it is clobbered and replaced with the output.</li>
+<li>As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-3682>0.11.0</a> the separator used can be specified; in earlier versions it was always the ^A character (\001). However, custom separators are only supported for LOCAL writes in Hive versions 0.11.0 to 1.1.0 – this bug is fixed in version 1.2.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-5672>HIVE-5672</a>).</li>
+<li>In <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>, inserts into <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>ACID</a> compliant tables will deactivate vectorization for the duration of the select and insert.  This will be done automatically.  ACID tables that have data inserted into them can still be queried using vectorization.</li>
+</ul>
+<h3 id=inserting-values-into-tables-from-sql>Inserting values into tables from SQL</h3>
+<p>The INSERT&mldr;VALUES statement can be used to insert data into tables directly from SQL.</p>
+<p>Version Information</p>
+<p>INSERT&mldr;VALUES is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>.</p>
+<h5 id=syntax-3>Syntax</h5>
+<pre tabindex=0><code>Standard Syntax:
+INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], partcol2[=val2] ...)] VALUES values_row [, values_row ...]
+ 
+Where values_row is:
+( value [, value ...] )
+where a value is either null or any valid SQL literal
+</code></pre><h5 id=synopsis-3>Synopsis</h5>
+<ul>
+<li>Each row listed in the VALUES clause is inserted into table <em>tablename</em>.</li>
+<li>Values must be provided for every column in the table. The standard SQL syntax that allows the user to insert values into only some columns is not yet supported. To mimic the standard SQL, nulls can be provided for columns the user does not wish to assign a value to.</li>
+<li>Dynamic partitioning is supported in the same way as for <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-DynamicPartitionInserts">INSERT&mldr;SELECT</a>.</li>
+<li>If the table being inserted into supports <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>ACID</a> and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.</li>
+<li>Hive does not support literals for complex types (array, map, struct, union), so it is not possible to use them in INSERT INTO&mldr;VALUES clauses. This means that the user cannot insert data into a complex datatype column using the INSERT INTO&mldr;VALUES clause.</li>
+</ul>
+<h5 id=examples>Examples</h5>
+<pre tabindex=0><code>CREATE TABLE students (name VARCHAR(64), age INT, gpa DECIMAL(3, 2))
+  CLUSTERED BY (age) INTO 2 BUCKETS STORED AS ORC;
+
+INSERT INTO TABLE students
+  VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
+
+CREATE TABLE pageviews (userid VARCHAR(64), link STRING, came_from STRING)
+  PARTITIONED BY (datestamp STRING) CLUSTERED BY (userid) INTO 256 BUCKETS STORED AS ORC;
+
+INSERT INTO TABLE pageviews PARTITION (datestamp = '2014-09-23')
+  VALUES ('jsmith', 'mail.com', 'sports.com'), ('jdoe', 'mail.com', null);
+
+INSERT INTO TABLE pageviews PARTITION (datestamp)
+  VALUES ('tjohnson', 'sports.com', 'finance.com', '2014-09-23'), ('tlee', 'finance.com', null, '2014-09-21');
+ 
+INSERT INTO TABLE pageviews
+  VALUES ('tjohnson', 'sports.com', 'finance.com', '2014-09-23'), ('tlee', 'finance.com', null, '2014-09-21');
+</code></pre><h3 id=update>Update</h3>
+<p>Version Information</p>
+<p>UPDATE is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>.</p>
+<p>Updates can only be performed on tables that support ACID. See <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>Hive Transactions</a> for details.</p>
+<h5 id=syntax-4>Syntax</h5>
+<pre tabindex=0><code>Standard Syntax:
+UPDATE tablename SET column = value [, column = value ...] [WHERE expression]
+</code></pre><h5 id=synopsis-4>Synopsis</h5>
+<ul>
+<li>The referenced column must be a column of the table being updated.</li>
+<li>The value assigned must be an expression that Hive supports in the select clause.  Thus arithmetic operators, UDFs, casts, literals, etc. are supported.  Subqueries are not supported.</li>
+<li>Only rows that match the WHERE clause will be updated.</li>
+<li>Partitioning columns cannot be updated.</li>
+<li>Bucketing columns cannot be updated.</li>
+<li>In Hive 0.14, upon successful completion of this operation the changes will be auto-committed.</li>
+</ul>
+<h5 id=notes-3>Notes</h5>
+<ul>
+<li>Vectorization will be turned off for update operations.  This is automatic and requires no action on the part of the user.  Non-update operations are not affected.  Updated tables can still be queried using vectorization.</li>
+<li>In version 0.14 it is recommended that you set <a href=#hive-optimize-sort-dynamic-partition>hive.optimize.sort.dynamic.partition</a>=false when doing updates, as this produces more efficient execution plans.</li>
+</ul>
+<h3 id=delete>Delete</h3>
+<p>Version Information</p>
+<p>DELETE is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-5317>Hive 0.14</a>.</p>
+<p>Deletes can only be performed on tables that support ACID. See <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>Hive Transactions</a> for details.</p>
+<h5 id=syntax-5>Syntax</h5>
+<pre tabindex=0><code>Standard Syntax:
+DELETE FROM tablename [WHERE expression]
+</code></pre><h5 id=synopsis-5>Synopsis</h5>
+<ul>
+<li>Only rows that match the WHERE clause will be deleted.</li>
+<li>In Hive 0.14, upon successful completion of this operation the changes will be auto-committed.</li>
+</ul>
+<h5 id=notes-4>Notes</h5>
+<ul>
+<li>Vectorization will be turned off for delete operations.  This is automatic and requires no action on the part of the user.  Non-delete operations are not affected.  Tables with deleted data can still be queried using vectorization.</li>
+<li>In version 0.14 it is recommended that you set <a href=#hive-optimize-sort-dynamic-partition>hive.optimize.sort.dynamic.partition</a>=false when doing deletes, as this produces more efficient execution plans.</li>
+</ul>
+<h3 id=merge>Merge</h3>
+<p>Version Information</p>
+<p>MERGE is available starting in <a href=https://issues.apache.org/jira/browse/HIVE-10924>Hive 2.2</a>.</p>
+<p>Merge can only be performed on tables that support ACID. See <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>Hive Transactions</a> for details.</p>
+<h5 id=syntax-6>Syntax</h5>
+<pre tabindex=0><code>Standard Syntax:
+MERGE INTO &lt;target table&gt; AS T USING &lt;source expression/table&gt; AS S
+ON &lt;boolean expression1&gt;
+WHEN MATCHED [AND &lt;boolean expression2&gt;] THEN UPDATE SET &lt;set clause list&gt;
+WHEN MATCHED [AND &lt;boolean expression3&gt;] THEN DELETE
+WHEN NOT MATCHED [AND &lt;boolean expression4&gt;] THEN INSERT VALUES&lt;value list&gt;
+</code></pre><h5 id=synopsis-6>Synopsis</h5>
+<ul>
+<li><a href=https://en.wikipedia.org/wiki/Merge_(SQL)>Merge</a> allows actions to be performed on a target table based on the results of a join with a source table.</li>
+<li>In Hive 2.2, upon successful completion of this operation the changes will be auto-committed.</li>
+</ul>
+<h5 id=performance-note>Performance Note</h5>
+<p>SQL Standard requires that an error is raised if the ON clause is such that more than 1 row in source matches a row in target.  This check is computationally expensive and may affect the overall runtime of a MERGE statement significantly.  <a href=#hive-merge-cardinality-check>hive.merge.cardinality.check</a>=false may be used to disable the check at your own risk.  If the check is disabled, but the statement has such a cross join effect, it may lead to data corruption.</p>
+<h5 id=notes-5>Notes</h5>
+<ul>
+<li>1, 2, or 3 WHEN clauses may be present; at most 1 of each type:  UPDATE/DELETE/INSERT.</li>
+<li>WHEN NOT MATCHED must be the last WHEN clause.</li>
+<li>If both UPDATE and DELETE clauses are present, the first one in the statement must include [AND ].</li>
+<li>Vectorization will be turned off for merge operations.  This is automatic and requires no action on the part of the user.  Non-delete operations are not affected.  Tables with deleted data can still be queried using vectorization.</li>
+</ul>
+<h5 id=examples-1>Examples</h5>
+<ul>
+<li>See <a href=https://community.hortonworks.com/articles/97113/hive-acid-merge-by-example.html>here</a>.</li>
+</ul>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

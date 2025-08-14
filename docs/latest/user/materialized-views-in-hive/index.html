@@ -1,0 +1,230 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Materialized views in Hive</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--materialized-views-in-hive>Apache Hive : Materialized views in Hive</h1>
+<h3 id=objectives>Objectives</h3>
+<p>Traditionally, one of the most powerful techniques used to accelerate query processing in data warehouses is the pre-computation of relevant summaries or materialized views.</p>
+<p>The initial implementation focuses on introducing materialized views and automatic query rewriting based on those materializations in the project. In particular, materialized views can be stored natively in Hive or in other systems such as Druid using custom storage handlers, and they can seamlessly exploit new exciting Hive features such as LLAP acceleration. Then the optimizer relies in Apache Calcite to automatically produce full and partial rewritings for a large set of query expressions comprising projections, filters, join, and aggregation operations.</p>
+<p>In this document, we provide details about materialized view creation and management in Hive, describe the current coverage of the rewriting algorithm with some examples, and explain how Hive controls important aspects of the life cycle of the materialized views such as the freshness of their data.</p>
+<h2 id=management-of-materialized-views-in-hive>Management of materialized views in Hive</h2>
+<p>In this section, we present the main operations that are currently present in Hive for materialized views management.</p>
+<h3 id=materialized-views-creation>Materialized views creation</h3>
+<p>The syntax to create a materialized view in Hive is very similar to the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)>CTAS statement</a> syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.</p>
+<p>| <code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name``[DISABLE REWRITE]``[COMMENT materialized_view_comment]``[PARTITIONED ON (col_name, ...)]``[CLUSTERED ON (col_name, ...) | DISTRIBUTED ON (col_name, ...) SORTED ON (col_name, ...)]``[``[ROW FORMAT row_format]``[STORED AS file_format]``| STORED BY``'[storage.handler.class.name](http://storage.handler.class.name)'</code> <code>[WITH SERDEPROPERTIES (...)]``]``[LOCATION hdfs_path]``[TBLPROPERTIES (property_name=property_value, ...)]``AS``&lt;query>;</code> |</p>
+<p>When a materialized view is created, its contents will be automatically populated by the results of executing the query in the statement. The materialized view creation statement is atomic, meaning that the materialized view is not seen by other users until all query results are populated.</p>
+<p>By default, materialized views are usable for query rewriting by the optimizer, while the <code>DISABLE REWRITE</code> option can be used to alter this behavior at materialized view creation time.</p>
+<p>The default values for SerDe and storage format when they are not specified in the materialized view creation statement (they are optional) are specified using the configuration properties <code>hive.materializedview.serde</code> and <code>hive.materializedview.fileformat</code>, respectively.</p>
+<p>Materialized views can be stored in external systems, e.g., <a href=https://cwiki.apache.org/confluence/display/Hive/Druid+Integration>Druid</a>, using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:<br>
+<strong>Example:</strong></p>
+<p>| <code>CREATE MATERIALIZED VIEW druid_wiki_mv``STORED AS``'org.apache.hadoop.hive.druid.DruidStorageHandler'``AS``SELECT __time, page, user, c_added, c_removed``FROM src;</code> |</p>
+<h3 id=other-operations-for-materialized-view-management>Other operations for materialized view management</h3>
+<p>Currently we support the following operations that aid at managing the materialized views in Hive:</p>
+<p>| <code>-- Drops a materialized view``DROP MATERIALIZED VIEW [db_name.]materialized_view_name;``-- Shows materialized views (with optional filters)``SHOW MATERIALIZED VIEWS [IN database_name] ['identifier_with_wildcards’];``-- Shows information about a specific materialized view``DESCRIBE [EXTENDED | FORMATTED] [db_name.]materialized_view_name;</code> |</p>
+<p>The functionality of these operations will be extended in the future and more operations may be added.</p>
+<h2 id=materialized-view-based-query-rewriting>Materialized view-based query rewriting</h2>
+<p>Once a materialized view has been created, the optimizer will be able to exploit its definition semantics to automatically rewrite incoming queries using materialized views, and hence, accelerate query execution. </p>
+<p>The rewriting algorithm can be enabled and disabled globally using the <code>hive.materializedview.rewriting</code> configuration property (default value is <code>true</code>). In addition, users can selectively enable/disable materialized views for rewriting. Recall that, by default, materialized views are enabled for rewriting at creation time. To alter that behavior, the following statement can be used:</p>
+<p>| <code>ALTER MATERIALIZED VIEW [db_name.]materialized_view_name ENABLE|DISABLE REWRITE;</code> |</p>
+<p>The rewriting algorithm is part of Apache Calcite and it supports queries containing TableScan, Project, Filter, Join, and Aggregate operators. More information about the rewriting coverage can be found <a href=http://calcite.apache.org/docs/materialized_views#rewriting-using-plan-structural-information>here</a>. In the following, we include a few examples that briefly illustrate different rewritings.</p>
+<h3 id=example-1>Example 1</h3>
+<p>Consider the database schema created by the following DDL statements:</p>
+<p>| <code>CREATE TABLE emps (``empid INT,``deptno INT,``name VARCHAR(``256``),``salary FLOAT,``hire_date TIMESTAMP)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);</code> <code>CREATE TABLE depts (``deptno INT,``deptname VARCHAR(``256``),``locationid INT)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);</code> |</p>
+<p>Assume we want to obtain frequently information about employees that were hired in different period granularities after 2016 and their departments. We may create the following materialized view:</p>
+<p>| <code>CREATE MATERIALIZED VIEW mv1``AS``SELECT empid, deptname, hire_date``FROM emps JOIN depts``ON (emps.deptno = depts.deptno)``WHERE hire_date >=``'2016-01-01'``;</code> |</p>
+<p>Then, the following query extracting information about employees that were hired in Q1 2018 is issued to Hive:</p>
+<p>| <code>SELECT empid, deptname``FROM emps``JOIN depts``ON (emps.deptno = depts.deptno)``WHERE hire_date >=``'2018-01-01'``AND hire_date &lt;=``'2018-03-31'``;</code> |</p>
+<p>Hive will be able to rewrite the incoming query using the materialized view, including a compensation predicate on top of the scan over the materialization. Though the rewriting happens at the algebraic level, to illustrate this example, we include the SQL statement equivalent to the rewriting using the <code>mv</code> used by Hive to answer the incoming query:</p>
+<p>| <code>SELECT empid, deptname``FROM mv1``WHERE hire_date >=``'2018-01-01'``AND hire_date &lt;=``'2018-03-31'``;</code> |</p>
+<h3 id=example-2>Example 2</h3>
+<p>For the second example, consider the star schema based on the <a href=https://www.cs.umb.edu/~poneil/StarSchemaB.PDF>SSB benchmark</a> created by the following DDL statements:</p>
+<p>| <code>CREATE TABLE </code>customer<code>(```c_custkey</code> BIGINT,<code>c_name` STRING,</code>c_address<code> STRING,```c_city</code> STRING,<code>c_nation` STRING,</code>c_region<code> STRING,```c_phone</code> STRING,<code>c_mktsegment` STRING,``PRIMARY KEY (`c_custkey`) DISABLE RELY)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);` `CREATE TABLE `dates`(</code>d_datekey<code> BIGINT,```d_date</code> STRING,<code>d_dayofweek` STRING,</code>d_month<code> STRING,```d_year</code> INT,<code>d_yearmonthnum` INT,</code>d_yearmonth<code> STRING,```d_daynuminweek</code> INT,<code>d_daynuminmonth` INT,</code>d_daynuminyear<code> INT,```d_monthnuminyear</code> INT,<code>d_weeknuminyear` INT,</code>d_sellingseason<code> STRING,```d_lastdayinweekfl</code> INT,<code>d_lastdayinmonthfl` INT,</code>d_holidayfl<code> INT,```d_weekdayfl</code>INT,<code>PRIMARY KEY (`d_datekey`) DISABLE RELY)</code>STORED AS ORC<code>TBLPROPERTIES (</code>&lsquo;transactional&rsquo;<code>=</code>&lsquo;true&rsquo;<code>);` `CREATE TABLE `part`(```p_partkey` BIGINT,```p_name` STRING,```p_mfgr` STRING,```p_category` STRING,```p_brand1` STRING,```p_color` STRING,```p_type` STRING,```p_size` INT,```p_container` STRING,</code>PRIMARY KEY (<code>p_partkey</code>) DISABLE RELY)<code>STORED AS ORC</code>TBLPROPERTIES (<code>'transactional'</code>=<code>'true'</code>);<code> </code>CREATE TABLE <code>supplier</code>(<code>s_suppkey` BIGINT,</code>s_name<code> STRING,```s_address</code> STRING,<code>s_city` STRING,</code>s_nation<code> STRING,```s_region</code> STRING,<code>s_phone` STRING,``PRIMARY KEY (`s_suppkey`) DISABLE RELY)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);` `CREATE TABLE `lineorder`(</code>lo_orderkey<code> BIGINT,```lo_linenumber```int``,```lo_custkey</code> BIGINT not<code>null` `DISABLE RELY,```lo_partkey` BIGINT not</code>null<code> </code>DISABLE RELY,<code>lo_suppkey` BIGINT not``null` `DISABLE RELY,</code>lo_orderdate<code> BIGINT not``null</code> <code>DISABLE RELY,```lo_ordpriority</code> STRING,<code>lo_shippriority` STRING,</code>lo_quantity<code> DOUBLE,```lo_extendedprice</code> DOUBLE,<code>lo_ordtotalprice` DOUBLE,</code>lo_discount<code> DOUBLE,```lo_revenue</code> DOUBLE,<code>lo_supplycost` DOUBLE,</code>lo_tax<code> DOUBLE,```lo_commitdate</code> BIGINT,```lo_shipmode<code> STRING,``PRIMARY KEY (</code>lo_orderkey<code>) DISABLE RELY,``CONSTRAINT fk1 FOREIGN KEY (</code>lo_custkey<code>) REFERENCES </code>customer_n1<code>(</code>c_custkey<code>) DISABLE RELY,``CONSTRAINT fk2 FOREIGN KEY (</code>lo_orderdate<code>) REFERENCES </code>dates_n0<code>(</code>d_datekey<code>) DISABLE RELY,``CONSTRAINT fk3 FOREIGN KEY (</code>lo_partkey<code>) REFERENCES </code>ssb_part_n0<code>(</code>p_partkey<code>) DISABLE RELY,``CONSTRAINT fk4 FOREIGN KEY (</code>lo_suppkey<code>) REFERENCES </code>supplier_n0<code>(</code>s_suppkey<code>) DISABLE RELY)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);</code> |</p>
+<p>As you can observe, we declare multiple integrity constraints for the database, using the <code>RELY</code> keyword so they are visible to the optimizer. Now assume we want to create a materialization that denormalizes the database contents (consider <code>dims</code> to be the set of dimensions that we will be querying often):</p>
+<p>| <code>CREATE MATERIALIZED VIEW mv2``AS``SELECT &lt;dims>,``lo_revenue,``lo_extendedprice * lo_discount AS d_price,``lo_revenue - lo_supplycost``FROM customer, dates, lineorder, part, supplier``WHERE lo_orderdate = d_datekey``AND lo_partkey = p_partkey``AND lo_suppkey = s_suppkey``AND lo_custkey = c_custkey;</code> |</p>
+<p>The materialized view above may accelerate queries that execute joins among the different tables in the database. For instance, consider the following query:</p>
+<p>| <code>SELECT SUM(lo_extendedprice * lo_discount)``FROM lineorder, dates``WHERE lo_orderdate = d_datekey``AND d_year =``2013``AND lo_discount between``1</code> <code>and``3``;</code> |</p>
+<p>Though the query does not use all tables present in the materialized view, it may be answered using the materialized view because the joins in <code>mv2</code> preserve all the rows in the <code>lineorder</code> table (we know this because of the integrity constraints). Hence, the materialized view-based rewriting produced by the algorithm would be the following:</p>
+<p>| <code>SELECT SUM(d_price)``FROM mv2``WHERE d_year =``2013``AND lo_discount between``1</code> <code>and``3``;</code> |</p>
+<h3 id=example-3>Example 3</h3>
+<p>For the third example, consider the database schema with a single table that stores the edit events produced by a given website:</p>
+<p>| <code>CREATE TABLE </code>wiki<code> (```time</code> TIMESTAMP,<code>page` STRING,</code>user<code> STRING,```characters_added</code> BIGINT,```characters_removed<code> BIGINT)``STORED AS ORC``TBLPROPERTIES (``'transactional'``=``'true'``);</code> |</p>
+<p>For this example, we will use Druid to store the materialized view. Assume we want to execute queries over the table, however we are not interested on any information about the events at a higher time granularity level than a minute. We may create the following materialized view that rolls up the events by the minute:</p>
+<p>| <code>CREATE MATERIALIZED VIEW mv3``STORED BY``'org.apache.hadoop.hive.druid.DruidStorageHandler'``AS``SELECT floor(time to minute) as </code>__time<code>, page,``SUM(characters_added) AS c_added,``SUM(characters_removed) AS c_removed``FROM wiki``GROUP BY floor(time to minute), page;</code> |</p>
+<p>Then, assume we need to answer the following query that extracts the number of characters added per month:</p>
+<p>| <code>SELECT floor(time to month),``SUM(characters_added) AS c_added``FROM wiki``GROUP BY floor(time to month);</code> |</p>
+<p>Hive will be able to rewrite the incoming query using <code>mv3</code> by rolling up the data of the materialized view to month granularity and projecting the information needed for the query result:</p>
+<p>| <code>SELECT floor(time to month),``SUM(c_added)``FROM mv3``GROUP BY floor(time to month);</code> |</p>
+<h2 id=materialized-view-maintenance>Materialized view maintenance</h2>
+<p>When data in the source tables used by a materialized view changes, e.g., new data is inserted or existing data is modified, we will need to refresh the contents of the materialized view to keep it up-to-date with those changes. Currently, the rebuild operation for a materialized view needs to be triggered by the user. In particular, the user should execute the following statement:</p>
+<p>| <code>ALTER MATERIALIZED VIEW [db_name.]materialized_view_name REBUILD;</code> |</p>
+<p>Hive supports incremental view maintenance, i.e., only refresh data that was affected by the changes in the original source tables. Incremental view maintenance will decrease the rebuild step execution time. In addition, it will preserve LLAP cache for existing data in the materialized view.</p>
+<p>By default, Hive will attempt to rebuild a materialized view incrementally, falling back to full rebuild if it is not possible. Current implementation only supports incremental rebuild when there were <code>INSERT</code> operations over the source tables, while <code>UPDATE</code> and <code>DELETE</code> operations will force a full rebuild of the materialized view.</p>
+<p>To execute incremental maintenance, following conditions should be met:</p>
+<ul>
+<li>The materialized view should only use transactional tables, either micromanaged or ACID.</li>
+<li>If the materialized view definition contains a Group By clause, the materialized view should be stored in an ACID table, since it needs to support MERGE operation. For materialized view definitions consisting of Scan-Project-Filter-Join, this restriction does not exist.</li>
+</ul>
+<p>A rebuild operation acquires an exclusive write lock over the materialized view, i.e., for a given materialized view, only one rebuild operation can be executed at a given time.</p>
+<h2 id=materialized-view-lifecycle>Materialized view lifecycle</h2>
+<p>By default, once a materialized view contents are stale, the materialized view will not be used for automatic query rewriting.</p>
+<p>However, in some occasions it may be fine to accept stale data, e.g., if the materialized view uses non-transactional tables and hence we cannot verify whether its contents are outdated, however we still want to use the automatic rewriting. For those occasions, we can combine a rebuild operation run periodically, e.g., every 5minutes, and define the required freshness of the materialized view data using the <code>hive.materializedview.rewriting.time.window</code> configuration parameter, for instance:</p>
+<p>| <code>SET hive.materializedview.rewriting.time.window=10min;</code> |</p>
+<p>The parameter value can be also overridden by a concrete materialized view just by setting it as a table property when the materialization is created.</p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

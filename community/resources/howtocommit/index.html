@@ -1,0 +1,232 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : HowToCommit</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--guide-for-committers>Apache Hive : Guide for Committers</h1>
+<p>This page contains guidelines for committers of the Apache Hive project. (If you&rsquo;re currently a contributor, and are interested in how we add new committers, read <a href=https://hive.apache.org/community/becomingcommitter/>BecomingACommitter</a>)</p>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--guide-for-committers>Apache Hive : Guide for Committers</a>
+<ul>
+<li><a href=#new-committers>New committers</a></li>
+<li><a href=#review>Review</a></li>
+<li><a href=#reject>Reject</a></li>
+<li><a href=#precommit-runs-and-committing-patches>PreCommit runs, and committing patches</a></li>
+<li><a href=#commit>Commit</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#backporting-commits-to-previous-branches>Backporting commits to previous branches</a></li>
+<li><a href=#dialog>Dialog</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=new-committers>New committers</h2>
+<p>New committers are encouraged to first read Apache&rsquo;s generic committer documentation:</p>
+<ul>
+<li><a href=http://www.apache.org/dev/new-committers-guide.html>Apache New Committer Guide</a></li>
+<li><a href=https://www.apache.org/security/committers.html#asf-project-security-for-committers>ASF Project Security for committers</a></li>
+<li><a href=http://www.apache.org/dev/committers.html>Apache Committer FAQ</a></li>
+</ul>
+<p>The first act of a new core committer is typically to add their name to the <a href=https://hive.apache.org/community/people/>credits</a> page. This requires changing the source in <a href=https://github.com/apache/hive-site/blob/main/content/community/people.md>https://github.com/apache/hive-site/blob/main/content/community/people.md</a></p>
+<p>Committers are strongly encouraged to subscribe to the <a href>security@hive.apache.org</a> list with their Apache email and help addressing security vulnerability reports.</p>
+<h2 id=review>Review</h2>
+<p>Hive committers should, as often as possible, attempt to review Pull Requests submitted by others. Ideally every submitted PR will get reviewed by a committer within a few days. If a committer reviews a PR they&rsquo;ve not authored, and believe it to be of sufficient quality, then they can merge the PR, otherwise the PR should be cancelled with a clear explanation for why it was rejected.</p>
+<p>The list of open Pull Requests can be found here: <a href=https://github.com/apache/hive/pulls>Hive Open Pull Requests</a>. This is ordered by time of creating. Committers should scan the list from bottom-to-top, looking for Pull Requests that they feel qualified to review and possibly merge.</p>
+<p>Hive committers can not +1/Approve their own Pull Requests, i.e. you are allowed to commit/merge your own changes only if the Pull Request first receives a +1 vote from <strong>another committer</strong>. In the past this rule has typically been ignored when making small changes to the website (e.g. adding a new committer to the credits page), but you should follow the standard process for anything else.</p>
+<h2 id=reject>Reject</h2>
+<p>Pull Requests should be rejected which do not adhere to the guidelines in <a href=https://hive.apache.org/community/resources/howtocontribute/>HowToContribute</a>. Committers should always be polite to contributors and try to instruct and encourage them to contribute better Pull Requests. If a committer wishes to improve an unacceptable change, then he/she drop review comments and ask the contributor to update.</p>
+<h2 id=precommit-runs-and-committing-patches>PreCommit runs, and committing patches</h2>
+<ol>
+<li>Run Pre-Commit tests on a Pull Request before committing.</li>
+<li>If the test run is clean (and there&rsquo;s a +1 from a committer), the Pull Request can be merged/committed.</li>
+<li>Test runs may not be clean due to issues in the PR itself, or due to flaky tests. These issues must be fixed and <strong>PR should not be committed until the run is clean.</strong></li>
+</ol>
+<p>If a commit introduces new test failures, the preferred process is to revert the patch, rather than opening a new JIRA to fix the new failures.</p>
+<h2 id=commit>Commit</h2>
+<p>When you commit/merge a Pull Request, please:</p>
+<ol>
+<li>Ensure that the Pull Request has a +1 vote, and that <strong>24 hours have elapsed since the first +1 vote was cast</strong> on the Pull Request. Note that this rule appears in the Hive Bylaws. Do not ignore it.</li>
+<li>Include the Jira issue id in the commit message, along with a short description of the change. Be sure to get the issue id right, in order to have proper links between Jira and GitHub.</li>
+<li>Append the Pull Request id, in the commit subject to track the relation between the commit and the respective Pull Request.</li>
+<li>Add <code>Co-authored-by: Ayush Saxena &lt;ayushsaxena@apache.org></code> in the body of the message if multiple people contributed to the Pull Request.</li>
+<li>Resolve the JIRA issue as fixed, and <strong>set the &ldquo;Fix Version&rdquo;</strong> to the release in which the change will appear. If a patch is backported to a point release (such as 1.0.2) then multiple fix versions should be set so that the automated release notes can list the Jira issue for the point release as well as the primary release.</li>
+<li>Thank the contributor(s), the reviewers, and the reporter of the issue (if different from the contributor). It is easier to thank the people in GitHub by mentioning their GitHub ids under the respective Pull Request.</li>
+</ol>
+<p>Below you can find a sample commit message that adheres to the guidelines outlined here.</p>
+<pre tabindex=0><code>HIVE-27424: Display dependency:tree in GitHub actions (#5756)
+</code></pre><h4 id=committing-documentation>Committing Documentation</h4>
+<p>Hive&rsquo;s official documentation is hosted at <a href=https://github.com/apache/hive-site>Github-Hive-Site</a>. To commit major documentation changes you must raise a Pull Request to the hive-site repo.</p>
+<p>Changes committed to the hive site repo will automatically get published on: <a href=https://hive.apache.org/>https://hive.apache.org/</a></p>
+<h2 id=backporting-commits-to-previous-branches>Backporting commits to previous branches</h2>
+<p>If a patch needs to be backported to previous branches, follow these steps.</p>
+<ol>
+<li>Raise a Pull Request directed toward the target branch with the actual Jira Id/message & commit id.</li>
+<li>If the build is green, the PR can be merged to the desired branch</li>
+</ol>
+<h2 id=dialog>Dialog</h2>
+<p>Committers/Contributors can hang out in the #hive channel in Apache Slack workspace for real-time discussions. However any substantive discussion (as with any off-list project-related discussion) should be re-iterated in Jira or on the developer list.</p>
+<p>Note: Committers or individuals with Apache Id can directly join the #hive slack channel on Apache Workspace, any other individual if interested should drop a mail to hive dev mailing list with his email id and any existing member of the #hive apache channel should be able to send him the invite to join the group.</p>
+<p>Instructions to add folks to ASF hive channel: <a href=https://infra.apache.org/slack.html>https://infra.apache.org/slack.html</a></p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

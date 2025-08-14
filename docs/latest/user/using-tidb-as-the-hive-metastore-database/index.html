@@ -1,0 +1,361 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Using TiDB as the Hive Metastore database</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--using-tidb-as-the-hive-metastore-database>Apache Hive : Using TiDB as the Hive Metastore database</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--using-tidb-as-the-hive-metastore-database>Apache Hive : Using TiDB as the Hive Metastore database</a></li>
+<li><a href=#why-use-tidb-in-hive-as-the-metastore-database>Why use TiDB in Hive as the Metastore database?</a></li>
+<li><a href=#how-to-create-a-hive-cluster-with-tidb>How to create a Hive cluster with TiDB</a>
+<ul>
+<li><a href=#components-required>Components required</a></li>
+<li><a href=#install-a-hive-cluster>Install a Hive cluster</a>
+<ul>
+<li><a href=#step-1-deploy-a-tidb-cluster>Step 1: Deploy a TiDB cluster</a></li>
+<li><a href=#step-2-configure-hive>Step 2: Configure Hive</a></li>
+<li><a href=#step-3-initialize-metadata>Step 3: Initialize metadata</a></li>
+<li><a href=#step-4-launch-metastore-and-test>Step 4: Launch Metastore and test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#conclusion>Conclusion</a></li>
+<li><a href=#faq>FAQ</a></li>
+</ul>
+</nav>
+</aside>
+<h1 id=why-use-tidb-in-hive-as-the-metastore-database>Why use TiDB in Hive as the Metastore database?</h1>
+<p><a href=https://github.com/pingcap/tidb>TiDB</a> is a distributed SQL database built by <a href=https://pingcap.com/>PingCAP</a> and its open-source community. <strong>It is MySQL compatible and features horizontal scalability, strong consistency, and high availability.</strong> It&rsquo;s a one-stop solution for both Online Transactional Processing (OLTP) and Online Analytical Processing (OLAP) workloads.</p>
+<p>In scenarios with enormous amounts of data, due to TiDB&rsquo;s distributed architecture, query performance is not limited to the capability of a single machine. When the data volume reaches the bottleneck, you can add nodes to improve TiDB&rsquo;s storage capacity.</p>
+<p>Because TiDB is compatible with the MySQL protocol, it&rsquo;s easy to switch Hive&rsquo;s Metastore database to TiDB. You can use TiDB as if you were using MySQL, with almost no changes:</p>
+<ul>
+<li>For the existing Hive cluster, you can use the <code>mysqldump</code> tool to replicate all data in MySQL to TiDB.</li>
+<li>You can use the metadata initialization tool that comes with Hive to create a new Hive cluster</li>
+</ul>
+<h1 id=how-to-create-a-hive-cluster-with-tidb>How to create a Hive cluster with TiDB</h1>
+<p>Creating a Hive cluster with TiDB involves the following steps:</p>
+<ul>
+<li>Meet component requirements</li>
+<li>Install a Hive cluster
+<ul>
+<li>Deploy a TiDB cluster</li>
+<li>Configure Hive</li>
+<li>Initialize metadata</li>
+<li>Launch Metastore and test</li>
+</ul>
+</li>
+</ul>
+<h2 id=components-required>Components required</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Component</strong></th>
+<th><strong>Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>3.1.2</td>
+</tr>
+<tr>
+<td>Hadoop</td>
+<td>2.6.0-cdh-5.16.1</td>
+</tr>
+<tr>
+<td>TiDB</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td>Java Development Kit (JDK)</td>
+<td>1.8.0_221</td>
+</tr>
+</tbody>
+</table>
+<p>There are no mandatory requirements for the component versions, as long as the components are compatible with each other. After you confirm that you have successfully installed Hadoop and JDK and can use them directly, you can move on to the next step.</p>
+<h2 id=install-a-hive-cluster>Install a Hive cluster</h2>
+<h3 id=step-1-deploy-a-tidb-cluster>Step 1: Deploy a TiDB cluster</h3>
+<ol>
+<li>To set up a TiDB cluster, refer to <a href=https://docs.pingcap.com/tidb/stable/production-deployment-using-tiup>this document</a>.</li>
+<li>Create a Hive user in TiDB and set a password.</li>
+<li>Create a database named <code>hive</code> and grant privileges to the <code>hive</code> user.  </li>
+</ol>
+<pre tabindex=0><code>-- Create a database for Hive Metastore.
+create database hive;
+-- Create a user and password for Hive Metastore.
+create user 'hive'@'%' identified by '123456';
+-- Grant privileges to the user.
+grant all privileges on hive.* to 'hive'@'%' identified by '123456';
+-- Flush privileges.
+flush privileges;
+</code></pre><ol start=4>
+<li>Set the configuration item. </li>
+</ol>
+<pre tabindex=0><code>set global tidb_skip_isolation_level_check=1;
+</code></pre><p>If you don&rsquo;t set the configuration item, Metastore throws the following exception when it is running: </p>
+<pre tabindex=0><code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error)
+</code></pre><h3 id=step-2-configure-hive>Step 2: Configure Hive</h3>
+<ol>
+<li>Download and decompress Hive. In this example, the decompression directory for Hive is ${HIVE_HOME}.</li>
+<li>To edit the <code>hive-site.xml</code> configuration file, run <code>vim ${HIVE_HOME}/conf/hive-site.xml</code>. (The configuration items only use the minimum configuration.)</li>
+</ol>
+<pre tabindex=0><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+    &lt;value&gt;jdbc:mysql://host:port/hive&lt;/value&gt;
+    &lt;description&gt;TiDB address&lt;/description&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;  
+    &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+    &lt;value&gt;hive&lt;/value&gt;
+    &lt;description&gt;TiDB username&lt;/description&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;  
+    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+    &lt;value&gt;123456&lt;/value&gt;
+    &lt;description&gt;TiDB password&lt;/description&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+    &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;hive.metastore.uris&lt;/name&gt;
+    &lt;value&gt;thrift://localhost:9083&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;hive.metastore.schema.verification&lt;/name&gt;
+    &lt;value&gt;false&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><ol start=3>
+<li>To edit the hive-env.sh configuration file, run vim ${HIVE_HOME}/conf/hive-env.sh.</li>
+</ol>
+<pre tabindex=0><code>export HADOOP_HOME=...
+export JAVA_HOME=...
+</code></pre><ol start=4>
+<li>Copy mysql-connector-java-${version}.jar to the lib directory in Hive.</li>
+</ol>
+<pre tabindex=0><code>cp ${MYSQL_JDBC_PATH}/mysql-connector-java-${version}.jar ${HIVE_HOME}/lib
+</code></pre><h3 id=step-3-initialize-metadata>Step 3: Initialize metadata</h3>
+<p>You&rsquo;re performing this step to create a table for Hive metadata. The SQL script is in ${HIVE_HOME}/scripts/metastore/upgrade/mysql.</p>
+<p>To initialize metadata, run the following command.</p>
+<pre tabindex=0><code>${HIVE_HOME}/bin/schematool -dbType mysql -initSchema --verbose
+</code></pre><p>When schemaTool completed appears in the last line, it means the metadata is successfully initialized.</p>
+<h3 id=step-4-launch-metastore-and-test>Step 4: Launch Metastore and test</h3>
+<ol>
+<li>Launch Metastore.</li>
+</ol>
+<pre tabindex=0><code>${HIVE_HOME}/bin/hive --service metastore
+</code></pre><ol start=2>
+<li>Start the Hive client for testing.</li>
+</ol>
+<pre tabindex=0><code>${HIVE_HOME}/bin/hive
+</code></pre><h1 id=conclusion>Conclusion</h1>
+<p>If you use MySQL as the Hive Metastore database, as data grows in Hive, MySQL might become the bottleneck for the entire system. In this case, TiDB is a good solution, because it <strong>is compatible with the MySQL protocol and has excellent horizontal scalability.</strong> Due to its distributed architecture, <strong>TiDB far outperforms MySQL on large data sets and large numbers of concurrent queries</strong>.</p>
+<p>This post showed how to deploy a Hive cluster with TiDB as the Metastore database. We hope TiDB can help you horizontally scale your Hive Metastore to meet your growing business needs.</p>
+<p>In addition, if you&rsquo;re interested in our MySQL-to-TiDB migration story, check out <a href=https://en.pingcap.com/case-studies/horizontally-scaling-hive-metastore-database-by-migrating-from-mysql-to-tidb>this post</a>.</p>
+<h1 id=faq>FAQ</h1>
+<ol>
+<li>Hive Compatibility Version？</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Hive Version</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.x</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>2.0.x</td>
+<td>Tested</td>
+</tr>
+<tr>
+<td>2.1.x</td>
+<td>Tested and verified in production</td>
+</tr>
+<tr>
+<td>2.3.x</td>
+<td>Tested and verified in production</td>
+</tr>
+<tr>
+<td>3.x</td>
+<td>Tested</td>
+</tr>
+</tbody>
+</table>
+<ol start=2>
+<li>Do the schemas in the Hive metastore database need to be changed？For Hive version 2.1.x and 2.3.x，no schema change is needed.</li>
+<li>Does the foreign key constraint for tables in Hive the metastore database affecting migrating to TiDB? For the versions tested, foreign key constraints do not impact using TiDB as Hive metastore.</li>
+<li>How to handle <code>MetaException(message:The isolation level 'SERIALIZABLE' is not supported. Set tidb_skip_isolation_level_check=1 to skip this error) </code> exception? In TiDB, execute the following command <code>set global tidb_skip_isolation_level_check=1;</code> to skip check.</li>
+</ol>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

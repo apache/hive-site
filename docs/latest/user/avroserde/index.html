@@ -1,0 +1,542 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : AvroSerDe</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--avroserde>Apache Hive : AvroSerDe</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--avroserde>Apache Hive : AvroSerDe</a>
+<ul>
+<li>
+<ul>
+<li><a href=#availability>Availability</a></li>
+<li><a href=#overview-working-with-avro-from-hive>Overview – Working with Avro from Hive</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#avro-to-hive-type-conversion>Avro to Hive type conversion</a></li>
+<li><a href=#creating-avro-backed-hive-tables>Creating Avro-backed Hive tables</a></li>
+<li><a href=#writing-tables-to-avro-files>Writing tables to Avro files</a></li>
+<li><a href=#specifying-the-avro-schema-for-a-table>Specifying the Avro schema for a table</a></li>
+<li><a href=#hbase-integration>HBase Integration</a></li>
+<li><a href=#if-something-goes-wrong>If something goes wrong</a></li>
+<li><a href=#faq>FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h3 id=availability>Availability</h3>
+<p>Earliest version AvroSerde is available</p>
+<p>The AvroSerde is available in Hive 0.9.1 and greater.</p>
+<h3 id=overview-working-with-avro-from-hive>Overview – Working with Avro from Hive</h3>
+<p>The AvroSerde allows users to read or write <a href=http://avro.apache.org/>Avro data</a> as Hive tables. The AvroSerde&rsquo;s bullet points:</p>
+<ul>
+<li>Infers the schema of the Hive table from the Avro schema. Starting in <a href=https://issues.apache.org/jira/browse/HIVE-6806>Hive 0.14</a>, the Avro schema can be inferred from the Hive table schema.</li>
+<li>Reads all Avro files within a table against a specified schema, taking advantage of Avro&rsquo;s backwards compatibility abilities</li>
+<li>Supports arbitrarily nested schemas.</li>
+<li>Translates all Avro data types into equivalent Hive types. Most types map exactly, but some Avro types don&rsquo;t exist in Hive and are automatically converted by the AvroSerde.</li>
+<li>Understands compressed Avro files.</li>
+<li>Transparently converts the Avro idiom of handling nullable types as Union[T, null] into just T and returns null when appropriate.</li>
+<li>Writes any Hive table to Avro files.</li>
+<li>Has worked reliably against our most convoluted Avro schemas in our ETL process.</li>
+<li>Starting in <a href=https://issues.apache.org/jira/browse/HIVE-7446>Hive 0.14</a>, columns can be added to an Avro backed Hive table using the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Add/ReplaceColumns>Alter Table</a> statement.</li>
+</ul>
+<p>For general information about SerDes, see <a href=#hive-serde>Hive SerDe</a> in the Developer Guide. Also see <a href=https://hive.apache.org/docs/latest/user/serde/>SerDe</a> for details about input and output processing.</p>
+<h3 id=requirements>Requirements</h3>
+<p>The AvroSerde has been built and tested against Hive 0.9.1 and later, and uses Avro 1.7.5 as of Hive 0.13 and 0.14.</p>
+<table>
+<thead>
+<tr>
+<th>Hive Versions</th>
+<th>Avro Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive 0.9.1</td>
+<td>Avro 1.5.3</td>
+</tr>
+<tr>
+<td>Hive 0.10, 0.11, and 0.12</td>
+<td>Avro 1.7.1</td>
+</tr>
+<tr>
+<td>Hive 0.13 and 0.14</td>
+<td>Avro 1.7.5</td>
+</tr>
+</tbody>
+</table>
+<h3 id=avro-to-hive-type-conversion>Avro to Hive type conversion</h3>
+<p>While most Avro types convert directly to equivalent Hive types, there are some which do not exist in Hive and are converted to reasonable equivalents. Also, the AvroSerde special cases unions of null and another type, as described below:</p>
+<table>
+<thead>
+<tr>
+<th>Avro type</th>
+<th>Becomes Hive type</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>null</td>
+<td>void</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>int</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>long</td>
+<td>bigint</td>
+<td></td>
+</tr>
+<tr>
+<td>float</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>binary</td>
+<td>Bytes are converted to Array[smallint] prior to Hive 0.12.0.</td>
+</tr>
+<tr>
+<td>string</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>record</td>
+<td>struct</td>
+<td></td>
+</tr>
+<tr>
+<td>map</td>
+<td>map</td>
+<td></td>
+</tr>
+<tr>
+<td>list</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>union</td>
+<td>union</td>
+<td>Unions of [T, null] transparently convert to nullable T, other types translate directly to Hive&rsquo;s unions of those types. However, unions were introduced in Hive 7 and are not currently able to be used in where/group-by statements. They are essentially look-at-only. Because the AvroSerde transparently converts [T,null], to nullable T, this limitation only applies to unions of multiple types or unions not of a single type and null.</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>string</td>
+<td>Hive has no concept of enums.</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>binary</td>
+<td>Fixeds are converted to Array[smallint] prior to Hive 0.12.0.</td>
+</tr>
+</tbody>
+</table>
+<h3 id=creating-avro-backed-hive-tables>Creating Avro-backed Hive tables</h3>
+<p>Avro-backed tables can be created in Hive using AvroSerDe.</p>
+<h4 id=all-hive-versions>All Hive versions</h4>
+<p>To create an Avro-backed table, specify the serde as org.apache.hadoop.hive.serde2.avro.AvroSerDe, specify the inputformat as org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat, and the outputformat as org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat. Also provide a location from which the AvroSerde will pull the most current schema for the table. For example:</p>
+<pre tabindex=0><code>CREATE TABLE kst
+  PARTITIONED BY (ds string)
+  ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+  STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+  OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+  TBLPROPERTIES (
+    'avro.schema.url'='http://schema_provider/kst.avsc');
+</code></pre><p>In this example we&rsquo;re pulling the source-of-truth reader schema from a webserver. Other options for providing the schema are described below.</p>
+<p>Add the Avro files to the database (or create an external table) using standard Hive operations (<a href=https://hive.apache.org/docs/latest/language/languagemanual-dml/>http://wiki.apache.org/hadoop/Hive/LanguageManual/DML</a>).</p>
+<p>This table might result in a description as below:</p>
+<pre tabindex=0><code>hive&gt; describe kst;
+OK
+string1 string  from deserializer
+string2 string  from deserializer
+int1    int     from deserializer
+boolean1        boolean from deserializer
+long1   bigint  from deserializer
+float1  float   from deserializer
+double1 double  from deserializer
+inner_record1   struct&lt;int_in_inner_record1:int,string_in_inner_record1:string&gt; from deserializer
+enum1   string  from deserializer
+array1  array&lt;string&gt;   from deserializer
+map1    map&lt;string,string&gt;      from deserializer
+union1  uniontype&lt;float,boolean,string&gt; from deserializer
+fixed1  binary  from deserializer
+null1   void    from deserializer
+unionnullint    int     from deserializer
+bytes1  binary  from deserializer
+
+</code></pre><p>At this point, the Avro-backed table can be worked with in Hive like any other table.</p>
+<h4 id=hive-014-and-later-versions>Hive 0.14 and later versions</h4>
+<p>Starting in <a href=https://issues.apache.org/jira/browse/HIVE-6806>Hive 0.14</a>, Avro-backed tables can simply be created by using &ldquo;STORED AS AVRO&rdquo; in a DDL statement. AvroSerDe takes care of creating the appropriate Avro schema from the Hive table schema, a big win in terms of Avro usability in Hive.</p>
+<p>For example:</p>
+<pre tabindex=0><code>CREATE TABLE kst (
+    string1 string,
+    string2 string,
+    int1 int,
+    boolean1 boolean,
+    long1 bigint,
+    float1 float,
+    double1 double,
+    inner_record1 struct&lt;int_in_inner_record1:int,string_in_inner_record1:string&gt;,
+    enum1 string,
+    array1 array&lt;string&gt;,
+    map1 map&lt;string,string&gt;,
+    union1 uniontype&lt;float,boolean,string&gt;,
+    fixed1 binary,
+    null1 void,
+    unionnullint int,
+    bytes1 binary)
+  PARTITIONED BY (ds string)
+  STORED AS AVRO;
+</code></pre><p>This table might result in a description as below:</p>
+<pre tabindex=0><code>hive&gt; describe kst;
+OK
+string1 string  from deserializer
+string2 string  from deserializer
+int1    int     from deserializer
+boolean1        boolean from deserializer
+long1   bigint  from deserializer
+float1  float   from deserializer
+double1 double  from deserializer
+inner_record1   struct&lt;int_in_inner_record1:int,string_in_inner_record1:string&gt; from deserializer
+enum1   string  from deserializer
+array1  array&lt;string&gt;   from deserializer
+map1    map&lt;string,string&gt;      from deserializer
+union1  uniontype&lt;float,boolean,string&gt; from deserializer
+fixed1  binary  from deserializer
+null1   void    from deserializer
+unionnullint    int     from deserializer
+bytes1  binary  from deserializer
+
+</code></pre><h3 id=writing-tables-to-avro-files>Writing tables to Avro files</h3>
+<p>The AvroSerde can serialize any Hive table to Avro files. This makes it effectively an any-Hive-type to Avro converter. In order to write a table to an Avro file, you must first create an appropriate Avro schema (except in Hive 0.14.0 and later, as described below). Create as select type statements are not currently supported.</p>
+<p>Types translate as detailed in the table above. For types that do not translate directly, there are a few items to keep in mind:</p>
+<ul>
+<li><strong>Types that may be null must be defined as a union of that type and Null within Avro.</strong> A null in a field that is not so defined will result in an exception during the save. No changes need be made to the Hive schema to support this, as all fields in Hive can be null.</li>
+<li>Avro Bytes type should be defined in Hive as lists of tiny ints. The AvroSerde will convert these to Bytes during the saving process.</li>
+<li>Avro Fixed type should be defined in Hive as lists of tiny ints. The AvroSerde will convert these to Fixed during the saving process.</li>
+<li>Avro Enum type should be defined in Hive as strings, since Hive doesn&rsquo;t have a concept of enums. Ensure that only valid enum values are present in the table – trying to save a non-defined enum will result in an exception.</li>
+</ul>
+<p>Hive is very forgiving about types: it will attempt to store whatever value matches the provided column in the equivalent column position in the new table. No matching is done on column names, for instance. Therefore, it is incumbent on the query writer to make sure the target column types are correct. If they are not, Avro may accept the type or it may throw an exception; this is dependent on the particular combination of types.</p>
+<h5 id=example>Example</h5>
+<p>Consider the following Hive table, which covers all types of Hive data types, making it a good example:</p>
+<pre tabindex=0><code>CREATE TABLE test_serializer(string1 STRING,
+                             int1 INT,
+                             tinyint1 TINYINT,
+                             smallint1 SMALLINT,
+                             bigint1 BIGINT,
+                             boolean1 BOOLEAN,
+                             float1 FLOAT,
+                             double1 DOUBLE,
+                             list1 ARRAY&lt;STRING&gt;,
+                             map1 MAP&lt;STRING,INT&gt;,
+                             struct1 STRUCT&lt;sint:INT,sboolean:BOOLEAN,sstring:STRING&gt;,
+                             union1 uniontype&lt;FLOAT, BOOLEAN, STRING&gt;,
+                             enum1 STRING,
+                             nullableint INT,
+                             bytes1 BINARY,
+                             fixed1 BINARY)
+ ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' COLLECTION ITEMS TERMINATED BY ':' MAP KEYS TERMINATED BY '#' LINES TERMINATED BY '\n'
+ STORED AS TEXTFILE;
+ 
+</code></pre><p>If the table were backed by a csv file such as:</p>
+<p>| why hello there | 42 | 3 | 100 | 1412341 | true | 42.43 | 85.23423424 | alpha:beta:gamma | Earth#42:Control#86:Bob#31 | 17:true:Abe Linkedin | 0:3.141459 | BLUE | 72 | ^A^B^C | ^A^B^C |
+| another record | 98 | 4 | 101 | 9999999 | false | 99.89 | 0.00000009 | beta | Earth#101 | 1134:false:wazzup | 1:true | RED | NULL | ^D^E^F^G | ^D^E^F |
+| third record | 45 | 5 | 102 | 999999999 | true | 89.99 | 0.00000000000009 | alpha:gamma | Earth#237:Bob#723 | 102:false:BNL | 2:Time to go home | GREEN | NULL | ^H | ^G^H^I |</p>
+<p>then you could write it out to Avro as described below.</p>
+<h4 id=all-hive-versions-1>All Hive versions</h4>
+<p>To save this table as an Avro file, create an equivalent Avro schema (the namespace and actual name of the record are not important):</p>
+<pre tabindex=0><code>{
+  &quot;namespace&quot;: &quot;com.linkedin.haivvreo&quot;,
+  &quot;name&quot;: &quot;test_serializer&quot;,
+  &quot;type&quot;: &quot;record&quot;,
+  &quot;fields&quot;: [
+    { &quot;name&quot;:&quot;string1&quot;, &quot;type&quot;:&quot;string&quot; },
+    { &quot;name&quot;:&quot;int1&quot;, &quot;type&quot;:&quot;int&quot; },
+    { &quot;name&quot;:&quot;tinyint1&quot;, &quot;type&quot;:&quot;int&quot; },
+    { &quot;name&quot;:&quot;smallint1&quot;, &quot;type&quot;:&quot;int&quot; },
+    { &quot;name&quot;:&quot;bigint1&quot;, &quot;type&quot;:&quot;long&quot; },
+    { &quot;name&quot;:&quot;boolean1&quot;, &quot;type&quot;:&quot;boolean&quot; },
+    { &quot;name&quot;:&quot;float1&quot;, &quot;type&quot;:&quot;float&quot; },
+    { &quot;name&quot;:&quot;double1&quot;, &quot;type&quot;:&quot;double&quot; },
+    { &quot;name&quot;:&quot;list1&quot;, &quot;type&quot;:{&quot;type&quot;:&quot;array&quot;, &quot;items&quot;:&quot;string&quot;} },
+    { &quot;name&quot;:&quot;map1&quot;, &quot;type&quot;:{&quot;type&quot;:&quot;map&quot;, &quot;values&quot;:&quot;int&quot;} },
+    { &quot;name&quot;:&quot;struct1&quot;, &quot;type&quot;:{&quot;type&quot;:&quot;record&quot;, &quot;name&quot;:&quot;struct1_name&quot;, &quot;fields&quot;: [
+          { &quot;name&quot;:&quot;sInt&quot;, &quot;type&quot;:&quot;int&quot; }, { &quot;name&quot;:&quot;sBoolean&quot;, &quot;type&quot;:&quot;boolean&quot; }, { &quot;name&quot;:&quot;sString&quot;, &quot;type&quot;:&quot;string&quot; } ] } },
+    { &quot;name&quot;:&quot;union1&quot;, &quot;type&quot;:[&quot;float&quot;, &quot;boolean&quot;, &quot;string&quot;] },
+    { &quot;name&quot;:&quot;enum1&quot;, &quot;type&quot;:{&quot;type&quot;:&quot;enum&quot;, &quot;name&quot;:&quot;enum1_values&quot;, &quot;symbols&quot;:[&quot;BLUE&quot;,&quot;RED&quot;, &quot;GREEN&quot;]} },
+    { &quot;name&quot;:&quot;nullableint&quot;, &quot;type&quot;:[&quot;int&quot;, &quot;null&quot;] },
+    { &quot;name&quot;:&quot;bytes1&quot;, &quot;type&quot;:&quot;bytes&quot; },
+    { &quot;name&quot;:&quot;fixed1&quot;, &quot;type&quot;:{&quot;type&quot;:&quot;fixed&quot;, &quot;name&quot;:&quot;threebytes&quot;, &quot;size&quot;:3} }
+  ] }
+</code></pre><p>Then you can write it out to Avro with:</p>
+<pre tabindex=0><code>CREATE TABLE as_avro
+  ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+  STORED as INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+  OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+  TBLPROPERTIES (
+    'avro.schema.url'='file:///path/to/the/schema/test_serializer.avsc');
+ 
+INSERT OVERWRITE TABLE as_avro SELECT * FROM test_serializer;
+
+</code></pre><h4 id=hive-014-and-later>Hive 0.14 and later</h4>
+<p>In Hive versions 0.14 and later, you do not need to create the Avro schema manually. The procedure shown above to save a table as an Avro file reduces to just a DDL statement followed by an insert into the table.</p>
+<pre tabindex=0><code>CREATE TABLE as_avro(string1 STRING,
+                     int1 INT,
+                     tinyint1 TINYINT,
+                     smallint1 SMALLINT,
+                     bigint1 BIGINT,
+                     boolean1 BOOLEAN,
+                     float1 FLOAT,
+                     double1 DOUBLE,
+                     list1 ARRAY&lt;STRING&gt;,
+                     map1 MAP&lt;STRING,INT&gt;,
+                     struct1 STRUCT&lt;sint:INT,sboolean:BOOLEAN,sstring:STRING&gt;,
+                     union1 uniontype&lt;FLOAT, BOOLEAN, STRING&gt;,
+                     enum1 STRING,
+                     nullableint INT,
+                     bytes1 BINARY,
+                     fixed1 BINARY)
+STORED AS AVRO;
+INSERT OVERWRITE TABLE as_avro SELECT * FROM test_serializer;
+
+</code></pre><h4 id=avro-file-extension>Avro file extension</h4>
+<p>The files that are written by the Hive job are valid Avro files, however, MapReduce doesn&rsquo;t add the standard .avro extension. If you copy these files out, you&rsquo;ll likely want to rename them with .avro.</p>
+<h3 id=specifying-the-avro-schema-for-a-table>Specifying the Avro schema for a table</h3>
+<p>There are three ways to provide the reader schema for an Avro table, all of which involve parameters to the serde. As the schema evolves, you can update these values by updating the parameters in the table.</p>
+<h5 id=use-avroschemaurl>Use avro.schema.url</h5>
+<p>Specifies a URL to access the schema from. For http schemas, this works for testing and small-scale clusters, but as the schema will be accessed at least once from each task in the job, this can quickly turn the job into a DDOS attack against the URL provider (a web server, for instance). Use caution when using this parameter for anything other than testing.</p>
+<p>The schema can also point to a location on HDFS, for instance: hdfs://your-nn:9000/path/to/avsc/file. The AvroSerde will then read the file from HDFS, which should provide resiliency against many reads at once. Note that the serde will read this file from every mapper, so it&rsquo;s a good idea to turn the replication of the schema file to a high value to provide good locality for the readers. The schema file itself should be relatively small, so this does not add a significant amount of overhead to the process.</p>
+<h5 id=use-schemaliteral-and-embed-the-schema-in-the-create-statement>Use schema.literal and embed the schema in the create statement</h5>
+<p>You can embed the schema directly into the create statement. This works if the schema doesn&rsquo;t have any single quotes (or they are appropriately escaped), as Hive uses this to define the parameter value. For instance:</p>
+<pre tabindex=0><code>CREATE TABLE embedded
+  COMMENT &quot;just drop the schema right into the HQL&quot;
+  ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+  STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+  OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+  TBLPROPERTIES (
+    'avro.schema.literal'='{
+      &quot;namespace&quot;: &quot;com.howdy&quot;,
+      &quot;name&quot;: &quot;some_schema&quot;,
+      &quot;type&quot;: &quot;record&quot;,
+      &quot;fields&quot;: [ { &quot;name&quot;:&quot;string1&quot;,&quot;type&quot;:&quot;string&quot;}]
+    }');
+
+</code></pre><p>Note that the value is enclosed in single quotes and just pasted into the create statement.</p>
+<h5 id=use-avroschemaliteral-and-pass-the-schema-into-the-script>Use avro.schema.literal and pass the schema into the script</h5>
+<p>Hive can do simple variable substitution and you can pass the schema embedded in a variable to the script. Note that to do this, the schema must be completely escaped (carriage returns converted to \n, tabs to \t, quotes escaped, etc). An example:</p>
+<pre tabindex=0><code>set hiveconf:schema;
+DROP TABLE example;
+CREATE TABLE example
+  ROW FORMAT SERDE
+  'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+  STORED AS INPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+  OUTPUTFORMAT
+  'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+  TBLPROPERTIES (
+    'avro.schema.literal'='${hiveconf:schema}');
+
+</code></pre><p>To execute this script file, assuming $SCHEMA has been defined to be the escaped schema value:</p>
+<pre tabindex=0><code>hive --hiveconf schema=&quot;${SCHEMA}&quot; -f your_script_file.sql
+</code></pre><p>Note that $SCHEMA is interpolated into the quotes to correctly handle spaces within the schema.</p>
+<h5 id=use-none-to-ignore-either-avroschemaliteral-or-avroschemaurl>Use none to ignore either avro.schema.literal or avro.schema.url</h5>
+<p>Hive does not provide an easy way to unset or remove a property. If you wish to switch from using URL or schema to the other, set the to-be-ignored value to <strong>none</strong> and the AvroSerde will treat it as if it were not set.</p>
+<h3 id=hbase-integration>HBase Integration</h3>
+<p>Hive 0.14.0 onward supports storing and querying Avro objects in HBase columns by making them visible as structs to Hive. This allows Hive to perform ad hoc analysis of HBase data which can be deeply structured. Prior to 0.14.0, the HBase Hive integration only supported querying primitive data types in columns. See <a href=#avro-data-stored-in-hbase-columns>Avro Data Stored in HBase Columns</a> for details.</p>
+<h3 id=if-something-goes-wrong>If something goes wrong</h3>
+<p>Hive tends to swallow exceptions from the AvroSerde that occur before job submission. To force Hive to be more verbose, it can be started with <em><strong>hive &ndash;hiveconf hive.root.logger=INFO,console</strong></em>, which will spit orders of magnitude more information to the console and will likely include any information the AvroSerde is trying to get you about what went wrong. If the AvroSerde encounters an error during MapReduce, the stack trace will be provided in the failed task log, which can be examined from the JobTracker&rsquo;s web interface. The AvroSerde only emits the AvroSerdeException; look for these. Please include these in any bug reports. The most common is expected to be exceptions while attempting to serializing an incompatible type from what Avro is expecting.</p>
+<h3 id=faq>FAQ</h3>
+<ul>
+<li>Why do I get <strong>error-error-error-error-error-error-error</strong> and a message to check avro.schema.literal and avro.schema.url when describing a table or running a query against a table?</li>
+</ul>
+<blockquote>
+<p>The AvroSerde returns this message when it has trouble finding or parsing the schema provided by either the avro.schema.literal or avro.avro.schema.url value. It is unable to be more specific because Hive expects all calls to the serde config methods to be successful, meaning we are unable to return an actual exception. By signaling an error via this message, the table is left in a good state and the incorrect value can be corrected with a call to <strong>alter table T set TBLPROPERTIES</strong>.</p>
+</blockquote>
+<p> </p>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>

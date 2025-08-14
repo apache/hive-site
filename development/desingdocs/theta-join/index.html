@@ -1,0 +1,290 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Theta Join</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu style=background:#000;margin:0>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<div class=container-fluid>
+<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
+<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item dropdown">
+<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li>
+<hr class=dropdown-divider>
+</li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+<li>
+<form action=/search method=get class=search-bar>
+<input type=search name=q id=search-query placeholder=Search... class=search-input>
+<button type=submit class=search-button>Search</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs>
+<h1 id=apache-hive--theta-join>Apache Hive : Theta Join</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--theta-join>Apache Hive : Theta Join</a>
+<ul>
+<li><a href=#preliminaries>Preliminaries</a>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#specific-use-cases>Specific Use Cases</a></li>
+<li><a href=#requirements>Requirements</a></li>
+</ul>
+</li>
+<li><a href=#literature-review>Literature Review</a>
+<ul>
+<li><a href=#map-reduce-merge-simplified-relational-data-processing-on-large-clusters-1>Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]</a></li>
+<li><a href=#efficient-parallel-set-similarity-joins-using-mapreduce-2>Efficient Parallel Set-Similarity Joins Using MapReduce [2]</a></li>
+<li><a href=#processing-theta-joins-using-mapreduce-3>Processing Theta-Joins using MapReduce [3]</a></li>
+<li><a href=#efficient-multi-way-theta-join-processing-using-mapreduce-4>Efficient Multi-way Theta-Join Processing Using MapReduce [4]</a></li>
+</ul>
+</li>
+<li><a href=#design>Design</a>
+<ul>
+<li><a href=#map-side>Map-side</a></li>
+<li><a href=#reduce-side>Reduce-side</a></li>
+</ul>
+</li>
+<li><a href=#references>References</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=preliminaries>Preliminaries</h2>
+<h3 id=overview>Overview</h3>
+<p><a href=https://issues.apache.org/jira/browse/HIVE-556>HIVE-556</a> requests that Hive support non-equality joins commonly called theta joins. Theta joins cover all kinds of non-equality joins such as &lt;, &lt;=, >, >=, &lt;>, LIKE, RLIKE, and Generic UDF.</p>
+<p>Range joins, a specific kind of theta join, is extremely useful in temporal and spatial applications. This work will focus first on range join as it’s arguably the most important theta join. After range join is implemented the remaining theta join operators can be implemented with relative ease. Supporting theta join and specifically range join is important as it will makes Hive competitive in additional use cases and removes a deficiency when compared against traditional systems.</p>
+<h3 id=specific-use-cases>Specific Use Cases</h3>
+<h4 id=geo-location>Geo-Location</h4>
+<p>This use case is very common today for many common users of Hive websites, mobile telephone services, online ad marketers. The user wants to join website access logs with geo-location information of ip addresses. This can be implemented as an <a href=http://www.researchgate.net/publication/221214844_Joining_Interval_Data_in_Relational_Databases/file/79e4150b85be7ddf78.pdf>interval join</a>. Currently this use case is implemented by creating a custom UDF which performs the lookup. Compiling and deploying UDF’s is an error prone process and not a common task for most users of Hive.</p>
+<p>As an example of this use case, we can utilize the Maxmind GeoIP by country dataset which is 79,980 records. Consider joining that dataset with a very small access log of 5,000,000 entries using a cartesian product and then filtering the result. This approach results in 399,900,000,000 tuples that need to be filtered in the mapper. Hive trunk was modified to implement map-side interval join and the previously discussed join completed in 21 seconds on a single host while the cartesian product then filter approach ran for many hours before it was killed.</p>
+<h4 id=side-table-similarity>Side-Table Similarity</h4>
+<p>This use case was originally proposed in <a href=https://issues.apache.org/jira/browse/HIVE-556>HIVE-556</a> by it’s creator Min Zhou. The user has a side table with some entries and wants to join the side table with a main table based on similarity. The example provide was using the RLIKE operator but LIKE or a generic boolean UDF could be used as well.</p>
+<h3 id=requirements>Requirements</h3>
+<p>A notable non-goal of this work is n-way theta joins. The algorithm to implement n-way theta joins was inspired by the algorithm to implement 2-way theta joins. Therefore n-way theta joins can be implemented in future work.</p>
+<h4 id=goals>Goals</h4>
+<ul>
+<li>Map-side 2-way theta joins</li>
+<li>Reduce-side 2-way theta join</li>
+</ul>
+<h4 id=specific-non-goals>Specific Non-Goals</h4>
+<ul>
+<li>Map-side n-way theta joins</li>
+<li>Reduce-side n-way theta joins</li>
+<li>Additional statistic collection</li>
+</ul>
+<h2 id=literature-review>Literature Review</h2>
+<h3 id=map-reduce-merge-simplified-relational-data-processing-on-large-clusters-1>Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters [1]</h3>
+<p>This work adds a Merge step to Map-Reduce which allows for easy expression of relational algebra operators. This is interesting but not immediately useful as it requires modification of the Map-Reduce framework it’s not immediately useful.</p>
+<h3 id=efficient-parallel-set-similarity-joins-using-mapreduce-2>Efficient Parallel Set-Similarity Joins Using MapReduce [2]</h3>
+<p>This work studies a special type of set similarity, specifically similar strings or bit vectors. This work could be useful in implementing some operators such as LIKE. In addition this method which requires statistics to be calculated at run time results in multiple Map-Reduce jobs.</p>
+<h3 id=processing-theta-joins-using-mapreduce-3>Processing Theta-Joins using MapReduce [3]</h3>
+<p>This work proposes an algorithm 1-Bucket-Theta to perform theta joins on two relations in a single Map-Reduce job given some basic statistics, namely the cardinality of the two relations. This approach allows parallel implementation of cartesian product as well. The work also details how additional input statistics can be exploited to improve efficiency. The approach is to partition a join-matrix of the two relations.</p>
+<h3 id=efficient-multi-way-theta-join-processing-using-mapreduce-4>Efficient Multi-way Theta-Join Processing Using MapReduce [4]</h3>
+<p>This work is inspired by [3] and expands the method to N-way joins. The approach used is to partition a hypercube of the relations. An approach to merge the resulting many Map-Reduce jobs into a single job is also discussed with results similar to Y-Smart [5].</p>
+<h2 id=design>Design</h2>
+<h3 id=map-side>Map-side</h3>
+<p>A large number of theta join use cases have the nice property that only one of the relations is “large”. Therefore many theta joins can be converted to map-joins. Presently these use cases utilize a map-side cartesian product with post-join filters. As noted in the geo-location use case above some of these use cases, specifically range joins, can see several orders of magnitude speedup utilizing theta join.</p>
+<p>Currently Map-side join utilizes a hashmap and a join is performed when the incoming key matches a key in the hash map. To support range join this will abstracted into a pluggable interface. The plugin can decide how two keys are joined. The equality join interface will continue to utilize a hashmap while range join can use a data structure such as an interval tree. Other such optimizations can be made. For example the not equals join condition &lt;> can use a [view on top of a map](<a href=http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/collect/Maps.html#filterKeys(java.util.Map>http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/collect/Maps.html#filterKeys(java.util.Map</a>, com.google.common.base.Predicate)).</p>
+<h3 id=reduce-side>Reduce-side</h3>
+<p>Reduce-side joins will be implemented via 1-Bucket-Theta as described in [3]. This requires the cardinality of the two relations and therefore to perform a reduce-side theta join statistics must be turned on. Initially if the required statistics do not exist an exception will be thrown indicating the problem. After the initial implementation we can use a method to estimate the cardinality.</p>
+<p>As previously mention a detailed description of 1-Bucket-Theta is located [3]. As such the discussion of the internals of the algorithm will be brief. Joining two relations S and T can be viewed as a matrix with the S, the smaller relation, on the left and T on the right.</p>
+<p>The matrix is partitioned by r, the number of reducers. An example join matrix follows, with four reducers 1-4 each a separate color:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Row Ids</strong></th>
+<th><strong>T 1</strong></th>
+<th><strong>T 2</strong></th>
+<th><strong>T 3</strong></th>
+<th><strong>T 4</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S 1</strong></td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>S 2</strong></td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>S 3</strong></td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>S 4</strong></td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>In the map phase, each tuple in S is sent to all reducers which intersect the tuples’ row id. For example the S-tuple with the row id of 2, is sent to reducers 1, and 2. Similarly each tuple in T is sent to all reducers which intersect the tuples’ row id. For example, the tuple with rowid 4, is sent to reducers 2 and 4.</p>
+<p>In Hive and MapReduce row ids aren’t common available. Therefore we choose a random row id between 1 and |S| (cardinality of S) for S and 1 and |T| (cardinality of T) for T. Thus a reduce-side theta join must know the estimated cardinality of each relation and statistics must be enabled. Random row id’s will result in well balanced reducer input when processing larger relations. As noted in [3], the partitioning scheme works such that if a relation is much smaller than it’s pair the smaller relation will be broadcast two all reducers. As such therefore random-skew which would occur for small relations does not impact the algorithm in practice. Additionally in Hive if a relation is small the join is converted to a map-side join and 1-Bucket-Theta is not utilized.</p>
+<h4 id=mapper>Mapper</h4>
+<p>In the mapper the join matrix will be initialized, a random row id chosen, and then the tuple will be emitted for each reducer that intersects the row id. Hive already has a mechanism to set the hash code for a specific tuple which can be re-used here. Additionally the tuples will need to be sorted in such a way so that tuples for S arrive in the reducer first. Luckily Hive already implements this via the JoinReorder class.</p>
+<h4 id=reducer>Reducer</h4>
+<p>The reducer is fairly simple, it buffers up the S relation and then performs the requested join on each T tuple that is received.</p>
+<h2 id=references>References</h2>
+<ol>
+<li><a href=https://www.cs.duke.edu/courses/cps399.28/current/papers/sigmod07-YangDasdanEtAl-map_reduce_merge.pdf>Map-Reduce-Merge: Simplified Relational Data Processing on Large Clusters</a></li>
+<li><a href=http://flamingo.ics.uci.edu/pub/sigmod10-vernica.pdf>Efficient Parallel Set-Similarity Joins Using MapReduce</a></li>
+<li><a href=http://www.ccs.neu.edu/home/mirek/papers/2011-SIGMOD-ParallelJoins.pdf>Processing Theta-Joins using MapReduce</a></li>
+<li><a href=http://vldb.org/pvldb/vol5/p1184_xiaofeizhang_vldb2012.pdf>Efficient Multi-way Theta-Join Processing Using MapReduce</a></li>
+<li><a href=https://issues.apache.org/jira/browse/HIVE-2206>HIVE-2206</a></li>
+</ol>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
