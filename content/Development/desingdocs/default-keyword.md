@@ -1,0 +1,42 @@
+---
+title: "Apache Hive : DEFAULT Keyword (HIVE-19059)"
+date: 2024-12-12
+---
+
+# Apache Hive : DEFAULT Keyword (HIVE-19059)
+
+# Goal
+
+We propose to add DEFAULT keyword in INSERT INTO, UPDATE and MERGE statements to let user add DEFAULT values without specifying column schema.
+
+# Background
+
+With the addition of [DEFAULT constraint]({{< ref "default-constraint" >}}) ([HIVE-18726](https://issues.apache.org/jira/browse/HIVE-18726)) user can define columns to have default value which will be used in case user doesn’t explicitly specify it while INSERTING data. For DEFAULT constraint to kick in user has to explicitly specify column schema leaving out the column name for which user would like the sytem to use DEFAULT value. e.g. INSERT INTO TABLE1(COL1, COL3) VALUES(1,3). This statement leaves COL2 from the schema so that Hive could insert DEFAULT value if it is defined. But if user wants to insert DEFAULT value without specifying column schema it is not possible to do so. This limitation could be overcome using DEFAULT keyword. 
+
+# Proposed Changes
+
+## INSERT INTO
+
+INSERT INTO VALUES will be updated to let user specify DEFAULT keyword. If corresponding column has DEFAULT constraint Hive will use that otherwise NULL will be used.
+
+Examples:
+
+* `INSERT INTO TABLE1 VALUES(DEFAULT, DEFAULT)`
+* `INSERT INTO TABLE1(COL1) VALUES(DEFAULT)`
+
+## UPDATE
+
+UPDATE will be updated to let user specify DEFAULT keyword.
+
+Example:
+
+* `UPDATE TABLE1 SET COL1=DEFAULT, COL2=DEFAULT WHERE <CONDITION>`
+
+# Proposed Design
+
+During first phase of AST analysis AST for DEFAULT will be replaced with corresponding DEFAULT value AST or NULL AST.
+
+ 
+
+ 
+

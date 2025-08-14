@@ -1,0 +1,27 @@
+---
+title: "Apache Hive : Security"
+date: 2024-12-12
+---
+
+# Apache Hive : Security
+
+This page collects some resources and pointers for various efforts underway to add security features to Hive and related projects.
+
+Authorization modes
+
+The links below refer to the [original Hive authorization mode]({{< ref "hive-deprecated-authorization-mode" >}}). See [Authorization]({{< ref "languagemanual-authorization" >}}) for an overview of authorization modes, which include [storage based authorization]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) and [SQL standards based authorization]({{< ref "sql-standard-based-hive-authorization" >}}).
+
+* [Thoughts on security from Venkatesh](https://issues.apache.org/jira/secure/attachment/12453831/HiveSecurityThoughts.pdf)
+* [Howl's approach for persisting and validating DDL authorization via HDFS permissions](http://mail-archives.apache.org/mod_mbox/hadoop-hive-dev/201007.mbox/%3C11ED50FC7C760F4EA9F44109C531617D06F692E6@SNV-EXVS06.ds.corp.yahoo.com%3E)
+* [HIVE-1264: Hadoop security integration](https://issues.apache.org/jira/browse/HIVE-1264)
+* [THRIFT-889: allow Kerberos authentication over Thrift HTTP](https://issues.apache.org/jira/browse/THRIFT-889)
+* [THRIFT-876: SASL integration](https://issues.apache.org/jira/browse/THRIFT-876)
+* [Howl Authorization Proposal](http://wiki.apache.org/pig/Howl/HowlAuthorizationProposal)
+* [Hive Authorization Proposal]({{< ref "authdev" >}})
+
+Note that Howl was the precursor to [HCatalog]({{< ref "hcatalog-usinghcat" >}}).
+
+ 
+
+ 
+

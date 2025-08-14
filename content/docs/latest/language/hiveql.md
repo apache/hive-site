@@ -1,0 +1,15 @@
+---
+title: "Apache Hive : HiveQL"
+date: 2024-12-12
+---
+
+# Apache Hive : HiveQL
+
+**This page is deprecated**
+
+Please see the [HiveQL Language Manual]({{< ref "languagemanual" >}})
+
+ 
+
+ 
+
