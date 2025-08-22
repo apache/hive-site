@@ -3,8 +3,6 @@ title: "Apache Hive : Introduction to Apache Hive"
 date: 2024-12-12
 ---
 
-# Apache Hive : Introduction to Apache Hive
-
 The **[Apache Hive™](http://hive.apache.org/)** data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage and queried using SQL syntax.  
   
 Built on top of **[Apache Hadoop™](http://hadoop.apache.org/)**, Hive provides the following features:

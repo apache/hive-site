@@ -187,6 +187,152 @@ features {
      text-decoration: underline;
 }
 
+/* Navigation Bar Styles */
+.main-menu {
+    background: #000000;
+    margin: 0;
+    border-bottom: 1px solid #333;
+}
+
+.navbar {
+    background: #000000 !important;
+    padding: 0.75rem 1rem;
+    min-height: 70px;
+}
+
+.navbar-brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-logo img {
+    width: 50px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin: 0;
+}
+
+.navbar-brand:hover {
+    color: #f8f9fa !important;
+    text-decoration: none;
+}
+
+.navbar-nav {
+    gap: 1rem;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #17a2b8 !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+/* Search Form Styles */
+.navbar-search {
+    margin-left: auto;
+}
+
+.search-form {
+    margin: 0;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    border: none;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    outline: none;
+    background: transparent;
+    color: #333;
+    width: 200px;
+}
+
+.search-input::placeholder {
+    color: #666;
+}
+
+.search-button {
+    border: none;
+    background: #17a2b8;
+    color: #ffffff;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background: #138496;
+}
+
+.search-button i {
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+    .navbar-search {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .search-input-group {
+        width: 100%;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}
+
 .header-text{
     color: white;
     font-weight: bold;
@@ -394,8 +540,8 @@ p,
   padding-bottom:0rem;
 }
 
-/* General Styling */
-.search-bar {
+/* Legacy search styles - keeping for compatibility */
+.search-bar-legacy {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -406,8 +552,7 @@ p,
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Input Styling */
-.search-input {
+.search-input-legacy {
     flex-grow: 1;
     padding: 8px 12px;
     border: none;
@@ -419,13 +564,12 @@ p,
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.search-input:focus {
+.search-input-legacy:focus {
     background-color: #ffffff;
     box-shadow: 0 2px 6px rgba(0, 123, 255, 0.4);
 }
 
-/* Button Styling */
-.search-button {
+.search-button-legacy {
     padding: 8px 16px;
     font-size: 16px;
     font-weight: bold;
@@ -437,19 +581,16 @@ p,
     transition: background-color 0.3s ease, box-shadow 0.2s ease;
 }
 
-.search-button:hover {
+.search-button-legacy:hover {
     background-color: #0056b3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.search-button:active {
+.search-button-legacy:active {
     background-color: #004080;
 }
 
-/* Additional Styling for Dark Theme Feel */
-.search-bar {
-    color: #000;
-}
+
 
 
 /* https://github.com/mrmrs/fluidity */
