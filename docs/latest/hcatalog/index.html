@@ -24,49 +24,53 @@
 <body>
 <body>
 <header>
-<menu style=background:#000;margin:0>
-<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
 <div class=container-fluid>
-<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
-<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
 <button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
 <span class=navbar-toggler-icon></span>
 </button>
 <div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<li class="nav-item dropdown">
-<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
 Releases
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Documentation
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
-<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 General
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
 <li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
 <li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Development
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
-<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
@@ -74,10 +78,10 @@ Development
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Community
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
@@ -85,87 +89,296 @@ Community
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
-<li>
-<hr class=dropdown-divider>
-</li>
+<li><hr class=dropdown-divider></li>
 <li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
 <li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
 </ul>
 </li>
-<li class="nav-item dropdown">
-<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
 Blogs
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 ASF
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
 </ul>
 </li>
-<li>
-<form action=/search method=get class=search-bar>
-<input type=search name=q id=search-query placeholder=Search... class=search-input>
-<button type=submit class=search-button>Search</button>
-</form>
-</li>
 </ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
 </div>
 </div>
 </nav>
 </menu>
 </header>
 <div class=content>
-<div class=container>
-<div class=section>
-<div class=content>
-<h1 class=title>HCatalog Manual</h1>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-base/>Apache Hive : HCatalog</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-authorization/>Apache Hive : HCatalog Authorization</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-cli/>Apache Hive : HCatalog CLI</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-configuration-properties/>Apache Hive : HCatalog Configuration Properties</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-dynamicpartitions/>Apache Hive : HCatalog DynamicPartitions</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput/>Apache Hive : HCatalog InputOutput</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-installhcat/>Apache Hive : HCatalog InstallHCat</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore/>Apache Hive : HCatalog LoadStore</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-notification/>Apache Hive : HCatalog Notification</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-readerwriter/>Apache Hive : HCatalog ReaderWriter</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-storageformats/>Apache Hive : HCatalog StorageFormats</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-streaming-mutation-api/>Apache Hive : HCatalog Streaming Mutation API</a></li>
-</ul>
-<ul>
-<li><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-usinghcat/>Apache Hive : HCatalog UsingHCat</a></li>
-</ul>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li class=active>HCatalog Manual</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>HCatalog Manual</h1>
+<div class=docs-meta>
+<span class=docs-count>
+<i class="fas fa-file-alt"></i>
+13 documents
+</span>
+</div>
+</header>
+<div class=docs-article>
+<div class=docs-grid>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-base/>Apache Hive : HCatalog</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog HCatalog is a table and storage management layer for Hadoop that enables users with different data processing tools — Pig, MapReduce — to more easily read and write data on the grid.
+This is the HCatalog manual. Using HCatalog Installation from Tarball HCatalog Configuration Properties Load and Store Interfaces Input and Output Interfaces Reader and Writer Interfaces Command Line Interface Storage Formats Dynamic Partitioning Notification Storage Based Authorization The old HCatalog wiki page has many other documents including additional user documentation, further information on HBase integration, and resources for contributors.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-base/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
 </div>
 </div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-authorization/>Apache Hive : HCatalog Authorization</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Authorization Apache Hive : HCatalog Authorization Storage Based Authorization Default Authorization Model of Hive Storage-System Based Authorization Model Minimum Permissions Unused DDL for Permissions Configuring Storage-System Based Authorization Creating New Tables or Databases Known Issues Storage Based Authorization Default Authorization Model of Hive The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-authorization/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-cli/>Apache Hive : HCatalog CLI</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Command Line Interface Apache Hive : HCatalog Command Line Interface Set Up HCatalog CLI Owner Permissions Hive CLI HCatalog DDL Create/Drop/Alter Table Create/Drop/Alter View Show/Describe Create/Drop Index Create/Drop Function &ldquo;dfs&rdquo; Command and &ldquo;set&rdquo; Command Other Commands CLI Errors Authentication Error Log Set Up The HCatalog command line interface (CLI) can be invoked as HIVE_HOME=hive_home hcat_home/bin/hcat where hive_home is the directory where Hive has been installed and hcat_home is the directory where HCatalog has been installed.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-cli/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-configuration-properties/>Apache Hive : HCatalog Configuration Properties</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Configuration Properties Apache HCatalog&rsquo;s behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish.  Apache Hive : HCatalog Configuration Properties Setup Storage Directives Cache Behaviour Directives Input Split Generation Behaviour Data Promotion Behaviour HCatRecordReader Error Tolerance Behaviour Setup The properties described in this page are meant to be job-level properties set on HCatalog through the jobConf passed into it.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-configuration-properties/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-dynamicpartitions/>Apache Hive : HCatalog DynamicPartitions</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Dynamic Partitioning Apache Hive : HCatalog Dynamic Partitioning Overview External Tables Hive Dynamic Partitions Usage with Pig Usage from MapReduce Overview When writing data in HCatalog it is possible to write all records to a single partition. In this case the partition column(s) need not be in the output data.
+The following Pig script illustrates this:
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-dynamicpartitions/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput/>Apache Hive : HCatalog InputOutput</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Input and Output Interfaces Apache Hive : HCatalog Input and Output Interfaces Set Up HCatInputFormat API HCatOutputFormat API HCatRecord Running MapReduce with HCatalog Authentication Read Example Filter Operators Scan Filter Write Filter Set Up No HCatalog-specific setup is required for the HCatInputFormat and HCatOutputFormat interfaces.
+Note: HCatalog is not thread safe.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-installhcat/>Apache Hive : HCatalog InstallHCat</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Installation from Tarball Apache Hive : HCatalog Installation from Tarball HCatalog Installed with Hive HCatalog Command Line HCatalog Client Jars HCatalog Server HCatalog Installed with Hive Version
+HCatalog is installed with Hive, starting with Hive release 0.11.0.
+Hive installation is documented here.
+HCatalog Command Line If you install Hive from the binary tarball, the hcat command is available in the hcatalog/bin directory.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-installhcat/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore/>Apache Hive : HCatalog LoadStore</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Load and Store Interfaces Apache Hive : HCatalog Load and Store Interfaces Set Up Running Pig HCatLoader Usage HCatLoader Data Types Running Pig with HCatalog Load Examples HCatStorer Usage Store Examples HCatStorer Data Types Data Type Mappings Primitive Types Complex Types Set Up The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-notification/>Apache Hive : HCatalog Notification</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Notification Apache Hive : HCatalog Notification Overview Notification for a New Partition Notification for a Set of Partitions Server Configuration Enable JMS Notifications Topic Names Overview Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-notification/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-readerwriter/>Apache Hive : HCatalog ReaderWriter</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Reader and Writer Interfaces Apache Hive : HCatalog Reader and Writer Interfaces Overview HCatReader HCatWriter Complete Example Program Overview HCatalog provides a data transfer API for parallel input and output without using MapReduce. This API provides a way to read data from a Hadoop cluster or write data into a Hadoop cluster, using a basic storage abstraction of tables and rows.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-readerwriter/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-storageformats/>Apache Hive : HCatalog StorageFormats</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Storage Formats Apache Hive : HCatalog Storage Formats SerDes and Storage Formats Usage from Hive CTAS Issue with JSON SerDe SerDes and Storage Formats HCatalog uses Hive&rsquo;s SerDe class to serialize and deserialize data. SerDes are provided for RCFile, CSV text, JSON text, and SequenceFile formats. Check the SerDe documentation for additional SerDes that might be included in new versions.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-storageformats/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-streaming-mutation-api/>Apache Hive : HCatalog Streaming Mutation API</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Streaming Mutation API A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s ACID feature. It is introduced in Hive 2.0.0 (HIVE-10165).
+Apache Hive : HCatalog Streaming Mutation API Background Structure Data Requirements Streaming Requirements Record Layout Connection and Transaction Management Writing Data Dynamic Partition Creation Reading Data Example Attachments: Background In certain data processing use cases it is necessary to modify existing data when new facts arrive.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-streaming-mutation-api/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-usinghcat/>Apache Hive : HCatalog UsingHCat</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Dec 12, 2024
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : HCatalog Usage Apache Hive : HCatalog Usage Version information Overview HCatalog Architecture Interfaces Data Model Data Flow Example First: Copy Data to the Grid Second: Prepare the Data Third: Analyze the Data HCatalog Web API Attachments: Version information HCatalog graduated from the Apache incubator and merged with the Hive project on March 26, 2013.
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-usinghcat/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>

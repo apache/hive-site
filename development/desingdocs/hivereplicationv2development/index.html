@@ -24,49 +24,53 @@
 <body>
 <body>
 <header>
-<menu style=background:#000;margin:0>
-<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
 <div class=container-fluid>
-<a href=https://hive.apache.org> <img src=https://hive.apache.org/images/hive.svg width=60 height=35 alt="Apache Software Foundation"></a>
-<a class="header-text navbar-brand" href=https://hive.apache.org>Apache Hive</a>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
 <button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
 <span class=navbar-toggler-icon></span>
 </button>
 <div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<li class="nav-item dropdown">
-<a class=nav-link href=/general/downloads id=navbarDropdown role=button aria-expanded=false>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
 Releases
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/Document id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Documentation
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
-<li><a class=dropdown-item href=/docs/latest/>Latest</a></li>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/general id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 General
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
 <li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
 <li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Development
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
-<li><a class=dropdown-item href=/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
@@ -74,10 +78,10 @@ Development
 </ul>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 Community
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
@@ -85,43 +89,114 @@ Community
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
-<li>
-<hr class=dropdown-divider>
-</li>
+<li><hr class=dropdown-divider></li>
 <li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
 <li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
 </ul>
 </li>
-<li class="nav-item dropdown">
-<a class=nav-link href=https://hive.blog.apache.org/ id=navbarDropdown role=button aria-expanded=false>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
 Blogs
 </a>
 </li>
 <li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
 ASF
 </a>
-<ul class=dropdown-menu aria-labelledby=navbarDropdown>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
 <li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
 </ul>
 </li>
-<li>
-<form action=/search method=get class=search-bar>
-<input type=search name=q id=search-query placeholder=Search... class=search-input>
-<button type=submit class=search-button>Search</button>
-</form>
-</li>
 </ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
 </div>
 </div>
 </nav>
 </menu>
 </header>
 <div class=content>
-<div class=docs>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li><a href=/docs/>Documentation</a></li>
+<li class=active>Apache Hive : HiveReplicationv2Development</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>Apache Hive : HiveReplicationv2Development</h1>
+<div class=docs-meta>
+<span class=docs-date>
+<i class="fas fa-calendar-alt"></i>
+Last updated: December 12, 2024
+</span>
+</div>
+</header>
+<div class=docs-toc>
+<h4><i class="fas fa-list"></i> Table of Contents</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hivereplicationv2development>Apache Hive : HiveReplicationv2Development</a></li>
+<li><a href=#version-information>Version information</a></li>
+<li><a href=#issues-with-the-current-replication-system>Issues with the Current Replication System</a>
+<ul>
+<li><a href=#slowness>Slowness</a></li>
+<li><a href=#requiring-staging-directories-with-full-copies-4xcopy-problem>Requiring Staging Directories with Full Copies (4xcopy Problem)</a></li>
+<li><a href=#unsuitable-for-load-balancing-use-cases>Unsuitable for Load-Balancing Use Cases</a></li>
+<li><a href=#incompatibility-with-acid>Incompatibility with ACID</a></li>
+<li><a href=#dependency-on-external-tools-to-do-a-lot>Dependency on External Tools To Do a Lot</a></li>
+<li><a href=#support-for-a-hub-spoke-model>Support for a Hub-Spoke Model</a></li>
+</ul>
+</li>
+<li><a href=#rubberbanding>Rubberbanding</a></li>
+<li><a href=#change-management>Change Management</a>
+<ul>
+<li><a href=#_files>_files</a></li>
+<li><a href=#solution-for-rubber-banding>Solution for Rubber Banding</a></li>
+<li><a href=#_metadata>_metadata</a></li>
+</ul>
+</li>
+<li><a href=#a-need-for-bootstrap>A Need for Bootstrap</a></li>
+<li><a href=#new-commands>New Commands</a>
+<ul>
+<li><a href=#repl-dump>REPL DUMP</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#repl-load>REPL LOAD</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#repl-status>REPL STATUS</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#bootstrap-revisited>Bootstrap, Revisited</a></li>
+<li><a href=#metastore-notification-api-security>Metastore notification API security</a></li>
+<li><a href=#setupconfiguration>Setup/Configuration</a></li>
+</ul>
+</nav>
+</div>
+<div class=docs-article>
 <h1 id=apache-hive--hivereplicationv2development>Apache Hive : HiveReplicationv2Development</h1>
 <p>This document describes the second version of Hive Replication. Please refer to the <a href=https://hive.apache.org/development/desingdocs/hivereplicationdevelopment/>first version of Hive Replication</a> for details on prior implementation.</p>
 <p>This work is under development and interfaces are subject to change. This has been designed for use in conjunction with external orchestration tools, which would be responsible for co-ordinating the right sequence of commands between source and target clusters, fault tolerance/failure handling, and also providing correct configuration options that are necessary to be able to do cross cluster replication.</p>
@@ -424,6 +499,80 @@ The UGI of the remote metastore client is always set on metastore server. We ret
 REPLCMDIR(&ldquo;hive.repl.cmrootdir&rdquo;,"/user/hive/cmroot/", &ldquo;Root dir for ChangeManager, used for deleted files."),<br>
 REPLCMRETIAN("<a href=http://hive.repl.cm>hive.repl.cm</a>.retain&rdquo;,&ldquo;24h&rdquo;, new TimeValidator(TimeUnit.HOURS),&ldquo;Time to retain removed files in cmrootdir."),<br>
 REPLCMINTERVAL("<a href=http://hive.repl.cm>hive.repl.cm</a>.interval&rdquo;,&ldquo;3600s&rdquo;,new TimeValidator(TimeUnit.SECONDS),&ldquo;Inteval for cmroot cleanup thread."),</p>
+</div>
+<footer class=docs-footer>
+<div class=docs-feedback>
+<h4><i class="fas fa-comment"></i> Feedback</h4>
+<p>Was this page helpful? Let us know how we can improve.</p>
+<div class=docs-feedback-buttons>
+<button class="btn btn-feedback btn-positive">
+<i class="fas fa-thumbs-up"></i> Yes
+</button>
+<button class="btn btn-feedback btn-negative">
+<i class="fas fa-thumbs-down"></i> No
+</button>
+</div>
+</div>
+<div class=docs-edit>
+<a href=https://github.com/apache/hive-site/edit/main/content/Development/desingdocs/hivereplicationv2development.md class="btn btn-outline">
+<i class="fab fa-github"></i> Edit this page on GitHub
+</a>
+</div>
+</footer>
+</article>
+<aside class=docs-toc-sidebar>
+<div class=docs-toc-sticky>
+<h4><i class="fas fa-list"></i> On this page</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--hivereplicationv2development>Apache Hive : HiveReplicationv2Development</a></li>
+<li><a href=#version-information>Version information</a></li>
+<li><a href=#issues-with-the-current-replication-system>Issues with the Current Replication System</a>
+<ul>
+<li><a href=#slowness>Slowness</a></li>
+<li><a href=#requiring-staging-directories-with-full-copies-4xcopy-problem>Requiring Staging Directories with Full Copies (4xcopy Problem)</a></li>
+<li><a href=#unsuitable-for-load-balancing-use-cases>Unsuitable for Load-Balancing Use Cases</a></li>
+<li><a href=#incompatibility-with-acid>Incompatibility with ACID</a></li>
+<li><a href=#dependency-on-external-tools-to-do-a-lot>Dependency on External Tools To Do a Lot</a></li>
+<li><a href=#support-for-a-hub-spoke-model>Support for a Hub-Spoke Model</a></li>
+</ul>
+</li>
+<li><a href=#rubberbanding>Rubberbanding</a></li>
+<li><a href=#change-management>Change Management</a>
+<ul>
+<li><a href=#_files>_files</a></li>
+<li><a href=#solution-for-rubber-banding>Solution for Rubber Banding</a></li>
+<li><a href=#_metadata>_metadata</a></li>
+</ul>
+</li>
+<li><a href=#a-need-for-bootstrap>A Need for Bootstrap</a></li>
+<li><a href=#new-commands>New Commands</a>
+<ul>
+<li><a href=#repl-dump>REPL DUMP</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#repl-load>REPL LOAD</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href=#repl-status>REPL STATUS</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#bootstrap-revisited>Bootstrap, Revisited</a></li>
+<li><a href=#metastore-notification-api-security>Metastore notification API security</a></li>
+<li><a href=#setupconfiguration>Setup/Configuration</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
 </div>
 </div>
 <footer class="black-background static-bottom" style=padding:30px>
