@@ -172,32 +172,3 @@ For the first row, none of the columns are being selected.
 For the second row, only the first column is being selected, which explains the count of 2.  
 For the third row, both the columns are being selected (and the second column happens to be null), which explains the count of 1.
 
-## Comments:
-
-|  |
-| --- |
-| 
-Is there really much value-add in the grouping sets grammar? If I think about the plan for generating a CUBE/ROLLUP (), it's pretty much as efficient as generating the CUBE and then sub-selecting what you need from it.
-Can we just provide CUBE and ROLLUP and not provide the additional syntax?
-
- Posted by sambavi at Sep 21, 2012 15:32
-  |
-| 
-Depends on what the use case is.
-By sub-selecting for the right grouping set, we would be passing more data across the map-reduce boundaries.
-I have started a prototype implementation, and the work for grouping set should not be substantially more than
-a cube or a rollup. We can stage it, and implement GROUPING_ID later, on demand.
-
- Posted by namit.jain at Sep 25, 2012 06:50
-  |
-| 
-I can only implement CUBE and ROLLUP first, but keep the execution layer general.
-It will only require parser changes to plug in grouping sets, if need be, later.
-
- Posted by namit.jain at Sep 25, 2012 07:16
-  |
-
- 
-
- 
-

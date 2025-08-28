@@ -114,24 +114,3 @@ The following Hive specific practices can be used to make processes more amenabl
 
 Although not specifically related to Hive SQL, tooling exists for the testing of other aspects of the Hive ecosystem. In particular the [BeeJU](https://github.com/HotelsDotCom/beeju) project provides JUnit rules to simplify the testing of integrations with the Hive Metastore and HiveServer2 services. These are useful, if for example, you are developing alternative data processing frameworks or tools that aim to leverage Hive's metadata features.
 
- 
-
-## Comments:
-
-|  |
-| --- |
-| 
-Disclosure: The tools are listed according to level of experience I have with each tool, HiveRunner being the tool that I have used the most. Furthermore, I have previously contributed to the HiveRunner project. I've also been involved with the BeeJU project.
-
- Posted by teabot at Nov 11, 2015 10:20
-  |
-| 
-Where does [Capybara](https://cwiki.apache.org/confluence/download/attachments/27362054/CapybaraHiveMeetupNov2015.pptx) fit into this (it at all)?
-
- Posted by teabot at Dec 03, 2015 11:30
-  |
-
- 
-
- 
-

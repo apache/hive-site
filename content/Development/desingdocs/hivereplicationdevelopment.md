@@ -190,19 +190,3 @@ In the future, additional work should be done in the following areas:
 
 [1] Kemme, B., et al., "Database Replication: A Tutorial," in *Replication: Theory and Practice*, B. Charron-Bost et al., Eds. Berlin, Germany: Springer, 2010, pp. 219-252.
 
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
-Save
-
- 
-
- 
-
