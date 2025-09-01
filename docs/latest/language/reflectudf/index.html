@@ -151,11 +151,7 @@ Last updated: December 12, 2024
 <nav id=TableOfContents>
 <ul>
 <li><a href=#apache-hive--reflectudf>Apache Hive : ReflectUDF</a></li>
-<li><a href=#reflect-generic-udf>Reflect (Generic) UDF</a>
-<ul>
-<li><a href=#comments>Comments:</a></li>
-</ul>
-</li>
+<li><a href=#reflect-generic-udf>Reflect (Generic) UDF</a></li>
 </ul>
 </nav>
 </div>
@@ -177,24 +173,6 @@ FROM src LIMIT 1;
 </code></pre><p>Version information</p>
 <p>As of Hive 0.9.0, java_method() is a synonym for reflect(). See <a href=#misc--functions>Misc. Functions</a> in Hive Operators and UDFs.</p>
 <p>Note that Reflect UDF is non-deterministic since there is no guarantee what a specific method will return given the same parameters. So be cautious when using Reflect on the WHERE clause because that may invalidate Predicate Pushdown optimization.</p>
-<h2 id=comments>Comments:</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-<tr>
-<td>This doc comes from the Hive xdocs, with minor edits. It is included here because the xdocs are currently unavailable (Feb. 2013).</td>
-</tr>
-</tbody>
-</table>
-<p>Posted by leftyl at Feb 21, 2013 09:30
-|</p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>
@@ -216,21 +194,6 @@ FROM src LIMIT 1;
 </div>
 </footer>
 </article>
-<aside class=docs-toc-sidebar>
-<div class=docs-toc-sticky>
-<h4><i class="fas fa-list"></i> On this page</h4>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--reflectudf>Apache Hive : ReflectUDF</a></li>
-<li><a href=#reflect-generic-udf>Reflect (Generic) UDF</a>
-<ul>
-<li><a href=#comments>Comments:</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </div>
 </div>

@@ -590,7 +590,6 @@ Last updated: December 12, 2024
 <p>Hive now records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to accesss the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default. Hive will not attempt to change the metastore schema implicitly. When you execute a Hive query against an old schema, it will fail to access the metastore.</p>
 <p>To suppress the schema check and allow the metastore to implicitly modify the schema, you need to set a configuration property <code>hive.metastore.schema.verification</code> to false in <code>hive-site.xml</code>.</p>
 <p>Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details <a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/>here</a>.</p>
-<p>Save</p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>

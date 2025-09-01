@@ -150,11 +150,7 @@ Last updated: December 12, 2024
 <h4><i class="fas fa-list"></i> Table of Contents</h4>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#apache-hive--supported-features-apache-hive-31>Apache Hive : Supported Features: Apache Hive 3.1</a>
-<ul>
-<li><a href=#comments>Comments:</a></li>
-</ul>
-</li>
+<li><a href=#apache-hive--supported-features-apache-hive-31>Apache Hive : Supported Features: Apache Hive 3.1</a></li>
 </ul>
 </nav>
 </div>
@@ -1819,61 +1815,6 @@ Last updated: December 12, 2024
 </tr>
 </tbody>
 </table>
-<h2 id=comments>Comments:</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><a href=https://cwiki.apache.org/confluence/display/~alangates>Alan Gates</a> Following features are supported in 3.1:</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>| E061-09 | Subqueries in comparison predicate |</p>
-<p>| E141-06 | CHECK constraints | No | Mandatory |</p>
-<p>Posted by vgarg at Nov 29, 2018 19:18
-|
-|
-<em>No need to declare NOT NULL with PRIMARY KEY or UNIQUE</em> - I think this is not true. NOT NULL is not inferred on UNIQUE and needs to be explicitly declared.</p>
-<p>Posted by vgarg at Nov 29, 2018 19:20
-|
-|</p>
-<p>| E121-02 | ORDER BY columns need not be in select list | No | Mandatory |</p>
-<p> Looks like this feature is partially supported. Hive allows this if there is not aggregate.</p>
-<p>Posted by vgarg at Nov 29, 2018 19:26
-|
-|
-IIUC the requirement isn&rsquo;t that you don&rsquo;t need to declare not null and it is inferred, but rather that it can support unique/pk indices with nulls in them.  </p>
-<p>Posted by alangates at Nov 29, 2018 20:57
-|
-|
-Agreed, I missed this one.  Feel free to edit it.  I&rsquo;ll be circling back on this and a few others shortly to fix it.</p>
-<p>Posted by alangates at Nov 29, 2018 20:57
-|</p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>
@@ -1895,20 +1836,6 @@ Agreed, I missed this one.  Feel free to edit it.  I&rsquo;ll be circling back
 </div>
 </footer>
 </article>
-<aside class=docs-toc-sidebar>
-<div class=docs-toc-sticky>
-<h4><i class="fas fa-list"></i> On this page</h4>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--supported-features-apache-hive-31>Apache Hive : Supported Features: Apache Hive 3.1</a>
-<ul>
-<li><a href=#comments>Comments:</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
 </main>
 </div>
 </div>

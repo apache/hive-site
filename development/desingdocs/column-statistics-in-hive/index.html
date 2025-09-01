@@ -160,7 +160,6 @@ Last updated: December 12, 2024
 <li><a href=#metastore-thrift-api><strong>Metastore Thrift API</strong></a></li>
 </ul>
 </li>
-<li><a href=#comments>Comments:</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +180,6 @@ Last updated: December 12, 2024
 <li><a href=#metastore-thrift-api><strong>Metastore Thrift API</strong></a></li>
 </ul>
 </li>
-<li><a href=#comments>Comments:</a></li>
 </ul>
 </li>
 </ul>
@@ -339,31 +337,6 @@ bool delete_table_column_statistics(1:string db_name, 2:string tbl_name, 3:strin
 4:InvalidInputException o4)</p>
 <p>Note that delete_column_statistics is needed to remove the entries from the metastore when a table is dropped. Also note that currently Hive doesn’t support drop column.</p>
 <p>Note that in V1 of the project, we will support only scalar statistics. Furthermore, we will support only static partitions, i.e., both the partition key and partition value should be specified in the analyze command. In a following version, we will add support for height balanced histograms as well as support for dynamic partitions in the analyze command for column level statistics.</p>
-<h2 id=comments>Comments:</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-<tr>
-<td>Shreepadma, is there a jira for this ? Is this ready for review, or is it a initial design ?</td>
-</tr>
-<tr>
-<td>Also, can you go over <a href=https://issues.apache.org/jira/browse/HIVE-3421>https://issues.apache.org/jira/browse/HIVE-3421</a> and see how the two are related ?</td>
-</tr>
-</tbody>
-</table>
-<p>Posted by namit.jain at Sep 14, 2012 00:51
-|
-|
-Namit, This patch is ready for review. There is already a JIRA for this - HIVE-1362. I&rsquo;ve the patch on both JIRA and reviewboard. Please note that this goes beyond HIVE-3421 - this patch adds the stats specified on both this wiki and the JIRA page. Thanks.</p>
-<p>Posted by shreepadma at Oct 03, 2012 00:46
-|</p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>
@@ -400,7 +373,6 @@ Namit, This patch is ready for review. There is already a JIRA for this - HIVE-1
 <li><a href=#metastore-thrift-api><strong>Metastore Thrift API</strong></a></li>
 </ul>
 </li>
-<li><a href=#comments>Comments:</a></li>
 </ul>
 </li>
 </ul>
