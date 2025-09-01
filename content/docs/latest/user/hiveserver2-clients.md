@@ -1061,19 +1061,3 @@ JDBC connection URL: 
 
 When the above URL is specified, Beeline will call underlying requests to add HTTP cookie in the request header, and will set it to *<name1>*=*<value1>* and *<name2>*=*<value2>*. 
 
-  
-
-  
-
-  
-
-  
-
-  
-
-Save
-
- 
-
- 
-

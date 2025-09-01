@@ -38,24 +38,3 @@ where field.delim is the field delimiter, collection.delim and mapkey.delim
 * Nested complex type is not supported, e.g. an Array<Array>.
 * To use MultiDelimitSerDe prior to Hive release 4.0.0, you have to add the hive-contrib jar to the class path, e.g. with the add jar command.
 
- 
-
-## Comments:
-
-|  |
-| --- |
-| 
-Thank you [Lefty Leverenz](https://cwiki.apache.org/confluence/display/~leftyl)
-
- Posted by afan at Oct 05, 2018 06:18
-  |
-| 
-And thanks for your contributions [Alice Fan](https://cwiki.apache.org/confluence/display/~afan).
-
- Posted by leftyl at Oct 05, 2018 06:27
-  |
-
- 
-
- 
-
