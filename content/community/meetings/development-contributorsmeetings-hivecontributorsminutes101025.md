@@ -11,7 +11,7 @@ Location: Facebook Palo Alto
 
 Attendees: <http://www.meetup.com/Hive-Contributors-Group/calendar/14875663> plus Paul, Ning, Yongqiang, Liyin, Basab
 
-The [TLP](http://hive.apache.org) and [bylaws](https://cwiki.apache.org/HIVE/bylaws.html) votes passed, so Hive is now officially an Apache top level project! We are going ahead with moving the following resources:
+The [TLP](http://hive.apache.org) and [bylaws](https://hive.apache.org/docs/latest/introduction-to-apache-hive/bylaws.html) votes passed, so Hive is now officially an Apache top level project! We are going ahead with moving the following resources:
 
 * website (now at hive.apache.org)
 * svn (new trunk location is <http://svn.apache.org/repos/asf/hive/trunk>); git will follow soon

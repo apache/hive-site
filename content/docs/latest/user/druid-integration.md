@@ -225,7 +225,7 @@ Version Info
 
 Once we have created our first table stored in Druid using the `DruidStorageHandler`, we are ready to execute our queries against Druid.
 
-When we express a query over a Druid table, Hive tries to *rewrite* the query to be executed efficiently by pushing as much computation as possible to Druid. This task is accomplished by the [cost optimizer](https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive) based in [Apache Calcite](http://calcite.apache.org/), which identifies patterns in the plan and apply rules to rewrite the input query into a new equivalent query with (hopefully) more operations executed in Druid.
+When we express a query over a Druid table, Hive tries to *rewrite* the query to be executed efficiently by pushing as much computation as possible to Druid. This task is accomplished by the [cost optimizer](https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive) based in [Apache Calcite](http://calcite.apache.org/), which identifies patterns in the plan and apply rules to rewrite the input query into a new equivalent query with (hopefully) more operations executed in Druid.
 
 In particular, we implemented our extension to the optimizer in [HIVE-14217](https://issues.apache.org/jira/browse/HIVE-14217), which builds upon the work initiated in [CALCITE-1121](https://issues.apache.org/jira/browse/CALCITE-1121), and extends its logic to identify more complex query patterns (*timeseries* queries), translate filters on the *time* dimension to Druid intervals, push limit into Druid *select* queries, etc.
 

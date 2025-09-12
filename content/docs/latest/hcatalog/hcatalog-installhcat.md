@@ -38,7 +38,7 @@ HCatalog server is the same as Hive metastore. You can just follow the [Hive met
 Previous: [Using HCatalog]({{< ref "hcatalog-usinghcat" >}})  
  Next: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}})
 
-Hive installation and configuration: [Installing Hive]({{< ref "adminmanual-installation" >}}), [Configuring Hive]({{< ref "adminmanual-configuration" >}}), [Hive Configuration Properties](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)  
+Hive installation and configuration: [Installing Hive]({{< ref "adminmanual-installation" >}}), [Configuring Hive]({{< ref "adminmanual-configuration" >}}), [Hive Configuration Properties](https://hive.apache.org/docs/latest/user/configuration-properties)  
  WebHCat installation and configuration: [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}}), [WebHCat Configuration]({{< ref "webhcat-configure" >}})
 
 

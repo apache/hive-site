@@ -25,7 +25,7 @@ The AvroSerde allows users to read or write [Avro data](http://avro.apache.org/)
 * Transparently converts the Avro idiom of handling nullable types as Union[T, null] into just T and returns null when appropriate.
 * Writes any Hive table to Avro files.
 * Has worked reliably against our most convoluted Avro schemas in our ETL process.
-* Starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7446), columns can be added to an Avro backed Hive table using the [Alter Table](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Add/ReplaceColumns) statement.
+* Starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7446), columns can be added to an Avro backed Hive table using the [Alter Table](https://hive.apache.org/docs/latest/language/languagemanual-ddl#addreplace-columns) statement.
 
 For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}}) in the Developer Guide. Also see [SerDe]({{< ref "serde" >}}) for details about input and output processing.
 

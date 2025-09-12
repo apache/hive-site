@@ -9,7 +9,7 @@ date: 2024-12-12
 
 # Hive 3 Streaming API
 
-[Hive 3 Streaming API Documentation](https://cwiki.apache.org/confluence/display/Hive/Streaming+Data+Ingest+V2) - new API available in Hive 3
+[Hive 3 Streaming API Documentation](https://hive.apache.org/docs/latest/user/streaming-data-ingest-v2) - new API available in Hive 3
 
 # Hive HCatalog Streaming API
 
@@ -33,8 +33,8 @@ A few things are required to use streaming.
 
 1. The following settings are required in hive-site.xml to enable ACID support for streaming:
 	1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
-	2. **hive.compactor.initiator.on = true**(See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
-	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions))
+	2. **hive.compactor.initiator.on = true**(See more important details [here](https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
+	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
 	4. **hive.compactor.worker.threads** > **0**
 2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc" >}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
@@ -76,7 +76,7 @@ TransactionBatch is used to write a series of transactions. There is one file cr
 
 For each transaction in the TxnBatch, the application calls *beginNextTransaction*, *write,* and then *commit* or *abort* as appropriate. See the [Javadoc](http://hive.apache.org/javadocs/r1.2.1/api/org/apache/hive/hcatalog/streaming/TransactionBatch.html) for details.  A Transaction cannot include data from more than one partition.
 
-Transactions in a TransactionBatch are eventually expired by the Metastore if not committed or aborted after [hive.txn.timeout](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions) secs. TrasnactionBatch class provides a **heartbeat()** method to prolong the lifetime of unused transactions in the batch.  A good rule of thumb is to send call heartbeat() at (hive.txn.timeout/2) intervals after creating a TransactionBatch.  This is sufficient to keep an inactive transaction alive but not load the metastore unnecessarily.
+Transactions in a TransactionBatch are eventually expired by the Metastore if not committed or aborted after [hive.txn.timeout](https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions) secs. TrasnactionBatch class provides a **heartbeat()** method to prolong the lifetime of unused transactions in the batch.  A good rule of thumb is to send call heartbeat() at (hive.txn.timeout/2) intervals after creating a TransactionBatch.  This is sufficient to keep an inactive transaction alive but not load the metastore unnecessarily.
 
 #### Usage Guidelines
 
@@ -265,7 +265,7 @@ secureConn.close();
 
 # Knowledge Base
 
-* [Talks and Presentations](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TalksandPresentations)
+* [Talks and Presentations](https://hive.apache.org/docs/latest/user/hive-transactions#talks-and-presentations)
 * [Lessons learnt from NiFi streaming data to Hive transactional tables](https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html)
 
   

@@ -47,7 +47,7 @@ This is the Hive Language Manual.  For other Hive documentation, see the Hive w
 	+ [Virtual Columns]({{< ref "languagemanual-virtualcolumns" >}})
 	+ [Windowing and Analytics Functions]({{< ref "languagemanual-windowingandanalytics" >}})
 	+ [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "enhanced-aggregation-cube-grouping-and-rollup" >}})
-	+ Procedural Language:  [Hive HPL/SQL](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=hive-hpl-sql)
+	+ Procedural Language:  [Hive HPL/SQL](https://hive.apache.org/docs/latest/user/hive-hpl-sql)
 	+ [Explain Execution Plan]({{< ref "languagemanual-explain" >}})
 * [Locks]({{< ref "locking" >}})
 * [Authorization]({{< ref "languagemanual-authorization" >}})

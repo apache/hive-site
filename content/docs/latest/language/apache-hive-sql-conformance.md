@@ -13,8 +13,8 @@ The formal name of the current SQL standard is ISO/IEC 9075 "Database Language S
 
 | Version | Supported SQL Features |
 | --- | --- |
-| Apache Hive 2.1 | [Supported SQL Features](https://cwiki.apache.org/confluence/display/Hive/Supported+Features%3A+Apache+Hive+2.1) |
-| Apache Hive 2.3 | [Supported SQL Features](https://cwiki.apache.org/confluence/display/Hive/Supported+Features%3A+Apache+Hive+2.3) |
+| Apache Hive 2.1 | [Supported SQL Features](https://hive.apache.org/docs/latest/language/supported-features-apache-hive-2-1) |
+| Apache Hive 2.3 | [Supported SQL Features](https://hive.apache.org/docs/latest/language/supported-features-apache-hive-2-3) |
 | Apache Hive 3.1 | [Supported SQL Features]({{< ref "supported-features" >}}) |
 
 Information in these pages is not guaranteed to be accurate. Corrections can be submitted to the Apache Hive mailing list at [user@hive.apache.org]({{< ref "mailto:user@hive-apache-org" >}}).

@@ -13,7 +13,7 @@ date: 2024-12-12
 
 ## Implementation
 
-The initial implementation was added to Hive 0.14 in [HIVE-7068](https://issues.apache.org/jira/browse/HIVE-7068) and is designed to work with Accumulo 1.6.x. There are two main components which make up the implementation: the AccumuloStorageHandler and the AccumuloPredicateHandler. The AccumuloStorageHandler is a [StorageHandler](https://cwiki.apache.org/confluence/display/Hive/StorageHandlers) implementation. The primary roles of this class are to manage the mapping of Hive table to Accumulo table and configures Hive queries. The AccumuloPredicateHandler is used push down filter operations to the Accumulo for more efficient reduction of data.
+The initial implementation was added to Hive 0.14 in [HIVE-7068](https://issues.apache.org/jira/browse/HIVE-7068) and is designed to work with Accumulo 1.6.x. There are two main components which make up the implementation: the AccumuloStorageHandler and the AccumuloPredicateHandler. The AccumuloStorageHandler is a [StorageHandler](https://hive.apache.org/development/desingdocs/storagehandlers) implementation. The primary roles of this class are to manage the mapping of Hive table to Accumulo table and configures Hive queries. The AccumuloPredicateHandler is used push down filter operations to the Accumulo for more efficient reduction of data.
 
 ## Accumulo Configuration
 

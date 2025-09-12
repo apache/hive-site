@@ -19,7 +19,7 @@ The default authorization model in Hive can be used to provide fine grained acce
 
 The SQL standards based authorization option (introduced in Hive 0.13) provides a third option for authorization in Hive. This is recommended because it allows Hive to be fully SQL compliant in its authorization model without causing backward compatibility issues for current users. As users migrate to this more secure model, the current default authorization could be deprecated.
 
-For an overview of this authorization option, see [SQL Standards Based Authorization in HiveServer2](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Authorization#LanguageManualAuthorization-2SQLStandardsBasedAuthorizationinHiveServer2).
+For an overview of this authorization option, see [SQL Standards Based Authorization in HiveServer2](https://hive.apache.org/docs/latest/language/languagemanual-authorization#2-sql-standards-based-authorization-in-hiveserver2).
 
 This authorization mode can be used in conjunction with storage based authorization on the metastore server. Like the current default authorization in Hive, this will also be enforced at query compilation time. To provide security through this option, the client will have to be secured. This can be done by allowing users access only through Hive Server2, and by restricting the user code and non-SQL commands that can be run. The checks will happen against the user who submits the request, but the query will run as the Hive server user. The directories and files for input data would have read access for this Hive server user. For users who don’t have the need to protect against malicious users, this could potentially be supported through the Hive command line as well.
 
@@ -37,7 +37,7 @@ The set commands used to change Hive configuration are restricted to a smaller s
 
 Privileges to add or drop functions and macros are restricted to the **admin** role.
 
-To enable users to use functions, the ability to create [permanent functions](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Create/DropFunction) has been added. A user in the **admin** role can run commands to create these functions, which all users can then use.
+To enable users to use functions, the ability to create [permanent functions](https://hive.apache.org/docs/latest/language/languagemanual-ddl#create-function) has been added. A user in the **admin** role can run commands to create these functions, which all users can then use.
 
 The Hive [transform clause]({{< ref "languagemanual-transform" >}}) is also disabled when this authorization is enabled.
 
@@ -88,11 +88,11 @@ User names are *case sensitive*. This is because, unlike role names, user names 
 
 #### Quoted Identifiers
 
-User and role names may optionally be surrounded by backtick characters (`) when the configuration parameter `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` is set to `column` (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` is set to `none`, only alphanumeric and underscore characters are permitted in user names and role names.
+User and role names may optionally be surrounded by backtick characters (`) when the configuration parameter `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` is set to `column` (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` is set to `none`, only alphanumeric and underscore characters are permitted in user names and role names.
 
 For details, see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013) and [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html).
 
-As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-8083), user may be optionally surrounded by backtick characters (`) irrespective of the `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` setting.
+As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-8083), user may be optionally surrounded by backtick characters (`) irrespective of the `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` setting.
 
 ### **Role Management Commands**
 

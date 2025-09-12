@@ -1690,7 +1690,7 @@ Pre-3.1.2 Hive implementation of Parquet stores timestamps in UTC on-file, this 
 
 #### Avro
 
-See [AvroSerDe](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe) for details.  
+See [AvroSerDe](https://hive.apache.org/docs/latest/user/avroserde) for details.  
 
 ##### hive.avro.timestamp.skip.conversion
 
@@ -3134,10 +3134,10 @@ To configure Hive execution to Spark, set the following property to "`spark`":
 
 Besides the configuration properties listed in this section, some properties in other sections are also related to Spark:
 
-* [hive.exec.reducers.max](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.exec.reducers.max)
-* [hive.exec.reducers.bytes.per.reducer](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.exec.reducers.bytes.per.reducer)
-* [hive.mapjoin.optimized.hashtable](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.mapjoin.optimized.hashtable)
-* [hive.mapjoin.optimized.hashtable.wbsize](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.mapjoin.optimized.hashtable.wbsize)
+* [hive.exec.reducers.max](https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersmax)
+* [hive.exec.reducers.bytes.per.reducer](https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersbytesperreducer)
+* [hive.mapjoin.optimized.hashtable](https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtable)
+* [hive.mapjoin.optimized.hashtable.wbsize](https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtablewbsize)
 
 hive.spark.job.monitor.timeout
 
@@ -4779,7 +4779,7 @@ The default partition name when ZooKeeperHiveLockManager is the  [**hive lock m
 
 ## Metrics
 
-The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2#SettingUpHiveServer2-WebUIforHiveServer2). For more information, see [Hive Metrics]({{< ref "hive-metrics" >}}).  
+The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2). For more information, see [Hive Metrics]({{< ref "hive-metrics" >}}).  
 
 ##### hive.metastore.metrics.enabled
 

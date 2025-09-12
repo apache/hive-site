@@ -120,7 +120,7 @@ INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) sel
 ##### Notes
 
 * Multi Table Inserts minimize the number of data scans required. Hive can insert data into multiple tables by scanning the input data just once (and applying different query operators) to the input data.
-* Starting with [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-1180), the select statement can include one or more common table expressions (CTEs) as shown in the [SELECT syntax](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select#LanguageManualSelect-SelectSyntax). For an example, see [Common Table Expression](https://cwiki.apache.org/confluence/display/Hive/Common+Table+Expression#CommonTableExpression-CTEinViews,CTAS,andInsertStatements).
+* Starting with [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-1180), the select statement can include one or more common table expressions (CTEs) as shown in the [SELECT syntax](https://hive.apache.org/docs/latest/language/languagemanual-select#select-syntax). For an example, see [Common Table Expression](https://hive.apache.org/docs/latest/language/common-table-expression#cte-in-views-ctas-and-insert-statements).
 
 ##### Dynamic Partition Inserts
 
@@ -223,7 +223,7 @@ where a value is either null or any valid SQL literal
 
 * Each row listed in the VALUES clause is inserted into table *tablename*.
 * Values must be provided for every column in the table. The standard SQL syntax that allows the user to insert values into only some columns is not yet supported. To mimic the standard SQL, nulls can be provided for columns the user does not wish to assign a value to.
-* Dynamic partitioning is supported in the same way as for [INSERT...SELECT](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-DynamicPartitionInserts).
+* Dynamic partitioning is supported in the same way as for [INSERT...SELECT](https://hive.apache.org/docs/latest/language/languagemanual-dml#LanguageManualDML-DynamicPartitionInserts).
 * If the table being inserted into supports [ACID]({{< ref "hive-transactions" >}}) and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.
 * Hive does not support literals for complex types (array, map, struct, union), so it is not possible to use them in INSERT INTO...VALUES clauses. This means that the user cannot insert data into a complex datatype column using the INSERT INTO...VALUES clause.
 

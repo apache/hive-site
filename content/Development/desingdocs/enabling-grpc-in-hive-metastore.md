@@ -12,7 +12,7 @@ Cameron Moberg (Google), Zhou Fang (Google), Feng Lu (Google), Thejas Nair (Clo
 
 # Objective
 
-* To modernize [Hive Metastore’s](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+3.0+Administration) interface with a state-of-the-art serving layer based on gRPC while also keeping it backwards compatible with Thrift for minimal upgrade toil;
+* To modernize [Hive Metastore’s](https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration) interface with a state-of-the-art serving layer based on gRPC while also keeping it backwards compatible with Thrift for minimal upgrade toil;
 * To achieve this the proposed design is to add support for a proxy-layer between the Thrift interface and a new gRPC interface that allows for in-memory request/response translation in-between;
 * To expand the Hive client to work with Hive Metastore server in both gRPC and Thrift mode.
 

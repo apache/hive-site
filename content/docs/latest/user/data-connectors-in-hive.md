@@ -11,7 +11,7 @@ Data connectors (referred to as "connector" in Hive Query Language) are top leve
 
   
 
-With [JDBC Storage Handlers](https://cwiki.apache.org/confluence/display/Hive/JDBC+Storage+Handler), users define a table in hive metastore for which data resides in a remote JDBC datastore. This hive table's metadata is persisted locally in hive metastore's backend. When Hiveserver2 runs a query against this table, data is retrieved from the remote JDBC table. While this is very powerful in itself, it has limitations.
+With [JDBC Storage Handlers](https://hive.apache.org/docs/latest/user/jdbc-storage-handler), users define a table in hive metastore for which data resides in a remote JDBC datastore. This hive table's metadata is persisted locally in hive metastore's backend. When Hiveserver2 runs a query against this table, data is retrieved from the remote JDBC table. While this is very powerful in itself, it has limitations.
 
 * Each remote table in remote datasource has to be individually mapped to a local hive table. It becomes tedious if you have to map an entire database of many tables.
 * Any new tables in the remote datasource are not automatically visible and will need to be manually mapped in hive.

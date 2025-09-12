@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Setting Up HiveServer2
 
-[HiveServer2](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
+[HiveServer2](https://hive.apache.org/docs/latest/user/hiveserver2-overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](https://hive.apache.org/docs/latest/user/hiveserver2-overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
 * The Thrift interface definition language (IDL) for HiveServer2 is available at <https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>.
 * Thrift documentation is available at <http://thrift.apache.org/docs/>.
@@ -39,7 +39,7 @@ HIVE_SERVER2_THRIFT_PORT – Optional TCP port number to listen on, default 1000
 
 #### **Running in HTTP Mode**
 
-HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see [HIVE-4752](https://issues.apache.org/jira/browse/HIVE-4752)). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: [HiveServer2 Clients -- JDBC Connection URLs](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC). Use the following settings to enable and configure HTTP mode:
+HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see [HIVE-4752](https://issues.apache.org/jira/browse/HIVE-4752)). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: [HiveServer2 Clients -- JDBC Connection URLs](https://hive.apache.org/docs/latest/user/hiveserver2-clients#jdbc). Use the following settings to enable and configure HTTP mode:
 
 | Setting | Default | Description |
 | --- | --- | --- |
@@ -51,11 +51,11 @@ HiveServer2 provides support for sending Thrift RPC messages over HTTP transport
 
 ##### Cookie Based Authentication
 
-[HIVE-9709](https://issues.apache.org/jira/browse/HIVE-9709) and [HIVE-9710](https://issues.apache.org/jira/browse/HIVE-9710) introduced cookie based authentication for HiveServer2 in HTTP mode. The HiveServer2 parameters (hive.server2.thrift.http.cookie.*) associated with this change can be found [here](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.server2.thrift.http.cookie.auth.enabled).
+[HIVE-9709](https://issues.apache.org/jira/browse/HIVE-9709) and [HIVE-9710](https://issues.apache.org/jira/browse/HIVE-9710) introduced cookie based authentication for HiveServer2 in HTTP mode. The HiveServer2 parameters (hive.server2.thrift.http.cookie.*) associated with this change can be found [here](https://hive.apache.org/docs/latest/user/configuration-properties#hiveserver2thrifthttpcookieauthenabled).
 
 #### Optional Global Init File
 
-A global init file can be placed in the configured [hive.server2.global.init.file.location](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.server2.global.init.file.location) location (Hive 0.14 onward, see [HIVE-5160](https://issues.apache.org/jira/browse/HIVE-5160), [HIVE-7497](https://issues.apache.org/jira/browse/HIVE-7497), and [HIVE-8138](https://issues.apache.org/jira/browse/HIVE-8138)). This can be either the path to the init file itself, or a directory where an init file named ".hiverc" is expected.
+A global init file can be placed in the configured [hive.server2.global.init.file.location](https://hive.apache.org/docs/latest/user/configuration-properties#hiveserver2globalinitfilelocation) location (Hive 0.14 onward, see [HIVE-5160](https://issues.apache.org/jira/browse/HIVE-5160), [HIVE-7497](https://issues.apache.org/jira/browse/HIVE-7497), and [HIVE-8138](https://issues.apache.org/jira/browse/HIVE-8138)). This can be either the path to the init file itself, or a directory where an init file named ".hiverc" is expected.
 
 The init file lists a set of commands that will run for users of this HiveServer2 instance, such as register a standard set of jars and functions.
 

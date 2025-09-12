@@ -27,7 +27,7 @@ In this section, we present the main operations that are currently present in Hi
 
 ### Materialized views creation
 
-The syntax to create a materialized view in Hive is very similar to the [CTAS statement](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)) syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.
+The syntax to create a materialized view in Hive is very similar to the [CTAS statement](https://hive.apache.org/docs/latest/language/languagemanual-ddl#create-table-as-select-ctas) syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.
 
 ```
 CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
@@ -52,7 +52,7 @@ By default, materialized views are usable for query rewriting by the optimizer, 
 
 The default values for SerDe and storage format when they are not specified in the materialized view creation statement (they are optional) are specified using the configuration properties `hive.materializedview.serde` and `hive.materializedview.fileformat`, respectively.
 
-Materialized views can be stored in external systems, e.g., [Druid](https://cwiki.apache.org/confluence/display/Hive/Druid+Integration), using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:
+Materialized views can be stored in external systems, e.g., [Druid](https://hive.apache.org/docs/latest/user/druid-integration), using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:
 
 **Example:**
 

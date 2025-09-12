@@ -35,7 +35,7 @@ See [HIVE-11481](https://issues.apache.org/jira/browse/HIVE-11481).
 
 ## **Behavior**
 
-* When "[hive.warehouse.subdir.inherit.perms](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms)" flag is enabled in Hive, Hive will try to do all the following inheritances.
+* When "[hive.warehouse.subdir.inherit.perms](https://hive.apache.org/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms)" flag is enabled in Hive, Hive will try to do all the following inheritances.
 	+ Database directory inherits from warehouse directory.
 	+ Table directory inherits from database directory, or from warehouse directory if it is part of the default database.
 	+ External table directory inherits from parent directory.
@@ -52,7 +52,7 @@ Most of this functionality was added as of Hive 0.14.  
 
 See umbrella JIRA [HIVE-6892](https://issues.apache.org/jira/browse/HIVE-6892) for details.
 
-[hive.warehouse.subdir.inherit.perms](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms) was removed in Hive 3.0.0. The feature is no longer needed in Hive as the traditional permission model has largely been replaced by external security systems such as Ranger and Sentry. A user may choose SQLStdAuth which ships with Hive if user doesn't want to use an external security system.
+[hive.warehouse.subdir.inherit.perms](https://hive.apache.org/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms) was removed in Hive 3.0.0. The feature is no longer needed in Hive as the traditional permission model has largely been replaced by external security systems such as Ranger and Sentry. A user may choose SQLStdAuth which ships with Hive if user doesn't want to use an external security system.
 
  
 

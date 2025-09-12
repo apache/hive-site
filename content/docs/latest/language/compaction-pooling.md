@@ -21,7 +21,7 @@ Databases, tables and partitions can be assigned to compaction pools through the
 hive.compactor.worker.pool={pool_name}
 ```
 
-[Database/Table property](https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties). If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set).   
+[Database/Table property](https://hive.apache.org/docs/latest/user/hive-transactions#table-properties). If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set).   
 If any of the above is set, it is used by the *Initiator* during the creation of the compaction requests.
 
 #### Manual pool assignment

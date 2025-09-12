@@ -28,7 +28,7 @@ Union may have more than 2 parents.
 
 Let's say the output directory of the final file sink was dir_final. We will replace the output directories of subq1 and subq2 with dir_final/subquery_1 and dir_final/subquery_2, respectively. All other properties of the final file sink like gatherStats, etc. will also be copied. After this, we remove the union and everything below it.
 
-The optimization is important for <https://cwiki.apache.org/confluence/display/Hive/Skewed+Join+Optimization> , but should also be useful in other cases.
+The optimization is important for <https://hive.apache.org/development/desingdocs/skewed-join-optimization> , but should also be useful in other cases.
 
  
 

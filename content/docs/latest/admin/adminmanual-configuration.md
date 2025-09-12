@@ -110,7 +110,7 @@ Version information: Metrics
 | hive.resource.use.hdfs.location | Reference HDFS based files/jars directly instead of copying to session based HDFS scratch directory. (As of Hive [2.2.1](https://issues.apache.org/jira/browse/HIVE-17574).) | true |
 | hive.jar.path | The location of hive_cli.jar that is used when submitting jobs in a separate jvm. |   |
 | hive.aux.jars.path | The location of the plugin jars that contain implementations of user defined functions and SerDes. |   |
-| hive.reloadable.aux.jars.path | The location of plugin jars that can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{< ref "#beeline-reload-command" >}}), without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path[for creating UDFs or SerDes](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.aux.jars.path). (As of Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-7553).) |  |
+| hive.reloadable.aux.jars.path | The location of plugin jars that can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{< ref "#beeline-reload-command" >}}), without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path[for creating UDFs or SerDes](https://hive.apache.org/docs/latest/user/configuration-properties#hiveauxjarspath). (As of Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-7553).) |  |
 | hive.partition.pruning | A strict value for this variable indicates that an error is thrown by the compiler in case no partition predicate is provided on a partitioned table. This is used to protect against a user inadvertently issuing a query against all the partitions of the table. | nonstrict |
 | hive.map.aggr | Determines whether the map side aggregation is on or not. | true |
 | hive.join.emit.interval |   | 1000 |
@@ -137,7 +137,7 @@ Version information: Metrics
 
 Please see [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) for information about the configuration variables used to set up the metastore in local, remote, or embedded mode. Also see descriptions in the [Metastore]({{< ref "#metastore" >}}) section of the Language Manual's [Hive Configuration Properties]({{< ref "configuration-properties" >}}).
 
-For security configuration (Hive 0.10 and later), see the [Hive Metastore Security](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity) section in the Language Manual's [Hive Configuration Properties]({{< ref "configuration-properties" >}}).
+For security configuration (Hive 0.10 and later), see the [Hive Metastore Security](https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security) section in the Language Manual's [Hive Configuration Properties]({{< ref "configuration-properties" >}}).
 
 #### Configuration Variables Used to Interact with Hadoop
 

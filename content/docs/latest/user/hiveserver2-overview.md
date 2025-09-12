@@ -9,7 +9,7 @@ date: 2024-12-12
 
 # Introduction
 
-HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to [HiveServer1](https://cwiki.apache.org/confluence/display/Hive/HiveServer) which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
+HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to [HiveServer1](https://hive.apache.org/docs/latest/admin/hiveserver) which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
 HS2 is a single process running as a composite service, which includes the Thrift-based Hive service (TCP or HTTP) and a [Jetty](http://www.eclipse.org/jetty/) web server for web UI. 
 

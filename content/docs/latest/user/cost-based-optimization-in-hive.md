@@ -120,9 +120,9 @@ In this document we propose to use Calcite’s cost based optimizer, Volcano, to
 
 ## STATS
 
-* histogram_numeric(): Estimating frequency distributions: <https://cwiki.apache.org/confluence/x/CoOhAQ>
+* histogram_numeric(): Estimating frequency distributions: <https://hive.apache.org/docs/latest/language/statisticsanddatamining>
 * histogram() UDAF for a numerical column <https://issues.apache.org/jira/browse/HIVE-1397>
-* Built-in Aggregate Functions (UDAF): <https://cwiki.apache.org/confluence/x/-oKhAQ>
+* Built-in Aggregate Functions (UDAF): <https://hive.apache.org/docs/latest/language/languagemanual-udf>
 * Annotate hive operator tree with statistics from metastore: <https://issues.apache.org/jira/browse/HIVE-5369>
 
  
@@ -263,7 +263,7 @@ Hive allows users to specify map/reduce/transform operator in the sql; data woul
 
 * Cluster By/Distribute By
 
-*Cluster By* and *Distribute By* are used mainly with the [Transform/Map-Reduce Scripts](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Transform). But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries. *Cluster By* is a short-cut for both *Distribute By* and *Sort By*. Hive uses the columns in *Distribute By* to distribute the rows among reducers. All rows with the same *Distribute By* columns will go to the same reducer. However, *Distribute By* does not guarantee clustering or sorting properties on the distributed keys.
+*Cluster By* and *Distribute By* are used mainly with the [Transform/Map-Reduce Scripts](https://hive.apache.org/docs/latest/language/languagemanual-transform). But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries. *Cluster By* is a short-cut for both *Distribute By* and *Sort By*. Hive uses the columns in *Distribute By* to distribute the rows among reducers. All rows with the same *Distribute By* columns will go to the same reducer. However, *Distribute By* does not guarantee clustering or sorting properties on the distributed keys.
 
 * Table Sample
 

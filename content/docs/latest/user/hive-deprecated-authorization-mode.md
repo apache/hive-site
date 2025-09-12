@@ -66,11 +66,11 @@ User names are also case sensitive. Unlike role names, user names are not manag
 
 Quoted Identifiers in Version 0.13.0+
 
-As of Hive 0.13.0, user and role names may optionally be surrounded by backtick characters (`) when the configuration parameter `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` is set to `column` (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` is set to `none`, or in Hive 0.12.0 and earlier, only alphanumeric and underscore characters are permitted in user names and role names.
+As of Hive 0.13.0, user and role names may optionally be surrounded by backtick characters (`) when the configuration parameter `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` is set to `column` (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` is set to `none`, or in Hive 0.12.0 and earlier, only alphanumeric and underscore characters are permitted in user names and role names.
 
 For details, see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013) and [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html).
 
-As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-8083), user may be optionally surrounded by backtick characters (`) irrespective of the `[hive.support.quoted.identifiers](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers)` setting.
+As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-8083), user may be optionally surrounded by backtick characters (`) irrespective of the `[hive.support.quoted.identifiers](https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers)` setting.
 
 ### Creating/Dropping/Using Roles
 

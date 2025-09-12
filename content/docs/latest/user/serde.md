@@ -26,7 +26,7 @@ The Hive SerDe library is in org.apache.hadoop.hive.serde2. (The old SerDe lib
 * [RegEx]({{< ref "#regex" >}})
 * [Thrift](http://thrift.apache.org/)
 * [Parquet]({{< ref "parquet" >}}) (Hive 0.13 and later)
-* [CSV](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) (Hive 0.14 and later)
+* [CSV](https://hive.apache.org/docs/latest/user/csv-serde) (Hive 0.14 and later)
 * [JsonSerDe]({{< ref "#jsonserde" >}}) (Hive 0.12 and later in [hcatalog-core](https://github.com/apache/hive/blob/master/hcatalog/core/src/main/java/org/apache/hive/hcatalog/data/JsonSerDe.java))
 
 Note: For Hive releases prior to 0.12, Amazon provides a JSON SerDe available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar`.

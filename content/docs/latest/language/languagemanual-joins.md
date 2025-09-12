@@ -274,7 +274,7 @@ See [Hive Outer Join Behavior]({{< ref "outerjoinbehavior" >}}) for information 
 
 ### Enhancements in Hive Version 0.11
 
-See [Join Optimization](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization) for information about enhancements to join optimization introduced in Hive version 0.11.0. The use of hints is de-emphasized in the enhanced optimizations ([HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) and related JIRAs).
+See [Join Optimization](https://hive.apache.org/docs/latest/language/languagemanual-joinoptimization) for information about enhancements to join optimization introduced in Hive version 0.11.0. The use of hints is de-emphasized in the enhanced optimizations ([HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) and related JIRAs).
 
  
 

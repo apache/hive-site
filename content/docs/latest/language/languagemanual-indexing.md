@@ -30,10 +30,10 @@ Hive indexing was added in version 0.7.0, and bitmap indexing was added in versi
 
 Documentation and examples of how to use Hive indexes can be found here:
 
-* [Indexes](https://cwiki.apache.org/confluence/display/Hive/IndexDev) – design document (lists indexing JIRAs with current status, starting with [HIVE-417](https://issues.apache.org/jira/browse/HIVE-417))
-* [Create/Drop/Alter Index]({{< ref "#create/drop/alter-index" >}}) – [HiveQL Language Manual DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
-* [Show Indexes](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-ShowIndexes) – [HiveQL Language Manual DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
-* [Bitmap indexes](https://cwiki.apache.org/confluence/display/Hive/IndexDev+Bitmap) – added in Hive version 0.8.0 ([HIVE-1803](https://issues.apache.org/jira/browse/HIVE-1803))
+* [Indexes](https://hive.apache.org/development/desingdocs/indexdev) – design document (lists indexing JIRAs with current status, starting with [HIVE-417](https://issues.apache.org/jira/browse/HIVE-417))
+* [Create/Drop/Alter Index]({{< ref "#create/drop/alter-index" >}}) – [HiveQL Language Manual DDL](https://hive.apache.org/docs/latest/language/languagemanual-ddl)
+* [Show Indexes](https://hive.apache.org/docs/latest/language/languagemanual-ddl#show-indexes) – [HiveQL Language Manual DDL](https://hive.apache.org/docs/latest/language/languagemanual-ddl)
+* [Bitmap indexes](https://hive.apache.org/development/desingdocs/indexdev-bitmap) – added in Hive version 0.8.0 ([HIVE-1803](https://issues.apache.org/jira/browse/HIVE-1803))
 * [Indexed Hive](http://www.slideshare.net/NikhilDeshpande/indexed-hive) – overview and examples by Prafulla Tekawade and Nikhil Deshpande, October 2010
 * [Tutorial: SQL-like join and index with MapReduce using Hadoop and Hive](http://asheeshgarg.blogspot.com/2012/04/sql-like-join-and-index-with-mr-using.html) – blog by Ashish Garg, April 2012
 

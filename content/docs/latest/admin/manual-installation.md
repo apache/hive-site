@@ -461,7 +461,7 @@ You can begin using Hive as soon as it is installed, it should be work on you co
 
 ## Beeline CLI
 
-HiveServer2 has a CLI called Beeline (see [Beeline – New Command Line Shell](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell)). To use Beeline, execute the following command in the Hive home directory:
+HiveServer2 has a CLI called Beeline (see [Beeline – New Command Line Shell](https://hive.apache.org/docs/latest/user/hiveserver2-clients#beeline--command-line-shell)). To use Beeline, execute the following command in the Hive home directory:
 
 ```
 $ bin/beeline

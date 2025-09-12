@@ -29,11 +29,11 @@ There are a number of challenges posed by both Hive and Hive SQL that can make i
 
 # Modularisation
 
-By modularising processes implemented using Hive they become easier to test effectively and more resilient to change. Although Hive provides a number of vectors for modularisation it is not always clear how a large process can be decomposed. Features for encapsulation of query logic into components is separated into two perpendicular concerns: column level logic, and set level logic. Column level logic refers to the expressions applied to individual columns or groups of columns in the query, commonly described as ‘functions’. Set level logic concerns Hive SQL constructs that manipulate groupings of data such as: column projection with `SELECT`, `GROUP BY` aggregates, `JOIN`s, `ORDER BY` sorting, etc. In either case we expect individual components to live in their own source file or deployable artifact and imported as needed by the composition. For Hive SQL-based components, the `[SOURCE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli#LanguageManualCli-HiveInteractiveShellCommands)` command provides this functionality.
+By modularising processes implemented using Hive they become easier to test effectively and more resilient to change. Although Hive provides a number of vectors for modularisation it is not always clear how a large process can be decomposed. Features for encapsulation of query logic into components is separated into two perpendicular concerns: column level logic, and set level logic. Column level logic refers to the expressions applied to individual columns or groups of columns in the query, commonly described as ‘functions’. Set level logic concerns Hive SQL constructs that manipulate groupings of data such as: column projection with `SELECT`, `GROUP BY` aggregates, `JOIN`s, `ORDER BY` sorting, etc. In either case we expect individual components to live in their own source file or deployable artifact and imported as needed by the composition. For Hive SQL-based components, the `[SOURCE](https://hive.apache.org/docs/latest/language/languagemanual-cli#hive-interactive-shell-commands)` command provides this functionality.
 
 ### Encapsulation of column level logic
 
-In the case of column level logic Hive provides both [UDFs](https://cwiki.apache.org/confluence/display/Hive/HivePlugins#HivePlugins-CreatingCustomUDFs) and [macros]({{< ref "#macros" >}}) that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample `SELECT` statements.
+In the case of column level logic Hive provides both [UDFs](https://hive.apache.org/docs/latest/language/hiveplugins#creating-custom-udfs) and [macros]({{< ref "#macros" >}}) that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample `SELECT` statements.
 
 ### Encapsulation of set level logic
 
@@ -100,9 +100,9 @@ The following Hive specific practices can be used to make processes more amenabl
 
 * Modularise large or complex queries into multiple smaller components. These are easier to comprehend, maintain, and test.
 * Use macros or UDFs to encapsulate repeated or complex column expressions.
-* Use [Hive variables](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VariableSubstitution) to decouple SQL scripts from specific environments. For example it might be wise to use `LOCATION ${myTableLocation}` in preference to `LOCATION /hard/coded/path`.
+* Use [Hive variables](https://hive.apache.org/docs/latest/language/languagemanual-variablesubstitution) to decouple SQL scripts from specific environments. For example it might be wise to use `LOCATION ${myTableLocation}` in preference to `LOCATION /hard/coded/path`.
 * Keep the scope of tests small. Making coarse assertions on the entire contents of a table is brittle and has a high maintenance requirement.
-* Use the `[SOURCE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli#LanguageManualCli-HiveInteractiveShellCommands)` command to combine multiple smaller SQL scripts.
+* Use the `[SOURCE](https://hive.apache.org/docs/latest/language/languagemanual-cli#hive-interactive-shell-commands)` command to combine multiple smaller SQL scripts.
 * Test macros and the integration of UDFs by creating simple test tables and applying the functions to columns in those tables.
 * Test UDFs by invoking the lifecycle methods directly (`initialize`, `evaluate`, etc.) in a standard testing framework such as JUnit.
 
