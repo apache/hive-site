@@ -223,7 +223,7 @@ where a value is either null or any valid SQL literal
 
 * Each row listed in the VALUES clause is inserted into table *tablename*.
 * Values must be provided for every column in the table. The standard SQL syntax that allows the user to insert values into only some columns is not yet supported. To mimic the standard SQL, nulls can be provided for columns the user does not wish to assign a value to.
-* Dynamic partitioning is supported in the same way as for [INSERT...SELECT](https://hive.apache.org/docs/latest/language/languagemanual-dml#LanguageManualDML-DynamicPartitionInserts).
+* Dynamic partitioning is supported in the same way as for [INSERT...SELECT](https://hive.apache.org/docs/latest/language/languagemanual-dml#dynamic-partition-inserts).
 * If the table being inserted into supports [ACID]({{< ref "hive-transactions" >}}) and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.
 * Hive does not support literals for complex types (array, map, struct, union), so it is not possible to use them in INSERT INTO...VALUES clauses. This means that the user cannot insert data into a complex datatype column using the INSERT INTO...VALUES clause.
 

@@ -103,7 +103,7 @@ The Types are organized in the following hierarchy (where the parent is a super 
 
 This type hierarchy defines how the types are implicitly converted in the query language. Implicit conversion is allowed for types from child to an ancestor. So when a query expression expects type1 and the data is of type2, type2 is implicitly converted to type1 if type1 is an ancestor of type2 in the type hierarchy. Note that the type hierarchy allows the implicit conversion of STRING to DOUBLE.
 
-Explicit type conversion can be done using the cast operator as shown in the [#Built In Functions](https://hive.apache.org/docs/latest/user/tutorial#Tutorial-BuiltInFunctions) section below.
+Explicit type conversion can be done using the cast operator as shown in the [#Built In Functions](https://hive.apache.org/docs/latest/user/tutorial#built-in-functions) section below.
 
 ### Complex Types
 

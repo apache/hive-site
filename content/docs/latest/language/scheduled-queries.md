@@ -61,7 +61,7 @@ Schedules can be specified using CRON expressions or for common cases there is a
 
 ### CRON based schedule syntax
 
-**CRON [<quartz_schedule_expression>](https://cwiki.apache.org/confluence/display/Hive/Scheduled+Queries#ScheduledQueries-quartz_schedule_expression)**
+**CRON <quartz_schedule_expression>**
 
 where quartz_schedule_expression is quoted schedule in the Quartz format
 
