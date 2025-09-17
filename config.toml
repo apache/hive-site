@@ -35,7 +35,6 @@ theme = 'hive'
     privacyPolicy = "/general/privacypolicy/"
     designDocs = "/development/desingdocs/"
     hiveJira = "https://issues.apache.org/jira/projects/HIVE/issues"
-    precommit = "https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing"
     faq = "https://hive.apache.org/community/resources/hivedeveloperfaq"
     vcs = "/development/versioncontrol/"
     committer = "/community/becomingcommitter/"

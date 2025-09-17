@@ -529,8 +529,6 @@ An Eclipse launch template remains to be defined.
 | [Improvement](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [HIVE-13315](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro) | [Option to reuse existing restored HBase snapshots](https://issues.apache.org/jira/browse/HIVE-13315?src=confmacro)  | Sushanth Sowmyan | Liyin Tang | Major | Open | Unresolved | Mar 19, 2016 | Mar 19, 2016 |  |
 | [Bug](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HIVE-11327](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro) | [HiveQL to HBase - Predicate Pushdown for composite key not working](https://issues.apache.org/jira/browse/HIVE-11327?src=confmacro)  | Unassigned | Yannik Zuehlke | Blocker | Open | Unresolved | Jul 21, 2015 | Jul 26, 2015 |  |
 
-[Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 
 Showing 20 out of
 [80 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22HBase%20Handler%22%29%20and%20Resolution%20=%20unresolved&tempMax=1000&src=confmacro) 
