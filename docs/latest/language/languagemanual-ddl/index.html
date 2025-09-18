@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -437,7 +437,7 @@ Last updated: December 12, 2024
 
 </code></pre><p>The uses of SCHEMA and DATABASE are interchangeable – they mean the same thing. CREATE DATABASE was added in Hive 0.6 (<a href=https://issues.apache.org/jira/browse/HIVE-675>HIVE-675</a>).  The WITH DBPROPERTIES clause was added in Hive 0.7 (<a href=https://issues.apache.org/jira/browse/HIVE-1836>HIVE-1836</a>).</p>
 <p>MANAGEDLOCATION was added to database in Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-22995>HIVE-22995</a>). LOCATION now refers to the default directory for external tables and MANAGEDLOCATION refers to the default directory for managed tables. Its recommended that MANAGEDLOCATION be within metastore.warehouse.dir so all managed tables have a common root where common governance policies. It can be used with metastore.warehouse.tenant.colocation to have it point to a directory outside the warehouse root directory to have a tenant based common root where quotas and other policies can be set. </p>
-<p>REMOTE databases were added in Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a>) for support for Data connectors. See documentation for <a href=https://cwiki.apache.org/confluence/display/Hive/Data+Connectors+in+Hive>Data connectors</a>. </p>
+<p>REMOTE databases were added in Hive 4.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-24396>HIVE-24396</a>) for support for Data connectors. See documentation for <a href=https://hive.apache.org/docs/latest/user/data-connectors-in-hive>Data connectors</a>. </p>
 <h3 id=drop-database>Drop Database</h3>
 <pre tabindex=0><code>DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];
 
@@ -472,7 +472,7 @@ USE DEFAULT;
 <p>TYPE - Type of the remote datasource this connector connects to. for example MYSQL. The type determines the Driver class and any other params specific to this datasource.</p>
 <p>URL - URL of the remote datasource. In case of JDBC datasource, it would be the JDBC connection URL. For hive types, it would be the thrift URL.</p>
 <p>COMMENT - A short description for this connector.</p>
-<p>DCPROPERTIES: Contains a set of name/value pairs that are set for the connector. The credentials for the remote datasource are specified as part of the DCPROPERTIES as documented in the <a href=https://cwiki.apache.org/confluence/display/Hive/JDBC+Storage+Handler>JDBC Storage Handler</a> docs. All properties that start with a prefix of &ldquo;hive.sql&rdquo; are added to the tables mapped by this connector.</p>
+<p>DCPROPERTIES: Contains a set of name/value pairs that are set for the connector. The credentials for the remote datasource are specified as part of the DCPROPERTIES as documented in the <a href=https://hive.apache.org/docs/latest/user/jdbc-storage-handler>JDBC Storage Handler</a> docs. All properties that start with a prefix of &ldquo;hive.sql&rdquo; are added to the tables mapped by this connector.</p>
 <h3 id=drop-connector>Drop Connector</h3>
 <pre tabindex=0><code>DROP CONNECTOR [IF EXISTS] connector_name;
 
@@ -630,7 +630,7 @@ constraint_specification:
 <li>To specify a database for the table, either issue the <a href=#use-database_name>USE database_name</a> statement prior to the CREATE TABLE statement (in <a href=https://issues.apache.org/jira/browse/HIVE-675>Hive 0.6</a> and later) or qualify the table name with a database name ("<code>database_name.table.name</code>" in <a href=https://issues.apache.org/jira/browse/HIVE-1517>Hive 0.7</a> and later).<br>
 The keyword &ldquo;<code>default</code>&rdquo; can be used for the default database.</li>
 </ul>
-<p>See <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterTable>Alter Table</a> below for more information about table comments, table properties, and SerDe properties.</p>
+<p>See <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl#alter-table>Alter Table</a> below for more information about table comments, table properties, and SerDe properties.</p>
 <p>See <a href=#type-system>Type System</a> and <a href=https://hive.apache.org/docs/latest/language/languagemanual-types/>Hive Data Types</a> for details about the primitive and complex data types.</p>
 <h4 id=managed-and-external-tables>Managed and External Tables</h4>
 <p>By default Hive creates managed tables, where files, metadata and statistics are managed by internal Hive processes. For details on the differences between managed and external table see <a href=https://hive.apache.org/docs/latest/language/managed-vs-external-tables/>Managed vs. External Tables</a>.</p>
@@ -694,7 +694,7 @@ Use the SERDE clause to create a table with a custom SerDe. For more information
 </ul>
 <p>You must specify a list of columns for tables that use a native SerDe. Refer to the <a href=https://hive.apache.org/docs/latest/language/languagemanual-types/>Types</a> part of the User Guide for the allowable column types.<br>
 A list of columns for tables that use a custom SerDe may be specified but Hive will query the SerDe to determine the actual list of columns for this table.</p>
-<p>For general information about SerDes, see <a href=https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-HiveSerDe>Hive SerDe</a> in the Developer Guide. Also see <a href=https://cwiki.apache.org/confluence/display/Hive/SerDe>SerDe</a> for details about input and output processing.</p>
+<p>For general information about SerDes, see <a href=https://hive.apache.org/community/resources/developerguide#hive-serde>Hive SerDe</a> in the Developer Guide. Also see <a href=https://hive.apache.org/docs/latest/user/serde>SerDe</a> for details about input and output processing.</p>
 <p>To change a table&rsquo;s SerDe or SERDEPROPERTIES, use the ALTER TABLE statement as described below in <a href=#add-serde-properties>Add SerDe Properties</a>.</p>
 <table>
 <thead>
@@ -714,7 +714,7 @@ A list of columns for tables that use a custom SerDe may be specified but Hive w
 </tr>
 <tr>
 <td><strong>CSV/TSV</strong>ROW FORMAT SERDE &lsquo;org.apache.hadoop.hive.serde2.OpenCSVSerde&rsquo; STORED AS TEXTFILE</td>
-<td>Stored as plain text file in CSV / TSV format. The CSVSerde is available in <a href=https://issues.apache.org/jira/browse/HIVE-7777>Hive 0.14</a> and greater.The following example creates a TSV (Tab-separated) file.<code>CREATE` `TABLE` `my_table(a string, b string, ...)`ROW FORMAT SERDE</code>&lsquo;org.apache.hadoop.hive.serde2.OpenCSVSerde&rsquo;<code>WITH` `SERDEPROPERTIES (</code>&ldquo;separatorChar&rdquo;<code> </code>=<code>"\t"</code>,<code>"quoteChar"`     `=</code>"'"<code>,</code>&ldquo;escapeChar&rdquo;<code>    </code>=<code>"\\"</code>)<code>STORED</code>AS<code> </code>TEXTFILE;<code>Default properties for SerDe is Comma-Separated (CSV) file </code>DEFAULT_ESCAPE_CHARACTER `<code>DEFAULT_QUOTE_CHARACTER  "``DEFAULT_SEPARATOR        ,</code>This SerDe works for most CSV data, but does not handle embedded newlines. To use the SerDe, specify the fully qualified class name org.apache.hadoop.hive.serde2.OpenCSVSerde.  Documentation is based on original documentation at <a href=https://github.com/ogrodnek/csv-serde>https://github.com/ogrodnek/csv-serde</a>.<strong>Limitations</strong>This SerDe treats all columns to be of type String. Even if you create a table with non-string column types using this SerDe, the DESCRIBE TABLE output would show string column type. The type information is retrieved from the SerDe. To convert columns to the desired type in a table, you can create a view over the table that does the CAST to the desired type.The CSV SerDe is based on <a href=https://github.com/ogrodnek/csv-serde>https://github.com/ogrodnek/csv-serde</a>, and was added to the Hive distribution in <a href=https://issues.apache.org/jira/browse/HIVE-7777>HIVE-7777</a>.The CSVSerde has been built and tested against Hive 0.14 and later, and uses <a href=http://opencsv.sourceforge.net/>Open-CSV</a> 2.3 which is bundled with the Hive distribution.For general information about SerDes, see <a href=https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-HiveSerDe>Hive SerDe</a> in the Developer Guide. Also see <a href=https://cwiki.apache.org/confluence/display/Hive/SerDe>SerDe</a> for details about input and output processing.</td>
+<td>Stored as plain text file in CSV / TSV format. The CSVSerde is available in <a href=https://issues.apache.org/jira/browse/HIVE-7777>Hive 0.14</a> and greater.The following example creates a TSV (Tab-separated) file.<code>CREATE` `TABLE` `my_table(a string, b string, ...)`ROW FORMAT SERDE</code>&lsquo;org.apache.hadoop.hive.serde2.OpenCSVSerde&rsquo;<code>WITH` `SERDEPROPERTIES (</code>&ldquo;separatorChar&rdquo;<code> </code>=<code>"\t"</code>,<code>"quoteChar"`     `=</code>"'"<code>,</code>&ldquo;escapeChar&rdquo;<code>    </code>=<code>"\\"</code>)<code>STORED</code>AS<code> </code>TEXTFILE;<code>Default properties for SerDe is Comma-Separated (CSV) file </code>DEFAULT_ESCAPE_CHARACTER `<code>DEFAULT_QUOTE_CHARACTER  "``DEFAULT_SEPARATOR        ,</code>This SerDe works for most CSV data, but does not handle embedded newlines. To use the SerDe, specify the fully qualified class name org.apache.hadoop.hive.serde2.OpenCSVSerde.  Documentation is based on original documentation at <a href=https://github.com/ogrodnek/csv-serde>https://github.com/ogrodnek/csv-serde</a>.<strong>Limitations</strong>This SerDe treats all columns to be of type String. Even if you create a table with non-string column types using this SerDe, the DESCRIBE TABLE output would show string column type. The type information is retrieved from the SerDe. To convert columns to the desired type in a table, you can create a view over the table that does the CAST to the desired type.The CSV SerDe is based on <a href=https://github.com/ogrodnek/csv-serde>https://github.com/ogrodnek/csv-serde</a>, and was added to the Hive distribution in <a href=https://issues.apache.org/jira/browse/HIVE-7777>HIVE-7777</a>.The CSVSerde has been built and tested against Hive 0.14 and later, and uses <a href=http://opencsv.sourceforge.net/>Open-CSV</a> 2.3 which is bundled with the Hive distribution.For general information about SerDes, see <a href=https://hive.apache.org/community/resources/developerguide#hive-serde>Hive SerDe</a> in the Developer Guide. Also see <a href=https://hive.apache.org/docs/latest/user/serde>SerDe</a> for details about input and output processing.</td>
 </tr>
 </tbody>
 </table>
@@ -857,7 +857,7 @@ LIKE key_value_store [TBLPROPERTIES (property_name=property_value, ...)];
 </code></pre><h4 id=transactional-tables>Transactional Tables</h4>
 <p>Version information</p>
 <p>As of Hive 4.0 (<a href=https://issues.apache.org/jira/browse/HIVE-18453>HIVE-18453</a>).</p>
-<p>A table that supports operations with ACID semantics. See <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions>this</a> for more details about transactional tables.</p>
+<p>A table that supports operations with ACID semantics. See <a href=https://hive.apache.org/docs/latest/user/hive-transactions>this</a> for more details about transactional tables.</p>
 <p><strong>Example:</strong></p>
 <pre tabindex=0><code>CREATE TRANSACTIONAL TABLE transactional_table_test(key string, value string) PARTITIONED BY(ds string) STORED AS ORC;
 </code></pre><h4 id=constraints>Constraints</h4>
@@ -1177,7 +1177,7 @@ ALTER TABLE table_name [PARTITION partition_spec] ENABLE|DISABLE OFFLINE;
 <h4 id=alter-tablepartition-compact>Alter Table/Partition Compact</h4>
 <p>Version information</p>
 <p>In Hive release <a href=https://issues.apache.org/jira/browse/HIVE-5317>0.13.0</a> and later when <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>transactions</a> are being used, the ALTER TABLE statement can request <a href=#compaction>compaction</a> of a table or partition.<br>
-As of Hive release <a href=https://issues.apache.org/jira/browse/HIVE-13354>1.3.0 and 2.1.0</a> when <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>transactions</a> are being used, the ALTER TABLE &mldr; COMPACT statement can include a <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>TBLPROPERTIES</a> clause that is either to change compaction MapReduce job properties or to overwrite any other Hive table properties. More details can be found <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>here</a>.<br>
+As of Hive release <a href=https://issues.apache.org/jira/browse/HIVE-13354>1.3.0 and 2.1.0</a> when <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>transactions</a> are being used, the ALTER TABLE &mldr; COMPACT statement can include a <a href=https://hive.apache.org/docs/latest/user/hive-transactions#table-properties>TBLPROPERTIES</a> clause that is either to change compaction MapReduce job properties or to overwrite any other Hive table properties. More details can be found <a href=https://hive.apache.org/docs/latest/user/hive-transactions#table-properties>here</a>.<br>
 As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27056?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0-alpha-2">4.0.0-alpha-2</a> <a href=https://hive.apache.org/docs/latest/language/compaction-pooling/>compaction pooling</a> is available.<br>
 As of Hive release <a href="https://issues.apache.org/jira/browse/HIVE-27094?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0">4.0.0</a> <a href=https://hive.apache.org/docs/latest/user/rebalance-compaction/>rebalance compaction</a> is available.</p>
 <pre tabindex=0><code>ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])]
@@ -1287,9 +1287,9 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name
 <p>A CREATE VIEW statement will fail if the view&rsquo;s defining SELECT expression is invalid.</p>
 <p>Note that a view is a purely logical object with no associated storage. When a query references a view, the view&rsquo;s definition is evaluated in order to produce a set of rows for further processing by the query. (This is a conceptual description; in fact, as part of query optimization, Hive may combine the view&rsquo;s definition with the query&rsquo;s, e.g. pushing filters from the query down into the view.)</p>
 <p>A view&rsquo;s schema is frozen at the time the view is created; subsequent changes to underlying tables (e.g. adding a column) will not be reflected in the view&rsquo;s schema. If an underlying table is dropped or changed in an incompatible fashion, subsequent attempts to query the invalid view will fail.</p>
-<p>Views are read-only and may not be used as the target of LOAD/INSERT/ALTER. For changing metadata, see <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-AlterViewProperties>ALTER VIEW</a>.</p>
+<p>Views are read-only and may not be used as the target of LOAD/INSERT/ALTER. For changing metadata, see <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl#alter-view-properties>ALTER VIEW</a>.</p>
 <p>A view may contain ORDER BY and LIMIT clauses. If a referencing query also contains these clauses, the query-level clauses are evaluated <strong>after</strong> the view clauses (and after any other operations in the query). For example, if a view specifies LIMIT 5, and a referencing query is executed as (select * from v LIMIT 10), then at most 5 rows will be returned.</p>
-<p>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the view&rsquo;s select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select#LanguageManualSelect-SelectSyntax>SELECT syntax</a>. For examples of CTEs in CREATE VIEW statements, see <a href=https://cwiki.apache.org/confluence/display/Hive/Common+Table+Expression#CommonTableExpression-CTEinViews,CTAS,andInsertStatements>Common Table Expression</a>.</p>
+<p>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the view&rsquo;s select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://hive.apache.org/docs/latest/language/languagemanual-select#select-syntax>SELECT syntax</a>. For examples of CTEs in CREATE VIEW statements, see <a href=https://hive.apache.org/docs/latest/language/common-table-expression#cte-in-views-ctas-and-insert-statements>Common Table Expression</a>.</p>
 <p><strong>Example:</strong></p>
 <pre tabindex=0><code>CREATE VIEW onion_referrers(url COMMENT 'URL of Referring page')
   COMMENT 'Referrers to The Onion website'
@@ -1728,7 +1728,7 @@ SHOW LOCKS (DATABASE|SCHEMA) database_name;     -- (Note: Hive 0.13.0 and later;
 <p>Version information</p>
 <p>As of <a href=https://issues.apache.org/jira/browse/HIVE-6460>Hive 0.13.0</a> (see <a href=#hive-transactions>Hive Transactions</a>).</p>
 <pre tabindex=0><code>SHOW COMPACTIONS [DATABASE.][TABLE] [PARTITION (&lt;partition_spec&gt;)] [POOL_NAME] [TYPE] [STATE] [ORDER BY `start` DESC] [LIMIT 10];
-</code></pre><p><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-SHOWCOMPACTIONS>SHOW COMPACTIONS</a> returns a list of all compaction requests currently being <a href=#processed>processed</a> or scheduled, including this information:</p>
+</code></pre><p><a href=https://hive.apache.org/docs/latest/user/hive-transactions#show-compactions>SHOW COMPACTIONS</a> returns a list of all compaction requests currently being <a href=#processed>processed</a> or scheduled, including this information:</p>
 <ul>
 <li>&ldquo;CompactionId&rdquo; - unique internal id (As of <a href=https://issues.apache.org/jira/browse/HIVE-16084>Hive 3.0</a>)</li>
 <li>&ldquo;Database&rdquo; - Hive database name</li>

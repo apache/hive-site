@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -353,7 +353,7 @@ ALTER TABLE druid_kafka_test SET TBLPROPERTIES('druid.kafka.ingestion' = 'RESET'
 <p><strong>For versions 3.0.0+, All Druid tables are EXTERNAL (<a href=https://issues.apache.org/jira/browse/HIVE-20085>HIVE-20085</a>) and these statements are supported for any table.</strong></p>
 <p><strong>Querying Druid from Hive</strong></p>
 <p>Once we have created our first table stored in Druid using the <code>DruidStorageHandler</code>, we are ready to execute our queries against Druid.</p>
-<p>When we express a query over a Druid table, Hive tries to <em>rewrite</em> the query to be executed efficiently by pushing as much computation as possible to Druid. This task is accomplished by the <a href=https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive>cost optimizer</a> based in <a href=http://calcite.apache.org/>Apache Calcite</a>, which identifies patterns in the plan and apply rules to rewrite the input query into a new equivalent query with (hopefully) more operations executed in Druid.</p>
+<p>When we express a query over a Druid table, Hive tries to <em>rewrite</em> the query to be executed efficiently by pushing as much computation as possible to Druid. This task is accomplished by the <a href=https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive>cost optimizer</a> based in <a href=http://calcite.apache.org/>Apache Calcite</a>, which identifies patterns in the plan and apply rules to rewrite the input query into a new equivalent query with (hopefully) more operations executed in Druid.</p>
 <p>In particular, we implemented our extension to the optimizer in <a href=https://issues.apache.org/jira/browse/HIVE-14217>HIVE-14217</a>, which builds upon the work initiated in <a href=https://issues.apache.org/jira/browse/CALCITE-1121>CALCITE-1121</a>, and extends its logic to identify more complex query patterns (<em>timeseries</em> queries), translate filters on the <em>time</em> dimension to Druid intervals, push limit into Druid <em>select</em> queries, etc.</p>
 <p>Currently, we support the recognition of <em>timeseries</em>, <em>groupBy,</em> and s<strong>elect</strong> queries.</p>
 <p>Once we have completed the optimization, the (sub)plan of operators that needs to be executed by Druid is translated into a valid Druid JSON query, and passed as a property to the Hive physical TableScan operator. The Druid query will be executed within the TableScan operator, which will generate the records out of the Druid query results.</p>

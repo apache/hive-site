@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -207,8 +207,8 @@ Last updated: December 12, 2024
 <li><a href=#remote-metastore-server>Remote Metastore Server</a></li>
 </ul>
 <h4 id=basic-configuration-parameters>Basic Configuration Parameters</h4>
-<p>The relevant configuration parameters are shown here. (Non-metastore parameters are described in <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration>Configuring Hive</a>. Also see the Language Manual&rsquo;s <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties>Hive Configuration Properties</a>, including <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-MetaStore>Metastore</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a>.)</p>
-<p>Also see hivemetastore-site.xml documentation under <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+Configuration>Configuring Hive</a>.</p>
+<p>The relevant configuration parameters are shown here. (Non-metastore parameters are described in <a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration>Configuring Hive</a>. Also see the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/user/configuration-properties>Hive Configuration Properties</a>, including <a href=https://hive.apache.org/docs/latest/user/configuration-properties#metastore>Metastore</a> and <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security>Hive Metastore Security</a>.)</p>
+<p>Also see hivemetastore-site.xml documentation under <a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration>Configuring Hive</a>.</p>
 <table>
 <thead>
 <tr>
@@ -241,7 +241,7 @@ Last updated: December 12, 2024
 </table>
 <p>The Hive metastore is stateless and thus there can be multiple instances to achieve High Availability. Using <code>hive.metastore.uris</code> it is possible to specify multiple remote metastores. Hive will use the first one from the list by default but will pick a random one on connection failure and will try to reconnect.</p>
 <h4 id=additional-configuration-parameters>Additional Configuration Parameters</h4>
-<p>The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the <code>HiveConf</code> Java class for current Hive configuration options, and see the <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-MetaStore>Metastore</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a> sections of the Language Manual&rsquo;s <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties>Hive Configuration Properties</a> for user-friendly descriptions of the metastore parameters.</p>
+<p>The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the <code>HiveConf</code> Java class for current Hive configuration options, and see the <a href=https://hive.apache.org/docs/latest/user/configuration-properties#metastore>Metastore</a> and <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security>Hive Metastore Security</a> sections of the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/user/configuration-properties>Hive Configuration Properties</a> for user-friendly descriptions of the metastore parameters.</p>
 <table>
 <thead>
 <tr>
@@ -352,7 +352,7 @@ Last updated: December 12, 2024
 </tr>
 </tbody>
 </table>
-<p>If you want to run Derby as a network server so the metastore can be accessed from multiple nodes, see <a href=https://cwiki.apache.org/confluence/display/Hive/HiveDerbyServerMode>Hive Using Derby in Server Mode</a>.</p>
+<p>If you want to run Derby as a network server so the metastore can be accessed from multiple nodes, see <a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode>Hive Using Derby in Server Mode</a>.</p>
 <h3 id=remote-metastore-database>Remote Metastore Database</h3>
 <p>In this configuration, you would use a traditional standalone RDBMS server. The following example configuration will set up a metastore in a MySQL server. This configuration of metastore database is recommended for any real use.</p>
 <table>

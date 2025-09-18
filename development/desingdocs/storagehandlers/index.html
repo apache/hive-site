@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -181,7 +181,7 @@ Last updated: December 12, 2024
 </ul>
 <h2 id=introduction>Introduction</h2>
 <p>This page documents the storage handler support being added to Hive as part of work on <a href=https://hive.apache.org/docs/latest/user/hbaseintegration/>HBaseIntegration</a>. The motivation is to make it possible to allow Hive to access data stored and managed by other systems in a modular, extensible fashion.</p>
-<p>Besides HBase, a storage handler implementation is also available for <a href=http://code.google.com/p/hypertable/wiki/HiveExtension>Hypertable</a>, and others are being developed for <a href=https://issues.apache.org/jira/browse/HIVE-1434>Cassandra</a>, <a href=https://blogs.msdn.microsoft.com/mostlytrue/2014/04/04/analyzing-azure-table-storage-data-with-hdinsight/>Azure Table</a>, <a href=https://cwiki.apache.org/confluence/display/Hive/JdbcStorageHandler>JDBC</a> (MySQL and others), <a href=https://github.com/yc-huang/Hive-mongo>MongoDB</a>, <a href=https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html>ElasticSearch</a>, <a href="https://phoenix.apache.org/hive_storage_handler.html?platform=hootsuite">Phoenix HBase</a>, <a href="https://issues.voltdb.com/browse/ENG-10736?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel">VoltDB</a> and <a href=https://github.com/balshor/gdata-storagehandler>Google Spreadsheets</a>.  A <a href=https://github.com/HiveKa/HiveKa>Kafka handler</a> demo is available.</p>
+<p>Besides HBase, a storage handler implementation is also available for <a href=http://code.google.com/p/hypertable/wiki/HiveExtension>Hypertable</a>, and others are being developed for <a href=https://issues.apache.org/jira/browse/HIVE-1434>Cassandra</a>, <a href=https://blogs.msdn.microsoft.com/mostlytrue/2014/04/04/analyzing-azure-table-storage-data-with-hdinsight/>Azure Table</a>, <a href=https://hive.apache.org/docs/latest/user/jdbc-storage-handler>JDBC</a> (MySQL and others), <a href=https://github.com/yc-huang/Hive-mongo>MongoDB</a>, <a href=https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html>ElasticSearch</a>, <a href="https://phoenix.apache.org/hive_storage_handler.html?platform=hootsuite">Phoenix HBase</a>, <a href="https://issues.voltdb.com/browse/ENG-10736?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel">VoltDB</a> and <a href=https://github.com/balshor/gdata-storagehandler>Google Spreadsheets</a>.  A <a href=https://github.com/HiveKa/HiveKa>Kafka handler</a> demo is available.</p>
 <p>Hive storage handler support builds on existing extensibility features in both Hadoop and Hive:</p>
 <ul>
 <li>input formats</li>
@@ -214,7 +214,7 @@ Last updated: December 12, 2024
   [LOCATION hdfs_path]
   [AS select_statement]
 
-</code></pre><p>When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from <a href=https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration>Hive 4.0</a>, they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.</p>
+</code></pre><p>When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from <a href=https://hive.apache.org/docs/latest/user/hive-iceberg-integration>Hive 4.0</a>, they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.</p>
 <p>See <a href=#create-table>CREATE TABLE</a> and <a href=#row-format,-storage-format,-and-serde>Row Format, Storage Format, and SerDe</a> for more information.</p>
 <p>Example:</p>
 <pre tabindex=0><code>CREATE TABLE hbase_table_1(key int, value string) 

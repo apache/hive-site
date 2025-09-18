@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -221,7 +221,7 @@ Last updated: December 12, 2024
 <h2 id=management-of-materialized-views-in-hive>Management of materialized views in Hive</h2>
 <p>In this section, we present the main operations that are currently present in Hive for materialized views management.</p>
 <h3 id=materialized-views-creation>Materialized views creation</h3>
-<p>The syntax to create a materialized view in Hive is very similar to the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-CreateTableAsSelect(CTAS)>CTAS statement</a> syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.</p>
+<p>The syntax to create a materialized view in Hive is very similar to the <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl#create-table-as-select-ctas>CTAS statement</a> syntax, supporting common features such as partition columns, custom storage handler, or passing table properties.</p>
 <pre tabindex=0><code>CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
   [DISABLE REWRITE]
   [COMMENT materialized_view_comment]
@@ -239,7 +239,7 @@ AS
 </code></pre><p>When a materialized view is created, its contents will be automatically populated by the results of executing the query in the statement. The materialized view creation statement is atomic, meaning that the materialized view is not seen by other users until all query results are populated.</p>
 <p>By default, materialized views are usable for query rewriting by the optimizer, while the <code>DISABLE REWRITE</code> option can be used to alter this behavior at materialized view creation time.</p>
 <p>The default values for SerDe and storage format when they are not specified in the materialized view creation statement (they are optional) are specified using the configuration properties <code>hive.materializedview.serde</code> and <code>hive.materializedview.fileformat</code>, respectively.</p>
-<p>Materialized views can be stored in external systems, e.g., <a href=https://cwiki.apache.org/confluence/display/Hive/Druid+Integration>Druid</a>, using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:</p>
+<p>Materialized views can be stored in external systems, e.g., <a href=https://hive.apache.org/docs/latest/user/druid-integration>Druid</a>, using custom storage handlers. For instance, the following statement creates a materialized view that is stored in Druid:</p>
 <p><strong>Example:</strong></p>
 <pre tabindex=0><code>CREATE MATERIALIZED VIEW druid_wiki_mv
 STORED AS 'org.apache.hadoop.hive.druid.DruidStorageHandler'

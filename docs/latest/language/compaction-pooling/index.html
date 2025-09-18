@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -176,7 +176,7 @@ Last updated: December 12, 2024
 <h4 id=automatic-pool-assignment>Automatic pool assignment</h4>
 <p>Databases, tables and partitions can be assigned to compaction pools through the</p>
 <pre tabindex=0><code>hive.compactor.worker.pool={pool_name}
-</code></pre><p><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TableProperties>Database/Table property</a>. If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set). <br>
+</code></pre><p><a href=https://hive.apache.org/docs/latest/user/hive-transactions#table-properties>Database/Table property</a>. If the property is set on Database level, it applies to all tables and partitions. The pool also can be assigned on a table/partition level, in this case it overrides the Database level value (if set). <br>
 If any of the above is set, it is used by the <em>Initiator</em> during the creation of the compaction requests.</p>
 <h4 id=manual-pool-assignment>Manual pool assignment</h4>
 <p>The compaction request also can be assigned to a pool by using the ALTER TABLE COMPACT command (E.g. manual compaction). If provided, this value overrides the <em>hive.compactor.worker.pool</em> value on any level.</p>

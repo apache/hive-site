@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -260,7 +260,7 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
 
 </code></pre><h3 id=building-hive-from-source>Building Hive from Source</h3>
 <p>The Hive GIT repository for the most recent Hive code is located here: <code>git clone &lt;https://git-wip-us.apache.org/repos/asf/hive.git></code> (the master branch).</p>
-<p>All release versions are in branches named &ldquo;branch-0.#&rdquo; or &ldquo;branch-1.#&rdquo; or the upcoming &ldquo;branch-2.#&rdquo;, with the exception of release 0.8.1 which is in &ldquo;branch-0.8-r2&rdquo;. Any branches with other names are feature branches for works-in-progress. See <a href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute#HowToContribute-UnderstandingHiveBranches>Understanding Hive Branches</a> for details.</p>
+<p>All release versions are in branches named &ldquo;branch-0.#&rdquo; or &ldquo;branch-1.#&rdquo; or the upcoming &ldquo;branch-2.#&rdquo;, with the exception of release 0.8.1 which is in &ldquo;branch-0.8-r2&rdquo;. Any branches with other names are feature branches for works-in-progress. See <a href=https://hive.apache.org/community/resources/howtocontribute#understanding-hive-branches>Understanding Hive Branches</a> for details.</p>
 <p>As of 0.13, Hive is built using <a href=http://maven.apache.org>Apache Maven</a>.</p>
 <h4 id=compile-hive-on-master>Compile Hive on master</h4>
 <p>To build the current Hive code from the master branch:</p>
@@ -407,7 +407,7 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
 <p>The logs are stored in the directory <code>/tmp/&lt;*user.name*></code>:</p>
 <ul>
 <li><code>/tmp/&lt;*user.name*>/hive.log</code><br>
-Note: In <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706478#GettingStarted-Hive,Map-ReduceandLocal-Mode">local mode</a>, prior to Hive 0.13.0 the log file name was &ldquo;<code>.log</code>&rdquo; instead of &ldquo;<code>hive.log</code>&rdquo;. This bug was fixed in release 0.13.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-5528>HIVE-5528</a> and <a href=https://issues.apache.org/jira/browse/HIVE-5676>HIVE-5676</a>).</li>
+Note: In <a href=https://hive.apache.org/development/gettingstarted-latest#GettingStarted-Hive,Map-ReduceandLocal-Mode>local mode</a>, prior to Hive 0.13.0 the log file name was &ldquo;<code>.log</code>&rdquo; instead of &ldquo;<code>hive.log</code>&rdquo;. This bug was fixed in release 0.13.0 (see <a href=https://issues.apache.org/jira/browse/HIVE-5528>HIVE-5528</a> and <a href=https://issues.apache.org/jira/browse/HIVE-5676>HIVE-5676</a>).</li>
 </ul>
 <p>To configure a different log location, set <code>hive.log.dir</code> in $HIVE_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (<code>chmod 1777 &lt;*dir*></code>).</p>
 <ul>
@@ -551,7 +551,7 @@ NOTE: partition columns if any are selected by the use of *. They can also be sp
 <pre tabindex=0><code>  hive&gt; FROM invites a INSERT OVERWRITE TABLE events SELECT TRANSFORM(a.foo, a.bar) AS (oof, rab) USING '/bin/cat' WHERE a.ds &gt; '2008-08-09';
 
 </code></pre><p>This streams the data in the map phase through the script <code>/bin/cat</code> (like Hadoop streaming).<br>
-Similarly – streaming can be used on the reduce side (please see the <a href=https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Custommap%2Freducescripts>Hive Tutorial</a> for examples).</p>
+Similarly – streaming can be used on the reduce side (please see the <a href=https://hive.apache.org/docs/latest/user/tutorial#custom-mapreduce-scripts>Hive Tutorial</a> for examples).</p>
 <h2 id=simple-example-use-cases>Simple Example Use Cases</h2>
 <h3 id=movielens-user-ratings>MovieLens User Ratings</h3>
 <p>First, create a table with tab-delimited text file format:</p>

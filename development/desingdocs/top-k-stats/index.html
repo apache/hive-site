@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -169,7 +169,7 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--column-level-top-k-statistics>Apache Hive : Column Level Top K Statistics</h1>
-<p>This document is an addition to <a href=https://cwiki.apache.org/confluence/display/Hive/StatsDev>Statistics in Hive</a>. It describes the support of collecting column level top K values for Hive tables (see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>).</p>
+<p>This document is an addition to <a href=https://hive.apache.org/development/desingdocs/statsdev>Statistics in Hive</a>. It describes the support of collecting column level top K values for Hive tables (see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>).</p>
 <aside class=table-of-contents>
 <nav id=TableOfContents>
 <ul>
@@ -192,7 +192,7 @@ Last updated: December 12, 2024
 </aside>
 <h2 id=scope>Scope</h2>
 <p>In addition to the partition statistics, column level top K values can also be estimated for Hive tables.<br>
-The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify <a href=https://cwiki.apache.org/confluence/display/Hive/ListBucketing>skew</a>. This works for both newly created and existing tables.<br>
+The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify <a href=https://hive.apache.org/development/desingdocs/listbucketing>skew</a>. This works for both newly created and existing tables.<br>
 The algorithm for computing top K is based on this paper: <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.114.9563&rep=rep1&type=pdf">Efficient Computation of Frequent and Top-k Elements in Data Streams</a>.</p>
 <h2 id=implementation>Implementation</h2>
 <p>Top K statistics are gathered along with partition level statistics. The interface IStatsAggregator needs to add a method aggregateStatsTopK() that reads multiple entries from the temporary storage:</p>

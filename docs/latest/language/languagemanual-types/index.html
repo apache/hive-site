@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -169,6 +169,7 @@ Last updated: December 12, 2024
 <li><a href=#varchar>Varchar</a></li>
 <li><a href=#char>Char</a></li>
 <li><a href=#timestamps>Timestamps</a></li>
+<li><a href=#dates>Dates</a></li>
 <li><a href=#intervals>Intervals</a></li>
 <li><a href=#decimals>Decimals</a></li>
 <li><a href=#union-types>Union Types</a></li>
@@ -211,6 +212,7 @@ Last updated: December 12, 2024
 <li><a href=#varchar>Varchar</a></li>
 <li><a href=#char>Char</a></li>
 <li><a href=#timestamps>Timestamps</a></li>
+<li><a href=#dates>Dates</a></li>
 <li><a href=#intervals>Intervals</a></li>
 <li><a href=#decimals>Decimals</a></li>
 <li><a href=#union-types>Union Types</a></li>
@@ -239,19 +241,19 @@ Last updated: December 12, 2024
 </ul>
 <h3 id=numeric-types>Numeric Types</h3>
 <ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-tinyint"><code>TINYINT</code></a> (1-byte signed integer, from <code>-128</code> to <code>127</code>)</li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-smallint"><code>SMALLINT</code></a> (2-byte signed integer, from <code>-32,768</code> to <code>32,767</code>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint><code>TINYINT</code></a> (1-byte signed integer, from <code>-128</code> to <code>127</code>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint><code>SMALLINT</code></a> (2-byte signed integer, from <code>-32,768</code> to <code>32,767</code>)</li>
 <li>
 <pre tabindex=0><code></code></pre></li>
 </ul>
-<p><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-int">INT</a>/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)</p>
-<pre tabindex=0><code>* [`BIGINT`](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-bigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
+<p><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint>INT</a>/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)</p>
+<pre tabindex=0><code>* [`BIGINT`](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
 * `FLOAT` (4-byte single precision floating point number)
 * `DOUBLE` (8-byte double precision floating point number)
 * ```
 DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-13556))
 </code></pre><ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-decimal"><code>DECIMAL</code></a>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#decimals><code>DECIMAL</code></a>
 <ul>
 <li>Introduced in Hive <a href=https://issues.apache.org/jira/browse/HIVE-2693>0.11.0</a> with a precision of 38 digits</li>
 <li>Hive <a href=https://issues.apache.org/jira/browse/HIVE-3976>0.13.0</a> introduced user-definable precision and scale</li>
@@ -261,15 +263,15 @@ DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0
 </ul>
 <h3 id=datetime-types>Date/Time Types</h3>
 <ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-timestamp"><code>TIMESTAMP</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-2272>0.8.0</a>)</li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-date"><code>DATE</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-4055>0.12.0</a>)</li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-Intervals"><code>INTERVAL</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-9792>1.2.0</a>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#timestamps><code>TIMESTAMP</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-2272>0.8.0</a>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#dates><code>DATE</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-4055>0.12.0</a>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#intervals><code>INTERVAL</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-9792>1.2.0</a>)</li>
 </ul>
 <h3 id=string-types>String Types</h3>
 <ul>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-string"><code>STRING</code></a></li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-varchar"><code>VARCHAR</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-4844>0.12.0</a>)</li>
-<li><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-char"><code>CHAR</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-5191>0.13.0</a>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#strings><code>STRING</code></a></li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#varchar><code>VARCHAR</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-4844>0.12.0</a>)</li>
+<li><a href=https://hive.apache.org/docs/latest/language/languagemanual-types#char><code>CHAR</code></a> (Note: Only available starting with Hive <a href=https://issues.apache.org/jira/browse/HIVE-5191>0.13.0</a>)</li>
 </ul>
 <h3 id=misc-types>Misc Types</h3>
 <ul>
@@ -346,7 +348,7 @@ All existing datetime <a href=#udfs>UDFs</a> (month, day, year, hour, etc.) wor
 <p>On the table level, alternative timestamp formats can be supported by providing the format to the <a href=#serde-property>SerDe property</a> &ldquo;timestamp.formats&rdquo; (as of release 1.2.0 with <a href=https://issues.apache.org/jira/browse/HIVE-9298>HIVE-9298</a>). For example, <code>yyyy-MM-dd'T'HH:mm:ss.SSS,yyyy-MM-dd'T'HH:mm:ss.</code></p>
 <p>Version</p>
 <p>Timestamps were introduced in Hive 0.8.0 (<a href=https://issues.apache.org/jira/browse/HIVE-2272>HIVE-2272</a>).</p>
-<p>Dates</p>
+<h3 id=dates>Dates</h3>
 <p><code>DATE</code> values describe a particular year/month/day, in the form <code>YYYY-­MM-­DD</code>. For example, DATE &lsquo;2013-­01-­01&rsquo;. Date types do not have a time of day component. The range of values supported for the Date type is 0000-­01-­01 to 9999-­12-­31, dependent on support by the primitive Java Date type.</p>
 <p>Version</p>
 <p>Dates were introduced in Hive 0.12.0 (<a href=https://issues.apache.org/jira/browse/HIVE-4055>HIVE-4055</a>).</p>
@@ -451,7 +453,7 @@ All existing datetime <a href=#udfs>UDFs</a> (month, day, year, hour, etc.) wor
   b DECIMAL(9, 7)
 )
 
-</code></pre><p>For usage, see <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706456#LanguageManualTypes-FloatingPointTypes">LanguageManual Types#Floating Point Types</a> in the Literals section below.</p>
+</code></pre><p>For usage, see <a href=https://hive.apache.org/docs/latest/language/languagemanual-types#floating-point-types>LanguageManual Types#Floating Point Types</a> in the Literals section below.</p>
 <h4 id=decimal-literals>Decimal Literals</h4>
 <p>Integral literals larger than BIGINT must be handled with Decimal(38,0). The Postfix BD is required. Example:</p>
 <pre tabindex=0><code>select CAST(18446744073709001000BD AS DECIMAL(38,0)) from my_table limit 1;
@@ -484,7 +486,7 @@ ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name
 <pre tabindex=0><code>ALTER TABLE foo PARTITION (ds='2008-04-08', hr=11) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ...
-</code></pre><p>The Decimal datatype is discussed further in <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27838462#LanguageManualTypes-FloatingPointTypes">Floating Point Types</a> below.</p>
+</code></pre><p>The Decimal datatype is discussed further in <a href=https://hive.apache.org/docs/latest/language/languagemanual-types#floating-point-types>Floating Point Types</a> below.</p>
 <h3 id=union-types>Union Types</h3>
 <p>UNIONTYPE support is incomplete</p>
 <p>The UNIONTYPE datatype was introduced in Hive 0.7.0 (<a href=https://issues.apache.org/jira/browse/HIVE-537>HIVE-537</a>), but full support for this type in Hive remains incomplete. Queries that reference UNIONTYPE fields in JOIN (<a href=https://issues.apache.org/jira/browse/HIVE-2508>HIVE-2508</a>), WHERE, and GROUP BY clauses will fail, and Hive does not define syntax to extract the tag or value fields of a UNIONTYPE. This means that UNIONTYPEs are effectively pass-through-only.</p>
@@ -513,7 +515,7 @@ SELECT foo FROM union_test;
 <p>Floating point literals are assumed to be DOUBLE. Scientific notation is not yet supported.</p>
 <h4 id=decimal-types>Decimal Types</h4>
 <p>Version</p>
-<p>Decimal datatype was introduced in Hive 0.11.0 (<a href=https://issues.apache.org/jira/browse/HIVE-2693>HIVE-2693</a>). See <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27838462#LanguageManualTypes-DecimalDatatype">Decimal Datatype</a> above.</p>
+<p>Decimal datatype was introduced in Hive 0.11.0 (<a href=https://issues.apache.org/jira/browse/HIVE-2693>HIVE-2693</a>). See <a href=https://hive.apache.org/docs/latest/language/languagemanual-types#decimals>Decimal Datatype</a> above.</p>
 <p><code>NUMERIC</code> is the same as <code>DECIMAL</code> as of Hive 3.0.0 (<a href=https://issues.apache.org/jira/browse/HIVE-16764>HIVE-16764</a>).</p>
 <p>Decimal literals provide precise values and greater range for floating point numbers than the DOUBLE type. Decimal data types store exact representations of numeric values, while DOUBLE data types store very close approximations of numeric values.</p>
 <p>Decimal types are needed for use cases in which the (very close) approximation of a DOUBLE is insufficient, such as financial applications, equality and inequality checks, and rounding operations. They are also needed for use cases that deal with numbers outside the DOUBLE range (approximately -10308 to 10308) or very close to zero (-10-308 to 10-308). For a general discussion of the limits of the DOUBLE type, see the Wikipedia article <a href=http://en.wikipedia.org/wiki/Double-precision_floating-point_format>Double-precision floating-point format</a>.</p>
@@ -574,7 +576,7 @@ SELECT foo FROM union_test;
 <h5 id=testing-decimal-types>Testing Decimal Types</h5>
 <p>Two new tests have been added as part of the TestCliDriver framework within Hive. They are decimal_1.q and decimal_2.q. Other tests such as udf7.q cover the gamut of UDFs mentioned above.</p>
 <p>More tests need to be added that demonstrate failure or when certain types of casts are prevented (for example, casting to date). There is some ambiguity in the round function because the rounding of Decimal does not work exactly as the SQL standard, and therefore it has been omitted in the current work.</p>
-<p>For general information about running Hive tests, see <a href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How to Contribute to Apache Hive</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a>.</p>
+<p>For general information about running Hive tests, see <a href=https://hive.apache.org/community/resources/howtocontribute>How to Contribute to Apache Hive</a> and <a href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a>.</p>
 <h2 id=handling-of-null-values>Handling of NULL Values</h2>
 <p>Missing values are represented by the special value NULL. To import data with NULL fields, check documentation of the SerDe used by the table. (The default Text Format uses LazySimpleSerDe which interprets the string \N as NULL when importing.)</p>
 <h2 id=change-types>Change Types</h2>
@@ -886,6 +888,7 @@ SELECT foo FROM union_test;
 <li><a href=#varchar>Varchar</a></li>
 <li><a href=#char>Char</a></li>
 <li><a href=#timestamps>Timestamps</a></li>
+<li><a href=#dates>Dates</a></li>
 <li><a href=#intervals>Intervals</a></li>
 <li><a href=#decimals>Decimals</a></li>
 <li><a href=#union-types>Union Types</a></li>

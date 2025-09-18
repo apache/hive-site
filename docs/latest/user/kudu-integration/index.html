@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -193,7 +193,7 @@ Last updated: December 12, 2024
 <p><a href=https://kudu.apache.org>Apache Kudu</a> is a an Open Source data storage engine that makes fast analytics on fast and changing data easy. </p>
 <h2 id=implementation>Implementation</h2>
 <p>The initial implementation was added to Hive 4.0 in <a href=https://issues.apache.org/jira/browse/HIVE-12971>HIVE-12971</a> and is designed to work with Kudu 1.2+.</p>
-<p>There are two main components which make up the implementation: the <code>KuduStorageHandler</code> and the <code>KuduPredicateHandler</code>. The <code>KuduStorageHandler</code> is a Hive <a href=https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.</p>
+<p>There are two main components which make up the implementation: the <code>KuduStorageHandler</code> and the <code>KuduPredicateHandler</code>. The <code>KuduStorageHandler</code> is a Hive <a href=https://hive.apache.org/development/desingdocs/storagehandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.</p>
 <p><strong>NOTE</strong>: The initial implementation is considered <code>***experimental***</code> as there are remaining <a href=https://issues.apache.org/jira/browse/HIVE-12971>sub-jiras</a> open to make the implementation more configurable and performant. Currently only external tables pointing at existing Kudu tables are supported. Support for creating and altering underlying Kudu tables in tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a>. Additionally full support for UPDATE, UPSERT, and DELETE statement support is tracked by <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
 <h2 id=hive-configuration>Hive Configuration</h2>
 <p>To issue queries against Kudu using Hive, one optional parameter can be provided by the Hive configuration:</p>
@@ -225,7 +225,7 @@ TBLPROPERTIES (
 <h2 id=impala-tables>Impala Tables</h2>
 <p>Because Impala creates tables with the same storage handler metadata in the HiveMetastore, tables created or altered via Impala DDL can be accessed from Hive. This is especially useful until <a href=https://issues.apache.org/jira/browse/HIVE-22021>HIVE-22021</a> is complete and full DDL support is available through Hive. See the <a href=https://kudu.apache.org/docs/kudu_impala_integration.html>Kudu documentation</a> and the <a href=https://impala.apache.org/docs/build/html/topics/impala_kudu.html>Impala documentation</a> for more details.</p>
 <h2 id=data-ingest>Data Ingest</h2>
-<p>Though it is a common practice to ingest the data into Kudu tables via tools like <a href=https://nifi.apache.org/>Apache NiFi</a> or <a href=https://spark.apache.org/>Apache Spark</a> and query the data via Hive, data can also be inserted to the Kudu tables via <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries>Hive INSERT statements</a>. It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22024>HIVE-22024</a>. Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
+<p>Though it is a common practice to ingest the data into Kudu tables via tools like <a href=https://nifi.apache.org/>Apache NiFi</a> or <a href=https://spark.apache.org/>Apache Spark</a> and query the data via Hive, data can also be inserted to the Kudu tables via <a href=https://hive.apache.org/docs/latest/language/languagemanual-dml#inserting-data-into-hive-tables-from-queries>Hive INSERT statements</a>. It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22024>HIVE-22024</a>. Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via <a href=https://issues.apache.org/jira/browse/HIVE-22027>HIVE-22027</a>.</p>
 <h3 id=examples>Examples</h3>
 <pre tabindex=0><code>INSERT INTO kudu_table SELECT * FROM other_table;
 

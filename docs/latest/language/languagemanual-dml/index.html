@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -303,7 +303,7 @@ An immutable table is protected against accidental updates due to a script load
 <h5 id=notes-1>Notes</h5>
 <ul>
 <li>Multi Table Inserts minimize the number of data scans required. Hive can insert data into multiple tables by scanning the input data just once (and applying different query operators) to the input data.</li>
-<li>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Select#LanguageManualSelect-SelectSyntax>SELECT syntax</a>. For an example, see <a href=https://cwiki.apache.org/confluence/display/Hive/Common+Table+Expression#CommonTableExpression-CTEinViews,CTAS,andInsertStatements>Common Table Expression</a>.</li>
+<li>Starting with <a href=https://issues.apache.org/jira/browse/HIVE-1180>Hive 0.13.0</a>, the select statement can include one or more common table expressions (CTEs) as shown in the <a href=https://hive.apache.org/docs/latest/language/languagemanual-select#select-syntax>SELECT syntax</a>. For an example, see <a href=https://hive.apache.org/docs/latest/language/common-table-expression#cte-in-views-ctas-and-insert-statements>Common Table Expression</a>.</li>
 </ul>
 <h5 id=dynamic-partition-inserts>Dynamic Partition Inserts</h5>
 <p>Version information</p>
@@ -420,7 +420,7 @@ where a value is either null or any valid SQL literal
 <ul>
 <li>Each row listed in the VALUES clause is inserted into table <em>tablename</em>.</li>
 <li>Values must be provided for every column in the table. The standard SQL syntax that allows the user to insert values into only some columns is not yet supported. To mimic the standard SQL, nulls can be provided for columns the user does not wish to assign a value to.</li>
-<li>Dynamic partitioning is supported in the same way as for <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82903069#LanguageManualDML-DynamicPartitionInserts">INSERT&mldr;SELECT</a>.</li>
+<li>Dynamic partitioning is supported in the same way as for <a href=https://hive.apache.org/docs/latest/language/languagemanual-dml#dynamic-partition-inserts>INSERT&mldr;SELECT</a>.</li>
 <li>If the table being inserted into supports <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>ACID</a> and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.</li>
 <li>Hive does not support literals for complex types (array, map, struct, union), so it is not possible to use them in INSERT INTO&mldr;VALUES clauses. This means that the user cannot insert data into a complex datatype column using the INSERT INTO&mldr;VALUES clause.</li>
 </ul>

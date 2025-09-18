@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -187,7 +187,7 @@ Last updated: December 12, 2024
 <p>See <a href=https://issues.apache.org/jira/browse/HIVE-11481>HIVE-11481</a>.</p>
 <h2 id=behavior><strong>Behavior</strong></h2>
 <ul>
-<li>When &ldquo;<a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms>hive.warehouse.subdir.inherit.perms</a>&rdquo; flag is enabled in Hive, Hive will try to do all the following inheritances.
+<li>When &ldquo;<a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms>hive.warehouse.subdir.inherit.perms</a>&rdquo; flag is enabled in Hive, Hive will try to do all the following inheritances.
 <ul>
 <li>Database directory inherits from warehouse directory.</li>
 <li>Table directory inherits from database directory, or from warehouse directory if it is part of the default database.</li>
@@ -207,7 +207,7 @@ Last updated: December 12, 2024
 <h2 id=version-information>Version Information</h2>
 <p>Most of this functionality was added as of Hive 0.14.  </p>
 <p>See umbrella JIRA <a href=https://issues.apache.org/jira/browse/HIVE-6892>HIVE-6892</a> for details.</p>
-<p><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms>hive.warehouse.subdir.inherit.perms</a> was removed in Hive 3.0.0. The feature is no longer needed in Hive as the traditional permission model has largely been replaced by external security systems such as Ranger and Sentry. A user may choose SQLStdAuth which ships with Hive if user doesn&rsquo;t want to use an external security system.</p>
+<p><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms>hive.warehouse.subdir.inherit.perms</a> was removed in Hive 3.0.0. The feature is no longer needed in Hive as the traditional permission model has largely been replaced by external security systems such as Ranger and Sentry. A user may choose SQLStdAuth which ships with Hive if user doesn&rsquo;t want to use an external security system.</p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>

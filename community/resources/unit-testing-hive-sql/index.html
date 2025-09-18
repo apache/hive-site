@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -213,9 +213,9 @@ Last updated: December 12, 2024
 <li><strong>Speed of execution:</strong> The goal is to have large numbers of isolated, small tests. Test isolation requires frequent setup and teardown and the costs incurred are multiplied the number of tests. The Hive CLI is fairly heavy process to repeatedly start and stop and so some Hive test frameworks attempt to optimise this aspect of test execution.</li>
 </ul>
 <h1 id=modularisation>Modularisation</h1>
-<p>By modularising processes implemented using Hive they become easier to test effectively and more resilient to change. Although Hive provides a number of vectors for modularisation it is not always clear how a large process can be decomposed. Features for encapsulation of query logic into components is separated into two perpendicular concerns: column level logic, and set level logic. Column level logic refers to the expressions applied to individual columns or groups of columns in the query, commonly described as ‘functions’. Set level logic concerns Hive SQL constructs that manipulate groupings of data such as: column projection with <code>SELECT</code>, <code>GROUP BY</code> aggregates, <code>JOIN</code>s, <code>ORDER BY</code> sorting, etc. In either case we expect individual components to live in their own source file or deployable artifact and imported as needed by the composition. For Hive SQL-based components, the <code>[SOURCE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli#LanguageManualCli-HiveInteractiveShellCommands)</code> command provides this functionality.</p>
+<p>By modularising processes implemented using Hive they become easier to test effectively and more resilient to change. Although Hive provides a number of vectors for modularisation it is not always clear how a large process can be decomposed. Features for encapsulation of query logic into components is separated into two perpendicular concerns: column level logic, and set level logic. Column level logic refers to the expressions applied to individual columns or groups of columns in the query, commonly described as ‘functions’. Set level logic concerns Hive SQL constructs that manipulate groupings of data such as: column projection with <code>SELECT</code>, <code>GROUP BY</code> aggregates, <code>JOIN</code>s, <code>ORDER BY</code> sorting, etc. In either case we expect individual components to live in their own source file or deployable artifact and imported as needed by the composition. For Hive SQL-based components, the <code>[SOURCE](https://hive.apache.org/docs/latest/language/languagemanual-cli#hive-interactive-shell-commands)</code> command provides this functionality.</p>
 <h3 id=encapsulation-of-column-level-logic>Encapsulation of column level logic</h3>
-<p>In the case of column level logic Hive provides both <a href=https://cwiki.apache.org/confluence/display/Hive/HivePlugins#HivePlugins-CreatingCustomUDFs>UDFs</a> and <a href=#macros>macros</a> that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample <code>SELECT</code> statements.</p>
+<p>In the case of column level logic Hive provides both <a href=https://hive.apache.org/docs/latest/language/hiveplugins#creating-custom-udfs>UDFs</a> and <a href=#macros>macros</a> that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample <code>SELECT</code> statements.</p>
 <h3 id=encapsulation-of-set-level-logic>Encapsulation of set level logic</h3>
 <p>Unlike column level logic, it is much less obvious how best to encapsulate and compose collections of set based logic. Consider the following example of a single complex query comprising joins, groupings, and column projections:</p>
 <p><strong>Monolithic query</strong></p>
@@ -271,9 +271,9 @@ GROUP BY ...;                      -- Query 1
 <ul>
 <li>Modularise large or complex queries into multiple smaller components. These are easier to comprehend, maintain, and test.</li>
 <li>Use macros or UDFs to encapsulate repeated or complex column expressions.</li>
-<li>Use <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+VariableSubstitution>Hive variables</a> to decouple SQL scripts from specific environments. For example it might be wise to use <code>LOCATION ${myTableLocation}</code> in preference to <code>LOCATION /hard/coded/path</code>.</li>
+<li>Use <a href=https://hive.apache.org/docs/latest/language/languagemanual-variablesubstitution>Hive variables</a> to decouple SQL scripts from specific environments. For example it might be wise to use <code>LOCATION ${myTableLocation}</code> in preference to <code>LOCATION /hard/coded/path</code>.</li>
 <li>Keep the scope of tests small. Making coarse assertions on the entire contents of a table is brittle and has a high maintenance requirement.</li>
-<li>Use the <code>[SOURCE](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli#LanguageManualCli-HiveInteractiveShellCommands)</code> command to combine multiple smaller SQL scripts.</li>
+<li>Use the <code>[SOURCE](https://hive.apache.org/docs/latest/language/languagemanual-cli#hive-interactive-shell-commands)</code> command to combine multiple smaller SQL scripts.</li>
 <li>Test macros and the integration of UDFs by creating simple test tables and applying the functions to columns in those tables.</li>
 <li>Test UDFs by invoking the lifecycle methods directly (<code>initialize</code>, <code>evaluate</code>, etc.) in a standard testing framework such as JUnit.</li>
 </ul>

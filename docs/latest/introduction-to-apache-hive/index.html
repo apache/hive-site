@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -155,17 +155,17 @@ Last updated: December 12, 2024
 <li>Access to files stored either directly in <strong><a href=http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html>Apache HDFS</a><a href=http://hadoop.apache.org/>™</a></strong> or in other data storage systems such as <strong><a href=http://hbase.apache.org/>Apache HBase</a><a href=http://hadoop.apache.org/>™</a></strong></li>
 <li>Query execution via <a href=http://tez.apache.org/>Apache Tez</a><strong><a href=http://hadoop.apache.org/>™</a></strong> or <a href=http://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html>MapReduce</a></li>
 <li>Procedural language with HPL-SQL</li>
-<li>Sub-second query retrieval via <a href=https://cwiki.apache.org/confluence/display/Hive/LLAP>Hive LLAP</a>, <a href=https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html>Apache YARN</a> and <a href=https://slider.incubator.apache.org/>Apache Slider</a>.</li>
+<li>Sub-second query retrieval via <a href=https://hive.apache.org/development/desingdocs/llap>Hive LLAP</a>, <a href=https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html>Apache YARN</a> and <a href=https://slider.incubator.apache.org/>Apache Slider</a>.</li>
 </ul>
-<p><a href=https://cwiki.apache.org/confluence/display/Hive/Apache+Hive+SQL+Conformance>Hive provides standard SQL functionality</a>, including many of the later <a href=https://en.wikipedia.org/wiki/SQL:2003>SQL:2003</a>, <a href=https://en.wikipedia.org/wiki/SQL:2011>SQL:2011</a>, and <a href=https://en.wikipedia.org/wiki/SQL:2016>SQL:2016</a> features for analytics.<br>
+<p><a href=https://hive.apache.org/docs/latest/language/apache-hive-sql-conformance>Hive provides standard SQL functionality</a>, including many of the later <a href=https://en.wikipedia.org/wiki/SQL:2003>SQL:2003</a>, <a href=https://en.wikipedia.org/wiki/SQL:2011>SQL:2011</a>, and <a href=https://en.wikipedia.org/wiki/SQL:2016>SQL:2016</a> features for analytics.<br>
 Hive&rsquo;s SQL can also be extended with user code via user defined functions (UDFs), user defined aggregates (UDAFs), and user defined table functions (UDTFs).</p>
-<p>There is not a single &ldquo;Hive format&rdquo; in which data must be stored. Hive comes with built in connectors for comma and tab-separated values (CSV/TSV) text files, <a href=http://parquet.apache.org/>Apache Parquet</a><strong><a href=http://hadoop.apache.org/>™</a></strong>, <a href=http://orc.apache.org/>Apache ORC</a><strong><a href=http://hadoop.apache.org/>™</a></strong>, and other formats. Users can extend Hive with connectors for other formats. Please see <a href=https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-FileFormats>File Formats</a> and <a href=https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide#DeveloperGuide-HiveSerDe>Hive SerDe</a> in the <a href=https://cwiki.apache.org/confluence/display/Hive/DeveloperGuide>Developer Guide</a> for details.</p>
+<p>There is not a single &ldquo;Hive format&rdquo; in which data must be stored. Hive comes with built in connectors for comma and tab-separated values (CSV/TSV) text files, <a href=http://parquet.apache.org/>Apache Parquet</a><strong><a href=http://hadoop.apache.org/>™</a></strong>, <a href=http://orc.apache.org/>Apache ORC</a><strong><a href=http://hadoop.apache.org/>™</a></strong>, and other formats. Users can extend Hive with connectors for other formats. Please see <a href=https://hive.apache.org/community/resources/developerguide#file-formats>File Formats</a> and <a href=https://hive.apache.org/community/resources/developerguide#hive-serde>Hive SerDe</a> in the <a href=https://hive.apache.org/community/resources/developerguide>Developer Guide</a> for details.</p>
 <p>Hive is not designed for online transaction processing (OLTP) workloads. It is best used for traditional data warehousing tasks.</p>
 <p>Hive is designed to maximize scalability (scale out with more machines added dynamically to the Hadoop cluster), performance, extensibility, fault-tolerance, and loose-coupling with its input formats.</p>
 <p>Components of Hive include HCatalog and WebHCat.</p>
 <ul>
-<li><strong><a href=https://cwiki.apache.org/confluence/display/Hive/HCatalog>HCatalog</a></strong> is a table and storage management layer for Hadoop that enables users with different data processing tools — including Pig and MapReduce — to more easily read and write data on the grid.</li>
-<li><strong><a href=https://cwiki.apache.org/confluence/display/Hive/WebHCat>WebHCat</a></strong> provides a service that you can use to run Hadoop MapReduce (or YARN), Pig, Hive jobs. You can also perform Hive metadata operations using an HTTP (REST style) interface.</li>
+<li><strong><a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-base>HCatalog</a></strong> is a table and storage management layer for Hadoop that enables users with different data processing tools — including Pig and MapReduce — to more easily read and write data on the grid.</li>
+<li><strong><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-base>WebHCat</a></strong> provides a service that you can use to run Hadoop MapReduce (or YARN), Pig, Hive jobs. You can also perform Hive metadata operations using an HTTP (REST style) interface.</li>
 </ul>
 </div>
 <footer class=docs-footer>

@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -238,7 +238,7 @@ Last updated: December 12, 2024
 </nav>
 </aside>
 <h1 id=hive-3-streaming-api>Hive 3 Streaming API</h1>
-<p><a href=https://cwiki.apache.org/confluence/display/Hive/Streaming+Data+Ingest+V2>Hive 3 Streaming API Documentation</a> - new API available in Hive 3</p>
+<p><a href=https://hive.apache.org/docs/latest/user/streaming-data-ingest-v2>Hive 3 Streaming API Documentation</a> - new API available in Hive 3</p>
 <h1 id=hive-hcatalog-streaming-api>Hive HCatalog Streaming API</h1>
 <p>Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. Insertion of new data into an existing partition is not permitted. Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table. Once data is committed it becomes immediately visible to all Hive queries initiated subsequently.</p>
 <p>This API is intended for streaming clients such as <a href=http://flume.apache.org/>Flume</a> and <a href=https://storm.incubator.apache.org/>Storm</a>, which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see <a href=https://hive.apache.org/docs/latest/user/hive-transactions/>Hive Transactions</a>).</p>
@@ -253,8 +253,8 @@ Last updated: December 12, 2024
 <li>The following settings are required in hive-site.xml to enable ACID support for streaming:
 <ol>
 <li><strong>hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</strong></li>
-<li><strong>hive.compactor.initiator.on = true</strong>(See more important details <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>here</a>)</li>
-<li><strong>hive.compactor.cleaner.on = true</strong> (From Hive 4.0.0 onwards. See more important details <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>here</a>)</li>
+<li><strong>hive.compactor.initiator.on = true</strong>(See more important details <a href=https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions>here</a>)</li>
+<li><strong>hive.compactor.cleaner.on = true</strong> (From Hive 4.0.0 onwards. See more important details <a href=https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions>here</a>)</li>
 <li><strong>hive.compactor.worker.threads</strong> > <strong>0</strong></li>
 </ol>
 </li>
@@ -285,7 +285,7 @@ Last updated: December 12, 2024
 <h3 id=transactionbatch>TransactionBatch</h3>
 <p>TransactionBatch is used to write a series of transactions. There is one file created on HDFS per TxnBatch in each bucket. The API examines each record to decide which bucket it belongs to and writes it to the appropriate bucket. If the table has 5 buckets, there will be 5 files (some of them could be empty) for the TxnBatch (before compaction kicks in).  Prior to <a href=https://issues.apache.org/jira/browse/HIVE-11983>Hive 1.3.0</a>, a bug in the API&rsquo;s bucket computation logic caused incorrect distribution of records into buckets, which could lead to incorrect data returned from queries using bucket join algorithms.</p>
 <p>For each transaction in the TxnBatch, the application calls <em>beginNextTransaction</em>, <em>write,</em> and then <em>commit</em> or <em>abort</em> as appropriate. See the <a href=http://hive.apache.org/javadocs/r1.2.1/api/org/apache/hive/hcatalog/streaming/TransactionBatch.html>Javadoc</a> for details.  A Transaction cannot include data from more than one partition.</p>
-<p>Transactions in a TransactionBatch are eventually expired by the Metastore if not committed or aborted after <a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-NewConfigurationParametersforTransactions>hive.txn.timeout</a> secs. TrasnactionBatch class provides a <strong>heartbeat()</strong> method to prolong the lifetime of unused transactions in the batch.  A good rule of thumb is to send call heartbeat() at (hive.txn.timeout/2) intervals after creating a TransactionBatch.  This is sufficient to keep an inactive transaction alive but not load the metastore unnecessarily.</p>
+<p>Transactions in a TransactionBatch are eventually expired by the Metastore if not committed or aborted after <a href=https://hive.apache.org/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions>hive.txn.timeout</a> secs. TrasnactionBatch class provides a <strong>heartbeat()</strong> method to prolong the lifetime of unused transactions in the batch.  A good rule of thumb is to send call heartbeat() at (hive.txn.timeout/2) intervals after creating a TransactionBatch.  This is sufficient to keep an inactive transaction alive but not load the metastore unnecessarily.</p>
 <h4 id=usage-guidelines>Usage Guidelines</h4>
 <p>Generally, the more events are included in each transaction the more throughput can be achieved.  It&rsquo;s common commit either after a certain number of events or after a certain time interval, whichever comes first.  The later ensures that when event flow rate is variable, transactions don&rsquo;t stay open too long.  There is no practical limit on how much data can be included in a single transaction.  The only concern is amount of data which will need to be replayed if the transaction fails.  The concept of a TransactionBatch serves to reduce the number of files created by SteramingAPI in HDFS.  Since all transactions in a given batch write to the same physical file (per bucket), a partition can only be compacted up to the the level of the earliest transaction of any batch which contains an open transaction.  Thus TranactionBatches should not be made excessively large.  It makes sense to include a timer to close a TransactionBatch (even if it has unused transactions) after some amount of time.</p>
 <p><strong>Note:</strong> <a href=https://issues.apache.org/jira/browse/HIVE-12307>Hive 1.3.0</a> onwards, invoking TxnBatch.close() will cause all unused transaction in the current TxnBatch to be aborted.</p>
@@ -441,7 +441,7 @@ txnBatch3.close();
 secureConn.close();
 </code></pre><h1 id=knowledge-base>Knowledge Base</h1>
 <ul>
-<li><a href=https://cwiki.apache.org/confluence/display/Hive/Hive+Transactions#HiveTransactions-TalksandPresentations>Talks and Presentations</a></li>
+<li><a href=https://hive.apache.org/docs/latest/user/hive-transactions#talks-and-presentations>Talks and Presentations</a></li>
 <li><a href=https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html>Lessons learnt from NiFi streaming data to Hive transactional tables</a></li>
 </ul>
 </div>

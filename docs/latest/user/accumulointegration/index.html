@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -204,7 +204,7 @@ Last updated: December 12, 2024
 <h2 id=overview>Overview</h2>
 <p><a href=http://accumulo.apache.org>Apache Accumulo</a> is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user. Leveraging Apache Hive as a SQL interface to Accumulo complements its existing high-throughput batch access and low-latency random lookups.</p>
 <h2 id=implementation>Implementation</h2>
-<p>The initial implementation was added to Hive 0.14 in <a href=https://issues.apache.org/jira/browse/HIVE-7068>HIVE-7068</a> and is designed to work with Accumulo 1.6.x. There are two main components which make up the implementation: the AccumuloStorageHandler and the AccumuloPredicateHandler. The AccumuloStorageHandler is a <a href=https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of Hive table to Accumulo table and configures Hive queries. The AccumuloPredicateHandler is used push down filter operations to the Accumulo for more efficient reduction of data.</p>
+<p>The initial implementation was added to Hive 0.14 in <a href=https://issues.apache.org/jira/browse/HIVE-7068>HIVE-7068</a> and is designed to work with Accumulo 1.6.x. There are two main components which make up the implementation: the AccumuloStorageHandler and the AccumuloPredicateHandler. The AccumuloStorageHandler is a <a href=https://hive.apache.org/development/desingdocs/storagehandlers>StorageHandler</a> implementation. The primary roles of this class are to manage the mapping of Hive table to Accumulo table and configures Hive queries. The AccumuloPredicateHandler is used push down filter operations to the Accumulo for more efficient reduction of data.</p>
 <h2 id=accumulo-configuration>Accumulo Configuration</h2>
 <p>The only additional Accumulo configuration necessary is the inclusion of the hive-<code>accumulo-handler.jar</code>, provided as a part of the Hive distribution, to be included in the Accumulo server classpath. This can be accomplished a variety of ways: copying/symlink the jar into <code>$ACCUMULO_HOME/lib</code> or <code>$ACCUMULO_HOME/lib/ext</code> or include the path to the jar in <code>general.classpaths</code> in accumulo-site.xml. Be sure to restart the Accumulo tabletservers if the jar is added to the classpath in a non-dynamic fashion (using <code>$ACCUMULO_HOME/lib</code> or <code>general.classpaths</code> in accumulo-site.xml).</p>
 <h2 id=usage>Usage</h2>

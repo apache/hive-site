@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -185,7 +185,7 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--setting-up-hiveserver2>Apache Hive : Setting Up HiveServer2</h1>
-<p><a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>HiveServer2</a> (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Overview>here</a>). The current implementation, based on Thrift RPC, is an improved version of <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer</a> and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
+<p><a href=https://hive.apache.org/docs/latest/user/hiveserver2-overview>HiveServer2</a> (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro <a href=https://hive.apache.org/docs/latest/user/hiveserver2-overview>here</a>). The current implementation, based on Thrift RPC, is an improved version of <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer</a> and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
 <ul>
 <li>The Thrift interface definition language (IDL) for HiveServer2 is available at <a href=https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift</a>.</li>
 <li>Thrift documentation is available at <a href=http://thrift.apache.org/docs/>http://thrift.apache.org/docs/</a>.</li>
@@ -240,7 +240,7 @@ Last updated: December 12, 2024
 <p>HIVE_SERVER2_THRIFT_BIND_HOST – Optional TCP host interface to bind to. Overrides the configuration file setting.<br>
 HIVE_SERVER2_THRIFT_PORT – Optional TCP port number to listen on, default 10000. Overrides the configuration file setting.</p>
 <h4 id=running-in-http-mode><strong>Running in HTTP Mode</strong></h4>
-<p>HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see <a href=https://issues.apache.org/jira/browse/HIVE-4752>HIVE-4752</a>). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC>HiveServer2 Clients &ndash; JDBC Connection URLs</a>. Use the following settings to enable and configure HTTP mode:</p>
+<p>HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see <a href=https://issues.apache.org/jira/browse/HIVE-4752>HIVE-4752</a>). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: <a href=https://hive.apache.org/docs/latest/user/hiveserver2-clients#jdbc>HiveServer2 Clients &ndash; JDBC Connection URLs</a>. Use the following settings to enable and configure HTTP mode:</p>
 <table>
 <thead>
 <tr>
@@ -278,9 +278,9 @@ HIVE_SERVER2_THRIFT_PORT – Optional TCP port number to listen on, default 1000
 </tbody>
 </table>
 <h5 id=cookie-based-authentication>Cookie Based Authentication</h5>
-<p><a href=https://issues.apache.org/jira/browse/HIVE-9709>HIVE-9709</a> and <a href=https://issues.apache.org/jira/browse/HIVE-9710>HIVE-9710</a> introduced cookie based authentication for HiveServer2 in HTTP mode. The HiveServer2 parameters (hive.server2.thrift.http.cookie.*) associated with this change can be found <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.server2.thrift.http.cookie.auth.enabled>here</a>.</p>
+<p><a href=https://issues.apache.org/jira/browse/HIVE-9709>HIVE-9709</a> and <a href=https://issues.apache.org/jira/browse/HIVE-9710>HIVE-9710</a> introduced cookie based authentication for HiveServer2 in HTTP mode. The HiveServer2 parameters (hive.server2.thrift.http.cookie.*) associated with this change can be found <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveserver2thrifthttpcookieauthenabled>here</a>.</p>
 <h4 id=optional-global-init-file>Optional Global Init File</h4>
-<p>A global init file can be placed in the configured <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.server2.global.init.file.location>hive.server2.global.init.file.location</a> location (Hive 0.14 onward, see <a href=https://issues.apache.org/jira/browse/HIVE-5160>HIVE-5160</a>, <a href=https://issues.apache.org/jira/browse/HIVE-7497>HIVE-7497</a>, and <a href=https://issues.apache.org/jira/browse/HIVE-8138>HIVE-8138</a>). This can be either the path to the init file itself, or a directory where an init file named &ldquo;.hiverc&rdquo; is expected.</p>
+<p>A global init file can be placed in the configured <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveserver2globalinitfilelocation>hive.server2.global.init.file.location</a> location (Hive 0.14 onward, see <a href=https://issues.apache.org/jira/browse/HIVE-5160>HIVE-5160</a>, <a href=https://issues.apache.org/jira/browse/HIVE-7497>HIVE-7497</a>, and <a href=https://issues.apache.org/jira/browse/HIVE-8138>HIVE-8138</a>). This can be either the path to the init file itself, or a directory where an init file named &ldquo;.hiverc&rdquo; is expected.</p>
 <p>The init file lists a set of commands that will run for users of this HiveServer2 instance, such as register a standard set of jars and functions.</p>
 <h4 id=logging-configuration>Logging Configuration</h4>
 <p>HiveServer2 operation logs are available for Beeline clients (Hive 0.14 onward). These parameters configure logging:</p>

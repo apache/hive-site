@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -1876,7 +1876,7 @@ Setting to 0.13 gives division behavior in Hive 0.13 and later releases: int / i
 </ul>
 <p>Pre-3.1.2 Hive implementation of Parquet stores timestamps in UTC on-file, this flag allows skipping of the conversion on reading Parquet files created from other tools that may not have done so.</p>
 <h4 id=avro>Avro</h4>
-<p>See <a href=https://cwiki.apache.org/confluence/display/Hive/AvroSerDe>AvroSerDe</a> for details.</p>
+<p>See <a href=https://hive.apache.org/docs/latest/user/avroserde>AvroSerDe</a> for details.</p>
 <h5 id=hiveavrotimestampskipconversion>hive.avro.timestamp.skip.conversion</h5>
 <ul>
 <li>Default Value: false</li>
@@ -3106,10 +3106,10 @@ With negative value, it&rsquo;s checked for all of the operations regardless of 
 </ul>
 <p>Besides the configuration properties listed in this section, some properties in other sections are also related to Spark:</p>
 <ul>
-<li><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.exec.reducers.max>hive.exec.reducers.max</a></li>
-<li><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.exec.reducers.bytes.per.reducer>hive.exec.reducers.bytes.per.reducer</a></li>
-<li><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.mapjoin.optimized.hashtable>hive.mapjoin.optimized.hashtable</a></li>
-<li><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.mapjoin.optimized.hashtable.wbsize>hive.mapjoin.optimized.hashtable.wbsize</a></li>
+<li><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersmax>hive.exec.reducers.max</a></li>
+<li><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersbytesperreducer>hive.exec.reducers.bytes.per.reducer</a></li>
+<li><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtable>hive.mapjoin.optimized.hashtable</a></li>
+<li><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtablewbsize>hive.mapjoin.optimized.hashtable.wbsize</a></li>
 </ul>
 <p>hive.spark.job.monitor.timeout</p>
 <ul>
@@ -4506,7 +4506,7 @@ Caution: Rebuilding indexes can be a lengthy and computationally expensive opera
 </ul>
 <p>The default partition name when ZooKeeperHiveLockManager is the  <a href=#**hive-lock-manager**><strong>hive lock manager</strong></a> .</p>
 <h2 id=metrics>Metrics</h2>
-<p>The metrics that Hive collects can be viewed in the <a href=https://cwiki.apache.org/confluence/display/Hive/Setting+Up+HiveServer2#SettingUpHiveServer2-WebUIforHiveServer2>HiveServer2 Web UI</a>. For more information, see <a href=https://hive.apache.org/docs/latest/user/hive-metrics/>Hive Metrics</a>.</p>
+<p>The metrics that Hive collects can be viewed in the <a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2>HiveServer2 Web UI</a>. For more information, see <a href=https://hive.apache.org/docs/latest/user/hive-metrics/>Hive Metrics</a>.</p>
 <h5 id=hivemetastoremetricsenabled>hive.metastore.metrics.enabled</h5>
 <ul>
 <li>Default Value: <code>false</code></li>

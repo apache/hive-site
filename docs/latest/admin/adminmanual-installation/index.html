@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -259,7 +259,7 @@ Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li>
 <pre tabindex=0><code>$ bin/hive
 
 </code></pre><p>The Hive home directory is the one with the contents of build/dist for Hive 0.12 and earlier; for Hive 0.13 and later it is packaging/target/apache-hive-<em>&lt;release_string></em>-bin/apache-hive-<em>&lt;release_string></em>-bin/.</p>
-<p>HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see <a href=https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell>Beeline – New Command Line Shell</a>). To use Beeline, execute the following command in the Hive home directory:</p>
+<p>HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see <a href=https://hive.apache.org/docs/latest/user/hiveserver2-clients#beeline--command-line-shell>Beeline – New Command Line Shell</a>). To use Beeline, execute the following command in the Hive home directory:</p>
 <pre tabindex=0><code>$ bin/beeline
 </code></pre><h2 id=hive-metastore>Hive Metastore</h2>
 <p>Metadata is stored in an embedded Derby database whose disk storage location is determined by the Hive configuration variable named javax.jdo.option.ConnectionURL. By default, this location is ./metastore_db (see conf/hive-default.xml).</p>

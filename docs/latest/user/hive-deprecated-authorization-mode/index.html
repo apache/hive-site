@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -230,9 +230,9 @@ Last updated: December 12, 2024
 <p>Role names are case sensitive. In Hive 0.13, however, there was a bug that caused it to have case insensitive behavior. That issue has been fixed in <a href=https://issues.apache.org/jira/browse/HIVE-7846>Hive 0.14</a>.</p>
 <p>User names are also case sensitive. Unlike role names, user names are not managed within Hive.</p>
 <p>Quoted Identifiers in Version 0.13.0+</p>
-<p>As of Hive 0.13.0, user and role names may optionally be surrounded by backtick characters (<code>) when the configuration parameter </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>column<code> (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>none`, or in Hive 0.12.0 and earlier, only alphanumeric and underscore characters are permitted in user names and role names.</p>
+<p>As of Hive 0.13.0, user and role names may optionally be surrounded by backtick characters (<code>) when the configuration parameter </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a><code> is set to </code>column<code> (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a><code> is set to </code>none`, or in Hive 0.12.0 and earlier, only alphanumeric and underscore characters are permitted in user names and role names.</p>
 <p>For details, see <a href=https://issues.apache.org/jira/browse/HIVE-6013>HIVE-6013</a> and <a href=https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html>Supporting Quoted Identifiers in Column Names</a>.</p>
-<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a>` setting.</p>
+<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a>` setting.</p>
 <h3 id=creatingdroppingusing-roles>Creating/Dropping/Using Roles</h3>
 <h4 id=createdrop-role>Create/Drop Role</h4>
 <pre tabindex=0><code>CREATE ROLE role_name

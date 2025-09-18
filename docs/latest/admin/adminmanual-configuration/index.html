@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -347,7 +347,7 @@ hive-site.xml -> hivemetastore-site.xml -> hiveserver2-site.xml -> &lsquo;<code>
 </tr>
 <tr>
 <td>hive.reloadable.aux.jars.path</td>
-<td>The location of plugin jars that can be renewed (added, removed, or updated) by executing the <a href=#beeline-reload-command>Beeline reload command</a>, without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path<a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.aux.jars.path>for creating UDFs or SerDes</a>. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-7553>0.14.0</a>.)</td>
+<td>The location of plugin jars that can be renewed (added, removed, or updated) by executing the <a href=#beeline-reload-command>Beeline reload command</a>, without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path<a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveauxjarspath>for creating UDFs or SerDes</a>. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-7553>0.14.0</a>.)</td>
 <td></td>
 </tr>
 <tr>
@@ -459,7 +459,7 @@ hive-site.xml -> hivemetastore-site.xml -> hiveserver2-site.xml -> &lsquo;<code>
 </table>
 <h4 id=hive-metastore-configuration-variables>Hive Metastore Configuration Variables</h4>
 <p>Please see <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Hive Metastore Administration</a> for information about the configuration variables used to set up the metastore in local, remote, or embedded mode. Also see descriptions in the <a href=#metastore>Metastore</a> section of the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/user/configuration-properties/>Hive Configuration Properties</a>.</p>
-<p>For security configuration (Hive 0.10 and later), see the <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveMetastoreSecurity>Hive Metastore Security</a> section in the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/user/configuration-properties/>Hive Configuration Properties</a>.</p>
+<p>For security configuration (Hive 0.10 and later), see the <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security>Hive Metastore Security</a> section in the Language Manual&rsquo;s <a href=https://hive.apache.org/docs/latest/user/configuration-properties/>Hive Configuration Properties</a>.</p>
 <h4 id=configuration-variables-used-to-interact-with-hadoop>Configuration Variables Used to Interact with Hadoop</h4>
 <table>
 <thead>

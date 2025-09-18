@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -199,8 +199,8 @@ query: SELECT expression (',' expression)* FROM src orderBy
 </code></pre><p>There are some limitations in the &ldquo;order by&rdquo; clause. In the strict mode (i.e., <a href=#hive-mapred-mode>hive.mapred.mode</a>=strict), the order by clause has to be followed by a &ldquo;limit&rdquo; clause. The limit clause is not necessary if you set hive.mapred.mode to nonstrict. The reason is that in order to impose total order of all results, there has to be one reducer to sort the final output. If the number of rows in the output is too large, the single reducer could take a very long time to finish.</p>
 <p>Note that columns are specified by name, not by position number. However in <a href=https://issues.apache.org/jira/browse/HIVE-581>Hive 0.11.0</a> and later, columns can be specified by position when configured as follows:</p>
 <ul>
-<li>For Hive 0.11.0 through 2.1.x, set <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.groupby.orderby.position.alias>hive.groupby.orderby.position.alias</a> to true (the default is false).</li>
-<li>For Hive 2.2.0 and later, <a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.orderby.position.alias>hive.orderby.position.alias</a> is true by default.</li>
+<li>For Hive 0.11.0 through 2.1.x, set <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivegroupbyorderbypositionalias>hive.groupby.orderby.position.alias</a> to true (the default is false).</li>
+<li>For Hive 2.2.0 and later, <a href=https://hive.apache.org/docs/latest/user/configuration-properties#hiveorderbypositionalias>hive.orderby.position.alias</a> is true by default.</li>
 </ul>
 <p>The default sorting order is ascending (ASC).</p>
 <p>In <a href=https://issues.apache.org/jira/browse/HIVE-12994>Hive 2.1.0</a> and later, specifying the null sorting order for each of the columns in the &ldquo;order by&rdquo; clause is supported. The default null sorting order for ASC order is NULLS FIRST, while the default null sorting order for DESC order is NULLS LAST.</p>

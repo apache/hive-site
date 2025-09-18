@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -243,7 +243,7 @@ Last updated: December 12, 2024
 <p>The default authorization model in Hive can be used to provide fine grained access control by creating views and granting access to views instead of the underlying tables.</p>
 <h1 id=sql-standards-based-hiveauthorization-new-in-hive-013>SQL Standards Based Hive Authorization (New in Hive 0.13)</h1>
 <p>The SQL standards based authorization option (introduced in Hive 0.13) provides a third option for authorization in Hive. This is recommended because it allows Hive to be fully SQL compliant in its authorization model without causing backward compatibility issues for current users. As users migrate to this more secure model, the current default authorization could be deprecated.</p>
-<p>For an overview of this authorization option, see <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Authorization#LanguageManualAuthorization-2SQLStandardsBasedAuthorizationinHiveServer2>SQL Standards Based Authorization in HiveServer2</a>.</p>
+<p>For an overview of this authorization option, see <a href=https://hive.apache.org/docs/latest/language/languagemanual-authorization#2-sql-standards-based-authorization-in-hiveserver2>SQL Standards Based Authorization in HiveServer2</a>.</p>
 <p>This authorization mode can be used in conjunction with storage based authorization on the metastore server. Like the current default authorization in Hive, this will also be enforced at query compilation time. To provide security through this option, the client will have to be secured. This can be done by allowing users access only through Hive Server2, and by restricting the user code and non-SQL commands that can be run. The checks will happen against the user who submits the request, but the query will run as the Hive server user. The directories and files for input data would have read access for this Hive server user. For users who don’t have the need to protect against malicious users, this could potentially be supported through the Hive command line as well.</p>
 <p>The goal of this work has been to comply with the SQL standard as far as possible, but there are deviations from the standard in the implementation. Some deviations were made to make it easier for existing Hive users to migrate to this authorization model, and some were made considering ease of use (in such cases we also looked at what many widely used databases do).</p>
 <p>Under this authorization model, users who have access to the Hive CLI, HDFS commands, Pig command line, &lsquo;hadoop jar&rsquo; command, etc., are considered privileged users. In an organization, it is typically only the teams that work on <a href=http://en.wikipedia.org/wiki/Extract,_transform,_load>ETL</a> workloads that need such access. These tools don&rsquo;t access the data through HiveServer2, and as a result their access is not authorized through this model. For Hive CLI, Pig, and MapReduce users access to Hive tables can be controlled using <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-authorization/>storage based authorization</a> enabled on the metastore server.</p>
@@ -252,7 +252,7 @@ Last updated: December 12, 2024
 <p>Commands such as dfs, add, delete, compile, and reset are disabled when this authorization is enabled.</p>
 <p>The set commands used to change Hive configuration are restricted to a smaller safe set. This is controlled using the <a href=#hive-security-authorization-sqlstd-confwhitelist>hive.security.authorization.sqlstd.confwhitelist</a> configuration parameter. If this set needs to be customized, the HiveServer2 administrator can set a value for this configuration parameter in its hive-site.xml.</p>
 <p>Privileges to add or drop functions and macros are restricted to the <strong>admin</strong> role.</p>
-<p>To enable users to use functions, the ability to create <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL#LanguageManualDDL-Create/DropFunction>permanent functions</a> has been added. A user in the <strong>admin</strong> role can run commands to create these functions, which all users can then use.</p>
+<p>To enable users to use functions, the ability to create <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl#create-function>permanent functions</a> has been added. A user in the <strong>admin</strong> role can run commands to create these functions, which all users can then use.</p>
 <p>The Hive <a href=https://hive.apache.org/docs/latest/language/languagemanual-transform/>transform clause</a> is also disabled when this authorization is enabled.</p>
 <h2 id=privileges>Privileges</h2>
 <p>● SELECT privilege – gives read access to an object.</p>
@@ -282,9 +282,9 @@ They have privileges for running additional commands such as &ldquo;<code>create
 <p>Role names are case insensitive. That is, “marketing” and “MarkEting” refer to same role.</p>
 <p>User names are <em>case sensitive</em>. This is because, unlike role names, user names are not managed within Hive. The user can be any user that the hiveserver2 authentication mode supports.</p>
 <h4 id=quoted-identifiers>Quoted Identifiers</h4>
-<p>User and role names may optionally be surrounded by backtick characters (<code>) when the configuration parameter </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>column<code> (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a><code> is set to </code>none`, only alphanumeric and underscore characters are permitted in user names and role names.</p>
+<p>User and role names may optionally be surrounded by backtick characters (<code>) when the configuration parameter </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a><code> is set to </code>column<code> (default value). All [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) characters are permitted in the quoted identifiers, with double backticks (``) representing a backtick character. However when </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a><code> is set to </code>none`, only alphanumeric and underscore characters are permitted in user names and role names.</p>
 <p>For details, see <a href=https://issues.apache.org/jira/browse/HIVE-6013>HIVE-6013</a> and <a href=https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html>Supporting Quoted Identifiers in Column Names</a>.</p>
-<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.support.quoted.identifiers>hive.support.quoted.identifiers</a>` setting.</p>
+<p>As of <a href=https://issues.apache.org/jira/browse/HIVE-8083>Hive 0.14</a>, user may be optionally surrounded by backtick characters (<code>) irrespective of the </code><a href=https://hive.apache.org/docs/latest/user/configuration-properties#hivesupportquotedidentifiers>hive.support.quoted.identifiers</a>` setting.</p>
 <h3 id=role-management-commands><strong>Role Management Commands</strong></h3>
 <h4 id=create-role>Create Role</h4>
 <pre tabindex=0><code>CREATE ROLE role_name;

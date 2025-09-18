@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -376,9 +376,9 @@ Last updated: December 12, 2024
 <h1 id=2-related-work>2. RELATED WORK</h1>
 <h2 id=stats>STATS</h2>
 <ul>
-<li>histogram_numeric(): Estimating frequency distributions: <a href=https://cwiki.apache.org/confluence/x/CoOhAQ>https://cwiki.apache.org/confluence/x/CoOhAQ</a></li>
+<li>histogram_numeric(): Estimating frequency distributions: <a href=https://hive.apache.org/docs/latest/language/statisticsanddatamining>https://hive.apache.org/docs/latest/language/statisticsanddatamining</a></li>
 <li>histogram() UDAF for a numerical column <a href=https://issues.apache.org/jira/browse/HIVE-1397>https://issues.apache.org/jira/browse/HIVE-1397</a></li>
-<li>Built-in Aggregate Functions (UDAF): <a href=https://cwiki.apache.org/confluence/x/-oKhAQ>https://cwiki.apache.org/confluence/x/-oKhAQ</a></li>
+<li>Built-in Aggregate Functions (UDAF): <a href=https://hive.apache.org/docs/latest/language/languagemanual-udf>https://hive.apache.org/docs/latest/language/languagemanual-udf</a></li>
 <li>Annotate hive operator tree with statistics from metastore: <a href=https://issues.apache.org/jira/browse/HIVE-5369>https://issues.apache.org/jira/browse/HIVE-5369</a></li>
 </ul>
 <p> </p>
@@ -477,7 +477,7 @@ Last updated: December 12, 2024
 <ul>
 <li>Cluster By/Distribute By</li>
 </ul>
-<p><em>Cluster By</em> and <em>Distribute By</em> are used mainly with the <a href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Transform>Transform/Map-Reduce Scripts</a>. But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries. <em>Cluster By</em> is a short-cut for both <em>Distribute By</em> and <em>Sort By</em>. Hive uses the columns in <em>Distribute By</em> to distribute the rows among reducers. All rows with the same <em>Distribute By</em> columns will go to the same reducer. However, <em>Distribute By</em> does not guarantee clustering or sorting properties on the distributed keys.</p>
+<p><em>Cluster By</em> and <em>Distribute By</em> are used mainly with the <a href=https://hive.apache.org/docs/latest/language/languagemanual-transform>Transform/Map-Reduce Scripts</a>. But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries. <em>Cluster By</em> is a short-cut for both <em>Distribute By</em> and <em>Sort By</em>. Hive uses the columns in <em>Distribute By</em> to distribute the rows among reducers. All rows with the same <em>Distribute By</em> columns will go to the same reducer. However, <em>Distribute By</em> does not guarantee clustering or sorting properties on the distributed keys.</p>
 <ul>
 <li>Table Sample</li>
 </ul>

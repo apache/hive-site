@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -267,18 +267,18 @@ Last updated: December 12, 2024
 <h1 id=maintaining-scheduled-queries>Maintaining scheduled queries</h1>
 <h2 id=create-scheduled-query-syntax>Create Scheduled query syntax</h2>
 <p><strong>CREATE SCHEDULED QUERY &lt;scheduled_query_name></strong><br>
-<strong><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec"></a></strong> <br>
-<strong>[<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec"></a></strong> <strong>]</strong><br>
-<strong>[<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification"></a>]</strong><br>
-<strong><a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec"></a></strong></p>
+<strong><a href=https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax></a></strong> <br>
+<strong>[<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax></a></strong> <strong>]</strong><br>
+<strong>[<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax></a>]</strong><br>
+<strong><a href=https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax></a></strong></p>
 <h2 id=alter-scheduled-query-syntax>Alter Scheduled query syntax</h2>
-<p><strong>ALTER SCHEDULED QUERY &lt;scheduled_query_name></strong> <strong>(<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec"></a>|<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executeSpec"></a>);</strong></p>
+<p><strong>ALTER SCHEDULED QUERY &lt;scheduled_query_name></strong> <strong>(<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax></a>|<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax></a>|<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax></a>|<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax></a>|<a href=https://hive.apache.org/docs/latest/language/scheduled-queries#executespec-syntax></a>);</strong></p>
 <h2 id=drop-syntax>Drop syntax</h2>
 <p><strong>DROP SCHEDULED QUERY &lt;scheduled_query_name>;</strong></p>
 <h2 id=schedulespecification-syntax>scheduleSpecification syntax</h2>
 <p>Schedules can be specified using CRON expressions or for common cases there is a simpler form; in any case the schedule is stored as Quartz cron expression.</p>
 <h3 id=cron-based-schedulesyntax>CRON based schedule syntax</h3>
-<p><strong>CRON <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-quartz_schedule_expression">&lt;quartz_schedule_expression></a></strong></p>
+<p><strong>CRON &lt;quartz_schedule_expression></strong></p>
 <p>where quartz_schedule_expression is quoted schedule in the Quartz format</p>
 <p><a href=https://www.freeformatter.com/cron-expression-generator-quartz.html>https://www.freeformatter.com/cron-expression-generator-quartz.html</a></p>
 <p>For example the <code>CRON '0 */10 * * * ? *'</code>  expression will fire every 10 minutes.</p>

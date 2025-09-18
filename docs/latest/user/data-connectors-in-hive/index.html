@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -167,7 +167,7 @@ Last updated: December 12, 2024
 <h1 id=apache-hive--data-connectors-in-hive>Apache Hive : Data Connectors in Hive</h1>
 <h3 id=what-is-a-data-connector>What is a Data connector?</h3>
 <p>Data connectors (referred to as &ldquo;connector&rdquo; in Hive Query Language) are top level objects in Hive where users can define a set of properties required to be able to connect to a datasource from hive. So a connector has a type (closed enumerated set) that allows Hive to determine the driver class (for JDBC) and other URL params, a URL and a set of properties that could include the default credentials for the remote datasource. Once defined, users can use the same connector object to map multiple databases from the remote datasource to local hive metastore.</p>
-<p>With <a href=https://cwiki.apache.org/confluence/display/Hive/JDBC+Storage+Handler>JDBC Storage Handlers</a>, users define a table in hive metastore for which data resides in a remote JDBC datastore. This hive table&rsquo;s metadata is persisted locally in hive metastore&rsquo;s backend. When Hiveserver2 runs a query against this table, data is retrieved from the remote JDBC table. While this is very powerful in itself, it has limitations.</p>
+<p>With <a href=https://hive.apache.org/docs/latest/user/jdbc-storage-handler>JDBC Storage Handlers</a>, users define a table in hive metastore for which data resides in a remote JDBC datastore. This hive table&rsquo;s metadata is persisted locally in hive metastore&rsquo;s backend. When Hiveserver2 runs a query against this table, data is retrieved from the remote JDBC table. While this is very powerful in itself, it has limitations.</p>
 <ul>
 <li>Each remote table in remote datasource has to be individually mapped to a local hive table. It becomes tedious if you have to map an entire database of many tables.</li>
 <li>Any new tables in the remote datasource are not automatically visible and will need to be manually mapped in hive.</li>

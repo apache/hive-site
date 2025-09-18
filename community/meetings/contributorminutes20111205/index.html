@@ -50,7 +50,7 @@ Documentation
 <ul class=dropdown-menu aria-labelledby=docsDropdown>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/LanguageManual>Language Manual</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
 </ul>
 </li>
 <li class="nav-item dropdown">
@@ -72,7 +72,7 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HiveDeveloperFAQ>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
 <li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
@@ -83,7 +83,7 @@ Community
 </a>
 <ul class=dropdown-menu aria-labelledby=communityDropdown>
 <li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/HowToContribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
 <li><a class=dropdown-item href=/community/resources/>Resources</a></li>
 <li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
@@ -163,7 +163,7 @@ Last updated: December 12, 2024
 <p>Carl gave an update on the 0.8 release; delays have been due to difficulties with the metastore upgrade scripts, which should now be all sorted out. Carl proposed cutting a new branch from trunk and releasing that as 0.8, with rationale (a) some backports to the old branch are difficult; (b) trunk is stable; (c) trunk contains lots of new high-value work such as the BINARY datatype. There were no objections.</p>
 <p>Carl also proposed that in the future, developers delivering metastore changes should also be responsible for supplying metastore upgrade scripts for all supported DBMS&rsquo;s (currently MySQL and Derby).</p>
 <p>A patch has been committed to make Hive build and run against Hadoop 0.23, and Carl has set up a Jenkins instance for continuous integration. Some tests are still failing, and it is uncertain whether a Hive binary built against 0.20.x will run against Hadoop 0.23. Once tests are all fixed, we&rsquo;ll start requiring committers to keep them working (e.g. if something gets committed which passes tests on 0.20.x, but breaks 0.23, the committer needs to either submit a timely followup to address the breakage, or else back out the original change). There was some discussion about doing the same for Hadoop 0.20.20x, but no resolution.</p>
-<p>Ashutosh asked about a registry of available Hive storage handlers, and John referenced the Introduction section in <a href=https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>https://cwiki.apache.org/confluence/display/Hive/StorageHandlers</a>.</p>
+<p>Ashutosh asked about a registry of available Hive storage handlers, and John referenced the Introduction section in <a href=https://hive.apache.org/development/desingdocs/storagehandlers>https://hive.apache.org/development/desingdocs/storagehandlers</a>.</p>
 <p>Code walkthroughs were carried out for HIVE-2616 and HIVE-2589.</p>
 </div>
 <footer class=docs-footer>
