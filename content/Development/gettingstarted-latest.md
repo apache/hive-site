@@ -51,7 +51,7 @@ Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 The Hive GIT repository for the most recent Hive code is located here: `git clone <https://git-wip-us.apache.org/repos/asf/hive.git>` (the master branch).
 
-All release versions are in branches named "branch-0.#" or "branch-1.#" or the upcoming "branch-2.#", with the exception of release 0.8.1 which is in "branch-0.8-r2". Any branches with other names are feature branches for works-in-progress. See [Understanding Hive Branches](https://cwiki.apache.org/confluence/display/Hive/HowToContribute#HowToContribute-UnderstandingHiveBranches) for details.
+All release versions are in branches named "branch-0.#" or "branch-1.#" or the upcoming "branch-2.#", with the exception of release 0.8.1 which is in "branch-0.8-r2". Any branches with other names are feature branches for works-in-progress. See [Understanding Hive Branches](https://hive.apache.org/community/resources/howtocontribute#understanding-hive-branches) for details.
 
 As of 0.13, Hive is built using [Apache Maven](http://maven.apache.org).
 
@@ -284,7 +284,7 @@ Hive uses log4j for logging. By default logs are not emitted to the console by t
 The logs are stored in the directory `/tmp/<*user.name*>`:
 
 * `/tmp/<*user.name*>/hive.log`  
-Note: In [local mode](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=82706478#GettingStarted-Hive,Map-ReduceandLocal-Mode), prior to Hive 0.13.0 the log file name was "`.log`" instead of "`hive.log`". This bug was fixed in release 0.13.0 (see [HIVE-5528](https://issues.apache.org/jira/browse/HIVE-5528) and [HIVE-5676](https://issues.apache.org/jira/browse/HIVE-5676)).
+Note: In [local mode](https://hive.apache.org/development/gettingstarted-latest#GettingStarted-Hive,Map-ReduceandLocal-Mode), prior to Hive 0.13.0 the log file name was "`.log`" instead of "`hive.log`". This bug was fixed in release 0.13.0 (see [HIVE-5528](https://issues.apache.org/jira/browse/HIVE-5528) and [HIVE-5676](https://issues.apache.org/jira/browse/HIVE-5676)).
 
 To configure a different log location, set `hive.log.dir` in $HIVE_HOME/conf/hive-log4j.properties. Make sure the directory has the sticky bit set (`chmod 1777 <*dir*>`).
 
@@ -545,7 +545,7 @@ Note that for versions of Hive which don't include [HIVE-287](https://issues.apa
 ```
 
 This streams the data in the map phase through the script `/bin/cat` (like Hadoop streaming).  
-Similarly – streaming can be used on the reduce side (please see the [Hive Tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Custommap%2Freducescripts) for examples).
+Similarly – streaming can be used on the reduce side (please see the [Hive Tutorial](https://hive.apache.org/docs/latest/user/tutorial#custom-mapreduce-scripts) for examples).
 
 ## Simple Example Use Cases
 

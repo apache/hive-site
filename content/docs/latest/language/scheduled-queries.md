@@ -35,15 +35,15 @@ Hive has it’s scheduled query interface built into the language itself for eas
 ## Create Scheduled query syntax
 
 **CREATE SCHEDULED QUERY <scheduled_query_name>**   
-**[<scheduleSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec)**    
-**[[<executedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec)**  **]**   
-**[[<enableSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification)]**   
-**[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)**    
+**[<scheduleSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax)**    
+**[[<executedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax)**  **]**   
+**[[<enableSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax)]**   
+**[<definedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax)**    
   
 
 ## Alter Scheduled query syntax
 
-**ALTER SCHEDULED QUERY <scheduled_query_name>** **([<scheduleSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-scheduleSpec)|[<executedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executedAsSpec)|[<enableSpecification>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-enableSpecification)|[<definedAsSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-definedAsSpec)|[<executeSpec>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-executeSpec));**
+**ALTER SCHEDULED QUERY <scheduled_query_name>** **([<scheduleSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax)|[<executedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax)|[<enableSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax)|[<definedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax)|[<executeSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executespec-syntax));**
 
 ## Drop syntax
 
@@ -61,7 +61,7 @@ Schedules can be specified using CRON expressions or for common cases there is a
 
 ### CRON based schedule syntax
 
-**CRON [<quartz_schedule_expression>](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=145724134#ScheduledQueries-quartz_schedule_expression)**
+**CRON <quartz_schedule_expression>**
 
 where quartz_schedule_expression is quoted schedule in the Quartz format
 

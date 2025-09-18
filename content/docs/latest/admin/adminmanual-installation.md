@@ -109,7 +109,7 @@ $ bin/hive
 
 The Hive home directory is the one with the contents of build/dist for Hive 0.12 and earlier; for Hive 0.13 and later it is packaging/target/apache-hive-*<release_string>*-bin/apache-hive-*<release_string>*-bin/.
 
-HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see [Beeline – New Command Line Shell](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline--NewCommandLineShell)). To use Beeline, execute the following command in the Hive home directory:
+HiveServer2 (introduced in Hive 0.11) has a new CLI called Beeline (see [Beeline – New Command Line Shell](https://hive.apache.org/docs/latest/user/hiveserver2-clients#beeline--command-line-shell)). To use Beeline, execute the following command in the Hive home directory:
 
 ```
 $ bin/beeline

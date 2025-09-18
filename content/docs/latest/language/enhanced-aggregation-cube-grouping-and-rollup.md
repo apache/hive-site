@@ -20,7 +20,7 @@ Version
 GROUPING__ID is compliant with semantics in other SQL engines starting in Hive 2.3.0 (see [HIVE-16102](https://issues.apache.org/jira/browse/HIVE-16102)).  
 Support for SQL *grouping* function was added in Hive 2.3.0 too (see [HIVE-15409](https://issues.apache.org/jira/browse/HIVE-15409)).
 
-For general information about GROUP BY, see [GroupBy](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+GroupBy) in the Language Manual.
+For general information about GROUP BY, see [GroupBy](https://hive.apache.org/docs/latest/language/languagemanual-groupby) in the Language Manual.
 
 ### GROUPING SETS clause
 

@@ -27,8 +27,8 @@ There are some limitations in the "order by" clause. In the strict mode (i.e., [
 
 Note that columns are specified by name, not by position number. However in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-581) and later, columns can be specified by position when configured as follows:
 
-* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.groupby.orderby.position.alias) to true (the default is false).
-* For Hive 2.2.0 and later, [hive.orderby.position.alias](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.orderby.position.alias) is true by default.
+* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias](https://hive.apache.org/docs/latest/user/configuration-properties#hivegroupbyorderbypositionalias) to true (the default is false).
+* For Hive 2.2.0 and later, [hive.orderby.position.alias](https://hive.apache.org/docs/latest/user/configuration-properties#hiveorderbypositionalias) is true by default.
 
 The default sorting order is ascending (ASC).
 

@@ -19,7 +19,7 @@ Carl also proposed that in the future, developers delivering metastore changes s
 
 A patch has been committed to make Hive build and run against Hadoop 0.23, and Carl has set up a Jenkins instance for continuous integration. Some tests are still failing, and it is uncertain whether a Hive binary built against 0.20.x will run against Hadoop 0.23. Once tests are all fixed, we'll start requiring committers to keep them working (e.g. if something gets committed which passes tests on 0.20.x, but breaks 0.23, the committer needs to either submit a timely followup to address the breakage, or else back out the original change). There was some discussion about doing the same for Hadoop 0.20.20x, but no resolution.
 
-Ashutosh asked about a registry of available Hive storage handlers, and John referenced the Introduction section in <https://cwiki.apache.org/confluence/display/Hive/StorageHandlers>.
+Ashutosh asked about a registry of available Hive storage handlers, and John referenced the Introduction section in <https://hive.apache.org/development/desingdocs/storagehandlers>.
 
 Code walkthroughs were carried out for HIVE-2616 and HIVE-2589.
 

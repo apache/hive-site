@@ -173,7 +173,7 @@ As of [Hive 2.0.0](https://issues.apache.org/jira/browse/HIVE-11306), a cheap Bl
 # References
 
 * Hybrid Hybrid Grace Hash Join presentation by Mostafa
-* MapJoinOptimization <https://cwiki.apache.org/confluence/display/Hive/MapJoinOptimization>
+* MapJoinOptimization <https://hive.apache.org/development/desingdocs/mapjoinoptimization>
 * [HIVE-1641](https://issues.apache.org/jira/browse/HIVE-1641) add map joined table to distributed cache
 * [HIVE-1642](https://issues.apache.org/jira/browse/HIVE-1642) Convert join queries to map-join based on size of table/row
 * Database Management Systems, 3rd ed

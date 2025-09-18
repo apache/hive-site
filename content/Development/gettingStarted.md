@@ -63,9 +63,9 @@ project and contribute your expertise.
 [MAILING_LISTS]: /community/mailinglists/
 [HIVE_FACEBOOK]: http://www.facebook.com/pages/Hive/43928506208
 [HIVE_DETAILS]: https://cwiki.apache.org/confluence/display/Hive/
-[HIVE_QL]: https://cwiki.apache.org/confluence/display/Hive/Home#Home-UserDocumentation
+[HIVE_QL]: https://hive.apache.org/docs/latest/introduction-to-apache-hive#Home-UserDocumentation
 [COMMUNITY]: /community/people/
-[CONTRIBUTOR]: https://cwiki.apache.org/confluence/display/Hive/Home#Home-ResourcesforContributors
+[CONTRIBUTOR]: https://hive.apache.org/docs/latest/introduction-to-apache-hive#Home-ResourcesforContributors
 [HIVE_TWITTER]: https://twitter.com/apachehive
 [DOCKER_QUICKSTART]: /development/quickstart/
 

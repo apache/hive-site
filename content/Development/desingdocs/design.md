@@ -58,7 +58,7 @@ Metastore provides a [Thrift interface](https://thrift.apache.org/docs/idl) to m
 
 ## Hive Query Language
 
-HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for creation of tables, loading data into tables and querying the tables. HiveQL also allows users to embed their custom map-reduce scripts. These scripts can be written in any language using a simple row-based streaming interface – read rows from standard input and write out rows to standard output. This flexibility comes at a cost of a performance hit caused by converting rows from and to strings. However, we have seen that users do not mind this given that they can implement their scripts in the language of their choice. Another feature unique to HiveQL is multi-table insert. In this construct, users can perform multiple queries on the same input data using a single HiveQL query. Hive optimizes these queries to share the scan of the input data, thus increasing the throughput of these queries several orders of magnitude. We omit more details due to lack of space. For a more complete description of the HiveQL language see the [language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual).
+HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for creation of tables, loading data into tables and querying the tables. HiveQL also allows users to embed their custom map-reduce scripts. These scripts can be written in any language using a simple row-based streaming interface – read rows from standard input and write out rows to standard output. This flexibility comes at a cost of a performance hit caused by converting rows from and to strings. However, we have seen that users do not mind this given that they can implement their scripts in the language of their choice. Another feature unique to HiveQL is multi-table insert. In this construct, users can perform multiple queries on the same input data using a single HiveQL query. Hive optimizes these queries to share the scan of the input data, thus increasing the throughput of these queries several orders of magnitude. We omit more details due to lack of space. For a more complete description of the HiveQL language see the [language manual](https://hive.apache.org/docs/latest/language/languagemanual).
 
 ## Compiler
 
@@ -69,11 +69,11 @@ HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for c
 
 ## Optimizer
 
-More plan transformations are performed by the optimizer. The optimizer is an evolving component. As of 2011, it was rule-based and performed the following: column pruning and predicate pushdown. However, the infrastructure was in place, and there was work under progress to include other optimizations like map-side join. (Hive 0.11 added several [join optimizations](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+JoinOptimization).)  
+More plan transformations are performed by the optimizer. The optimizer is an evolving component. As of 2011, it was rule-based and performed the following: column pruning and predicate pushdown. However, the infrastructure was in place, and there was work under progress to include other optimizations like map-side join. (Hive 0.11 added several [join optimizations](https://hive.apache.org/docs/latest/language/languagemanual-joinoptimization).)  
   
- The optimizer can be enhanced to be cost-based (see [Cost-based optimization in Hive](https://cwiki.apache.org/confluence/display/Hive/Cost-based+optimization+in+Hive) and [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775)). The sorted nature of output tables can also be preserved and used later on to generate better plans. The query can be performed on a small sample of data to guess the data distribution, which can be used to generate a better plan.  
+ The optimizer can be enhanced to be cost-based (see [Cost-based optimization in Hive](https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive) and [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775)). The sorted nature of output tables can also be preserved and used later on to generate better plans. The query can be performed on a small sample of data to guess the data distribution, which can be used to generate a better plan.  
   
- A [correlation optimizer](https://cwiki.apache.org/confluence/display/Hive/Correlation+Optimizer) was added in Hive 0.12.  
+ A [correlation optimizer](https://hive.apache.org/development/desingdocs/correlation-optimizer) was added in Hive 0.12.  
   
  The plan is a generic operator tree, and can be easily manipulated.
 

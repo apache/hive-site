@@ -73,7 +73,7 @@ Also:
 * An [Avro SerDe]({{< ref "avroserde" >}}) was added in Hive 0.9.1.  Starting in Hive 0.14.0 its specification is implicit with the STORED AS AVRO clause.
 * A SerDe for the [ORC]({{< ref "languagemanual-orc" >}}) file format was added in Hive 0.11.0.
 * A SerDe for [Parquet]({{< ref "parquet" >}}) was added via plug-in in Hive 0.10 and natively in Hive 0.13.0.
-* A SerDe for [CSV](https://cwiki.apache.org/confluence/display/Hive/CSV+Serde) was added in Hive 0.14.
+* A SerDe for [CSV](https://hive.apache.org/docs/latest/user/csv-serde) was added in Hive 0.14.
 
 See [SerDe]({{< ref "serde" >}}) for detailed information about input and output processing. Also see [Storage Formats]({{< ref "hcatalog-storageformats" >}}) in the [HCatalog manual]({{< ref "hcatalog-base" >}}), including [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}}). For information about how to create a table with a custom or native SerDe, see [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}).
 

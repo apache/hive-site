@@ -15,7 +15,7 @@ date: 2024-12-12
 
 The initial implementation was added to Hive 4.0 in [HIVE-12971](https://issues.apache.org/jira/browse/HIVE-12971) and is designed to work with Kudu 1.2+.
 
-There are two main components which make up the implementation: the `KuduStorageHandler` and the `KuduPredicateHandler`. The `KuduStorageHandler` is a Hive [StorageHandler](https://cwiki.apache.org/confluence/display/Hive/StorageHandlers) implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.
+There are two main components which make up the implementation: the `KuduStorageHandler` and the `KuduPredicateHandler`. The `KuduStorageHandler` is a Hive [StorageHandler](https://hive.apache.org/development/desingdocs/storagehandlers) implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.
 
 **NOTE**: The initial implementation is considered `***experimental***` as there are remaining [sub-jiras](https://issues.apache.org/jira/browse/HIVE-12971) open to make the implementation more configurable and performant. Currently only external tables pointing at existing Kudu tables are supported. Support for creating and altering underlying Kudu tables in tracked via [HIVE-22021](https://issues.apache.org/jira/browse/HIVE-22021). Additionally full support for UPDATE, UPSERT, and DELETE statement support is tracked by [HIVE-22027](https://issues.apache.org/jira/browse/HIVE-22027).
 
@@ -56,7 +56,7 @@ Because Impala creates tables with the same storage handler metadata in the Hiv
 
 ## Data Ingest
 
-Though it is a common practice to ingest the data into Kudu tables via tools like [Apache NiFi](https://nifi.apache.org/) or [Apache Spark](https://spark.apache.org/) and query the data via Hive, data can also be inserted to the Kudu tables via [Hive INSERT statements](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML#LanguageManualDML-InsertingdataintoHiveTablesfromqueries). It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via [HIVE-22024](https://issues.apache.org/jira/browse/HIVE-22024). Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via [HIVE-22027](https://issues.apache.org/jira/browse/HIVE-22027).
+Though it is a common practice to ingest the data into Kudu tables via tools like [Apache NiFi](https://nifi.apache.org/) or [Apache Spark](https://spark.apache.org/) and query the data via Hive, data can also be inserted to the Kudu tables via [Hive INSERT statements](https://hive.apache.org/docs/latest/language/languagemanual-dml#inserting-data-into-hive-tables-from-queries). It is important to note that when data is inserted a Kudu UPSERT operation is actually used to avoid primary key constraint issues. Making this more flexible is tracked via [HIVE-22024](https://issues.apache.org/jira/browse/HIVE-22024). Additionally UPDATE and DELETE operations are not supported. Enabling that functionality is tracked via [HIVE-22027](https://issues.apache.org/jira/browse/HIVE-22027).
 
 ### Examples
 

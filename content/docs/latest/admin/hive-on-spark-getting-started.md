@@ -225,12 +225,12 @@ spark.kryo.referenceTracking=false
 spark.kryo.classesToRegister=org.apache.hadoop.hive.ql.io.HiveKey,org.apache.hadoop.io.BytesWritable,org.apache.hadoop.hive.ql.exec.vector.VectorizedRowBatch
 ```
 
-See [Spark section of configuration page](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-Spark) for additional properties.
+See [Spark section of configuration page](https://hive.apache.org/docs/latest/user/configuration-properties#spark) for additional properties.
 
 ## Design documents
 
 * [Hive on Spark: Overall Design](https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf) from [HIVE-7272](https://issues.apache.org/jira/browse/HIVE-7292)
-* [Hive on Spark: Join Design (HIVE-7613)](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Join+Design+Master)
+* [Hive on Spark: Join Design (HIVE-7613)](https://hive.apache.org/development/desingdocs/hive-on-spark-join-design-master)
 * [Hive on Spark Configuration (HIVE-9449)](https://issues.apache.org/jira/browse/HIVE-9449)
 * [attachments/44302539/53575687.pdf](/attachments/44302539/53575687.pdf)
 

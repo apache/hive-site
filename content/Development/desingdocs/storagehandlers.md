@@ -19,7 +19,7 @@ date: 2024-12-12
 
 This page documents the storage handler support being added to Hive as part of work on [HBaseIntegration]({{< ref "hbaseintegration" >}}). The motivation is to make it possible to allow Hive to access data stored and managed by other systems in a modular, extensible fashion.
 
-Besides HBase, a storage handler implementation is also available for [Hypertable](http://code.google.com/p/hypertable/wiki/HiveExtension), and others are being developed for [Cassandra](https://issues.apache.org/jira/browse/HIVE-1434), [Azure Table](https://blogs.msdn.microsoft.com/mostlytrue/2014/04/04/analyzing-azure-table-storage-data-with-hdinsight/), [JDBC](https://cwiki.apache.org/confluence/display/Hive/JdbcStorageHandler) (MySQL and others), [MongoDB](https://github.com/yc-huang/Hive-mongo), [ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html), [Phoenix HBase](https://phoenix.apache.org/hive_storage_handler.html?platform=hootsuite), [VoltDB](https://issues.voltdb.com/browse/ENG-10736?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel) and [Google Spreadsheets](https://github.com/balshor/gdata-storagehandler).  A [Kafka handler](https://github.com/HiveKa/HiveKa) demo is available.
+Besides HBase, a storage handler implementation is also available for [Hypertable](http://code.google.com/p/hypertable/wiki/HiveExtension), and others are being developed for [Cassandra](https://issues.apache.org/jira/browse/HIVE-1434), [Azure Table](https://blogs.msdn.microsoft.com/mostlytrue/2014/04/04/analyzing-azure-table-storage-data-with-hdinsight/), [JDBC](https://hive.apache.org/docs/latest/user/jdbc-storage-handler) (MySQL and others), [MongoDB](https://github.com/yc-huang/Hive-mongo), [ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html), [Phoenix HBase](https://phoenix.apache.org/hive_storage_handler.html?platform=hootsuite), [VoltDB](https://issues.voltdb.com/browse/ENG-10736?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel) and [Google Spreadsheets](https://github.com/balshor/gdata-storagehandler).  A [Kafka handler](https://github.com/HiveKa/HiveKa) demo is available.
 
 Hive storage handler support builds on existing extensibility features in both Hadoop and Hive:
 
@@ -63,7 +63,7 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
 
 ```
 
-When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from [Hive 4.0](https://cwiki.apache.org/confluence/display/Hive/Hive-Iceberg+Integration), they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.
+When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from [Hive 4.0](https://hive.apache.org/docs/latest/user/hive-iceberg-integration), they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.
 
 See [CREATE TABLE]({{< ref "#create-table" >}}) and [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}) for more information.
 

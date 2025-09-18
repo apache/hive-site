@@ -27,8 +27,8 @@ $ perl -i -pe 's<at:var at:name="MyCLass" />MyClass@g' MyClass.java
 
 ## Building
 
-* See [Getting Started: Building Hive from Source](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-BuildingHivefromSource) for detailed information about building Hive releases 0.13 and later with [Maven](http://maven.apache.org/).
-* See [Installing from Source Code (Hive 0.12.0 and Earlier)](https://cwiki.apache.org/confluence/display/Hive/AdminManual+Installation#AdminManualInstallation-InstallingfromSourceCode(Hive0.12.0andEarlier)) for detailed information about building Hive 0.12 and earlier with [Ant](http://ant.apache.org/).
+* See [Getting Started: Building Hive from Source](https://hive.apache.org/development/gettingstarted-latest#building-hive-from-source) for detailed information about building Hive releases 0.13 and later with [Maven](http://maven.apache.org/).
+* See [Installing from Source Code (Hive 0.12.0 and Earlier)](https://hive.apache.org/docs/latest/admin/adminmanual-installation#installing-from-source-code-hive-0120-and-earlier) for detailed information about building Hive 0.12 and earlier with [Ant](http://ant.apache.org/).
 
 ### Maven settings
 

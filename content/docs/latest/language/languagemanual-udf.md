@@ -182,7 +182,7 @@ Version
 
 The decimal datatype was introduced in Hive 0.11.0 ([HIVE-2693](https://issues.apache.org/jira/browse/HIVE-2693)).
 
-All regular arithmetic operators (such as +, -, *, /) and relevant mathematical UDFs (Floor, Ceil, Round, and many more) have been updated to handle decimal types. For a list of supported UDFs, see [Mathematical UDFs](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes-MathematicalUDFs) in [Hive Data Types](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types#LanguageManualTypes).
+All regular arithmetic operators (such as +, -, *, /) and relevant mathematical UDFs (Floor, Ceil, Round, and many more) have been updated to handle decimal types. For a list of supported UDFs, see [Mathematical UDFs](https://hive.apache.org/docs/latest/language/languagemanual-types#mathematical-udfs) in [Hive Data Types](https://hive.apache.org/docs/latest/language/languagemanual-types).
 
 ### Collection Functions
 

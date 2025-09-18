@@ -50,7 +50,7 @@ Details of HDFS permissions are given at `ht``tp://hadoop.apache.org/docs/r`*x.x
 
 Links to documentation for different releases of Hadoop can be found here: <http://hadoop.apache.org/docs/>.
 
-**Note**: If [hive.warehouse.subdir.inherit.perms](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-hive.warehouse.subdir.inherit.perms) is enabled, permissions and ACL's for Hive-created files and directories will be set via the following [permission inheritance]({{< ref "permission-inheritance-in-hive" >}}) rules.
+**Note**: If [hive.warehouse.subdir.inherit.perms](https://hive.apache.org/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms) is enabled, permissions and ACL's for Hive-created files and directories will be set via the following [permission inheritance]({{< ref "permission-inheritance-in-hive" >}}) rules.
 
 The file system’s logic for determining if a user has permission on the directory or file will be used by Hive. 
 
