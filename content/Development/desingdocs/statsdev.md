@@ -405,8 +405,6 @@ See feature details in [HBase Metastore Split Cache](https://issues.apache.org/j
 | [Bug](https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro) | [HIVE-23887](https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro) | [Reset table level basic/column stats during import.](https://issues.apache.org/jira/browse/HIVE-23887?src=confmacro)  | Ashish Sharma | Ashish Sharma | Minor | Closed | Fixed | Jul 21, 2020 | Nov 17, 2022 |  |
 | [Bug](https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro) | [HIVE-23796](https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro) | [Multiple insert overwrite into a partitioned table doesn't gather column statistics for all partitions](https://issues.apache.org/jira/browse/HIVE-23796?src=confmacro)  | Unassigned | Yu-Wen Lai | Major | Open | Unresolved | Jul 02, 2020 | Jul 02, 2020 |  |
 
-[Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 
 Showing 20 out of
 [306 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20component%20in%20%28%22Statistics%22%29&tempMax=1000&src=confmacro) 

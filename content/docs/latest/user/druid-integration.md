@@ -570,8 +570,6 @@ Time taken: 1.835 seconds, Fetched: 2 row(s)
 | [HIVE-20687](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) | [Cancel Running Druid Query when a hive query is cancelled.](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro)  | [Improvement](https://issues.apache.org/jira/browse/HIVE-20687?src=confmacro) | Oct 03, 2018 | Oct 05, 2018 |  | Nishant Bangarwa | Nishant Bangarwa | Major | Open | Unresolved |
 | [HIVE-20997](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) | [Make Druid Cluster start on random ports.](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro)  | [Sub-task](https://issues.apache.org/jira/browse/HIVE-20997?src=confmacro) | Dec 03, 2018 | Dec 04, 2018 |  | Slim Bouguerra | Slim Bouguerra | Major | Open | Unresolved |
 
-[Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 
 Showing 20 out of
 [28 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+12330863++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC+&src=confmacro) 

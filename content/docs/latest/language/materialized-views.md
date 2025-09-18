@@ -389,8 +389,6 @@ The parameter value can be also overridden by a concrete materialized view just 
 | [HIVE-22921](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | [materialized_view_partitioned_3.q relies on hive.optimize.sort.dynamic.partition property](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro)  | [Test](https://issues.apache.org/jira/browse/HIVE-22921?src=confmacro) | Feb 21, 2020 | Feb 27, 2024 |  | Vineet Garg | Jesús Camacho Rodríguez | Major | Open | Unresolved |
 | [HIVE-24335](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro) | [RelOptMaterialization creates LogicalProject on top of HiveTableScan](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro)  | [Bug](https://issues.apache.org/jira/browse/HIVE-24335?src=confmacro) | Oct 30, 2020 | Apr 04, 2024 |  | Krisztian Kasa | Krisztian Kasa | Major | Open | Unresolved |
 
-[Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 Showing 20 out of
 [24 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+Hive+AND+component+%3D+%22Materialized+views%22++and+resolution+%3D+Unresolved+ORDER+BY+key+ASC++&src=confmacro) 
 

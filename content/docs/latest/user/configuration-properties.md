@@ -9,7 +9,7 @@ This document describes the Hive user configuration properties (sometimes called
 
 The canonical list of configuration properties is managed in the `HiveConf` Java class, so refer to the `HiveConf.java` file for a complete list of configuration properties available in your Hive release.
 
-For information about how to use these configuration properties, see [Configuring Hive]({{< ref "#configuring-hive" >}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{< ref "#configuration-variables" >}}) section. [Hive Metastore Administration](https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin) describes additional configuration properties for the metastore.
+For information about how to use these configuration properties, see [Configuring Hive]({{< ref "#configuring-hive" >}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{< ref "#configuration-variables" >}}) section. [Hive Metastore Administration](https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration) describes additional configuration properties for the metastore.
 
 Version information
 

@@ -340,8 +340,6 @@ TBD: validation on index table format (can be any managed table format?)
 | [Bug](https://issues.apache.org/jira/browse/HIVE-5631?src=confmacro) | [HIVE-5631](https://issues.apache.org/jira/browse/HIVE-5631?src=confmacro) | [Index creation on a skew table fails](https://issues.apache.org/jira/browse/HIVE-5631?src=confmacro)  | Venki Korukanti | Venki Korukanti | Major | Closed | Fixed | Oct 23, 2013 | Feb 19, 2015 |  |
 
 
-[Authenticate](https://cwiki.apache.org/confluence/plugins/servlet/applinks/oauth/login-dance/authorize?applicationLinkID=5aa69414-a9e9-3523-82ec-879b028fb15b) to retrieve your issues
-
 Showing 20 out of
 [57 issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project%20=%20HIVE%20AND%20Component%20in%20%28indexing%29&tempMax=1000&src=confmacro) 
 

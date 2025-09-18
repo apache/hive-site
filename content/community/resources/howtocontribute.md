@@ -35,7 +35,7 @@ This checklist tells you how to create accounts and obtain permissions needed by
 	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
 * To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{< ref "#about-this-wiki" >}}).
-* To edit the Hive website, follow the instructions in [How to edit the website](https://cwiki.apache.org/confluence/display/Hive/How+to+edit+the+website).
+* To edit the Hive website, follow the instructions in [How to edit the website](https://github.com/apache/hive-site/blob/main/README.md).
 * Join the [Hive mailing lists](http://hive.apache.org/mailing_lists.html) to receive email about issues and discussions.
 
 ## Making Changes

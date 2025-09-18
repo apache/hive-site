@@ -9,7 +9,7 @@ Notes from the Hive Meetup at Facebook, 12/5/11
 
 Attendees: <http://www.meetup.com/Hive-Contributors-Group/events/41150912/>
 
-John gave a demo of the Phabricator instance at <http://reviews.facebook.net>, and proposed that we push through moving all code review over from Review Board to Phabricator (<https://cwiki.apache.org/confluence/display/Hive/PhabricatorCodeReview>). There were no objections.
+John gave a demo of the Phabricator instance at <http://reviews.facebook.net>, and proposed that we push through moving all code review over from Review Board to Phabricator. There were no objections.
 
 Marek gave an overview of the new parallel test framework (<https://issues.apache.org/jira/browse/HIVE-1487>); he'll publish a wiki page explaining how to use it once it gets committed.
 
