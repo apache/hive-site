@@ -73,7 +73,6 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
 </li>
@@ -158,7 +157,7 @@ Last updated: December 12, 2024
 <h1 id=apache-hive--contributorminutes20111205>Apache Hive : ContributorMinutes20111205</h1>
 <p>Notes from the Hive Meetup at Facebook, 12/5/11</p>
 <p>Attendees: <a href=http://www.meetup.com/Hive-Contributors-Group/events/41150912/>http://www.meetup.com/Hive-Contributors-Group/events/41150912/</a></p>
-<p>John gave a demo of the Phabricator instance at <a href=http://reviews.facebook.net>http://reviews.facebook.net</a>, and proposed that we push through moving all code review over from Review Board to Phabricator (<a href=https://cwiki.apache.org/confluence/display/Hive/PhabricatorCodeReview>https://cwiki.apache.org/confluence/display/Hive/PhabricatorCodeReview</a>). There were no objections.</p>
+<p>John gave a demo of the Phabricator instance at <a href=http://reviews.facebook.net>http://reviews.facebook.net</a>, and proposed that we push through moving all code review over from Review Board to Phabricator. There were no objections.</p>
 <p>Marek gave an overview of the new parallel test framework (<a href=https://issues.apache.org/jira/browse/HIVE-1487>https://issues.apache.org/jira/browse/HIVE-1487</a>); he&rsquo;ll publish a wiki page explaining how to use it once it gets committed.</p>
 <p>Carl gave an update on the 0.8 release; delays have been due to difficulties with the metastore upgrade scripts, which should now be all sorted out. Carl proposed cutting a new branch from trunk and releasing that as 0.8, with rationale (a) some backports to the old branch are difficult; (b) trunk is stable; (c) trunk contains lots of new high-value work such as the BINARY datatype. There were no objections.</p>
 <p>Carl also proposed that in the future, developers delivering metastore changes should also be responsible for supplying metastore upgrade scripts for all supported DBMS&rsquo;s (currently MySQL and Derby).</p>

@@ -73,7 +73,6 @@ Development
 <li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
 <li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
-<li><a class=dropdown-item href=https://cwiki.apache.org/confluence/display/Hive/Hive+PreCommit+Patch+Testing>Precommit Patch Testing</a></li>
 <li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
 </ul>
 </li>
@@ -231,7 +230,7 @@ Last updated: December 12, 2024
 </ul>
 <h3 id=metastore-architecture>Metastore Architecture</h3>
 <p>Metastore is an object store with a database or file backed store. The database backed store is implemented using an object-relational mapping (ORM) solution called the <a href=http://www.datanucleus.org/>DataNucleus</a>. The prime motivation for storing this in a relational database is queriability of metadata. Some disadvantages of using a separate data store for metadata instead of using HDFS are synchronization and scalability issues. Additionally there is no clear way to implement an object store on top of HDFS due to lack of random updates to files. This, coupled with the advantages of queriability of a relational store, made our approach a sensible one.</p>
-<p>The metastore can be configured to be used in a couple of ways: remote and embedded. In remote mode, the metastore is a <a href=https://thrift.apache.org/>Thrift</a> service. This mode is useful for non-Java clients. In embedded mode, the Hive client directly connects to an underlying metastore using JDBC. This mode is useful because it avoids another system that needs to be maintained and monitored. Both of these modes can co-exist. (Update: Local metastore is a third possibility. See <a href=https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin>Hive Metastore Administration</a> for details.)</p>
+<p>The metastore can be configured to be used in a couple of ways: remote and embedded. In remote mode, the metastore is a <a href=https://thrift.apache.org/>Thrift</a> service. This mode is useful for non-Java clients. In embedded mode, the Hive client directly connects to an underlying metastore using JDBC. This mode is useful because it avoids another system that needs to be maintained and monitored. Both of these modes can co-exist. (Update: Local metastore is a third possibility. See <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration>Hive Metastore Administration</a> for details.)</p>
 <h3 id=metastore-interface>Metastore Interface</h3>
 <p>Metastore provides a <a href=https://thrift.apache.org/docs/idl>Thrift interface</a> to manipulate and query Hive metadata. Thrift provides bindings in many popular languages. Third party tools can use this interface to integrate Hive metadata into other business metadata repositories.</p>
 <h2 id=hive-query-language>Hive Query Language</h2>
