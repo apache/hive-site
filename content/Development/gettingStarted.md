@@ -62,7 +62,7 @@ project and contribute your expertise.
 [ISSUE_TRACKING]: /community/issuetracking/
 [MAILING_LISTS]: /community/mailinglists/
 [HIVE_FACEBOOK]: http://www.facebook.com/pages/Hive/43928506208
-[HIVE_DETAILS]: https://cwiki.apache.org/confluence/display/Hive/
+[HIVE_DETAILS]: https://hive.apache.org/docs/latest/introduction-to-apache-hive
 [HIVE_QL]: https://hive.apache.org/docs/latest/introduction-to-apache-hive#Home-UserDocumentation
 [COMMUNITY]: /community/people/
 [CONTRIBUTOR]: https://hive.apache.org/docs/latest/introduction-to-apache-hive#Home-ResourcesforContributors
