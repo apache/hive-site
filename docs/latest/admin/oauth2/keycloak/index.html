@@ -1,0 +1,406 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Setting Up OAuth 2 with Keycloak</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class=container-fluid>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li><hr class=dropdown-divider></li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li><a href=/docs/>Documentation</a></li>
+<li class=active>Apache Hive : Setting Up OAuth 2 with Keycloak</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>Apache Hive : Setting Up OAuth 2 with Keycloak</h1>
+<div class=docs-meta>
+<span class=docs-date>
+<i class="fas fa-calendar-alt"></i>
+Last updated: September 30, 2025
+</span>
+</div>
+</header>
+<div class=docs-toc>
+<h4><i class="fas fa-list"></i> Table of Contents</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--setting-up-oauth-2-with-keycloak>Apache Hive : Setting Up OAuth 2 with Keycloak</a>
+<ul>
+<li><a href=#keycloak-settings>Keycloak Settings</a>
+<ul>
+<li><a href=#1-register-hive-metastore-as-a-resource-server>1. Register Hive Metastore as a Resource Server</a></li>
+<li><a href=#2-define-the-catalog-scope>2. Define the &ldquo;catalog&rdquo; scope</a></li>
+<li><a href=#3-create-hive-metastore-clients>3. Create Hive Metastore clients</a></li>
+</ul>
+</li>
+<li><a href=#application-settings>Application Settings</a>
+<ul>
+<li><a href=#hive-metastore>Hive Metastore</a></li>
+<li><a href=#trino>Trino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class=docs-article>
+<h1 id=apache-hive--setting-up-oauth-2-with-keycloak>Apache Hive : Setting Up OAuth 2 with Keycloak</h1>
+<h2 id=keycloak-settings>Keycloak Settings</h2>
+<h3 id=1-register-hive-metastore-as-a-resource-server>1. Register Hive Metastore as a Resource Server</h3>
+<p>Browse <code>Manage -> Clients -> Create client</code>, and create a client for HMS, as an OAuth 2 resource server. This example uses<code>hive-metastore</code> as a client ID. You can access the client secret in the <code>Credentials</code> tab.</p>
+<p><img src=../images/keycloak/resource-server-hive-metastore-1.png alt></p>
+<p><img src=../images/keycloak/resource-server-hive-metastore-2.png alt></p>
+<h3 id=2-define-the-catalog-scope>2. Define the &ldquo;catalog&rdquo; scope</h3>
+<p>Iceberg REST Catalog uses &ldquo;catalog&rdquo; as the default scope name.</p>
+<p>Browse <code>Manage -> Client scopes -> Create client scope</code>, and create the scope. The <code>Name</code> must be <code>catalog</code> and <code>Include in token scope</code> must be enabled.</p>
+<p><img src=../images/keycloak/scope-catalog-1.png alt></p>
+<p>Then, access the <code>Mappers</code> tab, click <code>Configure a new mapper</code>, choose <code>Audience</code>, and set up a protocol mapper to configure the <code>aud</code> claim of access tokens. The value of <code>Included Client Audience</code> must be <code>hive-metastore</code>.</p>
+<p><img src=../images/keycloak/scope-catalog-2.png alt></p>
+<h3 id=3-create-hive-metastore-clients>3. Create Hive Metastore clients</h3>
+<p>Say that we configure Trino as a REST client.</p>
+<p>Browse <code>Manage -> Clients -> Create client</code>, and create a client for Trino, as an OAuth 2 client. You must enable <code>Service accounts roles</code>.</p>
+<p><img src=../images/keycloak/client-trino-1.png alt></p>
+<p><img src=../images/keycloak/client-trino-2.png alt></p>
+<p>Access the <code>Client scopes</code> tab, click <code>Add client scope</code>, check <code>catalog</code>, and add it as an <code>Optional</code> scope.</p>
+<p><img src=../images/keycloak/client-trino-3.png alt></p>
+<p>Optionally, you can add a custom claim, which is useful to resolve a user name. Let&rsquo;s add <code>hive-client-username</code> to the service account so that HMS can use it as a username later. Access <code>trino-dedicated</code> in the <code>Client scopes</code> tab, proceed with <code>Configure a new mapper</code>, choose <code>Hardcoded claim</code>, and add a protocol mapper.</p>
+<p><img src=../images/keycloak/client-trino-4.png alt></p>
+<p>Access the <code>Advanced</code> tab, and enable <code>Use "at+jwt" as access token header type</code>. Hive expects an Authorization Server to respect <a href=https://datatracker.ietf.org/doc/rfc9068/>RFC 9068</a>.</p>
+<p><img src=../images/keycloak/client-trino-5.png alt></p>
+<p>You can access the client secret in the <code>Credentials</code> tab.</p>
+<h2 id=application-settings>Application Settings</h2>
+<h3 id=hive-metastore>Hive Metastore</h3>
+<p>You will add the following parameters in your <code>metastore-site.conf</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Required?</th>
+<th>Default</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metastore.catalog.servlet.auth</td>
+<td>Yes</td>
+<td><code>jwt</code></td>
+<td>You have to choose <code>oauth2</code></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.issuer</td>
+<td>Yes</td>
+<td>N/A</td>
+<td><code>https://{keycloak-host}:{keycloak-port}/realms/{realm name}</code></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.audience</td>
+<td>Yes</td>
+<td>N/A</td>
+<td>The client ID of HMS. In this example, <code>hive-metastore</code></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.validation.method</td>
+<td>No</td>
+<td><code>jwt</code></td>
+<td>Choose <code>introspection</code> if you prefer to use <a href=https://datatracker.ietf.org/doc/html/rfc7662>RFC 7662 - OAuth 2.0 Token Introspection</a>. Token Introspection can be required when you use <a href=https://www.keycloak.org/docs/latest/server_admin/#_using_lightweight_access_token>lightweight access token</a></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.principal.mapper.regex.username.field</td>
+<td>No</td>
+<td><code>sub</code></td>
+<td>The claim name which includes a username. In this example, <code>hive-client-username</code></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.principal.mapper.regex.username.pattern</td>
+<td>No</td>
+<td><code>(.*)</code></td>
+<td>The pattern to extract a username from the claim. For example, you can specify <code>(.*)@example.com</code> to use the local part of an email address as a username</td>
+</tr>
+</tbody>
+</table>
+<p>You also have to configure the following parameters when you use <code>metastore.catalog.servlet.auth.oauth2.validation.method=introspection</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Required?</th>
+<th>Default</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.client.id</td>
+<td>Yes</td>
+<td>N/A</td>
+<td>You must put the client ID of HMS when you use Token Introspection. In this example, <code>hive-metastore</code></td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.client.secret</td>
+<td>Yes</td>
+<td>N/A</td>
+<td>You must put the client secret of HMS when you use Token Introspection</td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.introspection.cache.expiry</td>
+<td>No</td>
+<td>60s</td>
+<td>The expiry time of the Token Introspection cache. <code>0</code> if you want to disable the cache</td>
+</tr>
+<tr>
+<td>metastore.catalog.servlet.auth.oauth2.introspection.cache.num</td>
+<td>No</td>
+<td>1000</td>
+<td>The number of entries for the Token Introspection cache</td>
+</tr>
+</tbody>
+</table>
+<h3 id=trino>Trino</h3>
+<p>You will configure the following parameters for <a href=https://trino.io/docs/current/object-storage/metastores.html#iceberg-rest-catalog>the REST catalog</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connector.name</td>
+<td><code>iceberg</code></td>
+</tr>
+<tr>
+<td>iceberg.catalog.type</td>
+<td><code>rest</code></td>
+</tr>
+<tr>
+<td>iceberg.rest-catalog.uri</td>
+<td><code>https://{hms-host}:{hms-rest-port}/iceberg</code></td>
+</tr>
+<tr>
+<td>iceberg.rest-catalog.security</td>
+<td><code>OAUTH2</code></td>
+</tr>
+<tr>
+<td>iceberg.rest-catalog.oauth2.server-uri</td>
+<td><code>https://{keycloak-host}:{keycloak-port}/realms/{realm name}/protocol/openid-connect/token</code></td>
+</tr>
+<tr>
+<td>iceberg.rest-catalog.oauth2.credential</td>
+<td><code>{client-id-of-trino}:{client-secret-of-trino}</code>. In this example, <code>trino:{Client ID in the Credential tab}</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<footer class=docs-footer>
+<div class=docs-feedback>
+<h4><i class="fas fa-comment"></i> Feedback</h4>
+<p>Was this page helpful? Let us know how we can improve.</p>
+<div class=docs-feedback-buttons>
+<button class="btn btn-feedback btn-positive">
+<i class="fas fa-thumbs-up"></i> Yes
+</button>
+<button class="btn btn-feedback btn-negative">
+<i class="fas fa-thumbs-down"></i> No
+</button>
+</div>
+</div>
+<div class=docs-edit>
+<a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/admin/oauth2/keycloak.md class="btn btn-outline">
+<i class="fab fa-github"></i> Edit this page on GitHub
+</a>
+</div>
+</footer>
+</article>
+<aside class=docs-toc-sidebar>
+<div class=docs-toc-sticky>
+<h4><i class="fas fa-list"></i> On this page</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--setting-up-oauth-2-with-keycloak>Apache Hive : Setting Up OAuth 2 with Keycloak</a>
+<ul>
+<li><a href=#keycloak-settings>Keycloak Settings</a>
+<ul>
+<li><a href=#1-register-hive-metastore-as-a-resource-server>1. Register Hive Metastore as a Resource Server</a></li>
+<li><a href=#2-define-the-catalog-scope>2. Define the &ldquo;catalog&rdquo; scope</a></li>
+<li><a href=#3-create-hive-metastore-clients>3. Create Hive Metastore clients</a></li>
+</ul>
+</li>
+<li><a href=#application-settings>Application Settings</a>
+<ul>
+<li><a href=#hive-metastore>Hive Metastore</a></li>
+<li><a href=#trino>Trino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
