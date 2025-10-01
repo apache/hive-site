@@ -60,7 +60,7 @@ You will add the following parameters in your `metastore-site.conf`.
 | Key | Required? | Default | Value |
 |-|-|-|-|
 | metastore.catalog.servlet.auth | Yes | `jwt` | You have to choose `oauth2` |
-| metastore.catalog.servlet.auth.oauth2.issuer | Yes | N/A | `http://{keycloak-host}:{keycloak-port}/realms/{realm name}` |
+| metastore.catalog.servlet.auth.oauth2.issuer | Yes | N/A | `https://{keycloak-host}:{keycloak-port}/realms/{realm name}` |
 | metastore.catalog.servlet.auth.oauth2.audience | Yes | N/A | The client ID of HMS. In this example, `hive-metastore` |
 | metastore.catalog.servlet.auth.oauth2.validation.method | No | `jwt` | Choose `introspection` if you prefer to use [RFC 7662 - OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662). Token Introspection can be required when you use [lightweight access token](https://www.keycloak.org/docs/latest/server_admin/#_using_lightweight_access_token) |
 | metastore.catalog.servlet.auth.oauth2.principal.mapper.regex.username.field | No | `sub` | The claim name which includes a username. In this example, `hive-client-username` |
@@ -83,7 +83,7 @@ You will configure the following parameters for [the REST catalog](https://trino
 |-|-|
 | connector.name | `iceberg` |
 | iceberg.catalog.type | `rest` |
-| iceberg.rest-catalog.uri | `http://{hms-host}:{hms-rest-port}/iceberg` |
+| iceberg.rest-catalog.uri | `https://{hms-host}:{hms-rest-port}/iceberg` |
 | iceberg.rest-catalog.security | `OAUTH2` |
-| iceberg.rest-catalog.oauth2.server-uri | `http://{keycloak-host}:{keycloak-port}/realms/{realm name}/protocol/openid-connect/token` |
+| iceberg.rest-catalog.oauth2.server-uri | `https://{keycloak-host}:{keycloak-port}/realms/{realm name}/protocol/openid-connect/token` |
 | iceberg.rest-catalog.oauth2.credential | `{client-id-of-trino}:{client-secret-of-trino}`. In this example, `trino:{Client ID in the Credential tab}` |
