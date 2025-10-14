@@ -175,12 +175,11 @@ set hive.stats.dbclass=hbase;
 
 ```
 
-In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable **[hive.stats.dbconnectionstring]({{< ref "#hive-stats-dbconnectionstring" >}})**. Also the user should specify the appropriate JDBC driver by setting the variable **[hive.stats.jdbcdriver]({{< ref "#hive-stats-jdbcdriver" >}})**.
+In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable **[hive.stats.dbconnectionstring]({{< ref "#hive-stats-dbconnectionstring" >}})**.
 
 ```
 set hive.stats.dbclass=jdbc:derby;
 set hive.stats.dbconnectionstring="jdbc:derby:;databaseName=TempStatsStore;create=true";
-set hive.stats.jdbcdriver="org.apache.derby.jdbc.EmbeddedDriver";
 
 ```
 
