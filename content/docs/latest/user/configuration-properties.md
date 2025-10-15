@@ -1848,7 +1848,7 @@ JDBC connect string for a JDBC metastore.
 
 ##### javax.jdo.option.ConnectionDriverName
 
-* Default Value: `org.apache.derby.jdbc.EmbeddedDriver`
+* Default Value: `org.apache.derby.iapi.jdbc.AutoloadedDriver`
 * Added In: Hive 0.8.1
 
 Driver class name for a JDBC metastore.
@@ -4173,13 +4173,6 @@ Statistics are not gathered for `LOAD DATA` statements.
 * Added In: [Hive 2.1](https://issues.apache.org/jira/browse/HIVE-13566)
 
 Extends statistics autogathering to also collect column level statistics.
-
-##### hive.stats.jdbcdriver
-
-* Default Value: `org.apache.derby.jdbc.EmbeddedDriver`
-* Added In: Hive 0.7 with [HIVE-1361](https://issues.apache.org/jira/browse/HIVE-1361)
-
-The JDBC driver for the database that stores temporary Hive statistics.
 
 ##### hive.stats.dbconnectionstring
 
