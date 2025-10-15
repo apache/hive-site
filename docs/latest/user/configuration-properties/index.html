@@ -2015,7 +2015,7 @@ NOTE: This property will influence how HBase files using the AvroSerDe and times
 <p>JDBC connect string for a JDBC metastore.</p>
 <h5 id=javaxjdooptionconnectiondrivername>javax.jdo.option.ConnectionDriverName</h5>
 <ul>
-<li>Default Value: <code>org.apache.derby.jdbc.EmbeddedDriver</code></li>
+<li>Default Value: <code>org.apache.derby.iapi.jdbc.AutoloadedDriver</code></li>
 <li>Added In: Hive 0.8.1</li>
 </ul>
 <p>Driver class name for a JDBC metastore.</p>
@@ -3982,12 +3982,6 @@ Caution: Rebuilding indexes can be a lengthy and computationally expensive opera
 <li>Added In: <a href=https://issues.apache.org/jira/browse/HIVE-13566>Hive 2.1</a></li>
 </ul>
 <p>Extends statistics autogathering to also collect column level statistics.</p>
-<h5 id=hivestatsjdbcdriver>hive.stats.jdbcdriver</h5>
-<ul>
-<li>Default Value: <code>org.apache.derby.jdbc.EmbeddedDriver</code></li>
-<li>Added In: Hive 0.7 with <a href=https://issues.apache.org/jira/browse/HIVE-1361>HIVE-1361</a></li>
-</ul>
-<p>The JDBC driver for the database that stores temporary Hive statistics.</p>
 <h5 id=hivestatsdbconnectionstring>hive.stats.dbconnectionstring</h5>
 <ul>
 <li>Default Value: <code>jdbc:derby:;databaseName=TempStatsStore;create=true</code></li>

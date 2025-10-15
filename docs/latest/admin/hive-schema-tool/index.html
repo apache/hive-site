@@ -141,7 +141,7 @@ ASF
 <div class=docs-meta>
 <span class=docs-date>
 <i class="fas fa-calendar-alt"></i>
-Last updated: December 12, 2024
+Last updated: October 14, 2025
 </span>
 </div>
 </header>
@@ -151,6 +151,7 @@ Last updated: December 12, 2024
 <ul>
 <li><a href=#apache-hive--hive-schema-tool>Apache Hive : Hive Schema Tool</a>
 <ul>
+<li><a href=#about>About</a></li>
 <li><a href=#metastore-schema-verification>Metastore Schema Verification</a></li>
 <li><a href=#the-hive-schema-tool>The Hive Schema Tool</a>
 <ul>
@@ -170,6 +171,7 @@ Last updated: December 12, 2024
 <ul>
 <li><a href=#apache-hive--hive-schema-tool>Apache Hive : Hive Schema Tool</a>
 <ul>
+<li><a href=#about>About</a></li>
 <li><a href=#metastore-schema-verification>Metastore Schema Verification</a></li>
 <li><a href=#the-hive-schema-tool>The Hive Schema Tool</a>
 <ul>
@@ -182,132 +184,210 @@ Last updated: December 12, 2024
 </ul>
 </nav>
 </aside>
+<h2 id=about>About</h2>
+<p>Schema tool helps to initialise and upgrade metastore database and hive sys schema.</p>
 <h2 id=metastore-schema-verification>Metastore Schema Verification</h2>
-<p>Version</p>
 <p>Introduced in Hive 0.12.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3764>HIVE-3764</a>.</p>
-<p>Hive now records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to accesss the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default. Hive will not attempt to change the metastore schema implicitly. When you execute a Hive query against an old schema, it will fail to access the metastore:</p>
+<p>Hive records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to access the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default. Hive will not attempt to change the metastore schema implicitly. When you execute a Hive query against an old schema, it will fail to access the metastore:</p>
 <pre tabindex=0><code>$ build/dist/bin/hive -e &quot;show tables&quot;
 FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.metastore.HiveMetaStoreClient
-
 </code></pre><p>The log will contain an error about version information not found:</p>
 <pre tabindex=0><code>...
 Caused by: MetaException(message:Version information not found in metastore. )
 ...
-
-</code></pre><p>By default the configuration property <strong>hive.metastore.schema.verification</strong> is false and metastore to implicitly write the schema version if it&rsquo;s not matching. To enable the strict schema verification, you need to set this property to true in <code>hive-site.xml</code>.</p>
+</code></pre><p>By default the configuration property <strong>metastore.schema.verification</strong> is true. If we set it false, metastore implicitly writes the schema version if it&rsquo;s not matching. To disable the strict schema verification, you need to set this property to false in <code>hive-site.xml</code>.</p>
 <p>See <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Hive Metastore Administration</a> for general information about the metastore.</p>
 <h2 id=the-hive-schema-tool>The Hive Schema Tool</h2>
-<p>Version</p>
 <p>Introduced in Hive 0.12.0. See <a href=https://issues.apache.org/jira/browse/HIVE-5301>HIVE-5301</a>. (Also see <a href=https://issues.apache.org/jira/browse/HIVE-5449>HIVE-5449</a> for a bug fix.)</p>
 <p>The Hive distribution now includes an offline tool for Hive metastore schema manipulation. This tool can be used to initialize the metastore schema for the current Hive version. It can also handle upgrading the schema from an older version to current. It tries to find the current schema from the metastore if it is available. This will be applicable to future upgrades like 0.12.0 to 0.13.0. In case of upgrades from older releases like 0.7.0 or 0.10.0, you can specify the schema version of the existing metastore as a command line option to the tool.</p>
 <p>The <code>schematool</code> figures out the SQL scripts required to initialize or upgrade the schema and then executes those scripts against the backend database. The metastore DB connection information like JDBC URL, JDBC driver and DB credentials are extracted from the Hive configuration. You can provide alternate DB credentials if needed.</p>
+<p><strong>Warning</strong>: You should always initialize the metastore schema first and the Hive schema second. The Hive schema initialization checks the metastore database schema and if it is not initialized, it puts some objects into the metastore database as well to make sure hive schema is running. That also means if you want to run the metastore schema initialization after the hive one, it will fail as it finds a database that already contains some objects. </p>
 <h3 id=the-schematool-command>The <code>schematool</code> Command</h3>
 <p>The <code>schematool</code> command invokes the Hive schema tool with these options:</p>
-<pre tabindex=0><code>$ schematool -help
-usage: schemaTool
+<pre tabindex=0><code>usage: schemaTool
+ -alterCatalog &lt;arg&gt;                Alter a catalog, requires
+                                    --catalogLocation and/or
+                                    --catalogDescription parameter as well
+ -catalogDescription &lt;arg&gt;          Description of new catalog
+ -catalogLocation &lt;arg&gt;             Location of new catalog, required when
+                                    adding a catalog
+ -createCatalog &lt;arg&gt;               Create a catalog, requires
+                                    --catalogLocation parameter as well
+ -createLogsTable &lt;arg&gt;             Create table for Hive
+                                    warehouse/compute logs
+ -createUser                        Create the Hive user, set hiveUser to
+                                    the db admin user and the hive
+                                    password to the db admin password with
+                                    this
+ -dbOpts &lt;databaseOpts&gt;             Backend DB specific options
  -dbType &lt;databaseType&gt;             Metastore database type
- -driver &lt;driver&gt;                   Driver name for connection
- -dryRun                            List SQL scripts (no execute)
- -help                              Print this message
+ -driver &lt;driver&gt;                   driver name for connection
+ -dropAllDatabases                  Drop all Hive databases (with
+                                    CASCADE). This will remove all managed
+                                    data!
+ -dryRun                            list SQL scripts (no execute)
+ -fromCatalog &lt;arg&gt;                 Catalog a moving database or table is
+                                    coming from.  This is required if you
+                                    are moving a database or table.
+ -fromDatabase &lt;arg&gt;                Database a moving table is coming
+                                    from.  This is required if you are
+                                    moving a table.
+ -help                              print this message
+ -hiveDb &lt;arg&gt;                      Hive database (for use with
+                                    createUser)
+ -hivePassword &lt;arg&gt;                Hive password (for use with
+                                    createUser)
+ -hiveUser &lt;arg&gt;                    Hive user (for use with createUser)
+ -ifNotExists                       If passed then it is not an error to
+                                    create an existing catalog
  -info                              Show config and schema details
+ -initOrUpgradeSchema               Initialize or upgrade schema to latest
+                                    version
  -initSchema                        Schema initialization
  -initSchemaTo &lt;initTo&gt;             Schema initialization to a version
- -metaDbType &lt;metaDatabaseType&gt;     Used only if upgrading the system catalog for hive
+ -mergeCatalog &lt;arg&gt;                Merge databases from a catalog into
+                                    other, Argument is the source catalog
+                                    name Requires --toCatalog to indicate
+                                    the destination catalog
+ -metaDbType &lt;metaDatabaseType&gt;     Used only if upgrading the system
+                                    catalog for hive
+ -moveDatabase &lt;arg&gt;                Move a database between catalogs.
+                                    Argument is the database name.
+                                    Requires --fromCatalog and --toCatalog
+                                    parameters as well
+ -moveTable &lt;arg&gt;                   Move a table to a different database.
+                                    Argument is the table name. Requires
+                                    --fromCatalog, --toCatalog,
+                                    --fromDatabase, and --toDatabase
+                                    parameters as well.
  -passWord &lt;password&gt;               Override config file password
+ -retentionPeriod &lt;arg&gt;             Specify logs table retention period
+ -servers &lt;serverList&gt;              a comma-separated list of servers used
+                                    in location validation in the format
+                                    of scheme://authority (e.g.
+                                    hdfs://localhost:8000)
+ -toCatalog &lt;arg&gt;                   Catalog a moving database or table is
+                                    going to.  This is required if you are
+                                    moving a database or table.
+ -toDatabase &lt;arg&gt;                  Database a moving table is going to.
+                                    This is required if you are moving a
+                                    table.
  -upgradeSchema                     Schema upgrade
  -upgradeSchemaFrom &lt;upgradeFrom&gt;   Schema upgrade from a version
- -url &lt;url&gt;                         Connection url to the database
+ -url &lt;url&gt;                         connection url to the database
  -userName &lt;user&gt;                   Override config file user name
- -verbose                           Only print SQL statements
-(Additional catalog related options added in Hive 3.0.0 (HIVE-19135] release are below.
- -createCatalog &lt;catalog&gt;       Create catalog with given name
- -catalogLocation &lt;location&gt;        Location of new catalog, required when adding a catalog
- -catalogDescription &lt;description&gt;  Description of new catalog
- -ifNotExists                       If passed then it is not an error to create an existing catalog
- -moveDatabase &lt;database&gt;                     Move a database between catalogs.  All tables under it would still be under it as part of new catalog. Argument is the database name. Requires --fromCatalog and --toCatalog parameters as well
- -moveTable  &lt;table&gt;                Move a table to a different database.  Argument is the table name. Requires --fromCatalog, --toCatalog, --fromDatabase, and --toDatabase 
- -toCatalog  &lt;catalog&gt;              Catalog a moving database or table is going to.  This is required if you are moving a database or table.
- -fromCatalog &lt;catalog&gt;             Catalog a moving database or table is coming from.  This is required if you are moving a database or table.
- -toDatabase  &lt;database&gt;            Database a moving table is going to.  This is required if you are moving a table.
- -fromDatabase &lt;database&gt;           Database a moving table is coming from.  This is required if you are moving a table.
-
+ -validate                          Validate the database
+ -verbose                           only print SQL statements
+ -yes                               Don't ask for confirmation when using
+                                    -dropAllDatabases.
 </code></pre><p>The <strong>dbType</strong> is required and can be one of:</p>
-<pre tabindex=0><code> derby|mysql|postgres|oracle|mssql
-</code></pre><p>Version</p>
-<p>The dbType &ldquo;<code>mssql</code>&rdquo; was added in Hive 0.13.1 with <a href=https://issues.apache.org/jira/browse/HIVE-6862>HIVE-6862</a>.</p>
-<h3 id=usage-examples>Usage Examples</h3>
+<pre tabindex=0><code>derby|mysql|postgres|oracle|mssql|hive
+</code></pre><p>The dbType &ldquo;<code>mssql</code>&rdquo; was added in Hive 0.13.1 with <a href=https://issues.apache.org/jira/browse/HIVE-6862>HIVE-6862</a>.</p>
+<p>Note: dbType=hive only can be used on Hive sys schema. The others are metastore db types and in case of dbType=hive, it is mandatory to set metaDbType as well i.e.</p>
+<pre tabindex=0><code>schematool -dbType derby -initSchema
+schematool -dbType hive -initSchema -metaDbType derby
+</code></pre><h3 id=usage-examples>Usage Examples</h3>
 <ul>
 <li>Initialize to current schema for a new Hive setup:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -initSchema
-Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
-Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
-Metastore connection User:       APP
-Starting metastore schema initialization to 0.13.0
-Initialization script hive-schema-0.13.0.derby.sql
-Initialization script completed
-schemaTool completed
 
+Initializing the schema to: 4.2.0
+2025-10-14 16:21:20,427 INFO schematool.HiveSchemaHelper: Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+2025-10-14 16:21:20,427 INFO schematool.HiveSchemaHelper: Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+2025-10-14 16:21:20,427 INFO schematool.HiveSchemaHelper: Metastore connection User:	 APP
+Metastore connection User:	 APP
+Starting metastore schema initialization to 4.2.0
+Initialization script hive-schema-4.2.0.derby.sql
+...
+Initialization script completed
 </code></pre><ul>
 <li>Get schema information:</li>
 </ul>
 <pre tabindex=0><code>$ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
-Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
-Metastore connection User:       APP
-Hive distribution version:       0.13.0
-Metastore schema version:        0.13.0
-schemaTool completed
 
+2025-10-14 16:29:13,116 INFO schematool.HiveSchemaHelper: Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+2025-10-14 16:29:13,116 INFO schematool.HiveSchemaHelper: Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+2025-10-14 16:29:13,116 INFO schematool.HiveSchemaHelper: Metastore connection User:	 APP
+Metastore connection User:	 APP
+Hive distribution version:	 4.2.0
+Metastore schema version:	 4.2.0
 </code></pre><ul>
-<li>Attempt to get schema information with older metastore:</li>
+<li>Init schema to for a given version:</li>
 </ul>
-<pre tabindex=0><code>$ schematool -dbType derby -info
-Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
-Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
-Metastore connection User:       APP
-Hive distribution version:       0.13.0
-org.apache.hadoop.hive.metastore.HiveMetaException: Failed to get schema version.
-*** schemaTool failed ***
+<pre tabindex=0><code>$ schematool -dbType derby -initSchemaTo 3.1.0
 
-</code></pre><p>Since the older metastore doesn&rsquo;t store the version information, the tool reports an error retrieving it.</p>
-<ul>
-<li>Upgrade schema from an 0.10.0 release by specifying the &lsquo;from&rsquo; version:</li>
+2025-10-14 16:37:11,089 INFO schematool.HiveSchemaHelper: Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+2025-10-14 16:37:11,089 INFO schematool.HiveSchemaHelper: Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+2025-10-14 16:37:11,089 INFO schematool.HiveSchemaHelper: Metastore connection User:	 APP
+Metastore connection User:	 APP
+Starting metastore schema initialization to 3.1.0
+Initialization script hive-schema-3.1.0.derby.sql
+...
+Initialization script completed
+</code></pre><ul>
+<li>Upgrade schema from an 3.1.0 release by specifying the &lsquo;from&rsquo; version:</li>
 </ul>
-<pre tabindex=0><code>$ schematool -dbType derby -upgradeSchemaFrom 0.10.0
-Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=true
-Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
-Metastore connection User:       APP
-Starting upgrade metastore schema from version 0.10.0 to 0.13.0
-Upgrade script upgrade-0.10.0-to-0.11.0.derby.sql
-Completed upgrade-0.10.0-to-0.11.0.derby.sql
-Upgrade script upgrade-0.11.0-to-0.12.0.derby.sql
-Completed upgrade-0.11.0-to-0.12.0.derby.sql
-Upgrade script upgrade-0.12.0-to-0.13.0.derby.sql
-Completed upgrade-0.12.0-to-0.13.0.derby.sql
-schemaTool completed
+<pre tabindex=0><code>$ schematool -dbType derby -upgradeSchemaFrom 3.1.0
 
+Upgrading from the user input version 3.1.0
+2025-10-14 16:41:04,018 INFO schematool.HiveSchemaHelper: Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+2025-10-14 16:41:04,018 INFO schematool.HiveSchemaHelper: Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+2025-10-14 16:41:04,018 INFO schematool.HiveSchemaHelper: Metastore connection User:	 APP
+Metastore connection User:	 APP
+Starting upgrade metastore schema from version 3.1.0 to 4.2.0
+Upgrade script upgrade-3.1.0-to-3.2.0.derby.sql
+2025-10-14 16:41:04,142 INFO conf.HiveConf: Found configuration file file:/Users/raghav/Desktop/setup/hive/conf/hive-site.xml
+2025-10-14 16:41:04,143 INFO conf.HiveConf: Found configuration file null
+2025-10-14 16:41:04,143 INFO conf.HiveConf: Found configuration file null
+2025-10-14 16:41:04,143 INFO conf.HiveConf: Found configuration file null
+2025-10-14 16:41:04,173 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Completed upgrade-3.1.0-to-3.2.0.derby.sql
+Upgrade script upgrade-3.2.0-to-4.0.0-alpha-1.derby.sql
+Completed upgrade-3.2.0-to-4.0.0-alpha-1.derby.sql
+Upgrade script upgrade-4.0.0-alpha-1-to-4.0.0-alpha-2.derby.sql
+Completed upgrade-4.0.0-alpha-1-to-4.0.0-alpha-2.derby.sql
+Upgrade script upgrade-4.0.0-alpha-2-to-4.0.0-beta-1.derby.sql
+Completed upgrade-4.0.0-alpha-2-to-4.0.0-beta-1.derby.sql
+Upgrade script upgrade-4.0.0-beta-1-to-4.0.0.derby.sql
+Completed upgrade-4.0.0-beta-1-to-4.0.0.derby.sql
+Upgrade script upgrade-4.0.0-to-4.1.0.derby.sql
+Completed upgrade-4.0.0-to-4.1.0.derby.sql
+Upgrade script upgrade-4.1.0-to-4.2.0.derby.sql
+Completed upgrade-4.1.0-to-4.2.0.derby.sql
 </code></pre><ul>
 <li>Upgrade dry run can be used to list the required scripts for the given upgrade.</li>
 </ul>
-<pre tabindex=0><code>$ build/dist/bin/schematool -dbType derby -upgradeSchemaFrom 0.7.0 -dryRun
-Metastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriver
-Metastore connection User:       APP
-Starting upgrade metastore schema from version 0.7.0 to 0.13.0
-Upgrade script upgrade-0.7.0-to-0.8.0.derby.sql
-Upgrade script upgrade-0.8.0-to-0.9.0.derby.sql
-Upgrade script upgrade-0.9.0-to-0.10.0.derby.sql
-Upgrade script upgrade-0.10.0-to-0.11.0.derby.sql
-Upgrade script upgrade-0.11.0-to-0.12.0.derby.sql
-Upgrade script upgrade-0.12.0-to-0.13.0.derby.sql
-schemaTool completed
+<pre tabindex=0><code>$ schematool -dbType derby -upgradeSchemaFrom 3.1.0 -dryRun
 
+Upgrading from the user input version 3.1.0
+2025-10-14 16:43:16,211 INFO schematool.HiveSchemaHelper: Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+Metastore connection URL:	 jdbc:derby:metastore_db;create=true
+2025-10-14 16:43:16,211 INFO schematool.HiveSchemaHelper: Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+Metastore connection Driver :	 org.apache.derby.iapi.jdbc.AutoloadedDriver
+2025-10-14 16:43:16,211 INFO schematool.HiveSchemaHelper: Metastore connection User:	 APP
+Metastore connection User:	 APP
+Starting upgrade metastore schema from version 3.1.0 to 4.2.0
+Upgrade script upgrade-3.1.0-to-3.2.0.derby.sql
+Upgrade script upgrade-3.2.0-to-4.0.0-alpha-1.derby.sql
+Upgrade script upgrade-4.0.0-alpha-1-to-4.0.0-alpha-2.derby.sql
+Upgrade script upgrade-4.0.0-alpha-2-to-4.0.0-beta-1.derby.sql
+Upgrade script upgrade-4.0.0-beta-1-to-4.0.0.derby.sql
+Upgrade script upgrade-4.0.0-to-4.1.0.derby.sql
+Upgrade script upgrade-4.1.0-to-4.2.0.derby.sql
 </code></pre><p>This is useful if you just want to find out all the required scripts for the schema upgrade.</p>
 <ul>
 <li>Moving a database and tables under it from default Hive catalog to a custom spark catalog</li>
 </ul>
 <pre tabindex=0><code>build/dist/bin/schematool -moveDatabase db1 -fromCatalog hive -toCatalog spark
-
 </code></pre><ul>
 <li>Moving a table from Hive catalog to Spark Catalog</li>
 </ul>
@@ -317,7 +397,6 @@ schematool -moveDatabase newdb -fromCatalog hive -toCatalog spark
 
 # Now move the table to target db under the spark catalog.
 schematool -moveTable table1 -fromCatalog hive -toCatalog spark  -fromDatabase db1 -toDatabase newdb
-
 </code></pre>
 </div>
 <footer class=docs-footer>
@@ -347,6 +426,7 @@ schematool -moveTable table1 -fromCatalog hive -toCatalog spark  -fromDatabase d
 <ul>
 <li><a href=#apache-hive--hive-schema-tool>Apache Hive : Hive Schema Tool</a>
 <ul>
+<li><a href=#about>About</a></li>
 <li><a href=#metastore-schema-verification>Metastore Schema Verification</a></li>
 <li><a href=#the-hive-schema-tool>The Hive Schema Tool</a>
 <ul>

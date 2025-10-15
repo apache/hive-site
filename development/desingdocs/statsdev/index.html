@@ -488,10 +488,9 @@ public interface IStatsAggregator {
 </code></pre><p>The user can also specify the implementation to be used for the storage of temporary statistics setting the variable <strong><a href=#hive-stats-dbclass>hive.stats.dbclass</a></strong>. For example, to set HBase as the implementation of temporary statistics storage (the default is <code>jdbc:derby</code> or <code>fs</code>, depending on the Hive version) the user should issue the following command:</p>
 <pre tabindex=0><code>set hive.stats.dbclass=hbase;
 
-</code></pre><p>In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable <strong><a href=#hive-stats-dbconnectionstring>hive.stats.dbconnectionstring</a></strong>. Also the user should specify the appropriate JDBC driver by setting the variable <strong><a href=#hive-stats-jdbcdriver>hive.stats.jdbcdriver</a></strong>.</p>
+</code></pre><p>In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable <strong><a href=#hive-stats-dbconnectionstring>hive.stats.dbconnectionstring</a></strong>.</p>
 <pre tabindex=0><code>set hive.stats.dbclass=jdbc:derby;
 set hive.stats.dbconnectionstring=&quot;jdbc:derby:;databaseName=TempStatsStore;create=true&quot;;
-set hive.stats.jdbcdriver=&quot;org.apache.derby.jdbc.EmbeddedDriver&quot;;
 
 </code></pre><p>Queries can fail to collect stats completely accurately. There is a setting <strong><a href=#hive-stats-reliable>hive.stats.reliable</a></strong> that fails queries if the stats can&rsquo;t be reliably collected. This is <code>false</code> by default.</p>
 <h3 id=existing-tables-analyze>Existing Tables – ANALYZE</h3>

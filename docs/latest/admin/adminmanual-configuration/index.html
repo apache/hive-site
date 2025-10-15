@@ -425,11 +425,6 @@ hive-site.xml -> hivemetastore-site.xml -> hiveserver2-site.xml -> &lsquo;<code>
 <td>jdbc:derby:;databaseName=TempStatsStore;create=true</td>
 </tr>
 <tr>
-<td>hive.stats.jdbcdriver</td>
-<td>The JDBC driver for the database that stores temporary hive statistics. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-1361>0.7.0</a>.)</td>
-<td>org.apache.derby.jdbc.EmbeddedDriver</td>
-</tr>
-<tr>
 <td>hive.stats.reliable</td>
 <td>Whether queries will fail because stats cannot be collected completely accurately. If this is set to true, reading/writing from/into a partition may fail becuase the stats could not be computed accurately. (As of Hive <a href=https://issues.apache.org/jira/browse/HIVE-1653>0.10.0</a>.)</td>
 <td>false</td>
