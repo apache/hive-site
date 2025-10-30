@@ -267,7 +267,7 @@ The following built-in type conversion functions are supported in Hive. 
 | Return Type | Name(Signature) | Description | Source code |
 | --- | --- | --- | --- |
 | **binary** | ``` binary(string\|binary) ``` | Casts the parameter into a binary. | [GenericUDFBaseBinary](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFBaseBinary.java) |
-| **Expected "=" to follow "type"** | ``` cast(expr as <type>) ``` | Converts the results of the expression expr to \<type\>. For example, cast('1' as bigint) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |  |
+| **Expected "=" to follow "type"** | ``` cast(expr as <type>) ``` | Converts the results of the expression expr to \<type\>. For example, cast('1' as bigint) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. | [GenericUDFCastFormat](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCastFormat.java) |
 
 ### Conditional Functions
 
