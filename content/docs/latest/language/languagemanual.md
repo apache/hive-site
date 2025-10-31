@@ -24,6 +24,7 @@ This is the Hive Language Manual.  For other Hive documentation, see the Hive w
 * Data Definition Statements
 	+ [DDL Statements]({{< ref "languagemanual-ddl" >}})
 		- [Bucketed Tables]({{< ref "languagemanual-ddl-bucketedtables" >}})
+		- [Write Ordering (Regular & Z-Order)]({{< ref "writeordering" >}})
 	+ [Statistics (Analyze and Describe)]({{< ref "statsdev" >}})
 	+ [Indexes]({{< ref "languagemanual-indexing" >}})
 	+ [Archiving]({{< ref "languagemanual-archiving" >}})
