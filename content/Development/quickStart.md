@@ -291,4 +291,5 @@ docker compose exec hiveserver2-standalone /bin/bash
 exit
 ```
   
-[/packaging/src/docker/build.sh]: https://github.com/apache/hive/blob/master/packaging/src/docker/build.sh
+### Quick Start with REST Catalog Integration
+Checkout the quickstart of REST Catalog Integration with Docker here: [REST Catalog Integration](https://hive.apache.org/docs/latest/quickstart-rest-catalog)
