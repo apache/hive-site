@@ -162,6 +162,7 @@ Last updated: May 12, 2023
 <li></li>
 <li><a href=#run-services>Run services</a></li>
 <li><a href=#usage>Usage</a></li>
+<li><a href=#quick-start-with-rest-catalog-integration>Quick Start with REST Catalog Integration</a></li>
 </ul>
 </li>
 </ul>
@@ -203,7 +204,7 @@ Last updated: May 12, 2023
 <hr>
 <h5 id=--build-image>- Build image</h5>
 <p>Apache Hive relies on Hadoop, Tez and some others to facilitate reading, writing, and managing large datasets.
-The <a href=https://github.com/apache/hive/blob/master/packaging/src/docker/build.sh>/packaging/src/docker/build.sh</a> provides ways to build the image against specified version of the dependent, as well as build from source.</p>
+The [/packaging/src/docker/build.sh] provides ways to build the image against specified version of the dependent, as well as build from source.</p>
 <h5 id=--build-from-source>- Build from source</h5>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>mvn clean package -pl packaging -DskipTests -Pdocker
 </code></pre></div><p><code> </code></p>
@@ -384,7 +385,8 @@ docker compose up -d
 docker compose exec hiveserver2-standalone /bin/bash
 /opt/hive/bin/schematool -initSchema -dbType hive -metaDbType postgres -url jdbc:hive2://localhost:10000/default
 exit
-</code></pre></div>
+</code></pre></div><h3 id=quick-start-with-rest-catalog-integration>Quick Start with REST Catalog Integration</h3>
+<p>Checkout the quickstart of REST Catalog Integration with Docker here: <a href=https://hive.apache.org/docs/latest/quickstart-rest-catalog>REST Catalog Integration</a></p>
 </div>
 <footer class=docs-footer>
 <div class=docs-feedback>
@@ -424,6 +426,7 @@ exit
 <li></li>
 <li><a href=#run-services>Run services</a></li>
 <li><a href=#usage>Usage</a></li>
+<li><a href=#quick-start-with-rest-catalog-integration>Quick Start with REST Catalog Integration</a></li>
 </ul>
 </li>
 </ul>

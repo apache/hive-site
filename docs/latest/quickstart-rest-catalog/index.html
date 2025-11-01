@@ -1,0 +1,679 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Hive 4.2.0 - REST Catalog Integration</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class=container-fluid>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li><hr class=dropdown-divider></li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li><a href=/docs/>Documentation</a></li>
+<li class=active>Hive 4.2.0 - REST Catalog Integration</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>Hive 4.2.0 - REST Catalog Integration</h1>
+<div class=docs-meta>
+<span class=docs-date>
+<i class="fas fa-calendar-alt"></i>
+Last updated: October 31, 2025
+</span>
+</div>
+</header>
+<div class=docs-toc>
+<h4><i class="fas fa-list"></i> Table of Contents</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rest-catalog-integration>REST Catalog Integration</a>
+<ul>
+<li><a href=#table-of-contents>Table of Contents</a></li>
+<li><a href=#hive--gravitino--keycloak>Hive + Gravitino + Keycloak</a>
+<ul>
+<li><a href=#architecture-overview>Architecture Overview</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#quickstart>Quickstart</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#networking-notes>Networking Notes</a></li>
+</ul>
+</li>
+<li><a href=#hive--polaris>Hive + Polaris</a>
+<ul>
+<li><a href=#architecture-overview-1>Architecture Overview</a></li>
+<li><a href=#prerequisites-1>Prerequisites</a></li>
+<li><a href=#quickstart-1>Quickstart</a></li>
+<li><a href=#configuration-1>Configuration</a></li>
+<li><a href=#networking-notes-1>Networking Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class=docs-article>
+<h1 id=rest-catalog-integration>REST Catalog Integration</h1>
+<h2 id=table-of-contents>Table of Contents</h2>
+<ul>
+<li><a href=#hive--gravitino--keycloak>Hive + Gravitino + Keycloak</a>
+<ul>
+<li><a href=#architecture-overview>Architecture Overview</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#quickstart>Quickstart</a></li>
+<li><a href=#configuration>Configuration</a>
+<ul>
+<li><a href=#keycloak>Keyclock</a></li>
+<li><a href=#gravitino>Gravitino</a></li>
+<li><a href=#hive>Hive</a></li>
+</ul>
+</li>
+<li><a href=#networking-notes>Networking Notes</a></li>
+</ul>
+</li>
+<li><a href=#hive--polaris>Hive + Polaris</a>
+<ul>
+<li><a href=#architecture-overview-1>Architecture Overview</a></li>
+<li><a href=#prerequisites-1>Prerequisites</a></li>
+<li><a href=#quickstart-1>Quickstart</a></li>
+<li><a href=#configuration-1>Configuration</a>
+<ul>
+<li><a href=#polaris>Polaris</a></li>
+<li><a href=#hive-1>Hive</a></li>
+</ul>
+</li>
+<li><a href=#networking-notes-1>Networking Notes</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=hive--gravitino--keycloak>Hive + Gravitino + Keycloak</h2>
+<ul>
+<li>The code for this setup is located in the Hive repository in <code>packaging/src/docker/thirdparties/gravitino</code> folder.</li>
+<li>It contains a docker-compose-based setup integrating Apache Hive, Gravitino Iceberg REST server, and Keycloak for OAuth2 authentication. It allows Hive to use an Iceberg REST catalog secured via Keycloak.</li>
+</ul>
+<h3 id=architecture-overview>Architecture Overview</h3>
+<p>This diagram illustrates the key docker-compose components and their interactions in this setup:</p>
+<pre tabindex=0><code>                                  oAuth2 (REST API)
+         +-------------------------------------------------------------------+
+         |                                                                   |
+         |                                                                   v
++--------+----------+               +-------------------+            +-----------------+
+|                   |  RESTCatalog  |                   |   oauth2   |                 |
+|     Hive          |   (REST API)  |      Gravitino    | (REST API) |    Keycloak     |
+|  (HiveServer2)    +--------------&gt;|    Iceberg REST   +-----------&gt;|  OAuth2 Auth    |
+|                   |               |       Server      |            |     Server      |
++--------+----------+               +---------+---------+            +-----------------+
+         |                                    |                    
+  data   |          metadata files            |                    
+  files  +------------------------------------+                    
+         |                                                 
+         v                                                 
++-------------------+               +-------------------+     
+|                   |  creates dir  |                   |     
+|     /warehouse    |&lt;--------------+       init        |
+|  (Docker volume)  |     sets      |     container     |
+|                   |  permissions  |                   |
++-------------------+               +-------------------+
+</code></pre><ul>
+<li>Hive:
+<ul>
+<li>Runs HiveServer2, connects to Gravitino via Iceberg REST catalog.</li>
+<li>Write Iceberg data files to the shared warehouse volume.</li>
+</ul>
+</li>
+<li>Gravitino:
+<ul>
+<li>Exposes REST API for Iceberg catalog.</li>
+<li>Writes Iceberg metadata files to shared warehouse volume (.metadata.json).</li>
+<li>Doesn&rsquo;t supports serving as oauth2 provider, so this example uses an external OAuth2 provider (Keyclock).</li>
+</ul>
+</li>
+<li>Keycloak:
+<ul>
+<li>OAuth2 server providing authentication and token issuance for Hive/Gravitino.</li>
+</ul>
+</li>
+<li>/warehouse:
+<ul>
+<li>Shared Docker volume for Iceberg table data and metadata.</li>
+</ul>
+</li>
+<li>Init container:
+<ul>
+<li>Creates shared /warehouse folder and sets filesystem permissions as a one time initialization step.</li>
+</ul>
+</li>
+</ul>
+<h3 id=prerequisites>Prerequisites</h3>
+<ul>
+<li>Hive version 4.2.0+</li>
+<li>Docker & Docker Compose</li>
+<li>Java (for local Hive beeline client)</li>
+<li><code>$HIVE_HOME</code> environment variable pointing to Hive installation (for connecting to Beeline)</li>
+</ul>
+<h3 id=quickstart>Quickstart</h3>
+<h4 id=step-1-export-the-hive-version>STEP 1: Export the Hive version</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.2.0
+</code></pre></div><h4 id=step-2-start-services>STEP 2: Start services</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker-compose up -d
+</code></pre></div><h4 id=step-3-connect-to-beeline>STEP 3: Connect to beeline</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>HIVE_HOME<span style=color:#e6db74>}</span><span style=color:#e6db74>/bin/beeline&#34;</span> -u <span style=color:#e6db74>&#34;jdbc:hive2://localhost:10001/default&#34;</span> -n hive -p hive
+</code></pre></div><h4 id=step-4-stop-services>STEP 4: Stop services:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker-compose down -v
+</code></pre></div><h3 id=configuration>Configuration</h3>
+<h4 id=keycloak>Keycloak</h4>
+<ul>
+<li>Realm: hive</li>
+<li>Client: iceberg-client
+<ul>
+<li>Secret: iceberg-client-secret</li>
+<li>Protocol: OpenID Connect</li>
+<li>Audience: hive-iceberg</li>
+</ul>
+</li>
+<li>Imported via <code>realm-export.json</code> in Keycloak container.</li>
+<li>Port: 8080</li>
+</ul>
+<h4 id=gravitino>Gravitino</h4>
+<ul>
+<li>HTTP port: 9001</li>
+<li>Catalog backend: JDBC H2 (/tmp/gravitino_h2_db)</li>
+<li>Warehouse: /warehouse (shared with Hive)</li>
+<li>Iceberg REST Catalog Backend config:
+<pre tabindex=0><code># Backend type for the catalog. Here we use JDBC (H2 database) as the metadata store.
+gravitino.iceberg-rest.catalog-backend = jdbc
+
+# JDBC connection URI for the H2 database storing catalog metadata.
+gravitino.iceberg-rest.uri = jdbc:h2:file:/tmp/gravitino_h2_db;AUTO_SERVER=TRUE
+
+# JDBC driver class used to connect to the metadata database.
+gravitino.iceberg-rest.jdbc-driver = org.h2.Driver
+
+# Database username for connecting to the metadata store.
+gravitino.iceberg-rest.jdbc-user = sa
+
+# Database password for connecting to the metadata store (empty here).
+gravitino.iceberg-rest.jdbc-password = &quot;&quot;
+
+# Whether to initialize the catalog schema on startup.
+gravitino.iceberg-rest.jdbc-initialize = true
+
+# --- Warehouse Location (shared folder) ---
+
+# Path to the Iceberg warehouse directory shared with Hive.
+gravitino.iceberg-rest.warehouse = file:///warehouse
+</code></pre></li>
+<li>OAuth2 config pointing to Keycloak:
+<pre tabindex=0><code># Enables OAuth2 as the authentication mechanism for Gravitino.
+gravitino.authenticators = oauth
+
+# URL of the Keycloak realm to request tokens from.
+gravitino.authenticator.oauth.serverUri = http://keycloak:8080/realms/hive
+
+# Path to the OAuth2 token endpoint on Keycloak.
+gravitino.authenticator.oauth.tokenPath = /protocol/openid-connect/token
+
+# OAuth2 scopes requested when obtaining a token. Includes &quot;openid&quot; and the custom &quot;catalog&quot; scope.
+gravitino.authenticator.oauth.scope = openid catalog
+
+# OAuth2 client ID registered in Keycloak.
+gravitino.authenticator.oauth.clientId = iceberg-client
+
+# OAuth2 client secret associated with the client ID.
+gravitino.authenticator.oauth.clientSecret = iceberg-client-secret
+
+# Java class used to validate incoming JWT tokens using the JWKS endpoint.
+gravitino.authenticator.oauth.tokenValidatorClass = org.apache.gravitino.server.authentication.JwksTokenValidator
+
+# URL to fetch JSON Web Key Set (JWKS) for verifying token signatures.
+gravitino.authenticator.oauth.jwksUri = http://keycloak:8080/realms/hive/protocol/openid-connect/certs
+
+# Identifier for the OAuth2 provider configuration in Gravitino.
+gravitino.authenticator.oauth.provider = default
+
+# JWT claim field(s) to extract as the principal/username (here, 'sub' claim).
+gravitino.authenticator.oauth.principalFields = sub
+
+# Acceptable clock skew (in seconds) when validating token expiration times.
+gravitino.authenticator.oauth.allowSkewSecs = 60
+
+# Expected audience claim in the token to ensure it is intended for this service.
+gravitino.authenticator.oauth.serviceAudience = hive-iceberg
+</code></pre></li>
+</ul>
+<h4 id=hive>Hive</h4>
+<ul>
+<li>Uses <code>HiveRESTCatalogClient</code> for connecting to Iceberg REST catalog (Gravitino).</li>
+<li>Catalog configuration in <code>hive-site.xml</code>:
+<pre tabindex=0><code>&lt;property&gt;
+  &lt;name&gt;metastore.catalog.default&lt;/name&gt;
+  &lt;value&gt;ice01&lt;/value&gt;
+  &lt;description&gt;Sets the default Iceberg catalog for Hive. Here, &quot;ice01&quot; is used.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;metastore.client.impl&lt;/name&gt;
+  &lt;value&gt;org.apache.iceberg.hive.client.HiveRESTCatalogClient&lt;/value&gt;
+  &lt;description&gt;Specifies the client implementation to use for accessing Iceberg via REST.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.uri&lt;/name&gt;
+  &lt;value&gt;http://gravitino:9001/iceberg&lt;/value&gt;
+  &lt;description&gt;URI of the Iceberg REST server (Gravitino). Hive will send catalog requests here.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.type&lt;/name&gt;
+  &lt;value&gt;rest&lt;/value&gt;
+  &lt;description&gt;Defines the catalog type as &quot;rest&quot;, indicating it uses a REST API backend.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;!-- Iceberg REST Catalog: OAuth2 authentication --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.rest.auth.type&lt;/name&gt;
+  &lt;value&gt;oauth2&lt;/value&gt;
+  &lt;description&gt;Configures Hive to use OAuth2 for authenticating requests to the REST catalog.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.oauth2-server-uri&lt;/name&gt;
+  &lt;value&gt;http://keycloak:8080/realms/hive/protocol/openid-connect/token&lt;/value&gt;
+  &lt;description&gt;URL of the Keycloak OAuth2 token endpoint used to request access tokens.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.credential&lt;/name&gt;
+  &lt;value&gt;iceberg-client:iceberg-client-secret&lt;/value&gt;
+  &lt;description&gt;Client credentials (ID and secret) used to authenticate with Keycloak.&lt;/description&gt;
+&lt;/property&gt;
+</code></pre></li>
+<li>HiveServer2 port: 10000 (mapped to 10001 in Docker Compose)</li>
+</ul>
+<h3 id=networking-notes>Networking Notes</h3>
+<ul>
+<li>All containers share a custom bridge network <code>hive-net</code>.</li>
+<li>Services communicate via container names: hive, gravitino, keycloak.</li>
+<li>Ports mapped for host access:
+<ul>
+<li>Keycloak → 8080</li>
+<li>Gravitino → 9001</li>
+<li>HiveServer2 → 10001</li>
+</ul>
+</li>
+</ul>
+<h2 id=hive--polaris>Hive + Polaris</h2>
+<ul>
+<li>The code for this setup is located in the Hive repository in <code>packaging/src/docker/thirdparties/polaris</code> folder.</li>
+<li>It contains contains a docker-compose-based setup integrating Apache Hive and Polaris.</li>
+<li>It allows Hive to use an Iceberg REST catalog secured with oAuth2 provided by Polaris.</li>
+</ul>
+<h3 id=architecture-overview-1>Architecture Overview</h3>
+<p>This diagram illustrates the key docker-compose components and their interactions in this setup:</p>
+<pre tabindex=0><code>+-------------------+               +-------------------+
+|                   |  RESTCatalog  |                   |
+|     Hive          |   (REST API)  |      Polaris      |&lt;-------+
+|  (HiveServer2)    +--------------&gt;|      Server       |        |
+|                   |    oAuth2     |                   |        |  
++--------+----------+  (REST API)   +---------+---------+        | creates:
+         |                                    |                  |     catalog,
+  data   |           metadata files           |                  |     principal,
+  files  +------------------------------------+                  |     roles,
+         |                                                       |     grants (REST API)
+         v                                                       |
++-------------------+               +-------------------+        |
+|                   |  creates dir  |                   |        |
+|     /warehouse    |&lt;--------------+    Polaris-init   +--------+
+|  (Docker volume)  |     syncs     |      container    |
+|                   |  permissions  |                   |
++-------------------+               +-------------------+
+</code></pre><ul>
+<li>Hive:
+<ul>
+<li>Runs HiveServer2, connects to Polaris via Iceberg REST catalog.</li>
+<li>Write Iceberg data files to shared warehouse volume.</li>
+</ul>
+</li>
+<li>Polaris:
+<ul>
+<li>Exposes REST API for Iceberg catalog and provides oauth2 for authentication.</li>
+<li>Supports serving as oauth2 provider, so this example doesn&rsquo;t need an external OAuth2 component.</li>
+<li>Writes Iceberg metadata files to shared warehouse volume (.metadata.json).</li>
+</ul>
+</li>
+<li>/warehouse:
+<ul>
+<li>Shared Docker volume for Iceberg table data and metadata.</li>
+</ul>
+</li>
+<li>Polaris-init
+<ul>
+<li>Bootstraps Polaris for Hive-Iceberg.</li>
+<li>Creates and configures Polaris resources via REST API.</li>
+<li>Continuously synchronizes filesystem permissions for the shared /warehouse/* folders.
+<ul>
+<li>required because Polaris and Hive run as different users in their respective containers.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=prerequisites-1>Prerequisites</h3>
+<ul>
+<li>Hive version 4.2.0+</li>
+<li>Docker & Docker Compose</li>
+<li>Java (for local Hive beeline client)</li>
+<li><code>$HIVE_HOME</code> environment variable pointing to Hive installation (for connecting to Beeline)</li>
+</ul>
+<h3 id=quickstart-1>Quickstart</h3>
+<h4 id=step-1-export-the-hive-version-1>STEP 1: Export the Hive version</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>export HIVE_VERSION<span style=color:#f92672>=</span>4.2.0
+</code></pre></div><h4 id=step-2-start-services-1>STEP 2: Start services</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker-compose up -d
+</code></pre></div><h4 id=step-3-connect-to-beeline-1>STEP 3: Connect to beeline</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>HIVE_HOME<span style=color:#e6db74>}</span><span style=color:#e6db74>/bin/beeline&#34;</span> -u <span style=color:#e6db74>&#34;jdbc:hive2://localhost:10001/default&#34;</span> -n hive -p hive
+</code></pre></div><h4 id=step-4-stop-services-1>STEP 4: Stop services:</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker-compose down -v
+</code></pre></div><h3 id=configuration-1>Configuration</h3>
+<h4 id=polaris>Polaris</h4>
+<ul>
+<li>HTTP port: 8181</li>
+<li>Warehouse: /warehouse (shared with Hive)</li>
+<li>Key Polaris configs (defined via env variables in docker-compose.yml) :
+<pre tabindex=0><code> # A realm provides logical isolation for different Polaris environments.
+ polaris.realm-context.realms: POLARIS
+
+ # Initial bootstrap credentials for the Polaris server.
+ # The format is: &lt;realm-name&gt;,&lt;client-id&gt;,&lt;client-secret&gt;
+ POLARIS_BOOTSTRAP_CREDENTIALS: POLARIS,iceberg-client,iceberg-client-secret`
+</code></pre></li>
+</ul>
+<h4 id=hive-1>Hive</h4>
+<ul>
+<li>Uses <code>HiveRESTCatalogClient</code> for connecting to Iceberg REST catalog (Polaris).</li>
+<li>Catalog configuration in <code>hive-site.xml</code>:
+<pre tabindex=0><code>&lt;property&gt;
+  &lt;name&gt;metastore.catalog.default&lt;/name&gt;
+  &lt;value&gt;ice01&lt;/value&gt;
+  &lt;description&gt;Sets the default Iceberg catalog for Hive. Here, &quot;ice01&quot; is used.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;metastore.client.impl&lt;/name&gt;
+  &lt;value&gt;org.apache.iceberg.hive.client.HiveRESTCatalogClient&lt;/value&gt;
+  &lt;description&gt;Specifies the client implementation to use for accessing Iceberg via REST.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.uri&lt;/name&gt;
+  &lt;value&gt;http://polaris:8181/api/catalog&lt;/value&gt;
+  &lt;description&gt;URI of the Iceberg REST server (Polaris). Hive will send catalog requests here.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.type&lt;/name&gt;
+  &lt;value&gt;rest&lt;/value&gt;
+  &lt;description&gt;Defines the catalog type as &quot;rest&quot;, indicating it uses a REST API backend.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;
+  &lt;value&gt;file:///warehouse&lt;/value&gt;
+  &lt;description&gt;Defines the warehouse location, required for Polaris&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;!-- Iceberg REST Catalog: OAuth2 authentication --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.rest.auth.type&lt;/name&gt;
+  &lt;value&gt;oauth2&lt;/value&gt;
+  &lt;description&gt;Configures Hive to use OAuth2 for authenticating requests to the REST catalog.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.oauth2-server-uri&lt;/name&gt;
+  &lt;value&gt;http://polaris:8181/api/catalog/v1/oauth/tokens&lt;/value&gt;
+  &lt;description&gt;URL of the Polaris OAuth2 token endpoint used to request access tokens.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.credential&lt;/name&gt;
+  &lt;value&gt;iceberg-client:iceberg-client-secret&lt;/value&gt;
+  &lt;description&gt;Client credentials (ID and secret) used to authenticate with Keycloak.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;iceberg.catalog.ice01.scope&lt;/name&gt;
+  &lt;value&gt;PRINCIPAL_ROLE:ALL&lt;/value&gt;
+  &lt;description&gt;oAuth2 scope tied to the principal role defined in Polaris&lt;/description&gt;
+&lt;/property&gt;
+</code></pre></li>
+<li>HiveServer2 port: 10000 (mapped to 10001 in Docker Compose)</li>
+</ul>
+<h3 id=networking-notes-1>Networking Notes</h3>
+<ul>
+<li>All containers share a custom bridge network <code>hive-net</code>.</li>
+<li>Services communicate via container names: hive and polaris</li>
+<li>Ports mapped for host access:
+<ul>
+<li>Polaris → 8181</li>
+<li>HiveServer2 → 10001</li>
+</ul>
+</li>
+</ul>
+</div>
+<footer class=docs-footer>
+<div class=docs-feedback>
+<h4><i class="fas fa-comment"></i> Feedback</h4>
+<p>Was this page helpful? Let us know how we can improve.</p>
+<div class=docs-feedback-buttons>
+<button class="btn btn-feedback btn-positive">
+<i class="fas fa-thumbs-up"></i> Yes
+</button>
+<button class="btn btn-feedback btn-negative">
+<i class="fas fa-thumbs-down"></i> No
+</button>
+</div>
+</div>
+<div class=docs-edit>
+<a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/quickstart-rest-catalog.md class="btn btn-outline">
+<i class="fab fa-github"></i> Edit this page on GitHub
+</a>
+</div>
+</footer>
+</article>
+<aside class=docs-toc-sidebar>
+<div class=docs-toc-sticky>
+<h4><i class="fas fa-list"></i> On this page</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rest-catalog-integration>REST Catalog Integration</a>
+<ul>
+<li><a href=#table-of-contents>Table of Contents</a></li>
+<li><a href=#hive--gravitino--keycloak>Hive + Gravitino + Keycloak</a>
+<ul>
+<li><a href=#architecture-overview>Architecture Overview</a></li>
+<li><a href=#prerequisites>Prerequisites</a></li>
+<li><a href=#quickstart>Quickstart</a></li>
+<li><a href=#configuration>Configuration</a></li>
+<li><a href=#networking-notes>Networking Notes</a></li>
+</ul>
+</li>
+<li><a href=#hive--polaris>Hive + Polaris</a>
+<ul>
+<li><a href=#architecture-overview-1>Architecture Overview</a></li>
+<li><a href=#prerequisites-1>Prerequisites</a></li>
+<li><a href=#quickstart-1>Quickstart</a></li>
+<li><a href=#configuration-1>Configuration</a></li>
+<li><a href=#networking-notes-1>Networking Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
