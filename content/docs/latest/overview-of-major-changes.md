@@ -1,9 +1,9 @@
 ---
-title: "Apache Hive : Overview of Major Changes"
+title: "Hive 4.0 - Overview of Major Changes"
 date: 2024-12-12
 ---
 
-# Apache Hive : Overview of Major Changes
+# Hive 4.0 - Overview of Major Changes
 
 * ### **Iceberg Integration**
 
