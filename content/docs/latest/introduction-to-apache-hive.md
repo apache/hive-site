@@ -1,5 +1,5 @@
 ---
-title: "Apache Hive : Introduction to Apache Hive"
+title: "Introduction to Apache Hive"
 date: 2024-12-12
 ---
 
