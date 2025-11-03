@@ -158,7 +158,7 @@ Oct 31, 2025
 Apache Hive : Write Ordering Overview Write ordering controls the physical layout of data within table files. Unlike SORT BY which orders data during query execution, write ordering is applied at write time and persists in the stored files.
 Write ordering is supported for Iceberg tables and can be specified during table creation.
 Hive supports two write ordering strategies:
-Regular Ordering: Sort by one or more columns in a specified order Z-Ordering: Multi-dimensional clustering using space-filling curves Regular Column Ordering Version Introduced in Hive version 4.
+Type-Native Ordering: Sort by one or more columns in a specified order Z-Ordering: Multi-dimensional clustering using space-filling curves Type-Native Column Ordering Version Introduced in Hive version 4.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/writeordering/ class=docs-card-link>
@@ -395,7 +395,7 @@ Commands and CLIs
 Commands Hive CLI (old) Beeline CLI (new) Variable Substitution HCatalog CLI File Formats
 Avro Files ORC Files Parquet Compressed Data Storage LZO Compression Data Types
 Data Definition Statements
-DDL Statements Bucketed Tables Write Ordering (Regular & Z-Order) Statistics (Analyze and Describe) Indexes Archiving Data Manipulation Statements
+DDL Statements Bucketed Tables Write Ordering (Type-Native & Z-Order) Statistics (Analyze and Describe) Indexes Archiving Data Manipulation Statements
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual/ class=docs-card-link>

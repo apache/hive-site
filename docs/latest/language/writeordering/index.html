@@ -152,7 +152,7 @@ Last updated: October 31, 2025
 <li><a href=#apache-hive--write-ordering>Apache Hive : Write Ordering</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
-<li><a href=#regular-column-ordering>Regular Column Ordering</a>
+<li><a href=#type-native-column-ordering>Type-Native Column Ordering</a>
 <ul>
 <li><a href=#version>Version</a></li>
 <li><a href=#syntax>Syntax</a></li>
@@ -166,7 +166,7 @@ Last updated: October 31, 2025
 <li><a href=#version-1>Version</a></li>
 <li><a href=#overview-1>Overview</a></li>
 <li><a href=#syntax-1>Syntax</a></li>
-<li><a href=#examples-1>Examples</a></li>
+<li><a href=#example>Example</a></li>
 <li><a href=#table-properties-method>Table Properties Method</a></li>
 <li><a href=#use-cases-1>Use Cases</a></li>
 </ul>
@@ -185,11 +185,11 @@ Last updated: October 31, 2025
 <p>Write ordering is supported for Iceberg tables and can be specified during table creation.</p>
 <p>Hive supports two write ordering strategies:</p>
 <ul>
-<li><strong>Regular Ordering</strong>: Sort by one or more columns in a specified order</li>
+<li><strong>Type-Native Ordering</strong>: Sort by one or more columns in a specified order</li>
 <li><strong>Z-Ordering</strong>: Multi-dimensional clustering using space-filling curves</li>
 </ul>
 <hr>
-<h2 id=regular-column-ordering>Regular Column Ordering</h2>
+<h2 id=type-native-column-ordering>Type-Native Column Ordering</h2>
 <h3 id=version>Version</h3>
 <p>Introduced in Hive version <a href=https://issues.apache.org/jira/browse/HIVE-28586>4.1.0</a></p>
 <h3 id=syntax>Syntax</h3>
@@ -233,7 +233,7 @@ STORED <span style=color:#66d9ef>AS</span> ORC;
 <span style=color:#66d9ef>WRITE</span> ORDERED <span style=color:#66d9ef>BY</span> order_date <span style=color:#66d9ef>DESC</span> NULLS <span style=color:#66d9ef>FIRST</span>, order_id <span style=color:#66d9ef>ASC</span>
 STORED <span style=color:#66d9ef>BY</span> ICEBERG;
 </code></pre></div><h3 id=use-cases>Use Cases</h3>
-<p>Regular ordering is most effective for:</p>
+<p>Type-Native ordering is most effective for:</p>
 <ul>
 <li>Time-series data with temporal access patterns</li>
 <li>Range queries on sorted columns</li>
@@ -251,8 +251,7 @@ STORED <span style=color:#66d9ef>BY</span> ICEBERG;
 <span style=color:#66d9ef>WRITE</span> [LOCALLY] ORDERED <span style=color:#66d9ef>BY</span> ZORDER(<span style=color:#66d9ef>column_name</span> [, <span style=color:#66d9ef>column_name</span> ]<span style=color:#f92672>*</span>)
 STORED <span style=color:#66d9ef>BY</span> ICEBERG
 [STORED <span style=color:#66d9ef>AS</span> file_format];
-</code></pre></div><h3 id=examples-1>Examples</h3>
-<p>Two columns:</p>
+</code></pre></div><h3 id=example>Example</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> user_events (
   user_id INT,
   event_date DATE,
@@ -262,15 +261,6 @@ STORED <span style=color:#66d9ef>BY</span> ICEBERG
 <span style=color:#66d9ef>WRITE</span> LOCALLY ORDERED <span style=color:#66d9ef>BY</span> ZORDER(user_id, event_date)
 STORED <span style=color:#66d9ef>BY</span> ICEBERG
 STORED <span style=color:#66d9ef>AS</span> ORC;
-</code></pre></div><p>Multiple columns:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> analytics (
-  customer_id INT,
-  activity_date DATE,
-  country STRING,
-  product_id INT
-)
-<span style=color:#66d9ef>WRITE</span> ORDERED <span style=color:#66d9ef>BY</span> ZORDER(customer_id, activity_date, country)
-STORED <span style=color:#66d9ef>BY</span> ICEBERG;
 </code></pre></div><h3 id=table-properties-method>Table Properties Method</h3>
 <p>Z-ordering can alternatively be specified using table properties.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> <span style=color:#66d9ef>table_name</span> (column_definitions)
@@ -325,7 +315,7 @@ TBLPROPERTIES (
 <li>Write ordering only applies to Iceberg tables</li>
 <li>Write operations incur ordering overhead:
 <ul>
-<li>Regular ordering: Sort cost</li>
+<li>Type-Native ordering: Sort cost</li>
 <li>Z-order: Sort cost plus z-value computation</li>
 </ul>
 </li>
@@ -360,7 +350,7 @@ TBLPROPERTIES (
 <li><a href=#apache-hive--write-ordering>Apache Hive : Write Ordering</a>
 <ul>
 <li><a href=#overview>Overview</a></li>
-<li><a href=#regular-column-ordering>Regular Column Ordering</a>
+<li><a href=#type-native-column-ordering>Type-Native Column Ordering</a>
 <ul>
 <li><a href=#version>Version</a></li>
 <li><a href=#syntax>Syntax</a></li>
@@ -374,7 +364,7 @@ TBLPROPERTIES (
 <li><a href=#version-1>Version</a></li>
 <li><a href=#overview-1>Overview</a></li>
 <li><a href=#syntax-1>Syntax</a></li>
-<li><a href=#examples-1>Examples</a></li>
+<li><a href=#example>Example</a></li>
 <li><a href=#table-properties-method>Table Properties Method</a></li>
 <li><a href=#use-cases-1>Use Cases</a></li>
 </ul>
