@@ -12,12 +12,12 @@ Write ordering controls the physical layout of data within table files. Unlike `
 Write ordering is supported for Iceberg tables and can be specified during table creation.
 
 Hive supports two write ordering strategies:
-* **Regular Ordering**: Sort by one or more columns in a specified order
+* **Type-Native Ordering**: Sort by one or more columns in a specified order
 * **Z-Ordering**: Multi-dimensional clustering using space-filling curves
 
 ---
 
-## Regular Column Ordering
+## Type-Native Column Ordering
 
 ### Version
 
@@ -72,7 +72,7 @@ STORED BY ICEBERG;
 
 ### Use Cases
 
-Regular ordering is most effective for:
+Type-Native ordering is most effective for:
 
 * Time-series data with temporal access patterns
 * Range queries on sorted columns
@@ -100,9 +100,7 @@ STORED BY ICEBERG
 [STORED AS file_format];
 ```
 
-### Examples
-
-Two columns:
+### Example
 
 ```sql
 CREATE TABLE user_events (
@@ -114,19 +112,6 @@ CREATE TABLE user_events (
 WRITE LOCALLY ORDERED BY ZORDER(user_id, event_date)
 STORED BY ICEBERG
 STORED AS ORC;
-```
-
-Multiple columns:
-
-```sql
-CREATE TABLE analytics (
-  customer_id INT,
-  activity_date DATE,
-  country STRING,
-  product_id INT
-)
-WRITE ORDERED BY ZORDER(customer_id, activity_date, country)
-STORED BY ICEBERG;
 ```
 
 ### Table Properties Method
@@ -166,6 +151,6 @@ Z-order is most effective for:
 
 * Write ordering only applies to Iceberg tables
 * Write operations incur ordering overhead:
-    * Regular ordering: Sort cost
+    * Type-Native ordering: Sort cost
     * Z-order: Sort cost plus z-value computation
 * Column selection should be based on query workload analysis
