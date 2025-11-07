@@ -268,7 +268,7 @@ The following built-in type conversion functions are supported in Hive. 
 | --- | --- | --- | --- |
 | **binary** | ``` binary(string\|binary) ``` | Casts the parameter into a binary. | [GenericUDFBaseBinary](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFBaseBinary.java) |
 | **Expected "=" to follow "type"** | ``` cast(expr as <type>) ``` | Converts the results of the expression expr to \<type\>. For example, cast('1' as bigint) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |  |
-| **string or date** | ``` CAST( <column> AS <type> FORMAT <pattern>) ``` | Converts a datetime value to string or string-type value to datetime based on the format pattern specified. | [GenericUDFCastFormat](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCastFormat.java) |
+| **string or datetime** | ``` CAST(expr AS <type> FORMAT <pattern>) ``` | Converts the expression to the specified <type> using the provided <pattern>. The <pattern> if present follows the SQL:2016 standard specification. Currently only conversions between datetime and string data types are supported. | [GenericUDFCastFormat](https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/udf/generic/GenericUDFCastFormat.java) |
 ### Conditional Functions
 
 The following built-in conditional functions are supported in Hive.
