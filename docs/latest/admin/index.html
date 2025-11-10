@@ -140,12 +140,30 @@ ASF
 <div class=docs-meta>
 <span class=docs-count>
 <i class="fas fa-file-alt"></i>
-21 documents
+22 documents
 </span>
 </div>
 </header>
 <div class=docs-article>
 <div class=docs-grid>
+<div class=docs-card>
+<div class=docs-card-header>
+<h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/>Apache Hive : Setting up Metastore backed by MariaDB</a></h3>
+<span class=docs-card-date>
+<i class="fas fa-calendar-alt"></i>
+Nov 5, 2025
+</span>
+</div>
+<div class=docs-card-summary>
+Apache Hive : Setting up Metastore backed by MariaDB Apache Hive : Setting up Metastore backed by MariaDB Note Introduction Configuration Note Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.
+Introduction From mysql-connector-java 8.0.12, MySQL driver issues a getSQLKeywords call for retrieving this database&rsquo;s keywords, triggered by MySQLAdapter(DataNucleus) on Metastore initialization. However, the back table KEYWORDS in MariaDB diverged from that in MySQL, which makes the Metastore fail to start, an exception thrown like:
+</div>
+<div class=docs-card-footer>
+<a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/ class=docs-card-link>
+Read more <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
 <div class=docs-card>
 <div class=docs-card-header>
 <h3><a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/>Apache Hive : Hive Schema Tool</a></h3>

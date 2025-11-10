@@ -1,0 +1,309 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Setting up Metastore backed by MariaDB</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class=container-fluid>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li><hr class=dropdown-divider></li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li><a href=/docs/>Documentation</a></li>
+<li class=active>Apache Hive : Setting up Metastore backed by MariaDB</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>Apache Hive : Setting up Metastore backed by MariaDB</h1>
+<div class=docs-meta>
+<span class=docs-date>
+<i class="fas fa-calendar-alt"></i>
+Last updated: November 5, 2025
+</span>
+</div>
+</header>
+<div class=docs-toc>
+<h4><i class="fas fa-list"></i> Table of Contents</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--setting-up-metastore-backed-by-mariadb>Apache Hive : Setting up Metastore backed by MariaDB</a>
+<ul>
+<li><a href=#note>Note</a></li>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#configuration>Configuration</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class=docs-article>
+<h1 id=apache-hive--setting-up-metastore-backed-by-mariadb>Apache Hive : Setting up Metastore backed by MariaDB</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--setting-up-metastore-backed-by-mariadb>Apache Hive : Setting up Metastore backed by MariaDB</a>
+<ul>
+<li><a href=#note>Note</a></li>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#configuration>Configuration</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=note>Note</h2>
+<p><strong>Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.</strong></p>
+<h2 id=introduction>Introduction</h2>
+<p>From mysql-connector-java 8.0.12, MySQL driver issues a getSQLKeywords call for retrieving this database&rsquo;s keywords, triggered by MySQLAdapter(DataNucleus) on Metastore initialization.
+However, the back table <code>KEYWORDS</code> in MariaDB diverged from that in MySQL, which makes the Metastore fail to start, an exception thrown like:</p>
+<pre tabindex=0><code>Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'RESERVED' in 'where clause'
+    at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java.jar:8.0.22]
+    at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java.jar:8.0.22]
+    at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java.jar:8.0.22]
+    at com.mysql.cj.jdbc.StatementImpl.executeQuery(StatementImpl.java:1200) ~[mysql-connector-java.jar:8.0.22]
+    at com.mysql.cj.jdbc.DatabaseMetaDataUsingInfoSchema.getSQLKeywords(DatabaseMetaDataUsingInfoSchema.java:1178) ~[mysql-connector-java.jar:8.0.22]
+    at org.datanucleus.store.rdbms.adapter.BaseDatastoreAdapter.&lt;init&gt;(BaseDatastoreAdapter.java:288) ~[datanucleus-rdbms-5.2.10.jar:?]
+</code></pre><p>We suggest switching the MySQL driver to the MariaDB if you have seen the same issue.</p>
+<h2 id=configuration>Configuration</h2>
+<p>Before start, make sure MariaDB is accessible, and create a dedicated database and a secure user account that the Hive Metastore will use to connect.
+Download the MariaDB JDBC Connector JAR (e.g., mariadb-java-client-x.x.x.jar) and place it in the Hive <code>$HIVE_HOME/lib</code> directory.</p>
+<p>For the first time to start the Hive Metastore service, the database must be initialized with the Hive schema. You can use the <code>schematool</code> utility provided with the Hive installation.
+Run this command from the Hive installation directory (<code>$HIVE_HOME/bin</code>):</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>
+schematool  -driver org.mariadb.jdbc.Driver -dbType mysql -initOrUpgradeSchema -url <span style=color:#e6db74>&#34;jdbc:mariadb://&lt;MariaDB_Host&gt;:&lt;Port&gt;/</span><span style=color:#e6db74>${</span>db<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> -userName hive_user -passWord your_strong_password
+</code></pre></div><p>The main configuration file for Metastore is <code>$HIVE_HOME/conf/hive-site.xml</code>, this is where you tell the Metastore service (HMS) how to connect to your MariaDB database.
+The following XML properties must be added or updated in <code>hive-site.xml</code>:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;configuration&gt;</span>
+    <span style=color:#f92672>&lt;property&gt;</span>
+        <span style=color:#f92672>&lt;name&gt;</span>javax.jdo.option.ConnectionURL<span style=color:#f92672>&lt;/name&gt;</span>
+        <span style=color:#f92672>&lt;value&gt;</span>jdbc:mariadb://<span style=color:#f92672>&lt;MariaDB_Host&gt;</span>:<span style=color:#f92672>&lt;Port&gt;</span>/${db}?createDatabaseIfNotExist=false&amp;amp;useSSL=false<span style=color:#f92672>&lt;/value&gt;</span>
+        <span style=color:#f92672>&lt;description&gt;</span>JDBC connection URL for the Metastore database.<span style=color:#f92672>&lt;/description&gt;</span>
+    <span style=color:#f92672>&lt;/property&gt;</span>
+
+    <span style=color:#f92672>&lt;property&gt;</span>
+        <span style=color:#f92672>&lt;name&gt;</span>javax.jdo.option.ConnectionDriverName<span style=color:#f92672>&lt;/name&gt;</span>
+        <span style=color:#f92672>&lt;value&gt;</span>org.mariadb.jdbc.Driver<span style=color:#f92672>&lt;/value&gt;</span>
+        <span style=color:#f92672>&lt;description&gt;</span>The JDBC driver class name for MariaDB.<span style=color:#f92672>&lt;/description&gt;</span>
+    <span style=color:#f92672>&lt;/property&gt;</span>
+
+    <span style=color:#f92672>&lt;property&gt;</span>
+        <span style=color:#f92672>&lt;name&gt;</span>javax.jdo.option.ConnectionUserName<span style=color:#f92672>&lt;/name&gt;</span>
+        <span style=color:#f92672>&lt;value&gt;</span>hive_user<span style=color:#f92672>&lt;/value&gt;</span>
+        <span style=color:#f92672>&lt;description&gt;</span>Username for the Metastore database connection.<span style=color:#f92672>&lt;/description&gt;</span>
+    <span style=color:#f92672>&lt;/property&gt;</span>
+
+    <span style=color:#f92672>&lt;property&gt;</span>
+        <span style=color:#f92672>&lt;name&gt;</span>javax.jdo.option.ConnectionPassword<span style=color:#f92672>&lt;/name&gt;</span>
+        <span style=color:#f92672>&lt;value&gt;</span>your_strong_password<span style=color:#f92672>&lt;/value&gt;</span>
+        <span style=color:#f92672>&lt;description&gt;</span>Password for the Metastore database connection.<span style=color:#f92672>&lt;/description&gt;</span>
+    <span style=color:#f92672>&lt;/property&gt;</span>
+<span style=color:#f92672>&lt;/configuration&gt;</span>
+</code></pre></div><p><strong>Important:</strong></p>
+<ul>
+<li>Replace <code>&lt;MariaDB_Host>:&lt;Port></code> with the correct hostname/IP addresses.</li>
+<li>The JDBC URL, <code>&</code> must be escaped as <code>&amp;amp;</code> in XML.</li>
+</ul>
+<p>After all configurations are complete, you can start the Hive Metastore service.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>hive --service metastore
+</code></pre></div><p>Want a quick play on the new driver? try our <a href=../setting-up-hive-with-docker>Docker image</a>:</p>
+<p> </p>
+<p> </p>
+</div>
+<footer class=docs-footer>
+<div class=docs-feedback>
+<h4><i class="fas fa-comment"></i> Feedback</h4>
+<p>Was this page helpful? Let us know how we can improve.</p>
+<div class=docs-feedback-buttons>
+<button class="btn btn-feedback btn-positive">
+<i class="fas fa-thumbs-up"></i> Yes
+</button>
+<button class="btn btn-feedback btn-negative">
+<i class="fas fa-thumbs-down"></i> No
+</button>
+</div>
+</div>
+<div class=docs-edit>
+<a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/admin/setting-up-metastore-with-mariadb.md class="btn btn-outline">
+<i class="fab fa-github"></i> Edit this page on GitHub
+</a>
+</div>
+</footer>
+</article>
+<aside class=docs-toc-sidebar>
+<div class=docs-toc-sticky>
+<h4><i class="fas fa-list"></i> On this page</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--setting-up-metastore-backed-by-mariadb>Apache Hive : Setting up Metastore backed by MariaDB</a>
+<ul>
+<li><a href=#note>Note</a></li>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#configuration>Configuration</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
