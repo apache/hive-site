@@ -25,7 +25,7 @@ date: 2024-12-12
 * [attachments/27362054/61329038-pptx](/attachments/27362054/61329038.pptx)
 * [attachments/27362054/61329039.pdf](/attachments/27362054/61329039.pdf)
 * [attachments/27362054/61329040-pptx](/attachments/27362054/61329040.pptx)
-* [attachments/27362054/61329311-ppsx](/attachments/27362054/61329311.ppsx)
+* [attachments/27362054/LLAP-Meetup-Nov.ppsx](/attachments/27362054/LLAP-Meetup-Nov.ppsx)
 
 ## April 2015 Hive Contributor Meetup Presentations
 
@@ -41,7 +41,7 @@ date: 2024-12-12
 
 ## November 2013 Hive Contributors Meetup Presentations
 
-* [attachments/27362054/35193152-pptx](/attachments/27362054/35193152.pptx) (Edward Capriolo)
+* [attachments/27362054/HiveContrib-Nov13-groovy_plus_hive.pptx](/attachments/27362054/HiveContrib-Nov13-groovy_plus_hive.pptx) (Edward Capriolo)
 * [attachments/27362054/35193150-pptx](/attachments/27362054/35193150.pptx) (Gunther Hagleitner)
 * [attachments/27362054/35193153-pptx](/attachments/27362054/35193153.pptx) (Thejas Nair)
 * [attachments/27362054/35193154-pptx](/attachments/27362054/35193154.pptx) (Owen O'Malley)
@@ -189,7 +189,7 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/35193152-pptx](/attachments/27362054/35193152.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
+[attachments/27362054/HiveContrib-Nov13-groovy_plus_hive.pptx](/attachments/27362054/HiveContrib-Nov13-groovy_plus_hive.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
    
 
 ![](images/icons/bullet_blue.gif)
@@ -253,7 +253,7 @@ date: 2024-12-12
    
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362054/61329311-ppsx](/attachments/27362054/61329311.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
+[attachments/27362054/LLAP-Meetup-Nov.ppsx](/attachments/27362054/LLAP-Meetup-Nov.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
@@ -266,10 +266,6 @@ date: 2024-12-12
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362054/61337313-pptx](/attachments/27362054/61337313.pptx) (application/vnd.openxmlformats-officedocument.presentationml.presentation)
-   
-
-![](images/icons/bullet_blue.gif)
-[attachments/27362054/61337399-ppsx](/attachments/27362054/61337399.ppsx) (application/vnd.openxmlformats-officedocument.presentationml.slideshow)
    
 
 ![](images/icons/bullet_blue.gif)
