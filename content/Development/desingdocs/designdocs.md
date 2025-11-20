@@ -23,7 +23,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Table-level Statistics]({{< ref "statsdev" >}}) ([HIVE-1361](https://issues.apache.org/jira/browse/HIVE-1361))
 * [Dynamic Partitions]({{< ref "dynamicpartitions" >}})
 * [Binary Data Type]({{< ref "binary-datatype-proposal" >}}) ([HIVE-2380](https://issues.apache.org/jira/browse/HIVE-2380))
-* [Decimal Precision and Scale Support](https://hive.apache.org/attachments/27362075/36438041.pdf)
+* [Decimal Precision and Scale Support](https://hive.apache.org/attachments/27362075/34177489.pdf)
 * [HCatalog]({{< ref "hcatalog-base" >}}) (formerly [Howl]({{< ref "howl" >}}))
 * [HiveServer2]({{< ref "hiveserver2-thrift-api" >}}) ([HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935))
 * [Column Statistics in Hive]({{< ref "column-statistics-in-hive" >}}) ([HIVE-1362](https://issues.apache.org/jira/browse/HIVE-1362))
@@ -90,19 +90,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-[attachments/27362075/34177517.pdf](/attachments/27362075/34177517.pdf) (application/pdf)
-   
-
-![](images/icons/bullet_blue.gif)
-[attachments/27362075/35193010.pdf](/attachments/27362075/35193010.pdf) (application/pdf)
-   
-
-![](images/icons/bullet_blue.gif)
-[attachments/27362075/35193011.pdf](/attachments/27362075/35193011.pdf) (application/pdf)
-   
-
-![](images/icons/bullet_blue.gif)
-[attachments/27362075/36438041.pdf](/attachments/27362075/36438041.pdf) (application/pdf)
+[attachments/27362075/34177489.pdf](/attachments/27362075/34177489.pdf) (application/pdf)
    
 
 ![](images/icons/bullet_blue.gif)
