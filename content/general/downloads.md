@@ -30,6 +30,13 @@ Old releases can be found in the [archives][HIVE_ARCHIVES].
 
 ## News
 
+### 23 November 2025:  release 4.2.0 available
+
+  * Apache Hive 4.2.x adds JDK 21 support.
+  * Key improvements include enhanced Iceberg table support (deletion vectors, auto compaction, ViewCatalog, default column type, column defaults, Iceberg REST Catalog client, Z-ordering, variant-type), separation of metastore client code into its own module, catalog properties support, support for multiple partitions in RELOAD event, support for drop partitions by names in IMetaStoreClient.
+  * This release works with Hadoop 3.4.1, Tez 0.10.5.
+  * You can look at the complete [JIRA change log for this release][HIVE_4_2_0_CL].
+
 ### 31 July 2025:  release 4.1.0 available
 
   * Apache Hive 4.1.x adds JDK 17 support and provides the Hive Metastore as a standalone component available
@@ -309,6 +316,7 @@ Hive users for these two versions are encouraged to upgrade.
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
 [HIVE_ARCHIVES]: https://archive.apache.org/dist/hive/
+[HIVE_4_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12356025&styleName=Text&projectId=12310843
 [HIVE_4_1_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353994&styleName=Text&projectId=12310843
 [HIVE_4_0_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12354786&styleName=Text&projectId=12310843
 [HIVE_4_0_0_CL]:https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12343343&styleName=Text&projectId=12310843

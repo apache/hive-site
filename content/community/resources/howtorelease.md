@@ -334,7 +334,7 @@ The git commit hash is:
 
 https://github.com/apache/hive/commit/357d4906f5c806d585fd84db57cf296e12e6049b 
 
-The vote is open for the next 72 hours and passes if a majority of at least
+The vote is open for a minimum of the next 72 hours and passes if a majority of at least
 three +1 PMC votes are cast.
 
 (Only PMC members have binding votes, however, other community members
