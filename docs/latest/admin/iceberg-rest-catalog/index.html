@@ -1,0 +1,347 @@
+<!doctype html><html><!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=author content>
+<title>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</title>
+<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
+<link rel=stylesheet href=https://hive.apache.org/css/hive-theme.css>
+<link rel=stylesheet href=https://hive.apache.org/css/font-awesome.all.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/bootstrap.min.css>
+<link rel=stylesheet href=https://hive.apache.org/css/termynal.css>
+<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
+<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
+<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
+<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
+<meta name=msapplication-TileColor content="#da532c">
+<meta name=theme-color content="#ffffff">
+<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
+</head>
+<body>
+<body>
+<header>
+<menu class=main-menu>
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class=container-fluid>
+<div class=navbar-brand-wrapper>
+<a href=https://hive.apache.org class=navbar-logo>
+<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a>
+<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
+</div>
+<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span>
+</button>
+<div class="collapse navbar-collapse" id=navbarSupportedContent>
+<ul class="navbar-nav me-auto">
+<li class=nav-item>
+<a class=nav-link href=https://hive.apache.org/general/downloads>
+Releases
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Documentation
+</a>
+<ul class=dropdown-menu aria-labelledby=docsDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+General
+</a>
+<ul class=dropdown-menu aria-labelledby=generalDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
+<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Development
+</a>
+<ul class=dropdown-menu aria-labelledby=devDropdown>
+<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
+<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+Community
+</a>
+<ul class=dropdown-menu aria-labelledby=communityDropdown>
+<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
+<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
+<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
+<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
+<li><hr class=dropdown-divider></li>
+<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
+<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
+</ul>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://hive.blog.apache.org/>
+Blogs
+</a>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
+ASF
+</a>
+<ul class=dropdown-menu aria-labelledby=asfDropdown>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
+<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
+</ul>
+</li>
+</ul>
+<div class=navbar-search>
+<form action=/search method=get class=search-form>
+<div class=search-input-group>
+<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<button type=submit class=search-button aria-label="Submit search">
+<i class="fas fa-search"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</nav>
+</menu>
+</header>
+<div class=content>
+<div class=docs-container>
+<main class="docs-main docs-main-full">
+<article class=docs-content>
+<nav class=docs-breadcrumb>
+<ol>
+<li><a href=/><i class="fas fa-home"></i> Home</a></li>
+<li><a href=/docs/>Documentation</a></li>
+<li class=active>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</li>
+</ol>
+</nav>
+<header class=docs-header>
+<h1 class=docs-title>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</h1>
+<div class=docs-meta>
+<span class=docs-date>
+<i class="fas fa-calendar-alt"></i>
+Last updated: November 14, 2025
+</span>
+</div>
+</header>
+<div class=docs-toc>
+<h4><i class="fas fa-list"></i> Table of Contents</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--iceberg-rest-catalog-api-backed-by-hive-metastore>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#basic-configurations>Basic configurations</a></li>
+<li><a href=#authentication>Authentication</a>
+<ul>
+<li><a href=#oauth-2>OAuth 2</a></li>
+<li><a href=#jwt>JWT</a></li>
+<li><a href=#simple>Simple</a></li>
+<li><a href=#none>None</a></li>
+</ul>
+</li>
+<li><a href=#authorization>Authorization</a></li>
+<li><a href=#example-minimal-setup-with-docker>Example: Minimal Setup with Docker</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class=docs-article>
+<h1 id=apache-hive--iceberg-rest-catalog-api-backed-by-hive-metastore>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</h1>
+<aside class=table-of-contents>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--iceberg-rest-catalog-api-backed-by-hive-metastore>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#basic-configurations>Basic configurations</a></li>
+<li><a href=#authentication>Authentication</a>
+<ul>
+<li><a href=#oauth-2>OAuth 2</a></li>
+<li><a href=#jwt>JWT</a></li>
+<li><a href=#simple>Simple</a></li>
+<li><a href=#none>None</a></li>
+</ul>
+</li>
+<li><a href=#authorization>Authorization</a></li>
+<li><a href=#example-minimal-setup-with-docker>Example: Minimal Setup with Docker</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+<h2 id=introduction>Introduction</h2>
+<p><img src=../images/hive-iceberg-rest-integration.png alt></p>
+<p>Hive Metastore offers <a href=https://iceberg.apache.org/rest-catalog-spec/>Iceberg REST API</a> endpoints for clients native to Apache Iceberg. Consequently, Iceberg users can access Iceberg tables via either Hive Metastore Thrift API (using HiveCatalog) or Iceberg REST Catalog API.</p>
+<h2 id=basic-configurations>Basic configurations</h2>
+<p>You must configure the following parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Required?</th>
+<th>Default</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metastore.catalog.servlet.port</td>
+<td>Yes</td>
+<td>-1</td>
+<td>The port number to which Iceberg REST API listens</td>
+</tr>
+</tbody>
+</table>
+<h2 id=authentication>Authentication</h2>
+<p>Hive Metastore&rsquo;s Iceberg REST API supports four authentication methods.</p>
+<h3 id=oauth-2>OAuth 2</h3>
+<p>OAuth 2 is the industry standard for authenticating Iceberg client usernames. You can integrate Hive Metastore with your Authorization Server, e.g., Keycloak, to protect Iceberg resources. See <a href=/docs/latest/admin/oauth2/>Apache Hive : Setting Up OAuth 2</a> for further details.</p>
+<h3 id=jwt>JWT</h3>
+<p>You can configure Hive Metastore so that its Iceberg REST API accepts a JSON Web Token (JWT) as a bearer token in the Authorization header. This is the default authentication mechanism because the default value of <code>metastore.catalog.servlet.auth</code> is <code>jwt</code>. The JSON Web Key Set (JWKS) locations must be configured using the <code>metastore.authentication.jwt.jwks.url</code> property. Hive Metastore derives the username from the <code>sub</code> claim of a properly-signed JWT.</p>
+<h3 id=simple>Simple</h3>
+<p>When <code>metastore.catalog.servlet.auth=simple</code>, Hive Metastore assumes that the value of the <code>x-actor-username</code> HTTP header is the authenticated username. You may use it to test authorized access, but this mode is not recommend in a production environment.</p>
+<h3 id=none>None</h3>
+<p>When <code>metastore.catalog.servlet.auth=none</code>, Hive Metastore does not enforce any authentication. This mode may be used for testing only.</p>
+<h2 id=authorization>Authorization</h2>
+<p>You can apply database-level or table-level authorization in Hive Metastore. See also: <a href=/docs/latest/language/languagemanual-authorization/>Apache Hive : LanguageManual Authorization</a>.</p>
+<p>For example, you can secure Iceberg REST API using Apache Ranger.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;property&gt;</span>
+  <span style=color:#f92672>&lt;name&gt;</span>hive.security.authorization.manager<span style=color:#f92672>&lt;/name&gt;</span>
+  <span style=color:#f92672>&lt;value&gt;</span>org.apache.ranger.authorization.hive.authorizer.RangerHiveAuthorizerFactory<span style=color:#f92672>&lt;/value&gt;</span>
+<span style=color:#f92672>&lt;/property&gt;</span>
+<span style=color:#f92672>&lt;property&gt;</span>
+  <span style=color:#f92672>&lt;name&gt;</span>metastore.pre.event.listeners<span style=color:#f92672>&lt;/name&gt;</span>
+  <span style=color:#f92672>&lt;value&gt;</span>org.apache.hadoop.hive.ql.security.authorization.plugin.metastore.HiveMetaStoreAuthorizer<span style=color:#f92672>&lt;/value&gt;</span>
+<span style=color:#f92672>&lt;/property&gt;</span>
+</code></pre></div><h2 id=example-minimal-setup-with-docker>Example: Minimal Setup with Docker</h2>
+<p>The official Docker images expose the REST API endpoints on the 9001 port with <code>metastore.catalog.servlet.auth=none</code>. A single command lets you try Iceberg REST Catalog.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ docker run --rm -p 9001:9001 apache/hive:standalone-metastore-<span style=color:#f92672>{</span>Hive version<span style=color:#f92672>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ curl http://localhost:9001/iceberg/v1/config
+<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;defaults&#34;</span>:<span style=color:#f92672>{}</span>,<span style=color:#e6db74>&#34;overrides&#34;</span>:<span style=color:#f92672>{}</span>,<span style=color:#e6db74>&#34;endpoints&#34;</span>:<span style=color:#f92672>[</span><span style=color:#e6db74>&#34;GET v1/config&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces&#34;</span>,<span style=color:#e6db74>&#34;HEAD /v1/{prefix}/namespaces/{namespace}&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces/{namespace}&#34;</span>,<span style=color:#e6db74>&#34;DELETE /v1/{prefix}/namespaces/{namespace}&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/properties&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces/{namespace}/tables&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/tables&#34;</span>,<span style=color:#e6db74>&#34;HEAD /v1/{prefix}/namespaces/{namespace}/tables/{table}&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces/{namespace}/tables/{table}&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/register&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/tables/{table}&#34;</span>,<span style=color:#e6db74>&#34;DELETE /v1/{prefix}/namespaces/{namespace}/tables/{table}&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/tables/rename&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/tables/{table}/metrics&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/transactions/commit&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces/{namespace}/views&#34;</span>,<span style=color:#e6db74>&#34;HEAD /v1/{prefix}/namespaces/{namespace}/views/{view}&#34;</span>,<span style=color:#e6db74>&#34;GET /v1/{prefix}/namespaces/{namespace}/views/{view}&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/views&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/namespaces/{namespace}/views/{view}&#34;</span>,<span style=color:#e6db74>&#34;POST /v1/{prefix}/views/rename&#34;</span>,<span style=color:#e6db74>&#34;DELETE /v1/{prefix}/namespaces/{namespace}/views/{view}&#34;</span><span style=color:#f92672>]}</span>
+
+$ curl -X POST <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  http://localhost:9001/iceberg/v1/namespaces/default/tables <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  -d <span style=color:#e6db74>&#39;{
+</span><span style=color:#e6db74>    &#34;name&#34;: &#34;test&#34;,
+</span><span style=color:#e6db74>    &#34;schema&#34;: {
+</span><span style=color:#e6db74>      &#34;type&#34;: &#34;struct&#34;,
+</span><span style=color:#e6db74>      &#34;fields&#34;: [
+</span><span style=color:#e6db74>        {&#34;id&#34;: 1, &#34;name&#34;: &#34;id&#34;, &#34;type&#34;: &#34;long&#34;, &#34;required&#34;: true}
+</span><span style=color:#e6db74>      ]
+</span><span style=color:#e6db74>    },
+</span><span style=color:#e6db74>    &#34;write-disposition&#34;: &#34;create&#34;
+</span><span style=color:#e6db74>  }&#39;</span>
+<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;metadata-location&#34;</span>:<span style=color:#e6db74>&#34;file:/opt/hive/data/warehouse/test/metadata/00000-f1a3fec1-f0b6-499b-b635-d6a408458390.metadata.json&#34;</span>,<span style=color:#e6db74>&#34;metadata&#34;</span>:<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;format-version&#34;</span>:2,<span style=color:#e6db74>&#34;table-uuid&#34;</span>:<span style=color:#e6db74>&#34;47ca342c-b65b-4e51-a09d-1b470f20298a&#34;</span>,<span style=color:#e6db74>&#34;location&#34;</span>:<span style=color:#e6db74>&#34;file:/opt/hive/data/warehouse/test&#34;</span>,<span style=color:#e6db74>&#34;last-sequence-number&#34;</span>:0,<span style=color:#e6db74>&#34;last-updated-ms&#34;</span>:1763188388952,<span style=color:#e6db74>&#34;last-column-id&#34;</span>:1,<span style=color:#e6db74>&#34;current-schema-id&#34;</span>:0,<span style=color:#e6db74>&#34;schemas&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;type&#34;</span>:<span style=color:#e6db74>&#34;struct&#34;</span>,<span style=color:#e6db74>&#34;schema-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;id&#34;</span>:1,<span style=color:#e6db74>&#34;name&#34;</span>:<span style=color:#e6db74>&#34;id&#34;</span>,<span style=color:#e6db74>&#34;required&#34;</span>:true,<span style=color:#e6db74>&#34;type&#34;</span>:<span style=color:#e6db74>&#34;long&#34;</span><span style=color:#f92672>}]}]</span>,<span style=color:#e6db74>&#34;default-spec-id&#34;</span>:0,<span style=color:#e6db74>&#34;partition-specs&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;spec-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[]}]</span>,<span style=color:#e6db74>&#34;last-partition-id&#34;</span>:999,<span style=color:#e6db74>&#34;default-sort-order-id&#34;</span>:0,<span style=color:#e6db74>&#34;sort-orders&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;order-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[]}]</span>,<span style=color:#e6db74>&#34;properties&#34;</span>:<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;write.parquet.compression-codec&#34;</span>:<span style=color:#e6db74>&#34;zstd&#34;</span><span style=color:#f92672>}</span>,<span style=color:#e6db74>&#34;current-snapshot-id&#34;</span>:-1,<span style=color:#e6db74>&#34;refs&#34;</span>:<span style=color:#f92672>{}</span>,<span style=color:#e6db74>&#34;snapshots&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;statistics&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;partition-statistics&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;snapshot-log&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;metadata-log&#34;</span>:<span style=color:#f92672>[]}}</span>
+
+$ curl http://localhost:9001/iceberg/v1/namespaces/default/tables/test
+<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;metadata-location&#34;</span>:<span style=color:#e6db74>&#34;file:/opt/hive/data/warehouse/test/metadata/00000-f1a3fec1-f0b6-499b-b635-d6a408458390.metadata.json&#34;</span>,<span style=color:#e6db74>&#34;metadata&#34;</span>:<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;format-version&#34;</span>:2,<span style=color:#e6db74>&#34;table-uuid&#34;</span>:<span style=color:#e6db74>&#34;47ca342c-b65b-4e51-a09d-1b470f20298a&#34;</span>,<span style=color:#e6db74>&#34;location&#34;</span>:<span style=color:#e6db74>&#34;file:/opt/hive/data/warehouse/test&#34;</span>,<span style=color:#e6db74>&#34;last-sequence-number&#34;</span>:0,<span style=color:#e6db74>&#34;last-updated-ms&#34;</span>:1763188388952,<span style=color:#e6db74>&#34;last-column-id&#34;</span>:1,<span style=color:#e6db74>&#34;current-schema-id&#34;</span>:0,<span style=color:#e6db74>&#34;schemas&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;type&#34;</span>:<span style=color:#e6db74>&#34;struct&#34;</span>,<span style=color:#e6db74>&#34;schema-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;id&#34;</span>:1,<span style=color:#e6db74>&#34;name&#34;</span>:<span style=color:#e6db74>&#34;id&#34;</span>,<span style=color:#e6db74>&#34;required&#34;</span>:true,<span style=color:#e6db74>&#34;type&#34;</span>:<span style=color:#e6db74>&#34;long&#34;</span><span style=color:#f92672>}]}]</span>,<span style=color:#e6db74>&#34;default-spec-id&#34;</span>:0,<span style=color:#e6db74>&#34;partition-specs&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;spec-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[]}]</span>,<span style=color:#e6db74>&#34;last-partition-id&#34;</span>:999,<span style=color:#e6db74>&#34;default-sort-order-id&#34;</span>:0,<span style=color:#e6db74>&#34;sort-orders&#34;</span>:<span style=color:#f92672>[{</span><span style=color:#e6db74>&#34;order-id&#34;</span>:0,<span style=color:#e6db74>&#34;fields&#34;</span>:<span style=color:#f92672>[]}]</span>,<span style=color:#e6db74>&#34;properties&#34;</span>:<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;write.parquet.compression-codec&#34;</span>:<span style=color:#e6db74>&#34;zstd&#34;</span><span style=color:#f92672>}</span>,<span style=color:#e6db74>&#34;current-snapshot-id&#34;</span>:-1,<span style=color:#e6db74>&#34;refs&#34;</span>:<span style=color:#f92672>{}</span>,<span style=color:#e6db74>&#34;snapshots&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;statistics&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;partition-statistics&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;snapshot-log&#34;</span>:<span style=color:#f92672>[]</span>,<span style=color:#e6db74>&#34;metadata-log&#34;</span>:<span style=color:#f92672>[]}}</span>
+</code></pre></div>
+</div>
+<footer class=docs-footer>
+<div class=docs-feedback>
+<h4><i class="fas fa-comment"></i> Feedback</h4>
+<p>Was this page helpful? Let us know how we can improve.</p>
+<div class=docs-feedback-buttons>
+<button class="btn btn-feedback btn-positive">
+<i class="fas fa-thumbs-up"></i> Yes
+</button>
+<button class="btn btn-feedback btn-negative">
+<i class="fas fa-thumbs-down"></i> No
+</button>
+</div>
+</div>
+<div class=docs-edit>
+<a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/admin/iceberg-rest-catalog.md class="btn btn-outline">
+<i class="fab fa-github"></i> Edit this page on GitHub
+</a>
+</div>
+</footer>
+</article>
+<aside class=docs-toc-sidebar>
+<div class=docs-toc-sticky>
+<h4><i class="fas fa-list"></i> On this page</h4>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#apache-hive--iceberg-rest-catalog-api-backed-by-hive-metastore>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</a>
+<ul>
+<li><a href=#introduction>Introduction</a></li>
+<li><a href=#basic-configurations>Basic configurations</a></li>
+<li><a href=#authentication>Authentication</a>
+<ul>
+<li><a href=#oauth-2>OAuth 2</a></li>
+<li><a href=#jwt>JWT</a></li>
+<li><a href=#simple>Simple</a></li>
+<li><a href=#none>None</a></li>
+</ul>
+</li>
+<li><a href=#authorization>Authorization</a></li>
+<li><a href=#example-minimal-setup-with-docker>Example: Minimal Setup with Docker</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</div>
+</div>
+<footer class="black-background static-bottom" style=padding:30px>
+<div class=row>
+<div class=col-3>
+<a href=https://www.apache.org/>
+<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
+</a>
+</div>
+<div class=col-9>
+<p class=footer-text>Apache is a non-profit organization helping open-source
+software projects released under the Apache
+<a href=https://www.apache.org/licenses/>license</a>
+and managed with
+<a href=https://www.apache.org/foundation/how-it-works.html>
+open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
+privacy policy</a>. See upcoming
+<a href=https://www.apache.org/events/current-event>Apache Events</a>.
+If you discover any
+<a href=https://www.apache.org/security/>security</a> vulnerabilities, please
+report them privately. Finally,
+<a href=https://www.apache.org/foundation/sponsorship.html>thanks
+</a> to the sponsors who
+<a href=https://www.apache.org/foundation/contributing.html>
+donate</a> to the Apache Foundation.
+</p>
+</div>
+</div>
+<div class="copyright row">
+<a href=https://hive.apache.org style=color:grey>
+The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
+</a>
+</div>
+</footer>
+<script src=https://hive.apache.org/js/bootstrap.bundle.min.js></script>
+</body>
+</html>
