@@ -1,150 +1,138 @@
 ---
 title: "People"
-date: 2022-09-14T01:23:03+05:30
-draft: false
-aliases: [/people.html]
+date: 2022-09-14
 ---
-
-<!---
-  Licensed to the Apache Software Foundation (ASF) under one
-  or more contributor license agreements.  See the NOTICE file
-  distributed with this work for additional information
-  regarding copyright ownership.  The ASF licenses this file
-  to you under the Apache License, Version 2.0 (the
-  "License"); you may not use this file except in compliance
-  with the License.  You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing,
-  software distributed under the License is distributed on an
-  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  KIND, either express or implied.  See the License for the
-  specific language governing permissions and limitations
-  under the License. -->
 
 # People
----
 
+---
 
 Apache Hive is a community developed project. The list below is a partial
 list of contributors to the project, for a complete list you would have to look
 at all contributors to our issue tracker, mailing list and version control.
 
-
-
 ## Hive PMC
----
-
-| Apache username | Name                    | Organization                                               | Role |
-|-----------------|-------------------------|------------------------------------------------------------|------|
-| aihuaxu         | Aihua Xu                | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| anishek         | Anishek Agarwal         |                                                            |      | 
-| athusoo         | Ashish Thusoo           | <a href="http://qubole.com/">Qubole</a>                    |      |
-| ayushsaxena     | Ayush Saxena            | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| brock           | Brock Noland            | <a href="http://streamsets.com/">StreamSets</a>            |      |
-| ctang           | Chaoyu Tang             | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| cws             | Carl Steinbach          | <a href="http://linkedin.com">LinkedIn</a>                 |      |
-| denys           | Denys Kuzmenko          | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| daijy           | Daniel Dai              | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| ecapriolo       | Edward Capriolo         |                                                            |      |
-| gopalv          | Gopal Vijayaraghavan    | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| gunther         | Gunther Hagleitner      | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| hashutosh       | Ashutosh Chauhan        | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| heyongqiang     | Yongqiang He            | <a href="http://dropbox.com/">Dropbox</a>                  |      |
-| jcamacho        | Jesus Camacho Rodriguez | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| jdere           | Jason Dere              | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| jpullokk        | Laljo John Pullokkaran  | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| jssarma         | Joydeep Sensarma        | <a href="http://qubole.com/">Qubole</a>                    |      |
-| jxiang          | Jimmy Xiang             | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| kevinwilfong    | Kevin Wilfong           | <a href="http://facebook.com/">Facebook</a>                |      |
-| leftyl          | Lefty Leverenz          | <a href="https://www.ibm.com/">IBM</a>                     |      |
-| namit           | Namit Jain              | <a href="http://www.nutanix.com/">Nutanix</a>              |      |
-| navis           | Navis Ryu               | <a href="http://nexr.com/">NexR</a>                        |      |
-| ngangam         | Naveen Gangam           | <a href="http://cloudera.com/">Cloudera</a>                | VP   |
-| nzhang          | Ning Zhang              | <a href="http://facebook.com/">Facebook</a>                |      |
-| omalley         | Owen O'Malley           | <a href="http://linkedin.com/">LinkedIn</a>                |      |
-| prasadm         | Prasad Mujumdar         | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| prasanth_j      | Prasanth Jayachandran   | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| pvary           | Peter Vary              | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| pxiong          | Pengcheng Xiong         | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| rhbutani        | Harish Butani           | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| rmurthy         | Raghotham Murthy        | <a href="http://facebook.com/">Facebook</a>                |      |
-| sershe          | Sergey Shelukhin        | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| spena           | Sergio Peña             | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| sunchao         | Chao Sun                | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| szehon          | Szehon Ho               | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| thejas          | Thejas Nair             | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| vgumashta       | Vaibhav Gumashta        | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| vikram          | Vikram Dixit            | <a href="http://hortonworks.com/">Hortonworks</a>          |      |
-| xuefu           | Xuefu Zhang             | <a href="https://www.alibaba.com/">Alibaba Inc</a>         |      |
-| ychena          | Yongzhi Chen            | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| zabetak         | Stamatis Zampetakis     | <a href="http://cloudera.com/">Cloudera</a>                |      |
-| zhangbutao      | Butao Zhang             | <a href="https://www.chinamobileltd.com/">China Mobile</a> |      |
 
 ---
+
+| Apache username |          Name           |                  Organization                   | Role |
+|-----------------|-------------------------|-------------------------------------------------|------|
+| aihuaxu         | Aihua Xu                | [Cloudera](http://cloudera.com/)                |      |
+| anishek         | Anishek Agarwal         |                                                 |      |
+| athusoo         | Ashish Thusoo           | [Qubole](http://qubole.com/)                    |      |
+| ayushsaxena     | Ayush Saxena            | [Cloudera](http://cloudera.com/)                |      |
+| brock           | Brock Noland            | [StreamSets](http://streamsets.com/)            |      |
+| ctang           | Chaoyu Tang             | [Cloudera](http://cloudera.com/)                |      |
+| cws             | Carl Steinbach          | [LinkedIn](http://linkedin.com)                 |      |
+| denys           | Denys Kuzmenko          | [Cloudera](http://cloudera.com/)                |      |
+| daijy           | Daniel Dai              | [Hortonworks](http://hortonworks.com/)          |      |
+| ecapriolo       | Edward Capriolo         |                                                 |      |
+| gopalv          | Gopal Vijayaraghavan    | [Hortonworks](http://hortonworks.com/)          |      |
+| gunther         | Gunther Hagleitner      | [Hortonworks](http://hortonworks.com/)          |      |
+| hashutosh       | Ashutosh Chauhan        | [Hortonworks](http://hortonworks.com/)          |      |
+| heyongqiang     | Yongqiang He            | [Dropbox](http://dropbox.com/)                  |      |
+| jcamacho        | Jesus Camacho Rodriguez | [Hortonworks](http://hortonworks.com/)          |      |
+| jdere           | Jason Dere              | [Hortonworks](http://hortonworks.com/)          |      |
+| jpullokk        | Laljo John Pullokkaran  | [Hortonworks](http://hortonworks.com/)          |      |
+| jssarma         | Joydeep Sensarma        | [Qubole](http://qubole.com/)                    |      |
+| jxiang          | Jimmy Xiang             | [Cloudera](http://cloudera.com/)                |      |
+| kevinwilfong    | Kevin Wilfong           | [Facebook](http://facebook.com/)                |      |
+| leftyl          | Lefty Leverenz          | [IBM](https://www.ibm.com/)                     |      |
+| namit           | Namit Jain              | [Nutanix](http://www.nutanix.com/)              |      |
+| navis           | Navis Ryu               | [NexR](http://nexr.com/)                        |      |
+| ngangam         | Naveen Gangam           | [Cloudera](http://cloudera.com/)                | VP   |
+| nzhang          | Ning Zhang              | [Facebook](http://facebook.com/)                |      |
+| omalley         | Owen O'Malley           | [LinkedIn](http://linkedin.com/)                |      |
+| prasadm         | Prasad Mujumdar         | [Cloudera](http://cloudera.com/)                |      |
+| prasanth_j      | Prasanth Jayachandran   | [Hortonworks](http://hortonworks.com/)          |      |
+| pvary           | Peter Vary              | [Cloudera](http://cloudera.com/)                |      |
+| pxiong          | Pengcheng Xiong         | [Hortonworks](http://hortonworks.com/)          |      |
+| rhbutani        | Harish Butani           | [Hortonworks](http://hortonworks.com/)          |      |
+| rmurthy         | Raghotham Murthy        | [Facebook](http://facebook.com/)                |      |
+| sershe          | Sergey Shelukhin        | [Hortonworks](http://hortonworks.com/)          |      |
+| spena           | Sergio Peña             | [Cloudera](http://cloudera.com/)                |      |
+| sunchao         | Chao Sun                | [Cloudera](http://cloudera.com/)                |      |
+| szehon          | Szehon Ho               | [Cloudera](http://cloudera.com/)                |      |
+| thejas          | Thejas Nair             | [Hortonworks](http://hortonworks.com/)          |      |
+| vgumashta       | Vaibhav Gumashta        | [Hortonworks](http://hortonworks.com/)          |      |
+| vikram          | Vikram Dixit            | [Hortonworks](http://hortonworks.com/)          |      |
+| xuefu           | Xuefu Zhang             | [Alibaba Inc](https://www.alibaba.com/)         |      |
+| ychena          | Yongzhi Chen            | [Cloudera](http://cloudera.com/)                |      |
+| zabetak         | Stamatis Zampetakis     | [Cloudera](http://cloudera.com/)                |      |
+| zhangbutao      | Butao Zhang             | [China Mobile](https://www.chinamobileltd.com/) |      |
+
+---
+
 ## Hive Committers
+
 ---
-| Apache username | name                              | organization                                                                 |
-|-----------------|-----------------------------------|------------------------------------------------------------------------------|
-| amareshwari     | Amareshwari Sriramadasu           | <a href="http://www.inmobi.com/">InMobi</a>                                  |
-| apivovarov      | Alexander Pivovarov               | <a href="http://fostercitylab.crabdance.com/">Foster City Hadoop Lab LLC</a> |
-| asherman        | Andrew Sherman                    | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| ayushsaxena     | Ayush Saxena                      | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| bharos92        | Bharath Krishna                   | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| chengxiang      | Chengxiang Li                     | <a href="http://intel.com/">Intel</a>                                        |
-| chinnaraol      | Chinna Rao Lalam                  | <a href="http://intel.com/">Intel</a>                                        |
-| cdrome          | Chris Drome                       | <a href="https://www.oath.com/">Oath</a>                                     |
-| difin           | Dmitriy Fingerman                 | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| djaiswal        | Deepak Jaiswal                    | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| dmtolpeko       | Dmitry Tolpeko                    | <a href="http://www.epam.com/">EPAM</a>                                      |
-| dongc           | Dong Chen                         | <a href="http://intel.com/">Intel</a>                                        |
-| ehans           | Eric Hanson                       | <a href="http://microsoft.com">Microsoft</a>                                 |
-| gangtimliu      | Gang Tim Liu                      | <a href="http://facebook.com/">Facebook</a>                                  |
-| harisankar      | Hari Sankar Sivarama Subramaniyan | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| janaki          | Janaki Lahorani                   | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| jitendra        | Jitendra Pandey                   | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| kgyrtkirk       | Zoltan Haindrich                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| kuczoram        | Marta Kuczora                     | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| larsfrancke     | Lars Francke                      | <a href="http://lars-francke.de/en/">Freelancer</a>                          |
-| mithun          | Mithun Radhakrishnan              | <a href="https://www.oath.com/">Oath</a>                                     |
-| mmccline        | Matt McCline                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| mohits          | Mohit Sabharwal                   | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| okumin          | Shohei Okumiya                    | <a href="https://www.treasuredata.com/">Treasure Data</a>                    |
-| rbalamohan      | Rajesh Balamohan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| remusr          | Remus Rusanu                      | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| sankarh         | Sankar Hariappan                  | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| sbadhya         | Sourabh Badhya                    | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| sdong           | Siying Dong                       | <a href="http://facebook.com/">Facebook</a>                                  |
-| simhadrig       | Simhadri Govindappa               |                                                                              |
-| sseth           | Siddharth Seth                    | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| szita           | Adam Szita                        | <a href="http://cloudera.com/">Cloudera</a>                                  |
-| tchoi           | Teddy Choi                        | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| vgarg           | Vineet Garg                       | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| weiz            | Wei Zheng                         | <a href="http://hortonworks.com/">Hortonworks</a>                            |
-| xuf             | Ferdinand Xu                      | <a href="http://intel.com/">Intel</a>                                        |
-| yhuai           | Yin Huai                          | <a href="http://databricks.com/">Databricks</a>                              |
+
+| Apache username |               name                |                           organization                            |
+|-----------------|-----------------------------------|-------------------------------------------------------------------|
+| amareshwari     | Amareshwari Sriramadasu           | [InMobi](http://www.inmobi.com/)                                  |
+| apivovarov      | Alexander Pivovarov               | [Foster City Hadoop Lab LLC](http://fostercitylab.crabdance.com/) |
+| asherman        | Andrew Sherman                    | [Cloudera](http://cloudera.com/)                                  |
+| ayushsaxena     | Ayush Saxena                      | [Cloudera](http://cloudera.com/)                                  |
+| bharos92        | Bharath Krishna                   | [Cloudera](http://cloudera.com/)                                  |
+| chengxiang      | Chengxiang Li                     | [Intel](http://intel.com/)                                        |
+| chinnaraol      | Chinna Rao Lalam                  | [Intel](http://intel.com/)                                        |
+| cdrome          | Chris Drome                       | [Oath](https://www.oath.com/)                                     |
+| difin           | Dmitriy Fingerman                 | [Cloudera](http://cloudera.com/)                                  |
+| djaiswal        | Deepak Jaiswal                    | [Hortonworks](http://hortonworks.com/)                            |
+| dmtolpeko       | Dmitry Tolpeko                    | [EPAM](http://www.epam.com/)                                      |
+| dongc           | Dong Chen                         | [Intel](http://intel.com/)                                        |
+| ehans           | Eric Hanson                       | [Microsoft](http://microsoft.com)                                 |
+| gangtimliu      | Gang Tim Liu                      | [Facebook](http://facebook.com/)                                  |
+| harisankar      | Hari Sankar Sivarama Subramaniyan | [Hortonworks](http://hortonworks.com/)                            |
+| janaki          | Janaki Lahorani                   | [Cloudera](http://cloudera.com/)                                  |
+| jitendra        | Jitendra Pandey                   | [Hortonworks](http://hortonworks.com/)                            |
+| kgyrtkirk       | Zoltan Haindrich                  | [Hortonworks](http://hortonworks.com/)                            |
+| kuczoram        | Marta Kuczora                     | [Cloudera](http://cloudera.com/)                                  |
+| larsfrancke     | Lars Francke                      | [Freelancer](http://lars-francke.de/en/)                          |
+| mithun          | Mithun Radhakrishnan              | [Oath](https://www.oath.com/)                                     |
+| mmccline        | Matt McCline                      | [Hortonworks](http://hortonworks.com/)                            |
+| mohits          | Mohit Sabharwal                   | [Cloudera](http://cloudera.com/)                                  |
+| okumin          | Shohei Okumiya                    | [Treasure Data](https://www.treasuredata.com/)                    |
+| rbalamohan      | Rajesh Balamohan                  | [Hortonworks](http://hortonworks.com/)                            |
+| remusr          | Remus Rusanu                      | [Hortonworks](http://hortonworks.com/)                            |
+| sankarh         | Sankar Hariappan                  | [Hortonworks](http://hortonworks.com/)                            |
+| sbadhya         | Sourabh Badhya                    | [Cloudera](http://cloudera.com/)                                  |
+| sdong           | Siying Dong                       | [Facebook](http://facebook.com/)                                  |
+| simhadrig       | Simhadri Govindappa               | [Cloudera](http://cloudera.com/)                                  |
+| sseth           | Siddharth Seth                    | [Hortonworks](http://hortonworks.com/)                            |
+| szita           | Adam Szita                        | [Cloudera](http://cloudera.com/)                                  |
+| tchoi           | Teddy Choi                        | [Hortonworks](http://hortonworks.com/)                            |
+| vgarg           | Vineet Garg                       | [Hortonworks](http://hortonworks.com/)                            |
+| weiz            | Wei Zheng                         | [Hortonworks](http://hortonworks.com/)                            |
+| xuf             | Ferdinand Xu                      | [Intel](http://intel.com/)                                        |
+| yhuai           | Yin Huai                          | [Databricks](http://databricks.com/)                              |
 
 PMC members are also Hive committers.
 
 ## Catalog Committers
----
-| Apache username | name                     | organization                             |
-|-----------------|--------------------------|------------------------------------------|
-| toffer          | Francis Christopher Liu  | <a href="http://yahoo.com/">Yahoo!</a>   |
-| avandana        | Vandana Ayyalasomayajula | <a href="http://yahoo.com/">Yahoo!</a>   |
-| travis          | Travis Crawford          | <a href="http://twitter.com">Twitter</a> |
-| mithun          | Mithun Radhakrishnan     | <a href="https://www.oath.com/">Oath</a> |
-
 
 ---
+
+| Apache username |           name           |         organization          |
+|-----------------|--------------------------|-------------------------------|
+| toffer          | Francis Christopher Liu  | [Yahoo!](http://yahoo.com/)   |
+| avandana        | Vandana Ayyalasomayajula | [Yahoo!](http://yahoo.com/)   |
+| travis          | Travis Crawford          | [Twitter](http://twitter.com) |
+| mithun          | Mithun Radhakrishnan     | [Oath](https://www.oath.com/) |
+
+---
+
 ## Contributors
+
 ---
+
 A list of Hive contributors and their contributions is available from
 [Jira](https://issues.apache.org/jira/secure/ConfigureReport.jspa?projectOrFilterId=project-12310843&amp;statistictype=assignees&amp;selectedProjectId=12310843&amp;reportKey=com.atlassian.jira.plugin.system.reports%3Apie-report&amp;Next=Next).
 
 ## Emeritus Hive PMC Members
+
 ---
+
 * Alan Gates
 * Dhruba Borthakur
 * Prasad Chakka
@@ -153,3 +141,4 @@ A list of Hive contributors and their contributions is available from
 * John Sichi
 * Sushanth Sowmyan
 * Paul Yang
+
