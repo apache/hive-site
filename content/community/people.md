@@ -42,6 +42,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | navis           | Navis Ryu               | [NexR](http://nexr.com/)                        |      |
 | ngangam         | Naveen Gangam           | [Cloudera](http://cloudera.com/)                | VP   |
 | nzhang          | Ning Zhang              | [Facebook](http://facebook.com/)                |      |
+| okumin          | Shohei Okumiya          | [Treasure Data](https://www.treasuredata.com/)  |      |
 | omalley         | Owen O'Malley           | [LinkedIn](http://linkedin.com/)                |      |
 | prasadm         | Prasad Mujumdar         | [Cloudera](http://cloudera.com/)                |      |
 | prasanth_j      | Prasanth Jayachandran   | [Hortonworks](http://hortonworks.com/)          |      |
@@ -92,7 +93,6 @@ at all contributors to our issue tracker, mailing list and version control.
 | mithun          | Mithun Radhakrishnan              | [Oath](https://www.oath.com/)                                     |
 | mmccline        | Matt McCline                      | [Hortonworks](http://hortonworks.com/)                            |
 | mohits          | Mohit Sabharwal                   | [Cloudera](http://cloudera.com/)                                  |
-| okumin          | Shohei Okumiya                    | [Treasure Data](https://www.treasuredata.com/)                    |
 | rbalamohan      | Rajesh Balamohan                  | [Hortonworks](http://hortonworks.com/)                            |
 | remusr          | Remus Rusanu                      | [Hortonworks](http://hortonworks.com/)                            |
 | sankarh         | Sankar Hariappan                  | [Hortonworks](http://hortonworks.com/)                            |
