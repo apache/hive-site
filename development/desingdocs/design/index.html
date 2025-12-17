@@ -225,7 +225,7 @@ Last updated: December 12, 2024
 <h3 id=metadata-objects>Metadata Objects</h3>
 <ul>
 <li>Database – is a namespace for tables. It can be used as an administrative unit in the future. The database &lsquo;default&rsquo; is used for tables with no user-supplied database name.</li>
-<li>Table – Metadata for a table contains list of columns, owner, storage and SerDe information. It can also contain any user-supplied key and value data. Storage information includes location of the underlying data, file inout and output formats and bucketing information. SerDe metadata includes the implementation class of serializer and deserializer and any supporting information required by the implementation. All of this information can be provided during creation of the table.</li>
+<li>Table – Metadata for a table contains list of columns, owner, storage and SerDe information. It can also contain any user-supplied key and value data. Storage information includes location of the underlying data, file input and output formats and bucketing information. SerDe metadata includes the implementation class of serializer and deserializer and any supporting information required by the implementation. All of this information can be provided during creation of the table.</li>
 <li>Partition – Each partition can have its own columns and SerDe and storage information. This facilitates schema changes without affecting older partitions.</li>
 </ul>
 <h3 id=metastore-architecture>Metastore Architecture</h3>
