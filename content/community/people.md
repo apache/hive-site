@@ -99,6 +99,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | sbadhya         | Sourabh Badhya                    | [Cloudera](http://cloudera.com/)                                  |
 | sdong           | Siying Dong                       | [Facebook](http://facebook.com/)                                  |
 | simhadrig       | Simhadri Govindappa               | [Cloudera](http://cloudera.com/)                                  |
+| soumyakantidas  | Soumyakanti Das                   | [Cloudera](http://cloudera.com/)                                  |
 | sseth           | Siddharth Seth                    | [Hortonworks](http://hortonworks.com/)                            |
 | szita           | Adam Szita                        | [Cloudera](http://cloudera.com/)                                  |
 | tchoi           | Teddy Choi                        | [Hortonworks](http://hortonworks.com/)                            |
