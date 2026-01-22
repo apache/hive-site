@@ -55,10 +55,8 @@ Please take care about the following points.
 * Code should be formatted according to [Sun's conventions](http://web.archive.org/web/20140228225807/http://www.oracle.com/technetwork/java/codeconventions-150003.pdf), with two exceptions:
 	+ Indent two (2) spaces per level, not four (4).
 	+ Line length limit is 120 chars, instead of 80 chars.
-
-An Eclipse [formatter](https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml) is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.
-
-* + For Eclipse:
+* An Eclipse [formatter](https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml) is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.
+	+ For Eclipse:
 		- Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
 		- In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
 	+ For Intellij:
@@ -108,13 +106,11 @@ In branch-1 both Hadoop 1.x and 2.x are supported. The Hive build downloads a nu
 
 The Maven build has two profiles, `hadoop-1` for Hadoop 1.x and `hadoop-2` for Hadoop 2.x. When building, you must specify which profile you wish to use via Maven's `-P` command line option (see [How to build all source]({{< ref "#how-to-build-all-source" >}})).
 
+On this page we assume you are building from the master branch and do not include the profile in the example Maven commands. If you are building on branch-1 you will need to select the appropriate profile for the version of Hadoop you are building against.
+
 #### branch-2
 
 Hadoop 1.x is no longer supported in Hive's master branch. There is no need to specify a profile for most Maven commands, as Hadoop 2.x will always be chosen.
-
-Hadoop Version Information
-
-On this page we assume you are building from the master branch and do not include the profile in the example Maven commands. If you are building on branch-1 you will need to select the appropriate profile for the version of Hadoop you are building against.
 
 ### Unit Tests
 
@@ -255,8 +251,8 @@ Add the "backward-incompatible" label to tickets changing the behavior of some c
 When in doubt about how to fill in the Create Issue form, take a look at what was done for other issues. Here are several Hive JIRA issues that you can use as examples:
 
 * bug:  [HIVE-8485](https://issues.apache.org/jira/browse/HIVE-8485), [HIVE-8600](https://issues.apache.org/jira/browse/HIVE-8600), [HIVE-9438](https://issues.apache.org/jira/browse/HIVE-9438), [HIVE-11174](https://issues.apache.org/jira/browse/HIVE-11174)
-* new feature:  [HIVE-6806,](https://issues.apache.org/jira/browse/HIVE-6806)[HIVE-7088](https://issues.apache.org/jira/browse/HIVE-7088)[,](https://issues.apache.org/jira/browse/HIVE-6806)[HIVE-11103](https://issues.apache.org/jira/browse/HIVE-11103)
-* improvement:  [HIVE-7685](https://issues.apache.org/jira/browse/HIVE-7685),[HIVE-9858](https://issues.apache.org/jira/browse/HIVE-9858)[,](https://issues.apache.org/jira/browse/HIVE-7685) [HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)
+* new feature:  [HIVE-6806](https://issues.apache.org/jira/browse/HIVE-6806), [HIVE-7088](https://issues.apache.org/jira/browse/HIVE-7088), [HIVE-11103](https://issues.apache.org/jira/browse/HIVE-11103)
+* improvement:  [HIVE-7685](https://issues.apache.org/jira/browse/HIVE-7685), [HIVE-9858](https://issues.apache.org/jira/browse/HIVE-9858), [HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)
 * test:  [HIVE-8601](https://issues.apache.org/jira/browse/HIVE-8601), [HIVE-10637](https://issues.apache.org/jira/browse/HIVE-10637)
 * wish:  [HIVE-4563](https://issues.apache.org/jira/browse/HIVE-4563), [HIVE-10427](https://issues.apache.org/jira/browse/HIVE-10427)
 * task:  [HIVE-7111](https://issues.apache.org/jira/browse/HIVE-7111), [HIVE-7789](https://issues.apache.org/jira/browse/HIVE-7789)
@@ -272,9 +268,7 @@ Here are the steps relevant to `hive_metastore.thrift`:
 1. Don't make any changes to `hive_metastore.thrift` until instructed below.
 2. Use the approved version of Thrift. This is currently `thrift-0.14.1`, which you can obtain from <http://thrift.apache.org/>.
 	1. For Mac via Homebrew (since the version we need is not available by default):
-	
-	
-	
+
 	```
 	brew tap-new $USER/local-tap
 	brew extract --version='0.14.1' thrift $USER/local-tap
@@ -282,10 +276,9 @@ Here are the steps relevant to `hive_metastore.thrift`:
 	mkdir -p /usr/local/share/fb303/if
 	cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
 	```
+
 	2. For Mac, building from sources:
-	
-	
-	
+
 	```
 	wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
 	
@@ -315,10 +308,9 @@ Here are the steps relevant to `hive_metastore.thrift`:
 	# or alternatively the following command
 	curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
 	```
+
 	3. For Linux:
-	
-	
-	
+
 	```
 	cd /path/to/thrift-0.14.1
 	/configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
@@ -327,23 +319,22 @@ Here are the steps relevant to `hive_metastore.thrift`:
 	sudo mkdir -p /usr/local/share/fb303/if
 	sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
 	```
+
 3. Before proceeding, verify that `which thrift` returns the build of Thrift you just installed (typically `/usr/local/bin` on Linux); if not, edit your PATH and repeat the verification. Also verify that the command 'thrift -version' returns the expected version number of Thrift.
 4. Now you can run the Maven 'thriftif' profile to generate the Thrift code:
 	1. `cd /path/to/hive/`
-	2. ```
-	mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
-	```
+	2. `mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
 5. Verify that the code generation was a no-op, which should be the case if you have the correct Thrift version and everyone has been following these instructions. You may use `git status` for the same. If you can't figure out what is going wrong, ask for help from a committer.
 6. Now make your changes to `hive_metastore.thrift`, and then run the compiler again, from /path/to/hive/<hive_metastore.thrift's module>:
-	1. ```
-	mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
-	```
+
+	`mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
+
 7. Now use `git status and git diff` to verify that the regenerated code corresponds only to the changes you made to `hive_metastore.thrift`. You may also need `git add` if new files were generated (and or `git rm` if some files are now obsoleted).
 8. `cd /path/to/hive`
 9. `mvn clean package -DskiptTests (at the time of writing also "-Dmaven.javadoc.skip" is needed)`
 10. Verify that Hive is still working correctly with both embedded and remote metastore configurations.
 
-Stay Involved
+## Stay Involved
 
 Contributors should join the [Hive mailing lists](https://hive.apache.org/community/mailinglists/). In particular the dev list (to join discussions of changes) and the user list (to help others).
 
