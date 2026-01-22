@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Authorization
 
-{{< toc >}}
-
 # Storage Based Authorization
 
 ## Default Authorization Model of Hive

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Streaming Data Ingest
 
-{{< toc >}}
-
 # Hive 3 Streaming API
 
 [Hive 3 Streaming API Documentation](https://hive.apache.org/docs/latest/user/streaming-data-ingest-v2) - new API available in Hive 3

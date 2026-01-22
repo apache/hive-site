@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : CSV Serde
 
-{{< toc >}}
-
 ### Availability
 
 Earliest version CSVSerde is available

@@ -7,8 +7,6 @@ date: 2024-12-12
 
 $HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
 
-{{< toc >}}
-
 # Deprecation in favor of Beeline CLI
 
 HiveServer2 (introduced in Hive 0.11) has its own CLI called [Beeline]({{< ref "#beeline" >}}), which is a JDBC client based on SQLLine.  Due to new development being focused on HiveServer2, [Hive CLI will soon be deprecated](https://issues.apache.org/jira/browse/HIVE-10304) in favor of Beeline ([HIVE-10511](https://issues.apache.org/jira/browse/HIVE-10511)).

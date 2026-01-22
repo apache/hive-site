@@ -8,8 +8,6 @@ date: 2024-12-12
 Live Long And Process (LLAP) functionality was added in Hive 2.0 ([HIVE-7926](https://issues.apache.org/jira/browse/HIVE-7926) and associated tasks). [HIVE-9850](https://issues.apache.org/jira/browse/HIVE-9850) links documentation, features, and issues for this enhancement.
 For configuration of LLAP, see the LLAP Section of [Configuration Properties]({{< ref "#configuration-properties" >}}).
 
-{{< toc >}}
-
 ## Overview
 
 Hive has become significantly faster thanks to various features and improvements that were built by the community in recent years, including [Tez]({{< ref "hive-on-tez" >}}) and [Cost-based-optimization]({{< ref "cost-based-optimization-in-hive" >}}). The following were needed to take Hive to the next level:

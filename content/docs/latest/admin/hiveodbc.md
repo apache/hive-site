@@ -8,8 +8,6 @@ date: 2024-12-12
 These instructions are for the Hive ODBC driver available in Hive for [HiveServer1]({{< ref "hiveserver" >}}).  
 There is no ODBC driver available for [HiveServer2]({{< ref "setting-up-hiveserver2" >}}) as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.
 
-{{< toc >}}
-
 ## Introduction
 
 The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface. This driver will NOT be built as a part of the typical Hive build process and will need to be compiled and built separately according to the instructions below.

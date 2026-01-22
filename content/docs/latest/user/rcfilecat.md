@@ -7,8 +7,6 @@ date: 2024-12-12
 
 $HIVE_HOME/bin/hive --rcfilecat is a shell utility which can be used to print data or metadata from [RC files]({{< ref "rcfile" >}}).
 
-{{< toc >}}
-
 ## Data
 
 Prints out the rows stored in an RCFile, columns are tab separated and rows are newline separated.

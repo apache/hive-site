@@ -8,8 +8,6 @@ date: 2024-12-12
 Apache DataSketches (<https://datasketches.apache.org/>) is integrated into Hive via [HIVE-22939](https://issues.apache.org/jira/browse/HIVE-22939).  
 This enables various kind of sketch operations thru regular sql statement.
 
-{{< toc >}}
-
 # Sketch functions
 
 ## Naming convention

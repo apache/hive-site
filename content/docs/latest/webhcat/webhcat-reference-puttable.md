@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutTable
 
-{{< toc >}}
-
 ## Description
 
 Create a new HCatalog table. For more information, please refer to the Hive documentation for [CREATE TABLE]({{< ref "#create-table" >}}).

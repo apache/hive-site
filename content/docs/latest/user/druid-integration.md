@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page documents the work done for the integration between Druid and Hive introduced in Hive 2.2.0 ([HIVE-14217](https://issues.apache.org/jira/browse/HIVE-14217)). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.
 
-{{< toc >}}
-
 ## Objectives
 
 Our main **goal** is to be able to index data from Hive into Druid, and to be able to query Druid datasources from Hive. Completing this work will bring benefits to the Druid and Hive systems alike:

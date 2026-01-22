@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Kudu Integration
 
-{{< toc >}}
-
 ## Overview
 
 [Apache Kudu](https://kudu.apache.org) is a an Open Source data storage engine that makes fast analytics on fast and changing data easy. 

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HiveDeveloperFAQ
 
-{{< toc >}}
-
 ## Developing
 
 ### How do I move some files?

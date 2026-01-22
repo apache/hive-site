@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference VersionHive
 
-{{< toc >}}
-
 ## Description
 
 Return the version of Hive being run when WebHCat issues Hive queries or commands ([POST hive]({{< ref "webhcat-reference-hive" >}})).

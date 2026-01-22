@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : JDBC Storage Handler
 
-{{< toc >}}
-
 # Syntax
 
 JdbcStorageHandler supports reading from jdbc data source in Hive. Currently writing to a jdbc data source is not supported. To use JdbcStorageHandler, you need to create an external table using JdbcStorageHandler. Here is a simple example:

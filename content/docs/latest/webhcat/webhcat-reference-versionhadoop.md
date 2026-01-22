@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference VersionHadoop
 
-{{< toc >}}
-
 ## Description
 
 Return the version of Hadoop being run when WebHCat creates a MapReduce job ([POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar" >}}) or [mapreduce/streaming]({{< ref "webhcat-reference-mapreducestream" >}})).

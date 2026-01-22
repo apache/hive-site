@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference JobInfo
 
-{{< toc >}}
-
 ## Description
 
 Check the status of a job and get related job information given its job ID. Substitute ":jobid" with the job ID received when the job was created.

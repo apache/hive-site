@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetPartitions
 
-{{< toc >}}
-
 ## Description
 
 List all the partitions in an HCatalog table.

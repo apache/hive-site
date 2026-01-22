@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Manual Installation
 
-{{< toc >}}
-
 # Installing, configuring and running Hive
 
 You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 3.6.3 and later).

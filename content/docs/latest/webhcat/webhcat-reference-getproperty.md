@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetProperty
 
-{{< toc >}}
-
 ## Description
 
 Return the value of a single table property.

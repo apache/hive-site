@@ -12,8 +12,6 @@ date: 2024-12-12
 
 This document describes how to set up the server. How to use a client with this server is described in the [HiveServer2 Clients document]({{< ref "hiveserver2-clients" >}}).
 
-{{< toc >}}
-
 ## Version information
 
 Introduced in Hive version 0.11. See [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).

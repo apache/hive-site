@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Reader and Writer Interfaces
 
-{{< toc >}}
-
 ## Overview
 
 HCatalog provides a data transfer API for parallel input and output without using MapReduce. This API provides a way to read data from a Hadoop cluster or write data into a Hadoop cluster, using a basic storage abstraction of tables and rows.

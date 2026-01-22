@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual WindowingAndAnalytics
 
-{{< toc >}}
-
 ## Enhancements to Hive QL
 
 Introduced in Hive version 0.11.

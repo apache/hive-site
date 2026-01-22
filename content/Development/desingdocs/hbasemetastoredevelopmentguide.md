@@ -11,8 +11,6 @@ Guide for contributors to the metastore on hbase development work. Umbrella JIR
 
 This work is discontinued and the code is removed in release 3.0.0 ([HIVE-17234](https://issues.apache.org/jira/browse/HIVE-17234)).
 
-{{< toc >}}
-
 # Building
 
 You will need to download the source for Tephra and build it from the develop branch.  You need Tephra 0.5.1-SNAPSHOT.  You can get Tephra from [Cask's github](https://github.com/caskdata/tephra).  Switch to the branch develop and doing 'mvn install' will build the version you need.

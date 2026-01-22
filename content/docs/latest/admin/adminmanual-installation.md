@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Installation
 
-{{< toc >}}
-
 # Installing Hive
 
 You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 0.13 and later) or Ant (release 0.12 and earlier).

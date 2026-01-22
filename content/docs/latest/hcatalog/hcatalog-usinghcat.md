@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Usage
 
-{{< toc >}}
-
 ## Version information
 
 HCatalog graduated from the Apache incubator and merged with the Hive project on March 26, 2013.  

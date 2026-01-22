@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : TeradataBinarySerde
 
-{{< toc >}}
-
 ### Availability
 
 Earliest version CSVSerde is available

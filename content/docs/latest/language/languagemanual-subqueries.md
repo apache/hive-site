@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual SubQueries
 
-{{< toc >}}
-
 # Subqueries in the FROM Clause
 
 ```

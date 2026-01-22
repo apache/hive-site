@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Version
 
-{{< toc >}}
-
 ## Description
 
 Returns a list of supported versions and the current version.

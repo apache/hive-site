@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DeleteJob
 
-{{< toc >}}
-
 ## Description
 
 Kill a job given its job ID. Substitute ":jobid" with the job ID received when the job was created.

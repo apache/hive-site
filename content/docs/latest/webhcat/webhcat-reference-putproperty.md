@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutProperty
 
-{{< toc >}}
-
 ## Description
 
 Add a single property on an HCatalog table. This will also reset an existing property.

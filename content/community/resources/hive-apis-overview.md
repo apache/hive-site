@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page aims to catalogue and describe the various public facing APIs exposed by Hive in order to inform developers wishing to integrate their applications and frameworks with the Hive ecosystem. To date the following APIs have been identified in the Hive project that are either considered public, or widely used in the public domain:
 
-{{< toc >}}
-
 # API categories
 
 The APIs can be segmented into two conceptual categories: operation based APIs and query based APIs.

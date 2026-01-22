@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : ACID Transactions
 
-{{< toc >}}
-
 ## Upgrade to Hive 3+
 
 Any transactional tables created by a Hive version prior to Hive 3 require Major Compaction to be run on every partition before upgrading to 3.0.  More precisely, any partition which has had any update/delete/merge statements executed on it since the last Major Compaction, has to undergo another Major Compaction.  No more update/delete/merge may happen on this partition until after Hive is upgraded to Hive 3.

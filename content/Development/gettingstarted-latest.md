@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : GettingStarted
 
-{{< toc >}}
-
 ## Installation and Configuration
 
 You can install a stable release of Hive by downloading a tarball, or you can download the source code and build Hive from that.

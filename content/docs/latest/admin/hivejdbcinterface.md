@@ -9,8 +9,6 @@ The current JDBC interface for Hive only supports running queries and fetching r
 
 To see how the JDBC interface can be used, see [sample code]({{< ref "hiveclient" >}}).
 
-{{< toc >}}
-
 ### Integration with Pentaho
 
 1. Download pentaho report designer from the [pentaho website](http://sourceforge.net/project/showfiles.php?group_id=140317&package_id=192362).

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutColumn
 
-{{< toc >}}
-
 ## Description
 
 Create a column in an HCatalog table.

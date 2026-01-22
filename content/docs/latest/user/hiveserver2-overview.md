@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HiveServer2 Overview
 
-{{< toc >}}
-
 # Introduction
 
 HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to [HiveServer1](https://hive.apache.org/docs/latest/admin/hiveserver) which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.

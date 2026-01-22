@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page contains details about the Hive design and architecture. A brief technical report about Hive is available at [hive.pdf]({{< ref "#hive-pdf" >}}).
 
-{{< toc >}}
-
 ## Hive Architecture
 
 Figure 1  

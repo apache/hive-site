@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hybrid Hybrid Grace Hash Join, v1.0
 
-{{< toc >}}
-
 # Overview
 
 We are proposing an enhanced hash join algorithm called “hybrid hybrid grace hash join”. We can benefit from this feature as illustrated below:

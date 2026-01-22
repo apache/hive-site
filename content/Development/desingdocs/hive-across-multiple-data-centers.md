@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This project has been abandoned. We're leaving the design doc here in case someone decides to attempt this project in the future.
 
-{{< toc >}}
-
 ## Use Cases
 
 Inside facebook, we are running out of power inside a data center (physical cluster), and we have a need to have a bigger cluster.   

@@ -6,8 +6,6 @@ date: 2025-10-14
 
 # Apache Hive : Hive Schema Tool
 
-{{< toc >}}
-
 ## About
 
 Schema tool helps to initialise and upgrade metastore database and hive sys schema.

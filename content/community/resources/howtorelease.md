@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HowToRelease
 
-{{< toc >}}
-
 ## Introduction
 
 This page is prepared for Hive committers. You need committer rights to create a new Hive release. 

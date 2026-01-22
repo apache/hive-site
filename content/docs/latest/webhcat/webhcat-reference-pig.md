@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Pig
 
-{{< toc >}}
-
 ## Description
 
 Create and queue a [Pig](http://pig.apache.org/) job.

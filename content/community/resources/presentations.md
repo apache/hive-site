@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Presentations
 
-{{< toc >}}
-
 # Hive Meetups
 
 ## January 2016 Hive User Group Meetup

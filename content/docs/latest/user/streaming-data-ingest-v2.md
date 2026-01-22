@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data-ingest" >}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
 
-{{< toc >}}
-
 # Hive Streaming API
 
 Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. 

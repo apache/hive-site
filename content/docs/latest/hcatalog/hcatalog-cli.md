@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Command Line Interface
 
-{{< toc >}}
-
 ## Set Up
 
 The HCatalog command line interface (CLI) can be invoked as `HIVE_HOME=`*hive_home hcat_home*`/bin/hcat` where *hive_home* is the directory where Hive has been installed and *hcat_home* is the directory where HCatalog has been installed.

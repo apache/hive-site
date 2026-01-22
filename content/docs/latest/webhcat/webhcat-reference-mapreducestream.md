@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference MapReduceStream
 
-{{< toc >}}
-
 ## Description
 
 Create and queue a [Hadoop streaming MapReduce](http://hadoop.apache.org/docs/stable/streaming.html) job.

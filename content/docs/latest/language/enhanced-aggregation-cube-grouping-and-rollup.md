@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This document describes enhanced aggregation features for the GROUP BY clause of SELECT statements.
 
-{{< toc >}}
-
 Version
 
 Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive 0.10.0.  

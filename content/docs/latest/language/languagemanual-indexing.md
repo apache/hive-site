@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Indexing
 
-{{< toc >}}
-
 ## Indexing Is Removed since 3.0
 
 There are alternate options which might work similarily to indexing:

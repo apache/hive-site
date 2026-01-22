@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Authorization
 
-{{< toc >}}
-
 ## Introduction
 
 Note that this documentation is referring to Authorization which is verifying if a user has permission to perform a certain action, and not about Authentication (verifying the identity of the user). Strong authentication for tools like the [Hive command line]({{< ref "languagemanual-cli" >}}) is provided through the use of Kerberos. There are additional authentication options for users of [HiveServer2]({{< ref "setting-up-hiveserver2" >}}).

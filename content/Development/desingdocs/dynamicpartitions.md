@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : DynamicPartitions
 
-{{< toc >}}
-
 ## Documentation
 
 This is the design document for dynamic partitions in Hive. Usage information is also available: 

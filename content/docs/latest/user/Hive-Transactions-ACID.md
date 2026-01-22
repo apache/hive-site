@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive Transactions (Hive ACID)
 
-{{< toc >}}
-
 ## What is ACID and why should you use it?
 
 ACID stands for four traits of database transactions:  Atomicity (an operation either succeeds completely or fails, it does not leave partial data), Consistency (once an application performs an operation the results of that operation are visible to it in every subsequent operation), [Isolation](https://en.wikipedia.org/wiki/Isolation_(database_systems)) (an incomplete operation by one user does not cause unexpected side effects for other users), and Durability (once an operation is complete it will be preserved even in the face of machine or system failure).  These traits have long been expected of database systems as part of their transaction functionality.  

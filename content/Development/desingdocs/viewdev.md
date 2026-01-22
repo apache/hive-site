@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Views
 
-{{< toc >}}
-
 ## Use Cases
 
 Views (<http://issues.apache.org/jira/browse/HIVE-972>) are a standard DBMS feature and their uses are well understood. A typical use case might be to create an interface layer with a consistent entity/attribute naming scheme on top of an existing set of inconsistently named tables, without having to cause disruption due to direct modification of the tables. More advanced use cases would involve predefined filters, joins, aggregations, etc for simplifying query construction by end users, as well as sharing common definitions within ETL pipelines.

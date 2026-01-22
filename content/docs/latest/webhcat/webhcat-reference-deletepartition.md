@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DeletePartition
 
-{{< toc >}}
-
 ## Description
 
 Delete (drop) a partition in an HCatalog table.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetDB
 
-{{< toc >}}
-
 ## Description
 
 Describe a database. (Note: This resource has a "format=extended" parameter however the output structure does not change if it is used.)

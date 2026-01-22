@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual SortBy
 
-{{< toc >}}
-
 # Order, Sort, Cluster, and Distribute By
 
 This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY.  See [Select Syntax]({{< ref "#select-syntax" >}}) for general information.

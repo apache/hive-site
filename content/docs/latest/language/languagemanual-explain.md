@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Explain
 
-{{< toc >}}
-
 ## EXPLAIN Syntax
 
 Hive provides an `EXPLAIN` command that shows the execution plan for a query. The syntax for this statement is as follows:

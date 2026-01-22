@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "/community/becomingcommitter" >}}))
 
-{{< toc >}}
-
 ## New committers
 
 New committers are encouraged to first read Apache's generic committer documentation:

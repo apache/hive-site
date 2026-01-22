@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page describes the mechanics of *how* to contribute software to Apache Hive. For ideas about *what* you might contribute, please see open tickets in [Jira](https://issues.apache.org/jira/browse/HIVE).
 
-{{< toc >}}
-
 ## Getting the Source Code
 
 First of all, you need the Hive source code.

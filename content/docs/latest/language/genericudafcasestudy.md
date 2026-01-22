@@ -11,8 +11,6 @@ This tutorial walks through the development of the `histogram()` UDAF, which com
 
 **NOTE:** In this tutorial, we walk through the creation of a `histogram()` function. Starting with the 0.6.0 release of Hive, this appears as the built-in function `histogram_numeric()`.
 
-{{< toc >}}
-
 ## Preliminaries
 
 Make sure you have the latest Hive trunk by running `svn up` in your Hive directory. More detailed instructions on downloading and setting up Hive can be found at [Getting Started](http://wiki.apache.org/hadoop/Hive/GettingStarted) . Your local copy of Hive should work by running `build/dist/bin/hive` from the Hive root directory, and you should have some tables of data loaded into your local instance for testing whatever UDAF you have in mind. For this example, assume that a table called `normal` exists with a single `double` column called `val`, containing a large number of random number drawn from the standard normal distribution.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : SQL Standard Based Hive Authorization
 
-{{< toc >}}
-
 # Status of Hive Authorization before Hive 0.13
 
 The [default authorization in Hive]({{< ref "#default-authorization-in-hive" >}}) is not designed with the intent to protect against malicious users accessing data they should not be accessing. It only helps in preventing users from accidentally doing operations they are not supposed to do. It is also incomplete because it does not have authorization checks for many operations including the grant statement. The authorization checks happen during Hive query compilation. But as the user is allowed to execute dfs commands, user-defined functions and shell commands, it is possible to bypass the client security checks.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Notification
 
-{{< toc >}}
-
 ## Overview
 
 Since version 0.2, HCatalog provides notifications for certain events happening in the system. This way applications such as Oozie can wait for those events and schedule the work that depends on them. The current version of HCatalog supports two kinds of events:

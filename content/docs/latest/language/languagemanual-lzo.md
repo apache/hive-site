@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual LZO Compression
 
-{{< toc >}}
-
 ## General LZO Concepts
 
 LZO is a lossless data compression library that favors speed over compression ratio. See <http://www.oberhumer.com/opensource/lzo> and <http://www.lzop.org> for general information about LZO and see [Compressed Data Storage]({{< ref "compressedstorage" >}}) for information about compression in Hive.

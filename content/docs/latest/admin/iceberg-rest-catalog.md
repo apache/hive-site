@@ -5,8 +5,6 @@ date: 2025-11-14
 
 # Apache Hive : Iceberg REST Catalog API backed by Hive Metastore
 
-{{< toc >}}
-
 ## Introduction
 
 ![](../images/hive-iceberg-rest-integration.png)

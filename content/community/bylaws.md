@@ -11,8 +11,6 @@ Hive is a project of the [Apache Software Foundation](http://www.apache.org/foun
 
 Hive is typical of Apache projects in that it operates under a set of principles, known collectively as the 'Apache Way'. If you are new to Apache development, please refer to the [Incubator Project](http://incubator.apache.org/) for more information on how Apache projects operate.
 
-{{< toc >}}
-
 ## Roles and Responsibilities
 
 Apache projects define a set of roles with associated rights and responsibilities. These roles govern what tasks an individual may perform within the project. The roles are defined in the following sections.

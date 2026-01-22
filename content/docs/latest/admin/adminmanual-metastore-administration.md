@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see [AdminManual Metastore 3.0 Administration]({{< ref "adminmanual-metastore-3-0-administration" >}})
 
-{{< toc >}}
-
 ### Introduction
 
 All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using [JPOX](http://www.datanucleus.org/) ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of [supported databases]({{< ref "#supported-databases" >}}) in section below.

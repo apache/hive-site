@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetTables
 
-{{< toc >}}
-
 ## Description
 
 List the tables in an HCatalog database.

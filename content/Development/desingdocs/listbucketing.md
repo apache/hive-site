@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : ListBucketing
 
-{{< toc >}}
-
 # Goal
 
 The top level problem is as follows:

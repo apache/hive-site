@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Column Statistics in Hive
 
-{{< toc >}}
-
 ### **Introduction**
 
 This document describes changes to a) HiveQL, b) metastore schema, and c) metastore Thrift API to support column level statistics in Hive. Please note that the document doesn’t describe the changes needed to persist histograms in the metastore yet.

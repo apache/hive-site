@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Jobs
 
-{{< toc >}}
-
 ## Description
 
 Return a list of all job IDs.

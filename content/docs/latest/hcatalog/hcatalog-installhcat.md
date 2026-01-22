@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Installation from Tarball
 
-{{< toc >}}
-
 ## HCatalog Installed with Hive
 
 Version

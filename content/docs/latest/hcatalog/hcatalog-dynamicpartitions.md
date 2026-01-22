@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Dynamic Partitioning
 
-{{< toc >}}
-
 ## Overview
 
 When writing data in HCatalog it is possible to write all records to a single partition. In this case the partition column(s) need not be in the output data.
