@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Bitmap Indexing
 
-{{< toc >}}
-
 ## Introduction
 
 This document explains the proposed design for adding a bitmap index handler (<https://issues.apache.org/jira/browse/HIVE-1803>).  

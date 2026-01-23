@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : MapJoinOptimization
 
-{{< toc >}}
-
 # 1. Map Join Optimization
 
 ## 1.1 Using Distributed Cache to Propagate Hashtable File

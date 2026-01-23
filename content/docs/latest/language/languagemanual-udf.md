@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Operators and User-Defined Functions
 
-{{< toc >}}
-
 ## Overview
 
 All Hive keywords are case-insensitive, including the names of Hive operators and functions.

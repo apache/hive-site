@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual ORC
 
-{{< toc >}}
-
 # ORC Files
 
 ## ORC File Format

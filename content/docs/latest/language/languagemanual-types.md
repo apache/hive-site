@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Data Types
 
-{{< toc >}}
-
 ## Overview
 
 This lists all supported data types in Hive. See [Type System]({{< ref "#type-system" >}}) in the [Tutorial]({{< ref "tutorial" >}}) for additional information.

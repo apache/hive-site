@@ -7,8 +7,6 @@ date: 2024-12-12
 
 # Hive Data Manipulation Language
 
-{{< toc >}}
-
 ### Loading files into tables
 
 Hive does not do any transformation while loading data into tables. Load operations are currently pure copy/move operations that move datafiles into locations corresponding to Hive tables.

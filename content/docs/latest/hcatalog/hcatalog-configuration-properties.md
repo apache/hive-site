@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Apache HCatalog's behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish. 
 
-{{< toc >}}
-
 ## Setup
 
 The properties described in this page are meant to be job-level properties set on HCatalog through the jobConf passed into it. This means that this page is relevant for Pig users of [HCatLoader/HCatStorer]({{< ref "hcatalog-loadstore" >}}), or MapReduce users of [HCatInputFormat/HCatOutputFormat]({{< ref "hcatalog-inputoutput" >}}). For a MapReduce user of HCatalog, these must be present as key-values in the Configuration (JobConf/Job/JobContext) used to instantiate HCatOutputFormat or HCatInputFormat. For Pig users of HCatStorer, these parameters are set using the Pig "set" command before instantiating an HCatLoader/HCatStorer.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : User FAQ
 
-{{< toc >}}
-
 ## General
 
 ### I see errors like: Server access Error: Connection timed out url=<http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz>

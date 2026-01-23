@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Installation
 
-{{< toc >}}
-
 ## WebHCat Installed with Hive
 
 WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.

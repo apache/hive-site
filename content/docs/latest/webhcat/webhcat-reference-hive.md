@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Hive
 
-{{< toc >}}
-
 ## Description
 
 Runs a [Hive](http://hive.apache.org/) query or set of commands.

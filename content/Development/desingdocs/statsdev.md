@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This document describes the support of statistics for Hive tables (see [HIVE-33](http://issues.apache.org/jira/browse/HIVE-33)).
 
-{{< toc >}}
-
 ## Motivation
 
 Statistics such as the number of rows of a table or partition and the histograms of a particular interesting column are important in many ways. One of the key use cases of statistics is query optimization. Statistics serve as the input to the cost functions of the optimizer so that it can compare different plans and choose among them. Statistics may sometimes meet the purpose of the users' queries. Users can quickly get the answers for some of their queries by only querying stored statistics rather than firing long-running execution plans. Some examples are getting the quantile of the users' age distribution, the top 10 apps that are used by people, and the number of distinct sessions.

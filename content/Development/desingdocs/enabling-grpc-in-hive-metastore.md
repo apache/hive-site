@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Enabling gRPC in Hive/Hive Metastore (Proposal)
 
-{{< toc >}}
-
 ## Contacts
 Cameron Moberg (Google), Zhou Fang (Google), Feng Lu (Google), Thejas Nair (Cloudera), Vihang Karajgaonkar (Cloudera), Naveen Gangam (Cloudera)
 

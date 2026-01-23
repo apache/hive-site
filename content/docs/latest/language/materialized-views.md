@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page documents the work done for the supporting materialized views in Apache Hive.
 
-{{< toc >}}
-
 ## Version information
 
 Materialized views support is introduced in Hive 3.0.0.

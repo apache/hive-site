@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Unit Testing Hive SQL
 
-{{< toc >}}
-
 # Motivations
 
 Hive is widely applied as a solution to numerous distinct problem types in the domain of big data. Quite clearly it is often used for the ad hoc querying of large datasets. However it is also used to implement ETL type processes. Unlike ad hoc queries, the Hive SQL written for ETLs has some distinct attributes:

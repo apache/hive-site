@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : AvroSerDe
 
-{{< toc >}}
-
 ### Availability
 
 Earliest version AvroSerde is available

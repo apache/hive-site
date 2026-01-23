@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : SerDe
 
-{{< toc >}}
-
 # SerDe Overview
 
 SerDe is short for Serializer/Deserializer. Hive uses the SerDe interface for IO. The interface handles both serialization and deserialization and also interpreting the results of serialization as individual fields for processing.

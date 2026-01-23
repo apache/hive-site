@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Scheduled Queries
 
-{{< toc >}}
-
 # Introduction
 
 Executing statements periodically can be usefull in

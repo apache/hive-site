@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Input and Output Interfaces
 
-{{< toc >}}
-
 ## Set Up
 
 No HCatalog-specific setup is required for the HCatInputFormat and HCatOutputFormat interfaces.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Sampling
 
-{{< toc >}}
-
 ## Sampling Syntax
 
 ### Sampling Bucketized Table

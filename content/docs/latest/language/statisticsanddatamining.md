@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions. 
 
-{{< toc >}}
-
 ## ngrams() and context_ngrams(): N-gram frequency estimation
 
 [N-grams](http://en.wikipedia.org/wiki/N-gram) are subsequences of length **N** drawn from a longer sequence. The purpose of the `ngrams()` UDAF is to find the `k` most frequent n-grams from one or more sequences. It can be used in conjunction with the `sentences()` UDF to analyze unstructured natural language text, or the `collect()` function to analyze more general string data.

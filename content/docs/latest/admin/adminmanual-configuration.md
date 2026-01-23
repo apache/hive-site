@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Configuration
 
-{{< toc >}}
-
 ## Configuring Hive
 
 A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:

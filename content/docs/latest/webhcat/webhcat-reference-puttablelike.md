@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference PutTableLike
 
-{{< toc >}}
-
 ## Description
 
 Create a new HCatalog table like an existing one.

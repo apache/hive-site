@@ -9,8 +9,6 @@ Hive in embedded mode has a limitation of one active user at a time. You may wan
 
 See [Metadata Store]({{< ref "#metadata-store" >}}) and [Embedded Metastore]({{< ref "#embedded-metastore" >}}) for more information.
 
-{{< toc >}}
-
 ### Download Derby
 
 It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of `derby.log` contains the version.

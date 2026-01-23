@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual DDL
 
-{{< toc >}}
-
 ## Overview
 
 HiveQL DDL statements are documented here, including:

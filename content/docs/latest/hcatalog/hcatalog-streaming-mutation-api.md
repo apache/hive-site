@@ -7,8 +7,6 @@ date: 2024-12-12
 
 A Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s [ACID](https://hive.apache.org/docs/latest/user/hive-transactions) feature. It is introduced in Hive 2.0.0 ([HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)).
 
-{{< toc >}}
-
 # Background
 
 In certain data processing use cases it is necessary to modify existing data when new facts arrive. An example of this is the classic ETL merge where a copy of a data set is kept in sync with a master by the frequent application of deltas. The deltas describe the mutations (inserts, updates, deletes) that have occurred to the master since the previous sync. To implement such a case using Hadoop traditionally demands that the partitions containing records targeted by the mutations be rewritten. This is a coarse approach; a partition containing millions of records might be rebuilt because of a single record change. Additionally these partitions cannot be restated atomically; at some point the old partition data must be swapped with the new partition data. When this swap occurs, usually by issuing an HDFS `rm` followed by a `mv`, the possibility exists where the data appears to be unavailable and hence any downstream jobs consuming the data might unexpectedly fail. Therefore data processing patterns that restate raw data on HDFS cannot operate robustly without some external mechanism to orchestrate concurrent access to changing data.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Joins
 
-{{< toc >}}
-
 ## Join Syntax
 
 Hive supports the following syntax for joining tables:

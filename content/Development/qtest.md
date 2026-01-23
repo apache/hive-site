@@ -26,8 +26,6 @@ draft: false
 
 Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.
 
-{{< toc >}}
-
 ## Tutorial: How to run a specific test case
 
 ### Preparation

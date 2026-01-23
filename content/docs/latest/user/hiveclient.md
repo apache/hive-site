@@ -9,8 +9,6 @@ This page describes the different clients supported by Hive. The command line cl
 
 For details about the standalone server see [Hive Server]({{< ref "hiveserver" >}}) or [HiveServer2]({{< ref "setting-up-hiveserver2" >}}).
 
-{{< toc >}}
-
 # Command Line
 
 Operates in embedded mode only, that is, it needs to have access to the Hive libraries. For more details see [Getting Started]({{< ref "gettingstarted-latest" >}}) and [Hive CLI]({{< ref "languagemanual-cli" >}}).

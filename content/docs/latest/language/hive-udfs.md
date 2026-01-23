@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Hive User-Defined Functions (UDFs) are custom functions developed in Java and seamlessly integrated with Apache Hive. UDFs are routines designed to accept parameters, execute a specific action, and return the resulting value. The return value can either be a single scalar row or a complete result set, depending on the UDF's code and the implemented interface. UDFs represent a powerful capability that enhances classical SQL functionality by allowing the integration of custom code, providing Hive users with a versatile toolset. Apache Hive comes equipped with a variety of built-in UDFs that users can leverage. Similar to other SQL-based solutions, Hive also offers functionality to expand its already rich set of UDFs by incorporating custom ones as needed.
 
-{{< toc >}}
-
 ## Overview
 
 Every UDF's evaluate method is one row at a time! This means if your UDFs has complex code, it could introduce performance issue in execution time.

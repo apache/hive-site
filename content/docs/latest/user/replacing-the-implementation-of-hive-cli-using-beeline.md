@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Replacing the Implementation of Hive CLI Using Beeline
 
-{{< toc >}}
-
 ## Why Replace the Existing Hive CLI?
 
 [Hive CLI]({{< ref "#hive-cli" >}}) is a legacy tool which had two main use cases. The first is that it served as a thick client for SQL on Hadoop and the second is that it served as a command line tool for Hive Server (the original Hive server, now often referred to as "HiveServer1"). Hive Server has been deprecated and removed from the Hive code base as of Hive 1.0.0 ([HIVE-6977](https://issues.apache.org/jira/browse/HIVE-6977)) and replaced with HiveServer2 ([HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)), so the second use case no longer applies. For the first use case, [Beeline]({{< ref "#beeline" >}}) provides or is supposed to provide equal functionality, yet is implemented differently from Hive CLI.

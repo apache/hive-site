@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page describes the different clients supported by [HiveServer2]({{< ref "setting-up-hiveserver2" >}}).
 
-{{< toc >}}
-
 # Version information
 
 Introduced in Hive version 0.11. See [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).

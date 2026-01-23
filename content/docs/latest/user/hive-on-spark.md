@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive on Spark
 
-{{< toc >}}
-
 # 1. Introduction
 
 We propose modifying Hive to add Spark as a third execution backend([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292)), parallel to MapReduce and Tez.

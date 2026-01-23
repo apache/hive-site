@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later.
 
-{{< toc >}}
-
 ## **Introduction**
 
 Parquet (<http://parquet.io/>) is an ecosystem wide columnar format for Hadoop. Read [Dremel made simple with Parquet](https://blog.twitter.com/2013/dremel-made-simple-with-parquet) for a good introduction to the format while the Parquet project has an [in-depth description of the format](https://github.com/Parquet/parquet-format) including motivations and diagrams. At the time of this writing Parquet supports the follow engines and data description languages:

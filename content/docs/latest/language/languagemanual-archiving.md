@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Archiving for File Count Reduction.
 
-{{< toc >}}
-
 ## Overview
 
 Due to the design of HDFS, the number of files in the filesystem directly affects the memory consumption in the namenode. While normally not a problem for small clusters, memory usage may hit the limits of accessible memory on a single machine when there are >50-100 million files. In such situations, it is advantageous to have as few files as possible.

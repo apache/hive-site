@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to [SQL Standard authorization]({{< ref "sql-standard-based-hive-authorization" >}}) in Hive 2.0 ([HIVE-12429](https://issues.apache.org/jira/browse/HIVE-12429)).
 
-{{< toc >}}
-
 ### Disclaimer
 
 Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.  See the [Hive authorization main page]({{< ref "languagemanual-authorization" >}}) for the secure options.

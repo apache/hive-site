@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DDL
 
-{{< toc >}}
-
 ## Description
 
 Performs an [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the [Hive resource]({{< ref "webhcat-reference-hive" >}}) as an alternative.

@@ -15,8 +15,6 @@ Version information
 
 As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{< ref "#hiveconfvalidation" >}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
 
-{{< toc >}}
-
 ## Query and DDL Execution
 
 ##### hive.execution.engine

@@ -11,8 +11,6 @@ A presentation is available from the [HBase HUG10 Meetup](http://wiki.apache.org
 
 This feature is a work in progress, and suggestions for its improvement are very welcome.
 
-{{< toc >}}
-
 ## Version Information
 
 ### Avro Data Stored in HBase Columns

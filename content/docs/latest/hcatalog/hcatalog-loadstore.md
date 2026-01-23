@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Load and Store Interfaces
  
-{{< toc >}}
-
 ## Set Up
 
 The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables. No HCatalog-specific setup is required for these interfaces.

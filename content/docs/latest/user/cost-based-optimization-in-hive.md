@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Cost-based optimization in Hive
 
-{{< toc >}}
-
 # Abstract
 
 Apache Hadoop is a framework for the distributed processing of large data sets using clusters of computers typically composed of commodity hardware. Over last few years Apache Hadoop has become the de facto platform for distributed data processing using commodity hardware. Apache Hive is a popular SQL interface for data processing using Apache Hadoop.

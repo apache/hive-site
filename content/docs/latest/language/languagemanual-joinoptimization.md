@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Join Optimization
 
-{{< toc >}}
-
 ## Improvements to the Hive Optimizer
 
 Version

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Accumulo Integration
 
-{{< toc >}}
-
 ## Overview
 
 [Apache Accumulo](http://accumulo.apache.org) is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user. Leveraging Apache Hive as a SQL interface to Accumulo complements its existing high-throughput batch access and low-latency random lookups.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : MapJoin and Partition Pruning
 
-{{< toc >}}
-
 # Overview
 
 In Hive, Map-Join is a technique that materializes data for all tables involved in the join except for the largest table and then large table is streamed over the materialized data from small tables. Map-Join is often a good join approach for star-schema joins where the fact table will be streamed over materialized dimension tables.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : DeveloperGuide
 
-{{< toc >}}
-
 ## Code Organization and a Brief Architecture
 
 ### Introduction

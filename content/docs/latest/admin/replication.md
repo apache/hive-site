@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Replication
 
-{{< toc >}}
-
 ## Overview
 
 Hive Replication builds on the [metastore event]({{< ref "hcatalog-notification" >}}) and [ExIm]({{< ref "languagemanual-importexport" >}}) features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly 'light touch', exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an 'out of the box' solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.

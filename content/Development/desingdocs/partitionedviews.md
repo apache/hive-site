@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This is a followup to [ViewDev]({{< ref "viewdev" >}}) for adding partition-awareness to views.
 
-{{< toc >}}
-
 # Use Cases
 
 1. An administrator wants to create a set of views as a table/column renaming layer on top of an existing set of base tables, without breaking any existing dependencies on those tables. To read-only users, the views should behave exactly the same as the underlying tables in every way. Among other things, this means users should be able to browse available partitions.

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HCatalog Storage Formats
 
-{{< toc >}}
-
 ### SerDes and Storage Formats
 
 HCatalog uses Hive's SerDe class to serialize and deserialize data. SerDes are provided for RCFile, CSV text, JSON text, and SequenceFile formats. Check the [SerDe documentation]({{< ref "serde" >}}) for additional SerDes that might be included in new versions. For example, the [Avro SerDe]({{< ref "avroserde" >}}) was added in Hive 0.9.1, the [ORC]({{< ref "languagemanual-orc" >}}) file format was added in Hive 0.11.0, and [Parquet]({{< ref "parquet" >}}) was added in Hive 0.10.0 (plug-in) and Hive 0.13.0 (native).

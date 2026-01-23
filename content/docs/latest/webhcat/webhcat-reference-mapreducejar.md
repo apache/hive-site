@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference MapReduceJar
 
-{{< toc >}}
-
 ## Description
 
 Creates and queues a standard [Hadoop MapReduce](http://hadoop.apache.org/docs/stable/commands_manual.html) job.

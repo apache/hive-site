@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Locking
 
-{{< toc >}}
-
 # Hive Concurrency Model
 
 ## Use Cases

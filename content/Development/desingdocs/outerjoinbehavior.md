@@ -7,8 +7,6 @@ date: 2024-12-12
 
 # Hive Outer Join Behavior
 
-{{< toc >}}
-
 This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html). The original HTML can be found [here](/attachments/OuterJoinBehavior.html).
 
 ## Definitions

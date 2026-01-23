@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Configure
 
-{{< toc >}}
-
 ## Configuration Files
 
 The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.

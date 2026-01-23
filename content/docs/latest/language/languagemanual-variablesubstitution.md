@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual VariableSubstitution
 
-{{< toc >}}
-
 # Introduction
 
 Hive is used for batch and interactive queries. Variable Substitution allows for tasks such as separating environment-specific configuration variables from code.

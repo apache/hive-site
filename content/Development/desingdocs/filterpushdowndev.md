@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This document explains how we are planning to add support in Hive's optimizer for pushing filters down into physical access methods. This is an important optimization for minimizing the amount of data scanned and processed by an access method (e.g. for an indexed key lookup), as well as reducing the amount of data passed into Hive for further query evaluation.
 
-{{< toc >}}
-
 ## Use Cases
 
 Below are the main use cases we are targeting.

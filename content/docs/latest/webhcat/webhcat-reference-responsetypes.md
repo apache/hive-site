@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference ResponseTypes
 
-{{< toc >}}
-
 ## Description
 
 Returns a list of the response types supported by WebHCat (Templeton).

@@ -12,8 +12,6 @@ set hive.execution.engine=spark;
 ```
 Hive on Spark was added in [HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292).
 
-{{< toc >}}
-
 ## Version Compatibility
 
 Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed. Below is a list of Hive versions and their corresponding compatible Spark versions.

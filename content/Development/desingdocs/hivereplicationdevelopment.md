@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : HiveReplicationDevelopment
 
-{{< toc >}}
-
 # Introduction
 
 Replication in the context of databases and warehouses is the process of duplication of entities from one warehouse to another. This can be at the broader level of an entire database, or at a smaller level such as a table or partition. The goal of replication is to have a replica which changes whenever the base entity changes.

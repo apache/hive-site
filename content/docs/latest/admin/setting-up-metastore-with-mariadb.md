@@ -5,8 +5,6 @@ date: 2025-11-05
 
 # Apache Hive : Setting up Metastore backed by MariaDB
 
-{{< toc >}}
-
 ## Note
 
 **Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.**

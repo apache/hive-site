@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2
 
-{{< toc >}}
-
 ## User and Group Filter Support with LDAP
 
 Starting in Hive 1.3.0, [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193) adds support in HiveServer2 for

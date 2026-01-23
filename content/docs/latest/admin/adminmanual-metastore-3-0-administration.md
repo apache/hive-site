@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Metastore 3.0 Administration
 
-{{< toc >}}
-
 ## Version Note
 
 **This document applies only to the Metastore in Hive 3.0 and later releases.**  For Hive 0, 1, and 2 releases please see the [Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) document.

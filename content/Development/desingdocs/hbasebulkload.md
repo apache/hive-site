@@ -7,8 +7,6 @@ date: 2024-12-12
 
 This page explains how to use Hive to bulk load data into a new (empty) HBase table per [HIVE-1295](https://issues.apache.org/jira/browse/HIVE-1295). (If you're not using a build which contains this functionality yet, you'll need to build from source and make sure this patch and HIVE-1321 are both applied.)
 
-{{< toc >}}
-
 ## Overview
 
 Ideally, bulk load from Hive into HBase would be part of [HBaseIntegration]({{< ref "hbaseintegration" >}}), making it as simple as this:

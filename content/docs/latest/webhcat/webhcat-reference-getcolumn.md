@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference GetColumn
 
-{{< toc >}}
-
 ## Description
 
 Describe a single column in an HCatalog table.

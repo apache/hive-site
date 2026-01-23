@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Group By With Rollup
 
-{{< toc >}}
-
 ## Terminology
 
 * (No) Map Aggr: Shorthand for whether the configuration variable hive.map.aggr is set to true or false, meaning mapside aggregation is allowed or not respectively.

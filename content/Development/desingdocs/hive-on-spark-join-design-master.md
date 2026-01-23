@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive on Spark: Join Design Master
 
-{{< toc >}}
-
 ## Purpose and Prerequisites
 
 The purpose of this document is to summarize the findings of all the research of different joins and describe a unified design to attack the problem in Spark.  It will identify the optimization processors will be involved and their responsibilities.

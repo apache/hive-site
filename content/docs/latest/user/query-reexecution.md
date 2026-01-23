@@ -7,8 +7,6 @@ date: 2024-12-12
 
 Query reexecution provides a facility to re-run the query multiple times in case of an unfortunate event happens. Introduced in Hive 3.0 ([HIVE-17626](https://issues.apache.org/jira/browse/HIVE-17626))
 
-{{< toc >}}
-
 # ReExecition strategies
 
 ## Overlay

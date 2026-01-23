@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive on Tez
 
-{{< toc >}}
-
 # Overview
 
 [Tez](http://tez.apache.org/) is a new application framework built on Hadoop Yarn that can execute complex directed acyclic graphs of general data processing tasks. In many ways it can be thought of as a more flexible and powerful successor of the map-reduce framework.

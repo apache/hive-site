@@ -7,8 +7,6 @@ date: 2024-12-12
 	
 This document is an addition to [Statistics in Hive](https://hive.apache.org/development/desingdocs/statsdev). It describes the support of collecting column level top K values for Hive tables (see [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421)).
 
-{{< toc >}}
-
 ## Scope
 
 In addition to the partition statistics, column level top K values can also be estimated for Hive tables.  

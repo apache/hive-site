@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual VirtualColumns
 
-{{< toc >}}
-
 ## Virtual Columns
 
 Hive 0.8.0 provides support for two virtual columns:

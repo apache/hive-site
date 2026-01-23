@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Plugins
 
-{{< toc >}}
-
 ## Creating Custom UDFs
 
 First, you need to create a new class that extends UDF, with one or more methods named evaluate.

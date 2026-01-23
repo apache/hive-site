@@ -12,8 +12,6 @@ The metastore server security feature with storage based authorization was added
 * For additional information about storage based authorization in the metastore server, see the HCatalog document [Storage Based Authorization]({{< ref "hcatalog-authorization" >}}).
 * For an overview of Hive authorization models and other security options, see the [Authorization]({{< ref "languagemanual-authorization" >}}) document.
 
-{{< toc >}}
-
 ## The Need for Metastore Server Security
 
 When multiple clients access the same metastore in a backing database, such as MySQL, the database connection credentials may be visible in the `hive-site.xml` configuration file. A malicious or incompetent user could cause serious damage to metadata even though the underlying data is protected by HDFS access controls.

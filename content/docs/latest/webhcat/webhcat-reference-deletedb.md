@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference DeleteDB
 
-{{< toc >}}
-
 ## Description
 
 Delete a database.

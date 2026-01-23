@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Import/Export
 
-{{< toc >}}
-
 ### Version information
 
 The `EXPORT` and `IMPORT` commands were added in Hive 0.8.0 (see [HIVE-1918](https://issues.apache.org/jira/browse/HIVE-1918)).

@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : WebHCat Reference Status
 
-{{< toc >}}
-
 ## Description
 
 Returns the current status of the WebHCat (Templeton) server. Useful for heartbeat monitoring.
