@@ -171,29 +171,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--using-tidb-as-the-hive-metastore-database>Apache Hive : Using TiDB as the Hive Metastore database</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--using-tidb-as-the-hive-metastore-database>Apache Hive : Using TiDB as the Hive Metastore database</a></li>
-<li><a href=#why-use-tidb-in-hive-as-the-metastore-database>Why use TiDB in Hive as the Metastore database?</a></li>
-<li><a href=#how-to-create-a-hive-cluster-with-tidb>How to create a Hive cluster with TiDB</a>
-<ul>
-<li><a href=#components-required>Components required</a></li>
-<li><a href=#install-a-hive-cluster>Install a Hive cluster</a>
-<ul>
-<li><a href=#step-1-deploy-a-tidb-cluster>Step 1: Deploy a TiDB cluster</a></li>
-<li><a href=#step-2-configure-hive>Step 2: Configure Hive</a></li>
-<li><a href=#step-3-initialize-metadata>Step 3: Initialize metadata</a></li>
-<li><a href=#step-4-launch-metastore-and-test>Step 4: Launch Metastore and test</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#conclusion>Conclusion</a></li>
-<li><a href=#faq>FAQ</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=why-use-tidb-in-hive-as-the-metastore-database>Why use TiDB in Hive as the Metastore database?</h1>
 <p><a href=https://github.com/pingcap/tidb>TiDB</a> is a distributed SQL database built by <a href=https://pingcap.com/>PingCAP</a> and its open-source community. <strong>It is MySQL compatible and features horizontal scalability, strong consistency, and high availability.</strong> It&rsquo;s a one-stop solution for both Online Transactional Processing (OLTP) and Online Analytical Processing (OLAP) workloads.</p>
 <p>In scenarios with enormous amounts of data, due to TiDB&rsquo;s distributed architecture, query performance is not limited to the capability of a single machine. When the data volume reaches the bottleneck, you can add nodes to improve TiDB&rsquo;s storage capacity.</p>

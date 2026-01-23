@@ -249,7 +249,10 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : Datasketches Integration Apache DataSketches (https://datasketches.apache.org/) is integrated into Hive via HIVE-22939.
 This enables various kind of sketch operations thru regular sql statement.
-Apache Hive : Datasketches Integration Sketch functions Naming convention sketchType functionName List declared sketch functions Integration with materialized views BI mode Rewrite COUNT(DISTINCT(X)) Rewrite percentile_disc(p) withing group(order by x) Rewrite cume_dist() over (order by id) Rewrite NTILE Rewrite RANK Examples Simple distinct counting examples using HLL Use HLL to compute distinct values using an intermediate table Use HLL to compute distinct values without intermediate table Use HLL to compute distinct values transparently thru BI mode Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
+Sketch functions Naming convention All sketch functions are registered using the following naming convention:
+ds_{sketchType}_{functionName}
+For example we have a function called: ds_hll_estimate which could be used to estimate the distinct values from an hll sketch.
+sketchType For detailed info about the sketches themself please refer to the datasketches site!
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/datasketches-integration/ class=docs-card-link>
@@ -267,8 +270,12 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Enhanced Aggregation, Cube, Grouping and Rollup This document describes enhanced aggregation features for the GROUP BY clause of SELECT statements.
-Apache Hive : Enhanced Aggregation, Cube, Grouping and Rollup GROUPING SETS clause Grouping__ID function Grouping function Cubes and Rollups hive.new.job.grouping.set.cardinality Grouping__ID function (before Hive 2.3.0) Version
-Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive 0.
+Version
+Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive 0.10.0.
+See HIVE-2397, HIVE-3433, HIVE-3471, and HIVE-3613.
+Also see HIVE-3552 for an improvement added in Hive 0.11.0.
+Version
+GROUPING__ID is compliant with semantics in other SQL engines starting in Hive 2.3.0 (see HIVE-16102).
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/enhanced-aggregation-cube-grouping-and-rollup/ class=docs-card-link>
@@ -354,8 +361,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Plugins Apache Hive : Plugins Creating Custom UDFs Deploying Jars for User Defined Functions and User Defined SerDes Creating Custom UDFs First, you need to create a new class that extends UDF, with one or more methods named evaluate.
-package com.example.hive.udf; import org.apache.hadoop.hive.ql.exec.UDF; import org.apache.hadoop.io.Text; public final class Lower extends UDF { public Text evaluate(final Text s) { if (s == null) { return null; } return new Text(s.
+Apache Hive : Plugins Creating Custom UDFs First, you need to create a new class that extends UDF, with one or more methods named evaluate.
+package com.example.hive.udf; import org.apache.hadoop.hive.ql.exec.UDF; import org.apache.hadoop.io.Text; public final class Lower extends UDF { public Text evaluate(final Text s) { if (s == null) { return null; } return new Text(s.toString().toLowerCase()); } } (Note that there&rsquo;s already a built-in function for this, it&rsquo;s just an easy example).
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/hiveplugins/ class=docs-card-link>
@@ -413,7 +420,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : LanguageManual Archiving Archiving for File Count Reduction.
-Apache Hive : LanguageManual Archiving Overview Settings Usage Archive Unarchive Cautions and Limitations Under the Hood Overview Due to the design of HDFS, the number of files in the filesystem directly affects the memory consumption in the namenode. While normally not a problem for small clusters, memory usage may hit the limits of accessible memory on a single machine when there are >50-100 million files.
+Overview Due to the design of HDFS, the number of files in the filesystem directly affects the memory consumption in the namenode. While normally not a problem for small clusters, memory usage may hit the limits of accessible memory on a single machine when there are >50-100 million files. In such situations, it is advantageous to have as few files as possible.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-archiving/ class=docs-card-link>
@@ -430,7 +437,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Authorization Apache Hive : LanguageManual Authorization Introduction Hive Authorization Options Use Cases Overview of Authorization Modes Addressing Authorization Needs of Multiple Use Cases Explain Authorization More Information Introduction Note that this documentation is referring to Authorization which is verifying if a user has permission to perform a certain action, and not about Authentication (verifying the identity of the user).
+Apache Hive : LanguageManual Authorization Introduction Note that this documentation is referring to Authorization which is verifying if a user has permission to perform a certain action, and not about Authentication (verifying the identity of the user). Strong authentication for tools like the Hive command line is provided through the use of Kerberos. There are additional authentication options for users of HiveServer2.
+Hive Authorization Options Three modes of Hive authorization are available to satisfy different use cases.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-authorization/ class=docs-card-link>
@@ -448,7 +456,8 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : LanguageManual Hive CLI $HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.
-Apache Hive : LanguageManual Hive CLI Deprecation in favor of Beeline CLI Hive Command Line Options Examples The hiverc File Logging Tool to Clear Dangling Scratch Directories Hive Batch Mode Commands Hive Interactive Shell Commands Hive Resources HCatalog CLI Deprecation in favor of Beeline CLI HiveServer2 (introduced in Hive 0.
+Deprecation in favor of Beeline CLI HiveServer2 (introduced in Hive 0.11) has its own CLI called Beeline, which is a JDBC client based on SQLLine. Due to new development being focused on HiveServer2, Hive CLI will soon be deprecated in favor of Beeline (HIVE-10511).
+See Replacing the Implementation of Hive CLI Using Beeline and Beeline – New Command Line Shell in the HiveServer2 documentation.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-cli/ class=docs-card-link>
@@ -483,7 +492,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual DDL Apache Hive : LanguageManual DDL Overview Keywords, Non-reserved Keywords and Reserved Keywords Create/Drop/Alter/Use Database Create Database Drop Database Alter Database Use Database Create/Drop/Alter Connector Create Connector Drop Connector Alter Connector Create/Drop/Truncate Table Create Table Drop Table Truncate Table Alter Table/Partition/Column Alter Table Alter Partition Alter Either Table or Partition Alter Column Create/Drop/Alter View Create View Drop View Alter View Properties Alter View As Select Create/Drop/Alter Materialized View Create Materialized View Drop Materialized View Alter Materialized View Create/Drop/Alter Index Create Index Drop Index Alter Index Create/Drop Macro Create Temporary Macro Drop Temporary Macro Create/Drop/Reload Function Temporary Functions Permanent Functions Create/Drop/Grant/Revoke Roles and Privileges Show Show Databases Show Connectors Show Tables/Views/Materialized Views/Partitions/Indexes Show Columns Show Functions Show Granted Roles and Privileges Show Locks Show Conf Show Transactions Show Compactions Describe Describe Database Describe Dataconnector Describe Table/View/Materialized View/Column Describe Partition Hive 2.
+Apache Hive : LanguageManual DDL Overview HiveQL DDL statements are documented here, including:
+CREATE DATABASE/SCHEMA, TABLE, VIEW, FUNCTION, INDEX DROP DATABASE/SCHEMA, TABLE, VIEW, INDEX TRUNCATE TABLE ALTER DATABASE/SCHEMA, TABLE, VIEW MSCK REPAIR TABLE (or ALTER TABLE RECOVER PARTITIONS) SHOW DATABASES/SCHEMAS, TABLES, TBLPROPERTIES, VIEWS, PARTITIONS, FUNCTIONS, INDEX[ES], COLUMNS, CREATE TABLE DESCRIBE DATABASE/SCHEMA, table_name, view_name, materialized_view_name PARTITION statements are usually options of TABLE statements, except for SHOW PARTITIONS.
+Keywords, Non-reserved Keywords and Reserved Keywords All Keywords Version Non-reserved Keywords Hive 1.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl/ class=docs-card-link>
@@ -518,7 +529,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual DML Hive Data Manipulation Language Apache Hive : LanguageManual DML Hive Data Manipulation Language Loading files into tables Inserting data into Hive Tables from queries Writing data into the filesystem from queries Inserting values into tables from SQL Update Delete Merge Loading files into tables Hive does not do any transformation while loading data into tables.
+Apache Hive : LanguageManual DML Hive Data Manipulation Language Loading files into tables Hive does not do any transformation while loading data into tables. Load operations are currently pure copy/move operations that move datafiles into locations corresponding to Hive tables.
+Syntax LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)] LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)] [INPUTFORMAT 'inputformat' SERDE 'serde'] (3.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-dml/ class=docs-card-link>
@@ -535,7 +547,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Explain Apache Hive : LanguageManual Explain EXPLAIN Syntax Example The CBO Clause The AST Clause The DEPENDENCY Clause The AUTHORIZATION Clause The LOCKS Clause The VECTORIZATION Clause The ANALYZE Clause User-level Explain Output EXPLAIN Syntax Hive provides an EXPLAIN command that shows the execution plan for a query. The syntax for this statement is as follows:
+Apache Hive : LanguageManual Explain EXPLAIN Syntax Hive provides an EXPLAIN command that shows the execution plan for a query. The syntax for this statement is as follows:
+EXPLAIN [EXTENDED|CBO|AST|DEPENDENCY|AUTHORIZATION|LOCKS|VECTORIZATION|ANALYZE] query AUTHORIZATION is supported from HIVE 0.14.0 via HIVE-5961. VECTORIZATION is supported from Hive 2.3.0 via HIVE-11394. LOCKS is supported from Hive 3.2.0 via HIVE-17683.
+AST was removed from EXPLAIN EXTENDED in HIVE-13533 and reinstated as a separate command in HIVE-15932.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-explain/ class=docs-card-link>
@@ -552,7 +566,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual GroupBy Apache Hive : LanguageManual GroupBy Group By Syntax Simple Examples Select statement and group by clause Advanced Features Multi-Group-By Inserts Map-side Aggregation for Group By Grouping Sets, Cubes, Rollups, and the GROUPING__ID Function Group By Syntax groupByClause: GROUP BY groupByExpression (, groupByExpression)* groupByExpression: expression groupByQuery: SELECT expression (, expression)* FROM src groupByClause? In groupByExpression columns are specified by name, not by position number.
+Apache Hive : LanguageManual GroupBy Group By Syntax groupByClause: GROUP BY groupByExpression (, groupByExpression)* groupByExpression: expression groupByQuery: SELECT expression (, expression)* FROM src groupByClause? In groupByExpression columns are specified by name, not by position number. However in Hive 0.11.0 and later, columns can be specified by position when configured as follows:
+For Hive 0.11.0 through 2.1.x, set hive.groupby.orderby.position.alias to true (the default is false). For Hive 2.2.0 and later, set hive.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-groupby/ class=docs-card-link>
@@ -569,9 +584,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Import/Export Apache Hive : LanguageManual Import/Export Version information Overview Export Syntax Import Syntax Replication usage Examples Version information The EXPORT and IMPORT commands were added in Hive 0.8.0 (see HIVE-1918).
+Apache Hive : LanguageManual Import/Export Version information The EXPORT and IMPORT commands were added in Hive 0.8.0 (see HIVE-1918).
 Replication extensions to the EXPORT and IMPORT commands were added in Hive 1.2.0 (see HIVE-7973 and Hive Replication Development).
-Overview The EXPORT command exports the data of a table or partition, along with the metadata, into a specified output location.
+Overview The EXPORT command exports the data of a table or partition, along with the metadata, into a specified output location. This output location can then be moved over to a different Hadoop or Hive instance and imported from there with the IMPORT command.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-importexport/ class=docs-card-link>
@@ -588,8 +603,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Indexing Apache Hive : LanguageManual Indexing Indexing Is Removed since 3.0 Overview of Hive Indexes Indexing Resources Configuration Parameters for Hive Indexes Simple Examples Indexing Is Removed since 3.0 There are alternate options which might work similarily to indexing:
-Materialized views with automatic rewriting can result in very similar results. Hive 2.3.0 adds support for materialzed views.
+Apache Hive : LanguageManual Indexing Indexing Is Removed since 3.0 There are alternate options which might work similarily to indexing:
+Materialized views with automatic rewriting can result in very similar results. Hive 2.3.0 adds support for materialzed views. Using columnar file formats (Parquet, ORC) – they can do selective scanning; they may even skip entire files/blocks. Indexing has been removed in version 3.0 (HIVE-18448).
+Overview of Hive Indexes The goal of Hive indexing is to improve the speed of query lookup on certain columns of a table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-indexing/ class=docs-card-link>
@@ -606,9 +622,11 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Join Optimization Apache Hive : LanguageManual Join Optimization Improvements to the Hive Optimizer Star Join Optimization Star Schema Example Prior Support for MAPJOIN Enhancements for Star Joins Improvements to the Hive Optimizer Version
+Apache Hive : LanguageManual Join Optimization Improvements to the Hive Optimizer Version
 The join optimizations described here were added in Hive version 0.11.0. See HIVE-3784 and related JIRAs.
 This document describes optimizations of Hive&rsquo;s query execution planning to improve the efficiency of joins and reduce the need for user hints.
+Hive automatically recognizes various use cases and optimizes for them. Hive 0.11 improves the optimizer for these cases:
+Joins where one side fits in memory.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-joinoptimization/ class=docs-card-link>
@@ -625,8 +643,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Joins Apache Hive : LanguageManual Joins Join Syntax Examples MapJoin Restrictions Join Optimization Predicate Pushdown in Outer Joins Enhancements in Hive Version 0.11 Join Syntax Hive supports the following syntax for joining tables:
-join_table: table_reference [INNER] JOIN table_factor [join_condition] | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition | table_reference LEFT SEMI JOIN table_reference join_condition | table_reference CROSS JOIN table_reference [join_condition] (as of Hive 0.
+Apache Hive : LanguageManual Joins Join Syntax Hive supports the following syntax for joining tables:
+join_table: table_reference [INNER] JOIN table_factor [join_condition] | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition | table_reference LEFT SEMI JOIN table_reference join_condition | table_reference CROSS JOIN table_reference [join_condition] (as of Hive 0.10) table_reference: table_factor | join_table table_factor: tbl_name [alias] | table_subquery alias | ( table_references ) join_condition: ON expression See Select Syntax for the context of this join syntax.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-joins/ class=docs-card-link>
@@ -643,7 +661,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual LateralView Apache Hive : LanguageManual LateralView Lateral View Syntax Description Example Multiple Lateral Views Outer Lateral Views Lateral View Syntax lateralView: LATERAL VIEW udtf(expression) tableAlias AS columnAlias (',' columnAlias)* fromClause: FROM baseTable (lateralView)* Description Lateral view is used in conjunction with user-defined table generating functions such as explode(). As mentioned in Built-in Table-Generating Functions, a UDTF generates zero or more output rows for each input row.
+Apache Hive : LanguageManual LateralView Lateral View Syntax lateralView: LATERAL VIEW udtf(expression) tableAlias AS columnAlias (',' columnAlias)* fromClause: FROM baseTable (lateralView)* Description Lateral view is used in conjunction with user-defined table generating functions such as explode(). As mentioned in Built-in Table-Generating Functions, a UDTF generates zero or more output rows for each input row. A lateral view first applies the UDTF to each row of base table and then joins resulting output rows to the input rows to form a virtual table having the supplied table alias.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-lateralview/ class=docs-card-link>
@@ -660,7 +678,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual LZO Compression Apache Hive : LanguageManual LZO Compression General LZO Concepts Prerequisites Lzo/Lzop Installations core-site.xml Table Definition Hive Queries Option 1: Directly Create LZO Files Option 2: Write Custom Java to Create LZO Files General LZO Concepts LZO is a lossless data compression library that favors speed over compression ratio. See http://www.oberhumer.com/opensource/lzo and http://www.
+Apache Hive : LanguageManual LZO Compression General LZO Concepts LZO is a lossless data compression library that favors speed over compression ratio. See http://www.oberhumer.com/opensource/lzo and http://www.lzop.org for general information about LZO and see Compressed Data Storage for information about compression in Hive.
+Imagine a simple data file that has three columns
+id first name last name Let&rsquo;s populate a data file containing 4 records:
+19630001 john lennon 19630002 paul mccartney 19630003 george harrison 19630004 ringo starr Let&rsquo;s call the data file /path/to/dir/names.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-lzo/ class=docs-card-link>
@@ -677,9 +698,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual ORC Apache Hive : LanguageManual ORC ORC Files ORC File Format File Structure Stripe Structure HiveQL Syntax Serialization and Compression Integer Column Serialization String Column Serialization Compression ORC File Dump Utility ORC Configuration Parameters ORC Format Specification Attachments: ORC Files ORC File Format Version
+Apache Hive : LanguageManual ORC ORC Files ORC File Format Version
 Introduced in Hive version 0.11.0.
-The Optimized Row Columnar (ORC) file format provides a highly efficient way to store Hive data.
+The Optimized Row Columnar (ORC) file format provides a highly efficient way to store Hive data. It was designed to overcome limitations of the other Hive file formats. Using ORC files improves performance when Hive is reading, writing, and processing data.
+Compared with RCFile format, for example, ORC file format has many advantages such as:
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-orc/ class=docs-card-link>
@@ -696,7 +718,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Sampling Apache Hive : LanguageManual Sampling Sampling Syntax Sampling Bucketized Table Block Sampling Sampling Syntax Sampling Bucketized Table table_sample: TABLESAMPLE (BUCKET x OUT OF y [ON colname]) The TABLESAMPLE clause allows the users to write queries for samples of the data instead of the whole table. The TABLESAMPLE clause can be added to any table in the FROM clause.
+Apache Hive : LanguageManual Sampling Sampling Syntax Sampling Bucketized Table table_sample: TABLESAMPLE (BUCKET x OUT OF y [ON colname]) The TABLESAMPLE clause allows the users to write queries for samples of the data instead of the whole table. The TABLESAMPLE clause can be added to any table in the FROM clause. The buckets are numbered starting from 1. colname indicates the column on which to sample each row in the table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-sampling/ class=docs-card-link>
@@ -713,7 +735,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Select Apache Hive : LanguageManual Select Select Syntax WHERE Clause ALL and DISTINCT Clauses Partition Based Queries HAVING Clause LIMIT Clause REGEX Column Specification More Select Syntax Select Syntax [WITH CommonTableExpression (, CommonTableExpression)*] (Note: Only available starting with Hive 0.13.0) SELECT [ALL | DISTINCT] select_expr, select_expr, ... FROM table_reference [WHERE where_condition] [GROUP BY col_list] [ORDER BY col_list] [CLUSTER BY col_list | [DISTRIBUTE BY col_list] [SORT BY col_list] ] [LIMIT [offset,] rows] A SELECT statement can be part of a union query or a subquery of another query.
+Apache Hive : LanguageManual Select Select Syntax [WITH CommonTableExpression (, CommonTableExpression)*] (Note: Only available starting with Hive 0.13.0) SELECT [ALL | DISTINCT] select_expr, select_expr, ... FROM table_reference [WHERE where_condition] [GROUP BY col_list] [ORDER BY col_list] [CLUSTER BY col_list | [DISTRIBUTE BY col_list] [SORT BY col_list] ] [LIMIT [offset,] rows] A SELECT statement can be part of a union query or a subquery of another query. table_reference indicates the input to the query.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-select/ class=docs-card-link>
@@ -730,7 +752,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual SortBy Apache Hive : LanguageManual SortBy Order, Sort, Cluster, and Distribute By Syntax of Order By Syntax of Sort By Difference between Sort By and Order By Setting Types for Sort By Syntax of Cluster By and Distribute By Order, Sort, Cluster, and Distribute By This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY.
+Apache Hive : LanguageManual SortBy Order, Sort, Cluster, and Distribute By This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY. See Select Syntax for general information.
+Syntax of Order By The ORDER BY syntax in Hive QL is similar to the syntax of ORDER BY in SQL language.
+colOrder: ( ASC | DESC ) colNullOrder: (NULLS FIRST | NULLS LAST) -- (Note: Available in Hive 2.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-sortby/ class=docs-card-link>
@@ -747,7 +771,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual SubQueries Apache Hive : LanguageManual SubQueries Subqueries in the FROM Clause Subqueries in the WHERE Clause Subqueries in the FROM Clause SELECT ... FROM (subquery) name ... SELECT ... FROM (subquery) AS name ... (Note: Only valid starting with Hive 0.13.0) Hive supports subqueries only in the FROM clause (through Hive 0.12). The subquery has to be given a name because every table in a FROM clause must have a name.
+Apache Hive : LanguageManual SubQueries Subqueries in the FROM Clause SELECT ... FROM (subquery) name ... SELECT ... FROM (subquery) AS name ... (Note: Only valid starting with Hive 0.13.0) Hive supports subqueries only in the FROM clause (through Hive 0.12). The subquery has to be given a name because every table in a FROM clause must have a name. Columns in the subquery select list must have unique names. The columns in the subquery select list are available in the outer query just like columns of a table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-subqueries/ class=docs-card-link>
@@ -764,7 +788,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Transform Apache Hive : LanguageManual Transform Transform/Map-Reduce Syntax Schema-less Map-reduce Scripts Typing the output of TRANSFORM Transform/Map-Reduce Syntax Users can also plug in their own custom mappers and reducers in the data stream by using features natively supported in the Hive language. e.g. in order to run a custom mapper script - map_script - and a custom reducer script - reduce_script - the user can issue the following command which uses the TRANSFORM clause to embed the mapper and the reducer scripts.
+Apache Hive : LanguageManual Transform Transform/Map-Reduce Syntax Users can also plug in their own custom mappers and reducers in the data stream by using features natively supported in the Hive language. e.g. in order to run a custom mapper script - map_script - and a custom reducer script - reduce_script - the user can issue the following command which uses the TRANSFORM clause to embed the mapper and the reducer scripts.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-transform/ class=docs-card-link>
@@ -781,7 +805,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Data Types Apache Hive : LanguageManual Data Types Overview Numeric Types Date/Time Types String Types Misc Types Complex Types Column Types Integral Types (TINYINT, SMALLINT, INT/INTEGER, BIGINT) Strings Varchar Char Timestamps Dates Intervals Decimals Union Types Literals Floating Point Types Handling of NULL Values Change Types Allowed Implicit Conversions Overview This lists all supported data types in Hive.
+Apache Hive : LanguageManual Data Types Overview This lists all supported data types in Hive. See Type System in the Tutorial for additional information.
+For data types supported by HCatalog, see:
+HCatLoader Data Types HCatStorer Data Types HCatRecord Data Types Numeric Types TINYINT (1-byte signed integer, from -128 to 127) SMALLINT (2-byte signed integer, from -32,768 to 32,767) INT/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-types/ class=docs-card-link>
@@ -798,7 +824,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Operators and User-Defined Functions Apache Hive : LanguageManual Operators and User-Defined Functions Overview Built-in Operators Operators Precedences Relational Operators Arithmetic Operators Logical Operators String Operators Complex Type Constructors Operators on Complex Types Built-in Functions Mathematical Functions Collection Functions Type Conversion Functions Date Functions Conditional Functions String Functions Data Masking Functions Misc. Functions Built-in Aggregate Functions (UDAF) Built-in Table-Generating Functions (UDTF) Usage Examples explode posexplode json_tuple parse_url_tuple GROUPing and SORTing on f(column) Utility Functions UDF internals Creating Custom UDFs Attachments: Overview All Hive keywords are case-insensitive, including the names of Hive operators and functions.
+Apache Hive : LanguageManual Operators and User-Defined Functions Overview All Hive keywords are case-insensitive, including the names of Hive operators and functions.
+In Beeline or the CLI, use the commands below to show the latest documentation:
+SHOW FUNCTIONS; DESCRIBE FUNCTION &lt;function_name>; DESCRIBE FUNCTION EXTENDED &lt;function_name>; Bug for expression caching when UDF nested in UDF or function
+When hive.cache.expr.evaluation is set to true (which is the default) a UDF can give incorrect results if it is nested in another UDF or a Hive function.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-udf/ class=docs-card-link>
@@ -815,8 +844,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual Union Apache Hive : LanguageManual Union Union Syntax Union Syntax select_statement UNION [ALL | DISTINCT] select_statement UNION [ALL | DISTINCT] select_statement ... UNION is used to combine the result from multiple SELECT statements into a single result set.
-Hive versions prior to 1.2.0 only support UNION ALL (bag union), in which duplicate rows are not eliminated.
+Apache Hive : LanguageManual Union Union Syntax select_statement UNION [ALL | DISTINCT] select_statement UNION [ALL | DISTINCT] select_statement ... UNION is used to combine the result from multiple SELECT statements into a single result set.
+Hive versions prior to 1.2.0 only support UNION ALL (bag union), in which duplicate rows are not eliminated. In Hive 1.2.0 and later, the default behavior for UNION is that duplicate rows are removed from the result.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-union/ class=docs-card-link>
@@ -833,8 +862,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual VariableSubstitution Apache Hive : LanguageManual VariableSubstitution Introduction Using Variables Substitution During Query Construction Disabling Variable Substitution Introduction Hive is used for batch and interactive queries. Variable Substitution allows for tasks such as separating environment-specific configuration variables from code.
+Apache Hive : LanguageManual VariableSubstitution Introduction Hive is used for batch and interactive queries. Variable Substitution allows for tasks such as separating environment-specific configuration variables from code.
 The Hive variable substitution mechanism was designed to avoid some of the code that was getting baked into the scripting language on top of Hive.
+Examples such as the following shell commands may (inefficiently) be used to set variables within a script:
+$ a=b $ hive -e " describe $a " This is frustrating as Hive becomes closely coupled with scripting languages.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-variablesubstitution/ class=docs-card-link>
@@ -851,10 +882,12 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual VirtualColumns Apache Hive : LanguageManual VirtualColumns Virtual Columns Simple Examples Virtual Columns Hive 0.8.0 provides support for two virtual columns:
+Apache Hive : LanguageManual VirtualColumns Virtual Columns Hive 0.8.0 provides support for two virtual columns:
 One is INPUT__FILE__NAME, which is the input file&rsquo;s name for a mapper task.
 the other is BLOCK__OFFSET__INSIDE__FILE, which is the current global file position.
 For block compressed file, it is the current block&rsquo;s file offset, which is the current block&rsquo;s first byte&rsquo;s file offset.
+Since Hive 0.8.0 the following virtual columns have been added:
+ROW__OFFSET__INSIDE__BLOCK RAW__DATA__SIZE ROW__ID GROUPING__ID It is important to note, that all of the virtual columns listed here cannot be used for any other purpose (i.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-virtualcolumns/ class=docs-card-link>
@@ -871,8 +904,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : LanguageManual WindowingAndAnalytics Apache Hive : LanguageManual WindowingAndAnalytics Enhancements to Hive QL Examples Enhancements to Hive QL Introduced in Hive version 0.11.
+Apache Hive : LanguageManual WindowingAndAnalytics Enhancements to Hive QL Introduced in Hive version 0.11.
 This section introduces the Hive QL enhancements for windowing and analytics functions. See &ldquo;Windowing Specifications in HQL&rdquo; (attached to HIVE-4197) for details. HIVE-896 has more information, including links to earlier documentation in the initial comments.
+All of the windowing and analytics functions operate as per the SQL standard.
+The current release supports the following functions for windowing and analytics:
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/languagemanual-windowingandanalytics/ class=docs-card-link>
@@ -944,7 +979,9 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Materialized views This page documents the work done for the supporting materialized views in Apache Hive.
-Apache Hive : Materialized views Version information Objectives Management of materialized views in Hive Materialized views creation Other operations for materialized view management Materialized view-based query rewriting Example 1 Example 2 Example 3 Materialized view maintenance Materialized view lifecycle Open issues (JIRA) Version information Materialized views support is introduced in Hive 3.
+Version information Materialized views support is introduced in Hive 3.0.0.
+Objectives Traditionally, one of the most powerful techniques used to accelerate query processing in data warehouses is the pre-computation of relevant summaries or materialized views.
+The initial implementation introduced in Apache Hive 3.0.0 focuses on introducing materialized views and automatic query rewriting based on those materializations in the project.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/materialized-views/ class=docs-card-link>
@@ -1018,7 +1055,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Scheduled Queries Apache Hive : Scheduled Queries Introduction Maintaining scheduled queries Create Scheduled query syntax Alter Scheduled query syntax Drop syntax scheduleSpecification syntax CRON based schedule syntax EVERY based schedule syntax ExecutedAs syntax enableSpecification syntax Defined AS syntax executeSpec syntax System tables/views information_schema.scheduled_queries information_schema.scheduled_executions Execution states Configuration Hive metastore related configuration HiveServer2 related configuration Examples Example 1 – basic example of using schedules Example 2 – analyze external table periodically Example 3 – materialized view rebuild Example 4 – Ingestion Introduction Executing statements periodically can be usefull in
+Apache Hive : Scheduled Queries Introduction Executing statements periodically can be usefull in
+Pulling informations from external systems Periodically updating column statistics Rebuilding materialized views Overview
+The metastore maintains the scheduled queries in the metastore database Hiveserver(s) periodically polls the metastore for a scheduled query to be executed During execution informations about ongoing/finished executions are kept in the metastore Scheduled queries were added in Hive 4.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/scheduled-queries/ class=docs-card-link>
@@ -1035,7 +1074,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : SQL Standard Based Hive Authorization Apache Hive : SQL Standard Based Hive Authorization Status of Hive Authorization before Hive 0.13 SQL Standards Based Hive Authorization (New in Hive 0.13) Restrictions on Hive Commands and Statements Privileges Objects Object Ownership Users and Roles Names of Users and Roles Role Management Commands Managing Object Privileges Object Privilege Commands Examples of Managing Object Privileges Privileges Required for Hive Operations Configuration For Hive 0.
+Apache Hive : SQL Standard Based Hive Authorization Status of Hive Authorization before Hive 0.13 The default authorization in Hive is not designed with the intent to protect against malicious users accessing data they should not be accessing. It only helps in preventing users from accidentally doing operations they are not supposed to do. It is also incomplete because it does not have authorization checks for many operations including the grant statement.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/sql-standard-based-hive-authorization/ class=docs-card-link>
@@ -1053,7 +1092,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Statistics and Data Mining This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions.
-Apache Hive : Statistics and Data Mining ngrams() and context_ngrams(): N-gram frequency estimation Use Cases Usage Example histogram_numeric(): Estimating frequency distributions Use Cases Usage Example ngrams() and context_ngrams(): N-gram frequency estimation N-grams are subsequences of length N drawn from a longer sequence.
+ngrams() and context_ngrams(): N-gram frequency estimation N-grams are subsequences of length N drawn from a longer sequence. The purpose of the ngrams() UDAF is to find the k most frequent n-grams from one or more sequences.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/language/statisticsanddatamining/ class=docs-card-link>

@@ -183,41 +183,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--howtorelease>Apache Hive : HowToRelease</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--howtorelease>Apache Hive : HowToRelease</a>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#storage-api-release>Storage API Release</a>
-<ul>
-<li><a href=#storage-api-prepare-master-branch>Storage API Prepare Master Branch</a></li>
-<li><a href=#storage-api-branching>Storage API Branching</a></li>
-<li><a href=#making-storage-api-release-artifacts>Making Storage API Release Artifacts</a></li>
-<li><a href=#publishing-the-storage-api-artifacts>Publishing the Storage API Artifacts</a></li>
-<li><a href=#preparing-branch-for-further-development>Preparing Branch for further development</a></li>
-<li><a href=#cleaning-up-storage-api-artifacts>Cleaning Up Storage API Artifacts</a></li>
-</ul>
-</li>
-<li><a href=#hive-release>Hive Release</a>
-<ul>
-<li><a href=#preparation>Preparation</a></li>
-<li><a href=#branching>Branching</a></li>
-<li><a href=#updating-release-branch>Updating Release Branch</a></li>
-<li><a href=#building>Building</a></li>
-<li><a href=#voting>Voting</a></li>
-<li><a href=#verifying-the-release-candidate>Verifying the Release Candidate</a></li>
-<li><a href=#publishing>Publishing</a></li>
-<li><a href=#archive-old-releases>Archive old releases</a></li>
-<li><a href=#preparing-branch-for-future-maintenance-release>Preparing Branch for Future Maintenance Release</a></li>
-</ul>
-</li>
-<li><a href=#see-also>See Also</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=introduction>Introduction</h2>
 <p>This page is prepared for Hive committers. You need committer rights to create a new Hive release.</p>
 <p>This page assumes you are releasing from the master branch, and thus omits the use of Maven profiles to determine which version of Hadoop you are building against. If you are releasing from branch-1, you will need to add <code>-Phadoop-2</code> to most of your Maven commands.</p>

@@ -201,59 +201,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--hivereplicationdevelopment>Apache Hive : HiveReplicationDevelopment</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hivereplicationdevelopment>Apache Hive : HiveReplicationDevelopment</a></li>
-<li><a href=#introduction>Introduction</a>
-<ul>
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a href=#purposes-of-replication>Purposes of Replication</a>
-<ul>
-<li><a href=#disaster-recovery>Disaster Recovery</a></li>
-<li><a href=#load-balancing>Load Balancing</a></li>
-</ul>
-</li>
-<li><a href=#replication-taxonomy>Replication Taxonomy</a>
-<ul>
-<li><a href=#transaction-source>Transaction Source</a></li>
-<li><a href=#synchronization-strategy>Synchronization Strategy</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#design>Design</a>
-<ul>
-<li><a href=#taxonomy-design-choices>Taxonomy Design Choices</a>
-<ul>
-<li><a href=#primary-copy-vs-update-anywhere>Primary-Copy vs Update-Anywhere</a></li>
-<li><a href=#eager-vs-lazy>Eager vs Lazy</a></li>
-</ul>
-</li>
-<li><a href=#other-design-choices>Other Design Choices</a></li>
-<li><a href=#basic-approach>Basic Approach</a></li>
-</ul>
-</li>
-<li><a href=#implementation>Implementation</a>
-<ul>
-<li><a href=#events>Events</a></li>
-<li><a href=#event-ids-state-ids-and-sequencing-of-exportsimports>Event IDs, State IDs, and Sequencing of Exports/Imports</a></li>
-<li><a href=#handling-of-events>Handling of Events</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#future-features>Future Features</a></li>
-<li><a href=#references>References</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=introduction>Introduction</h1>
 <p>Replication in the context of databases and warehouses is the process of duplication of entities from one warehouse to another. This can be at the broader level of an entire database, or at a smaller level such as a table or partition. The goal of replication is to have a replica which changes whenever the base entity changes.</p>
 <p>In Hive, replication (introduced in <a href=https://issues.apache.org/jira/browse/HIVE-7973>Hive 1.2.0</a>) focuses on disaster recovery, using a lazy, primary-copy model. It uses notifications and export/import statements to implement an API for replication that can then be executed by other tools such as <a href=https://falcon.apache.org/>Falcon</a>.</p>

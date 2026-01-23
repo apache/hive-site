@@ -169,26 +169,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--hbase-bulk-load>Apache Hive : HBase Bulk Load</h1>
 <p>This page explains how to use Hive to bulk load data into a new (empty) HBase table per <a href=https://issues.apache.org/jira/browse/HIVE-1295>HIVE-1295</a>. (If you&rsquo;re not using a build which contains this functionality yet, you&rsquo;ll need to build from source and make sure this patch and HIVE-1321 are both applied.)</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hbase-bulk-load>Apache Hive : HBase Bulk Load</a>
-<ul>
-<li><a href=#overview>Overview</a></li>
-<li><a href=#decide-on-target-hbase-schema>Decide on Target HBase Schema</a></li>
-<li><a href=#estimate-resources-needed>Estimate Resources Needed</a></li>
-<li><a href=#add-necessary-jars>Add necessary JARs</a></li>
-<li><a href=#prepare-range-partitioning>Prepare Range Partitioning</a></li>
-<li><a href=#prepare-staging-location>Prepare Staging Location</a></li>
-<li><a href=#sort-data>Sort Data</a></li>
-<li><a href=#run-hbase-script>Run HBase Script</a></li>
-<li><a href=#map-new-table-back-into-hive>Map New Table Back Into Hive</a></li>
-<li><a href=#followups-needed>Followups Needed</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=overview>Overview</h2>
 <p>Ideally, bulk load from Hive into HBase would be part of <a href=https://hive.apache.org/docs/latest/user/hbaseintegration/>HBaseIntegration</a>, making it as simple as this:</p>
 <pre tabindex=0><code>CREATE TABLE new_hbase_table(rowkey string, x int, y int) 

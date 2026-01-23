@@ -174,32 +174,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--accumulo-integration>Apache Hive : Accumulo Integration</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--accumulo-integration>Apache Hive : Accumulo Integration</a>
-<ul>
-<li><a href=#overview>Overview</a></li>
-<li><a href=#implementation>Implementation</a></li>
-<li><a href=#accumulo-configuration>Accumulo Configuration</a></li>
-<li><a href=#usage>Usage</a></li>
-<li><a href=#column-mapping>Column Mapping</a></li>
-<li><a href=#indexing>Indexing</a></li>
-<li><a href=#other-options>Other options</a></li>
-<li><a href=#examples>Examples</a>
-<ul>
-<li><a href=#override-the-accumulo-table-name>Override the Accumulo table name</a></li>
-<li><a href=#store-a-hive-map-with-binary-serialization>Store a Hive map with binary serialization</a></li>
-<li><a href=#register-an-external-table>Register an external table</a></li>
-<li><a href=#create-an-indexed-table>Create an indexed table</a></li>
-</ul>
-</li>
-<li><a href=#acknowledgements>Acknowledgements</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=overview>Overview</h2>
 <p><a href=http://accumulo.apache.org>Apache Accumulo</a> is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user. Leveraging Apache Hive as a SQL interface to Accumulo complements its existing high-throughput batch access and low-latency random lookups.</p>
 <h2 id=implementation>Implementation</h2>

@@ -169,26 +169,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--hive-deprecated-authorization-mode--legacy-mode>Apache Hive : Hive deprecated authorization mode / Legacy Mode</h1>
 <p>This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to <a href=https://hive.apache.org/docs/latest/language/sql-standard-based-hive-authorization/>SQL Standard authorization</a> in Hive 2.0 (<a href=https://issues.apache.org/jira/browse/HIVE-12429>HIVE-12429</a>).</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hive-deprecated-authorization-mode--legacy-mode>Apache Hive : Hive deprecated authorization mode / Legacy Mode</a>
-<ul>
-<li>
-<ul>
-<li><a href=#disclaimer>Disclaimer</a></li>
-<li><a href=#prerequisites>Prerequisites</a></li>
-<li><a href=#users-groups-and-roles>Users, Groups, and Roles</a></li>
-<li><a href=#creatingdroppingusing-roles>Creating/Dropping/Using Roles</a></li>
-<li><a href=#privileges>Privileges</a></li>
-<li><a href=#hive-operations-and-required-privileges>Hive Operations and Required Privileges</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h3 id=disclaimer>Disclaimer</h3>
 <p>Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.  See the <a href=https://hive.apache.org/docs/latest/language/languagemanual-authorization/>Hive authorization main page</a> for the secure options.</p>
 <h3 id=prerequisites>Prerequisites</h3>

@@ -174,31 +174,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--outerjoinbehavior>Apache Hive : OuterJoinBehavior</h1>
 <h1 id=hive-outer-join-behavior>Hive Outer Join Behavior</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--outerjoinbehavior>Apache Hive : OuterJoinBehavior</a></li>
-<li><a href=#hive-outer-join-behavior>Hive Outer Join Behavior</a>
-<ul>
-<li><a href=#definitions>Definitions</a></li>
-<li><a href=#predicate-pushdown-rules>Predicate Pushdown Rules</a>
-<ul>
-<li><a href=#hive-implementation>Hive Implementation</a></li>
-</ul>
-</li>
-<li><a href=#examples>Examples</a>
-<ul>
-<li><a href=#case-j1-join-predicate-on-preserved-row-table>Case J1: Join Predicate on Preserved Row Table</a></li>
-<li><a href=#case-j2-join-predicate-on-null-supplying-table>Case J2: Join Predicate on Null Supplying Table</a></li>
-<li><a href=#case-w1-where-predicate-on-preserved-row-table>Case W1: Where Predicate on Preserved Row Table</a></li>
-<li><a href=#case-w2-where-predicate-on-null-supplying-table>Case W2: Where Predicate on Null Supplying Table</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <p>This document is based on a writeup of <a href=http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html>DB2 Outer Join Behavior</a>. The original HTML can be found <a href=/attachments/OuterJoinBehavior.html>here</a>.</p>
 <h2 id=definitions>Definitions</h2>
 <table>

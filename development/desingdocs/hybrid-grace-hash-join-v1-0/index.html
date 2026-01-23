@@ -172,30 +172,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--hybrid-hybrid-grace-hash-join-v10>Apache Hive : Hybrid Hybrid Grace Hash Join, v1.0</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hybrid-hybrid-grace-hash-join-v10>Apache Hive : Hybrid Hybrid Grace Hash Join, v1.0</a></li>
-<li><a href=#overview>Overview</a></li>
-<li><a href=#scope>Scope</a></li>
-<li><a href=#notation-and-assumptions>Notation and Assumptions</a></li>
-<li><a href=#brief-review-on-hash-join-algorithms>Brief Review on Hash Join Algorithms</a>
-<ul>
-<li><a href=#simple-hash-join>Simple Hash Join</a></li>
-<li><a href=#grace-hash-join>GRACE Hash Join</a></li>
-<li><a href=#hybrid-grace-hash-join>Hybrid GRACE Hash Join</a></li>
-<li><a href=#hash-join-in-hive>Hash Join in Hive</a></li>
-</ul>
-</li>
-<li><a href=#motivation-for-hybrid-hybrid-grace-hash-join>Motivation for “Hybrid Hybrid GRACE Hash Join”</a></li>
-<li><a href=#algorithm>Algorithm</a></li>
-<li><a href=#recursive-hashing-and-spilling>Recursive Hashing and Spilling</a></li>
-<li><a href=#skewed-data-distribution>Skewed Data Distribution</a></li>
-<li><a href=#bloom-filter>Bloom Filter</a></li>
-<li><a href=#references>References</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=overview>Overview</h1>
 <p>We are proposing an enhanced hash join algorithm called “hybrid hybrid grace hash join”. We can benefit from this feature as illustrated below:</p>
 <ul>

@@ -178,34 +178,6 @@ Last updated: December 12, 2024
 <h1 id=apache-hive--odbc-driver>Apache Hive : ODBC Driver</h1>
 <p>These instructions are for the Hive ODBC driver available in Hive for <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer1</a>.<br>
 There is no ODBC driver available for <a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/>HiveServer2</a> as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--odbc-driver>Apache Hive : ODBC Driver</a>
-<ul>
-<li><a href=#introduction>Introduction</a>
-<ul>
-<li><a href=#suggested-reading>Suggested Reading</a></li>
-<li><a href=#software-requirements>Software Requirements</a></li>
-<li><a href=#driver-architecture>Driver Architecture</a></li>
-</ul>
-</li>
-<li><a href=#building-and-setting-up-odbc-components>Building and Setting Up ODBC Components</a>
-<ul>
-<li><a href=#hive-client-buildsetup>Hive Client Build/Setup</a></li>
-<li><a href=#unixodbc-api-wrapper-buildsetup>unixODBC API Wrapper Build/Setup</a></li>
-<li><a href=#connecting-the-driver-to-a-driver-manager>Connecting the Driver to a Driver Manager</a></li>
-<li><a href=#testing-with-isql>Testing with ISQL</a></li>
-<li><a href=#build-libodbchiveso-for-3rd-party-driver-manager>Build libodbchive.so for 3rd Party Driver Manager</a></li>
-<li><a href=#troubleshooting>Troubleshooting</a></li>
-</ul>
-</li>
-<li><a href=#current-status>Current Status</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=introduction>Introduction</h2>
 <p>The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface. This driver will NOT be built as a part of the typical Hive build process and will need to be compiled and built separately according to the instructions below.</p>
 <p><strong>HiveServer was removed from Hive releases starting with Hive 1.0.0. See <a href=https://issues.apache.org/jira/browse/HIVE-6977>HIVE-6977</a>. Please switch over to HiveServer2.</strong></p>

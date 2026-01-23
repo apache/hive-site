@@ -164,22 +164,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--locking>Apache Hive : Locking</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--locking>Apache Hive : Locking</a></li>
-<li><a href=#hive-concurrency-model>Hive Concurrency Model</a>
-<ul>
-<li><a href=#use-cases>Use Cases</a></li>
-<li><a href=#turn-off-concurrency>Turn Off Concurrency</a></li>
-<li><a href=#debugging>Debugging</a></li>
-<li><a href=#configuration>Configuration</a></li>
-</ul>
-</li>
-<li><a href=#locking-in-hive-transactions>Locking in Hive Transactions</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=hive-concurrency-model>Hive Concurrency Model</h1>
 <h2 id=use-cases>Use Cases</h2>
 <p>Concurrency support (<a href=http://issues.apache.org/jira/browse/HIVE-1293>http://issues.apache.org/jira/browse/HIVE-1293</a>) is a must in databases and their use cases are well understood. At a minimum, we want to support concurrent readers and writers whenever possible. It would be useful to add a mechanism to discover the current locks which have been acquired. There is no immediate requirement to add an API to explicitly acquire any locks, so all locks would be acquired implicitly.</p>

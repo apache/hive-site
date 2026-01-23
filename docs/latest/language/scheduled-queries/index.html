@@ -197,55 +197,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--scheduled-queries>Apache Hive : Scheduled Queries</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--scheduled-queries>Apache Hive : Scheduled Queries</a></li>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#maintaining-scheduled-queries>Maintaining scheduled queries</a>
-<ul>
-<li><a href=#create-scheduled-query-syntax>Create Scheduled query syntax</a></li>
-<li><a href=#alter-scheduled-query-syntax>Alter Scheduled query syntax</a></li>
-<li><a href=#drop-syntax>Drop syntax</a></li>
-<li><a href=#schedulespecification-syntax>scheduleSpecification syntax</a>
-<ul>
-<li><a href=#cron-based-schedulesyntax>CRON based schedule syntax</a></li>
-<li><a href=#every-based-schedule-syntax>EVERY based schedule syntax</a></li>
-</ul>
-</li>
-<li><a href=#executedas-syntax>ExecutedAs syntax</a></li>
-<li><a href=#enablespecification-syntax>enableSpecification syntax</a></li>
-<li><a href=#defined-as-syntax>Defined AS syntax</a></li>
-<li><a href=#executespec-syntax>executeSpec syntax</a></li>
-</ul>
-</li>
-<li><a href=#system-tablesviews>System tables/views</a>
-<ul>
-<li><a href=#information_schemascheduled_queries>information_schema.scheduled_queries</a></li>
-<li><a href=#information_schemascheduled_executions>information_schema.scheduled_executions</a>
-<ul>
-<li><a href=#execution-states>Execution states</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#configuration>Configuration</a>
-<ul>
-<li><a href=#hive-metastore-related-configuration>Hive metastore related configuration</a></li>
-<li><a href=#hiveserver2-related-configuration>HiveServer2 related configuration</a></li>
-</ul>
-</li>
-<li><a href=#examples>Examples</a>
-<ul>
-<li><a href=#example-1-basic-example-of-using-schedules>Example 1 – basic example of using schedules</a></li>
-<li><a href=#example-2-analyze-external-table-periodically>Example 2 – analyze external table periodically</a></li>
-<li><a href=#example-3-materialized-view-rebuild>Example 3 – materialized view rebuild</a></li>
-<li><a href=#example-4-ingestion>Example 4 – Ingestion</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h1 id=introduction>Introduction</h1>
 <p>Executing statements periodically can be usefull in</p>
 <ul>

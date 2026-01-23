@@ -197,55 +197,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--hivedeveloperfaq>Apache Hive : HiveDeveloperFAQ</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hivedeveloperfaq>Apache Hive : HiveDeveloperFAQ</a>
-<ul>
-<li><a href=#developing>Developing</a>
-<ul>
-<li><a href=#how-do-i-move-some-files>How do I move some files?</a></li>
-</ul>
-</li>
-<li><a href=#building>Building</a>
-<ul>
-<li><a href=#maven-settings>Maven settings</a></li>
-<li><a href=#how-to-build-all-source>How to build all source?</a></li>
-<li><a href=#how-do-i-import-into-eclipse>How do I import into Eclipse?</a></li>
-<li><a href=#how-to-generate-tarball>How to generate tarball?</a></li>
-<li><a href=#how-to-generate-protobuf-code>How to generate protobuf code?</a></li>
-<li><a href=#how-to-generate-thrift-code>How to generate Thrift code?</a></li>
-</ul>
-</li>
-<li><a href=#httpsissuesapacheorgjirasecureviewavatarsizexsmallavatarid21141avatartypeissuetypehive-26769httpsissuesapacheorgjirabrowsehive-26769srcconfmacro><a href="https://issues.apache.org/jira/browse/HIVE-26769?src=confmacro"><img src="https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21141&avatarType=issuetype" alt>HIVE-26769</a></a>
-<ul>
-<li><a href=#how-to-compile-odbc>How to compile ODBC?</a></li>
-<li><a href=#how-do-i-publish-hive-artifacts-to-my-local-maven-repository>How do I publish Hive artifacts to my local Maven repository?</a></li>
-</ul>
-</li>
-<li><a href=#testing>Testing</a>
-<ul>
-<li><a href=#how-do-i-run-precommit-tests-on-a-patch>How do I run precommit tests on a patch?</a></li>
-<li><a href=#how-do-i-rerun-precommit-tests-over-the-same-patch>How do I rerun precommit tests over the same patch?</a></li>
-<li><a href=#how-do-i-run-a-single-test>How do I run a single test?</a></li>
-<li><a href=#how-do-i-run-all-of-the-unit-tests>How do I run all of the unit tests?</a></li>
-<li><a href=#how-do-i-run-all-of-the-unit-tests-except-for-a-certain-few-tests>How do I run all of the unit tests except for a certain few tests?</a></li>
-<li><a href=#how-do-i-run-the-clientpositiveclientnegative-unit-tests>How do I run the clientpositive/clientnegative unit tests?</a></li>
-<li><a href=#why-isnt-the-itests-pom-connected-to-the-root-pom>Why isn&rsquo;t the itests pom connected to the root pom?</a></li>
-<li><a href=#why-does-a-test-fail-with-a-nullpointerexception-in-minidfscluster>Why does a test fail with a NullPointerException in MiniDFSCluster?</a></li>
-</ul>
-</li>
-<li><a href=#debugging>Debugging</a>
-<ul>
-<li><a href=#how-do-i-debug-into-asingle-testin-eclipse>How do I debug into a single test in Eclipse?</a></li>
-<li><a href=#how-do-i-debug-my-queries-in-hive>How do I debug my queries in Hive?</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=developing>Developing</h2>
 <h3 id=how-do-i-move-some-files>How do I move some files?</h3>
 <p>Post a patch for testing purposes which simply does add and deletes. SVN will not understand these patches are actually moves, therefore you should actually upload the following, <strong>in order</strong> so the last upload is the patch for testing purposes:</p>

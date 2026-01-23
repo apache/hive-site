@@ -171,27 +171,6 @@ Last updated: December 12, 2024
 <h1 id=apache-hive--using-derby-in-server-mode>Apache Hive : Using Derby in Server Mode</h1>
 <p>Hive in embedded mode has a limitation of one active user at a time. You may want to run <a href=http://db.apache.org/derby/>Derby</a> as a Network Server, this way multiple users can access it simultaneously from different systems.</p>
 <p>See <a href=#metadata-store>Metadata Store</a> and <a href=#embedded-metastore>Embedded Metastore</a> for more information.</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--using-derby-in-server-mode>Apache Hive : Using Derby in Server Mode</a>
-<ul>
-<li>
-<ul>
-<li><a href=#download-derby>Download Derby</a></li>
-<li><a href=#set-environment>Set Environment</a></li>
-<li><a href=#starting-derby>Starting Derby</a></li>
-<li><a href=#configure-hive-to-use-network-derby>Configure Hive to Use Network Derby</a></li>
-<li><a href=#copy-derby-jar-files>Copy Derby Jar Files</a></li>
-<li><a href=#start-up-hive>Start Up Hive</a></li>
-<li><a href=#the-result>The Result</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h3 id=download-derby>Download Derby</h3>
 <p>It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of <code>derby.log</code> contains the version.</p>
 <p>My structure looks like this:</p>

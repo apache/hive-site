@@ -174,32 +174,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--hiveserver2-overview>Apache Hive : HiveServer2 Overview</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hiveserver2-overview>Apache Hive : HiveServer2 Overview</a></li>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#hs2-architecture>HS2 Architecture</a>
-<ul>
-<li><a href=#server>Server</a></li>
-<li><a href=#transport>Transport</a></li>
-<li><a href=#protocol>Protocol</a></li>
-<li><a href=#processor>Processor</a></li>
-</ul>
-</li>
-<li><a href=#dependencies-of-hs2>Dependencies of HS2</a></li>
-<li><a href=#jdbc-client>JDBC Client</a></li>
-<li><a href=#source-code-description>Source Code Description</a>
-<ul>
-<li><a href=#server-side>Server Side</a></li>
-<li><a href=#client-side>Client Side</a></li>
-<li><a href=#interaction-between-client-and-server>Interaction between Client and Server</a></li>
-</ul>
-</li>
-<li><a href=#resources>Resources</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=introduction>Introduction</h1>
 <p>HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to <a href=https://hive.apache.org/docs/latest/admin/hiveserver>HiveServer1</a> which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p>
 <p>HS2 is a single process running as a composite service, which includes the Thrift-based Hive service (TCP or HTTP) and a <a href=http://www.eclipse.org/jetty/>Jetty</a> web server for web UI. </p>

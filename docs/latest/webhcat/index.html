@@ -173,8 +173,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Configure Apache Hive : WebHCat Configure Configuration Files Configuration Variables Configuration Files The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.
+Apache Hive : WebHCat Configure Configuration Files The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.
 The WebHCat-specific configuration is split into two layers:
+webhcat-default.xml – All the configuration variables that WebHCat needs. This file sets the defaults that ship with WebHCat and should only be changed by WebHCat developers.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/ class=docs-card-link>
@@ -191,8 +192,11 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Installation Apache Hive : WebHCat Installation WebHCat Installed with Hive WebHCat Installation Procedure Server Commands Requirements Hadoop Distributed Cache Permissions Secure Cluster Proxy User Support WebHCat Installed with Hive WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.
+Apache Hive : WebHCat Installation WebHCat Installed with Hive WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.
 If you install Hive from the binary tarball, the WebHCat server command webhcat_server.sh is in the hcatalog/sbin directory.
+Hive installation is documented here.
+WebHCat Installation Procedure Note: WebHCat was originally called Templeton. For backward compatibility the name still appears in URLs, log file names, variable names, etc.
+Ensure that the required related installations are in place, and place required files into the Hadoop distributed cache.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/ class=docs-card-link>
@@ -245,8 +249,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DDL Apache Hive : WebHCat Reference DDL Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Performs an HCatalog DDL command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the Hive resource as an alternative.
+Apache Hive : WebHCat Reference DDL Description Performs an HCatalog DDL command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the Hive resource as an alternative.
 URL http://www.myserver.com/templeton/ddl
+Parameters Name Description Required? Default exec The HCatalog ddl string to execute Required None group The user group to use when creating a table Optional None permissions The permissions string to use when creating a table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/ class=docs-card-link>
@@ -263,9 +268,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteDB Apache Hive : WebHCat Reference DeleteDB Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Delete a database.
+Apache Hive : WebHCat Reference DeleteDB Description Delete a database.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db
-Parameters Name Description Required? Default :db The database name Required None ifExists Hive returns an error if the database specified does not exist, unless ifExists is set to true.
+Parameters Name Description Required? Default :db The database name Required None ifExists Hive returns an error if the database specified does not exist, unless ifExists is set to true. Optional false option Parameter set to either &ldquo;restrict&rdquo; or &ldquo;cascade&rdquo;. Restrict will remove the schema if all the tables are empty.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/ class=docs-card-link>
@@ -282,9 +287,12 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteJob Apache Hive : WebHCat Reference DeleteJob Description URL Parameters Results Example Curl Command JSON Output Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
+Apache Hive : WebHCat Reference DeleteJob Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
 Version: Deprecated in 0.12.0
-DELETE queue/:jobid is deprecated starting in Hive release 0.12.0. Users are encouraged to use DELETE jobs/:jobid instead.
+DELETE queue/:jobid is deprecated starting in Hive release 0.12.0. Users are encouraged to use DELETE jobs/:jobid instead. (See HIVE-4443.)
+DELETE queue/:jobid is equivalent to DELETE jobs/:jobid – check [DELETE jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/) for documentation.
+Version: Obsolete in 0.14.0
+DELETE queue/:jobid will be removed in Hive release 0.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/ class=docs-card-link>
@@ -301,9 +309,12 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteJobID Apache Hive : WebHCat Reference DeleteJobID Description URL Parameters Results Example Curl Command JSON Output Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
+Apache Hive : WebHCat Reference DeleteJobID Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
 Version: Hive 0.12.0 and later
 DELETE jobs/:jobid is introduced in Hive release 0.12.0. It is equivalent to [DELETE queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/) in prior releases.
+DELETE queue/:jobid is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
+URL http://www.myserver.com/templeton/v1/jobs/:jobid
+Parameters Name Description Required?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/ class=docs-card-link>
@@ -320,9 +331,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeletePartition Apache Hive : WebHCat Reference DeletePartition Description URL Parameters Results Example Curl Command JSON Output Description Delete (drop) a partition in an HCatalog table.
+Apache Hive : WebHCat Reference DeletePartition Description Delete (drop) a partition in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list.
+Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None ifExists Hive returns an error if the partition specified does not exist, unless ifExists is set to true.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/ class=docs-card-link>
@@ -339,9 +350,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteTable Apache Hive : WebHCat Reference DeleteTable Description URL Parameters Results Example Curl Command JSON Output Description Delete (drop) an HCatalog table.
+Apache Hive : WebHCat Reference DeleteTable Description Delete (drop) an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None ifExists Hive 0.70 and later returns an error if the table specified does not exist, unless ifExists is set to true.
+Parameters Name Description Required? Default :db The database name Required None :table The table name Required None ifExists Hive 0.70 and later returns an error if the table specified does not exist, unless ifExists is set to true. Optional false group The user group to use Optional None permissions The permissions string to use.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/ class=docs-card-link>
@@ -358,9 +369,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetColumn Apache Hive : WebHCat Reference GetColumn Description URL Parameters Results Example Curl Command JSON Output Description Describe a single column in an HCatalog table.
+Apache Hive : WebHCat Reference GetColumn Description Describe a single column in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column/:column
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :column The column name Required None The standard parameters are also supported.
+Results Name Description database The database name table The table name column A JSON object containing the column name, type, and comment (if any) Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/column/price?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/ class=docs-card-link>
@@ -377,9 +389,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetColumns Apache Hive : WebHCat Reference GetColumns Description URL Parameters Results Example Curl Command JSON Output Description List the columns in an HCatalog table.
+Apache Hive : WebHCat Reference GetColumns Description List the columns in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
+Results Name Description columns A list of column names and types database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/column?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/ class=docs-card-link>
@@ -396,9 +409,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetDB Apache Hive : WebHCat Reference GetDB Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Describe a database. (Note: This resource has a &ldquo;format=extended&rdquo; parameter however the output structure does not change if it is used.)
+Apache Hive : WebHCat Reference GetDB Description Describe a database. (Note: This resource has a &ldquo;format=extended&rdquo; parameter however the output structure does not change if it is used.)
 URL http://www.myserver.com/templeton/v1/ddl/database/:db
 Parameters Name Description Required? Default :db The database name Required None The standard parameters are also supported.
+Results Name Description location The database location params The database parameters comment The database comment database The database name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/newdb?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/ class=docs-card-link>
@@ -415,9 +429,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetDBs Apache Hive : WebHCat Reference GetDBs Description URL Parameters Results Example Curl Command JSON Output Description List the databases in HCatalog.
+Apache Hive : WebHCat Reference GetDBs Description List the databases in HCatalog.
 URL http://www.myserver.com/templeton/v1/ddl/database
 Parameters Name Description Required? Default like List only databases whose names match the specified pattern. Optional &ldquo;*&rdquo; (List all) The standard parameters are also supported.
+Results Name Description databases A list of database names. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/ class=docs-card-link>
@@ -434,9 +449,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetPartition Apache Hive : WebHCat Reference GetPartition Description URL Parameters Results Example Curl Command JSON Output Description Describe a single partition in an HCatalog table.
+Apache Hive : WebHCat Reference GetPartition Description Describe a single partition in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list.
+Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None The standard parameters are also supported.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/ class=docs-card-link>
@@ -453,9 +468,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetPartitions Apache Hive : WebHCat Reference GetPartitions Description URL Parameters Results Example Curl Command JSON Output Description List all the partitions in an HCatalog table.
+Apache Hive : WebHCat Reference GetPartitions Description List all the partitions in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
+Results Name Description partitions A list of partition values and of partition names database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/partition?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/ class=docs-card-link>
@@ -472,9 +488,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetProperties Apache Hive : WebHCat Reference GetProperties Description URL Parameters Results Example Curl Command JSON Output Description List all the properties of an HCatalog table.
+Apache Hive : WebHCat Reference GetProperties Description List all the properties of an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
+Results Name Description properties A list of the table&rsquo;s properties in name: value pairs database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/ class=docs-card-link>
@@ -491,9 +508,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetProperty Apache Hive : WebHCat Reference GetProperty Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Return the value of a single table property.
+Apache Hive : WebHCat Reference GetProperty Description Return the value of a single table property.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property/:property
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :property The property name Required None The standard parameters are also supported.
+Results Name Description property The requested property&rsquo;s name: value pair database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property/fruit?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/ class=docs-card-link>
@@ -510,7 +528,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetTable Apache Hive : WebHCat Reference GetTable Description URL Parameters Results Example Curl Command (simple) JSON Output (simple) Curl Command (extended) JSON Output (extended) JSON Output (error) Description Describe an HCatalog table. Normally returns a simple list of columns (using &ldquo;desc table&rdquo;), but the extended format will show more information (using &ldquo;show table extended like&rdquo;).
+Apache Hive : WebHCat Reference GetTable Description Describe an HCatalog table. Normally returns a simple list of columns (using &ldquo;desc table&rdquo;), but the extended format will show more information (using &ldquo;show table extended like&rdquo;).
+URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
+http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table?format=extended
+Parameters Name Description Required? Default :db The database name Required None :table The table name Required None format Set &ldquo;format=extended&rdquo; to see additional information (using &ldquo;show table extended like&rdquo;) Optional Not extended The standard parameters are also supported.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/ class=docs-card-link>
@@ -527,9 +548,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetTables Apache Hive : WebHCat Reference GetTables Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description List the tables in an HCatalog database.
+Apache Hive : WebHCat Reference GetTables Description List the tables in an HCatalog database.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table
 Parameters Name Description Required? Default :db The database name Required None like List only tables whose names match the specified pattern Optional &ldquo;*&rdquo; (List all tables) The standard parameters are also supported.
+Results Name Description tables A list of table names database The database name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table?
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/ class=docs-card-link>
@@ -546,11 +568,11 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Hive Apache Hive : WebHCat Reference Hive Description URL Parameters Results Example Curl Command JSON Output Example Results Description Runs a Hive query or set of commands.
+Apache Hive : WebHCat Reference Hive Description Runs a Hive query or set of commands.
 Version: Hive 0.13.0 and later
 As of Hive 0.13.0, GET version/hive displays the Hive version used for the query or commands.
 URL http://www.myserver.com/templeton/v1/hive
-Parameters Name Description Required?
+Parameters Name Description Required? Default execute String containing an entire, short Hive program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None file HDFS file name of a Hive program to run.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/ class=docs-card-link>
@@ -567,9 +589,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Job Apache Hive : WebHCat Reference Job Description URL Parameters Results Example Curl Command JSON Output Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
+Apache Hive : WebHCat Reference Job Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
 Version: Hive 0.12.0 and later
-GET jobs/:jobid is introduced in Hive release 0.
+GET jobs/:jobid is introduced in Hive release 0.12.0. It is equivalent to [GET queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/) in prior releases.
+GET queue/:jobid is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/ class=docs-card-link>
@@ -586,11 +609,14 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference JobIDs Apache Hive : WebHCat Reference JobIDs Description URL Parameters Results Example Curl Command JSON Output Description Return a list of all job IDs.
+Apache Hive : WebHCat Reference JobIDs Description Return a list of all job IDs.
 Version: Deprecated in 0.12.0
 GET queue is deprecated starting in Hive release 0.12.0. (See HIVE-4443.) Users are encouraged to use [GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/) instead.
 Version: Obsolete in 0.14.0
-GET queue will be removed in Hive release 0.
+GET queue will be removed in Hive release 0.14.0. (See HIVE-6432.)
+Use [GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/) instead.
+URL http://www.myserver.com/templeton/v1/queue
+Parameters Name Description Required? Default showall If showall is set to &ldquo;true&rdquo;, then the request will return all jobs the user has permission to view, not only the jobs belonging to the user.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/ class=docs-card-link>
@@ -607,9 +633,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference JobInfo Apache Hive : WebHCat Reference JobInfo Description URL Parameters Results Example Curl Command JSON Output JSON Output (Hive 0.12.0 and later) Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
+Apache Hive : WebHCat Reference JobInfo Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
 Version: Deprecated in 0.12.0
-GET queue/:jobid is deprecated starting in Hive release 0.
+GET queue/:jobid is deprecated starting in Hive release 0.12.0. Users are encouraged to use GET jobs/:jobid instead. (See HIVE-4443.)
+GET queue/:jobid is equivalent to GET jobs/:jobid – check [GET jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/) for documentation.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/ class=docs-card-link>
@@ -626,9 +653,12 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Jobs Apache Hive : WebHCat Reference Jobs Description URL Parameters Results Examples Curl Command JSON Output Curl Command (showall) JSON Output (showall) Curl Command (fields) JSON Output (fields) Description Return a list of all job IDs.
+Apache Hive : WebHCat Reference Jobs Description Return a list of all job IDs.
 Version: Hive 0.12.0 and later
 GET jobs is introduced in Hive release 0.12.0. It is equivalent to [GET queue](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/) in prior releases.
+GET queue is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
+URL http://www.myserver.com/templeton/v1/jobs
+Parameters Name Description Required? Default fields If fields set to &ldquo;&rdquo;, the request will return full details of the job.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/ class=docs-card-link>
@@ -645,11 +675,11 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference MapReduceJar Apache Hive : WebHCat Reference MapReduceJar Description URL Parameters Results Example Code and Data Setup Curl Command JSON Output Description Creates and queues a standard Hadoop MapReduce job.
+Apache Hive : WebHCat Reference MapReduceJar Description Creates and queues a standard Hadoop MapReduce job.
 Version: Hive 0.13.0 and later
 As of Hive 0.13.0, GET version/hadoop displays the Hadoop version used for the MapReduce job.
 URL http://www.myserver.com/templeton/v1/mapreduce/jar
-Parameters Name Description Required?
+Parameters Name Description Required? Default jar Name of the jar file for Map Reduce to use. Required None class Name of the class for Map Reduce to use.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/ class=docs-card-link>
@@ -666,11 +696,11 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference MapReduceStream Apache Hive : WebHCat Reference MapReduceStream Description URL Parameters Results Example Code and Data Setup Curl Command JSON Output Example Results Description Create and queue a Hadoop streaming MapReduce job.
+Apache Hive : WebHCat Reference MapReduceStream Description Create and queue a Hadoop streaming MapReduce job.
 Version: Hive 0.13.0 and later
 As of Hive 0.13.0, GET version/hadoop displays the Hadoop version used for the MapReduce job.
 URL http://www.myserver.com/templeton/v1/mapreduce/streaming
-Parameters Name Description Required?
+Parameters Name Description Required? Default input Location of the input data in Hadoop. Required None output Location in which to store the output data. If not specified, WebHCat will store the output in a location that can be discovered using the queue resource.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/ class=docs-card-link>
@@ -687,9 +717,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Pig Apache Hive : WebHCat Reference Pig Description URL Parameters Results Example Code and Data Setup Curl Command JSON Output Description Create and queue a Pig job.
+Apache Hive : WebHCat Reference Pig Description Create and queue a Pig job.
 URL http://www.myserver.com/templeton/v1/pig
-Parameters Name Description Required? Default execute String containing an entire, short Pig program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required.
+Parameters Name Description Required? Default execute String containing an entire, short Pig program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None file HDFS file name of a Pig program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None arg Set a program argument.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/ class=docs-card-link>
@@ -706,9 +736,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PostTable Apache Hive : WebHCat Reference PostTable Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Rename an HCatalog table.
+Apache Hive : WebHCat Reference PostTable Description Rename an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name Required None :table The existing (old) table name Required None rename The new table name Required None group The user group to use Optional None permissions The permissions string to use.
+Parameters Name Description Required? Default :db The database name Required None :table The existing (old) table name Required None rename The new table name Required None group The user group to use Optional None permissions The permissions string to use. The format is &ldquo;rwxrw-r-x&rdquo;.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/ class=docs-card-link>
@@ -725,7 +755,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutColumn Apache Hive : WebHCat Reference PutColumn Description URL Parameters Results Example Curl Command JSON Output Description Create a column in an HCatalog table.
+Apache Hive : WebHCat Reference PutColumn Description Create a column in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column/:column
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :column The column name Required None group The user group to use Optional None permissions The permissions string to use Optional None type The type of column to add, like &ldquo;string&rdquo; or &ldquo;int&rdquo; Required None comment The column comment, like a description Optional None The standard parameters are also supported.
 </div>
@@ -744,7 +774,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutDB Apache Hive : WebHCat Reference PutDB Description URL Parameters Results Example Curl Command JSON Output Description Create a database.
+Apache Hive : WebHCat Reference PutDB Description Create a database.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db
 Parameters Name Description Required? Default :db The database name Required None group The user group to use Optional None permissions The permissions string to use Optional None location The database location Optional None comment A comment for the database, like a description Optional None properties The database properties Optional None The standard parameters are also supported.
 </div>
@@ -763,9 +793,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutPartition Apache Hive : WebHCat Reference PutPartition Description URL Parameters Results Example Curl Command JSON Output Description Create a partition in an HCatalog table.
+Apache Hive : WebHCat Reference PutPartition Description Create a partition in an HCatalog table.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list.
+Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None group The user group to use Optional None permissions The permissions string to use Optional None location The location for partition creation Required None ifNotExists If true, return an error if the partition already exists.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/ class=docs-card-link>
@@ -782,7 +812,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutProperty Apache Hive : WebHCat Reference PutProperty Description URL Parameters Results Example Curl Command JSON Output Description Add a single property on an HCatalog table. This will also reset an existing property.
+Apache Hive : WebHCat Reference PutProperty Description Add a single property on an HCatalog table. This will also reset an existing property.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property/:property
 Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :property The property name Required None group The user group to use Optional None permissions The permissions string to use Optional None value The property value Required None The standard parameters are also supported.
 </div>
@@ -801,9 +831,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutTable Apache Hive : WebHCat Reference PutTable Description URL Parameters Results Example Curl Command Curl Command (using clusteredBy) JSON Output JSON Output (error) Description Create a new HCatalog table. For more information, please refer to the Hive documentation for CREATE TABLE.
+Apache Hive : WebHCat Reference PutTable Description Create a new HCatalog table. For more information, please refer to the Hive documentation for CREATE TABLE.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name.
+Parameters Name Description Required? Default :db The database name. Required None :table The new table name. Required None group The user group to use when creating a table. Optional None permissions The permissions string to use when creating a table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/ class=docs-card-link>
@@ -820,7 +850,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutTableLike Apache Hive : WebHCat Reference PutTableLike Description URL Parameters Results Example Curl Command JSON Output Description Create a new HCatalog table like an existing one.
+Apache Hive : WebHCat Reference PutTableLike Description Create a new HCatalog table like an existing one.
 URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:existingtable/like/:newtable
 Parameters Name Description Required? Default :db The database name Required None :existingtable The existing table name Required None :newtable The new table name Required None group The user group to use when creating a table Optional None permissions The permissions string to use when creating a table Optional None external Allows you to specify a location so that Hive does not use the default location for this table.
 </div>
@@ -839,9 +869,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference ResponseTypes Apache Hive : WebHCat Reference ResponseTypes Description URL Parameters Results Example Curl Command JSON Output JSON Output (error) Description Returns a list of the response types supported by WebHCat (Templeton).
+Apache Hive : WebHCat Reference ResponseTypes Description Returns a list of the response types supported by WebHCat (Templeton).
 URL http://www.myserver.com/templeton/:version
 Parameters Name Description Required? Default :version The WebHCat version number. (Currently this must be &ldquo;v1&rdquo;.) Required None The standard parameters are also supported.
+Results Name Description responseTypes A list of all supported response types Example Curl Command % curl -s 'http://localhost:50111/templeton/v1' JSON Output { "responseTypes": [ "application/json" ] } JSON Output (error) { "error": "null for uri: http://localhost:50111/templeton/v2" } Navigation Links Previous: Reference: WebHCat Resources
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/ class=docs-card-link>
@@ -858,10 +889,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Status Apache Hive : WebHCat Reference Status Description URL Parameters Results Example Curl Command JSON Output Description Returns the current status of the WebHCat (Templeton) server. Useful for heartbeat monitoring.
+Apache Hive : WebHCat Reference Status Description Returns the current status of the WebHCat (Templeton) server. Useful for heartbeat monitoring.
 URL http://www.myserver.com/templeton/v1/status
 Parameters Only the standard parameters are accepted.
-Results Name Description status &ldquo;ok&rdquo; if the WebHCat server was contacted.
+Results Name Description status &ldquo;ok&rdquo; if the WebHCat server was contacted. version String containing the version number similar to &ldquo;v1&rdquo;. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/status' JSON Output { "status": "ok", "version": "v1" } Navigation Links Previous: Response Types (GET :version)Next: GET version
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/ class=docs-card-link>
@@ -878,10 +909,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference Version Apache Hive : WebHCat Reference Version Description URL Parameters Results Example Curl Command JSON Output Description Returns a list of supported versions and the current version.
+Apache Hive : WebHCat Reference Version Description Returns a list of supported versions and the current version.
 URL http://www.myserver.com/templeton/v1/version
 Parameters Only the standard parameters are accepted.
-Results Name Description supportedVersions A list of all supported versions. version The current version.
+Results Name Description supportedVersions A list of all supported versions. version The current version. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version' JSON Output { "supportedVersions": [ "v1" ], "version": "v1" } Navigation Links Previous: GET status
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/ class=docs-card-link>
@@ -898,11 +929,13 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference VersionHadoop Apache Hive : WebHCat Reference VersionHadoop Description URL Parameters Results Example Curl Command JSON Output Description Return the version of Hadoop being run when WebHCat creates a MapReduce job (POST mapreduce/jar or mapreduce/streaming).
+Apache Hive : WebHCat Reference VersionHadoop Description Return the version of Hadoop being run when WebHCat creates a MapReduce job (POST mapreduce/jar or mapreduce/streaming).
 Version: Hive 0.13.0 and later
 GET version/hadoop is introduced in Hive release 0.13.0 (HIVE-6226).
 URL http://www.myserver.com/templeton/v1/version/hadoop
 Parameters Only the standard parameters are accepted.
+Results Returns the Hadoop version.
+Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version/hadoop?user.name=ekoifman' JSON Output [ {"module":"hadoop","version":"2.4.1-SNAPSHOT} ]    Navigation Links Previous: GET version/hive
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/ class=docs-card-link>
@@ -919,11 +952,13 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat Reference VersionHive Apache Hive : WebHCat Reference VersionHive Description URL Parameters Results Example Curl Command JSON Output Description Return the version of Hive being run when WebHCat issues Hive queries or commands (POST hive).
+Apache Hive : WebHCat Reference VersionHive Description Return the version of Hive being run when WebHCat issues Hive queries or commands (POST hive).
 Version: Hive 0.13.0 and later
 GET version/hive is introduced in Hive release 0.13.0 (HIVE-6226).
 URL http://www.myserver.com/templeton/v1/version/hive
 Parameters Only the standard parameters are accepted.
+Results Returns the Hive version.
+Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version/hive?user.name=ekoifman' JSON Output [ {"module":"hive","version":"0.14.0-SNAPSHOT"} ]    Navigation Links Previous: GET version
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/ class=docs-card-link>
@@ -940,8 +975,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : WebHCat UsingWebHCat Apache Hive : WebHCat UsingWebHCat Version information Introduction to WebHCat URL Format Security Standard Parameters Security Error Response WebHDFS and Code Push Error Codes and Responses Log Files Project Name Attachments: Version information The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.
+Apache Hive : WebHCat UsingWebHCat Version information The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.
 Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
+Introduction to WebHCat This document describes the HCatalog REST API, WebHCat, which was previously called Templeton.
+As shown in the figure below, developers make HTTP requests to access Hadoop MapReduce (or YARN), Pig, Hive, and HCatalog DDL from within applications.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/ class=docs-card-link>

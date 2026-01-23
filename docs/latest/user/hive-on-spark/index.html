@@ -199,57 +199,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--hive-on-spark>Apache Hive : Hive on Spark</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hive-on-spark>Apache Hive : Hive on Spark</a></li>
-<li><a href=#1-introduction>1. Introduction</a>
-<ul>
-<li><a href=#11-motivation>1.1 Motivation</a></li>
-<li><a href=#12-design-principle>1.2 Design Principle</a></li>
-<li><a href=#13-comparison-with-shark-and-spark-sql>1.3 Comparison with Shark and Spark SQL</a></li>
-<li><a href=#14-other-considerations>1.4 Other Considerations</a></li>
-</ul>
-</li>
-<li><a href=#2-high-level-functionality>2. High-Level Functionality</a>
-<ul>
-<li><a href=#21-a-new-execution-engine>2.1 A New Execution Engine</a></li>
-<li><a href=#22-spark-configuration>2.2 Spark Configuration</a></li>
-<li><a href=#23-miscellaneous-functionality>2.3 Miscellaneous Functionality</a></li>
-</ul>
-</li>
-<li><a href=#3-hive-level-design>3. Hive-Level Design</a>
-<ul>
-<li><a href=#31-query-planning>3.1 Query Planning</a></li>
-<li><a href=#32-job-execution>3.2 Job Execution</a></li>
-<li><a href=#33-design-considerations>3.3 Design Considerations</a>
-<ul>
-<li><a href=#table-as-rdd>Table as RDD</a></li>
-<li><a href=#sparkwork>SparkWork</a></li>
-<li><a href=#sparktask>SparkTask</a></li>
-<li><a href=#shuffle-group-and-sort>Shuffle, Group, and Sort</a></li>
-<li><a href=#join>Join</a></li>
-<li><a href=#number-of-tasks>Number of Tasks</a></li>
-<li><a href=#local-mapreduce-tasks>Local MapReduce Tasks</a></li>
-<li><a href=#semantic-analysis-and-logical-optimizations>Semantic Analysis and Logical Optimizations</a></li>
-<li><a href=#job-diagnostics>Job Diagnostics</a></li>
-<li><a href=#counters-and-metrics>Counters and Metrics</a></li>
-<li><a href=#explain-statements>Explain Statements</a></li>
-<li><a href=#hive-variables>Hive Variables</a></li>
-<li><a href=#union>Union</a></li>
-<li><a href=#concurrency-and-thread-safety>Concurrency and Thread Safety</a></li>
-<li><a href=#build-infrastructure>Build Infrastructure</a></li>
-<li><a href=#mini-spark-cluster>Mini Spark Cluster</a></li>
-<li><a href=#testing>Testing</a></li>
-</ul>
-</li>
-<li><a href=#34-potentially-required-work-from-spark>3.4 Potentially Required Work from Spark</a></li>
-</ul>
-</li>
-<li><a href=#4-summary>4. Summary</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=1-introduction>1. Introduction</h1>
 <p>We propose modifying Hive to add Spark as a third execution backend(<a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>), parallel to MapReduce and Tez.</p>
 <p>Spark is an open-source data analytics cluster computing framework that’s built outside of Hadoop&rsquo;s two-stage MapReduce paradigm but on top of HDFS. Spark’s primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop InputFormats (such as HDFS files) or by transforming other RDDs. By being applied by a series of transformations such as groupBy and filter, or actions such as count and save that are provided by Spark, RDDs can be processed and analyzed to fulfill what MapReduce jobs can do without having intermediate stages.</p>

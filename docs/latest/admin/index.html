@@ -155,7 +155,9 @@ Nov 14, 2025
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Iceberg REST Catalog API backed by Hive Metastore Apache Hive : Iceberg REST Catalog API backed by Hive Metastore Introduction Basic configurations Authentication OAuth 2 JWT Simple None Authorization Example: Minimal Setup with Docker Introduction Hive Metastore offers Iceberg REST API endpoints for clients native to Apache Iceberg. Consequently, Iceberg users can access Iceberg tables via either Hive Metastore Thrift API (using HiveCatalog) or Iceberg REST Catalog API.
+Apache Hive : Iceberg REST Catalog API backed by Hive Metastore Introduction Hive Metastore offers Iceberg REST API endpoints for clients native to Apache Iceberg. Consequently, Iceberg users can access Iceberg tables via either Hive Metastore Thrift API (using HiveCatalog) or Iceberg REST Catalog API.
+Basic configurations You must configure the following parameters.
+Key Required? Default Value metastore.catalog.servlet.port Yes -1 The port number to which Iceberg REST API listens Authentication Hive Metastore&rsquo;s Iceberg REST API supports four authentication methods.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/iceberg-rest-catalog/ class=docs-card-link>
@@ -172,7 +174,7 @@ Nov 5, 2025
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Setting up Metastore backed by MariaDB Apache Hive : Setting up Metastore backed by MariaDB Note Introduction Configuration Note Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.
+Apache Hive : Setting up Metastore backed by MariaDB Note Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.
 Introduction From mysql-connector-java 8.0.12, MySQL driver issues a getSQLKeywords call for retrieving this database&rsquo;s keywords, triggered by MySQLAdapter(DataNucleus) on Metastore initialization. However, the back table KEYWORDS in MariaDB diverged from that in MySQL, which makes the Metastore fail to start, an exception thrown like:
 </div>
 <div class=docs-card-footer>
@@ -190,9 +192,9 @@ Oct 14, 2025
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Hive Schema Tool Apache Hive : Hive Schema Tool About Metastore Schema Verification The Hive Schema Tool The schematool Command Usage Examples About Schema tool helps to initialise and upgrade metastore database and hive sys schema.
+Apache Hive : Hive Schema Tool About Schema tool helps to initialise and upgrade metastore database and hive sys schema.
 Metastore Schema Verification Introduced in Hive 0.12.0. See HIVE-3764.
-Hive records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to access the metastore.
+Hive records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to access the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/ class=docs-card-link>
@@ -244,7 +246,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : AdminManual Configuration Apache Hive : AdminManual Configuration Configuring Hive hive-site.xml and hive-default.xml.template Temporary Folders Log Files Derby Server Mode Configuration Variables Removing Hive Metastore Password from Hive Configuration Configuring HCatalog and WebHCat HCatalog WebHCat Configuring Hive A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions.
+Apache Hive : AdminManual Configuration Configuring Hive A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:
+Using the set command in the CLI or Beeline for setting session level values for the configuration variable for all statements subsequent to the set command.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/ class=docs-card-link>
@@ -261,7 +264,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : AdminManual Installation Apache Hive : AdminManual Installation Installing Hive Installing from a Tarball Installing from Source Code (Hive 1.2.0 and Later) Installing from Source Code (Hive 0.13.0 and Later) Installing from Source Code (Hive 0.12.0 and Earlier) Next Steps Hive CLI and Beeline CLI Hive Metastore HCatalog and WebHCat HCatalog WebHCat (Templeton) Installing Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 0.
+Apache Hive : AdminManual Installation Installing Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 0.13 and later) or Ant (release 0.12 and earlier).
+Hive installation has these requirements:
+Java 1.7 (preferred).
+Note: Hive versions 1.2 onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/ class=docs-card-link>
@@ -278,7 +284,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : AdminManual Metastore 3.0 Administration Apache Hive : AdminManual Metastore 3.0 Administration Version Note Introduction Changes From Hive 2 to Hive 3 General Configuration RDBMS Option 1: Embedding Derby Option 2: External RDBMS Installing and Upgrading the Metastore Schema Running the Metastore Embedded Mode Metastore Server Running the Metastore Without Hive Performance Optimizations CachedStore Less Commonly Changed Configuration Parameters Version Note This document applies only to the Metastore in Hive 3.
+Apache Hive : AdminManual Metastore 3.0 Administration Version Note This document applies only to the Metastore in Hive 3.0 and later releases. For Hive 0, 1, and 2 releases please see the Metastore Administration document.
+Introduction The definition of Hive objects such as databases, tables, and functions are stored in the Metastore. Depending on how the system is configured, statistics and authorization records may also be stored there. Hive, and other execution engines, use this data at runtime to determine how to parse, authorize, and efficiently execute user queries.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/ class=docs-card-link>
@@ -296,7 +303,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : AdminManual Metastore Administration This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see AdminManual Metastore 3.0 Administration
-Apache Hive : AdminManual Metastore Administration Introduction Local/Embedded Metastore Database (Derby) Remote Metastore Database Local/Embedded Metastore Server Remote Metastore Server Supported Backend Databases for Metastore Metastore Schema Consistency and Upgrades Introduction All the metadata for Hive tables and partitions are accessed through the Hive Metastore.
+Introduction All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using JPOX ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/ class=docs-card-link>
@@ -351,7 +358,7 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : Hive on Spark: Getting Started Hive on Spark provides Hive with the ability to utilize Apache Spark as its execution engine.
 set hive.execution.engine=spark; Hive on Spark was added in HIVE-7292.
-Apache Hive : Hive on Spark: Getting Started Version Compatibility Spark Installation Configuring YARN Configuring Hive Configuration property details Configuring Spark Tuning Details Common Issues (Green are resolved, will be removed from this list) Recommended Configuration Design documents Attachments: Version Compatibility Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark.
+Version Compatibility Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/hive-on-spark-getting-started/ class=docs-card-link>
@@ -407,7 +414,7 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : Using Derby in Server Mode Hive in embedded mode has a limitation of one active user at a time. You may want to run Derby as a Network Server, this way multiple users can access it simultaneously from different systems.
 See Metadata Store and Embedded Metastore for more information.
-Apache Hive : Using Derby in Server Mode Download Derby Set Environment Starting Derby Configure Hive to Use Network Derby Copy Derby Jar Files Start Up Hive The Result Download Derby It is suggested you download the version of Derby that ships with Hive.
+Download Derby It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of derby.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode/ class=docs-card-link>
@@ -426,7 +433,7 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : JDBC Driver The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.
 To see how the JDBC interface can be used, see sample code.
-Apache Hive : JDBC Driver Integration with Pentaho Integration with SQuirrel SQL Client Integration with Pentaho Download pentaho report designer from the pentaho website.
+Integration with Pentaho Download pentaho report designer from the pentaho website. Overwrite report-designer.sh with the code provided below. #!/bin/sh HADOOP_CORE={{ls $HADOOP_HOME/hadoop-*-core.jar}} CLASSPATH=.:$HADOOP_CORE:$HIVE_HOME/conf for i in ${HIVE_HOME}/lib/*.jar ; do CLASSPATH=$CLASSPATH:$i done CLASSPATH=$CLASSPATH:launcher.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/ class=docs-card-link>
@@ -445,7 +452,7 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : ODBC Driver These instructions are for the Hive ODBC driver available in Hive for HiveServer1.
 There is no ODBC driver available for HiveServer2 as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.
-Apache Hive : ODBC Driver Introduction Suggested Reading Software Requirements Driver Architecture Building and Setting Up ODBC Components Hive Client Build/Setup unixODBC API Wrapper Build/Setup Connecting the Driver to a Driver Manager Testing with ISQL Build libodbchive.
+Introduction The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/hiveodbc/ class=docs-card-link>
@@ -479,7 +486,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Manual Installation Apache Hive : Manual Installation Installing, configuring and running Hive Prerequisites Install the prerequisites Java 8 Maven: Protobuf Hadoop Tez Extra hadoop configurations to make everything working Installing Hive from a Tarball Installing from Source Code Installing with old version hadoop(greater than or equal 3.1.0) Next Steps Beeline CLI Hive Metastore HCatalog and WebHCat HCatalog WebHCat (Templeton) Installing, configuring and running Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 3.
+Apache Hive : Manual Installation Installing, configuring and running Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 3.6.3 and later).
+Prerequisites Java 8. Maven 3.6.3 Protobuf 2.5 Hadoop 3.3.6 (As a preparation, configure it in single-node cluster, pseudo-distributed mode) Tez. The default is MapReduce but we will change the execution engine to Tez.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/manual-installation/ class=docs-card-link>
@@ -496,7 +504,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Replication Apache Hive : Replication Overview Potential Uses Prerequisites Limitations Configuration Typical Mode of Operation Replication to AWS/EMR/S3 Overview Hive Replication builds on the metastore event and ExIm features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS.
+Apache Hive : Replication Overview Hive Replication builds on the metastore event and ExIm features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly &lsquo;light touch&rsquo;, exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/replication/ class=docs-card-link>
@@ -550,7 +558,9 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2 Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2 User and Group Filter Support with LDAP Group Membership User Search List Custom Query String Order of Precedence User and Group Filter Support with LDAP Starting in Hive 1.3.0, HIVE-7193 adds support in HiveServer2 for
+Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2 User and Group Filter Support with LDAP Starting in Hive 1.3.0, HIVE-7193 adds support in HiveServer2 for
+LDAP Group filters LDAP User filters Custom LDAP Query support. Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.
+See Authentication/Security Configuration for general information about configuring authentication for HiveServer2.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/admin/user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2/ class=docs-card-link>

@@ -181,39 +181,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--views>Apache Hive : Views</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--views>Apache Hive : Views</a>
-<ul>
-<li><a href=#use-cases>Use Cases</a></li>
-<li><a href=#scope>Scope</a></li>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#implementation-sketch>Implementation Sketch</a></li>
-<li><a href=#issues>Issues</a>
-<ul>
-<li><a href=#stored-view-definition>Stored View Definition</a></li>
-<li><a href=#metastore-modeling>Metastore Modeling</a></li>
-<li><a href=#dependency-tracking>Dependency Tracking</a></li>
-<li><a href=#dependency-invalidation>Dependency Invalidation</a></li>
-<li><a href=#view-modification>View Modification</a></li>
-<li><a href=#fast-path-execution>Fast Path Execution</a></li>
-<li><a href=#order-by-and-limit-in-view-definition>ORDER BY and LIMIT in view definition</a></li>
-<li><a href=#underlying-partition-dependencies>Underlying Partition Dependencies</a></li>
-</ul>
-</li>
-<li><a href=#metastore-upgrades>Metastore Upgrades</a>
-<ul>
-<li><a href=#automatic-alter-table>Automatic ALTER TABLE</a></li>
-<li><a href=#explicit-alter-table>Explicit ALTER TABLE</a></li>
-<li><a href=#existing-row-update>Existing Row UPDATE</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=use-cases>Use Cases</h2>
 <p>Views (<a href=http://issues.apache.org/jira/browse/HIVE-972>http://issues.apache.org/jira/browse/HIVE-972</a>) are a standard DBMS feature and their uses are well understood. A typical use case might be to create an interface layer with a consistent entity/attribute naming scheme on top of an existing set of inconsistently named tables, without having to cause disruption due to direct modification of the tables. More advanced use cases would involve predefined filters, joins, aggregations, etc for simplifying query construction by end users, as well as sharing common definitions within ETL pipelines.</p>
 <h2 id=scope>Scope</h2>

@@ -180,38 +180,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--acid-transactions>Apache Hive : ACID Transactions</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--acid-transactions>Apache Hive : ACID Transactions</a>
-<ul>
-<li><a href=#upgrade-to-hive-3>Upgrade to Hive 3+</a></li>
-<li><a href=#what-is-acid-and-why-should-you-use-it>What is ACID and why should you use it?</a></li>
-<li><a href=#limitations>Limitations</a></li>
-<li><a href=#streaming-apis>Streaming APIs</a></li>
-<li><a href=#grammar-changes>Grammar Changes</a></li>
-<li><a href=#basic-design>Basic Design</a>
-<ul>
-<li><a href=#base-and-delta-directories>Base and Delta Directories</a></li>
-<li><a href=#compactor>Compactor</a></li>
-<li><a href=#transactionlock-manager>Transaction/Lock Manager</a></li>
-</ul>
-</li>
-<li><a href=#configuration>Configuration</a>
-<ul>
-<li><a href=#new-configuration-parameters-for-transactions>New Configuration Parameters for Transactions</a></li>
-<li><a href=#configuration-values-to-set-forinsert-update-delete>Configuration Values to Set for <em>INSERT, UPDATE, DELETE</em></a></li>
-<li><a href=#configuration-values-to-set-for-compaction>Configuration Values to Set for Compaction</a></li>
-<li><a href=#compaction-pooling>Compaction pooling</a></li>
-</ul>
-</li>
-<li><a href=#table-properties>Table Properties</a></li>
-</ul>
-</li>
-<li><a href=#talks-and-presentations>Talks and Presentations</a></li>
-</ul>
-</nav>
-</aside>
 <h2 id=upgrade-to-hive-3>Upgrade to Hive 3+</h2>
 <p>Any transactional tables created by a Hive version prior to Hive 3 require Major Compaction to be run on every partition before upgrading to 3.0.  More precisely, any partition which has had any update/delete/merge statements executed on it since the last Major Compaction, has to undergo another Major Compaction.  No more update/delete/merge may happen on this partition until after Hive is upgraded to Hive 3.</p>
 <h2 id=what-is-acid-and-why-should-you-use-it>What is ACID and why should you use it?</h2>

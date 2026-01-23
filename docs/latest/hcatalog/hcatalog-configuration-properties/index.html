@@ -165,22 +165,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--hcatalog-configuration-properties>Apache Hive : HCatalog Configuration Properties</h1>
 <p>Apache HCatalog&rsquo;s behaviour can be modified through the use of a few configuration parameters specified in jobs submitted to it. This document details all the various knobs that users have available to them, and what they accomplish. </p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hcatalog-configuration-properties>Apache Hive : HCatalog Configuration Properties</a>
-<ul>
-<li><a href=#setup>Setup</a></li>
-<li><a href=#storage-directives>Storage Directives</a></li>
-<li><a href=#cache-behaviour-directives>Cache Behaviour Directives</a></li>
-<li><a href=#input-split-generation-behaviour>Input Split Generation Behaviour</a></li>
-<li><a href=#data-promotion-behaviour>Data Promotion Behaviour</a></li>
-<li><a href=#hcatrecordreader-error-tolerance-behaviour>HCatRecordReader Error Tolerance Behaviour</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=setup>Setup</h2>
 <p>The properties described in this page are meant to be job-level properties set on HCatalog through the jobConf passed into it. This means that this page is relevant for Pig users of <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-loadstore/>HCatLoader/HCatStorer</a>, or MapReduce users of <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-inputoutput/>HCatInputFormat/HCatOutputFormat</a>. For a MapReduce user of HCatalog, these must be present as key-values in the Configuration (JobConf/Job/JobContext) used to instantiate HCatOutputFormat or HCatInputFormat. For Pig users of HCatStorer, these parameters are set using the Pig &ldquo;set&rdquo; command before instantiating an HCatLoader/HCatStorer.</p>
 <h2 id=storage-directives>Storage Directives</h2>

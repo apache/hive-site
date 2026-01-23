@@ -176,33 +176,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--hive-udfs>Apache Hive : Hive UDFs</h1>
 <p>Hive User-Defined Functions (UDFs) are custom functions developed in Java and seamlessly integrated with Apache Hive. UDFs are routines designed to accept parameters, execute a specific action, and return the resulting value. The return value can either be a single scalar row or a complete result set, depending on the UDF&rsquo;s code and the implemented interface. UDFs represent a powerful capability that enhances classical SQL functionality by allowing the integration of custom code, providing Hive users with a versatile toolset. Apache Hive comes equipped with a variety of built-in UDFs that users can leverage. Similar to other SQL-based solutions, Hive also offers functionality to expand its already rich set of UDFs by incorporating custom ones as needed.</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hive-udfs>Apache Hive : Hive UDFs</a>
-<ul>
-<li><a href=#overview>Overview</a></li>
-<li><a href=#available-function>Available function</a>
-<ul>
-<li><a href=#built-in-aggregate-functions-udaf>Built-in Aggregate Functions (UDAF)</a></li>
-<li><a href=#built-in-table-generating-functions-udtf>Built-in Table-Generating Functions (UDTF)</a></li>
-<li><a href=#string-functions>String Functions</a></li>
-<li><a href=#date-functions>Date Functions</a></li>
-<li><a href=#mathematical-functions>Mathematical Functions</a></li>
-<li><a href=#collection-functions>Collection Functions</a></li>
-<li><a href=#type-conversion-functions>Type Conversion Functions</a></li>
-<li><a href=#conditional-functions>Conditional Functions</a></li>
-<li><a href=#data-masking-functions>Data Masking Functions</a></li>
-<li><a href=#miscellaneous-functions>Miscellaneous Functions</a></li>
-<li><a href=#geospatial>Geospatial</a></li>
-<li><a href=#creating-custom-udfs>Creating Custom UDF&rsquo;s</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=overview>Overview</h2>
 <p>Every UDF&rsquo;s evaluate method is one row at a time! This means if your UDFs has complex code, it could introduce performance issue in execution time.</p>
 <p>To gain an understanding of UDFs, let&rsquo;s begin with an example to comprehend their execution pattern.</p>

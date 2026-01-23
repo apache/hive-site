@@ -169,26 +169,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--column-level-top-k-statistics>Apache Hive : Column Level Top K Statistics</h1>
 <p>This document is an addition to <a href=https://hive.apache.org/development/desingdocs/statsdev>Statistics in Hive</a>. It describes the support of collecting column level top K values for Hive tables (see <a href=https://issues.apache.org/jira/browse/HIVE-3421>HIVE-3421</a>).</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--column-level-top-k-statistics>Apache Hive : Column Level Top K Statistics</a>
-<ul>
-<li><a href=#scope>Scope</a></li>
-<li><a href=#implementation>Implementation</a></li>
-<li><a href=#usage>Usage</a></li>
-<li><a href=#example>Example</a>
-<ul>
-<li><a href=#newly-created-tables>Newly Created Tables</a></li>
-<li><a href=#existing-tables>Existing Tables</a></li>
-</ul>
-</li>
-<li><a href=#current-status-jira>Current Status (JIRA)</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=scope>Scope</h2>
 <p>In addition to the partition statistics, column level top K values can also be estimated for Hive tables.<br>
 The name and top K values of the most skewed column is stored in the partition or non-partitioned table’s skewed information, if user did not specify <a href=https://hive.apache.org/development/desingdocs/listbucketing>skew</a>. This works for both newly created and existing tables.<br>

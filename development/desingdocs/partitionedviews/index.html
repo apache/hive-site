@@ -166,23 +166,6 @@ Last updated: December 12, 2024
 <div class=docs-article>
 <h1 id=apache-hive--partitionedviews>Apache Hive : PartitionedViews</h1>
 <p>This is a followup to <a href=https://hive.apache.org/development/desingdocs/viewdev/>ViewDev</a> for adding partition-awareness to views.</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--partitionedviews>Apache Hive : PartitionedViews</a></li>
-<li><a href=#use-cases>Use Cases</a>
-<ul>
-<li><a href=#approaches>Approaches</a></li>
-<li><a href=#syntax>Syntax</a></li>
-<li><a href=#metastore>Metastore</a></li>
-<li><a href=#strict-mode>Strict Mode</a></li>
-<li><a href=#view-definition-changes>View Definition Changes</a></li>
-</ul>
-</li>
-<li><a href=#hook-information>Hook Information</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=use-cases>Use Cases</h1>
 <ol>
 <li>An administrator wants to create a set of views as a table/column renaming layer on top of an existing set of base tables, without breaking any existing dependencies on those tables. To read-only users, the views should behave exactly the same as the underlying tables in every way. Among other things, this means users should be able to browse available partitions.</li>

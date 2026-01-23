@@ -173,7 +173,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Accumulo Integration Apache Hive : Accumulo Integration Overview Implementation Accumulo Configuration Usage Column Mapping Indexing Other options Examples Override the Accumulo table name Store a Hive map with binary serialization Register an external table Create an indexed table Acknowledgements Overview Apache Accumulo is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user.
+Apache Hive : Accumulo Integration Overview Apache Accumulo is a sorted, distributed key-value store based on the Google BigTable paper. The API methods that Accumulo provides are in terms of Keys and Values which present the highest level of flexibility in reading and writing data; however, higher-level query abstractions are typically an exercise left to the user. Leveraging Apache Hive as a SQL interface to Accumulo complements its existing high-throughput batch access and low-latency random lookups.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/accumulointegration/ class=docs-card-link>
@@ -191,7 +191,9 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : AuthDev This is the design document for the original Hive authorization mode. See Authorization for an overview of authorization modes, which include storage based authorization and SQL standards based authorization.
-Apache Hive : AuthDev 1. Privilege 1.1 Access Privilege 2. Hive Operations 3. Metadata 3.1 user, group, and roles 3.1.1 Role management 3.1.2 role metadata 3.1.3 hive role user membership table 3.
+1. Privilege 1.1 Access Privilege Admin privilege, DB privilege, Table level privilege, column level privilege
+1.1.1 Admin privileges are global privileges, and are used to perform administration.
+1.1.2 DB privileges are database specific, and apply to all objects inside that database.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/authdev/ class=docs-card-link>
@@ -208,8 +210,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : AvroSerDe Apache Hive : AvroSerDe Availability Overview – Working with Avro from Hive Requirements Avro to Hive type conversion Creating Avro-backed Hive tables Writing tables to Avro files Specifying the Avro schema for a table HBase Integration If something goes wrong FAQ Availability Earliest version AvroSerde is available
+Apache Hive : AvroSerDe Availability Earliest version AvroSerde is available
 The AvroSerde is available in Hive 0.9.1 and greater.
+Overview – Working with Avro from Hive The AvroSerde allows users to read or write Avro data as Hive tables. The AvroSerde&rsquo;s bullet points:
+Infers the schema of the Hive table from the Avro schema. Starting in Hive 0.14, the Avro schema can be inferred from the Hive table schema. Reads all Avro files within a table against a specified schema, taking advantage of Avro&rsquo;s backwards compatibility abilities Supports arbitrarily nested schemas.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/avroserde/ class=docs-card-link>
@@ -263,7 +267,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Cost-based optimization in Hive Apache Hive : Cost-based optimization in Hive Abstract 1. INTRODUCTION 2. RELATED WORK STATS PAPERS 3. BACKGROUND Hive Query optimization issues TEZ Join algorithms in Hive Multi way Join Common Join Map Join Bucket Map Join SMB Join Skew Join 4. Implementation details Phase 1 Phase 2 Phase 3 Configuration Proposed Cost Model Table Scan Common Join Map Join Bucket Map Join SMB Join Skew Join Distinct/Group By Union All Filter/Having Select Filter Selectivity Join Cardinality (without Histogram) Distinct Estimation 5.
+Apache Hive : Cost-based optimization in Hive Abstract Apache Hadoop is a framework for the distributed processing of large data sets using clusters of computers typically composed of commodity hardware. Over last few years Apache Hadoop has become the de facto platform for distributed data processing using commodity hardware. Apache Hive is a popular SQL interface for data processing using Apache Hadoop.
+ User submitted SQL query is converted by Hive to physical operator tree which is optimized and converted to Tez Jobs and is then executed on Hadoop cluster.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive/ class=docs-card-link>
@@ -280,7 +285,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : CSV Serde Apache Hive : CSV Serde Availability Background Usage Versions Availability Earliest version CSVSerde is available
+Apache Hive : CSV Serde Availability Earliest version CSVSerde is available
 The CSVSerde is available in Hive 0.14 and greater.
 Background The CSV SerDe is based on https://github.com/ogrodnek/csv-serde, and was added to the Hive distribution in HIVE-7777.
  Limitation
@@ -336,7 +341,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Druid Integration This page documents the work done for the integration between Druid and Hive introduced in Hive 2.2.0 (HIVE-14217). Initially it was compatible with Druid 0.9.1.1, the latest stable release of Druid to that date.
-Apache Hive : Druid Integration Objectives Preliminaries Druid Storage Handlers Usage Discovery and management of Druid datasources from Hive Create tables linked to existing Druid datasources Create Druid datasources from Hive Druid kafka ingestion from Hive INSERT, INSERT OVERWRITE and DROP statements Queries completely executed in Druid Queries across Druid and Hive Open Issues (JIRA) Objectives Our main goal is to be able to index data from Hive into Druid, and to be able to query Druid datasources from Hive.
+Objectives Our main goal is to be able to index data from Hive into Druid, and to be able to query Druid datasources from Hive. Completing this work will bring benefits to the Druid and Hive systems alike:
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/druid-integration/ class=docs-card-link>
@@ -428,7 +433,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Hive deprecated authorization mode / Legacy Mode This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to SQL Standard authorization in Hive 2.0 (HIVE-12429).
-Apache Hive : Hive deprecated authorization mode / Legacy Mode Disclaimer Prerequisites Users, Groups, and Roles Creating/Dropping/Using Roles Privileges Hive Operations and Required Privileges Disclaimer Hive authorization is not completely secure.
+Disclaimer Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hive-deprecated-authorization-mode/ class=docs-card-link>
@@ -482,7 +487,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Hive on Spark Apache Hive : Hive on Spark 1. Introduction 1.1 Motivation 1.2 Design Principle 1.3 Comparison with Shark and Spark SQL 1.4 Other Considerations 2. High-Level Functionality 2.1 A New Execution Engine 2.2 Spark Configuration 2.3 Miscellaneous Functionality 3. Hive-Level Design 3.1 Query Planning 3.2 Job Execution 3.3 Design Considerations Table as RDD SparkWork SparkTask Shuffle, Group, and Sort Join Number of Tasks Local MapReduce Tasks Semantic Analysis and Logical Optimizations Job Diagnostics Counters and Metrics Explain Statements Hive Variables Union Concurrency and Thread Safety Build Infrastructure Mini Spark Cluster Testing 3.
+Apache Hive : Hive on Spark 1. Introduction We propose modifying Hive to add Spark as a third execution backend(HIVE-7292), parallel to MapReduce and Tez.
+Spark is an open-source data analytics cluster computing framework that’s built outside of Hadoop&rsquo;s two-stage MapReduce paradigm but on top of HDFS. Spark’s primary abstraction is a distributed collection of items called a Resilient Distributed Dataset (RDD). RDDs can be created from Hadoop InputFormats (such as HDFS files) or by transforming other RDDs.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hive-on-spark/ class=docs-card-link>
@@ -499,7 +505,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : ACID Transactions Apache Hive : ACID Transactions Upgrade to Hive 3+ What is ACID and why should you use it? Limitations Streaming APIs Grammar Changes Basic Design Base and Delta Directories Compactor Transaction/Lock Manager Configuration New Configuration Parameters for Transactions Configuration Values to Set for INSERT, UPDATE, DELETE Configuration Values to Set for Compaction Compaction pooling Table Properties Talks and Presentations Upgrade to Hive 3+ Any transactional tables created by a Hive version prior to Hive 3 require Major Compaction to be run on every partition before upgrading to 3.
+Apache Hive : ACID Transactions Upgrade to Hive 3+ Any transactional tables created by a Hive version prior to Hive 3 require Major Compaction to be run on every partition before upgrading to 3.0. More precisely, any partition which has had any update/delete/merge statements executed on it since the last Major Compaction, has to undergo another Major Compaction. No more update/delete/merge may happen on this partition until after Hive is upgraded to Hive 3.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hive-transactions/ class=docs-card-link>
@@ -516,7 +522,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Hive Transactions (Hive ACID) Apache Hive : Hive Transactions (Hive ACID) What is ACID and why should you use it? Limitations Streaming APIs Grammar Changes Basic Design Base and Delta Directories Compactor Transaction/Lock Manager Configuration New Configuration Parameters for Transactions Configuration Values to Set for Hive ACID (INSERT, UPDATE, DELETE) Configuration Values to Set for Compaction Compaction pooling Table Properties Talks and Presentations What is ACID and why should you use it?
+Apache Hive : Hive Transactions (Hive ACID) What is ACID and why should you use it? ACID stands for four traits of database transactions: Atomicity (an operation either succeeds completely or fails, it does not leave partial data), Consistency (once an application performs an operation the results of that operation are visible to it in every subsequent operation), Isolation (an incomplete operation by one user does not cause unexpected side effects for other users), and Durability (once an operation is complete it will be preserved even in the face of machine or system failure).
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hive-transactions-acid/ class=docs-card-link>
@@ -574,7 +580,7 @@ Dec 12, 2024
 <div class=docs-card-summary>
 Apache Hive : HiveClient This page describes the different clients supported by Hive. The command line client currently only supports an embedded server. The JDBC and Thrift-Java clients support both embedded and standalone servers. Clients in other languages only support standalone servers.
 For details about the standalone server see Hive Server or HiveServer2.
-Apache Hive : HiveClient Command Line JDBC JDBC Client Sample Code Running the JDBC Sample Code JDBC Client Setup for a Secure Cluster Python PHP ODBC Thrift Thrift Java Client Thrift C++ Client Thrift Node Clients Thrift Ruby Client Command Line Operates in embedded mode only, that is, it needs to have access to the Hive libraries.
+Command Line Operates in embedded mode only, that is, it needs to have access to the Hive libraries.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hiveclient/ class=docs-card-link>
@@ -611,7 +617,9 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : HiveServer2 Clients This page describes the different clients supported by HiveServer2.
-Apache Hive : HiveServer2 Clients Version information Beeline – Command Line Shell Beeline Example Beeline Commands Beeline Properties Beeline Hive Commands Beeline Command Options Output Formats HiveServer2 Logging Cancelling the Query Background Query in Terminal Script JDBC Connection URLs Connection URL Format Connection URL for Remote or Embedded Mode Connection URL When HiveServer2 Is Running in HTTP Mode Connection URL When SSL Is Enabled in HiveServer2 Connection URL When ZooKeeper Service Discovery Is Enabled Named Connection URLs Reconnecting Using hive-site.
+Version information Introduced in Hive version 0.11. See HIVE-2935.
+Beeline – Command Line Shell HiveServer2 supports a command shell Beeline that works with HiveServer2. It&rsquo;s a JDBC client that is based on the SQLLine CLI (http://sqlline.sourceforge.net/). There’s detailed documentation of SQLLine which is applicable to Beeline as well.
+Replacing the Implementation of Hive CLI Using Beeline
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hiveserver2-clients/ class=docs-card-link>
@@ -628,7 +636,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : HiveServer2 Overview Apache Hive : HiveServer2 Overview Introduction HS2 Architecture Server Transport Protocol Processor Dependencies of HS2 JDBC Client Source Code Description Server Side Client Side Interaction between Client and Server Resources Introduction HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to HiveServer1 which has been deprecated. HS2 supports multi-client concurrency and authentication.
+Apache Hive : HiveServer2 Overview Introduction HiveServer2 (HS2) is a service that enables clients to execute queries against Hive. HiveServer2 is the successor to HiveServer1 which has been deprecated. HS2 supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
+HS2 is a single process running as a composite service, which includes the Thrift-based Hive service (TCP or HTTP) and a Jetty web server for web UI.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/hiveserver2-overview/ class=docs-card-link>
@@ -645,7 +654,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : JDBC Storage Handler Apache Hive : JDBC Storage Handler Syntax Table Properties Supported Data Type Column/Type Mapping Auto Shipping Securing Password Partitioning Computation Pushdown Using a Non-default Schema MariaDB MS SQL Oracle PostgreSQL Syntax JdbcStorageHandler supports reading from jdbc data source in Hive. Currently writing to a jdbc data source is not supported. To use JdbcStorageHandler, you need to create an external table using JdbcStorageHandler.
+Apache Hive : JDBC Storage Handler Syntax JdbcStorageHandler supports reading from jdbc data source in Hive. Currently writing to a jdbc data source is not supported. To use JdbcStorageHandler, you need to create an external table using JdbcStorageHandler. Here is a simple example:
+CREATE EXTERNAL TABLE student_jdbc ( name string, age int, gpa double ) STORED BY 'org.apache.hive.storage.jdbc.JdbcStorageHandler' TBLPROPERTIES ( "hive.sql.database.type" = "MYSQL", "hive.sql.jdbc.driver" = "com.mysql.jdbc.Driver", "hive.sql.jdbc.url" = "jdbc:mysql://localhost/sample", "hive.sql.dbcp.username" = "hive", "hive.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/jdbc-storage-handler/ class=docs-card-link>
@@ -662,7 +672,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Kudu Integration Apache Hive : Kudu Integration Overview Implementation Hive Configuration Table Creation Impala Tables Data Ingest Examples Overview Apache Kudu is a an Open Source data storage engine that makes fast analytics on fast and changing data easy. Implementation The initial implementation was added to Hive 4.0 in HIVE-12971 and is designed to work with Kudu 1.
+Apache Hive : Kudu Integration Overview Apache Kudu is a an Open Source data storage engine that makes fast analytics on fast and changing data easy. Implementation The initial implementation was added to Hive 4.0 in HIVE-12971 and is designed to work with Kudu 1.2+.
+There are two main components which make up the implementation: the KuduStorageHandler and the KuduPredicateHandler. The KuduStorageHandler is a Hive StorageHandler implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/kudu-integration/ class=docs-card-link>
@@ -718,7 +729,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Parquet Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later.
-Apache Hive : Parquet Introduction Native Parquet Support Hive 0.10, 0.11, and 0.12 Hive 0.13 HiveQL Syntax Hive 0.10 - 0.12 Hive 0.13 and later Versions and Limitations Hive 0.13.0 Hive 0.14.0 Hive 1.1.0 Hive 1.2.0 Resources Introduction Parquet (http://parquet.
+Introduction Parquet (http://parquet.io/) is an ecosystem wide columnar format for Hadoop. Read Dremel made simple with Parquet for a good introduction to the format while the Parquet project has an in-depth description of the format including motivations and diagrams. At the time of this writing Parquet supports the follow engines and data description languages:
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/parquet/ class=docs-card-link>
@@ -754,7 +765,9 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : Query ReExecution Query reexecution provides a facility to re-run the query multiple times in case of an unfortunate event happens. Introduced in Hive 3.0 (HIVE-17626)
-Apache Hive : Query ReExecution ReExecition strategies Overlay Reoptimize Operator Matching Configuration ReExecition strategies Overlay Enables to change the hive settings for all reexecutions which will be happening. It works by adding a configuration subtree as an overlay to the actual hive settings(reexec.
+ReExecition strategies Overlay Enables to change the hive settings for all reexecutions which will be happening. It works by adding a configuration subtree as an overlay to the actual hive settings(reexec.overlay.*)
+Example
+set zzz=1; set reexec.overlay.zzz=2; set hive.query.reexecution.enabled=true; set hive.query.reexecution.strategies=overlay; create table t(a int); insert into t values (1); select assert_true(${hiveconf:zzz} > a) from t group by a; Every hive setting which has a prefix of &ldquo;reexec.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/query-reexecution/ class=docs-card-link>
@@ -790,7 +803,7 @@ Dec 12, 2024
 </div>
 <div class=docs-card-summary>
 Apache Hive : RCFileCat $HIVE_HOME/bin/hive &ndash;rcfilecat is a shell utility which can be used to print data or metadata from RC files.
-Apache Hive : RCFileCat Data Metadata Data Prints out the rows stored in an RCFile, columns are tab separated and rows are newline separated.
+Data Prints out the rows stored in an RCFile, columns are tab separated and rows are newline separated.
 Usage:
 hive --rcfilecat [--start=start_offset] [--length=len] [--verbose] fileName --start=start_offset Start offset to begin reading in the file --length=len Length of data to read from the file --verbose Prints periodic stats about the data read, how many records, how many bytes, scan rate Metadata New in 0.
 </div>
@@ -826,7 +839,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Replacing the Implementation of Hive CLI Using Beeline Apache Hive : Replacing the Implementation of Hive CLI Using Beeline Why Replace the Existing Hive CLI? Hive CLI Functionality Support Hive CLI Options Support Examples Hive CLI Interactive Shell Commands Support Hive CLI Configuration Support Performance Impacts Why Replace the Existing Hive CLI? Hive CLI is a legacy tool which had two main use cases.
+Apache Hive : Replacing the Implementation of Hive CLI Using Beeline Why Replace the Existing Hive CLI? Hive CLI is a legacy tool which had two main use cases. The first is that it served as a thick client for SQL on Hadoop and the second is that it served as a command line tool for Hive Server (the original Hive server, now often referred to as &ldquo;HiveServer1&rdquo;). Hive Server has been deprecated and removed from the Hive code base as of Hive 1.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/replacing-the-implementation-of-hive-cli-using-beeline/ class=docs-card-link>
@@ -843,7 +856,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : SerDe Apache Hive : SerDe SerDe Overview Built-in and Custom SerDes Built-in SerDes Custom SerDes HiveQL for SerDes Input Processing Output Processing Additional Notes SerDe Overview SerDe is short for Serializer/Deserializer. Hive uses the SerDe interface for IO. The interface handles both serialization and deserialization and also interpreting the results of serialization as individual fields for processing.
+Apache Hive : SerDe SerDe Overview SerDe is short for Serializer/Deserializer. Hive uses the SerDe interface for IO. The interface handles both serialization and deserialization and also interpreting the results of serialization as individual fields for processing.
+A SerDe allows Hive to read in data from a table, and write it back out to HDFS in any custom format. Anyone can write their own SerDe for their own data formats.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/serde/ class=docs-card-link>
@@ -896,7 +910,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Streaming Data Ingest Apache Hive : Streaming Data Ingest Hive 3 Streaming API Hive HCatalog Streaming API Streaming Mutation API Streaming Requirements Limitations API Usage Transaction and Connection Management HiveEndPoint StreamingConnection TransactionBatch Notes about the HiveConf Object I/O – Writing Data RecordWriter DelimitedInputWriter StrictJsonWriter StrictRegexWriter AbstractRecordWriter Error Handling Example – Non-secure Mode Example – Secure Streaming Knowledge Base Hive 3 Streaming API Hive 3 Streaming API Documentation - new API available in Hive 3
+Apache Hive : Streaming Data Ingest Hive 3 Streaming API Hive 3 Streaming API Documentation - new API available in Hive 3
+Hive HCatalog Streaming API Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. Insertion of new data into an existing partition is not permitted. Hive Streaming API allows data to be pumped continuously into Hive.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/streaming-data-ingest/ class=docs-card-link>
@@ -913,7 +928,7 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Streaming Data Ingest V2 Starting in release Hive 3.0.0, Streaming Data Ingest is deprecated and is replaced by newer V2 API (HIVE-19205).  Apache Hive : Streaming Data Ingest V2 Hive Streaming API Streaming Mutation API Deprecation and Removal Streaming Requirements Limitations API Usage Transaction and Connection Management HiveStreamingConnection Notes about the HiveConf Object I/O – Writing Data RecordWriter StrictDelimitedInputWriter StrictJsonWriter StrictRegexWriter AbstractRecordWriter Error Handling Example Hive Streaming API Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition.
+Apache Hive : Streaming Data Ingest V2 Starting in release Hive 3.0.0, Streaming Data Ingest is deprecated and is replaced by newer V2 API (HIVE-19205). Hive Streaming API Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/streaming-data-ingest-v2/ class=docs-card-link>
@@ -930,9 +945,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : TeradataBinarySerde Apache Hive : TeradataBinarySerde Availability Overview How to export How to import Usage Availability Earliest version CSVSerde is available
+Apache Hive : TeradataBinarySerde Availability Earliest version CSVSerde is available
 The TeradataBinarySerDe is available in Hive 2.4 or greater.
 Overview Teradata can use TPT(Teradata Parallel Transporter) or BTEQ(Basic Teradata Query) to export and import data files compressed by gzip in very high speed. However such binary files are encoded in Teradata’s proprietary format and can’t be directly consumed by Hive without a customized SerDe.
+The TeradataBinarySerde enables users to read or write Teradata binary data as Hive Tables:
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/teradatabinaryserde/ class=docs-card-link>
@@ -968,7 +984,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Tutorial Apache Hive : Tutorial Concepts What Is Hive What Hive Is NOT Getting Started Data Units Type System Primitive Types Complex Types Timestamp Built In Operators and Functions Built In Operators Built In Functions Language Capabilities Usage and Examples Creating, Showing, Altering, and Dropping Tables Creating Tables Browsing Tables and Partitions Altering Tables Dropping Tables and Partitions Loading Data HIVE-5999 HIVE-11996 Querying and Inserting Data Simple Query Partition Based Query Joins Aggregations Multi Table/File Inserts Dynamic-Partition Insert Inserting into Local Files Sampling Union All Array Operations Map (Associative Arrays) Operations Custom Map/Reduce Scripts Co-Groups Concepts What Is Hive Hive is a data warehousing infrastructure based on Apache Hadoop.
+Apache Hive : Tutorial Concepts What Is Hive Hive is a data warehousing infrastructure based on Apache Hadoop. Hadoop provides massive scale out and fault tolerance capabilities for data storage and processing on commodity hardware.
+Hive is designed to enable easy data summarization, ad-hoc querying and analysis of large volumes of data. It provides SQL which enables users to do ad-hoc querying, summarization and data analysis easily. At the same time, Hive&rsquo;s SQL gives users multiple places to integrate their own functionality to do custom analysis, such as User Defined Functions (UDFs).
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/tutorial/ class=docs-card-link>
@@ -1007,7 +1024,10 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : User FAQ Apache Hive : User FAQ General I see errors like: Server access Error: Connection timed out url=http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz How to change the warehouse.dir location for older tables? When running a JOIN query, I see out-of-memory errors. I am using MySQL as metastore and I see errors: &ldquo;com.mysql.jdbc.exceptions.jdbc4.!CommunicationsException: Communications link failure&rdquo; Does Hive support Unicode? Hive SQL Are Hive SQL identifiers (e.
+Apache Hive : User FAQ General I see errors like: Server access Error: Connection timed out url=http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz Run the following commands:
+cd ~/.ant/cache/hadoop/core/sources
+wget &lt;http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz>
+How to change the warehouse.dir location for older tables? To change the base location of the Hive tables, edit the hive.metastore.warehouse.dir param. This will not affect the older tables. Metadata needs to be changed in the database (MySQL or Derby). The location of Hive tables is in table SDS and column LOCATION.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/user-faq/ class=docs-card-link>
@@ -1024,7 +1044,8 @@ Dec 12, 2024
 </span>
 </div>
 <div class=docs-card-summary>
-Apache Hive : Using TiDB as the Hive Metastore database Apache Hive : Using TiDB as the Hive Metastore database Why use TiDB in Hive as the Metastore database? How to create a Hive cluster with TiDB Components required Install a Hive cluster Step 1: Deploy a TiDB cluster Step 2: Configure Hive Step 3: Initialize metadata Step 4: Launch Metastore and test Conclusion FAQ Why use TiDB in Hive as the Metastore database?
+Apache Hive : Using TiDB as the Hive Metastore database Why use TiDB in Hive as the Metastore database? TiDB is a distributed SQL database built by PingCAP and its open-source community. It is MySQL compatible and features horizontal scalability, strong consistency, and high availability. It&rsquo;s a one-stop solution for both Online Transactional Processing (OLTP) and Online Analytical Processing (OLAP) workloads.
+In scenarios with enormous amounts of data, due to TiDB&rsquo;s distributed architecture, query performance is not limited to the capability of a single machine.
 </div>
 <div class=docs-card-footer>
 <a href=https://hive.apache.org/docs/latest/user/using-tidb-as-the-hive-metastore-database/ class=docs-card-link>

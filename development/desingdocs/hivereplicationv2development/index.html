@@ -199,55 +199,6 @@ Last updated: December 12, 2024
 <h1 id=apache-hive--hivereplicationv2development>Apache Hive : HiveReplicationv2Development</h1>
 <p>This document describes the second version of Hive Replication. Please refer to the <a href=https://hive.apache.org/development/desingdocs/hivereplicationdevelopment/>first version of Hive Replication</a> for details on prior implementation.</p>
 <p>This work is under development and interfaces are subject to change. This has been designed for use in conjunction with external orchestration tools, which would be responsible for co-ordinating the right sequence of commands between source and target clusters, fault tolerance/failure handling, and also providing correct configuration options that are necessary to be able to do cross cluster replication.</p>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--hivereplicationv2development>Apache Hive : HiveReplicationv2Development</a></li>
-<li><a href=#version-information>Version information</a></li>
-<li><a href=#issues-with-the-current-replication-system>Issues with the Current Replication System</a>
-<ul>
-<li><a href=#slowness>Slowness</a></li>
-<li><a href=#requiring-staging-directories-with-full-copies-4xcopy-problem>Requiring Staging Directories with Full Copies (4xcopy Problem)</a></li>
-<li><a href=#unsuitable-for-load-balancing-use-cases>Unsuitable for Load-Balancing Use Cases</a></li>
-<li><a href=#incompatibility-with-acid>Incompatibility with ACID</a></li>
-<li><a href=#dependency-on-external-tools-to-do-a-lot>Dependency on External Tools To Do a Lot</a></li>
-<li><a href=#support-for-a-hub-spoke-model>Support for a Hub-Spoke Model</a></li>
-</ul>
-</li>
-<li><a href=#rubberbanding>Rubberbanding</a></li>
-<li><a href=#change-management>Change Management</a>
-<ul>
-<li><a href=#_files>_files</a></li>
-<li><a href=#solution-for-rubber-banding>Solution for Rubber Banding</a></li>
-<li><a href=#_metadata>_metadata</a></li>
-</ul>
-</li>
-<li><a href=#a-need-for-bootstrap>A Need for Bootstrap</a></li>
-<li><a href=#new-commands>New Commands</a>
-<ul>
-<li><a href=#repl-dump>REPL DUMP</a>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a href=#repl-load>REPL LOAD</a>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a href=#repl-status>REPL STATUS</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href=#bootstrap-revisited>Bootstrap, Revisited</a></li>
-<li><a href=#metastore-notification-api-security>Metastore notification API security</a></li>
-<li><a href=#setupconfiguration>Setup/Configuration</a></li>
-</ul>
-</nav>
-</aside>
 <h1 id=version-information>Version information</h1>
 <p>As of Hive 3.0.0 release : only managed table replication where Hive user owns the table contents is supported. External tables, ACID tables, statistics and constraint replication are not supported.</p>
 <h1 id=issues-with-the-current-replication-system>Issues with the Current Replication System</h1>

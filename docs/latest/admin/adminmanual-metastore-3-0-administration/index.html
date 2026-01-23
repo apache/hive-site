@@ -185,43 +185,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--adminmanual-metastore-30-administration>Apache Hive : AdminManual Metastore 3.0 Administration</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--adminmanual-metastore-30-administration>Apache Hive : AdminManual Metastore 3.0 Administration</a>
-<ul>
-<li><a href=#version-note>Version Note</a></li>
-<li><a href=#introduction>Introduction</a>
-<ul>
-<li><a href=#changes-from-hive-2-to-hive-3>Changes From Hive 2 to Hive 3</a></li>
-</ul>
-</li>
-<li><a href=#general-configuration>General Configuration</a></li>
-<li><a href=#rdbms>RDBMS</a>
-<ul>
-<li><a href=#option-1-embedding-derby>Option 1: Embedding Derby</a></li>
-<li><a href=#option-2-external-rdbms>Option 2: External RDBMS</a></li>
-<li><a href=#installing-and-upgrading-the-metastore-schema>Installing and Upgrading the Metastore Schema</a></li>
-</ul>
-</li>
-<li><a href=#running-the-metastore>Running the Metastore</a>
-<ul>
-<li><a href=#embedded-mode>Embedded Mode</a></li>
-<li><a href=#metastore-server>Metastore Server</a></li>
-</ul>
-</li>
-<li><a href=#running-the-metastore-without-hive>Running the Metastore Without Hive</a></li>
-<li><a href=#performance-optimizations>Performance Optimizations</a>
-<ul>
-<li><a href=#cachedstore>CachedStore</a></li>
-</ul>
-</li>
-<li><a href=#less-commonly-changed-configuration-parameters>Less Commonly Changed Configuration Parameters</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h2 id=version-note>Version Note</h2>
 <p><strong>This document applies only to the Metastore in Hive 3.0 and later releases.</strong>  For Hive 0, 1, and 2 releases please see the <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Metastore Administration</a> document.</p>
 <h2 id=introduction>Introduction</h2>

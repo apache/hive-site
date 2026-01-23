@@ -174,32 +174,6 @@ Last updated: December 12, 2024
 </div>
 <div class=docs-article>
 <h1 id=apache-hive--jdbc-storage-handler>Apache Hive : JDBC Storage Handler</h1>
-<aside class=table-of-contents>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--jdbc-storage-handler>Apache Hive : JDBC Storage Handler</a></li>
-<li><a href=#syntax>Syntax</a>
-<ul>
-<li><a href=#table-properties>Table Properties</a></li>
-<li><a href=#supported-data-type>Supported Data Type</a></li>
-<li><a href=#columntype-mapping>Column/Type Mapping</a></li>
-</ul>
-</li>
-<li><a href=#auto-shipping>Auto Shipping</a></li>
-<li><a href=#securing-password>Securing Password</a></li>
-<li><a href=#partitioning>Partitioning</a></li>
-<li><a href=#computation-pushdown>Computation Pushdown</a></li>
-<li><a href=#using-a-non-default-schema>Using a Non-default Schema</a>
-<ul>
-<li><a href=#mariadb>MariaDB</a></li>
-<li><a href=#ms-sql>MS SQL</a></li>
-<li><a href=#oracle>Oracle</a></li>
-<li><a href=#postgresql>PostgreSQL</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</aside>
 <h1 id=syntax>Syntax</h1>
 <p>JdbcStorageHandler supports reading from jdbc data source in Hive. Currently writing to a jdbc data source is not supported. To use JdbcStorageHandler, you need to create an external table using JdbcStorageHandler. Here is a simple example:</p>
 <pre tabindex=0><code>CREATE EXTERNAL TABLE student_jdbc
