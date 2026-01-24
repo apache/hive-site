@@ -292,4 +292,4 @@ exit
 ```
   
 ### Quick Start with REST Catalog Integration
-Checkout the quickstart of REST Catalog Integration with Docker here: [REST Catalog Integration](https://hive.apache.org/docs/latest/quickstart-rest-catalog)
+Checkout the quickstart of REST Catalog Integration with Docker here: [REST Catalog Integration](/docs/latest/quickstart-rest-catalog)

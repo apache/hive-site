@@ -12,7 +12,7 @@ date: 2024-12-12
 * [attachments/27362054/61337098-pptx](/attachments/27362054/61337098.pptx)
 * [attachments/27362054/61337312-ppsx](/attachments/27362054/61337312.ppsx)
 * [attachments/27362054/61337398-ppsx](/attachments/27362054/61337398.ppsx)
-* [Hive on Spark: now and future - Xuefu Zhang](https://hive.apache.org/attachments/27362054/61337443.pdf)
+* [Hive on Spark: now and future - Xuefu Zhang](/attachments/27362054/61337443.pdf)
 
 ## November 2015 Hive Contributor Meetup
 

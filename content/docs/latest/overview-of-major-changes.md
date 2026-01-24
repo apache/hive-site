@@ -31,8 +31,8 @@ date: 2024-12-12
 
 * ### **Compaction**
 
-	+ [Rebalance compaction](https://hive.apache.org/docs/latest/user/rebalance-compaction) (Hive ACID)
-	+ Compaction requests prioritization ([compaction pooling](https://hive.apache.org/docs/latest/language/compaction-pooling))
+	+ [Rebalance compaction](/docs/latest/user/rebalance-compaction) (Hive ACID)
+	+ Compaction requests prioritization ([compaction pooling](/docs/latest/language/compaction-pooling))
 	+ Iceberg compaction (Major)
 
   
@@ -51,7 +51,7 @@ date: 2024-12-12
 
 * ### HiveServer2
 
-	+ Support [SAML 2.0](https://hive.apache.org/development/desingdocs/support-saml-2-0-authentication-mode)/JWT authentication mode
+	+ Support [SAML 2.0](/development/desingdocs/support-saml-2-0-authentication-mode)/JWT authentication mode
 	+ Support both Kerberos and LDAP auth methods in parallel
 	+ Graceful shutdown
 	+ Easy access to the operation log through web UI

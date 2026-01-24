@@ -9,7 +9,7 @@ This document describes the Hive user configuration properties (sometimes called
 
 The canonical list of configuration properties is managed in the `HiveConf` Java class, so refer to the `HiveConf.java` file for a complete list of configuration properties available in your Hive release.
 
-For information about how to use these configuration properties, see [Configuring Hive]({{< ref "#configuring-hive" >}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{< ref "#configuration-variables" >}}) section. [Hive Metastore Administration](https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration) describes additional configuration properties for the metastore.
+For information about how to use these configuration properties, see [Configuring Hive]({{< ref "#configuring-hive" >}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{< ref "#configuration-variables" >}}) section. [Hive Metastore Administration](/docs/latest/admin/adminmanual-metastore-administration) describes additional configuration properties for the metastore.
 
 Version information
 
@@ -1688,7 +1688,7 @@ Pre-3.1.2 Hive implementation of Parquet stores timestamps in UTC on-file, this 
 
 #### Avro
 
-See [AvroSerDe](https://hive.apache.org/docs/latest/user/avroserde) for details.  
+See [AvroSerDe](/docs/latest/user/avroserde) for details.  
 
 ##### hive.avro.timestamp.skip.conversion
 
@@ -3132,10 +3132,10 @@ To configure Hive execution to Spark, set the following property to "`spark`":
 
 Besides the configuration properties listed in this section, some properties in other sections are also related to Spark:
 
-* [hive.exec.reducers.max](https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersmax)
-* [hive.exec.reducers.bytes.per.reducer](https://hive.apache.org/docs/latest/user/configuration-properties#hiveexecreducersbytesperreducer)
-* [hive.mapjoin.optimized.hashtable](https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtable)
-* [hive.mapjoin.optimized.hashtable.wbsize](https://hive.apache.org/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtablewbsize)
+* [hive.exec.reducers.max](/docs/latest/user/configuration-properties#hiveexecreducersmax)
+* [hive.exec.reducers.bytes.per.reducer](/docs/latest/user/configuration-properties#hiveexecreducersbytesperreducer)
+* [hive.mapjoin.optimized.hashtable](/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtable)
+* [hive.mapjoin.optimized.hashtable.wbsize](/docs/latest/user/configuration-properties#hivemapjoinoptimizedhashtablewbsize)
 
 hive.spark.job.monitor.timeout
 

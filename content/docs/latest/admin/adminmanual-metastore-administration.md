@@ -27,9 +27,9 @@ Configuration options for **metastore server**:
 
 #### Basic Configuration Parameters
 
-The relevant configuration parameters are shown here. (Non-metastore parameters are described in [Configuring Hive](https://hive.apache.org/docs/latest/admin/adminmanual-configuration). Also see the Language Manual's [Hive Configuration Properties](https://hive.apache.org/docs/latest/user/configuration-properties), including [Metastore](https://hive.apache.org/docs/latest/user/configuration-properties#metastore) and [Hive Metastore Security](https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security).)
+The relevant configuration parameters are shown here. (Non-metastore parameters are described in [Configuring Hive](/docs/latest/admin/adminmanual-configuration). Also see the Language Manual's [Hive Configuration Properties](/docs/latest/user/configuration-properties), including [Metastore](/docs/latest/user/configuration-properties#metastore) and [Hive Metastore Security](/docs/latest/user/configuration-properties#hive-metastore-security).)
 
-Also see hivemetastore-site.xml documentation under [Configuring Hive](https://hive.apache.org/docs/latest/admin/adminmanual-configuration).
+Also see hivemetastore-site.xml documentation under [Configuring Hive](/docs/latest/admin/adminmanual-configuration).
 
 | Configuration Parameter | Description |
 | --- | --- |
@@ -43,7 +43,7 @@ The Hive metastore is stateless and thus there can be multiple instances to achi
 
 #### Additional Configuration Parameters
 
-The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the `HiveConf` Java class for current Hive configuration options, and see the [Metastore](https://hive.apache.org/docs/latest/user/configuration-properties#metastore) and [Hive Metastore Security](https://hive.apache.org/docs/latest/user/configuration-properties#hive-metastore-security) sections of the Language Manual's [Hive Configuration Properties](https://hive.apache.org/docs/latest/user/configuration-properties) for user-friendly descriptions of the metastore parameters.
+The following metastore configuration parameters were carried over from old documentation without a guarantee that they all still exist. See the `HiveConf` Java class for current Hive configuration options, and see the [Metastore](/docs/latest/user/configuration-properties#metastore) and [Hive Metastore Security](/docs/latest/user/configuration-properties#hive-metastore-security) sections of the Language Manual's [Hive Configuration Properties](/docs/latest/user/configuration-properties) for user-friendly descriptions of the metastore parameters.
 
 | Configuration Parameter | Description | Default Value |
 | --- | --- | --- |
@@ -91,7 +91,7 @@ Derby is the default database for the embedded metastore.
 | javax.jdo.option.ConnectionDriverName | `org.apache.derby.jdbc.EmbeddedDriver` | Derby embeded JDBC driver class. |
 | hive.metastore.warehouse.dir | `file://${user.dir}/../build/ql/test/data/warehouse` | Unit test data goes in here on your local filesystem. |
 
-If you want to run Derby as a network server so the metastore can be accessed from multiple nodes, see [Hive Using Derby in Server Mode](https://hive.apache.org/docs/latest/admin/hivederbyservermode).
+If you want to run Derby as a network server so the metastore can be accessed from multiple nodes, see [Hive Using Derby in Server Mode](/docs/latest/admin/hivederbyservermode).
 
 ### Remote Metastore Database
 
