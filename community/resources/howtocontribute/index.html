@@ -172,6 +172,7 @@ Last updated: December 12, 2024
 </ul>
 </li>
 <li><a href=#generating-thrift-code>Generating Thrift Code</a></li>
+<li><a href=#stay-involved>Stay Involved</a></li>
 <li><a href=#see-also>See Also</a></li>
 </ul>
 </li>
@@ -221,20 +222,17 @@ Last updated: December 12, 2024
 <li>Line length limit is 120 chars, instead of 80 chars.</li>
 </ul>
 </li>
-</ul>
-<p>An Eclipse <a href=https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml>formatter</a> is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.</p>
-<ul>
-<li>
+<li>An Eclipse <a href=https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml>formatter</a> is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.
 <ul>
 <li>For Eclipse:
-- Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
-- In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
 <ul>
+<li>Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.</li>
+<li>In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.</li>
+</ul>
+</li>
 <li>For Intellij:
 <ul>
 <li>Go to Settings -> Editor -> Code Style -> Java -> Scheme; Click manage; Import eclipse-styles.xml; Apply.</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -275,10 +273,9 @@ Last updated: December 12, 2024
 <h4 id=branch-1>branch-1</h4>
 <p>In branch-1 both Hadoop 1.x and 2.x are supported. The Hive build downloads a number of different Hadoop versions via Maven in order to compile &ldquo;shims&rdquo; which allow for compatibility with these Hadoop versions. However, the rest of Hive is only built and tested against a single Hadoop version.</p>
 <p>The Maven build has two profiles, <code>hadoop-1</code> for Hadoop 1.x and <code>hadoop-2</code> for Hadoop 2.x. When building, you must specify which profile you wish to use via Maven&rsquo;s <code>-P</code> command line option (see <a href=#how-to-build-all-source>How to build all source</a>).</p>
+<p>On this page we assume you are building from the master branch and do not include the profile in the example Maven commands. If you are building on branch-1 you will need to select the appropriate profile for the version of Hadoop you are building against.</p>
 <h4 id=branch-2>branch-2</h4>
 <p>Hadoop 1.x is no longer supported in Hive&rsquo;s master branch. There is no need to specify a profile for most Maven commands, as Hadoop 2.x will always be chosen.</p>
-<p>Hadoop Version Information</p>
-<p>On this page we assume you are building from the master branch and do not include the profile in the example Maven commands. If you are building on branch-1 you will need to select the appropriate profile for the version of Hadoop you are building against.</p>
 <h3 id=unit-tests>Unit Tests</h3>
 <p>When submitting a patch it&rsquo;s highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by <a href=https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity>hive-precommit on Jenkins</a>. <a href=https://hive.apache.org/community/resources/hivedeveloperfaq/>Hive Developer FAQ</a> describes how to execute a specific set of tests.</p>
 <pre tabindex=0><code>mvn clean install -DskipTests
@@ -361,8 +358,8 @@ git push
 <p>When in doubt about how to fill in the Create Issue form, take a look at what was done for other issues. Here are several Hive JIRA issues that you can use as examples:</p>
 <ul>
 <li>bug:  <a href=https://issues.apache.org/jira/browse/HIVE-8485>HIVE-8485</a>, <a href=https://issues.apache.org/jira/browse/HIVE-8600>HIVE-8600</a>, <a href=https://issues.apache.org/jira/browse/HIVE-9438>HIVE-9438</a>, <a href=https://issues.apache.org/jira/browse/HIVE-11174>HIVE-11174</a></li>
-<li>new feature:  <a href=https://issues.apache.org/jira/browse/HIVE-6806>HIVE-6806,</a><a href=https://issues.apache.org/jira/browse/HIVE-7088>HIVE-7088</a><a href=https://issues.apache.org/jira/browse/HIVE-6806>,</a><a href=https://issues.apache.org/jira/browse/HIVE-11103>HIVE-11103</a></li>
-<li>improvement:  <a href=https://issues.apache.org/jira/browse/HIVE-7685>HIVE-7685</a>,<a href=https://issues.apache.org/jira/browse/HIVE-9858>HIVE-9858</a><a href=https://issues.apache.org/jira/browse/HIVE-7685>,</a> <a href=https://issues.apache.org/jira/browse/HIVE-10165>HIVE-10165</a></li>
+<li>new feature:  <a href=https://issues.apache.org/jira/browse/HIVE-6806>HIVE-6806</a>, <a href=https://issues.apache.org/jira/browse/HIVE-7088>HIVE-7088</a>, <a href=https://issues.apache.org/jira/browse/HIVE-11103>HIVE-11103</a></li>
+<li>improvement:  <a href=https://issues.apache.org/jira/browse/HIVE-7685>HIVE-7685</a>, <a href=https://issues.apache.org/jira/browse/HIVE-9858>HIVE-9858</a>, <a href=https://issues.apache.org/jira/browse/HIVE-10165>HIVE-10165</a></li>
 <li>test:  <a href=https://issues.apache.org/jira/browse/HIVE-8601>HIVE-8601</a>, <a href=https://issues.apache.org/jira/browse/HIVE-10637>HIVE-10637</a></li>
 <li>wish:  <a href=https://issues.apache.org/jira/browse/HIVE-4563>HIVE-4563</a>, <a href=https://issues.apache.org/jira/browse/HIVE-10427>HIVE-10427</a></li>
 <li>task:  <a href=https://issues.apache.org/jira/browse/HIVE-7111>HIVE-7111</a>, <a href=https://issues.apache.org/jira/browse/HIVE-7789>HIVE-7789</a></li>
@@ -385,8 +382,10 @@ brew extract --version='0.14.1' thrift $USER/local-tap
 brew install thrift@0.14.1
 mkdir -p /usr/local/share/fb303/if
 cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
-</code></pre><p>``
-2. For Mac, building from sources:</p>
+</code></pre><p>``</p>
+<ol start=2>
+<li>For Mac, building from sources:</li>
+</ol>
 <pre tabindex=0><code>wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
 
 tar xzf thrift-0.14.1.tar.gz
@@ -414,8 +413,10 @@ mkdir -p /usr/local/share/fb303/if
 cp path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
 # or alternatively the following command
 curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
-</code></pre><p>``
-3. For Linux:</p>
+</code></pre><p>``</p>
+<ol start=3>
+<li>For Linux:</li>
+</ol>
 <pre tabindex=0><code>cd /path/to/thrift-0.14.1
 /configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
 sudo make
@@ -431,22 +432,16 @@ sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb
 <p>Now you can run the Maven &lsquo;thriftif&rsquo; profile to generate the Thrift code:</p>
 <ol>
 <li><code>cd /path/to/hive/</code></li>
-<li>
-<pre tabindex=0><code></code></pre></li>
+<li><code>mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local</code></li>
 </ol>
-<p>mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local</p>
-<pre tabindex=0><code></code></pre></li>
+</li>
 <li>
 <p>Verify that the code generation was a no-op, which should be the case if you have the correct Thrift version and everyone has been following these instructions. You may use <code>git status</code> for the same. If you can&rsquo;t figure out what is going wrong, ask for help from a committer.</p>
 </li>
 <li>
 <p>Now make your changes to <code>hive_metastore.thrift</code>, and then run the compiler again, from /path/to/hive/&lt;hive_metastore.thrift&rsquo;s module>:</p>
-<ol>
-<li>
-<pre tabindex=0><code></code></pre></li>
-</ol>
-<p>mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local</p>
-<pre tabindex=0><code></code></pre></li>
+<p><code>mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local</code></p>
+</li>
 <li>
 <p>Now use <code>git status and git diff</code> to verify that the regenerated code corresponds only to the changes you made to <code>hive_metastore.thrift</code>. You may also need <code>git add</code> if new files were generated (and or <code>git rm</code> if some files are now obsoleted).</p>
 </li>
@@ -460,7 +455,7 @@ sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb
 <p>Verify that Hive is still working correctly with both embedded and remote metastore configurations.</p>
 </li>
 </ol>
-<p>Stay Involved</p>
+<h2 id=stay-involved>Stay Involved</h2>
 <p>Contributors should join the <a href=https://hive.apache.org/community/mailinglists/>Hive mailing lists</a>. In particular the dev list (to join discussions of changes) and the user list (to help others).</p>
 <h2 id=see-also>See Also</h2>
 <ul>
@@ -517,6 +512,7 @@ sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb
 </ul>
 </li>
 <li><a href=#generating-thrift-code>Generating Thrift Code</a></li>
+<li><a href=#stay-involved>Stay Involved</a></li>
 <li><a href=#see-also>See Also</a></li>
 </ul>
 </li>
