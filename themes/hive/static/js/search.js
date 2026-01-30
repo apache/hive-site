@@ -3,10 +3,13 @@ var fuseOptions = {
     shouldSort: true,
     includeMatches: true,
     includeScore: true,
-    tokenize: true,
+    threshold: 0.2,  // Stricter matching - lower value = more exact matches required
     location: 0,
-    distance: 100,
+    distance: 1000,  // Increased from 100 to search entire content
     minMatchCharLength: 1,
+    ignoreLocation: true,  // Search entire string, not just near location
+    isCaseSensitive: false,  // Case-insensitive search
+    findAllMatches: true,  // Find all matching items
     keys: [
         {name: "title", weight: 0.45},
         {name: "contents", weight: 0.4},
@@ -71,22 +74,33 @@ function populateResults(results) {
         var snippetHighlights = [];
 
         snippetHighlights.push(searchQuery);
-        snippet = contents.substring(0, summaryInclude * 2) + '&hellip;';
-
-        //replace values
-        var tags = ""
-        if (value.item.tags) {
-            value.item.tags.forEach(function (element) {
-                tags = tags + "<a href='/tags/" + element + "'>" + "#" + element + "</a> "
-            });
+        
+        // Find the best matching snippet from contents
+        var matchIndex = -1;
+        if (value.matches) {
+            // Find matches in contents field
+            var contentMatches = value.matches.filter(function(m) { return m.key === 'contents'; });
+            if (contentMatches.length > 0 && contentMatches[0].indices && contentMatches[0].indices.length > 0) {
+                matchIndex = contentMatches[0].indices[0][0];
+            }
+        }
+        
+        // Generate snippet around the match
+        if (matchIndex >= 0) {
+            var start = Math.max(0, matchIndex - summaryInclude);
+            var end = Math.min(contents.length, matchIndex + summaryInclude);
+            snippet = (start > 0 ? '&hellip; ' : '') + 
+                     contents.substring(start, end) + 
+                     (end < contents.length ? ' &hellip;' : '');
+        } else {
+            snippet = contents.substring(0, summaryInclude * 2) + '&hellip;';
         }
 
+        //replace values
         var output = render(templateDefinition, {
             key: key,
             title: value.item.title,
             link: value.item.permalink,
-            tags: tags,
-            categories: value.item.categories,
             snippet: snippet
         });
         searchResults.innerHTML += output;
