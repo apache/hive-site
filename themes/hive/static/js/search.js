@@ -73,27 +73,85 @@ function populateResults(results) {
         var snippet = "";
         var snippetHighlights = [];
 
+        // Add both the full query and individual terms for highlighting
         snippetHighlights.push(searchQuery);
         
-        // Find the best matching snippet from contents
+        // Find the best matching snippet - search for where query terms actually appear
         var matchIndex = -1;
-        if (value.matches) {
-            // Find matches in contents field
-            var contentMatches = value.matches.filter(function(m) { return m.key === 'contents'; });
-            if (contentMatches.length > 0 && contentMatches[0].indices && contentMatches[0].indices.length > 0) {
-                matchIndex = contentMatches[0].indices[0][0];
+        var bestSnippet = "";
+        
+        // Split search query into words and find where they appear together
+        var searchTerms = searchQuery.toLowerCase().split(/\s+/).filter(function(term) { 
+            return term.length > 2; // Ignore short words
+        });
+        
+        // Add individual terms to highlights
+        searchTerms.forEach(function(term) {
+            snippetHighlights.push(term);
+        });
+        
+        if (searchTerms.length > 0) {
+            var contentsLower = contents.toLowerCase();
+            var bestScore = -1;
+            var bestPosition = -1;
+            
+            // Find the position where search terms are closest together
+            for (var i = 0; i < contents.length - 100; i += 50) {
+                var windowEnd = Math.min(i + 400, contents.length);
+                var window = contentsLower.substring(i, windowEnd);
+                var score = 0;
+                var foundTerms = 0;
+                
+                searchTerms.forEach(function(term) {
+                    var termIndex = window.indexOf(term);
+                    if (termIndex >= 0) {
+                        foundTerms++;
+                        // Prefer matches closer to the start of the window
+                        score += (200 - termIndex);
+                    }
+                });
+                
+                // Boost score if multiple terms found in this window
+                score *= foundTerms;
+                
+                if (score > bestScore && foundTerms > 0) {
+                    bestScore = score;
+                    bestPosition = i;
+                }
+            }
+            
+            if (bestPosition >= 0) {
+                matchIndex = bestPosition;
+                
+                // Extract snippet centered on this position
+                var start = Math.max(0, matchIndex - summaryInclude / 2);
+                var end = Math.min(contents.length, matchIndex + summaryInclude * 1.5);
+                
+                // Try to find sentence boundaries
+                var sentenceStart = contents.lastIndexOf('. ', matchIndex);
+                if (sentenceStart > start && sentenceStart < matchIndex && (matchIndex - sentenceStart) < 100) {
+                    start = sentenceStart + 2;
+                }
+                
+                var sentenceEnd = contents.indexOf('. ', end - 50);
+                if (sentenceEnd > matchIndex && sentenceEnd <= end && (sentenceEnd - matchIndex) < 200) {
+                    end = sentenceEnd + 1;
+                }
+                
+                bestSnippet = contents.substring(start, end).trim();
+                
+                // Add ellipsis
+                var needsStartEllipsis = start > 0;
+                var needsEndEllipsis = end < contents.length;
+                snippet = (needsStartEllipsis ? '&hellip; ' : '') + 
+                         bestSnippet + 
+                         (needsEndEllipsis ? ' &hellip;' : '');
             }
         }
         
-        // Generate snippet around the match
-        if (matchIndex >= 0) {
-            var start = Math.max(0, matchIndex - summaryInclude);
-            var end = Math.min(contents.length, matchIndex + summaryInclude);
-            snippet = (start > 0 ? '&hellip; ' : '') + 
-                     contents.substring(start, end) + 
-                     (end < contents.length ? ' &hellip;' : '');
-        } else {
-            snippet = contents.substring(0, summaryInclude * 2) + '&hellip;';
+        // Fallback if no match found
+        if (!snippet) {
+            snippet = contents.substring(0, summaryInclude * 2).trim() + '&hellip;';
         }
 
         //replace values
