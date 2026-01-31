@@ -24,12 +24,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <!-- Cache control for development -->
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <title>{{ .Title }}</title>
         <link rel="icon" href="/images/hive.svg" sizes="any" type="image/svg+xml">
-        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/hive-theme.css">
-        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/font-awesome.all.min.css">
-        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/termynal.css">
+        <!-- CSS files with cache busting -->
+        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/hive-theme.css?v={{ .Site.Params.version }}">
+        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/font-awesome.all.min.css?v={{ .Site.Params.version }}">
+        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/bootstrap.min.css?v={{ .Site.Params.version }}">
+        <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/termynal.css?v={{ .Site.Params.version }}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ .Site.BaseURL }}/images/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ .Site.BaseURL }}/images/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ .Site.BaseURL }}/images/favicon-16x16.png">

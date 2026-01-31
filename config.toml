@@ -2,7 +2,10 @@ baseURL = 'https://hive.apache.org'
 languageCode = 'en-us'
 title = 'Hive Site'
 theme = 'hive'
+
+# Site version for cache busting
 [params]
+  version = "1.1.0"
   hiveLogo = "/images/hive.svg"
   logo = "/images/asf_logo.png"
   apacheURL = 'https://www.apache.org'

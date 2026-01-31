@@ -3,14 +3,17 @@
 {{- $sc := newScratch -}}
 {{- if isset .Params "description" -}}
 {{- $sc.Add "ct" .Description  -}}
+{{- $sc.Add "ct" ". " -}}
 {{- end -}}
 
 {{- if isset .Params "about" -}}
 {{- range .Params.About.about_item }}
-{{- $sc.Add "ct" (print .title " " .subtitle " " .content) -}}
+{{- $sc.Add "ct" (print .title " " .subtitle " " .content " ") -}}
 {{- end -}}
 {{- end -}}
-{{- $sc.Add "ct" .Plain -}}
+{{- $plainContent := .Plain -}}
+{{- $plainContent = replaceRE "\\s{2,}" " " $plainContent -}}
+{{- $sc.Add "ct" $plainContent -}}
 {{- $content := $sc.Get "ct" }}
 
 {{ $date:= .PublishDate.Format "02"}}
