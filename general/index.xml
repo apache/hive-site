@@ -1,8 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Generals on Hive Site</title><link>https://hive.apache.org/general/</link><description>Recent content in Generals on Hive Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/general/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : PoweredBy</title><link>https://hive.apache.org/general/poweredby/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/general/poweredby/</guid><description>Apache Hive : PoweredBy Applications and organizations using Hive include (alphabetically):
-Bizo We use Hive for reporting and ad hoc queries.
-Chitika We use Hive for data mining and analysis on our 435M monthly global users.
-CNET We use Hive for data mining, internal log analysis and ad hoc queries.
-Digg We use Hive for data mining, internal log analysis, R&amp;amp;D, and reporting/analytics.
-eHarmony We use Hadoop to store copies of internal log and dimension data sources and use it as a source for reporting/analytics and machine learning.</description></item><item><title>Privacy Policy</title><link>https://hive.apache.org/general/privacypolicy/</link><pubDate>Tue, 13 Sep 2022 19:35:56 +0530</pubDate><guid>https://hive.apache.org/general/privacypolicy/</guid><description>Privacy Policy Information about your use of this website is collected using server access logs and a tracking cookie. The collected information consists of the following:
-The IP address from which you access the website; The type of browser and operating system you use to access our site; The date and time you access our site; The pages you visit; and The addresses of pages from where you followed a link to our site.</description></item><item><title>Downloads</title><link>https://hive.apache.org/general/downloads/</link><pubDate>Tue, 13 Sep 2022 19:16:15 +0530</pubDate><guid>https://hive.apache.org/general/downloads/</guid><description>Downloads All recent supported releases may be downloaded from Apache mirrors: Download a release now! Old releases can be found in the archives.
-News 23 November 2025: release 4.2.0 available Apache Hive 4.2.x introduces support for JDK 21 and requires it as the minimum supported Java version. Key improvements include enhanced Iceberg table support (deletion vectors, auto compaction, ViewCatalog, column defaults, Iceberg REST Catalog client, Z-ordering, variant-type), separation of metastore client code into its own module, catalog properties support, support for multiple partitions in RELOAD event, support for drop partitions by names in IMetaStoreClient.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Generals on Hive Site</title><link>https://hive.apache.org/general/</link><description>Recent content in Generals on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/general/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : PoweredBy</title><link>https://hive.apache.org/general/poweredby/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/general/poweredby/</guid><description>&lt;h1 id="apache-hive--poweredby"&gt;Apache Hive : PoweredBy&lt;/h1&gt;
+&lt;p&gt;Applications and organizations using Hive include (alphabetically):&lt;/p&gt;
+&lt;h2 id="bizo"&gt;&lt;a href="http://www.bizo.com"&gt;Bizo&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We use Hive for reporting and ad hoc queries.&lt;/p&gt;
+&lt;h2 id="chitika"&gt;&lt;a href="http://www.chitika.com"&gt;Chitika&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We use Hive for data mining and analysis on our 435M monthly global users.&lt;/p&gt;
+&lt;h2 id="cnet"&gt;&lt;a href="http://www.cnet.com"&gt;CNET&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We use Hive for data mining, internal log analysis and ad hoc queries.&lt;/p&gt;
+&lt;h2 id="digg"&gt;&lt;a href="http://www.digg.com"&gt;Digg&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We use Hive for data mining, internal log analysis, R&amp;amp;D, and reporting/analytics.&lt;/p&gt;
+&lt;h2 id="eharmony"&gt;&lt;a href="http://www.eharmony.com"&gt;eHarmony&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We use Hadoop to store copies of internal log and dimension data sources and use it as a source for reporting/analytics and machine learning. Currently have a 640 machine cluster with ~5000 cores and 2PB raw storage. Each (commodity) node has 8 cores and 4 TB of storage.&lt;/p&gt;</description></item><item><title>Privacy Policy</title><link>https://hive.apache.org/general/privacypolicy/</link><pubDate>Tue, 13 Sep 2022 19:35:56 +0530</pubDate><guid>https://hive.apache.org/general/privacypolicy/</guid><description>&lt;h1 id="privacy-policy"&gt;Privacy Policy&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;Information about your use of this website is collected using server
+access logs and a tracking cookie. The collected information consists of
+the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The IP address from which you access the website;&lt;/li&gt;
+&lt;li&gt;The type of browser and operating system you use to access our site;&lt;/li&gt;
+&lt;li&gt;The date and time you access our site;&lt;/li&gt;
+&lt;li&gt;The pages you visit; and&lt;/li&gt;
+&lt;li&gt;The addresses of pages from where you followed a link to our site.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Part of this information is gathered using a tracking cookie set by the
+&lt;!-- raw HTML omitted --&gt;Google Analytics&lt;!-- raw HTML omitted --&gt;
+service and handled by Google as
+described in their &lt;!-- raw HTML omitted --&gt;privacy policy&lt;!-- raw HTML omitted --&gt;.
+See your browser documentation for instructions on how to disable the
+cookie if you prefer not to share this data with Google.&lt;/p&gt;</description></item><item><title>Downloads</title><link>https://hive.apache.org/general/downloads/</link><pubDate>Tue, 13 Sep 2022 19:16:15 +0530</pubDate><guid>https://hive.apache.org/general/downloads/</guid><description>&lt;h1 id="downloads"&gt;Downloads&lt;/h1&gt;
+&lt;p&gt;All recent supported releases may be downloaded from Apache mirrors:
+&lt;strong&gt;&lt;a href="http://www.apache.org/dyn/closer.cgi/hive/"&gt;Download a release now!&lt;/a&gt;&lt;/strong&gt;
+Old releases can be found in the &lt;a href="https://archive.apache.org/dist/hive/"&gt;archives&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="news"&gt;News&lt;/h2&gt;
+&lt;h3 id="23-november-2025--release-420-available"&gt;23 November 2025: release 4.2.0 available&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Hive 4.2.x introduces support for JDK 21 and requires it as the minimum supported Java version.&lt;/li&gt;
+&lt;li&gt;Key improvements include enhanced Iceberg table support (deletion vectors, auto compaction, ViewCatalog, column defaults, Iceberg REST Catalog client, Z-ordering, variant-type), separation of metastore client code into its own module, catalog properties support, support for multiple partitions in RELOAD event, support for drop partitions by names in IMetaStoreClient.&lt;/li&gt;
+&lt;li&gt;This release works with Hadoop 3.4.1, Tez 0.10.5.&lt;/li&gt;
+&lt;li&gt;You can look at the complete &lt;a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12356025&amp;amp;styleName=Text&amp;amp;projectId=12310843"&gt;JIRA change log for this release&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="31-july-2025--release-410-available"&gt;31 July 2025: release 4.1.0 available&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Hive 4.1.x adds JDK 17 support and provides the Hive Metastore as a standalone component available
+in both binary and Docker image formats. Key improvements include enhanced Iceberg table support (storage-partitioned joins, partition-level column statistics, table compaction), IPv6 compatibility, a REST-based catalog server backed by the Hive Metastore, and upgraded Calcite to 1.33.0 for better query optimization.&lt;/li&gt;
+&lt;li&gt;This release works with Hadoop 3.4.1, Tez 0.10.5.&lt;/li&gt;
+&lt;li&gt;You can look at the complete &lt;a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353994&amp;amp;styleName=Text&amp;amp;projectId=12310843"&gt;JIRA change log for this release&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="08-october-2024-eol-for-release-3x-line"&gt;08 October 2024: EOL for release 3.x line&lt;/h3&gt;
+&lt;p&gt;The Apache Hive Community has voted to declare the 3.x release line as End of Life (EOL). This means no further updates or releases will be made for this series. &lt;br&gt;
+We urge all Hive 3.x users to upgrade to the latest versions promptly to benefit from new features and ongoing support.&lt;/p&gt;</description></item></channel></rss>

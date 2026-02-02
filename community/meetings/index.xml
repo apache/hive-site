@@ -1,37 +1,193 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contributor Meetings on Hive Site</title><link>https://hive.apache.org/community/meetings/</link><description>Recent content in Contributor Meetings on Hive Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/community/meetings/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : ContributorDay2011</title><link>https://hive.apache.org/community/meetings/contributorday2011/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorday2011/</guid><description>Apache Hive : ContributorDay2011 Apache Hive Contributor Day is a special event hosted as part of Yahoo&amp;rsquo;s Hadoop Summit.
-Resources for mini-hackathon:
-PluginDeveloperKit has info on the new pdk; download this snapshot build of Hive which includes it you&amp;rsquo;ll need a Mac or Linux development environment with Hive+Hadoop already installed on it per these instructions; for Hive, use the snapshot you&amp;rsquo;ll also need Apache ant installed. HIVE-1545 has the UDF libraries we&amp;rsquo;d like to get cleaned up for inclusion in Hive or extension libraries (download core.</description></item><item><title>Apache Hive : ContributorMinutes20110907</title><link>https://hive.apache.org/community/meetings/contributorminutes20110907/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20110907/</guid><description>Apache Hive : ContributorMinutes20110907 Notes from the Hive Meetup at Hortonworks, 9/7/11
-Attendees: http://www.meetup.com/Hive-Contributors-Group/events/30620561/
-The Binary type proposed by Ashutosh Chauhan, HIVE-2380 was discussed. There was agreement that a design document is needed to explain the proposed changes for this feature. The design document should cover:
-Can columns of binary type be used as a key in group by or join? What native functions exist to manipulate binary types? How does casting between binary and other types work?</description></item><item><title>Apache Hive : ContributorMinutes20111205</title><link>https://hive.apache.org/community/meetings/contributorminutes20111205/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20111205/</guid><description>Apache Hive : ContributorMinutes20111205 Notes from the Hive Meetup at Facebook, 12/5/11
-Attendees: http://www.meetup.com/Hive-Contributors-Group/events/41150912/
-John gave a demo of the Phabricator instance at http://reviews.facebook.net, and proposed that we push through moving all code review over from Review Board to Phabricator. There were no objections.
-Marek gave an overview of the new parallel test framework (https://issues.apache.org/jira/browse/HIVE-1487); he&amp;rsquo;ll publish a wiki page explaining how to use it once it gets committed.
-Carl gave an update on the 0.</description></item><item><title>Apache Hive : ContributorMinutes20120418</title><link>https://hive.apache.org/community/meetings/contributorminutes20120418/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20120418/</guid><description>Apache Hive : ContributorMinutes20120418 Notes from the Hive Contributors Meetup at Cloudera, 4/18/12
-Attendees: http://www.meetup.com/Hive-Contributors-Group/events/59148562/
-Ashutosh gave a status update on the Hive 0.9.0 release work. RC0 was put up for a vote last week, but it turned out there were several problems. Ashutosh is in the process of fixing those issues, and is also trying to get several other patches resolved and backported before cutting RC1.
-Carl asked for more details about the impact of HIVE-2795 on the upgrade process for 0.</description></item><item><title>Apache Hive : ContributorsMinutes110726</title><link>https://hive.apache.org/community/meetings/contributorsminutes110726/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorsminutes110726/</guid><description>Apache Hive : ContributorsMinutes110726 Meeting date: July 26, 2011
-Location: Cloudera (Palo Alto)
-Attendees: http://www.meetup.com/Hive-Contributors-Group/events/26345541/
-Carl proposed end of August as target for 0.8 release, with branch cut in a couple of weeks. Work is still underway for publishing release artifacts in Maven for 0.7.1 and 0.8 (development snapshots are already being published).
-Ashutosh gave an update on HCatalog development status; no blocking issues from Hive for the 0.2 release; some ideas are being discussed for the 0.</description></item><item><title>Apache Hive : Development ContributorsMeetings</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings/</guid><description>Apache Hive : Development ContributorsMeetings Hive Contributors Meetings Active contributors to the Hive project are invited to attend the monthly Hive Contributors Meeting. Meetings are announced on the Hive Contributors meetup group.
-Meeting Minutes April 18, 2012 December 5, 2011 September 7, 2011 July 26, 2011 June 30, 2011 April 25, 2011 January 11, 2011 (forgot to take notes) October 25, 2010 September 13, 2010 August 8, 2010 July 6, 2010 June 1, 2010</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100601</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100601/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100601/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100601 Notes provided by Namit Jain.
-The following people were present:
-Facebook (Paul Yang; Ning Zhang; Yongqiang He; Ahmed Aly; John Sichi; Ashish Thusoo; Namit Jain) Netflix (Eva Tse; Jerome Boulon) Cloudera (Arvind Prabhakar; Vinithra Varadharajan; Carl Steinbach) Yahoo (Alan Gates) The following were the main meeting minutes:
-We should have these meetings more often, say every month. Cloudera will host the next meeting.</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100706</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100706/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100706/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100706 Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yongqiang He, Basab Malik, Vinithra Varadharajan, bc Wong, Arvind Prabhakar, Carl Steinbach
-bc Wong gave a live demo of Cloudera&amp;rsquo;s Hue framework and the Beeswax Hive web interface. Slides from this talk are available here: http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax Hue was recently released as open source. The code is available on Github here: http://github.com/cloudera/hue Olga Natkovich gave a whiteboard talk on HOwl.</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100808</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100808/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100808/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100808 August 8th, 2010
-Yongqiang He gave a presentation about his work on index support in Hive. Slides are available here: http://files.meetup.com/1658206/Hive%20Index.pptx John Sichi talked about his work on filter-pushdown optimizations. This is applicable to the HBase storage handler and the new index infrastructure. Pradeep Kamath gave an update on progress with Howl. The Howl source code is available on GitHub here: http://github.</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100913/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100913/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913 Meeting date: Sept 13, 2010
-Location: Cloudera Palo Alto office
-Attendees: http://www.meetup.com/Hive-Contributors-Group/calendar/14689507/
-Carl Steinbach gave a status update on the 0.6 release. Since plans for documentation migration have been deferred to the next release, the only remaining issues are completion of the CREATE DATABASE feature (HIVE-675), metastore VARCHAR precision widening (HIVE-1364), and metastore upgrade scripts (HIVE-1427). HIVE-675 has already been committed to trunk and the backport for 0.</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes101025/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes101025/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025 Meeting date: October 25, 2010
-Location: Facebook Palo Alto
-Attendees: http://www.meetup.com/Hive-Contributors-Group/calendar/14875663 plus Paul, Ning, Yongqiang, Liyin, Basab
-The TLP and bylaws votes passed, so Hive is now officially an Apache top level project! We are going ahead with moving the following resources:
-website (now at hive.apache.org) svn (new trunk location is http://svn.apache.org/repos/asf/hive/trunk); git will follow soon irc: we are making #hive the official channel on freenode.</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes110425/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes110425/</guid><description>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425 Meeting date: April 25, 2011
-Location: Facebook Palo Alto
-Attendees: http://www.meetup.com/Hive-Contributors-Group/events/17272914/
-The 0.7 release is out, and Carl proposed an 0.7.1 release for items such as PostgreSQL metastore upgrade scripts and Maven artifact publication. Rules for a point release were discussed: no metastore changes, and no changes to API&amp;rsquo;s such as Thrift and extension interfaces. Everyone was fine with this; Carl will manage the release.</description></item><item><title>Apache Hive : HiveContributorsMinutes100601</title><link>https://hive.apache.org/community/meetings/hivecontributorsminutes100601/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/hivecontributorsminutes100601/</guid><description>Apache Hive : HiveContributorsMinutes100601 Notes provided by Namit Jain.
-The following people were present:
-Facebook (Paul Yang; Ning Zhang; Yongqiang He; Ahmed Aly; John Sichi; Ashish Thusoo; Namit Jain) Netflix (Eva Tse; Jerome Boulon) Cloudera (Arvind Prabhakar; Vinithra Varadharajan; Carl Steinbach) Yahoo (Alan Gates) The following were the main meeting minutes:
-We should have these meetings more often, say every month. Cloudera will host the next meeting.</description></item><item><title>Apache Hive : HiveContributorsMinutes100706</title><link>https://hive.apache.org/community/meetings/hivecontributorsminutes100706/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/hivecontributorsminutes100706/</guid><description>Apache Hive : HiveContributorsMinutes100706 Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yongqiang He, Basab Malik, Vinithra Varadharajan, bc Wong, Arvind Prabhakar, Carl Steinbach
-bc Wong gave a live demo of Cloudera&amp;rsquo;s Hue framework and the Beeswax Hive web interface. Slides from this talk are available here: http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax Hue was recently released as open source. The code is available on Github here: http://github.com/cloudera/hue Olga Natkovich gave a whiteboard talk on HOwl.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Contributor Meetings on Hive Site</title><link>https://hive.apache.org/community/meetings/</link><description>Recent content in Contributor Meetings on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 12 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/community/meetings/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : ContributorDay2011</title><link>https://hive.apache.org/community/meetings/contributorday2011/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorday2011/</guid><description>&lt;h1 id="apache-hive--contributorday2011"&gt;Apache Hive : ContributorDay2011&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://hivecontribday2011.eventbrite.com"&gt;Apache Hive Contributor Day&lt;/a&gt; is a special event hosted as part of Yahoo&amp;rsquo;s Hadoop Summit.&lt;/p&gt;
+&lt;p&gt;Resources for mini-hackathon:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/plugindeveloperkit/"&gt;PluginDeveloperKit&lt;/a&gt; has info on the new pdk; download &lt;a href="http://people.apache.org/~jvs/hive-0.8.0-pdk-SNAPSHOT.tar.gz"&gt;this snapshot build&lt;/a&gt; of Hive which includes it&lt;/li&gt;
+&lt;li&gt;you&amp;rsquo;ll need a Mac or Linux development environment with Hive+Hadoop already installed on it per &lt;a href="https://hive.apache.org/development/gettingstarted-latest/"&gt;these instructions&lt;/a&gt;; for Hive, use the snapshot&lt;/li&gt;
+&lt;li&gt;you&amp;rsquo;ll also need &lt;a href="http://ant.apache.org"&gt;Apache ant&lt;/a&gt; installed.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://issues.apache.org/jira/browse/HIVE-1545"&gt;HIVE-1545&lt;/a&gt; has the UDF libraries we&amp;rsquo;d like to get cleaned up for inclusion in Hive or extension libraries (download core.tar.gz and/or ext.tar.gz)&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : ContributorMinutes20110907</title><link>https://hive.apache.org/community/meetings/contributorminutes20110907/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20110907/</guid><description>&lt;h1 id="apache-hive--contributorminutes20110907"&gt;Apache Hive : ContributorMinutes20110907&lt;/h1&gt;
+&lt;p&gt;Notes from the Hive Meetup at Hortonworks, 9/7/11&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/events/30620561/"&gt;http://www.meetup.com/Hive-Contributors-Group/events/30620561/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The Binary type proposed by Ashutosh Chauhan, &lt;a href="https://issues.apache.org/jira/browse/HIVE-2380"&gt;HIVE-2380&lt;/a&gt; was discussed. There was agreement that a design document is needed to explain the proposed changes for this feature. The design document should cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can columns of binary type be used as a key in group by or join?&lt;/li&gt;
+&lt;li&gt;What native functions exist to manipulate binary types?&lt;/li&gt;
+&lt;li&gt;How does casting between binary and other types work? Are there implicit casts? (There seemed to be general agreement that implicit casting for binary types was a bad idea.)&lt;/li&gt;
+&lt;li&gt;How is binary data encoded when being passed as part of a TRANSFORM?&lt;/li&gt;
+&lt;li&gt;A discussion of what uses the designer envisions for binary fields. This should clarify that this binary type is not a blob (stored out of row) and is not intended for very large objects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alan Gates, as an HCatalog developer, asked if the Hive community would be open to moving some authorization related checks into the Thrift metastore server instead of all being done in the client. John Sichi was of the opinion that not all authorization checks can be moved to the server because some need to be done in the client. But DDL ones, which is what HCatalog is interested in, should be movable. The next step is for the HCatalog team to produce a design document clarifying what this change would look like.&lt;/p&gt;</description></item><item><title>Apache Hive : ContributorMinutes20111205</title><link>https://hive.apache.org/community/meetings/contributorminutes20111205/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20111205/</guid><description>&lt;h1 id="apache-hive--contributorminutes20111205"&gt;Apache Hive : ContributorMinutes20111205&lt;/h1&gt;
+&lt;p&gt;Notes from the Hive Meetup at Facebook, 12/5/11&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/events/41150912/"&gt;http://www.meetup.com/Hive-Contributors-Group/events/41150912/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;John gave a demo of the Phabricator instance at &lt;a href="http://reviews.facebook.net"&gt;http://reviews.facebook.net&lt;/a&gt;, and proposed that we push through moving all code review over from Review Board to Phabricator. There were no objections.&lt;/p&gt;
+&lt;p&gt;Marek gave an overview of the new parallel test framework (&lt;a href="https://issues.apache.org/jira/browse/HIVE-1487"&gt;https://issues.apache.org/jira/browse/HIVE-1487&lt;/a&gt;); he&amp;rsquo;ll publish a wiki page explaining how to use it once it gets committed.&lt;/p&gt;
+&lt;p&gt;Carl gave an update on the 0.8 release; delays have been due to difficulties with the metastore upgrade scripts, which should now be all sorted out. Carl proposed cutting a new branch from trunk and releasing that as 0.8, with rationale (a) some backports to the old branch are difficult; (b) trunk is stable; (c) trunk contains lots of new high-value work such as the BINARY datatype. There were no objections.&lt;/p&gt;</description></item><item><title>Apache Hive : ContributorMinutes20120418</title><link>https://hive.apache.org/community/meetings/contributorminutes20120418/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorminutes20120418/</guid><description>&lt;h1 id="apache-hive--contributorminutes20120418"&gt;Apache Hive : ContributorMinutes20120418&lt;/h1&gt;
+&lt;p&gt;Notes from the Hive Contributors Meetup at Cloudera, 4/18/12&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/events/59148562/"&gt;http://www.meetup.com/Hive-Contributors-Group/events/59148562/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Ashutosh gave a status update on the Hive 0.9.0 release work. RC0 was put up for a vote last week, but it turned out there were several problems. Ashutosh is in the process of fixing those issues, and is also trying to get several other patches resolved and backported before cutting RC1.&lt;/p&gt;
+&lt;p&gt;Carl asked for more details about the impact of &lt;a href="https://issues.apache.org/jira/browse/HIVE-2795"&gt;HIVE-2795&lt;/a&gt; on the upgrade process for 0.9.0. Kevin responded that they have decided to implement regions in a layer above Hive, and do not plan to use the features that were added in &lt;a href="https://issues.apache.org/jira/browse/HIVE-2612"&gt;HIVE-2612&lt;/a&gt;. Since these two features are the only things requiring a metastore upgrade for 0.9.0, it was proposed that we back them out. There were no objections.&lt;/p&gt;</description></item><item><title>Apache Hive : ContributorsMinutes110726</title><link>https://hive.apache.org/community/meetings/contributorsminutes110726/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/contributorsminutes110726/</guid><description>&lt;h1 id="apache-hive--contributorsminutes110726"&gt;Apache Hive : ContributorsMinutes110726&lt;/h1&gt;
+&lt;p&gt;Meeting date: July 26, 2011&lt;/p&gt;
+&lt;p&gt;Location: Cloudera (Palo Alto)&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/events/26345541/"&gt;http://www.meetup.com/Hive-Contributors-Group/events/26345541/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Carl proposed end of August as target for 0.8 release, with branch cut in a couple of weeks. Work is still underway for publishing release artifacts in Maven for 0.7.1 and 0.8 (development snapshots are already being published).&lt;/p&gt;
+&lt;p&gt;Ashutosh gave an update on HCatalog development status; no blocking issues from Hive for the 0.2 release; some ideas are being discussed for the 0.3 release which will need Hive work, but these aren&amp;rsquo;t ready for design proposals yet.&lt;/p&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings"&gt;Apache Hive : Development ContributorsMeetings&lt;/h1&gt;
+&lt;h1 id="hive-contributors-meetings"&gt;Hive Contributors Meetings&lt;/h1&gt;
+&lt;p&gt;Active contributors to the Hive project are invited to attend the monthly Hive Contributors Meeting. Meetings are announced on the &lt;a href="http://www.meetup.com/Hive-Contributors-Group/"&gt;Hive Contributors&lt;/a&gt; meetup group.&lt;/p&gt;
+&lt;h2 id="meeting-minutes"&gt;Meeting Minutes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/contributorminutes20120418/"&gt;April 18, 2012&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/contributorminutes20111205/"&gt;December 5, 2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/contributorminutes20110907/"&gt;September 7, 2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/contributorsminutes110726/"&gt;July 26, 2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/contributorday2011/"&gt;June 30, 2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes110425/"&gt;April 25, 2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;January 11, 2011 (forgot to take notes)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes101025/"&gt;October 25, 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100913/"&gt;September 13, 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100808/"&gt;August 8, 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100706/"&gt;July 6, 2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100601/"&gt;June 1, 2010&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100601</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100601/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100601/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes100601"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100601&lt;/h1&gt;
+&lt;p&gt;Notes provided by Namit Jain.&lt;/p&gt;
+&lt;p&gt;The following people were present:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Facebook (Paul Yang; Ning Zhang; Yongqiang He; Ahmed Aly; John Sichi; Ashish Thusoo; Namit Jain)&lt;/li&gt;
+&lt;li&gt;Netflix (Eva Tse; Jerome Boulon)&lt;/li&gt;
+&lt;li&gt;Cloudera (Arvind Prabhakar; Vinithra Varadharajan; Carl Steinbach)&lt;/li&gt;
+&lt;li&gt;Yahoo (Alan Gates)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The following were the main meeting minutes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;We should have these meetings more often, say every month. Cloudera will host the next meeting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We should try to have a release every 4 months. We should try to push out 0.6 before end of June, For the new release, Cloudera will take a lead on the release management issues and also help with documentation. Documentation for Hive leaves a lot to be desired.&lt;/p&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100706</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100706/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100706/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes100706"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100706&lt;/h1&gt;
+&lt;p&gt;Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yongqiang He, Basab Malik, Vinithra Varadharajan, bc Wong, Arvind Prabhakar, Carl Steinbach&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bc Wong gave a live demo of Cloudera&amp;rsquo;s Hue framework and the Beeswax Hive web interface.
+&lt;ul&gt;
+&lt;li&gt;Slides from this talk are available here: &lt;a href="http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax"&gt;http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hue was recently released as open source. The code is available on Github here: &lt;a href="http://github.com/cloudera/hue"&gt;http://github.com/cloudera/hue&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Olga Natkovich gave a whiteboard talk on HOwl.
+&lt;ul&gt;
+&lt;li&gt;HOwl = Hive !MetaStore + Owl = shared metadata system between Pig, Hive, and Map Reduce&lt;/li&gt;
+&lt;li&gt;HOwl will likely leverage the !MetaStore schema and ORM layer.&lt;/li&gt;
+&lt;li&gt;A somewhat outdated Owl design document is available here: &lt;a href="http://wiki.apache.org/pig/owl"&gt;http://wiki.apache.org/pig/owl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carl gave an update on progress with the 0.6.0 release.
+&lt;ul&gt;
+&lt;li&gt;There was a discussion about the plan to move the documentation off of the wiki and into version control.&lt;/li&gt;
+&lt;li&gt;Several people voiced concerns that developers/users are less likely to update the documentation if doing so requires them to submit a patch.&lt;/li&gt;
+&lt;li&gt;The new proposal for documentation reached at the meeting is as follows:
+&lt;ul&gt;
+&lt;li&gt;The trunk version of the documentation will be maintained on the wiki.&lt;/li&gt;
+&lt;li&gt;As part of the release process the documentation will be copied off of the wiki and converted to xdoc, and then checked into svn.&lt;/li&gt;
+&lt;li&gt;HTML documentation generated from the xdoc will be posted to the Hive webpage when the new release is posted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carl is going to investigate the feasibility of writing a tool that converts documentation directly from !MoinMoin wiki markup to xdoc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;John agreed to host the next contributors meeting at Facebook.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100808</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100808/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100808/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes100808"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100808&lt;/h1&gt;
+&lt;p&gt;August 8th, 2010&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Yongqiang He gave a presentation about his work on index support in Hive.
+&lt;ul&gt;
+&lt;li&gt;Slides are available here: &lt;a href="http://files.meetup.com/1658206/Hive%20Index.pptx"&gt;http://files.meetup.com/1658206/Hive%20Index.pptx&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;John Sichi talked about his work on filter-pushdown optimizations. This is applicable to the HBase storage handler and the new index infrastructure.&lt;/li&gt;
+&lt;li&gt;Pradeep Kamath gave an update on progress with Howl.
+&lt;ul&gt;
+&lt;li&gt;The Howl source code is available on GitHub here: &lt;a href="http://github.com/yahoo/howl"&gt;http://github.com/yahoo/howl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Starting to work on security for Howl. For the first iteration the plan is to base it on DFS permissions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;General agreement that we should aim to desupport pre-0.20.0 versions of Hadoop in Hive 0.7.0. This will allow us to remove the shim layer and will make it easier to transition to the new mapreduce APIs. But we also want to get a better idea of how many users are stuck on pre-0.20 versions of Hadoop.&lt;/li&gt;
+&lt;li&gt;Remove Thrift generated code from repository.
+&lt;ul&gt;
+&lt;li&gt;Pro: reduce noise in diffs during reviews.&lt;/li&gt;
+&lt;li&gt;Con: requires developers to install Thrift compiler.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Discussed moving the documentation from the wiki to version control.
+&lt;ul&gt;
+&lt;li&gt;Probably not practical to maintain the trunk version of the docs on the wiki and roll over to version control at release time, so trunk version of docs will be maintained in vcs.&lt;/li&gt;
+&lt;li&gt;It was agreed that feature patches should include updates to the docs, but it is also acceptable to file a doc ticket if there is time pressure to commit.j&lt;/li&gt;
+&lt;li&gt;Will maintain an errata page on the wiki for collecting updates/corrections from users. These notes will be rolled into the documentation in vcs on a monthly basis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The next meeting will be held in September at Cloudera&amp;rsquo;s office in Palo Alto.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100913/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes100913/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes100913"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes100913&lt;/h1&gt;
+&lt;p&gt;Meeting date: Sept 13, 2010&lt;/p&gt;
+&lt;p&gt;Location: Cloudera Palo Alto office&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/calendar/14689507/"&gt;http://www.meetup.com/Hive-Contributors-Group/calendar/14689507/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Carl Steinbach gave a status update on the 0.6 release. Since plans for documentation migration have been deferred to the next release, the only remaining issues are completion of the CREATE DATABASE feature (&lt;a href="https://issues.apache.org/jira/browse/HIVE-675"&gt;HIVE-675&lt;/a&gt;), metastore VARCHAR precision widening (&lt;a href="https://issues.apache.org/jira/browse/HIVE-1364"&gt;HIVE-1364&lt;/a&gt;), and metastore upgrade scripts (&lt;a href="https://issues.apache.org/jira/browse/HIVE-1427"&gt;HIVE-1427&lt;/a&gt;). &lt;a href="https://issues.apache.org/jira/browse/HIVE-675"&gt;HIVE-675&lt;/a&gt; has already been committed to trunk and the backport for 0.6 is underway. Carl is still working on companion feature &lt;a href="https://issues.apache.org/jira/browse/HIVE-1517"&gt;HIVE-1517&lt;/a&gt;, but unless it is done by Sept 17, we&amp;rsquo;ll drop it from the 0.6 release. Once a build containing the remaining features passes all unit tests, we&amp;rsquo;ll post a release candidate and vote on it (no additional acceptance testing is planned for this release).&lt;/p&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes101025/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes101025/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes101025"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes101025&lt;/h1&gt;
+&lt;p&gt;Meeting date: October 25, 2010&lt;/p&gt;
+&lt;p&gt;Location: Facebook Palo Alto&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/calendar/14875663"&gt;http://www.meetup.com/Hive-Contributors-Group/calendar/14875663&lt;/a&gt; plus Paul, Ning, Yongqiang, Liyin, Basab&lt;/p&gt;
+&lt;p&gt;The &lt;a href="http://hive.apache.org"&gt;TLP&lt;/a&gt; and &lt;a href="https://hive.apache.org/community/bylaws/"&gt;bylaws&lt;/a&gt; votes passed, so Hive is now officially an Apache top level project! We are going ahead with moving the following resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;website (now at hive.apache.org)&lt;/li&gt;
+&lt;li&gt;svn (new trunk location is &lt;a href="http://svn.apache.org/repos/asf/hive/trunk"&gt;http://svn.apache.org/repos/asf/hive/trunk&lt;/a&gt;); git will follow soon&lt;/li&gt;
+&lt;li&gt;irc: we are making #hive the official channel on freenode.net (deprecating ##hive)&lt;/li&gt;
+&lt;li&gt;review board: we will start using the new ASF facility soon&lt;/li&gt;
+&lt;li&gt;wiki: we are going to move to &lt;a href="http://cwiki.apache.org/HIVE"&gt;http://cwiki.apache.org/HIVE&lt;/a&gt;, but we still need to work out the migration plan from MoinMoin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The 0.6 release vote passed, so we will wrap up the release and publish it!&lt;/p&gt;</description></item><item><title>Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425</title><link>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes110425/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/development-contributorsmeetings-hivecontributorsminutes110425/</guid><description>&lt;h1 id="apache-hive--development-contributorsmeetings-hivecontributorsminutes110425"&gt;Apache Hive : Development ContributorsMeetings HiveContributorsMinutes110425&lt;/h1&gt;
+&lt;p&gt;Meeting date: April 25, 2011&lt;/p&gt;
+&lt;p&gt;Location: Facebook Palo Alto&lt;/p&gt;
+&lt;p&gt;Attendees: &lt;a href="http://www.meetup.com/Hive-Contributors-Group/events/17272914/"&gt;http://www.meetup.com/Hive-Contributors-Group/events/17272914/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The 0.7 release is out, and Carl proposed an 0.7.1 release for items such as PostgreSQL metastore upgrade scripts and Maven artifact publication. Rules for a point release were discussed: no metastore changes, and no changes to API&amp;rsquo;s such as Thrift and extension interfaces. Everyone was fine with this; Carl will manage the release.&lt;/p&gt;</description></item><item><title>Apache Hive : HiveContributorsMinutes100601</title><link>https://hive.apache.org/community/meetings/hivecontributorsminutes100601/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/hivecontributorsminutes100601/</guid><description>&lt;h1 id="apache-hive--hivecontributorsminutes100601"&gt;Apache Hive : HiveContributorsMinutes100601&lt;/h1&gt;
+&lt;p&gt;Notes provided by Namit Jain.&lt;/p&gt;
+&lt;p&gt;The following people were present:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Facebook (Paul Yang; Ning Zhang; Yongqiang He; Ahmed Aly; John Sichi; Ashish Thusoo; Namit Jain)&lt;/li&gt;
+&lt;li&gt;Netflix (Eva Tse; Jerome Boulon)&lt;/li&gt;
+&lt;li&gt;Cloudera (Arvind Prabhakar; Vinithra Varadharajan; Carl Steinbach)&lt;/li&gt;
+&lt;li&gt;Yahoo (Alan Gates)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The following were the main meeting minutes:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;We should have these meetings more often, say every month. Cloudera will host the next meeting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We should try to have a release every 4 months. We should try to push out 0.6 before end of June, For the new release, Cloudera will take a lead on the release management issues and also help with documentation. Documentation for Hive leaves a lot to be desired.&lt;/p&gt;</description></item><item><title>Apache Hive : HiveContributorsMinutes100706</title><link>https://hive.apache.org/community/meetings/hivecontributorsminutes100706/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/community/meetings/hivecontributorsminutes100706/</guid><description>&lt;h1 id="apache-hive--hivecontributorsminutes100706"&gt;Apache Hive : HiveContributorsMinutes100706&lt;/h1&gt;
+&lt;p&gt;Attendees: Amr Awadallah, John Sichi, Paul Yang, Olga Natkovich, Ajay Kidave, Yongqiang He, Basab Malik, Vinithra Varadharajan, bc Wong, Arvind Prabhakar, Carl Steinbach&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bc Wong gave a live demo of Cloudera&amp;rsquo;s Hue framework and the Beeswax Hive web interface.
+&lt;ul&gt;
+&lt;li&gt;Slides from this talk are available here: &lt;a href="http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax"&gt;http://www.slideshare.net/cwsteinbach/cloudera-huebeeswax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Hue was recently released as open source. The code is available on Github here: &lt;a href="http://github.com/cloudera/hue"&gt;http://github.com/cloudera/hue&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Olga Natkovich gave a whiteboard talk on HOwl.
+&lt;ul&gt;
+&lt;li&gt;HOwl = Hive !MetaStore + Owl = shared metadata system between Pig, Hive, and Map Reduce&lt;/li&gt;
+&lt;li&gt;HOwl will likely leverage the !MetaStore schema and ORM layer.&lt;/li&gt;
+&lt;li&gt;A somewhat outdated Owl design document is available here: &lt;a href="http://wiki.apache.org/pig/owl"&gt;http://wiki.apache.org/pig/owl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carl gave an update on progress with the 0.6.0 release.
+&lt;ul&gt;
+&lt;li&gt;There was a discussion about the plan to move the documentation off of the wiki and into version control.&lt;/li&gt;
+&lt;li&gt;Several people voiced concerns that developers/users are less likely to update the documentation if doing so requires them to submit a patch.&lt;/li&gt;
+&lt;li&gt;The new proposal for documentation reached at the meeting is as follows:
+&lt;ul&gt;
+&lt;li&gt;The trunk version of the documentation will be maintained on the wiki.&lt;/li&gt;
+&lt;li&gt;As part of the release process the documentation will be copied off of the wiki and converted to xdoc, and then checked into svn.&lt;/li&gt;
+&lt;li&gt;HTML documentation generated from the xdoc will be posted to the Hive webpage when the new release is posted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Carl is going to investigate the feasibility of writing a tool that converts documentation directly from !MoinMoin wiki markup to xdoc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;John agreed to host the next contributors meeting at Facebook.&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

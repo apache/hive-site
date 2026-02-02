@@ -1,615 +1,71 @@
-<!doctype html><html><!doctype html>
-<html>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=author content>
-<meta http-equiv=cache-control content="no-cache, no-store, must-revalidate">
-<meta http-equiv=pragma content="no-cache">
-<meta http-equiv=expires content="0">
-<title>Administration Manual</title>
-<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
-<link rel=stylesheet href="https://hive.apache.org/css/hive-theme.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/font-awesome.all.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/bootstrap.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/termynal.css?v=1.1.0">
-<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
-<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
-<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
-<meta name=msapplication-TileColor content="#da532c">
-<meta name=theme-color content="#ffffff">
-<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
-</head>
-<body>
-<body>
-<header>
-<menu class=main-menu>
-<nav class="navbar navbar-expand-lg navbar-dark">
-<div class=container-fluid>
-<div class=navbar-brand-wrapper>
-<a href=https://hive.apache.org class=navbar-logo>
-<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
-</a>
-<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
-</div>
-<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav me-auto">
-<li class=nav-item>
-<a class=nav-link href=https://hive.apache.org/general/downloads>
-Releases
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Documentation
-</a>
-<ul class=dropdown-menu aria-labelledby=docsDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-General
-</a>
-<ul class=dropdown-menu aria-labelledby=generalDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
-<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Development
-</a>
-<ul class=dropdown-menu aria-labelledby=devDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
-<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Community
-</a>
-<ul class=dropdown-menu aria-labelledby=communityDropdown>
-<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
-<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
-<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
-<li><hr class=dropdown-divider></li>
-<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
-<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
-</ul>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hive.blog.apache.org/>
-Blogs
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-ASF
-</a>
-<ul class=dropdown-menu aria-labelledby=asfDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
-</ul>
-</li>
-</ul>
-<div class=navbar-search>
-<form action=/search method=get class=search-form>
-<div class=search-input-group>
-<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<!doctype html><html><!doctype html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=author content><meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"><meta http-equiv=Pragma content="no-cache"><meta http-equiv=Expires content="0"><title>Administration Manual</title><link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml><link rel=stylesheet href="https://hive.apache.org//css/hive-theme.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/font-awesome.all.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/bootstrap.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/termynal.css?v=1.1.0"><link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org//images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org//images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org//images/favicon-16x16.png><link rel=manifest href=https://hive.apache.org//images/site.webmanifest><link rel=mask-icon href=https://hive.apache.org//images/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><script>var _paq=window._paq=window._paq||[];_paq.push(["disableCookies"]),_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){e="https://analytics.apache.org/",_paq.push(["setTrackerUrl",e+"matomo.php"]),_paq.push(["setSiteId","30"]);var e,n=document,t=n.createElement("script"),s=n.getElementsByTagName("script")[0];t.async=!0,t.src=e+"matomo.js",s.parentNode.insertBefore(t,s)}()</script></head><body><body><header><menu class=main-menu><nav class="navbar navbar-expand-lg navbar-dark"><div class=container-fluid><div class=navbar-brand-wrapper><a href=https://hive.apache.org/ class=navbar-logo><img src=https://hive.apache.org//images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a><a class=navbar-brand href=https://hive.apache.org/>Apache Hive</a></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class="navbar-nav me-auto"><li class=nav-item><a class=nav-link href=https://hive.apache.org//general/downloads>Releases</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Documentation</a><ul class=dropdown-menu aria-labelledby=docsDropdown><li><a class=dropdown-item href=https://hive.apache.org//docs/latest/>Latest</a></li><li><a class=dropdown-item href=https://hive.apache.org//docs/javadocs/>Javadocs</a></li><li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>General</a><ul class=dropdown-menu aria-labelledby=generalDropdown><li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li><li><a class=dropdown-item href=https://hive.apache.org//general/privacypolicy/>Privacy Policy</a></li><li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Development</a><ul class=dropdown-menu aria-labelledby=devDropdown><li><a class=dropdown-item href=https://hive.apache.org//development/gettingstarted/>Getting Started</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/quickstart/>Quickstart with Docker</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/desingdocs/>Design Docs</a></li><li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/versioncontrol/>Version Control</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Community</a><ul class=dropdown-menu aria-labelledby=communityDropdown><li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li><li><a class=dropdown-item href=/community/resources/>Resources</a></li><li><a class=dropdown-item href=/community/meetings/>Meetings</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/mailinglists/>Mailing Lists</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/issuetracking/>Issue Tracking</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/people/>People</a></li><li><hr class=dropdown-divider></li><li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li><li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li></ul></li><li class=nav-item><a class=nav-link href=https://hive.blog.apache.org/>Blogs</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>ASF</a><ul class=dropdown-menu aria-labelledby=asfDropdown><li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li><li><a class=dropdown-item href=https://www.apache.org/>Website</a></li></ul></li></ul><div class=navbar-search><form action=/search method=GET class=search-form><div class=search-input-group><input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
 <button type=submit class=search-button aria-label="Submit search">
-<i class="fas fa-search"></i>
-</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</nav>
-</menu>
-</header>
-<div class=content>
-<div class=docs-container>
-<main class="docs-main docs-main-full">
-<article class=docs-content>
-<nav class=docs-breadcrumb>
-<ol>
-<li><a href=/><i class="fas fa-home"></i> Home</a></li>
-<li class=active>Administration Manual</li>
-</ol>
-</nav>
-<header class=docs-header>
-<h1 class=docs-title>Administration Manual</h1>
-<div class=docs-meta>
-<span class=docs-count>
-<i class="fas fa-file-alt"></i>
-23 documents
-</span>
-</div>
-</header>
-<div class=docs-article>
-<div class=docs-grid>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/iceberg-rest-catalog/>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Nov 14, 2025
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Iceberg REST Catalog API backed by Hive Metastore Introduction Hive Metastore offers Iceberg REST API endpoints for clients native to Apache Iceberg. Consequently, Iceberg users can access Iceberg tables via either Hive Metastore Thrift API (using HiveCatalog) or Iceberg REST Catalog API.
-Basic configurations You must configure the following parameters.
-Key Required? Default Value metastore.catalog.servlet.port Yes -1 The port number to which Iceberg REST API listens Authentication Hive Metastore&rsquo;s Iceberg REST API supports four authentication methods.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/iceberg-rest-catalog/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/>Apache Hive : Setting up Metastore backed by MariaDB</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Nov 5, 2025
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Setting up Metastore backed by MariaDB Note Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.
-Introduction From mysql-connector-java 8.0.12, MySQL driver issues a getSQLKeywords call for retrieving this database&rsquo;s keywords, triggered by MySQLAdapter(DataNucleus) on Metastore initialization. However, the back table KEYWORDS in MariaDB diverged from that in MySQL, which makes the Metastore fail to start, an exception thrown like:
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/>Apache Hive : Hive Schema Tool</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Oct 14, 2025
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Hive Schema Tool About Schema tool helps to initialise and upgrade metastore database and hive sys schema.
-Metastore Schema Verification Introduced in Hive 0.12.0. See HIVE-3764.
-Hive records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to access the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/oauth2/>Apache Hive : Setting Up OAuth 2</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Sep 30, 2025
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Setting Up OAuth 2 Hive is able to protect some resources and extract authenticated usernames with OAuth 2.
-Supported Features Iceberg REST Catalog API Examples: Integration with external Authorization Servers Keycloak
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/oauth2/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual/>Apache Hive : AdminManual</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual Hive Administrator&rsquo;s Manual Installing Hive Configuring Hive Setting up Metastore Setting up Hive Server (JDBC, ODBC, Thrift, etc) Hive on Amazon Web Services
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/>Apache Hive : AdminManual Configuration</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual Configuration Configuring Hive A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:
-Using the set command in the CLI or Beeline for setting session level values for the configuration variable for all statements subsequent to the set command.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/>Apache Hive : AdminManual Installation</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual Installation Installing Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 0.13 and later) or Ant (release 0.12 and earlier).
-Hive installation has these requirements:
-Java 1.7 (preferred).
-Note: Hive versions 1.2 onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/>Apache Hive : AdminManual Metastore 3.0 Administration</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual Metastore 3.0 Administration Version Note This document applies only to the Metastore in Hive 3.0 and later releases. For Hive 0, 1, and 2 releases please see the Metastore Administration document.
-Introduction The definition of Hive objects such as databases, tables, and functions are stored in the Metastore. Depending on how the system is configured, statistics and authorization records may also be stored there. Hive, and other execution engines, use this data at runtime to determine how to parse, authorize, and efficiently execute user queries.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Apache Hive : AdminManual Metastore Administration</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual Metastore Administration This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see AdminManual Metastore 3.0 Administration
-Introduction All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using JPOX ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-settinguphiveserver/>Apache Hive : AdminManual SettingUpHiveServer</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : AdminManual SettingUpHiveServer Setting Up Hive Server Setting Up HiveServer2 Setting Up Thrift Hive Server Setting Up Hive JDBC Server Setting Up Hive ODBC Server
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/adminmanual-settinguphiveserver/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hive-metatool/>Apache Hive : Hive MetaTool</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Hive MetaTool Introduced in Hive 0.10.0. See HIVE-3056 and HIVE-3443.
-The Hive MetaTool enables administrators to do bulk updates on the location fields in database, table, and partition records in the metastore. It provides the following functionality:
-Ability to search and replace the HDFS NN (NameNode) location in metastore records that reference the NN. One use is to transition a Hive deployment to HDFS HA NN (HDFS High Availability NameNode).
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hive-metatool/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hive-on-spark-getting-started/>Apache Hive : Hive on Spark: Getting Started</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Hive on Spark: Getting Started Hive on Spark provides Hive with the ability to utilize Apache Spark as its execution engine.
-set hive.execution.engine=spark; Hive on Spark was added in HIVE-7292.
-Version Compatibility Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hive-on-spark-getting-started/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hiveamazonelasticmapreduce/>Apache Hive : HiveAmazonElasticMapReduce</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : HiveAmazonElasticMapReduce Amazon Elastic MapReduce and Hive Amazon Elastic MapReduce is a web service that makes it easy to launch managed, resizable Hadoop clusters on the web-scale infrastructure of Amazon Web Services (AWS). Elastic Map Reduce makes it easy for you to launch a Hive and Hadoop cluster, provides you with flexibility to choose different cluster sizes, and allows you to tear them down automatically when processing has completed.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hiveamazonelasticmapreduce/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hiveaws/>Apache Hive : HiveAws</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : HiveAws = Hive and Amazon Web Services =
-Background This document explores the different ways of leveraging Hive on Amazon Web Services - namely S3, EC2 and Elastic Map-Reduce.
-Hadoop already has a long tradition of being run on EC2 and S3. These are well documented in the links below which are a must read:
-Hadoop and S3 Amazon and EC2 The second document also has pointers on how to get started using EC2 and S3.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hiveaws/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode/>Apache Hive : HiveDerbyServerMode</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Using Derby in Server Mode Hive in embedded mode has a limitation of one active user at a time. You may want to run Derby as a Network Server, this way multiple users can access it simultaneously from different systems.
-See Metadata Store and Embedded Metastore for more information.
-Download Derby It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of derby.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/>Apache Hive : HiveJDBCInterface</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : JDBC Driver The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.
-To see how the JDBC interface can be used, see sample code.
-Integration with Pentaho Download pentaho report designer from the pentaho website. Overwrite report-designer.sh with the code provided below. #!/bin/sh HADOOP_CORE={{ls $HADOOP_HOME/hadoop-*-core.jar}} CLASSPATH=.:$HADOOP_CORE:$HIVE_HOME/conf for i in ${HIVE_HOME}/lib/*.jar ; do CLASSPATH=$CLASSPATH:$i done CLASSPATH=$CLASSPATH:launcher.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hiveodbc/>Apache Hive : HiveODBC</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : ODBC Driver These instructions are for the Hive ODBC driver available in Hive for HiveServer1.
-There is no ODBC driver available for HiveServer2 as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.
-Introduction The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hiveodbc/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/hiveserver/>Apache Hive : HiveServer</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : HiveServer Thrift Hive Server HiveServer is an optional service that allows a remote client to submit requests to Hive, using a variety of programming languages, and retrieve results. HiveServer is built on Apache ThriftTM (http://thrift.apache.org/), therefore it is sometimes called the Thrift server although this can lead to confusion because a newer service named HiveServer2 is also built on Thrift. Since the introduction of HiveServer2, HiveServer has also been called HiveServer1.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/hiveserver/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/manual-installation/>Apache Hive : Manual Installation</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Manual Installation Installing, configuring and running Hive You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 3.6.3 and later).
-Prerequisites Java 8. Maven 3.6.3 Protobuf 2.5 Hadoop 3.3.6 (As a preparation, configure it in single-node cluster, pseudo-distributed mode) Tez. The default is MapReduce but we will change the execution engine to Tez.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/manual-installation/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/replication/>Apache Hive : Replication</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Replication Overview Hive Replication builds on the metastore event and ExIm features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly &lsquo;light touch&rsquo;, exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/replication/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-hive-with-docker/>Apache Hive : Setting Up Hive with Docker</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Setting Up Hive with Docker Introduction Run Apache Hive inside docker container in pseudo-distributed mode
-STEP 1: Pull the image Pull the 4.0.0 image from Hive DockerHub docker pull apache/hive:4.0.0 STEP 2: Export the Hive version export HIVE_VERSION=4.0.0 STEP 3: Launch the HiveServer2 with an embedded Metastore. This is lightweight and for a quick setup, it uses Derby as metastore db.
-docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 --name hive4 apache/hive:${HIVE_VERSION} STEP 4: Connect to beeline docker exec -it hiveserver2 beeline -u 'jdbc:hive2://hiveserver2:10000/' Note: Launch Standalone Metastore To use standalone Metastore with Derby,
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/setting-up-hive-with-docker/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/>Apache Hive : Setting Up HiveServer2</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : Setting Up HiveServer2 HiveServer2 (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro here). The current implementation, based on Thrift RPC, is an improved version of HiveServer and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
-The Thrift interface definition language (IDL) for HiveServer2 is available at https://github.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/admin/user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2/>Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2 User and Group Filter Support with LDAP Starting in Hive 1.3.0, HIVE-7193 adds support in HiveServer2 for
-LDAP Group filters LDAP User filters Custom LDAP Query support. Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.
-See Authentication/Security Configuration for general information about configuring authentication for HiveServer2.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/admin/user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-</article>
-</main>
-</div>
-</div>
-<footer class="black-background static-bottom" style=padding:30px>
-<div class=row>
-<div class=col-3>
-<a href=https://www.apache.org/>
-<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
-</a>
-</div>
-<div class=col-9>
-<p class=footer-text>Apache is a non-profit organization helping open-source
+<i class="fas fa-search"></i></button></div></form></div></div></div></nav></menu></header><div class=content><div class=docs-container><main class="docs-main docs-main-full"><article class=docs-content><nav class=docs-breadcrumb><ol><li><a href=/><i class="fas fa-home"></i> Home</a></li><li class=active>Administration Manual</li></ol></nav><header class=docs-header><h1 class=docs-title>Administration Manual</h1><div class=docs-meta><span class=docs-count><i class="fas fa-file-alt"></i>
+23 documents</span></div></header><div class=docs-article><div class=docs-grid><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/iceberg-rest-catalog/>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Nov 14, 2025</span></div><div class=docs-card-summary><h1 id=apache-hive--iceberg-rest-catalog-api-backed-by-hive-metastore>Apache Hive : Iceberg REST Catalog API backed by Hive Metastore</h1><h2 id=introduction>Introduction</h2><p><img src=../images/hive-iceberg-rest-integration.png alt></p><p>Hive Metastore offers <a href=https://iceberg.apache.org/rest-catalog-spec/>Iceberg REST API</a> endpoints for clients native to Apache Iceberg. Consequently, Iceberg users can access Iceberg tables via either Hive Metastore Thrift API (using HiveCatalog) or Iceberg REST Catalog API.</p><h2 id=basic-configurations>Basic configurations</h2><p>You must configure the following parameters.</p><table><thead><tr><th>Key</th><th>Required?</th><th>Default</th><th>Value</th></tr></thead><tbody><tr><td>metastore.catalog.servlet.port</td><td>Yes</td><td>-1</td><td>The port number to which Iceberg REST API listens</td></tr></tbody></table><h2 id=authentication>Authentication</h2><p>Hive Metastore&rsquo;s Iceberg REST API supports four authentication methods.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/iceberg-rest-catalog/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/>Apache Hive : Setting up Metastore backed by MariaDB</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Nov 5, 2025</span></div><div class=docs-card-summary><h1 id=apache-hive--setting-up-metastore-backed-by-mariadb>Apache Hive : Setting up Metastore backed by MariaDB</h1><h2 id=note>Note</h2><p><strong>Starting from mysql-connector-java 8.0.12, using the default MySQL driver the Metastore cannot be up to service.</strong></p><h2 id=introduction>Introduction</h2><p>From mysql-connector-java 8.0.12, MySQL driver issues a getSQLKeywords call for retrieving this database&rsquo;s keywords, triggered by MySQLAdapter(DataNucleus) on Metastore initialization.
+However, the back table <code>KEYWORDS</code> in MariaDB diverged from that in MySQL, which makes the Metastore fail to start, an exception thrown like:</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/setting-up-metastore-with-mariadb/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/>Apache Hive : Hive Schema Tool</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Oct 14, 2025</span></div><div class=docs-card-summary><h1 id=apache-hive--hive-schema-tool>Apache Hive : Hive Schema Tool</h1><h2 id=about>About</h2><p>Schema tool helps to initialise and upgrade metastore database and hive sys schema.</p><h2 id=metastore-schema-verification>Metastore Schema Verification</h2><p>Introduced in Hive 0.12.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3764>HIVE-3764</a>.</p><p>Hive records the schema version in the metastore database and verifies that the metastore schema version is compatible with Hive binaries that are going to access the metastore. Note that the Hive properties to implicitly create or alter the existing schema are disabled by default. Hive will not attempt to change the metastore schema implicitly. When you execute a Hive query against an old schema, it will fail to access the metastore:</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hive-schema-tool/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/oauth2/>Apache Hive : Setting Up OAuth 2</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Sep 30, 2025</span></div><div class=docs-card-summary><h1 id=apache-hive--setting-up-oauth-2>Apache Hive : Setting Up OAuth 2</h1><p>Hive is able to protect some resources and extract authenticated usernames with OAuth 2.</p><h2 id=supported-features>Supported Features</h2><ul><li>Iceberg REST Catalog API</li></ul><h2 id=examples-integration-with-external-authorization-servers>Examples: Integration with external Authorization Servers</h2><ul><li><a href=/docs/latest/admin/oauth2/keycloak/>Keycloak</a></li></ul></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/oauth2/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual/>Apache Hive : AdminManual</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual>Apache Hive : AdminManual</h1><h1 id=hive-administrators-manual>Hive Administrator&rsquo;s Manual</h1><ul><li><a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/>Installing Hive</a></li><li><a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/>Configuring Hive</a></li><li><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Setting up Metastore</a></li><li><a href=https://hive.apache.org/docs/latest/admin/adminmanual-settinguphiveserver/>Setting up Hive Server (JDBC, ODBC, Thrift, etc)</a></li><li><a href=https://hive.apache.org/docs/latest/admin/hiveaws/>Hive on Amazon Web Services</a></li></ul></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/>Apache Hive : AdminManual Configuration</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual-configuration>Apache Hive : AdminManual Configuration</h1><h2 id=configuring-hive>Configuring Hive</h2><p>A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:</p><ul><li>Using the <strong>set command</strong> in the <a href=https://hive.apache.org/docs/latest/language/languagemanual-cli/>CLI</a> or <a href=#beeline>Beeline</a> for setting session level values for the configuration variable for all statements subsequent to the set command. For example, the following command sets the scratch directory (which is used by Hive to store temporary output and plans) to <code>/tmp/mydir</code> for all subsequent statements:</li></ul><pre tabindex=0><code>  set hive.exec.scratchdir=/tmp/mydir;
+</code></pre><ul><li>Using the <strong><code>--hiveconf</code></strong> option of the <code>[hive](#hive)</code> command (in the CLI) or <code>[beeline](#beeline)</code> command for the entire session. For example:</li></ul><pre tabindex=0><code>  bin/hive --hiveconf hive.exec.scratchdir=/tmp/mydir
+</code></pre><ul><li>In <strong><code>hive-site.xml</code></strong>. This is used for setting values for the entire Hive configuration (see <a href=#hive-sitexml-and-hive-defaultxmltemplate>hive-site.xml and hive-default.xml.template</a> below). For example:</li></ul><pre tabindex=0><code>  &lt;property&gt;
+    &lt;name&gt;hive.exec.scratchdir&lt;/name&gt;
+    &lt;value&gt;/tmp/mydir&lt;/value&gt;
+    &lt;description&gt;Scratch space for Hive jobs&lt;/description&gt;
+  &lt;/property&gt;
+</code></pre><ul><li>In <strong>server-specific configuration files</strong> (supported starting <a href=https://issues.apache.org/jira/browse/HIVE-7342>Hive 0.14</a>). You can set metastore-specific configuration values in <strong>hivemetastore-site.xml</strong>, and HiveServer2-specific configuration values in <strong>hiveserver2-site.xml</strong>.<br>The server-specific configuration file is useful in two situations:</li></ul><ol><li><ol><li>You want a different configuration for one type of server (for example – enabling authorization only in HiveServer2 and not CLI).</li><li>You want to set a configuration value only in a server-specific configuration file (for example – setting the metastore database password only in the metastore server configuration file).<br>HiveMetastore server reads hive-site.xml as well as hivemetastore-site.xml configuration files that are available in the $HIVE_CONF_DIR or in the classpath. If the metastore is being used in embedded mode (i.e., hive.metastore.uris is not set or empty) in <code>hive</code> commandline or HiveServer2, the hivemetastore-site.xml gets loaded by the parent process as well.<br>The value of hive.metastore.uris is examined to determine this, and the value should be set appropriately in hive-site.xml .<br>Certain <a href=#metastore-configuration-parameters>metastore configuration parameters</a> like hive.metastore.sasl.enabled, hive.metastore.kerberos.principal, hive.metastore.execute.setugi, and hive.metastore.thrift.framed.transport.enabled are used by the metastore client as well as server. For such common parameters it is better to set the values in hive-site.xml, that will help in keeping them consistent.</li></ol><p>HiveServer2 reads hive-site.xml as well as hiveserver2-site.xml that are available in the $HIVE_CONF_DIR or in the classpath.<br>If HiveServer2 is using the metastore in embedded mode, hivemetastore-site.xml also is loaded.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual-configuration/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/>Apache Hive : AdminManual Installation</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual-installation>Apache Hive : AdminManual Installation</h1><h1 id=installing-hive>Installing Hive</h1><p>You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 0.13 and later) or Ant (release 0.12 and earlier).</p><p>Hive installation has these requirements:</p><ul><li>Java 1.7 (preferred).<br><em>Note:</em>  Hive versions <a href="https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel">1.2</a> onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6, but prefer 1.7. Users are strongly advised to start moving to Java 1.8 (see <a href=https://issues.apache.org/jira/browse/HIVE-8607>HIVE-8607</a>).</li><li>Hadoop 2.x (preferred), 1.x (not supported by Hive 2.0.0 onward).<br>Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.</li><li>Hive is commonly used in production Linux and Windows environment. Mac is a commonly used development environment. The instructions in this document are applicable to Linux and Mac. Using it on Windows would require slightly different steps.</li></ul><h2 id=installing-from-a-tarball>Installing from a Tarball</h2><p>Start by downloading the most recent stable release of Hive from one of the Apache download mirrors (see <a href=https://hive.apache.org/downloads.html>Hive Releases</a>).</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/>Apache Hive : AdminManual Metastore 3.0 Administration</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual-metastore-30-administration>Apache Hive : AdminManual Metastore 3.0 Administration</h1><h2 id=version-note>Version Note</h2><p><strong>This document applies only to the Metastore in Hive 3.0 and later releases.</strong>  For Hive 0, 1, and 2 releases please see the <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Metastore Administration</a> document.</p><h2 id=introduction>Introduction</h2><p>The definition of Hive objects such as databases, tables, and functions are stored in the Metastore.  Depending on how the system is configured, statistics and authorization records may also be stored there.  Hive, and other execution engines, use this data at runtime to determine how to parse, authorize, and efficiently execute user queries.  </p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/>Apache Hive : AdminManual Metastore Administration</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual-metastore-administration>Apache Hive : AdminManual Metastore Administration</h1><p>This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see <a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-3-0-administration/>AdminManual Metastore 3.0 Administration</a></p><h3 id=introduction>Introduction</h3><p>All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using <a href=http://www.datanucleus.org/>JPOX</a> ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of <a href=#supported-databases>supported databases</a> in section below.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/adminmanual-settinguphiveserver/>Apache Hive : AdminManual SettingUpHiveServer</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--adminmanual-settinguphiveserver>Apache Hive : AdminManual SettingUpHiveServer</h1><h2 id=setting-up-hive-server>Setting Up Hive Server</h2><ul><li><a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2>Setting Up HiveServer2</a></li><li><a href=https://hive.apache.org/docs/latest/admin/hiveserver/>Setting Up Thrift Hive Server</a></li><li><a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/>Setting Up Hive JDBC Server</a></li><li><a href=https://hive.apache.org/docs/latest/admin/hiveodbc/>Setting Up Hive ODBC Server</a></li></ul></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/adminmanual-settinguphiveserver/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hive-metatool/>Apache Hive : Hive MetaTool</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--hive-metatool>Apache Hive : Hive MetaTool</h1><p>Introduced in Hive 0.10.0. See <a href=https://issues.apache.org/jira/browse/HIVE-3056>HIVE-3056</a> and <a href=https://issues.apache.org/jira/browse/HIVE-3443>HIVE-3443</a>.</p><p>The Hive MetaTool enables administrators to do bulk updates on the location fields in database, table, and partition records in the metastore.  It provides the following functionality:</p><ul><li>Ability to search and replace the HDFS NN (NameNode) location in metastore records that reference the NN. One use is to transition a Hive deployment to <a href=https://issues.apache.org/jira/browse/HDFS-1623>HDFS HA NN</a> (HDFS High Availability NameNode).</li><li>A command line tool to execute <a href=http://www.datanucleus.org/products/datanucleus/jdo/jdoql.html>JDOQL</a> against the metastore. The ability to execute JDOQL against the metastore can be a useful debugging tool for both users and Hive developers.</li></ul><h3 id=the-metatool-command>The <code>metatool</code> Command</h3><p>The <code>metatool</code> command invokes the Hive MetaTool with these options:</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hive-metatool/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hive-on-spark-getting-started/>Apache Hive : Hive on Spark: Getting Started</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--hive-on-spark-getting-started>Apache Hive : Hive on Spark: Getting Started</h1><p>Hive on Spark provides Hive with the ability to utilize <a href=http://spark.apache.org/>Apache Spark</a> as its execution engine.</p><pre tabindex=0><code>set hive.execution.engine=spark;
+</code></pre><p>Hive on Spark was added in <a href=https://issues.apache.org/jira/browse/HIVE-7292>HIVE-7292</a>.</p><h2 id=version-compatibility>Version Compatibility</h2><p>Hive on Spark is only tested with a specific version of Spark, so a given version of Hive is only guaranteed to work with a specific version of Spark. Other versions of Spark may work with a given version of Hive, but that is not guaranteed. Below is a list of Hive versions and their corresponding compatible Spark versions.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hive-on-spark-getting-started/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hiveamazonelasticmapreduce/>Apache Hive : HiveAmazonElasticMapReduce</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--hiveamazonelasticmapreduce>Apache Hive : HiveAmazonElasticMapReduce</h1><h1 id=amazon-elastic-mapreduce-and-hive>Amazon Elastic MapReduce and Hive</h1><p>Amazon Elastic MapReduce is a web service that makes it easy to launch managed, resizable Hadoop clusters on the web-scale infrastructure of Amazon Web Services (AWS). Elastic Map Reduce makes it easy for you to launch a Hive and Hadoop cluster, provides you with flexibility to choose different cluster sizes, and allows you to tear them down automatically when processing has completed. You pay only for the resources that you use with no minimums or long-term commitments.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hiveamazonelasticmapreduce/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hiveaws/>Apache Hive : HiveAws</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--hiveaws>Apache Hive : HiveAws</h1><p>= Hive and Amazon Web Services =</p><h2 id=background>Background</h2><p>This document explores the different ways of leveraging Hive on Amazon Web Services - namely <a href=http://aws.amazon.com/s3>S3</a>, <a href=http://aws.amazon.com/EC2>EC2</a> and <a href=http://aws.amazon.com/elasticmapreduce/>Elastic Map-Reduce</a>.</p><p>Hadoop already has a long tradition of being run on EC2 and S3. These are well documented in the links below which are a must read:</p><ul><li><a href=http://wiki.apache.org/hadoop/AmazonS3>Hadoop and S3</a></li><li><a href=http://wiki.apache.org/hadoop/AmazonEC2>Amazon and EC2</a></li></ul><p>The second document also has pointers on how to get started using EC2 and S3. For people who are new to S3 - there&rsquo;s a few helpful notes in <a href=#s3-for-n00bs-section>S3 for n00bs section</a> below. The rest of the documentation below assumes that the reader can launch a hadoop cluster in EC2, copy files into and out of S3 and run some simple Hadoop jobs.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hiveaws/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode/>Apache Hive : HiveDerbyServerMode</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--using-derby-in-server-mode>Apache Hive : Using Derby in Server Mode</h1><p>Hive in embedded mode has a limitation of one active user at a time. You may want to run <a href=http://db.apache.org/derby/>Derby</a> as a Network Server, this way multiple users can access it simultaneously from different systems.</p><p>See <a href=#metadata-store>Metadata Store</a> and <a href=#embedded-metastore>Embedded Metastore</a> for more information.</p><h3 id=download-derby>Download Derby</h3><p>It is suggested you download the version of Derby that ships with Hive. If you have already run Hive in embedded mode, the first line of <code>derby.log</code> contains the version.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hivederbyservermode/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/>Apache Hive : HiveJDBCInterface</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--jdbc-driver>Apache Hive : JDBC Driver</h1><p>The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.</p><p>To see how the JDBC interface can be used, see <a href=https://hive.apache.org/docs/latest/user/hiveclient/>sample code</a>.</p><h3 id=integration-with-pentaho>Integration with Pentaho</h3><ol><li>Download pentaho report designer from the <a href="http://sourceforge.net/project/showfiles.php?group_id=140317&amp;package_id=192362">pentaho website</a>.</li><li>Overwrite report-designer.sh with the code provided below.</li></ol><pre tabindex=0><code>#!/bin/sh
+
+HADOOP_CORE={{ls $HADOOP_HOME/hadoop-*-core.jar}}
+CLASSPATH=.:$HADOOP_CORE:$HIVE_HOME/conf
+
+for i in ${HIVE_HOME}/lib/*.jar ; do
+  CLASSPATH=$CLASSPATH:$i
+done
+
+CLASSPATH=$CLASSPATH:launcher.jar
+
+echo java -XX:MaxPermSize=512m -cp $CLASSPATH -jar launcher.jar
+java -XX:MaxPermSize=512m -cp $CLASSPATH org.pentaho.commons.launcher.Launcher
+</code></pre><ol start=3><li>Build and start the hive server with instructions from <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer</a>.</li><li>Compile and run the Hive JDBC client code to load some data (I haven&rsquo;t figured out how to do this in report designer yet). See <a href=https://hive.apache.org/docs/latest/user/hiveclient/>sample code</a> for loading the data.</li><li>Run the report designer (note step 2).</li></ol><pre tabindex=0><code>$ sh reporter-designer.sh
+</code></pre><ol start=6><li>Select &lsquo;Report Design Wizard&rsquo;.</li><li>Select a template - say &lsquo;fall template&rsquo; - next.</li><li>Create a new data source - JDBC (custom), Generic database.</li><li>Provide Hive JDBC parameters. Give the connection a name &lsquo;hive&rsquo;.</li></ol><pre tabindex=0><code>   URL: jdbc:hive://localhost:10000/default
+   Driver name: org.apache.hadoop.hive.jdbc.HiveDriver
+   Username and password are empty
+</code></pre><ol start=10><li>Click on &lsquo;Test&rsquo;. The test should succeed.</li><li>Edit the query: select &lsquo;Sample Query&rsquo;, click edit query, click on the connection &lsquo;hive&rsquo;. Create a new query. Write a query on the table testHiveDriverTable, for example, select * from testHiveDriverTable. Click next.</li><li>Layout Step: Add <code>PageOfPages</code> to Group Items By. Add key and value as Selected Items. Click next. And Finish.</li><li>Change the Report header to &lsquo;hive-pentaho-report&rsquo;. Change the type of the header to &lsquo;html&rsquo;.</li><li>Run the report and generate pdf. You should get something like the report attached here.</li></ol><h3 id=integration-with-squirrel-sql-client>Integration with SQuirrel SQL Client</h3><ol><li><p>Download, install and start the SQuirrel SQL Client from the <a href=http://squirrel-sql.sourceforge.net/>SQuirrel SQL website</a>.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hivejdbcinterface/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hiveodbc/>Apache Hive : HiveODBC</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--odbc-driver>Apache Hive : ODBC Driver</h1><p>These instructions are for the Hive ODBC driver available in Hive for <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer1</a>.<br>There is no ODBC driver available for <a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/>HiveServer2</a> as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.</p><h2 id=introduction>Introduction</h2><p>The Hive ODBC Driver is a software library that implements the Open Database Connectivity (ODBC) API standard for the Hive database management system, enabling ODBC compliant applications to interact seamlessly (ideally) with Hive through a standard interface. This driver will NOT be built as a part of the typical Hive build process and will need to be compiled and built separately according to the instructions below.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hiveodbc/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/hiveserver/>Apache Hive : HiveServer</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--hiveserver>Apache Hive : HiveServer</h1><h1 id=thrift-hive-server>Thrift Hive Server</h1><p>HiveServer is an optional service that allows a remote <a href=https://hive.apache.org/docs/latest/user/hiveclient/>client</a> to submit requests to Hive, using a variety of programming languages, and retrieve results. HiveServer is built on Apache ThriftTM (<a href=http://thrift.apache.org/>http://thrift.apache.org/</a>), therefore it is sometimes called the <em>Thrift server</em> although this can lead to confusion because a newer service named <a href=#hiveserver2>HiveServer2</a> is also built on Thrift. Since the introduction of HiveServer2, HiveServer has also been called <em>HiveServer1</em>.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/hiveserver/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/manual-installation/>Apache Hive : Manual Installation</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--manual-installation>Apache Hive : Manual Installation</h1><h1 id=installing-configuring-and-running-hive>Installing, configuring and running Hive</h1><p>You can install a stable release of Hive by downloading and unpacking a tarball, or you can download the source code and build Hive using Maven (release 3.6.3 and later).</p><h2 id=prerequisites>Prerequisites</h2><ul><li>Java 8.</li><li>Maven 3.6.3</li><li>Protobuf 2.5</li><li>Hadoop 3.3.6 (As a preparation, configure it in <a href=https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#Pseudo-Distributed_Operation>single-node cluster, pseudo-distributed mode</a>)</li><li><a href=https://tez.apache.org/>Tez</a>. The default is MapReduce but we will change the execution engine to Tez.</li><li>Hive is commonly used in production Linux environment. Mac is a commonly used development environment. The instructions in this document are applicable to Linux and Mac.</li></ul><h2 id=install-the-prerequisites>Install the prerequisites</h2><h3 id=java-8>Java 8</h3><p>Building Hive requires JDK 8 installed. Some notes in case you have ARM chipset (Apple M1 or later).</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/manual-installation/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/replication/>Apache Hive : Replication</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--replication>Apache Hive : Replication</h1><h2 id=overview>Overview</h2><p>Hive Replication builds on the <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-notification/>metastore event</a> and <a href=https://hive.apache.org/docs/latest/language/languagemanual-importexport/>ExIm</a> features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly &rsquo;light touch&rsquo;, exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an &lsquo;out of the box&rsquo; solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/replication/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-hive-with-docker/>Apache Hive : Setting Up Hive with Docker</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--setting-up-hive-with-docker>Apache Hive : Setting Up Hive with Docker</h1><h3 id=introduction>Introduction</h3><hr><p>Run Apache Hive inside docker container in pseudo-distributed mode</p><h5 id=step-1-pull-the-image><strong>STEP 1: Pull the image</strong></h5><ul><li>Pull the <strong>4.0.0</strong> image from <a href=https://hub.docker.com/r/apache/hive/tags>Hive DockerHub</a></li></ul><pre tabindex=0><code>docker pull apache/hive:4.0.0
+</code></pre><h5 id=step-2-export-the-hive-version><strong>STEP 2: Export the Hive version</strong></h5><pre tabindex=0><code>export HIVE_VERSION=4.0.0
+</code></pre><h5 id=step-3-launch-the-hiveserver2-with-an-embedded-metastore><strong>STEP 3: Launch the HiveServer2 with an embedded Metastore.</strong></h5><p>This is lightweight and for a quick setup, it uses Derby as metastore db.</p><pre tabindex=0><code>docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 --name hive4 apache/hive:${HIVE_VERSION}
+</code></pre><h5 id=step-4-connect-to-beeline><strong>STEP 4: Connect to beeline</strong></h5><pre tabindex=0><code>docker exec -it hiveserver2 beeline -u &#39;jdbc:hive2://hiveserver2:10000/&#39;
+</code></pre><p>Note: Launch Standalone Metastore To use standalone Metastore with Derby,</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/setting-up-hive-with-docker/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/>Apache Hive : Setting Up HiveServer2</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--setting-up-hiveserver2>Apache Hive : Setting Up HiveServer2</h1><p><a href=https://hive.apache.org/docs/latest/user/hiveserver2-overview>HiveServer2</a> (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro <a href=https://hive.apache.org/docs/latest/user/hiveserver2-overview>here</a>). The current implementation, based on Thrift RPC, is an improved version of <a href=https://hive.apache.org/docs/latest/admin/hiveserver/>HiveServer</a> and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.</p><ul><li>The Thrift interface definition language (IDL) for HiveServer2 is available at <a href=https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift</a>.</li><li>Thrift documentation is available at <a href=http://thrift.apache.org/docs/>http://thrift.apache.org/docs/</a>.</li></ul><p>This document describes how to set up the server. How to use a client with this server is described in the <a href=https://hive.apache.org/docs/latest/user/hiveserver2-clients/>HiveServer2 Clients document</a>.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/admin/user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2/>Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2>Apache Hive : User and Group Filter Support with LDAP Atn Provider in HiveServer2</h1><h2 id=user-and-group-filter-support-with-ldap>User and Group Filter Support with LDAP</h2><p>Starting in Hive 1.3.0, <a href=https://issues.apache.org/jira/browse/HIVE-7193>HIVE-7193</a> adds support in HiveServer2 for</p><ul><li>LDAP Group filters</li><li>LDAP User filters</li><li>Custom LDAP Query support.</li></ul><p>Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.</p><p>See <a href=#authentication/security-configuration>Authentication/Security Configuration</a> for general information about configuring authentication for HiveServer2. Also see <a href=#hive-configuration-properties –-hiveserver2>Hive Configuration Properties – HiveServer2</a> for individual configuration parameters discussed below.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/admin/user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div></div></div></article></main></div></div><footer class="black-background static-bottom" style=padding:30px><div class=row><div class=col-3><a href=https://www.apache.org/><img src=https://hive.apache.org//images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a></a></div><div class=col-9><p class=footer-text>Apache is a non-profit organization helping open-source
 software projects released under the Apache
 <a href=https://www.apache.org/licenses/>license</a>
 and managed with
-<a href=https://www.apache.org/foundation/how-it-works.html>
-open governance</a> and
-<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
-privacy policy</a>. See upcoming
+<a href=https://www.apache.org/foundation/how-it-works.html>open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>privacy policy</a>. See upcoming
 <a href=https://www.apache.org/events/current-event>Apache Events</a>.
 If you discover any
 <a href=https://www.apache.org/security/>security</a> vulnerabilities, please
 report them privately. Finally,
 <a href=https://www.apache.org/foundation/thanks.html>thanks
-</a> to the sponsors who
-<a href=https://www.apache.org/foundation/sponsorship.html>
-donate</a> to the Apache Foundation.
-</p>
-</div>
-</div>
-<div class="copyright row">
-<a href=https://hive.apache.org style=color:grey>
-The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
-</a>
-</div>
-</footer>
-<script src="https://hive.apache.org/js/bootstrap.bundle.min.js?v=1.1.0"></script>
-</body>
-</html>
+</a>to the sponsors who
+<a href=https://www.apache.org/foundation/sponsorship.html>donate</a> to the Apache Foundation.</p></div></div><div class="copyright row"><a href=https://hive.apache.org/ style=color:grey>The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.</a></div></footer><script src="https://hive.apache.org//js/bootstrap.bundle.min.js?v=1.1.0"></script></body></html>

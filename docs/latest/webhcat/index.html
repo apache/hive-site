@@ -1,1033 +1,293 @@
-<!doctype html><html><!doctype html>
-<html>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=author content>
-<meta http-equiv=cache-control content="no-cache, no-store, must-revalidate">
-<meta http-equiv=pragma content="no-cache">
-<meta http-equiv=expires content="0">
-<title>WebHCat (Templeton) Manual</title>
-<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
-<link rel=stylesheet href="https://hive.apache.org/css/hive-theme.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/font-awesome.all.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/bootstrap.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/termynal.css?v=1.1.0">
-<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
-<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
-<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
-<meta name=msapplication-TileColor content="#da532c">
-<meta name=theme-color content="#ffffff">
-<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
-</head>
-<body>
-<body>
-<header>
-<menu class=main-menu>
-<nav class="navbar navbar-expand-lg navbar-dark">
-<div class=container-fluid>
-<div class=navbar-brand-wrapper>
-<a href=https://hive.apache.org class=navbar-logo>
-<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
-</a>
-<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
-</div>
-<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav me-auto">
-<li class=nav-item>
-<a class=nav-link href=https://hive.apache.org/general/downloads>
-Releases
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Documentation
-</a>
-<ul class=dropdown-menu aria-labelledby=docsDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-General
-</a>
-<ul class=dropdown-menu aria-labelledby=generalDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
-<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Development
-</a>
-<ul class=dropdown-menu aria-labelledby=devDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
-<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Community
-</a>
-<ul class=dropdown-menu aria-labelledby=communityDropdown>
-<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
-<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
-<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
-<li><hr class=dropdown-divider></li>
-<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
-<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
-</ul>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hive.blog.apache.org/>
-Blogs
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-ASF
-</a>
-<ul class=dropdown-menu aria-labelledby=asfDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
-</ul>
-</li>
-</ul>
-<div class=navbar-search>
-<form action=/search method=get class=search-form>
-<div class=search-input-group>
-<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<!doctype html><html><!doctype html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=author content><meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"><meta http-equiv=Pragma content="no-cache"><meta http-equiv=Expires content="0"><title>WebHCat (Templeton) Manual</title><link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml><link rel=stylesheet href="https://hive.apache.org//css/hive-theme.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/font-awesome.all.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/bootstrap.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/termynal.css?v=1.1.0"><link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org//images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org//images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org//images/favicon-16x16.png><link rel=manifest href=https://hive.apache.org//images/site.webmanifest><link rel=mask-icon href=https://hive.apache.org//images/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><script>var _paq=window._paq=window._paq||[];_paq.push(["disableCookies"]),_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){e="https://analytics.apache.org/",_paq.push(["setTrackerUrl",e+"matomo.php"]),_paq.push(["setSiteId","30"]);var e,n=document,t=n.createElement("script"),s=n.getElementsByTagName("script")[0];t.async=!0,t.src=e+"matomo.js",s.parentNode.insertBefore(t,s)}()</script></head><body><body><header><menu class=main-menu><nav class="navbar navbar-expand-lg navbar-dark"><div class=container-fluid><div class=navbar-brand-wrapper><a href=https://hive.apache.org/ class=navbar-logo><img src=https://hive.apache.org//images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a><a class=navbar-brand href=https://hive.apache.org/>Apache Hive</a></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class="navbar-nav me-auto"><li class=nav-item><a class=nav-link href=https://hive.apache.org//general/downloads>Releases</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Documentation</a><ul class=dropdown-menu aria-labelledby=docsDropdown><li><a class=dropdown-item href=https://hive.apache.org//docs/latest/>Latest</a></li><li><a class=dropdown-item href=https://hive.apache.org//docs/javadocs/>Javadocs</a></li><li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>General</a><ul class=dropdown-menu aria-labelledby=generalDropdown><li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li><li><a class=dropdown-item href=https://hive.apache.org//general/privacypolicy/>Privacy Policy</a></li><li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Development</a><ul class=dropdown-menu aria-labelledby=devDropdown><li><a class=dropdown-item href=https://hive.apache.org//development/gettingstarted/>Getting Started</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/quickstart/>Quickstart with Docker</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/desingdocs/>Design Docs</a></li><li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/versioncontrol/>Version Control</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Community</a><ul class=dropdown-menu aria-labelledby=communityDropdown><li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li><li><a class=dropdown-item href=/community/resources/>Resources</a></li><li><a class=dropdown-item href=/community/meetings/>Meetings</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/mailinglists/>Mailing Lists</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/issuetracking/>Issue Tracking</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/people/>People</a></li><li><hr class=dropdown-divider></li><li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li><li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li></ul></li><li class=nav-item><a class=nav-link href=https://hive.blog.apache.org/>Blogs</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>ASF</a><ul class=dropdown-menu aria-labelledby=asfDropdown><li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li><li><a class=dropdown-item href=https://www.apache.org/>Website</a></li></ul></li></ul><div class=navbar-search><form action=/search method=GET class=search-form><div class=search-input-group><input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
 <button type=submit class=search-button aria-label="Submit search">
-<i class="fas fa-search"></i>
-</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</nav>
-</menu>
-</header>
-<div class=content>
-<div class=docs-container>
-<main class="docs-main docs-main-full">
-<article class=docs-content>
-<nav class=docs-breadcrumb>
-<ol>
-<li><a href=/><i class="fas fa-home"></i> Home</a></li>
-<li class=active>WebHCat (Templeton) Manual</li>
-</ol>
-</nav>
-<header class=docs-header>
-<h1 class=docs-title>WebHCat (Templeton) Manual</h1>
-<div class=docs-meta>
-<span class=docs-count>
-<i class="fas fa-file-alt"></i>
-42 documents
-</span>
-</div>
-</header>
-<div class=docs-article>
-<div class=docs-grid>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-base/>Apache Hive : WebHCat</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat This is the manual for WebHCat, previously known as Templeton. WebHCat is the REST API for HCatalog, a table and storage management layer for Hadoop.  Using WebHCat Installation Configuration Reference See the HCatalog Manual for general HCatalog documentation.
-Navigation Links Next: Using WebHCat
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-base/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/>Apache Hive : WebHCat Configure</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Configure Configuration Files The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.
-The WebHCat-specific configuration is split into two layers:
-webhcat-default.xml – All the configuration variables that WebHCat needs. This file sets the defaults that ship with WebHCat and should only be changed by WebHCat developers.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/>Apache Hive : WebHCat InstallWebHCat</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Installation WebHCat Installed with Hive WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.
-If you install Hive from the binary tarball, the WebHCat server command webhcat_server.sh is in the hcatalog/sbin directory.
-Hive installation is documented here.
-WebHCat Installation Procedure Note: WebHCat was originally called Templeton. For backward compatibility the name still appears in URLs, log file names, variable names, etc.
-Ensure that the required related installations are in place, and place required files into the Hadoop distributed cache.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/>Apache Hive : WebHCat Reference</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Reference: WebHCat Resources This overview page lists all of the WebHCat resources. (DDL resources are listed here and on another overview page. For information about HCatalog DDL commands, see HCatalog DDL. For information about Hive DDL commands, see Hive Data Definition Language.)
-  Category Resource (Type) Description General :version (GET) Return a list of supported response types.   status (GET) Return the WebHCat server status.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/>Apache Hive : WebHCat Reference AllDDL</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference AllDDL WebHCat Reference: DDL Resources This is an overview page for the WebHCat DDL resources. The full list of WebHCat resources is on this overview page.
-For information about HCatalog DDL commands, see HCatalog DDL. For information about Hive DDL commands, see Hive Data Definition Language. Object Resource (Type) Description DDL Command ddl (POST) Perform an HCatalog DDL command.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>Apache Hive : WebHCat Reference DDL</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DDL Description Performs an HCatalog DDL command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the Hive resource as an alternative.
-URL http://www.myserver.com/templeton/ddl
-Parameters Name Description Required? Default exec The HCatalog ddl string to execute Required None group The user group to use when creating a table Optional None permissions The permissions string to use when creating a table.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>Apache Hive : WebHCat Reference DeleteDB</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteDB Description Delete a database.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db
-Parameters Name Description Required? Default :db The database name Required None ifExists Hive returns an error if the database specified does not exist, unless ifExists is set to true. Optional false option Parameter set to either &ldquo;restrict&rdquo; or &ldquo;cascade&rdquo;. Restrict will remove the schema if all the tables are empty.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/>Apache Hive : WebHCat Reference DeleteJob</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteJob Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
-Version: Deprecated in 0.12.0
-DELETE queue/:jobid is deprecated starting in Hive release 0.12.0. Users are encouraged to use DELETE jobs/:jobid instead. (See HIVE-4443.)
-DELETE queue/:jobid is equivalent to DELETE jobs/:jobid – check [DELETE jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/) for documentation.
-Version: Obsolete in 0.14.0
-DELETE queue/:jobid will be removed in Hive release 0.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/>Apache Hive : WebHCat Reference DeleteJobID</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteJobID Description Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
-Version: Hive 0.12.0 and later
-DELETE jobs/:jobid is introduced in Hive release 0.12.0. It is equivalent to [DELETE queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/) in prior releases.
-DELETE queue/:jobid is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
-URL http://www.myserver.com/templeton/v1/jobs/:jobid
-Parameters Name Description Required?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/>Apache Hive : WebHCat Reference DeletePartition</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeletePartition Description Delete (drop) a partition in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None ifExists Hive returns an error if the partition specified does not exist, unless ifExists is set to true.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/>Apache Hive : WebHCat Reference DeleteTable</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference DeleteTable Description Delete (drop) an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None ifExists Hive 0.70 and later returns an error if the table specified does not exist, unless ifExists is set to true. Optional false group The user group to use Optional None permissions The permissions string to use.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/>Apache Hive : WebHCat Reference GetColumn</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetColumn Description Describe a single column in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column/:column
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :column The column name Required None The standard parameters are also supported.
-Results Name Description database The database name table The table name column A JSON object containing the column name, type, and comment (if any) Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/column/price?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/>Apache Hive : WebHCat Reference GetColumns</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetColumns Description List the columns in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
-Results Name Description columns A list of column names and types database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/column?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>Apache Hive : WebHCat Reference GetDB</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetDB Description Describe a database. (Note: This resource has a &ldquo;format=extended&rdquo; parameter however the output structure does not change if it is used.)
-URL http://www.myserver.com/templeton/v1/ddl/database/:db
-Parameters Name Description Required? Default :db The database name Required None The standard parameters are also supported.
-Results Name Description location The database location params The database parameters comment The database comment database The database name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/newdb?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/>Apache Hive : WebHCat Reference GetDBs</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetDBs Description List the databases in HCatalog.
-URL http://www.myserver.com/templeton/v1/ddl/database
-Parameters Name Description Required? Default like List only databases whose names match the specified pattern. Optional &ldquo;*&rdquo; (List all) The standard parameters are also supported.
-Results Name Description databases A list of database names. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/>Apache Hive : WebHCat Reference GetPartition</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetPartition Description Describe a single partition in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None The standard parameters are also supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/>Apache Hive : WebHCat Reference GetPartitions</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetPartitions Description List all the partitions in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
-Results Name Description partitions A list of partition values and of partition names database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/partition?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/>Apache Hive : WebHCat Reference GetProperties</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetProperties Description List all the properties of an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None The standard parameters are also supported.
-Results Name Description properties A list of the table&rsquo;s properties in name: value pairs database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/>Apache Hive : WebHCat Reference GetProperty</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetProperty Description Return the value of a single table property.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property/:property
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :property The property name Required None The standard parameters are also supported.
-Results Name Description property The requested property&rsquo;s name: value pair database The database name table The table name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property/fruit?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/>Apache Hive : WebHCat Reference GetTable</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetTable Description Describe an HCatalog table. Normally returns a simple list of columns (using &ldquo;desc table&rdquo;), but the extended format will show more information (using &ldquo;show table extended like&rdquo;).
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table?format=extended
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None format Set &ldquo;format=extended&rdquo; to see additional information (using &ldquo;show table extended like&rdquo;) Optional Not extended The standard parameters are also supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/>Apache Hive : WebHCat Reference GetTables</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference GetTables Description List the tables in an HCatalog database.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table
-Parameters Name Description Required? Default :db The database name Required None like List only tables whose names match the specified pattern Optional &ldquo;*&rdquo; (List all tables) The standard parameters are also supported.
-Results Name Description tables A list of table names database The database name Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/ddl/database/default/table?
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/>Apache Hive : WebHCat Reference Hive</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Hive Description Runs a Hive query or set of commands.
-Version: Hive 0.13.0 and later
-As of Hive 0.13.0, GET version/hive displays the Hive version used for the query or commands.
-URL http://www.myserver.com/templeton/v1/hive
-Parameters Name Description Required? Default execute String containing an entire, short Hive program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None file HDFS file name of a Hive program to run.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/>Apache Hive : WebHCat Reference Job</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Job Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
-Version: Hive 0.12.0 and later
-GET jobs/:jobid is introduced in Hive release 0.12.0. It is equivalent to [GET queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/) in prior releases.
-GET queue/:jobid is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>Apache Hive : WebHCat Reference JobIDs</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference JobIDs Description Return a list of all job IDs.
-Version: Deprecated in 0.12.0
-GET queue is deprecated starting in Hive release 0.12.0. (See HIVE-4443.) Users are encouraged to use [GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/) instead.
-Version: Obsolete in 0.14.0
-GET queue will be removed in Hive release 0.14.0. (See HIVE-6432.)
-Use [GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/) instead.
-URL http://www.myserver.com/templeton/v1/queue
-Parameters Name Description Required? Default showall If showall is set to &ldquo;true&rdquo;, then the request will return all jobs the user has permission to view, not only the jobs belonging to the user.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/>Apache Hive : WebHCat Reference JobInfo</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference JobInfo Description Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.
-Version: Deprecated in 0.12.0
-GET queue/:jobid is deprecated starting in Hive release 0.12.0. Users are encouraged to use GET jobs/:jobid instead. (See HIVE-4443.)
-GET queue/:jobid is equivalent to GET jobs/:jobid – check [GET jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/) for documentation.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/>Apache Hive : WebHCat Reference Jobs</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Jobs Description Return a list of all job IDs.
-Version: Hive 0.12.0 and later
-GET jobs is introduced in Hive release 0.12.0. It is equivalent to [GET queue](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/) in prior releases.
-GET queue is now deprecated (HIVE-4443) and will be removed in Hive 0.14.0 (HIVE-6432).
-URL http://www.myserver.com/templeton/v1/jobs
-Parameters Name Description Required? Default fields If fields set to &ldquo;&rdquo;, the request will return full details of the job.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/>Apache Hive : WebHCat Reference MapReduceJar</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference MapReduceJar Description Creates and queues a standard Hadoop MapReduce job.
-Version: Hive 0.13.0 and later
-As of Hive 0.13.0, GET version/hadoop displays the Hadoop version used for the MapReduce job.
-URL http://www.myserver.com/templeton/v1/mapreduce/jar
-Parameters Name Description Required? Default jar Name of the jar file for Map Reduce to use. Required None class Name of the class for Map Reduce to use.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/>Apache Hive : WebHCat Reference MapReduceStream</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference MapReduceStream Description Create and queue a Hadoop streaming MapReduce job.
-Version: Hive 0.13.0 and later
-As of Hive 0.13.0, GET version/hadoop displays the Hadoop version used for the MapReduce job.
-URL http://www.myserver.com/templeton/v1/mapreduce/streaming
-Parameters Name Description Required? Default input Location of the input data in Hadoop. Required None output Location in which to store the output data. If not specified, WebHCat will store the output in a location that can be discovered using the queue resource.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/>Apache Hive : WebHCat Reference Pig</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Pig Description Create and queue a Pig job.
-URL http://www.myserver.com/templeton/v1/pig
-Parameters Name Description Required? Default execute String containing an entire, short Pig program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None file HDFS file name of a Pig program to run. One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required. None arg Set a program argument.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/>Apache Hive : WebHCat Reference PostTable</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PostTable Description Rename an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name Required None :table The existing (old) table name Required None rename The new table name Required None group The user group to use Optional None permissions The permissions string to use. The format is &ldquo;rwxrw-r-x&rdquo;.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>Apache Hive : WebHCat Reference PutColumn</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutColumn Description Create a column in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/column/:column
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :column The column name Required None group The user group to use Optional None permissions The permissions string to use Optional None type The type of column to add, like &ldquo;string&rdquo; or &ldquo;int&rdquo; Required None comment The column comment, like a description Optional None The standard parameters are also supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/>Apache Hive : WebHCat Reference PutDB</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutDB Description Create a database.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db
-Parameters Name Description Required? Default :db The database name Required None group The user group to use Optional None permissions The permissions string to use Optional None location The database location Optional None comment A comment for the database, like a description Optional None properties The database properties Optional None The standard parameters are also supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/>Apache Hive : WebHCat Reference PutPartition</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutPartition Description Create a partition in an HCatalog table.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/partition/:partition
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :partition The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. Required None group The user group to use Optional None permissions The permissions string to use Optional None location The location for partition creation Required None ifNotExists If true, return an error if the partition already exists.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/>Apache Hive : WebHCat Reference PutProperty</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutProperty Description Add a single property on an HCatalog table. This will also reset an existing property.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table/property/:property
-Parameters Name Description Required? Default :db The database name Required None :table The table name Required None :property The property name Required None group The user group to use Optional None permissions The permissions string to use Optional None value The property value Required None The standard parameters are also supported.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/>Apache Hive : WebHCat Reference PutTable</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutTable Description Create a new HCatalog table. For more information, please refer to the Hive documentation for CREATE TABLE.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:table
-Parameters Name Description Required? Default :db The database name. Required None :table The new table name. Required None group The user group to use when creating a table. Optional None permissions The permissions string to use when creating a table.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/>Apache Hive : WebHCat Reference PutTableLike</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference PutTableLike Description Create a new HCatalog table like an existing one.
-URL http://www.myserver.com/templeton/v1/ddl/database/:db/table/:existingtable/like/:newtable
-Parameters Name Description Required? Default :db The database name Required None :existingtable The existing table name Required None :newtable The new table name Required None group The user group to use when creating a table Optional None permissions The permissions string to use when creating a table Optional None external Allows you to specify a location so that Hive does not use the default location for this table.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/>Apache Hive : WebHCat Reference ResponseTypes</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference ResponseTypes Description Returns a list of the response types supported by WebHCat (Templeton).
-URL http://www.myserver.com/templeton/:version
-Parameters Name Description Required? Default :version The WebHCat version number. (Currently this must be &ldquo;v1&rdquo;.) Required None The standard parameters are also supported.
-Results Name Description responseTypes A list of all supported response types Example Curl Command % curl -s 'http://localhost:50111/templeton/v1' JSON Output { "responseTypes": [ "application/json" ] } JSON Output (error) { "error": "null for uri: http://localhost:50111/templeton/v2" } Navigation Links Previous: Reference: WebHCat Resources
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/>Apache Hive : WebHCat Reference Status</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Status Description Returns the current status of the WebHCat (Templeton) server. Useful for heartbeat monitoring.
-URL http://www.myserver.com/templeton/v1/status
-Parameters Only the standard parameters are accepted.
-Results Name Description status &ldquo;ok&rdquo; if the WebHCat server was contacted. version String containing the version number similar to &ldquo;v1&rdquo;. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/status' JSON Output { "status": "ok", "version": "v1" } Navigation Links Previous: Response Types (GET :version)Next: GET version
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>Apache Hive : WebHCat Reference Version</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference Version Description Returns a list of supported versions and the current version.
-URL http://www.myserver.com/templeton/v1/version
-Parameters Only the standard parameters are accepted.
-Results Name Description supportedVersions A list of all supported versions. version The current version. Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version' JSON Output { "supportedVersions": [ "v1" ], "version": "v1" } Navigation Links Previous: GET status
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>Apache Hive : WebHCat Reference VersionHadoop</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference VersionHadoop Description Return the version of Hadoop being run when WebHCat creates a MapReduce job (POST mapreduce/jar or mapreduce/streaming).
-Version: Hive 0.13.0 and later
-GET version/hadoop is introduced in Hive release 0.13.0 (HIVE-6226).
-URL http://www.myserver.com/templeton/v1/version/hadoop
-Parameters Only the standard parameters are accepted.
-Results Returns the Hadoop version.
-Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version/hadoop?user.name=ekoifman' JSON Output [ {"module":"hadoop","version":"2.4.1-SNAPSHOT} ]    Navigation Links Previous: GET version/hive
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>Apache Hive : WebHCat Reference VersionHive</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat Reference VersionHive Description Return the version of Hive being run when WebHCat issues Hive queries or commands (POST hive).
-Version: Hive 0.13.0 and later
-GET version/hive is introduced in Hive release 0.13.0 (HIVE-6226).
-URL http://www.myserver.com/templeton/v1/version/hive
-Parameters Only the standard parameters are accepted.
-Results Returns the Hive version.
-Example Curl Command % curl -s 'http://localhost:50111/templeton/v1/version/hive?user.name=ekoifman' JSON Output [ {"module":"hive","version":"0.14.0-SNAPSHOT"} ]    Navigation Links Previous: GET version
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-<div class=docs-card>
-<div class=docs-card-header>
-<h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/>Apache Hive : WebHCat UsingWebHCat</a></h3>
-<span class=docs-card-date>
-<i class="fas fa-calendar-alt"></i>
-Dec 12, 2024
-</span>
-</div>
-<div class=docs-card-summary>
-Apache Hive : WebHCat UsingWebHCat Version information The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.
-Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
-Introduction to WebHCat This document describes the HCatalog REST API, WebHCat, which was previously called Templeton.
-As shown in the figure below, developers make HTTP requests to access Hadoop MapReduce (or YARN), Pig, Hive, and HCatalog DDL from within applications.
-</div>
-<div class=docs-card-footer>
-<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/ class=docs-card-link>
-Read more <i class="fas fa-arrow-right"></i>
-</a>
-</div>
-</div>
-</div>
-</div>
-</article>
-</main>
-</div>
-</div>
-<footer class="black-background static-bottom" style=padding:30px>
-<div class=row>
-<div class=col-3>
-<a href=https://www.apache.org/>
-<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
-</a>
-</div>
-<div class=col-9>
-<p class=footer-text>Apache is a non-profit organization helping open-source
+<i class="fas fa-search"></i></button></div></form></div></div></div></nav></menu></header><div class=content><div class=docs-container><main class="docs-main docs-main-full"><article class=docs-content><nav class=docs-breadcrumb><ol><li><a href=/><i class="fas fa-home"></i> Home</a></li><li class=active>WebHCat (Templeton) Manual</li></ol></nav><header class=docs-header><h1 class=docs-title>WebHCat (Templeton) Manual</h1><div class=docs-meta><span class=docs-count><i class="fas fa-file-alt"></i>
+42 documents</span></div></header><div class=docs-article><div class=docs-grid><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-base/>Apache Hive : WebHCat</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat>Apache Hive : WebHCat</h1><p>This is the manual for WebHCat, previously known as Templeton. WebHCat is the REST API for HCatalog, a table and storage management layer for Hadoop. </p><ul><li><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/>Using WebHCat</a></li><li><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/>Installation</a></li><li><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/>Configuration</a></li><li><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/>Reference</a></li></ul><p>See the <a href=https://hive.apache.org/docs/latest/hcatalog/hcatalog-base/>HCatalog Manual</a> for general HCatalog documentation.</p><p><strong>Navigation Links</strong>
+Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/>Using WebHCat</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-base/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/>Apache Hive : WebHCat Configure</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-configure>Apache Hive : WebHCat Configure</h1><h2 id=configuration-files>Configuration Files</h2><p>The configuration for WebHCat (Templeton) merges the normal Hadoop configuration with the WebHCat-specific variables. Because WebHCat is designed to connect services that are not normally connected, the configuration is more complex than might be desirable.</p><p>The WebHCat-specific configuration is split into two layers:</p><ol><li><strong>webhcat-default.xml</strong> – All the configuration variables that WebHCat needs. This file sets the defaults that ship with WebHCat and should only be changed by WebHCat developers. Do not copy this file or change it to maintain local installation settings. Because webhcat-default.xml is present in the WebHCat war file, editing a local copy of it will not change the configuration.</li><li><strong>webhcat-site.xml</strong> – The (possibly empty) configuration file in which the system administrator can set variables for their Hadoop cluster. Create this file and maintain entries in it for configuration variables that require you to override default values based on your local installation.</li></ol><p>Note</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/>Apache Hive : WebHCat InstallWebHCat</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-installation>Apache Hive : WebHCat Installation</h1><h2 id=webhcat-installed-with-hive>WebHCat Installed with Hive</h2><p>WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.</p><p>If you install Hive from the binary tarball, the WebHCat server command <code>webhcat_server.sh</code> is in the <code>hcatalog/sbin</code> directory.</p><p>Hive installation is documented <a href=https://hive.apache.org/docs/latest/admin/adminmanual-installation/>here</a>.</p><h2 id=webhcat-installation-procedure>WebHCat Installation Procedure</h2><p><strong>Note:</strong> WebHCat was originally called Templeton. For backward compatibility the name still appears in URLs, log file names, variable names, etc.</p><ol><li>Ensure that the <a href=#required-related-installations>required related installations</a> are in place, and place required files into the <a href=#hadoop-distributed-cache>Hadoop distributed cache</a>.</li><li>Download and unpack the HCatalog distribution.</li><li>Set the <code>TEMPLETON_HOME</code> environment variable to the base of the HCatalog REST server installation. This will usually be same as <code>HCATALOG_HOME</code>. This is used to find the WebHCat (Templeton) configuration.</li><li>Set <code>JAVA_HOME</code>, <code>HADOOP_PREFIX</code>, and <code>HIVE_HOME</code> environment variables.</li><li>Review the <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/>configuration</a> and update or create <code>webhcat-site.xml</code> as required. Ensure that site-specific component installation locations are accurate, especially the Hadoop configuration path. Configuration variables that use a filesystem path try to have reasonable defaults, but it&rsquo;s always safe to specify a full and complete path.</li><li>Verify that HCatalog is installed and that the <code>hcat</code> executable is in the <code>PATH</code>.</li><li>Build HCatalog using the command <code>ant jar</code> from the top level HCatalog directory.</li><li>Start the REST server with the command &ldquo;<code>hcatalog/sbin/webhcat_server.sh start</code>&rdquo; for Hive 0.11.0 releases and later, or &ldquo;<code>sbin/webhcat_server.sh start</code>&rdquo; for installations prior to HCatalog merging with Hive.</li><li>Check that your local install works. Assuming that the server is running on port 50111, the following command would give output similar to that shown.</li></ol><pre tabindex=0><code>% curl -i http://localhost:50111/templeton/v1/status
+HTTP/1.1 200 OK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(7.6.0.v20120127)
+
+{&#34;status&#34;:&#34;ok&#34;,&#34;version&#34;:&#34;v1&#34;}
+%
+</code></pre><h2 id=server-commands>Server Commands</h2><ul><li><strong>Start the server:</strong> <code>sbin/webhcat_server.sh start</code> (HCatalog 0.5.0 and earlier – prior to Hive release 0.11.0)<ul><li><code>hcatalog/sbin/webhcat_server.sh start</code> (Hive release 0.11.0 and later)</li></ul></li><li><strong>Stop the server:</strong> <code>sbin/webhcat_server.sh stop</code> (HCatalog 0.5.0 and earlier – prior to Hive release 0.11.0)<ul><li><code>hcatalog/sbin/webhcat_server.sh stop</code> (Hive release 0.11.0 and later)</li></ul></li><li><strong>End-to-end build, run, test:</strong> <code>ant e2e</code></li></ul><h2 id=requirements>Requirements</h2><ul><li><a href=http://ant.apache.org/>Ant</a>, version 1.8 or higher</li><li><a href=http://hadoop.apache.org/>Hadoop</a>, version 1.0.3 or higher</li><li><a href=http://zookeeper.apache.org/>ZooKeeper</a> is required if you are using the ZooKeeper storage class. (Be sure to review and update the ZooKeeper-related <a href=#webhcat-configuration>WebHCat configuration</a>.)</li><li>HCatalog, version 0.5.0 or higher. The <code>hcat</code> executable must be both in the <code>PATH</code> and properly configured in the <a href=#webhcat-configuration>WebHCat configuration</a>.</li><li>Permissions must be given to the user running the server. (See below.)</li><li>If running a secure cluster, Kerberos keys and principals must be created. (See below.)</li><li><a href=#hadoop-distributed-cache>Hadoop Distributed Cache</a>. To use <a href=http://hive.apache.org/>Hive</a>, <a href=http://pig.apache.org/>Pig</a>, or <a href=http://hadoop.apache.org/docs/stable/streaming.html>Hadoop Streaming</a> resources, see instructions below for placing the required files in the Hadoop Distributed Cache.</li></ul><h2 id=hadoop-distributed-cache>Hadoop Distributed Cache</h2><p>The server requires some files be accessible on the <a href=http://hadoop.apache.org/docs/stable1/mapred_tutorial.html#DistributedCache>Hadoop distributed cache</a>. For example, to avoid the installation of Pig and Hive everywhere on the cluster, the server gathers a version of Pig or Hive from the Hadoop distributed cache whenever those resources are invoked. After placing the following components into HDFS please update the site configuration as required for each.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-installwebhcat/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/>Apache Hive : WebHCat Reference</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference>Apache Hive : WebHCat Reference</h1><h1 id=reference-webhcat-resources>Reference: WebHCat Resources</h1><p>This overview page lists all of the WebHCat resources. (DDL resources are listed here and on another <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/>overview page</a>. For information about HCatalog DDL commands, see <a href=#hcatalog-ddl>HCatalog DDL</a>. For information about Hive DDL commands, see <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl/>Hive Data Definition Language</a>.)</p><p> </p><table><thead><tr><th>Category</th><th>Resource (Type)</th><th>Description</th></tr></thead><tbody><tr><td>General</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/>:version (GET)</a></td><td>Return a list of supported response types.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/>status (GET)</a></td><td>Return the WebHCat server status.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>version (GET)</a></td><td>Return a list of supported versions and the current version.</td></tr><tr><td></td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>version/hive (GET)</a></td><td>Return the Hive version being run. (Added in Hive 0.13.0.)</td></tr><tr><td></td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>version/hadoop (GET)</a></td><td>Return the Hadoop version being run. (Added in Hive 0.13.0.)</td></tr><tr><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/>DDL</a></td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>ddl (POST)</a></td><td>Perform an HCatalog DDL command.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/>ddl/database (GET)</a></td><td>List HCatalog databases.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>ddl/database/:db (GET)</a></td><td>Describe an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/>ddl/database/:db (PUT)</a></td><td>Create an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>ddl/database/:db (DELETE)</a></td><td>Delete (drop) an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/>ddl/database/:db/table (GET)</a></td><td>List the tables in an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/>ddl/database/:db/table/:table (GET)</a></td><td>Describe an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/>ddl/database/:db/table/:table (PUT)</a></td><td>Create a new HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/>ddl/database/:db/table/:table (POST)</a></td><td>Rename an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/>ddl/database/:db/table/:table (DELETE)</a></td><td>Delete (drop) an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/>ddl/database/:db/table/:existingtable/like/:newtable (PUT)</a></td><td>Create a new HCatalog table like an existing one.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/>ddl/database/:db/table/:table/partition (GET)</a></td><td>List all partitions in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/>ddl/database/:db/table/:table/partition/:partition (GET)</a></td><td>Describe a single partition in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/>ddl/database/:db/table/:table/partition/:partition (PUT)</a></td><td>Create a partition in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/>ddl/database/:db/table/:table/partition/:partition (DELETE)</a></td><td>Delete (drop) a partition in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/>ddl/database/:db/table/:table/column (GET)</a></td><td>List the columns in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/>ddl/database/:db/table/:table/column/:column (GET)</a></td><td>Describe a single column in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>ddl/database/:db/table/:table/column/:column (PUT)</a></td><td>Create a column in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/>ddl/database/:db/table/:table/property (GET)</a></td><td>List table properties.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/>ddl/database/:db/table/:table/property/:property (GET)</a></td><td>Return the value of a single table property.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/>ddl/database/:db/table/:table/property/:property (PUT)</a></td><td>Set a table property.</td></tr><tr><td>MapReduce</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/>mapreduce/streaming (POST)</a></td><td>Create and queue Hadoop streaming MapReduce jobs.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/>mapreduce/jar (POST)</a></td><td>Create and queue standard Hadoop MapReduce jobs.</td></tr><tr><td>Pig</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/>pig (POST)</a></td><td>Create and queue Pig jobs.</td></tr><tr><td>Hive</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/>hive (POST)</a></td><td>Run Hive queries and commands.</td></tr><tr><td>Queue(deprecated in Hive 0.12,removed in Hive 0.14)</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>queue (GET)</a></td><td>Return a list of all job IDs. (Removed in Hive 0.14.0.)</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/>queue/:jobid (GET)</a></td><td>Return the status of a job given its ID. (Removed in Hive 0.14.0.)</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/>queue/:jobid (DELETE)</a></td><td>Kill a job given its ID. (Removed in Hive 0.14.0.)</td></tr><tr><td>Jobs(Hive 0.12 and later)</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/>jobs (GET)</a></td><td>Return a list of all job IDs.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/>jobs/:jobid (GET)</a></td><td>Return the status of a job given its ID.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/>jobs/:jobid (DELETE)</a></td><td>Kill a job given its ID.</td></tr></tbody></table><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-configure/>Configuration</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/>GET :version</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/>Apache Hive : WebHCat Reference AllDDL</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-allddl>Apache Hive : WebHCat Reference AllDDL</h1><h1 id=webhcat-reference-ddl-resources>WebHCat Reference: DDL Resources</h1><p>This is an overview page for the WebHCat DDL resources. The full list of WebHCat resources is on <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/>this overview page</a>.</p><ul><li>For information about HCatalog DDL commands, see <a href=#hcatalog-ddl>HCatalog DDL</a>.</li><li>For information about Hive DDL commands, see <a href=https://hive.apache.org/docs/latest/language/languagemanual-ddl/>Hive Data Definition Language</a>.</li></ul><table><thead><tr><th>Object</th><th>Resource (Type)</th><th>Description</th></tr></thead><tbody><tr><td>DDL Command</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>ddl (POST)</a></td><td>Perform an HCatalog DDL command.</td></tr><tr><td>Database</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/>ddl/database (GET)</a></td><td>List HCatalog databases.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>ddl/database/:db (GET)</a></td><td>Describe an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/>ddl/database/:db (PUT)</a></td><td>Create an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>ddl/database/:db (DELETE)</a></td><td>Delete (drop) an HCatalog database.</td></tr><tr><td>Table</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/>ddl/database/:db/table (GET)</a></td><td>List the tables in an HCatalog database.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/>ddl/database/:db/table/:table (GET)</a></td><td>Describe an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/>ddl/database/:db/table/:table (PUT)</a></td><td>Create a new HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/>ddl/database/:db/table/:table (POST)</a></td><td>Rename an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/>ddl/database/:db/table/:table (DELETE)</a></td><td>Delete (drop) an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/>ddl/database/:db/table/:existingtable/like/:newtable (PUT)</a></td><td>Create a new HCatalog table like an existing one.</td></tr><tr><td>Partition</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/>ddl/database/:db/table/:table/partition (GET)</a></td><td>List all partitions in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/>ddl/database/:db/table/:table/partition/:partition (GET)</a></td><td>Describe a single partition in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/>ddl/database/:db/table/:table/partition/:partition (PUT)</a></td><td>Create a partition in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/>ddl/database/:db/table/:table/partition/:partition (DELETE)</a></td><td>Delete (drop) a partition in an HCatalog table.</td></tr><tr><td>Column</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/>ddl/database/:db/table/:table/column (GET)</a></td><td>List the columns in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/>ddl/database/:db/table/:table/column/:column (GET)</a></td><td>Describe a single column in an HCatalog table.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>ddl/database/:db/table/:table/column/:column (PUT)</a></td><td>Create a column in an HCatalog table.</td></tr><tr><td>Property</td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/>ddl/database/:db/table/:table/property (GET)</a></td><td>List table properties.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/>ddl/database/:db/table/:table/property/:property (GET)</a></td><td>Return the value of a single table property.</td></tr><tr><td> </td><td><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/>ddl/database/:db/table/:table/property/:property (PUT)</a></td><td>Set a table property.</td></tr></tbody></table><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>GET version</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>POST ddl</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-allddl/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>Apache Hive : WebHCat Reference DDL</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-ddl>Apache Hive : WebHCat Reference DDL</h1><h2 id=description>Description</h2><p>Performs an <a href=#hcatalog-ddl>HCatalog DDL</a> command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/>Hive resource</a> as an alternative.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/ddl</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>exec</strong></td><td>The HCatalog ddl string to execute</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use when creating a table</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use when creating a table. The format is &ldquo;<code>rwxrw-r-x</code>&rdquo;.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>Apache Hive : WebHCat Reference DeleteDB</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-deletedb>Apache Hive : WebHCat Reference DeleteDB</h1><h2 id=description>Description</h2><p>Delete a database.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>ifExists</strong></td><td>Hive returns an error if the database specified does not exist, unless ifExists is set to true.</td><td>Optional</td><td>false</td></tr><tr><td><strong>option</strong></td><td>Parameter set to either &ldquo;restrict&rdquo; or &ldquo;cascade&rdquo;. Restrict will remove the schema if all the tables are empty. Cascade removes everything including data and definitions.</td><td>Optional</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use. The format is &ldquo;<code>rwxrw-r-x</code>&rdquo;.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/>Apache Hive : WebHCat Reference DeleteJob</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-deletejob>Apache Hive : WebHCat Reference DeleteJob</h1><h2 id=description>Description</h2><p>Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.</p><p>Version: Deprecated in 0.12.0</p><p><code>DELETE queue/:jobid</code> is deprecated starting in Hive release 0.12.0. Users are encouraged to use <code>DELETE jobs/:jobid</code> instead. (See <a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>.)<br><code>DELETE queue/:jobid</code> is equivalent to <code>DELETE jobs/:jobid</code> – check <code>[DELETE jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/)</code> for documentation.</p><p>Version: Obsolete in 0.14.0</p><p><code>DELETE queue/:jobid</code> will be removed in Hive release 0.14.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>.)<br>Use <code>[DELETE jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/)</code> instead.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/>Apache Hive : WebHCat Reference DeleteJobID</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-deletejobid>Apache Hive : WebHCat Reference DeleteJobID</h1><h2 id=description>Description</h2><p>Kill a job given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.</p><p>Version: Hive 0.12.0 and later</p><p><code>DELETE jobs/:jobid</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[DELETE queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/)</code> in prior releases.<br><code>DELETE queue/:jobid</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/jobs/</code><em>:jobid</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:jobid</strong></td><td>The job ID to delete. This is the ID received when the job was created.</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejobid/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/>Apache Hive : WebHCat Reference DeletePartition</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-deletepartition>Apache Hive : WebHCat Reference DeletePartition</h1><h2 id=description>Description</h2><p>Delete (drop) a partition in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/partition/</code><em>:partition</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:partition</strong></td><td>The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27.</td><td>Required</td><td>None</td></tr><tr><td><strong>ifExists</strong></td><td>Hive returns an error if the partition specified does not exist, unless <strong>ifExists</strong> is set to true.</td><td>Optional</td><td>false</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use. The format is &ldquo;<code>rwxrw-r-x</code>&rdquo;.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/>Apache Hive : WebHCat Reference DeleteTable</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-deletetable>Apache Hive : WebHCat Reference DeleteTable</h1><h2 id=description>Description</h2><p>Delete (drop) an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>ifExists</strong></td><td>Hive 0.70 and later returns an error if the table specified does not exist, unless <strong>ifExists</strong> is set to true.</td><td>Optional</td><td>false</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use. The format is &ldquo;<code>rwxrw-r-x</code>&rdquo;.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletetable/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/>Apache Hive : WebHCat Reference GetColumn</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getcolumn>Apache Hive : WebHCat Reference GetColumn</h1><h2 id=description>Description</h2><p>Describe a single column in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/column/</code><em>:column</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:column</strong></td><td>The column name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr><tr><td><strong>column</strong></td><td>A JSON object containing the column name, type, and comment (if any)</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/column/price?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;database&#34;: &#34;default&#34;,
+ &#34;table&#34;: &#34;test_table&#34;,
+ &#34;column&#34;: {
+   &#34;name&#34;: &#34;price&#34;,
+   &#34;comment&#34;: &#34;The unit price&#34;,
+   &#34;type&#34;: &#34;float&#34;
+ }
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/>GET ddl/database/:db/table/:table/column</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>PUT ddl/database/:db/table/:table/column/:column</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/>Apache Hive : WebHCat Reference GetColumns</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getcolumns>Apache Hive : WebHCat Reference GetColumns</h1><h2 id=description>Description</h2><p>List the columns in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/column</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>columns</strong></td><td>A list of column names and types</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/column?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;columns&#34;: [
+   {
+     &#34;name&#34;: &#34;id&#34;,
+     &#34;type&#34;: &#34;bigint&#34;
+   },
+   {
+     &#34;name&#34;: &#34;user&#34;,
+     &#34;comment&#34;: &#34;The user name&#34;,
+     &#34;type&#34;: &#34;string&#34;
+   },
+   {
+     &#34;name&#34;: &#34;my_p&#34;,
+     &#34;type&#34;: &#34;string&#34;
+   },
+   {
+     &#34;name&#34;: &#34;my_q&#34;,
+     &#34;type&#34;: &#34;string&#34;
+   }
+ ],
+ &#34;database&#34;: &#34;default&#34;,
+ &#34;table&#34;: &#34;my_table&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletepartition/>DELETE ddl/database/:db/table/:table/partition/:partition</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumn/>GET ddl/database/:db/table/:table/column/:column</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getcolumns/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>Apache Hive : WebHCat Reference GetDB</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getdb>Apache Hive : WebHCat Reference GetDB</h1><h2 id=description>Description</h2><p>Describe a database. (Note: This resource has a &ldquo;format=extended&rdquo; parameter however the output structure does not change if it is used.)</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>location</strong></td><td>The database location</td></tr><tr><td><strong>params</strong></td><td>The database parameters</td></tr><tr><td><strong>comment</strong></td><td>The database comment</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/newdb?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;location&#34;:&#34;hdfs://localhost:9000/warehouse/newdb.db&#34;,
+ &#34;params&#34;:&#34;{a=b}&#34;,
+ &#34;comment&#34;:&#34;Hello there&#34;,
+ &#34;database&#34;:&#34;newdb&#34;
+}
+</code></pre><h3 id=json-output-error>JSON Output (error)</h3><pre tabindex=0><code>{
+  &#34;error&#34;: &#34;No such database: newdb&#34;,
+  &#34;errorCode&#34;: 404
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/>GET ddl/database</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/>PUT ddl/database/:db</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/>Apache Hive : WebHCat Reference GetDBs</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getdbs>Apache Hive : WebHCat Reference GetDBs</h1><h2 id=description>Description</h2><p>List the databases in HCatalog.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>like</strong></td><td>List only databases whose names match the specified pattern.</td><td>Optional</td><td>&ldquo;*&rdquo; (List all)</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>databases</strong></td><td>A list of database names.</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database?user.name=ctdean&amp;like=n*&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;databases&#34;: [
+   &#34;newdb&#34;,
+   &#34;newdb2&#34;
+ ]
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>POST ddl</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>GET ddl/database/:db</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdbs/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/>Apache Hive : WebHCat Reference GetPartition</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getpartition>Apache Hive : WebHCat Reference GetPartition</h1><h2 id=description>Description</h2><p>Describe a single partition in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/partition/</code><em>:partition</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:partition</strong></td><td>The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27.</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr><tr><td><strong>partition</strong></td><td>The partition name</td></tr><tr><td><strong>partitioned</strong></td><td>True if the table is partitioned</td></tr><tr><td><strong>location</strong></td><td>Location of table</td></tr><tr><td><strong>outputFormat</strong></td><td>Output format</td></tr><tr><td><strong>columns</strong></td><td>List of column names, types, and comments</td></tr><tr><td><strong>owner</strong></td><td>The owner&rsquo;s user name</td></tr><tr><td><strong>partitionColumns</strong></td><td>List of the partition columns</td></tr><tr><td><strong>inputFormat</strong></td><td>Input format</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s \
+   &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/mytest/partition/country=%27US%27?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+  &#34;partitioned&#34;: true,
+  &#34;location&#34;: &#34;hdfs://ip-10-77-6-151.ec2.internal:8020/apps/hive/warehouse/mytest/loc1&#34;,
+  &#34;outputFormat&#34;: &#34;org.apache.hadoop.hive.ql.io.RCFileOutputFormat&#34;,
+  &#34;columns&#34;: [
+    {
+      &#34;name&#34;: &#34;i&#34;,
+      &#34;type&#34;: &#34;int&#34;
+    },
+    {
+      &#34;name&#34;: &#34;j&#34;,
+      &#34;type&#34;: &#34;bigint&#34;
+    },
+    {
+      &#34;name&#34;: &#34;ip&#34;,
+      &#34;comment&#34;: &#34;IP Address of the User&#34;,
+      &#34;type&#34;: &#34;string&#34;
+    }
+  ],
+  &#34;owner&#34;: &#34;rachel&#34;,
+  &#34;partitionColumns&#34;: [
+    {
+      &#34;name&#34;: &#34;country&#34;,
+      &#34;type&#34;: &#34;string&#34;
+    }
+  ],
+  &#34;inputFormat&#34;: &#34;org.apache.hadoop.hive.ql.io.RCFileInputFormat&#34;,
+  &#34;database&#34;: &#34;default&#34;,
+  &#34;table&#34;: &#34;mytest&#34;,
+  &#34;partition&#34;: &#34;country=&#39;US&#39;&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/>GET ddl/database/:db/table/:table/partition</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/>PUT ddl/database/:db/table/:table/partition/:partition</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/>Apache Hive : WebHCat Reference GetPartitions</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getpartitions>Apache Hive : WebHCat Reference GetPartitions</h1><h2 id=description>Description</h2><p>List all the partitions in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/partition</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>partitions</strong></td><td>A list of partition values and of partition names</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/my_table/partition?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+  &#34;partitions&#34;: [
+    {
+      &#34;values&#34;: [
+        {
+          &#34;columnName&#34;: &#34;dt&#34;,
+          &#34;columnValue&#34;: &#34;20120101&#34;
+        },
+        {
+          &#34;columnName&#34;: &#34;country&#34;,
+          &#34;columnValue&#34;: &#34;US&#34;
+        }
+      ],
+      &#34;name&#34;: &#34;dt=&#39;20120101&#39;,country=&#39;US&#39;&#34;
+    }
+  ],
+  &#34;database&#34;: &#34;default&#34;,
+  &#34;table&#34;: &#34;my_table&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/>PUT ddl/database/:db/table/:existingtable/like/:newtable</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartition/>GET ddl/database/:db/table/:table/partition/:partition</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getpartitions/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/>Apache Hive : WebHCat Reference GetProperties</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getproperties>Apache Hive : WebHCat Reference GetProperties</h1><h2 id=description>Description</h2><p>List all the properties of an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/property</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>properties</strong></td><td>A list of the table&rsquo;s properties in name: value pairs</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;properties&#34;: {
+   &#34;fruit&#34;: &#34;apple&#34;,
+   &#34;last_modified_by&#34;: &#34;ctdean&#34;,
+   &#34;hcat.osd&#34;: &#34;org.apache.hcatalog.rcfile.RCFileOutputDriver&#34;,
+   &#34;color&#34;: &#34;blue&#34;,
+   &#34;last_modified_time&#34;: &#34;1331620706&#34;,
+   &#34;hcat.isd&#34;: &#34;org.apache.hcatalog.rcfile.RCFileInputDriver&#34;,
+   &#34;transient_lastDdlTime&#34;: &#34;1331620706&#34;,
+   &#34;comment&#34;: &#34;Best table made today&#34;,
+   &#34;country&#34;: &#34;Albania&#34;
+ },
+ &#34;table&#34;: &#34;test_table&#34;,
+ &#34;database&#34;: &#34;default&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>PUT ddl/database/:db/table/:table/column/:column</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/>GET ddl/database/:db/table/:table/property/:property</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/>Apache Hive : WebHCat Reference GetProperty</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-getproperty>Apache Hive : WebHCat Reference GetProperty</h1><h2 id=description>Description</h2><p>Return the value of a single table property.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/property/</code><em>:property</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:property</strong></td><td>The property name</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>property</strong></td><td>The requested property&rsquo;s name: value pair</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr><tr><td><strong>table</strong></td><td>The table name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/test_table/property/fruit?user.name=ctdean&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;property&#34;: {
+   &#34;fruit&#34;: &#34;apple&#34;
+ },
+ &#34;table&#34;: &#34;test_table&#34;,
+ &#34;database&#34;: &#34;default&#34;
+}
+</code></pre><h3 id=json-output-error>JSON Output (error)</h3><pre tabindex=0><code>{
+  &#34;error&#34;: &#34;Table test_table does not exist&#34;,
+  &#34;errorCode&#34;: 404,
+  &#34;database&#34;: &#34;default&#34;,
+  &#34;table&#34;: &#34;test_table&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperties/>GET ddl/database/:db/table/:table/property</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/>PUT ddl/database/:db/table/:table/property/:property</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getproperty/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/>Apache Hive : WebHCat Reference GetTable</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-gettable>Apache Hive : WebHCat Reference GetTable</h1><h2 id=description>Description</h2><p>Describe an HCatalog table. Normally returns a simple list of columns (using &ldquo;desc table&rdquo;), but the extended format will show more information (using &ldquo;show table extended like&rdquo;).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em></p><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>?format=extended</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>format</strong></td><td>Set &ldquo;<code>format=extended</code>&rdquo; to see additional information (using &ldquo;show table extended like&rdquo;)</td><td>Optional</td><td>Not extended</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/>Apache Hive : WebHCat Reference GetTables</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-gettables>Apache Hive : WebHCat Reference GetTables</h1><h2 id=description>Description</h2><p>List the tables in an HCatalog database.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>like</strong></td><td>List only tables whose names match the specified pattern</td><td>Optional</td><td>&ldquo;*&rdquo; (List all tables)</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>tables</strong></td><td>A list of table names</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/ddl/database/default/table?user.name=ctdean&amp;like=m*&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;tables&#34;: [
+   &#34;my_table&#34;,
+   &#34;my_table_2&#34;,
+   &#34;my_table_3&#34;
+ ],
+ &#34;database&#34;: &#34;default&#34;
+}
+</code></pre><h3 id=json-output-error>JSON Output (error)</h3><pre tabindex=0><code>{
+  &#34;errorDetail&#34;: &#34;
+    org.apache.hadoop.hive.ql.metadata.HiveException: ERROR: The database defaultsd does not exist.
+        at org.apache.hadoop.hive.ql.exec.DDLTask.switchDatabase(DDLTask.java:3122)
+        at org.apache.hadoop.hive.ql.exec.DDLTask.execute(DDLTask.java:224)
+        at org.apache.hadoop.hive.ql.exec.Task.executeTask(Task.java:134)
+        at org.apache.hadoop.hive.ql.exec.TaskRunner.runSequential(TaskRunner.java:57)
+        at org.apache.hadoop.hive.ql.Driver.launchTask(Driver.java:1332)
+        at org.apache.hadoop.hive.ql.Driver.execute(Driver.java:1123)
+        at org.apache.hadoop.hive.ql.Driver.run(Driver.java:931)
+        at org.apache.hcatalog.cli.HCatDriver.run(HCatDriver.java:42)
+        at org.apache.hcatalog.cli.HCatCli.processCmd(HCatCli.java:247)
+        at org.apache.hcatalog.cli.HCatCli.processLine(HCatCli.java:203)
+        at org.apache.hcatalog.cli.HCatCli.main(HCatCli.java:162)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+        at java.lang.reflect.Method.invoke(Method.java:597)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:156)
+    &#34;,
+  &#34;error&#34;: &#34;FAILED: Error in metadata: ERROR: The database defaultsd does not exist.&#34;,
+  &#34;errorCode&#34;: 500,
+  &#34;database&#34;: &#34;defaultsd&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>DELETE ddl/database/:db</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettable/>GET ddl/database/:db/table/:table</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-gettables/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/>Apache Hive : WebHCat Reference Hive</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-hive>Apache Hive : WebHCat Reference Hive</h1><h2 id=description>Description</h2><p>Runs a <a href=http://hive.apache.org/>Hive</a> query or set of commands.</p><p>Version: Hive 0.13.0 and later</p><p>As of Hive 0.13.0, <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>GET version/hive</a> displays the Hive version used for the query or commands.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/hive</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>execute</strong></td><td>String containing an entire, short Hive program to run.</td><td>One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required.</td><td>None</td></tr><tr><td><strong>file</strong></td><td>HDFS file name of a Hive program to run.</td><td>One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required.</td><td>None</td></tr><tr><td><strong>define</strong></td><td>Set a Hive configuration variable using the syntax <code>define=NAME=VALUE</code>. See a <a href=https://community.hortonworks.com/articles/104269/how-to-pass-hive-configuration-parameters-to-knox.html>note</a> CURL and &ldquo;=&rdquo;.</td><td>Optional</td><td>None</td></tr><tr><td><strong>arg</strong></td><td>Set a program argument. This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4444>HIVE-4444</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>files</strong></td><td>Comma-separated files to be copied to the map reduce cluster. This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4444>HIVE-4444</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>statusdir</strong></td><td>A directory where WebHCat will write the status of the Hive job. If provided, it is the caller&rsquo;s responsibility to remove this directory when done.</td><td>Optional</td><td>None</td></tr><tr><td><strong>enablelog</strong></td><td>If <strong>statusdir</strong> is set and <strong>enablelog</strong> is &ldquo;true&rdquo;, collect Hadoop job configuration and logs into a directory named <code>$statusdir/logs</code> after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in <code>$statusdir/logs</code> is: <code>logs/$job_id</code> <em>(directory for $job_id)</em> <code>logs/$job_id/job.xml.html</code> <code>logs/$job_id/$attempt_id</code> <em>(directory for $attempt_id)</em> <code>logs/$job_id/$attempt_id/stderr</code> <code>logs/$job_id/$attempt_id/stdout</code> <code>logs/$job_id/$attempt_id/syslog</code> This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4531>HIVE-4531</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>callback</strong></td><td>Define a URL to be called upon job completion. You may embed a specific job ID into this URL using <code>$jobId</code>. This tag will be replaced in the callback URL with this job&rsquo;s job ID.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/>Apache Hive : WebHCat Reference Job</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-job>Apache Hive : WebHCat Reference Job</h1><h2 id=description>Description</h2><p>Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.</p><p>Version: Hive 0.12.0 and later</p><p><code>GET jobs/:jobid</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[GET queue/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/)</code> in prior releases.<br><code>GET queue/:jobid</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>Apache Hive : WebHCat Reference JobIDs</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-jobids>Apache Hive : WebHCat Reference JobIDs</h1><h2 id=description>Description</h2><p>Return a list of all job IDs.</p><p>Version: Deprecated in 0.12.0</p><p><code>GET queue</code> is deprecated starting in Hive release 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>.) Users are encouraged to use <code>[GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/)</code> instead.</p><p>Version: Obsolete in 0.14.0</p><p><code>GET queue</code> will be removed in Hive release 0.14.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>.)<br>Use <code>[GET jobs](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/)</code> instead.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/queue</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>showall</strong></td><td>If <strong>showall</strong> is set to &ldquo;true&rdquo;, then the request will return all jobs the user has permission to view, not only the jobs belonging to the user. This parameter is not available in releases prior to Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4442>HIVE-4442</a>.)</td><td>Optional in Hive 0.12.0+</td><td>false</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also accepted.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/>Apache Hive : WebHCat Reference JobInfo</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-jobinfo>Apache Hive : WebHCat Reference JobInfo</h1><h2 id=description>Description</h2><p>Check the status of a job and get related job information given its job ID. Substitute &ldquo;:jobid&rdquo; with the job ID received when the job was created.</p><p>Version: Deprecated in 0.12.0</p><p><code>GET queue/:jobid</code> is deprecated starting in Hive release 0.12.0. Users are encouraged to use <code>GET jobs/:jobid</code> instead. (See <a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>.)<br><code>GET queue/:jobid</code> is equivalent to <code>GET jobs/:jobid</code> – check <code>[GET jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/)</code> for documentation.</p><p>Version: Obsolete in 0.14.0</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/>Apache Hive : WebHCat Reference Jobs</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</h1><h2 id=description>Description</h2><p>Return a list of all job IDs.</p><p>Version: Hive 0.12.0 and later</p><p><code>GET jobs</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[GET queue](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/)</code> in prior releases.<br><code>GET queue</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/jobs</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>fields</strong></td><td>If <strong>fields</strong> set to &ldquo;<em>&rdquo;, the request will return full details of the job. If <strong>fields</strong> is missing, will only return the job ID. Currently the value can only be &ldquo;</em>&rdquo;, other values are not allowed and will throw exception.</td><td>Optional</td><td>None</td></tr><tr><td><strong>showall</strong></td><td>If <strong>showall</strong> is set to &ldquo;true&rdquo;, the request will return all jobs the user has permission to view, not only the jobs belonging to the user.</td><td>Optional</td><td>false</td></tr><tr><td><strong>jobid</strong></td><td>If <strong>jobid</strong> is present, only the records whose job ID is lexicographically greater than <strong>jobid</strong> are returned. For example, if <strong>jobid</strong> = &ldquo;job_201312091733_0001&rdquo;, the jobs whose job ID is greater than &ldquo;job_201312091733_0001&rdquo; are returned. The number of records returned depends on the value of <strong>numrecords</strong>.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td><td>Optional in Hive 0.13.0+</td><td>None</td></tr><tr><td><strong>numrecords</strong></td><td>If the <strong>jobid</strong> and <strong>numrecords</strong> parameters are present, the top <em>numrecords</em> records appearing after <strong>jobid</strong> will be returned after sorting the job ID list lexicographically. If the <strong>jobid</strong> parameter is missing and <strong>numrecords</strong> is present, the top <em>numrecords</em> will be returned after lexicographically sorting the job ID list. If the <strong>jobid</strong> parameter is present and <strong>numrecords</strong> is missing, all the records whose job ID is greater than <strong>jobid</strong> are returned.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td><td>Optional in Hive 0.13.0+</td><td>All</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also accepted.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobs/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/>Apache Hive : WebHCat Reference MapReduceJar</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-mapreducejar>Apache Hive : WebHCat Reference MapReduceJar</h1><h2 id=description>Description</h2><p>Creates and queues a standard <a href=http://hadoop.apache.org/docs/stable/commands_manual.html>Hadoop MapReduce</a> job.</p><p>Version: Hive 0.13.0 and later</p><p>As of Hive 0.13.0, <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>GET version/hadoop</a> displays the Hadoop version used for the MapReduce job.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/mapreduce/jar</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>jar</strong></td><td>Name of the jar file for Map Reduce to use.</td><td>Required</td><td>None</td></tr><tr><td><strong>class</strong></td><td>Name of the class for Map Reduce to use.</td><td>Required</td><td>None</td></tr><tr><td><strong>libjars</strong></td><td>Comma separated jar files to include in the classpath.</td><td>Optional</td><td>None</td></tr><tr><td><strong>files</strong></td><td>Comma separated files to be copied to the map reduce cluster.</td><td>Optional</td><td>None</td></tr><tr><td><strong>arg</strong></td><td>Set a program argument.</td><td>Optional</td><td>None</td></tr><tr><td><strong>define</strong></td><td>Set a Hadoop configuration variable using the syntax <code>define=NAME=VALUE</code></td><td>Optional</td><td>None</td></tr><tr><td><strong>statusdir</strong></td><td>A directory where WebHCat will write the status of the Map Reduce job. If provided, it is the caller&rsquo;s responsibility to remove this directory when done.</td><td>Optional</td><td>None</td></tr><tr><td><strong>enablelog</strong></td><td>If <strong>statusdir</strong> is set and <strong>enablelog</strong> is &ldquo;true&rdquo;, collect Hadoop job configuration and logs into a directory named <code>$statusdir/logs</code> after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in <code>$statusdir/logs</code> is: <code>logs/$job_id</code> <em>(directory for $job_id)</em> <code>logs/$job_id/job.xml.html</code> <code>logs/$job_id/$attempt_id</code> <em>(directory for $attempt_id)</em> <code>logs/$job_id/$attempt_id/stderr</code> <code>logs/$job_id/$attempt_id/stdout</code> <code>logs/$job_id/$attempt_id/syslog</code> This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4531>HIVE-4531</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>callback</strong></td><td>Define a URL to be called upon job completion. You may embed a specific job ID into this URL using <code>$jobId</code>. This tag will be replaced in the callback URL with this job&rsquo;s job ID.</td><td>Optional</td><td>None</td></tr><tr><td><strong>usehcatalog</strong></td><td>Specify that the submitted job uses HCatalog and therefore needs to access the metastore, which requires additional steps for WebHCat to perform in a secure cluster. (See <a href=https://issues.apache.org/jira/browse/HIVE-5133>HIVE-5133</a>.) This parameter will be introduced in Hive 0.13.0. Also, if webhcat-site.xml defines the parameters <code>templeton.hive.archive</code>, <code>templeton.hive.home</code> and <code>templeton.hcat.home</code> then WebHCat will ship the Hive tar to the target node where the job runs. (See <a href=https://issues.apache.org/jira/browse/HIVE-5547>HIVE-5547</a>.) This means that Hive doesn&rsquo;t need to be installed on every node in the Hadoop cluster. This is independent of security, but improves manageability. The webhcat-site.xml parameters are documented in webhcat-default.xml.</td><td>Optional in Hive 0.13.0+</td><td>false</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/>Apache Hive : WebHCat Reference MapReduceStream</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-mapreducestream>Apache Hive : WebHCat Reference MapReduceStream</h1><h2 id=description>Description</h2><p>Create and queue a <a href=http://hadoop.apache.org/docs/stable/streaming.html>Hadoop streaming MapReduce</a> job.</p><p>Version: Hive 0.13.0 and later</p><p>As of Hive 0.13.0, <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>GET version/hadoop</a> displays the Hadoop version used for the MapReduce job.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/mapreduce/streaming</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>input</strong></td><td>Location of the input data in Hadoop.</td><td>Required</td><td>None</td></tr><tr><td><strong>output</strong></td><td>Location in which to store the output data. If not specified, WebHCat will store the output in a location that can be discovered using the <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobinfo/>queue</a> resource.</td><td>Optional</td><td>See description</td></tr><tr><td><strong>mapper</strong></td><td>Location of the mapper program in Hadoop.</td><td>Required</td><td>None</td></tr><tr><td><strong>reducer</strong></td><td>Location of the reducer program in Hadoop.</td><td>Required</td><td>None</td></tr><tr><td><strong>file</strong></td><td>Add an HDFS file to the distributed cache.</td><td>Optional</td><td>None</td></tr><tr><td><strong>define</strong></td><td>Set a Hadoop configuration variable using the syntax <code>define=NAME=VALUE</code></td><td>Optional</td><td>None</td></tr><tr><td><strong>cmdenv</strong></td><td>Set an environment variable using the syntax <code>cmdenv=NAME=VALUE</code></td><td>Optional</td><td>None</td></tr><tr><td><strong>arg</strong></td><td>Set a program argument.</td><td>Optional</td><td>None</td></tr><tr><td><strong>statusdir</strong></td><td>A directory where WebHCat will write the status of the Map Reduce job. If provided, it is the caller&rsquo;s responsibility to remove this directory when done.</td><td>Optional</td><td>None</td></tr><tr><td><strong>enablelog</strong></td><td>If <strong>statusdir</strong> is set and <strong>enablelog</strong> is &ldquo;true&rdquo;, collect Hadoop job configuration and logs into a directory named <code>$statusdir/logs</code> after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in <code>$statusdir/logs</code> is: <code>logs/$job_id</code> <em>(directory for $job_id)</em> <code>logs/$job_id/job.xml.html</code> <code>logs/$job_id/$attempt_id</code> <em>(directory for $attempt_id)</em> <code>logs/$job_id/$attempt_id/stderr</code> <code>logs/$job_id/$attempt_id/stdout</code> <code>logs/$job_id/$attempt_id/syslog</code> This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4531>HIVE-4531</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>callback</strong></td><td>Define a URL to be called upon job completion. You may embed a specific job ID into this URL using <code>$jobId</code>. This tag will be replaced in the callback URL with this job&rsquo;s job ID.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/>Apache Hive : WebHCat Reference Pig</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-pig>Apache Hive : WebHCat Reference Pig</h1><h2 id=description>Description</h2><p>Create and queue a <a href=http://pig.apache.org/>Pig</a> job.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/pig</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>execute</strong></td><td>String containing an entire, short Pig program to run.</td><td>One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required.</td><td>None</td></tr><tr><td><strong>file</strong></td><td>HDFS file name of a Pig program to run.</td><td>One of either &ldquo;execute&rdquo; or &ldquo;file&rdquo; is required.</td><td>None</td></tr><tr><td><strong>arg</strong></td><td>Set a program argument. If <code>-useHCatalog</code> is included, then <strong>usehcatalog</strong> is interpreted as &ldquo;true&rdquo; (Hive 0.13.0 and later).</td><td>Optional</td><td>None</td></tr><tr><td><strong>files</strong></td><td>Comma separated files to be copied to the map reduce cluster.</td><td>Optional</td><td>None</td></tr><tr><td><strong>statusdir</strong></td><td>A directory where WebHCat will write the status of the Pig job. If provided, it is the caller&rsquo;s responsibility to remove this directory when done.</td><td>Optional</td><td>None</td></tr><tr><td><strong>enablelog</strong></td><td>If <strong>statusdir</strong> is set and <strong>enablelog</strong> is &ldquo;true&rdquo;, collect Hadoop job configuration and logs into a directory named <code>$statusdir/logs</code> after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in <code>$statusdir/logs</code> is: <code>logs/$job_id</code> <em>(directory for $job_id)</em> <code>logs/$job_id/job.xml.html</code> <code>logs/$job_id/$attempt_id</code> <em>(directory for $attempt_id)</em> <code>logs/$job_id/$attempt_id/stderr</code> <code>logs/$job_id/$attempt_id/stdout</code> <code>logs/$job_id/$attempt_id/syslog</code> This parameter was introduced in Hive 0.12.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-4531>HIVE-4531</a>.)</td><td>Optional in Hive 0.12.0+</td><td>None</td></tr><tr><td><strong>callback</strong></td><td>Define a URL to be called upon job completion. You may embed a specific job ID into this URL using <code>$jobId</code>. This tag will be replaced in the callback URL with this job&rsquo;s job ID.</td><td>Optional</td><td>None</td></tr><tr><td><strong>usehcatalog</strong></td><td>Specify that the submitted job uses HCatalog and therefore needs to access the metastore, which requires additional steps for WebHCat to perform in a secure cluster. (See <a href=https://issues.apache.org/jira/browse/HIVE-5133>HIVE-5133</a>.) This parameter will be introduced in Hive 0.13.0. It can also be set to &ldquo;true&rdquo; by including <code>-useHCatalog</code> in the <strong>arg</strong> parameter. Also, if webhcat-site.xml defines the parameters <code>templeton.hive.archive</code>, <code>templeton.hive.home</code> and <code>templeton.hcat.home</code> then WebHCat will ship the Hive tar to the target node where the job runs. (See <a href=https://issues.apache.org/jira/browse/HIVE-5547>HIVE-5547</a>.) This means that Hive doesn&rsquo;t need to be installed on every node in the Hadoop cluster. It does not ensure that Pig is installed on the target node in the cluster. This is independent of security, but improves manageability. The webhcat-site.xml parameters are documented in webhcat-default.xml.</td><td>Optional in Hive 0.13.0+</td><td>false</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-pig/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/>Apache Hive : WebHCat Reference PostTable</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-posttable>Apache Hive : WebHCat Reference PostTable</h1><h2 id=description>Description</h2><p>Rename an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The existing (old) table name</td><td>Required</td><td>None</td></tr><tr><td><strong>rename</strong></td><td>The new table name</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use. The format is &ldquo;<code>rwxrw-r-x</code>&rdquo;.</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>table</strong></td><td>The new table name</td></tr><tr><td><strong>database</strong></td><td>The database name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s -d rename=test_table_2 \
+       &#39;http://localhost:50111/templeton/v1/ddl/database/default/table/test_table?user.name=ekoifman&#39;
+</code></pre><p>Version information</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-posttable/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/>Apache Hive : WebHCat Reference PutColumn</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-putcolumn>Apache Hive : WebHCat Reference PutColumn</h1><h2 id=description>Description</h2><p>Create a column in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/column/</code><em>:column</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:column</strong></td><td>The column name</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>type</strong></td><td>The type of column to add, like &ldquo;string&rdquo; or &ldquo;int&rdquo;</td><td>Required</td><td>None</td></tr><tr><td><strong>comment</strong></td><td>The column comment, like a description</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putcolumn/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/>Apache Hive : WebHCat Reference PutDB</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-putdb>Apache Hive : WebHCat Reference PutDB</h1><h2 id=description>Description</h2><p>Create a database.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>location</strong></td><td>The database location</td><td>Optional</td><td>None</td></tr><tr><td><strong>comment</strong></td><td>A comment for the database, like a description</td><td>Optional</td><td>None</td></tr><tr><td><strong>properties</strong></td><td>The database properties</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>database</strong></td><td>The database name</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s -X PUT -HContent-type:application/json \
+       -d &#39;{ &#34;comment&#34;:&#34;Hello there&#34;,
+             &#34;location&#34;:&#34;hdfs://localhost:9000/user/hive/my_warehouse&#34;,
+             &#34;properties&#34;:{&#34;a&#34;:&#34;b&#34;}}&#39; \
+       &#39;http://localhost:50111/templeton/v1/ddl/database/newdb?user.name=rachel&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;database&#34;:&#34;newdb&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-getdb/>GET ddl/database/:db</a> Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletedb/>DELETE ddl/database/:db</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putdb/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/>Apache Hive : WebHCat Reference PutPartition</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-putpartition>Apache Hive : WebHCat Reference PutPartition</h1><h2 id=description>Description</h2><p>Create a partition in an HCatalog table.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/partition/</code><em>:partition</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:partition</strong></td><td>The partition name, col_name=&lsquo;value&rsquo; list. Be careful to properly encode the quote for http, for example, country=%27algeria%27.</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>location</strong></td><td>The location for partition creation</td><td>Required</td><td>None</td></tr><tr><td><strong>ifNotExists</strong></td><td>If true, return an error if the partition already exists.</td><td>Optional</td><td>False</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putpartition/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/>Apache Hive : WebHCat Reference PutProperty</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-putproperty>Apache Hive : WebHCat Reference PutProperty</h1><h2 id=description>Description</h2><p>Add a single property on an HCatalog table. This will also reset an existing property.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em><code>/property/</code><em>:property</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:property</strong></td><td>The property name</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use</td><td>Optional</td><td>None</td></tr><tr><td><strong>value</strong></td><td>The property value</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-putproperty/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/>Apache Hive : WebHCat Reference PutTable</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-puttable>Apache Hive : WebHCat Reference PutTable</h1><h2 id=description>Description</h2><p>Create a new HCatalog table. For more information, please refer to the Hive documentation for <a href=#create-table>CREATE TABLE</a>.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:table</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name.</td><td>Required</td><td>None</td></tr><tr><td><strong>:table</strong></td><td>The new table name.</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use when creating a table.</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use when creating a table.</td><td>Optional</td><td>None</td></tr><tr><td><strong>external</strong></td><td>Allows you to specify a location so that Hive does not use the default location for this table.</td><td>Optional</td><td>false</td></tr><tr><td><strong>ifNotExists</strong></td><td>If true, you will not receive an error if the table already exists.</td><td>Optional</td><td>false</td></tr><tr><td><strong>comment</strong></td><td>Comment for the table.</td><td>Optional</td><td>None</td></tr><tr><td><strong>columns</strong></td><td>A list of column descriptions, including name, type, and an optional comment.</td><td>Optional</td><td>None</td></tr><tr><td><strong>partitionedBy</strong></td><td>A list of column descriptions used to partition the table. Like the <strong>columns</strong> parameter this is a list of name, type, and comment fields.</td><td>Optional</td><td>None</td></tr><tr><td><strong>clusteredBy</strong></td><td>An object describing how to cluster the table including the parameters columnNames, sortedBy, and numberOfBuckets. The sortedBy parameter includes the parameters columnName and order (ASC for ascending or DESC for descending). For further information please refer to the examples below or to the <a href=#hive-documentation>Hive documentation</a>.</td><td>Optional</td><td>None</td></tr><tr><td><strong>format</strong></td><td>Storage format description including parameters for rowFormat, storedAs, and storedBy. For further information please refer to the examples below or to the <a href=#hive-documentation>Hive documentation</a>.</td><td>Optional</td><td>None</td></tr><tr><td><strong>location</strong></td><td>The HDFS path.</td><td>Optional</td><td>None</td></tr><tr><td><strong>tableProperties</strong></td><td>A list of table property names and values (key/value pairs).</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttable/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/>Apache Hive : WebHCat Reference PutTableLike</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-puttablelike>Apache Hive : WebHCat Reference PutTableLike</h1><h2 id=description>Description</h2><p>Create a new HCatalog table like an existing one.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/ddl/database/</code><em>:db</em><code>/table/</code><em>:existingtable</em><code>/like/</code><em>:newtable</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:db</strong></td><td>The database name</td><td>Required</td><td>None</td></tr><tr><td><strong>:existingtable</strong></td><td>The existing table name</td><td>Required</td><td>None</td></tr><tr><td><strong>:newtable</strong></td><td>The new table name</td><td>Required</td><td>None</td></tr><tr><td><strong>group</strong></td><td>The user group to use when creating a table</td><td>Optional</td><td>None</td></tr><tr><td><strong>permissions</strong></td><td>The permissions string to use when creating a table</td><td>Optional</td><td>None</td></tr><tr><td><strong>external</strong></td><td>Allows you to specify a location so that Hive does not use the default location for this table.</td><td>Optional</td><td>false</td></tr><tr><td><strong>ifNotExists</strong></td><td>If true, you will not receive an error if the table already exists.</td><td>Optional</td><td>false</td></tr><tr><td><strong>location</strong></td><td>The HDFS path</td><td>Optional</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-puttablelike/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/>Apache Hive : WebHCat Reference ResponseTypes</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-responsetypes>Apache Hive : WebHCat Reference ResponseTypes</h1><h2 id=description>Description</h2><p>Returns a list of the response types supported by WebHCat (Templeton).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/</code><em>:version</em></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>:version</strong></td><td>The WebHCat version number. (Currently this must be &ldquo;v1&rdquo;.)</td><td>Required</td><td>None</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also supported.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>responseTypes</strong></td><td>A list of all supported response types</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+  &#34;responseTypes&#34;: [
+    &#34;application/json&#34;
+  ]
+}
+</code></pre><h3 id=json-output-error>JSON Output (error)</h3><pre tabindex=0><code>{
+  &#34;error&#34;: &#34;null for uri: http://localhost:50111/templeton/v2&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference/>Reference: WebHCat Resources</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/>GET status</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/>Apache Hive : WebHCat Reference Status</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-status>Apache Hive : WebHCat Reference Status</h1><h2 id=description>Description</h2><p>Returns the current status of the WebHCat (Templeton) server. Useful for heartbeat monitoring.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/status</code></p><h2 id=parameters>Parameters</h2><p>Only the <a href=#standard-parameters>standard parameters</a> are accepted.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>status</strong></td><td>&ldquo;ok&rdquo; if the WebHCat server was contacted.</td></tr><tr><td><strong>version</strong></td><td>String containing the version number similar to &ldquo;v1&rdquo;.</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/status&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;status&#34;: &#34;ok&#34;,
+ &#34;version&#34;: &#34;v1&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-responsetypes/>Response Types (GET :version)</a>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>GET version</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>Apache Hive : WebHCat Reference Version</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-version>Apache Hive : WebHCat Reference Version</h1><h2 id=description>Description</h2><p>Returns a list of supported versions and the current version.</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/version</code></p><h2 id=parameters>Parameters</h2><p>Only the <a href=#standard-parameters>standard parameters</a> are accepted.</p><h2 id=results>Results</h2><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>supportedVersions</strong></td><td>A list of all supported versions.</td></tr><tr><td><strong>version</strong></td><td>The current version.</td></tr></tbody></table><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/version&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>{
+ &#34;supportedVersions&#34;: [
+   &#34;v1&#34;
+ ],
+ &#34;version&#34;: &#34;v1&#34;
+}
+</code></pre><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-status/>GET status</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>GET version/hive</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>Apache Hive : WebHCat Reference VersionHadoop</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-versionhadoop>Apache Hive : WebHCat Reference VersionHadoop</h1><h2 id=description>Description</h2><p>Return the version of Hadoop being run when WebHCat creates a MapReduce job (<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducejar/>POST mapreduce/jar</a> or <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-mapreducestream/>mapreduce/streaming</a>).</p><p>Version: Hive 0.13.0 and later</p><p><code>GET version/hadoop</code> is introduced in Hive release 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6226>HIVE-6226</a>).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=http://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/version/hadoop</code></p><h2 id=parameters>Parameters</h2><p>Only the <a href=#standard-parameters>standard parameters</a> are accepted.</p><h2 id=results>Results</h2><p>Returns the Hadoop version.</p><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/version/hadoop?user.name=ekoifman&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>[
+{&#34;module&#34;:&#34;hadoop&#34;,&#34;version&#34;:&#34;2.4.1-SNAPSHOT}
+]
+</code></pre><p> </p><p> </p><p> </p><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>GET version/hive</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-ddl/>POST ddl</a></p><p>Replaces deprecated resource: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>GET queue</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/>Apache Hive : WebHCat Reference VersionHive</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-reference-versionhive>Apache Hive : WebHCat Reference VersionHive</h1><h2 id=description>Description</h2><p>Return the version of Hive being run when WebHCat issues Hive queries or commands (<a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-hive/>POST hive</a>).</p><p>Version: Hive 0.13.0 and later</p><p><code>GET version/hive</code> is introduced in Hive release 0.13.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6226>HIVE-6226</a>).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=http://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/version/hive</code></p><h2 id=parameters>Parameters</h2><p>Only the <a href=#standard-parameters>standard parameters</a> are accepted.</p><h2 id=results>Results</h2><p>Returns the Hive version.</p><h2 id=example>Example</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/version/hive?user.name=ekoifman&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>[
+{&#34;module&#34;:&#34;hive&#34;,&#34;version&#34;:&#34;0.14.0-SNAPSHOT&#34;}
+]
+</code></pre><p> </p><p> </p><p> </p><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-version/>GET version</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhadoop/>GET version/hadoop</a></p><p>Replaces deprecated resource: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>GET queue</a></p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-versionhive/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div><div class=docs-card><div class=docs-card-header><h3><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/>Apache Hive : WebHCat UsingWebHCat</a></h3><span class=docs-card-date><i class="fas fa-calendar-alt"></i>
+Dec 12, 2024</span></div><div class=docs-card-summary><h1 id=apache-hive--webhcat-usingwebhcat>Apache Hive : WebHCat UsingWebHCat</h1><h2 id=version-information>Version information</h2><p>The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.<br>Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.</p><h2 id=introduction-to-webhcat>Introduction to WebHCat</h2><p>This document describes the HCatalog REST API, <em>WebHCat</em>, which was previously called <em>Templeton</em>.</p><p>As shown in the figure below, developers make HTTP requests to access <a href=http://hadoop.apache.org/>Hadoop</a> <a href=http://hadoop.apache.org/docs/stable/mapred_tutorial.html>MapReduce</a> (or <a href=http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html>YARN</a>), <a href=http://pig.apache.org/>Pig</a>, <a href=http://hive.apache.org/>Hive</a>, and <a href=#hcatalog-ddl>HCatalog DDL</a> from within applications. Data and code used by this API are maintained in <a href=http://hadoop.apache.org/docs/stable/hdfs_user_guide.html>HDFS</a>. HCatalog DDL commands are executed directly when requested. MapReduce, Pig, and Hive jobs are placed in queue by WebHCat (Templeton) servers and can be monitored for progress or stopped as required. Developers specify a location in HDFS into which Pig, Hive, and MapReduce results should be placed.</p></div><div class=docs-card-footer><a href=https://hive.apache.org/docs/latest/webhcat/webhcat-usingwebhcat/ class=docs-card-link>Read more <i class="fas fa-arrow-right"></i></a></div></div></div></div></article></main></div></div><footer class="black-background static-bottom" style=padding:30px><div class=row><div class=col-3><a href=https://www.apache.org/><img src=https://hive.apache.org//images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a></a></div><div class=col-9><p class=footer-text>Apache is a non-profit organization helping open-source
 software projects released under the Apache
 <a href=https://www.apache.org/licenses/>license</a>
 and managed with
-<a href=https://www.apache.org/foundation/how-it-works.html>
-open governance</a> and
-<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
-privacy policy</a>. See upcoming
+<a href=https://www.apache.org/foundation/how-it-works.html>open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>privacy policy</a>. See upcoming
 <a href=https://www.apache.org/events/current-event>Apache Events</a>.
 If you discover any
 <a href=https://www.apache.org/security/>security</a> vulnerabilities, please
 report them privately. Finally,
 <a href=https://www.apache.org/foundation/thanks.html>thanks
-</a> to the sponsors who
-<a href=https://www.apache.org/foundation/sponsorship.html>
-donate</a> to the Apache Foundation.
-</p>
-</div>
-</div>
-<div class="copyright row">
-<a href=https://hive.apache.org style=color:grey>
-The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
-</a>
-</div>
-</footer>
-<script src="https://hive.apache.org/js/bootstrap.bundle.min.js?v=1.1.0"></script>
-</body>
-</html>
+</a>to the sponsors who
+<a href=https://www.apache.org/foundation/sponsorship.html>donate</a> to the Apache Foundation.</p></div></div><div class="copyright row"><a href=https://hive.apache.org/ style=color:grey>The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.</a></div></footer><script src="https://hive.apache.org//js/bootstrap.bundle.min.js?v=1.1.0"></script></body></html>

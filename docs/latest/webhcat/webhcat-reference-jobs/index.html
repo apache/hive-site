@@ -1,403 +1,75 @@
-<!doctype html><html><!doctype html>
-<html>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
-<meta name=author content>
-<meta http-equiv=cache-control content="no-cache, no-store, must-revalidate">
-<meta http-equiv=pragma content="no-cache">
-<meta http-equiv=expires content="0">
-<title>Apache Hive : WebHCat Reference Jobs</title>
-<link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml>
-<link rel=stylesheet href="https://hive.apache.org/css/hive-theme.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/font-awesome.all.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/bootstrap.min.css?v=1.1.0">
-<link rel=stylesheet href="https://hive.apache.org/css/termynal.css?v=1.1.0">
-<link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org/images/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org/images/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org/images/favicon-16x16.png>
-<link rel=manifest href=https://hive.apache.org/images/site.webmanifest>
-<link rel=mask-icon href=https://hive.apache.org/images/safari-pinned-tab.svg color=#5bbad5>
-<meta name=msapplication-TileColor content="#da532c">
-<meta name=theme-color content="#ffffff">
-<script>var _paq=window._paq=window._paq||[];_paq.push(['disableCookies']),_paq.push(['trackPageView']),_paq.push(['enableLinkTracking']),function(){var b="https://analytics.apache.org/",c,a,d;_paq.push(['setTrackerUrl',b+'matomo.php']),_paq.push(['setSiteId','30']),c=document,a=c.createElement('script'),d=c.getElementsByTagName('script')[0],a.async=!0,a.src=b+'matomo.js',d.parentNode.insertBefore(a,d)}()</script>
-</head>
-<body>
-<body>
-<header>
-<menu class=main-menu>
-<nav class="navbar navbar-expand-lg navbar-dark">
-<div class=container-fluid>
-<div class=navbar-brand-wrapper>
-<a href=https://hive.apache.org class=navbar-logo>
-<img src=https://hive.apache.org/images/hive.svg width=50 height=30 alt="Apache Hive Logo">
-</a>
-<a class=navbar-brand href=https://hive.apache.org>Apache Hive</a>
-</div>
-<button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
-<span class=navbar-toggler-icon></span>
-</button>
-<div class="collapse navbar-collapse" id=navbarSupportedContent>
-<ul class="navbar-nav me-auto">
-<li class=nav-item>
-<a class=nav-link href=https://hive.apache.org/general/downloads>
-Releases
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Documentation
-</a>
-<ul class=dropdown-menu aria-labelledby=docsDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/>Latest</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/javadocs/>Javadocs</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-General
-</a>
-<ul class=dropdown-menu aria-labelledby=generalDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/general/privacypolicy/>Privacy Policy</a></li>
-<li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Development
-</a>
-<ul class=dropdown-menu aria-labelledby=devDropdown>
-<li><a class=dropdown-item href=https://hive.apache.org/development/gettingstarted/>Getting Started</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/quickstart/>Quickstart with Docker</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/desingdocs/>Design Docs</a></li>
-<li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/development/versioncontrol/>Version Control</a></li>
-</ul>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-Community
-</a>
-<ul class=dropdown-menu aria-labelledby=communityDropdown>
-<li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li>
-<li><a class=dropdown-item href=/community/resources/>Resources</a></li>
-<li><a class=dropdown-item href=/community/meetings/>Meetings</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/mailinglists/>Mailing Lists</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/issuetracking/>Issue Tracking</a></li>
-<li><a class=dropdown-item href=https://hive.apache.org/community/people/>People</a></li>
-<li><hr class=dropdown-divider></li>
-<li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li>
-<li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li>
-</ul>
-</li>
-<li class=nav-item>
-<a class=nav-link href=https://hive.blog.apache.org/>
-Blogs
-</a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>
-ASF
-</a>
-<ul class=dropdown-menu aria-labelledby=asfDropdown>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li>
-<li><a class=dropdown-item href=https://www.apache.org/>Website</a></li>
-</ul>
-</li>
-</ul>
-<div class=navbar-search>
-<form action=/search method=get class=search-form>
-<div class=search-input-group>
-<input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
+<!doctype html><html><!doctype html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><meta name=author content><meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"><meta http-equiv=Pragma content="no-cache"><meta http-equiv=Expires content="0"><title>Apache Hive : WebHCat Reference Jobs</title><link rel=icon href=/images/hive.svg sizes=any type=image/svg+xml><link rel=stylesheet href="https://hive.apache.org//css/hive-theme.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/font-awesome.all.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/bootstrap.min.css?v=1.1.0"><link rel=stylesheet href="https://hive.apache.org//css/termynal.css?v=1.1.0"><link rel=apple-touch-icon sizes=180x180 href=https://hive.apache.org//images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://hive.apache.org//images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://hive.apache.org//images/favicon-16x16.png><link rel=manifest href=https://hive.apache.org//images/site.webmanifest><link rel=mask-icon href=https://hive.apache.org//images/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><script>var _paq=window._paq=window._paq||[];_paq.push(["disableCookies"]),_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){e="https://analytics.apache.org/",_paq.push(["setTrackerUrl",e+"matomo.php"]),_paq.push(["setSiteId","30"]);var e,n=document,t=n.createElement("script"),s=n.getElementsByTagName("script")[0];t.async=!0,t.src=e+"matomo.js",s.parentNode.insertBefore(t,s)}()</script></head><body><body><header><menu class=main-menu><nav class="navbar navbar-expand-lg navbar-dark"><div class=container-fluid><div class=navbar-brand-wrapper><a href=https://hive.apache.org/ class=navbar-logo><img src=https://hive.apache.org//images/hive.svg width=50 height=30 alt="Apache Hive Logo">
+</a><a class=navbar-brand href=https://hive.apache.org/>Apache Hive</a></div><button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class="navbar-nav me-auto"><li class=nav-item><a class=nav-link href=https://hive.apache.org//general/downloads>Releases</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/Document id=docsDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Documentation</a><ul class=dropdown-menu aria-labelledby=docsDropdown><li><a class=dropdown-item href=https://hive.apache.org//docs/latest/>Latest</a></li><li><a class=dropdown-item href=https://hive.apache.org//docs/javadocs/>Javadocs</a></li><li><a class=dropdown-item href=https://hive.apache.org/docs/latest/language/languagemanual>Language Manual</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=/general id=generalDropdown role=button data-bs-toggle=dropdown aria-expanded=false>General</a><ul class=dropdown-menu aria-labelledby=generalDropdown><li><a class=dropdown-item href=https://www.apache.org/licenses/LICENSE-2.0.html>License</a></li><li><a class=dropdown-item href=https://hive.apache.org//general/privacypolicy/>Privacy Policy</a></li><li><a class=dropdown-item href=/general/poweredby/>Powered by</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=devDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Development</a><ul class=dropdown-menu aria-labelledby=devDropdown><li><a class=dropdown-item href=https://hive.apache.org//development/gettingstarted/>Getting Started</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/quickstart/>Quickstart with Docker</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/desingdocs/>Design Docs</a></li><li><a class=dropdown-item href=https://issues.apache.org/jira/projects/HIVE/issues>Hive JIRA</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/hivedeveloperfaq>Hive Developer FAQ</a></li><li><a class=dropdown-item href=https://hive.apache.org//development/versioncontrol/>Version Control</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=communityDropdown role=button data-bs-toggle=dropdown aria-expanded=false>Community</a><ul class=dropdown-menu aria-labelledby=communityDropdown><li><a class=dropdown-item href=/community/becomingcommitter/>Becoming A Committer</a></li><li><a class=dropdown-item href=https://hive.apache.org/community/resources/howtocontribute>How To Contribute</a></li><li><a class=dropdown-item href=/community/resources/>Resources</a></li><li><a class=dropdown-item href=/community/meetings/>Meetings</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/mailinglists/>Mailing Lists</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/issuetracking/>Issue Tracking</a></li><li><a class=dropdown-item href=https://hive.apache.org//community/people/>People</a></li><li><hr class=dropdown-divider></li><li><a class=dropdown-item href=/community/bylaws/>By Laws</a></li><li><a class=dropdown-item href=/community/resources/howtorelease/>How To Release</a></li></ul></li><li class=nav-item><a class=nav-link href=https://hive.blog.apache.org/>Blogs</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=# id=asfDropdown role=button data-bs-toggle=dropdown aria-expanded=false>ASF</a><ul class=dropdown-menu aria-labelledby=asfDropdown><li><a class=dropdown-item href=https://www.apache.org/foundation/contributing.html>Donations</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/sponsorship.html>Sponsorship</a></li><li><a class=dropdown-item href=https://www.apache.org/foundation/thanks.html>Thanks</a></li><li><a class=dropdown-item href=https://www.apache.org/>Website</a></li></ul></li></ul><div class=navbar-search><form action=/search method=GET class=search-form><div class=search-input-group><input type=search name=q id=search-query placeholder=Search... class=search-input aria-label=Search>
 <button type=submit class=search-button aria-label="Submit search">
-<i class="fas fa-search"></i>
-</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-</nav>
-</menu>
-</header>
-<div class=content>
-<div class=docs-container>
-<main class="docs-main docs-main-full">
-<article class=docs-content>
-<nav class=docs-breadcrumb>
-<ol>
-<li><a href=/><i class="fas fa-home"></i> Home</a></li>
-<li><a href=/docs/>Documentation</a></li>
-<li class=active>Apache Hive : WebHCat Reference Jobs</li>
-</ol>
-</nav>
-<header class=docs-header>
-<h1 class=docs-title>Apache Hive : WebHCat Reference Jobs</h1>
-<div class=docs-meta>
-<span class=docs-date>
-<i class="fas fa-calendar-alt"></i>
-Last updated: December 12, 2024
-</span>
-</div>
-</header>
-<div class=docs-toc>
-<h4><i class="fas fa-list"></i> Table of Contents</h4>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</a>
-<ul>
-<li><a href=#description>Description</a></li>
-<li><a href=#url>URL</a></li>
-<li><a href=#parameters>Parameters</a></li>
-<li><a href=#results>Results</a></li>
-<li><a href=#examples>Examples</a>
-<ul>
-<li><a href=#curl-command>Curl Command</a></li>
-<li><a href=#json-output>JSON Output</a></li>
-<li><a href=#curl-command-showall>Curl Command (showall)</a></li>
-<li><a href=#json-output-showall>JSON Output (showall)</a></li>
-<li><a href=#curl-command-fields>Curl Command (fields)</a></li>
-<li><a href=#json-output-fields>JSON Output (fields)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-<div class=docs-article>
-<h1 id=apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</h1>
-<h2 id=description>Description</h2>
-<p>Return a list of all job IDs.</p>
-<p>Version: Hive 0.12.0 and later</p>
-<p><code>GET jobs</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[GET queue](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/)</code> in prior releases.<br>
-<code>GET queue</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p>
-<h2 id=url>URL</h2>
-<p><code>http://</code><em><a href=http://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/jobs</code></p>
-<h2 id=parameters>Parameters</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-<th>Required?</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>fields</strong></td>
-<td>If <strong>fields</strong> set to &ldquo;<em>&rdquo;, the request will return full details of the job. If <strong>fields</strong> is missing, will only return the job ID. Currently the value can only be &ldquo;</em>&rdquo;, other values are not allowed and will throw exception.</td>
-<td>Optional</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>showall</strong></td>
-<td>If <strong>showall</strong> is set to &ldquo;true&rdquo;, the request will return all jobs the user has permission to view, not only the jobs belonging to the user.</td>
-<td>Optional</td>
-<td>false</td>
-</tr>
-<tr>
-<td><strong>jobid</strong></td>
-<td>If <strong>jobid</strong> is present, only the records whose job ID is lexicographically greater than <strong>jobid</strong> are returned. For example, if <strong>jobid</strong> = &ldquo;job_201312091733_0001&rdquo;, the jobs whose job ID is greater than &ldquo;job_201312091733_0001&rdquo; are returned. The number of records returned depends on the value of <strong>numrecords</strong>.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td>
-<td>Optional in Hive 0.13.0+</td>
-<td>None</td>
-</tr>
-<tr>
-<td><strong>numrecords</strong></td>
-<td>If the <strong>jobid</strong> and <strong>numrecords</strong> parameters are present, the top <em>numrecords</em> records appearing after <strong>jobid</strong> will be returned after sorting the job ID list lexicographically. If the <strong>jobid</strong> parameter is missing and <strong>numrecords</strong> is present, the top <em>numrecords</em> will be returned after lexicographically sorting the job ID list. If the <strong>jobid</strong> parameter is present and <strong>numrecords</strong> is missing, all the records whose job ID is greater than <strong>jobid</strong> are returned.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td>
-<td>Optional in Hive 0.13.0+</td>
-<td>All</td>
-</tr>
-</tbody>
-</table>
-<p>The <a href=#standard-parameters>standard parameters</a> are also accepted.</p>
-<h2 id=results>Results</h2>
-<p>Returns an array of jobs either belonging to the user, or which the user has permission to view (<strong>showall</strong>=&ldquo;true&rdquo;), based on the filter conditions specified by the user.</p>
-<p>Every element inside the array includes:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>id</strong></td>
-<td>Job ID.</td>
-</tr>
-<tr>
-<td><strong>detail</strong></td>
-<td>Job details if <strong>showall</strong> is set to &ldquo;true&rdquo;; otherwise &ldquo;null&rdquo;. For more information about what details it contains, check <code>[GET jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/)</code>.</td>
-</tr>
-</tbody>
-</table>
-<h2 id=examples>Examples</h2>
-<h3 id=curl-command>Curl Command</h3>
-<pre tabindex=0><code>% curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy'
-
-</code></pre><h3 id=json-output>JSON Output</h3>
-<pre tabindex=0><code>[
-{&quot;id&quot;:&quot;job_201304291205_0015&quot;,&quot;detail&quot;:null}
+<i class="fas fa-search"></i></button></div></form></div></div></div></nav></menu></header><div class=content><div class=docs-container><main class="docs-main docs-main-full"><article class=docs-content><nav class=docs-breadcrumb><ol><li><a href=/><i class="fas fa-home"></i> Home</a></li><li><a href=/docs/>Documentation</a></li><li class=active>Apache Hive : WebHCat Reference Jobs</li></ol></nav><header class=docs-header><h1 class=docs-title>Apache Hive : WebHCat Reference Jobs</h1><div class=docs-meta><span class=docs-date><i class="fas fa-calendar-alt"></i>
+Last updated: December 12, 2024</span></div></header><div class=docs-toc><h4><i class="fas fa-list"></i> Table of Contents</h4><nav id=TableOfContents><ul><li><a href=#apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</a><ul><li><a href=#description>Description</a></li><li><a href=#url>URL</a></li><li><a href=#parameters>Parameters</a></li><li><a href=#results>Results</a></li><li><a href=#examples>Examples</a><ul><li><a href=#curl-command>Curl Command</a></li><li><a href=#json-output>JSON Output</a></li><li><a href=#curl-command-showall>Curl Command (showall)</a></li><li><a href=#json-output-showall>JSON Output (showall)</a></li><li><a href=#curl-command-fields>Curl Command (fields)</a></li><li><a href=#json-output-fields>JSON Output (fields)</a></li></ul></li></ul></li></ul></nav></div><div class=docs-article><h1 id=apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</h1><h2 id=description>Description</h2><p>Return a list of all job IDs.</p><p>Version: Hive 0.12.0 and later</p><p><code>GET jobs</code> is introduced in Hive release 0.12.0. It is equivalent to <code>[GET queue](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/)</code> in prior releases.<br><code>GET queue</code> is now deprecated (<a href=https://issues.apache.org/jira/browse/HIVE-4443>HIVE-4443</a>) and will be removed in Hive 0.14.0 (<a href=https://issues.apache.org/jira/browse/HIVE-6432>HIVE-6432</a>).</p><h2 id=url>URL</h2><p><code>http://</code><em><a href=https://www.myserver.com>www.myserver.com</a></em><code>/templeton/v1/jobs</code></p><h2 id=parameters>Parameters</h2><table><thead><tr><th>Name</th><th>Description</th><th>Required?</th><th>Default</th></tr></thead><tbody><tr><td><strong>fields</strong></td><td>If <strong>fields</strong> set to &ldquo;<em>&rdquo;, the request will return full details of the job. If <strong>fields</strong> is missing, will only return the job ID. Currently the value can only be &ldquo;</em>&rdquo;, other values are not allowed and will throw exception.</td><td>Optional</td><td>None</td></tr><tr><td><strong>showall</strong></td><td>If <strong>showall</strong> is set to &ldquo;true&rdquo;, the request will return all jobs the user has permission to view, not only the jobs belonging to the user.</td><td>Optional</td><td>false</td></tr><tr><td><strong>jobid</strong></td><td>If <strong>jobid</strong> is present, only the records whose job ID is lexicographically greater than <strong>jobid</strong> are returned. For example, if <strong>jobid</strong> = &ldquo;job_201312091733_0001&rdquo;, the jobs whose job ID is greater than &ldquo;job_201312091733_0001&rdquo; are returned. The number of records returned depends on the value of <strong>numrecords</strong>.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td><td>Optional in Hive 0.13.0+</td><td>None</td></tr><tr><td><strong>numrecords</strong></td><td>If the <strong>jobid</strong> and <strong>numrecords</strong> parameters are present, the top <em>numrecords</em> records appearing after <strong>jobid</strong> will be returned after sorting the job ID list lexicographically. If the <strong>jobid</strong> parameter is missing and <strong>numrecords</strong> is present, the top <em>numrecords</em> will be returned after lexicographically sorting the job ID list. If the <strong>jobid</strong> parameter is present and <strong>numrecords</strong> is missing, all the records whose job ID is greater than <strong>jobid</strong> are returned.This parameter is not available in releases prior to Hive 0.13.0. (See <a href=https://issues.apache.org/jira/browse/HIVE-5519>HIVE-5519</a>.)</td><td>Optional in Hive 0.13.0+</td><td>All</td></tr></tbody></table><p>The <a href=#standard-parameters>standard parameters</a> are also accepted.</p><h2 id=results>Results</h2><p>Returns an array of jobs either belonging to the user, or which the user has permission to view (<strong>showall</strong>=&ldquo;true&rdquo;), based on the filter conditions specified by the user.</p><p>Every element inside the array includes:</p><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><strong>id</strong></td><td>Job ID.</td></tr><tr><td><strong>detail</strong></td><td>Job details if <strong>showall</strong> is set to &ldquo;true&rdquo;; otherwise &ldquo;null&rdquo;. For more information about what details it contains, check <code>[GET jobs/:jobid](https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/)</code>.</td></tr></tbody></table><h2 id=examples>Examples</h2><h3 id=curl-command>Curl Command</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/jobs?user.name=daijy&#39;
+</code></pre><h3 id=json-output>JSON Output</h3><pre tabindex=0><code>[
+{&#34;id&#34;:&#34;job_201304291205_0015&#34;,&#34;detail&#34;:null}
 ]
-
-</code></pre><h3 id=curl-command-showall>Curl Command (showall)</h3>
-<pre tabindex=0><code>% curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy&amp;showall=true'
-
-</code></pre><h3 id=json-output-showall>JSON Output (showall)</h3>
-<pre tabindex=0><code>[
-{&quot;id&quot;:&quot;job_201304291205_0014&quot;,&quot;detail&quot;:null},
-{&quot;id&quot;:&quot;job_201111111311_0015&quot;,&quot;detail&quot;:null},
+</code></pre><h3 id=curl-command-showall>Curl Command (showall)</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/jobs?user.name=daijy&amp;showall=true&#39;
+</code></pre><h3 id=json-output-showall>JSON Output (showall)</h3><pre tabindex=0><code>[
+{&#34;id&#34;:&#34;job_201304291205_0014&#34;,&#34;detail&#34;:null},
+{&#34;id&#34;:&#34;job_201111111311_0015&#34;,&#34;detail&#34;:null},
 ]
-
-</code></pre><h3 id=curl-command-fields>Curl Command (fields)</h3>
-<pre tabindex=0><code>% curl -s 'http://localhost:50111/templeton/v1/jobs?user.name=daijy&amp;fields=*'
-
-</code></pre><h3 id=json-output-fields>JSON Output (fields)</h3>
-<p>Hive 0.12.0 bug</p>
-<p>In release 0.12.0 the first line of JSON output for the fields parameter gives the parent jobid instead of the actual jobid (<a href=https://issues.apache.org/jira/browse/HIVE-5510>HIVE-5510</a>). The example below shows the correct jobid, as displayed in release 0.13.0 and later.</p>
-<pre tabindex=0><code>[{&quot;id&quot;:&quot;job_201304291205_0016&quot;,
-  &quot;detail&quot;:{
-    &quot;status&quot;:{
-      &quot;jobACLs&quot;:{
-        &quot;MODIFY_JOB&quot;:{&quot;allAllowed&quot;:false,&quot;aclstring&quot;:&quot; &quot;},
-        &quot;VIEW_JOB&quot;:{&quot;allAllowed&quot;:false,&quot;aclstring&quot;:&quot; &quot;}},
-      &quot;runState&quot;:2,
-      &quot;startTime&quot;:1367264912274,
-      &quot;schedulingInfo&quot;:&quot;NA&quot;,
-      &quot;failureInfo&quot;:&quot;NA&quot;,
-      &quot;jobPriority&quot;:&quot;NORMAL&quot;,
-      &quot;username&quot;:&quot;daijy&quot;,
-      &quot;jobID&quot;:{&quot;id&quot;:16,&quot;jtIdentifier&quot;:&quot;201304291205&quot;},
-      &quot;jobId&quot;:&quot;job_201304291205_0016&quot;,
-      &quot;jobComplete&quot;:true},
-    &quot;profile&quot;:{
-      &quot;user&quot;:&quot;daijy&quot;,
-      &quot;jobFile&quot;:&quot;hdfs://localhost:8020/Users/daijy/hadoop-1.0.3/tmp/mapred/staging/
-          daijy/.staging/job_201304291205_0016/job.xml&quot;,
-      &quot;url&quot;:&quot;http://localhost:50030/jobdetails.jsp?jobid=job_201304291205_0016&quot;,
-      &quot;queueName&quot;:&quot;default&quot;,
-      &quot;jobName&quot;:&quot;word count&quot;,
-      &quot;jobID&quot;:{&quot;id&quot;:16,&quot;jtIdentifier&quot;:&quot;201304291205&quot;},
-      &quot;jobId&quot;:&quot;job_201304291205_0016&quot;},
-      &quot;id&quot;:&quot;job_201304291205_0016&quot;,
-      &quot;parentId&quot;:&quot;job_201304291205_0015&quot;,
-      &quot;percentComplete&quot;:&quot;map 100% reduce 100%&quot;,
-      &quot;exitValue&quot;:0,
-      &quot;user&quot;:&quot;daijy&quot;,
-      &quot;callback&quot;:&quot;http://daijymacpro.local:57815/templeton/$jobId&quot;,
-      &quot;completed&quot;: &quot;done&quot;,
-      &quot;userargs&quot; =&gt; {
-        &quot;callback&quot;  =&gt; null,
-        &quot;define&quot;    =&gt; [],
-        &quot;enablelog&quot; =&gt; &quot;false&quot;,
-        &quot;execute&quot;   =&gt; &quot;select a,rand(b) from mynums&quot;,
-        &quot;file&quot;      =&gt; null,
-        &quot;files&quot;     =&gt; [],
-        &quot;statusdir&quot; =&gt; null,
-        &quot;user.name&quot; =&gt; &quot;hadoopqa&quot;,
+</code></pre><h3 id=curl-command-fields>Curl Command (fields)</h3><pre tabindex=0><code>% curl -s &#39;http://localhost:50111/templeton/v1/jobs?user.name=daijy&amp;fields=*&#39;
+</code></pre><h3 id=json-output-fields>JSON Output (fields)</h3><p>Hive 0.12.0 bug</p><p>In release 0.12.0 the first line of JSON output for the fields parameter gives the parent jobid instead of the actual jobid (<a href=https://issues.apache.org/jira/browse/HIVE-5510>HIVE-5510</a>). The example below shows the correct jobid, as displayed in release 0.13.0 and later.</p><pre tabindex=0><code>[{&#34;id&#34;:&#34;job_201304291205_0016&#34;,
+  &#34;detail&#34;:{
+    &#34;status&#34;:{
+      &#34;jobACLs&#34;:{
+        &#34;MODIFY_JOB&#34;:{&#34;allAllowed&#34;:false,&#34;aclstring&#34;:&#34; &#34;},
+        &#34;VIEW_JOB&#34;:{&#34;allAllowed&#34;:false,&#34;aclstring&#34;:&#34; &#34;}},
+      &#34;runState&#34;:2,
+      &#34;startTime&#34;:1367264912274,
+      &#34;schedulingInfo&#34;:&#34;NA&#34;,
+      &#34;failureInfo&#34;:&#34;NA&#34;,
+      &#34;jobPriority&#34;:&#34;NORMAL&#34;,
+      &#34;username&#34;:&#34;daijy&#34;,
+      &#34;jobID&#34;:{&#34;id&#34;:16,&#34;jtIdentifier&#34;:&#34;201304291205&#34;},
+      &#34;jobId&#34;:&#34;job_201304291205_0016&#34;,
+      &#34;jobComplete&#34;:true},
+    &#34;profile&#34;:{
+      &#34;user&#34;:&#34;daijy&#34;,
+      &#34;jobFile&#34;:&#34;hdfs://localhost:8020/Users/daijy/hadoop-1.0.3/tmp/mapred/staging/
+          daijy/.staging/job_201304291205_0016/job.xml&#34;,
+      &#34;url&#34;:&#34;http://localhost:50030/jobdetails.jsp?jobid=job_201304291205_0016&#34;,
+      &#34;queueName&#34;:&#34;default&#34;,
+      &#34;jobName&#34;:&#34;word count&#34;,
+      &#34;jobID&#34;:{&#34;id&#34;:16,&#34;jtIdentifier&#34;:&#34;201304291205&#34;},
+      &#34;jobId&#34;:&#34;job_201304291205_0016&#34;},
+      &#34;id&#34;:&#34;job_201304291205_0016&#34;,
+      &#34;parentId&#34;:&#34;job_201304291205_0015&#34;,
+      &#34;percentComplete&#34;:&#34;map 100% reduce 100%&#34;,
+      &#34;exitValue&#34;:0,
+      &#34;user&#34;:&#34;daijy&#34;,
+      &#34;callback&#34;:&#34;http://daijymacpro.local:57815/templeton/$jobId&#34;,
+      &#34;completed&#34;: &#34;done&#34;,
+      &#34;userargs&#34; =&gt; {
+        &#34;callback&#34;  =&gt; null,
+        &#34;define&#34;    =&gt; [],
+        &#34;enablelog&#34; =&gt; &#34;false&#34;,
+        &#34;execute&#34;   =&gt; &#34;select a,rand(b) from mynums&#34;,
+        &#34;file&#34;      =&gt; null,
+        &#34;files&#34;     =&gt; [],
+        &#34;statusdir&#34; =&gt; null,
+        &#34;user.name&#34; =&gt; &#34;hadoopqa&#34;,
       },
     }]
-</code></pre><p> </p>
-<p> </p>
-<p> </p>
-<p><strong>Navigation Links</strong>
-Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/>DELETE queue/:jobid</a><br>
-Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/>GET jobs/:jobid</a></p>
-<p>Replaces deprecated resource: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>GET queue</a></p>
-</div>
-<footer class=docs-footer>
-<div class=docs-feedback>
-<h4><i class="fas fa-comment"></i> Feedback</h4>
-<p>Was this page helpful? Let us know how we can improve.</p>
-<div class=docs-feedback-buttons>
-<button class="btn btn-feedback btn-positive">
+</code></pre><p> </p><p> </p><p> </p><p><strong>Navigation Links</strong>
+Previous: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-deletejob/>DELETE queue/:jobid</a><br>Next: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-job/>GET jobs/:jobid</a></p><p>Replaces deprecated resource: <a href=https://hive.apache.org/docs/latest/webhcat/webhcat-reference-jobids/>GET queue</a></p></div><footer class=docs-footer><div class=docs-feedback><h4><i class="fas fa-comment"></i> Feedback</h4><p>Was this page helpful? Let us know how we can improve.</p><div class=docs-feedback-buttons><button class="btn btn-feedback btn-positive">
 <i class="fas fa-thumbs-up"></i> Yes
 </button>
 <button class="btn btn-feedback btn-negative">
-<i class="fas fa-thumbs-down"></i> No
-</button>
-</div>
-</div>
-<div class=docs-edit>
-<a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/webhcat/webhcat-reference-jobs.md class="btn btn-outline">
-<i class="fab fa-github"></i> Edit this page on GitHub
-</a>
-</div>
-</footer>
-</article>
-<aside class=docs-toc-sidebar>
-<div class=docs-toc-sticky>
-<h4><i class="fas fa-list"></i> On this page</h4>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</a>
-<ul>
-<li><a href=#description>Description</a></li>
-<li><a href=#url>URL</a></li>
-<li><a href=#parameters>Parameters</a></li>
-<li><a href=#results>Results</a></li>
-<li><a href=#examples>Examples</a>
-<ul>
-<li><a href=#curl-command>Curl Command</a></li>
-<li><a href=#json-output>JSON Output</a></li>
-<li><a href=#curl-command-showall>Curl Command (showall)</a></li>
-<li><a href=#json-output-showall>JSON Output (showall)</a></li>
-<li><a href=#curl-command-fields>Curl Command (fields)</a></li>
-<li><a href=#json-output-fields>JSON Output (fields)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</aside>
-</main>
-</div>
-</div>
-<footer class="black-background static-bottom" style=padding:30px>
-<div class=row>
-<div class=col-3>
-<a href=https://www.apache.org/>
-<img src=https://hive.apache.org/images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a>
-</a>
-</div>
-<div class=col-9>
-<p class=footer-text>Apache is a non-profit organization helping open-source
+<i class="fas fa-thumbs-down"></i> No</button></div></div><div class=docs-edit><a href=https://github.com/apache/hive-site/edit/main/content/docs/latest/webhcat/webhcat-reference-jobs.md class="btn btn-outline"><i class="fab fa-github"></i> Edit this page on GitHub</a></div></footer></article><aside class=docs-toc-sidebar><div class=docs-toc-sticky><h4><i class="fas fa-list"></i> On this page</h4><nav id=TableOfContents><ul><li><a href=#apache-hive--webhcat-reference-jobs>Apache Hive : WebHCat Reference Jobs</a><ul><li><a href=#description>Description</a></li><li><a href=#url>URL</a></li><li><a href=#parameters>Parameters</a></li><li><a href=#results>Results</a></li><li><a href=#examples>Examples</a><ul><li><a href=#curl-command>Curl Command</a></li><li><a href=#json-output>JSON Output</a></li><li><a href=#curl-command-showall>Curl Command (showall)</a></li><li><a href=#json-output-showall>JSON Output (showall)</a></li><li><a href=#curl-command-fields>Curl Command (fields)</a></li><li><a href=#json-output-fields>JSON Output (fields)</a></li></ul></li></ul></li></ul></nav></div></aside></main></div></div><footer class="black-background static-bottom" style=padding:30px><div class=row><div class=col-3><a href=https://www.apache.org/><img src=https://hive.apache.org//images/asf_logo.png width=270 height=100 alt="Apache Software Foundation"></a></a></div><div class=col-9><p class=footer-text>Apache is a non-profit organization helping open-source
 software projects released under the Apache
 <a href=https://www.apache.org/licenses/>license</a>
 and managed with
-<a href=https://www.apache.org/foundation/how-it-works.html>
-open governance</a> and
-<a href=https://privacy.apache.org/policies/privacy-policy-public.html>
-privacy policy</a>. See upcoming
+<a href=https://www.apache.org/foundation/how-it-works.html>open governance</a> and
+<a href=https://privacy.apache.org/policies/privacy-policy-public.html>privacy policy</a>. See upcoming
 <a href=https://www.apache.org/events/current-event>Apache Events</a>.
 If you discover any
 <a href=https://www.apache.org/security/>security</a> vulnerabilities, please
 report them privately. Finally,
 <a href=https://www.apache.org/foundation/thanks.html>thanks
-</a> to the sponsors who
-<a href=https://www.apache.org/foundation/sponsorship.html>
-donate</a> to the Apache Foundation.
-</p>
-</div>
-</div>
-<div class="copyright row">
-<a href=https://hive.apache.org style=color:grey>
-The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.
-</a>
-</div>
-</footer>
-<script src="https://hive.apache.org/js/bootstrap.bundle.min.js?v=1.1.0"></script>
-</body>
-</html>
+</a>to the sponsors who
+<a href=https://www.apache.org/foundation/sponsorship.html>donate</a> to the Apache Foundation.</p></div></div><div class="copyright row"><a href=https://hive.apache.org/ style=color:grey>The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation.</a></div></footer><script src="https://hive.apache.org//js/bootstrap.bundle.min.js?v=1.1.0"></script></body></html>

@@ -1,11 +1,65 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Development on Hive Site</title><link>https://hive.apache.org/development/</link><description>Recent content in Development on Hive Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/development/index.xml" rel="self" type="application/rss+xml"/><item><title>Query File Test(qtest)</title><link>https://hive.apache.org/development/qtest/</link><pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate><guid>https://hive.apache.org/development/qtest/</guid><description>Query File Test(qtest) Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.
-Tutorial: How to run a specific test case Preparation You have to compile Hive&amp;rsquo;s source codes ahead of time.
-$ mvn clean install -Dmaven.javadoc.skip=true -DskipTests -Pitests Run a test case Let&amp;rsquo;s try to run alter1.q.
-$ mvn test -Pitests -pl itests/qtest -Dtest=TestMiniLlapLocalCliDriver -Dqfile=alter1.</description></item><item><title>Apache Hive : GettingStarted</title><link>https://hive.apache.org/development/gettingstarted-latest/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/development/gettingstarted-latest/</guid><description>Apache Hive : GettingStarted Installation and Configuration You can install a stable release of Hive by downloading a tarball, or you can download the source code and build Hive from that.
-Running HiveServer2 and Beeline Requirements Java 1.7
-Note: Hive versions 1.2 onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6 as well. Users are strongly advised to start moving to Java 1.8 (see HIVE-8607).</description></item><item><title>QuickStarted</title><link>https://hive.apache.org/development/quickstart/</link><pubDate>Fri, 12 May 2023 17:51:06 +0530</pubDate><guid>https://hive.apache.org/development/quickstart/</guid><description>Introduction Run Apache Hive inside docker container in pseudo-distributed mode, inorder to provide the following Quick-start/Debugging/Prepare a test env for Hive
-Quickstart STEP 1: Pull the image Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. Here are the latest images: 4.0.0 3.1.3 docker pull apache/hive:4.0.0
-STEP 2: Export the Hive version export HIVE_VERSION=4.0.0
-STEP 3: Launch the HiveServer2 with an embedded Metastore.</description></item><item><title>Getting Started</title><link>https://hive.apache.org/development/gettingstarted/</link><pubDate>Tue, 10 Jan 2023 12:35:11 +0530</pubDate><guid>https://hive.apache.org/development/gettingstarted/</guid><description>The Apache Hive ™ data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage using SQL. Structure can be projected onto data already in storage. A command line tool and JDBC driver are provided to connect users to Hive.
-Getting Started With Apache Hive Software Check out the Getting Started Guide. Learn more About Hive&amp;rsquo;s Functionality. Read the Getting Started Guide to learn how to install Hive The User and Hive SQL documentation shows how to program Hive Quick start with Docker Checkout the quickstart with Docker here: DOCKER_QUICKSTART</description></item><item><title>Version Control</title><link>https://hive.apache.org/development/versioncontrol/</link><pubDate>Wed, 14 Sep 2022 00:34:39 +0530</pubDate><guid>https://hive.apache.org/development/versioncontrol/</guid><description>Version Control The Hive source code resides in Apache&amp;rsquo;s Hive GitHub
-Anonymous clone via http - https://github.com/apache/hive.git Authenticated clone via ssh - git@github.com:apache/hive.git Instructions: Apache committer git instructions</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Development on Hive Site</title><link>https://hive.apache.org/development/</link><description>Recent content in Development on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 28 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/development/index.xml" rel="self" type="application/rss+xml"/><item><title>Query File Test(qtest)</title><link>https://hive.apache.org/development/qtest/</link><pubDate>Fri, 28 Mar 2025 00:00:00 +0000</pubDate><guid>https://hive.apache.org/development/qtest/</guid><description>&lt;h1 id="query-file-testqtest"&gt;Query File Test(qtest)&lt;/h1&gt;
+&lt;p&gt;Query File Test is a JUnit-based integration test suite for Apache Hive. Developers write any SQL; the testing framework runs it and verifies the result and output.&lt;/p&gt;
+&lt;h2 id="tutorial-how-to-run-a-specific-test-case"&gt;Tutorial: How to run a specific test case&lt;/h2&gt;
+&lt;h3 id="preparation"&gt;Preparation&lt;/h3&gt;
+&lt;p&gt;You have to compile Hive&amp;rsquo;s source codes ahead of time.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ mvn clean install -Dmaven.javadoc.skip&lt;span style="color:#f92672"&gt;=&lt;/span&gt;true -DskipTests -Pitests
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="run-a-test-case"&gt;Run a test case&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s try to run &lt;a href="https://github.com/apache/hive/blob/master/ql/src/test/queries/clientpositive/alter1.q"&gt;alter1.q&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;$ mvn test -Pitests -pl itests/qtest -Dtest&lt;span style="color:#f92672"&gt;=&lt;/span&gt;TestMiniLlapLocalCliDriver -Dqfile&lt;span style="color:#f92672"&gt;=&lt;/span&gt;alter1.q
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The test should successfully finish.&lt;/p&gt;</description></item><item><title>Apache Hive : GettingStarted</title><link>https://hive.apache.org/development/gettingstarted-latest/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/development/gettingstarted-latest/</guid><description>&lt;h1 id="apache-hive--gettingstarted"&gt;Apache Hive : GettingStarted&lt;/h1&gt;
+&lt;h2 id="installation-and-configuration"&gt;Installation and Configuration&lt;/h2&gt;
+&lt;p&gt;You can install a stable release of Hive by downloading a tarball, or you can download the source code and build Hive from that.&lt;/p&gt;
+&lt;h4 id="running-hiveserver2-and-beeline"&gt;Running HiveServer2 and Beeline&lt;/h4&gt;
+&lt;h3 id="requirements"&gt;Requirements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Java 1.7&lt;br&gt;
+&lt;em&gt;Note:&lt;/em&gt;  Hive versions &lt;a href="https://issues.apache.org/jira/browse/HIVE/fixforversion/12329345/?selectedTab=com.atlassian.jira.jira-projects-plugin:version-summary-panel"&gt;1.2&lt;/a&gt; onward require Java 1.7 or newer. Hive versions 0.14 to 1.1 work with Java 1.6 as well. Users are strongly advised to start moving to Java 1.8 (see &lt;a href="https://issues.apache.org/jira/browse/HIVE-8607"&gt;HIVE-8607&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Hadoop 2.x (preferred), 1.x (not supported by Hive 2.0.0 onward).&lt;br&gt;
+Hive versions up to 0.13 also supported Hadoop 0.20.x, 0.23.x.&lt;/li&gt;
+&lt;li&gt;Hive is commonly used in production Linux and Windows environment. Mac is a commonly used development environment. The instructions in this document are applicable to Linux and Mac. Using it on Windows would require slightly different steps.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="installing-hive-from-a-stable-release"&gt;Installing Hive from a Stable Release&lt;/h3&gt;
+&lt;p&gt;Start by downloading the most recent stable release of Hive from one of the Apache download mirrors (see &lt;a href="https://hive.apache.org/downloads.html"&gt;Hive Releases&lt;/a&gt;).&lt;/p&gt;</description></item><item><title>QuickStarted</title><link>https://hive.apache.org/development/quickstart/</link><pubDate>Fri, 12 May 2023 17:51:06 +0530</pubDate><guid>https://hive.apache.org/development/quickstart/</guid><description>&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;hr&gt;
+&lt;p&gt;Run Apache Hive inside docker container in pseudo-distributed mode, inorder to provide the following Quick-start/Debugging/Prepare a test env for Hive&lt;/p&gt;
+&lt;h3 id="quickstart"&gt;Quickstart&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h5 id="step-1-pull-the-image"&gt;&lt;strong&gt;STEP 1: Pull the image&lt;/strong&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Pull the image from DockerHub: &lt;a href="https://hub.docker.com/r/apache/hive/tags"&gt;https://hub.docker.com/r/apache/hive/tags&lt;/a&gt;. Here are the latest images:
+&lt;ul&gt;
+&lt;li&gt;4.0.0&lt;/li&gt;
+&lt;li&gt;3.1.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker pull apache/hive:4.0.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt; &lt;/code&gt;&lt;/p&gt;
+&lt;h5 id="step-2-export-the-hive-version"&gt;&lt;strong&gt;STEP 2: Export the Hive version&lt;/strong&gt;&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;export HIVE_VERSION&lt;span style="color:#f92672"&gt;=&lt;/span&gt;4.0.0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt; &lt;/code&gt;&lt;/p&gt;
+&lt;h5 id="step-3--launch-the-hiveserver2-with-an-embedded-metastore"&gt;&lt;strong&gt;STEP 3: Launch the HiveServer2 with an embedded Metastore.&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;This is lightweight and for a quick setup, it uses Derby as metastore db.&lt;/p&gt;</description></item><item><title>Getting Started</title><link>https://hive.apache.org/development/gettingstarted/</link><pubDate>Tue, 10 Jan 2023 12:35:11 +0530</pubDate><guid>https://hive.apache.org/development/gettingstarted/</guid><description>&lt;p&gt;The Apache Hive ™ data warehouse software facilitates reading,
+writing, and managing large datasets residing in distributed storage
+using SQL. Structure can be projected onto data already in storage.
+A command line tool and JDBC driver are provided to connect users to
+Hive.&lt;/p&gt;
+&lt;h1 id="getting-started-with-apache-hive-software"&gt;Getting Started With Apache Hive Software&lt;/h1&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Check out the &lt;a href="https://hive.apache.org/development/gettingstarted-latest/"&gt;Getting Started Guide&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Learn more &lt;a href="https://hive.apache.org/docs/latest/introduction-to-apache-hive"&gt;About Hive&amp;rsquo;s Functionality&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Read the &lt;a href="https://hive.apache.org/development/gettingstarted-latest/"&gt;Getting Started Guide&lt;/a&gt; to learn how to install Hive&lt;/li&gt;
+&lt;li&gt;The &lt;a href="https://hive.apache.org/docs/latest/introduction-to-apache-hive#Home-UserDocumentation"&gt;User and Hive SQL documentation&lt;/a&gt; shows how to program Hive&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="quick-start-with-docker"&gt;Quick start with Docker&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;Checkout the quickstart with Docker here: &lt;a href="https://hive.apache.org/development/quickstart/"&gt;DOCKER_QUICKSTART&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Version Control</title><link>https://hive.apache.org/development/versioncontrol/</link><pubDate>Wed, 14 Sep 2022 00:34:39 +0530</pubDate><guid>https://hive.apache.org/development/versioncontrol/</guid><description>&lt;h1 id="version-control"&gt;Version Control&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;The Hive source code resides in Apache&amp;rsquo;s &lt;a href="https://github.com/apache/hive"&gt;Hive GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Anonymous clone via http - &lt;a href="https://github.com/apache/hive.git"&gt;https://github.com/apache/hive.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Authenticated clone via ssh - &lt;a href="mailto:git@github.com"&gt;git@github.com&lt;/a&gt;:apache/hive.git&lt;/li&gt;
+&lt;li&gt;Instructions: &lt;a href="https://git.apache.org/"&gt;Apache committer git instructions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
