@@ -67,6 +67,9 @@ theme = 'hive'
     llap = "/development/designdocs/llap"
     iceberg = "https://iceberg.apache.org/docs/latest/hive/"
 
+[params.render_hooks.link]
+    errorLevel = 'warning'
+
 [outputs]
     home = ["HTML", "RSS", "JSON"]
 [markup]
