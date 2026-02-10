@@ -495,16 +495,11 @@ SELECT ... FROM (subquery) AS name ... (Note: Only valid starting with Hive 0.13
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint"&gt;&lt;code&gt;TINYINT&lt;/code&gt;&lt;/a&gt; (1-byte signed integer, from &lt;code&gt;-128&lt;/code&gt; to &lt;code&gt;127&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint"&gt;&lt;code&gt;SMALLINT&lt;/code&gt;&lt;/a&gt; (2-byte signed integer, from &lt;code&gt;-32,768&lt;/code&gt; to &lt;code&gt;32,767&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint"&gt;INT&lt;/a&gt;/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;* [`BIGINT`](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
-* `FLOAT` (4-byte single precision floating point number)
-* `DOUBLE` (8-byte double precision floating point number)
-* ```
-DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-13556))
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint"&gt;INT&lt;/a&gt;/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint"&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/a&gt; (8-byte signed integer, from &lt;code&gt;-9,223,372,036,854,775,808&lt;/code&gt; to &lt;code&gt;9,223,372,036,854,775,807&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FLOAT&lt;/code&gt; (4-byte single precision floating point number)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DOUBLE&lt;/code&gt; (8-byte double precision floating point number)&lt;/li&gt;
+&lt;li&gt;DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive &lt;a href="https://issues.apache.org/jira/browse/HIVE-13556"&gt;2.2.0&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-types#decimals"&gt;&lt;code&gt;DECIMAL&lt;/code&gt;&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;Introduced in Hive &lt;a href="https://issues.apache.org/jira/browse/HIVE-2693"&gt;0.11.0&lt;/a&gt; with a precision of 38 digits&lt;/li&gt;
