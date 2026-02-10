@@ -32,16 +32,21 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
 ## Create Scheduled query syntax
 
-**CREATE SCHEDULED QUERY <scheduled_query_name>**   
-**[<scheduleSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax)**    
-**[[<executedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax)**  **]**   
-**[[<enableSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax)]**   
-**[<definedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax)**    
+**CREATE SCHEDULED QUERY <scheduled_query_name>
+[`<scheduleSpecification>`](/docs/latest/language/scheduled-queries#schedulespecification-syntax)
+[[`<executedAsSpec>`](/docs/latest/language/scheduled-queries#executedas-syntax)]
+[[`<enableSpecification>`](/docs/latest/language/scheduled-queries#enablespecification-syntax)]
+[`<definedAsSpec>`](/docs/latest/language/scheduled-queries#defined-as-syntax)**
   
 
 ## Alter Scheduled query syntax
 
-**ALTER SCHEDULED QUERY <scheduled_query_name>** **([<scheduleSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#schedulespecification-syntax)|[<executedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executedas-syntax)|[<enableSpecification>](https://hive.apache.org/docs/latest/language/scheduled-queries#enablespecification-syntax)|[<definedAsSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#defined-as-syntax)|[<executeSpec>](https://hive.apache.org/docs/latest/language/scheduled-queries#executespec-syntax));**
+**ALTER SCHEDULED QUERY <scheduled_query_name> (
+[`<scheduleSpec>`](/docs/latest/language/scheduled-queries#schedulespecification-syntax)|
+[`<executedAsSpec>`](/docs/latest/language/scheduled-queries#executedas-syntax)|
+[`<enableSpecification>`](/docs/latest/language/scheduled-queries#enablespecification-syntax)|
+[`<definedAsSpec>`](/docs/latest/language/scheduled-queries#defined-as-syntax)|
+[`<executeSpec>`](/docs/latest/language/scheduled-queries#executespec-syntax));**
 
 ## Drop syntax
 

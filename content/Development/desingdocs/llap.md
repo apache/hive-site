@@ -186,7 +186,7 @@ The watch and running nodes options were added in release 2.2.0 with [HIVE-15217
 
 [LLAP Design Document](https://issues.apache.org/jira/secure/attachment/12665704/LLAPdesigndocument.pdf)
 
-[Hive Contributor Meetup Presentation](https://hive.apache.org/attachments/27362054/LLAP-Meetup-Nov.ppsx)
+[Hive Contributor Meetup Presentation](/attachments/27362054/LLAP-Meetup-Nov.ppsx)
 
 ## Attachments:
 

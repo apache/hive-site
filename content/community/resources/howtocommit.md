@@ -15,7 +15,7 @@ New committers are encouraged to first read Apache's generic committer documenta
 * [ASF Project Security for committers](https://www.apache.org/security/committers.html#asf-project-security-for-committers)
 * [Apache Committer FAQ](http://www.apache.org/dev/committers.html)
 
-The first act of a new core committer is typically to add their name to the [credits](https://hive.apache.org/community/people/) page. This requires changing the source in <https://github.com/apache/hive-site/blob/main/content/community/people.md>
+The first act of a new core committer is typically to add their name to the [credits](/community/people/) page. This requires changing the source in <https://github.com/apache/hive-site/blob/main/content/community/people.md>
 
 Committers are strongly encouraged to subscribe to the [security@hive.apache.org]({{< ref "mailto:security-subscribe@hive-apache-org" >}}) list with their Apache email and help addressing security vulnerability reports.
 

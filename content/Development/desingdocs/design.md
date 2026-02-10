@@ -48,7 +48,7 @@ The Metastore provides two important but often overlooked features of a data war
 
 Metastore is an object store with a database or file backed store. The database backed store is implemented using an object-relational mapping (ORM) solution called the [DataNucleus](http://www.datanucleus.org/). The prime motivation for storing this in a relational database is queriability of metadata. Some disadvantages of using a separate data store for metadata instead of using HDFS are synchronization and scalability issues. Additionally there is no clear way to implement an object store on top of HDFS due to lack of random updates to files. This, coupled with the advantages of queriability of a relational store, made our approach a sensible one.
 
-The metastore can be configured to be used in a couple of ways: remote and embedded. In remote mode, the metastore is a [Thrift](https://thrift.apache.org/) service. This mode is useful for non-Java clients. In embedded mode, the Hive client directly connects to an underlying metastore using JDBC. This mode is useful because it avoids another system that needs to be maintained and monitored. Both of these modes can co-exist. (Update: Local metastore is a third possibility. See [Hive Metastore Administration](https://hive.apache.org/docs/latest/admin/adminmanual-metastore-administration) for details.)
+The metastore can be configured to be used in a couple of ways: remote and embedded. In remote mode, the metastore is a [Thrift](https://thrift.apache.org/) service. This mode is useful for non-Java clients. In embedded mode, the Hive client directly connects to an underlying metastore using JDBC. This mode is useful because it avoids another system that needs to be maintained and monitored. Both of these modes can co-exist. (Update: Local metastore is a third possibility. See [Hive Metastore Administration](/docs/latest/admin/adminmanual-metastore-administration) for details.)
 
 ### Metastore Interface
 
@@ -56,7 +56,7 @@ Metastore provides a [Thrift interface](https://thrift.apache.org/docs/idl) to m
 
 ## Hive Query Language
 
-HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for creation of tables, loading data into tables and querying the tables. HiveQL also allows users to embed their custom map-reduce scripts. These scripts can be written in any language using a simple row-based streaming interface – read rows from standard input and write out rows to standard output. This flexibility comes at a cost of a performance hit caused by converting rows from and to strings. However, we have seen that users do not mind this given that they can implement their scripts in the language of their choice. Another feature unique to HiveQL is multi-table insert. In this construct, users can perform multiple queries on the same input data using a single HiveQL query. Hive optimizes these queries to share the scan of the input data, thus increasing the throughput of these queries several orders of magnitude. We omit more details due to lack of space. For a more complete description of the HiveQL language see the [language manual](https://hive.apache.org/docs/latest/language/languagemanual).
+HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for creation of tables, loading data into tables and querying the tables. HiveQL also allows users to embed their custom map-reduce scripts. These scripts can be written in any language using a simple row-based streaming interface – read rows from standard input and write out rows to standard output. This flexibility comes at a cost of a performance hit caused by converting rows from and to strings. However, we have seen that users do not mind this given that they can implement their scripts in the language of their choice. Another feature unique to HiveQL is multi-table insert. In this construct, users can perform multiple queries on the same input data using a single HiveQL query. Hive optimizes these queries to share the scan of the input data, thus increasing the throughput of these queries several orders of magnitude. We omit more details due to lack of space. For a more complete description of the HiveQL language see the [language manual](/docs/latest/language/languagemanual).
 
 ## Compiler
 
@@ -67,11 +67,11 @@ HiveQL is an SQL-like query language for Hive. It mostly mimics SQL syntax for c
 
 ## Optimizer
 
-More plan transformations are performed by the optimizer. The optimizer is an evolving component. As of 2011, it was rule-based and performed the following: column pruning and predicate pushdown. However, the infrastructure was in place, and there was work under progress to include other optimizations like map-side join. (Hive 0.11 added several [join optimizations](https://hive.apache.org/docs/latest/language/languagemanual-joinoptimization).)  
+More plan transformations are performed by the optimizer. The optimizer is an evolving component. As of 2011, it was rule-based and performed the following: column pruning and predicate pushdown. However, the infrastructure was in place, and there was work under progress to include other optimizations like map-side join. (Hive 0.11 added several [join optimizations](/docs/latest/language/languagemanual-joinoptimization).)  
   
- The optimizer can be enhanced to be cost-based (see [Cost-based optimization in Hive](https://hive.apache.org/docs/latest/user/cost-based-optimization-in-hive) and [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775)). The sorted nature of output tables can also be preserved and used later on to generate better plans. The query can be performed on a small sample of data to guess the data distribution, which can be used to generate a better plan.  
+ The optimizer can be enhanced to be cost-based (see [Cost-based optimization in Hive](/docs/latest/user/cost-based-optimization-in-hive) and [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775)). The sorted nature of output tables can also be preserved and used later on to generate better plans. The query can be performed on a small sample of data to guess the data distribution, which can be used to generate a better plan.  
   
- A [correlation optimizer](https://hive.apache.org/development/desingdocs/correlation-optimizer) was added in Hive 0.12.  
+ A [correlation optimizer](/development/desingdocs/correlation-optimizer) was added in Hive 0.12.  
   
  The plan is a generic operator tree, and can be easily manipulated.
 

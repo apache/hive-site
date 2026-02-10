@@ -17,33 +17,29 @@ For data types supported by HCatalog, see:
 
 ### Numeric Types
 
-* [`TINYINT`](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (1-byte signed integer, from `-128` to `127`)
-* [`SMALLINT`](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (2-byte signed integer, from `-32,768` to `32,767`)
-* ```
-[INT](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint)/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)
-```
-* [`BIGINT`](https://hive.apache.org/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
+* [`TINYINT`](/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (1-byte signed integer, from `-128` to `127`)
+* [`SMALLINT`](/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (2-byte signed integer, from `-32,768` to `32,767`)
+* [INT](/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint)/INTEGER (4-byte signed integer, from -2,147,483,648 to 2,147,483,647)
+* [`BIGINT`](/docs/latest/language/languagemanual-types#integral-types-tinyintsmallintintintegerbigint) (8-byte signed integer, from `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`)
 * `FLOAT` (4-byte single precision floating point number)
 * `DOUBLE` (8-byte double precision floating point number)
-* ```
-DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-13556))
-```
-* [`DECIMAL`](https://hive.apache.org/docs/latest/language/languagemanual-types#decimals)
+* DOUBLE PRECISION (alias for DOUBLE, only available starting with Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-13556))
+* [`DECIMAL`](/docs/latest/language/languagemanual-types#decimals)
 	+ Introduced in Hive [0.11.0](https://issues.apache.org/jira/browse/HIVE-2693) with a precision of 38 digits
 	+ Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-3976) introduced user-definable precision and scale
 * `NUMERIC` (same as `DECIMAL`, starting with [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-16764))
 
 ### Date/Time Types
 
-* [`TIMESTAMP`](https://hive.apache.org/docs/latest/language/languagemanual-types#timestamps) (Note: Only available starting with Hive [0.8.0](https://issues.apache.org/jira/browse/HIVE-2272))
-* [`DATE`](https://hive.apache.org/docs/latest/language/languagemanual-types#dates) (Note: Only available starting with Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-4055))
-* [`INTERVAL`](https://hive.apache.org/docs/latest/language/languagemanual-types#intervals) (Note: Only available starting with Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-9792))
+* [`TIMESTAMP`](/docs/latest/language/languagemanual-types#timestamps) (Note: Only available starting with Hive [0.8.0](https://issues.apache.org/jira/browse/HIVE-2272))
+* [`DATE`](/docs/latest/language/languagemanual-types#dates) (Note: Only available starting with Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-4055))
+* [`INTERVAL`](/docs/latest/language/languagemanual-types#intervals) (Note: Only available starting with Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-9792))
 
 ### String Types
 
-* [`STRING`](https://hive.apache.org/docs/latest/language/languagemanual-types#strings)
-* [`VARCHAR`](https://hive.apache.org/docs/latest/language/languagemanual-types#varchar) (Note: Only available starting with Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-4844))
-* [`CHAR`](https://hive.apache.org/docs/latest/language/languagemanual-types#char) (Note: Only available starting with Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5191))
+* [`STRING`](/docs/latest/language/languagemanual-types#strings)
+* [`VARCHAR`](/docs/latest/language/languagemanual-types#varchar) (Note: Only available starting with Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-4844))
+* [`CHAR`](/docs/latest/language/languagemanual-types#char) (Note: Only available starting with Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5191))
 
 ### Misc Types
 
@@ -185,7 +181,7 @@ CREATE TABLE foo (
 
 ```
 
-For usage, see [LanguageManual Types#Floating Point Types](https://hive.apache.org/docs/latest/language/languagemanual-types#floating-point-types) in the Literals section below.
+For usage, see [LanguageManual Types#Floating Point Types](/docs/latest/language/languagemanual-types#floating-point-types) in the Literals section below.
 
 #### Decimal Literals
 
@@ -241,7 +237,7 @@ ALTER TABLE foo PARTITION (ds='2008-04-08', hr=12) CHANGE COLUMN dec_column_name
 ...
 ```
 
-The Decimal datatype is discussed further in [Floating Point Types](https://hive.apache.org/docs/latest/language/languagemanual-types#floating-point-types) below.
+The Decimal datatype is discussed further in [Floating Point Types](/docs/latest/language/languagemanual-types#floating-point-types) below.
 
 ### Union Types
 
@@ -288,7 +284,7 @@ Floating point literals are assumed to be DOUBLE. Scientific notation is not yet
 
 Version
 
-Decimal datatype was introduced in Hive 0.11.0 ([HIVE-2693](https://issues.apache.org/jira/browse/HIVE-2693)). See [Decimal Datatype](https://hive.apache.org/docs/latest/language/languagemanual-types#decimals) above.
+Decimal datatype was introduced in Hive 0.11.0 ([HIVE-2693](https://issues.apache.org/jira/browse/HIVE-2693)). See [Decimal Datatype](/docs/latest/language/languagemanual-types#decimals) above.
 
 `NUMERIC` is the same as `DECIMAL` as of Hive 3.0.0 ([HIVE-16764](https://issues.apache.org/jira/browse/HIVE-16764)).
 
@@ -380,7 +376,7 @@ Two new tests have been added as part of the TestCliDriver framework within Hive
 
 More tests need to be added that demonstrate failure or when certain types of casts are prevented (for example, casting to date). There is some ambiguity in the round function because the rounding of Decimal does not work exactly as the SQL standard, and therefore it has been omitted in the current work.
 
-For general information about running Hive tests, see [How to Contribute to Apache Hive](https://hive.apache.org/community/resources/howtocontribute) and [Hive Developer FAQ](https://hive.apache.org/community/resources/hivedeveloperfaq).
+For general information about running Hive tests, see [How to Contribute to Apache Hive](/community/resources/howtocontribute) and [Hive Developer FAQ](/community/resources/hivedeveloperfaq).
 
 ## Handling of NULL Values
 

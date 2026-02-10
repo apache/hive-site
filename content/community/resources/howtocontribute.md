@@ -28,7 +28,7 @@ This is an optional step. Eclipse has a lot of advanced features for Java develo
 
 This checklist tells you how to create accounts and obtain permissions needed by Hive contributors. See the [Hive website](http://hive.apache.org/) for additional information.
 
-* Request an Apache Software Foundation [JIRA account](https://hive.apache.org/community/resources/howtocontribute#request-account), if you do not already have one.
+* Request an Apache Software Foundation [JIRA account](/community/resources/howtocontribute#request-account), if you do not already have one.
 	+ The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
 	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
@@ -334,7 +334,7 @@ Here are the steps relevant to `hive_metastore.thrift`:
 
 ## Stay Involved
 
-Contributors should join the [Hive mailing lists](https://hive.apache.org/community/mailinglists/). In particular the dev list (to join discussions of changes) and the user list (to help others).
+Contributors should join the [Hive mailing lists](/community/mailinglists/). In particular the dev list (to join discussions of changes) and the user list (to help others).
 
 ## See Also
 

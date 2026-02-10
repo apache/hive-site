@@ -25,8 +25,8 @@ There are some limitations in the "order by" clause. In the strict mode (i.e., [
 
 Note that columns are specified by name, not by position number. However in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-581) and later, columns can be specified by position when configured as follows:
 
-* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias](https://hive.apache.org/docs/latest/user/configuration-properties#hivegroupbyorderbypositionalias) to true (the default is false).
-* For Hive 2.2.0 and later, [hive.orderby.position.alias](https://hive.apache.org/docs/latest/user/configuration-properties#hiveorderbypositionalias) is true by default.
+* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias](/docs/latest/user/configuration-properties#hivegroupbyorderbypositionalias) to true (the default is false).
+* For Hive 2.2.0 and later, [hive.orderby.position.alias](/docs/latest/user/configuration-properties#hiveorderbypositionalias) is true by default.
 
 The default sorting order is ascending (ASC).
 
@@ -185,8 +185,8 @@ SELECT col1, col2 FROM t1 DISTRIBUTE BY col1 SORT BY col1 ASC, col2 DESC
 
 Note that columns are specified by name, not by position number. However in [HIVE-28572](https://issues.apache.org/jira/browse/HIVE-28572) and later, columns can be specified by position when configured as follows:
 
-* set [hive.orderby.position.alias](https://hive.apache.org/docs/latest/configuration-properties/#hiveorderbypositionalias)=true;
-* set [hive.cbo.enable](https://hive.apache.org/docs/latest/configuration-properties/#hivecboenable)=true;
+* set [hive.orderby.position.alias](/docs/latest/user/configuration-properties/#hiveorderbypositionalias)=true;
+* set [hive.cbo.enable](/docs/latest/user/configuration-properties/#hivecboenable)=true;
 
 When any of the above conditions are not met, no distribution is performed.
 
