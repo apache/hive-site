@@ -68,7 +68,7 @@ Within the Hive project, different types of decisions require different forms of
 
 ### Voting
 
-Decisions regarding the project are made by votes on the primary project development mailing list ([user@hive.apache.org]({{< ref "mailto:user@pig-apache-org" >}})). Where necessary, PMC voting may take place on the private Hive PMC mailing list. Votes are clearly indicated by subject line starting with [VOTE]. Votes may contain multiple items for approval and these should be clearly separated. Voting is carried out by replying to the vote mail. Voting may take four flavors
+Decisions regarding the project are made by votes on the primary project development mailing list ([dev@hive.apache.org](mailto:dev@hive.apache.org)). Where necessary, PMC voting may take place on the private Hive PMC mailing list. Votes are clearly indicated by subject line starting with [VOTE]. Votes may contain multiple items for approval and these should be clearly separated. Voting is carried out by replying to the vote mail. Voting may take four flavors
 
 | Vote | Meaning |
 | --- | --- |

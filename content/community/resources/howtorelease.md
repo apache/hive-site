@@ -104,7 +104,7 @@ sftp> cd hive-storage-X.Y.Z
 sftp> put hive-storage-X.Y.Z-rcR.tar.gz*
 sftp> quit
 ```
-8. Send email to [dev@hive.apache.org]({{< ref "mailto:dev@hive-apache-org" >}}) calling the vote.
+8. Send email to [dev@hive.apache.org](mailto:dev@hive.apache.org) calling the vote.
 
 ### Publishing the Storage API Artifacts
 
