@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Hive Outer Join Behavior
 
-This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html). The original HTML can be found [here](/attachments/OuterJoinBehavior.html).
+This document is based on a writeup of [DB2 Outer Join Behavior](https://web.archive.org/web/20210126052816/http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html). The original HTML can be found [here](/attachments/HiveOuterJoinBehavior.html).
 
 ## Definitions
 
