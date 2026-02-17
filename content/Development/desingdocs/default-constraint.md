@@ -27,10 +27,10 @@ DEFAULT will be a fifth addition to this list. Note that unlike existing constra
 CREATE TABLE will be updated to let user specify DEFAULT as follows:
 
 * With column definition
-+ CREATE TABLE <tableName> (<columnName> <dataType> DEFAULT <defaultValue>)
+  * `CREATE TABLE <tableName> (<columnName> <dataType> DEFAULT <defaultValue>)`
 
 * ~~With constraint specification~~
-+ ~~CREATE TABLE <tableName> (<columnName> <dataType>, …, CONSTRAINT <constraintName> DEFAULT <defaultValue> (<columnName>)~~
+  * ~~`CREATE TABLE <tableName> (<columnName> <dataType>, …, CONSTRAINT <constraintName> DEFAULT <defaultValue> (<columnName>)`~~
 
 To be compliant with SQL standards, Hive will only permit default values which fall in one of the following categories:
 
@@ -38,7 +38,7 @@ To be compliant with SQL standards, Hive will only permit default values which f
 * DATE TIME VALUE FUNCTION, that is, CURRENT_TIME, CURRENT_DATE
 * CURRENT_USER()
 * NULL
-* CAST (<expression in above category> as PRIMITIVE TYPE)
+* CAST (&lt;expression in above category&gt; as PRIMITIVE TYPE)
 
 ## INSERT
 
