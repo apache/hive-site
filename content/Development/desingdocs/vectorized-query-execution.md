@@ -139,7 +139,3 @@ set hive.fetch.task.conversion=none
 
 Vectorized execution is available in Hive 0.13.0 and later ([HIVE-5283](https://issues.apache.org/jira/browse/HIVE-5283)).
 
- 
-
- 
-

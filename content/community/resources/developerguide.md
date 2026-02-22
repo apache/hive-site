@@ -108,14 +108,14 @@ As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5976)a registration
 
 The following mappings have been added through this registration mechanism:
 
-| Syntax | Equivalent |
-| --- | --- |
-| STORED AS AVRO /STORED AS AVROFILE | `ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.avro.AvroSerDe'``STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'` |
-| STORED AS ORC /STORED AS ORCFILE | `ROW FORMAT SERDE````'org.apache.hadoop.hive.ql.io.orc.OrcSerde````'``STORED AS INPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat````'``OUTPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat````'` |
+|                  Syntax                  |                                                                                                                              Equivalent                                                                                                                               |
+|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| STORED AS AVRO /STORED AS AVROFILE       | `ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.avro.AvroSerDe'``STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'`                                  |
+| STORED AS ORC /STORED AS ORCFILE         | `ROW FORMAT SERDE````'org.apache.hadoop.hive.ql.io.orc.OrcSerde````'``STORED AS INPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat````'``OUTPUTFORMAT````'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat````'`                                         |
 | STORED AS PARQUET /STORED AS PARQUETFILE | `ROW FORMAT SERDE```'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe```'``STORED AS INPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat```'``OUTPUTFORMAT```'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat```'` |
-| STORED AS RCFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileOutputFormat'` |
-| STORED AS SEQUENCEFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileOutputFormat'` |
-| STORED AS TEXTFILE | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.TextInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'` |
+| STORED AS RCFILE                         | `STORED AS INPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.RCFileOutputFormat'`                                                                                                                            |
+| STORED AS SEQUENCEFILE                   | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.mapred.SequenceFileOutputFormat'`                                                                                                                        |
+| STORED AS TEXTFILE                       | `STORED AS INPUTFORMAT``'org.apache.hadoop.mapred.TextInputFormat'``OUTPUTFORMAT``'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'`                                                                                                                           |
 
 To add a new native SerDe with STORED AS keyword, follow these steps:
 
@@ -251,8 +251,7 @@ Hive uses [JUnit](http://junit.org/) for unit tests. Each of the 3 main componen
 
 ### Debugging Hive Code
 
-  
- Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.
+Hive code includes both client-side code (e.g., compiler, semantic analyzer, and optimizer of HiveQL) and server-side code (e.g., operator/task/SerDe implementations). Debugging is different for client-side and server-side code, as described below.
 
 #### Debugging Client-Side Code
 
@@ -260,13 +259,13 @@ The client-side code runs on your local machine so you can easily debug it using
 
 * Make sure that you have run `ant model-jar` in hive/metastore and `ant gen-test` in hive since the last time you ran `ant clean`.
 * To run all of the unit tests for the CLI:
-	+ Open up TestCliDriver.java
-	+ Click Run->Debug Configurations, select TestCliDriver, and click Debug.
+  + Open up TestCliDriver.java
+  + Click Run->Debug Configurations, select TestCliDriver, and click Debug.
 * To run a single test within TestCliDriver.java:
-	+ Begin running the whole TestCli suite as before.
-	+ Once it finishes the setup and starts executing the JUnit tests, stop the test execution.
-	+ Find the desired test in the JUnit pane,
-	+ Right click on that test and select Debug.
+  + Begin running the whole TestCli suite as before.
+  + Once it finishes the setup and starts executing the JUnit tests, stop the test execution.
+  + Find the desired test in the JUnit pane,
+  + Right click on that test and select Debug.
 
 #### Debugging Server-Side Code
 
@@ -286,6 +285,7 @@ If you have already built Hive without javac.debug=on, you can clean the build a
     > ant -Djavac.debug=on package
 
 ```
+
 * Run ant test with additional options to tell the Java VM that is running Hive server-side code to wait for the debugger to attach. First define some convenient macros for debugging. You can put it in your .bashrc or .cshrc.
 
 ```
@@ -308,6 +308,7 @@ The unit test will run until it shows:
      [junit] Listening for transport dt_socket at address: 8000
 
 ```
+
 * Now, you can use jdb to attach to port 8000 to debug
 
 ```
@@ -317,46 +318,42 @@ The unit test will run until it shows:
 
 or if you are running Eclipse and the Hive projects are already imported, you can debug with Eclipse. Under Eclipse Run -> Debug Configurations, find "Remote Java Application" at the bottom of the left panel. There should be a MapRedTask configuration already. If there is no such configuration, you can create one with the following property:
 
-	+ Name: any task such as MapRedTask
-	+ Project: the Hive project that you imported.
-	+ Connection Type: Standard (Socket Attach)
-	+ Connection Properties:
-		- Host: localhost
-		- Port: 8000  
-		 Then hit the "Debug" button and Eclipse will attach to the JVM listening on port 8000 and continue running till the end. If you define breakpoints in the source code before hitting the "Debug" button, it will stop there. The rest is the same as debugging client-side Hive.
++ Name: any task such as MapRedTask
++ Project: the Hive project that you imported.
++ Connection Type: Standard (Socket Attach)
++ Connection Properties:
+  - Host: localhost
+  - Port: 8000  
+    Then hit the "Debug" button and Eclipse will attach to the JVM listening on port 8000 and continue running till the end. If you define breakpoints in the source code before hitting the "Debug" button, it will stop there. The rest is the same as debugging client-side Hive.
 
 #### Debugging without Ant (Client and Server Side)
 
 There is another way of debugging Hive code without going through Ant.  
- You need to install Hadoop and set the environment variable HADOOP_HOME to that.
+You need to install Hadoop and set the environment variable HADOOP_HOME to that.
 
 ```
-    > export HADOOP_HOME=<your hadoop home>
- 
+> export HADOOP_HOME=<your hadoop home>
 ```
 
 Then, start Hive:
 
 ```
-    >  ./build/dist/bin/hive --debug
- 
+>  ./build/dist/bin/hive --debug
 ```
 
 It will then act similar to the debugging steps outlines in Debugging Hive code. It is faster since there is no need to compile Hive code,  
- and go through Ant. It can be used to debug both client side and server side Hive.
+and go through Ant. It can be used to debug both client side and server side Hive.
 
 If you want to debug a particular query, start Hive and perform the steps needed before that query. Then start Hive again in debug to debug that query.
 
 ```
-    >  ./build/dist/bin/hive
-    >  perform steps before the query
- 
+>  ./build/dist/bin/hive
+>  perform steps before the query
 ```
 
 ```
-    >  ./build/dist/bin/hive --debug
-    >  run the query
- 
+>  ./build/dist/bin/hive --debug
+>  run the query
 ```
 
 Note that the local file system will be used, so the space on your machine will not be released automatically (unlike debugging via Ant, where the tables created in test are automatically dropped at the end of the test). Make sure to either drop the tables explicitly, or drop the data from /User/hive/warehouse.
@@ -380,8 +377,4 @@ Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/
 Please refer to [Hive User Group Meeting August 2009](http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook) Page 74-87.
 
  
-
- 
-
- 
 

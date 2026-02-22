@@ -17,27 +17,27 @@ Describe an HCatalog table. Normally returns a simple list of columns (using "de
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **format** | Set "`format=extended`" to see additional information (using "show table extended like") | Optional | Not extended |
+|    Name    |                                       Description                                        | Required? |   Default    |
+|------------|------------------------------------------------------------------------------------------|-----------|--------------|
+| **:db**    | The database name                                                                        | Required  | None         |
+| **:table** | The table name                                                                           | Required  | None         |
+| **format** | Set "`format=extended`" to see additional information (using "show table extended like") | Optional  | Not extended |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **columns** | A list of column names and types |
-| **database** | The database name |
-| **table** | The table name |
-| **partitioned** (extended only) | True if the table is partitioned |
-| **location** (extended only) | Location of table |
-| **outputFormat** (extended only) | Output format |
-| **owner** (extended only) | The owner's user name |
-| **partitionColumns** (extended only) | List of the partition columns |
-| **inputFormat** (extended only) | Input format |
+|                 Name                 |           Description            |
+|--------------------------------------|----------------------------------|
+| **columns**                          | A list of column names and types |
+| **database**                         | The database name                |
+| **table**                            | The table name                   |
+| **partitioned** (extended only)      | True if the table is partitioned |
+| **location** (extended only)         | Location of table                |
+| **outputFormat** (extended only)     | Output format                    |
+| **owner** (extended only)            | The owner's user name            |
+| **partitionColumns** (extended only) | List of the partition columns    |
+| **inputFormat** (extended only)      | Input format                     |
 
 ## Example
 
@@ -128,14 +128,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table]({{< ref "webhcat-reference-gettables" >}}) Next: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttable" >}})
-
-
-
- 
-
- 
 

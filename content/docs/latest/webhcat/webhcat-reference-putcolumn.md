@@ -15,24 +15,24 @@ Create a column in an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **:column** | The column name | Required | None |
-| **group** | The user group to use | Optional | None |
-| **permissions** | The permissions string to use | Optional | None |
-| **type** | The type of column to add, like "string" or "int" | Required | None |
-| **comment** | The column comment, like a description | Optional | None |
+|      Name       |                    Description                    | Required? | Default |
+|-----------------|---------------------------------------------------|-----------|---------|
+| **:db**         | The database name                                 | Required  | None    |
+| **:table**      | The table name                                    | Required  | None    |
+| **:column**     | The column name                                   | Required  | None    |
+| **group**       | The user group to use                             | Optional  | None    |
+| **permissions** | The permissions string to use                     | Optional  | None    |
+| **type**        | The type of column to add, like "string" or "int" | Required  | None    |
+| **comment**     | The column comment, like a description            | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **column** | The column name |
-| **table** | The table name |
+|     Name     |    Description    |
+|--------------|-------------------|
+| **column**   | The column name   |
+| **table**    | The table name    |
 | **database** | The database name |
 
 ## Example
@@ -58,14 +58,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-getcolumn" >}}) Next: [GET ddl/database/:db/table/:table/property]({{< ref "webhcat-reference-getproperties" >}})
-
-
-
- 
-
- 
 

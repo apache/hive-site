@@ -130,7 +130,3 @@ set hive.variable.substitute=false;
 
 ```
 
- 
-
- 
-

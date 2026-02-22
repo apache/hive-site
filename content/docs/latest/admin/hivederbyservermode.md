@@ -92,7 +92,7 @@ Edit `/opt/hadoop/hive/conf/hive-site.xml` as follows. Note that "hadoop1" shoul
 `/opt/hadoop/hive/conf/jpox.properties`
 
       **Version:** JPOX properties are *NOT* used in Hive 5.0 or later.  
-       JPOX properties can be specified in `hive-site.xml`. Normally `jpox.properties` changes are not required.
+      JPOX properties can be specified in `hive-site.xml`. Normally `jpox.properties` changes are not required.
 
 ```
 javax.jdo.PersistenceManagerFactoryClass=org.jpox.PersistenceManagerFactoryImpl
@@ -147,8 +147,4 @@ A directory should be created: `/opt/hadoop/db-derby-10.4.1.3-bin/data/metastore
 ### The Result
 
 Now you can run multiple Hive instances working on the same data simultaneously and remotely.
-
- 
-
- 
 

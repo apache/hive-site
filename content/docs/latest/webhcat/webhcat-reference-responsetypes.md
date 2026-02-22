@@ -15,16 +15,16 @@ Returns a list of the response types supported by WebHCat (Templeton).
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:version** | The WebHCat version number. (Currently this must be "v1".) | Required | None |
+|     Name     |                        Description                         | Required? | Default |
+|--------------|------------------------------------------------------------|-----------|---------|
+| **:version** | The WebHCat version number. (Currently this must be "v1".) | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|       Name        |              Description               |
+|-------------------|----------------------------------------|
 | **responseTypes** | A list of all supported response types |
 
 ## Example
@@ -56,15 +56,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [Reference: WebHCat Resources]({{< ref "webhcat-reference" >}})   
 Next: [GET status]({{< ref "webhcat-reference-status" >}})
-
-
-
- 
-
- 
 

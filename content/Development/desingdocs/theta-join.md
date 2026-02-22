@@ -74,12 +74,12 @@ As previously mention a detailed description of 1-Bucket-Theta is located [3]. A
 
 The matrix is partitioned by r, the number of reducers. An example join matrix follows, with four reducers 1-4 each a separate color:
 
-|  **Row Ids**  |  **T 1**  |  **T 2**  |  **T 3**  |  **T 4**  |
-| --- | --- | --- | --- | --- |
-|  **S 1**  |  1  |  1  |  2  |  2  |
-|  **S 2**  |  1  |  1  |  2  |  2  |
-|  **S 3**  |  3  |  3  |  4  |  4  |
-|  **S 4**  |  3  |  3  |  4  |  4  |
+| **Row Ids** | **T 1** | **T 2** | **T 3** | **T 4** |
+|-------------|---------|---------|---------|---------|
+| **S 1**     | 1       | 1       | 2       | 2       |
+| **S 2**     | 1       | 1       | 2       | 2       |
+| **S 3**     | 3       | 3       | 4       | 4       |
+| **S 4**     | 3       | 3       | 4       | 4       |
 
 In the map phase, each tuple in S is sent to all reducers which intersect the tuples’ row id. For example the S-tuple with the row id of 2, is sent to reducers 1, and 2. Similarly each tuple in T is sent to all reducers which intersect the tuples’ row id. For example, the tuple with rowid 4, is sent to reducers 2 and 4.
 
@@ -100,8 +100,4 @@ The reducer is fairly simple, it buffers up the S relation and then performs the
 3. [Processing Theta-Joins using MapReduce](http://www.ccs.neu.edu/home/mirek/papers/2011-SIGMOD-ParallelJoins.pdf)
 4. [Efficient Multi-way Theta-Join Processing Using MapReduce](http://vldb.org/pvldb/vol5/p1184_xiaofeizhang_vldb2012.pdf)
 5. [HIVE-2206](https://issues.apache.org/jira/browse/HIVE-2206)
-
- 
-
- 
 

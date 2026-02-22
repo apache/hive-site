@@ -126,7 +126,3 @@ Rebuild index on a partition:
 ALTER INDEX table10_index ON table10 PARTITION (columnX='valueQ', columnY='valueR') REBUILD;
 ```
 
- 
-
- 
-

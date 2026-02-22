@@ -11,16 +11,17 @@ Views (<http://issues.apache.org/jira/browse/HIVE-972>) are a standard DBMS feat
 
 ## Scope
 
-At a minimum, we want to 
+At a minimum, we want to
 
 * add queryable view support at the SQL language level (specifics of the scoping are under discussion in the Issues section below)
-	+ updatable views will not be supported (see the [Updatable Views]({{< ref "updatableviews" >}}) proposal)
+  + updatable views will not be supported (see the [Updatable Views]({{< ref "updatableviews" >}}) proposal)
 * make sure views and their definitions show up anywhere tables can currently be enumerated/searched/described
 * where relevant, provide additional metadata to allow views to be distinguished from tables
 
 Beyond this, we may want to
 
 * expose metadata about view definitions and dependencies (at table-level or column-level) in a way that makes them consumable by metadata-driven tools
+
 ## Syntax
 
 ```
@@ -39,6 +40,7 @@ The basics of view implementation are very easy due to the fact that Hive alread
 
 * For **CREATE VIEW v AS view-def-select**, we extend SemanticAnalyzer to behave similarly to **CREATE TABLE t AS select**, except that we don't actually execute the query (we stop after plan generation). It's necessary to perform all of plan generation (even though we're not actually going to execute the plan) since currently some validations such as type compatibility-checking are only performed during plan generation. After successful validation, the text of the view is saved in the metastore (the simplest approach snips out the text from the parser's token stream, but this approach introduces problems described in the issues section below).
 * For **select ... from view-reference**, we detect the view reference in SemanticAnalyzer.getMetaData, load the text of its definition from the metastore, parse it back into an AST, prepare a QBExpr to hold it, and then plug this into the referencing query's QB, resulting in a tree equivalent to **select ... from (view-def-select)**; plan generation can then be carried out on the combined tree.
+
 ## Issues
 
 Some of these are related to functionality/scope; others are related to implementation approaches. Opinions are welcome on all of them.
@@ -53,7 +55,7 @@ Implementing this typically requires expanding the view definition into an expli
 
 However, storing both the expanded form and the original view definition text as well can also be useful for both DESCRIBE readability as well as functionality (see later section on ALTER VIEW v RECOMPILE).
 
-**Update 7-Jan-2010**: Rather than adding full-blown unparse support to the AST model, I'm taking a parser-dependent shortcut. ANTLR's TokenRewriteStream provides a way to substitute text for token subsequences from the original token stream and then regenerate a transformed version of the parsed text. So, during column resolution, we map an expression such as "t.*" to replacement text "t.c1, t.c2, t.c3". Then once all columns have been resolved, we regenerate the view definition using these mapped replacements. Likewise, an unqualified column reference such as "c" gets replaced with the qualified reference "t.c". The rest of the parsed text remains unchanged. 
+**Update 7-Jan-2010**: Rather than adding full-blown unparse support to the AST model, I'm taking a parser-dependent shortcut. ANTLR's TokenRewriteStream provides a way to substitute text for token subsequences from the original token stream and then regenerate a transformed version of the parsed text. So, during column resolution, we map an expression such as "t.*" to replacement text "t.c1, t.c2, t.c3". Then once all columns have been resolved, we regenerate the view definition using these mapped replacements. Likewise, an unqualified column reference such as "c" gets replaced with the qualified reference "t.c". The rest of the parsed text remains unchanged.
 
 This approach will break if we ever need to perform more drastic (AST-based) rewrites as part of view expansion in the future.
 
@@ -77,11 +79,11 @@ Alternately, if we choose to avoid inheritance, then we could just add a new vie
 
 Comparison of the two approaches:
 
-|   |  **Inheritance Model**  |  **Flat Model**  |
-| --- | ---  | --- |
-|  *JDO Support* |  Need to investigate how well inheritance works for our purposes  |  Nothing special  |
-|  *Metadata queries from existing code/tools*  |  Existing queries for tables will NOT include views in results; those that need to will have to be modified to reference base class instead  |  Existing queries for tables WILL include views in results; those that are not supposed to will need to filter them out  |
-|  *Metastore upgrade on deployment*  |  Need to test carefully to make sure introducing inheritance doesn't corrupt existing metastore instances  |  Nothing special, just adding a new attribute  |
+|                                             |                                                           **Inheritance Model**                                                            |                                                     **Flat Model**                                                     |
+|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| *JDO Support*                               | Need to investigate how well inheritance works for our purposes                                                                            | Nothing special                                                                                                        |
+| *Metadata queries from existing code/tools* | Existing queries for tables will NOT include views in results; those that need to will have to be modified to reference base class instead | Existing queries for tables WILL include views in results; those that are not supposed to will need to filter them out |
+| *Metastore upgrade on deployment*           | Need to test carefully to make sure introducing inheritance doesn't corrupt existing metastore instances                                   | Nothing special, just adding a new attribute                                                                           |
 
 **Update 30-Dec-2009**: Based on a design review meeting, we're going to go with the flat model. Prasad pointed out that in the future, for materialized views, we may need the view definition to be tracked at the partition level as well, so that when we change the view definition, we don't have to discard existing materialized partitions if the new view result can be derived from the old one. So it may make sense to add the view definition as a new attribute of StorageDescriptor (since that is already present at both table and partition level).
 
@@ -135,7 +137,7 @@ For **select * from t**, hive supports fast-path execution (skipping Map/Reduce)
 
 **Update 30-Dec-2009**: Based on feedback in JIRA, we'll leave this as dependent on getting the fast-path working for the underlying filters and projections.
 
-**Update 6-Dec-2010**: This one is addressed by Hive's new "auto local mode" feature. 
+**Update 6-Dec-2010**: This one is addressed by Hive's new "auto local mode" feature.
 
 ### ORDER BY and LIMIT in view definition
 
@@ -211,8 +213,4 @@ WHERE EXISTS(
 ```
 
 For MySQL, note that the "safe updates" feature will need to be disabled since these are full-table updates.
-
- 
-
- 
 

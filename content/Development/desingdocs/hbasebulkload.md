@@ -229,7 +229,3 @@ TBLPROPERTIES("hbase.table.name" = "transactions");
 * Support loading into existing tables once HBASE-1923 is implemented
 * Wrap it all up into the ideal single-INSERT-with-auto-sampling job...
 
- 
-
- 
-

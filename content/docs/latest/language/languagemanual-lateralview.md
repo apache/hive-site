@@ -30,15 +30,15 @@ From Hive 0.12.0, column aliases can be omitted. In this case, aliases are inher
 Consider the following base table named `pageAds`. It has two columns: `pageid` (name of the page) and `adid_list` (an array of ads appearing on the page):
 
 | Column name | Column type |
-| --- | --- |
-| pageid | STRING |
-| adid_list | Array<int> |
+|-------------|-------------|
+| pageid      | STRING      |
+| adid_list   | Array<int>  |
 
 An example table with two rows:
 
-| pageid | adid_list |
-| --- | --- |
-| front_page | [1, 2, 3] |
+|    pageid    | adid_list |
+|--------------|-----------|
+| front_page   | [1, 2, 3] |
 | contact_page | [3, 4, 5] |
 
 and the user would like to count the total number of times an ad appears across all pages.
@@ -54,13 +54,13 @@ FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid;
 The resulting output will be
 
 | pageid (string) | adid (int) |
-| --- | --- |
-| "front_page" | 1 |
-| "front_page" | 2 |
-| "front_page" | 3 |
-| "contact_page" | 3 |
-| "contact_page" | 4 |
-| "contact_page" | 5 |
+|-----------------|------------|
+| "front_page"    | 1          |
+| "front_page"    | 2          |
+| "front_page"    | 3          |
+| "contact_page"  | 3          |
+| "contact_page"  | 4          |
+| "contact_page"  | 5          |
 
 Then in order to count the number of times a particular ad appears, count/group by can be used:
 
@@ -70,14 +70,15 @@ FROM pageAds LATERAL VIEW explode(adid_list) adTable AS adid
 GROUP BY adid;
 
 ```
-| | |
-| --- | --- |
+
+|          |          |
+|----------|----------|
 | int adid | count(1) |
-| 1 | 1 |
-| 2 | 1 |
-| 3 | 2 |
-| 4 | 1 |
-| 5 | 1 |
+| 1        | 1        |
+| 2        | 1        |
+| 3        | 2        |
+| 4        | 1        |
+| 5        | 1        |
 
 ## Multiple Lateral Views
 
@@ -94,11 +95,11 @@ LATERAL VIEW explode(myCol1) myTable2 AS myCol2;
 
 LATERAL VIEW clauses are applied in the order that they appear. For example with the following base table:
 
-| | |
-| --- | --- |
+|                   |                      |
+|-------------------|----------------------|
 | Array\<int\> col1 | Array\<string\> col2 |
-| [1, 2] | [a", "b", "c"] |
-| [3, 4] | [d", "e", "f"] |
+| [1, 2]            | [a", "b", "c"]       |
+| [3, 4]            | [d", "e", "f"]       |
 
 The query:
 
@@ -110,13 +111,13 @@ LATERAL VIEW explode(col1) myTable1 AS myCol1;
 
 Will produce:
 
-| | |
-| --- | --- |
+|            |                      |
+|------------|----------------------|
 | int mycol1 | Array\<string\> col2 |
-| 1 | [a", "b", "c"] |
-| 2 | [a", "b", "c"] |
-| 3 | [d", "e", "f"] |
-| 4 | [d", "e", "f"] |
+| 1          | [a", "b", "c"]       |
+| 2          | [a", "b", "c"]       |
+| 3          | [d", "e", "f"]       |
+| 4          | [d", "e", "f"]       |
 
 A query that adds an additional LATERAL VIEW:
 
@@ -129,21 +130,21 @@ LATERAL VIEW explode(col2) myTable2 AS myCol2;
 
 Will produce:
 
-| | |
-| --- | --- |
+|            |               |
+|------------|---------------|
 | int myCol1 | string myCol2 |
-| 1 | "a" |
-| 1 | "b" |
-| 1 | "c" |
-| 2 | "a" |
-| 2 | "b" |
-| 2 | "c" |
-| 3 | "d" |
-| 3 | "e" |
-| 3 | "f" |
-| 4 | "d" |
-| 4 | "e" |
-| 4 | "f" |
+| 1          | "a"           |
+| 1          | "b"           |
+| 1          | "c"           |
+| 2          | "a"           |
+| 2          | "b"           |
+| 2          | "c"           |
+| 3          | "d"           |
+| 3          | "e"           |
+| 3          | "f"           |
+| 4          | "d"           |
+| 4          | "e"           |
+| 4          | "f"           |
 
 ## Outer Lateral Views
 
@@ -170,17 +171,13 @@ SELECT * FROM src LATERAL VIEW OUTER explode(array()) C AS a limit 10;
 it will produce:
 
 238 val_238 NULL  
- 86 val_86 NULL  
- 311 val_311 NULL  
- 27 val_27 NULL  
- 165 val_165 NULL  
- 409 val_409 NULL  
- 255 val_255 NULL  
- 278 val_278 NULL  
- 98 val_98 NULL  
- ...
-
- 
-
- 
+86 val_86 NULL  
+311 val_311 NULL  
+27 val_27 NULL  
+165 val_165 NULL  
+409 val_409 NULL  
+255 val_255 NULL  
+278 val_278 NULL  
+98 val_98 NULL  
+...
 

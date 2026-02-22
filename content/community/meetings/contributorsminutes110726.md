@@ -25,7 +25,3 @@ Syed Albiz: working on automatic usage of indexes for (a) bitmap indexes and (b)
 
 Charles Chen: working on improving view support (ALTER VIEW RENAME, CREATE OR REPLACE VIEW, CREATE table LIKE view). Will follow up with support for partitioned join views and simple updatable views.
 
- 
-
- 
-

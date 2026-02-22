@@ -88,7 +88,3 @@ Changes are mostly at the language, and query optimization layer.
 
 The RESQUE library will be deployed as shared library, and a path to this library will be provided to hive to invoke functions in the library via RANSFORM mechanism. 
 
- 
-
- 
-

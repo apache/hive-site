@@ -54,11 +54,7 @@ For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}
 
 The CSVSerde has been built and tested against Hive 0.14 and later, and uses [Open-CSV](http://opencsv.sourceforge.net/) 2.3 which is bundled with the Hive distribution.
 
-| Hive Versions | Open-CSV Version |
-| --- | --- |
-| Hive 0.14 and later | 2.3 |
-
- 
-
- 
+|    Hive Versions    | Open-CSV Version |
+|---------------------|------------------|
+| Hive 0.14 and later | 2.3              |
 

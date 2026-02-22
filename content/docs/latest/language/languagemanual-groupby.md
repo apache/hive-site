@@ -67,7 +67,7 @@ However, the following query is not allowed. We don't allow multiple DISTINCT ex
 ### Select statement and group by clause
 
 When using group by clause, the select statement can only include columns included in the group by clause. Of course, you can have as many aggregation functions (e.g. `count`) in the select statement as well.  
- Let's take a simple example
+Let's take a simple example
 
 ```
 CREATE TABLE t1(a INTEGER, b INTGER);
@@ -135,7 +135,7 @@ The output of the aggregations or simple selects can be further sent into multip
 ### Map-side Aggregation for Group By
 
 *hive.map.aggr* controls how we do aggregations. The default is false. If it is set to true, Hive will do the first-level aggregation directly in the map task.  
- This usually provides better efficiency, but may require more memory to run successfully.
+This usually provides better efficiency, but may require more memory to run successfully.
 
 ```
   set hive.map.aggr=true;
@@ -163,8 +163,4 @@ Also see the JIRAs:
 New in Hive release 0.11.0:
 
 * [HIVE-3552](https://issues.apache.org/jira/browse/HIVE-3552) HIVE-3552 performant manner for performing cubes/rollups/grouping sets for a high number of grouping set keys
-
- 
-
- 
 

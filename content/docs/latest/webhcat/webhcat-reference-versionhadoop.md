@@ -53,11 +53,5 @@ Returns the Hadoop version.
 Previous: [GET version/hive]({{< ref "webhcat-reference-versionhive" >}})  
 Next: [POST ddl]({{< ref "webhcat-reference-ddl" >}})
 
-
-
 Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids" >}})
-
- 
-
- 
 

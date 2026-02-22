@@ -86,3 +86,4 @@ $ curl -X POST \
 $ curl http://localhost:9001/iceberg/v1/namespaces/default/tables/test
 {"metadata-location":"file:/opt/hive/data/warehouse/test/metadata/00000-f1a3fec1-f0b6-499b-b635-d6a408458390.metadata.json","metadata":{"format-version":2,"table-uuid":"47ca342c-b65b-4e51-a09d-1b470f20298a","location":"file:/opt/hive/data/warehouse/test","last-sequence-number":0,"last-updated-ms":1763188388952,"last-column-id":1,"current-schema-id":0,"schemas":[{"type":"struct","schema-id":0,"fields":[{"id":1,"name":"id","required":true,"type":"long"}]}],"default-spec-id":0,"partition-specs":[{"spec-id":0,"fields":[]}],"last-partition-id":999,"default-sort-order-id":0,"sort-orders":[{"order-id":0,"fields":[]}],"properties":{"write.parquet.compression-codec":"zstd"},"current-snapshot-id":-1,"refs":{},"snapshots":[],"statistics":[],"partition-statistics":[],"snapshot-log":[],"metadata-log":[]}}
 ```
+

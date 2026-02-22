@@ -15,20 +15,20 @@ List all the properties of an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
+|    Name    |    Description    | Required? | Default |
+|------------|-------------------|-----------|---------|
+| **:db**    | The database name | Required  | None    |
+| **:table** | The table name    | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|      Name      |                      Description                      |
+|----------------|-------------------------------------------------------|
 | **properties** | A list of the table's properties in name: value pairs |
-| **database** | The database name |
-| **table** | The table name |
+| **database**   | The database name                                     |
+| **table**      | The table name                                        |
 
 ## Example
 
@@ -60,14 +60,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [PUT ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-putcolumn" >}}) Next: [GET ddl/database/:db/table/:table/property/:property]({{< ref "webhcat-reference-getproperty" >}})
-
-
-
- 
-
- 
 

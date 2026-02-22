@@ -57,8 +57,7 @@ Currently the C++ Thrift client library that the ODBC driver depends on will not
 2. Build the Hive client by running the following command from HIVE_SRC_ROOT. This will compile and copy the libraries and header files to `HIVE_SRC_ROOT/build/odbc/`. Please keep in mind that all paths should be fully specified (no relative paths). If you encounter an "`undefined reference to vtables`" error, make sure that you have specified the absolute path for thrift.home.
 
 ```
- $ ant compile-cpp -Dthrift.home=<THRIFT_HOME>
- 
+$ ant compile-cpp -Dthrift.home=<THRIFT_HOME>
 ```
 
 MVN:
@@ -72,15 +71,13 @@ $ mvn compile -Podbc,hadoop-1 -Dthrift.home=/usr/local -Dboost.home=/usr/local
 You can optionally force Hive client to compile into a non-native bit architecture by specifying the additional parameter (assuming you have the proper compilation libraries):
 
 ```
- $ ant compile-cpp -Dthrift.home=<THRIFT_HOME> -Dword.size=<32 or 64>
- 
+$ ant compile-cpp -Dthrift.home=<THRIFT_HOME> -Dword.size=<32 or 64>
 ```
 
 1. You can verify the entire Hive compilation by running the Hive test suite from HIVE_SRC_ROOT. Specifying the argument '-Dthrift.home=<THRIFT_HOME>' will enable the tests for the Hive client. If you do NOT specify thrift.home, the Hive client tests will not be run and will just return successful.
 
 ```
- $ ant test -Dthrift.home=<THRIFT_HOME>
- 
+$ ant test -Dthrift.home=<THRIFT_HOME>
 ```
 
 MVN:
@@ -95,12 +92,11 @@ You can specifically execute the Hive client tests by running the above command 
 2. To install the Hive client libraries onto your machine, run the following command from `HIVE_SRC_ROOT/odbc/`. NOTE: The install path defaults to `/usr/local`. While there is no current way to change this default directory from the ant build process, a manual install may be performed by skipping the command below and copying out the contents of `HIVE_SRC_ROOT/build/odbc/lib` and `HIVE_SRC_ROOT/build/odbc/include` into their local file system counterparts.
 
 ```
- $ sudo ant install -Dthrift.home=<THRIFT_HOME>
- 
+$ sudo ant install -Dthrift.home=<THRIFT_HOME>
 ```
 
 NOTE: The compiled static library, libhiveclient.a, requires linking with stdc++ as well as thrift libraries to function properly.  
- NOTE: Currently, there is no way to specify non-system library and header directories to the unixODBC build process. Thus, the Hive client libraries and headers MUST be installed to a default system location in order for the unixODBC build process to detect these files. This issue may be remedied in the future.
+NOTE: Currently, there is no way to specify non-system library and header directories to the unixODBC build process. Thus, the Hive client libraries and headers MUST be installed to a default system location in order for the unixODBC build process to detect these files. This issue may be remedied in the future.
 
 ### unixODBC API Wrapper Build/Setup
 
@@ -109,49 +105,44 @@ After you have built and installed the Hive client, you can now install the unix
 1. In the unixODBC root directory, run the following command:
 
 ```
- $ ./configure --enable-gui=no --prefix=<unixODBC_INSTALL_DIR>
- 
+$ ./configure --enable-gui=no --prefix=<unixODBC_INSTALL_DIR>
 ```
 
 If you encounter the the errors: "`redefinition of 'struct _hist_entry'`" or "`previous declaration of 'add_history' was here`" then re-execute the configure with the following command:
 
 ```
- $ ./configure --enable-gui=no --enable-readline=no --prefix=<unixODBC_INSTALL_DIR>
- 
+$ ./configure --enable-gui=no --enable-readline=no --prefix=<unixODBC_INSTALL_DIR>
 ```
 
 To force the compilation of the unixODBC API wrapper into a non-native bit architecture, modify the CC and CXX environment variables to include the appropriate flags. For example:
 
 ```
- $ CC="gcc -m32" CXX="g++ -m32" ./configure --enable-gui=no --enable-readline=no --prefix=<unixODBC_INSTALL_DIR>
- 
+$ CC="gcc -m32" CXX="g++ -m32" ./configure --enable-gui=no --enable-readline=no --prefix=<unixODBC_INSTALL_DIR>
 ```
+
 2. Compile the unixODBC API wrapper with the following:
 
 ```
- $ make
- 
+$ make
 ```
 
 If you want to completely install unixODBC and all related drivers, run the following from the unixODBC root directory:
 
 ```
-  $ sudo make install
-  
+$ sudo make install
 ```
 
 If your system complains about `undefined symbols` during unixODBC testing (such as with `isql` or `odbcinst`) after installation, try running `ldconfig` to update your dynamic linker's runtime libraries.  
- If you only want to obtain the Hive ODBC driver shared object library:
+If you only want to obtain the Hive ODBC driver shared object library:
 3. After compilation, the driver will be located at `<unixODBC_BUILD_DIR>/Drivers/hive/.libs/libodbchive.so.1.0.0`.  
- This may be copied to any other location as desired. Keep in mind that the Hive ODBC driver has a dependency on the Hive client shared object library: `libhiveclient.so` and `libthrift.so.0`.  
- You can manually install the unixODBC API wrapper by doing the following:
+This may be copied to any other location as desired. Keep in mind that the Hive ODBC driver has a dependency on the Hive client shared object library: `libhiveclient.so` and `libthrift.so.0`.  
+You can manually install the unixODBC API wrapper by doing the following:
 
 ```
-  $ cp <unixODBC_BUILD_DIR>/Drivers/hive/.libs/libodbchive.so.1.0.0 <SYSTEM_INSTALL_DIR>
-  $ cd <SYSTEM_INSTALL_DIR>
-  $ ln -s libodbchive.so.1.0.0 libodbchive.so
-  $ ldconfig
-  
+$ cp <unixODBC_BUILD_DIR>/Drivers/hive/.libs/libodbchive.so.1.0.0 <SYSTEM_INSTALL_DIR>
+$ cd <SYSTEM_INSTALL_DIR>
+$ ln -s libodbchive.so.1.0.0 libodbchive.so
+$ ldconfig
 ```
 
 ### Connecting the Driver to a Driver Manager
@@ -159,36 +150,34 @@ If your system complains about `undefined symbols` during unixODBC testing (such
 This portion assumes that you have already built and installed both the Hive client and the unixODBC API wrapper shared libraries on the current machine. To connect the Hive ODBC driver to a previously installed Driver Manager (such as the one provided by unixODBC or a separate application):
 
 1. Locate the odbc.ini file associated with the Driver Manager (DM).
-	1. If you are installing the driver on the system DM, then you can run the following command to print the locations of DM configuration files.
-	
-	
-	
-	```
-	  $ odbcinst -j
-	  unixODBC 2.2.14
-	  DRIVERS............: /usr/local/etc/odbcinst.ini
-	  SYSTEM DATA SOURCES: /usr/local/etc/odbc.ini
-	  FILE DATA SOURCES..: /usr/local/etc/ODBCDataSources
-	  USER DATA SOURCES..: /home/ehwang/.odbc.ini
-	  SQLULEN Size.......: 8
-	  SQLLEN Size........: 8
-	  SQLSETPOSIROW Size.: 8
-	  
-	```
-	2. If you are installing the driver on an application DM, then you have to help yourself on this one ![(wink)](images/icons/emoticons/wink.svg). Hint: try looking in the installation directory of your application.
-		* Keep in mind that an application's DM can exist simultaneously with the system DM and will likely use its own configuration files, such as odbc.ini.
-		* Also, note that some applications do not have their own DMs and simply use the system DM.
+   1. If you are installing the driver on the system DM, then you can run the following command to print the locations of DM configuration files.
+
+   ```
+   	  $ odbcinst -j
+   	  unixODBC 2.2.14
+   	  DRIVERS............: /usr/local/etc/odbcinst.ini
+   	  SYSTEM DATA SOURCES: /usr/local/etc/odbc.ini
+   	  FILE DATA SOURCES..: /usr/local/etc/ODBCDataSources
+   	  USER DATA SOURCES..: /home/ehwang/.odbc.ini
+   	  SQLULEN Size.......: 8
+   	  SQLLEN Size........: 8
+   	  SQLSETPOSIROW Size.: 8
+
+   ```
+
+   2. If you are installing the driver on an application DM, then you have to help yourself on this one ![(wink)](images/icons/emoticons/wink.svg). Hint: try looking in the installation directory of your application.
+      * Keep in mind that an application's DM can exist simultaneously with the system DM and will likely use its own configuration files, such as odbc.ini.
+      * Also, note that some applications do not have their own DMs and simply use the system DM.
 2. Add the following section to the DM's corresponding odbc.ini:
 
 ```
- [Hive]
- Driver = <path_to_libodbchive.so>
- Description = Hive Driver v1
- DATABASE = default
- HOST = <Hive_server_address>
- PORT = <Hive_server_port>
- FRAMED = 0
- 
+[Hive]
+Driver = <path_to_libodbchive.so>
+Description = Hive Driver v1
+DATABASE = default
+HOST = <Hive_server_address>
+PORT = <Hive_server_port>
+FRAMED = 0
 ```
 
 ### Testing with ISQL
@@ -213,71 +202,67 @@ If you build libodbchive.so for the 3rd party Driver Manager, isql may not work 
 ### Troubleshooting
 
 * Hive client build process
-	+ "libthrift.a: could not read symbols: Bad value" or "relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object"?
-		- Try recompiling your Apache Thrift libraries with the -fPIC option for your C++ compiler
-	+ "undefined reference to vtable" ?
-		- Make sure that your Apache Thrift libraries are being included from the proper Thrift directory and that it has the same architecture (32 or 64 bit) as the Hive client.
-		- Also, check to make sure you are providing a fully qualified path for the thrift.home parameter.
-	+ In general, `ldd`, `file`, and `nm` are essential unix tools for debugging problems with shared object libraries. If you don't know what they are, use `man` to get more details.
+  + "libthrift.a: could not read symbols: Bad value" or "relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object"?
+    - Try recompiling your Apache Thrift libraries with the -fPIC option for your C++ compiler
+  + "undefined reference to vtable" ?
+    - Make sure that your Apache Thrift libraries are being included from the proper Thrift directory and that it has the same architecture (32 or 64 bit) as the Hive client.
+    - Also, check to make sure you are providing a fully qualified path for the thrift.home parameter.
+  + In general, `ldd`, `file`, and `nm` are essential unix tools for debugging problems with shared object libraries. If you don't know what they are, use `man` to get more details.
 
 ## Current Status
 
 * Comments: Please keep in mind that this is still an initial version and is still very rough around the edges. However, it provides basic ODBC 3.51 API support for connecting, executing queries, fetching, etc. This driver has been successfully tested on 32-bit and 64-bit linux machines with iSQL. It has also been tested with partial success on enterprise applications such as MicroStrategy. Due to licensing reasons, the unixODBC API wrapper files will be uploaded as a separate JIRA attachment that will not be part of this code repository.
 * Limitations:
-	+ Only support for Linux operating systems
-	+ No support for Unicode
-	+ No support for asynchronous execution of queries
-	+ Does not support pattern matching for functions such as SQLColumns and SQLTables; requires exact matches.
-	+ Hive Server is currently not thread safe (see JIRA HIVE-80: <https://issues.apache.org/jira/browse/HIVE-80>). This will prevent the driver from safely making multiple connections to the same Hive Server. We need to resolve this issue to allow the driver to operate properly.
-	+ Hive Server's getSchema() function seems to have trouble with certain types of queries (such as "SELECT * ..." or "EXPLAIN"), and so the Hive ODBC driver sometimes has difficulties with these queries as well.
+  + Only support for Linux operating systems
+  + No support for Unicode
+  + No support for asynchronous execution of queries
+  + Does not support pattern matching for functions such as SQLColumns and SQLTables; requires exact matches.
+  + Hive Server is currently not thread safe (see JIRA HIVE-80: <https://issues.apache.org/jira/browse/HIVE-80>). This will prevent the driver from safely making multiple connections to the same Hive Server. We need to resolve this issue to allow the driver to operate properly.
+  + Hive Server's getSchema() function seems to have trouble with certain types of queries (such as "SELECT * ..." or "EXPLAIN"), and so the Hive ODBC driver sometimes has difficulties with these queries as well.
 * ODBC API Function Support (does anyone know how to remove the linking from the function names?):
 
-| | |
-| ---  | --- |
-| `SQLAllocConnect` | supported |
-| `SQLAllocEnv` | supported |
-| `SQLAllocHandle` | supported |
-| `SQLAllocStmt` | supported |
-| `SQLBindCol` | supported |
-| `SQLBindParameter` | NOT supported |
-| `SQLCancel` | NOT supported |
-| `SQLColAttribute` | supported |
-| `SQLColumns` | supported |
-| `SQLConnect` | supported |
-| `SQLDescribeCol` | supported |
-| `SQLDescribeParam` | NOT supported |
-| `SQLDisconnect` | supported |
-| `SQLDriverConnect` | supported |
-| `SQLError` | supported |
-| `SQLExecDirect` | supported |
-| `SQLExecute` | supported |
-| `SQLExtendedFetch` | NOT supported |
-| `SQLFetch` | supported |
-| `SQLFetchScroll` | NOT supported |
-| `SQLFreeConnect` | supported |
-| `SQLFreeEnv` | supported |
-| `SQLFreeHandle` | supported |
-| `SQLFreeStmt` | supported |
-| `SQLGetConnectAttr` | NOT supported |
-| `SQLGetData` | supported (however, SQLSTATE not returning values) |
-| `SQLGetDiagField` | NOT supported |
-| `SQLGetDiagRec` | supported |
-| `SQLGetInfo` | partially supported; (to get MSTR v9 running) |
-| `SQLMoreResults` | NOT supported |
-| `SQLNumParams` | NOT supported |
-| `SQLNumResultCols` | supported |
-| `SQLParamOptions` | NOT supported |
-| `SQLPrepare` | supported; but does not permit parameter markers |
-| `SQLRowCount` | NOT supported |
-| `SQLSetConnectAttr` | NOT supported |
-| `SQLSetConnectOption` | NOT supported |
-| `SQLSetEnvAttr` | Limited support |
-| `SQLSetStmtAttr` | NOT supported |
-| `SQLSetStmtOption` | NOT supported |
-| `SQLTables` | supported |
-| `SQLTransact` | NOT supported |
-
- 
-
- 
+|                       |                                                    |
+|-----------------------|----------------------------------------------------|
+| `SQLAllocConnect`     | supported                                          |
+| `SQLAllocEnv`         | supported                                          |
+| `SQLAllocHandle`      | supported                                          |
+| `SQLAllocStmt`        | supported                                          |
+| `SQLBindCol`          | supported                                          |
+| `SQLBindParameter`    | NOT supported                                      |
+| `SQLCancel`           | NOT supported                                      |
+| `SQLColAttribute`     | supported                                          |
+| `SQLColumns`          | supported                                          |
+| `SQLConnect`          | supported                                          |
+| `SQLDescribeCol`      | supported                                          |
+| `SQLDescribeParam`    | NOT supported                                      |
+| `SQLDisconnect`       | supported                                          |
+| `SQLDriverConnect`    | supported                                          |
+| `SQLError`            | supported                                          |
+| `SQLExecDirect`       | supported                                          |
+| `SQLExecute`          | supported                                          |
+| `SQLExtendedFetch`    | NOT supported                                      |
+| `SQLFetch`            | supported                                          |
+| `SQLFetchScroll`      | NOT supported                                      |
+| `SQLFreeConnect`      | supported                                          |
+| `SQLFreeEnv`          | supported                                          |
+| `SQLFreeHandle`       | supported                                          |
+| `SQLFreeStmt`         | supported                                          |
+| `SQLGetConnectAttr`   | NOT supported                                      |
+| `SQLGetData`          | supported (however, SQLSTATE not returning values) |
+| `SQLGetDiagField`     | NOT supported                                      |
+| `SQLGetDiagRec`       | supported                                          |
+| `SQLGetInfo`          | partially supported; (to get MSTR v9 running)      |
+| `SQLMoreResults`      | NOT supported                                      |
+| `SQLNumParams`        | NOT supported                                      |
+| `SQLNumResultCols`    | supported                                          |
+| `SQLParamOptions`     | NOT supported                                      |
+| `SQLPrepare`          | supported; but does not permit parameter markers   |
+| `SQLRowCount`         | NOT supported                                      |
+| `SQLSetConnectAttr`   | NOT supported                                      |
+| `SQLSetConnectOption` | NOT supported                                      |
+| `SQLSetEnvAttr`       | Limited support                                    |
+| `SQLSetStmtAttr`      | NOT supported                                      |
+| `SQLSetStmtOption`    | NOT supported                                      |
+| `SQLTables`           | supported                                          |
+| `SQLTransact`         | NOT supported                                      |
 

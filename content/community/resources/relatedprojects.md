@@ -17,7 +17,3 @@ Apache Hivemall is a scalable machine learning library for Apache Hive, Apache S
 
 [Sentry](https://sentry.incubator.apache.org) is a role-based authorization system for Apache Hive.
 
- 
-
- 
-

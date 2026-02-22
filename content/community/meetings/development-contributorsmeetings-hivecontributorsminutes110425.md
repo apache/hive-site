@@ -39,7 +39,3 @@ There was discussion around using some Yahoo QA machines (or the OSUOSL cluster)
 
 We ended with some review and discussion of HIVE-2038 (metastore listener). It was decided that generic events are going to be dealt with in a followup JIRA.
 
- 
-
- 
-

@@ -43,5 +43,6 @@ The hardcoded values of the [existing hooks]({{< ref "#existing-hooks" >}}) that
 2. Users migrating from Hive-4.0.x to Hive-4.1.0 who don't have `hive.lineage.hook.info.enabled` set to true, **will also observe breaking changes** in the way lineage information is captured.
 
 ***
+
 **NOTE: Recommended way to capture lineage information is though `hive.lineage.hook.info.query.type` configuration as  `hive.lineage.hook.info.enabled` is marked as deprecated and is subjected to be removed in future release**
 ***

@@ -19,10 +19,10 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|         Name          |            Description            |
+|-----------------------|-----------------------------------|
 | **supportedVersions** | A list of all supported versions. |
-| **version** | The current version. |
+| **version**           | The current version.              |
 
 ## Example
 
@@ -47,11 +47,5 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 **Navigation Links**
 Previous: [GET status]({{< ref "webhcat-reference-status" >}})  
- Next: [GET version/hive]({{< ref "webhcat-reference-versionhive" >}})
-
-
-
- 
-
- 
+Next: [GET version/hive]({{< ref "webhcat-reference-versionhive" >}})
 

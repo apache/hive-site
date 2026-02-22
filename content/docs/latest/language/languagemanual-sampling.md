@@ -116,7 +116,3 @@ SELECT * FROM source TABLESAMPLE(10 ROWS);
 
 ```
 
- 
-
- 
-

@@ -21,17 +21,17 @@ PARTITION statements are usually options of TABLE statements, except for SHOW PA
 
 ## Keywords, Non-reserved Keywords and Reserved Keywords
 
-|  | All Keywords |
-| --- | --- |
-| Version | Non-reserved Keywords | Reserved Keywords |
+|            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           All Keywords                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Version    | Non-reserved Keywords                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Reserved Keywords                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | Hive 1.2.0 | `ADD, ADMIN, AFTER, ANALYZE, ARCHIVE, ASC, BEFORE, BUCKET, BUCKETS, CASCADE, CHANGE, CLUSTER, CLUSTERED, CLUSTERSTATUS, COLLECTION, COLUMNS, COMMENT, COMPACT, COMPACTIONS, COMPUTE, CONCATENATE, CONTINUE, DATA, DATABASES, DATETIME, DAY, DBPROPERTIES, DEFERRED, DEFINED, DELIMITED, DEPENDENCY, DESC, DIRECTORIES, DIRECTORY, DISABLE, DISTRIBUTE, ENABLE, ESCAPED, EXCLUSIVE, EXPLAIN, EXPORT, FIELDS, FILE, FILEFORMAT, FIRST, FORMAT, FORMATTED, FUNCTIONS, HOLD_DDLTIME, HOUR, IDXPROPERTIES, IGNORE, INDEX, INDEXES, INPATH, INPUTDRIVER, INPUTFORMAT, ITEMS, JAR, KEYS, LIMIT, LINES, LOAD, LOCATION, LOCK, LOCKS, LOGICAL, LONG, MAPJOIN, MATERIALIZED, METADATA, MINUS, MINUTE, MONTH, MSCK, NOSCAN, NO_DROP, OFFLINE, OPTION, OUTPUTDRIVER, OUTPUTFORMAT, OVERWRITE, OWNER, PARTITIONED, PARTITIONS, PLUS, PRETTY, PRINCIPALS, PROTECTION, PURGE, READ, READONLY, REBUILD, RECORDREADER, RECORDWRITER, REGEXP, RELOAD, RENAME, REPAIR, REPLACE, REPLICATION, RESTRICT, REWRITE, RLIKE, ROLE, ROLES, SCHEMA, SCHEMAS, SECOND, SEMI, SERDE, SERDEPROPERTIES, SERVER, SETS, SHARED, SHOW, SHOW_DATABASE, SKEWED, SORT, SORTED, SSL, STATISTICS, STORED, STREAMTABLE, STRING, STRUCT, TABLES, TBLPROPERTIES, TEMPORARY, TERMINATED, TINYINT, TOUCH, TRANSACTIONS, UNARCHIVE, UNDO, UNIONTYPE, UNLOCK, UNSET, UNSIGNED, URI, USE, UTC, VIEW, WHILE, YEAR` | `ALL, ALTER, AND, ARRAY, AS, AUTHORIZATION, BETWEEN, BIGINT, BINARY, BOOLEAN, BOTH, BY, CASE, CAST, CHAR, COLUMN, CONF, CREATE, CROSS, CUBE, CURRENT, CURRENT_DATE, CURRENT_TIMESTAMP, CURSOR, DATABASE, DATE, DECIMAL, DELETE, DESCRIBE, DISTINCT, DOUBLE, DROP, ELSE, END, EXCHANGE, EXISTS, EXTENDED, EXTERNAL, FALSE, FETCH, FLOAT, FOLLOWING, FOR, FROM, FULL, FUNCTION, GRANT, GROUP, GROUPING, HAVING, IF, IMPORT, IN, INNER, INSERT, INT, INTERSECT, INTERVAL, INTO, IS, JOIN, LATERAL, LEFT, LESS, LIKE, LOCAL, MACRO, MAP, MORE, NONE, NOT, NULL, OF, ON, OR, ORDER, OUT, OUTER, OVER, PARTIALSCAN, PARTITION, PERCENT, PRECEDING, PRESERVE, PROCEDURE, RANGE, READS, REDUCE, REVOKE, RIGHT, ROLLUP, ROW, ROWS, SELECT, SET, SMALLINT, TABLE, TABLESAMPLE, THEN, TIMESTAMP, TO, TRANSFORM, TRIGGER, TRUE, TRUNCATE, UNBOUNDED, UNION, UNIQUEJOIN, UPDATE, USER, USING, UTC_TMESTAMP, VALUES, VARCHAR, WHEN, WHERE, WINDOW, WITH` |
-| Hive 2.0.0 | *removed:* `HOLD_DDLTIME, IGNORE, NO_DROP, OFFLINE, PROTECTION, READONLY,` `REGEXP, RLIKE`*added:* `AUTOCOMMIT, ISOLATION, LEVEL, OFFSET, SNAPSHOT,` TRANSACTION, WORK, WRITE | *added:* `COMMIT, ONLY, REGEXP, RLIKE, ROLLBACK, START` |
-| Hive 2.1.0 | *added:* `ABORT, KEY, LAST, NORELY, NOVALIDATE, NULLS, RELY, VALIDATE` | *added:* `CACHE, CONSTRAINT, FOREIGN, PRIMARY, REFERENCES` |
-| Hive 2.2.0 | *removed:* `MINUS`*added:* `CACHE, DAYS, DAYOFWEEK, DUMP, HOURS, MATCHED, MERGE, MINUTES, MONTHS, QUARTER, REPL, SECONDS, STATUS, VIEWS, WEEK, WEEKS, YEARS` | *removed:* `CACHE`*added:* `EXCEPT, EXTRACT, FLOOR, GROUPING, INTEGER, MINUS, PRECISION` |
-| Hive 2.3.0 | *removed:* `MERGE`*added:* `DETAIL, EXPRESSION, OPERATOR, SUMMARY, VECTORIZATION, WAIT` | *added:* `MERGE` |
-| Hive 3.0.0 | *removed:* `PRETTY`*added:* `ACTIVATE, ACTIVE, ALLOC_FRACTION, CHECK, DEFAULT, DO, ENFORCED, KILL, MANAGEMENT, MAPPING, MOVE, PATH, PLAN, PLANS, POOL, QUERY, QUERY_PARALLELISM, REOPTIMIZATION, RESOURCE, SCHEDULING_POLICY, UNMANAGED, WORKLOAD, ZONE` | *removed:* `PARTIALSCAN`*added:* `ANY, APPLICATION, DEC, NUMERIC, SYNC, TIME, TIMESTAMPLOCALTZ, UNIQUE` |
-| Hive 3.1.0 | *N/A* | *N/A* |
-| Hive 4.0.0 | *added:* `AST, AT, BRANCH, CBO, COST, CRON, DCPROPERTIES, DEBUG, DISABLED, DISTRIBUTED, ENABLED, EVERY, EXECUTE, EXECUTED, EXPIRE_SNAPSHOTS, IGNORE, JOINCOST, MANAGED, MANAGEDLOCATION, OPTIMIZE, REMOTE, RESPECT, RETAIN, RETENTION, SCHEDULED, SET_CURRENT_SNAPSHOT, SNAPSHOTS, SPEC, SYSTEM_TIME, SYSTEM_VERSION, TAG, TRANSACTIONAL, TRIM, TYPE, UNKNOWN, URL, WITHIN` | *added:* `COMPACTIONID, CONNECTOR, CONNECTORS, CONVERT, DDL, FORCE, LEADING, OLDER, PKFK_JOIN, PREPARE, QUALIFY, REAL, SOME, THAN, TRAILING` |
+| Hive 2.0.0 | *removed:* `HOLD_DDLTIME, IGNORE, NO_DROP, OFFLINE, PROTECTION, READONLY,` `REGEXP, RLIKE`*added:* `AUTOCOMMIT, ISOLATION, LEVEL, OFFSET, SNAPSHOT,` TRANSACTION, WORK, WRITE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | *added:* `COMMIT, ONLY, REGEXP, RLIKE, ROLLBACK, START`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Hive 2.1.0 | *added:* `ABORT, KEY, LAST, NORELY, NOVALIDATE, NULLS, RELY, VALIDATE`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | *added:* `CACHE, CONSTRAINT, FOREIGN, PRIMARY, REFERENCES`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Hive 2.2.0 | *removed:* `MINUS`*added:* `CACHE, DAYS, DAYOFWEEK, DUMP, HOURS, MATCHED, MERGE, MINUTES, MONTHS, QUARTER, REPL, SECONDS, STATUS, VIEWS, WEEK, WEEKS, YEARS`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | *removed:* `CACHE`*added:* `EXCEPT, EXTRACT, FLOOR, GROUPING, INTEGER, MINUS, PRECISION`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Hive 2.3.0 | *removed:* `MERGE`*added:* `DETAIL, EXPRESSION, OPERATOR, SUMMARY, VECTORIZATION, WAIT`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | *added:* `MERGE`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Hive 3.0.0 | *removed:* `PRETTY`*added:* `ACTIVATE, ACTIVE, ALLOC_FRACTION, CHECK, DEFAULT, DO, ENFORCED, KILL, MANAGEMENT, MAPPING, MOVE, PATH, PLAN, PLANS, POOL, QUERY, QUERY_PARALLELISM, REOPTIMIZATION, RESOURCE, SCHEDULING_POLICY, UNMANAGED, WORKLOAD, ZONE`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | *removed:* `PARTIALSCAN`*added:* `ANY, APPLICATION, DEC, NUMERIC, SYNC, TIME, TIMESTAMPLOCALTZ, UNIQUE`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Hive 3.1.0 | *N/A*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | *N/A*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Hive 4.0.0 | *added:* `AST, AT, BRANCH, CBO, COST, CRON, DCPROPERTIES, DEBUG, DISABLED, DISTRIBUTED, ENABLED, EVERY, EXECUTE, EXECUTED, EXPIRE_SNAPSHOTS, IGNORE, JOINCOST, MANAGED, MANAGEDLOCATION, OPTIMIZE, REMOTE, RESPECT, RETAIN, RETENTION, SCHEDULED, SET_CURRENT_SNAPSHOT, SNAPSHOTS, SPEC, SYSTEM_TIME, SYSTEM_VERSION, TAG, TRANSACTIONAL, TRIM, TYPE, UNKNOWN, URL, WITHIN`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | *added:* `COMPACTIONID, CONNECTOR, CONNECTORS, CONVERT, DDL, FORCE, LEADING, OLDER, PKFK_JOIN, PREPARE, QUALIFY, REAL, SOME, THAN, TRAILING`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 Version information
 
@@ -153,18 +153,18 @@ The ALTER CONNECTOR ... SET OWNER changes the ownership of the connector object 
 ## Create/Drop/Truncate Table
 
 * [Create Table]({{< ref "#create-table" >}})
-	+ [Managed and External Tables]({{< ref "#managed-and-external-tables" >}})
-	+ [Storage Formats]({{< ref "#storage-formats" >}})
-	+ [Row Formats & SerDe]({{< ref "#row-formats--serde" >}})
-	+ [Partitioned Tables]({{< ref "#partitioned-tables" >}})
-	+ [External Tables]({{< ref "#external-tables" >}})
-	+ [Create Table As Select (CTAS)]({{< ref "#create-table-as-select-ctas" >}})
-	+ [Create Table Like]({{< ref "#create-table-like" >}})
-	+ [Bucketed Sorted Tables]({{< ref "#bucketed-sorted-tables" >}})
-	+ [Skewed Tables]({{< ref "#skewed-tables" >}})
-	+ [Temporary Tables]({{< ref "#temporary-tables" >}})
-	+ [Transactional Tables]({{< ref "#transactional-tables" >}})
-	+ [Constraints]({{< ref "#constraints" >}})
+  + [Managed and External Tables]({{< ref "#managed-and-external-tables" >}})
+  + [Storage Formats]({{< ref "#storage-formats" >}})
+  + [Row Formats & SerDe]({{< ref "#row-formats--serde" >}})
+  + [Partitioned Tables]({{< ref "#partitioned-tables" >}})
+  + [External Tables]({{< ref "#external-tables" >}})
+  + [Create Table As Select (CTAS)]({{< ref "#create-table-as-select-ctas" >}})
+  + [Create Table Like]({{< ref "#create-table-like" >}})
+  + [Bucketed Sorted Tables]({{< ref "#bucketed-sorted-tables" >}})
+  + [Skewed Tables]({{< ref "#skewed-tables" >}})
+  + [Temporary Tables]({{< ref "#temporary-tables" >}})
+  + [Transactional Tables]({{< ref "#transactional-tables" >}})
+  + [Constraints]({{< ref "#constraints" >}})
 * [Drop Table]({{< ref "#drop-table" >}})
 * [Truncate Table]({{< ref "#truncate-table" >}})
 
@@ -262,27 +262,27 @@ constraint_specification:
 CREATE TABLE creates a table with the given name. An error is thrown if a table or view with the same name already exists. You can use IF NOT EXISTS to skip the error.
 
 * Table names and column names are case insensitive but SerDe and property names are case sensitive.
-	+ In Hive 0.12 and earlier, only alphanumeric and underscore characters are allowed in table and column names.
-	+ In Hive 0.13 and later, column names can contain any [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) character (see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)), however, dot (**.**) and colon (**:**) yield errors on querying, so they are disallowed in Hive 1.2.0 (see [HIVE-10120](https://issues.apache.org/jira/browse/HIVE-10120)). Any column name that is specified within backticks (```) is treated literally. Within a backtick string, use double backticks (````) to represent a backtick character. Backtick quotation also enables the use of reserved keywords for table and column identifiers.
-	+ To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html).
+  + In Hive 0.12 and earlier, only alphanumeric and underscore characters are allowed in table and column names.
+  + In Hive 0.13 and later, column names can contain any [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) character (see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)), however, dot (**.**) and colon (**:**) yield errors on querying, so they are disallowed in Hive 1.2.0 (see [HIVE-10120](https://issues.apache.org/jira/browse/HIVE-10120)). Any column name that is specified within backticks (```) is treated literally. Within a backtick string, use double backticks (````) to represent a backtick character. Backtick quotation also enables the use of reserved keywords for table and column identifiers.
+  + To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html).
 * Table and column comments are string literals (single-quoted).
 * A table created without the [EXTERNAL clause]({{< ref "#external-clause" >}}) is called a *[managed table]({{< ref "#managed-table" >}})* because Hive manages its data. To find out if a table is managed or external, look for tableType in the output of [DESCRIBE EXTENDED table_name]({{< ref "#describe-extended-table_name" >}}).
 * The TBLPROPERTIES clause allows you to tag the table definition with your own metadata key/value pairs. Some predefined table properties also exist, such as last_modified_user and last_modified_time which are automatically added and managed by Hive. Other predefined table properties include:
-	+ TBLPROPERTIES ("comment"="*table_comment*")
-	+ TBLPROPERTIES ("hbase.table.name"="*table_name*") – see [HBase Integration]({{< ref "#hbase-integration" >}}).
-	+ TBLPROPERTIES ("immutable"="true") or ("immutable"="false") in release 0.13.0+ ([HIVE-6406](https://issues.apache.org/jira/browse/HIVE-6406)) – see [Inserting Data into Hive Tables from Queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}}).
-	+ TBLPROPERTIES ("orc.compress"="ZLIB") or ("orc.compress"="SNAPPY") or ("orc.compress"="NONE") and other ORC properties – see [ORC Files]({{< ref "#orc-files" >}}).
-	+ TBLPROPERTIES ("transactional"="true") or ("transactional"="false") in release 0.14.0+, the default is "false" – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
-	+ TBLPROPERTIES ("NO_AUTO_COMPACTION"="true") or ("NO_AUTO_COMPACTION"="false"), the default is "false" – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
-	+ TBLPROPERTIES ("compactor.mapreduce.map.memory.mb"="*mapper_memory"*) – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
-	+ TBLPROPERTIES ("compactorthreshold.hive.compactor.delta.num.threshold"="*threshold_num*") – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
-	+ TBLPROPERTIES ("compactorthreshold.hive.compactor.delta.pct.threshold"="*threshold_pct*") – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
-	+ TBLPROPERTIES ("auto.purge"="true") or ("auto.purge"="false") in release 1.2.0+ ([HIVE-9118](https://issues.apache.org/jira/browse/HIVE-9118)) – see [Drop Table]({{< ref "#drop-table" >}}), [Drop Partitions]({{< ref "#drop-partitions" >}}), [Truncate Table]({{< ref "#truncate-table" >}}), and [Insert Overwrite]({{< ref "#insert-overwrite" >}}).
-	+ TBLPROPERTIES ("EXTERNAL"="TRUE") in release 0.6.0+ ([HIVE-1329](https://issues.apache.org/jira/browse/HIVE-1329)) – Change a managed table to an external table and vice versa for "FALSE".
-		- As of Hive 2.4.0 ([HIVE-16324](https://issues.apache.org/jira/browse/HIVE-16324)) the value of the property 'EXTERNAL' is parsed as a boolean (case insensitive true or false) instead of a case sensitive string comparison.
-	+ TBLPROPERTIES ("external.table.purge"="true") in release 4.0.0+ ([HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981)) when set on external table would delete the data as well.
+  + TBLPROPERTIES ("comment"="*table_comment*")
+  + TBLPROPERTIES ("hbase.table.name"="*table_name*") – see [HBase Integration]({{< ref "#hbase-integration" >}}).
+  + TBLPROPERTIES ("immutable"="true") or ("immutable"="false") in release 0.13.0+ ([HIVE-6406](https://issues.apache.org/jira/browse/HIVE-6406)) – see [Inserting Data into Hive Tables from Queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}}).
+  + TBLPROPERTIES ("orc.compress"="ZLIB") or ("orc.compress"="SNAPPY") or ("orc.compress"="NONE") and other ORC properties – see [ORC Files]({{< ref "#orc-files" >}}).
+  + TBLPROPERTIES ("transactional"="true") or ("transactional"="false") in release 0.14.0+, the default is "false" – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
+  + TBLPROPERTIES ("NO_AUTO_COMPACTION"="true") or ("NO_AUTO_COMPACTION"="false"), the default is "false" – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
+  + TBLPROPERTIES ("compactor.mapreduce.map.memory.mb"="*mapper_memory"*) – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
+  + TBLPROPERTIES ("compactorthreshold.hive.compactor.delta.num.threshold"="*threshold_num*") – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
+  + TBLPROPERTIES ("compactorthreshold.hive.compactor.delta.pct.threshold"="*threshold_pct*") – see [Hive Transactions]({{< ref "#hive-transactions" >}}).
+  + TBLPROPERTIES ("auto.purge"="true") or ("auto.purge"="false") in release 1.2.0+ ([HIVE-9118](https://issues.apache.org/jira/browse/HIVE-9118)) – see [Drop Table]({{< ref "#drop-table" >}}), [Drop Partitions]({{< ref "#drop-partitions" >}}), [Truncate Table]({{< ref "#truncate-table" >}}), and [Insert Overwrite]({{< ref "#insert-overwrite" >}}).
+  + TBLPROPERTIES ("EXTERNAL"="TRUE") in release 0.6.0+ ([HIVE-1329](https://issues.apache.org/jira/browse/HIVE-1329)) – Change a managed table to an external table and vice versa for "FALSE".
+    - As of Hive 2.4.0 ([HIVE-16324](https://issues.apache.org/jira/browse/HIVE-16324)) the value of the property 'EXTERNAL' is parsed as a boolean (case insensitive true or false) instead of a case sensitive string comparison.
+  + TBLPROPERTIES ("external.table.purge"="true") in release 4.0.0+ ([HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981)) when set on external table would delete the data as well.
 * To specify a database for the table, either issue the [USE database_name]({{< ref "#use-database_name" >}}) statement prior to the CREATE TABLE statement (in [Hive 0.6](https://issues.apache.org/jira/browse/HIVE-675) and later) or qualify the table name with a database name ("`database_name.table.name`" in [Hive 0.7](https://issues.apache.org/jira/browse/HIVE-1517) and later).   
-The keyword "`default`" can be used for the default database.
+  The keyword "`default`" can be used for the default database.
 
 See [Alter Table](/docs/latest/language/languagemanual-ddl#alter-table) below for more information about table comments, table properties, and SerDe properties.
 
@@ -298,17 +298,17 @@ Hive supports built-in and custom-developed file formats. See [CompressedStorage
 The following are some of the formats built-in to Hive:  
  
 
-| Storage Format | Description |
-| --- | --- |
-| STORED AS TEXTFILE | Stored as plain text files. TEXTFILE is the default file format, unless the configuration parameter [hive.default.fileformat]({{< ref "#hive-default-fileformat" >}}) has a different setting.Use the DELIMITED clause to read delimited files.Enable escaping for the delimiter characters by using the 'ESCAPED BY' clause (such as ESCAPED BY '\') Escaping is needed if you want to work with data that can contain these delimiter characters. A custom NULL format can also be specified using the 'NULL DEFINED AS' clause (default is '\N').(Hive 4.0) All BINARY columns in the table are assumed to be base64 encoded.  To read the data as raw bytes:TBLPROPERTIES ("hive.serialization.decode.binary.as.base64"="false") |
-| STORED AS SEQUENCEFILE | Stored as compressed Sequence File.  |
-| STORED AS ORC | Stored as [ORC file format]({{< ref "#orc-file-format" >}}). Supports ACID Transactions & Cost-based Optimizer (CBO). Stores column-level metadata.  |
-| STORED AS PARQUET | Stored as Parquet format for the [Parquet]({{< ref "parquet" >}}) columnar storage format in [Hive 0.13.0 and later]({{< ref "#hive-0-13-0-and-later" >}}); Use ROW FORMAT SERDE ... STORED AS INPUTFORMAT ... OUTPUTFORMAT syntax ... in [Hive 0.10, 0.11, or 0.12]({{< ref "#hive-0-10,-0-11,-or-0-12" >}}). |
-| STORED AS AVRO | Stored as Avro format in [Hive 0.14.0 and later](https://issues.apache.org/jira/browse/HIVE-6806) (see [Avro SerDe]({{< ref "avroserde" >}})). |
-| STORED AS RCFILE | Stored as [Record Columnar File](https://en.wikipedia.org/wiki/RCFile) format. |
-| STORED AS JSONFILE | Stored as Json file format in Hive 4.0.0 and later. |
-| STORED BY  | Stored by a non-native table format. To create or link to a non-native table, for example a table backed by [HBase]({{< ref "hbaseintegration" >}}) or [Druid]({{< ref "druid-integration" >}}) or [Accumulo]({{< ref "accumulointegration" >}}). See [StorageHandlers]({{< ref "storagehandlers" >}}) for more information on this option. |
-| INPUTFORMAT and OUTPUTFORMAT | in the file_format to specify the name of a corresponding InputFormat and OutputFormat class as a string literal.For example, 'org.apache.hadoop.hive.contrib.fileformat.base64.Base64TextInputFormat'. For LZO compression, the values to use are 'INPUTFORMAT "com.hadoop.mapred.DeprecatedLzoTextInputFormat" OUTPUTFORMAT "[org.apache.hadoop.hive.ql.io](http://org.apache.hadoop.hive.ql.io/).HiveIgnoreKeyTextOutputFormat"' (see [LZO Compression]({{< ref "languagemanual-lzo" >}})). |
+|        Storage Format        |                                                                                                                                                                                                                                                                                                                                                             Description                                                                                                                                                                                                                                                                                                                                                              |
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| STORED AS TEXTFILE           | Stored as plain text files. TEXTFILE is the default file format, unless the configuration parameter [hive.default.fileformat]({{< ref "#hive-default-fileformat" >}}) has a different setting.Use the DELIMITED clause to read delimited files.Enable escaping for the delimiter characters by using the 'ESCAPED BY' clause (such as ESCAPED BY '\') Escaping is needed if you want to work with data that can contain these delimiter characters. A custom NULL format can also be specified using the 'NULL DEFINED AS' clause (default is '\N').(Hive 4.0) All BINARY columns in the table are assumed to be base64 encoded.  To read the data as raw bytes:TBLPROPERTIES ("hive.serialization.decode.binary.as.base64"="false") |
+| STORED AS SEQUENCEFILE       | Stored as compressed Sequence File.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| STORED AS ORC                | Stored as [ORC file format]({{< ref "#orc-file-format" >}}). Supports ACID Transactions & Cost-based Optimizer (CBO). Stores column-level metadata.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| STORED AS PARQUET            | Stored as Parquet format for the [Parquet]({{< ref "parquet" >}}) columnar storage format in [Hive 0.13.0 and later]({{< ref "#hive-0-13-0-and-later" >}}); Use ROW FORMAT SERDE ... STORED AS INPUTFORMAT ... OUTPUTFORMAT syntax ... in [Hive 0.10, 0.11, or 0.12]({{< ref "#hive-0-10,-0-11,-or-0-12" >}}).                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| STORED AS AVRO               | Stored as Avro format in [Hive 0.14.0 and later](https://issues.apache.org/jira/browse/HIVE-6806) (see [Avro SerDe]({{< ref "avroserde" >}})).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| STORED AS RCFILE             | Stored as [Record Columnar File](https://en.wikipedia.org/wiki/RCFile) format.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| STORED AS JSONFILE           | Stored as Json file format in Hive 4.0.0 and later.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| STORED BY                    | Stored by a non-native table format. To create or link to a non-native table, for example a table backed by [HBase]({{< ref "hbaseintegration" >}}) or [Druid]({{< ref "druid-integration" >}}) or [Accumulo]({{< ref "accumulointegration" >}}). See [StorageHandlers]({{< ref "storagehandlers" >}}) for more information on this option.                                                                                                                                                                                                                                                                                                                                                                                          |
+| INPUTFORMAT and OUTPUTFORMAT | in the file_format to specify the name of a corresponding InputFormat and OutputFormat class as a string literal.For example, 'org.apache.hadoop.hive.contrib.fileformat.base64.Base64TextInputFormat'. For LZO compression, the values to use are 'INPUTFORMAT "com.hadoop.mapred.DeprecatedLzoTextInputFormat" OUTPUTFORMAT "[org.apache.hadoop.hive.ql.io](http://org.apache.hadoop.hive.ql.io/).HiveIgnoreKeyTextOutputFormat"' (see [LZO Compression]({{< ref "languagemanual-lzo" >}})).                                                                                                                                                                                                                                       |
 
 #### Row Formats & SerDe
 
@@ -326,11 +326,11 @@ For general information about SerDes, see [Hive SerDe](/community/resources/dev
 
 To change a table's SerDe or SERDEPROPERTIES, use the ALTER TABLE statement as described below in [Add SerDe Properties]({{< ref "#add-serde-properties" >}}).
 
-| Row Format | Description |
-| --- | --- |
-| **RegEx**ROW FORMAT SERDE'org.apache.hadoop.hive.serde2.RegexSerDe'WITH SERDEPROPERTIES ("input.regex" = "<regex>")STORED AS TEXTFILE; | Stored as plain text file, translated by Regular Expression.The following example defines a table in the default Apache Weblog format.`CREATE` `TABLE` `apachelog (``host STRING,``identity STRING,``user` `STRING,``time` `STRING,``request STRING,``status STRING,``size` `STRING,``referer STRING,``agent STRING)``ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.RegexSerDe'``WITH` `SERDEPROPERTIES (``"input.regex"` `=``"([^]*) ([^]*) ([^]*) (-|\\[^\\]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\".*\") ([^ \"]*|\".*\"))?"``)``STORED``AS` `TEXTFILE;`More about RegexSerDe can be found here in [HIVE-662](https://issues.apache.org/jira/browse/HIVE-662) and [HIVE-1719](https://issues.apache.org/jira/browse/HIVE-1719). |
-| **JSON** ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe' STORED AS TEXTFILE | Stored as plain text file in JSON format.The JsonSerDe for JSON files is available in [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-4895) and later.In some distributions, a reference to hive-hcatalog-core.jar is required.`ADD JAR /usr/lib/hive-hcatalog/lib/hive-hcatalog-core.jar;CREATE` `TABLE` `my_table(a string, b``bigint``, ...)``ROW FORMAT SERDE``'org.apache.hive.hcatalog.data.JsonSerDe'``STORED``AS` `TEXTFILE;`The JsonSerDe was moved to Hive from HCatalog and before it was in hive-contrib project. It was added to the Hive distribution by [HIVE-4895](https://issues.apache.org/jira/browse/HIVE-4895).An Amazon SerDe is available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar` for releases prior to 0.12.0.The JsonSerDe for JSON files is available in [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-4895) and later.Starting in Hive 3.0.0, JsonSerDe is added to Hive Serde as "org.apache.hadoop.hive.serde2.JsonSerDe" ([HIVE-19211](https://issues.apache.org/jira/browse/HIVE-19211)).`CREATE` `TABLE` `my_table(a string, b``bigint``, ...)``ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.JsonSerDe'``STORED``AS` `TEXTFILE;`Or `STORED AS JSONFILE` is supported starting in Hive 4.0.0 ([HIVE-19899](https://issues.apache.org/jira/browse/HIVE-19899)), so you can create table as follows:`CREATE` `TABLE` `my_table(a string, b``bigint``, ...) STORED AS JSONFILE;` |
-| **CSV/TSV**ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS TEXTFILE | Stored as plain text file in CSV / TSV format. The CSVSerde is available in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7777) and greater.The following example creates a TSV (Tab-separated) file.``CREATE` `TABLE` `my_table(a string, b string, ...)`ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.OpenCSVSerde'``WITH` `SERDEPROPERTIES (``"separatorChar"` `=``"\t"``,``"quoteChar"`     `=``"'"``,``"escapeChar"`    `=``"\\"``)``STORED``AS` `TEXTFILE;`Default properties for SerDe is Comma-Separated (CSV) file `DEFAULT_ESCAPE_CHARACTER \``DEFAULT_QUOTE_CHARACTER  "``DEFAULT_SEPARATOR        ,`This SerDe works for most CSV data, but does not handle embedded newlines. To use the SerDe, specify the fully qualified class name org.apache.hadoop.hive.serde2.OpenCSVSerde.  Documentation is based on original documentation at <https://github.com/ogrodnek/csv-serde>.**Limitations**This SerDe treats all columns to be of type String. Even if you create a table with non-string column types using this SerDe, the DESCRIBE TABLE output would show string column type. The type information is retrieved from the SerDe. To convert columns to the desired type in a table, you can create a view over the table that does the CAST to the desired type.The CSV SerDe is based on <https://github.com/ogrodnek/csv-serde>, and was added to the Hive distribution in [HIVE-7777](https://issues.apache.org/jira/browse/HIVE-7777).The CSVSerde has been built and tested against Hive 0.14 and later, and uses [Open-CSV](http://opencsv.sourceforge.net/) 2.3 which is bundled with the Hive distribution.For general information about SerDes, see [Hive SerDe](/community/resources/developerguide#hive-serde) in the Developer Guide. Also see [SerDe](/docs/latest/user/serde) for details about input and output processing. |
+|                                                               Row Format                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **RegEx**ROW FORMAT SERDE'org.apache.hadoop.hive.serde2.RegexSerDe'WITH SERDEPROPERTIES ("input.regex" = "<regex>")STORED AS TEXTFILE; | Stored as plain text file, translated by Regular Expression.The following example defines a table in the default Apache Weblog format.`CREATE` `TABLE` `apachelog (``host STRING,``identity STRING,``user` `STRING,``time` `STRING,``request STRING,``status STRING,``size` `STRING,``referer STRING,``agent STRING)``ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.RegexSerDe'``WITH` `SERDEPROPERTIES (``"input.regex"` `=``"([^]*) ([^]*) ([^]*) (-|\\[^\\]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\".*\") ([^ \"]*|\".*\"))?"``)``STORED``AS` `TEXTFILE;`More about RegexSerDe can be found here in [HIVE-662](https://issues.apache.org/jira/browse/HIVE-662) and [HIVE-1719](https://issues.apache.org/jira/browse/HIVE-1719).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **JSON** ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe' STORED AS TEXTFILE                                                 | Stored as plain text file in JSON format.The JsonSerDe for JSON files is available in [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-4895) and later.In some distributions, a reference to hive-hcatalog-core.jar is required.`ADD JAR /usr/lib/hive-hcatalog/lib/hive-hcatalog-core.jar;CREATE` `TABLE` `my_table(a string, b``bigint``, ...)``ROW FORMAT SERDE``'org.apache.hive.hcatalog.data.JsonSerDe'``STORED``AS` `TEXTFILE;`The JsonSerDe was moved to Hive from HCatalog and before it was in hive-contrib project. It was added to the Hive distribution by [HIVE-4895](https://issues.apache.org/jira/browse/HIVE-4895).An Amazon SerDe is available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar` for releases prior to 0.12.0.The JsonSerDe for JSON files is available in [Hive 0.12](https://issues.apache.org/jira/browse/HIVE-4895) and later.Starting in Hive 3.0.0, JsonSerDe is added to Hive Serde as "org.apache.hadoop.hive.serde2.JsonSerDe" ([HIVE-19211](https://issues.apache.org/jira/browse/HIVE-19211)).`CREATE` `TABLE` `my_table(a string, b``bigint``, ...)``ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.JsonSerDe'``STORED``AS` `TEXTFILE;`Or `STORED AS JSONFILE` is supported starting in Hive 4.0.0 ([HIVE-19899](https://issues.apache.org/jira/browse/HIVE-19899)), so you can create table as follows:`CREATE` `TABLE` `my_table(a string, b``bigint``, ...) STORED AS JSONFILE;`                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **CSV/TSV**ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS TEXTFILE                                            | Stored as plain text file in CSV / TSV format. The CSVSerde is available in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7777) and greater.The following example creates a TSV (Tab-separated) file.``CREATE` `TABLE` `my_table(a string, b string, ...)`ROW FORMAT SERDE``'org.apache.hadoop.hive.serde2.OpenCSVSerde'``WITH` `SERDEPROPERTIES (``"separatorChar"` `=``"\t"``,``"quoteChar"`     `=``"'"``,``"escapeChar"`    `=``"\\"``)``STORED``AS` `TEXTFILE;`Default properties for SerDe is Comma-Separated (CSV) file `DEFAULT_ESCAPE_CHARACTER \``DEFAULT_QUOTE_CHARACTER  "``DEFAULT_SEPARATOR        ,`This SerDe works for most CSV data, but does not handle embedded newlines. To use the SerDe, specify the fully qualified class name org.apache.hadoop.hive.serde2.OpenCSVSerde.  Documentation is based on original documentation at <https://github.com/ogrodnek/csv-serde>.**Limitations**This SerDe treats all columns to be of type String. Even if you create a table with non-string column types using this SerDe, the DESCRIBE TABLE output would show string column type. The type information is retrieved from the SerDe. To convert columns to the desired type in a table, you can create a view over the table that does the CAST to the desired type.The CSV SerDe is based on <https://github.com/ogrodnek/csv-serde>, and was added to the Hive distribution in [HIVE-7777](https://issues.apache.org/jira/browse/HIVE-7777).The CSVSerde has been built and tested against Hive 0.14 and later, and uses [Open-CSV](http://opencsv.sourceforge.net/) 2.3 which is bundled with the Hive distribution.For general information about SerDes, see [Hive SerDe](/community/resources/developerguide#hive-serde) in the Developer Guide. Also see [SerDe](/docs/latest/user/serde) for details about input and output processing. |
 
 #### Partitioned Tables
 
@@ -403,7 +403,7 @@ In the previous examples the data is stored in <hive.metastore.warehouse.dir>/pa
 
 The EXTERNAL keyword lets you create a table and provide a LOCATION so that Hive does not use a default location for this table. This comes in handy if you already have data generated. When dropping an EXTERNAL table, data in the table is *NOT* deleted from the file system. Starting Hive 4.0.0 (
 [HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981))
- Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
+Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed
 
  ) setting table property external.table.purge=true, will also delete the data.
@@ -623,7 +623,7 @@ DROP TABLE removes metadata and data for this table. The data is actually moved 
 
 When dropping an EXTERNAL table, data in the table will *NOT* be deleted from the file system. Starting Hive 4.0.0 (
 [HIVE-19981](https://issues.apache.org/jira/browse/HIVE-19981))
- Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
+Managed tables converted to external tables by the HiveStrictManagedMigration utility should be set to delete data when the table is dropped
 Closed
 
  ) setting table property external.table.purge=true, will also delete the data.
@@ -665,42 +665,42 @@ Starting with Hive 4.0 ([HIVE-23183](https://issues.apache.org/jira/browse/HIVE-
 ## Alter Table/Partition/Column
 
 * [Alter Table]({{< ref "#alter-table" >}})
-	+ [Rename Table]({{< ref "#rename-table" >}})
-	+ [Alter Table Properties]({{< ref "#alter-table-properties" >}})
-		- [Alter Table Comment]({{< ref "#alter-table-comment" >}})
-	+ [Add SerDe Properties]({{< ref "#add-serde-properties" >}})
-	+ [Remove SerDe Properties]({{< ref "#remove-serde-properties" >}})
-	+ [Alter Table Storage Properties]({{< ref "#alter-table-storage-properties" >}})
-	+ [Alter Table Skewed or Stored as Directories]({{< ref "#alter-table-skewed-or-stored-as-directories" >}})
-		- [Alter Table Skewed]({{< ref "#alter-table-skewed" >}})
-		- [Alter Table Not Skewed]({{< ref "#alter-table-not-skewed" >}})
-		- [Alter Table Not Stored as Directories]({{< ref "#alter-table-not-stored-as-directories" >}})
-		- [Alter Table Set Skewed Location]({{< ref "#alter-table-set-skewed-location" >}})
-	+ [Alter Table Constraints]({{< ref "#alter-table-constraints" >}})
-	+ [Additional Alter Table Statements]({{< ref "#additional-alter-table-statements" >}})
+  + [Rename Table]({{< ref "#rename-table" >}})
+  + [Alter Table Properties]({{< ref "#alter-table-properties" >}})
+    - [Alter Table Comment]({{< ref "#alter-table-comment" >}})
+  + [Add SerDe Properties]({{< ref "#add-serde-properties" >}})
+  + [Remove SerDe Properties]({{< ref "#remove-serde-properties" >}})
+  + [Alter Table Storage Properties]({{< ref "#alter-table-storage-properties" >}})
+  + [Alter Table Skewed or Stored as Directories]({{< ref "#alter-table-skewed-or-stored-as-directories" >}})
+    - [Alter Table Skewed]({{< ref "#alter-table-skewed" >}})
+    - [Alter Table Not Skewed]({{< ref "#alter-table-not-skewed" >}})
+    - [Alter Table Not Stored as Directories]({{< ref "#alter-table-not-stored-as-directories" >}})
+    - [Alter Table Set Skewed Location]({{< ref "#alter-table-set-skewed-location" >}})
+  + [Alter Table Constraints]({{< ref "#alter-table-constraints" >}})
+  + [Additional Alter Table Statements]({{< ref "#additional-alter-table-statements" >}})
 * [Alter Partition]({{< ref "#alter-partition" >}})
-	+ [Add Partitions]({{< ref "#add-partitions" >}})
-		- [Dynamic Partitions]({{< ref "#dynamic-partitions" >}})
-	+ [Rename Partition]({{< ref "#rename-partition" >}})
-	+ [Exchange Partition]({{< ref "#exchange-partition" >}})
-	+ [Discover Partitions]({{< ref "#discover-partitions" >}})
-	+ [Partition Retention]({{< ref "#partition-retention" >}})
-	+ [Recover Partitions (MSCK REPAIR TABLE)]({{< ref "#recover-partitions-msck-repair-table" >}})
-	+ [Drop Partitions]({{< ref "#drop-partitions" >}})
-	+ [(Un)Archive Partition]({{< ref "#unarchive-partition" >}})
+  + [Add Partitions]({{< ref "#add-partitions" >}})
+    - [Dynamic Partitions]({{< ref "#dynamic-partitions" >}})
+  + [Rename Partition]({{< ref "#rename-partition" >}})
+  + [Exchange Partition]({{< ref "#exchange-partition" >}})
+  + [Discover Partitions]({{< ref "#discover-partitions" >}})
+  + [Partition Retention]({{< ref "#partition-retention" >}})
+  + [Recover Partitions (MSCK REPAIR TABLE)]({{< ref "#recover-partitions-msck-repair-table" >}})
+  + [Drop Partitions]({{< ref "#drop-partitions" >}})
+  + [(Un)Archive Partition]({{< ref "#unarchive-partition" >}})
 * [Alter Either Table or Partition]({{< ref "#alter-either-table-or-partition" >}})
-	+ [Alter Table/Partition File Format]({{< ref "#alter-tablepartition-file-format" >}})
-	+ [Alter Table/Partition Location]({{< ref "#alter-tablepartition-location" >}})
-	+ [Alter Table/Partition Touch]({{< ref "#alter-tablepartition-touch" >}})
-	+ [Alter Table/Partition Protections]({{< ref "#alter-tablepartition-protections" >}})
-	+ [Alter Table/Partition Compact]({{< ref "#alter-tablepartition-compact" >}})
-	+ [Alter Table/Partition Concatenate]({{< ref "#alter-tablepartition-concatenate" >}})
-	+ [Alter Table/Partition Update columns]({{< ref "#alter-tablepartition-update-columns" >}})
+  + [Alter Table/Partition File Format]({{< ref "#alter-tablepartition-file-format" >}})
+  + [Alter Table/Partition Location]({{< ref "#alter-tablepartition-location" >}})
+  + [Alter Table/Partition Touch]({{< ref "#alter-tablepartition-touch" >}})
+  + [Alter Table/Partition Protections]({{< ref "#alter-tablepartition-protections" >}})
+  + [Alter Table/Partition Compact]({{< ref "#alter-tablepartition-compact" >}})
+  + [Alter Table/Partition Concatenate]({{< ref "#alter-tablepartition-concatenate" >}})
+  + [Alter Table/Partition Update columns]({{< ref "#alter-tablepartition-update-columns" >}})
 * [Alter Column]({{< ref "#alter-column" >}})
-	+ [Rules for Column Names]({{< ref "#rules-for-column-names" >}})
-	+ [Change Column Name/Type/Position/Comment]({{< ref "#change-column-nametypepositioncomment" >}})
-	+ [Add/Replace Columns]({{< ref "#addreplace-columns" >}})
-	+ [Partial Partition Specification]({{< ref "#partial-partition-specification" >}})
+  + [Rules for Column Names]({{< ref "#rules-for-column-names" >}})
+  + [Change Column Name/Type/Position/Comment]({{< ref "#change-column-nametypepositioncomment" >}})
+  + [Add/Replace Columns]({{< ref "#addreplace-columns" >}})
+  + [Partial Partition Specification]({{< ref "#partial-partition-specification" >}})
 
 Alter table statements enable you to change the structure of an existing table. You can add columns/partitions, change SerDe, add table and SerDe properties, or rename the table itself. Similarly, alter table partition statements allow you change the properties of a specific partition in the named table.
 
@@ -917,8 +917,8 @@ Partitions can be added to a table dynamically, using a Hive INSERT statement (o
 * [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
 * [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
 * [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+  + [Usage with Pig]({{< ref "#usage-with-pig" >}})
+  + [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
 
 #### Rename Partition
 
@@ -1100,7 +1100,7 @@ Version information
 In Hive release [0.13.0](https://issues.apache.org/jira/browse/HIVE-5317) and later when [transactions]({{< ref "hive-transactions" >}}) are being used, the ALTER TABLE statement can request [compaction]({{< ref "#compaction" >}}) of a table or partition.   
 As of Hive release [1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13354) when [transactions]({{< ref "hive-transactions" >}}) are being used, the ALTER TABLE ... COMPACT statement can include a [TBLPROPERTIES](/docs/latest/user/hive-transactions#table-properties) clause that is either to change compaction MapReduce job properties or to overwrite any other Hive table properties. More details can be found [here](/docs/latest/user/hive-transactions#table-properties).   
 As of Hive release [4.0.0-alpha-2](https://issues.apache.org/jira/browse/HIVE-27056?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0-alpha-2) [compaction pooling]({{< ref "compaction-pooling" >}}) is available.  
-As of Hive release [4.0.0](https://issues.apache.org/jira/browse/HIVE-27094?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0) [rebalance compaction]({{< ref "rebalance-compaction" >}}) is available.  
+As of Hive release [4.0.0](https://issues.apache.org/jira/browse/HIVE-27094?jql=project%20%3D%20HIVE%20AND%20fixVersion%20%3D%204.0.0) [rebalance compaction]({{< ref "rebalance-compaction" >}}) is available.
 
 ```
 ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])]
@@ -1111,7 +1111,7 @@ ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])]
    [WITH OVERWRITE TBLPROPERTIES ("property"="value" [, ...])];
 ```
 
-In general you do not need to request compactions when [Hive transactions]({{< ref "hive-transactions" >}}) are being used, because the system will detect the need for them and initiate the compaction. However, if compaction is turned off for a table or you want to compact the table at a time the system would not choose to, ALTER TABLE can initiate the compaction. By default the statement will enqueue a request for compaction and return. To watch the progress of the compaction, use [SHOW COMPACTIONS]({{< ref "#show-compactions" >}}). As of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15920) "AND WAIT" may be specified to have the operation block until compaction completes. 
+In general you do not need to request compactions when [Hive transactions]({{< ref "hive-transactions" >}}) are being used, because the system will detect the need for them and initiate the compaction. However, if compaction is turned off for a table or you want to compact the table at a time the system would not choose to, ALTER TABLE can initiate the compaction. By default the statement will enqueue a request for compaction and return. To watch the progress of the compaction, use [SHOW COMPACTIONS]({{< ref "#show-compactions" >}}). As of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15920) "AND WAIT" may be specified to have the operation block until compaction completes.
 
 The compaction_type can be MAJOR, MINOR or REBALANCE. See the Basic Design section in [Hive Transactions]({{< ref "#hive-transactions" >}}) for more information.
 
@@ -1146,8 +1146,6 @@ ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])] U
 Tables that have serdes which self-describe the table schema may have different schemas in reality and the ones stored in Hive Metastore. For example when a user creates an Avro stored table using a schema url or schema literal, the schema will be inserted into HMS and then will never be changed in HMS regardless of url or literal changes within the serde. This can lead to problems especially when integrating with other Apache components.
 
 The update columns feature provides a way for the user to let any schema changes made in the serde to be synced into HMS. It works on both the table and the partitions levels, and obviously only for tables whose schema is not tracked by HMS (see metastore.serdes.using.metastore.for.schema). Using the command on these latter serde types will result in error.
-
-  
 
 ### Alter Column
 
@@ -1199,8 +1197,6 @@ ALTER TABLE test_change CHANGE c c1 INT FIRST;
 ALTER TABLE test_change CHANGE a1 a1 INT COMMENT 'this is column a1';
 ```
 
-  
-
 #### Add/Replace Columns
 
 ```
@@ -1244,8 +1240,6 @@ ALTER TABLE foo PARTITION (ds='2008-04-08', hr) CHANGE COLUMN dec_column_name de
 // This will alter all existing partitions in the table -- be sure you know what you are doing!
 ALTER TABLE foo PARTITION (ds, hr) CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
 ```
-
-  
 
 Similar to dynamic partitioning, [hive.exec.dynamic.partition]({{< ref "#hive-exec-dynamic-partition" >}}) must be set to true to enable use of partial partition specs during ALTER PARTITION. This is supported for the following operations:
 
@@ -1491,7 +1485,7 @@ Bug fixes:
 * Prior to [Hive 1.3.0 and 2.0.0](https://issues.apache.org/jira/browse/HIVE-11432) when a HiveQL macro was used more than once while processing the same row, Hive returned the same result for all invocations even though the arguments were different. (See [HIVE-11432](https://issues.apache.org/jira/browse/HIVE-11432).)
 * Prior to [Hive 1.3.0 and 2.0.0](https://issues.apache.org/jira/browse/HIVE-12277) when multiple macros were used while processing the same row, an ORDER BY clause could give wrong results. (See [HIVE-12277](https://issues.apache.org/jira/browse/HIVE-12277).)
 * Prior to [Hive 2.1.0](https://issues.apache.org/jira/browse/HIVE-13372) when multiple macros were used while processing the same row, results of the later macros were overwritten by that of the first. (See [HIVE-13372](https://issues.apache.org/jira/browse/HIVE-13372).)
-Hive 0.12.0 introduced macros to HiveQL, prior to which they could only be created in Java.
+  Hive 0.12.0 introduced macros to HiveQL, prior to which they could only be created in Java.
 
 ### Create Temporary Macro
 
@@ -1604,33 +1598,33 @@ As of [HIVE-2573](https://issues.apache.org/jira/browse/HIVE-2573), creating per
 For [SQL standard based authorization]({{< ref "sql-standard-based-hive-authorization" >}}) in Hive 0.13.0 and later releases, see these DDL statements:
 
 * Role Management Commands
-	+ [CREATE ROLE]({{< ref "#create-role" >}})
-	+ [GRANT ROLE]({{< ref "#grant-role" >}})
-	+ [REVOKE ROLE]({{< ref "#revoke-role" >}})
-	+ [DROP ROLE]({{< ref "#drop-role" >}})
-	+ [SHOW ROLES]({{< ref "#show-roles" >}})
-	+ [SHOW ROLE GRANT]({{< ref "#show-role-grant" >}})
-	+ [SHOW CURRENT ROLES]({{< ref "#show-current-roles" >}})
-	+ [SET ROLE]({{< ref "#set-role" >}})
-	+ [SHOW PRINCIPALS]({{< ref "#show-principals" >}})
+  + [CREATE ROLE]({{< ref "#create-role" >}})
+  + [GRANT ROLE]({{< ref "#grant-role" >}})
+  + [REVOKE ROLE]({{< ref "#revoke-role" >}})
+  + [DROP ROLE]({{< ref "#drop-role" >}})
+  + [SHOW ROLES]({{< ref "#show-roles" >}})
+  + [SHOW ROLE GRANT]({{< ref "#show-role-grant" >}})
+  + [SHOW CURRENT ROLES]({{< ref "#show-current-roles" >}})
+  + [SET ROLE]({{< ref "#set-role" >}})
+  + [SHOW PRINCIPALS]({{< ref "#show-principals" >}})
 * Object Privilege Commands
-	+ [GRANT privilege_type]({{< ref "#grant-privilege_type" >}})
-	+ [REVOKE privilege_type]({{< ref "#revoke-privilege_type" >}})
-	+ [SHOW GRANT]({{< ref "#show-grant" >}})
+  + [GRANT privilege_type]({{< ref "#grant-privilege_type" >}})
+  + [REVOKE privilege_type]({{< ref "#revoke-privilege_type" >}})
+  + [SHOW GRANT]({{< ref "#show-grant" >}})
 
 ## Show
 
 * [Show Databases]({{< ref "#show-databases" >}})
 * [Show Connectors]({{< ref "#show-connectors" >}})
 * [Show Tables/Views/Materialized Views/Partitions/Indexes]({{< ref "#show-tablesviewsmaterialized-viewspartitionsindexes" >}})
-	+ [Show Tables]({{< ref "#show-tables" >}})
-	+ [Show Views]({{< ref "#show-views" >}})
-	+ [Show Materialized Views]({{< ref "#show-materialized-views" >}})
-	+ [Show Partitions]({{< ref "#show-partitions" >}})
-	+ [Show Table/Partition Extended]({{< ref "#show-tablepartition-extended" >}})
-	+ [Show Table Properties]({{< ref "#show-table-properties" >}})
-	+ [Show Create Table]({{< ref "#show-create-table" >}})
-	+ [Show Indexes]({{< ref "#show-indexes" >}})
+  + [Show Tables]({{< ref "#show-tables" >}})
+  + [Show Views]({{< ref "#show-views" >}})
+  + [Show Materialized Views]({{< ref "#show-materialized-views" >}})
+  + [Show Partitions]({{< ref "#show-partitions" >}})
+  + [Show Table/Partition Extended]({{< ref "#show-tablepartition-extended" >}})
+  + [Show Table Properties]({{< ref "#show-table-properties" >}})
+  + [Show Create Table]({{< ref "#show-create-table" >}})
+  + [Show Indexes]({{< ref "#show-indexes" >}})
 * [Show Columns]({{< ref "#show-columns" >}})
 * [Show Functions]({{< ref "#show-functions" >}})
 * [Show Granted Roles and Privileges]({{< ref "#show-granted-roles-and-privileges" >}})
@@ -1780,8 +1774,6 @@ SHOW TABLE EXTENDED [IN|FROM database_name] LIKE 'identifier_with_wildcards' [PA
 
 SHOW TABLE EXTENDED will list information for all tables matching the given regular expression. Users cannot use regular expression for table name if a partition specification is present. This command's output includes basic table information and file system information like totalNumberFiles, totalFileSize, maxFileSize, minFileSize,lastAccessTime, and lastUpdateTime. If partition is present, it will output the given partition's file system information instead of table's file system information.
 
-  
-
 **Example**
 
 ```
@@ -1861,18 +1853,15 @@ SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name];
 
 SHOW COLUMNS shows all the columns in a table including partition columns.
 
-  
-
 Version information
 
 ```
 SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name]  [ LIKE 'pattern_with_wildcards'];
 ```
+
 Added in Hive 3.0 by [HIVE-18373](https://issues.apache.org/jira/browse/HIVE-18373).
 
 `SHOW COLUMNS` lists all the columns in the table with names matching the optional regular expression. Wildcards in the regular expression can only be '*' for any character(s) or '|' for a choice. Examples are 'cola', 'col*', '*a|col*', all which will match the 'cola' column. Matching columns are listed in alphabetical order. It is not an error if no matching columns are found in table. If no regular expression is given then all columns in the selected table are listed.
-
-  
 
 **Examples**
 
@@ -1896,8 +1885,6 @@ SHOW COLUMNS IN foo "nomatch*";
 SHOW COLUMNS IN foo "col+";                       -- + wildcard not supported
 SHOW COLUMNS IN foo "nomatch";
 ```
-
-  
 
 ### Show Functions
 
@@ -1942,14 +1929,14 @@ When [Hive transactions]({{< ref "hive-transactions" >}}) are being used, SHOW L
 * table name
 * partition name (if the table is partitioned)
 * the state the lock is in, which can be:
-	+ "acquired" – the requestor holds the lock
-	+ "waiting" – the requestor is waiting for the lock
-	+ "aborted" – the lock has timed out but has not yet been cleaned up
+  + "acquired" – the requestor holds the lock
+  + "waiting" – the requestor is waiting for the lock
+  + "aborted" – the lock has timed out but has not yet been cleaned up
 * Id of the lock blocking this one, if this lock is in "waiting" state
 * the type of lock, which can be:
-	+ "exclusive" – no one else can hold the lock at the same time (obtained mostly by DDL operations such as drop table)
-	+ "shared_read" – any number of other shared_read locks can lock the same resource at the same time (obtained by reads; confusingly, an insert operation also obtains a shared_read lock)
-	+ "shared_write" – any number of shared_read locks can lock the same resource at the same time, but no other shared_write locks are allowed (obtained by update and delete)
+  + "exclusive" – no one else can hold the lock at the same time (obtained mostly by DDL operations such as drop table)
+  + "shared_read" – any number of other shared_read locks can lock the same resource at the same time (obtained by reads; confusingly, an insert operation also obtains a shared_read lock)
+  + "shared_write" – any number of shared_read locks can lock the same resource at the same time, but no other shared_write locks are allowed (obtained by update and delete)
 * ID of the transaction this lock is associated with, if there is one
 * last time the holder of this lock sent a heartbeat indicating it was still alive
 * the time the lock was acquired, if it has been acquired
@@ -2012,12 +1999,12 @@ SHOW COMPACTIONS [DATABASE.][TABLE] [PARTITION (<partition_spec>)] [POOL_NAME] [
 * "Partition" - partition name (if the table is partitioned)
 * "Type" - whether it is a major or minor compaction
 * "State" - the state the compaction is in, which can be:
-	+ "initiated" – waiting in the queue to be compacted
-	+ "working" – being compacted
-	+ "ready for cleaning" – the compaction has been done and the old files are scheduled to be cleaned
-	+ "failed" – the job failed. The metastore log will have more detail.
-	+ "succeeded" – A-ok
-	+ "attempted" – initiator attempted to schedule a compaction but failed. The metastore log will have more information.
+  + "initiated" – waiting in the queue to be compacted
+  + "working" – being compacted
+  + "ready for cleaning" – the compaction has been done and the old files are scheduled to be cleaned
+  + "failed" – the job failed. The metastore log will have more detail.
+  + "succeeded" – A-ok
+  + "attempted" – initiator attempted to schedule a compaction but failed. The metastore log will have more information.
 * "Worker" - thread ID of the worker thread doing the compaction (only if in working state)
 * "Start Time" - the time at which the compaction started (only if in working or ready for cleaning state)
 * "Duration(ms)" - time this compaction took (As of [Hive 2.2](https://issues.apache.org/jira/browse/HIVE-15337) )
@@ -2060,7 +2047,7 @@ Compactions are initiated automatically, but can also be initiated manually with
 * [Describe Database]({{< ref "#describe-database" >}})
 * [Describe Dataconnector]({{< ref "#describe-dataconnector" >}})
 * [Describe Table/View/Materialized View/Column]({{< ref "#describe-tableviewmaterialized-viewcolumn" >}})
-	+ [Display Column Statistics]({{< ref "#display-column-statistics" >}})
+  + [Display Column Statistics]({{< ref "#display-column-statistics" >}})
 * [Describe Partition]({{< ref "#describe-partition" >}})
 * [Hive 2.0+: Syntax Change]({{< ref "#hive-20-syntax-change" >}})
 

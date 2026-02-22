@@ -23,7 +23,3 @@ The following operators are supported when constructing filters for partition co
 * `OR`
 * `LIKE` (on keys of type `string` only, supports literal string template with '.`*'` wildcard)
 
- 
-
- 
-

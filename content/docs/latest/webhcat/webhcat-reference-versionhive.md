@@ -53,11 +53,5 @@ Returns the Hive version.
 Previous: [GET version]({{< ref "webhcat-reference-version" >}})  
 Next: [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop" >}})
 
-
-
 Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids" >}})
-
- 
-
- 
 

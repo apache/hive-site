@@ -48,7 +48,3 @@ It should go without saying, but here it is anyway: your participation in the pr
 
 ![](images/icons/bullet_blue.gif)
 
- 
-
- 
-

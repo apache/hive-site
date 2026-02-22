@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Statistics and Data Mining
 
-This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions. 
+This page is the secondary documentation for the slightly more advanced statistical and data mining functions that are being integrated into Hive, and especially the functions that warrant more than one-line descriptions.
 
 ## ngrams() and context_ngrams(): N-gram frequency estimation
 
@@ -15,17 +15,18 @@ Contextual n-grams are similar to n-grams, but allow you to specify a 'context' 
 
 ### Use Cases
 
-1. (ngrams) Find important topics in text in conjunction with a stopword list.  
+1. (ngrams) Find important topics in text in conjunction with a stopword list.
 
- 2. (ngrams) Find trending topics in text.  
+2. (ngrams) Find trending topics in text.
 
- 3. (context_ngrams) Extract marketing intelligence around certain words (e.g., "Twitter is ___").  
+3. (context_ngrams) Extract marketing intelligence around certain words (e.g., "Twitter is ___").
 
- 4. (ngrams) Find frequently accessed URL sequences.  
+4. (ngrams) Find frequently accessed URL sequences.
 
- 5. (context_ngrams) Find frequently accessed URL sequences that start or end at a particular URL.  
+5. (context_ngrams) Find frequently accessed URL sequences that start or end at a particular URL.
 
- 6. (context_ngrams) Pre-compute common search lookaheads.
+6. (context_ngrams) Pre-compute common search lookaheads.
+
 ### Usage
 
 ```
@@ -93,9 +94,10 @@ Histograms represent frequency distributions from empirical data. The kind that 
 
 ### Use Cases
 
-1. Estimating the frequency distribution of a column, possibly grouped by other attributes.  
+1. Estimating the frequency distribution of a column, possibly grouped by other attributes.
 
- 2. Choosing discretization points in a continuous valued column.
+2. Choosing discretization points in a continuous valued column.
+
 ### Usage
 
 ```
@@ -129,8 +131,4 @@ SELECT explode(histogram_numeric(val, 10)) AS x FROM normal;
 {"x":3.674835214285715,"y":14.0}
 
 ```
-
- 
-
- 
 

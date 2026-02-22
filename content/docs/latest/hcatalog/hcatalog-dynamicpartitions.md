@@ -63,8 +63,8 @@ See [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-propert
 Information about Hive dynamic partitions is available here:
 
 * [Design Document for Dynamic Partitions]({{< ref "dynamicpartitions" >}})
-	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
-	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
+  + [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
+  + [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
 * [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
 * [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
 
@@ -142,15 +142,9 @@ With dynamic partitioning, we simply specify only as many keys as we know about,
 
 **Navigation Links**
 Previous: [Storage Formats]({{< ref "hcatalog-storageformats" >}})  
- Next: [Notification]({{< ref "hcatalog-notification" >}})
+Next: [Notification]({{< ref "hcatalog-notification" >}})
 
 Hive design document: [Dynamic Partitions]({{< ref "dynamicpartitions" >}})  
- Hive tutorial: [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})  
- Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
-
-
-
- 
-
- 
+Hive tutorial: [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})  
+Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
 

@@ -15,8 +15,6 @@ Hive 0.14.0 and later.
 
 # Hive QL Syntax
 
-  
-
 You can use MultiDelimitSerDe in a create table statement like this:
 
 ```

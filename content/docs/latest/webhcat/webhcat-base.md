@@ -17,9 +17,3 @@ See the [HCatalog Manual]({{< ref "hcatalog-base" >}}) for general HCatalog docu
 **Navigation Links**
 Next: [Using WebHCat]({{< ref "webhcat-usingwebhcat" >}})
 
-
-
- 
-
- 
-

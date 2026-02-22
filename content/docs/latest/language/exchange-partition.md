@@ -18,11 +18,14 @@ See [Language Manual DDL]({{< ref "#language-manual-ddl" >}}) for additional i
 * The destination table cannot contain the partition to be exchanged.
 
 * The operation fails in the presence of an index.
+
 * Exchange partition is not allowed with transactional tables either as source or destination. Alternatively, use [LOAD DATA]({{< ref "#load-data" >}}) or [INSERT OVERWRITE]({{< ref "#insert-overwrite" >}}) commands to move partitions across transactional tables.
+
 * This command requires both the source and destination table names to have the same table schema.    
-If the schemas are different, the following exception is thrown:
+  If the schemas are different, the following exception is thrown:
 
 `The tables have different schemas. Their partitions cannot be exchanged`
+
 #### Syntax
 
 ```
@@ -70,8 +73,4 @@ ALTER TABLE T1 ADD PARTITION (d1=1, d2=2);
 ALTER TABLE T2 EXCHANGE PARTITION (d1 = 1, d2 = 2) WITH TABLE T1;
 
 ```
-
- 
-
- 
 

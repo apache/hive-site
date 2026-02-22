@@ -15,28 +15,28 @@ Describe a single partition in an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
+|      Name      |                                                           Description                                                            | Required? | Default |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------|-----------|---------|
+| **:db**        | The database name                                                                                                                | Required  | None    |
+| **:table**     | The table name                                                                                                                   | Required  | None    |
+| **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **database** | The database name |
-| **table** | The table name |
-| **partition** | The partition name |
-| **partitioned** | True if the table is partitioned |
-| **location** | Location of table |
-| **outputFormat** | Output format |
-| **columns** | List of column names, types, and comments |
-| **owner** | The owner's user name |
-| **partitionColumns** | List of the partition columns |
-| **inputFormat** | Input format |
+|         Name         |                Description                |
+|----------------------|-------------------------------------------|
+| **database**         | The database name                         |
+| **table**            | The table name                            |
+| **partition**        | The partition name                        |
+| **partitioned**      | True if the table is partitioned          |
+| **location**         | Location of table                         |
+| **outputFormat**     | Output format                             |
+| **columns**          | List of column names, types, and comments |
+| **owner**            | The owner's user name                     |
+| **partitionColumns** | List of the partition columns             |
+| **inputFormat**      | Input format                              |
 
 ## Example
 
@@ -85,14 +85,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table/partition]({{< ref "webhcat-reference-getpartitions" >}}) Next: [PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-putpartition" >}})
-
-
-
- 
-
- 
 

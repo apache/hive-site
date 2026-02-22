@@ -24,7 +24,3 @@ Here are some JIRA issues about benchmarks for Hive:
 
  
 
- 
-
- 
-

@@ -37,7 +37,3 @@ The following test files will check the API functionalities:
 
  
 
- 
-
- 
-

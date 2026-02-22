@@ -31,7 +31,3 @@ A question was posted to the meetup page by Amareshwari. She wanted to know if a
 
 Amareshwari posted a second question on moving Hive from the old mapred interface to MapReduce to the newer mapreduce. There was consensus amongst the committers present that it was better to stay on mapred for now since it was guaranteed to be stable even in 0.23, while mapreduce is evolving.
 
- 
-
- 
-

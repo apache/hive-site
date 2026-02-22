@@ -53,14 +53,14 @@ Output is analogous to input. The engine passes the deserialized Object represen
 # Additional Notes
 
 * The owner of an object (either a row, a column, a sub field of a column, or the return value of a UDF) is the code that creates it, and the life time of an object expires when the corresponding object for the next row is created. That means several things:
-	+ We should not directly cache any object. In both group-by and join, we copy the object and then put it into a HashMap.
-	+ SerDe, UDF, etc can reuse the same object for the same column in different rows. That means we can get rid of most of the object creations in the data pipeline, which is a huge performance boost.
+  + We should not directly cache any object. In both group-by and join, we copy the object and then put it into a HashMap.
+  + SerDe, UDF, etc can reuse the same object for the same column in different rows. That means we can get rid of most of the object creations in the data pipeline, which is a huge performance boost.
 * Settable ObjectInspectors (for write and object creation).
-	+ ObjectInspector allows us to "get" fields, but not "set" fields or "create" objects.
-	+ Settable ObjectInspectors allows that.
-	+ We can convert an object with JavaIntObjectInspector to an object with WritableIntObjectInspector (which is, from Integer to IntWritable) easily with the help of Settable ObjectInspectors.
-	+ In UDFs (non-GenericUDFs), we use Java reflection to get the type of the parameters/return values of a function (like IntWritable in case of UDFOPPlus), and then infer the ObjectInspector for that using ObjectInspectorUtils.getStandardObjectInspectors.
-	+ Given the ObjectInspector of an Object that is passed to a UDF, and the ObjectInspector of the type of the parameter of the UDF, we will construct a ObjectInspectorConverter, which uses the SettableObjectInspector interface to convert the object. The converters are called in GenericUDF and GenericUDAF.
+  + ObjectInspector allows us to "get" fields, but not "set" fields or "create" objects.
+  + Settable ObjectInspectors allows that.
+  + We can convert an object with JavaIntObjectInspector to an object with WritableIntObjectInspector (which is, from Integer to IntWritable) easily with the help of Settable ObjectInspectors.
+  + In UDFs (non-GenericUDFs), we use Java reflection to get the type of the parameters/return values of a function (like IntWritable in case of UDFOPPlus), and then infer the ObjectInspector for that using ObjectInspectorUtils.getStandardObjectInspectors.
+  + Given the ObjectInspector of an Object that is passed to a UDF, and the ObjectInspector of the type of the parameter of the UDF, we will construct a ObjectInspectorConverter, which uses the SettableObjectInspector interface to convert the object. The converters are called in GenericUDF and GenericUDAF.
 
 In short, Hive will automatically convert objects so that Integer will be converted to IntWritable (and vice versa) if needed. This allows people without Hadoop knowledge to use Java primitive classes (Integer, etc), while hadoop users/experts can use IntWritable which is more efficient.
 

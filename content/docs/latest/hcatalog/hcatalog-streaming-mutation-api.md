@@ -15,15 +15,15 @@ The availability of ACID tables in Hive provides a mechanism that both enables c
 
 The Streaming Mutation API, although similar to the [Streaming API]({{< ref "streaming-data-ingest" >}}), has a number of differences and is built to enable very different use cases. Superficially, the Streaming API can only write new data whereas the mutation API can also modify existing data. However the two APIs are also based on very different transaction models. The Streaming API focuses on surfacing a continuous stream of new data into a Hive table and does so by batching small sets of writes into multiple short-lived transactions. Conversely the mutation API is designed to infrequently apply large sets of mutations to a data set in an atomic fashion: either all or none of the mutations will be applied. This instead mandates the use of a single long-lived transaction. This table summarises the attributes of each API:
 
-| Attribute | [Streaming API]({{< ref "streaming-data-ingest" >}}) | Mutation API |
-| --- | --- | --- |
-| Ingest type | Data arrives continuously. | Ingests are performed periodically and the mutations are applied in a single batch. |
-| Transaction scope | Transactions are created for small batches of writes. | The entire set of mutations should be applied within a single transaction. |
-| Data availability | Surfaces new data to users frequently and quickly. | Change sets should be applied atomically, either the effect of the delta is visible or it is not. |
-| Sensitive to record order | No, records do not have pre-existing lastTxnIds or bucketIds. Records are likely being written into a single partition (today's date for example). | Yes, all mutated records have existing `RecordIdentifiers` and must be grouped by [partitionValues, bucketId] and sorted by lastTxnId. These record coordinates initially arrive in an order that is effectively random. |
-| Impact of a write failure | Transaction can be aborted and producer can choose to resubmit failed records as ordering is not important. | Ingest for the respective group (partitionValues + bucketId) must be halted and failed records resubmitted to preserve sequence. |
-| User perception of missing data | Data has not arrived yet → "latency?" | "This data is inconsistent, some records have been updated, but other related records have not" – consider here the classic transfer between bank accounts scenario. |
-| API end point scope | A given `HiveEndPoint` instance submits many transactions to a specific bucket, in a specific partition, of a specific table. | A set of `MutationCoordinators` writes changes to unknown set of buckets, of an unknown set of partitions, of specific tables (can be more than one), within a single transaction. |
+|            Attribute            |                                                [Streaming API]({{< ref "streaming-data-ingest" >}})                                                |                                                                                                       Mutation API                                                                                                       |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Ingest type                     | Data arrives continuously.                                                                                                                         | Ingests are performed periodically and the mutations are applied in a single batch.                                                                                                                                      |
+| Transaction scope               | Transactions are created for small batches of writes.                                                                                              | The entire set of mutations should be applied within a single transaction.                                                                                                                                               |
+| Data availability               | Surfaces new data to users frequently and quickly.                                                                                                 | Change sets should be applied atomically, either the effect of the delta is visible or it is not.                                                                                                                        |
+| Sensitive to record order       | No, records do not have pre-existing lastTxnIds or bucketIds. Records are likely being written into a single partition (today's date for example). | Yes, all mutated records have existing `RecordIdentifiers` and must be grouped by [partitionValues, bucketId] and sorted by lastTxnId. These record coordinates initially arrive in an order that is effectively random. |
+| Impact of a write failure       | Transaction can be aborted and producer can choose to resubmit failed records as ordering is not important.                                        | Ingest for the respective group (partitionValues + bucketId) must be halted and failed records resubmitted to preserve sequence.                                                                                         |
+| User perception of missing data | Data has not arrived yet → "latency?"                                                                                                              | "This data is inconsistent, some records have been updated, but other related records have not" – consider here the classic transfer between bank accounts scenario.                                                     |
+| API end point scope             | A given `HiveEndPoint` instance submits many transactions to a specific bucket, in a specific partition, of a specific table.                      | A set of `MutationCoordinators` writes changes to unknown set of buckets, of an unknown set of partitions, of specific tables (can be more than one), within a single transaction.                                       |
 
 # Structure
 
@@ -131,8 +131,4 @@ See `[ExampleUseCase](https://github.com/apache/hive/blob/master/hcatalog/strea
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

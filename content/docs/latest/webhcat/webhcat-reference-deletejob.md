@@ -25,25 +25,25 @@ Use `[DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})` instead.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:jobid** | The job ID to delete. This is the ID received when the job was created. | Required | None |
+|    Name    |                               Description                               | Required? | Default |
+|------------|-------------------------------------------------------------------------|-----------|---------|
+| **:jobid** | The job ID to delete. This is the ID received when the job was created. | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **status** | A JSON object containing the job status information. See the Hadoop documentation ([`Class JobStatus`](http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapred/JobStatus.html)) for more information. |
-| **profile** | A JSON object containing the job profile information. WebHCat passes along the information in the JobProfile object, which is subject to change from one Hadoop version to another. See the [Hadoop documentation](http://hadoop.apache.org/docs/) (API docs) for org.apache.hadoop.mapred.JobProfile for more information. |
-| **id** | The job ID. |
-| **parentId** | The parent job ID. |
-| **percentComplete** | The job completion percentage, for example "75% complete". |
-| **exitValue** | The job's exit value. |
-| **user** | User name of the job creator. |
-| **callback** | The callback URL, if any. |
-| **completed** | A string representing completed status, for example "done". |
+|        Name         |                                                                                                                                                         Description                                                                                                                                                         |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **status**          | A JSON object containing the job status information. See the Hadoop documentation ([`Class JobStatus`](http://hadoop.apache.org/docs/stable/api/org/apache/hadoop/mapred/JobStatus.html)) for more information.                                                                                                             |
+| **profile**         | A JSON object containing the job profile information. WebHCat passes along the information in the JobProfile object, which is subject to change from one Hadoop version to another. See the [Hadoop documentation](http://hadoop.apache.org/docs/) (API docs) for org.apache.hadoop.mapred.JobProfile for more information. |
+| **id**              | The job ID.                                                                                                                                                                                                                                                                                                                 |
+| **parentId**        | The parent job ID.                                                                                                                                                                                                                                                                                                          |
+| **percentComplete** | The job completion percentage, for example "75% complete".                                                                                                                                                                                                                                                                  |
+| **exitValue**       | The job's exit value.                                                                                                                                                                                                                                                                                                       |
+| **user**            | User name of the job creator.                                                                                                                                                                                                                                                                                               |
+| **callback**        | The callback URL, if any.                                                                                                                                                                                                                                                                                                   |
+| **completed**       | A string representing completed status, for example "done".                                                                                                                                                                                                                                                                 |
 
 ## Example
 
@@ -103,13 +103,7 @@ The job is not immediately deleted, therefore the information returned may not r
 
 **Navigation Links**
 Previous: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo" >}})  
- Next: [GET jobs]({{< ref "webhcat-reference-jobs" >}})
-
-
+Next: [GET jobs]({{< ref "webhcat-reference-jobs" >}})
 
 Replaced in Hive 0.12.0 by: [DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})
-
- 
-
- 
 

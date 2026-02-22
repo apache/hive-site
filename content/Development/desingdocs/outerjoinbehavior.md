@@ -11,12 +11,12 @@ This document is based on a writeup of [DB2 Outer Join Behavior](http://www.ibm.
 
 ## Definitions
 
-| | |
-| --- | --- |
-|  **Preserved Row table**  |  The table in an Outer Join that must return all rows.  For left outer joins this is the *Left* table, for right outer joins it is the *Right* table, and for full outer joins both tables are *Preserved Row* tables.  |
-|  **Null Supplying table**  |  This is the table that has nulls filled in for its columns in unmatched rows.  In the non-full outer join case, this is the other table in the Join. For full outer joins both tables are also *Null Supplying* tables.  |
-|  **During Join predicate**  |  A predicate that is in the JOIN **ON** clause.  For example, in '`R1 join R2 on R1.x = 5`' the predicate '`R1.x = 5`' is a *During Join predicate*.  |
-|  **After Join predicate**  |  A predicate that is in the WHERE clause.  |
+|                           |                                                                                                                                                                                                                         |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Preserved Row table**   | The table in an Outer Join that must return all rows.  For left outer joins this is the *Left* table, for right outer joins it is the *Right* table, and for full outer joins both tables are *Preserved Row* tables.   |
+| **Null Supplying table**  | This is the table that has nulls filled in for its columns in unmatched rows.  In the non-full outer join case, this is the other table in the Join. For full outer joins both tables are also *Null Supplying* tables. |
+| **During Join predicate** | A predicate that is in the JOIN **ON** clause.  For example, in '`R1 join R2 on R1.x = 5`' the predicate '`R1.x = 5`' is a *During Join predicate*.                                                                     |
+| **After Join predicate**  | A predicate that is in the WHERE clause.                                                                                                                                                                                |
 
 ## Predicate Pushdown Rules
 
@@ -27,10 +27,10 @@ The logic can be summarized by these two rules:
 
 This captured in the following table:
 
-|   |  Preserved Row Table  |  Null Supplying Table  |
-| --- | --- | --- |
-|  Join  Predicate  |  Case J1:  Not Pushed  |  Case J2:  Pushed  |
-|  Where  Predicate  |  Case W1:  Pushed  |  Case W2:  Not Pushed  |
+|                  | Preserved Row Table  | Null Supplying Table |
+|------------------|----------------------|----------------------|
+| Join  Predicate  | Case J1:  Not Pushed | Case J2:  Pushed     |
+| Where  Predicate | Case W1:  Pushed     | Case W2:  Not Pushed |
 
 See [Examples]({{< ref "#examples" >}}) below for illustrations of cases J1, J2, W1, and W2.
 
@@ -38,7 +38,7 @@ See [Examples]({{< ref "#examples" >}}) below for illustrations of cases J1, J2,
 
 Hive enforces the rules by these methods in the SemanticAnalyzer and JoinPPD classes:
 
-**Rule 1:** During **QBJoinTree** construction in Plan Gen, the `parseJoinCondition()` logic applies this rule.  
+**Rule 1:** During **QBJoinTree** construction in Plan Gen, the `parseJoinCondition()` logic applies this rule.
 
 **Rule 2:** During **JoinPPD** (Join Predicate PushDown) the `getQualifiedAliases()` logic applies this rule.
 
@@ -302,8 +302,4 @@ STAGE PLANS:
       limit: -1
 
 ```
-
- 
-
- 
 

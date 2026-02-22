@@ -35,7 +35,3 @@ Shyam mentioned some ongoing work on real-time Hadoop that might be an interesti
 
 Next meeting will be at Cloudera.
 
- 
-
- 
-

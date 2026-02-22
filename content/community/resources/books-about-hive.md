@@ -29,7 +29,3 @@ Related books:
 
 * [Apache Iceberg: The Definitive Guide: Data Lakehouse Functionality, Performance, and Scalability on the Data Lake](https://www.amazon.com/dp/1098148622) by Tomer Shiran, Jason Hughes, Alex Merced
 
- 
-
- 
-

@@ -29,8 +29,8 @@ This is an optional step. Eclipse has a lot of advanced features for Java develo
 This checklist tells you how to create accounts and obtain permissions needed by Hive contributors. See the [Hive website](http://hive.apache.org/) for additional information.
 
 * Request an Apache Software Foundation [JIRA account](/community/resources/howtocontribute#request-account), if you do not already have one.
-	+ The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
-	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
+  + The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
+  + The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
 * To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{< ref "#about-this-wiki" >}}).
 * To edit the Hive website, follow the instructions in [How to edit the website](https://github.com/apache/hive-site/blob/main/README.md).
@@ -49,24 +49,24 @@ Modify the source code and add some features using your favorite IDE.
 Please take care about the following points.
 
 * All public classes and methods should have informative [Javadoc comments](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html).
-	+ Do not use @author tags.
+  + Do not use @author tags.
 * Code should be formatted according to [Sun's conventions](http://web.archive.org/web/20140228225807/http://www.oracle.com/technetwork/java/codeconventions-150003.pdf), with two exceptions:
-	+ Indent two (2) spaces per level, not four (4).
-	+ Line length limit is 120 chars, instead of 80 chars.
+  + Indent two (2) spaces per level, not four (4).
+  + Line length limit is 120 chars, instead of 80 chars.
 * An Eclipse [formatter](https://github.com/apache/hive/blob/master/dev-support/eclipse-styles.xml) is provided in the dev-support folder – this can be used with both Eclipse and Intellij. Please consider importing this before editing the source code.
-	+ For Eclipse:
-		- Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
-		- In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
-	+ For Intellij:
-		- Go to Settings -> Editor -> Code Style -> Java -> Scheme; Click manage; Import eclipse-styles.xml; Apply.
+  + For Eclipse:
+    - Go to Preferences -> Java -> Code Style -> Formatter; Import eclipse-styles.xml; Apply.
+    - In addition update save actions: Java -> Editor -> Save Actions; Check the following: Perform the following actions on save; Format Source Code; Format edited lines.
+  + For Intellij:
+    - Go to Settings -> Editor -> Code Style -> Java -> Scheme; Click manage; Import eclipse-styles.xml; Apply.
 * Contributions should not introduce new Checkstyle violations.
-	+ Check for new [Checkstyle](http://checkstyle.sourceforge.net/) violations by running `mvn checkstyle:checkstyle-aggregate`, and then inspect the results in the `target/site` directory. It is possible to run the checks for a specific module, if the  `mvn` command is issued in the root directory of the module.
-	+ If you use Eclipse you should install the [eclipse-cs Checkstyle plugin](http://eclipse-cs.sourceforge.net/). This plugin highlights violations in your code and is also able to automatically correct some types of violations.
+  + Check for new [Checkstyle](http://checkstyle.sourceforge.net/) violations by running `mvn checkstyle:checkstyle-aggregate`, and then inspect the results in the `target/site` directory. It is possible to run the checks for a specific module, if the  `mvn` command is issued in the root directory of the module.
+  + If you use Eclipse you should install the [eclipse-cs Checkstyle plugin](http://eclipse-cs.sourceforge.net/). This plugin highlights violations in your code and is also able to automatically correct some types of violations.
 * Contributions should pass existing unit tests.
 * New unit tests should be provided to demonstrate bugs and fixes. [JUnit](http://www.junit.org) is our test framework:
-	+ You should create test classes for junit4, whose class name must start with a 'Test' prefix.
-	+ You can run all the unit tests with the command `mvn test`, or you can run a specific unit test with the command `mvn test -Dtest=<class name without package prefix>` (for example: `mvn test -Dtest=TestFileSystem`).
-	+ After uploading your patch, it might worthwhile to check if your new test has been executed in the precommit job.
+  + You should create test classes for junit4, whose class name must start with a 'Test' prefix.
+  + You can run all the unit tests with the command `mvn test`, or you can run a specific unit test with the command `mvn test -Dtest=<class name without package prefix>` (for example: `mvn test -Dtest=TestFileSystem`).
+  + After uploading your patch, it might worthwhile to check if your new test has been executed in the precommit job.
 
 ### Understanding Maven
 
@@ -226,7 +226,7 @@ Committers: for non-trivial changes, it is best to get another committer to revi
 
 ## JIRA
 
-Hive uses [JIRA](https://issues.apache.org/jira/browse/HIVE) for issues/case management. You must have a JIRA account in order to log cases and issues. 
+Hive uses [JIRA](https://issues.apache.org/jira/browse/HIVE) for issues/case management. You must have a JIRA account in order to log cases and issues.
 
 Requests for the creation of new accounts can be submitted via the following form: <https://selfserve.apache.org/jira-account.html>
 
@@ -265,71 +265,73 @@ Here are the steps relevant to `hive_metastore.thrift`:
 
 1. Don't make any changes to `hive_metastore.thrift` until instructed below.
 2. Use the approved version of Thrift. This is currently `thrift-0.14.1`, which you can obtain from <http://thrift.apache.org/>.
-	1. For Mac via Homebrew (since the version we need is not available by default):
+   1. For Mac via Homebrew (since the version we need is not available by default):
 
-	```
-	brew tap-new $USER/local-tap
-	brew extract --version='0.14.1' thrift $USER/local-tap
-	brew install thrift@0.14.1
-	mkdir -p /usr/local/share/fb303/if
-	cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
-	```
+   ```
+   brew tap-new $USER/local-tap
+   brew extract --version='0.14.1' thrift $USER/local-tap
+   brew install thrift@0.14.1
+   mkdir -p /usr/local/share/fb303/if
+   cp /usr/local/Cellar/thrift@0.14.1/0.14.1/share/fb303/if/fb303.thrift /usr/local/share/fb303/if
+   ```
 
-	2. For Mac, building from sources:
+   2. For Mac, building from sources:
 
-	```
-	wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
-	
-	tar xzf thrift-0.14.1.tar.gz
-	
-	
-	brew install libtool
-	brew install automake
-	
-	#If configure fails with "syntax error near unexpected token `QT5", then run "brew install pkg-config"
-	
-	./bootstrap.sh
-	
-	sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
-	
-	brew install openssl
-	
-	sudo ln -s /usr/local/opt/openssl/include/openssl/ /usr/local/include/
-	
-	sudo make
-	
-	sudo make install
-	
-	mkdir -p /usr/local/share/fb303/if
-	
-	cp path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
-	# or alternatively the following command
-	curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
-	```
+   ```
+   	wget http://archive.apache.org/dist/thrift/0.14.1/thrift-0.14.1.tar.gz
 
-	3. For Linux:
+   	tar xzf thrift-0.14.1.tar.gz
 
-	```
-	cd /path/to/thrift-0.14.1
-	/configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
-	sudo make
-	sudo make install 
-	sudo mkdir -p /usr/local/share/fb303/if
-	sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
-	```
 
+   	brew install libtool
+   	brew install automake
+
+   	#If configure fails with "syntax error near unexpected token `QT5", then run "brew install pkg-config"
+
+   	./bootstrap.sh
+
+   	sudo ./configure --with-openssl=/usr/local/Cellar/openssl@1.1/1.1.1j --without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+
+   	brew install openssl
+
+   	sudo ln -s /usr/local/opt/openssl/include/openssl/ /usr/local/include/
+
+   	sudo make
+
+   	sudo make install
+
+   	mkdir -p /usr/local/share/fb303/if
+
+   	cp path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
+   	# or alternatively the following command
+   	curl -o /usr/local/share/fb303/if/fb303.thrift https://raw.githubusercontent.com/apache/thrift/master/contrib/fb303/if/fb303.thrift
+   ```
+
+   3. For Linux:
+
+   ```
+   cd /path/to/thrift-0.14.1
+   /configure -without-erlang --without-nodejs --without-python --without-py3 --without-perl --without-php --without-php_extension --without-ruby --without-haskell --without-go --without-swift --without-dotnetcore --without-qt5
+   sudo make
+   sudo make install 
+   sudo mkdir -p /usr/local/share/fb303/if
+   sudo cp /path/to/thrift-0.14.1/contrib/fb303/if/fb303.thrift /usr/local/share/fb303/if/fb303.thrift
+   ```
 3. Before proceeding, verify that `which thrift` returns the build of Thrift you just installed (typically `/usr/local/bin` on Linux); if not, edit your PATH and repeat the verification. Also verify that the command 'thrift -version' returns the expected version number of Thrift.
 4. Now you can run the Maven 'thriftif' profile to generate the Thrift code:
-	1. `cd /path/to/hive/`
-	2. `mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
+   1. `cd /path/to/hive/`
+   2. `mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
 5. Verify that the code generation was a no-op, which should be the case if you have the correct Thrift version and everyone has been following these instructions. You may use `git status` for the same. If you can't figure out what is going wrong, ask for help from a committer.
 6. Now make your changes to `hive_metastore.thrift`, and then run the compiler again, from /path/to/hive/<hive_metastore.thrift's module>:
 
-	`mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
+   `mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local`
 
 7. Now use `git status and git diff` to verify that the regenerated code corresponds only to the changes you made to `hive_metastore.thrift`. You may also need `git add` if new files were generated (and or `git rm` if some files are now obsoleted).
+
 8. `cd /path/to/hive`
+
 9. `mvn clean package -DskiptTests (at the time of writing also "-Dmaven.javadoc.skip" is needed)`
+
 10. Verify that Hive is still working correctly with both embedded and remote metastore configurations.
 
 ## Stay Involved
@@ -341,3 +343,4 @@ Contributors should join the [Hive mailing lists](/community/mailinglists/). In 
 * [Apache contributor documentation](https://infra.apache.org/contributors.html)
 * [Apache voting documentation](http://www.apache.org/foundation/voting.html)
 * [GitHub repository of this website](https://github.com/apache/hive-site)
+

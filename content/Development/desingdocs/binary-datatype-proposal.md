@@ -21,9 +21,9 @@ create table binary_table (a string, b binary);
 
 ### How is 'binary' represented internally in Hive
 
-Binary type in Hive will map to 'binary' data type in thrift.   
+Binary type in Hive will map to 'binary' data type in thrift. 
 
-Primitive java object for 'binary' type is ByteArrayRef  
+Primitive java object for 'binary' type is ByteArrayRef
 
 PrimitiveWritableObject for 'binary' type is BytesWritable
 
@@ -41,13 +41,13 @@ As with other types, binary data will be sent to transform script in String form
 
 ### Supported Serde:
 
-ColumnarSerde  
+ColumnarSerde
 
-BinarySortableSerde  
+BinarySortableSerde
 
-LazyBinaryColumnarSerde    
+LazyBinaryColumnarSerde  
 
-LazyBinarySerde  
+LazyBinarySerde
 
 LazySimpleSerde
 
@@ -56,8 +56,4 @@ Group-by and unions will be supported on columns with 'binary' type
 ### JIRA:
 
 <https://issues.apache.org/jira/browse/HIVE-2380>
-
- 
-
- 
 

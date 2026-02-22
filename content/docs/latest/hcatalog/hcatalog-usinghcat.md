@@ -8,7 +8,7 @@ date: 2024-12-12
 ## Version information
 
 HCatalog graduated from the Apache incubator and merged with the Hive project on March 26, 2013.  
- Hive version 0.11.0 is the first release that includes HCatalog.
+Hive version 0.11.0 is the first release that includes HCatalog.
 
 ## Overview
 
@@ -112,13 +112,7 @@ group by advertiser_id;
 **Navigation Links**
 Next: [HCatalog Installation]({{< ref "hcatalog-installhcat" >}})
 
-
-
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

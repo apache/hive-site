@@ -239,7 +239,3 @@ Thrift Node clients are available on github at <https://github.com/wdavidw/node
 
 A Thrift Ruby client is available on github at <https://github.com/forward3d/rbhive>.
 
- 
-
- 
-

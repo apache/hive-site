@@ -120,18 +120,18 @@ As mentioned above, each event is tagged with an event sequence ID. In addition 
 
 Each event is handled differently depending on its event type, which is a combination of the object (database, table, partition) and the operation (create, add, alter, insert, drop). Each event may include a source command, a copy, and a destination command. The following chart describes the ten event types and how they are handled with descriptions below.
 
-| Event | Source Command | Needs Copy? | Destination Command |
-| --- | --- | --- | --- |
-| CreateDatabase | No-op | No | No-op |
-| DropDatabase | No-op | No | `DROP DATABASE CASCADE` |
-| AlterDatabase | *(not implemented)* | *(not implemented)* | *(not implemented)* |
-| CreateTable | `EXPORT … FOR REPLICATION` | Yes | `IMPORT` |
-| DropTable | No-op | No | `DROP TABLE … FOR REPLICATION(‘id’)` |
-| AlterTable | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT`` |
-| AddPartition | (multi) `EXPORT … FOR REPLICATION` | Yes | (multi) ``IMPORT`` |
-| DropPartition | No-op | No | (multi) `ALTER TABLE … DROP PARTITION(…) FOR REPLICATION(‘id’)` |
-| AlterPartition | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT`` |
-| Insert | `EXPORT … FOR REPLICATION` | Yes (dumb copy) | ``IMPORT`` |
+|     Event      |           Source Command            |     Needs Copy?     |                       Destination Command                       |
+|----------------|-------------------------------------|---------------------|-----------------------------------------------------------------|
+| CreateDatabase | No-op                               | No                  | No-op                                                           |
+| DropDatabase   | No-op                               | No                  | `DROP DATABASE CASCADE`                                         |
+| AlterDatabase  | *(not implemented)*                 | *(not implemented)* | *(not implemented)*                                             |
+| CreateTable    | `EXPORT … FOR REPLICATION`          | Yes                 | `IMPORT`                                                        |
+| DropTable      | No-op                               | No                  | `DROP TABLE … FOR REPLICATION(‘id’)`                            |
+| AlterTable     | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT``                                                      |
+| AddPartition   | (multi) `EXPORT … FOR REPLICATION`  | Yes                 | (multi) ``IMPORT``                                              |
+| DropPartition  | No-op                               | No                  | (multi) `ALTER TABLE … DROP PARTITION(…) FOR REPLICATION(‘id’)` |
+| AlterPartition | `EXPORT … FOR METADATA REPLICATION` | Yes (metadata only) | ``IMPORT``                                                      |
+| Insert         | `EXPORT … FOR REPLICATION`          | Yes (dumb copy)     | ``IMPORT``                                                      |
 
 ##### CreateDatabase
 

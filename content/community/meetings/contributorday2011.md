@@ -13,3 +13,4 @@ Resources for mini-hackathon:
 * you'll need a Mac or Linux development environment with Hive+Hadoop already installed on it per [these instructions]({{< ref "gettingstarted-latest" >}}); for Hive, use the snapshot
 * you'll also need [Apache ant](http://ant.apache.org) installed.
 * [HIVE-1545](https://issues.apache.org/jira/browse/HIVE-1545) has the UDF libraries we'd like to get cleaned up for inclusion in Hive or extension libraries (download core.tar.gz and/or ext.tar.gz)
+

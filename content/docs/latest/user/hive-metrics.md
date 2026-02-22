@@ -5,8 +5,6 @@ date: 2024-12-12
 
 # Apache Hive : Hive Metrics
 
-  
-
 The metrics that Hive collects can be viewed in the [HiveServer2 Web UI]({{< ref "#hiveserver2-web-ui" >}}) by using the "Metrics Dump" tab.
 
 The metrics dump will display any metric available over JMX encoded in JSON: 
@@ -154,8 +152,4 @@ See [HiveServer2 Overview]({{< ref "hiveserver2-overview" >}}) for more informat
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

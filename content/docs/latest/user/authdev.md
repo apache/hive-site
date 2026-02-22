@@ -56,7 +56,7 @@ others include "create table as ", "create table like" etc
 Store the privilege information in the new metastore tables 'user', 'db', 'tables_priv', 'columns_priv'.
 
 The user table indicates user's global privileges, which apply to all databases.  
- The db table determine database level access privileges, which apply to all objects inside that database.
+The db table determine database level access privileges, which apply to all objects inside that database.
 
 ## 3.1 user, group, and roles
 
@@ -114,7 +114,9 @@ hive> desc user;
 
 Field
 
-* - - -
+* 
+
+  - - -
 
 User
 
@@ -134,7 +136,9 @@ hive> desc db;
 
 Field
 
-* - - -
+* 
+
+  - - -
 
 Db
 
@@ -154,7 +158,9 @@ hive> desc tables_priv;
 
 Field
 
-* - - -
+* 
+
+  - - -
 
 Db
 
@@ -178,7 +184,9 @@ mysql> desc columns_priv;
 
 Field
 
-* - - -
+* 
+
+  - - -
 
 Db
 
@@ -282,7 +290,7 @@ Role can be nested but not circular.
 ## 5.2 The verification steps
 
 When a user logins to the system, he has a user name, one or few groups that he belongs to.  
- So it is
+So it is
 
 [
 
@@ -321,11 +329,11 @@ For each role/group, we do the same routine as we did for user name.
 ## 5.3 Examples
 
 5.3.1 I want to grant everyone (new people may join at anytime) to  
- db_name.*, and then later i want to protect one table db_name.T from ALL  
- users but a few
+db_name.*, and then later i want to protect one table db_name.T from ALL  
+users but a few
 
 1) Add all users to a group 'users'. (assumption: new users will  
- automatically join this group). And grant 'users' ALL privileges to db_name.*
+automatically join this group). And grant 'users' ALL privileges to db_name.*
 
 2) Add those few users to a new group 'users2'. AND REMOVE them from 'users'
 
@@ -334,20 +342,20 @@ For each role/group, we do the same routine as we did for user name.
 4) Grant ALL on db_name.T to users2
 
 5.3.2 I want to protect one table db_name.T from one/few users, but all  
- other people can access it
+other people can access it
 
 1) Add all users to a group 'users'. (assumption: new users will automatically  
- join this group). And grant 'users' ALL privileges to db_name.*.
+join this group). And grant 'users' ALL privileges to db_name.*.
 
 2) Add those few users to a new group 'users2'. (Note: those few users will now  
- belong to 2 groups: users and user2)
+belong to 2 groups: users and user2)
 
 3) DENY 'users2' to db_name.T
 
 # 6. Where to add authorization in Hive
 
 CliDriver and HiveServer. Basically they share the same code. If HiveServer invokes CliDriver, we can just add it into CliDriver. And we also need to make HiveServer be able to support multiple user/connections.  
- This still does not solve the problem if someone accesses the metastore directly (without going through Hive).
+This still does not solve the problem if someone accesses the metastore directly (without going through Hive).
 
 # 7. Implementation
 
@@ -526,8 +534,4 @@ CREATE TABLE {{PART_COL_PRIVS}} (
 # HDFS Permission
 
 The above has a STRONG assumption on the file layer security. Users can easily by-pass the security if the hdfs file permission is open to him. We hope we can easily plug in external authorizations (like HDFS permission/Howl permission) to alter the authorization result or even the rule.
-
- 
-
- 
 

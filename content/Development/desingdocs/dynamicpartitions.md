@@ -7,13 +7,13 @@ date: 2024-12-12
 
 ## Documentation
 
-This is the design document for dynamic partitions in Hive. Usage information is also available: 
+This is the design document for dynamic partitions in Hive. Usage information is also available:
 
 * [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
 * [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
 * [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+  + [Usage with Pig]({{< ref "#usage-with-pig" >}})
+  + [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
 
 References:
 
@@ -27,7 +27,7 @@ References:
 
 ## Syntax
 
-DP columns are specified the same way as it is for SP columns – in the partition clause. The only difference is that DP columns do not have values, while SP columns do. In the partition clause, we need to specify all partitioning columns, even if all of them are DP columns. 
+DP columns are specified the same way as it is for SP columns – in the partition clause. The only difference is that DP columns do not have values, while SP columns do. In the partition clause, we need to specify all partitioning columns, even if all of them are DP columns.
 
 In INSERT ... SELECT ... queries, the dynamic partition columns must be **specified last** among the columns in the SELECT statement and **in the same order** in which they appear in the PARTITION() clause.
 
@@ -80,7 +80,7 @@ In INSERT ... SELECT ... queries, the dynamic partition columns must be **specif
 
 ```
 
-The above example shows the case of all DP columns in CTAS. If you want put some constant for some partitioning column, you can specify it in the select-clause. e.g, 
+The above example shows the case of all DP columns in CTAS. If you want put some constant for some partitioning column, you can specify it in the select-clause. e.g,
 
 ```
 
@@ -101,9 +101,9 @@ The above example shows the case of all DP columns in CTAS. If you want put some
 
 ## Design issues
 
- 1) Data type of the dynamic partitioning column:   
+1) Data type of the dynamic partitioning column:
 
- A dynamic partitioning column could be the result of an expression. For example:
+A dynamic partitioning column could be the result of an expression. For example:
 
 ```
 
@@ -112,23 +112,23 @@ The above example shows the case of all DP columns in CTAS. If you want put some
 
 ```
 
-Although currently there is not restriction on the data type of the partitioning column, allowing non-primitive columns to be partitioning column probably doesn't make sense. The dynamic partitioning column's type should be derived from the expression. The data type has to be able to be converted to a string in order to be saved as a directory name in HDFS. 
+Although currently there is not restriction on the data type of the partitioning column, allowing non-primitive columns to be partitioning column probably doesn't make sense. The dynamic partitioning column's type should be derived from the expression. The data type has to be able to be converted to a string in order to be saved as a directory name in HDFS.
 
- 2) Partitioning column value to directory name conversion:  
+2) Partitioning column value to directory name conversion:
 
- After converting column value to string, we still need to convert the string value to a valid directory name. Some reasons are: 
+After converting column value to string, we still need to convert the string value to a valid directory name. Some reasons are:
 
 * string length is unlimited in theory, but HDFS/local FS directory name length is limited.
 * string value could contains special characters that is reserved in FS path names (such as '/' or '..').
 * what should we do for partition column ObjectInspector?
 
- We need to define a UDF (say hive_qname_partition(T.part_col)) to take a primitive typed value and convert it to a qualified partition name.
+We need to define a UDF (say hive_qname_partition(T.part_col)) to take a primitive typed value and convert it to a qualified partition name.
 
- 3) Due to 2), this dynamic partitioning scheme qualifies as a hash-based partitioning scheme, except that we define the hash function to be as close as  
+3) Due to 2), this dynamic partitioning scheme qualifies as a hash-based partitioning scheme, except that we define the hash function to be as close as
 
-the input value. We should allow users to plugin their own UDF for the partition hash function. Will file a follow up JIRA if there is sufficient interests. 
+the input value. We should allow users to plugin their own UDF for the partition hash function. Will file a follow up JIRA if there is sufficient interests.
 
- 4) If there are multiple partitioning columns, their order is significant since that translates to the directory structure in HDFS: partitioned by (ds string, dept int) implies a directory structure of ds=2009-02-26/dept=2. In a DML or DDL involving partitioned table, So if a subset of partitioning columns are specified (static), we should throw an error if a dynamic partitioning column is lower. Example:
+4) If there are multiple partitioning columns, their order is significant since that translates to the directory structure in HDFS: partitioned by (ds string, dept int) implies a directory structure of ds=2009-02-26/dept=2. In a DML or DDL involving partitioned table, So if a subset of partitioning columns are specified (static), we should throw an error if a dynamic partitioning column is lower. Example:
 
 ```
 
@@ -136,8 +136,4 @@ the input value. We should allow users to plugin their own UDF for the partition
  insert overwrite nzhang_part (dept=1) select a, ds, dept from T where dept=1 and ds is not null;
 
 ```
-
- 
-
- 
 

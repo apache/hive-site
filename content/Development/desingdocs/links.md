@@ -93,7 +93,7 @@ The idea here is to tag tables/partitions with the namespaces that they belong t
 * Capacity tracking and management will be more complex than using databases for this purpose.
 * Data migration is more complex since the data is not contained with the root folder of one database
 
-None of these are insurmountable problems, but using databases to model namespaces is a cleaner approach.  
+None of these are insurmountable problems, but using databases to model namespaces is a cleaner approach.
 
 (Taking this idea further, a database in Hive could itself have been implemented using tags in a single global namespace which would have not been as elegant as the current implementation of a database being a first class concept in Hive.)
 
@@ -101,9 +101,9 @@ None of these are insurmountable problems, but using databases to model namespac
 
 * The view would be a simple select * using Y.T syntax. It’s a degenerate case of view.
 * We would need a registry of all views which import tables/partitions from other databases for namespace accounting. This requires adding metadata to these views to distinguish them from other user-created views.
-* It would be harder to single instance imports using views (same table/partitions imported twice into the same namespace). Views are too opaque.  
+* It would be harder to single instance imports using views (same table/partitions imported twice into the same namespace). Views are too opaque.
 
-Using partitioned views:  
+Using partitioned views:
 
 By definition, there isn't a one-one mapping between a view partition and a table partition. In fact, hive today does not even know about this dependency between view partitions and table partitions. Partitioned views is just a metadata concept - it is not something that the query layer understands. For e.g: if a view V partitioned on ds had 2 partitions: 1 and 2, then a query like select … from V where ds = 3 may still give valid results if the ds=3 is satisfied by the table underlying V. This means that:
 * View metadata doesn’t stay in sync with source partitions (as partitions get added and dropped). The user has to explicitly do this, which won't work for our case.

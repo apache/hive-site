@@ -15,21 +15,21 @@ Create a database.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **group** | The user group to use | Optional | None |
-| **permissions** | The permissions string to use | Optional | None |
-| **location** | The database location | Optional | None |
-| **comment** | A comment for the database, like a description | Optional | None |
-| **properties** | The database properties | Optional | None |
+|      Name       |                  Description                   | Required? | Default |
+|-----------------|------------------------------------------------|-----------|---------|
+| **:db**         | The database name                              | Required  | None    |
+| **group**       | The user group to use                          | Optional  | None    |
+| **permissions** | The permissions string to use                  | Optional  | None    |
+| **location**    | The database location                          | Optional  | None    |
+| **comment**     | A comment for the database, like a description | Optional  | None    |
+| **properties**  | The database properties                        | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|     Name     |    Description    |
+|--------------|-------------------|
 | **database** | The database name |
 
 ## Example
@@ -54,14 +54,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb" >}}) Next: [DELETE ddl/database/:db]({{< ref "webhcat-reference-deletedb" >}})
-
-
-
- 
-
- 
 

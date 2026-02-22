@@ -39,13 +39,13 @@ HIVE_SERVER2_THRIFT_PORT – Optional TCP port number to listen on, default 1000
 
 HiveServer2 provides support for sending Thrift RPC messages over HTTP transport (Hive 0.13 onward, see [HIVE-4752](https://issues.apache.org/jira/browse/HIVE-4752)). This is particularly useful to support a proxying intermediary between the client and the server (for example, for load balancing or security reasons). Currently, you can run HiveServer2 in either TCP mode or the HTTP mode, but not in both. For the corresponding JDBC URL check this link: [HiveServer2 Clients -- JDBC Connection URLs](/docs/latest/user/hiveserver2-clients#jdbc). Use the following settings to enable and configure HTTP mode:
 
-| Setting | Default | Description |
-| --- | --- | --- |
-| [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}}) | binary | Set to http to enable HTTP transport mode |
-| [hive.server2.thrift.http.port]({{< ref "#hive-server2-thrift-http-port" >}}) | 10001 | HTTP port number to listen on |
-| [hive.server2.thrift.http.max.worker.threads]({{< ref "#hive-server2-thrift-http-max-worker-threads" >}}) | 500 | Maximum worker threads in the server pool |
-| [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5 | Minimum worker threads in the server pool |
-| [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}}) | cliservice | The service endpoint |
+|                                                  Setting                                                  |  Default   |                Description                |
+|-----------------------------------------------------------------------------------------------------------|------------|-------------------------------------------|
+| [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}})                                 | binary     | Set to http to enable HTTP transport mode |
+| [hive.server2.thrift.http.port]({{< ref "#hive-server2-thrift-http-port" >}})                             | 10001      | HTTP port number to listen on             |
+| [hive.server2.thrift.http.max.worker.threads]({{< ref "#hive-server2-thrift-http-max-worker-threads" >}}) | 500        | Maximum worker threads in the server pool |
+| [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5          | Minimum worker threads in the server pool |
+| [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}})                             | cliservice | The service endpoint                      |
 
 ##### Cookie Based Authentication
 
@@ -251,8 +251,6 @@ A Web User Interface (UI) for HiveServer2 provides configuration, logging, metri
 
 The interface is currently under development with [HIVE-12338](https://issues.apache.org/jira/browse/HIVE-12338).
 
-  
-
 ![](/attachments/30758712/61336258.png)
 
 ## Python Client Driver
@@ -306,8 +304,4 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

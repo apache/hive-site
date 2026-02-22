@@ -15,19 +15,19 @@ List the tables in an HCatalog database.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **like** | List only tables whose names match the specified pattern | Optional | "*" (List all tables) |
+|   Name   |                       Description                        | Required? |        Default        |
+|----------|----------------------------------------------------------|-----------|-----------------------|
+| **:db**  | The database name                                        | Required  | None                  |
+| **like** | List only tables whose names match the specified pattern | Optional  | "*" (List all tables) |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **tables** | A list of table names |
-| **database** | The database name |
+|     Name     |      Description      |
+|--------------|-----------------------|
+| **tables**   | A list of table names |
+| **database** | The database name     |
 
 ## Example
 
@@ -82,14 +82,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [DELETE ddl/database/:db]({{< ref "webhcat-reference-deletedb" >}}) Next: [GET ddl/database/:db/table/:table]({{< ref "webhcat-reference-gettable" >}})
-
-
-
- 
-
- 
 

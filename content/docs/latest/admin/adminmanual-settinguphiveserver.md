@@ -12,7 +12,3 @@ date: 2024-12-12
 * [Setting Up Hive JDBC Server]({{< ref "hivejdbcinterface" >}})
 * [Setting Up Hive ODBC Server]({{< ref "hiveodbc" >}})
 
- 
-
- 
-

@@ -56,17 +56,17 @@ The file system’s logic for determining if a user has permission on the direct
 
 The following table shows the minimum permissions required for Hive operations under this authorization model:
 
-| Operation | Database Read Access | Database Write Access | Table Read Access | Table Write Access |
-| --- | --- | --- | --- | --- |
-| LOAD |   |   |   | X |
-| EXPORT |   |   | X |   |
-| IMPORT |   |   |   | X |
-| CREATE TABLE |   | X |   |   |
-| CREATE TABLE AS SELECT |   | X | X  source table |   |
-| DROP TABLE |   | X |   |   |
-| SELECT |   |   | X |   |
-| ALTER TABLE |   |   |   | X |
-| SHOW TABLES | X |   |   |   |
+|       Operation        | Database Read Access | Database Write Access | Table Read Access | Table Write Access |
+|------------------------|----------------------|-----------------------|-------------------|--------------------|
+| LOAD                   |                      |                       |                   | X                  |
+| EXPORT                 |                      |                       | X                 |                    |
+| IMPORT                 |                      |                       |                   | X                  |
+| CREATE TABLE           |                      | X                     |                   |                    |
+| CREATE TABLE AS SELECT |                      | X                     | X  source table   |                    |
+| DROP TABLE             |                      | X                     |                   |                    |
+| SELECT                 |                      |                       | X                 |                    |
+| ALTER TABLE            |                      |                       |                   | X                  |
+| SHOW TABLES            | X                    |                       |                   |                    |
 
 **Caution:** Hive's current implementation of this authorization model does not prevent malicious users from doing bad things. See the [Known Issues]({{< ref "#known-issues" >}}) section below.
 
@@ -128,10 +128,4 @@ The HCatalog command line tool uses the same syntax as Hive, and will create the
 Previous: [Notification]({{< ref "hcatalog-notification" >}})
 
 Hive documents: [Authorization]({{< ref "languagemanual-authorization" >}}) and [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}})
-
-
-
- 
-
- 
 

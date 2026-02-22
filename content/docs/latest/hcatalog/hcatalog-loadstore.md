@@ -4,7 +4,7 @@ date: 2024-12-12
 ---
 
 # Apache Hive : HCatalog Load and Store Interfaces
- 
+
 ## Set Up
 
 The HCatLoader and HCatStorer interfaces are used with Pig scripts to read and write data in HCatalog-managed tables. No HCatalog-specific setup is required for these interfaces.
@@ -29,8 +29,8 @@ The fully qualified package name changed from *org.apache.hcatalog.pig* to *o
 
 In many older web site examples you may find references to the old syntax which no longer functions.
 
-| Previous Pig Versions | 0.14+ |
-| --- | --- |
+|       Previous Pig Versions        |                  0.14+                  |
+|------------------------------------|-----------------------------------------|
 | org.apache.hcatalog.pig.HCatLoader | org.apache.hive.hcatalog.pig.HCatLoader |
 | org.apache.hcatalog.pig.HCatStorer | org.apache.hive.hcatalog.pig.HCatStorer |
 
@@ -356,22 +356,22 @@ Any type mapping not listed here is not supported and will throw an exception. 
 
 ### Primitive Types
 
-| Hive Type/Value | Pig Type/Value | Hive → Pig | Pig → Hive | Available in Hive Release |
-| --- | --- | --- | --- | --- |
-| BOOLEAN/boolean | BOOLEAN/boolean | direct/lossless mapping | direct/lossless mapping |  |
-| TINYINT/byte | INTEGER/int | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| SMALLINT/short | SMALLINT/short | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| INT/int | INTEGER/int | direct/lossless mapping | direct/lossless mapping |  |
-| BIGINT/long | LONG/long | direct/lossless mapping | direct/lossless mapping |  |
-| FLOAT/float | FLOAT/float | direct/lossless mapping | direct/lossless mapping |  |
-| DOUBLE/double | DOUBLE/double | direct/lossless mapping | direct/lossless mapping |  |
-| STRING/java.lang.String | CHARARRAY/java.lang.String | direct/lossless mapping | direct/lossless mapping |  |
-| BINARY/byte[] | BYTEARRAY/org.apache.pig.data.DataByteArray | direct/lossless mapping | direct/lossless mapping |  |
-| DATE | DATETIME/org.joda.time.DateTime | turn to DateTime with time part set to 0 and local timezone | if time component is 0 (regardless of timezone in the DateTime value), it will be written to target; otherwise it is considered out of range1 | 0.13.0+ |
-| TIMESTAMP/java.sql.Timestamp | DATETIME/org.joda.time.DateTime | will lose ‘nanos’ and set timezone to local timezone | will translate to Timestamp based on 'millis' value | 0.13.0+ |
-| DECIMAL/HiveDecimal (maximum 38 digits) | BIGDECIMAL/java.math.BigDecimal | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| CHAR(x)/HiveChar | CHARARRAY/java.lang.String | direct/lossless mapping | performs a range check1 | 0.13.0+ |
-| VARCHAR(x)/HiveVarchar | CHARARRAY/java.lang.String | direct/lossless mapping | performs a range check1 | 0.13.0+ |
+|                                                                                                                                                                                                                                Hive Type/Value                                                                                                                                                                                                                                |               Pig Type/Value                |                         Hive → Pig                          |                                                                  Pig → Hive                                                                   | Available in Hive Release |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| BOOLEAN/boolean                                                                                                                                                                                                                                                                                                                                                                                                                                                               | BOOLEAN/boolean                             | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| TINYINT/byte                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | INTEGER/int                                 | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| SMALLINT/short                                                                                                                                                                                                                                                                                                                                                                                                                                                                | SMALLINT/short                              | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| INT/int                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | INTEGER/int                                 | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| BIGINT/long                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | LONG/long                                   | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| FLOAT/float                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | FLOAT/float                                 | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| DOUBLE/double                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | DOUBLE/double                               | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| STRING/java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                       | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| BINARY/byte[]                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | BYTEARRAY/org.apache.pig.data.DataByteArray | direct/lossless mapping                                     | direct/lossless mapping                                                                                                                       |                           |
+| DATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | DATETIME/org.joda.time.DateTime             | turn to DateTime with time part set to 0 and local timezone | if time component is 0 (regardless of timezone in the DateTime value), it will be written to target; otherwise it is considered out of range1 | 0.13.0+                   |
+| TIMESTAMP/java.sql.Timestamp                                                                                                                                                                                                                                                                                                                                                                                                                                                  | DATETIME/org.joda.time.DateTime             | will lose ‘nanos’ and set timezone to local timezone        | will translate to Timestamp based on 'millis' value                                                                                           | 0.13.0+                   |
+| DECIMAL/HiveDecimal (maximum 38 digits)                                                                                                                                                                                                                                                                                                                                                                                                                                       | BIGDECIMAL/java.math.BigDecimal             | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| CHAR(x)/HiveChar                                                                                                                                                                                                                                                                                                                                                                                                                                                              | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
+| VARCHAR(x)/HiveVarchar                                                                                                                                                                                                                                                                                                                                                                                                                                                        | CHARARRAY/java.lang.String                  | direct/lossless mapping                                     | performs a range check1                                                                                                                       | 0.13.0+                   |
 | 1 Range check: If the Pig value is out of range for the target Hive column, by default NULL will be written and one warning per target column/type will be logged. The user may specify “`onOutOfRangeValue Throw`” to HCatStorer so that an error will be raised instead. For example:`store data into 'test_tbl' using org.apache.hive.hcatalog.pig.HCatStorer('','','-onOutOfRangeValue Throw');`The only values for `onOutOfRangeValue` are `Throw` and `Null` (default). |
 
 Note
@@ -382,21 +382,15 @@ Hive does not have a data type corresponding to the BIGINTEGER type in Pig (java
 
  
 
-| Hive Type | Pig Type |
-| --- | --- |
-| map  (key type should be string) | map |
-| ARRAY<*any type*> | bag |
-| struct<*any type fields*> | tuple |
+|            Hive Type             | Pig Type |
+|----------------------------------|----------|
+| map  (key type should be string) | map      |
+| ARRAY<*any type*>                | bag      |
+| struct<*any type fields*>        | tuple    |
 
  
 
 **Navigation Links**
 Previous: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}})  
- Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput" >}})
-
-
-
- 
-
- 
+Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput" >}})
 

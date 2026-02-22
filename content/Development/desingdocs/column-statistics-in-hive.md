@@ -30,59 +30,60 @@ To view column stats :
 ```
 describe formatted [table_name] [column_name];
 ```
+
 ### **Metastore Schema**
 
 To persist column level statistics, we propose to add the following new tables,
 
 CREATE TABLE TAB_COL_STATS  
- (  
- CS_ID NUMBER NOT NULL,  
- TBL_ID NUMBER NOT NULL,  
- COLUMN_NAME VARCHAR(128) NOT NULL,  
- COLUMN_TYPE VARCHAR(128) NOT NULL,  
- TABLE_NAME VARCHAR(128) NOT NULL,  
- DB_NAME VARCHAR(128) NOT NULL,
+(  
+CS_ID NUMBER NOT NULL,  
+TBL_ID NUMBER NOT NULL,  
+COLUMN_NAME VARCHAR(128) NOT NULL,  
+COLUMN_TYPE VARCHAR(128) NOT NULL,  
+TABLE_NAME VARCHAR(128) NOT NULL,  
+DB_NAME VARCHAR(128) NOT NULL,
 
 LOW_VALUE RAW,  
- HIGH_VALUE RAW,  
- NUM_NULLS BIGINT,  
- NUM_DISTINCTS BIGINT,
+HIGH_VALUE RAW,  
+NUM_NULLS BIGINT,  
+NUM_DISTINCTS BIGINT,
 
 BIT_VECTOR, BLOB,  /* introduced in [HIVE-16997](https://issues.apache.org/jira/browse/HIVE-16997) in Hive 3.0.0 */
 
 AVG_COL_LEN DOUBLE,  
- MAX_COL_LEN BIGINT,  
- NUM_TRUES BIGINT,  
- NUM_FALSES BIGINT,  
- LAST_ANALYZED BIGINT NOT NULL)
+MAX_COL_LEN BIGINT,  
+NUM_TRUES BIGINT,  
+NUM_FALSES BIGINT,  
+LAST_ANALYZED BIGINT NOT NULL)
 
 ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_PK PRIMARY KEY (CS_ID);
 
 ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_FK1 FOREIGN KEY (TBL_ID) REFERENCES TBLS (TBL_ID) INITIALLY DEFERRED ;
 
 CREATE TABLE PART_COL_STATS  
- (  
- CS_ID NUMBER NOT NULL,  
- PART_ID NUMBER NOT NULL,
+(  
+CS_ID NUMBER NOT NULL,  
+PART_ID NUMBER NOT NULL,
 
 DB_NAME VARCHAR(128) NOT NULL,  
- COLUMN_NAME VARCHAR(128) NOT NULL,  
- COLUMN_TYPE VARCHAR(128) NOT NULL,  
- TABLE_NAME VARCHAR(128) NOT NULL,  
- PART_NAME VARCHAR(128) NOT NULL,
+COLUMN_NAME VARCHAR(128) NOT NULL,  
+COLUMN_TYPE VARCHAR(128) NOT NULL,  
+TABLE_NAME VARCHAR(128) NOT NULL,  
+PART_NAME VARCHAR(128) NOT NULL,
 
 LOW_VALUE RAW,  
- HIGH_VALUE RAW,  
- NUM_NULLS BIGINT,  
- NUM_DISTINCTS BIGINT,
+HIGH_VALUE RAW,  
+NUM_NULLS BIGINT,  
+NUM_DISTINCTS BIGINT,
 
 BIT_VECTOR, BLOB,  /* introduced in [HIVE-16997](https://issues.apache.org/jira/browse/HIVE-16997) in Hive 3.0.0 */
 
 AVG_COL_LEN DOUBLE,  
- MAX_COL_LEN BIGINT,  
- NUM_TRUES BIGINT,  
- NUM_FALSES BIGINT,  
- LAST_ANALYZED BIGINT NOT NULL)
+MAX_COL_LEN BIGINT,  
+NUM_TRUES BIGINT,  
+NUM_FALSES BIGINT,  
+LAST_ANALYZED BIGINT NOT NULL)
 
 ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_PK PRIMARY KEY (CS_ID);
 
@@ -93,44 +94,44 @@ ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_FK1 FOREIGN KEY (
 We propose to add the following Thrift structs to transport column statistics:
 
 struct BooleanColumnStatsData {  
- 1: required i64 numTrues,  
- 2: required i64 numFalses,  
- 3: required i64 numNulls  
- }
+1: required i64 numTrues,  
+2: required i64 numFalses,  
+3: required i64 numNulls  
+}
 
 struct DoubleColumnStatsData {  
- 1: required double lowValue,  
- 2: required double highValue,  
- 3: required i64 numNulls,  
- 4: required i64 numDVs,
+1: required double lowValue,  
+2: required double highValue,  
+3: required i64 numNulls,  
+4: required i64 numDVs,
 
 5: optional string bitVectors
 
 }
 
 struct LongColumnStatsData {  
- 1: required i64 lowValue,  
- 2: required i64 highValue,  
- 3: required i64 numNulls,  
- 4: required i64 numDVs,
+1: required i64 lowValue,  
+2: required i64 highValue,  
+3: required i64 numNulls,  
+4: required i64 numDVs,
 
 5: optional string bitVectors  
- }
+}
 
 struct StringColumnStatsData {  
- 1: required i64 maxColLen,  
- 2: required double avgColLen,  
- 3: required i64 numNulls,  
- 4: required i64 numDVs,
+1: required i64 maxColLen,  
+2: required double avgColLen,  
+3: required i64 numNulls,  
+4: required i64 numDVs,
 
 5: optional string bitVectors  
- }
+}
 
 struct BinaryColumnStatsData {  
- 1: required i64 maxColLen,  
- 2: required double avgColLen,  
- 3: required i64 numNulls  
- }
+1: required i64 maxColLen,  
+2: required double avgColLen,  
+3: required i64 numNulls  
+}
 
 struct Decimal {  
 1: required binary unscaled,  
@@ -168,43 +169,43 @@ union ColumnStatisticsData {
 }
 
 struct ColumnStatisticsObj {  
- 1: required string colName,  
- 2: required string colType,  
- 3: required ColumnStatisticsData statsData  
- }
+1: required string colName,  
+2: required string colType,  
+3: required ColumnStatisticsData statsData  
+}
 
 struct ColumnStatisticsDesc {  
- 1: required bool isTblLevel,   
- 2: required string dbName,  
- 3: required string tableName,  
- 4: optional string partName,  
- 5: optional i64 lastAnalyzed  
- }
+1: required bool isTblLevel,   
+2: required string dbName,  
+3: required string tableName,  
+4: optional string partName,  
+5: optional i64 lastAnalyzed  
+}
 
 struct ColumnStatistics {  
- 1: required ColumnStatisticsDesc statsDesc,  
- 2: required list<ColumnStatisticsObj> statsObj;  
- }
+1: required ColumnStatisticsDesc statsDesc,  
+2: required list<ColumnStatisticsObj> statsObj;  
+}
 
 We propose to add the following Thrift APIs to persist, retrieve and delete column statistics:
 
 bool update_table_column_statistics(1:ColumnStatistics stats_obj) throws (1:NoSuchObjectException o1,   
- 2:InvalidObjectException o2, 3:MetaException o3, 4:InvalidInputException o4)  
- bool update_partition_column_statistics(1:ColumnStatistics stats_obj) throws (1:NoSuchObjectException o1,   
- 2:InvalidObjectException o2, 3:MetaException o3, 4:InvalidInputException o4)
+2:InvalidObjectException o2, 3:MetaException o3, 4:InvalidInputException o4)  
+bool update_partition_column_statistics(1:ColumnStatistics stats_obj) throws (1:NoSuchObjectException o1,   
+2:InvalidObjectException o2, 3:MetaException o3, 4:InvalidInputException o4)
 
 ColumnStatistics get_table_column_statistics(1:string db_name, 2:string tbl_name, 3:string col_name) throws  
- (1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidInputException o3, 4:InvalidObjectException o4)   
- ColumnStatistics get_partition_column_statistics(1:string db_name, 2:string tbl_name, 3:string part_name,  
- 4:string col_name) throws (1:NoSuchObjectException o1, 2:MetaException o2,   
- 3:InvalidInputException o3, 4:InvalidObjectException o4)
+(1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidInputException o3, 4:InvalidObjectException o4)   
+ColumnStatistics get_partition_column_statistics(1:string db_name, 2:string tbl_name, 3:string part_name,  
+4:string col_name) throws (1:NoSuchObjectException o1, 2:MetaException o2,   
+3:InvalidInputException o3, 4:InvalidObjectException o4)
 
 bool delete_partition_column_statistics(1:string db_name, 2:string tbl_name, 3:string part_name, 4:string col_name) throws   
- (1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidObjectException o3,   
- 4:InvalidInputException o4)  
- bool delete_table_column_statistics(1:string db_name, 2:string tbl_name, 3:string col_name) throws   
- (1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidObjectException o3,   
- 4:InvalidInputException o4)
+(1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidObjectException o3,   
+4:InvalidInputException o4)  
+bool delete_table_column_statistics(1:string db_name, 2:string tbl_name, 3:string col_name) throws   
+(1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidObjectException o3,   
+4:InvalidInputException o4)
 
 Note that delete_column_statistics is needed to remove the entries from the metastore when a table is dropped. Also note that currently Hive doesn’t support drop column.
 

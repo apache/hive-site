@@ -32,7 +32,3 @@ select key, count(`INPUT__FILE__NAME`) from src group by key order by key;
 
 select * from src where `BLOCK__OFFSET__INSIDE__FILE` > 12000 order by key;
 
- 
-
- 
-

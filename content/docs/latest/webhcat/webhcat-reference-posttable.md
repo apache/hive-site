@@ -15,22 +15,22 @@ Rename an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The existing (old) table name | Required | None |
-| **rename** | The new table name | Required | None |
-| **group** | The user group to use | Optional | None |
-| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
+|      Name       |                         Description                         | Required? | Default |
+|-----------------|-------------------------------------------------------------|-----------|---------|
+| **:db**         | The database name                                           | Required  | None    |
+| **:table**      | The existing (old) table name                               | Required  | None    |
+| **rename**      | The new table name                                          | Required  | None    |
+| **group**       | The user group to use                                       | Optional  | None    |
+| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **table** | The new table name |
-| **database** | The database name |
+|     Name     |    Description     |
+|--------------|--------------------|
+| **table**    | The new table name |
+| **database** | The database name  |
 
 ## Example
 
@@ -72,11 +72,5 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 
 **Navigation Links**
 Previous: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttable" >}})  
- Next: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable" >}})
-
-
-
- 
-
- 
+Next: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable" >}})
 

@@ -21,7 +21,3 @@ The links below refer to the [original Hive authorization mode]({{< ref "hive-de
 
 Note that Howl was the precursor to [HCatalog]({{< ref "hcatalog-usinghcat" >}}).
 
- 
-
- 
-
