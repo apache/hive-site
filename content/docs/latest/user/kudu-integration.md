@@ -21,11 +21,9 @@ There are two main components which make up the implementation: the `KuduStorage
 
 To issue queries against Kudu using Hive, one optional parameter can be provided by the Hive configuration:
 
-| Hive Configuration |  |
-| --- | --- |
+|             Hive Configuration             |                                                                                                                                                              |
+|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ``` hive.kudu.master.addresses.default ``` | Comma-separated list of all of the Kudu master addresses.This value is only used for a given table if the *kudu.master_addresses* table property is not set. |
-
-  
 
 For those familiar with Kudu, the master addresses configuration is the normal configuration value necessary to connect to Kudu. The easiest way to provide this value is by using the `-hiveconf` option to the `hive` command. 
 
@@ -64,14 +62,4 @@ INSERT INTO kudu_table SELECT * FROM other_table;
 INSERT INTO TABLE kudu_table
 VALUES (1, 'test 1', 1.1), (2, 'test 2', 2.2);
 ```
-
-  
-
-  
-
-  
-
- 
-
- 
 

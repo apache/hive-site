@@ -100,7 +100,3 @@ import external table department from 'hdfs_exports_location/department';
 
 ```
 
- 
-
- 
-

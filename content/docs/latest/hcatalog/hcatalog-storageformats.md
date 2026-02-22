@@ -38,15 +38,9 @@ See [HCATALOG-436](https://issues.apache.org/jira/browse/HCATALOG-436) for detai
 
 **Navigation Links**
 Previous: [Command Line Interface]({{< ref "hcatalog-cli" >}})  
- Next: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
+Next: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
 
 SerDe general information: [Hive SerDe]({{< ref "#hive-serde" >}})  
- SerDe details: [SerDe]({{< ref "serde" >}})  
- SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
-
-
-
- 
-
- 
+SerDe details: [SerDe]({{< ref "serde" >}})  
+SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
 

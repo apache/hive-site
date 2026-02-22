@@ -15,14 +15,14 @@ If you are using BigTop's rpms or debs you can invoke the CLI by doing `/usr/bin
 
 The HCatalog CLI supports these command line options:
 
-| Option | Usage | Description |
-| --- | --- | --- |
-| **-g** | `hcat -g mygroup ...` | Tells HCatalog that the table which needs to be created must have group "mygroup". |
-| **-p** | `hcat -p rwxr-xr-x ...` | Tells HCatalog that the table which needs to be created must have permissions "rwxr-xr-x". |
-| **-f** | `hcat -f myscript.hcatalog ...` | Tells HCatalog that myscript.hcatalog is a file containing DDL commands to execute. |
-| **-e** | `hcat -e 'create table mytable(a int);' ...` | Tells HCatalog to treat the following string as a DDL command and execute it. |
-| **-D** | `hcat -D`*key*`=`*value* `...` | Passes the key-value pair to HCatalog as a Java System Property. |
-|   | `hcat` | Prints a usage message. |
+| Option |                    Usage                     |                                        Description                                         |
+|--------|----------------------------------------------|--------------------------------------------------------------------------------------------|
+| **-g** | `hcat -g mygroup ...`                        | Tells HCatalog that the table which needs to be created must have group "mygroup".         |
+| **-p** | `hcat -p rwxr-xr-x ...`                      | Tells HCatalog that the table which needs to be created must have permissions "rwxr-xr-x". |
+| **-f** | `hcat -f myscript.hcatalog ...`              | Tells HCatalog that myscript.hcatalog is a file containing DDL commands to execute.        |
+| **-e** | `hcat -e 'create table mytable(a int);' ...` | Tells HCatalog to treat the following string as a DDL command and execute it.              |
+| **-D** | `hcat -D`*key*`=`*value* `...`               | Passes the key-value pair to HCatalog as a Java System Property.                           |
+|        | `hcat`                                       | Prints a usage message.                                                                    |
 
 Note the following:
 
@@ -48,7 +48,7 @@ Many `hcat` commands can be issued as `hive` commands, including all HCatalog DD
 * "`hcat -g`" and "`hcat -p`" for table group and permission settings are only available in the HCatalog CLI.
 * `hcat` uses the `-p` flag for permissions but `hive` uses it to specify a port number.
 * `hcat` uses the `-D` flag *without a space* to define key=value pairs but `hive` uses `-d` or `--define` with a space (also `--hivevar`).  
- For example, "`hcat -DA=B`" versus "`hive -d A=B`".
+  For example, "`hcat -DA=B`" versus "`hive -d A=B`".
 * `hcat` without any flags prints a help message but `hive` uses the `-H` flag or `--help`.
 
 The Hive CLI is documented [here]({{< ref "languagemanual-cli" >}}).
@@ -149,19 +149,11 @@ If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metast
 
 If other errors occur while using the HCatalog CLI, more detailed messages are written to /tmp/*<username>*/hive.log.
 
-  
-
 **Navigation Links**
 Previous: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter" >}})  
- Next: [Storage Formats]({{< ref "hcatalog-storageformats" >}})
+Next: [Storage Formats]({{< ref "hcatalog-storageformats" >}})
 
 Hive command line interface: [Hive CLI]({{< ref "languagemanual-cli" >}})  
- Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}})  
- WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl" >}})
-
-
-
- 
-
- 
+Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}})  
+WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl" >}})
 

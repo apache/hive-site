@@ -35,12 +35,8 @@ hive --rcfilecat [--column-sizes | --column-sizes-pretty] fileName
 ```
 
 With the --column-sizes option set, instead of printing the data in the RC file, prints rows with 3 columns.  
- <column number> <uncompressed size> <compressed size>  
- The sizes of the columns are the aggregated sizes of the column in the entire file taken from the RC file headers.
+<column number> <uncompressed size> <compressed size>  
+The sizes of the columns are the aggregated sizes of the column in the entire file taken from the RC file headers.
 
 With the --column-sizes-pretty option set prints the same data as is printed with the --column-sizes option but with a more human friendly format.
-
- 
-
- 
 

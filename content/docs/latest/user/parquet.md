@@ -109,7 +109,3 @@ Support for remaining Parquet data types was added ([HIVE-6384](https://issues.a
 * [Dremel paper](http://research.google.com/pubs/pub36632.html)
 * [Dremel made simple with Parquet](https://blog.twitter.com/2013/dremel-made-simple-with-parquet)
 
- 
-
- 
-

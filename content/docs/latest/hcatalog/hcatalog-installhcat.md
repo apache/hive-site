@@ -10,7 +10,7 @@ date: 2024-12-12
 Version
 
 HCatalog is installed with Hive, starting with Hive release 0.11.0.  
- Hive installation is documented [here]({{< ref "adminmanual-installation" >}}).
+Hive installation is documented [here]({{< ref "adminmanual-installation" >}}).
 
 ## HCatalog Command Line
 
@@ -34,14 +34,8 @@ HCatalog server is the same as Hive metastore. You can just follow the [Hive met
 
 **Navigation Links**
 Previous: [Using HCatalog]({{< ref "hcatalog-usinghcat" >}})  
- Next: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}})
+Next: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}})
 
 Hive installation and configuration: [Installing Hive]({{< ref "adminmanual-installation" >}}), [Configuring Hive]({{< ref "adminmanual-configuration" >}}), [Hive Configuration Properties](/docs/latest/user/configuration-properties)  
- WebHCat installation and configuration: [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}}), [WebHCat Configuration]({{< ref "webhcat-configure" >}})
-
-
-
- 
-
- 
+WebHCat installation and configuration: [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}}), [WebHCat Configuration]({{< ref "webhcat-configure" >}})
 

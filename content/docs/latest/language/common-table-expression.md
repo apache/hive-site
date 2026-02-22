@@ -84,7 +84,3 @@ Also see this JIRA:
 
 * [HIVE-1180](https://issues.apache.org/jira/browse/HIVE-1180) Support Common Table Expressions (CTEs) in Hive
 
- 
-
- 
-

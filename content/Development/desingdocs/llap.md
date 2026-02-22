@@ -23,7 +23,7 @@ Similar to the DataNode, LLAP daemons can be used by other applications as well,
 
 Last, but not least, fine-grained column-level access control – a key requirement for mainstream adoption of Hive – fits nicely into this model.
 
-The diagram below shows an example execution with LLAP. Tez AM orchestrates overall execution. The initial stage of the query is pushed into LLAP. In the reduce stage, large shuffles are performed in separate containers. Multiple queries and applications can access LLAP concurrently. 
+The diagram below shows an example execution with LLAP. Tez AM orchestrates overall execution. The initial stage of the query is pushed into LLAP. In the reduce stage, large shuffles are performed in separate containers. Multiple queries and applications can access LLAP concurrently.
 
 ![](/attachments/62689557/65871225.png)
 
@@ -83,8 +83,8 @@ LLAP servers are a natural place to enforce access control at a more fine-graine
 
 ## Monitoring
 
-Configurations for LLAP monitoring are stored in resources.json, appConfig.json, metainfo.xml which are embedded into [templates.py](https://github.com/apache/hive/blob/master/llap-server/src/main/resources/templates.py) used by Slider.   
-  
+Configurations for LLAP monitoring are stored in resources.json, appConfig.json, metainfo.xml which are embedded into [templates.py](https://github.com/apache/hive/blob/master/llap-server/src/main/resources/templates.py) used by Slider. 
+
 LLAP Monitor Daemon runs on YARN container, similar to LLAP Daemon, and listens on the same port.    
 The LLAP Metrics Collection Server collects JMX metrics from all LLAP Daemons periodically.    
 The list of LLAP Daemons are extracted from the Zookeeper server which launched in the cluster. 
@@ -159,19 +159,19 @@ Example usage.
 ```
 
 ```
- -f,--findAppTimeout <findAppTimeout>                 Amount of time(s) that the tool will sleep to wait for the YARN application to start. negative values=wait
-                                                      forever, 0=Do not wait. default=20s
- -H,--help                                            Print help information
-    --hiveconf <property=value>                       Use value for given property. Overridden by explicit parameters
- -i,--refreshInterval <refreshInterval>               Amount of time in seconds to wait until subsequent status checks in watch mode. Valid only for watch mode.
-                                                      (Default 1s)
- -n,--name <name>                                     LLAP cluster name
- -o,--outputFile <outputFile>                         File to which output should be written (Default stdout)
- -r,--runningNodesThreshold <runningNodesThreshold>   When watch mode is enabled (-w), wait until the specified threshold of nodes are running (Default 1.0
-                                                      which means 100% nodes are running)
- -t,--watchTimeout <watchTimeout>                     Exit watch mode if the desired state is not attained until the specified timeout. (Default 300s)
- -w,--watch                                           Watch mode waits until all LLAP daemons are running or subset of the nodes are running (threshold can be
-                                                      specified via -r option) (Default wait until all nodes are running)
+-f,--findAppTimeout <findAppTimeout>                 Amount of time(s) that the tool will sleep to wait for the YARN application to start. negative values=wait
+                                                     forever, 0=Do not wait. default=20s
+-H,--help                                            Print help information
+   --hiveconf <property=value>                       Use value for given property. Overridden by explicit parameters
+-i,--refreshInterval <refreshInterval>               Amount of time in seconds to wait until subsequent status checks in watch mode. Valid only for watch mode.
+                                                     (Default 1s)
+-n,--name <name>                                     LLAP cluster name
+-o,--outputFile <outputFile>                         File to which output should be written (Default stdout)
+-r,--runningNodesThreshold <runningNodesThreshold>   When watch mode is enabled (-w), wait until the specified threshold of nodes are running (Default 1.0
+                                                     which means 100% nodes are running)
+-t,--watchTimeout <watchTimeout>                     Exit watch mode if the desired state is not attained until the specified timeout. (Default 300s)
+-w,--watch                                           Watch mode waits until all LLAP daemons are running or subset of the nodes are running (threshold can be
+                                                     specified via -r option) (Default wait until all nodes are running)
 ```
 
 Version information
@@ -191,8 +191,4 @@ The watch and running nodes options were added in release 2.2.0 with [HIVE-15217
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

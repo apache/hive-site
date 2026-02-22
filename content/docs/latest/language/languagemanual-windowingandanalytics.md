@@ -16,51 +16,51 @@ All of the windowing and analytics functions operate as per the SQL standard.
 The current release supports the following functions for windowing and analytics:
 
 1. Windowing functions
-	* LEAD
-		+ The number of rows to lead can optionally be specified. If the number of rows to lead is not specified, the lead is one row.
-		+ Returns null when the lead for the current row extends beyond the end of the window.
-	* LAG
-		+ The number of rows to lag can optionally be specified. If the number of rows to lag is not specified, the lag is one row.
-		+ Returns null when the lag for the current row extends before the beginning of the window.
-	* FIRST_VALUE
-		+ This takes at most two parameters. The first parameter is the column for which you want the first value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
-	* LAST_VALUE
-		+ This takes at most two parameters. The first parameter is the column for which you want the last value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
+   * LEAD
+     + The number of rows to lead can optionally be specified. If the number of rows to lead is not specified, the lead is one row.
+     + Returns null when the lead for the current row extends beyond the end of the window.
+   * LAG
+     + The number of rows to lag can optionally be specified. If the number of rows to lag is not specified, the lag is one row.
+     + Returns null when the lag for the current row extends before the beginning of the window.
+   * FIRST_VALUE
+     + This takes at most two parameters. The first parameter is the column for which you want the first value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
+   * LAST_VALUE
+     + This takes at most two parameters. The first parameter is the column for which you want the last value, the second (optional) parameter must be a boolean which is `false` by default. If set to true it skips null values.
 2. The OVER clause
-	* OVER with standard aggregates:
-		+ COUNT
-		+ SUM
-		+ MIN
-		+ MAX
-		+ AVG
-	* OVER with a PARTITION BY statement with one or more partitioning columns of any primitive datatype.
-	* OVER with PARTITION BY and ORDER BY with one or more partitioning and/or ordering columns of any datatype.
-		+ OVER with a window specification. Windows can be defined separately in a WINDOW clause. Window specifications support the following formats:
-		
-		
-		
-		```
-		(ROWS | RANGE) BETWEEN (UNBOUNDED | [num]) PRECEDING AND ([num] PRECEDING | CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)
-		(ROWS | RANGE) BETWEEN CURRENT ROW AND (CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)
-		(ROWS | RANGE) BETWEEN [num] FOLLOWING AND (UNBOUNDED | [num]) FOLLOWING
-		```
-		
-		When ORDER BY is specified with missing WINDOW clause, the WINDOW specification defaults to `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW.`
-		
-		When both ORDER BY and WINDOW clauses are missing, the WINDOW specification defaults to `ROW BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING.`
-		
-		The OVER clause supports the following functions, but it does not support a window with them (see [HIVE-4797](https://issues.apache.org/jira/browse/HIVE-4797)):
-		
-		Ranking functions: Rank, NTile, DenseRank, CumeDist, PercentRank.
-		
-		Lead and Lag functions.
+   * OVER with standard aggregates:
+     + COUNT
+     + SUM
+     + MIN
+     + MAX
+     + AVG
+   * OVER with a PARTITION BY statement with one or more partitioning columns of any primitive datatype.
+   * OVER with PARTITION BY and ORDER BY with one or more partitioning and/or ordering columns of any datatype.
+     + OVER with a window specification. Windows can be defined separately in a WINDOW clause. Window specifications support the following formats:
+
+     ```
+     (ROWS | RANGE) BETWEEN (UNBOUNDED | [num]) PRECEDING AND ([num] PRECEDING | CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)
+     (ROWS | RANGE) BETWEEN CURRENT ROW AND (CURRENT ROW | (UNBOUNDED | [num]) FOLLOWING)
+     (ROWS | RANGE) BETWEEN [num] FOLLOWING AND (UNBOUNDED | [num]) FOLLOWING
+     ```
+
+     When ORDER BY is specified with missing WINDOW clause, the WINDOW specification defaults to `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW.`
+
+     When both ORDER BY and WINDOW clauses are missing, the WINDOW specification defaults to `ROW BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING.`
+
+     The OVER clause supports the following functions, but it does not support a window with them (see [HIVE-4797](https://issues.apache.org/jira/browse/HIVE-4797)):
+
+     Ranking functions: Rank, NTile, DenseRank, CumeDist, PercentRank.
+
+     Lead and Lag functions.
+
 3. Analytics functions
-	* RANK
-	* ROW_NUMBER
-	* DENSE_RANK
-	* CUME_DIST
-	* PERCENT_RANK
-	* NTILE
+
+   * RANK
+   * ROW_NUMBER
+   * DENSE_RANK
+   * CUME_DIST
+   * PERCENT_RANK
+   * NTILE
 4. Distinct support in Hive 2.1.0 and later (see [HIVE-9534](https://issues.apache.org/jira/browse/HIVE-9534))
 
 Distinct is supported for aggregation functions including SUM, COUNT and AVG, which aggregate over the distinct values within each partition. Current implementation has the limitation that no ORDER BY or window specification can be supported in the partitioning clause for performance reason. The supported syntax is as follows.
@@ -74,6 +74,7 @@ ORDER BY and window specification is supported for distinct in Hive 2.2.0 (see [
 ```
 COUNT(DISTINCT a) OVER (PARTITION BY c ORDER BY d ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING)
 ```
+
 5. Aggregate functions in OVER clause support in Hive 2.1.0 and later (see [HIVE-13475](https://issues.apache.org/jira/browse/HIVE-13475))
 
 Support to reference aggregate functions within the OVER clause has been added. For instance, currently we can use the SUM aggregation function within the OVER clause as follows.
@@ -190,8 +191,4 @@ FROM T;
 SELECT a, COUNT(distinct a) OVER (PARTITION BY b)
 FROM T;
 ```
-
- 
-
- 
 

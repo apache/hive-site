@@ -40,7 +40,3 @@ How does Hive distribute the rows across the buckets? In general, the bucket num
 
 So, what can go wrong? As long as you use the syntax above and `set hive.enforce.bucketing = true` (for Hive 0.x and 1.x), the tables should be populated properly. Things can go wrong if the bucketing column type is different during the insert and on read, or if you manually cluster by a value that's different from the table definition.
 
- 
-
- 
-

@@ -13,6 +13,7 @@ Documentation for Built-In User-Defined Functions Related To XPath
 
 * Functions for parsing XML data using XPath expressions.
 * Since version: 0.6.0
+
 #### Overview
 
 The *xpath* family of UDFs are wrappers around the Java XPath library `javax.xml.xpath` provided by the JDK. The library is based on the XPath 1.0 specification. Please refer to <http://java.sun.com/javase/6/docs/api/javax/xml/xpath/package-summary.html> for detailed information on the Java XPath library.
@@ -184,7 +185,7 @@ false
 
 #### xpath_short, xpath_int, xpath_long
 
-These functions return an integer numeric value, or the value zero if no match is found, or a match is found but the value is non-numeric.  
+These functions return an integer numeric value, or the value zero if no match is found, or a match is found but the value is non-numeric.
 
 Mathematical operations are supported. In cases where the value overflows the return type, then the maximum value for the type is returned.
 
@@ -232,7 +233,7 @@ Overflow:
 
 #### xpath_float, xpath_double, xpath_number
 
-Similar to xpath_short, xpath_int and xpath_long but with floating point semantics. Non-matches result in zero. However,  
+Similar to xpath_short, xpath_int and xpath_long but with floating point semantics. Non-matches result in zero. However,
 
 non-numeric matches result in NaN. Note that `xpath_number()` is an alias for `xpath_double()`.
 
@@ -266,8 +267,4 @@ SELECT xpath_double ('<a><b>2000000000</b><c>40000000000</c></a>', 'a/b * a/c') 
 # UDAFs
 
 # UDTFs
-
- 
-
- 
 

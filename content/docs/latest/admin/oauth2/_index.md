@@ -14,3 +14,4 @@ Hive is able to protect some resources and extract authenticated usernames with 
 ## Examples: Integration with external Authorization Servers
 
 - [Keycloak]({{< relref "keycloak.md" >}})
+

@@ -38,9 +38,9 @@ Process implementation is the application logic to handle requests. For example,
 # Dependencies of HS2
 
 * [Metastore]({{< ref "adminmanual-metastore-administration" >}})  
-The metastore can be configured as embedded (in the same process as HS2) or as a remote server (which is a Thrift-based service as well). HS2 talks to the metastore for the metadata required for query compilation.
+  The metastore can be configured as embedded (in the same process as HS2) or as a remote server (which is a Thrift-based service as well). HS2 talks to the metastore for the metadata required for query compilation.
 * Hadoop cluster  
-HS2 prepares physical execution plans for various execution engines (MapReduce/Tez/Spark) and submits jobs to the Hadoop cluster for execution.
+  HS2 prepares physical execution plans for various execution engines (MapReduce/Tez/Spark) and submits jobs to the Hadoop cluster for execution.
 
 You can find a diagram of the interactions between HS2 and its dependencies [here]({{< ref "#here" >}}).
 
@@ -91,8 +91,4 @@ User interface:  [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}}
 Metrics:  [Hive Metrics]({{< ref "hive-metrics" >}})
 
 Cloudera blog on HS2: <http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/>
-
- 
-
- 
 

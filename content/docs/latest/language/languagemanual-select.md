@@ -24,9 +24,9 @@ SELECT [ALL | DISTINCT] select_expr, select_expr, ...
 * A SELECT statement can be part of a [union]({{< ref "languagemanual-union" >}}) query or a [subquery]({{< ref "languagemanual-subqueries" >}}) of another query.
 * `table_reference` indicates the input to the query. It can be a regular table, [a view]({{< ref "#a-view" >}}), a [join construct]({{< ref "languagemanual-joins" >}}) or a [subquery]({{< ref "languagemanual-subqueries" >}}).
 * Table names and column names are case insensitive.
-	+ In Hive 0.12 and earlier, only alphanumeric and underscore characters are allowed in table and column names.
-	+ In Hive 0.13 and later, column names can contain any [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) character (see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Any column name that is specified within backticks (```) is treated literally. Within a backtick string, use double backticks (````) to represent a backtick character.
-	+ To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html) (attached to [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Also see [REGEX Column Specification]({{< ref "#regex-column-specification" >}}) below.
+  + In Hive 0.12 and earlier, only alphanumeric and underscore characters are allowed in table and column names.
+  + In Hive 0.13 and later, column names can contain any [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) character (see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Any column name that is specified within backticks (```) is treated literally. Within a backtick string, use double backticks (````) to represent a backtick character.
+  + To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html) (attached to [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Also see [REGEX Column Specification]({{< ref "#regex-column-specification" >}}) below.
 * Simple query. For example, the following query retrieves all columns and all rows from table t1.
 
 ```
@@ -41,6 +41,7 @@ As of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144), FROM is op
 ```
 SELECT current_database()
 ```
+
 * To specify a database, either qualify the table names with database names ("`db_name.table_name`" starting in [Hive 0.7](https://issues.apache.org/jira/browse/HIVE-1517)) or issue the [USE statement]({{< ref "#use-statement" >}}) before the query statement (starting in [Hive 0.6](https://issues.apache.org/jira/browse/HIVE-675)).
 
 "`db_name.table_name`" allows a query to access tables in different databases.
@@ -144,7 +145,6 @@ The following query returns 5 arbitrary customers
 SELECT * FROM customers LIMIT 5
 ```
 
-  
 The following query returns the first 5 customers to be created
 
 ```
@@ -178,9 +178,9 @@ See the following documents for additional syntax and features of SELECT stateme
 * [GROUP BY]({{< ref "languagemanual-groupby" >}})
 * [SORT/ORDER/CLUSTER/DISTRIBUTE BY]({{< ref "languagemanual-sortby" >}})
 * [JOIN]({{< ref "languagemanual-joins" >}})
-	+ [Hive Joins]({{< ref "languagemanual-joins" >}})
-	+ [Join Optimization]({{< ref "languagemanual-joinoptimization" >}})
-	+ [Outer Join Behavior]({{< ref "outerjoinbehavior" >}})
+  + [Hive Joins]({{< ref "languagemanual-joins" >}})
+  + [Join Optimization]({{< ref "languagemanual-joinoptimization" >}})
+  + [Outer Join Behavior]({{< ref "outerjoinbehavior" >}})
 * [UNION]({{< ref "languagemanual-union" >}})
 * [TABLESAMPLE]({{< ref "languagemanual-sampling" >}})
 * [Subqueries]({{< ref "languagemanual-subqueries" >}})
@@ -195,8 +195,4 @@ See the following documents for additional syntax and features of SELECT stateme
  
 
  
-
- 
-
- 
 

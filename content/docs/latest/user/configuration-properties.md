@@ -33,8 +33,8 @@ See [Hive on Tez]({{< ref "hive-on-tez" >}}) and [Hive on Spark]({{< ref "hive-o
 * Chooses whether query fragments will run in container or in llap
 * Default Value: `container`
 * Valid settings
-	+ container: launch containers
-	+ llap: utilize llap nodes during execution of tasks
+  + container: launch containers
+  + llap: utilize llap nodes during execution of tasks
 * Added In: Hive 2.0 with [HIVE-9460](https://issues.apache.org/jira/browse/HIVE-9460)
 
 ##### mapred.reduce.tasks
@@ -449,9 +449,9 @@ Whether the version of Hadoop which is running supports sub-directories for tabl
 ##### hive.mapred.mode
 
 * Default Value:
-	+ Hive 0.x: `nonstrict`
-	+ Hive 1.x: `nonstrict`
-	+ Hive 2.x: `strict` ([HIVE-12413](https://issues.apache.org/jira/browse/HIVE-12413))
+  + Hive 0.x: `nonstrict`
+  + Hive 1.x: `nonstrict`
+  + Hive 2.x: `strict` ([HIVE-12413](https://issues.apache.org/jira/browse/HIVE-12413))
 * Added In: Hive 0.3.0
 
 The mode in which the Hive operations are being performed. In `strict` mode, some risky queries are not allowed to run. For example, full table scans are prevented (see [HIVE-10454](https://issues.apache.org/jira/browse/HIVE-10454)) and [ORDER BY]({{< ref "#order-by" >}}) requires a LIMIT clause.
@@ -494,6 +494,7 @@ By default all values in the HiveConf object are converted to environment variab
 ##### Also see:
 
 * **[SerDes]({{< ref "#serdes" >}})**  for more **hive.script.*** configuration properties
+
 ##### hive.exec.compress.output
 
 * Default Value: `false`
@@ -667,9 +668,9 @@ The interval with which to poll the JobTracker for the counters the running job.
 ##### hive.enforce.bucketing
 
 * Default Value:
-	+ Hive 0.x: `false`
-	+ Hive 1.x: `false`
-	+ Hive 2.x: removed, which effectively makes it always true ([HIVE-12331](https://issues.apache.org/jira/browse/HIVE-12331))
+  + Hive 0.x: `false`
+  + Hive 1.x: `false`
+  + Hive 2.x: removed, which effectively makes it always true ([HIVE-12331](https://issues.apache.org/jira/browse/HIVE-12331))
 * Added In: Hive 0.6.0
 
 Whether [bucketing]({{< ref "languagemanual-ddl-bucketedtables" >}}) is enforced. If `true`, while inserting into the table, bucketing is enforced.
@@ -679,9 +680,9 @@ Set to `true` to support [INSERT ... VALUES, UPDATE, and DELETE]({{< ref "hiv
 ##### hive.enforce.sorting
 
 * Default Value:
-	+ Hive 0.x: `false`
-	+ Hive 1.x: `false`
-	+ Hive 2.x: removed, which effectively makes it always true ([HIVE-12331](https://issues.apache.org/jira/browse/HIVE-12331))
+  + Hive 0.x: `false`
+  + Hive 1.x: `false`
+  + Hive 2.x: removed, which effectively makes it always true ([HIVE-12331](https://issues.apache.org/jira/browse/HIVE-12331))
 * Added In: Hive 0.6.0
 
 Whether sorting is enforced. If true, while inserting into the table, sorting is enforced.
@@ -766,10 +767,10 @@ When true, the [cost based optimizer]({{< ref "cost-based-optimization-in-hive" 
 
 * Default Value: CONSERVATIVE
 * Possible Values:
-	+ "NEVER", never use the legacy optimizer (all CBO errors are fatal).
-	+ "ALWAYS", always use the legacy optimizer (CBO errors are not fatal).
-	+ "CONSERVATIVE", use the legacy optimizer only when the CBO error is not related to subqueries and views.
-	+ "TEST", specific behavior only for tests, do not use in production.
+  + "NEVER", never use the legacy optimizer (all CBO errors are fatal).
+  + "ALWAYS", always use the legacy optimizer (CBO errors are not fatal).
+  + "CONSERVATIVE", use the legacy optimizer only when the CBO error is not related to subqueries and views.
+  + "TEST", specific behavior only for tests, do not use in production.
 * Added In:  [HIVE-24601](https://issues.apache.org/jira/browse/HIVE-24601)
 
 Options are "NEVER", "CONSERVATIVE", "ALWAYS", "TEST". The strategy defines when Hive fallbacks to legacy optimizer when CBO fails: 
@@ -866,7 +867,7 @@ When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is 
 * Added In: Hive 0.7.0 with [HIVE-1408](https://issues.apache.org/jira/browse/HIVE-1408)
 * Removed In: Hive 0.9.0 with [HIVE-2651](https://issues.apache.org/jira/browse/HIVE-2651)
 
-When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is true, the number of tasks should be less than this for local mode. Replaced in Hive 0.9.0 by   **[hive.exec.mode.local.auto.input.files.max]({{< ref "#hive-exec-mode-local-auto-input-files-max" >}}).** 
+When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is true, the number of tasks should be less than this for local mode. Replaced in Hive 0.9.0 by   **[hive.exec.mode.local.auto.input.files.max]({{< ref "#hive-exec-mode-local-auto-input-files-max" >}}).**
 
 ##### hive.exec.mode.local **.auto.input.files.max**
 
@@ -1042,8 +1043,8 @@ Some select queries can be converted to a single FETCH task, minimizing latency.
 Supported values are none, `minimal` and `more`.
 
 0. `none`:  Disable hive.fetch.task.conversion (value added in Hive 0.14.0 with [HIVE-8389](https://issues.apache.org/jira/browse/HIVE-8389))  
-1. `minimal`:  SELECT *, FILTER on partition columns (WHERE and HAVING clauses), LIMIT only  
-2. `more`:  SELECT, FILTER, LIMIT only (including TABLESAMPLE, virtual columns)
+   1. `minimal`:  SELECT *, FILTER on partition columns (WHERE and HAVING clauses), LIMIT only
+1. `more`:  SELECT, FILTER, LIMIT only (including TABLESAMPLE, virtual columns)
 
 "`more`" can take any kind of expressions in the SELECT clause, including UDFs.  
 (UDTFs and lateral views are not yet supported – see [HIVE-5718](https://issues.apache.org/jira/browse/HIVE-5718).)
@@ -1051,8 +1052,8 @@ Supported values are none, `minimal` and `more`.
 ##### hive.map.groupby.sorted
 
 * Default Value:
-	+ Hive 0.x and 1.x: `false`
-	+ Hive 2.0 and later: `true` ([HIVE-12325](https://issues.apache.org/jira/browse/HIVE-12325))
+  + Hive 0.x and 1.x: `false`
+  + Hive 2.0 and later: `true` ([HIVE-12325](https://issues.apache.org/jira/browse/HIVE-12325))
 * Added In: Hive 0.10.0 with [HIVE-3432](https://issues.apache.org/jira/browse/HIVE-3432)
 
 If the bucketing/sorting properties of the table exactly match the grouping key, whether to  perform the group by in the mapper by using BucketizedHiveInputFormat. The only downside to this  is that it limits the number of mappers to the number of files.
@@ -1305,7 +1306,7 @@ Refer to  <https://logging.apache.org/log4j/2.x/manual/async.html>  for benefit
 
 To run the [MSCK REPAIR TABLE]({{< ref "#msck-repair-table" >}}) command batch-wise. If there is a large number of untracked partitions, by configuring a value to the property it will execute in batches internally. The default value of the property is zero, which means it will execute all the partitions at once.
 
-#####  ****hive.exec.copyfile.maxnumfiles****
+##### ****hive.exec.copyfile.maxnumfiles****
 
 * Default Value: 1
 * Added In: Hive 2.3.0 with [HIVE-14864](https://issues.apache.org/jira/browse/HIVE-14864)
@@ -1360,14 +1361,14 @@ The formatter to use for handling datetime values. The possible values are:
 The style used by the hive.datetime.formatter (only applicable to DATETIME) to resolve dates amd times. The possible values are:
 
 * SMART:
-	+ Using smart resolution will perform the sensible default for each field, which may be the same as strict, the same as lenient, or a third behavior. Individual fields will interpret this differently.
-	+ For example, resolving year-month and day-of-month in the ISO calendar system using smart mode will ensure that the day-of-month is from 1 to 31, converting any value beyond the last valid day-of-month to be the last valid day-of-month.
-* STRICT: 
-	+ Using strict resolution will ensure that all parsed values are within the outer range of valid values for the field. Individual fields may be further processed for strictness.
-	+ For example, resolving year-month and day-of-month in the ISO calendar system using strict mode will ensure that the day-of-month is valid for the year-month, rejecting invalid values.
-	+ When using Strict as the hive.datetime.formatter.resolver.style we should use the pattern "u" to represent year. For more details, please refer: <https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html>
-* LENIENT: 
-	+ Lenient mode allows the month in the ISO calendar system to be outside the range 1 to 12. For example, month 15 is treated as being 3 months after month 12.
+  + Using smart resolution will perform the sensible default for each field, which may be the same as strict, the same as lenient, or a third behavior. Individual fields will interpret this differently.
+  + For example, resolving year-month and day-of-month in the ISO calendar system using smart mode will ensure that the day-of-month is from 1 to 31, converting any value beyond the last valid day-of-month to be the last valid day-of-month.
+* STRICT:
+  + Using strict resolution will ensure that all parsed values are within the outer range of valid values for the field. Individual fields may be further processed for strictness.
+  + For example, resolving year-month and day-of-month in the ISO calendar system using strict mode will ensure that the day-of-month is valid for the year-month, rejecting invalid values.
+  + When using Strict as the hive.datetime.formatter.resolver.style we should use the pattern "u" to represent year. For more details, please refer: <https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html>
+* LENIENT:
+  + Lenient mode allows the month in the ISO calendar system to be outside the range 1 to 12. For example, month 15 is treated as being 3 months after month 12.
 
 Currently these configuration only affects the behavior of the following SQL functions:
 
@@ -1416,7 +1417,7 @@ See [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}
 * Default Value: `false`
 * Added in: Hive 0.14 with [HIVE-3635](https://issues.apache.org/jira/browse/HIVE-3635)
 
- [LazySimpleSerDe]({{< ref "#lazysimpleserde" >}}) uses this property to determine if it treats 'T', 't', 'F', 'f',  '1', and '0' as extended, legal boolean literals, in addition to 'TRUE' and 'FALSE'.  The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal  boolean literals.
+[LazySimpleSerDe]({{< ref "#lazysimpleserde" >}}) uses this property to determine if it treats 'T', 't', 'F', 'f',  '1', and '0' as extended, legal boolean literals, in addition to 'TRUE' and 'FALSE'.  The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal  boolean literals.
 
 #### I/O
 
@@ -1437,6 +1438,7 @@ The default input format. Set this to HiveInputFormat if you encounter problems 
 ##### Also see:
 
 * **[hive.tez.input.format]({{< ref "#hivetezinputformat" >}})**
+
 ### File Formats
 
 ##### hive.default.fileformat
@@ -1455,10 +1457,10 @@ Users can explicitly say [CREATE TABLE]({{< ref "#create-table" >}})... STORED A
 
 Default file format for CREATE TABLE statement applied to managed tables only. External tables will be created with format specified by [hive.default.fileformat]({{< ref "#hivedefaultfileformat" >}}). Options are none, TextFile, SequenceFile, RCfile, ORC, and Parquet (as of Hive 2.3.0). Leaving this null will result in using hive.default.fileformat for all native tables. For non-native tables the file format is determined by the storage handler, as shown below (see the  [StorageHandlers]({{< ref "#storagehandlers" >}})  section for more information on managed/external and native/non-native terminology).
 
-|  | Native | Non-Native |
-| --- | --- | --- |
-| Managed | hive.default.fileformat.managed (or fall back to hive.default.fileformat) | Not covered by default file-formats |
-| External | hive.default.fileformat | Not covered by default file-formats |
+|          |                                  Native                                   |             Non-Native              |
+|----------|---------------------------------------------------------------------------|-------------------------------------|
+| Managed  | hive.default.fileformat.managed (or fall back to hive.default.fileformat) | Not covered by default file-formats |
+| External | hive.default.fileformat                                                   | Not covered by default file-formats |
 
 ##### hive.fileformat.check
 
@@ -1470,8 +1472,8 @@ Whether to check file format or not when loading data files.
 ##### hive.query.result.fileformat
 
 * Default Value:
-	+ Hive 0.x, 1.x, and 2.0: `TextFile`
-	+ Hive 2.1 onward: `SequenceFile`
+  + Hive 0.x, 1.x, and 2.0: `TextFile`
+  + Hive 2.1 onward: `SequenceFile`
 * Added In: Hive 0.7.0 with [HIVE-1598](https://issues.apache.org/jira/browse/HIVE-1598)
 
 File format to use for a query's intermediate results. Options are TextFile, SequenceFile, and RCfile. Default value is changed to SequenceFile since Hive 2.1.0 ([HIVE-1608](https://issues.apache.org/jira/browse/HIVE-1608)).
@@ -1533,7 +1535,7 @@ Define the ratio of base writer and delta writer in terms of STRIPE_SIZE and BUF
 ##### hive.exec.orc.default.stripe.size
 
 * Default Value: `256*1024*1024` (268,435,456) in 0.13.0;  
-                         `64*1024*1024` (67,108,864) in 0.14.0
+                           `64*1024*1024` (67,108,864) in 0.14.0
 * Added In: Hive 0.13.0 with [HIVE-5425](https://issues.apache.org/jira/browse/HIVE-5425); default changed in 0.14.0 with [HIVE-7231](https://issues.apache.org/jira/browse/HIVE-7231) and [HIVE-7490](https://issues.apache.org/jira/browse/HIVE-7490)
 
 Define the default ORC stripe size, in bytes.
@@ -1634,8 +1636,8 @@ How many threads [ORC]({{< ref "languagemanual-orc" >}}) should use to create 
 * Default Value: HYBRID
 * Added In: Hive 1.2.0 with [HIVE-10114](https://issues.apache.org/jira/browse/HIVE-10114)
 
-What strategy [ORC]({{< ref "languagemanual-orc" >}}) should use to create splits for execution. The available options are "BI", "ETL" and "HYBRID".  
-  
+What strategy [ORC]({{< ref "languagemanual-orc" >}}) should use to create splits for execution. The available options are "BI", "ETL" and "HYBRID".
+
 The HYBRID mode reads the footers for all files if there are fewer files than expected mapper count, switching over to generating 1 split per file if the average file sizes are smaller than the default HDFS blocksize. ETL strategy always reads the ORC footers before generating splits, while the BI strategy generates per-file splits fast without reading any data from HDFS.
 
 ##### hive.exec.orc.skip.corrupt.data
@@ -1677,7 +1679,7 @@ Value can be `SPEED` or `COMPRESSION`.
 
 #### Parquet
 
-Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later. See [Parquet]({{< ref "parquet" >}}) for details.  
+Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later. See [Parquet]({{< ref "parquet" >}}) for details.
 
 ##### hive.parquet.timestamp.skip.conversion
 
@@ -1688,7 +1690,7 @@ Pre-3.1.2 Hive implementation of Parquet stores timestamps in UTC on-file, this 
 
 #### Avro
 
-See [AvroSerDe](/docs/latest/user/avroserde) for details.  
+See [AvroSerDe](/docs/latest/user/avroserde) for details.
 
 ##### hive.avro.timestamp.skip.conversion
 
@@ -1698,7 +1700,7 @@ See [AvroSerDe](/docs/latest/user/avroserde) for details.
 Some older Hive implementations (pre-3.1.2) wrote Avro timestamps in a UTC-normalized manner, while from version 3.1.0 until 3.1.2 Hive wrote time zone agnostic timestamps.   
 Setting this flag to true will treat legacy timestamps as time zone agnostic. Setting it to false will treat legacy timestamps as UTC-normalized.   
 This flag does not affect timestamps written starting with Hive 3.1.2, which are effectively time zone agnostic (see [HIVE-21002](https://issues.apache.org/jira/browse/HIVE-21002) for details).   
-NOTE: This property will influence how HBase files using the AvroSerDe and timestamps in Kafka tables (in the payload/Avro file, this is not about Kafka timestamps) are deserialized – keep in mind that timestamps serialized using the AvroSerDe will be UTC-normalized during serialization. So keep this property false if using HBase or Kafka.  
+NOTE: This property will influence how HBase files using the AvroSerDe and timestamps in Kafka tables (in the payload/Avro file, this is not about Kafka timestamps) are deserialized – keep in mind that timestamps serialized using the AvroSerDe will be UTC-normalized during serialization. So keep this property false if using HBase or Kafka.
 
 ### Vectorization
 
@@ -1730,7 +1732,7 @@ This flag should be set to true to enable vectorized mode of the reduce-side GRO
 * Default Value: `true`
 * Added In: Hive 2.0.0 with [HIVE-12290](https://issues.apache.org/jira/browse/HIVE-12290)
 
- This flag should be set to true to enable the new vectorization of queries using ReduceSink.   
+This flag should be set to true to enable the new vectorization of queries using ReduceSink.
 
 ##### hive.vectorized.execution.mapjoin.native.enabled
 
@@ -1744,29 +1746,28 @@ This flag should be set to true to enable native (i.e. non-pass through) vectori
 * Default Value: `false`
 * Added In: Hive 1.2.0 with [HIVE-9824](https://issues.apache.org/jira/browse/HIVE-9824)
 
- This flag should be set to true to restrict use of native vector map join hash tables to the MultiKey in queries using MapJoin.  
- 
+This flag should be set to true to restrict use of native vector map join hash tables to the MultiKey in queries using MapJoin.
 
 ##### hive.vectorized.execution.mapjoin.minmax.enabled
 
 * Default Value: `false`
 * Added In: Hive 1.2.0 with [HIVE-9824](https://issues.apache.org/jira/browse/HIVE-9824)
 
- This flag should be set to true to enable vector map join hash tables to use max / max filtering for integer join queries using MapJoin. 
+This flag should be set to true to enable vector map join hash tables to use max / max filtering for integer join queries using MapJoin.
 
 ##### hive.vectorized.execution.mapjoin.overflow.repeated.threshold
 
 * Default Value: `-1`
 * Added In: Hive 1.2.0 with [HIVE-9824](https://issues.apache.org/jira/browse/HIVE-9824)
 
- The number of small table rows for a match in vector map join hash tables where we use the repeated field optimization in overflow vectorized row batch for join queries using MapJoin. A value of `-1` means do use the join result optimization. Otherwise, threshold value can be 0 to maximum integer. 
+The number of small table rows for a match in vector map join hash tables where we use the repeated field optimization in overflow vectorized row batch for join queries using MapJoin. A value of `-1` means do use the join result optimization. Otherwise, threshold value can be 0 to maximum integer.
 
 ##### hive.vectorized.execution.mapjoin.native.fast.hashtable.enabled
 
 * Default Value: `false`
 * Added In: Hive 1.2.0 with [HIVE-9824](https://issues.apache.org/jira/browse/HIVE-9824)
 
- This flag should be set to true to enable use of native fast vector map join hash tables in queries using MapJoin.  
+This flag should be set to true to enable use of native fast vector map join hash tables in queries using MapJoin.
 
 ##### hive.vectorized.groupby.checkinterval
 
@@ -1815,12 +1816,12 @@ This flag should be used to provide a comma separated list of fully qualified cl
 In addition to the Hive metastore properties listed in this section, some properties are listed in other sections:
 
 * [Hive Metastore Security]({{< ref "#hive-metastore-security" >}})
-	+ **[hive.metastore.pre.event.listeners]({{< ref "#hivemetastorepreeventlisteners" >}})**
-	+ **[hive.security.metastore.authorization.manager]({{< ref "#hivesecuritymetastoreauthorizationmanager" >}})**
-	+ **[hive.security.metastore.authenticator.manager]({{< ref "#hivesecuritymetastoreauthenticatormanager" >}})**
-	+ **[hive.security.metastore.authorization.auth.reads]({{< ref "#hivesecuritymetastoreauthorizationauthreads" >}})**
+  + **[hive.metastore.pre.event.listeners]({{< ref "#hivemetastorepreeventlisteners" >}})**
+  + **[hive.security.metastore.authorization.manager]({{< ref "#hivesecuritymetastoreauthorizationmanager" >}})**
+  + **[hive.security.metastore.authenticator.manager]({{< ref "#hivesecuritymetastoreauthenticatormanager" >}})**
+  + **[hive.security.metastore.authorization.auth.reads]({{< ref "#hivesecuritymetastoreauthorizationauthreads" >}})**
 * [Metrics]({{< ref "#metrics" >}})
-	+ [**hive.metastore.metrics.enabled**]({{< ref "#**hive-metastore-metrics-enabled**" >}})
+  + [**hive.metastore.metrics.enabled**]({{< ref "#**hive-metastore-metrics-enabled**" >}})
 
 ##### hive.metastore.local
 
@@ -1976,8 +1977,8 @@ Metadata store type.
 ##### **datanucleus.fixedDatastore**
 
 * Default Value:
-	+ Hive 0.x: `false`
-	+ Hive 1.x: `false`
+  + Hive 0.x: `false`
+  + Hive 1.x: `false`
 * Added In: Hive 0.12.0 with [HIVE-3764](https://issues.apache.org/jira/browse/HIVE-3764)
 * Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113)
 
@@ -2212,8 +2213,8 @@ Minimum number of worker threads in the Thrift server's pool.
 ##### hive.metastore.server.max.threads
 
 * Default Value:
-	+ Hive 0.x and 1.0.x: `100000`
-	+ Hive 1.1.0 and later: `1000` ([HIVE-8666](https://issues.apache.org/jira/browse/HIVE-8666))
+  + Hive 0.x and 1.0.x: `100000`
+  + Hive 1.1.0 and later: `1000` ([HIVE-8666](https://issues.apache.org/jira/browse/HIVE-8666))
 * Added In: Hive 0.6.0 with [HIVE-1270](https://issues.apache.org/jira/browse/HIVE-1270)
 
 Maximum number of worker threads in the Thrift server's pool.
@@ -2320,8 +2321,8 @@ For more information, see [Metastore Schema Consistency and Upgrades]({{< ref "#
 ##### hive.metastore.disallow.incompatible.col.type.changes
 
 * Default Value:
-	+ Hive 0.x and 1.x:  `false`
-	+ Hive 2.x and later: `true` ([HIVE-12320](https://issues.apache.org/jira/browse/HIVE-12320))
+  + Hive 0.x and 1.x:  `false`
+  + Hive 2.x and later: `true` ([HIVE-12320](https://issues.apache.org/jira/browse/HIVE-12320))
 * Added In: Hive 0.12.0 with [HIVE-4409](https://issues.apache.org/jira/browse/HIVE-4409)
 
 If true, ALTER TABLE operations which change the type of a column (say STRING) to an incompatible type (say MAP<STRING, STRING>) are disallowed. RCFile default SerDe (ColumnarSerDe) serializes the values in such a way that the datatypes can be converted from string to any type. The map is also serialized as a string, which can be read as a string as well. However, with any binary serialization, this is not true. Blocking the ALTER TABLE prevents ClassCastExceptions when subsequently trying to access old partitions.
@@ -2499,7 +2500,7 @@ Maximum number of Thrift worker threads.
 * Default Value: `60`
 * Added in: Hive 0.14.0 with [HIVE-7353](https://issues.apache.org/jira/browse/HIVE-7353)
 
- Keepalive time (in seconds) for an idle worker thread. When number of workers > min workers, excess threads are killed after this time interval.  
+Keepalive time (in seconds) for an idle worker thread. When number of workers > min workers, excess threads are killed after this time interval.
 
 ##### hive.server2.thrift.max.message.size
 
@@ -2592,7 +2593,7 @@ LDAP domain.
 
 A COLON-separated list of string patterns to represent the base DNs for LDAP Groups. Use "%s" where the actual group name is to be plugged in. See [Group Membership]({{< ref "#group-membership" >}}) for details.
 
-Example of one string pattern: *uid=%s,OU=Groups,DC=apache,DC=org* 
+Example of one string pattern: *uid=%s,OU=Groups,DC=apache,DC=org*
 
 ##### hive.server2.authentication.ldap.groupFilter
 
@@ -2726,7 +2727,7 @@ Maximum idle time for a connection on the server when in HTTP mode.
 * Default Value: 60
 * Added In: Hive 0.14.0 in [HIVE-7353](https://issues.apache.org/jira/browse/HIVE-7353)
 
-Keepalive time (in seconds) for an idle http worker thread. When number of workers > min workers, excess threads are killed after this time interval. 
+Keepalive time (in seconds) for an idle http worker thread. When number of workers > min workers, excess threads are killed after this time interval.
 
 ##### hive.server2.thrift.sasl.qop
 
@@ -2877,18 +2878,17 @@ This flag is used in HiveServer 2 to enable a user to use HiveServer 2 without 
 ##### hive.server2.session.check.interval
 
 * Default Value:
-	+ Hive 0.x, 1.0.x, 1.1.x, 1.2.0: `0ms`
-	+ Hive 1.2.1+, 1.3+, 2.x+: `6h` ([HIVE-9842](https://issues.apache.org/jira/browse/HIVE-9842))
+  + Hive 0.x, 1.0.x, 1.1.x, 1.2.0: `0ms`
+  + Hive 1.2.1+, 1.3+, 2.x+: `6h` ([HIVE-9842](https://issues.apache.org/jira/browse/HIVE-9842))
 * Added In: Hive 0.14.0 with [HIVE-5799](https://issues.apache.org/jira/browse/HIVE-5799)
 
 The check interval for session/operation timeout, which can be disabled by setting to zero or negative value.
 
 ##### hive.server2.idle.session.timeout
 
-* Default Value:   
-
-	+ Hive 0.x, 1.0.x, 1.1.x, 1.2.0: `0ms`
-	+ Hive 1.2.1+, 1.3+, 2.x+: 7d ([HIVE-9842](https://issues.apache.org/jira/browse/HIVE-9842))
+* Default Value:
+  + Hive 0.x, 1.0.x, 1.1.x, 1.2.0: `0ms`
+  + Hive 1.2.1+, 1.3+, 2.x+: 7d ([HIVE-9842](https://issues.apache.org/jira/browse/HIVE-9842))
 * Added In: Hive 0.14.0 with [HIVE-5799](https://issues.apache.org/jira/browse/HIVE-5799)
 
 With  [**hive.server2.session.check.interval**]({{< ref "#**hive-server2-session-check-interval**" >}}) set to a positive time value, session will be closed when it's not accessed for this duration of time, which can be disabled by setting to zero or negative value.
@@ -3007,7 +3007,7 @@ This configuration property enables the user to provide a comma-separated list o
 * Default Value: `true`
 * Added In: Hive 2.2.0 with [HIVE-15473](https://issues.apache.org/jira/browse/HIVE-15473)
 
-Allows HiveServer2 to send progress bar update information. This is currently available only if the [execution engine]({{< ref "#execution-engine" >}}) is **tez.** 
+Allows HiveServer2 to send progress bar update information. This is currently available only if the [execution engine]({{< ref "#execution-engine" >}}) is **tez.**
 
 ##### hive.hadoop.classpath
 
@@ -3119,8 +3119,6 @@ Max number of stages graph can display. If number of stages exceeds this, no que
 * Added in: Hive 4.0.0 with [HIVE-17300](https://issues.apache.org/jira/browse/HIVE-17300)
 
 Set this to true to to display statistics and log file for MapReduce tasks in the WebUI. Only works when  **[hive.server2.webui.show.graph]({{< ref "#hiveserver2webuishowgraph" >}})**  and  **[hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})**  set to true.
-
-   
 
 ## Spark
 
@@ -3248,7 +3246,7 @@ Setting this to false triggers an alternative algorithm for calculating the numb
 * Default Value: `false`
 * Added in: Hive 2.3.0 with [HIVE-15489](http://HIVE-15489)
 
-If this is set to true, mapjoin optimization in Hive/Spark will use statistics from TableScan operators at the root of operator tree, instead of parent ReduceSink operators of the Join operator. Setting this to true is useful when the operator statistics used for a common join → map join conversion are inaccurate.  
+If this is set to true, mapjoin optimization in Hive/Spark will use statistics from TableScan operators at the root of operator tree, instead of parent ReduceSink operators of the Join operator. Setting this to true is useful when the operator statistics used for a common join → map join conversion are inaccurate.
 
 ##### hive.spark.use.groupby.shuffle
 
@@ -3331,8 +3329,14 @@ Channel logging level for remote Spark driver. One of DEBUG, ERROR, INFO, TRACE,
 Besides the configuration properties listed in this section, some properties in other sections are also related to Tez:
 
 * **[hive.execution.engine]({{< ref "#hiveexecutionengine" >}})**
-* ##### [hive.mapjoin.optimized.hashtable]({{< ref "#hivemapjoinoptimizedhashtable" >}})
-* ##### [hive.mapjoin.optimized.hashtable.wbsize]({{< ref "#hivemapjoinoptimizedhashtablewbsize" >}})
+* 
+
+##### [hive.mapjoin.optimized.hashtable]({{< ref "#hivemapjoinoptimizedhashtable" >}})
+
+* 
+
+##### [hive.mapjoin.optimized.hashtable.wbsize]({{< ref "#hivemapjoinoptimizedhashtablewbsize" >}})
+
 * **[hive.server2.tez.default.queues]({{< ref "#hiveserver2tezdefaultqueues" >}})**
 * **[hive.server2.tez.sessions.per.default.queue]({{< ref "#hiveserver2tezsessionsperdefaultqueue" >}})**
 * **[hive.server2.tez.initialize.default.sessions]({{< ref "#hiveserver2tezinitializedefaultsessions" >}})**
@@ -3517,11 +3521,11 @@ LLAP adds the following configuration properties. 
 
 * Default Value: `none`
 * Possible Values:
-	+ `none: not tried`
-	+ `map: only map operators are considered for llap`
-	+ `all: every operator is tried; but falls back to no-llap in case of problems`
-	+ `only: same as "all" but stops with an exception if execution is not possible` (as of 2.2.0 with [HIVE-15135](https://issues.apache.org/jira/browse/HIVE-15135))
-	+ auto: conversion is controlled by hive
+  + `none: not tried`
+  + `map: only map operators are considered for llap`
+  + `all: every operator is tried; but falls back to no-llap in case of problems`
+  + `only: same as "all" but stops with an exception if execution is not possible` (as of 2.2.0 with [HIVE-15135](https://issues.apache.org/jira/browse/HIVE-15135))
+  + auto: conversion is controlled by hive
 * Added In: Hive 2.0.0 with [HIVE-9635](https://issues.apache.org/jira/browse/HIVE-9635)
 
 Chooses whether query fragments will run in a container or in LLAP. When set to " `all` " everything runs in LLAP if possible; " `only` " is like "`all`" but disables fallback to containers, so that the query fails if it cannot run in LLAP.
@@ -3649,8 +3653,8 @@ Whether to enable time counters for LLAP IO layer (time spent in HDFS, etc.)
 * Possible Values: cache, allocator, none
 * Added In: Hive 2.0.0 with [HIVE-12597](https://issues.apache.org/jira/browse/HIVE-12597)
 
-LLAP IO memory usage;   
-  
+LLAP IO memory usage;
+
 'cache' (the default) uses data and metadata cache with a custom off-heap allocator,   
 'allocator' uses the custom allocator without the caches,  
 'none' doesn't use either (this mode may result in significant performance degradation)
@@ -4025,7 +4029,7 @@ Number of aborted transactions involving a given table or partition that will t
 * Added In: Hive 4.0.0 with [HIVE-23280](https://issues.apache.org/jira/browse/HIVE-23280)
 
 Age of table/partition's oldest aborted transaction when compaction will be triggered.  
- Default time unit is: hours. Set to a negative number to disable.
+Default time unit is: hours. Set to a negative number to disable.
 
 ### Compaction History
 
@@ -4049,6 +4053,7 @@ Number of failed compaction entries to retain in history (per partition).
     
 
 ```
+
 * Default Value: `2`
 * Added In: Hive 1.3.0 and 2.0.0 with [HIVE-12353](https://issues.apache.org/jira/browse/HIVE-12353)
 * Deprecated name: hive.compactor.history.retention.attempted
@@ -4350,8 +4355,8 @@ The Hive/Tez optimizer estimates the data size flowing through each of the oper
 ##### hive.stats.deserialization.factor
 
 * Default Value:
-	+ Hive 0.13 to 2.x.x:`(float) 1.0`
-	+ Hive 3.0.0 and later:`(float) 10.0`
+  + Hive 0.13 to 2.x.x:`(float) 1.0`
+  + Hive 3.0.0 and later:`(float) 10.0`
 * Added In: Hive 0.13 with [HIVE-5921](https://issues.apache.org/jira/browse/HIVE-5921)
 * Default value changed from 1.0 to 10.0 in [Hive 3.0](https://issues.apache.org/jira/browse/HIVE-18149)
 
@@ -4425,14 +4430,13 @@ For an overview of authorization modes, see [Hive Authorization]({{< ref "langua
 
 ##### hive.conf.restricted.list
 
-* Default Value:   
-
-	+ Hive 0.11.0: (empty, but includes this list implicitly)
-	+ Hive 0.13.0: `hive.security.authenticator.manager, hive.security.authorization.manager` ([HIVE-5953](https://issues.apache.org/jira/browse/HIVE-5953))
-	+ Hive 0.14.0: `hive.security.authenticator.manager, hive.security.authorization.manager, hive.users.in.admin.role` ([HIVE-6437](https://issues.apache.org/jira/browse/HIVE-6437))
-	+ Hive 2.1.0: `hive.security.authenticator.manager,`  `hive.security.authorization.manager,`  `hive.users.in.admin.role,`  `hive.server2.xsrf.filter.enabled` ([HIVE-13853](https://issues.apache.org/jira/browse/HIVE-13853))
-	+ Hive 2.2.0: `hive.security.authenticator.manager,`  `hive.security.authorization.manager,`  `hive.security.metastore.authorization.manager,`  `hive.security.metastore.authenticator.manager,`  `hive.users.in.admin.role,`  `hive.server2.xsrf.filter.enabled,`  `hive.security.authorization.enabled` ([HIVE-14099](https://issues.apache.org/jira/browse/HIVE-14099)), `hive.server2.authentication.ldap.baseDN` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.url` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.Domain` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupDNPattern` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupFilter` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userDNPattern` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userFilter` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupMembershipKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userMembershipKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupClassKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.customLDAPQuery` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713))
-	+ Hive 3.0.0: *all of the above, plus these:* `hive.spark.client.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.server.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.channel.log.level` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.max.size` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.threads` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.secret.bits` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.address` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.port` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hikari.*` ([HIVE-17318](https://issues.apache.org/jira/browse/HIVE-17318)), `dbcp.*` ([HIVE-17319](https://issues.apache.org/jira/browse/HIVE-17319)), hadoop.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248)), yarn.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248))
+* Default Value:
+  + Hive 0.11.0: (empty, but includes this list implicitly)
+  + Hive 0.13.0: `hive.security.authenticator.manager, hive.security.authorization.manager` ([HIVE-5953](https://issues.apache.org/jira/browse/HIVE-5953))
+  + Hive 0.14.0: `hive.security.authenticator.manager, hive.security.authorization.manager, hive.users.in.admin.role` ([HIVE-6437](https://issues.apache.org/jira/browse/HIVE-6437))
+  + Hive 2.1.0: `hive.security.authenticator.manager,`  `hive.security.authorization.manager,`  `hive.users.in.admin.role,`  `hive.server2.xsrf.filter.enabled` ([HIVE-13853](https://issues.apache.org/jira/browse/HIVE-13853))
+  + Hive 2.2.0: `hive.security.authenticator.manager,`  `hive.security.authorization.manager,`  `hive.security.metastore.authorization.manager,`  `hive.security.metastore.authenticator.manager,`  `hive.users.in.admin.role,`  `hive.server2.xsrf.filter.enabled,`  `hive.security.authorization.enabled` ([HIVE-14099](https://issues.apache.org/jira/browse/HIVE-14099)), `hive.server2.authentication.ldap.baseDN` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.url` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.Domain` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupDNPattern` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupFilter` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userDNPattern` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userFilter` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupMembershipKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.userMembershipKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.groupClassKey` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713)), `hive.server2.authentication.ldap.customLDAPQuery` ([HIVE-15713](https://issues.apache.org/jira/browse/HIVE-15713))
+  + Hive 3.0.0: *all of the above, plus these:* `hive.spark.client.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.server.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.channel.log.level` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.max.size` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.threads` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.secret.bits` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.address` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.port` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hikari.*` ([HIVE-17318](https://issues.apache.org/jira/browse/HIVE-17318)), `dbcp.*` ([HIVE-17319](https://issues.apache.org/jira/browse/HIVE-17319)), hadoop.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248)), yarn.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248))
 * Added In: Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)
 
 Comma separated list of configuration properties which are immutable at runtime. For example, if  **[hive.security.authorization.enabled]({{< ref "#hivesecurityauthorizationenabled" >}})**  is set to true, it should be included in this list to prevent a client from changing it to false at runtime.
@@ -4440,13 +4444,16 @@ Comma separated list of configuration properties which are immutable at runtime
 ##### hive.conf.hidden.list
 
 * Default Value:
-	+ `Hive 1.2.2: j` `avax.jdo.option.ConnectionPassword,
-	
-	hive.server2.keystore.password (` [HIVE-9013](https://issues.apache.org/jira/browse/HIVE-9013))
-	+ ```
-	Hive 2.3.0: fs.s3.awsAccessKeyId,fs.s3.awsSecretAccessKey,fs.s3n.awsAccessKeyId,fs.s3n.awsSecretAccessKey,fs.s3a.access.key,fs.s3a.secret.key,fs.s3a.proxy.password ([HIVE-14588](https://issues.apache.org/jira/browse/HIVE-14588))
-	```
-	+ ``Hive 3.0.0: dfs.adls.oauth2.credential,fs.adl.oauth2.credential``  ``(``  [HIVE-18228](https://issues.apache.org/jira/browse/HIVE-18228))
+  + `Hive 1.2.2: j` `avax.jdo.option.ConnectionPassword,
+
+  hive.server2.keystore.password (` [HIVE-9013](https://issues.apache.org/jira/browse/HIVE-9013))
+  + ```
+  Hive 2.3.0: fs.s3.awsAccessKeyId,fs.s3.awsSecretAccessKey,fs.s3n.awsAccessKeyId,fs.s3n.awsSecretAccessKey,fs.s3a.access.key,fs.s3a.secret.key,fs.s3a.proxy.password ([HIVE-14588](https://issues.apache.org/jira/browse/HIVE-14588))
+
+  ```
+  	+ ``Hive 3.0.0: dfs.adls.oauth2.credential,fs.adl.oauth2.credential``  ``(``  [HIVE-18228](https://issues.apache.org/jira/browse/HIVE-18228))
+
+  ```
 
 Comma separated list of configuration options which should not be read by normal user, such as passwords.
 
@@ -4732,8 +4739,8 @@ The list of ZooKeeper servers to talk to. This is only needed for read/write loc
 ##### hive.zookeeper.client.port
 
 * Default Value:
-	+ Hive 0.7.0: (empty)
-	+ Hive 0.8.0 and later:  `2181` ([HIVE-2196](https://issues.apache.org/jira/browse/HIVE-2196))
+  + Hive 0.7.0: (empty)
+  + Hive 0.8.0 and later:  `2181` ([HIVE-2196](https://issues.apache.org/jira/browse/HIVE-2196))
 * Added In: Hive 0.7.0 with [HIVE-1293](https://issues.apache.org/jira/browse/HIVE-1293)
 
 The port of ZooKeeper servers to talk to. This is only needed for read/write locks.
@@ -4741,8 +4748,8 @@ The port of ZooKeeper servers to talk to. This is only needed for read/write loc
 ##### hive.zookeeper.session.timeout
 
 * Default Value:
-	+ Hive 0.7.0 to 1.1.x: `600000ms`
-	+ Hive 1.2.0 and later:`1200000ms` ([HIVE-8890](https://issues.apache.org/jira/browse/HIVE-8890))
+  + Hive 0.7.0 to 1.1.x: `600000ms`
+  + Hive 1.2.0 and later:`1200000ms` ([HIVE-8890](https://issues.apache.org/jira/browse/HIVE-8890))
 * Added In: Hive 0.7.0 with [HIVE-1293](https://issues.apache.org/jira/browse/HIVE-1293)
 
 ZooKeeper client's session timeout (in milliseconds). The client is disconnected, and as a result, all locks released, if a heartbeat is not sent in the timeout.
@@ -4770,7 +4777,7 @@ The default partition name when ZooKeeperHiveLockManager is the  [**hive lock m
 
 ## Metrics
 
-The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2). For more information, see [Hive Metrics]({{< ref "hive-metrics" >}}).  
+The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2). For more information, see [Hive Metrics]({{< ref "hive-metrics" >}}).
 
 ##### hive.metastore.metrics.enabled
 
@@ -4990,7 +4997,7 @@ Indicates whether replication dump should include information about ACID tables.
 * Default Value: `false`
 * Added in: Hive 3.0.0 with [HIVE-18341](https://issues.apache.org/jira/browse/HIVE-18341)
 
-For TDE with same encryption keys on source and target, allow Distcp super user to access the raw bytes from filesystem without decrypting on source and then encrypting on target. 
+For TDE with same encryption keys on source and target, allow Distcp super user to access the raw bytes from filesystem without decrypting on source and then encrypting on target.
 
 ## Blobstore (i.e. Amazon S3)
 

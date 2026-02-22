@@ -22,7 +22,7 @@ You can install a stable release of Hive by downloading and unpacking a tarball,
 
 ### Java 8
 
-Building Hive requires JDK 8 installed. Some notes in case you have ARM chipset (Apple M1 or later). 
+Building Hive requires JDK 8 installed. Some notes in case you have ARM chipset (Apple M1 or later).
 
 You will have to build protobuf 2.5 later. And it doesn't compile with ARM JDK. So we will install intel architecture's Java with brew and configure maven with this. It will enable us to compile protobuf. 
 
@@ -325,8 +325,6 @@ insert into test values ('Hello, from Hive!');
 
 Configuring is the same as when we do it from tarball. The only difference is that we have to build Hive for ourself and we will find the compiled binaries in a different directory.
 
-  
-
 Hive is available via Git at <https://github.com/apache/hive>. You can download it by running the following command.
 
 ```
@@ -339,15 +337,13 @@ In case you want to get a specific release branch, like 4.0.0, you can run that 
 git clone -b branch-4.0 --single-branch git@github.com:apache/hive.git
 ```
 
-  
-
 To build Hive, execute the following command on the base directory:
 
 ```
-  $ mvn clean install -Pdist,iceberg -DskipTests 
+$ mvn clean install -Pdist,iceberg -DskipTests 
 ```
 
-It will create the subdirectory **packaging/target/apache-hive-*<release_string>*-bin/apache-hive-*<release_string>*-bin/. That will be your HIVE_HOME directory.** 
+It will create the subdirectory **packaging/target/apache-hive-*<release_string>*-bin/apache-hive-*<release_string>*-bin/. That will be your HIVE_HOME directory.**
 
 It has a content like:
 
@@ -360,17 +356,16 @@ That directory should contain all the files necessary to run Hive. You can run i
 
 From now, you can follow the steps described in the section Installing Hive from a Tarball
 
-
 ## Installing with old version hadoop(greater than or equal 3.1.0)
 
-Although we normally require hive4 to rely on a 
-hadoop 3.3.6+ cluster environment. 
+Although we normally require hive4 to rely on a
+hadoop 3.3.6+ cluster environment.
 However, in practice, in an ON YARN environment,
-we can package all the hadoop related dependencies into 
-tez&hive so that they do not need to rely on the lib 
-of the original hadoop cluster environment at runtime. 
-In this way, we can run HIVE4 in a lower version of hadoop, 
-provided that the base APIs of the hadoop 3.x series are common to 
+we can package all the hadoop related dependencies into
+tez&hive so that they do not need to rely on the lib
+of the original hadoop cluster environment at runtime.
+In this way, we can run HIVE4 in a lower version of hadoop,
+provided that the base APIs of the hadoop 3.x series are common to
 each other.
 
 The steps are as follows:
@@ -452,7 +447,6 @@ After completing the above steps, users should be able to start the HMS service 
 
 Through the above steps, we can run Hive4+tez in any Hadoop3 environment. Users do not need to upgrade the cluster's original hive/hadoop/tez.
 
-
 ## Next Steps
 
 You can begin using Hive as soon as it is installed, it should be work on you computer. There are some extra information in the following sections.
@@ -488,8 +482,4 @@ HCatalog installation is documented [here]({{< ref "hcatalog-installhcat" >}}).
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the hcatalog/webhcat/svr/src/main/bin/webhcat_server.sh directory.
 
 WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat" >}}).
-
- 
-
- 
 

@@ -44,7 +44,3 @@ Usage:
 3. Initialize HiveApiOutputFormat with the information.
 4. Go to town using HiveApiOutputFormat with your Hadoop-compatible writing system.
 
- 
-
- 
-

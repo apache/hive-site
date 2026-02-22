@@ -88,7 +88,3 @@ Hive comes with the HiveHarFileSystem class that addresses some of these issues,
 
 Internally, when a partition is archived, a HAR is created using the files from the partition's original location (such as `/warehouse/table/ds=1`). The parent directory of the partition is specified to be the same as the original location and the resulting archive is named 'data.har'. The archive is moved under the original directory (such as `/warehouse/table/ds=1/data.har`), and the partition's location is changed to point to the archive.
 
- 
-
- 
-

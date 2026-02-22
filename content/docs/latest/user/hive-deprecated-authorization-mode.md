@@ -200,40 +200,36 @@ The output of SHOW GRANT is in tabular format starting with Hive 0.13.0 ([HIVE-6
 
 As of the release of Hive 0.7, only these operations require permissions, according to org.apache.hadoop.hive.ql.plan.HiveOperation:
 
-| Operation | ALTER | UPDATE | CREATE | DROP | INDEX | LOCK | SELECT | SHOW_DATABASE |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| LOAD |   | X |   |   |   |   |   |   |
-| EXPORT |   |   |   |   |   |   | X |   |
-| IMPORT | X | X |   |   |   |   |   |   |
-| CREATE TABLE |   |   | X |   |   |   |   |   |
-| CREATE TABLE AS SELECT |   |   | X |   |   |   | X |   |
-| DROP TABLE |   |   |   | X |   |   |   |   |
-| SELECT |   |   |   |   |   |   | X |   |
-| ALTER TABLE ADD COLUMN | X |   |   |   |   |   |   |   |
-| ALTER TABLE REPLACE COLUMN | X |   |   |   |   |   |   |   |
-| ALTER TABLE RENAME | X |   |   |   |   |   |   |   |
-| ALTER TABLE ADD PARTITION |   |   | X |   |   |   |   |   |
-| ALTER TABLE DROP PARTITION |   |   |   | X |   |   |   |   |
-| ALTER TABLE ARCHIVE |   | X |   |   |   |   |   |   |
-| ALTER TABLE UNARCHIVE |   | X |   |   |   |   |   |   |
-| ALTER TABLE SET PROPERTIES | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET SERDEPROPERTIES | X |   |   |   |   |   |   |   |
-| ALTER TABLE CLUSTER BY | X |   |   |   |   |   |   |   |
-| ALTER TABLE PROTECT MODE | X |   |   |   |   |   |   |   |
-| ALTER PARTITION PROTECT MODE | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET FILEFORMAT | X |   |   |   |   |   |   |   |
-| ALTER PARTITION SET FILEFORMAT | X |   |   |   |   |   |   |   |
-| ALTER TABLE SET LOCATION |   | X |   |   |   |   |   |   |
-| ALTER PARTITION SET LOCATION |   | X |   |   |   |   |   |   |
-| ALTER TABLE CONCATENATE |   | X |   |   |   |   |   |   |
-| ALTER PARTITION CONCATENATE |   | X |   |   |   |   |   |   |
-| SHOW DATABASES |   |   |   |   |   |   |   | X |
-| LOCK TABLE |   |   |   |   |   | X |   |   |
-| UNLOCK TABLE |   |   |   |   |   | X |   |   |
-
- 
-
- 
+|            Operation            | ALTER | UPDATE | CREATE | DROP | INDEX | LOCK | SELECT | SHOW_DATABASE |
+|:-------------------------------:|:-----:|:------:|:------:|:----:|:-----:|:----:|:------:|:-------------:|
+|              LOAD               |       |   X    |        |      |       |      |        |               |
+|             EXPORT              |       |        |        |      |       |      |   X    |               |
+|             IMPORT              |   X   |   X    |        |      |       |      |        |               |
+|          CREATE TABLE           |       |        |   X    |      |       |      |        |               |
+|     CREATE TABLE AS SELECT      |       |        |   X    |      |       |      |   X    |               |
+|           DROP TABLE            |       |        |        |  X   |       |      |        |               |
+|             SELECT              |       |        |        |      |       |      |   X    |               |
+|     ALTER TABLE ADD COLUMN      |   X   |        |        |      |       |      |        |               |
+|   ALTER TABLE REPLACE COLUMN    |   X   |        |        |      |       |      |        |               |
+|       ALTER TABLE RENAME        |   X   |        |        |      |       |      |        |               |
+|    ALTER TABLE ADD PARTITION    |       |        |   X    |      |       |      |        |               |
+|   ALTER TABLE DROP PARTITION    |       |        |        |  X   |       |      |        |               |
+|       ALTER TABLE ARCHIVE       |       |   X    |        |      |       |      |        |               |
+|      ALTER TABLE UNARCHIVE      |       |   X    |        |      |       |      |        |               |
+|   ALTER TABLE SET PROPERTIES    |   X   |        |        |      |       |      |        |               |
+|      ALTER TABLE SET SERDE      |   X   |        |        |      |       |      |        |               |
+|      ALTER TABLE SET SERDE      |   X   |        |        |      |       |      |        |               |
+| ALTER TABLE SET SERDEPROPERTIES |   X   |        |        |      |       |      |        |               |
+|     ALTER TABLE CLUSTER BY      |   X   |        |        |      |       |      |        |               |
+|    ALTER TABLE PROTECT MODE     |   X   |        |        |      |       |      |        |               |
+|  ALTER PARTITION PROTECT MODE   |   X   |        |        |      |       |      |        |               |
+|   ALTER TABLE SET FILEFORMAT    |   X   |        |        |      |       |      |        |               |
+| ALTER PARTITION SET FILEFORMAT  |   X   |        |        |      |       |      |        |               |
+|    ALTER TABLE SET LOCATION     |       |   X    |        |      |       |      |        |               |
+|  ALTER PARTITION SET LOCATION   |       |   X    |        |      |       |      |        |               |
+|     ALTER TABLE CONCATENATE     |       |   X    |        |      |       |      |        |               |
+|   ALTER PARTITION CONCATENATE   |       |   X    |        |      |       |      |        |               |
+|         SHOW DATABASES          |       |        |        |      |       |      |        |       X       |
+|           LOCK TABLE            |       |        |        |      |       |  X   |        |               |
+|          UNLOCK TABLE           |       |        |        |      |       |  X   |        |               |
 

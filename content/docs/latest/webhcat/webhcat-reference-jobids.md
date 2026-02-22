@@ -24,16 +24,16 @@ Use `[GET jobs]({{< ref "webhcat-reference-jobs" >}})` instead.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **showall** | If **showall** is set to "true", then the request will return all jobs the user has permission to view, not only the jobs belonging to the user. This parameter is not available in releases prior to Hive 0.12.0. (See [HIVE-4442](https://issues.apache.org/jira/browse/HIVE-4442).) | Optional in Hive 0.12.0+ | false |
+|    Name     |                                                                                                                                      Description                                                                                                                                       |        Required?         | Default |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|---------|
+| **showall** | If **showall** is set to "true", then the request will return all jobs the user has permission to view, not only the jobs belonging to the user. This parameter is not available in releases prior to Hive 0.12.0. (See [HIVE-4442](https://issues.apache.org/jira/browse/HIVE-4442).) | Optional in Hive 0.12.0+ | false   |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|  Name   |                                                                  Description                                                                   |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ids** | A list of all job IDs either belonging to the user, or (Hive 0.12.0 and later) job IDs the user has permission to view if **showall** is true. |
 
 ## Example
@@ -57,13 +57,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
 
 **Navigation Links**
 Previous: [POST hive]({{< ref "webhcat-reference-hive" >}})  
- Next: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo" >}})
-
-
+Next: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo" >}})
 
 Replaced in Hive 0.12.0 by: [GET jobs]({{< ref "webhcat-reference-jobs" >}})
-
- 
-
- 
 

@@ -27,11 +27,11 @@ Create a partition per value of 'x'.
 
 * `create table T(a,b,c, .......) partitioned by (ds, x);`
 * Advantages
-	+ Existing Hive is good enough.
+  + Existing Hive is good enough.
 * Disadvantages
-	+ HDFS scalability: Number of files in HDFS increases.
-	+ HDFS scalability: Number of intermediate files in HDFS increases. For example if there are 1000 mappers and 1000 partitions, and each mapper gets at least 1 row for each key, we will end up creating 1 million intermediate files.
-	+ Metastore scalability: Will the metastore scale with the number of partitions.
+  + HDFS scalability: Number of files in HDFS increases.
+  + HDFS scalability: Number of intermediate files in HDFS increases. For example if there are 1000 mappers and 1000 partitions, and each mapper gets at least 1 row for each key, we will end up creating 1 million intermediate files.
+  + Metastore scalability: Will the metastore scale with the number of partitions.
 
 ## List Bucketing
 
@@ -64,7 +64,7 @@ This approach can be extended to the scenario when there are more than one clust
 A query with all the clustering keys specified can be optimized easily. However, queries with some of the clustering keys specified:
 
 * + `select ... from T where x = 10;`
-	+ `select ... from T where y = 'b';`
+    + `select ... from T where y = 'b';`
 
 can only be used to prune very few directories. It does not really matter if the prefix of the clustering keys is specified or not. For example for x=10, the Hive compiler can prune the file corresponding to (20, 'c'). And for y='b', the files corresponding to (10, 'a') and (20, 'c') can be pruned. Hashing for others does not really help, when the complete key is not specified.
 

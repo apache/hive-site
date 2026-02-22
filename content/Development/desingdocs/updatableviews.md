@@ -37,7 +37,3 @@ Notes:
 
 See [Hive Views]({{< ref "viewdev" >}}) for general information about views.
 
- 
-
- 
-

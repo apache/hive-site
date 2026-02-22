@@ -23,6 +23,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'RESERVED' in 'where
     at com.mysql.cj.jdbc.DatabaseMetaDataUsingInfoSchema.getSQLKeywords(DatabaseMetaDataUsingInfoSchema.java:1178) ~[mysql-connector-java.jar:8.0.22]
     at org.datanucleus.store.rdbms.adapter.BaseDatastoreAdapter.<init>(BaseDatastoreAdapter.java:288) ~[datanucleus-rdbms-5.2.10.jar:?]
 ```
+
 We suggest switching the MySQL driver to the MariaDB if you have seen the same issue.
 
 ## Configuration
@@ -74,6 +75,7 @@ The following XML properties must be added or updated in `hive-site.xml`:
 - The JDBC URL, `&` must be escaped as `&amp;` in XML.
 
 After all configurations are complete, you can start the Hive Metastore service.
+
 ```bash
 hive --service metastore
 ```

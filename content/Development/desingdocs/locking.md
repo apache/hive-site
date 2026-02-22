@@ -24,7 +24,7 @@ The compatibility matrix is as follows:
 | **Lock** **Compatibility**  | **Existing Lock** |
 | **S**  | **X** |
 | **Requested** **Lock** | **S** | **True** | **False** |
-| **X** | **False** | **False** |
+| **X** | **False** | **False*-->
 
 For some operations, locks are hierarchical in nature -- for example for some partition operations, the table is also locked (to make sure that the table cannot be dropped while a new partition is being created).
 
@@ -38,25 +38,25 @@ A 'S' lock on table and relevant partition is acquired when a read is being perf
 
 Based on this, the lock acquired for an operation is as follows:
 
-| **Hive Command** | **Locks Acquired** |
-| --- | --- |
-| **select .. T1 partition P1** | **S on T1, T1.P1** |
-| **insert into T2(partition P2) select .. T1 partition P1** | **S on T2, T1, T1.P1 and X on T2.P2** |
+|                      **Hive Command**                       |              **Locks Acquired**              |
+|-------------------------------------------------------------|----------------------------------------------|
+| **select .. T1 partition P1**                               | **S on T1, T1.P1**                           |
+| **insert into T2(partition P2) select .. T1 partition P1**  | **S on T2, T1, T1.P1 and X on T2.P2**        |
 | **insert into T2(partition P.Q) select .. T1 partition P1** | **S on T2, T2.P, T1, T1.P1 and X on T2.P.Q** |
-| **alter table T1 rename T2** | **X on T1** |
-| **alter table T1 add cols** | **X on T1** |
-| **alter table T1 replace cols** | **X on T1** |
-| **alter table T1 change cols** | **X on T1** |
-| **alter table T1 **concatenate**** | **X on T1** |
-| **alter table T1 add partition P1** | **S on T1, X on T1.P1** |
-| **alter table T1 drop partition P1** | **S on T1, X on T1.P1** |
-| **alter table T1 touch partition P1** | **S on T1, X on T1.P1** |
-| **alter table T1 set serdeproperties** | **S on T1** |
-| **alter table T1 set serializer** | **S on T1** |
-| **alter table T1 set file format** | **S on T1** |
-| **alter table T1 set tblproperties** | **X on T1** |
-| **alter table T1 partition P1 concatenate**  | **X on T1.P1** |
-| **drop table T1** | **X on T1** |
+| **alter table T1 rename T2**                                | **X on T1**                                  |
+| **alter table T1 add cols**                                 | **X on T1**                                  |
+| **alter table T1 replace cols**                             | **X on T1**                                  |
+| **alter table T1 change cols**                              | **X on T1**                                  |
+| **alter table T1 **concatenate****                          | **X on T1**                                  |
+| **alter table T1 add partition P1**                         | **S on T1, X on T1.P1**                      |
+| **alter table T1 drop partition P1**                        | **S on T1, X on T1.P1**                      |
+| **alter table T1 touch partition P1**                       | **S on T1, X on T1.P1**                      |
+| **alter table T1 set serdeproperties**                      | **S on T1**                                  |
+| **alter table T1 set serializer**                           | **S on T1**                                  |
+| **alter table T1 set file format**                          | **S on T1**                                  |
+| **alter table T1 set tblproperties**                        | **X on T1**                                  |
+| **alter table T1 partition P1 concatenate**                 | **X on T1.P1**                               |
+| **drop table T1**                                           | **X on T1**                                  |
 
 In order to avoid deadlocks, a very simple scheme is proposed here. All the objects to be locked are sorted lexicographically, and the required mode lock is acquired. Note that in some cases, the list of objects may not be known -- for example in case of dynamic partitions, the list of partitions being modified is not known at compile time -- so, the list is generated conservatively. Since the number of partitions may not be known, an exclusive lock is supposed to be taken (but currently not due to [HIVE-3509](https://issues.apache.org/jira/browse/HIVE-3509) bug) on the table, or the prefix that is known.
 
@@ -107,8 +107,4 @@ Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5317) adds transactions
 
 * [ACID and Transactions in Hive]({{< ref "hive-transactions" >}})
 * [Lock Manager]({{< ref "#lock-manager" >}})
-
- 
-
- 
 

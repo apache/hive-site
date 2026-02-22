@@ -30,17 +30,17 @@ Starting in release 2.0.0, Hive offers another API for mutating (insert/update/
 A few things are required to use streaming.
 
 1. The following settings are required in hive-site.xml to enable ACID support for streaming:
-	1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
-	2. **hive.compactor.initiator.on = true**(See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
-	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
-	4. **hive.compactor.worker.threads** > **0**
+   1. **hive.txn.manager = org.apache.hadoop.hive.ql.lockmgr.DbTxnManager**
+   2. **hive.compactor.initiator.on = true**(See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
+   3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
+   4. **hive.compactor.worker.threads** > **0**
 2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc" >}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
 4. The Hive table must be [bucketed]({{< ref "languagemanual-ddl-bucketedtables" >}}), but not sorted. So something like “clustered by (colName) into *10* buckets” must be specified during table creation. The number of buckets is ideally the same as the number of streaming writers.
 5. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
 6. (Temporary requirements) **When issuing queries** on streaming tables, the client needs to set
-	1. **hive.vectorized.execution.enabled**  to  **false** (for Hive version < 0.14.0)
-	2. **hive.input.format**  to  **org.apache.hadoop.hive.ql.io.HiveInputFormat**
+   1. **hive.vectorized.execution.enabled**  to  **false** (for Hive version < 0.14.0)
+   2. **hive.input.format**  to  **org.apache.hadoop.hive.ql.io.HiveInputFormat**
 
 # Limitations
 
@@ -238,8 +238,6 @@ To connect via Kerberos to a secure Hive metastore, a UserGroupInformation (UGI)
 
 **Important:**To connect using Kerberos, the 'authenticatedUser' argument to EndPoint.newConnection() should have been used to do a Kerberos login.  Additionally the 'hive.metastore.kerberos.principal' setting should be set correctly either in hive-site.xml or in the 'conf' argument (if not null). If using hive-site.xml, its directory should be included in the classpath.
 
-  
-
 ```
 import org.apache.hadoop.security.UserGroupInformation;
 
@@ -265,10 +263,4 @@ secureConn.close();
 
 * [Talks and Presentations](/docs/latest/user/hive-transactions#talks-and-presentations)
 * [Lessons learnt from NiFi streaming data to Hive transactional tables](https://community.hortonworks.com/articles/139876/lessons-learnt-from-nifi-streaming-data-to-hive-tr.html)
-
-  
-
- 
-
- 
 

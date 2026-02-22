@@ -15,16 +15,16 @@ List the databases in HCatalog.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **like** | List only databases whose names match the specified pattern. | Optional | "*" (List all) |
+|   Name   |                         Description                          | Required? |    Default     |
+|----------|--------------------------------------------------------------|-----------|----------------|
+| **like** | List only databases whose names match the specified pattern. | Optional  | "*" (List all) |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|     Name      |        Description        |
+|---------------|---------------------------|
 | **databases** | A list of database names. |
 
 ## Example
@@ -48,15 +48,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [POST ddl]({{< ref "webhcat-reference-ddl" >}})   
- Next: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb" >}})
-
-
-
- 
-
- 
+Next: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb" >}})
 

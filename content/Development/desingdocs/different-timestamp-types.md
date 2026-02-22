@@ -39,11 +39,11 @@ Let's summarize the example of how the different semantics described above apply
 
 If the timestamp literal '1969-07-20 16:17:39' is inserted in Washington D.C. and then queried from Paris, it might be shown in the following ways based on timestamp semantics:
 
-| SQL type | Semantics | Result | Explanation |
-| --- | --- | --- | --- |
-| TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | 1969-07-20 16:17:39 | Displayed like the original timestamp literal. |
-| TIMESTAMP WITH LOCAL TIME ZONE | Instant | 1969-07-20 21:17:39 | Differs from the original timestamp literal, but refers to the same time instant. |
-| TIMESTAMP WITH TIME ZONE | OffsetDateTime | 1969-07-20 16:17:39 (UTC -04:00) | Displayed like the original literal but showing the time zone offset as well. |
+|            SQL type            |   Semantics    |              Result              |                                    Explanation                                    |
+|--------------------------------|----------------|----------------------------------|-----------------------------------------------------------------------------------|
+| TIMESTAMP [WITHOUT TIME ZONE]  | LocalDateTime  | 1969-07-20 16:17:39              | Displayed like the original timestamp literal.                                    |
+| TIMESTAMP WITH LOCAL TIME ZONE | Instant        | 1969-07-20 21:17:39              | Differs from the original timestamp literal, but refers to the same time instant. |
+| TIMESTAMP WITH TIME ZONE       | OffsetDateTime | 1969-07-20 16:17:39 (UTC -04:00) | Displayed like the original literal but showing the time zone offset as well.     |
 
 Of course, the different semantics do not only affect the textual representations but perhaps more importantly SQL function behavior as well. These allow users to take advantage of timestamps in different ways or to explicitly create different textual representations instead of the implicit ones shown above.
 
@@ -55,10 +55,4 @@ Reconstructible details:
 | TIMESTAMP [WITHOUT TIME ZONE] | LocalDateTime | ✓ |  |  |
 | TIMESTAMP WITH LOCAL TIME ZONE | Instant |  | ✓ |  |
 | TIMESTAMP WITH TIME ZONE | OffsetDateTime | ✓ | ✓ | ✓ |
-
-  
-
- 
-
- 
 

@@ -21,7 +21,3 @@ Finally, [HIVE-1476](https://issues.apache.org/jira/browse/HIVE-1476) (metastore
 
 The October meetup will be at Facebook HQ in Palo Alto.
 
- 
-
- 
-

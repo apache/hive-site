@@ -10,8 +10,8 @@ date: 2024-12-12
 ### I see errors like: Server access Error: Connection timed out url=<http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz>
 
 Run the following commands:  
- `cd ~/.ant/cache/hadoop/core/sources`  
- `wget <http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz>`
+`cd ~/.ant/cache/hadoop/core/sources`  
+`wget <http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz>`
 
 ### How to change the warehouse.dir location for older tables?
 
@@ -26,7 +26,7 @@ This is usually caused by the order of JOIN tables. Instead of "FROM tableA a JO
 This is usually caused by MySQL servers closing connections after the connection is idling for some time. Run the following command on the MySQL server will solve the problem "set global wait_status=120;"
 
 1. When using MySQL as a metastore I see the error "com.mysql.jdbc.exceptions.MySQLSyntaxErrorException: Specified key was too long; max key length is 767 bytes".  
- This is a known limitation of MySQL 5.0 and UTF8 databases. One option is to use another character set, such as 'latin1', which is known to work.
+   This is a known limitation of MySQL 5.0 and UTF8 databases. One option is to use another character set, such as 'latin1', which is known to work.
 
 ### Does Hive support Unicode?
 
@@ -43,14 +43,10 @@ No. Hive is case insensitive.
 Executing:
 
 > `SELECT * FROM MyTable WHERE myColumn = 3`
-> 
-> 
 
 is strictly equivalent to
 
 > `select * from mytable where mycolumn = 3`
-> 
-> 
 
 ### What are the maximum allowed lengths for Hive SQL identifiers?
 
@@ -132,8 +128,4 @@ Amazon provides ODBC/JDBC drivers for Amazon EMR
 <https://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-bi-tools.html>
 
  
-
- 
-
- 
 

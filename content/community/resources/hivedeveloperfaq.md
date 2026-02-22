@@ -145,13 +145,11 @@ mvn clean install -DskipTests -Pprotobuf
 mvn clean install -Pthriftif -DskipTests -Dthrift.home=/usr/local
 ```
 
-  
-
-Don’t forget to update `hive_metastore.proto` when changing  `hive_metastore.thrift 
+Don’t forget to update `hive_metastore.proto` when changing  `hive_metastore.thrift
 
 [![](https://issues.apache.org/jira/secure/viewavatar?size=xsmall&avatarId=21141&avatarType=issuetype)HIVE-26769](https://issues.apache.org/jira/browse/HIVE-26769?src=confmacro)
- -
- [TRACKING] gRPC support for Hive metastore
+-
+[TRACKING] gRPC support for Hive metastore
 Open`### How to run findbugs after a change?
 
 ```

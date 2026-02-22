@@ -76,7 +76,3 @@ and then capturing the table/partition inputs for this query and passing them on
 
 This allows applications to track the dependencies themselves. In the future, Hive will automatically populate these dependencies into the metastore as part of [HIVE-1073](https://issues.apache.org/jira/browse/HIVE-1073).
 
- 
-
- 
-

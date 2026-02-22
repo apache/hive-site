@@ -190,9 +190,11 @@ Note that columns are specified by name, not by position number. However in [HIV
 
 When any of the above conditions are not met, no distribution is performed.
 
-In the following example we distribute by the 3rd and the 1st column (birthdate, age): 
+In the following example we distribute by the 3rd and the 1st column (birthdate, age):
+
 ```sql
 set hive.orderby.position.alias=true;
 set hive.cbo.enable=true;
 SELECT age, name, birthdate FROM author DISTRIBUTE BY 3, 1;
 ```
+

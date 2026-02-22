@@ -13,7 +13,3 @@ This page collects some pointers to resources about Howl (an effort to create a 
 * [Howl CLI functional spec](http://wiki.apache.org/pig/Howl/HowlCliFuncSpec)
 * [Original plans for Owl (predecessor to Howl)](http://wiki.apache.org/pig/owl)
 
- 
-
- 
-

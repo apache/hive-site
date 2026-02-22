@@ -42,7 +42,3 @@ Then run the checks with the following command:
 ./dev-support/test-patch.sh ~/Downloads/HIVE-16345.2.patch
 ```
 
- 
-
- 
-

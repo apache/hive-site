@@ -134,7 +134,3 @@ public abstract class GenericUDTF {
 
 ```
 
- 
-
- 
-

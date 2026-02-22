@@ -15,21 +15,21 @@ Describe a single column in an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **:column** | The column name | Required | None |
+|    Name     |    Description    | Required? | Default |
+|-------------|-------------------|-----------|---------|
+| **:db**     | The database name | Required  | None    |
+| **:table**  | The table name    | Required  | None    |
+| **:column** | The column name   | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **database** | The database name |
-| **table** | The table name |
-| **column** | A JSON object containing the column name, type, and comment (if any) |
+|     Name     |                             Description                              |
+|--------------|----------------------------------------------------------------------|
+| **database** | The database name                                                    |
+| **table**    | The table name                                                       |
+| **column**   | A JSON object containing the column name, type, and comment (if any) |
 
 ## Example
 
@@ -55,14 +55,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table/column]({{< ref "webhcat-reference-getcolumns" >}}) Next: [PUT ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-putcolumn" >}})
-
-
-
- 
-
- 
 

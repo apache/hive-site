@@ -19,9 +19,9 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **status** | "ok" if the WebHCat server was contacted. |
+|    Name     |                      Description                      |
+|-------------|-------------------------------------------------------|
+| **status**  | "ok" if the WebHCat server was contacted.             |
 | **version** | String containing the version number similar to "v1". |
 
 ## Example
@@ -43,14 +43,6 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [Response Types (GET :version)]({{< ref "webhcat-reference-responsetypes" >}})Next: [GET version]({{< ref "webhcat-reference-version" >}})
-
-
-
- 
-
- 
 

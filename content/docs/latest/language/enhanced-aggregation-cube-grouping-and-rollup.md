@@ -26,11 +26,11 @@ The GROUPING SETS clause in GROUP BY allows us to specify more than one GROUP BY
 
 **Table 1 - GROUPING SET queries and the equivalent GROUP BY queries**
 
-| Aggregate Query with GROUPING SETS | Equivalent Aggregate Query with GROUP BY |
-| --- | --- |
-| SELECT a, b, SUM(c) FROM tab1 GROUP BY a, b GROUPING SETS ( (a,b) ) | SELECT a, b, SUM(c) FROM tab1 GROUP BY a, b |
-| SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, b GROUPING SETS ( (a,b), a) | SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, bUNIONSELECT a, null, SUM( c ) FROM tab1 GROUP BY a |
-| SELECT a,b, SUM( c ) FROM tab1 GROUP BY a, b GROUPING SETS (a,b) | SELECT a, null, SUM( c ) FROM tab1 GROUP BY aUNIONSELECT null, b, SUM( c ) FROM tab1 GROUP BY b |
+|                        Aggregate Query with GROUPING SETS                         |                                                                                Equivalent Aggregate Query with GROUP BY                                                                                 |
+|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SELECT a, b, SUM(c) FROM tab1 GROUP BY a, b GROUPING SETS ( (a,b) )               | SELECT a, b, SUM(c) FROM tab1 GROUP BY a, b                                                                                                                                                             |
+| SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, b GROUPING SETS ( (a,b), a)           | SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, bUNIONSELECT a, null, SUM( c ) FROM tab1 GROUP BY a                                                                                                         |
+| SELECT a,b, SUM( c ) FROM tab1 GROUP BY a, b GROUPING SETS (a,b)                  | SELECT a, null, SUM( c ) FROM tab1 GROUP BY aUNIONSELECT null, b, SUM( c ) FROM tab1 GROUP BY b                                                                                                         |
 | SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, b GROUPING SETS ( (a, b), a, b, ( ) ) | SELECT a, b, SUM( c ) FROM tab1 GROUP BY a, bUNIONSELECT a, null, SUM( c ) FROM tab1 GROUP BY a, nullUNIONSELECT null, b, SUM( c ) FROM tab1 GROUP BY null, bUNIONSELECT null, null, SUM( c ) FROM tab1 |
 
 ### Grouping__ID function
@@ -42,13 +42,13 @@ This function returns a bitvector corresponding to whether each column is presen
 Consider the following example:
 
 | Column1 (key) | Column2 (value) |
-| --- | --- |
-| 1 | NULL |
-| 1 | 1 |
-| 2 | 2 |
-| 3 | 3 |
-| 3 | NULL |
-| 4 | 5 |
+|---------------|-----------------|
+| 1             | NULL            |
+| 1             | 1               |
+| 2             | 2               |
+| 3             | 3               |
+| 3             | NULL            |
+| 4             | 5               |
 
 The following query:
 
@@ -61,18 +61,18 @@ GROUP BY key, value WITH ROLLUP;
 will have the following results:
 
 | Column 1 (key) | Column 2 (value) | GROUPING__ID | count(*) |
-| --- | --- | --- | --- |
-| NULL | NULL | 3 | 6 |
-| 1 | NULL | 1 | 2 |
-| 1 | NULL | 0 | 1 |
-| 1 | 1 | 0 | 1 |
-| 2 | NULL | 1 | 1 |
-| 2 | 2 | 0 | 1 |
-| 3 | NULL | 1 | 2 |
-| 3 | NULL | 0 | 1 |
-| 3 | 3 | 0 | 1 |
-| 4 | NULL | 1 | 1 |
-| 4 | 5 | 0 | 1 |
+|----------------|------------------|--------------|----------|
+| NULL           | NULL             | 3            | 6        |
+| 1              | NULL             | 1            | 2        |
+| 1              | NULL             | 0            | 1        |
+| 1              | 1                | 0            | 1        |
+| 2              | NULL             | 1            | 1        |
+| 2              | 2                | 0            | 1        |
+| 3              | NULL             | 1            | 2        |
+| 3              | NULL             | 0            | 1        |
+| 3              | 3                | 0            | 1        |
+| 4              | NULL             | 1            | 1        |
+| 4              | 5                | 0            | 1        |
 
 Note that the third column is a bitvector of columns being selected.  
 For the first row, none of the columns are being selected.  
@@ -93,22 +93,21 @@ FROM T1
 GROUP BY key, value WITH ROLLUP;
 ```
 
-  
 This query will produce the following results.
 
 | Column 1 (key) | Column 2 (value) | GROUPING__ID | grouping(key, value) | grouping(value, key) | grouping(key) | grouping(value) | count(*) |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| NULL | NULL | 3 | 3 | 3 | 1 | 1 | 6 |
-| 1 | NULL | 1 | 1 | 2 | 0 | 1 | 2 |
-| 1 | NULL | 0 | 0 | 0 | 0 | 0 | 1 |
-| 1 | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
-| 2 | NULL | 1 | 1 | 2 | 0 | 1 | 1 |
-| 2 | 2 | 0 | 0 | 0 | 0 | 0 | 1 |
-| 3 | NULL | 1 | 1 | 2 | 0 | 1 | 2 |
-| 3 | NULL | 0 | 0 | 0 | 0 | 0 | 1 |
-| 3 | 3 | 0 | 0 | 0 | 0 | 0 | 1 |
-| 4 | NULL | 1 | 1 | 2 | 0 | 1 | 1 |
-| 4 | 5 | 0 | 0 | 0 | 0 | 0 | 1 |
+|----------------|------------------|--------------|----------------------|----------------------|---------------|-----------------|----------|
+| NULL           | NULL             | 3            | 3                    | 3                    | 1             | 1               | 6        |
+| 1              | NULL             | 1            | 1                    | 2                    | 0             | 1               | 2        |
+| 1              | NULL             | 0            | 0                    | 0                    | 0             | 0               | 1        |
+| 1              | 1                | 0            | 0                    | 0                    | 0             | 0               | 1        |
+| 2              | NULL             | 1            | 1                    | 2                    | 0             | 1               | 1        |
+| 2              | 2                | 0            | 0                    | 0                    | 0             | 0               | 1        |
+| 3              | NULL             | 1            | 1                    | 2                    | 0             | 1               | 2        |
+| 3              | NULL             | 0            | 0                    | 0                    | 0             | 0               | 1        |
+| 3              | 3                | 0            | 0                    | 0                    | 0             | 0               | 1        |
+| 4              | NULL             | 1            | 1                    | 2                    | 0             | 1               | 1        |
+| 4              | 5                | 0            | 0                    | 0                    | 0             | 0               | 1        |
 
 ### Cubes and Rollups
 
@@ -135,8 +134,6 @@ This parameter decides if hive should add an additional map-reduce job. If the g
 cardinality (4 in the example above), is more than this value, a new MR job is added under the  
 assumption that the orginal group by will reduce the data size.
 
-  
-
 ### Grouping__ID function (before Hive 2.3.0)
 
 Grouping__ID function was fixed in Hive 2.3.0, thus behavior before that release is different (this is expected). For each column, the function would return a value of "0" iif that column has been aggregated in that row, otherwise the value is "1".
@@ -152,18 +149,18 @@ GROUP BY key, value WITH ROLLUP;
 will have the following results.
 
 | Column 1 (key) | Column 2 (value) | GROUPING__ID | count(*) |
-| --- | --- | --- | --- |
-| NULL | NULL | 0 | 6 |
-| 1 | NULL | 1 | 2 |
-| 1 | NULL | 3 | 1 |
-| 1 | 1 | 3 | 1 |
-| 2 | NULL | 1 | 1 |
-| 2 | 2 | 3 | 1 |
-| 3 | NULL | 1 | 2 |
-| 3 | NULL | 3 | 1 |
-| 3 | 3 | 3 | 1 |
-| 4 | NULL | 1 | 1 |
-| 4 | 5 | 3 | 1 |
+|----------------|------------------|--------------|----------|
+| NULL           | NULL             | 0            | 6        |
+| 1              | NULL             | 1            | 2        |
+| 1              | NULL             | 3            | 1        |
+| 1              | 1                | 3            | 1        |
+| 2              | NULL             | 1            | 1        |
+| 2              | 2                | 3            | 1        |
+| 3              | NULL             | 1            | 2        |
+| 3              | NULL             | 3            | 1        |
+| 3              | 3                | 3            | 1        |
+| 4              | NULL             | 1            | 1        |
+| 4              | 5                | 3            | 1        |
 
 Note that the third column is a bitvector of columns being selected.   
 For the first row, none of the columns are being selected.  

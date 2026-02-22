@@ -24,7 +24,3 @@ Active contributors to the Hive project are invited to attend the monthly Hive C
 * [July 6, 2010]({{< ref "development-contributorsmeetings-hivecontributorsminutes100706" >}})
 * [June 1, 2010]({{< ref "development-contributorsmeetings-hivecontributorsminutes100601" >}})
 
- 
-
- 
-

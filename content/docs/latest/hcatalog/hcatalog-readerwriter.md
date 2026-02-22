@@ -116,11 +116,5 @@ A complete java program for the reader and writer examples above can be found he
 
 **Navigation Links**
 Previous: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput" >}})  
- Next: [Command Line Interface]({{< ref "hcatalog-cli" >}})
-
-
-
- 
-
- 
+Next: [Command Line Interface]({{< ref "hcatalog-cli" >}})
 

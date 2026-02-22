@@ -51,6 +51,7 @@ When you commit/merge a Pull Request, please:
 6. Thank the contributor(s), the reviewers, and the reporter of the issue (if different from the contributor). It is easier to thank the people in GitHub by mentioning their GitHub ids under the respective Pull Request.
 
 Below you can find a sample commit message that adheres to the guidelines outlined here.
+
 ```
 HIVE-27424: Display dependency:tree in GitHub actions (#5756)
 ```
@@ -75,8 +76,4 @@ Committers/Contributors can hang out in the #hive channel in Apache Slack worksp
 Note: Committers or individuals with Apache Id can directly join the #hive slack channel on Apache Workspace, any other individual if interested should drop a mail to hive dev mailing list with his email id and any existing member of the #hive apache channel should be able to send him the invite to join the group.
 
 Instructions to add folks to ASF hive channel: <https://infra.apache.org/slack.html>
-
- 
-
- 
 

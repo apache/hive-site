@@ -30,9 +30,3 @@ For information about the REST API for HCatalog, *WebHCat* (formerly *Templeton*
 **Navigation Links**
 Next: [Using HCatalog]({{< ref "hcatalog-usinghcat" >}})
 
-
-
- 
-
- 
-

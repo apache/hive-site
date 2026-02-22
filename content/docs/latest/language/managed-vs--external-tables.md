@@ -45,7 +45,3 @@ An external table describes the metadata / schema on external files. External ta
 
 Use external tables when files are already present or in remote locations, and the files should remain even if the table is dropped.
 
- 
-
- 
-

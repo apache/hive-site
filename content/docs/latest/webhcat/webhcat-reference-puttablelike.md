@@ -15,25 +15,25 @@ Create a new HCatalog table like an existing one.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:existingtable** | The existing table name | Required | None |
-| **:newtable** | The new table name | Required | None |
-| **group** | The user group to use when creating a table | Optional | None |
-| **permissions** | The permissions string to use when creating a table | Optional | None |
-| **external** | Allows you to specify a location so that Hive does not use the default location for this table. | Optional | false |
-| **ifNotExists** | If true, you will not receive an error if the table already exists. | Optional | false |
-| **location** | The HDFS path | Optional | None |
+|        Name        |                                           Description                                           | Required? | Default |
+|--------------------|-------------------------------------------------------------------------------------------------|-----------|---------|
+| **:db**            | The database name                                                                               | Required  | None    |
+| **:existingtable** | The existing table name                                                                         | Required  | None    |
+| **:newtable**      | The new table name                                                                              | Required  | None    |
+| **group**          | The user group to use when creating a table                                                     | Optional  | None    |
+| **permissions**    | The permissions string to use when creating a table                                             | Optional  | None    |
+| **external**       | Allows you to specify a location so that Hive does not use the default location for this table. | Optional  | false   |
+| **ifNotExists**    | If true, you will not receive an error if the table already exists.                             | Optional  | false   |
+| **location**       | The HDFS path                                                                                   | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **table** | The new table name |
-| **database** | The database name |
+|     Name     |    Description     |
+|--------------|--------------------|
+| **table**    | The new table name |
+| **database** | The database name  |
 
 ## Example
 
@@ -55,14 +55,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable" >}}) Next: [GET ddl/database/:db/table/:table/partition]({{< ref "webhcat-reference-getpartitions" >}})
-
-
-
- 
-
- 
 

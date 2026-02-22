@@ -67,9 +67,9 @@ Limiting the integration to the fairly simple MRR/MPJ pattern will require minim
 # Functional requirements of phase I
 
 * Hive continues to work **as is** on clusters that do not have TEZ.
-	+ MR revisions 20, 20S, 23 continue to work unchanged.
+  + MR revisions 20, 20S, 23 continue to work unchanged.
 * Hive can optionally submit MR jobs to TEZ without any additional improvements.
-	+ Hive can treat TEZ like just another Hadoop 23 instance.
+  + Hive can treat TEZ like just another Hadoop 23 instance.
 * Hive can optionally detect chains of MR jobs and optimize them to a single DAG of the form MR* and submit it to TEZ.
 * Hive can optionally detect when a join has multiple parent tasks and combine them into a single DAG of a tree shape.
 * Hive will display the MRR optimization in explain plans.
@@ -86,11 +86,11 @@ The following things are out of scope for the first phase:
 One new configuration variable will be introduced:
 
 * ~~hive.optimize.tez~~   
-hive.execution.engine (changed in [HIVE-6103](https://issues.apache.org/jira/browse/HIVE-6103))
-	+ ~~True~~   
-	tez: Submit native TEZ dags, optimized for MRR/MPJ
-	+ ~~False~~   
-	mr (default): Submit single map, single reduce plans
+  hive.execution.engine (changed in [HIVE-6103](https://issues.apache.org/jira/browse/HIVE-6103))
+  + ~~True~~   
+    tez: Submit native TEZ dags, optimized for MRR/MPJ
+  + ~~False~~   
+    mr (default): Submit single map, single reduce plans
 * Update:  Several configuration variables were introduced in Hive 0.13.0.  See the [Tez section]({{< ref "#tez-section" >}}) in Configuration Properties.
 
 Note: It is possible to execute an MR plan against TEZ. In order to do so, one simply has to change the following variable (assuming Tez is installed on the cluster):
@@ -304,8 +304,4 @@ For information about how to configure Hive 0.13.0+ for Tez, see the release not
 ### Hive-Tez Compatibility
 
 For a list of Hive and Tez releases that are compatible with each other, see [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility" >}}).
-
- 
-
- 
 

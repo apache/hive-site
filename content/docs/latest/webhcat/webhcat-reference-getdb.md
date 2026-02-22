@@ -15,20 +15,20 @@ Describe a database. (Note: This resource has a "format=extended" parameter howe
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
+|  Name   |    Description    | Required? | Default |
+|---------|-------------------|-----------|---------|
+| **:db** | The database name | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **location** | The database location |
-| **params** | The database parameters |
-| **comment** | The database comment |
-| **database** | The database name |
+|     Name     |       Description       |
+|--------------|-------------------------|
+| **location** | The database location   |
+| **params**   | The database parameters |
+| **comment**  | The database comment    |
+| **database** | The database name       |
 
 ## Example
 
@@ -61,14 +61,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database]({{< ref "webhcat-reference-getdbs" >}}) Next: [PUT ddl/database/:db]({{< ref "webhcat-reference-putdb" >}})
-
-
-
- 
-
- 
 

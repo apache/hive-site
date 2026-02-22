@@ -44,7 +44,3 @@ The value for io.seqfile.compression.type determines how the compression is perf
 
 See [LZO Compression]({{< ref "languagemanual-lzo" >}}) for information about using LZO with Hive.
 
- 
-
- 
-

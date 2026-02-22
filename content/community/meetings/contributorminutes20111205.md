@@ -23,7 +23,3 @@ Ashutosh asked about a registry of available Hive storage handlers, and John ref
 
 Code walkthroughs were carried out for HIVE-2616 and HIVE-2589.
 
- 
-
- 
-

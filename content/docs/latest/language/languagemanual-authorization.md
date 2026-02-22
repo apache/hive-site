@@ -19,8 +19,8 @@ It is useful to think of authorization in terms of two primary use cases of Hive
 
 1. Hive as a table storage layer. This is the use case for Hive's [HCatalog]({{< ref "hcatalog-base" >}}) API users such as Apache Pig, MapReduce and some Massively Parallel Processing databases (Cloudera Impala, Facebook Presto, Spark SQL etc). In this case, Hive provides a table abstraction and metadata for files on storage (typically HDFS). These users have direct access to HDFS and the metastore server (which provides an API for metadata access). HDFS access is authorized through the use of [HDFS permissions](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html). Metadata access needs to be authorized using Hive configuration.
 2. Hive as a SQL query engine. This is one of the most common use cases of Hive. This is the 'Hive view' of SQL users and BI tools. This use case has the following two subcategories:
-	1. [Hive command line]({{< ref "#hive-command-line" >}}) users. These users have direct access to HDFS and the Hive metastore, which makes this use case similar to use case 1. *Note, that usage of Hive CLI will be officially [deprecated](https://issues.apache.org/jira/browse/HIVE-10304) soon in favor of Beeline.*
-	2. ODBC/JDBC and other HiveServer2 API users (Beeline CLI is an example). These users have all data/metadata access happening through HiveServer2. They don't have direct access to HDFS or the metastore.
+   1. [Hive command line]({{< ref "#hive-command-line" >}}) users. These users have direct access to HDFS and the Hive metastore, which makes this use case similar to use case 1. *Note, that usage of Hive CLI will be officially [deprecated](https://issues.apache.org/jira/browse/HIVE-10304) soon in favor of Beeline.*
+   2. ODBC/JDBC and other HiveServer2 API users (Beeline CLI is an example). These users have all data/metadata access happening through HiveServer2. They don't have direct access to HDFS or the metastore.
 
 ### Overview of Authorization Modes
 
@@ -50,6 +50,7 @@ hiveserver2-site.xml:
 </property>
 
 ```
+
 FallbackHiveAuthorizerFactory will do the following to mitigate above mentioned threat:
 
 1. Disallow local file location in sql statements except for admin
@@ -58,8 +59,6 @@ FallbackHiveAuthorizerFactory will do the following to mitigate above mentioned 
 4. Disallow "ADD JAR" statement
 5. Disallow "COMPILE" statement
 6. Disallow "TRANSFORM" statement
-
-  
 
 #### 2 SQL Standards Based Authorization in HiveServer2
 
@@ -100,12 +99,8 @@ Starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-5961), the
 For detailed information about the Hive authorization modes, see:
 
 * [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) 
-	+ also see [HCatalog Authorization]({{< ref "hcatalog-authorization" >}})
+  + also see [HCatalog Authorization]({{< ref "hcatalog-authorization" >}})
 * [SQL Standard Based Hive Authorization]({{< ref "sql-standard-based-hive-authorization" >}})
 * [Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}})
-	+ also see the [design document]({{< ref "authdev" >}}) and [Security]({{< ref "security" >}})
-
- 
-
- 
+  + also see the [design document]({{< ref "authdev" >}}) and [Security]({{< ref "security" >}})
 

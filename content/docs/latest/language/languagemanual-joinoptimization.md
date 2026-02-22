@@ -16,9 +16,9 @@ This document describes optimizations of Hive's query execution planning to impr
 Hive automatically recognizes various use cases and optimizes for them. Hive 0.11 improves the optimizer for these cases:
 
 * Joins where one side fits in memory. In the new optimization:
-	+ that side is loaded into memory as a hash table
-	+ only the larger table needs to be scanned
-	+ fact tables have a smaller footprint in memory
+  + that side is loaded into memory as a hash table
+  + only the larger table needs to be scanned
+  + fact tables have a smaller footprint in memory
 * Star-schema joins
 * Hints are no longer needed for many cases.
 * Map joins are automatically picked up by the optimizer.
@@ -69,15 +69,15 @@ The default value for [hive.auto.convert.join]({{< ref "#hive-auto-convert-join"
 MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through. The prior implementation has this division of labor:
 
 * Local work:
-	+ read records via standard table scan (including filters and projections) from source on local machine
-	+ build hashtable in memory
-	+ write hashtable to local disk
-	+ upload hashtable to dfs
-	+ add hashtable to distributed cache
+  + read records via standard table scan (including filters and projections) from source on local machine
+  + build hashtable in memory
+  + write hashtable to local disk
+  + upload hashtable to dfs
+  + add hashtable to distributed cache
 * Map task
-	+ read hashtable from local disk (distributed cache) into memory
-	+ match records' keys against hashtable
-	+ combine matches and write to output
+  + read hashtable from local disk (distributed cache) into memory
+  + match records' keys against hashtable
+  + combine matches and write to output
 * No reduce task
 
 #### Limitations of Prior Implementation
@@ -253,8 +253,4 @@ When the hashtables are generated completely on the task side, all task nodes ha
 
 1. Increase the replication factor on dimension tables.
 2. Use the distributed cache to hold dimension tables.
-
- 
-
- 
 

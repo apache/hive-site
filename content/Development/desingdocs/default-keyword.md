@@ -36,7 +36,3 @@ Example:
 
 During first phase of AST analysis AST for DEFAULT will be replaced with corresponding DEFAULT value AST or NULL AST.
 
- 
-
- 
-

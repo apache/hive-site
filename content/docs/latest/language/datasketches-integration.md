@@ -23,28 +23,28 @@ For example we have a function called: **ds_hll_estimate** which could be used t
 For detailed info about the sketches themself please refer to the datasketches site!
 
 * frequency
-	+ hll
-	+ cpc
-	+ theta
+  + hll
+  + cpc
+  + theta
 * frequent items
-	+ freq
+  + freq
 * histograms
-	+ kll
+  + kll
 
 ### functionName
 
-| name | description |
-| --- | --- |
-| sketch | generates sketch data from input |
-| estimate | computes the estimate for frequency related sketches |
-| union | aggregate function to merge multiple sketches |
-| union_f | unions 2 sketches given in the arguments |
-| n | number of elements |
-| cdf | cumulative distribution |
-| rank | estimates the rank of the given element; returns a value in the range of 0~1 |
-| intersect | aggregate to intersect multiple sketches |
-| intersect_f | intersect 2 sketches given in the arguments |
-| stringify | returns the the sketch in a more readable form |
+|    name     |                                 description                                  |
+|-------------|------------------------------------------------------------------------------|
+| sketch      | generates sketch data from input                                             |
+| estimate    | computes the estimate for frequency related sketches                         |
+| union       | aggregate function to merge multiple sketches                                |
+| union_f     | unions 2 sketches given in the arguments                                     |
+| n           | number of elements                                                           |
+| cdf         | cumulative distribution                                                      |
+| rank        | estimates the rank of the given element; returns a value in the range of 0~1 |
+| intersect   | aggregate to intersect multiple sketches                                     |
+| intersect_f | intersect 2 sketches given in the arguments                                  |
+| stringify   | returns the the sketch in a more readable form                               |
 
 ## List declared sketch functions
 
@@ -182,11 +182,7 @@ order by id
 
 # Examples
 
-  
-
 ## Simple distinct counting examples using HLL
-
-  
 
 * Prepare sample table
 
@@ -200,7 +196,10 @@ insert into table sketch_input values
   (6,'b'),(6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b')
 ; 
 ```
-* ### Use HLL to compute distinct values using an intermediate table
+
+* 
+
+### Use HLL to compute distinct values using an intermediate table
 
 ```
 -- build sketches per category
@@ -213,20 +212,29 @@ select category, ds_hll_estimate(sketch) from sketch_intermediate;
 -- union sketches across categories and get overall unique count estimate
 select ds_hll_estimate(ds_hll_union(sketch)) from sketch_intermediate;
 ```
-* ### Use HLL to compute distinct values without intermediate table
+
+* 
+
+### Use HLL to compute distinct values without intermediate table
 
 ```
 select category, ds_hll_estimate(ds_hll_sketch(id)) from sketch_input group by category;
 select ds_hll_estimate(ds_hll_sketch(id)) from sketch_input;
 ```
-* ### Use HLL to compute distinct values transparently thru BI mode
+
+* 
+
+### Use HLL to compute distinct values transparently thru BI mode
 
 ```
 set hive.optimize.bi.enabled=true;
 select category,count(distinct id) from sketch_input group by category;
 select count(distinct id) from sketch_input;
 ```
-* ### Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
+
+* 
+
+### Use HLL to compute distinct values transparently thru BI mode - while utilizing a Materialized View to store the intermediate sketches.
 
 ```
 -- create an MV to store precomputed HLL values
@@ -237,8 +245,4 @@ set hive.optimize.bi.enabled=true;
 select category,count(distinct id) from sketch_input group by category;
 select count(distinct id) from sketch_input;
 ```
-
- 
-
- 
 

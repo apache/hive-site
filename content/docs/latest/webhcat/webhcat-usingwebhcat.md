@@ -8,7 +8,7 @@ date: 2024-12-12
 ## Version information
 
 The HCatalog project graduated from the Apache incubator and merged with the Hive project on March 26, 2013.  
- Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
+Hive version 0.11.0 is the first release that includes HCatalog and its REST API, WebHCat.
 
 ## Introduction to WebHCat
 
@@ -119,13 +119,7 @@ The original work to add REST APIs to HCatalog was called Templeton. For backwar
 **Navigation Links**
 Next: [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}})
 
-
-
 ## Attachments:
 
 ![](images/icons/bullet_blue.gif)
-
- 
-
- 
 

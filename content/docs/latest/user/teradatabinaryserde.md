@@ -50,8 +50,6 @@ tbuild -C -f $td_export_template_file -v ${tpt_job_var_file} \
 
 The **td_export_template_file** looks like below with proper **Format, MaxDecimalDigits,** and**DateForm** in place:
 
-  
-
 **td_export_template_file**
 
 ```
@@ -110,8 +108,6 @@ SET SESSION DATEFORM=INTEGERDATE;
 select * from foo.teradata_binary_table order by test_int;
 .export reset
 ```
-
-  
 
 ### How to import
 
@@ -173,8 +169,6 @@ values (
 
 Here is a bash script example for how to call TPT FastLoad.
 
-  
-
 **TPT FastLoad script example**
 
 ```
@@ -192,11 +186,7 @@ tbuild -C -f $td_import_template_file -v ${tpt_job_var_file} \
      TargetQueryBandSessInfo='TptLoad=${staging_table};JobId=${job_id};'"
 ```
 
-  
-
 The **td_import_template_file** looks like:
-
-  
 
 **td_import_template_file**
 
@@ -237,11 +227,7 @@ STEP LOADING
 );
 ```
 
-  
-
 Please set the correct values in **tpt_job_var_file**, such as **SourceFormat**, **DateForm**, **MaxDecimalDigits**. Here is an example:
-
-  
 
 **tpt_job_var_file**
 
@@ -267,8 +253,6 @@ Please set the correct values in **tpt_job_var_file**, such as **SourceFormat*
 ,TargetUserName=<td_user>
 ,TargetUserPassword=<td_pass>
 ```
-
-  
 
 ### Usage
 
@@ -303,8 +287,6 @@ TBLPROPERTIES (
 );
 ```
 
-  
-
 **Default Teradata properties**
 
 ```
@@ -315,29 +297,27 @@ TBLPROPERTIES (
 
 #### Table Properties
 
-| Property Name | Property Value Set | Default Property Value | Note |
-| --- | --- | --- | --- |
-| teradata.row.length | (64KB, 1MB) | 64KB | **64KB** corresponds to **Formatted** mode**1MB** corresponds to **Formatted4** mode |
-| teradata.char.charset | (UNICODE, LATIN) | UNICODE | This decides how many bytes per char for CHAR data type3 bytes per char for UNICODE2 bytes per char for LATINAll the fields with CHAR type are controlled by this property (no separate specifying supported) |
-| teradata.timestamp.precision | 0-6 | 6 | This decides how many bytes for TIMESTAMP data type. More details is [here](https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/index.html#page/SQL_Reference/B035-1143-160K/bjd1472241378006.html).All the fields with TIMESTAMP are controlled by this property (no separate specifying supported) |
+|        Property Name         | Property Value Set | Default Property Value |                                                                                                                                                 Note                                                                                                                                                 |
+|------------------------------|--------------------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| teradata.row.length          | (64KB, 1MB)        | 64KB                   | **64KB** corresponds to **Formatted** mode**1MB** corresponds to **Formatted4** mode                                                                                                                                                                                                                 |
+| teradata.char.charset        | (UNICODE, LATIN)   | UNICODE                | This decides how many bytes per char for CHAR data type3 bytes per char for UNICODE2 bytes per char for LATINAll the fields with CHAR type are controlled by this property (no separate specifying supported)                                                                                        |
+| teradata.timestamp.precision | 0-6                | 6                      | This decides how many bytes for TIMESTAMP data type. More details is [here](https://www.info.teradata.com/HTMLPubs/DB_TTU_16_00/index.html#page/SQL_Reference/B035-1143-160K/bjd1472241378006.html).All the fields with TIMESTAMP are controlled by this property (no separate specifying supported) |
 
 #### Teradata to Hive Type Conversion
 
-| Teradata Data Type | Teradata Data Type Definition | Hive Type | Hive Data Type Definition | Note |
-| --- | --- | --- | --- | --- |
-| **DATE** | *DATE* | **DATE** | *DATE* |  |
-| **TIMESTAMP** | *TIMESTAMP(X)* | **TIMESTAMP** | *TIMESTAMP* | The decoding of TIMESTAMP precision is controlled by the table property **teradata.timestamp.precision** |
-| **BYTEINT** | *BYTEINT* | **TINYINT** | *TINYINT* |  |
-| **SMALLINT** | *SMALLINT* | **SMALLINT** | *SMALLINT* |  |
-| **INTEGER** | *INTEGER|INT* | **INT** | *INT|INTEGER* |  |
-| **BIGINT** | *BIGINT* | **BIGINT** | *BIGINT* |  |
-| **FLOAT** | *FLOAT* | **DOUBLE** | *DOUBLE* |  |
-| **DECIMAL** | *DECIMAL(N,M)**--Default DECIMAL(5, 0)* | **DECIMAL** | *DECIMAL(N,M)**--Default DECIMAL(10, 0)* |  |
-| **VARCHAR** | *VARCHAR(X)* | **VARCHAR** | *VARCHAR(X)* |  |
-| **CHAR** | *CHAR(X)* | **CHAR** | *CHAR(X)* | The decoding of each CHAR is controlled by the table property **teradata.char.charset** |
-| **VARBYTE** | *VARBYTE(X)* | **BINARY** | *BINARY* |  |
-
-  
+| Teradata Data Type |      Teradata Data Type Definition      |   Hive Type   |        Hive Data Type Definition         |                                                   Note                                                   |
+|--------------------|-----------------------------------------|---------------|------------------------------------------|----------------------------------------------------------------------------------------------------------|----------|---|
+| **DATE**           | *DATE*                                  | **DATE**      | *DATE*                                   |                                                                                                          |
+| **TIMESTAMP**      | *TIMESTAMP(X)*                          | **TIMESTAMP** | *TIMESTAMP*                              | The decoding of TIMESTAMP precision is controlled by the table property **teradata.timestamp.precision** |
+| **BYTEINT**        | *BYTEINT*                               | **TINYINT**   | *TINYINT*                                |                                                                                                          |
+| **SMALLINT**       | *SMALLINT*                              | **SMALLINT**  | *SMALLINT*                               |                                                                                                          |
+| **INTEGER**        | *INTEGER                                | INT*          | **INT**                                  | *INT                                                                                                     | INTEGER* |   |
+| **BIGINT**         | *BIGINT*                                | **BIGINT**    | *BIGINT*                                 |                                                                                                          |
+| **FLOAT**          | *FLOAT*                                 | **DOUBLE**    | *DOUBLE*                                 |                                                                                                          |
+| **DECIMAL**        | *DECIMAL(N,M)**--Default DECIMAL(5, 0)* | **DECIMAL**   | *DECIMAL(N,M)**--Default DECIMAL(10, 0)* |                                                                                                          |
+| **VARCHAR**        | *VARCHAR(X)*                            | **VARCHAR**   | *VARCHAR(X)*                             |                                                                                                          |
+| **CHAR**           | *CHAR(X)*                               | **CHAR**      | *CHAR(X)*                                | The decoding of each CHAR is controlled by the table property **teradata.char.charset**                  |
+| **VARBYTE**        | *VARBYTE(X)*                            | **BINARY**    | *BINARY*                                 |                                                                                                          |
 
 #### Serde Restriction
 
@@ -345,8 +325,4 @@ The TeradataBinarySerde has several restrictions:
 
 * Only support simple data type listed above, other data type like INTERVAL, TIME, NUMBER, CLOB, BLOB in Teradata are not yet supported.
 * Doesn't support the complex data type such as ARRAY, MAP.
-
- 
-
- 
 

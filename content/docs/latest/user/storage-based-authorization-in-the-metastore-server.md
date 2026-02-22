@@ -85,7 +85,3 @@ The snippet below shows the keys as they are in a default state in `hive-site.x
 
 ```
 
- 
-
- 
-

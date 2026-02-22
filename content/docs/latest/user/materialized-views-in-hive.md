@@ -133,7 +133,3 @@ However, in some occasions it may be fine to accept stale data, e.g., if the mat
 
 The parameter value can be also overridden by a concrete materialized view just by setting it as a table property when the materialization is created.
 
- 
-
- 
-

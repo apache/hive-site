@@ -7,7 +7,6 @@ date: 2024-12-12
 
 Apache Hive starting from 4.0 out of the box supports the Iceberg table format, the iceberg tables can be created like regular hive external or ACID tables, without adding any extra jars.
 
-
 **Creating an Iceberg Table**
 
 An iceberg table can be created using ***STORED BY ICEBERG*** keywords while creating a table.
@@ -46,7 +45,6 @@ Example:
 CREATE TABLE V2_TABLE (ID INT) STORED BY ICEBERG TBLPROPERTIES ('format-version'='2');
 ```
 
-
 **File Formats:**
 
 The iceberg table currently supports three file formats: PARQUET, ORC & AVRO. The default file format is Parquet. The file format can be explicitily provided by using STORED AS <Format> while creating the table
@@ -69,10 +67,10 @@ The above creates a v2 iceberg table named 'V2_ORC_TABLE' of ORC file format.
 
 Similarly we can specify any of the supported file formats while creating the table,
 
-
 **Delete Modes:**
 
 Hive for delete, update & merge queries support both Copy-on-Write and Merge-on-Read, by default the tables are created with Merge-on-Read mode. The delete mode can be configured using the following TBLPROPERTIES:
+
 ```
 CREATE TABLE tbl_x (id int) STORED BY ICEBERG TBLPROPERTIES (
     'write.delete.mode'='copy-on-write',
@@ -80,7 +78,6 @@ CREATE TABLE tbl_x (id int) STORED BY ICEBERG TBLPROPERTIES (
     'write.merge.mode'='copy-on-write'
 );
 ```
-
 
 **Migrating existing tables to Iceberg Tables**
 
@@ -92,7 +89,6 @@ ALTER TABLE TABLE1 CONVERT TO ICEBERG TBLPROPERTIES ('format-version'='2');
 
 The above converts an existing external table 'TABLE1' into a v2 Iceberg table, specifying the TBLPROPERTIES & format-version is option, if not specified the table will be converted into a v1 iceberg table.
 
-
 **Querying an Iceberg Table**
 
 Iceberg tables support all query statements similar to any other hive table.
@@ -102,7 +98,6 @@ Example:
 ```
 SELECT * FROM TBL_ICE WHERE ID > 5;
 ```
-
 
 **Writing data into iceberg tables**
 
@@ -114,13 +109,11 @@ Iceberg tables supports all data ingestion methods supported with hive
 INSERT INTO TBL_ICE VALUES (1),(2),(3),(4);
 ```
 
-
 * Insert-Overwrite
 
 ```
 INSERT OVERWRITE TBL_ICE SELECT * FROM TABLE1;
 ```
-
 
 * Delete
 
@@ -128,13 +121,11 @@ INSERT OVERWRITE TBL_ICE SELECT * FROM TABLE1;
 DELETE FROM TBL_ICE WHERE ID=5;
 ```
 
-
 * Update
 
 ```
 UPDATE TBL_ICE WHERE ID=8 SET ID=2;
 ```
-
 
 * LOAD DATA
 
@@ -166,7 +157,6 @@ REFS                           SELECT * from db_name.tbl_name.refs;
 ALL_DELETE_FILES               SELECT * from db_name.tbl_name.all_delete_files;
 ALL_FILES                      SELECT * from db_name.tbl_name.all_files;
 ```
-
 
 **Branches & Tags:**
 

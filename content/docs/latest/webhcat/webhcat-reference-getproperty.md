@@ -15,21 +15,21 @@ Return the value of a single table property.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **:property** | The property name | Required | None |
+|     Name      |    Description    | Required? | Default |
+|---------------|-------------------|-----------|---------|
+| **:db**       | The database name | Required  | None    |
+| **:table**    | The table name    | Required  | None    |
+| **:property** | The property name | Required  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|     Name     |                Description                |
+|--------------|-------------------------------------------|
 | **property** | The requested property's name: value pair |
-| **database** | The database name |
-| **table** | The table name |
+| **database** | The database name                         |
+| **table**    | The table name                            |
 
 ## Example
 
@@ -65,14 +65,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [GET ddl/database/:db/table/:table/property]({{< ref "webhcat-reference-getproperties" >}}) Next: [PUT ddl/database/:db/table/:table/property/:property]({{< ref "webhcat-reference-putproperty" >}})
-
-
-
- 
-
- 
 

@@ -134,16 +134,17 @@ Z-order is most effective for:
 * Multi-dimensional analytical queries
 * Ad-hoc queries with varying filter patterns
 * Queries filtering on different column combinations
+
 ---
 
 ## Comparison with SORT BY
 
-| Feature | WRITE ORDERED BY | SORT BY |
-|---------|------------------|---------|
-| Application | Write time | Query time |
-| Persistence | Permanent in files | Query result only |
-| Scope | Physical file layout | Query execution |
-| Table Support | Iceberg tables | All table types |
+|    Feature    |   WRITE ORDERED BY   |      SORT BY      |
+|---------------|----------------------|-------------------|
+| Application   | Write time           | Query time        |
+| Persistence   | Permanent in files   | Query result only |
+| Scope         | Physical file layout | Query execution   |
+| Table Support | Iceberg tables       | All table types   |
 
 ---
 
@@ -151,6 +152,7 @@ Z-order is most effective for:
 
 * Write ordering only applies to Iceberg tables
 * Write operations incur ordering overhead:
-    * Type-Native ordering: Sort cost
-    * Z-order: Sort cost plus z-value computation
+  * Type-Native ordering: Sort cost
+  * Z-order: Sort cost plus z-value computation
 * Column selection should be based on query workload analysis
+

@@ -25,34 +25,34 @@ Amazon Elastic MapReduce provides you with multiple clients to run your Hive clu
 
 # Supported versions:
 
-| | |
-| --- | --- |
+|             |              |
+|-------------|--------------|
 | EMR Version | Hive Version |
-| emr-7.0.0 | 3.1.3 |
-| emr-6.15.0 | 3.1.3 |
-| emr-5.36.1 | 2.3.9 |
+| emr-7.0.0   | 3.1.3        |
+| emr-6.15.0  | 3.1.3        |
+| emr-5.36.1  | 2.3.9        |
 
 # Hive Defaults
 
 ## Thrift Communication port
 
-| | |
-| --- | --- |
+|              |             |
+|--------------|-------------|
 | Hive Version | Thrift port |
-| 0.4 | 10000 |
-| 0.5 | 10000 |
-| 0.7 | 10001 |
-| 0.7.1 | 10002 |
+| 0.4          | 10000       |
+| 0.5          | 10000       |
+| 0.7          | 10001       |
+| 0.7.1        | 10002       |
 
 ## Log File
 
-| | |
-| --- | --- |
-| Hive Version | Log location |
-| 0.4 | /mnt/var/log/apps/hive.log |
-| 0.5 | /mnt/var/log/apps/hive_05.log |
-| 0.7 | /mnt/var/log/apps/hive_07.log |
-| 0.7.1 | /mnt/var/log/apps/hive_07_1.log |
+|              |                                 |
+|--------------|---------------------------------|
+| Hive Version | Log location                    |
+| 0.4          | /mnt/var/log/apps/hive.log      |
+| 0.5          | /mnt/var/log/apps/hive_05.log   |
+| 0.7          | /mnt/var/log/apps/hive_07.log   |
+| 0.7.1        | /mnt/var/log/apps/hive_07_1.log |
 
 # MetaStore
 
@@ -62,13 +62,13 @@ By default, Amazon Elastic MapReduce uses MySQL, preinstalled on the Master Node
 
 EMR configures the master node to allow SSH access. You can log onto the master node and execute Hive commands using the Hive CLI. If you have multiple versions of Hive installed on the cluster you can access each one of them via a separate command:
 
-| | |
-| --- | --- |
+|              |              |
+|--------------|--------------|
 | Hive Version | Hive command |
-| 0.4 | hive |
-| 0.5 | hive-0.5 |
-| 0.7 | hive-0.7 |
-| 0.7.1 | hive-0.7.1 |
+| 0.4          | hive         |
+| 0.5          | hive-0.5     |
+| 0.7          | hive-0.7     |
+| 0.7.1        | hive-0.7.1   |
 
 EMR sets up a separate Hive metastore and Hive warehouse for each installed Hive version on a given cluster. Hence, creating tables using one version does not interfere with the tables created using another version installed. Please note that if you point multiple Hive tables to same location, updates to one table become visible to other tables.
 
@@ -76,12 +76,12 @@ EMR sets up a separate Hive metastore and Hive warehouse for each installed Hive
 
 EMR runs a Thrift Hive server on the master node of the Hive cluster. It can be accessed using any JDBC client (for example, squirrel SQL) via Hive JDBC drivers. The JDBC drivers for different Hive versions can be downloaded via the following links:
 
-| | |
-| --- | --- |
-| Hive Version | Hive JDBC |
-| 0.5 | <http://aws.amazon.com/developertools/0196055244487017> |
-| 0.7 | <http://aws.amazon.com/developertools/1818074809286277> |
-| 0.7.1 | <http://aws.amazon.com/developertools/8084613472207189> |
+|              |                                                         |
+|--------------|---------------------------------------------------------|
+| Hive Version | Hive JDBC                                               |
+| 0.5          | <http://aws.amazon.com/developertools/0196055244487017> |
+| 0.7          | <http://aws.amazon.com/developertools/1818074809286277> |
+| 0.7.1        | <http://aws.amazon.com/developertools/8084613472207189> |
 
 Here is the process to connect to the Hive Server using a JDBC driver:
 
@@ -110,13 +110,13 @@ Hadoop task attempt logs are available in /mnt/var/log/hadoop/userlogs/ folder o
 The following Hive tutorials are available for you to get started with Hive on Elastic MapReduce:
 
 1. Finding trending topics using Google Books n-grams data and Apache Hive on Elastic MapReduce
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/5249664154115844>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/5249664154115844>
 2. Contextual Advertising using Apache Hive and Amazon Elastic MapReduce with High Performance Computing instances
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/2855>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/2855>
 3. Operating a Data Warehouse with Hive, Amazon Elastic MapReduce and Amazon SimpleDB
-	* <http://aws.amazon.com/articles/Elastic-MapReduce/2854>
+   * <http://aws.amazon.com/articles/Elastic-MapReduce/2854>
 4. Running Hive on Amazon ElasticMap Reduce
-	* <http://aws.amazon.com/articles/2857>
+   * <http://aws.amazon.com/articles/2857>
 
 In addition, Amazon provides step-by-step video tutorials:
 
@@ -133,8 +133,4 @@ Please also refer to the EMR developer guide for more information:
 <http://docs.amazonwebservices.com/ElasticMapReduce/latest/DeveloperGuide/>
 
 Contributed by: Vaibhav Aggarwal
-
- 
-
- 
 

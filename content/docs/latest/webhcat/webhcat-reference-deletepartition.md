@@ -15,24 +15,24 @@ Delete (drop) a partition in an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
-| **ifExists** | Hive returns an error if the partition specified does not exist, unless **ifExists** is set to true. | Optional | false |
-| **group** | The user group to use | Optional | None |
-| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
+|      Name       |                                                           Description                                                            | Required? | Default |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------|-----------|---------|
+| **:db**         | The database name                                                                                                                | Required  | None    |
+| **:table**      | The table name                                                                                                                   | Required  | None    |
+| **:partition**  | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required  | None    |
+| **ifExists**    | Hive returns an error if the partition specified does not exist, unless **ifExists** is set to true.                             | Optional  | false   |
+| **group**       | The user group to use                                                                                                            | Optional  | None    |
+| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`".                                                                      | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
+|     Name      |    Description     |
+|---------------|--------------------|
 | **partition** | The partition name |
-| **table** | The table name |
-| **database** | The database name |
+| **table**     | The table name     |
+| **database**  | The database name  |
 
 ## Example
 
@@ -55,14 +55,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-putpartition" >}}) Next: [GET ddl/database/:db/table/:table/column]({{< ref "webhcat-reference-getcolumns" >}})
-
-
-
- 
-
- 
 

@@ -68,7 +68,3 @@ There are a few limitations:
 * EXISTS/NOT EXISTS must have one or more correlated predicates.
 * References to the parent query are only supported in the WHERE clause of the subquery.
 
- 
-
- 
-

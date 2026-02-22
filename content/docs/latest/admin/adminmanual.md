@@ -13,7 +13,3 @@ date: 2024-12-12
 * [Setting up Hive Server (JDBC, ODBC, Thrift, etc)]({{< ref "adminmanual-settinguphiveserver" >}})
 * [Hive on Amazon Web Services]({{< ref "hiveaws" >}})
 
- 
-
- 
-

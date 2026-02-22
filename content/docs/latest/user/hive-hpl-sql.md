@@ -21,7 +21,3 @@ See [HPL/SQL Reference](http://www.hplsql.org/doc) for documentation.
 
  
 
- 
-
- 
-

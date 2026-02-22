@@ -33,7 +33,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Optimizing Skewed Joins]({{< ref "skewed-join-optimization" >}}) ([HIVE-3086](https://issues.apache.org/jira/browse/HIVE-3086))
 * [Correlation Optimizer]({{< ref "correlation-optimizer" >}}) ([HIVE-2206](https://issues.apache.org/jira/browse/HIVE-2206))
 * [Hive on Tez]({{< ref "hive-on-tez" >}}) ([HIVE-4660](https://issues.apache.org/jira/browse/HIVE-4660))
-	+ [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility" >}})
+  + [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility" >}})
 * [Vectorized Query Execution]({{< ref "vectorized-query-execution" >}}) ([HIVE-4160](https://issues.apache.org/jira/browse/HIVE-4160))
 * [Cost Based Optimizer in Hive](/docs/latest/user/cost-based-optimization-in-hive) ([HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775))
 * [Atomic Insert/Update/Delete](https://issues.apache.org/jira/browse/HIVE-5317) ([HIVE-5317](https://issues.apache.org/jira/browse/HIVE-5317))
@@ -91,29 +91,19 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/34177489.pdf](/attachments/27362075/34177489.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193076.pdf](/attachments/27362075/35193076.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193122.pdf](/attachments/27362075/35193122.pdf) (application/pdf)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/35193191-html](/attachments/27362075/35193191-html) (text/html)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/34177489.pdf](/attachments/27362075/34177489.pdf) (application/download)
-   
 
 ![](images/icons/bullet_blue.gif)
 [attachments/27362075/55476344.pdf](/attachments/27362075/55476344.pdf) (application/download)
-   
-
- 
-
- 
 

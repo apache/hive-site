@@ -23,7 +23,3 @@ To commit the change, the developer will need to commit the Storage API change o
 
  
 
- 
-
- 
-

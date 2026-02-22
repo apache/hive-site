@@ -54,8 +54,6 @@ Besides the above required properties, you can also specify optional parameters 
 
 ## Supported Data Type
 
-  
-
 The column data type for a Hive JdbcStorageHandler table can be:
 
 * Numeric data type: byte, short, int, long, float, double
@@ -440,16 +438,4 @@ Grant the necessary permissions to access the schema. For example:
 GRANT USAGE ON SCHEMA bob TO greg;
 GRANT SELECT ON ALL TABLES IN SCHEMA bob TO greg;
 ```
-
-  
-
-  
-
-  
-
-  
-
- 
-
- 
 

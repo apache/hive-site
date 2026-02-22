@@ -99,9 +99,9 @@ INSERT OVERWRITE TABLE target_table
 Before [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251) in release 2.2.0, Hive tries to perform implicit conversion across Hive type groups. With the change of [HIVE-14251](https://issues.apache.org/jira/browse/HIVE-14251), Hive will only perform implicit conversion within each type group including string group, number group or date group, not across groups. In order to union the types from different groups such as a string type and a date type, an explicit cast from string to date or from date to string is needed in the query.
 
 ```
-  SELECT name, id, cast('2001-01-01' as date) d FROM source_table_1
-  UNION ALL
-  SELECT name, id, hiredate as d FROM source_table_2
+SELECT name, id, cast('2001-01-01' as date) d FROM source_table_1
+UNION ALL
+SELECT name, id, hiredate as d FROM source_table_2
 ```
 
  
@@ -119,8 +119,4 @@ Before Hive 1.2.0, only UNION ALL (bag union) is supported. UNION (or UNION DIST
  
 
  
-
- 
-
- 
 

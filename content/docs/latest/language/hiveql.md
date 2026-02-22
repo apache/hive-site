@@ -9,7 +9,3 @@ date: 2024-12-12
 
 Please see the [HiveQL Language Manual]({{< ref "languagemanual" >}})
 
- 
-
- 
-

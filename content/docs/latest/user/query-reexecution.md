@@ -57,26 +57,15 @@ Operator level statistics are matched to the new plan using operator subtree mat
 
 # Configuration
 
-  
-
-| Configuration | default |  |
-| --- | --- | --- |
-| hive.query.reexecution.enabled | true | Feature enabler |
-| hive.query.reexecution.strategies | overlay,reoptimize | reexecution plugins; currently overlay and reoptimize is supported |
-| hive.query.reexecution.stats.persist.scope | query | runtime statistics can be persisted:* **query:** - only used during the reexecution **hiveserver:** persisted during the lifetime of the hiveserver **metastore**: persisted in the metastore; and loaded on hiveserver startup |
-| hive.query.reexecution.max.count | 1 | number of reexecution that may happen |
-| hive.query.reexecution.always.collect.operator.stats | false | Enable to gather runtime statistics on all queries. |
-| hive.query.reexecution.stats.cache.batch.size | -1 | If runtime stats are stored in metastore; the maximal batch size per round during load. |
-| hive.query.reexecution.stats.cache.size | 100 000 | Size of the runtime statistics cache. Unit is: OperatorStat entry; a query plan consist ~100. |
-| runtime.stats.clean.frequency | 3600s | Frequency at which timer task runs to remove outdated runtime stat entries. |
-| runtime.stats.max.age | 3days | Stat entries which are older than this are removed. |
-
-  
-  
-
-  
-
- 
-
- 
+|                    Configuration                     |      default       |                                                                                                                                                                                                                                 |
+|------------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| hive.query.reexecution.enabled                       | true               | Feature enabler                                                                                                                                                                                                                 |
+| hive.query.reexecution.strategies                    | overlay,reoptimize | reexecution plugins; currently overlay and reoptimize is supported                                                                                                                                                              |
+| hive.query.reexecution.stats.persist.scope           | query              | runtime statistics can be persisted:* **query:** - only used during the reexecution **hiveserver:** persisted during the lifetime of the hiveserver **metastore**: persisted in the metastore; and loaded on hiveserver startup |
+| hive.query.reexecution.max.count                     | 1                  | number of reexecution that may happen                                                                                                                                                                                           |
+| hive.query.reexecution.always.collect.operator.stats | false              | Enable to gather runtime statistics on all queries.                                                                                                                                                                             |
+| hive.query.reexecution.stats.cache.batch.size        | -1                 | If runtime stats are stored in metastore; the maximal batch size per round during load.                                                                                                                                         |
+| hive.query.reexecution.stats.cache.size              | 100 000            | Size of the runtime statistics cache. Unit is: OperatorStat entry; a query plan consist ~100.                                                                                                                                   |
+| runtime.stats.clean.frequency                        | 3600s              | Frequency at which timer task runs to remove outdated runtime stat entries.                                                                                                                                                     |
+| runtime.stats.max.age                                | 3days              | Stat entries which are older than this are removed.                                                                                                                                                                             |
 

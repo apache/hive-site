@@ -78,7 +78,3 @@ The already existing *hive.compactor.worker.threads* configuration value holds t
 
 The worker allocation can be configured per HS2 instance.
 
- 
-
- 
-

@@ -23,7 +23,3 @@ For details about the RCFile format, see:
 
  
 
- 
-
- 
-

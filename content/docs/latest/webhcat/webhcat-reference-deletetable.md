@@ -15,21 +15,21 @@ Delete (drop) an HCatalog table.
 
 ## Parameters
 
-| Name | Description | Required? | Default |
-| --- | --- | --- | --- |
-| **:db** | The database name | Required | None |
-| **:table** | The table name | Required | None |
-| **ifExists** | Hive 0.70 and later returns an error if the table specified does not exist, unless **ifExists** is set to true. | Optional | false |
-| **group** | The user group to use | Optional | None |
-| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
+|      Name       |                                                   Description                                                   | Required? | Default |
+|-----------------|-----------------------------------------------------------------------------------------------------------------|-----------|---------|
+| **:db**         | The database name                                                                                               | Required  | None    |
+| **:table**      | The table name                                                                                                  | Required  | None    |
+| **ifExists**    | Hive 0.70 and later returns an error if the table specified does not exist, unless **ifExists** is set to true. | Optional  | false   |
+| **group**       | The user group to use                                                                                           | Optional  | None    |
+| **permissions** | The permissions string to use. The format is "`rwxrw-r-x`".                                                     | Optional  | None    |
 
 The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
 
 ## Results
 
-| Name | Description |
-| --- | --- |
-| **table** | The table name |
+|     Name     |    Description    |
+|--------------|-------------------|
+| **table**    | The table name    |
 | **database** | The database name |
 
 ## Example
@@ -51,14 +51,6 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 ```
 
-  
-
 **Navigation Links**
 Previous: [POST ddl/database/:db/table/:table]({{< ref "webhcat-reference-posttable" >}}) Next: [PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "webhcat-reference-puttablelike" >}})
-
-
-
- 
-
- 
 

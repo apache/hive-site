@@ -28,7 +28,3 @@ For more information, see the sections [Storage Formats]({{< ref "#storage-forma
 * [Compressed Data Storage]({{< ref "compressedstorage" >}})
 * [LZO Compression]({{< ref "languagemanual-lzo" >}})
 
- 
-
- 
-
