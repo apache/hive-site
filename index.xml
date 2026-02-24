@@ -4233,7 +4233,7 @@ WITH SERDEPROPERTIES (&amp;#34;field.delim&amp;#34;=&amp;#34;[,]&amp;#34;,&amp;#
 &lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>Apache Hive : OuterJoinBehavior</title><link>https://hive.apache.org/development/desingdocs/outerjoinbehavior/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/development/desingdocs/outerjoinbehavior/</guid><description>&lt;h1 id="apache-hive--outerjoinbehavior"&gt;Apache Hive : OuterJoinBehavior&lt;/h1&gt;
 &lt;h1 id="hive-outer-join-behavior"&gt;Hive Outer Join Behavior&lt;/h1&gt;
-&lt;p&gt;This document is based on a writeup of &lt;a href="http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html"&gt;DB2 Outer Join Behavior&lt;/a&gt;. The original HTML can be found &lt;a href="https://hive.apache.org/attachments/OuterJoinBehavior.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This document is based on a writeup of &lt;a href="https://web.archive.org/web/20210126052816/http://www.ibm.com/developerworks/data/library/techarticle/purcell/0112purcell.html"&gt;DB2 Outer Join Behavior&lt;/a&gt;. The original HTML can be found &lt;a href="https://hive.apache.org/attachments/HiveOuterJoinBehavior.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="definitions"&gt;Definitions&lt;/h2&gt;
 &lt;table&gt;
  &lt;thead&gt;
