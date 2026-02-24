@@ -129,6 +129,7 @@ Examples of conversion of query plan to hbase api calls
  
 
 | Filter expression | HBase calls |
+|-|-|
 | p1 > 10 and p1 < 20  | Scan(X10+, X20) |
 | p1 = 10 (if single partition column) | Scan(X10, X10+). Optimized? : Get(X10) |
 | Similar case as above, if all partition columns are specified |  |
@@ -162,77 +163,44 @@ ExpressionTree (existing) - TreeNodes for AND/OR expressions. Leaf Node for leaf
 
 Output:
 
+```
   public static abstract class FilterPlan {
-
     abstract FilterPlan and(FilterPlan other);
-
     abstract FilterPlan or(FilterPlan other);
-
     abstract List<ScanPlan> getPlans();
-
   }
-
   
-
 // represents a union of multiple ScanPlan
-
 MultiScanPlan extends FilterPlan
-
   
   
 
 ScanPlan extends FilterPlan
-
     // represent Scan start
-
     private ScanMarker startMarker ;
-
     // represent Scan end
-
     private ScanMarker endMarker ;
-
     private ScanFilter filter;
-
   
-
 public FilterPlan and(FilterPlan other) {
-
  // calls this.and(otherScanPlan) on each scan plan in other
-
 }
-
 private ScanPlan and(ScanPlan other) {
-
    // combines start marker and end marker and filters of this and other
-
 }
-
 public FilterPlan or(FilterPlan other) {
-
    // just create a new FilterPlan from other, with this additional plan
-
 }
-
-  
   
 
 PartitionFilterGenerator -
-
   /**
-
    * Visitor for ExpressionTree.
-
    * It first generates the ScanPlan for the leaf nodes. The higher level nodes are
-
    * either AND or OR operations. It then calls FilterPlan.and and FilterPlan.or with
-
    * the child nodes to generate the plans for higher level nodes.
-
    */
-
-  
-  
-  
+```
 
 Initial implementation: Convert from from ExpressionTree to Hbase filter, thereby implementing both getPartitionsByFilter and getPartitionsByExpr
 

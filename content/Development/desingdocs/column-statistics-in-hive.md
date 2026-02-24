@@ -34,6 +34,7 @@ describe formatted [table_name] [column_name];
 
 To persist column level statistics, we propose to add the following new tables,
 
+```
 CREATE TABLE TAB_COL_STATS  
  (  
  CS_ID NUMBER NOT NULL,  
@@ -87,11 +88,13 @@ AVG_COL_LEN DOUBLE,
 ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_PK PRIMARY KEY (CS_ID);
 
 ALTER TABLE COLUMN_STATISTICS ADD CONSTRAINT COLUMN_STATISTICS_FK1 FOREIGN KEY (PART_ID) REFERENCES PARTITIONS (PART_ID) INITIALLY DEFERRED;
+```
 
 ### **Metastore Thrift API**
 
 We propose to add the following Thrift structs to transport column statistics:
 
+```
 struct BooleanColumnStatsData {  
  1: required i64 numTrues,  
  2: required i64 numFalses,  
@@ -185,9 +188,11 @@ struct ColumnStatistics {
  1: required ColumnStatisticsDesc statsDesc,  
  2: required list<ColumnStatisticsObj> statsObj;  
  }
+```
 
 We propose to add the following Thrift APIs to persist, retrieve and delete column statistics:
 
+```
 bool update_table_column_statistics(1:ColumnStatistics stats_obj) throws (1:NoSuchObjectException o1,   
  2:InvalidObjectException o2, 3:MetaException o3, 4:InvalidInputException o4)  
  bool update_partition_column_statistics(1:ColumnStatistics stats_obj) throws (1:NoSuchObjectException o1,   
@@ -205,8 +210,8 @@ bool delete_partition_column_statistics(1:string db_name, 2:string tbl_name, 3:s
  bool delete_table_column_statistics(1:string db_name, 2:string tbl_name, 3:string col_name) throws   
  (1:NoSuchObjectException o1, 2:MetaException o2, 3:InvalidObjectException o3,   
  4:InvalidInputException o4)
+```
 
 Note that delete_column_statistics is needed to remove the entries from the metastore when a table is dropped. Also note that currently Hive doesn’t support drop column.
 
 Note that in V1 of the project, we will support only scalar statistics. Furthermore, we will support only static partitions, i.e., both the partition key and partition value should be specified in the analyze command. In a following version, we will add support for height balanced histograms as well as support for dynamic partitions in the analyze command for column level statistics.
-
