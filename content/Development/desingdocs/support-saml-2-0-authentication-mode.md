@@ -50,45 +50,57 @@ In order to make sure that the SAML assertions received by HiveServer2 are valid
 
 Following new configurations will be added to the hive-site.xml which would need to be configured by the clients.
 
+```
 <property>  
   <name>hive.server2.authentication</name>  
   <value>SAML</value>  
 </property>
+```
 
 This configuration will be set to SAML to indicate that the server will use SAML 2.0 protocol to authenticate the user. 
 
+```
 <property>  
   <name>hive.server2.saml2.idp.metadata</name>  
   <value>path_to_idp_metadata.xml</value>  
 </property>
+```
 
 This configuration will provide a path to the IDP metadata xml file.
 
+```
 <property>  
   <name>hive.server2.saml2.sp.entity.id</name>  
   <value>test_sp_entity_id</value>  
 </property>  
+```
   
 This configuration should be same the service provider entity id as configured in the IDP. Some identity providers require this to be same as the ACS URL.
 
+```
 <property>  
   <name>hive.server2.saml2.group.attribute.name</name>  
   <value>group_attribute_name</value>  
 </property>
+```
 
 This configuration will be used to map the SAML attribute in the response to the groups of the user. This should be configured in the identity provider as the attribute name for the group information.
 
+```
 <property>  
   <name>hive.server2.saml2.group.filter</name>  
   <value>comma_separated_group_names</value>  
 </property>
+```
 
 This configuration will be used to configure the allowed group names.
 
+```
 <property>  
   <name>hive.server2.saml2.sp.callback.url</name>  
   <value>callback_url_of_hiveserver2</value>  
 </property>
+```
 
 The http URL endpoint where the SAML assertion is posted back by the IDP. Currently this must be on the same port as HiveServer2’s http endpoint and must be TLS enabled (https) on secure setups.
 

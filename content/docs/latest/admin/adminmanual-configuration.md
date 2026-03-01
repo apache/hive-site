@@ -43,7 +43,7 @@ The server-specific configuration file is useful in two situations:
 	If HiveServer2 is using the metastore in embedded mode, hivemetastore-site.xml also is loaded.
 	
 	The order of precedence of the config files is as follows (later one has higher precedence) –  
-	hive-site.xml -> hivemetastore-site.xml -> hiveserver2-site.xml -> '`-hiveconf`' commandline parameters.
+	hive-site.xml -&gt; hivemetastore-site.xml -&gt; hiveserver2-site.xml -&gt; '`-hiveconf`' commandline parameters.
 
 ### hive-site.xml and hive-default.xml.template
 
@@ -61,8 +61,8 @@ The administrative configuration variables are listed [below]({{< ref "#below" >
 
 Hive uses temporary folders both on the machine running the Hive client and the default HDFS instance. These folders are used to store per-query temporary/intermediate data sets and are normally cleaned up by the hive client when the query is finished. However, in cases of abnormal hive client termination, some data may be left behind. The configuration details are as follows:
 
-* On the HDFS cluster this is set to */tmp/hive-<username>* by default and is controlled by the configuration variable *hive.exec.scratchdir*
-* On the client machine, this is hardcoded to */tmp/<username>*
+* On the HDFS cluster this is set to `*/tmp/hive-<username>*` by default and is controlled by the configuration variable *hive.exec.scratchdir*
+* On the client machine, this is hardcoded to `*/tmp/<username>*`
 
 Note that when writing data to a table/partition, Hive will first write to a temporary location on the target table's filesystem (using hive.exec.scratchdir as the temporary location) and then move the data to the target table. This applies in all cases - whether tables are stored in HDFS (normal case) or in file systems like S3 or even NFS.
 
@@ -98,9 +98,9 @@ Version information: Metrics
 | hive.ddl.output.format | The data format to use for DDL output (e.g. `DESCRIBE table`). One of "text" (for human readable text) or "json" (for a json object). (As of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2822).) | text |
 | hive.exec.script.wrapper | Wrapper around any invocations to script operator e.g. if this is set to python, the script passed to the script operator will be invoked as `python <script command>`. If the value is null or not set, the script is invoked as `<script command>`. | null |
 | hive.exec.plan |   | null |
-| hive.exec.scratchdir | This directory is used by Hive to store the plans for different map/reduce stages for the query as well as to stored the intermediate outputs of these stages.*Hive 0.14.0 and later:* HDFS root scratch directory for Hive jobs, which gets created with write all ([733](https://issues.apache.org/jira/browse/HIVE-8143)) permission. For each connecting user, an HDFS scratch directory ${hive.exec.scratchdir}/<username> is created with ${hive.scratch.dir.permission}. | /tmp/<user.name>/hive (Hive 0.8.0 and earlier) /tmp/hive-<user.name> (as of Hive 0.8.1 to 0.14.0)/tmp/hive (Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-6847) and later) |
+| hive.exec.scratchdir | This directory is used by Hive to store the plans for different map/reduce stages for the query as well as to stored the intermediate outputs of these stages.*Hive 0.14.0 and later:* HDFS root scratch directory for Hive jobs, which gets created with write all ([733](https://issues.apache.org/jira/browse/HIVE-8143)) permission. For each connecting user, an HDFS scratch directory `${hive.exec.scratchdir}/<username>` is created with ${hive.scratch.dir.permission}. | `/tmp/<user.name>/hive` (Hive 0.8.0 and earlier) `/tmp/hive-<user.name>` (as of Hive 0.8.1 to 0.14.0)/tmp/hive (Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-6847) and later) |
 | hive.scratch.dir.permission | The permission for the user-specific scratch directories that get created in the root scratch directory ${hive.exec.scratchdir}. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-4487).) | 700 (Hive 0.12.0 and later) |
-| hive.exec.local.scratchdir | This directory is used for temporary files when Hive runs in local mode. (As of Hive [0.10.0](https://issues.apache.org/jira/browse/HIVE-1577).) | /tmp/<user.name> |
+| hive.exec.local.scratchdir | This directory is used for temporary files when Hive runs in local mode. (As of Hive [0.10.0](https://issues.apache.org/jira/browse/HIVE-1577).) | `/tmp/<user.name>` |
 | hive.exec.submitviachild | Determines whether the map/reduce jobs should be submitted through a separate jvm in the non local mode. | false - By default jobs are submitted through the same jvm as the compiler |
 | hive.exec.script.maxerrsize | Maximum number of serialization errors allowed in a user script invoked through `TRANSFORM` or `MAP` or `REDUCE` constructs. | 100000 |
 | hive.exec.compress.output | Determines whether the output of the final map/reduce job in a query is compressed or not. | false |
@@ -119,7 +119,7 @@ Version information: Metrics
 | hive.merge.size.per.task | Size of merged files at the end of the job. | 256000000 |
 | hive.merge.smallfiles.avgsize | When the average output file size of a job is less than this number, Hive will start an additional map-reduce job to merge the output files into bigger files. This is only done for map-only jobs if hive.merge.mapfiles is true, and for map-reduce jobs if hive.merge.mapredfiles is true. | 16000000 |
 | hive.querylog.enable.plan.progress | Whether to log the plan's progress every time a job's progress is checked. These logs are written to the location specified by `hive.querylog.location`. (As of Hive [0.10](https://issues.apache.org/jira/browse/HIVE-3230).) | true |
-| hive.querylog.location | Directory where structured hive query logs are created. One file per session is created in this directory. If this variable set to empty string structured log will not be created. | /tmp/<user.name> |
+| hive.querylog.location | Directory where structured hive query logs are created. One file per session is created in this directory. If this variable set to empty string structured log will not be created. | `/tmp/<user.name>` |
 | hive.querylog.plan.progress.interval | The interval to wait between logging the plan's progress in milliseconds. If there is a whole number percentage change in the progress of the mappers or the reducers, the progress is logged regardless of this value. The actual interval will be the ceiling of (this value divided by the value of `hive.exec.counters.pull.interval`) multiplied by the value of `hive.exec.counters.pull.interval` i.e. if it is not divide evenly by the value of `hive.exec.counters.pull.interval` it will be logged less frequently than specified. This only has an effect if `hive.querylog.enable.plan.progress` is set to `true`. (As of Hive [0.10](https://issues.apache.org/jira/browse/HIVE-3230).) | 60000 |
 | hive.stats.autogather | A flag to gather statistics automatically during the INSERT OVERWRITE command. (As of Hive [0.7.0](https://issues.apache.org/jira/browse/HIVE-1361).) | true |
 | hive.stats.dbclass | The default database that stores temporary hive statistics. Valid values are `hbase` and `jdbc` while `jdbc` should have a specification of the Database to use, separated by a colon (e.g. `jdbc:mysql`). (As of Hive [0.7.0](https://issues.apache.org/jira/browse/HIVE-1361).) | jdbc:derby |
@@ -142,7 +142,7 @@ For security configuration (Hive 0.10 and later), see the [Hive Metastore Securi
 | --- | --- | --- |
 | hadoop.bin.path | The location of the Hadoop script which is used to submit jobs to Hadoop when submitting through a separate JVM. | $HADOOP_HOME/bin/hadoop |
 | hadoop.config.dir | The location of the configuration directory of the Hadoop installation. | $HADOOP_HOME/conf |
-| fs.default.name | The default name of the filesystem (for example, localhost for hdfs://<clustername>:8020).For YARN this configuration variable is called fs.defaultFS. | file:/// |
+| fs.default.name | The default name of the filesystem (for example, localhost for `hdfs://<clustername>:8020`).For YARN this configuration variable is called fs.defaultFS. | file:/// |
 | map.input.file | The filename the map is reading from. | null |
 | mapred.job.tracker | The URL to the jobtracker. If this is set to local then map/reduce is run in the local mode. | local |
 | mapred.reduce.tasks | The number of reducers for each map/reduce stage in the query plan. | 1 |

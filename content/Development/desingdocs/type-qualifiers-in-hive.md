@@ -39,16 +39,14 @@ The type qualifiers could simply be stored as part of the type string for a colu
 
 This approach would be similar to the attributes in the INFORMATION_SCHEMA.COLUMNS that some DBMS catalog tables have, such as those listed below:
 
-<pre>
-
+```
 |  CHARACTER_MAXIMUM_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
 |  CHARACTER_OCTET_LENGTH  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
 |  NUMERIC_PRECISION  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
 |  NUMERIC_SCALE  |  bigint(21) unsigned  |  YES  |   |  NULL  |   |
 |  CHARACTER_SET_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
 |  COLLATION_NAME  |  varchar(32)  |  YES  |   |  NULL  |   |
-
-</pre>
+```
 
 We could add new columns to the COLUMNS_V2 table for any type qualifiers we are trying to support (initially looks like CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE). Advantages to this would be that it is easier to query these parameters than the first approach, though types with no parameters would still have these columns (set to null). 
 

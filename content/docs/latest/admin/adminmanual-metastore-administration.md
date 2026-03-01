@@ -141,7 +141,7 @@ The following example uses a[Remote Metastore Database]({{< ref "#remote-metasto
 | javax.jdo.option.ConnectionUserName | `<user name>` | user name for connecting to MySQL server |
 | javax.jdo.option.ConnectionPassword | `<password>` | password for connecting to MySQL server |
 | hive.metastore.warehouse.dir | `<base hdfs path>` | default location for Hive tables. |
-| hive.metastore.thrift.bind.host | <host_name> | Host name to bind the metastore service to. When empty, "localhost" is used. This configuration is available Hive 4.0.0 onwards. |
+| hive.metastore.thrift.bind.host | `<host_name>` | Host name to bind the metastore service to. When empty, "localhost" is used. This configuration is available Hive 4.0.0 onwards. |
 
 From Hive 3.0.0 ([HIVE-16452](https://issues.apache.org/jira/browse/HIVE-16452)) onwards the metastore database stores a GUID which can be queried using the Thrift API get_metastore_db_uuid by metastore clients in order to identify the backend database instance. This API can be accessed by the HiveMetaStoreClient using the method getMetastoreDbUuid().
 
@@ -162,13 +162,13 @@ From Hive 4.0.0 ([HIVE-20794](https://issues.apache.org/jira/browse/HIVE-20794))
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.service.discovery.mode | service discovery mode | When it is set to "zookeeper", ZooKeeper is used for dynamic service discovery of a remote metastore. In that case, a metastore adds itself to the ZooKeeper when it is started and removes itself when it shuts down. By default it is empty. Both the client and server should have same value for this parameter. |
-| hive.metastore.uris | <host_name>:<port>, <host_name>:<port>, ... | One or more host and port pairs of ZooKeeper servers forming a ZooKeeper ensemble. Used when hive.metastore.service.discovery.mode is set to "zookeeper". The configuration is not used by server otherwise. If all the servers are using the same port you may specify the port using hive.metastore.zookeeper.client.port instead of specifying it with every server separately. Both the client and server should have same value for this parameter. |
-| hive.metastore.zookeeper.client.port | <port> | Port number when same port number is used by all the ZooKeeper servers in the ensemble. Both the client and server should have same value for this parameter. |
-| hive.metastore.zookeeper.namespace | <namespace name> | The parent node under which all ZooKeeper nodes for metastores are created. |
-| hive.metastore.zookeeper.session.timeout | <time in milliseconds> | ZooKeeper client's session timeout (in milliseconds). The client is disconnected if a heartbeat is not sent in the timeout. |
-| hive.metastore.zookeeper.connection.timeout | <time in seconds> | ZooKeeper client's connection timeout in seconds. Connection timeout * hive.metastore.zookeeper.connection.max.retries with exponential backoff is when curator client deems connection is lost to zookeeper. |
-| hive.metastore.zookeeper.connection.max.retries | <number> | Max number of times to retry when connecting to the ZooKeeper server. |
-| hive.metastore.zookeeper.connection.basesleeptime | <time in milliseconds> | Initial amount of time (in milliseconds) to wait between retries when connecting to the ZooKeeper server when using ExponentialBackoffRetry policy. |
+| hive.metastore.uris | `<host_name>:<port>, <host_name>:<port>, ...` | One or more host and port pairs of ZooKeeper servers forming a ZooKeeper ensemble. Used when hive.metastore.service.discovery.mode is set to "zookeeper". The configuration is not used by server otherwise. If all the servers are using the same port you may specify the port using hive.metastore.zookeeper.client.port instead of specifying it with every server separately. Both the client and server should have same value for this parameter. |
+| hive.metastore.zookeeper.client.port | `<port>` | Port number when same port number is used by all the ZooKeeper servers in the ensemble. Both the client and server should have same value for this parameter. |
+| hive.metastore.zookeeper.namespace | `<namespace name>` | The parent node under which all ZooKeeper nodes for metastores are created. |
+| hive.metastore.zookeeper.session.timeout | `<time in milliseconds>` | ZooKeeper client's session timeout (in milliseconds). The client is disconnected if a heartbeat is not sent in the timeout. |
+| hive.metastore.zookeeper.connection.timeout | `<time in seconds>` | ZooKeeper client's connection timeout in seconds. Connection timeout * hive.metastore.zookeeper.connection.max.retries with exponential backoff is when curator client deems connection is lost to zookeeper. |
+| hive.metastore.zookeeper.connection.max.retries | `<number>` | Max number of times to retry when connecting to the ZooKeeper server. |
+| hive.metastore.zookeeper.connection.basesleeptime | `<time in milliseconds>` | Initial amount of time (in milliseconds) to wait between retries when connecting to the ZooKeeper server when using ExponentialBackoffRetry policy. |
 
   
 
