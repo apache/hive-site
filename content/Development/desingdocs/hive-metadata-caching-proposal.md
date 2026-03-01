@@ -63,57 +63,44 @@ Presto has the following cache:
 + userTablePrivileges
 
 * Range scan cache
-+ databaseNamesCache: regex -> database names, facilitates database search
++ databaseNamesCache: regex -&gt; database names, facilitates database search
 + tableNamesCache
 + viewNamesCache
-+ partitionNamesCache: table name -> partition names
++ partitionNamesCache: table name -&gt; partition names
 
 * Other
-+ partitionFilterCache: PS -> partition names, facilitates partition pruning
++ partitionFilterCache: PS -&gt; partition names, facilitates partition pruning
 
 For every partition filter condition, Presto breaks it down into tupleDomain and remainder:
 
+```
 AddExchanges.planTableScan:
-
             DomainTranslator.ExtractionResult decomposedPredicate = DomainTranslator.fromPredicate(
-
                     metadata,
-
                     session,
-
                     deterministicPredicate,
-
                     types);
-
     public static class ExtractionResult
-
     {
-
         private final TupleDomain<Symbol> tupleDomain;
-
         private final Expression remainingExpression;
-
     }
+```
 
-tupleDomain is a mapping of column -> range or exact value. When converting to PS, any range will be converted into wildcard and only exact value will be considered:
+tupleDomain is a mapping of column -&gt; range or exact value. When converting to PS, any range will be converted into wildcard and only exact value will be considered:
 
+```
 HivePartitionManager.getFilteredPartitionNames:
-
         for (HiveColumnHandle partitionKey : partitionKeys) {
-
             if (domain != null && domain.isNullableSingleValue()) {
-
                     filter.add(((Slice) value).toStringUtf8());
-
             else {
-
                 filter.add(PARTITION_VALUE_WILDCARD);
-
             }
-
         }
+```
 
-For example, the expression “state = CA and date between ‘201612’ and ‘201701’ will be broken down to PS (state = CA) and remainder date between ‘201612’ and ‘201701’. Presto will retrieve the partitions with state = CA from the PS -> partition name cache and partition object cache, and evaluates “date between ‘201612’ and ‘201701’ for every partitions returned. This is a good balance compare to caching partition names for every expression.
+For example, the expression “state = CA and date between ‘201612’ and ‘201701’ will be broken down to PS (state = CA) and remainder date between ‘201612’ and ‘201701’. Presto will retrieve the partitions with state = CA from the PS -&gt; partition name cache and partition object cache, and evaluates “date between ‘201612’ and ‘201701’ for every partitions returned. This is a good balance compare to caching partition names for every expression.
 
 ## Our Approach
 

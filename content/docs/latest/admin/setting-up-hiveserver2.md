@@ -166,7 +166,7 @@ Use the following steps to create and verify self-signed SSL certificates for us
 3. Export this certificate from keystore.jks to a certificate file: keytool -export -alias example.com -file example.com.crt -keystore keystore.jks
 4. Add this certificate to the client's truststore to establish trust: keytool -import -trustcacerts -alias example.com -file example.com.crt -keystore truststore.jks
 5. Verify that the certificate exists in truststore.jks: keytool -list -keystore truststore.jks
-6. Then start HiveServer2, and try to connect with beeline using: jdbc:hive2://<host>:<port>/<database>;ssl=true;sslTrustStore=<path-to-truststore>;trustStorePassword=<truststore-password>
+6. Then start HiveServer2, and try to connect with beeline using: `jdbc:hive2://<host>:<port>/<database>;ssl=true;sslTrustStore=<path-to-truststore>;trustStorePassword=<truststore-password>`
 
 ##### Selectively disabling SSL protocol versions
 
@@ -187,7 +187,7 @@ Warning
 Support is provided for PAM (Hive 0.13 onward, see [HIVE-6466](https://issues.apache.org/jira/browse/HIVE-6466)). To configure PAM:
 
 * Download the [JPAM](http://sourceforge.net/projects/jpam/files/jpam/jpam-1.1/) native library for the relevant architecture.
-* Unzip and copy libjpam.so to a directory (<libjmap-directory>) on the system.
+* Unzip and copy libjpam.so to a directory (`<libjmap-directory>`) on the system.
 * Add the directory to the LD_LIBRARY_PATH environment variable like so:`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<libjmap-directory>`
 * For some PAM modules, you'll have to ensure that your `/etc/shadow` and `/etc/login.defs` files are readable by the user running the HiveServer2 process.
 

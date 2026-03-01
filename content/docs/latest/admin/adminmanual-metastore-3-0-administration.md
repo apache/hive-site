@@ -103,7 +103,7 @@ To run the Metastore as a service, you must first configure it with a URL.
 
 | Configured On | Parameter | Hive 2 Parameter | Format | Default Value | Comment |
 | --- | --- | --- | --- | --- | --- |
-| Client | metastore.thrift.uris | hive.metastore.uris | thrift://<HOST>:<PORT>[, thrift://<HOST>:<PORT>...] | none | HOST = hostname, PORT = should be set to match metastore.thrift.port on the server (which defaults to 9083. You can provide multiple servers in a comma separate list. |
+| Client | metastore.thrift.uris | hive.metastore.uris | `thrift://<HOST>:<PORT>[, thrift://<HOST>:<PORT>...]` | none | HOST = hostname, PORT = should be set to match metastore.thrift.port on the server (which defaults to 9083. You can provide multiple servers in a comma separate list. |
 | Server | metastore.thrift.port | hive.metastore.port | integer | 9083 | Port Thrift will listen on. |
 
 Once you have configured your clients, you can start the Metastore on a server using the `start-metastore` utility.  See the `-help` option of that utility for available options.  There is no stop-metastore script.  You must locate the process id for the metastore and kill that process.
