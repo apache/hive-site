@@ -116,7 +116,7 @@ When `$HIVE_HOME/bin/hive` is run with the `-e` or `-f` option, it executes SQL 
 
 Version 0.14
 
-As of Hive 0.14, <filepath> can be from one of the Hadoop supported filesystems (HDFS, S3, etc.) as well.
+As of Hive 0.14, \<filepath\> can be from one of the Hadoop supported filesystems (HDFS, S3, etc.) as well.
 
 `$HIVE_HOME/bin/hive -f hdfs://<namenode>:<port>/hive-script.sql``$HIVE_HOME/bin/hive -f s3://mys3bucket/s3-script.sql`
 
@@ -130,21 +130,22 @@ Use ";" (semicolon) to terminate commands. Comments in scripts can be specified 
 
 | Command | Description |
 | --- | --- |
-| quit  exit | Use quit or exit to leave the interactive shell. |
-| reset | Resets the configuration to the default values (as of Hive 0.10: see [HIVE-3202](https://issues.apache.org/jira/browse/HIVE-3202)). |
-| set <key>=<value> | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error. |
-| set | Prints a list of configuration variables that are overridden by the user or Hive. |
-| set -v | Prints all Hadoop and Hive configuration variables. |
-| add FILE[S] <filepath> <filepath>*  add JAR[S] <filepath> <filepath>*  add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| add FILE[S] <ivyurl> <ivyurl>*  add JAR[S] <ivyurl> <ivyurl>*  add ARCHIVE[S] <ivyurl> <ivyurl>*  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| list FILE[S]  list JAR[S]  list ARCHIVE[S] | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| list FILE[S] <filepath>*  list JAR[S] <filepath>*  list ARCHIVE[S] <filepath>* | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| delete FILE[S] <filepath>*  delete JAR[S] <filepath>*  delete ARCHIVE[S] <filepath>* | Removes the resource(s) from the distributed cache. |
-| delete FILE[S] <ivyurl> <ivyurl>*  delete JAR[S] <ivyurl> <ivyurl>*  delete ARCHIVE[S] <ivyurl> <ivyurl>*  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the <ivyurl> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| ! <command> | Executes a shell command from the Hive shell. |
-| dfs <dfs command> | Executes a dfs command from the Hive shell. |
-| <query string> | Executes a Hive query and prints results to standard output. |
-| source <filepath> | Executes a script file inside the CLI. |
+| `quit  exit` | Use quit or exit to leave the interactive shell. |
+| `reset` | Resets the configuration to the default values (as of Hive 0.10: see [HIVE-3202](https://issues.apache.org/jira/browse/HIVE-3202)). |
+| `set <key>=<value>` | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error. |
+| `set` | Prints a list of configuration variables that are overridden by the user or Hive. |
+| `set -v` | Prints all Hadoop and Hive configuration variables. |
+| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| | |
+| `add FILE[S] <ivyurl> <ivyurl>*`  `add JAR[S] <ivyurl> <ivyurl>*`  `add ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `list FILE[S]`  `list JAR[S]`  `list ARCHIVE[S]` | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `delete FILE[S] <filepath>*`  `delete JAR[S] <filepath>*`  `delete ARCHIVE[S] <filepath>*` | Removes the resource(s) from the distributed cache. |
+| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `! <command>` | Executes a shell command from the Hive shell. |
+| `dfs <dfs command>` | Executes a dfs command from the Hive shell. |
+| `<query string>` | Executes a Hive query and prints results to standard output. |
+| `source <filepath>` | Executes a script file inside the CLI. |
 
 Sample Usage:
 
@@ -208,7 +209,7 @@ ADD { FILE[S] | JAR[S] | ARCHIVE[S] } <ivy://org:module:version?key=value&key=va
 DELETE { FILE[S] | JAR[S] | ARCHIVE[S] } <ivy://org:module:version> <ivy://org:module:version>*
 ```
 
-Also, we can mix <ivyurl> and <filepath> in the same ADD and DELETE commands.
+Also, we can mix \<ivyurl\> and \<filepath\> in the same ADD and DELETE commands.
 
 ```
 ADD { FILE[S] | JAR[S] | ARCHIVE[S] } { <ivyurl> | <filepath> } <ivyurl>* <filepath>* 
