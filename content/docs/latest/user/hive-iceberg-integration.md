@@ -49,7 +49,7 @@ CREATE TABLE V2_TABLE (ID INT) STORED BY ICEBERG TBLPROPERTIES ('format-version'
 
 **File Formats:**
 
-The iceberg table currently supports three file formats: PARQUET, ORC & AVRO. The default file format is Parquet. The file format can be explicitily provided by using STORED AS <Format> while creating the table
+The iceberg table currently supports three file formats: PARQUET, ORC & AVRO. The default file format is Parquet. The file format can be explicitily provided by using STORED AS \<Format\> while creating the table
 
 Example-1:
 
@@ -84,7 +84,7 @@ CREATE TABLE tbl_x (id int) STORED BY ICEBERG TBLPROPERTIES (
 
 **Migrating existing tables to Iceberg Tables**
 
-Any Hive external table can be converted into an iceberg tables, without actually rewriting the data files again. We can use _ALTER TABLE <TABLE NAME> CONVERT TO ICEBERG [TBLPROPERTIES]_ to convert any existing external table to an iceberg table.
+Any Hive external table can be converted into an iceberg tables, without actually rewriting the data files again. We can use _ALTER TABLE \<TABLE NAME\> CONVERT TO ICEBERG [TBLPROPERTIES]_ to convert any existing external table to an iceberg table.
 
 ```
 ALTER TABLE TABLE1 CONVERT TO ICEBERG TBLPROPERTIES ('format-version'='2');

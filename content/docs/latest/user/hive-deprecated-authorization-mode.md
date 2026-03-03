@@ -37,7 +37,7 @@ Note that, by default, the [hive.security.authorization.createtable.owner.grants
 
 At the core of Hive's authorization system are users, groups, and roles. Roles allow administrators to give a name to a set of grants which can be easily reused. A role may be assigned to users, groups, and other roles. For example, consider a system with the following users and groups:
 
-* <User>: <Groups>
+* \<User\>: \<Groups\>
 * user_all_dbs: group_db1, group_db2
 * user_db1: group_db1
 * user_db2: group_db2
@@ -50,11 +50,11 @@ Hive roles must be created manually before being used, unlike users and groups. 
 * Group privileges (Does the user belong to any groups that the privilege has been granted to)
 * Role privileges (Does the user or any of the groups that the user belongs to have a role that grants the privilege)
 
-By default, the Metastore uses the HadoopDefaultAuthenticator for determing user -> group mappings, which determines authorization by using the Unix usernames and groups on the machine where the Metastore is running. To make this more clear, consider a scenario where a user foo is a member of group bar on the machine running the Hive CLI, and connects to a Metastore running on a separate server that also has a user named foo, but on the Metastore Server, foo is a member of group baz. When an operation is executed, the Metastore will determine foo to be in the group baz.
+By default, the Metastore uses the HadoopDefaultAuthenticator for determing user -\> group mappings, which determines authorization by using the Unix usernames and groups on the machine where the Metastore is running. To make this more clear, consider a scenario where a user foo is a member of group bar on the machine running the Hive CLI, and connects to a Metastore running on a separate server that also has a user named foo, but on the Metastore Server, foo is a member of group baz. When an operation is executed, the Metastore will determine foo to be in the group baz.
 
-Taking this a step further, it is also possible for the groups that a user belongs to on the Metastore Server may differ from the groups that the same user belongs to, as determined by HDFS. This could be the case if Hive or HDFS are configured to use non-default user -> group mappers, or the Metastore and the Namenode both use the defaults, but the processes are running on different machines, and the user -> group mappings are not the same on each machine.
+Taking this a step further, it is also possible for the groups that a user belongs to on the Metastore Server may differ from the groups that the same user belongs to, as determined by HDFS. This could be the case if Hive or HDFS are configured to use non-default user -\> group mappers, or the Metastore and the Namenode both use the defaults, but the processes are running on different machines, and the user -\> group mappings are not the same on each machine.
 
-It is important to realize that Hive Metastore only controls authorization for metadata, and the underlying data is controlled by HDFS, so if permissions and privileges between the two systems are not in sync, users may have access to metadata, but not the physical data. If the user -> group mappings across the Metastore and Namenode are not in sync, as in the scenarios above, a user may have the privileges required to access a table according to the Metastore, but may not have permission to access the underlying files according to the Namenode. This could also happen due to administrator intervention, if permissions on the files were changed by hand, but Metastore grants had not been updated.
+It is important to realize that Hive Metastore only controls authorization for metadata, and the underlying data is controlled by HDFS, so if permissions and privileges between the two systems are not in sync, users may have access to metadata, but not the physical data. If the user -\> group mappings across the Metastore and Namenode are not in sync, as in the scenarios above, a user may have the privileges required to access a table according to the Metastore, but may not have permission to access the underlying files according to the Namenode. This could also happen due to administrator intervention, if permissions on the files were changed by hand, but Metastore grants had not been updated.
 
 #### Names of Users and Roles
 

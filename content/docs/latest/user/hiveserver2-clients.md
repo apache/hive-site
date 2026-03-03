@@ -74,8 +74,8 @@ beeline> !connect jdbc:hive2://<host>:<port>/<db>;auth=noSasl hiveuser pass
 
 | Command | Description |
 | --- | --- |
-| !<SQLLine command> | List of SQLLine commands available at <http://sqlline.sourceforge.net/>.Example: `!quit` exits the Beeline client. |
-| !delimiter | Set the delimiter for queries written in Beeline. Multi-character delimiters are allowed, but quotation marks, slashes, and -- are not allowed. Defaults to ;Usage: `!delimiter $$`Version: 3.0.0 ([HIVE-10865](https://issues.apache.org/jira/browse/HIVE-10865)) |
+| `!<SQLLine command>` | List of SQLLine commands available at <http://sqlline.sourceforge.net/>.Example: `!quit` exits the Beeline client. |
+| `!delimiter` | Set the delimiter for queries written in Beeline. Multi-character delimiters are allowed, but quotation marks, slashes, and -- are not allowed. Defaults to ;Usage: `!delimiter $$`Version: 3.0.0 ([HIVE-10865](https://issues.apache.org/jira/browse/HIVE-10865)) |
 
 ### Beeline Properties
 
@@ -95,20 +95,20 @@ Use "`;`" (semicolon) to terminate commands. Comments in scripts can be specifie
 
 | Command | Description |
 | --- | --- |
-| reset | Resets the configuration to the default values. |
-| reset <key> | Resets the value of a particular configuration variable (key) to the default value.**Note:** If you misspell the variable name, Beeline will not show an error. |
-| set <key>=<value> | Sets the value of a particular configuration variable (key). **Note:** If you misspell the variable name, Beeline will not show an error. |
-| set | Prints a list of configuration variables that are overridden by the user or Hive. |
-| set -v | Prints all Hadoop and Hive configuration variables. |
-| add FILE[S] <filepath> <filepath>* add JAR[S] <filepath> <filepath>* add ARCHIVE[S] <filepath> <filepath>* | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| add FILE[S] <ivyurl> <ivyurl>* add JAR[S] <ivyurl> <ivyurl>* add ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `reset` | Resets the configuration to the default values. |
+| `reset <key>` | Resets the value of a particular configuration variable (key) to the default value.**Note:** If you misspell the variable name, Beeline will not show an error. |
+| `set <key>=<value>` | Sets the value of a particular configuration variable (key). **Note:** If you misspell the variable name, Beeline will not show an error. |
+| `set` | Prints a list of configuration variables that are overridden by the user or Hive. |
+| `set -v` | Prints all Hadoop and Hive configuration variables. |
+| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `add FILE[S] <ivyurl> <ivyurl>*`  `add JAR[S] <ivyurl> <ivyurl>*`  `add ARCHIVE[S] <ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
 | list FILE[S] list JAR[S] list ARCHIVE[S] | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. (As of Hive 0.14.0: [HIVE-7592](https://issues.apache.org/jira/browse/HIVE-7592)). |
-| list FILE[S] <filepath>* list JAR[S] <filepath>* list ARCHIVE[S] <filepath>* | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| delete FILE[S] <filepath>* delete JAR[S] <filepath>* delete ARCHIVE[S] <filepath>* | Removes the resource(s) from the distributed cache. |
-| delete FILE[S] <ivyurl> <ivyurl>* delete JAR[S] <ivyurl> <ivyurl>* delete ARCHIVE[S] <ivyurl> <ivyurl>* | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the <ivyurl> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| reload | As of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7553), makes HiveServer2 aware of any jar changes in the path specified by the configuration parameter [hive.reloadable.aux.jars.path]({{< ref "#hive-reloadable-aux-jars-path" >}}) (without needing to restart HiveServer2). The changes can be adding, removing, or updating jar files. |
-| dfs <dfs command> | Executes a dfs command. |
-| <query string> | Executes a Hive query and prints results to standard output. |
+| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `delete FILE[S] <filepath>*`  `delete JAR[S] <filepath>*`  `delete ARCHIVE[S] <filepath>*` | Removes the resource(s) from the distributed cache. |
+| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `reload` | As of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7553), makes HiveServer2 aware of any jar changes in the path specified by the configuration parameter [hive.reloadable.aux.jars.path]({{< ref "#hive-reloadable-aux-jars-path" >}}) (without needing to restart HiveServer2). The changes can be adding, removing, or updating jar files. |
+| `dfs <dfs command>` | Executes a dfs command. |
+| `<query string>` | Executes a Hive query and prints results to standard output. |
 
 ### Beeline Command Options
 
@@ -116,45 +116,45 @@ The Beeline CLI supports these command line options:
 
 | Option | Description |
 | --- | --- |
-| **-u** *<database URL>* | The JDBC URL to connect to. Special characters in parameter values should be encoded with URL encoding if needed.Usage:  `beeline -u` *db_URL*  |
-| **-r** | [Reconnect]({{< ref "#reconnect" >}}) to last used URL (if a user has previously used `!connect` to a URL and used `!save` to a beeline.properties file).Usage:  `beeline -r`Version: 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)) |
-| **-n** *<username>* | The username to connect as.Usage:  `beeline -n` *valid_user* |
-| **-p** *<password>* | The password to connect as.Usage:  `beeline -p` *valid_password*Optional password mode:Starting Hive 2.2.0 ([HIVE-13589](https://issues.apache.org/jira/browse/HIVE-13589)) the argument for -p option is optional.Usage : beeline -p [valid_password]If the password is not provided after -p Beeline will prompt for the password while initiating the connection. When password is provided Beeline uses it initiate the connection without prompting. |
-| **-d** *<driver class>* | The driver class to use.Usage:  `beeline -d` *driver_class* |
-| **-e** *<query>* | Query that should be executed. Double or single quotes enclose the query string. This option can be specified multiple times.Usage:  `beeline -e "`*query_string*"Support to run multiple SQL statements separated by semicolons in a single *query_string*: 1.2.0 ([HIVE-9877](https://issues.apache.org/jira/browse/HIVE-9877))Bug fix (null pointer exception): 0.13.0 ([HIVE-5765](https://issues.apache.org/jira/browse/HIVE-5765))Bug fix (--headerInterval not honored): 0.14.0 ([HIVE-7647](https://issues.apache.org/jira/browse/HIVE-7647))Bug fix (running `-e` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
-| **-f** *<file>* | Script file that should be executed.Usage:  `beeline -f` *filepath*Version: 0.12.0 ([HIVE-4268](https://issues.apache.org/jira/browse/HIVE-4268))Note: If the script contains tabs, query compilation fails in version 0.12.0. This bug is fixed in version 0.13.0 ([HIVE-6359](https://issues.apache.org/jira/browse/HIVE-6359)).Bug fix (running `-f` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
-| **-i** (or) **--init** <file or files> | The init files for initializationUsage:  `beeline -i */tmp/initfile*`Single file:Version: 0.14.0 ([HIVE-6561](https://issues.apache.org/jira/browse/HIVE-6561))Multiple files:Version: 2.1.0 ([HIVE-11336](https://issues.apache.org/jira/browse/HIVE-11336)) |
-| **-w** (or) **--password-file** <password file> | The password file to read password from.Version: 1.2.0 ([HIVE-7175](https://issues.apache.org/jira/browse/HIVE-7175)) |
-| **-a** (or) **--authType** <auth type> | The authentication type passed to the jdbc as an auth propertyVersion: 0.13.0 ([HIVE-5155](https://issues.apache.org/jira/browse/HIVE-5155)) |
-| **--property-file** <file> | File to read configuration properties fromUsage:  `beeline --property-file */tmp/a*`Version: 2.2.0 ([HIVE-13964](https://issues.apache.org/jira/browse/HIVE-13964)) |
-| **--hiveconf** *property**=**value* | Use *value* for the given configuration property. Properties that are listed in hive.conf.restricted.list cannot be reset with **hiveconf** (see [Restricted List and Whitelist]({{< ref "#restricted-list-and-whitelist" >}})).Usage:  `beeline --hiveconf` *prop1*`=`*value1*Version: 0.13.0 ([HIVE-6173](https://issues.apache.org/jira/browse/HIVE-6173)) |
-| **--hivevar** *name**=**value* | Hive variable name and value. This is a Hive-specific setting in which variables can be set at the session level and referenced in Hive commands or queries.Usage:  `beeline --hivevar` *var1*`=`*value1*  |
-| **--color=**[true/false] | Control whether color is used for display. Default is false.Usage:  `beeline --color=true`(Not supported for Separated-Value Output formats. See [HIVE-9770](https://issues.apache.org/jira/browse/HIVE-9770)) |
-| **--showHeader=**[true/false] | Show column names in query results (true) or not (false). Default is true.Usage:  `beeline --showHeader=false` |
-| **--headerInterval=**ROWS | The interval for redisplaying column headers, in number of rows, when **outputformat** is table. Default is 100.Usage:  `beeline --headerInterval=50`(Not supported for Separated-Value Output formats. See [HIVE-9770](https://issues.apache.org/jira/browse/HIVE-9770)) |
-| **--fastConnect=**[true/false] | When connecting, skip building a list of all tables and columns for tab-completion of HiveQL statements (true) or build the list (false). Default is true.Usage:  `beeline --fastConnect=false` |
-| **--autoCommit=**[true/false] | Enable/disable automatic transaction commit. Default is false.Usage:  `beeline --autoCommit=true` |
-| **--verbose=**[true/false] | Show verbose error messages and debug information (true) or do not show (false). Default is false.Usage:  `beeline --verbose=true` |
-| **--showWarnings=**[true/false] | Display warnings that are reported on the connection after issuing any HiveQL commands. Default is false.Usage:  `beeline --showWarnings=true` |
-| ****--**showDbInPrompt**=****[true/false] | Display the current database name in prompt. Default is false.Usage:  `beeline --showDbInPrompt=true`Version: 2.2.0 ([HIVE-14123](https://issues.apache.org/jira/browse/HIVE-14123)) |
-| **--showNestedErrs=**[true/false] | Display nested errors. Default is false.Usage:  `beeline --showNestedErrs=true` |
-| **--numberFormat=**[pattern] | Format numbers using a [DecimalFormat](http://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html) pattern.Usage:  `beeline --numberFormat="#,###,##0.00"` |
-| **--force=**[true/false] | Continue running script even after errors (true) or do not continue (false). Default is false.Usage:  `beeline--force=true` |
-| **--maxWidth=**MAXWIDTH | The maximum width to display before truncating data, in characters, when **outputformat** is table. Default is to query the terminal for current width, then fall back to 80.Usage:  `beeline --maxWidth=150` |
-| **--maxColumnWidth=**MAXCOLWIDTH | The maximum column width, in characters, when **outputformat** is table. Default is 50 in Hive version 2.2.0+ (see [HIVE-14135](https://issues.apache.org/jira/browse/HIVE-14135)) or 15 in earlier versions.Usage:  `beeline --maxColumnWidth=25` |
-| **--silent=**[true/false] | Reduce the amount of informational messages displayed (true) or not (false). It also stops displaying the log messages for the query from HiveServer2 ([Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7615) and later) and the HiveQL commands ([Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-10202) and later). Default is false.Usage:  `beeline --silent=true` |
-| **--autosave=**[true/false] | Automatically save preferences (true) or do not autosave (false). Default is false.Usage:  `beeline --autosave=true` |
-| **--outputformat=**[table/vertical/csv/tsv/dsv/csv2/tsv2] | Format mode for result display. Default is table. See [Separated-Value Output Formats]({{< ref "#separated-value-output-formats" >}}) below for description of recommended sv options.Usage:  `beeline --outputformat=tsv`Version: dsv/csv2/tsv2 added in 0.14.0 ([HIVE-8615](https://issues.apache.org/jira/browse/HIVE-8615)) |
-| **--****truncateTable**=[true/false]  | If true, truncates table column in the console when it exceeds console length.Version: 0.14.0 ([HIVE-6928](https://issues.apache.org/jira/browse/HIVE-6928)) |
-| **--delimiterForDSV=** DELIMITER | The delimiter for delimiter-separated values output format. Default is '|' character.Version: 0.14.0 ([HIVE-7390](https://issues.apache.org/jira/browse/HIVE-7390)) |
-| **--isolation=**LEVEL | Set the transaction isolation level to TRANSACTION_READ_COMMITTED or TRANSACTION_SERIALIZABLE. See the "Field Detail" section in the Java [Connection](http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html) documentation.Usage:  `beeline --isolation=TRANSACTION_SERIALIZABLE` |
-| **--nullemptystring=**[true/false] | Use historic behavior of printing null as empty string (true) or use current behavior of printing null as NULL (false). Default is false.Usage:  `beeline --nullemptystring=false`Version: 0.13.0 ([HIVE-4485](https://issues.apache.org/jira/browse/HIVE-4485)) |
-| **--incremental=**[true/false] | Defaults to `true` from Hive 2.3 onwards, before it defaulted to `false``.` When set to `false`, the entire result set is fetched and buffered before being displayed, yielding optimal display column sizing. When set to `true`, result rows are displayed immediately as they are fetched, yielding lower latency and memory usage at the price of extra display column padding. Setting `--incremental=true` is recommended if you encounter an OutOfMemory on the client side (due to the fetched result set size being large). |
-| ****--incrementalBufferRows=****NUMROWS | The number of rows to buffer when printing rows on stdout, defaults to 1000; only applicable if `--incremental=true` and `--outputformat=table`Usage: `beeline --incrementalBufferRows=1000`Version: 2.3.0 ([HIVE-14170](https://issues.apache.org/jira/browse/HIVE-14170)) |
-| **--maxHistoryRows****=******NUMROWS | The maximum number of rows to store Beeline history.Version: 2.3.0 ([HIVE-15166](https://issues.apache.org/jira/browse/HIVE-15166)) |
-| **--delimiter=**; | Set the delimiter for queries written in Beeline. Multi-char delimiters are allowed, but quotation marks, slashes, and -- are not allowed. Defaults to ;Usage: `beeline --delimiter=$$`Version: 3.0.0 ([HIVE-10865](https://issues.apache.org/jira/browse/HIVE-10865)) |
-| **--convertBinaryArrayToString=**[true/false] | Display binary column data as a string using the platform's default character set.The default behavior (false) is to display binary data using: `Arrays.toString(byte[] columnValue)`Version: 3.0.0 ([HIVE-14786](https://issues.apache.org/jira/browse/HIVE-14786))Display binary column data as a string using the UTF-8 character set.The default behavior (false) is to display binary data using Base64 encoding without padding.Version: 4.0.0 ([HIVE-2](https://issues.apache.org/jira/browse/HIVE-14786)[3856](https://issues.apache.org/jira/browse/HIVE-23856))Usage: `beeline --convertBinaryArrayToString=true` |
-| **--help** | Display a usage message.Usage:  `beeline --help` |
+| `-u <database URL>` | The JDBC URL to connect to. Special characters in parameter values should be encoded with URL encoding if needed.Usage:  `beeline -u` *db_URL*  |
+| `-r` | [Reconnect]({{< ref "#reconnect" >}}) to last used URL (if a user has previously used `!connect` to a URL and used `!save` to a beeline.properties file).Usage:  `beeline -r`Version: 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)) |
+| `-n <username>` | The username to connect as.Usage:  `beeline -n` valid_user |
+| `-p <password>` | The password to connect as.Usage:  `beeline -p` valid_passwordOptional password mode:Starting Hive 2.2.0 ([HIVE-13589](https://issues.apache.org/jira/browse/HIVE-13589)) the argument for -p option is optional.Usage : beeline -p [valid_password]If the password is not provided after -p Beeline will prompt for the password while initiating the connection. When password is provided Beeline uses it initiate the connection without prompting. |
+| `-d <driver class>` | The driver class to use.Usage:  `beeline -d` driver_class |
+| `-e <query>` | Query that should be executed. Double or single quotes enclose the query string. This option can be specified multiple times.Usage:  `beeline -e "`query_string"Support to run multiple SQL statements separated by semicolons in a single query_string: 1.2.0 ([HIVE-9877](https://issues.apache.org/jira/browse/HIVE-9877))Bug fix (null pointer exception): 0.13.0 ([HIVE-5765](https://issues.apache.org/jira/browse/HIVE-5765))Bug fix (--headerInterval not honored): 0.14.0 ([HIVE-7647](https://issues.apache.org/jira/browse/HIVE-7647))Bug fix (running `-e` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
+| `-f <file>` | Script file that should be executed.Usage:  `beeline -f` filepathVersion: 0.12.0 ([HIVE-4268](https://issues.apache.org/jira/browse/HIVE-4268))Note: If the script contains tabs, query compilation fails in version 0.12.0. This bug is fixed in version 0.13.0 ([HIVE-6359](https://issues.apache.org/jira/browse/HIVE-6359)).Bug fix (running `-f` in background): 1.3.0 and 2.0.0 ([HIVE-6758](https://issues.apache.org/jira/browse/HIVE-6758)); [workaround available](https://issues.apache.org/jira/browse/HIVE-6758?focusedCommentId=13954968&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13954968) for earlier versions  |
+| `-i` (or) `--init <file or files>` | The init files for initializationUsage:  `beeline -i /tmp/initfile`Single file:Version: 0.14.0 ([HIVE-6561](https://issues.apache.org/jira/browse/HIVE-6561))Multiple files:Version: 2.1.0 ([HIVE-11336](https://issues.apache.org/jira/browse/HIVE-11336)) |
+| `-w` (or) `--password-file <password file>` | The password file to read password from.Version: 1.2.0 ([HIVE-7175](https://issues.apache.org/jira/browse/HIVE-7175)) |
+| `-a` (or) `--authType <auth type>` | The authentication type passed to the jdbc as an auth propertyVersion: 0.13.0 ([HIVE-5155](https://issues.apache.org/jira/browse/HIVE-5155)) |
+| `--property-file <file>` | File to read configuration properties fromUsage:  `beeline --property-file /tmp/a`Version: 2.2.0 ([HIVE-13964](https://issues.apache.org/jira/browse/HIVE-13964)) |
+| `--hiveconf property=value` | Use value for the given configuration property. Properties that are listed in hive.conf.restricted.list cannot be reset with hiveconf (see [Restricted List and Whitelist]({{< ref "#restricted-list-and-whitelist" >}})).Usage:  `beeline --hiveconf` prop1`=`value1Version: 0.13.0 ([HIVE-6173](https://issues.apache.org/jira/browse/HIVE-6173)) |
+| `--hivevar name=value` | Hive variable name and value. This is a Hive-specific setting in which variables can be set at the session level and referenced in Hive commands or queries.Usage:  `beeline --hivevar` var1`=`value1  |
+| `--color=[true/false]` | Control whether color is used for display. Default is false.Usage:  `beeline --color=true`(Not supported for Separated-Value Output formats. See [HIVE-9770](https://issues.apache.org/jira/browse/HIVE-9770)) |
+| `--showHeader=[true/false]` | Show column names in query results (true) or not (false). Default is true.Usage:  `beeline --showHeader=false` |
+| `--headerInterval=ROWS` | The interval for redisplaying column headers, in number of rows, when outputformat is table. Default is 100.Usage:  `beeline --headerInterval=50`(Not supported for Separated-Value Output formats. See [HIVE-9770](https://issues.apache.org/jira/browse/HIVE-9770)) |
+| `--fastConnect=[true/false]` | When connecting, skip building a list of all tables and columns for tab-completion of HiveQL statements (true) or build the list (false). Default is true.Usage:  `beeline --fastConnect=false` |
+| `--autoCommit=[true/false]` | Enable/disable automatic transaction commit. Default is false.Usage:  `beeline --autoCommit=true` |
+| `--verbose=[true/false]` | Show verbose error messages and debug information (true) or do not show (false). Default is false.Usage:  `beeline --verbose=true` |
+| `--showWarnings=[true/false]` | Display warnings that are reported on the connection after issuing any HiveQL commands. Default is false.Usage:  `beeline --showWarnings=true` |
+| `--showDbInPrompt=[true/false]` | Display the current database name in prompt. Default is false.Usage:  `beeline --showDbInPrompt=true`Version: 2.2.0 ([HIVE-14123](https://issues.apache.org/jira/browse/HIVE-14123)) |
+| `--showNestedErrs=[true/false]` | Display nested errors. Default is false.Usage:  `beeline --showNestedErrs=true` |
+| `--numberFormat=[pattern]` | Format numbers using a [DecimalFormat](http://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html) pattern.Usage:  `beeline --numberFormat="#,###,##0.00"` |
+| `--force=[true/false]` | Continue running script even after errors (true) or do not continue (false). Default is false.Usage:  `beeline--force=true` |
+| `--maxWidth=MAXWIDTH` | The maximum width to display before truncating data, in characters, when outputformat is table. Default is to query the terminal for current width, then fall back to 80.Usage:  `beeline --maxWidth=150` |
+| `--maxColumnWidth=MAXCOLWIDTH` | The maximum column width, in characters, when outputformat is table. Default is 50 in Hive version 2.2.0+ (see [HIVE-14135](https://issues.apache.org/jira/browse/HIVE-14135)) or 15 in earlier versions.Usage:  `beeline --maxColumnWidth=25` |
+| `--silent=[true/false]` | Reduce the amount of informational messages displayed (true) or not (false). It also stops displaying the log messages for the query from HiveServer2 ([Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7615) and later) and the HiveQL commands ([Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-10202) and later). Default is false.Usage:  `beeline --silent=true` |
+| `--autosave=[true/false]` | Automatically save preferences (true) or do not autosave (false). Default is false.Usage:  `beeline --autosave=true` |
+| `--outputformat=[table/vertical/csv/tsv/dsv/csv2/tsv2]` | Format mode for result display. Default is table. See [Separated-Value Output Formats]({{< ref "#separated-value-output-formats" >}}) below for description of recommended sv options.Usage:  `beeline --outputformat=tsv`Version: dsv/csv2/tsv2 added in 0.14.0 ([HIVE-8615](https://issues.apache.org/jira/browse/HIVE-8615)) |
+| `--truncateTable=[true/false] ` | If true, truncates table column in the console when it exceeds console length.Version: 0.14.0 ([HIVE-6928](https://issues.apache.org/jira/browse/HIVE-6928)) |
+| `--delimiterForDSV= DELIMITER` | The delimiter for delimiter-separated values output format. Default is '|' character.Version: 0.14.0 ([HIVE-7390](https://issues.apache.org/jira/browse/HIVE-7390)) |
+| `--isolation=LEVEL` | Set the transaction isolation level to TRANSACTION_READ_COMMITTED or TRANSACTION_SERIALIZABLE. See the "Field Detail" section in the Java [Connection](http://docs.oracle.com/javase/7/docs/api/java/sql/Connection.html) documentation.Usage:  `beeline --isolation=TRANSACTION_SERIALIZABLE` |
+| `--nullemptystring=[true/false]` | Use historic behavior of printing null as empty string (true) or use current behavior of printing null as NULL (false). Default is false.Usage:  `beeline --nullemptystring=false`Version: 0.13.0 ([HIVE-4485](https://issues.apache.org/jira/browse/HIVE-4485)) |
+| `--incremental=[true/false]` | Defaults to `true` from Hive 2.3 onwards, before it defaulted to `false``.` When set to `false`, the entire result set is fetched and buffered before being displayed, yielding optimal display column sizing. When set to `true`, result rows are displayed immediately as they are fetched, yielding lower latency and memory usage at the price of extra display column padding. Setting `--incremental=true` is recommended if you encounter an OutOfMemory on the client side (due to the fetched result set size being large). |
+| `--incrementalBufferRows=NUMROWS` | The number of rows to buffer when printing rows on stdout, defaults to 1000; only applicable if `--incremental=true` and `--outputformat=table`Usage: `beeline --incrementalBufferRows=1000`Version: 2.3.0 ([HIVE-14170](https://issues.apache.org/jira/browse/HIVE-14170)) |
+| `--maxHistoryRows=NUMROWS` | The maximum number of rows to store Beeline history.Version: 2.3.0 ([HIVE-15166](https://issues.apache.org/jira/browse/HIVE-15166)) |
+| `--delimiter=;` | Set the delimiter for queries written in Beeline. Multi-char delimiters are allowed, but quotation marks, slashes, and -- are not allowed. Defaults to ;Usage: `beeline --delimiter=$$`Version: 3.0.0 ([HIVE-10865](https://issues.apache.org/jira/browse/HIVE-10865)) |
+| `--convertBinaryArrayToString=[true/false]` | Display binary column data as a string using the platform's default character set.The default behavior (false) is to display binary data using: `Arrays.toString(byte[] columnValue)`Version: 3.0.0 ([HIVE-14786](https://issues.apache.org/jira/browse/HIVE-14786))Display binary column data as a string using the UTF-8 character set.The default behavior (false) is to display binary data using Base64 encoding without padding.Version: 4.0.0 ([HIVE-2](https://issues.apache.org/jira/browse/HIVE-14786)[3856](https://issues.apache.org/jira/browse/HIVE-23856))Usage: `beeline --convertBinaryArrayToString=true` |
+| `--help` | Display a usage message.Usage:  `beeline --help` |
 
 ### Output Formats
 
@@ -419,7 +419,7 @@ where
 
 * `*<host1>*:*<port1>*,*<host2>*:*<port2>*` is a server instance or a comma separated list of server instances to connect to (if dynamic service discovery is enabled). If empty, the embedded server will be used.
 * *`dbName`* is the name of the initial database.
-* *<file>* is the path of init script file ([Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-5867) and later). This script file is written with SQL statements which will be executed automatically after connection. This option can be empty.
+* *`<file>`* is the path of init script file ([Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-5867) and later). This script file is written with SQL statements which will be executed automatically after connection. This option can be empty.
 * *`sess_var_list`* is a semicolon separated list of key=value pairs of session variables (e.g., `user=foo;password=bar`).
 * *`hive_conf_list`* is a semicolon separated list of key=value pairs of Hive configuration variables for this session
 * *`hive_var_list`* is a semicolon separated list of key=value pairs of Hive variables for this session.
@@ -431,7 +431,7 @@ Special characters in *`sess_var_list, hive_conf_list, hive_var_list`*paramete
 The JDBC connection URL format has the prefix `jdbc:hive2://` and the Driver class is `org.apache.hive.jdbc.HiveDriver`. Note that this is different from the old [HiveServer]({{< ref "hiveserver" >}}).
 
 * For a remote server, the URL format is `jdbc:hive2://<host>:<port>/<db>;initFile=<file>` (default port for HiveServer2 is 10000).
-* For an embedded server, the URL format is `jdbc:hive2:///;`initFile=<file>``(no host or port).
+* For an embedded server, the URL format is `jdbc:hive2:///;initFile=<file>`(no host or port).
 
 The `initFile` option is available in [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-5867) and later releases.
 
@@ -450,8 +450,8 @@ In versions earlier than [0.14](https://issues.apache.org/jira/browse/HIVE-6972)
 
 JDBC connection URL:  `jdbc:hive2://<host>:<port>/<db>;ssl=true;sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>`, where:
 
-* <trust_store_path> is the path where client's truststore file lives.
-* <trust_store_password> is the password to access the truststore.
+* `<trust_store_path>` is the path where client's truststore file lives.
+* `<trust_store_password>` is the password to access the truststore.
 
 In HTTP mode:  `jdbc:hive2://<host>:<port>/<db>;ssl=true;sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>;transportMode=http;httpPath=<http_endpoint>`.
 
@@ -459,7 +459,7 @@ For versions earlier than 0.14, see the [version note]({{< ref "#version-note"
 
 ### Connection URL When ZooKeeper Service Discovery Is Enabled
 
-ZooKeeper-based service discovery introduced in Hive 0.14.0 ([HIVE-7935](https://issues.apache.org/jira/browse/HIVE-7395)) enables high availability and rolling upgrade for HiveServer2. A JDBC URL that specifies <zookeeper quorum> needs to be used to make use of these features. That is, at least in `hive-site.xml` or other configuration files for HiveServer2, `hive.server2.support.dynamic.service.discovery` should be set to `true`, and `hive.zookeeper.quorum` should be defined to point to several started Zookeeper Servers. Reference [Configuration Properties]({{< ref "configuration-properties" >}}) .
+ZooKeeper-based service discovery introduced in Hive 0.14.0 ([HIVE-7935](https://issues.apache.org/jira/browse/HIVE-7395)) enables high availability and rolling upgrade for HiveServer2. A JDBC URL that specifies `<zookeeper quorum>` needs to be used to make use of these features. That is, at least in `hive-site.xml` or other configuration files for HiveServer2, `hive.server2.support.dynamic.service.discovery` should be set to `true`, and `hive.zookeeper.quorum` should be defined to point to several started Zookeeper Servers. Reference [Configuration Properties]({{< ref "configuration-properties" >}}) .
 
 The minimal configuration example is as follows.
 
@@ -483,15 +483,15 @@ With further changes in Hive 2.0.0 and 1.3.0 (unreleased, [HIVE-11581](https://i
 
 The JDBC connection URL: `jdbc:hive2://<zookeeper quorum>/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2` .
 
-The <zookeeper quorum> is the same as the value of hive.zookeeper.quorum configuration parameter in hive-site.xml/hivserver2-site.xml used by HiveServer2.
+The `<zookeeper quorum>` is the same as the value of hive.zookeeper.quorum configuration parameter in hive-site.xml/hivserver2-site.xml used by HiveServer2.
 
-Additional runtime parameters needed for querying can be provided within the URL as follows, by appending it as a ?<option> as before.  
+Additional runtime parameters needed for querying can be provided within the URL as follows, by appending it as a `?<option>` as before.  
   
 The JDBC connection URL: `jdbc:hive2://<zookeeper quorum>/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2?tez.queue.name=hive1&hive.server2.thrift.resultset.serialize.in.tasks=true`
 
 ### **Named Connection URLs**
 
-As of Hive 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)), Beeline now also supports named URL connect strings via usage of environment variables. If you try to do a `!connect` to a name that does not look like a URL, then Beeline will attempt to see if there is an environment variable called BEELINE_URL_<name>. For instance, if you specify `!connect blue`, it will look for BEELINE_URL_BLUE, and use that to connect. This should make it easier for system administrators to specify environment variables for users, and users need not type in the full URL each time to connect.
+As of Hive 2.1.0 ([HIVE-13670](https://issues.apache.org/jira/browse/HIVE-13670)), Beeline now also supports named URL connect strings via usage of environment variables. If you try to do a `!connect` to a name that does not look like a URL, then Beeline will attempt to see if there is an environment variable called `BEELINE_URL_<name>`. For instance, if you specify `!connect blue`, it will look for BEELINE_URL_BLUE, and use that to connect. This should make it easier for system administrators to specify environment variables for users, and users need not type in the full URL each time to connect.
 
 ### **Reconnecting**
 
@@ -835,7 +835,7 @@ When connecting to HiveServer2 with Kerberos authentication, the URL format is:
 
 The client needs to have a valid Kerberos ticket in the ticket cache before connecting.
 
-**NOTE**: If you don't have a "/" after the port number, the jdbc driver does not parse the hostname and ends up running HS2 in embedded mode . So if you are specifying a hostname, make sure you have a "/" or "/<dbname>" after the port number.
+**NOTE**: If you don't have a `/` after the port number, the jdbc driver does not parse the hostname and ends up running HS2 in embedded mode . So if you are specifying a hostname, make sure you have a `/` or `/<dbname>` after the port number.
 
 In the case of LDAP, CUSTOM or PAM authentication, the client needs to pass a valid user name and password to the JDBC connection API.
 
@@ -858,7 +858,7 @@ One way to mitigate the problem of multi-user scenarios is with secure proxy us
 * Delegation token based connection for Oozie ([OOZIE-1457](https://issues.apache.org/jira/browse/OOZIE-1457)). This is the common mechanism for Hadoop ecosystem components.  
 Proxy user privileges in the Hadoop ecosystem are associated with both user names and hosts. That is, the privilege is available for certain users from certain hosts.  Delegation tokens in Hive are meant to be used if you are connecting from one authorized (blessed) machine and later you need to make a connection from another non-blessed machine. You get the delegation token from a blessed machine and connect using the delegation token from a non-blessed machine. The primary use case is Oozie, which gets a delegation token from the server machine and then gets another connection from a Hadoop task node.  
   
-If you are only making a JDBC connection as a privileged user from a single blessed machine, then direct proxy access is the simpler approach. You can just pass the user you need to impersonate in the JDBC URL by using the hive.server2.proxy.user=*<user>* parameter.  
+If you are only making a JDBC connection as a privileged user from a single blessed machine, then direct proxy access is the simpler approach. You can just pass the user you need to impersonate in the JDBC URL by using the hive.server2.proxy.user=*\<user\>* parameter.  
 See examples in [ProxyAuthTest.java](https://github.com/apache/hive/blob/master/beeline/src/test/org/apache/hive/beeline/ProxyAuthTest.java).  
   
 Support for delegation tokens with HiveServer2 binary transport mode [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}}) has been available starting 0.13.0; support for this feature with HTTP transport mode was added in [HIVE-13169](https://issues.apache.org/jira/browse/HIVE-13169), which should be part of Hive 2.1.0.
@@ -932,7 +932,7 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 # Integration with SQuirrel SQL Client
 
 1. Download, install and start the SQuirrel SQL Client from the [SQuirrel SQL website](http://squirrel-sql.sourceforge.net/).
-2. Select 'Drivers -> New Driver...' to register Hive's JDBC driver that works with HiveServer2.
+2. Select 'Drivers -\> New Driver...' to register Hive's JDBC driver that works with HiveServer2.
 	1. Enter the driver name and example URL:
 	
 	
@@ -942,7 +942,7 @@ A Ruby client driver is available on github at <https://github.com/forward3d/rb
 	   Example URL: jdbc:hive2://localhost:10000/default
 	
 	```
-3. Select 'Extra Class Path -> Add' to add the following jars from your local Hive and Hadoop distribution.
+3. Select 'Extra Class Path -\> Add' to add the following jars from your local Hive and Hadoop distribution.
 
 ```
    HIVE_HOME/lib/hive-jdbc-*-standalone.jar
@@ -961,7 +961,7 @@ The hadoop-common jars are for Hadoop 2.0; for previous versions of Hadoop, use 
    
 ```
 5. Click 'OK' to complete the driver registration.
-6. Select 'Aliases -> Add Alias...' to create a connection alias to your HiveServer2 instance.
+6. Select 'Aliases -\> Add Alias...' to create a connection alias to your HiveServer2 instance.
 	1. Give the connection alias a name in the 'Name' input box.
 	2. Select the Hive driver from the 'Driver' drop-down.
 	3. Modify the example URL as needed to point to your HiveServer2 instance.
@@ -1014,10 +1014,10 @@ JDBC connection URL:
 
 `jdbc:hive2://<host>:<port>/<db>;ssl=true;twoWay=true;``sslTrustStore=<trust_store_path>;trustStorePassword=<trust_store_password>;sslKeyStore=<key_store_path>;keyStorePassword=<key_store_password>;``transportMode=http;httpPath=<http_endpoint>`
 
-* *<trust_store_path>* is the path where the client's truststore file lives. This is a mandatory non-empty field.
-* *<trust_store_password>* is the password to access the truststore.
-* *<key_store_path>* is the path where the client's keystore file lives. This is a mandatory non-empty field.
-* *<key_store_password>* is the password to access the keystore.
+* *\<trust_store_path\>* is the path where the client's truststore file lives. This is a mandatory non-empty field.
+* *\<trust_store_password\>* is the password to access the truststore.
+* *\<key_store_path\>* is the path where the client's keystore file lives. This is a mandatory non-empty field.
+* *\<key_store_password\>* is the password to access the keystore.
 
 For versions earlier than 0.14, see the [version note]({{< ref "#version-note" >}}) above.
 
@@ -1045,7 +1045,7 @@ JDBC connection URL:
 
 `jdbc:hive2://<host>:<port>/<db>;transportMode=http;httpPath=<http_endpoint>;http.header.<name1>=<value1>;http.header.<name2>=<value2>`
 
-When the above URL is specified, Beeline will call underlying requests to add an HTTP header set to *<name1>* and *<value1>* and another HTTP header set to *<name2>* and *<value2>*. This is helpful when the end user needs to send identity in an HTTP header down to intermediate servers such as Knox via Beeline for authentication, for example `http.header.USERNAME=<value1>;http.header.PASSWORD=<value2>`.
+When the above URL is specified, Beeline will call underlying requests to add an HTTP header set to *\<name1\>* and *\<value1\>* and another HTTP header set to *\<name2\>* and *\<value2\>*. This is helpful when the end user needs to send identity in an HTTP header down to intermediate servers such as Knox via Beeline for authentication, for example `http.header.USERNAME=\<value1\>;http.header.PASSWORD=\<value2\>`.
 
 For versions earlier than 0.14, see the [version note]({{< ref "#version-note" >}}) above. 
 
@@ -1057,5 +1057,5 @@ JDBC connection URL: 
 
 `jdbc:hive2://<host>:<port>/<db>;transportMode=http;httpPath=<http_endpoint>;http.cookie.<name1>=<value1>;http.cookie.<name2>=<value2>`
 
-When the above URL is specified, Beeline will call underlying requests to add HTTP cookie in the request header, and will set it to *<name1>*=*<value1>* and *<name2>*=*<value2>*. 
+When the above URL is specified, Beeline will call underlying requests to add HTTP cookie in the request header, and will set it to *\<name1\>*=*\<value1\>* and *\<name2\>*=*\<value2\>*. 
 
