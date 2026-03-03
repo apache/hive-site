@@ -196,7 +196,7 @@ hdfs:///tmp/slf4j-api-1.6.1.jar
 
 ### Authentication
 
-If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
+If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/<username>/hive.log`, then make sure you have run "`kinit <username>@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
 
 ### Read Example
 

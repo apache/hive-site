@@ -32,7 +32,7 @@ Consider the following base table named `pageAds`. It has two columns: `pageid` 
 | Column name | Column type |
 | --- | --- |
 | pageid | STRING |
-| adid_list | Array<int> |
+| adid_list | Array\<int\> |
 
 An example table with two rows:
 
