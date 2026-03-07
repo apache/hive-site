@@ -557,6 +557,19 @@ For example, if you are working on branch-3 and have just released Hive 3.2 and 
 4. Verify that the build is working with changes.
 5. Commit these changes with a comment "Preparing for X.Y.Z+1 development".
 
+## Update hive-site
+
+### Announce the release
+
+- https://github.com/apache/hive-site/blob/main/content/general/downloads.md
+- https://github.com/apache/hive-site/blob/main/themes/hive/layouts/partials/release-banner.html
+
+### Update Hive versions
+
+The following page should include the latest Hive version.
+
+- https://github.com/apache/hive-site/blob/main/content/Development/quickStart.md
+
 ## See Also
 
 * [Apache Releases FAQ](http://www.apache.org/dev/release.html)
