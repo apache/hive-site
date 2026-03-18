@@ -18,10 +18,7 @@ Run Apache Hive inside docker container in pseudo-distributed mode, inorder to p
 
 ##### **STEP 1: Pull the image** 
 
-Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. Here are the latest images:
-
-- 4.2.0
-- 3.1.3
+Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. The latest image tag is `4.2.0`.
 
 ```shell
 docker pull apache/hive:4.2.0
