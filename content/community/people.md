@@ -42,7 +42,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | navis           | Navis Ryu               | [NexR](http://nexr.com/)                        |      |
 | ngangam         | Naveen Gangam           | [Cloudera](http://cloudera.com/)                | VP   |
 | nzhang          | Ning Zhang              | [Facebook](http://facebook.com/)                |      |
-| okumin          | Shohei Okumiya          | [Treasure Data](https://www.treasuredata.com/)  |      |
+| okumin          | Shohei Okumiya          | [Treasure AI](https://www.treasure.ai/)  |      |
 | omalley         | Owen O'Malley           | [LinkedIn](http://linkedin.com/)                |      |
 | prasadm         | Prasad Mujumdar         | [Cloudera](http://cloudera.com/)                |      |
 | prasanth_j      | Prasanth Jayachandran   | [Hortonworks](http://hortonworks.com/)          |      |
@@ -142,4 +142,3 @@ A list of Hive contributors and their contributions is available from
 * John Sichi
 * Sushanth Sowmyan
 * Paul Yang
-
