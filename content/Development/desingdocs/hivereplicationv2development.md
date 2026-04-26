@@ -168,7 +168,7 @@ Event 100: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 Event 110: ALTER TABLE tbl DROP PARTITION (p=1);  
 Event 120: ALTER TABLE tbl ADD PARTITION (p=1) SET LOCATION <location>;
 ```
-When loading the dump on the destination side (at a much later point), when the event 100 is replayed, the load task on the destination will try to pull the files from the <location> (the _files contains the path of <location>), which may contain new or different data. To replicate the exact state of the source at the time event 100 occurred at the source, we do the following:
+When loading the dump on the destination side (at a much later point), when the event 100 is replayed, the load task on the destination will try to pull the files from the `<location>` (the _files contains the path of `<location>`), which may contain new or different data. To replicate the exact state of the source at the time event 100 occurred at the source, we do the following:
 
 1. When Event 100 occurs at the source, in the notification event, we store the checksum of the file(s) in the newly added partition along with the file path(s).
 2. When Event 110 occurs at the source, we move the files of the dropped partition to $cmroot/database/tbl/p=1 instead of purging them.
@@ -212,7 +212,9 @@ The current implementation of replication is built upon existing commands EXPORT
 This is better described via various examples of each of the pieces of the command syntax, as follows:
 
   
-(a) REPL DUMP sales;       REPL DUMP sales.['.*?']Replicates out sales database for bootstrap, from <init-evid>=0 (bootstrap case) to <end-evid>=<CURR-EVID> with a batch size of 0, i.e. no batching.
+(a) REPL DUMP sales;       REPL DUMP sales.['.*?']
+
+Replicates out sales database for bootstrap, from `<init-evid>=0` (bootstrap case) to `<end-evid>=<CURR-EVID>` with a batch size of 0, i.e. no batching.`
 
 (b) REPL DUMP sales.['T3', '[a-z]+'];
 
@@ -228,15 +230,15 @@ This sets up db-level replication that excludes all the tables/views but include
 
 (e) REPL DUMP sales FROM 200 TO 1400;
 
-The presence of a FROM <init-evid> tag makes this dump not a bootstrap, but a dump which looks at the event log to produce a delta dump. FROM 200 TO 1400 is self-evident in that it will go through event ids 200 to 1400 looking for events from the relevant db.
+The presence of a FROM `<init-evid>` tag makes this dump not a bootstrap, but a dump which looks at the event log to produce a delta dump. FROM 200 TO 1400 is self-evident in that it will go through event ids 200 to 1400 looking for events from the relevant db.
 
 (f) REPL DUMP sales FROM 200;
 
-Similar to above, but with an implicit assumed <end-evid> as being the current event id at the time the command is run.
+Similar to above, but with an implicit assumed `<end-evid>` as being the current event id at the time the command is run.
 
 (g) REPL DUMP sales FROM 200 to 1400 LIMIT 100;REPL DUMP sales FROM 200 LIMIT 100;
 
-Similar to cases (d) & (e), with the addition of a batch size of <num-evids>=100. This causes us to stop processing if we reach 100 events, and return at that point. Note that this does not mean that we stop processing at event id = 300, since we began at 200 - it means that we will stop processing events when we have processed 100 events in the event stream (that has unrelated events) belonging to this replication-definition, i.e. of a relevant db or db.table, then we stop.
+Similar to cases (d) & (e), with the addition of a batch size of `<num-evids>=100`. This causes us to stop processing if we reach 100 events, and return at that point. Note that this does not mean that we stop processing at event id = 300, since we began at 200 - it means that we will stop processing events when we have processed 100 events in the event stream (that has unrelated events) belonging to this replication-definition, i.e. of a relevant db or db.table, then we stop.
 
 (h) REPL DUMP sales.['[a-z]+'] REPLACE sales FROM 200;
 
@@ -258,8 +260,8 @@ The REPL DUMP command has an optional WITH clause to set command-specific confi
 
 1. Error codes returned as return error codes (and over jdbc if with HS2)
 2. Returns 2 columns in the ResultSet:
-	1. <dir-name> - the directory to which it has dumped info.
-	2. <last-evid> - the last event-id associated with this dump, which might be the end-evid, or the curr-evid, as the case may be.
+	1. `<dir-name>` - the directory to which it has dumped info.
+	2. `<last-evid>` - the last event-id associated with this dump, which might be the end-evid, or the curr-evid, as the case may be.
 
 #### Note:
 
@@ -275,20 +277,18 @@ When bootstrap dump is in progress, it blocks rename table/partition operations 
 
 Look up the HiveServer logs for below pair of log messages.
 
-> REPL DUMP:: Set property for Database: <db_name>, Property: <bootstrap.dump.state.xxxx>, Value: ACTIVE
+> REPL DUMP:: Set property for Database: `<db_name>`, Property: `<bootstrap.dump.state.xxxx>`, Value: ACTIVE
 > 
-> REPL DUMP:: Reset property for Database: <db_name>, Property: <bootstrap.dump.state.xxxx>
-> 
-> 
+> REPL DUMP:: Reset property for Database: `<db_name>`, Property: `<bootstrap.dump.state.xxxx>`
 
-If Reset property log is not found for the corresponding Set property log, then user need to manually reset the database property <bootstrap.dump.state.xxxx> with value as "IDLE" using ALTER DATABASE command.
+If Reset property log is not found for the corresponding Set property log, then user need to manually reset the database property `<bootstrap.dump.state.xxxx>` with value as "IDLE" using ALTER DATABASE command.
 
 ## REPL LOAD
 
 `REPL LOAD {<dbname>} FROM <dirname> {WITH ('key1'='value1', 'key2'='value2')};`
 
   
-This causes a REPL DUMP present in <dirname> (which is to be a fully qualified HDFS URL) to be pulled and loaded. If <dbname> is specified, and the original dump was a database-level dump, this allows Hive to do db-rename-mapping on import. If dbname is not specified, the original dbname as recorded in the dump would be used.The REPL LOAD command has an optional WITH clause to set command-specific configurations to be used when trying to copy from the source cluster. These configurations are only used by the corresponding REPL LOAD command and won't be used for other queries running in the same session.
+This causes a REPL DUMP present in `<dirname>` (which is to be a fully qualified HDFS URL) to be pulled and loaded. If `<dbname>` is specified, and the original dump was a database-level dump, this allows Hive to do db-rename-mapping on import. If dbname is not specified, the original dbname as recorded in the dump would be used.The REPL LOAD command has an optional WITH clause to set command-specific configurations to be used when trying to copy from the source cluster. These configurations are only used by the corresponding REPL LOAD command and won't be used for other queries running in the same session.
 
 #### Return values:
 

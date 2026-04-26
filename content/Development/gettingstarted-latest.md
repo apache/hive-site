@@ -77,7 +77,7 @@ To build the current Hive code from the master branch:
 
 Here, {version} refers to the current Hive version.
 
-If building Hive source using Maven (mvn), we will refer to the directory "/packaging/target/apache-hive-{version}-SNAPSHOT-bin/apache-hive-{version}-SNAPSHOT-bin" as <install-dir> for the rest of the page.
+If building Hive source using Maven (mvn), we will refer to the directory "/packaging/target/apache-hive-{version}-SNAPSHOT-bin/apache-hive-{version}-SNAPSHOT-bin" as `<install-dir>` for the rest of the page.
 
 #### Compile Hive on branch-1
 

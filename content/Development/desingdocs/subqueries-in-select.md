@@ -79,7 +79,7 @@ SELECT customer.customer_num,
 	) AS total_ship_chg
 FROM customer 
 ```
-* Subqueries with DISTINCT are not allowed. Since DISTINCT <expression> will be evaluated as GROUP BY <expression>, subqueries with DISTINCT are disallowed for now.
+* Subqueries with DISTINCT are not allowed. Since `DISTINCT <expression>` will be evaluated as `GROUP BY <expression>`, subqueries with `DISTINCT` are disallowed for now.
 
 # Design
 
