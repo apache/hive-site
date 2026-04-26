@@ -164,7 +164,7 @@ The version number found in each filepath will be substituted for *. For example
 
 #### Authentication
 
-If you are using a secure cluster and a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
+If you are using a secure cluster and a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/<username>/hive.log`, then make sure you have run "`kinit <username>@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
 
 ### Load Examples
 

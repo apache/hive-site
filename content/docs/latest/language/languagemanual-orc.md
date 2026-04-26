@@ -71,10 +71,10 @@ The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{< ref "
 | orc.compress | ZLIB | high level compression (one of NONE, ZLIB, SNAPPY) |
 | orc.compress.size | 262,144 | number of bytes in each compression chunk |
 | orc.stripe.size | 67,108,864 | number of bytes in each stripe |
-| orc.row.index.stride | 10,000 | number of rows between index entries (must be >= 1000) |
+| orc.row.index.stride | 10,000 | number of rows between index entries (must be \>= 1000) |
 | orc.create.index | true | whether to create row indexes |
 | orc.bloom.filter.columns | "" | comma separated list of column names for which bloom filter should be created |
-| orc.bloom.filter.fpp | 0.05 | false positive probability for bloom filter (must >0.0 and <1.0) |
+| orc.bloom.filter.fpp | 0.05 | false positive probability for bloom filter (must \>0.0 and \<1.0) |
 
 For example, creating an ORC stored table without compression:
 
@@ -175,9 +175,9 @@ Specifying `--skip-dump` along with `--recover` will perform recovery without
 
 Specifying `--backup-path` with a *new-path* will let the recovery tool move corrupted files to the specified backup path (default: /tmp).
 
-*<location-of-orc-file>* is the URI of the ORC file.
+*\<location-of-orc-file\>* is the URI of the ORC file.
 
-*<location-of-orc-file-or-directory>* is the URI of the ORC file or directory. From [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11669) onward, this URI can be a directory containing ORC files.
+*\<location-of-orc-file-or-directory\>* is the URI of the ORC file or directory. From [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11669) onward, this URI can be a directory containing ORC files.
 
 ## ORC Configuration Parameters
 
