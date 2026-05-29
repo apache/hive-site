@@ -31,7 +31,7 @@ sftp&gt; mkdir hive-storage-X.Y.Z
 sftp&gt; cd hive-storage-X.Y.Z
 sftp&gt; put hive-storage-X.Y.Z-rcR.tar.gz*
 sftp&gt; quit
-</code></pre><ol start=8><li>Send email to <a href>dev@hive.apache.org</a> calling the vote.</li></ol><h3 id=publishing-the-storage-api-artifacts>Publishing the Storage API Artifacts</h3><ol><li>After the release vote passes, push the artifacts to Nexus.  (If you get an error <code>gpg: signing failed: Inappropriate ioctl for device</code> trying doing <code>export GPG_TTY=$(tty)</code> .)</li></ol><pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
+</code></pre><ol start=8><li>Send email to <a href=mailto:dev@hive.apache.org>dev@hive.apache.org</a> calling the vote.</li></ol><h3 id=publishing-the-storage-api-artifacts>Publishing the Storage API Artifacts</h3><ol><li>After the release vote passes, push the artifacts to Nexus.  (If you get an error <code>gpg: signing failed: Inappropriate ioctl for device</code> trying doing <code>export GPG_TTY=$(tty)</code> .)</li></ol><pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
 % cd storage-api
 % mvn clean deploy -Papache-release -DskipTests
 </code></pre><ol start=2><li>Login to Nexus and close the repository. Mark the repository as released.</li><li>Create the final tag (be very careful, tags in &ldquo;rel/&rdquo; are not changeable).</li></ol><pre tabindex=0><code>% git checkout storage-release-X.Y.Z-rcR
