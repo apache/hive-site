@@ -17,7 +17,7 @@ New committers are encouraged to first read Apache's generic committer documenta
 
 The first act of a new core committer is typically to add their name to the [credits](/community/people/) page. This requires changing the source in <https://github.com/apache/hive-site/blob/main/content/community/people.md>
 
-Committers are strongly encouraged to subscribe to the [security@hive.apache.org]({{< ref "mailto:security-subscribe@hive-apache-org" >}}) list with their Apache email and help addressing security vulnerability reports.
+Committers are strongly encouraged to subscribe to the [security@hive.apache.org](mailto:security-subscribe@hive.apache.org) list with their Apache email and help addressing security vulnerability reports.
 
 ## Review
 
