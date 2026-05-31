@@ -30,8 +30,12 @@
      margin-right: 0;
 }
 
+
 /* Override global section margins for full-width sections */
-section.white-background,
+section
+{
+background-color:silver;
+}
 features.white-background,
 features {
     margin-left: 0 !important;
@@ -2333,7 +2337,7 @@ features.container {
 
 /* Why Choose Section */
 .why-choose-section {
-    background: #f8f9fa;
+    background: silver;
     padding: 5rem 0;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -2353,12 +2357,13 @@ features.container {
 }
 
 .why-card {
+    
     background: white;
     padding: 2.5rem 2rem;
     border-radius: 12px;
     text-align: center;
     height: 100%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px goldenrod;
     transition: all 0.3s ease;
 }
 
@@ -2882,3 +2887,5 @@ features.container {
         gap: 0.5rem;
     }
 }
+
+
