@@ -188,12 +188,12 @@ The following built-in collection functions are supported in Hive:
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
-| int | size(Map<K.V>) | Returns the number of elements in the map type. |
-| int | size(Array<T>) | Returns the number of elements in the array type. |
-| array<K> | map_keys(Map<K.V>) | Returns an unordered array containing the keys of the input map. |
-| array<V> | map_values(Map<K.V>) | Returns an unordered array containing the values of the input map. |
-| boolean | array_contains(Array<T>, value) | Returns TRUE if the array contains value. |
-| array<t> | sort_array(Array<T>) | Sorts the input array in ascending order according to the natural ordering of the array elements and returns it (as of version [0.9.0](https://issues.apache.org/jira/browse/HIVE-2279)). |
+| int | size(Map\<K.V\>) | Returns the number of elements in the map type. |
+| int | size(Array\<T\>) | Returns the number of elements in the array type. |
+| array\<K\> | map_keys(Map\<K.V\>) | Returns an unordered array containing the keys of the input map. |
+| array\<V\> | map_values(Map\<K.V\>) | Returns an unordered array containing the values of the input map. |
+| boolean | array_contains(Array\<T\>, value) | Returns TRUE if the array contains value. |
+| array\<t\> | sort_array(Array\<T\>) | Sorts the input array in ascending order according to the natural ordering of the array elements and returns it (as of version [0.9.0](https://issues.apache.org/jira/browse/HIVE-2279)). |
 
 ### Type Conversion Functions
 
@@ -202,7 +202,7 @@ The following type conversion functions are supported in Hive:
 | Return Type | Name(Signature) | Description |
 | --- | --- | --- |
 | binary | binary(string|binary) | Casts the parameter into a binary. |
-| **Expected "=" to follow "type"** | cast(expr as <type>) | Converts the results of the expression expr to <type>. For example, cast('1' as BIGINT) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |
+| **Expected "=" to follow "type"** | cast(expr as \<type\>) | Converts the results of the expression expr to \<type\>. For example, cast('1' as BIGINT) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |
 
 ### Date Functions
 
@@ -272,9 +272,9 @@ The following built-in String functions are supported in Hive:
 | int | character_length(string str) | Returns the number of UTF-8 characters contained in str (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). The function char_length is shorthand for this function. |
 | string | chr(bigint|double A) | Returns the ASCII character having the binary equivalent to A (as of Hive [1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13063)). If A is larger than 256 the result is equivalent to chr(A % 256). Example: select chr(88); returns "X". |
 | string | concat(string|binary A, string|binary B...) | Returns the string or bytes resulting from concatenating the strings or bytes passed in as parameters in order. For example, concat('foo', 'bar') results in 'foobar'. Note that this function can take any number of input strings. |
-| array<struct<string,double>> | context_ngrams(array<array<string>>, array<string>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| array\<struct\<string,double\>\> | context_ngrams(array\<array\<string\>\>, array\<string\>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
 | string | concat_ws(string SEP, string A, string B...) | Like concat() above, but with custom separator SEP. |
-| string | concat_ws(string SEP, array<string>) | Like concat_ws() above, but taking an array of strings. (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2203)) |
+| string | concat_ws(string SEP, array\<string\>) | Like concat_ws() above, but taking an array of strings. (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2203)) |
 | string | decode(binary bin, string charset) | Decodes the first argument into a String using the provided character set (one of 'US-ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
 | string | elt(N int,str1 string,str2 string,str3 string,...) | Return string at index number. For example elt(2,'hello','world') returns 'world'. Returns NULL if N is less than 1 or greater than the number of arguments.(see <https://dev.mysql.com/doc/refman/5.7/en/string-functions.html#function_elt>) |
 | binary | encode(string src, string charset) | Encodes the first argument into a BINARY using the provided character set (one of 'US-ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
@@ -289,7 +289,7 @@ The following built-in String functions are supported in Hive:
 | string | lower(string A) lcase(string A) | Returns the string resulting from converting all characters of B to lower case. For example, lower('fOoBaR') results in 'foobar'. |
 | string | lpad(string str, int len, string pad) | Returns str, left-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
 | string | ltrim(string A) | Returns the string resulting from trimming spaces from the beginning(left hand side) of A. For example, ltrim(' foobar ') results in 'foobar '. |
-| array<struct<string,double>> | ngrams(array<array<string>>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| array\<struct\<string,double\>\> | ngrams(array\<array\<string\>\>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
 | int | octet_length(string str) | Returns the number of octets required to hold the string str in UTF-8 encoding (since Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). Note that octet_length(str) can be larger than character_length(str). |
 | string | parse_url(string urlString, string partToExtract [, string keyToExtract]) | Returns the specified part from the URL. Valid values for partToExtract include HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, and USERINFO. For example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'HOST') returns 'facebook.com'. Also a value of a particular key in QUERY can be extracted by providing the key as the third argument, for example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'QUERY', 'k1') returns 'v1'. |
 | string | printf(String format, Obj... args) | Returns the input formatted according do printf-style format strings (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2695)). |
@@ -311,10 +311,10 @@ The following built-in String functions are supported in Hive:
 | string | reverse(string A) | Returns the reversed string. |
 | string | rpad(string str, int len, string pad) | Returns str, right-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
 | string | rtrim(string A) | Returns the string resulting from trimming spaces from the end(right hand side) of A. For example, rtrim(' foobar ') results in ' foobar'. |
-| array<array<string>> | sentences(string str, string lang, string locale) | Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The 'lang' and 'locale' are optional arguments. For example, sentences('Hello there! How are you?') returns ( ("Hello", "there"), ("How", "are", "you") ). |
+| array\<array\<string\>\> | sentences(string str, string lang, string locale) | Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The 'lang' and 'locale' are optional arguments. For example, sentences('Hello there! How are you?') returns ( ("Hello", "there"), ("How", "are", "you") ). |
 | string | space(int n) | Returns a string of n spaces. |
 | array | split(string str, string pat) | Splits str around pat (pat is a regular expression). |
-| map<string,string> | str_to_map(text[, delimiter1, delimiter2]) | Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are ',' for delimiter1 and ':' for delimiter2. |
+| map\<string,string\> | str_to_map(text[, delimiter1, delimiter2]) | Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are ',' for delimiter1 and ':' for delimiter2. |
 | string | substr(string|binary A, int start) substring(string|binary A, int start) | Returns the substring or slice of the byte array of A starting from start position till the end of string A. For example, substr('foobar', 4) results in 'bar' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
 | string | substr(string|binary A, int start, int len) substring(string|binary A, int start, int len) | Returns the substring or slice of the byte array of A starting from start position with length len. For example, substr('foobar', 4, 1) results in 'b' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
 | string | substring_index(string A, string delim, int count) | Returns the substring from string A before count occurrences of the delimiter delim (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-686)). If count is positive, everything to the left of the final delimiter (counting from the left) is returned. If count is negative, everything to the right of the final delimiter (counting from the right) is returned. Substring_index performs a case-sensitive match when searching for delim. Example: substring_index('www.apache.org', '.', 2) = 'www.apache'. |
@@ -433,9 +433,9 @@ The following built-in aggregate functions are supported in Hive:
 | DOUBLE | covar_samp(col1, col2) | Returns the sample covariance of a pair of a numeric columns in the group. |
 | DOUBLE | corr(col1, col2) | Returns the Pearson coefficient of correlation of a pair of a numeric columns in the group. |
 | DOUBLE | percentile(BIGINT col, p) | Returns the exact pth percentile of a column in the group (does not work with floating point types). p must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
-| array<double> | percentile(BIGINT col, array(p1 [, p2]...)) | Returns the exact percentiles p1, p2, ... of a column in the group (does not work with floating point types). pi must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
+| array\<double\> | percentile(BIGINT col, array(p1 [, p2]...)) | Returns the exact percentiles p1, p2, ... of a column in the group (does not work with floating point types). pi must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
 | DOUBLE | percentile_approx(DOUBLE col, p [, B]) | Returns an approximate pth percentile of a numeric column (including floating point types) in the group. The B parameter controls approximation accuracy at the cost of memory. Higher values yield better approximations, and the default is 10,000. When the number of distinct values in col is smaller than B, this gives an exact percentile value. |
-| array<double> | percentile_approx(DOUBLE col, array(p1 [, p2]...) [, B]) | Same as above, but accepts and returns an array of percentile values instead of a single one. |
+| array\<double\> | percentile_approx(DOUBLE col, array(p1 [, p2]...) [, B]) | Same as above, but accepts and returns an array of percentile values instead of a single one. |
 | double | regr_avgx(independent, dependent) | Equivalent to avg(dependent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_avgy(independent, dependent) | Equivalent to avg(independent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_count(independent, dependent) | Returns the number of non-null pairs used to fit the linear regression line. As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
@@ -445,7 +445,7 @@ The following built-in aggregate functions are supported in Hive:
 | double | regr_sxx(independent, dependent) | Equivalent to regr_count(independent, dependent) * var_pop(dependent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_sxy(independent, dependent) | Equivalent to regr_count(independent, dependent) * covar_pop(independent, dependent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_syy(independent, dependent) | Equivalent to regr_count(independent, dependent) * var_pop(independent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
-| array<struct {`'x','y'`}> | histogram_numeric(col, b) | Computes a histogram of a numeric column in the group using b non-uniformly spaced bins. The output is an array of size b of double-valued (x,y) coordinates that represent the bin centers and heights |
+| array\<struct {`'x','y'`}\> | histogram_numeric(col, b) | Computes a histogram of a numeric column in the group using b non-uniformly spaced bins. The output is an array of size b of double-valued (x,y) coordinates that represent the bin centers and heights |
 | array | collect_set(col) | Returns a set of objects with duplicate elements eliminated. |
 | array | collect_list(col) | Returns a list of objects with duplicates. (As of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5294).) |
 | INTEGER | ntile(INTEGER x) | Divides an ordered partition into `x` groups called buckets and assigns a bucket number to each row in the partition. This allows easy calculation of tertiles, quartiles, deciles, percentiles and other common summary statistics. (As of Hive [0.11.0](https://issues.apache.org/jira/browse/HIVE-896).) |
@@ -456,14 +456,14 @@ Normal user-defined functions, such as concat(), take in a single input row and 
 
 | **Row-set columns types** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
-| T | explode(ARRAY<T> a) | Explodes an array to multiple rows. Returns a row-set with a single column (*col*), one row for each element from the array. |
-| Tkey,Tvalue | explode(MAP<Tkey,Tvalue> m) | Explodes a map to multiple rows. Returns  a row-set with a two columns (*key,value)* , one row for each key-value pair from the input map. (As of Hive [0.8.0](https://issues.apache.org/jira/browse/HIVE-1735).). |
-| int,T | posexplode(ARRAY<T> a) | Explodes an array to multiple rows with additional positional column of *int* type (position of items in the original array, starting with 0). Returns a row-set with two columns (*pos,val*), one row for each element from the array. |
-| T1,...,Tn | inline(ARRAY<STRUCT<f1:T1,...,fn:Tn>> a) | Explodes an array of structs to multiple rows. Returns  a row-set with N columns (N = number of top level elements in the struct), one row per struct from the array. (As of Hive [0.10](https://issues.apache.org/jira/browse/HIVE-3238).) |
+| T | explode(ARRAY\<T\> a) | Explodes an array to multiple rows. Returns a row-set with a single column (*col*), one row for each element from the array. |
+| Tkey,Tvalue | explode(MAP\<Tkey,Tvalue\> m) | Explodes a map to multiple rows. Returns  a row-set with a two columns (*key,value)* , one row for each key-value pair from the input map. (As of Hive [0.8.0](https://issues.apache.org/jira/browse/HIVE-1735).). |
+| int,T | posexplode(ARRAY\<T\> a) | Explodes an array to multiple rows with additional positional column of *int* type (position of items in the original array, starting with 0). Returns a row-set with two columns (*pos,val*), one row for each element from the array. |
+| T1,...,Tn | inline(ARRAY\<STRUCT\<f1:T1,...,fn:Tn\>\> a) | Explodes an array of structs to multiple rows. Returns  a row-set with N columns (N = number of top level elements in the struct), one row per struct from the array. (As of Hive [0.10](https://issues.apache.org/jira/browse/HIVE-3238).) |
 | T1,...,Tn/r | stack(int r,T1  V1,...,Tn/r Vn) | Breaks up *n* values V1,...,Vn into *r* rows. Each row will have *n/r* columns. *r* must be constant. |
 |  |  |  |
 | string1,...,stringn | json_tuple(string jsonStr,string k1,...,string kn) | Takes JSON string and a set of *n* keys, and returns a tuple of *n* values. This is a more efficient version of the `get_json_object` UDF because it can get multiple keys with just one call. |
-| string 1,...,stringn | parse_url_tuple(string urlStr,string p1,...,string pn) | Takes URL string and a set of *n* URL parts, and returns a tuple of *n* values. This is similar to the `parse_url()` UDF but can extract multiple parts at once out of a URL. Valid part names are: HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, USERINFO, QUERY:<KEY>. |
+| string 1,...,stringn | parse_url_tuple(string urlStr,string p1,...,string pn) | Takes URL string and a set of *n* URL parts, and returns a tuple of *n* values. This is similar to the `parse_url()` UDF but can extract multiple parts at once out of a URL. Valid part names are: HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, USERINFO, QUERY:\<KEY\>. |
 
   
 
@@ -576,7 +576,7 @@ Also see [Writing UDTFs]({{< ref "developerguide-udtf" >}}) if you want to creat
 
 As an example of using `explode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-| Array<int> myCol |
+| Array\<int\> myCol |
 | --- |
 | [100,200,300] |
 | [400,500,600] |
@@ -615,7 +615,7 @@ Available as of Hive 0.13.0. See [HIVE-4943](https://issues.apache.org/jira/brow
 
 As an example of using `posexplode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-| Array<int> myCol |
+| Array\<int\> myCol |
 | --- |
 | [100,200,300] |
 | [400,500,600] |

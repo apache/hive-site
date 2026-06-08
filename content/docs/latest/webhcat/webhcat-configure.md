@@ -52,7 +52,7 @@ The webhcat-log4j.properties file sets the location of the log files created by 
 | **templeton.hcat** | The path to the HCatalog executable. |
 | **templeton.hive.archive** | The path to the Hive archive. |
 | **templeton.hive.path** | The path to the Hive executable. |
-| **templeton.hive.properties** | Properties to set when running Hive (during job submission).  This is expected to be a comma-separated prop=value list. If some value is itself a comma-separated list, the escape character is '\' </description> (from [Hive 0.13.1](https://issues.apache.org/jira/browse/HIVE-4576) onward).To use it in a cluster with Kerberos security enabled, set `hive.metastore.sasl.enabled=false` and add `hive.metastore.execute.setugi=true`. Using localhost in metastore URI does not work with Kerberos security. |
+| **templeton.hive.properties** | Properties to set when running Hive (during job submission).  This is expected to be a comma-separated prop=value list. If some value is itself a comma-separated list, the escape character is '\\' (from [Hive 0.13.1](https://issues.apache.org/jira/browse/HIVE-4576) onward).To use it in a cluster with Kerberos security enabled, set `hive.metastore.sasl.enabled=false` and add `hive.metastore.execute.setugi=true`. Using localhost in metastore URI does not work with Kerberos security. |
 | **templeton.exec.encoding** | The encoding of the stdout and stderr data. |
 | **templeton.exec.timeout** | How long in milliseconds a program is allowed to run on the WebHCat box. |
 | **templeton.exec.max-procs** | The maximum number of processes allowed to run at once. |
@@ -74,15 +74,15 @@ The webhcat-log4j.properties file sets the location of the log files created by 
 | **templeton.kerberos.keytab** | The keytab file containing the credentials for the Kerberos principal. |
 | **templeton.hadoop.queue.name** | MapReduce queue name where WebHCat map-only jobs will be submitted to. Can be used to avoid a deadlock where all map slots in the cluster are taken over by Templeton launcher tasks.Versions: [Hive 0.12.0](https://issues.apache.org/jira/browse/HIVE-4679) and later. |
 | **templeton.mapper.memory.mb** | WebHCat controller job's Launch mapper's memory limit in megabytes. When submitting a controller job, WebHCat will overwrite `mapreduce.map.memory.mb` with this value. If empty, WebHCat will not set `mapreduce.map.memory.mb` when submitting the controller job, therefore the configuration in mapred-site.xml will be used.Versions: [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7155) and later. |
-| **templeton.frame.options.filter** | Adds web server protection from clickjacking using X-Frame-Options header. The possible values are DENY, SAMEORIGIN, ALLOW-FROM <uri>.Versions: [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-17679) and later. |
+| **templeton.frame.options.filter** | Adds web server protection from clickjacking using X-Frame-Options header. The possible values are DENY, SAMEORIGIN, ALLOW-FROM \<uri\>.Versions: [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-17679) and later. |
 
 #### Default Values
 
 Some of the default values for WebHCat configuration variables depend on the release number. For the default values in the Hive release you are using, see the webhcat-default.xml file. It can be found in the SVN repository at:
 
-* http://svn.apache.org/repos/asf/hive/branches/branch-*<release_number>*/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml
+* http://svn.apache.org/repos/asf/hive/branches/branch-*\<release_number\>*/hcatalog/webhcat/svr/src/main/config/webhcat-default.xml
 
-where *<release_number>* is 0.11, 0.12, and so on. Prior to Hive 0.11, WebHCat was in the Apache incubator.
+where *\<release_number\>* is 0.11, 0.12, and so on. Prior to Hive 0.11, WebHCat was in the Apache incubator.
 
 For example:
 
