@@ -15,10 +15,9 @@ In [Beeline]({{< ref "#beeline" >}}) or the [CLI]({{< ref "languagemanual-cli" >
 SHOW FUNCTIONS;
 DESCRIBE FUNCTION <function_name>;
 DESCRIBE FUNCTION EXTENDED <function_name>;
-
 ```
 
-Bug for expression caching when UDF nested in UDF or function
+**Bug for expression caching when UDF nested in UDF or function**
 
 When [hive.cache.expr.evaluation]({{< ref "#hive-cache-expr-evaluation" >}}) is set to true (which is the default) a UDF can give incorrect results if it is nested in another UDF or a Hive function. This bug affects releases 0.12.0, 0.13.0, and 0.13.1. Release 0.14.0 fixed the bug ([HIVE-7314](https://issues.apache.org/jira/browse/HIVE-7314)).
 
@@ -176,9 +175,7 @@ The following built-in mathematical functions are supported in Hive; most return
 
 #### Mathematical Functions and Operators for Decimal Datatypes
 
-Version
-
-The decimal datatype was introduced in Hive 0.11.0 ([HIVE-2693](https://issues.apache.org/jira/browse/HIVE-2693)).
+*The decimal datatype was introduced in Hive 0.11.0 ([HIVE-2693](https://issues.apache.org/jira/browse/HIVE-2693)).*
 
 All regular arithmetic operators (such as +, -, *, /) and relevant mathematical UDFs (Floor, Ceil, Round, and many more) have been updated to handle decimal types. For a list of supported UDFs, see [Mathematical UDFs](/docs/latest/language/languagemanual-types#mathematical-udfs) in [Hive Data Types](/docs/latest/language/languagemanual-types).
 
@@ -189,11 +186,11 @@ The following built-in collection functions are supported in Hive:
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | int | size(Map<K.V>) | Returns the number of elements in the map type. |
-| int | size(Array<T>) | Returns the number of elements in the array type. |
-| array<K> | map_keys(Map<K.V>) | Returns an unordered array containing the keys of the input map. |
-| array<V> | map_values(Map<K.V>) | Returns an unordered array containing the values of the input map. |
-| boolean | array_contains(Array<T>, value) | Returns TRUE if the array contains value. |
-| array<t> | sort_array(Array<T>) | Sorts the input array in ascending order according to the natural ordering of the array elements and returns it (as of version [0.9.0](https://issues.apache.org/jira/browse/HIVE-2279)). |
+| int | size(Array&lt;T>) | Returns the number of elements in the array type. |
+| array&lt;K> | map_keys(Map<K.V>) | Returns an unordered array containing the keys of the input map. |
+| array&lt;V> | map_values(Map<K.V>) | Returns an unordered array containing the values of the input map. |
+| boolean | array_contains(Array&lt;T>, value) | Returns TRUE if the array contains value. |
+| array&lt;t> | sort_array(Array&lt;T>) | Sorts the input array in ascending order according to the natural ordering of the array elements and returns it (as of version [0.9.0](https://issues.apache.org/jira/browse/HIVE-2279)). |
 
 ### Type Conversion Functions
 
@@ -201,8 +198,8 @@ The following type conversion functions are supported in Hive:
 
 | Return Type | Name(Signature) | Description |
 | --- | --- | --- |
-| binary | binary(string|binary) | Casts the parameter into a binary. |
-| **Expected "=" to follow "type"** | cast(expr as <type>) | Converts the results of the expression expr to <type>. For example, cast('1' as BIGINT) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |
+| binary | binary(string\|binary) | Casts the parameter into a binary. |
+| **Expected "=" to follow "type"** | cast(expr as &lt;type&gt;) | Converts the results of the expression expr to &lt;type>. For example, cast('1' as BIGINT) will convert the string '1' to its integral representation. A null is returned if the conversion does not succeed. If cast(expr as boolean) Hive returns true for a non-empty string. |
 
 ### Date Functions
 
@@ -223,12 +220,7 @@ The following built-in date functions are supported in Hive:
 | int | minute(string date) | Returns the minute of the timestamp. |
 | int | second(string date) | Returns the second of the timestamp. |
 | int | weekofyear(string date) | Returns the week number of a timestamp string: weekofyear("1970-11-01 00:00:00") = 44, weekofyear("1970-11-01") = 44. |
-| int | extract(field FROM source) | Retrieve fields such as days or hours from source (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-14579)). Source must be a date, timestamp, interval or a string that can be converted into either a date or timestamp. Supported fields include: day, dayofweek, hour, minute, month, quarter, second, week and year.Examples:1. select extract(month from "2016-10-20") results in 10.
-2. select extract(hour from "2016-10-20 05:06:07") results in 5.
-3. select extract(dayofweek from "2016-10-20 05:06:07") results in 5.
-4. select extract(month from interval '1-3' year to month) results in 3.
-5. select extract(minute from interval '3 12:20:30' day to second) results in 20.
- |
+| int | extract(field FROM source) | Retrieve fields such as days or hours from source (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-14579)). Source must be a date, timestamp, interval or a string that can be converted into either a date or timestamp. Supported fields include: day, dayofweek, hour, minute, month, quarter, second, week and year. Examples: ① select extract(month from "2016-10-20") results in 10. ② select extract(hour from "2016-10-20 05:06:07") results in 5. ③ select extract(dayofweek from "2016-10-20 05:06:07") results in 5. ④ select extract(month from interval '1-3' year to month) results in 3. ⑤ select extract(minute from interval '3 12:20:30' day to second) results in 20. |
 | int | datediff(string enddate, string startdate) | Returns the number of days from startdate to enddate: datediff('2009-03-01', '2009-02-27') = 2. |
 | *pre 2.1.0:* string*2.1.0 on:* date | date_add(date/timestamp/string startdate, tinyint/smallint/int days) | Adds a number of days to startdate: date_add('2008-12-31', 1) = '2009-01-01'.Prior to Hive 2.1.0 ([HIVE-13248](https://issues.apache.org/jira/browse/HIVE-13248)) the return type was a String because no Date type existed when the method was created. |
 | *pre 2.1.0:* string*2.1.0 on:* date | date_sub(date/timestamp/string startdate, tinyint/smallint/int days) | Subtracts a number of days to startdate: date_sub('2008-12-31', 1) = '2008-12-30'.Prior to Hive 2.1.0 ([HIVE-13248](https://issues.apache.org/jira/browse/HIVE-13248)) the return type was a String because no Date type existed when the method was created. |
@@ -270,11 +262,11 @@ The following built-in String functions are supported in Hive:
 | int | ascii(string str) | Returns the numeric value of the first character of str. |
 | string | base64(binary bin) | Converts the argument from binary to a base 64 string (as of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482)). |
 | int | character_length(string str) | Returns the number of UTF-8 characters contained in str (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). The function char_length is shorthand for this function. |
-| string | chr(bigint|double A) | Returns the ASCII character having the binary equivalent to A (as of Hive [1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13063)). If A is larger than 256 the result is equivalent to chr(A % 256). Example: select chr(88); returns "X". |
-| string | concat(string|binary A, string|binary B...) | Returns the string or bytes resulting from concatenating the strings or bytes passed in as parameters in order. For example, concat('foo', 'bar') results in 'foobar'. Note that this function can take any number of input strings. |
-| array<struct<string,double>> | context_ngrams(array<array<string>>, array<string>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| string | chr(bigint\|double A) | Returns the ASCII character having the binary equivalent to A (as of Hive [1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13063)). If A is larger than 256 the result is equivalent to chr(A % 256). Example: select chr(88); returns "X". |
+| string | concat(string|binary A, string\|binary B...) | Returns the string or bytes resulting from concatenating the strings or bytes passed in as parameters in order. For example, concat('foo', 'bar') results in 'foobar'. Note that this function can take any number of input strings. |
+| array<struct<string,double>> | context_ngrams(array<array<string>>, array&lt;string>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
 | string | concat_ws(string SEP, string A, string B...) | Like concat() above, but with custom separator SEP. |
-| string | concat_ws(string SEP, array<string>) | Like concat_ws() above, but taking an array of strings. (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2203)) |
+| string | concat_ws(string SEP, array&lt;string>) | Like concat_ws() above, but taking an array of strings. (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2203)) |
 | string | decode(binary bin, string charset) | Decodes the first argument into a String using the provided character set (one of 'US-ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
 | string | elt(N int,str1 string,str2 string,str3 string,...) | Return string at index number. For example elt(2,'hello','world') returns 'world'. Returns NULL if N is less than 1 or greater than the number of arguments.(see <https://dev.mysql.com/doc/refman/5.7/en/string-functions.html#function_elt>) |
 | binary | encode(string src, string charset) | Encodes the first argument into a BINARY using the provided character set (one of 'US-ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
@@ -289,21 +281,11 @@ The following built-in String functions are supported in Hive:
 | string | lower(string A) lcase(string A) | Returns the string resulting from converting all characters of B to lower case. For example, lower('fOoBaR') results in 'foobar'. |
 | string | lpad(string str, int len, string pad) | Returns str, left-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
 | string | ltrim(string A) | Returns the string resulting from trimming spaces from the beginning(left hand side) of A. For example, ltrim(' foobar ') results in 'foobar '. |
-| array<struct<string,double>> | ngrams(array<array<string>>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| array<struct<string,double>> | ngrams(array<array&lt;string>>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
 | int | octet_length(string str) | Returns the number of octets required to hold the string str in UTF-8 encoding (since Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). Note that octet_length(str) can be larger than character_length(str). |
 | string | parse_url(string urlString, string partToExtract [, string keyToExtract]) | Returns the specified part from the URL. Valid values for partToExtract include HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, and USERINFO. For example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'HOST') returns 'facebook.com'. Also a value of a particular key in QUERY can be extracted by providing the key as the third argument, for example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'QUERY', 'k1') returns 'v1'. |
 | string | printf(String format, Obj... args) | Returns the input formatted according do printf-style format strings (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2695)). |
-| string | quote(String text) | Returns the quoted string (Includes escape character for any single quotes [HIVE-4.0.0](https://issues.apache.org/jira/browse/HIVE-21134))
-
-| Input | Output |
-| --- | --- |
-| NULL | NULL |
-| DONT | 'DONT' |
-| DON'T | 'DON\'T' |
-
-
-| **Return Type** | **Name(Signature)** | **Description** |
-| --- | --- | --- |
+| string | quote(String text) | Returns the quoted string (Includes escape character for any single quotes [HIVE-4.0.0](https://issues.apache.org/jira/browse/HIVE-21134)) <table><tr><th>Input</th><th>Output</th></tr><tr><td>NULL</td><td>NULL</td></tr><tr><td>DONT</td><td>'DONT'</td></tr><tr><td>DON'T</td><td>'DON\'T</td></tr></table>
 | string | regexp_extract(string subject, string pattern, int index) | Returns the string extracted using the pattern. For example, regexp_extract('foothebar', 'foo(.*?)(bar)', 2) returns 'bar.' Note that some care is necessary in using predefined character classes: using '\s' as the second argument will match the letter s; '\\s' is necessary to match whitespace, etc. The 'index' parameter is the Java regex Matcher group() method index. See [docs/api/java/util/regex/Matcher.html](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Matcher.html) for more information on the 'index' or Java regex group() method. |
 | string | regexp_replace(string INITIAL_STRING, string PATTERN, string REPLACEMENT) | Returns the string resulting from replacing all substrings in INITIAL_STRING that match the java regular expression syntax defined in PATTERN with instances of REPLACEMENT. For example, regexp_replace("foobar", "oo|ar", "") returns 'fb.' Note that some care is necessary in using predefined character classes: using '\s' as the second argument will match the letter s; '\\s' is necessary to match whitespace, etc. |
 | string | repeat(string str, int n) | Repeats str n times. |
@@ -311,14 +293,14 @@ The following built-in String functions are supported in Hive:
 | string | reverse(string A) | Returns the reversed string. |
 | string | rpad(string str, int len, string pad) | Returns str, right-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
 | string | rtrim(string A) | Returns the string resulting from trimming spaces from the end(right hand side) of A. For example, rtrim(' foobar ') results in ' foobar'. |
-| array<array<string>> | sentences(string str, string lang, string locale) | Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The 'lang' and 'locale' are optional arguments. For example, sentences('Hello there! How are you?') returns ( ("Hello", "there"), ("How", "are", "you") ). |
+| array<array&lt;string>> | sentences(string str, string lang, string locale) | Tokenizes a string of natural language text into words and sentences, where each sentence is broken at the appropriate sentence boundary and returned as an array of words. The 'lang' and 'locale' are optional arguments. For example, sentences('Hello there! How are you?') returns ( ("Hello", "there"), ("How", "are", "you") ). |
 | string | space(int n) | Returns a string of n spaces. |
 | array | split(string str, string pat) | Splits str around pat (pat is a regular expression). |
 | map<string,string> | str_to_map(text[, delimiter1, delimiter2]) | Splits text into key-value pairs using two delimiters. Delimiter1 separates text into K-V pairs, and Delimiter2 splits each K-V pair. Default delimiters are ',' for delimiter1 and ':' for delimiter2. |
-| string | substr(string|binary A, int start) substring(string|binary A, int start) | Returns the substring or slice of the byte array of A starting from start position till the end of string A. For example, substr('foobar', 4) results in 'bar' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
-| string | substr(string|binary A, int start, int len) substring(string|binary A, int start, int len) | Returns the substring or slice of the byte array of A starting from start position with length len. For example, substr('foobar', 4, 1) results in 'b' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
+| string | substr(string\|binary A, int start) substring(string|binary A, int start) | Returns the substring or slice of the byte array of A starting from start position till the end of string A. For example, substr('foobar', 4) results in 'bar' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
+| string | substr(string\|binary A, int start, int len) substring(string|binary A, int start, int len) | Returns the substring or slice of the byte array of A starting from start position with length len. For example, substr('foobar', 4, 1) results in 'b' (see [<http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_substr>]). |
 | string | substring_index(string A, string delim, int count) | Returns the substring from string A before count occurrences of the delimiter delim (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-686)). If count is positive, everything to the left of the final delimiter (counting from the left) is returned. If count is negative, everything to the right of the final delimiter (counting from the right) is returned. Substring_index performs a case-sensitive match when searching for delim. Example: substring_index('www.apache.org', '.', 2) = 'www.apache'. |
-| string | translate(string|char|varchar input, string|char|varchar from, string|char|varchar to) | Translates the input string by replacing the characters present in the `from` string with the corresponding characters in the `to` string. This is similar to the `translate` function in [PostgreSQL](http://www.postgresql.org/docs/9.1/interactive/functions-string.html). If any of the parameters to this UDF are NULL, the result is NULL as well. (Available as of Hive [0.10.0](https://issues.apache.org/jira/browse/HIVE-2418), for string types)Char/varchar support added as of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-6622). |
+| string | translate(string\|char\|varchar input, string\|char\|varchar from, string\|char\|varchar to) | Translates the input string by replacing the characters present in the `from` string with the corresponding characters in the `to` string. This is similar to the `translate` function in [PostgreSQL](http://www.postgresql.org/docs/9.1/interactive/functions-string.html). If any of the parameters to this UDF are NULL, the result is NULL as well. (Available as of Hive [0.10.0](https://issues.apache.org/jira/browse/HIVE-2418), for string types)Char/varchar support added as of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-6622). |
 | string | trim(string A) | Returns the string resulting from trimming spaces from both ends of A. For example, trim(' foobar ') results in 'foobar' |
 | binary | unbase64(string str) | Converts the argument from a base 64 string to BINARY. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
 | string | upper(string A) ucase(string A) | Returns the string resulting from converting all characters of A to upper case. For example, upper('fOoBaR') results in 'FOOBAR'. |
@@ -337,7 +319,7 @@ The following built-in data masking functions are supported in Hive:
 | string | mask_last_n(string str[, int n]) | Returns a masked version of str with the last n values masked (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). Upper case letters are converted to "X", lower case letters are converted to "x" and numbers are converted to "n". For example, mask_last_n("1234-5678-8765-4321", 4) results in 1234-5678-8765-nnnn. |
 | string | mask_show_first_n(string str[, int n]) | Returns a masked version of str, showing the first n characters unmasked (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). Upper case letters are converted to "X", lower case letters are converted to "x" and numbers are converted to "n". For example, mask_show_first_n("1234-5678-8765-4321", 4) results in 1234-nnnn-nnnn-nnnn. |
 | string | mask_show_last_n(string str[, int n]) | Returns a masked version of str, showing the last n characters unmasked (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). Upper case letters are converted to "X", lower case letters are converted to "x" and numbers are converted to "n". For example, mask_show_last_n("1234-5678-8765-4321", 4) results in nnnn-nnnn-nnnn-4321. |
-| string | mask_hash(string|char|varchar str) | Returns a hashed value based on str (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). The hash is consistent and can be used to join masked values together across tables. This function returns null for non-string types. |
+| string | mask_hash(string\|char\|varchar str) | Returns a hashed value based on str (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-13568)). The hash is consistent and can be used to join masked values together across tables. This function returns null for non-string types. |
 
 ### Misc. Functions
 
@@ -349,12 +331,12 @@ The following built-in data masking functions are supported in Hive:
 | string | current_user() | Returns current user name from the configured authenticator manager (as of Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-9143)). Could be the same as the user provided when connecting, but with some authentication managers (for example HadoopDefaultAuthenticator) it could be different. |
 | string | logged_in_user() | Returns current user name from the session state (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-14100)). This is the username provided when connecting to Hive. |
 | string | current_database() | Returns current database name (as of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)). |
-| string | md5(string/binary) | Calculates an MD5 128-bit checksum for the string or binary (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10485)). The value is returned as a string of 32 hex digits, or NULL if the argument was NULL. Example: md5('ABC') = '902fbdd2b1df0c4f70b4a5d23525e932'. |
-| string | sha1(string/binary)sha(string/binary) | Calculates the SHA-1 digest for string or binary and returns the value as a hex string (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10639)). Example: sha1('ABC') = '3c01bdbb26f358bab27f267924aa2c9a03fcfdb8'. |
-| bigint | crc32(string/binary) | Computes a cyclic redundancy check value for string or binary argument and returns bigint value (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10641)). Example: crc32('ABC') = 2743272264. |
-| string | sha2(string/binary, int) | Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10644)). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2('ABC', 256) = 'b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78'. |
-| binary | aes_encrypt(input string/binary, key string/binary) | Encrypt input using AES (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-11593)). Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: base64(aes_encrypt('ABC', '1234567890123456')) = 'y6Ss+zCYObpCbgfWfyNWTw=='. |
-| binary | aes_decrypt(input binary, key string/binary) | Decrypt input using AES (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-11593)). Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: aes_decrypt(unbase64('y6Ss+zCYObpCbgfWfyNWTw=='), '1234567890123456') = 'ABC'. |
+| string | md5(string\|binary) | Calculates an MD5 128-bit checksum for the string or binary (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10485)). The value is returned as a string of 32 hex digits, or NULL if the argument was NULL. Example: md5('ABC') = '902fbdd2b1df0c4f70b4a5d23525e932'. |
+| string | sha1(string\|binary), sha(string\|binary) | Calculates the SHA-1 digest for string or binary and returns the value as a hex string (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10639)). Example: sha1('ABC') = '3c01bdbb26f358bab27f267924aa2c9a03fcfdb8'. |
+| bigint | crc32(string\|binary) | Computes a cyclic redundancy check value for string or binary argument and returns bigint value (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10641)). Example: crc32('ABC') = 2743272264. |
+| string | sha2(string\|binary, int) | Calculates the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, and SHA-512) (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-10644)). The first argument is the string or binary to be hashed. The second argument indicates the desired bit length of the result, which must have a value of 224, 256, 384, 512, or 0 (which is equivalent to 256). SHA-224 is supported starting from Java 8. If either argument is NULL or the hash length is not one of the permitted values, the return value is NULL. Example: sha2('ABC', 256) = 'b5d4045c3f466fa91fe2cc6abe79232a1a57cdf104f7a26e716e0a1e2789df78'. |
+| binary | aes_encrypt(input string\|binary, key string\|binary) | Encrypt input using AES (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-11593)). Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: base64(aes_encrypt('ABC', '1234567890123456')) = 'y6Ss+zCYObpCbgfWfyNWTw=='. |
+| binary | aes_decrypt(input binary, key string\|binary) | Decrypt input using AES (as of Hive [1.3.0](https://issues.apache.org/jira/browse/HIVE-11593)). Key lengths of 128, 192 or 256 bits can be used. 192 and 256 bits keys can be used if Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files are installed. If either argument is NULL or the key length is not one of the permitted values, the return value is NULL. Example: aes_decrypt(unbase64('y6Ss+zCYObpCbgfWfyNWTw=='), '1234567890123456') = 'ABC'. |
 | string | version() | Returns the Hive version (as of Hive [2.1.0](https://issues.apache.org/jira/browse/HIVE-12983)). The string contains 2 fields, the first being a build number and the second being a build hash. Example: "select version();" might return "2.1.0.2.5.0.0-1245 r027527b9c5ce1a3d7d0b6d2e6de2378fb0c39232". Actual results will depend on your build. |
 | bigint | surrogate_key([write_id_bits, task_id_bits]) | Automatically generate numerical Ids for rows as you enter data into a table. Can only be used as default value for acid or insert-only tables. |
 
@@ -433,9 +415,9 @@ The following built-in aggregate functions are supported in Hive:
 | DOUBLE | covar_samp(col1, col2) | Returns the sample covariance of a pair of a numeric columns in the group. |
 | DOUBLE | corr(col1, col2) | Returns the Pearson coefficient of correlation of a pair of a numeric columns in the group. |
 | DOUBLE | percentile(BIGINT col, p) | Returns the exact pth percentile of a column in the group (does not work with floating point types). p must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
-| array<double> | percentile(BIGINT col, array(p1 [, p2]...)) | Returns the exact percentiles p1, p2, ... of a column in the group (does not work with floating point types). pi must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
+| array&lt;double> | percentile(BIGINT col, array(p1 [, p2]...)) | Returns the exact percentiles p1, p2, ... of a column in the group (does not work with floating point types). pi must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral. |
 | DOUBLE | percentile_approx(DOUBLE col, p [, B]) | Returns an approximate pth percentile of a numeric column (including floating point types) in the group. The B parameter controls approximation accuracy at the cost of memory. Higher values yield better approximations, and the default is 10,000. When the number of distinct values in col is smaller than B, this gives an exact percentile value. |
-| array<double> | percentile_approx(DOUBLE col, array(p1 [, p2]...) [, B]) | Same as above, but accepts and returns an array of percentile values instead of a single one. |
+| array&lt;double> | percentile_approx(DOUBLE col, array(p1 [, p2]...) [, B]) | Same as above, but accepts and returns an array of percentile values instead of a single one. |
 | double | regr_avgx(independent, dependent) | Equivalent to avg(dependent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_avgy(independent, dependent) | Equivalent to avg(independent). As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
 | double | regr_count(independent, dependent) | Returns the number of non-null pairs used to fit the linear regression line. As of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15978). |
@@ -456,16 +438,14 @@ Normal user-defined functions, such as concat(), take in a single input row and 
 
 | **Row-set columns types** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
-| T | explode(ARRAY<T> a) | Explodes an array to multiple rows. Returns a row-set with a single column (*col*), one row for each element from the array. |
+| T | explode(ARRAY&lt;T> a) | Explodes an array to multiple rows. Returns a row-set with a single column (*col*), one row for each element from the array. |
 | Tkey,Tvalue | explode(MAP<Tkey,Tvalue> m) | Explodes a map to multiple rows. Returns  a row-set with a two columns (*key,value)* , one row for each key-value pair from the input map. (As of Hive [0.8.0](https://issues.apache.org/jira/browse/HIVE-1735).). |
-| int,T | posexplode(ARRAY<T> a) | Explodes an array to multiple rows with additional positional column of *int* type (position of items in the original array, starting with 0). Returns a row-set with two columns (*pos,val*), one row for each element from the array. |
+| int,T | posexplode(ARRAY&lt;T> a) | Explodes an array to multiple rows with additional positional column of *int* type (position of items in the original array, starting with 0). Returns a row-set with two columns (*pos,val*), one row for each element from the array. |
 | T1,...,Tn | inline(ARRAY<STRUCT<f1:T1,...,fn:Tn>> a) | Explodes an array of structs to multiple rows. Returns  a row-set with N columns (N = number of top level elements in the struct), one row per struct from the array. (As of Hive [0.10](https://issues.apache.org/jira/browse/HIVE-3238).) |
 | T1,...,Tn/r | stack(int r,T1  V1,...,Tn/r Vn) | Breaks up *n* values V1,...,Vn into *r* rows. Each row will have *n/r* columns. *r* must be constant. |
 |  |  |  |
 | string1,...,stringn | json_tuple(string jsonStr,string k1,...,string kn) | Takes JSON string and a set of *n* keys, and returns a tuple of *n* values. This is a more efficient version of the `get_json_object` UDF because it can get multiple keys with just one call. |
-| string 1,...,stringn | parse_url_tuple(string urlStr,string p1,...,string pn) | Takes URL string and a set of *n* URL parts, and returns a tuple of *n* values. This is similar to the `parse_url()` UDF but can extract multiple parts at once out of a URL. Valid part names are: HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, USERINFO, QUERY:<KEY>. |
-
-  
+| string 1,...,stringn | parse_url_tuple(string urlStr,string p1,...,string pn) | Takes URL string and a set of *n* URL parts, and returns a tuple of *n* values. This is similar to the `parse_url()` UDF but can extract multiple parts at once out of a URL. Valid part names are: HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, USERINFO, QUERY:&lt;KEY>. |
 
 ### Usage Examples
 
@@ -478,16 +458,7 @@ select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf;
 select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf as col;
 ```
 
-  
-
-  
-  
-
-  
-
 #### **explode (map)**
-
-  
 
 ```
 select explode(map('A',10,'B',20,'C',30));
@@ -496,20 +467,7 @@ select tf.* from (select 0) t lateral view explode(map('A',10,'B',20,'C',30)) tf
 select tf.* from (select 0) t lateral view explode(map('A',10,'B',20,'C',30)) tf as key,value;
 ```
 
-  
-
-  
-  
-
-  
-
-  
-
-  
-
 #### **posexplode (array)**
-
-  
 
 ```
 select posexplode(array('A','B','C'));
@@ -517,12 +475,6 @@ select posexplode(array('A','B','C')) as (pos,val);
 select tf.* from (select 0) t lateral view posexplode(array('A','B','C')) tf;
 select tf.* from (select 0) t lateral view posexplode(array('A','B','C')) tf as pos,val;
 ```
-
-  
-
-   
-
-  
 
 #### **inline (array of structs)**
 
@@ -533,16 +485,7 @@ select tf.* from (select 0) t lateral view inline(array(struct('A',10,date '2015
 select tf.* from (select 0) t lateral view inline(array(struct('A',10,date '2015-01-01'),struct('B',20,date '2016-02-02'))) tf as col1,col2,col3;
 ```
 
-  
-
-  
-  
-
-  
-
 #### **stack (values)**
-
-  
 
 ```
 select stack(2,'A',10,date '2015-01-01','B',20,date '2016-01-01');
@@ -550,12 +493,6 @@ select stack(2,'A',10,date '2015-01-01','B',20,date '2016-01-01') as (col0,col1,
 select tf.* from (select 0) t lateral view stack(2,'A',10,date '2015-01-01','B',20,date '2016-01-01') tf;
 select tf.* from (select 0) t lateral view stack(2,'A',10,date '2015-01-01','B',20,date '2016-01-01') tf as col0,col1,col2;
 ```
-
-  
-
-   
-
-  
 
 Using the syntax "SELECT udtf(col) AS colAlias..." has a few limitations:
 
@@ -576,7 +513,7 @@ Also see [Writing UDTFs]({{< ref "developerguide-udtf" >}}) if you want to creat
 
 As an example of using `explode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-| Array<int> myCol |
+| Array&lt;int> myCol |
 | --- |
 | [100,200,300] |
 | [400,500,600] |
@@ -585,7 +522,6 @@ Then running the query:
 
 ```
 SELECT explode(myCol) AS myNewCol FROM myTable;
-
 ```
 
 will produce:
@@ -615,7 +551,7 @@ Available as of Hive 0.13.0. See [HIVE-4943](https://issues.apache.org/jira/brow
 
 As an example of using `posexplode()` in the SELECT expression list, consider a table named myTable that has a single column (myCol) and two rows:
 
-| Array<int> myCol |
+| Array&lt;int> myCol |
 | --- |
 | [100,200,300] |
 | [400,500,600] |
@@ -646,7 +582,6 @@ For example,
 
 ```
 select a.timestamp, get_json_object(a.appevents, '$.eventid'), get_json_object(a.appenvets, '$.eventname') from log a;
-
 ```
 
 should be changed to:
@@ -654,7 +589,6 @@ should be changed to:
 ```
 select a.timestamp, b.*
 from log a lateral view json_tuple(a.appevent, 'eventid', 'eventname') b as f1, f2;
-
 ```
 
 ### parse_url_tuple
@@ -664,7 +598,6 @@ The parse_url_tuple() UDTF is similar to parse_url(), but can extract multiple p
 ```
 SELECT b.*
 FROM src LATERAL VIEW parse_url_tuple(fullurl, 'HOST', 'PATH', 'QUERY', 'QUERY:id') b as host, path, query, query_id LIMIT 1;
-
 ```
 
 ## GROUPing and SORTing on f(column)
@@ -673,14 +606,12 @@ A typical OLAP pattern is that you have a timestamp column and you want to group
 
 ```
 select f(col) as fc, count(*) from table_name group by fc;
-
 ```
 
 you will get an error:
 
 ```
 FAILED: Error in semantic analysis: line 1:69 Invalid Table Alias or Column Reference fc
-
 ```
 
 because you are not able to GROUP BY or SORT BY a column alias on which a function has been applied. There are two workarounds. First, you can reformulate this query with subqueries, which is somewhat complicated:
@@ -689,14 +620,12 @@ because you are not able to GROUP BY or SORT BY a column alias on which a functi
 select sq.fc,col1,col2,...,colN,count(*) from
   (select f(col) as fc,col1,col2,...,colN from table_name) sq
  group by sq.fc,col1,col2,...,colN;
-
 ```
 
 Or you can make sure not to use a column alias, which is simpler:
 
 ```
 select f(col) as fc, count(*) from table_name group by f(col);
-
 ```
 
 Contact Tim Ellis (tellis) at RiotGames dot com if you would like to discuss this in further detail.
@@ -714,7 +643,6 @@ The context of a UDF's evaluate method is one row at a time. A simple invocation
 
 ```
 SELECT length(string_col) FROM table_name;
-
 ```
 
 would evaluate the length of each of the string_col's values in the map portion of the job. The side effect of the UDF being evaluated on the map-side is that you can't control the order of rows which get sent to the mapper. It is the same order in which the file split sent to the mapper gets deserialized. Any reduce side operation (such as SORT BY, ORDER BY, regular JOIN, etc.) would apply to the UDFs output as if it is just another column of the table. This is fine since the context of the UDF's evaluate method is meant to be one row at a time.
@@ -724,7 +652,6 @@ If you would like to control which rows get sent to the same UDF (and possibly i
 ```
 SELECT reducer_udf(my_col, distribute_col, sort_col) FROM
 (SELECT my_col, distribute_col, sort_col FROM table_name DISTRIBUTE BY distribute_col SORT BY distribute_col, sort_col) t
-
 ```
 
 However, one could argue that the very premise of your requirement to control the set of rows sent to the same UDF is to do aggregation in that UDF. In such a case, using a User Defined Aggregate Function (UDAF) is a better choice. You can read more about writing a UDAF [here]({{< ref "genericudafcasestudy" >}}). Alternatively, you can user a custom reduce script to accomplish the same using [Hive's Transform functionality]({{< ref "languagemanual-transform" >}}). Both of these options would do aggregations on the reduce side.
@@ -733,17 +660,6 @@ However, one could argue that the very premise of your requirement to control th
 
 For information about how to create a custom UDF, see [Hive Plugins]({{< ref "hiveplugins" >}}) and [Create Function]({{< ref "#create-function" >}}).
 
-  
-
+```
 select explode(array('A','B','C'));select explode(array('A','B','C')) as col;select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf;select tf.* from (select 0) t lateral view explode(array('A','B','C')) tf as col;
-
-## Attachments:
-
-![](images/icons/bullet_blue.gif)
-[attachments/27362046/62696447-html](/attachments/27362046/62696447-html) (text/html)
-   
-
- 
-
- 
-
+```
