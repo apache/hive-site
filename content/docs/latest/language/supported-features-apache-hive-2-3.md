@@ -32,7 +32,7 @@ date: 2024-12-12
 | E051 | Basic query specification | Yes |  |
 | E051-01 | SELECT DISTINCT | Yes |  |
 | E051-02 | GROUP BY clause | Partial | Empty grouping sets not supported |
-| E051-04 | GROUP BY can contain columns not in <select list> | Yes |  |
+| E051-04 | GROUP BY can contain columns not in \<select list\> | Yes |  |
 | E051-05 | Select list items can be renamed | Yes |  |
 | E051-06 | HAVING clause | Yes |  |
 | E051-07 | Qualified * in select list | Yes |  |
@@ -142,10 +142,10 @@ date: 2024-12-12
 | F651 | Catalog name qualifiers | Yes |  |
 | F846 | Octet support in regular expression operators | Yes |  |
 | F847 | Nonconstant regular expressions | Yes |  |
-| F850 | Top-level <order by clause> in <query expression> | Yes |  |
-| F851 | <order by clause> in subqueries | Yes |  |
-| F852 | Top-level <order by clause> in views | Yes |  |
-| F855 | Nested <order by clause> in <query expression> | Yes |  |
+| F850 | Top-level \<order by clause\> in \<query expression\> | Yes |  |
+| F851 | \<order by clause\> in subqueries | Yes |  |
+| F852 | Top-level \<order by clause\> in views | Yes |  |
+| F855 | Nested \<order by clause\> in \<query expression\> | Yes |  |
 | S023 | Basic structured types | Yes |  |
 | S091 | Basic array support | Yes |  |
 | S091-01 | Arrays of built-in data types | Yes |  |

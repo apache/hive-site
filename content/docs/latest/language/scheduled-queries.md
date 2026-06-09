@@ -32,7 +32,7 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
 ## Create Scheduled query syntax
 
-**CREATE SCHEDULED QUERY <scheduled_query_name>
+**CREATE SCHEDULED QUERY \<scheduled_query_name\>
 [`<scheduleSpecification>`](/docs/latest/language/scheduled-queries#schedulespecification-syntax)
 [[`<executedAsSpec>`](/docs/latest/language/scheduled-queries#executedas-syntax)]
 [[`<enableSpecification>`](/docs/latest/language/scheduled-queries#enablespecification-syntax)]
@@ -41,7 +41,7 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
 ## Alter Scheduled query syntax
 
-**ALTER SCHEDULED QUERY <scheduled_query_name> (
+**ALTER SCHEDULED QUERY \<scheduled_query_name\> (
 [`<scheduleSpec>`](/docs/latest/language/scheduled-queries#schedulespecification-syntax)|
 [`<executedAsSpec>`](/docs/latest/language/scheduled-queries#executedas-syntax)|
 [`<enableSpecification>`](/docs/latest/language/scheduled-queries#enablespecification-syntax)|
@@ -54,7 +54,7 @@ Hive has it’s scheduled query interface built into the language itself for eas
 
   
 
-**DROP SCHEDULED QUERY <scheduled_query_name>;**
+**DROP SCHEDULED QUERY \<scheduled_query_name\>;**
 
   
 
@@ -64,7 +64,7 @@ Schedules can be specified using CRON expressions or for common cases there is a
 
 ### CRON based schedule syntax
 
-**CRON <quartz_schedule_expression>**
+**CRON \<quartz_schedule_expression\>**
 
 where quartz_schedule_expression is quoted schedule in the Quartz format
 
@@ -76,7 +76,7 @@ For example the `CRON '0 */10 * * * ? *'`  expression will fire every 10 minut
 
 To give a more readable way to declare schedules EVERY can be used.
 
-**EVERY [<integer>] (SECOND|MINUTE|HOUR) [(OFFSET BY|AT) <timeOrDate>]**
+**EVERY [\<integer\>] (SECOND|MINUTE|HOUR) [(OFFSET BY|AT) \<timeOrDate\>]**
 
 the format makes it possible to declare schedules in a more readable way:
 
@@ -90,7 +90,7 @@ EVERY DAY AT '11:35:30'**
 
 ##  ExecutedAs syntax
 
-**EXECUTED AS <user_name>**
+**EXECUTED AS \<user_name\>**
 
 Scheduled queries are executed as the declaring user by default; but people with admin privileges might be able to change the executing user.
 
@@ -106,7 +106,7 @@ In case there are in-flight scheduled executions at the time when the correspon
 
 ## Defined AS syntax
 
-**[DEFINED] AS <hiveQuery>**
+**[DEFINED] AS \<hiveQuery\>**
 
 The “query” is a single statement expression to be scheduled for execution.  
 

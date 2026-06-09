@@ -333,7 +333,7 @@ SQL Standard requires that an error is raised if the ON clause is such that more
 
 * 1, 2, or 3 WHEN clauses may be present; at most 1 of each type:  UPDATE/DELETE/INSERT.
 * WHEN NOT MATCHED must be the last WHEN clause.
-* If both UPDATE and DELETE clauses are present, the first one in the statement must include [AND <boolean expression>].
+* If both UPDATE and DELETE clauses are present, the first one in the statement must include [AND \<boolean expression\>].
 * Vectorization will be turned off for merge operations.  This is automatic and requires no action on the part of the user.  Non-delete operations are not affected.  Tables with deleted data can still be queried using vectorization.
 
 ##### Examples

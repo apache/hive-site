@@ -179,7 +179,7 @@ principal_specification
 
 Revokes the membership of the roles from the user/roles in the FROM clause.
 
-As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of REVOKE ADMIN OPTION FOR <role> ([HIVE-6252](https://issues.apache.org/jira/browse/HIVE-6252)).
+As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of REVOKE ADMIN OPTION FOR \<role\> ([HIVE-6252](https://issues.apache.org/jira/browse/HIVE-6252)).
 
 #### Show Role Grant
 
@@ -261,7 +261,7 @@ priv_type
   : INSERT | SELECT | UPDATE | DELETE | ALL
 ```
 
-If a user is granted a privilege WITH GRANT OPTION on a table or view, then the user can also grant/revoke privileges of other users and roles on those objects. As of Hive 0.14.0, the grant option for a privilege can be removed while still keeping the privilege by using REVOKE GRANT OPTION FOR <privilege> ([HIVE-7404](https://issues.apache.org/jira/browse/HIVE-7404)).
+If a user is granted a privilege WITH GRANT OPTION on a table or view, then the user can also grant/revoke privileges of other users and roles on those objects. As of Hive 0.14.0, the grant option for a privilege can be removed while still keeping the privilege by using REVOKE GRANT OPTION FOR \<privilege\> ([HIVE-7404](https://issues.apache.org/jira/browse/HIVE-7404)).
 
 Note that in case of the REVOKE statement, the DROP-BEHAVIOR option of CASCADE is not currently supported (which is in SQL standard). As a result, the revoke statement will not drop any dependent privileges. For details on CASCADE behavior, you can check the [Postgres revoke documentation](http://www.postgresql.org/docs/8.4/static/sql-revoke.html).
 

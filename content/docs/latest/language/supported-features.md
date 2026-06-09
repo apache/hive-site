@@ -36,7 +36,7 @@ This table covers all mandatory features from [SQL:2016](https://en.wikipedia.o
 | E051 | Basic query specification | Yes | Mandatory |  |
 | E051-01 | SELECT DISTINCT | Yes | Mandatory |  |
 | E051-02 | GROUP BY clause | Yes | Mandatory |  |
-| E051-04 | GROUP BY can contain columns not in <select list> | Yes | Mandatory |  |
+| E051-04 | GROUP BY can contain columns not in \<select list\> | Yes | Mandatory |  |
 | E051-05 | Select list items can be renamed | Yes | Mandatory |  |
 | E051-06 | HAVING clause | Yes | Mandatory |  |
 | E051-07 | Qualified * in select list | Yes | Mandatory |  |
@@ -196,14 +196,14 @@ This table covers all mandatory features from [SQL:2016](https://en.wikipedia.o
 | F812 | Basic flagging | No | Mandatory |  |
 | F841 | LIKE_REGEX predicate | Partial | Optional | use RLIKE instead |
 | F847 | Nonconstant regular expressions | Yes | Optional |  |
-| F850 | Top level <order by clause> in <query expression> | Yes | Optional |  |
-| F851 | <order by clause> in subqueries | Yes | Optional |  |
-| F852 | Top-level <order by clause> in views | Yes | Optional |  |
-| F855 | Nested <order by clause> in <query expression> | Yes | Optional |  |
-| F856 | Nested <fetch first clause> in <query expression> | Yes | Optional |  |
-| F857 | Top-level <fetch first clause> in <query expression> | Yes | Optional |  |
-| F858 | <fetch first clause> in subqueries | Yes | Optional |  |
-| F859 | Top-level <fetch first clause> in views | Yes | Optional |  |
+| F850 | Top level \<order by clause\> in \<query expression\> | Yes | Optional |  |
+| F851 | \<order by clause\> in subqueries | Yes | Optional |  |
+| F852 | Top-level \<order by clause\> in views | Yes | Optional |  |
+| F855 | Nested \<order by clause\> in \<query expression\> | Yes | Optional |  |
+| F856 | Nested \<fetch first clause\> in \<query expression\> | Yes | Optional |  |
+| F857 | Top-level \<fetch first clause\> in \<query expression\> | Yes | Optional |  |
+| F858 | \<fetch first clause\> in subqueries | Yes | Optional |  |
+| F859 | Top-level \<fetch first clause\> in views | Yes | Optional |  |
 | S011 | Distinct data types | No | Mandatory |  |
 | S091 | Basic array support | Partial | Optional | Syntax non-standard.No option to declare max cardinality.SIZE instead of CARDINALITY. |
 | S091-01 | Arrays of built-in data types | Partial | Optional | Syntax non-standard |

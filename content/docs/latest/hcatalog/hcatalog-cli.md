@@ -143,11 +143,11 @@ Any command not listed above is NOT supported and throws an exception with the m
 
 ### Authentication
 
-If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/`*<username>*`/hive.log`, then make sure you have run "`kinit` *<username>*`@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
+If a failure results in a message like "2010-11-03 16:17:28,225 WARN hive.metastore ... - Unable to connect metastore with URI thrift://..." in `/tmp/<username>/hive.log`, then make sure you have run "`kinit <username>@FOO.COM`" to get a Kerberos ticket and to be able to authenticate to the HCatalog server.
 
 ### Error Log
 
-If other errors occur while using the HCatalog CLI, more detailed messages are written to /tmp/*<username>*/hive.log.
+If other errors occur while using the HCatalog CLI, more detailed messages are written to `/tmp/<username>/hive.log`.
 
   
 
