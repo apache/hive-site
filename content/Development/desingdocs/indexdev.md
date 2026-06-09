@@ -281,7 +281,7 @@ TBD: we will be adding methods for calling the handler when an index is dropped 
 
 The reference implementation creates what is referred to as a "compact" index. This means that rather than storing the HDFS location of each occurrence of a particular value, it only stores the addresses of HDFS blocks containing that value. This is optimized for point-lookups in the case where a value typically occurs more than once in nearby rows; the index size is kept small since there are many fewer blocks than rows. The tradeoff is that extra work is required during queries in order to filter out the other rows from the indexed blocks.
 
-The compact index is stored in an index table. The index table columns consist of the indexed columns from the base table followed by a _bucketname string column (indicating the name of the file containing the indexed block) followed by an _offsets array<string> column (indicating the block offsets within the corresponding file). The index table is stored as sorted on the indexed columns (but not on the generated columns).
+The compact index is stored in an index table. The index table columns consist of the indexed columns from the base table followed by a _bucketname string column (indicating the name of the file containing the indexed block) followed by an `_offsets array<string>` column (indicating the block offsets within the corresponding file). The index table is stored as sorted on the indexed columns (but not on the generated columns).
 
 The reference implementation can be plugged in with
 

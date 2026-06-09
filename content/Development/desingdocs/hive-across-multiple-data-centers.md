@@ -84,10 +84,10 @@ been imposed to simplify the problem:
 The same idea can be extended for partitioned tables.
 
 * The user can also decide to run in a particular cluster.
-	+ Use cluster <ClusterName>
+	+ Use cluster `<ClusterName>`
 * The system will not make an attempt to choose the cluster for the user, but only try to figure out if the query can be run  
 
- in the <clusterName>. If the query can run in this cluster, it will succeed. Otherwise, it will fail.
+ in the `<clusterName>`. If the query can run in this cluster, it will succeed. Otherwise, it will fail.
 * The user can go back to the behavior to use the default cluster.
 	+ Use cluster
 
@@ -101,7 +101,7 @@ The same idea can be extended for partitioned tables.
 
  PrimaryCluster - ClusterStorageDescriptor  
 
- and SecondaryClusters - Set<ClusterStorageDescriptor>
+ and SecondaryClusters - Set&lt;ClusterStorageDescriptor>&gt;
 
  The ClusterStorageDescriptor contains the following:  
 
@@ -128,12 +128,12 @@ The existing thrift API's will continue to work as if the user is trying to acce
 
 New APIs will be added which take the cluster as a new parameter. Almost all the existing APIs will be   
 
-enhanced to support this. The behavior will be the same as if, the user issued the command 'USE CLUSTER <CLUSTERNAME>
+enhanced to support this. The behavior will be the same as if, the user issued the command `USE CLUSTER <CLUSTERNAME>`
 
 * A new parameter will be added to keep the filesystem and jobtrackers for a cluster
-	+ hive.cluster.properties: This will be json - ClusterName -> <FileSystem, JobTracker>
-	+ use cluster <cluster name> will fail if <cluster name> is not present hive.cluster.properties
-	+ The other option was to support create cluster <> etc. but that would have required storing the cluster information in the  
+	+ hive.cluster.properties: This will be json - ClusterName -&gt; &lt;FileSystem, JobTracker&gt;
+	+ use cluster `<cluster name>` will fail if `<cluster name>` is not present hive.cluster.properties
+	+ The other option was to support create cluster `<>` etc. but that would have required storing the cluster information in the  
 	
 	 metastore including jobtracker etc. which would be difficult to change per session.
 
