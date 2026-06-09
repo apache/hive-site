@@ -21,7 +21,7 @@ FROM principal_specification [, principal_specification] ... ;
 principal_specification
   : USER user
   | ROLE role
-</code></pre><p>Revokes the membership of the roles from the user/roles in the FROM clause.</p><p>As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of REVOKE ADMIN OPTION FOR (<a href=https://issues.apache.org/jira/browse/HIVE-6252>HIVE-6252</a>).</p><h4 id=show-role-grant>Show Role Grant</h4><pre tabindex=0><code>SHOW ROLE GRANT (USER|ROLE) principal_name;
+</code></pre><p>Revokes the membership of the roles from the user/roles in the FROM clause.</p><p>As of Hive 0.14.0, revoking just the ADMIN OPTION is possible with the use of REVOKE ADMIN OPTION FOR &lt;role> (<a href=https://issues.apache.org/jira/browse/HIVE-6252>HIVE-6252</a>).</p><h4 id=show-role-grant>Show Role Grant</h4><pre tabindex=0><code>SHOW ROLE GRANT (USER|ROLE) principal_name;
 </code></pre><p>where <code>principal_name</code> is the name of a user or role.</p><p>Lists all roles the given user or role has been granted.</p><p>Currently any user can run this command. But this is likely to change in future to allow users to see only their own role grants, and additional privileges would be needed to see role grants of other users.</p><h5 id=example-of-show-role-grant>Example of Show Role Grant</h5><pre tabindex=0><code>0: jdbc:hive2://localhost:10000&gt; GRANT role1 TO USER user1;
 No rows affected (0.058 seconds)
 
@@ -57,7 +57,7 @@ principal_specification
  
 priv_type
   : INSERT | SELECT | UPDATE | DELETE | ALL
-</code></pre><p>If a user is granted a privilege WITH GRANT OPTION on a table or view, then the user can also grant/revoke privileges of other users and roles on those objects. As of Hive 0.14.0, the grant option for a privilege can be removed while still keeping the privilege by using REVOKE GRANT OPTION FOR (<a href=https://issues.apache.org/jira/browse/HIVE-7404>HIVE-7404</a>).</p><p>Note that in case of the REVOKE statement, the DROP-BEHAVIOR option of CASCADE is not currently supported (which is in SQL standard). As a result, the revoke statement will not drop any dependent privileges. For details on CASCADE behavior, you can check the <a href=http://www.postgresql.org/docs/8.4/static/sql-revoke.html>Postgres revoke documentation</a>.</p><p>Examples:</p><pre tabindex=0><code>0: jdbc:hive2://localhost:10000/default&gt; grant select on table secured_table to role my_role;
+</code></pre><p>If a user is granted a privilege WITH GRANT OPTION on a table or view, then the user can also grant/revoke privileges of other users and roles on those objects. As of Hive 0.14.0, the grant option for a privilege can be removed while still keeping the privilege by using REVOKE GRANT OPTION FOR &lt;privilege> (<a href=https://issues.apache.org/jira/browse/HIVE-7404>HIVE-7404</a>).</p><p>Note that in case of the REVOKE statement, the DROP-BEHAVIOR option of CASCADE is not currently supported (which is in SQL standard). As a result, the revoke statement will not drop any dependent privileges. For details on CASCADE behavior, you can check the <a href=http://www.postgresql.org/docs/8.4/static/sql-revoke.html>Postgres revoke documentation</a>.</p><p>Examples:</p><pre tabindex=0><code>0: jdbc:hive2://localhost:10000/default&gt; grant select on table secured_table to role my_role;
 No rows affected (0.046 seconds)
 
 0: jdbc:hive2://localhost:10000/default&gt; revoke update, select on table secured_table from role my_role;
