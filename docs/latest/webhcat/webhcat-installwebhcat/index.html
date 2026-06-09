@@ -15,7 +15,7 @@ Server: Jetty(7.6.0.v20120127)
 </code></pre><ul><li><strong>Pig:</strong> <a href=http://www.apache.org/dyn/closer.cgi/pig>Download</a> the Pig tar.gz file and place it into HDFS. For example, for Pig version 0.11.1:</li></ul><pre tabindex=0><code>hadoop fs -put /tmp/pig-0.11.1.tar.gz /apps/templeton/pig-0.11.1.tar.gz
 </code></pre><ul><li><strong>Hadoop Streaming:</strong> Place <code>hadoop-streaming-*.jar</code> into HDFS. Use the following command:</li></ul><pre tabindex=0><code>hadoop fs -put &lt;hadoop streaming jar&gt; \
   &lt;templeton.streaming.jar&gt;/hadoop-streaming-*.jar
-</code></pre><p>where <em>&lt;templeton.streaming.jar></em> is a property value defined in <code>webhcat-default.xml</code> which can be overridden in the <code>webhcat-site.xml</code> file, and <em></em>is the Hadoop streaming jar in your Hadoop version:</p><pre><code>+ `hadoop-1.*/contrib/streaming/hadoop-streaming-*.jar` in the Hadoop 1.x tar
+</code></pre><p>where <em>&lt;templeton.streaming.jar></em> is a property value defined in <code>webhcat-default.xml</code> which can be overridden in the <code>webhcat-site.xml</code> file, and <em>&lt;hadoop streaming jar></em> is the Hadoop streaming jar in your Hadoop version:</p><pre><code>+ `hadoop-1.*/contrib/streaming/hadoop-streaming-*.jar` in the Hadoop 1.x tar
 + `hadoop-2.*/share/hadoop/tools/lib/hadoop-streaming-*.jar` in the Hadoop 2.x tar  
  For example,
 

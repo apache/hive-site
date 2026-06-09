@@ -11465,9 +11465,9 @@ the following:&lt;/p&gt;
 &lt;li&gt;The addresses of pages from where you followed a link to our site.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Part of this information is gathered using a tracking cookie set by the
-&lt;!-- raw HTML omitted --&gt;Google Analytics&lt;!-- raw HTML omitted --&gt;
+&lt;a href="http://www.google.com/analytics/"&gt;Google Analytics&lt;/a&gt;
 service and handled by Google as
-described in their &lt;!-- raw HTML omitted --&gt;privacy policy&lt;!-- raw HTML omitted --&gt;.
+described in their &lt;a href="http://www.google.com/privacy.html"&gt;privacy policy&lt;/a&gt;.
 See your browser documentation for instructions on how to disable the
 cookie if you prefer not to share this data with Google.&lt;/p&gt;</description></item><item><title>Downloads</title><link>https://hive.apache.org/general/downloads/</link><pubDate>Tue, 13 Sep 2022 19:16:15 +0530</pubDate><guid>https://hive.apache.org/general/downloads/</guid><description>&lt;h1 id="downloads"&gt;Downloads&lt;/h1&gt;
 &lt;p&gt;All recent supported releases may be downloaded from Apache mirrors:
