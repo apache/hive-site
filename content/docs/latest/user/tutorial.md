@@ -108,7 +108,7 @@ Explicit type conversion can be done using the cast operator as shown in the [#B
 Complex Types can be built up from primitive types and other composite types using:
 
 * Structs: the elements within the type can be accessed using the DOT (.) notation. For example, for a column c of type STRUCT {a INT; b INT}, the a field is accessed by the expression c.a
-* Maps (key-value tuples): The elements are accessed using ['element name'] notation. For example in a map M comprising of a mapping from 'group' -> gid the gid value can be accessed using M['group']
+* Maps (key-value tuples): The elements are accessed using ['element name'] notation. For example in a map M comprising of a mapping from 'group' -\> gid the gid value can be accessed using M['group']
 * Arrays (indexable lists): The elements in the array have to be in the same type. Elements can be accessed using the [n] notation where n is an index (zero-based) into the array. For example, for an array A having the elements ['a', 'b', 'c'], A[1] retruns 'b'.
 
 Using the primitive types and the constructs for creating complex types, types with arbitrary levels of nesting can be created. For example, a type User may comprise of the following fields:
@@ -143,7 +143,7 @@ Java's "Instant" timestamps define a point in time that remains constant regardl
 
 #### Comparisons with other tools
 
-|  | SQL 2003 | Oracle | Sybase | Postgres | MySQL | Microsoft SQL | IBM DB2 | Presto | Snowflake | Hive >= 3.1 | Iceberg | Spark |
+|  | SQL 2003 | Oracle | Sybase | Postgres | MySQL | Microsoft SQL | IBM DB2 | Presto | Snowflake | Hive \>= 3.1 | Iceberg | Spark |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | timestamp | Local | Local | Local | Local | Instant | Other | Local | Local | Local | Local | Local | Instant |
 | timestamp with local time zone |  | Instant |  |  |  |  |  |  | Instant | Instant |  |  |
@@ -177,10 +177,10 @@ All Hive keywords are case-insensitive, including the names of Hive operators an
 | --- | --- | --- |
 | A = B | all primitive types | TRUE if expression A is equivalent to expression B; otherwise FALSE |
 | A != B | all primitive types | TRUE if expression A is *not* equivalent to expression B; otherwise FALSE |
-| A < B | all primitive types | TRUE if expression A is less than expression B; otherwise FALSE |
-| A <= B | all primitive types | TRUE if expression A is less than or equal to expression B; otherwise FALSE |
-| A > B | all primitive types | TRUE if expression A is greater than expression B] otherwise FALSE |
-| A >= B | all primitive types | TRUE if expression A is greater than or equal to expression B otherwise FALSE |
+| A \< B | all primitive types | TRUE if expression A is less than expression B; otherwise FALSE |
+| A \<= B | all primitive types | TRUE if expression A is less than or equal to expression B; otherwise FALSE |
+| A \> B | all primitive types | TRUE if expression A is greater than expression B] otherwise FALSE |
+| A \>= B | all primitive types | TRUE if expression A is greater than or equal to expression B otherwise FALSE |
 | A IS NULL | all types | TRUE if expression A evaluates to NULL otherwise FALSE |
 | A IS NOT NULL | all types | FALSE if expression A evaluates to NULL otherwise TRUE |
 | A LIKE B | strings | TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The _ character in B matches any character in A (similar to **.** in posix regular expressions), and the % character in B matches an arbitrary number of characters in A (similar to **.*** in posix regular expressions). For example, `'foobar' LIKE 'foo'` evaluates to FALSE where as `'foobar' LIKE 'foo___'` evaluates to TRUE and so does `'foobar' LIKE 'foo%'`. To escape % use \ (% matches one % character). If the data contains a semicolon, and you want to search for it, it needs to be escaped, `columnValue LIKE 'a\;b'` |
@@ -217,7 +217,7 @@ All Hive keywords are case-insensitive, including the names of Hive operators an
 | **Operator** | **Operand types** | **Description** |
 | --- | --- | --- |
 | A[n] | A is an Array and n is an int | returns the nth element in the array A. The first element has index 0, for example, if A is an array comprising of ['foo', 'bar'] then A[0] returns 'foo' and A[1] returns 'bar' |
-| M[key] | M is a Map<K, V> and key has type K | returns the value corresponding to the key in the map for example, if M is a map comprising of {'f' -> 'foo', 'b' -> 'bar', 'all' -> 'foobar'} then M['all'] returns 'foobar' |
+| M[key] | M is a Map\<K, V\> and key has type K | returns the value corresponding to the key in the map for example, if M is a map comprising of {'f' -\> 'foo', 'b' -\> 'bar', 'all' -\> 'foobar'} then M['all'] returns 'foobar' |
 | S.x | S is a struct | returns the x field of S, for example, for struct foobar {int foo, int bar} foobar.foo returns the integer stored in the foo field of the struct. |
 
 ### Built In Functions
@@ -242,9 +242,9 @@ All Hive keywords are case-insensitive, including the names of Hive operators an
 | string | ltrim(string A) | returns the string resulting from trimming spaces from the beginning(left hand side) of A. For example, ltrim(' foobar ') results in 'foobar ' |
 | string | rtrim(string A) | returns the string resulting from trimming spaces from the end(right hand side) of A. For example, rtrim(' foobar ') results in ' foobar' |
 | string | regexp_replace(string A, string B, string C) | returns the string resulting from replacing all substrings in B that match the Java regular expression syntax(See [Java regular expressions syntax](http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html)) with C. For example, regexp_replace('foobar', 'oo|ar', ) returns 'fb' |
-| int | size(Map<K.V>) | returns the number of elements in the map type |
-| int | size(Array<T>) | returns the number of elements in the array type |
-| *value of <type>* | cast(*<expr>* as *<type>*) | converts the results of the expression expr to <type>, for example, cast('1' as BIGINT) will convert the string '1' to it integral representation. A null is returned if the conversion does not succeed. |
+| int | size(Map\<K.V\>) | returns the number of elements in the map type |
+| int | size(Array\<T\>) | returns the number of elements in the array type |
+| *value of \<type\>* | cast(*\<expr\>* as *\<type\>*) | converts the results of the expression expr to \<type\>, for example, cast('1' as BIGINT) will convert the string '1' to it integral representation. A null is returned if the conversion does not succeed. |
 | string | from_unixtime(int unixtime) | convert the number of seconds from the UNIX epoch (1970-01-01 00:00:00 UTC) to a string representing the timestamp of that moment in the current system time zone in the format of "1970-01-01 00:00:00" |
 | string | to_date(string timestamp) | Return the date part of a timestamp string: to_date("1970-01-01 00:00:00") = "1970-01-01" |
 | int | year(string date) | Return the year part of a date or a timestamp string: year("1970-01-01 00:00:00") = 1970, year("1970-01-01") = 1970 |
@@ -827,7 +827,7 @@ Array columns in tables can be as follows:
 CREATE TABLE array_table (int_array_column ARRAY<INT>);
 ```
 
-Assuming that pv.friends is of the type ARRAY<INT> (i.e. it is an array of integers), the user can get a specific element in the array by its index as shown in the following command:
+Assuming that pv.friends is of the type ARRAY\<INT\> (i.e. it is an array of integers), the user can get a specific element in the array by its index as shown in the following command:
 
 ```
     SELECT pv.friends[2]
@@ -847,7 +847,7 @@ The user can also get the length of the array using the size function as shown b
 
 ### Map (Associative Arrays) Operations
 
-Maps provide collections similar to associative arrays. Such structures can only be created programmatically currently. We will be extending this soon. For the purpose of the current example assume that pv.properties is of the type map<String, String> i.e. it is an associative array from strings to string. Accordingly, the following query:
+Maps provide collections similar to associative arrays. Such structures can only be created programmatically currently. We will be extending this soon. For the purpose of the current example assume that pv.properties is of the type map\<String, String\> i.e. it is an associative array from strings to string. Accordingly, the following query:
 
 ```
     INSERT OVERWRITE page_views_map
