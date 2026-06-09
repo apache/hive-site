@@ -81,7 +81,7 @@ hadoop fs -put <hadoop streaming jar> \
 
 ```
 
-where *\<templeton.streaming.jar\>* is a property value defined in `webhcat-default.xml` which can be overridden in the `webhcat-site.xml` file, and *\<hadoop streaming jar\>* is the Hadoop streaming jar in your Hadoop version:
+where *<templeton.streaming.jar>* is a property value defined in `webhcat-default.xml` which can be overridden in the `webhcat-site.xml` file, and *<hadoop streaming jar>* is the Hadoop streaming jar in your Hadoop version:
 
 	+ `hadoop-1.*/contrib/streaming/hadoop-streaming-*.jar` in the Hadoop 1.x tar
 	+ `hadoop-2.*/share/hadoop/tools/lib/hadoop-streaming-*.jar` in the Hadoop 2.x tar  
