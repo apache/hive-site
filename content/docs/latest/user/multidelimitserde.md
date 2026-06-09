@@ -35,6 +35,6 @@ where field.delim is the field delimiter, collection.delim and mapkey.delim
 # Limitations
 
 * Among the delimiters, field.delim is mandatory and can be of multiple characters, while collection.delim and mapkey.delim is optional and only support single character.
-* Nested complex type is not supported, e.g. an Array<Array>.
+* Nested complex type is not supported, e.g. an Array\<Array\>.
 * To use MultiDelimitSerDe prior to Hive release 4.0.0, you have to add the hive-contrib jar to the class path, e.g. with the add jar command.
 

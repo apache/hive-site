@@ -86,7 +86,7 @@ The locations of the plugin jars, which can be comma-separated folders or jars. 
 
 Scratch space for Hive jobs. This directory is used by Hive to store the plans for different map/reduce stages for the query as well as to stored the intermediate outputs of these stages.
 
-*Hive 0.14.0 and later:*  HDFS root scratch directory for Hive jobs, which gets created with write all (733) permission.  For each connecting user, an HDFS scratch directory ${**hive.exec.scratchdir**}/<username> is created  with ${ **[hive.scratch.dir.permission]({{< ref "#hivescratchdirpermission" >}})** }.
+*Hive 0.14.0 and later:*  HDFS root scratch directory for Hive jobs, which gets created with write all (733) permission.  For each connecting user, an HDFS scratch directory ${**hive.exec.scratchdir**}/\<username\> is created  with ${ **[hive.scratch.dir.permission]({{< ref "#hivescratchdirpermission" >}})** }.
 
 Also see  [**hive.start.cleanup.scratchdir**]({{< ref "#**hive-start-cleanup-scratchdir**" >}}) and  **[hive.scratchdir.lock]({{< ref "#hivescratchdirlock" >}})** .  When running Hive in local mode, see  [**hive.exec.local.scratchdir**]({{< ref "#**hive-exec-local-scratchdir**" >}}).
 
@@ -1019,7 +1019,7 @@ String used as a file extension for output files. If not set, defaults to the co
 Whether to insert into multilevel nested directories like "insert directory '/HIVEFT25686/chinna/' from table".
 
 The following error may be shown when inserting into a nested directory that does not exist:  
-*ERROR org.apache.hadoop.hive.ql.exec.Task: Failed with exception Unable to rename: <xxxx>*
+*ERROR org.apache.hadoop.hive.ql.exec.Task: Failed with exception Unable to rename: \<xxxx\>*
 
 To enable automatic subdirectory generation set 'hive.insert.into.multilevel.dirs=true'
 
@@ -1114,7 +1114,7 @@ The maximum memory to be used for hash in RS operator for top K selection. The 
 * Added In: Hive 0.12.0 with [HIVE-4209](https://issues.apache.org/jira/browse/HIVE-4209)
 * Bug Fix: Hive 0.14.0 with [HIVE-7314](https://issues.apache.org/jira/browse/HIVE-7314) (expression caching doesn't work when using UDF inside another UDF or a Hive function)
 
-If true, the evaluation result of a deterministic expression referenced twice or more will be cached. For example, in a filter condition like "... where key + 10 > 10 or key + 10 = 0" the expression "key + 10" will be evaluated/cached once and reused for the following expression ("key + 10 = 0"). Currently, this is applied only to expressions in select or filter operators.
+If true, the evaluation result of a deterministic expression referenced twice or more will be cached. For example, in a filter condition like "... where key + 10 \> 10 or key + 10 = 0" the expression "key + 10" will be evaluated/cached once and reused for the following expression ("key + 10 = 0"). Currently, this is applied only to expressions in select or filter operators.
 
 ##### hive.resultset.use.unique.column.names
 
@@ -2324,7 +2324,7 @@ For more information, see [Metastore Schema Consistency and Upgrades]({{< ref "#
 	+ Hive 2.x and later: `true` ([HIVE-12320](https://issues.apache.org/jira/browse/HIVE-12320))
 * Added In: Hive 0.12.0 with [HIVE-4409](https://issues.apache.org/jira/browse/HIVE-4409)
 
-If true, ALTER TABLE operations which change the type of a column (say STRING) to an incompatible type (say MAP<STRING, STRING>) are disallowed. RCFile default SerDe (ColumnarSerDe) serializes the values in such a way that the datatypes can be converted from string to any type. The map is also serialized as a string, which can be read as a string as well. However, with any binary serialization, this is not true. Blocking the ALTER TABLE prevents ClassCastExceptions when subsequently trying to access old partitions.
+If true, ALTER TABLE operations which change the type of a column (say STRING) to an incompatible type (say MAP\<STRING, STRING\>) are disallowed. RCFile default SerDe (ColumnarSerDe) serializes the values in such a way that the datatypes can be converted from string to any type. The map is also serialized as a string, which can be read as a string as well. However, with any binary serialization, this is not true. Blocking the ALTER TABLE prevents ClassCastExceptions when subsequently trying to access old partitions.
 
 Primitive types like INT, STRING, BIGINT, etc. are compatible with each other and are not blocked.
 
@@ -2344,7 +2344,7 @@ Allow JDO query pushdown for integral partition columns in metastore. Off by def
 
 Whether the Hive metastore should try to use direct SQL queries instead of the DataNucleus for certain read paths. This can improve metastore performance when fetching many partitions or column statistics by orders of magnitude; however, it is not guaranteed to work on all RDBMS-es and all versions. In case of SQL failures, the metastore will fall back to the DataNucleus, so it's safe even if SQL doesn't work for all queries on your datastore. If all SQL queries fail (for example, your metastore is backed by MongoDB), you might want to disable this to save the try-and-fall-back cost.
 
-This can be configured on a per client basis by using the "set metaconf:hive.metastore.try.direct.sql=<value>" command, starting with Hive 0.14.0 ( [HIVE-7532](https://issues.apache.org/jira/browse/HIVE-7532)).
+This can be configured on a per client basis by using the `set metaconf:hive.metastore.try.direct.sql=<value>` command, starting with Hive 0.14.0 ( [HIVE-7532](https://issues.apache.org/jira/browse/HIVE-7532)).
 
 ##### hive.metastore.try.direct.sql.ddl
 
@@ -2353,7 +2353,7 @@ This can be configured on a per client basis by using the "set metaconf:hive.met
 
 Same as  **[hive.metastore.try.direct.sql]({{< ref "#hivemetastoretrydirectsql" >}})** , for read statements within a transaction that modifies metastore data. Due to non-standard behavior in Postgres, if a direct SQL select query has incorrect syntax or something similar inside a transaction, the entire transaction will fail and fall-back to DataNucleus will not be possible. You should disable the usage of direct SQL inside [transactions]({{< ref "hive-transactions" >}}) if that happens in your case.
 
-This can be configured on a per client basis by using the "set metaconf:hive.metastore.try.direct.sql.ddl=<value>" command, starting with Hive 0.14.0 ( [HIVE-7532](https://issues.apache.org/jira/browse/HIVE-7532)).
+This can be configured on a per client basis by using the `set metaconf:hive.metastore.try.direct.sql.ddl=<value>` command, starting with Hive 0.14.0 ( [HIVE-7532](https://issues.apache.org/jira/browse/HIVE-7532)).
 
 ##### **hive.metastore.orm.retrieveMapNullsAsEmptyStrings**
 
@@ -2499,7 +2499,7 @@ Maximum number of Thrift worker threads.
 * Default Value: `60`
 * Added in: Hive 0.14.0 with [HIVE-7353](https://issues.apache.org/jira/browse/HIVE-7353)
 
- Keepalive time (in seconds) for an idle worker thread. When number of workers > min workers, excess threads are killed after this time interval.  
+ Keepalive time (in seconds) for an idle worker thread. When number of workers \> min workers, excess threads are killed after this time interval.  
 
 ##### hive.server2.thrift.max.message.size
 
@@ -2576,7 +2576,7 @@ LDAP base DN (distinguished name).
 * Default Value: `uid`
 * Added In: Hive 2.1.0 with [HIVE-13295](https://issues.apache.org/jira/browse/HIVE-13295)
 
-This property is to indicate what prefix to use when building the bindDN for LDAP connection (when using just baseDN). So bindDN will be "<guidKey>=<user/group>,<baseDN>". If userDNPattern and/or groupDNPattern is used in the configuration, the guidKey is not needed. Primarily required when just baseDN is being used.
+This property is to indicate what prefix to use when building the bindDN for LDAP connection (when using just baseDN). So bindDN will be `<guidKey>=<user/group>,<baseDN>`. If userDNPattern and/or groupDNPattern is used in the configuration, the guidKey is not needed. Primarily required when just baseDN is being used.
 
 ##### hive.server2.authentication.ldap.Domain
 
@@ -2672,7 +2672,7 @@ The password for the bind domain name. This password may be specified in the con
 
 ##### hive.server2.global.init.file.location
 
-* Default Value: $HIVE_CONF_DIR  (typically <hive_root>/conf)
+* Default Value: $HIVE_CONF_DIR  (typically \<hive_root\>/conf)
 * Added in Hive 0.14.0 with [HIVE-5160](https://issues.apache.org/jira/browse/HIVE-5160), [HIVE-7497](https://issues.apache.org/jira/browse/HIVE-7497), and [HIVE-8138](https://issues.apache.org/jira/browse/HIVE-8138)
 
 Either the location of a HiveServer2 global init file or a directory containing a .hiverc file. If the property is set, the value must be a valid path to an init file or directory where the init file is located.
@@ -2726,7 +2726,7 @@ Maximum idle time for a connection on the server when in HTTP mode.
 * Default Value: 60
 * Added In: Hive 0.14.0 in [HIVE-7353](https://issues.apache.org/jira/browse/HIVE-7353)
 
-Keepalive time (in seconds) for an idle http worker thread. When number of workers > min workers, excess threads are killed after this time interval. 
+Keepalive time (in seconds) for an idle http worker thread. When number of workers \> min workers, excess threads are killed after this time interval. 
 
 ##### hive.server2.thrift.sasl.qop
 
@@ -3361,7 +3361,7 @@ This is the location that Hive in Tez mode will look for to find a site-wide in
 * Default Value: `hdfs:///user/`
 * Added In: Hive 0.13.0 with [HIVE-5003](https://issues.apache.org/jira/browse/HIVE-5003) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)
 
-If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{< ref "#hivejardirectory" >}})** , it will upload the Hive jar to <**hive.user.install.directory**>/<*user_name*> and use it to run queries.
+If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{< ref "#hivejardirectory" >}})** , it will upload the Hive jar to <**hive.user.install.directory**>/\<*user_name*\> and use it to run queries.
 
 ##### [hive.compute.splits.in.am](http://hive.compute.splits.in.am)
 
@@ -3675,7 +3675,7 @@ Maximum allocation possible from LLAP buddy allocator. For ORC, should be as lar
 * Default Value: 8
 * Added In: Hive 2.0.0 with [HIVE-12597](https://issues.apache.org/jira/browse/HIVE-12597)
 
-Arena count for LLAP low-level cache; cache will be allocated in the steps of (size/arena_count) bytes. This size must be <= 1Gb and >= max allocation; if it is not the case, an adjusted size will be used. Using powers of 2 is recommended.
+Arena count for LLAP low-level cache; cache will be allocated in the steps of (size/arena_count) bytes. This size must be \<= 1Gb and \>= max allocation; if it is not the case, an adjusted size will be used. Using powers of 2 is recommended.
 
 ##### hive.llap.io.memory.size
 
@@ -4280,7 +4280,7 @@ Whether column accesses are tracked in the QueryPlan. This is useful to identif
 * Default Value: `200` (Hive 0.11 and 0.12) or ``150``  ([Hive 0.13](https://issues.apache.org/jira/browse/HIVE-5559) and later)
 * Added In: Hive 0.11 with [HIVE-3750](https://issues.apache.org/jira/browse/HIVE-3750)
 
-Determines if, when the prefix of the key used for intermediate statistics collection exceeds a certain length, a hash of the key is used instead. If the value < 0 then hashing is never used, if the value >= 0 then hashing is used only when the key prefixes' length exceeds that value. The key prefix is defined as everything preceding the task ID in the key. For counter type statistics, it's maxed by  **[mapreduce.job.counters.group.name.max](https://hadoop.apache.org/docs/r1.2.1/mapred-default.html)** , which is by default 128.
+Determines if, when the prefix of the key used for intermediate statistics collection exceeds a certain length, a hash of the key is used instead. If the value \< 0 then hashing is never used, if the value \>= 0 then hashing is used only when the key prefixes' length exceeds that value. The key prefix is defined as everything preceding the task ID in the key. For counter type statistics, it's maxed by  **[mapreduce.job.counters.group.name.max](https://hadoop.apache.org/docs/r1.2.1/mapred-default.html)** , which is by default 128.
 
 ##### hive.stats.key.prefix.reserve.length
 
@@ -5023,7 +5023,7 @@ Set this to true to enable the use of scratch directories directly on blob stora
 * Default value: `0` (disabled)
 * Added In: Hive 2.2.0 with [HIVE-15881](https://issues.apache.org/jira/browse/HIVE-15881)
 
-Set this to a maximum number of threads that Hive will use to list file information from file systems, such as file size and number of files per table (recommended > 1 for blobstore).
+Set this to a maximum number of threads that Hive will use to list file information from file systems, such as file size and number of files per table (recommended \> 1 for blobstore).
 
 ## Test Properties
 
