@@ -40,7 +40,7 @@ FROM customer
 		WHERE customer.customer_num = orders.customer_num
 	) AS total_ship_chg
 FROM customer 
-</code></pre><ul><li>Subqueries with DISTINCT are not allowed. Since DISTINCT will be evaluated as GROUP BY , subqueries with DISTINCT are disallowed for now.</li></ul><h1 id=design>Design</h1><p>Given the assumptions above, the following kind of subqueries could be used in SELECT. </p><ul><li>Scalar subqueries, for example: </li></ul><pre tabindex=0><code>SELECT customer.customer_num,
+</code></pre><ul><li>Subqueries with DISTINCT are not allowed. Since <code>DISTINCT &lt;expression></code> will be evaluated as <code>GROUP BY &lt;expression></code>, subqueries with <code>DISTINCT</code> are disallowed for now.</li></ul><h1 id=design>Design</h1><p>Given the assumptions above, the following kind of subqueries could be used in SELECT. </p><ul><li>Scalar subqueries, for example: </li></ul><pre tabindex=0><code>SELECT customer.customer_num,
 	(SELECT SUM(ship_charge) 
 		FROM orders
 		WHERE customer.customer_num = orders.customer_num
