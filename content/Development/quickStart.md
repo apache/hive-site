@@ -18,16 +18,16 @@ Run Apache Hive inside docker container in pseudo-distributed mode, inorder to p
 
 ##### **STEP 1: Pull the image** 
 
-Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. The latest image tag is `4.2.0`.
+Pull the image from DockerHub: https://hub.docker.com/r/apache/hive/tags. The latest image tag is `{{< hive-version >}}`.
 
 ```shell
-docker pull apache/hive:4.2.0
+docker pull apache/hive:{{< hive-version >}}
 ```
 
 ##### **STEP 2: Export the Hive version**
 
 ```shell
-export HIVE_VERSION=4.2.0
+export HIVE_VERSION={{< hive-version >}}
 ```
 
 ##### **STEP 3:  Launch the HiveServer2 with an embedded Metastore.**
@@ -75,10 +75,10 @@ There are some arguments to specify the component version:
 
 If the version is not provided, it will read the version from current `pom.xml`:
 `project.version`, `hadoop.version` and `tez.version` for Hive, Hadoop and Tez respectively.
-For example, the following command uses Hive 4.2.0, Hadoop `hadoop.version` and Tez `tez.version` to build the image,
+For example, the following command uses Hive {{< hive-version >}}, Hadoop `hadoop.version` and Tez `tez.version` to build the image,
 
 ```shell
-./build.sh -hive 4.2.0
+./build.sh -hive {{< hive-version >}}
 ```
 
 If the command does not specify the Hive version, it will use the local `apache-hive-${project.version}-bin.tar.gz`(will trigger a build if it doesn't exist), together with Hadoop 3.3.6 and Tez 0.10.3 to build the image,
@@ -92,10 +92,10 @@ After building successfully,  we can get a Docker image named `apache/hive` by d
 ### Run services
 ---
 Before going further, we should define the environment variable `HIVE_VERSION` first.
-For example, if `-hive 4.2.0` is specified to build the image,
+For example, if `-hive {{< hive-version >}}` is specified to build the image,
 
 ```shell
-export HIVE_VERSION=4.2.0
+export HIVE_VERSION={{< hive-version >}}
 ```
 
 or assuming that you're relying on current `project.version` from pom.xml,
@@ -236,7 +236,7 @@ services:
     environment:
       POSTGRES_PASSWORD: "example"
   hiveserver2-standalone:
-    image: apache/hive:4.2.0
+    image: apache/hive:{{< hive-version >}}
     depends_on:
       - some-postgres
     environment:
@@ -273,7 +273,7 @@ services:
     environment:
       POSTGRES_PASSWORD: "example"
   metastore-standalone:
-    image: apache/hive:4.2.0
+    image: apache/hive:{{< hive-version >}}
     depends_on:
       - some-postgres
     environment:
@@ -287,7 +287,7 @@ services:
     volumes:
       - ~/.m2/repository/org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar:/opt/hive/lib/postgres.jar
   hiveserver2-standalone:
-    image: apache/hive:4.2.0
+    image: apache/hive:{{< hive-version >}}
     depends_on:
       - metastore-standalone
     environment:
