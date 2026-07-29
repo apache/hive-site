@@ -38,6 +38,7 @@ at all contributors to our issue tracker, mailing list and version control.
 | jxiang          | Jimmy Xiang             | [Cloudera](http://cloudera.com/)                |      |
 | kevinwilfong    | Kevin Wilfong           | [Facebook](http://facebook.com/)                |      |
 | leftyl          | Lefty Leverenz          | [IBM](https://www.ibm.com/)                     |      |
+| mahesh          | Mahesh Kumar Behera     | [Cloudera](http://cloudera.com/)                |      |
 | namit           | Namit Jain              | [Nutanix](http://www.nutanix.com/)              |      |
 | navis           | Navis Ryu               | [NexR](http://nexr.com/)                        |      |
 | ngangam         | Naveen Gangam           | [Cloudera](http://cloudera.com/)                | VP   |
