@@ -71,7 +71,7 @@ More plan transformations are performed by the optimizer. The optimizer is an ev
   
  The optimizer can be enhanced to be cost-based (see [Cost-based optimization in Hive](/docs/latest/user/cost-based-optimization-in-hive) and [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775)). The sorted nature of output tables can also be preserved and used later on to generate better plans. The query can be performed on a small sample of data to guess the data distribution, which can be used to generate a better plan.  
   
- A [correlation optimizer](/development/desingdocs/correlation-optimizer) was added in Hive 0.12.  
+ A [correlation optimizer](/development/designdocs/correlation-optimizer) was added in Hive 0.12.  
   
  The plan is a generic operator tree, and can be easily manipulated.
 

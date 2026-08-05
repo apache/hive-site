@@ -12,7 +12,7 @@ Built on top of **[Apache Hadoop™](http://hadoop.apache.org/)**, Hive provide
 * Access to files stored either directly in **[Apache HDFS](http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html)[™](http://hadoop.apache.org/)** or in other data storage systems such as **[Apache HBase](http://hbase.apache.org/)[™](http://hadoop.apache.org/)**
 * Query execution via [Apache Tez](http://tez.apache.org/)**[™](http://hadoop.apache.org/)** or [MapReduce](http://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html)
 * Procedural language with HPL-SQL
-* Sub-second query retrieval via [Hive LLAP](/development/desingdocs/llap), [Apache YARN](https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html) and [Apache Slider](https://slider.incubator.apache.org/).
+* Sub-second query retrieval via [Hive LLAP](/development/designdocs/llap), [Apache YARN](https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html) and [Apache Slider](https://slider.incubator.apache.org/).
 
 [Hive provides standard SQL functionality](/docs/latest/language/apache-hive-sql-conformance), including many of the later [SQL:2003](https://en.wikipedia.org/wiki/SQL:2003), [SQL:2011](https://en.wikipedia.org/wiki/SQL:2011), and [SQL:2016](https://en.wikipedia.org/wiki/SQL:2016) features for analytics.  
 Hive's SQL can also be extended with user code via user defined functions (UDFs), user defined aggregates (UDAFs), and user defined table functions (UDTFs).

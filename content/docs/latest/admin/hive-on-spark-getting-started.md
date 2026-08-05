@@ -228,7 +228,7 @@ See [Spark section of configuration page](/docs/latest/user/configuration-proper
 ## Design documents
 
 * [Hive on Spark: Overall Design](https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf) from [HIVE-7272](https://issues.apache.org/jira/browse/HIVE-7292)
-* [Hive on Spark: Join Design (HIVE-7613)](/development/desingdocs/hive-on-spark-join-design-master)
+* [Hive on Spark: Join Design (HIVE-7613)](/development/designdocs/hive-on-spark-join-design-master)
 * [Hive on Spark Configuration (HIVE-9449)](https://issues.apache.org/jira/browse/HIVE-9449)
 * [attachments/44302539/53575687.pdf](/attachments/44302539/53575687.pdf)
 

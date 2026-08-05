@@ -69,7 +69,7 @@ Proposals that appear in the "Completed" and "In Progress" sections should inclu
 * [Updatable Views]({{< ref "updatableviews" >}}) ([HIVE-1143](https://issues.apache.org/jira/browse/HIVE-1143))
 * [Phase 2 of Replication Development]({{< ref "hivereplicationv2development" >}}) ([HIVE-14841](https://issues.apache.org/jira/browse/HIVE-14841))
 * [Subqueries in SELECT]({{< ref "subqueries-in-select" >}}) ([HIVE-16091](https://issues.apache.org/jira/browse/HIVE-16091))
-* [DEFAULT keyword](/development/desingdocs/default-keyword) [(HIVE-19059)](https://issues.apache.org/jira/browse/HIVE-19059)
+* [DEFAULT keyword](/development/designdocs/default-keyword) [(HIVE-19059)](https://issues.apache.org/jira/browse/HIVE-19059)
 * [Hive remote databases/tables]({{< ref "hive-remote-databases-tables" >}})
 
 ## Incomplete
