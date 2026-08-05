@@ -7,7 +7,7 @@ theme = 'hive'
 [params]
   version = "1.1.0"
   hiveLogo = "/images/hive.svg"
-  logo = "/images/asf_logo.png"
+  logo = "/images/asf_logo_full_horizontal_white.svg"
   apacheURL = 'https://www.apache.org'
   javaDocUrl = 'https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs'
 
