@@ -7,7 +7,7 @@ theme = 'hive'
 [params]
   version = "1.1.0"
   hiveLogo = "/images/hive.svg"
-  logo = "/images/asf_logo.png"
+  logo = "/images/asf_logo_full_horizontal_white.svg"
   apacheURL = 'https://www.apache.org'
   javaDocUrl = 'https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs'
 
@@ -25,7 +25,7 @@ theme = 'hive'
     security = "https://www.apache.org/security/"
     sponsors = "https://www.apache.org/foundation/sponsorship.html"
     donate = "https://www.apache.org/foundation/contributing.html"
-    copyright = "The contents of this website are © 2023 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation."
+    copyright = "The contents of this website are © 2026 Apache Software Foundation under the terms of the Apache License v2. Apache Hive and its logo are trademarks of the Apache Software Foundation."
     thanks = "https://www.apache.org/foundation/thanks.html"
 
 [params.navbar]
