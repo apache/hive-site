@@ -31,7 +31,7 @@
 }
 
 /* Override global section margins for full-width sections */
-
+section.white-background,
 features.white-background,
 features {
     margin-left: 0 !important;
