@@ -2816,7 +2816,7 @@ Allow alternate user to be specified as part of HiveServer2 open connection requ
 
 Keytab file for SPNEGO principal, optional. A typical value would look like `/etc/security/keytabs/spnego.service.keytab`. This keytab would be used by HiveServer2 when Kerberos security is enabled and HTTP transport mode is used. This needs to be set only if SPNEGO is to be used in authentication.
 
-SPNEGO authentication would be honored only if valid  **[hive.server2.authentication.spnego.principal](http://Configuration%20Properties#hive.server2.authentication.spnego.principal)**  and **hive.server2.authentication.spnego.keytab** are specified.
+SPNEGO authentication would be honored only if valid  **[hive.server2.authentication.spnego.principal](Configuration%20Properties#hive.server2.authentication.spnego.principal)**  and **hive.server2.authentication.spnego.keytab** are specified.
 
 ##### hive.server2.authentication.spnego.principal
 
