@@ -1,0 +1,71 @@
+---
+title: "Apache Hive : PL/HQL Command Line"
+date: 2026-08-12
+---
+
+# Apache Hive : PL/HQL Command Line
+
+You can run *plhql* tool from a command line to execute a SQL statement or HQL script.
+
+**Syntax**:
+
+```
+plhql -e 'query' | -f file 
+      [-main procname]
+      [-d | --define | -hiveconf | -hivevar var=value ...] 
+      [-version | --version]
+      [-trace | --trace]
+      [-H | --help]
+```
+
+**Parameters:**
+
+| Parameter | Description | PL/HQL Version |
+| --- | --- | --- |
+| -e 'query' | SQL statements to execute | 0.1 |
+| -f file | Execute SQL statements from *file* | 0.1 |
+| -main procname | Entry point (procedure or function name) | 0.3.7 |
+| -d var=value | Variable definition | 0.1 |
+| --define var=value | Variable definition | 0.1 |
+| -hiveconf var=value | Variable definition | 0.1 |
+| -hivevar var=value | Variable definition | 0.1 |
+| -version, --version | Print PL/HQL version | 0.1 |
+| -trace, --trace | Print trace information | 0.1 |
+| -H, --help | Print help information and exit | 0.1 |
+
+**Notes**:
+
+- -e and -f cannot be specified together
+- if -main option is not specified, PL/HQL start executing all statements from the beginning of the script
+- You can use single 'query' and double "query" quotes with -e option
+- Currently -d, --define, -hivevar and -hiveconf are equivalent and allow you to define input variables.
+
+**Example 1:**
+
+Executing PL/HQL statements from a script:
+
+```
+plhql -f script.hql 
+```
+
+**Example 2:**
+
+Executing PL/HQL statements from command line:
+
+```
+plhql -e "NVL(MAX_PARTITION_DATE(db.sales, local_dt, code='A'), CURRENT_DATE)" 
+```
+
+**Example 3:**
+
+Using variables:
+
+```
+plhql -e "PRINT a || ', ' || b" -d a=Hello -d b=world 
+```
+
+Result:
+
+```
+Hello, world
+```
