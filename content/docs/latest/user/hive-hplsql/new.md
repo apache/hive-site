@@ -1,0 +1,222 @@
+---
+title: "Apache Hive : What's New"
+date: 2026-08-12
+---
+
+# Apache Hive : What's New
+
+New HPL/SQL features:
+
+## HPL/SQL 0.3.17 - March 28, 2016
+
+- [COPY FROM FTP]({{< ref "copy-from-ftp" >}}) statement
+- [CREATE DATABASE]({{< ref "create-database" >}}) statement
+- [DROP DATABASE]({{< ref "drop-database" >}}) statement
+- [TRUNCATE]({{< ref "truncate" >}}) statement
+- [DESCRIBE]({{< ref "describe" >}}) statement
+- [INSERT DIRECTORY]({{< ref "insert-directory" >}}) statement
+- [REPLACE]({{< ref "replace" >}}) function
+- [NOW]({{< ref "now" >}}) function
+- [UNIX_TIMESTAMP]({{< ref "unix-timestamp" >}}) function
+- [FROM_UNIXTIME]({{< ref "from-unixtime" >}}) function
+- [+ Operator]({{< ref "plus#concatenate_two_strings" >}}) to concatenate two strings
+- [INT(n) to INT]({{< ref "data-types#data_type_conversion" >}}) data type conversion (MySQL compatibility) 
+- [TEXT to STRING]({{< ref "data-types#data_type_conversion" >}}) data type conversion (MySQL compatibility) 
+- [INT2 to SMALLINT]({{< ref "data-types#data_type_conversion" >}}) data type conversion (PostgreSQL compatibility) 
+- [INT4 to INT]({{< ref "data-types#data_type_conversion" >}}) data type conversion (PostgreSQL compatibility) 
+- [INT8 to BIGINT]({{< ref "data-types#data_type_conversion" >}}) data type conversion (PostgreSQL compatibility) 
+- [INTERVAL]({{< ref "interval" >}}) keyword in interval expressions
+- AUTO_INCREMENT, ENGINE, CHARSET, COMMENT clauses parser (MySQL compatibility)
+- BEGIN TRANSACTION and END TRANSACTION statements parser (Teradata compatibility)
+- ALTER TABLE ADD CONSTRAINT parser
+- WHERE clause in UPDATE clause of MERGE statement (Parser fix)
+- Allow expressions in PARTITION BY clause of window functions (Parser fix)
+- SET QUERY_BAND statement parser (Teradata compatibility)
+- ENABLE constraint keyword parser (Oracle compatibility)
+- Removing [dbo] schema when executing SQL (Microsoft SQL Server compatibility)
+- By default, not adding FROM [hplsql.dual.table]({{< ref "configuration#hplsqldualtable" >}}) to SELECT without FROM
+- INNER keyword is optional in join (Parser fix)
+- RAISE statement (Parser fix)
+- Variable declaration block in procedures and functions (Bug fix)
+- Subtraction ('-') operator (Bug fix)
+- Multiplication ('*') and division ('/') operators in SQL statements (Bug fix)
+- OVERWRITE keyword missed in INSERT statements (Bug fix)
+- PL/SQL-style stored procedure without parameters (Bug fix)
+- FOR cursor columns values (Bug fix)
+- EXCEPTION block in functions (Bug fix)
+## HPL/SQL 0.3.13 - October 30, 2015
+
+- [CREATE PACKAGE]({{< ref "create-package" >}}) statement
+- [%TYPE]({{< ref "type-attribute" >}}) attribute
+- [%ROWTYPE]({{< ref "rowtype-attribute" >}}) attribute
+- [PART_COUNT]({{< ref "part-count" >}}) function
+- [PART_COUNT_BY]({{< ref "part-count-by" >}}) function
+- [PLS_INTEGER]({{< ref "data-types" >}}), [BINARY_INTEGER]({{< ref "data-types" >}}) and [SIMPLE_INTEGER]({{< ref "data-types" >}}) data types
+- [REAL]({{< ref "data-types" >}}), [FLOAT]({{< ref "data-types" >}}) and [DOUBLE]({{< ref "data-types" >}}) data types
+- [BINARY_FLOAT]({{< ref "data-types" >}}) and [BINARY_DOUBLE]({{< ref "data-types" >}}) data types
+- [SIMPLE_FLOAT]({{< ref "data-types" >}}) and [SIMPLE_DOUBLE]({{< ref "data-types" >}}) data types
+- [BOOL]({{< ref "data-types" >}}) and [BOOLEAN]({{< ref "data-types" >}}) data types
+- [CMP]({{< ref "cmp" >}}) statement to compare data in tables 
+- [COPY TO HDFS]({{< ref "copy" >}}) statement to copy JDBC query results to HDFS
+- [NULL]({{< ref "null" >}}) statement (no operation) 
+- TRUE and FALSE boolean literals
+- CONSTANT declarations
+- Support expressions in [INCLUDE]({{< ref "include" >}}) statement
+- BYTE and CHAR column length semantics (Parser)
+- FOREIGN KEY and UNIQUE constraint in CREATE TABLE (Parser)
+- Oracle storage clause in CREATE TABLE (Parser)
+- NOT NULL constraint in variable declaration (Parser)
+- XML data type (Parser)
+- Calling stored procedures without parameters (Bug fix)
+- AS alias in SELECT list (Bug fix)
+- Subselect in FROM clause (Bug fix)
+- Multiplication * and division / operators for integers (Bug fix)
+- NOT boolean expression (Bug fix)
+- Invoke built-in functions in lower case (Bug fix)
+- Compare DECIMAL values, DECIMAL and integer values (Bug fix)
+- NUMBER data type (Bug fix)
+- Variable scope when calling functions or procedures (Bug fix)
+- Using parameters in JDBC connection URL to specify advanced options such as Kerberos authentication (Bug fix)
+## HPL/SQL 0.3.11 - July 30, 2015
+
+- [SYS_REFCURSOR]({{< ref "data-types" >}}) cursor variable
+- [%ISOPEN, %FOUND and %NOTFOUND]({{< ref "cursor-attributes" >}}) cursor attributes
+- Named parameters in procedure call
+- SELECT @var = col, ... FROM assignment syntax
+- [ALLOCATE CURSOR]({{< ref "allocate-cursor" >}}) statement
+- [ASSOCIATE RESULT SET LOCATOR]({{< ref "associate-locator" >}}) statement
+- [SET CURRENT SCHEMA]({{< ref "set-session#current-schema" >}}) statement
+- [CURRENT_USER]({{< ref "current-user" >}}) function
+- [CURRENT USER]({{< ref "current-user" >}}) function
+- [INSTR]({{< ref "instr" >}}) function
+- [SUBSTRING(str FROM start FOR len)]({{< ref "substring" >}}) function 
+- [USER]({{< ref "functions/user.md" >}}) function
+- [VARCHAR(MAX) to STRING]({{< ref "data-types#data-type-conversion" >}}) data type conversion
+- [DATETIME and SMALLDATETIME to TIMESTAMP]({{< ref "data-types#data-type-conversion" >}}) data type conversion
+- [NUMERIC to DECIMAL]({{< ref "data-types#data-type-conversion" >}}) data type conversion
+- [NCHAR and NVARCHAR to STRING]({{< ref "data-types#data-type-conversion" >}}) data type conversion
+- [BIT to TINYINT]({{< ref "data-types#data-type-conversion" >}}) data type conversion
+- [Identifier]({{< ref "conversion#language-elements-and-operators" >}}) conversion ("" and [] to ``)
+- UPDATE ELSE INSERT statement parser (UPSERT)
+- LIKE, RLIKE and REGEXP parser
+- CUME_DIST function parser
+- CHARACTER SET data type attribute
+- CASESPECIFIC data type attribute
+- DYNAMIC RESULT SETS clause parser in CREATE PROCEDURE
+- TITLE 'alias' clause parser in SELECT
+- WITH RETURN TO CALLER/CLIENT clause parser in DECLARE CURSOR
+- IDENTITY clause parser
+- SET ANSI_NULLS, ANSI_PADDING, NOCOUNT, QUOTED_IDENTIFIER and XACT_ABORT parser
+- OPEN cursor FOR SELECT (Bug fix)
+- SELECT INTO a DECIMAL, BIGINT, SMALLINT or TINYINT variable (Bug fix)
+- NULL in +/- operations (Bug fix)
+- Initialize missing parameters to NULL in -main procedure call (Bug fix)
+- Calling stored procedure without parameters (Bug fix)
+- Do not throw NOT FOUND exception in FETCH statement (Bug fix)
+- Division operator for integer values (Bug fix)
+- Assign an integer value to decimal variable (Bug fix) 
+- Catch exceptions thrown during expression evaluation (Bug fix)
+## HPL/SQL 0.3.7 - May 19, 2015
+
+- [COPY]({{< ref "copy" >}}) statement
+- [COPY FROM LOCAL]({{< ref "copy-from-local" >}}) statement
+- [SET v = (SELECT c FROM ...)]({{< ref "assign#assignment-from-a-select-statement" >}}) assignment
+- [plhql.conn.db2conn]({{< ref "configuration#plhqlconndb2conn" >}}) option
+- [plhql.conn.tdconn]({{< ref "configuration#plhqlconntdconn" >}}) option
+- DATE data type
+- TIMESTAMP data type
+- CURRENT_DATE, CURRENT DATE to TO_DATE(FROM_UNIXTIME(UNIX_TIMESTAMP())) conversion in executable SQL for Hive
+- CURRENT_TIMESTAMP, CURRENT TIMESTAMP to FROM_UNIXTIME(UNIX_TIMESTAMP()) conversion in executable SQL for Hive
+- TOP *n* to LIMIT *n* conversion in SELECT statement for Hive
+- LIMIT clause in SELECT
+- UPDATE statement parser
+- DELETE statement parser
+- MERGE statement parser
+- Common table expression (CTE) parser
+- ROW FORMAT DELIMITED, FIELDS TERMINATED, LINES TERMINATED clauses for Hive
+- Default values parser in procedure parameters
+- LANGUAGE SQL clause in CREATE PROCEDURE
+- SQL SECURITY clause in CREATE PROCEDURE
+- Procedure label in CREATE PROCEDURE
+- WITH UR, RR, RS, CS clause in SELECT
+- CREATE INDEX parser
+- GRANT EXECUTE ON PROCEDURE parser
+- #, @ and / characters can be used as the statement terminators
+- CASE expressions in SQL statements (Bug fix)
+- BETWEEN clause in boolean expressions and SQL statements (Bug fix)
+- IS NOT NULL clause in boolean expressions and SQL statements (Bug fix)
+- NOT IN clause in SQL statements (Bug fix)
+- GROUP BY parser (Bug fix)
+- ORDER BY parser (Bug fix)
+- Windows-style file path parser (Bug fix)
+## HPL/SQL 0.3.1 - April 30, 2015
+
+- [Hive UDF]({{< ref "udf" >}}) to run PL/HQL scripts from Hive CLI queries
+- Automatically put functions referenced in Hive queries to Distributed Cache, register [UDF]({{< ref "udf" >}}) and modify SQL statements
+- [Multiple connections]({{< ref "connections" >}}) to different systems from a single script
+- [ACTIVITY_COUNT]({{< ref "activity_count" >}}) built-in variable
+- [CONCAT]({{< ref "concat" >}}) function
+- [DECODE]({{< ref "decode" >}}) function
+- [TO_CHAR]({{< ref "to-char" >}}) function
+- [TO_TIMESTAMP]({{< ref "to-timestamp" >}}) function
+- [CALL]({{< ref "call" >}}) statement
+- [CREATE FUNCTION]({{< ref "create-function" >}}) statement
+- [CREATE LOCAL TEMPORARY TABLE]({{< ref "create-local-temporary-table" >}}) statement
+- [CREATE PROCEDURE]({{< ref "create-procedure" >}}) statement
+- [CREATE VOLATILE TABLE]({{< ref "create-volatile-table" >}}) statement
+- [DECLARE CONDITION]({{< ref "declare-condition" >}}) statement
+- [DECLARE HANDLER]({{< ref "declare-handler" >}}) statement - user-defined condition
+- [INCLUDE]({{< ref "include" >}}) statement
+- [MAP OBJECT]({{< ref "map-object" >}}) statement
+- [SIGNAL]({{< ref "signal" >}}) statement
+- [.plhqlrc]({{< ref "configuration##plhqlrc-file" >}}) configuration file
+- [|| operator to CONCAT]({{< ref "twopipes" >}}) function conversion in SQL queries
+- Parser for column list in [INSERT]({{< ref "insert" >}}) statement
+- [plhql.conn.hiveconn]({{< ref "configuration#plhqlconnhiveconn" >}}) option
+- [plhql.conn.init.hiveconn]({{< ref "configuration#plhqlconninithiveconn" >}}) option
+- [plhql.conn.convert.hiveconn]({{< ref "configuration#plhqlconnconverthiveconn" >}}) option
+- [plhql.conn.hive2conn]({{< ref "configuration#plhqlconnhive2conn" >}}) option
+- [plhql.conn.init.hive2conn]({{< ref "configuration#plhqlconninithive2conn" >}}) option
+- [plhql.conn.convert.hive2conn]({{< ref "configuration#plhqlconnconverthive2conn" >}}) option
+- [plhql.conn.<connection_profile>]({{< ref "configuration#plhqlconn-connection_profile" >}}) option
+- [plhql.conn.init.<connection_profile>]({{< ref "configuration#plhqlconninit-connection_profile" >}}) option
+- [plhql.conn.mysqlconn]({{< ref "configuration#plhqlconnmysqlconn" >}}) option
+- [SET]({{< ref "assign" >}}) statement - assigning NULL to a variable (Bug fix)
+- Boolean expressions and predicates (Bug fix)
+## HPL/SQL 0.3 - March 31, 2015
+
+- [TIMESTAMP]({{< ref "timestamp-literal" >}}) literal
+- [INTERVAL]({{< ref "interval" >}}) expressions
+- [SQLSTATE]({{< ref "sqlstate" >}}) built-in variable
+- [CAST]({{< ref "cast" >}}) function
+- [CHAR]({{< ref "char" >}}) function
+- [COALESCE]({{< ref "coalesce" >}}) function
+- [CURRENT_TIMESTAMP]({{< ref "current-timestamp" >}}) function
+- [DATE]({{< ref "date" >}}) function
+- [LEN]({{< ref "len" >}}) function
+- [LENGTH]({{< ref "length" >}}) function
+- [LOWER]({{< ref "lower" >}}) function
+- [SYSDATE]({{< ref "sysdate" >}}) function
+- [TIMESTAMP_ISO]({{< ref "timestamp-iso" >}}) function
+- [TRIM]({{< ref "trim" >}}) function
+- [UPPER]({{< ref "upper" >}}) function
+- [CREATE TABLE]({{< ref "create-table" >}}) statement
+- [DECLARE TEMPORARY TABLE]({{< ref "declare-temporary-table" >}}) statement
+- [DROP TABLE]({{< ref "drop-table" >}}) statement
+- [FOR cursor]({{< ref "for-cursor" >}}) statement
+- [FROM TABLE (VALUES ...)]({{< ref "select" >}}) in SELECT statement
+- [INSERT]({{< ref "insert" >}}) statement
+- [GET DIAGNOSTICS EXCEPTION]({{< ref "get-diagnostics" >}}) statement
+- [RESIGNAL]({{< ref "resignal" >}}) statement   
+- [VALUES INTO]({{< ref "values-into" >}}) statement
+- [plhql.conn.convert.default]({{< ref "configuration#plhqlconnconvertdefault" >}}) option
+- [plhql.dual.table]({{< ref "configuration#plhqldualtable" >}}) option
+- [plhql.insert.values]({{< ref "configuration#plhqlinsertvalues" >}}) option
+- [plhql.temp.tables]({{< ref "configuration#plhqltemptables" >}}) option
+- [plhql.temp.tables.schema]({{< ref "configuration#plhqltemptablesschema" >}}) option
+- [plhql.temp.tables.location]({{< ref "configuration#plhqltemptableslocation" >}}) option
+- [VARCHAR2 to STRING]({{< ref "data-types#data-type-conversion" >}}) conversion in CREATE TABLE
+- [NUMBER to DECIMAL]({{< ref "data-types#data-type-conversion" >}}) conversion in CREATE TABLE
+## HPL/SQL 0.1 - February 27, 2015
+
+- Initial release
