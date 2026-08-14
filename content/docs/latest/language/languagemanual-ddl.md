@@ -1530,7 +1530,7 @@ CREATE TEMPORARY FUNCTION function_name AS class_name;
 
 ```
 
-This statement lets you create a function that is implemented by the class_name. You can use this function in Hive queries as long as the session lasts. You can use any class that is in the class path of Hive. You can add jars to class path by executing 'ADD JAR' statements. Please refer to the CLI section [Hive Interactive Shell Commands]({{< ref "#hive-interactive-shell-commands" >}}), including [Hive Resources]({{< ref "#hive-resources" >}}), for more information on how to add/delete files from the Hive classpath. Using this, you can register User Defined Functions (UDF's).
+This statement lets you create a function that is implemented by the class_name. You can use this function in Hive queries as long as the session lasts. You can use any class that is in the class path of Hive. You can add jars to class path by executing 'ADD JAR' statements. Please refer to the CLI section [Hive Interactive Shell Commands]({{< ref "#hive-interactive-shell-commands" >}}), including [Hive Resources]({{< ref "#hive-resources" >}}), for more information on how to add/delete files from the Hive classpath. Using this, you can register User Defined Functions (UDF's). Only trusted administrators should have this privilege; it allows executing arbitrary Java code from the Hive classpath.
 
 Also see [Hive Plugins]({{< ref "hiveplugins" >}}) for general information about creating custom UDFs.
 
