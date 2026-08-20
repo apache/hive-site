@@ -467,14 +467,15 @@ If this is a bugfix release, svn rm the obsoleted version. (For eg., when commit
 ```
 git clone https://github.com/apache/hive-site.git
 ```
-8. Edit files content/downloads.mdtext and javadoc.mdtext to appropriately add entries for the new release in the appropriate location. For example, for 1.2.0, the entries made were as follows:
+8. Edit some files to appropriately add entries for the new release in the appropriate location. For example, for 1.2.0, the entries made were as follows:
 
 ```
-./downloads.md:### 18 May 2015 : release 1.2.0 available
-./downloads.md:You can look at the complete [JIRA change log for this release][HIVE_1_2_0_CL].
-./downloads.md:[HIVE_1_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&styleName=Text&projectId=12310843
-./javadoc.md:  * [Hive 1.2.0 Javadocs][r1.2.0]
-./javadoc.md:[r1.2.0]: /javadocs/r1.2.0/api/index.html
+./content/general/downloads.md:### 18 May 2015 : release 1.2.0 available
+./content/general/downloads.md:You can look at the complete [JIRA change log for this release][HIVE_1_2_0_CL].
+./content/general/downloads.md:[HIVE_1_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12329345&styleName=Text&projectId=12310843
+./content/docs/javadocs.md:  * [Hive 1.2.0 Javadocs][r1.2.0]
+./content/docs/javadocs.md:[r1.2.0]: /javadocs/r1.2.0/api/index.html
+./config.toml:  version = "1.2.0" (under [params.release])
 ```
 
 As you can see, you will need a release note link for this release as created previously for this section.

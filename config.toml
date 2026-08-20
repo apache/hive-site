@@ -11,6 +11,9 @@ theme = 'hive'
   apacheURL = 'https://www.apache.org'
   javaDocUrl = 'https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs'
 
+[params.release]
+    version = "4.2.0"
+
 [params.banner]
     github = "https://github.com/apache/hive"
     docker = "https://hub.docker.com/r/apache/hive"
