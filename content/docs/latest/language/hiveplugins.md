@@ -28,7 +28,7 @@ public final class Lower extends UDF {
 
 After compiling your code to a jar, you need to add this to the Hive classpath. See the section below on deploying jars.
 
-Once Hive is started up with your jars in the classpath, the final step is to register your function as described in [Create Function]({{< ref "#create-function" >}}):
+Once Hive is started up with your jars in the classpath, the final step is to register your function as described in [Create Function]({{% ref "#create-function" %}}):
 
 ```
 create temporary function my_lower as 'com.example.hive.udf.Lower';
@@ -49,9 +49,9 @@ vp	7.0
 
 ```
 
-For a more involved example, see [this page]({{< ref "genericudafcasestudy" >}}).
+For a more involved example, see [this page]({{% ref "genericudafcasestudy" %}}).
 
-As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-6047), you can register your function as a permanent UDF either in the current database or in a specified database, as described in [Permanent Functions]({{< ref "#permanent-functions" >}}). For example:
+As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-6047), you can register your function as a permanent UDF either in the current database or in a specified database, as described in [Permanent Functions]({{% ref "#permanent-functions" %}}). For example:
 
 ```
 create function my_db.my_lower as 'com.example.hive.udf.Lower';
@@ -83,9 +83,9 @@ my_jar.jar
 
 ```
 
-See [Hive CLI]({{< ref "#hive-cli" >}}) for full syntax and more examples.
+See [Hive CLI]({{% ref "#hive-cli" %}}) for full syntax and more examples.
 
-As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-6380), UDFs also have the option of being able to specify required jars in the [CREATE FUNCTION]({{< ref "#create-function" >}}) statement:
+As of [Hive 0.13](https://issues.apache.org/jira/browse/HIVE-6380), UDFs also have the option of being able to specify required jars in the [CREATE FUNCTION]({{% ref "#create-function" %}}) statement:
 
 ```
 CREATE FUNCTION myfunc AS 'myclass' USING JAR 'hdfs:///path/to/jar';

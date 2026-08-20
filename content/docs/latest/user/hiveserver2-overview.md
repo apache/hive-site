@@ -25,7 +25,7 @@ The TThreadPoolServer allocates one worker thread per TCP connection. Each threa
 
 ## Transport
 
-HTTP mode is required when a proxy is needed between the client and server (for example, for load balancing or security reasons). That is why it is supported, as well as TCP mode. You can specify the transport mode of the Thrift service through the Hive configuration property [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}}).
+HTTP mode is required when a proxy is needed between the client and server (for example, for load balancing or security reasons). That is why it is supported, as well as TCP mode. You can specify the transport mode of the Thrift service through the Hive configuration property [hive.server2.transport.mode]({{% ref "#hive-server2-transport-mode" %}}).
 
 ## Protocol
 
@@ -37,12 +37,12 @@ Process implementation is the application logic to handle requests. For example,
 
 # Dependencies of HS2
 
-* [Metastore]({{< ref "adminmanual-metastore-administration" >}})  
+* [Metastore]({{% ref "adminmanual-metastore-administration" %}})  
 The metastore can be configured as embedded (in the same process as HS2) or as a remote server (which is a Thrift-based service as well). HS2 talks to the metastore for the metadata required for query compilation.
 * Hadoop cluster  
 HS2 prepares physical execution plans for various execution engines (MapReduce/Tez/Spark) and submits jobs to the Hadoop cluster for execution.
 
-You can find a diagram of the interactions between HS2 and its dependencies [here]({{< ref "#here" >}}).
+You can find a diagram of the interactions between HS2 and its dependencies [here]({{% ref "#here" %}}).
 
 # JDBC Client
 
@@ -67,7 +67,7 @@ The following sections help you locate some basic components of HiveServer2 in t
 * **org.apache.hive.service.cli.thrift.EmbeddedThriftBinaryCLIService class:** Embedded mode for HS2. Don't get confused with embedded metastore, which is a different service (although the embedded mode concept is similar).
 * **org.apache.hive.service.cli.session.HiveSessionImpl class**: Instances of this class are created on the server side and managed by an *org.apache.accumulo.tserver.TabletServer.SessionManager* instance*.*
 * **org.apache.hive.service.cli.operation.Operation class**: Defines an operation (e.g., a query). Instances of this class are created on the server and managed by an *org.apache.hive.service.cli.operation.OperationManager* instance*.*
-* **org.apache.hive.service.auth.HiveAuthFactory class**: A helper used by both HTTP and TCP mode for authentication. Refer to [Setting Up HiveServer2]({{< ref "setting-up-hiveserver2" >}}) for various authentication options, in particular [Authentication/Security Configuration]({{< ref "#authentication/security-configuration" >}}) and [Cookie Based Authentication]({{< ref "#cookie-based-authentication" >}}).
+* **org.apache.hive.service.auth.HiveAuthFactory class**: A helper used by both HTTP and TCP mode for authentication. Refer to [Setting Up HiveServer2]({{% ref "setting-up-hiveserver2" %}}) for various authentication options, in particular [Authentication/Security Configuration]({{% ref "#authentication/security-configuration" %}}) and [Cookie Based Authentication]({{% ref "#cookie-based-authentication" %}}).
 
 ## Client Side
 
@@ -82,13 +82,13 @@ The following sections help you locate some basic components of HiveServer2 in t
 
 # Resources
 
-How to set up HS2: [Setting Up HiveServer2]({{< ref "setting-up-hiveserver2" >}})
+How to set up HS2: [Setting Up HiveServer2]({{% ref "setting-up-hiveserver2" %}})
 
-HS2 clients: [HiveServer2 Clients]({{< ref "hiveserver2-clients" >}})
+HS2 clients: [HiveServer2 Clients]({{% ref "hiveserver2-clients" %}})
 
-User interface:  [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}})
+User interface:  [Web UI for HiveServer2]({{% ref "#web-ui-for-hiveserver2" %}})
 
-Metrics:  [Hive Metrics]({{< ref "hive-metrics" >}})
+Metrics:  [Hive Metrics]({{% ref "hive-metrics" %}})
 
 Cloudera blog on HS2: <http://blog.cloudera.com/blog/2013/07/how-hiveserver2-brings-security-and-concurrency-to-apache-hive/>
 

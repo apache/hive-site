@@ -9,19 +9,19 @@ date: 2024-12-12
 
 A number of configuration variables in Hive can be used by the administrator to change the behavior for their installations and user sessions. These variables can be configured in any of the following ways, shown in the order of preference:
 
-* Using the **set command** in the [CLI]({{< ref "languagemanual-cli" >}}) or [Beeline]({{< ref "#beeline" >}}) for setting session level values for the configuration variable for all statements subsequent to the set command. For example, the following command sets the scratch directory (which is used by Hive to store temporary output and plans) to `/tmp/mydir` for all subsequent statements:
+* Using the **set command** in the [CLI]({{% ref "languagemanual-cli" %}}) or [Beeline]({{% ref "#beeline" %}}) for setting session level values for the configuration variable for all statements subsequent to the set command. For example, the following command sets the scratch directory (which is used by Hive to store temporary output and plans) to `/tmp/mydir` for all subsequent statements:
 
 ```
   set hive.exec.scratchdir=/tmp/mydir;
 
 ```
-* Using the **`--hiveconf`** option of the `[hive]({{< ref "#hive" >}})` command (in the CLI) or `[beeline]({{< ref "#beeline" >}})` command for the entire session. For example:
+* Using the **`--hiveconf`** option of the `[hive]({{% ref "#hive" %}})` command (in the CLI) or `[beeline]({{% ref "#beeline" %}})` command for the entire session. For example:
 
 ```
   bin/hive --hiveconf hive.exec.scratchdir=/tmp/mydir
 
 ```
-* In **`hive-site.xml`**. This is used for setting values for the entire Hive configuration (see [hive-site.xml and hive-default.xml.template]({{< ref "#hive-sitexml-and-hive-defaultxmltemplate" >}}) below). For example:
+* In **`hive-site.xml`**. This is used for setting values for the entire Hive configuration (see [hive-site.xml and hive-default.xml.template]({{% ref "#hive-sitexml-and-hive-defaultxmltemplate" %}}) below). For example:
 
 ```
   <property>
@@ -37,7 +37,7 @@ The server-specific configuration file is useful in two situations:
 	2. You want to set a configuration value only in a server-specific configuration file (for example – setting the metastore database password only in the metastore server configuration file).  
 	HiveMetastore server reads hive-site.xml as well as hivemetastore-site.xml configuration files that are available in the $HIVE_CONF_DIR or in the classpath. If the metastore is being used in embedded mode (i.e., hive.metastore.uris is not set or empty) in `hive` commandline or HiveServer2, the hivemetastore-site.xml gets loaded by the parent process as well.  
 	The value of hive.metastore.uris is examined to determine this, and the value should be set appropriately in hive-site.xml .  
-	Certain [metastore configuration parameters]({{< ref "#metastore-configuration-parameters" >}}) like hive.metastore.sasl.enabled, hive.metastore.kerberos.principal, hive.metastore.execute.setugi, and hive.metastore.thrift.framed.transport.enabled are used by the metastore client as well as server. For such common parameters it is better to set the values in hive-site.xml, that will help in keeping them consistent.
+	Certain [metastore configuration parameters]({{% ref "#metastore-configuration-parameters" %}}) like hive.metastore.sasl.enabled, hive.metastore.kerberos.principal, hive.metastore.execute.setugi, and hive.metastore.thrift.framed.transport.enabled are used by the metastore client as well as server. For such common parameters it is better to set the values in hive-site.xml, that will help in keeping them consistent.
 	
 	HiveServer2 reads hive-site.xml as well as hiveserver2-site.xml that are available in the $HIVE_CONF_DIR or in the classpath.   
 	If HiveServer2 is using the metastore in embedded mode, hivemetastore-site.xml also is loaded.
@@ -55,7 +55,7 @@ Please note that the template file `hive-default.xml.template` is not used by H
 
 In Hive releases 0.9.0 through 0.13.1, the template file does not necessarily contain all configuration options found in `HiveConf.java` and some of its values and descriptions might be out of date or out of sync with the actual values and descriptions. However, as of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-6037) the template file is generated directly from `HiveConf.java` and therefore it is a reliable source for configuration variables and their defaults.
 
-The administrative configuration variables are listed [below]({{< ref "#below" >}}). User variables are listed in [Hive Configuration Properties]({{< ref "configuration-properties" >}}). As of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-6037) you can display information about a configuration variable with the [SHOW CONF command]({{< ref "#show-conf-command" >}}).
+The administrative configuration variables are listed [below]({{% ref "#below" %}}). User variables are listed in [Hive Configuration Properties]({{% ref "configuration-properties" %}}). As of [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-6037) you can display information about a configuration variable with the [SHOW CONF command]({{% ref "#show-conf-command" %}}).
 
 ### Temporary Folders
 
@@ -68,28 +68,28 @@ Note that when writing data to a table/partition, Hive will first write to a tem
 
 ### Log Files
 
-Hive client produces logs and history files on the client machine. Please see [Hive Logging]({{< ref "#hive-logging" >}}) for configuration details.
+Hive client produces logs and history files on the client machine. Please see [Hive Logging]({{% ref "#hive-logging" %}}) for configuration details.
 
-For WebHCat logs, see [Log Files]({{< ref "#log-files" >}}) in the [WebHCat manual]({{< ref "webhcat-base" >}}).
+For WebHCat logs, see [Log Files]({{% ref "#log-files" %}}) in the [WebHCat manual]({{% ref "webhcat-base" %}}).
 
 ### Derby Server Mode
 
-[Derby](http://db.apache.org/derby/) is the default database for the Hive metastore ([Metadata Store]({{< ref "#metadata-store" >}})). To run Derby as a network server for multiple users, see [Hive Using Derby in Server Mode]({{< ref "hivederbyservermode" >}}).
+[Derby](http://db.apache.org/derby/) is the default database for the Hive metastore ([Metadata Store]({{% ref "#metadata-store" %}})). To run Derby as a network server for multiple users, see [Hive Using Derby in Server Mode]({{% ref "hivederbyservermode" %}}).
 
 ### Configuration Variables
 
 Broadly the configuration variables for Hive administration are categorized into:
 
-* [Hive Configuration Variables]({{< ref "#hive-configuration-variables" >}})
-* [Hive Metastore Configuration Variables]({{< ref "#hive-metastore-configuration-variables" >}})
-* [Configuration Variables Used to Interact with Hadoop]({{< ref "#configuration-variables-used-to-interact-with-hadoop" >}})
-* [Hive Variables Used to Pass Run Time Information]({{< ref "#hive-variables-used-to-pass-run-time-information" >}})
+* [Hive Configuration Variables]({{% ref "#hive-configuration-variables" %}})
+* [Hive Metastore Configuration Variables]({{% ref "#hive-metastore-configuration-variables" %}})
+* [Configuration Variables Used to Interact with Hadoop]({{% ref "#configuration-variables-used-to-interact-with-hadoop" %}})
+* [Hive Variables Used to Pass Run Time Information]({{% ref "#hive-variables-used-to-pass-run-time-information" %}})
 
-Also see [Hive Configuration Properties]({{< ref "configuration-properties" >}}) in the [Language Manual]({{< ref "languagemanual" >}}) for non-administrative configuration variables.
+Also see [Hive Configuration Properties]({{% ref "configuration-properties" %}}) in the [Language Manual]({{% ref "languagemanual" %}}) for non-administrative configuration variables.
 
 Version information: Metrics
 
- A new Hive metrics system based on Codahale is introduced in releases 1.3.0 and 2.0.0 by [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761). To configure it or revert to the old metrics system, see the [Metrics section of Hive Configuration Properties]({{< ref "#metrics-section-of-hive-configuration-properties" >}}).
+ A new Hive metrics system based on Codahale is introduced in releases 1.3.0 and 2.0.0 by [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761). To configure it or revert to the old metrics system, see the [Metrics section of Hive Configuration Properties]({{% ref "#metrics-section-of-hive-configuration-properties" %}}).
 
 #### Hive Configuration Variables
 
@@ -108,7 +108,7 @@ Version information: Metrics
 | hive.resource.use.hdfs.location | Reference HDFS based files/jars directly instead of copying to session based HDFS scratch directory. (As of Hive [2.2.1](https://issues.apache.org/jira/browse/HIVE-17574).) | true |
 | hive.jar.path | The location of hive_cli.jar that is used when submitting jobs in a separate jvm. |   |
 | hive.aux.jars.path | The location of the plugin jars that contain implementations of user defined functions and SerDes. |   |
-| hive.reloadable.aux.jars.path | The location of plugin jars that can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{< ref "#beeline-reload-command" >}}), without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path[for creating UDFs or SerDes](/docs/latest/user/configuration-properties#hiveauxjarspath). (As of Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-7553).) |  |
+| hive.reloadable.aux.jars.path | The location of plugin jars that can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{% ref "#beeline-reload-command" %}}), without having to restart HiveServer2. These jars can be used just like the auxiliary classes in hive.aux.jars.path[for creating UDFs or SerDes](/docs/latest/user/configuration-properties#hiveauxjarspath). (As of Hive [0.14.0](https://issues.apache.org/jira/browse/HIVE-7553).) |  |
 | hive.partition.pruning | A strict value for this variable indicates that an error is thrown by the compiler in case no partition predicate is provided on a partitioned table. This is used to protect against a user inadvertently issuing a query against all the partitions of the table. | nonstrict |
 | hive.map.aggr | Determines whether the map side aggregation is on or not. | true |
 | hive.join.emit.interval |   | 1000 |
@@ -132,9 +132,9 @@ Version information: Metrics
 
 #### Hive Metastore Configuration Variables
 
-Please see [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) for information about the configuration variables used to set up the metastore in local, remote, or embedded mode. Also see descriptions in the [Metastore]({{< ref "#metastore" >}}) section of the Language Manual's [Hive Configuration Properties]({{< ref "configuration-properties" >}}).
+Please see [Hive Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}) for information about the configuration variables used to set up the metastore in local, remote, or embedded mode. Also see descriptions in the [Metastore]({{% ref "#metastore" %}}) section of the Language Manual's [Hive Configuration Properties]({{% ref "configuration-properties" %}}).
 
-For security configuration (Hive 0.10 and later), see the [Hive Metastore Security](/docs/latest/user/configuration-properties#hive-metastore-security) section in the Language Manual's [Hive Configuration Properties]({{< ref "configuration-properties" >}}).
+For security configuration (Hive 0.10 and later), see the [Hive Metastore Security](/docs/latest/user/configuration-properties#hive-metastore-security) section in the Language Manual's [Hive Configuration Properties]({{% ref "configuration-properties" %}}).
 
 #### Configuration Variables Used to Interact with Hadoop
 
@@ -191,7 +191,7 @@ See <http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/Co
 ```
 
 This configures the CredentialProvider used by <http://hadoop.apache.org/docs/current/api/org/apache/hadoop/conf/Configuration.html#getPassword(java.lang.String)>, which is used by Hive to retrieve the metastore password.
-3. Remove the Hive Metastore password entry ([javax.jdo.option.ConnectionPassword]({{< ref "#javax-jdo-option-connectionpassword" >}})) from the Hive configuration. The CredentialProvider will be used instead.
+3. Remove the Hive Metastore password entry ([javax.jdo.option.ConnectionPassword]({{% ref "#javax-jdo-option-connectionpassword" %}})) from the Hive configuration. The CredentialProvider will be used instead.
 4. Restart Hive Metastore Server/HiveServer2.
 
 ## Configuring HCatalog and WebHCat
@@ -200,12 +200,12 @@ This configures the CredentialProvider used by <http://hadoop.apache.org/docs/c
 
 Starting in Hive release 0.11.0, HCatalog is installed and configured with Hive. The HCatalog server is the same as the Hive metastore.
 
-* See [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) for metastore configuration properties.
-* See [HCatalog Installation from Tarball]({{< ref "hcatalog-installhcat" >}}) for additional information.
+* See [Hive Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}) for metastore configuration properties.
+* See [HCatalog Installation from Tarball]({{% ref "hcatalog-installhcat" %}}) for additional information.
 
 For Hive releases prior to 0.11.0, see the "Thrift Server Setup" section in the HCatalog 0.5.0 document [Installation from Tarball](/docs/latest/hcatalog/hcatalog-installhcat/).
 
 ### WebHCat
 
-For information about configuring WebHCat, see [WebHCat Configuration]({{< ref "webhcat-configure" >}}).
+For information about configuring WebHCat, see [WebHCat Configuration]({{% ref "webhcat-configure" %}}).
 

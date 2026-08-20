@@ -8,9 +8,9 @@ date: 2024-12-12
 ## Setting Up Hive Server
 
 * [Setting Up HiveServer2](/docs/latest/admin/setting-up-hiveserver2)
-* [Setting Up Thrift Hive Server]({{< ref "hiveserver" >}})
-* [Setting Up Hive JDBC Server]({{< ref "hivejdbcinterface" >}})
-* [Setting Up Hive ODBC Server]({{< ref "hiveodbc" >}})
+* [Setting Up Thrift Hive Server]({{% ref "hiveserver" %}})
+* [Setting Up Hive JDBC Server]({{% ref "hivejdbcinterface" %}})
+* [Setting Up Hive ODBC Server]({{% ref "hiveodbc" %}})
 
  
 

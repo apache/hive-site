@@ -5,11 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : AdminManual Metastore Administration
 
-This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see [AdminManual Metastore 3.0 Administration]({{< ref "adminmanual-metastore-3-0-administration" >}})
+This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and later releases please see [AdminManual Metastore 3.0 Administration]({{% ref "adminmanual-metastore-3-0-administration" %}})
 
 ### Introduction
 
-All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using [JPOX](http://www.datanucleus.org/) ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of [supported databases]({{< ref "#supported-databases" >}}) in section below.
+All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using [JPOX](http://www.datanucleus.org/) ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of [supported databases]({{% ref "#supported-databases" %}}) in section below.
 
 You can find an E/R diagram for the metastore [here](https://issues.apache.org/jira/secure/attachment/12471108/HiveMetaStore.pdf).
 
@@ -17,13 +17,13 @@ There are 2 different ways to setup the metastore server and metastore database 
 
 Configuration options for **metastore database** where metadata is persisted:
 
-* [Local/Embedded Metastore Database (Derby)]({{< ref "#localembedded-metastore-database-derby" >}})
-* [Remote Metastore Database]({{< ref "#remote-metastore-database" >}})
+* [Local/Embedded Metastore Database (Derby)]({{% ref "#localembedded-metastore-database-derby" %}})
+* [Remote Metastore Database]({{% ref "#remote-metastore-database" %}})
 
 Configuration options for **metastore server**:
 
-* [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}})
-* [Remote Metastore Server]({{< ref "#remote-metastore-server" >}})
+* [Local/Embedded Metastore Server]({{% ref "#localembedded-metastore-server" %}})
+* [Remote Metastore Server]({{% ref "#remote-metastore-server" %}})
 
 #### Basic Configuration Parameters
 
@@ -81,7 +81,7 @@ The default configuration sets up an embedded metastore which is used in unit te
 
 **An embedded metastore database is mainly used for unit tests. Only one process can connect to the metastore database at a time, so it is not really a practical solution but works well for unit tests.**
 
-For unit tests [Local/Embedded Metastore Server]({{< ref "#localembedded-metastore-server" >}}) configuration for the metastore server is used in conjunction with embedded database.
+For unit tests [Local/Embedded Metastore Server]({{% ref "#localembedded-metastore-server" %}}) configuration for the metastore server is used in conjunction with embedded database.
 
 Derby is the default database for the embedded metastore.
 
@@ -111,7 +111,7 @@ In local/embedded metastore setup, the metastore server component is used like a
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.uris | *not needed because this is local store* |   |
-| hive.metastore.local | `true` | this is local store (removed in Hive 0.10, see [configuration description]({{< ref "#configuration-description" >}}) section) |
+| hive.metastore.local | `true` | this is local store (removed in Hive 0.10, see [configuration description]({{% ref "#configuration-description" %}}) section) |
 | hive.metastore.warehouse.dir | `<base hdfs path>` | Points to default location of non-external Hive tables in HDFS. |
 
 ### Remote Metastore Server
@@ -132,7 +132,7 @@ If you execute Java directly, then JAVA_HOME, HIVE_HOME, HADOOP_HOME must be cor
 
 **Server Configuration Parameters**
 
-The following example uses a[Remote Metastore Database]({{< ref "#remote-metastore-database" >}}).
+The following example uses a[Remote Metastore Database]({{% ref "#remote-metastore-database" %}}).
 
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
@@ -186,7 +186,7 @@ hive --service metastore -p <port_num>
 | --- | --- | --- | --- |
 | MySQL | 5.6.17 | `mysql` |  |
 | Postgres | 9.1.13 | ``` postgres ``` |  |
-| Oracle | 11g | `oracle` | [hive.metastore.orm.retrieveMapNullsAsEmptyStrings]({{< ref "#hive-metastore-orm-retrievemapnullsasemptystrings" >}}) |
+| Oracle | 11g | `oracle` | [hive.metastore.orm.retrieveMapNullsAsEmptyStrings]({{% ref "#hive-metastore-orm-retrievemapnullsasemptystrings" %}}) |
 | MS SQL Server | 2008 R2 | `mssql` |  |
 
 ### Metastore Schema Consistency and Upgrades
@@ -199,5 +199,5 @@ Hive now records the schema version in the metastore database and verifies that 
 
 To suppress the schema check and allow the metastore to implicitly modify the schema, you need to set a configuration property `hive.metastore.schema.verification` to false in `hive-site.xml`.
 
-Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details [here]({{< ref "hive-schema-tool" >}}).
+Starting in release 0.12, Hive also includes an off-line schema tool to initialize and upgrade the metastore schema. Please refer to the details [here]({{% ref "hive-schema-tool" %}}).
 

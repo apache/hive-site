@@ -15,7 +15,7 @@ Returns the current status of the WebHCat (Templeton) server. Useful for heartbe
 
 ## Parameters
 
-Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
+Only the [standard parameters]({{% ref "#standard-parameters" %}}) are accepted.
 
 ## Results
 
@@ -46,7 +46,7 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
   
 
 **Navigation Links**
-Previous: [Response Types (GET :version)]({{< ref "webhcat-reference-responsetypes" >}})Next: [GET version]({{< ref "webhcat-reference-version" >}})
+Previous: [Response Types (GET :version)]({{% ref "webhcat-reference-responsetypes" %}})Next: [GET version]({{% ref "webhcat-reference-version" %}})
 
 
 

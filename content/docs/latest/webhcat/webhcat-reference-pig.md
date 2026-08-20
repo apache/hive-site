@@ -26,7 +26,7 @@ Create and queue a [Pig](http://pig.apache.org/) job.
 | **callback** | Define a URL to be called upon job completion. You may embed a specific job ID into this URL using `$jobId`. This tag will be replaced in the callback URL with this job's job ID. | Optional | None |
 | **usehcatalog** | Specify that the submitted job uses HCatalog and therefore needs to access the metastore, which requires additional steps for WebHCat to perform in a secure cluster. (See [HIVE-5133](https://issues.apache.org/jira/browse/HIVE-5133).) This parameter will be introduced in Hive 0.13.0. It can also be set to "true" by including `-useHCatalog` in the **arg** parameter. Also, if webhcat-site.xml defines the parameters `templeton.hive.archive`, `templeton.hive.home` and `templeton.hcat.home` then WebHCat will ship the Hive tar to the target node where the job runs. (See [HIVE-5547](https://issues.apache.org/jira/browse/HIVE-5547).) This means that Hive doesn't need to be installed on every node in the Hadoop cluster. It does not ensure that Pig is installed on the target node in the cluster. This is independent of security, but improves manageability. The webhcat-site.xml parameters are documented in webhcat-default.xml. | Optional in Hive 0.13.0+ | false |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -87,8 +87,8 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 
 **Navigation Links**
-Previous: [POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar" >}})  
- Next: [POST hive]({{< ref "webhcat-reference-hive" >}})
+Previous: [POST mapreduce/jar]({{% ref "webhcat-reference-mapreducejar" %}})  
+ Next: [POST hive]({{% ref "webhcat-reference-hive" %}})
 
 
 

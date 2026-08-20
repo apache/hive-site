@@ -10,19 +10,19 @@ date: 2024-12-12
 There are alternate options which might work similarily to indexing:
 
 * Materialized views with automatic rewriting can result in very similar results.  [Hive 2.3.0](https://issues.apache.org/jira/browse/HIVE-14249) adds support for materialzed views.
-* Using columnar file formats ([Parquet]({{< ref "parquet" >}}), [ORC](https://orc.apache.org/docs/indexes.html)) – they can do selective scanning; they may even skip entire files/blocks.
+* Using columnar file formats ([Parquet]({{% ref "parquet" %}}), [ORC](https://orc.apache.org/docs/indexes.html)) – they can do selective scanning; they may even skip entire files/blocks.
 
 Indexing has been **removed** in version 3.0 ([HIVE-18448](https://issues.apache.org/jira/browse/HIVE-18448)).
 
 ## Introduction
 
-This document explains the proposed design for adding index support to Hive ([HIVE-417](http://issues.apache.org/jira/browse/HIVE-417)). Indexing is a standard database technique, but with many possible variations. Rather than trying to provide a "one-size-fits-all" index implementation, the approach we are taking is to define indexing in a pluggable manner (related to [StorageHandlers]({{< ref "storagehandlers" >}})) and provide one concrete indexing implementation as a reference, leaving it open for contributors to plug in other indexing schemes as time goes by. No index support will be available until Hive 0.7.
+This document explains the proposed design for adding index support to Hive ([HIVE-417](http://issues.apache.org/jira/browse/HIVE-417)). Indexing is a standard database technique, but with many possible variations. Rather than trying to provide a "one-size-fits-all" index implementation, the approach we are taking is to define indexing in a pluggable manner (related to [StorageHandlers]({{% ref "storagehandlers" %}})) and provide one concrete indexing implementation as a reference, leaving it open for contributors to plug in other indexing schemes as time goes by. No index support will be available until Hive 0.7.
 
 ## Scope
 
 Only single-table indexes are supported. Others (such as join indexes) may be more appropriately expressed as materialized views once Hive has support for those.
 
-This document currently only covers index creation and maintenance. A follow-on will explain how indexes are used to optimize queries (building on [FilterPushdownDev]({{< ref "filterpushdowndev" >}})).
+This document currently only covers index creation and maintenance. A follow-on will explain how indexes are used to optimize queries (building on [FilterPushdownDev]({{% ref "filterpushdowndev" %}})).
 
 ## CREATE INDEX
 
@@ -44,7 +44,7 @@ AS 'index.handler.class.name'
 
 ```
 
-For the details of the various clauses such as ROW FORMAT, see [Create Table]({{< ref "#create-table" >}}).
+For the details of the various clauses such as ROW FORMAT, see [Create Table]({{% ref "#create-table" %}}).
 
 By default, index partitioning matches the partitioning of the base table. The PARTITIONED BY clause may be used to specify a subset of the table's partitioning columns (this column list may be empty to indicate that the index spans all partitions of the table). For example, a table may be partitioned by date+region even though the index is partitioned by date alone (each index partition spanning all regions).
 
@@ -151,7 +151,7 @@ ALTER INDEX index_name ON table_name [PARTITION (...)] REBUILD
 
 ```
 
-For the PARTITION clause syntax, see [LanguageManual DDL#Add_Partitions]({{< ref "#languagemanual-ddl#add_partitions" >}}).
+For the PARTITION clause syntax, see [LanguageManual DDL#Add_Partitions]({{% ref "#languagemanual-ddl#add_partitions" %}}).
 
 If WITH DEFERRED REBUILD is specified on CREATE INDEX, then the newly created index is initially empty (regardless of whether the table contains any data). The ALTER INDEX ... REBUILD command can be used to build the index structure for all partitions or a single partition.
 

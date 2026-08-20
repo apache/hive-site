@@ -15,13 +15,13 @@ In windows, use "cmd /c your_script" instead of just "your_script"
 
 Warning
 
-It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see [REGEXP_REPLACE]({{< ref "#regexp_replace" >}}) and replace the tabs with some other character on their way into the TRANSFORM() call.
+It is your responsibility to sanitize any STRING columns prior to transformation. If your STRING column contains tabs, an identity transformer will not give you back what you started with! To help with this, see [REGEXP_REPLACE]({{% ref "#regexp_replace" %}}) and replace the tabs with some other character on their way into the TRANSFORM() call.
 
 Warning
 
 Formally, *MAP ...* and *REDUCE ...* are syntactic transformations of *SELECT TRANSFORM ( ... )*. In other words, they serve as comments or notes to the reader of the query. BEWARE: Use of these keywords may be **dangerous** as (e.g.) typing "REDUCE" does not force a reduce phase to occur and typing "MAP" does not force a new map phase!
 
-Please also see [Sort By / Cluster By / Distribute By]({{< ref "languagemanual-sortby" >}}) and Larry Ogrodnek's [blog post](http://dev.bizo.com/2009/10/hive-map-reduce-in-java.html).
+Please also see [Sort By / Cluster By / Distribute By]({{% ref "languagemanual-sortby" %}}) and Larry Ogrodnek's [blog post](http://dev.bizo.com/2009/10/hive-map-reduce-in-java.html).
 
 ```
 clusterBy: CLUSTER BY colName (',' colName)*
@@ -79,7 +79,7 @@ query:
 
 #### SQL Standard Based Authorization Disallows TRANSFORM
 
-The TRANSFORM clause is disallowed when [SQL standard based authorization]({{< ref "sql-standard-based-hive-authorization" >}}) is configured in Hive 0.13.0 and later releases ([HIVE-6415](https://issues.apache.org/jira/browse/HIVE-6415)).
+The TRANSFORM clause is disallowed when [SQL standard based authorization]({{% ref "sql-standard-based-hive-authorization" %}}) is configured in Hive 0.13.0 and later releases ([HIVE-6415](https://issues.apache.org/jira/browse/HIVE-6415)).
 
 #### TRANSFORM Examples
 

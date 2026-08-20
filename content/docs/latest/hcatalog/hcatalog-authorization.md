@@ -9,7 +9,7 @@ date: 2024-12-12
 
 ## Default Authorization Model of Hive
 
-The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table. It is described in more detail in [Hive Authorization]({{< ref "languagemanual-authorization" >}}) and [Hive deprecated authorization mode / Legacy Mode]({{< ref "hive-deprecated-authorization-mode" >}}).
+The default authorization model of Hive supports a traditional RDBMS style of authorization based on users, groups and roles and granting them permissions to do operations on database or table. It is described in more detail in [Hive Authorization]({{% ref "languagemanual-authorization" %}}) and [Hive deprecated authorization mode / Legacy Mode]({{% ref "hive-deprecated-authorization-mode" %}}).
 
 This RDBMS style of authorization is not very suitable for the typical use cases in Hadoop because of the following differences in implementation:
 
@@ -29,7 +29,7 @@ In the HCatalog package, we have introduced implementation of an authorization i
 
 Note
 
-This feature is also available in Hive on the metastore-side, starting with release 0.10.0 (see [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}}) in the Hive documentation). Starting in Hive 0.12.0 it also runs on the client side ([HIVE-5048](https://issues.apache.org/jira/browse/HIVE-5048) and [HIVE-5402](https://issues.apache.org/jira/browse/HIVE-5402)).
+This feature is also available in Hive on the metastore-side, starting with release 0.10.0 (see [Storage Based Authorization in the Metastore Server]({{% ref "storage-based-authorization-in-the-metastore-server" %}}) in the Hive documentation). Starting in Hive 0.12.0 it also runs on the client side ([HIVE-5048](https://issues.apache.org/jira/browse/HIVE-5048) and [HIVE-5402](https://issues.apache.org/jira/browse/HIVE-5402)).
 
 In Hive, when a file system is used for storage, there is a directory corresponding to a database or a table. With this authorization model, the read/write permissions a user or group has for this directory determine the permissions a user has on the database or table. In the case of other storage systems such as HBase, the authorization of equivalent entities in the system will be done using the system’s authorization mechanism to determine the permissions in Hive.
 
@@ -48,7 +48,7 @@ Details of HDFS permissions are given at `ht``tp://hadoop.apache.org/docs/r`*x.x
 
 Links to documentation for different releases of Hadoop can be found here: <http://hadoop.apache.org/docs/>.
 
-**Note**: If [hive.warehouse.subdir.inherit.perms](/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms) is enabled, permissions and ACL's for Hive-created files and directories will be set via the following [permission inheritance]({{< ref "permission-inheritance-in-hive" >}}) rules.
+**Note**: If [hive.warehouse.subdir.inherit.perms](/docs/latest/user/configuration-properties#hivewarehousesubdirinheritperms) is enabled, permissions and ACL's for Hive-created files and directories will be set via the following [permission inheritance]({{% ref "permission-inheritance-in-hive" %}}) rules.
 
 The file system’s logic for determining if a user has permission on the directory or file will be used by Hive. 
 
@@ -68,7 +68,7 @@ The following table shows the minimum permissions required for Hive operations u
 | ALTER TABLE |   |   |   | X |
 | SHOW TABLES | X |   |   |   |
 
-**Caution:** Hive's current implementation of this authorization model does not prevent malicious users from doing bad things. See the [Known Issues]({{< ref "#known-issues" >}}) section below.
+**Caution:** Hive's current implementation of this authorization model does not prevent malicious users from doing bad things. See the [Known Issues]({{% ref "#known-issues" %}}) section below.
 
 ### Unused DDL for Permissions
 
@@ -76,11 +76,11 @@ DDL statements that manage permissions for Hive's default authorization model do
 
 Caution
 
-All GRANT and REVOKE statements for users, groups, and roles are ignored. See the [Known Issues]({{< ref "#known-issues" >}}) section below.
+All GRANT and REVOKE statements for users, groups, and roles are ignored. See the [Known Issues]({{% ref "#known-issues" %}}) section below.
 
 ## Configuring Storage-System Based Authorization
 
-The implementation of the file-system based authorization model is available through an authorization provider called StorageBasedAuthorizationProvider that is part of Hive. (Support for this was added to the Hive package in release 0.10.0 – see [HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705) and [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}}).)
+The implementation of the file-system based authorization model is available through an authorization provider called StorageBasedAuthorizationProvider that is part of Hive. (Support for this was added to the Hive package in release 0.10.0 – see [HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705) and [Storage Based Authorization in the Metastore Server]({{% ref "storage-based-authorization-in-the-metastore-server" %}}).)
 
 Version
 
@@ -125,9 +125,9 @@ The HCatalog command line tool uses the same syntax as Hive, and will create the
  
 
 **Navigation Links**
-Previous: [Notification]({{< ref "hcatalog-notification" >}})
+Previous: [Notification]({{% ref "hcatalog-notification" %}})
 
-Hive documents: [Authorization]({{< ref "languagemanual-authorization" >}}) and [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}})
+Hive documents: [Authorization]({{% ref "languagemanual-authorization" %}}) and [Storage Based Authorization in the Metastore Server]({{% ref "storage-based-authorization-in-the-metastore-server" %}})
 
 
 

@@ -20,7 +20,7 @@ List the columns in an HCatalog table.
 | **:db** | The database name | Required | None |
 | **:table** | The table name | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -71,7 +71,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [DELETE ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-deletepartition" >}}) Next: [GET ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-getcolumn" >}})
+Previous: [DELETE ddl/database/:db/table/:table/partition/:partition]({{% ref "webhcat-reference-deletepartition" %}}) Next: [GET ddl/database/:db/table/:table/column/:column]({{% ref "webhcat-reference-getcolumn" %}})
 
 
 

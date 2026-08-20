@@ -9,16 +9,16 @@ The EXCHANGE PARTITION command will move a partition from a source table to targ
 
 When the command is executed, the source table's partition folder in HDFS will be renamed to move it to the destination table's partition folder.  The Hive metastore will be updated to change the metadata of the source and destination tables accordingly.
 
-The partition specification can be fully or [partially specified]({{< ref "#partially-specified" >}}).
+The partition specification can be fully or [partially specified]({{% ref "#partially-specified" %}}).
 
-See [Language Manual DDL]({{< ref "#language-manual-ddl" >}}) for additional information on the Exchange Partition feature.
+See [Language Manual DDL]({{% ref "#language-manual-ddl" %}}) for additional information on the Exchange Partition feature.
 
 #### Constraints
 
 * The destination table cannot contain the partition to be exchanged.
 
 * The operation fails in the presence of an index.
-* Exchange partition is not allowed with transactional tables either as source or destination. Alternatively, use [LOAD DATA]({{< ref "#load-data" >}}) or [INSERT OVERWRITE]({{< ref "#insert-overwrite" >}}) commands to move partitions across transactional tables.
+* Exchange partition is not allowed with transactional tables either as source or destination. Alternatively, use [LOAD DATA]({{% ref "#load-data" %}}) or [INSERT OVERWRITE]({{% ref "#insert-overwrite" %}}) commands to move partitions across transactional tables.
 * This command requires both the source and destination table names to have the same table schema.    
 If the schemas are different, the following exception is thrown:
 

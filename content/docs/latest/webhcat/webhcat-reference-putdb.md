@@ -24,7 +24,7 @@ Create a database.
 | **comment** | A comment for the database, like a description | Optional | None |
 | **properties** | The database properties | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -57,7 +57,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb" >}}) Next: [DELETE ddl/database/:db]({{< ref "webhcat-reference-deletedb" >}})
+Previous: [GET ddl/database/:db]({{% ref "webhcat-reference-getdb" %}}) Next: [DELETE ddl/database/:db]({{% ref "webhcat-reference-deletedb" %}})
 
 
 

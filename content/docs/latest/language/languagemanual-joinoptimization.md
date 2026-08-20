@@ -64,7 +64,7 @@ store_sales join time_dim on (ss_sold_time_sk = t_time_sk)
 
 ```
 
-The default value for [hive.auto.convert.join]({{< ref "#hive-auto-convert-join" >}}) was false in Hive 0.10.0.  Hive 0.11.0 changed the default to true ([HIVE-3297](https://issues.apache.org/jira/browse/HIVE-3297)). Note that [hive-default.xml.template]({{< ref "#hive-default-xml-template" >}}) incorrectly gives the default as false in Hive 0.11.0 through 0.13.1.
+The default value for [hive.auto.convert.join]({{% ref "#hive-auto-convert-join" %}}) was false in Hive 0.10.0.  Hive 0.11.0 changed the default to true ([HIVE-3297](https://issues.apache.org/jira/browse/HIVE-3297)). Note that [hive-default.xml.template]({{% ref "#hive-default-xml-template" %}}) incorrectly gives the default as false in Hive 0.11.0 through 0.13.1.
 
 MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through. The prior implementation has this division of labor:
 
@@ -122,7 +122,7 @@ It is likely, though, that for small dimension tables the parts of both tables n
 2. Merge MJ->MJ into a single MJ when possible.
 3. Merge MJ* patterns into a single Map stage as a chain of MJ operators. (Not yet implemented.)
 
-If `[hive.auto.convert.join]({{< ref "#hive-auto-convert-join" >}})` is set to true the optimizer not only converts joins to mapjoins but also merges MJ* patterns as much as possible.
+If `[hive.auto.convert.join]({{% ref "#hive-auto-convert-join" %}})` is set to true the optimizer not only converts joins to mapjoins but also merges MJ* patterns as much as possible.
 
 #### Optimize Auto Join Conversion
 
@@ -134,9 +134,9 @@ set hive.auto.convert.join.noconditionaltask.size = 10000000;
 
 ```
 
-The default for `[hive.auto.convert.join.noconditionaltask]({{< ref "#hive-auto-convert-join-noconditionaltask" >}})` is true which means auto conversion is enabled. (Originally the default was false – see [HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) – but it was changed to true by [HIVE-4146](https://issues.apache.org/jira/browse/HIVE-4146) before Hive 0.11.0 was released.)
+The default for `[hive.auto.convert.join.noconditionaltask]({{% ref "#hive-auto-convert-join-noconditionaltask" %}})` is true which means auto conversion is enabled. (Originally the default was false – see [HIVE-3784](https://issues.apache.org/jira/browse/HIVE-3784) – but it was changed to true by [HIVE-4146](https://issues.apache.org/jira/browse/HIVE-4146) before Hive 0.11.0 was released.)
 
-The [size configuration]({{< ref "#size-configuration" >}}) enables the user to control what size table can fit in memory. This value represents the sum of the sizes of tables that can be converted to hashmaps that fit in memory. Currently, n-1 tables of the join have to fit in memory for the map-join optimization to take effect. There is no check to see if the table is a compressed one or not and what the potential size of the table can be. The effect of this assumption on the results is discussed in the next section.
+The [size configuration]({{% ref "#size-configuration" %}}) enables the user to control what size table can fit in memory. This value represents the sum of the sizes of tables that can be converted to hashmaps that fit in memory. Currently, n-1 tables of the join have to fit in memory for the map-join optimization to take effect. There is no check to see if the table is a compressed one or not and what the potential size of the table can be. The effect of this assumption on the results is discussed in the next section.
 
 For example, the previous query just becomes:
 
@@ -157,7 +157,7 @@ Auto join conversion also affects the sort-merge-bucket joins.
 
 Version 0.13.0 and later
 
-Hive 0.13.0 introduced `[hive.auto.convert.join.use.nonstaged]({{< ref "#hive-auto-convert-join-use-nonstaged" >}})` with a default of false ([HIVE-6144](https://issues.apache.org/jira/browse/HIVE-6144)).
+Hive 0.13.0 introduced `[hive.auto.convert.join.use.nonstaged]({{% ref "#hive-auto-convert-join-use-nonstaged" %}})` with a default of false ([HIVE-6144](https://issues.apache.org/jira/browse/HIVE-6144)).
 
 For conditional joins, if the input stream from a small alias can be directly applied to the join operator without filtering or projection, then it does not need to be pre-staged in the distributed cache via a MapReduce local task. Setting `hive.auto.convert.join.use.nonstaged` to true avoids pre-staging in those cases.
 
