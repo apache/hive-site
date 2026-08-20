@@ -13,7 +13,7 @@ date: 2024-12-12
 
 The initial implementation was added to Hive 4.0 in [HIVE-12971](https://issues.apache.org/jira/browse/HIVE-12971) and is designed to work with Kudu 1.2+.
 
-There are two main components which make up the implementation: the `KuduStorageHandler` and the `KuduPredicateHandler`. The `KuduStorageHandler` is a Hive [StorageHandler](/development/desingdocs/storagehandlers) implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.
+There are two main components which make up the implementation: the `KuduStorageHandler` and the `KuduPredicateHandler`. The `KuduStorageHandler` is a Hive [StorageHandler](/development/designdocs/storagehandlers) implementation. The primary roles of this class are to manage the mapping of a Hive table to a Kudu table and configures Hive queries. The KuduPredicateHandler is used push down filter operations to Kudu for more efficient IO.
 
 **NOTE**: The initial implementation is considered `***experimental***` as there are remaining [sub-jiras](https://issues.apache.org/jira/browse/HIVE-12971) open to make the implementation more configurable and performant. Currently only external tables pointing at existing Kudu tables are supported. Support for creating and altering underlying Kudu tables in tracked via [HIVE-22021](https://issues.apache.org/jira/browse/HIVE-22021). Additionally full support for UPDATE, UPSERT, and DELETE statement support is tracked by [HIVE-22027](https://issues.apache.org/jira/browse/HIVE-22027).
 

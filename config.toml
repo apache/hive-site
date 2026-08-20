@@ -36,7 +36,7 @@ theme = 'hive'
     languageManual = "/docs/latest/language/languagemanual"
     license2 = "https://www.apache.org/licenses/LICENSE-2.0.html"
     privacyPolicy = "/general/privacypolicy/"
-    designDocs = "/development/desingdocs/"
+    designDocs = "/development/designdocs/"
     hiveJira = "https://issues.apache.org/jira/projects/HIVE/issues"
     faq = "/community/resources/hivedeveloperfaq"
     vcs = "/development/versioncontrol/"
@@ -57,11 +57,11 @@ theme = 'hive'
 [params.features]
     acidTxn = "/docs/latest/user/hive-transactions"
     hs2 = "/docs/latest/user/hiveserver2-overview"
-    hms = "/development/desingdocs/design"
+    hms = "/development/designdocs/design"
     compactions = "/docs/latest/language/languagemanual-ddl#alter-tablepartition-compact"
     repl = "/docs/latest/admin/replication"
     cbo = "/docs/latest/user/cost-based-optimization-in-hive"
-    llap = "/development/desingdocs/llap"
+    llap = "/development/designdocs/llap"
     iceberg = "https://iceberg.apache.org/docs/latest/hive/"
 
 [outputs]

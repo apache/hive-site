@@ -51,7 +51,7 @@ date: 2024-12-12
 
 * ### HiveServer2
 
-	+ Support [SAML 2.0](/development/desingdocs/support-saml-2-0-authentication-mode)/JWT authentication mode
+	+ Support [SAML 2.0](/development/designdocs/support-saml-2-0-authentication-mode)/JWT authentication mode
 	+ Support both Kerberos and LDAP auth methods in parallel
 	+ Graceful shutdown
 	+ Easy access to the operation log through web UI
