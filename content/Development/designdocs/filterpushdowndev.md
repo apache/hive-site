@@ -12,7 +12,7 @@ This document explains how we are planning to add support in Hive's optimizer fo
 Below are the main use cases we are targeting.
 
 * Pushing filters down into Hive's builtin storage formats such as RCFile
-* Pushing filters down into storage handlers such as the [HBase handler]({{< ref "hbaseintegration" >}}) (<http://issues.apache.org/jira/browse/HIVE-1226>)
+* Pushing filters down into storage handlers such as the [HBase handler]({{% ref "hbaseintegration" %}}) (<http://issues.apache.org/jira/browse/HIVE-1226>)
 * Pushing filters down into index access plans once an indexing framework is added to Hive (<http://issues.apache.org/jira/browse/HIVE-417>)
 
 ## Components Involved

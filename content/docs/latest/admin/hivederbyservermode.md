@@ -7,7 +7,7 @@ date: 2024-12-12
 
 Hive in embedded mode has a limitation of one active user at a time. You may want to run [Derby](http://db.apache.org/derby/) as a Network Server, this way multiple users can access it simultaneously from different systems.
 
-See [Metadata Store]({{< ref "#metadata-store" >}}) and [Embedded Metastore]({{< ref "#embedded-metastore" >}}) for more information.
+See [Metadata Store]({{% ref "#metadata-store" %}}) and [Embedded Metastore]({{% ref "#embedded-metastore" %}}) for more information.
 
 ### Download Derby
 

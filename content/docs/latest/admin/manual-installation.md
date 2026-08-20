@@ -469,25 +469,25 @@ $ bin/beeline
 
 Metadata is stored in a relational database. In our example (and as a default) it is a Derby database. By default, it's location is ./metastore_db. (See conf/hive-default.xml). You can change it by modifying the configuration variable javax.jdo.option.ConnectionURL.
 
-Using Derby in embedded mode allows at most one user at a time. To configure Derby to run in server mode, see [Hive Using Derby in Server Mode]({{< ref "hivederbyservermode" >}}).
+Using Derby in embedded mode allows at most one user at a time. To configure Derby to run in server mode, see [Hive Using Derby in Server Mode]({{% ref "hivederbyservermode" %}}).
 
-To configure a database other than Derby for the Hive metastore, see [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}).
+To configure a database other than Derby for the Hive metastore, see [Hive Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}).
 
-**Next Step:** [Configuring Hive]({{< ref "adminmanual-configuration" >}}).
+**Next Step:** [Configuring Hive]({{% ref "adminmanual-configuration" %}}).
 
 ## HCatalog and WebHCat
 
 ### HCatalog
 
-If you install Hive from the binary tarball, the `hcat` command is available in the `hcatalog/bin` directory. However, most `hcat` commands can be issued as `hive` commands except for "`hcat -g`" and "`hcat -p`". Note that the `hcat` command uses the `-p` flag for permissions but `hive` uses it to specify a port number. The HCatalog CLI is documented [here]({{< ref "hcatalog-cli" >}}) and the Hive CLI is documented [here]({{< ref "languagemanual-cli" >}}).
+If you install Hive from the binary tarball, the `hcat` command is available in the `hcatalog/bin` directory. However, most `hcat` commands can be issued as `hive` commands except for "`hcat -g`" and "`hcat -p`". Note that the `hcat` command uses the `-p` flag for permissions but `hive` uses it to specify a port number. The HCatalog CLI is documented [here]({{% ref "hcatalog-cli" %}}) and the Hive CLI is documented [here]({{% ref "languagemanual-cli" %}}).
 
-HCatalog installation is documented [here]({{< ref "hcatalog-installhcat" >}}).
+HCatalog installation is documented [here]({{% ref "hcatalog-installhcat" %}}).
 
 ### WebHCat (Templeton)
 
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the hcatalog/webhcat/svr/src/main/bin/webhcat_server.sh directory.
 
-WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat" >}}).
+WebHCat installation is documented [here]({{% ref "webhcat-installwebhcat" %}}).
 
  
 

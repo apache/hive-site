@@ -29,7 +29,7 @@ Table and partition level statistics were added in Hive 0.7.0 by [HIVE-1361](htt
 
 ### Column Statistics
 
-The second milestone was to support column level statistics. See [Column Statistics in Hive]({{< ref "column-statistics-in-hive" >}}) in the Design Documents.
+The second milestone was to support column level statistics. See [Column Statistics in Hive]({{% ref "column-statistics-in-hive" %}}) in the Design Documents.
 
 Supported column stats are:
 
@@ -54,7 +54,7 @@ Column level statistics were added in Hive 0.10.0 by [HIVE-1362](https://issues.
 
 ### Top K Statistics
 
-[Column level top K statistics]({{< ref "top-k-stats" >}}) are still pending; see [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421).
+[Column level top K statistics]({{% ref "top-k-stats" %}}) are still pending; see [HIVE-3421](https://issues.apache.org/jira/browse/HIVE-3421).
 
 ## Quick overview
 
@@ -63,9 +63,9 @@ Column level statistics were added in Hive 0.10.0 by [HIVE-1362](https://issues.
 | Number of partition the dataset consists of | Fictional metastore property: **numPartitions** | computed during displaying the properties of a partitioned table | [Hive 2.3](https://issues.apache.org/jira/browse/HIVE-16315) |
 | Number of files the dataset consists of | Metastore table property: **numFiles**  | Automatically during Metastore operations |  |
 | Total size of the dataset as its seen at the filesystem level | Metastore table property: **totalSize** |  |
-| Uncompressed size of the dataset | Metastore table property: **rawDataSize** | Computed, these are the basic statistics. Calculated automatically when [hive.stats.autogather]({{< ref "#hive-stats-autogather" >}}) is enabled.Can be collected manually by: ANALYZE TABLE ... COMPUTE STATISTICS | [Hive 0.8](https://issues.apache.org/jira/browse/HIVE-2185) |
+| Uncompressed size of the dataset | Metastore table property: **rawDataSize** | Computed, these are the basic statistics. Calculated automatically when [hive.stats.autogather]({{% ref "#hive-stats-autogather" %}}) is enabled.Can be collected manually by: ANALYZE TABLE ... COMPUTE STATISTICS | [Hive 0.8](https://issues.apache.org/jira/browse/HIVE-2185) |
 | Number of rows the dataset consist of | Metastore table property: **numRows** |  |
-| Column level statistics | Metastore; TAB_COL_STATS table | Computed, Calculated automatically when [hive.stats.column.autogather]({{< ref "#hive-stats-column-autogather" >}}) is enabled.Can be collected manually by: ANALYZE TABLE ... COMPUTE STATISTICS FOR COLUMNS |  |
+| Column level statistics | Metastore; TAB_COL_STATS table | Computed, Calculated automatically when [hive.stats.column.autogather]({{% ref "#hive-stats-column-autogather" %}}) is enabled.Can be collected manually by: ANALYZE TABLE ... COMPUTE STATISTICS FOR COLUMNS |  |
 
   
 
@@ -155,25 +155,25 @@ public interface IStatsAggregator {
 
 ### Configuration Variables
 
-See [Statistics]({{< ref "#statistics" >}}) in [Configuration Properties]({{< ref "configuration-properties" >}}) for a list of the variables that configure Hive table statistics. [Configuring Hive]({{< ref "#configuring-hive" >}}) describes how to use the variables.
+See [Statistics]({{% ref "#statistics" %}}) in [Configuration Properties]({{% ref "configuration-properties" %}}) for a list of the variables that configure Hive table statistics. [Configuring Hive]({{% ref "#configuring-hive" %}}) describes how to use the variables.
 
 ### Newly Created Tables
 
-For newly created tables and/or partitions (that are populated through the [INSERT OVERWRITE](http://wiki.apache.org/hadoop/Hive/LanguageManual/DML#Inserting_data_into_Hive_Tables_from_queries) command), statistics are automatically computed by default. The user has to explicitly set the boolean variable **[hive.stats.autogather]({{< ref "#hive-stats-autogather" >}})** to **false** so that statistics are not automatically computed and stored into Hive MetaStore.
+For newly created tables and/or partitions (that are populated through the [INSERT OVERWRITE](http://wiki.apache.org/hadoop/Hive/LanguageManual/DML#Inserting_data_into_Hive_Tables_from_queries) command), statistics are automatically computed by default. The user has to explicitly set the boolean variable **[hive.stats.autogather]({{% ref "#hive-stats-autogather" %}})** to **false** so that statistics are not automatically computed and stored into Hive MetaStore.
 
 ```
 set hive.stats.autogather=false;
 
 ```
 
-The user can also specify the implementation to be used for the storage of temporary statistics setting the variable **[hive.stats.dbclass]({{< ref "#hive-stats-dbclass" >}})**. For example, to set HBase as the implementation of temporary statistics storage (the default is `jdbc:derby` or `fs`, depending on the Hive version) the user should issue the following command:
+The user can also specify the implementation to be used for the storage of temporary statistics setting the variable **[hive.stats.dbclass]({{% ref "#hive-stats-dbclass" %}})**. For example, to set HBase as the implementation of temporary statistics storage (the default is `jdbc:derby` or `fs`, depending on the Hive version) the user should issue the following command:
 
 ```
 set hive.stats.dbclass=hbase;
 
 ```
 
-In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable **[hive.stats.dbconnectionstring]({{< ref "#hive-stats-dbconnectionstring" >}})**.
+In case of JDBC implementations of temporary stored statistics (ex. Derby or MySQL), the user should specify the appropriate connection string to the database by setting the variable **[hive.stats.dbconnectionstring]({{% ref "#hive-stats-dbconnectionstring" %}})**.
 
 ```
 set hive.stats.dbclass=jdbc:derby;
@@ -181,7 +181,7 @@ set hive.stats.dbconnectionstring="jdbc:derby:;databaseName=TempStatsStore;creat
 
 ```
 
-Queries can fail to collect stats completely accurately. There is a setting **[hive.stats.reliable]({{< ref "#hive-stats-reliable" >}})** that fails queries if the stats can't be reliably collected. This is `false` by default.
+Queries can fail to collect stats completely accurately. There is a setting **[hive.stats.reliable]({{% ref "#hive-stats-reliable" %}})** that fails queries if the stats can't be reliably collected. This is `false` by default.
 
 ### Existing Tables – ANALYZE
 
@@ -205,7 +205,7 @@ When the optional parameter NOSCAN is specified, the command won't scan files so
 
 Version 0.10.0: FOR COLUMNS
 
-As of [Hive 0.10.0](https://issues.apache.org/jira/browse/HIVE-1362), the optional parameter FOR COLUMNS computes column statistics for all columns in the specified table (and for all partitions if the table is partitioned). See [Column Statistics in Hive]({{< ref "column-statistics-in-hive" >}}) for details.
+As of [Hive 0.10.0](https://issues.apache.org/jira/browse/HIVE-1362), the optional parameter FOR COLUMNS computes column statistics for all columns in the specified table (and for all partitions if the table is partitioned). See [Column Statistics in Hive]({{% ref "column-statistics-in-hive" %}}) for details.
 
 To display these statistics, use DESCRIBE FORMATTED [*db_name*.]*table_name* *column_name* [PARTITION (*partition_spec*)].
 
@@ -363,7 +363,7 @@ then statistics, number of files and physical size in bytes are gathered for par
 
 Feature not implemented
 
-Hive Metastore on HBase was discontinued and removed in Hive 3.0.0. See [HBaseMetastoreDevelopmentGuide]({{< ref "hbasemetastoredevelopmentguide" >}})
+Hive Metastore on HBase was discontinued and removed in Hive 3.0.0. See [HBaseMetastoreDevelopmentGuide]({{% ref "hbasemetastoredevelopmentguide" %}})
 
   
 

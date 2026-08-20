@@ -12,12 +12,12 @@ Check the status of a job and get related job information given its job ID. Subs
 Version: Deprecated in 0.12.0
 
 `GET queue/:jobid` is deprecated starting in Hive release 0.12.0. Users are encouraged to use `GET jobs/:jobid` instead. (See [HIVE-4443](https://issues.apache.org/jira/browse/HIVE-4443).)  
-`GET queue/:jobid` is equivalent to `GET jobs/:jobid` – check `[GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})` for documentation.
+`GET queue/:jobid` is equivalent to `GET jobs/:jobid` – check `[GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})` for documentation.
 
 Version: Obsolete in 0.14.0
 
 `GET queue/:jobid` will be removed in Hive release 0.14.0. (See [HIVE-6432](https://issues.apache.org/jira/browse/HIVE-6432).)  
-Use `[GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})` instead.
+Use `[GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})` instead.
 
 ## URL
 
@@ -29,7 +29,7 @@ Use `[GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})` instead.
 | --- | --- | --- | --- |
 | **:jobid** | The job ID to check. This is the ID received when the job was created. | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -153,12 +153,12 @@ Starting in Hive release 0.12.0, `GET queue/:jobid` returns user arguments as we
 ```
 
 **Navigation Links**
-Previous: [GET queue]({{< ref "webhcat-reference-jobids" >}})  
- Next: [DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob" >}})
+Previous: [GET queue]({{% ref "webhcat-reference-jobids" %}})  
+ Next: [DELETE queue/:jobid]({{% ref "webhcat-reference-deletejob" %}})
 
 
 
-Replaced in Hive 0.12.0 by: [GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})
+Replaced in Hive 0.12.0 by: [GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})
 
  
 

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 # Order, Sort, Cluster, and Distribute By
 
-This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY.  See [Select Syntax]({{< ref "#select-syntax" >}}) for general information.
+This describes the syntax of SELECT clauses ORDER BY, SORT BY, CLUSTER BY, and DISTRIBUTE BY.  See [Select Syntax]({{% ref "#select-syntax" %}}) for general information.
 
 ## Syntax of Order By
 
@@ -21,7 +21,7 @@ query: SELECT expression (',' expression)* FROM src orderBy
 
 ```
 
-There are some limitations in the "order by" clause. In the strict mode (i.e., [hive.mapred.mode]({{< ref "#hive-mapred-mode" >}})=strict), the order by clause has to be followed by a "limit" clause. The limit clause is not necessary if you set hive.mapred.mode to nonstrict. The reason is that in order to impose total order of all results, there has to be one reducer to sort the final output. If the number of rows in the output is too large, the single reducer could take a very long time to finish.
+There are some limitations in the "order by" clause. In the strict mode (i.e., [hive.mapred.mode]({{% ref "#hive-mapred-mode" %}})=strict), the order by clause has to be followed by a "limit" clause. The limit clause is not necessary if you set hive.mapred.mode to nonstrict. The reason is that in order to impose total order of all results, there has to be one reducer to sort the final output. If the number of rows in the output is too large, the single reducer could take a very long time to finish.
 
 Note that columns are specified by name, not by position number. However in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-581) and later, columns can be specified by position when configured as follows:
 
@@ -32,7 +32,7 @@ The default sorting order is ascending (ASC).
 
 In [Hive 2.1.0](https://issues.apache.org/jira/browse/HIVE-12994) and later, specifying the null sorting order for each of the columns in the "order by" clause is supported. The default null sorting order for ASC order is NULLS FIRST, while the default null sorting order for DESC order is NULLS LAST.
 
-In [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-6348) and later, order by without limit in [subqueries]({{< ref "languagemanual-subqueries" >}}) and [views]({{< ref "#views" >}}) will be removed by the optimizer. To disable it, set [hive.remove.orderby.in.subquery]({{< ref "#hive-remove-orderby-in-subquery" >}}) to false.
+In [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-6348) and later, order by without limit in [subqueries]({{% ref "languagemanual-subqueries" %}}) and [views]({{% ref "#views" %}}) will be removed by the optimizer. To disable it, set [hive.remove.orderby.in.subquery]({{% ref "#hive-remove-orderby-in-subquery" %}}) to false.
 
 ## Syntax of Sort By
 
@@ -47,7 +47,7 @@ query: SELECT expression (',' expression)* FROM src sortBy
 
 Hive uses the columns in *SORT BY* to sort the rows before feeding the rows to a reducer. The sort order will be dependent on the column types. If the column is of numeric type, then the sort order is also in numeric order. If the column is of string type, then the sort order will be lexicographical order.
 
-In [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-6348) and later, sort by without limit in [subqueries]({{< ref "languagemanual-subqueries" >}}) and [views]({{< ref "#views" >}}) will be removed by the optimizer. To disable it, set [hive.remove.orderby.in.subquery]({{< ref "#hive-remove-orderby-in-subquery" >}}) to false.
+In [Hive 3.0.0](https://issues.apache.org/jira/browse/HIVE-6348) and later, sort by without limit in [subqueries]({{% ref "languagemanual-subqueries" %}}) and [views]({{% ref "#views" %}}) will be removed by the optimizer. To disable it, set [hive.remove.orderby.in.subquery]({{% ref "#hive-remove-orderby-in-subquery" %}}) to false.
 
 ### Difference between Sort By and Order By
 
@@ -99,7 +99,7 @@ AS whatever
 
 ## Syntax of Cluster By and Distribute By
 
-*Cluster By* and *Distribute By* are used mainly with the [Transform/Map-Reduce Scripts]({{< ref "languagemanual-transform" >}}). But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries.
+*Cluster By* and *Distribute By* are used mainly with the [Transform/Map-Reduce Scripts]({{% ref "languagemanual-transform" %}}). But, it is sometimes useful in SELECT statements if there is a need to partition and sort the output of a query for subsequent queries.
 
 *Cluster By* is a short-cut for both *Distribute By* and *Sort By*.
 

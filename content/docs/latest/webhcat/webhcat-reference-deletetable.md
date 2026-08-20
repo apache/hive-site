@@ -23,7 +23,7 @@ Delete (drop) an HCatalog table.
 | **group** | The user group to use | Optional | None |
 | **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -54,7 +54,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [POST ddl/database/:db/table/:table]({{< ref "webhcat-reference-posttable" >}}) Next: [PUT ddl/database/:db/table/:existingtable/like/:newtable]({{< ref "webhcat-reference-puttablelike" >}})
+Previous: [POST ddl/database/:db/table/:table]({{% ref "webhcat-reference-posttable" %}}) Next: [PUT ddl/database/:db/table/:existingtable/like/:newtable]({{% ref "webhcat-reference-puttablelike" %}})
 
 
 

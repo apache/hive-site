@@ -307,7 +307,7 @@ Cost Based Optimizations:
 
 ## Configuration
 
-The configuration parameter [hive.cbo.enable]({{< ref "#hive-cbo-enable" >}}) determines whether cost-based optimization is enabled or not.
+The configuration parameter [hive.cbo.enable]({{% ref "#hive-cbo-enable" %}}) determines whether cost-based optimization is enabled or not.
 
 ## Proposed Cost Model
 

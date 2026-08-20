@@ -13,7 +13,7 @@ date: 2024-12-12
 
 Traditionally adding new data into Hive requires gathering a large amount of data onto HDFS and then periodically adding a new partition. This is essentially a “batch insertion”. Insertion of new data into an existing partition is not permitted. Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table. Once data is committed it becomes immediately visible to all Hive queries initiated subsequently.
 
-This API is intended for streaming clients such as [Flume](http://flume.apache.org/) and [Storm](https://storm.incubator.apache.org/), which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see [Hive Transactions]({{< ref "hive-transactions" >}})).
+This API is intended for streaming clients such as [Flume](http://flume.apache.org/) and [Storm](https://storm.incubator.apache.org/), which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see [Hive Transactions]({{% ref "hive-transactions" %}})).
 
 The Classes and interfaces part of the Hive streaming API are broadly categorized into two sets. The first set provides support for connection and transaction management while the second set provides I/O support. Transactions are managed by the metastore. Writes are performed directly to HDFS.
 
@@ -23,7 +23,7 @@ Streaming to **unpartitioned** tables is also supported. The API supports Kerb
 
 ### Streaming Mutation API
 
-Starting in release 2.0.0, Hive offers another API for mutating (insert/update/delete) records into transactional tables using Hive’s ACID feature. See [HCatalog Streaming Mutation API]({{< ref "hcatalog-streaming-mutation-api" >}}) for details and a comparison with the streaming data ingest API that is described in this document.
+Starting in release 2.0.0, Hive offers another API for mutating (insert/update/delete) records into transactional tables using Hive’s ACID feature. See [HCatalog Streaming Mutation API]({{% ref "hcatalog-streaming-mutation-api" %}}) for details and a comparison with the streaming data ingest API that is described in this document.
 
 # Streaming Requirements
 
@@ -34,9 +34,9 @@ A few things are required to use streaming.
 	2. **hive.compactor.initiator.on = true**(See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
 	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
 	4. **hive.compactor.worker.threads** > **0**
-2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc" >}}) is supported currently.
+2. *“stored as orc”* must be specified during [table creation]({{% ref "#table-creation" %}}). Only [ORC storage format]({{% ref "languagemanual-orc" %}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
-4. The Hive table must be [bucketed]({{< ref "languagemanual-ddl-bucketedtables" >}}), but not sorted. So something like “clustered by (colName) into *10* buckets” must be specified during table creation. The number of buckets is ideally the same as the number of streaming writers.
+4. The Hive table must be [bucketed]({{% ref "languagemanual-ddl-bucketedtables" %}}), but not sorted. So something like “clustered by (colName) into *10* buckets” must be specified during table creation. The number of buckets is ideally the same as the number of streaming writers.
 5. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
 6. (Temporary requirements) **When issuing queries** on streaming tables, the client needs to set
 	1. **hive.vectorized.execution.enabled**  to  **false** (for Hive version < 0.14.0)
@@ -58,7 +58,7 @@ The class HiveEndPoint describes a Hive End Point to connect to. This describes 
 
 It is very likely that in a setup where data is being streamed continuously the data is added into new partitions periodically. Either the Hive admin can pre-create the necessary partitions or the streaming clients can create them as needed. HiveEndPoint.newConnection() accepts a boolean argument to indicate whether the partition should be auto created. Partition creation being an atomic action, multiple clients can race to create the partition, but only one will succeed, so streaming clients do not have to synchronize when creating a partition.
 
-Transactions are implemented slightly differently than traditional database systems. Each transaction has an id and multiple transactions are grouped into a “Transaction Batch”. This helps grouping records from multiple transactions into fewer files (rather than 1 file per transaction). After connection, a streaming client first requests a new batch of transactions. In response it receives a set of Transaction Ids that are part of the transaction batch. Subsequently the client proceeds to consume one transaction id at a time by initiating new Transactions. The client will write() one or more records per transaction and either commits or aborts the current transaction before switching to the next one. Each TransactionBatch.write() invocation automatically associates the I/O attempt with the current Txn ID. The user of the streaming client process, needs to have write permissions to the partition or table. Kerberos based authentication is required to acquire connections as a specific user. See [secure streaming example]({{< ref "#secure-streaming-example" >}}) below.
+Transactions are implemented slightly differently than traditional database systems. Each transaction has an id and multiple transactions are grouped into a “Transaction Batch”. This helps grouping records from multiple transactions into fewer files (rather than 1 file per transaction). After connection, a streaming client first requests a new batch of transactions. In response it receives a set of Transaction Ids that are part of the transaction batch. Subsequently the client proceeds to consume one transaction id at a time by initiating new Transactions. The client will write() one or more records per transaction and either commits or aborts the current transaction before switching to the next one. Each TransactionBatch.write() invocation automatically associates the I/O attempt with the current Txn ID. The user of the streaming client process, needs to have write permissions to the partition or table. Kerberos based authentication is required to acquire connections as a specific user. See [secure streaming example]({{% ref "#secure-streaming-example" %}}) below.
 
 **Concurrency Note:** I/O can be performed on multiple TransactionBatches concurrently. However the transactions within a transaction batch must be consumed sequentially.
 
@@ -84,7 +84,7 @@ Generally, the more events are included in each transaction the more throughput 
 
 ### Notes about the HiveConf Object
 
-HiveEndPoint.newConnection() accepts a HiveConf argument. This can either be set to null, or a pre-created HiveConf object can be provided. If this is null, a HiveConf object will be created internally and used for the connection. When a HiveConf object is instantiated, if the directory containing the hive-site.xml is part of the java classpath, then the HiveConf object will be initialized with values from it. If no hive-site.xml is found, then the object will be initialized with defaults. Pre-creating this object and reusing it across multiple connections may have a noticeable impact on performance if connections are being opened very frequently (for example several times a second). Secure connection relies on '[hive.metastore.kerberos.principal]({{< ref "#hive-metastore-kerberos-principal" >}})' being set correctly in the HiveConf object.
+HiveEndPoint.newConnection() accepts a HiveConf argument. This can either be set to null, or a pre-created HiveConf object can be provided. If this is null, a HiveConf object will be created internally and used for the connection. When a HiveConf object is instantiated, if the directory containing the hive-site.xml is part of the java classpath, then the HiveConf object will be initialized with values from it. If no hive-site.xml is found, then the object will be initialized with defaults. Pre-creating this object and reusing it across multiple connections may have a noticeable impact on performance if connections are being opened very frequently (for example several times a second). Secure connection relies on '[hive.metastore.kerberos.principal]({{% ref "#hive-metastore-kerberos-principal" %}})' being set correctly in the HiveConf object.
 
 Regardless of what values are set in hive-site.xml or custom HiveConf, the API will internally override some settings in it to ensure correct streaming behavior. The below is the list of settings that are overridden:
 
@@ -104,7 +104,7 @@ RecordWriter is the base interface implemented by all Writers. A Writer is respo
 A RecordWriter's primary functions are:
 
 1. Modify input record: This may involve dropping fields from input data if they don’t have corresponding table columns, adding nulls in case of missing fields for certain columns, and changing the order of incoming fields to match the order of fields in the table. This task requires understanding of incoming data format. Not all formats (for example JSON, which includes field names in the data) need this step.
-2. Encode modified record: The encoding involves serialization using an appropriate [Hive SerDe]({{< ref "serde" >}}).
+2. Encode modified record: The encoding involves serialization using an appropriate [Hive SerDe]({{% ref "serde" %}}).
 3. Identify the bucket to which the record belongs
 4. Write encoded record to Hive using the [AcidOutputFormat](https://hive.apache.org/javadocs/r1.2.1/api/org/apache/hadoop/hive/ql/io/AcidOutputFormat.html)'s record updater for the appropriate bucket.
 

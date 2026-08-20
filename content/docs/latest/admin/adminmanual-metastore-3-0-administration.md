@@ -7,13 +7,13 @@ date: 2024-12-12
 
 ## Version Note
 
-**This document applies only to the Metastore in Hive 3.0 and later releases.**  For Hive 0, 1, and 2 releases please see the [Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) document.
+**This document applies only to the Metastore in Hive 3.0 and later releases.**  For Hive 0, 1, and 2 releases please see the [Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}) document.
 
 ## Introduction
 
 The definition of Hive objects such as databases, tables, and functions are stored in the Metastore.  Depending on how the system is configured, statistics and authorization records may also be stored there.  Hive, and other execution engines, use this data at runtime to determine how to parse, authorize, and efficiently execute user queries.  
 
-The Metastore persists the object definitions to a relational database (RDBMS) via [DataNucleus](http://www.datanucleus.org/), a Java JDO based Object Relational Mapping (ORM) layer. See [Supported RDBMSs]({{< ref "adminmanual-metastore-3-0-administration" >}}) below for a list of supported RDBMSs that can be used.
+The Metastore persists the object definitions to a relational database (RDBMS) via [DataNucleus](http://www.datanucleus.org/), a Java JDO based Object Relational Mapping (ORM) layer. See [Supported RDBMSs]({{% ref "adminmanual-metastore-3-0-administration" %}}) below for a list of supported RDBMSs that can be used.
 
 The Metastore can be configured to embed the Apache Derby RDBMS or connect to a external RDBMS.  The Metastore itself can be embedded entirely in a user process or run as a service for other processes to connect to.  Each of these options will be discussed in turn below.
 
@@ -21,13 +21,13 @@ The Metastore can be configured to embed the Apache Derby RDBMS or connect to a 
 
 Beginning in Hive 3.0, the Metastore can be run without the rest of Hive being installed.  It is provided as a separate release in order to allow non-Hive systems to easily integrate with it.  (It is, however, still included in the Hive release for convenience.)  Making the Metastore a standalone service involved changing a number of configuration parameter names and tool names.  All of the old configuration parameters and tools still work, in order to maximize backwards compatibility.  This document will cover both the old and new names.  As new functionality is added old, Hive style names will not be added.
 
-For details on using the Metastore without Hive, see [Running the Metastore Without Hive]({{< ref "adminmanual-metastore-3-0-administration" >}}) below.
+For details on using the Metastore without Hive, see [Running the Metastore Without Hive]({{% ref "adminmanual-metastore-3-0-administration" %}}) below.
 
 ## General Configuration
 
-The metastore reads its configuration from the file `metastore-site.xml`.  It expects to find this file in $`METASTORE_HOME/conf` where `$METASTORE_HOME` is an environment variable.  For backwards compatibility it will also read any `hive-site.xml` or `hive-metastoresite.xml`files found in `HIVE_HOME/conf`.  Configuration options can also be defined on the command line (see [Starting and Stopping the Service]({{< ref "adminmanual-metastore-3-0-administration" >}}) below).
+The metastore reads its configuration from the file `metastore-site.xml`.  It expects to find this file in $`METASTORE_HOME/conf` where `$METASTORE_HOME` is an environment variable.  For backwards compatibility it will also read any `hive-site.xml` or `hive-metastoresite.xml`files found in `HIVE_HOME/conf`.  Configuration options can also be defined on the command line (see [Starting and Stopping the Service]({{% ref "adminmanual-metastore-3-0-administration" %}}) below).
 
-Configuration values specific to running the Metastore with various RDBMSs, embedded or as a service, and without Hive are discussed in the relevant sections.  The following configuration values apply to the Metastore regardless of how it is being run.  This table covers only commonly customized configuration values.  For less commonly changed configuration values see [Less Commonly Changed Configuration Parameters]({{< ref "adminmanual-metastore-3-0-administration" >}}).
+Configuration values specific to running the Metastore with various RDBMSs, embedded or as a service, and without Hive are discussed in the relevant sections.  The following configuration values apply to the Metastore regardless of how it is being run.  This table covers only commonly customized configuration values.  For less commonly changed configuration values see [Less Commonly Changed Configuration Parameters]({{% ref "adminmanual-metastore-3-0-administration" %}}).
 
  
 
@@ -142,7 +142,7 @@ Prior to Hive 3.0 there was only a single implementation of the MetaStore API (c
 
 The cache is automatically updated with new data when changes are made through this MetaStore. In a scenario where there are multiple MetaStore servers the caches can be out of date on some of them. To prevent this the CachedStore automatically refreshes the cache in a configurable frequency (default: 1 minute).
 
-Details about all properties for the CachedStore can be found on [Configuration Properties]({{< ref "configuration-properties" >}}) (Prefix: `metastore.cached`). 
+Details about all properties for the CachedStore can be found on [Configuration Properties]({{% ref "configuration-properties" %}}) (Prefix: `metastore.cached`). 
 
 ## Less Commonly Changed Configuration Parameters
 

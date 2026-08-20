@@ -6,11 +6,11 @@ date: 2024-12-12
 # Apache Hive : LLAP
 
 Live Long And Process (LLAP) functionality was added in Hive 2.0 ([HIVE-7926](https://issues.apache.org/jira/browse/HIVE-7926) and associated tasks). [HIVE-9850](https://issues.apache.org/jira/browse/HIVE-9850) links documentation, features, and issues for this enhancement.
-For configuration of LLAP, see the LLAP Section of [Configuration Properties]({{< ref "#configuration-properties" >}}).
+For configuration of LLAP, see the LLAP Section of [Configuration Properties]({{% ref "#configuration-properties" %}}).
 
 ## Overview
 
-Hive has become significantly faster thanks to various features and improvements that were built by the community in recent years, including [Tez]({{< ref "hive-on-tez" >}}) and [Cost-based-optimization]({{< ref "cost-based-optimization-in-hive" >}}). The following were needed to take Hive to the next level:
+Hive has become significantly faster thanks to various features and improvements that were built by the community in recent years, including [Tez]({{% ref "hive-on-tez" %}}) and [Cost-based-optimization]({{% ref "cost-based-optimization-in-hive" %}}). The following were needed to take Hive to the next level:
 
 * Asynchronous spindle-aware IO
 * Pre-fetching and caching of column chunks
@@ -60,7 +60,7 @@ The daemon off-loads I/O and transformation from compressed format to separate t
 
 ## Caching
 
-The daemon caches metadata for input files, as well as the data. The metadata and index information can be cached even for data that is not currently cached. Metadata is stored in process in Java objects; cached data is stored in the format described in the [I/O section]({{< ref "#i/o-section" >}}), and kept off-heap (see [Resource management]({{< ref "#resource-management" >}})).
+The daemon caches metadata for input files, as well as the data. The metadata and index information can be cached even for data that is not currently cached. Metadata is stored in process in Java objects; cached data is stored in the format described in the [I/O section]({{% ref "#i/o-section" %}}), and kept off-heap (see [Resource management]({{% ref "#resource-management" %}})).
 
 * **Eviction policy.** The eviction policy is tuned for analytical workloads with frequent (partial) table-scans. Initially, a simple policy like LRFU is used. The policy is pluggable.
 * **Caching granularity.** Column-chunks are the unit of data in the cache. This achieves a compromise between low-overhead processing and storage efficiency. The granularity of the chunks depends on the particular file format and execution engine (Vectorized Row Batch size, ORC stripe, etc.).

@@ -5,8 +5,8 @@ date: 2024-12-12
 
 # Apache Hive : ODBC Driver
 
-These instructions are for the Hive ODBC driver available in Hive for [HiveServer1]({{< ref "hiveserver" >}}).  
-There is no ODBC driver available for [HiveServer2]({{< ref "setting-up-hiveserver2" >}}) as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.
+These instructions are for the Hive ODBC driver available in Hive for [HiveServer1]({{% ref "hiveserver" %}}).  
+There is no ODBC driver available for [HiveServer2]({{% ref "setting-up-hiveserver2" %}}) as part of Apache Hive. There are third party ODBC drivers available from different vendors, and most of them seem to be free.
 
 ## Introduction
 
@@ -18,7 +18,7 @@ The Hive ODBC Driver is a software library that implements the Open Database Con
 
 This guide assumes you are already familiar with Hive and in particular with the following:
 
-* [Hive Server]({{< ref "hiveserver" >}})
+* [Hive Server]({{% ref "hiveserver" %}})
 * [Thrift](http://wiki.apache.org/thrift/)
 * [ODBC API](http://msdn.microsoft.com/en-us/library/ms714177(VS.85).aspx)
 * [unixODBC](http://www.unixodbc.org/)
@@ -27,7 +27,7 @@ This guide assumes you are already familiar with Hive and in particular with the
 
 The following software components are needed for the successful compilation and operation of the Hive ODBC driver:
 
-* **Hive Server** – a service through which clients may remotely issue Hive commands and requests. The Hive ODBC driver depends on Hive Server to perform the core set of database interactions. Hive Server is built as part of the Hive build process. More information regarding Hive Server usage can be found [here]({{< ref "hiveserver" >}}).
+* **Hive Server** – a service through which clients may remotely issue Hive commands and requests. The Hive ODBC driver depends on Hive Server to perform the core set of database interactions. Hive Server is built as part of the Hive build process. More information regarding Hive Server usage can be found [here]({{% ref "hiveserver" %}}).
 * **Apache Thrift** – a scalable cross-language software framework that enables the Hive ODBC driver (specifically the Hive client) to communicate with the Hive Server. See this link for the details on [Thrift Installation](http://wiki.apache.org/thrift/ThriftInstallation). The Hive ODBC driver was developed with Thrift trunk version r790732, but the latest revision should also be fine. Make sure you note the Thrift install path during the Thrift build process as this information will be needed during the Hive client build process. The Thrift install path will be referred to as THRIFT_HOME.
 
 ### Driver Architecture
@@ -45,7 +45,7 @@ NOTE: Hive client needs to be built and installed before the unixODBC API wrappe
 
 In order to build and install the Hive client:
 
-1. Checkout and setup the latest version of Apache Hive from the Subversion or Git source code repository. For more details, see [Getting Started with Hive]({{< ref "gettingstarted-latest" >}}). From this point onwards, the path to the Hive root directory will be referred to as HIVE_SRC_ROOT.
+1. Checkout and setup the latest version of Apache Hive from the Subversion or Git source code repository. For more details, see [Getting Started with Hive]({{% ref "gettingstarted-latest" %}}). From this point onwards, the path to the Hive root directory will be referred to as HIVE_SRC_ROOT.
 
 Using a tarball source release
 

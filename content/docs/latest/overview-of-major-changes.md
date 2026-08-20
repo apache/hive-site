@@ -41,7 +41,7 @@ date: 2024-12-12
 
 	+ API optimization (performance)
 	+ Dynamic leader election
-	+ [External data sources support]({{< ref "data-connectors-in-hive" >}})
+	+ [External data sources support]({{% ref "data-connectors-in-hive" %}})
 	+ HMS support for [Thrift over HTTP](https://issues.apache.org/jira/browse/HIVE-21456)
 	+ [JWT authentication](https://issues.apache.org/jira/browse/HIVE-26071) for Thrift over HTTP
 	+ [HMS metadata summary](https://issues.apache.org/jira/browse/HIVE-26435)
@@ -97,7 +97,7 @@ date: 2024-12-12
 	+ Support Hadoop-3.3.6
 	+ Supports Tez 0.10.3
 	+ Works with Aarch64 (ARM)
-	+ New UDFs ([Hive UDFs]({{< ref "hive-udfs" >}}))
+	+ New UDFs ([Hive UDFs]({{% ref "hive-udfs" %}}))
 	+ Deprecated Hive on MR & Removed Hive on Spark
 	+ Deprecated Hive CLI
 

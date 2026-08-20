@@ -53,7 +53,7 @@ For example, if we suppose there are two different tables that track which user 
 
 #### Unions in DDL and Insert Statements
 
-Unions can be used in views, inserts, and CTAS (create table as select) statements. A query can contain multiple UNION clauses, as shown in the [syntax]({{< ref "#syntax" >}}) above.
+Unions can be used in views, inserts, and CTAS (create table as select) statements. A query can contain multiple UNION clauses, as shown in the [syntax]({{% ref "#syntax" %}}) above.
 
 #### Applying Subclauses
 

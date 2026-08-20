@@ -35,7 +35,7 @@ Notes:
 * With non-dynamic partitioning, do we require the partition be on each view in the updatable view chain?  This seems burdensome if you don't have write access to all the views?
 * When we specify dynamic partitions for a view, do we create partitions on each view in a chain of updatable views?  If we don't, there may be strange behavior where SHOW PARTITIONS may not show anything on a view, but we can insert into such partitions of a view.  If we do, drop partition on the view actually does nothing to the data.
 
-See [Hive Views]({{< ref "viewdev" >}}) for general information about views.
+See [Hive Views]({{% ref "viewdev" %}}) for general information about views.
 
  
 

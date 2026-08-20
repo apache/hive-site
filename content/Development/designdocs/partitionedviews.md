@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : PartitionedViews
 
-This is a followup to [ViewDev]({{< ref "viewdev" >}}) for adding partition-awareness to views.
+This is a followup to [ViewDev]({{% ref "viewdev" %}}) for adding partition-awareness to views.
 
 # Use Cases
 

@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Guide for Committers
 
-This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{< ref "/community/becomingcommitter" >}}))
+This page contains guidelines for committers of the Apache Hive project. (If you're currently a contributor, and are interested in how we add new committers, read [BecomingACommitter]({{% ref "/community/becomingcommitter" %}}))
 
 ## New committers
 
@@ -29,7 +29,7 @@ Hive committers can not +1/Approve their own Pull Requests, i.e. you are allowed
 
 ## Reject
 
-Pull Requests should be rejected which do not adhere to the guidelines in [HowToContribute]({{< ref "howtocontribute" >}}). Committers should always be polite to contributors and try to instruct and encourage them to contribute better Pull Requests. If a committer wishes to improve an unacceptable change, then he/she drop review comments and ask the contributor to update.
+Pull Requests should be rejected which do not adhere to the guidelines in [HowToContribute]({{% ref "howtocontribute" %}}). Committers should always be polite to contributors and try to instruct and encourage them to contribute better Pull Requests. If a committer wishes to improve an unacceptable change, then he/she drop review comments and ask the contributor to update.
 
 ## PreCommit runs, and committing patches
 

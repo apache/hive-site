@@ -19,7 +19,7 @@ List the databases in HCatalog.
 | --- | --- | --- | --- |
 | **like** | List only databases whose names match the specified pattern. | Optional | "*" (List all) |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -51,8 +51,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [POST ddl]({{< ref "webhcat-reference-ddl" >}})   
- Next: [GET ddl/database/:db]({{< ref "webhcat-reference-getdb" >}})
+Previous: [POST ddl]({{% ref "webhcat-reference-ddl" %}})   
+ Next: [GET ddl/database/:db]({{% ref "webhcat-reference-getdb" %}})
 
 
 

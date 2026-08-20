@@ -9,11 +9,11 @@ date: 2024-12-12
 
 This is the design document for dynamic partitions in Hive. Usage information is also available: 
 
-* [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
-* [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
-* [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+* [Tutorial: Dynamic-Partition Insert]({{% ref "#tutorial:-dynamic-partition-insert" %}})
+* [Hive DML: Dynamic Partition Inserts]({{% ref "#hive-dml:-dynamic-partition-inserts" %}})
+* [HCatalog Dynamic Partitioning]({{% ref "hcatalog-dynamicpartitions" %}})
+	+ [Usage with Pig]({{% ref "#usage-with-pig" %}})
+	+ [Usage from MapReduce]({{% ref "#usage-from-mapreduce" %}})
 
 References:
 

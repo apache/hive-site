@@ -61,26 +61,26 @@ Hive currently uses these SerDe classes to serialize and deserialize data:
 ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
 ```
 
-LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended_boolean_literal]({{< ref "#hive-lazysimple-extended_boolean_literal" >}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
+LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended_boolean_literal]({{% ref "#hive-lazysimple-extended_boolean_literal" %}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
 * ThriftSerDe: This SerDe is used to read/write Thrift serialized objects. The class file for the Thrift object must be loaded first.
 * DynamicSerDe: This SerDe also read/write Thrift serialized objects, but it understands Thrift DDL so the schema of the object can be provided at runtime. Also it supports a lot of different protocols, including TBinaryProtocol, TJSONProtocol, TCTLSeparatedProtocol (which writes data in delimited records).
 
 Also:
 
-* For JSON files, [JsonSerDe]({{< ref "#jsonserde" >}}) was added in Hive 0.12.0. An Amazon SerDe is available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar` for releases prior to 0.12.0.
-* An [Avro SerDe]({{< ref "avroserde" >}}) was added in Hive 0.9.1.  Starting in Hive 0.14.0 its specification is implicit with the STORED AS AVRO clause.
-* A SerDe for the [ORC]({{< ref "languagemanual-orc" >}}) file format was added in Hive 0.11.0.
-* A SerDe for [Parquet]({{< ref "parquet" >}}) was added via plug-in in Hive 0.10 and natively in Hive 0.13.0.
+* For JSON files, [JsonSerDe]({{% ref "#jsonserde" %}}) was added in Hive 0.12.0. An Amazon SerDe is available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar` for releases prior to 0.12.0.
+* An [Avro SerDe]({{% ref "avroserde" %}}) was added in Hive 0.9.1.  Starting in Hive 0.14.0 its specification is implicit with the STORED AS AVRO clause.
+* A SerDe for the [ORC]({{% ref "languagemanual-orc" %}}) file format was added in Hive 0.11.0.
+* A SerDe for [Parquet]({{% ref "parquet" %}}) was added via plug-in in Hive 0.10 and natively in Hive 0.13.0.
 * A SerDe for [CSV](/docs/latest/user/csv-serde) was added in Hive 0.14.
 
-See [SerDe]({{< ref "serde" >}}) for detailed information about input and output processing. Also see [Storage Formats]({{< ref "hcatalog-storageformats" >}}) in the [HCatalog manual]({{< ref "hcatalog-base" >}}), including [CTAS Issue with JSON SerDe]({{< ref "#ctas-issue-with-json-serde" >}}). For information about how to create a table with a custom or native SerDe, see [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}).
+See [SerDe]({{% ref "serde" %}}) for detailed information about input and output processing. Also see [Storage Formats]({{% ref "hcatalog-storageformats" %}}) in the [HCatalog manual]({{% ref "hcatalog-base" %}}), including [CTAS Issue with JSON SerDe]({{% ref "#ctas-issue-with-json-serde" %}}). For information about how to create a table with a custom or native SerDe, see [Row Format, Storage Format, and SerDe]({{% ref "#row-format,-storage-format,-and-serde" %}}).
 
 #### How to Write Your Own SerDe
 
 * In most cases, users want to write a Deserializer instead of a SerDe, because users just want to read their own data format instead of writing to it.
 * For example, the RegexDeserializer will deserialize the data using the configuration parameter 'regex', and possibly a list of column names (see serde2.MetadataTypedColumnsetSerDe). Please see serde2/Deserializer.java for details.
 * If your SerDe supports DDL (basically, SerDe with parameterized columns and column types), you probably want to implement a Protocol based on DynamicSerDe, instead of writing a SerDe from scratch. The reason is that the framework passes DDL to SerDe through "Thrift DDL" format, and it's non-trivial to write a "Thrift DDL" parser.
-* For examples, see [SerDe - how to add a new SerDe]({{< ref "#serde---how-to-add-a-new-serde" >}}) below.
+* For examples, see [SerDe - how to add a new SerDe]({{% ref "#serde---how-to-add-a-new-serde" %}}) below.
 
 Some important points about SerDe:
 
@@ -104,7 +104,7 @@ NOTE: Apache Hive recommends that custom ObjectInspectors created for use with c
 
 #### Registration of Native SerDes
 
-As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5976)a registration mechanism has been introduced for native Hive SerDes.  This allows dynamic binding between a "STORED AS" keyword in place of a triplet of {SerDe, InputFormat, and OutputFormat} specification, in [CreateTable]({{< ref "#createtable" >}}) statements.
+As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5976)a registration mechanism has been introduced for native Hive SerDes.  This allows dynamic binding between a "STORED AS" keyword in place of a triplet of {SerDe, InputFormat, and OutputFormat} specification, in [CreateTable]({{% ref "#createtable" %}}) statements.
 
 The following mappings have been added through this registration mechanism:
 
@@ -173,7 +173,7 @@ Ant to Maven
 
 As of version [0.13](https://issues.apache.org/jira/browse/HIVE-5107) Hive uses Maven instead of Ant for its build. The following instructions are not up to date.
 
-See the [Hive Developer FAQ]({{< ref "hivedeveloperfaq" >}}) for updated instructions.
+See the [Hive Developer FAQ]({{% ref "hivedeveloperfaq" %}}) for updated instructions.
 
 Hive can be made to compile against different versions of Hadoop.
 

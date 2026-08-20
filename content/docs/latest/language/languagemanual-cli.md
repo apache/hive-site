@@ -9,9 +9,9 @@ $HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in 
 
 # Deprecation in favor of Beeline CLI
 
-HiveServer2 (introduced in Hive 0.11) has its own CLI called [Beeline]({{< ref "#beeline" >}}), which is a JDBC client based on SQLLine.  Due to new development being focused on HiveServer2, [Hive CLI will soon be deprecated](https://issues.apache.org/jira/browse/HIVE-10304) in favor of Beeline ([HIVE-10511](https://issues.apache.org/jira/browse/HIVE-10511)).
+HiveServer2 (introduced in Hive 0.11) has its own CLI called [Beeline]({{% ref "#beeline" %}}), which is a JDBC client based on SQLLine.  Due to new development being focused on HiveServer2, [Hive CLI will soon be deprecated](https://issues.apache.org/jira/browse/HIVE-10304) in favor of Beeline ([HIVE-10511](https://issues.apache.org/jira/browse/HIVE-10511)).
 
-See [Replacing the Implementation of Hive CLI Using Beeline]({{< ref "replacing-the-implementation-of-hive-cli-using-beeline" >}}) and [Beeline – New Command Line Shell]({{< ref "#beeline-–-new-command-line-shell" >}}) in the HiveServer2 documentation.
+See [Replacing the Implementation of Hive CLI Using Beeline]({{% ref "replacing-the-implementation-of-hive-cli-using-beeline" %}}) and [Beeline – New Command Line Shell]({{% ref "#beeline-–-new-command-line-shell" %}}) in the HiveServer2 documentation.
 
 ## Hive Command Line Options
 
@@ -50,7 +50,7 @@ Note: The variant "`-hiveconf`" is supported as well as "`--hiveconf`".
 
 ### Examples
 
-See [Variable Substitution]({{< ref "languagemanual-variablesubstitution" >}}) for examples of using the `hiveconf` option.
+See [Variable Substitution]({{% ref "languagemanual-variablesubstitution" %}}) for examples of using the `hiveconf` option.
 
 * Example of running a query from the command line
 
@@ -101,11 +101,11 @@ It is often desirable to emit the logs to the standard output and/or change the 
 
 `hive.root.logger` specifies the logging level as well as the log destination. Specifying `console` as the target sends the logs to the standard error (instead of the log file).
 
-See [Hive Logging in Getting Started]({{< ref "#hive-logging-in-getting-started" >}}) for more information.
+See [Hive Logging in Getting Started]({{% ref "#hive-logging-in-getting-started" %}}) for more information.
 
 ### Tool to Clear Dangling Scratch Directories
 
-See [Scratch Directory Management]({{< ref "#scratch-directory-management" >}}) in Setting Up HiveServer2 for information about scratch directories and a command-line [tool for removing dangling scratch directories]({{< ref "#tool-for-removing-dangling-scratch-directories" >}}) that can be used in the Hive CLI as well as HiveServer2.
+See [Scratch Directory Management]({{% ref "#scratch-directory-management" %}}) in Setting Up HiveServer2 for information about scratch directories and a command-line [tool for removing dangling scratch directories]({{% ref "#tool-for-removing-dangling-scratch-directories" %}}) that can be used in the Hive CLI as well as HiveServer2.
 
 ## Hive Batch Mode Commands
 
@@ -135,13 +135,13 @@ Use ";" (semicolon) to terminate commands. Comments in scripts can be specified 
 | `set <key>=<value>` | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error. |
 | `set` | Prints a list of configuration variables that are overridden by the user or Hive. |
 | `set -v` | Prints all Hadoop and Hive configuration variables. |
-| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) below for more information. |
 | | |
-| `add FILE[S] <ivyurl> <ivyurl>*`  `add JAR[S] <ivyurl> <ivyurl>*`  `add ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| `list FILE[S]`  `list JAR[S]`  `list ARCHIVE[S]` | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
-| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `add FILE[S] <ivyurl> <ivyurl>*`  `add JAR[S] <ivyurl> <ivyurl>*`  `add ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{% ref "#hive-resources" %}}) below for more information. |
+| `list FILE[S]`  `list JAR[S]`  `list ARCHIVE[S]` | Lists the resources already added to the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) below for more information. |
+| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{% ref "#hive-resources" %}}) below for more information. |
 | `delete FILE[S] <filepath>*`  `delete JAR[S] <filepath>*`  `delete ARCHIVE[S] <filepath>*` | Removes the resource(s) from the distributed cache. |
-| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) below for more information. |
+| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*`  | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) below for more information. |
 | `! <command>` | Executes a shell command from the Hive shell. |
 | `dfs <dfs command>` | Executes a dfs command from the Hive shell. |
 | `<query string>` | Executes a Hive query and prints results to standard output. |
@@ -173,7 +173,7 @@ Usage:
 ```
 
 * FILE resources are just added to the distributed cache. Typically, this might be something like a transform script to be executed.
-* JAR resources are also added to the Java classpath. This is required in order to reference objects they contain such as UDFs. See [Hive Plugins]({{< ref "hiveplugins" >}}) for more information about custom UDFs.
+* JAR resources are also added to the Java classpath. This is required in order to reference objects they contain such as UDFs. See [Hive Plugins]({{% ref "hiveplugins" %}}) for more information about custom UDFs.
 * ARCHIVE resources are automatically unarchived as part of distributing them.
 
 Example:
@@ -251,7 +251,7 @@ It is not neccessary to add files to the session if the files used in a transfor
 * `... MAP a.networkid USING '/home/nfsserv1/hadoopscripts/tt.py' ...`   
  Here `tt.py` may be accessible via an NFS mount point that's configured identically on all the cluster nodes.
 
-Note that Hive configuration parameters can also specify jars, files, and archives. See [Configuration Variables]({{< ref "#configuration-variables" >}}) for more information.
+Note that Hive configuration parameters can also specify jars, files, and archives. See [Configuration Variables]({{% ref "#configuration-variables" %}}) for more information.
 
 # HCatalog CLI
 
@@ -259,7 +259,7 @@ Version
 
 HCatalog is installed with Hive, starting with Hive release 0.11.0.
 
-Many (but not all) `hcat` commands can be issued as `hive` commands, and vice versa. See the HCatalog [Command Line Interface]({{< ref "hcatalog-cli" >}}) document in the [HCatalog manual]({{< ref "hcatalog-base" >}}) for more information.
+Many (but not all) `hcat` commands can be issued as `hive` commands, and vice versa. See the HCatalog [Command Line Interface]({{% ref "hcatalog-cli" %}}) document in the [HCatalog manual]({{% ref "hcatalog-base" %}}) for more information.
 
  
 

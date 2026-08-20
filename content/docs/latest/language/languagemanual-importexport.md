@@ -9,7 +9,7 @@ date: 2024-12-12
 
 The `EXPORT` and `IMPORT` commands were added in Hive 0.8.0 (see [HIVE-1918](https://issues.apache.org/jira/browse/HIVE-1918)).
 
-Replication extensions to the `EXPORT` and `IMPORT` commands were added in Hive 1.2.0 (see [HIVE-7973](https://issues.apache.org/jira/browse/HIVE-7973) and [Hive Replication Development]({{< ref "hivereplicationdevelopment" >}})).
+Replication extensions to the `EXPORT` and `IMPORT` commands were added in Hive 1.2.0 (see [HIVE-7973](https://issues.apache.org/jira/browse/HIVE-7973) and [Hive Replication Development]({{% ref "hivereplicationdevelopment" %}})).
 
 ### Overview
 
