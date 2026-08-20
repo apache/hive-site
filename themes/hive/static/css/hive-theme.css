@@ -2333,7 +2333,7 @@ features.container {
 
 /* Why Choose Section */
 .why-choose-section {
-    background: #f8f9fa;
+    background: orange;
     padding: 5rem 0;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -2365,6 +2365,7 @@ features.container {
 .why-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    border: 2px solid #206cd6;
 }
 
 .why-icon {
