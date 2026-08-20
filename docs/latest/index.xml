@@ -2401,7 +2401,7 @@
 &lt;li&gt;
 &lt;h3 id="hiveserver2"&gt;HiveServer2&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Support &lt;a href="https://hive.apache.org/development/desingdocs/support-saml-2-0-authentication-mode"&gt;SAML 2.0&lt;/a&gt;/JWT authentication mode&lt;/li&gt;
+&lt;li&gt;Support &lt;a href="https://hive.apache.org/development/designdocs/support-saml-2-0-authentication-mode"&gt;SAML 2.0&lt;/a&gt;/JWT authentication mode&lt;/li&gt;
 &lt;li&gt;Support both Kerberos and LDAP auth methods in parallel&lt;/li&gt;
 &lt;li&gt;Graceful shutdown&lt;/li&gt;
 &lt;li&gt;Easy access to the operation log through web UI&lt;/li&gt;
@@ -2460,7 +2460,7 @@
 &lt;li&gt;Access to files stored either directly in &lt;strong&gt;&lt;a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html"&gt;Apache HDFS&lt;/a&gt;&lt;a href="http://hadoop.apache.org/"&gt;™&lt;/a&gt;&lt;/strong&gt; or in other data storage systems such as &lt;strong&gt;&lt;a href="http://hbase.apache.org/"&gt;Apache HBase&lt;/a&gt;&lt;a href="http://hadoop.apache.org/"&gt;™&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Query execution via &lt;a href="http://tez.apache.org/"&gt;Apache Tez&lt;/a&gt;&lt;strong&gt;&lt;a href="http://hadoop.apache.org/"&gt;™&lt;/a&gt;&lt;/strong&gt; or &lt;a href="http://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html"&gt;MapReduce&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Procedural language with HPL-SQL&lt;/li&gt;
-&lt;li&gt;Sub-second query retrieval via &lt;a href="https://hive.apache.org/development/desingdocs/llap"&gt;Hive LLAP&lt;/a&gt;, &lt;a href="https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html"&gt;Apache YARN&lt;/a&gt; and &lt;a href="https://slider.incubator.apache.org/"&gt;Apache Slider&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Sub-second query retrieval via &lt;a href="https://hive.apache.org/development/designdocs/llap"&gt;Hive LLAP&lt;/a&gt;, &lt;a href="https://hadoop.apache.org/docs/r2.7.2/hadoop-yarn/hadoop-yarn-site/YARN.html"&gt;Apache YARN&lt;/a&gt; and &lt;a href="https://slider.incubator.apache.org/"&gt;Apache Slider&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://hive.apache.org/docs/latest/language/apache-hive-sql-conformance"&gt;Hive provides standard SQL functionality&lt;/a&gt;, including many of the later &lt;a href="https://en.wikipedia.org/wiki/SQL:2003"&gt;SQL:2003&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/wiki/SQL:2011"&gt;SQL:2011&lt;/a&gt;, and &lt;a href="https://en.wikipedia.org/wiki/SQL:2016"&gt;SQL:2016&lt;/a&gt; features for analytics.&lt;br&gt;
 Hive&amp;rsquo;s SQL can also be extended with user code via user defined functions (UDFs), user defined aggregates (UDAFs), and user defined table functions (UDTFs).&lt;/p&gt;</description></item></channel></rss>

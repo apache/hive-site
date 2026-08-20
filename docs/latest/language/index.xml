@@ -165,7 +165,7 @@ public final class Lower extends UDF {
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/writeordering/"&gt;Write Ordering (Type-Native &amp;amp; Z-Order)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://hive.apache.org/development/desingdocs/statsdev/"&gt;Statistics (Analyze and Describe)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/development/designdocs/statsdev/"&gt;Statistics (Analyze and Describe)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-indexing/"&gt;Indexes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-archiving/"&gt;Archiving&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -362,7 +362,7 @@ groupByQuery: SELECT expression (, expression)* FROM src groupByClause?
 &lt;p&gt;In order to count the number of rows in a table:&lt;/p&gt;</description></item><item><title>Apache Hive : LanguageManual ImportExport</title><link>https://hive.apache.org/docs/latest/language/languagemanual-importexport/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/languagemanual-importexport/</guid><description>&lt;h1 id="apache-hive--languagemanual-importexport"&gt;Apache Hive : LanguageManual Import/Export&lt;/h1&gt;
 &lt;h3 id="version-information"&gt;Version information&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;EXPORT&lt;/code&gt; and &lt;code&gt;IMPORT&lt;/code&gt; commands were added in Hive 0.8.0 (see &lt;a href="https://issues.apache.org/jira/browse/HIVE-1918"&gt;HIVE-1918&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Replication extensions to the &lt;code&gt;EXPORT&lt;/code&gt; and &lt;code&gt;IMPORT&lt;/code&gt; commands were added in Hive 1.2.0 (see &lt;a href="https://issues.apache.org/jira/browse/HIVE-7973"&gt;HIVE-7973&lt;/a&gt; and &lt;a href="https://hive.apache.org/development/desingdocs/hivereplicationdevelopment/"&gt;Hive Replication Development&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Replication extensions to the &lt;code&gt;EXPORT&lt;/code&gt; and &lt;code&gt;IMPORT&lt;/code&gt; commands were added in Hive 1.2.0 (see &lt;a href="https://issues.apache.org/jira/browse/HIVE-7973"&gt;HIVE-7973&lt;/a&gt; and &lt;a href="https://hive.apache.org/development/designdocs/hivereplicationdevelopment/"&gt;Hive Replication Development&lt;/a&gt;).&lt;/p&gt;
 &lt;h3 id="overview"&gt;Overview&lt;/h3&gt;
 &lt;p&gt;The &lt;code&gt;EXPORT&lt;/code&gt; command exports the data of a table or partition, along with the metadata, into a specified output location. This output location can then be moved over to a different Hadoop or Hive instance and imported from there with the &lt;code&gt;IMPORT&lt;/code&gt; command.&lt;/p&gt;</description></item><item><title>Apache Hive : LanguageManual Indexing</title><link>https://hive.apache.org/docs/latest/language/languagemanual-indexing/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/languagemanual-indexing/</guid><description>&lt;h1 id="apache-hive--languagemanual-indexing"&gt;Apache Hive : LanguageManual Indexing&lt;/h1&gt;
 &lt;h2 id="indexing-is-removed-since-30"&gt;Indexing Is Removed since 3.0&lt;/h2&gt;
