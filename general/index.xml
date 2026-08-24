@@ -31,6 +31,12 @@ cookie if you prefer not to share this data with Google.&lt;/p&gt;</description>
 &lt;strong&gt;&lt;a href="http://www.apache.org/dyn/closer.cgi/hive/"&gt;Download a release now!&lt;/a&gt;&lt;/strong&gt;
 Old releases can be found in the &lt;a href="https://archive.apache.org/dist/hive/"&gt;archives&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="news"&gt;News&lt;/h2&gt;
+&lt;h3 id="24-august-2026--release-421-available"&gt;24 August 2026: release 4.2.1 available&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a bugfix release that addresses three security vulnerabilities in Hive Metastore direct-SQL partition paths, HiveServer2 SAML bearer-token authentication, and Avro SerDe schema URL handling.&lt;/li&gt;
+&lt;li&gt;This release works with Hadoop 3.4.1, Tez 0.10.5.&lt;/li&gt;
+&lt;li&gt;You can look at the complete &lt;a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12357270&amp;amp;styleName=Text&amp;amp;projectId=12310843"&gt;JIRA change log for this release&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id="23-november-2025--release-420-available"&gt;23 November 2025: release 4.2.0 available&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Apache Hive 4.2.x introduces support for JDK 21 and requires it as the minimum supported Java version.&lt;/li&gt;

@@ -10908,10 +10908,10 @@ Hive&amp;rsquo;s SQL can also be extended with user code via user defined functi
 &lt;h3 id="quickstart"&gt;Quickstart&lt;/h3&gt;
 &lt;hr&gt;
 &lt;h5 id="step-1-pull-the-image"&gt;&lt;strong&gt;STEP 1: Pull the image&lt;/strong&gt;&lt;/h5&gt;
-&lt;p&gt;Pull the image from DockerHub: &lt;a href="https://hub.docker.com/r/apache/hive/tags"&gt;https://hub.docker.com/r/apache/hive/tags&lt;/a&gt;. The latest image tag is &lt;code&gt;4.2.0&lt;/code&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker pull apache/hive:4.2.0
+&lt;p&gt;Pull the image from DockerHub: &lt;a href="https://hub.docker.com/r/apache/hive/tags"&gt;https://hub.docker.com/r/apache/hive/tags&lt;/a&gt;. The latest image tag is &lt;code&gt;4.2.1&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;docker pull apache/hive:4.2.1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id="step-2-export-the-hive-version"&gt;&lt;strong&gt;STEP 2: Export the Hive version&lt;/strong&gt;&lt;/h5&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;export HIVE_VERSION&lt;span style="color:#f92672"&gt;=&lt;/span&gt;4.2.0
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;export HIVE_VERSION&lt;span style="color:#f92672"&gt;=&lt;/span&gt;4.2.1
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id="step-3--launch-the-hiveserver2-with-an-embedded-metastore"&gt;&lt;strong&gt;STEP 3: Launch the HiveServer2 with an embedded Metastore.&lt;/strong&gt;&lt;/h5&gt;
 &lt;p&gt;This is lightweight and for a quick setup, it uses Derby as metastore db.&lt;/p&gt;</description></item><item><title>Getting Started</title><link>https://hive.apache.org/development/gettingstarted/</link><pubDate>Tue, 10 Jan 2023 12:35:11 +0530</pubDate><guid>https://hive.apache.org/development/gettingstarted/</guid><description>&lt;p&gt;The Apache Hive ™ data warehouse software facilitates reading,
 writing, and managing large datasets residing in distributed storage
@@ -11471,6 +11471,12 @@ cookie if you prefer not to share this data with Google.&lt;/p&gt;</description>
 &lt;strong&gt;&lt;a href="http://www.apache.org/dyn/closer.cgi/hive/"&gt;Download a release now!&lt;/a&gt;&lt;/strong&gt;
 Old releases can be found in the &lt;a href="https://archive.apache.org/dist/hive/"&gt;archives&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="news"&gt;News&lt;/h2&gt;
+&lt;h3 id="24-august-2026--release-421-available"&gt;24 August 2026: release 4.2.1 available&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;This is a bugfix release that addresses three security vulnerabilities in Hive Metastore direct-SQL partition paths, HiveServer2 SAML bearer-token authentication, and Avro SerDe schema URL handling.&lt;/li&gt;
+&lt;li&gt;This release works with Hadoop 3.4.1, Tez 0.10.5.&lt;/li&gt;
+&lt;li&gt;You can look at the complete &lt;a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12357270&amp;amp;styleName=Text&amp;amp;projectId=12310843"&gt;JIRA change log for this release&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id="23-november-2025--release-420-available"&gt;23 November 2025: release 4.2.0 available&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Apache Hive 4.2.x introduces support for JDK 21 and requires it as the minimum supported Java version.&lt;/li&gt;
@@ -11492,6 +11498,7 @@ We urge all Hive 3.x users to upgrade to the latest versions promptly to benefit
 &lt;hr&gt;
 &lt;h4 id="javadoc-and-sources-jars-for-use-in-an-ide-are-also-available-via-nexus"&gt;javadoc and sources jars for use in an IDE are also available via &lt;a href="https://repository.apache.org/index.html#nexus-search;gav~org.apache.hive~~~~"&gt;Nexus&lt;/a&gt;&lt;/h4&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.2.1/api/index.html"&gt;Hive 4.2.1 Javadocs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.2.0/api/index.html"&gt;Hive 4.2.0 Javadocs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.1.0/api/index.html"&gt;Hive 4.1.0 Javadocs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs/r4.0.1/api/index.html"&gt;Hive 4.0.1 Javadocs&lt;/a&gt;&lt;/li&gt;
