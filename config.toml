@@ -12,7 +12,7 @@ theme = 'hive'
   javaDocUrl = 'https://svn.apache.org/repos/infra/websites/production/hive/content/javadocs'
 
 [params.release]
-    version = "4.2.0"
+    version = "4.2.1"
 
 [params.banner]
     github = "https://github.com/apache/hive"
@@ -55,7 +55,7 @@ theme = 'hive'
     gettingStarted = "/development/gettingstarted/"
     docker = "/development/quickstart/"
     blogs = "https://hive.blog.apache.org/"
-    announcements = "/general/downloads/#23-november-2025--release-420-available"
+    announcements = "/general/downloads/#24-august-2026--release-421-available"
 
 [params.features]
     acidTxn = "/docs/latest/user/hive-transactions"

@@ -30,6 +30,12 @@ Old releases can be found in the [archives][HIVE_ARCHIVES].
 
 ## News
 
+### 24 August 2026:  release 4.2.1 available
+
+  * This is a bugfix release that addresses three security vulnerabilities in Hive Metastore direct-SQL partition paths, HiveServer2 SAML bearer-token authentication, and Avro SerDe schema URL handling.
+  * This release works with Hadoop 3.4.1, Tez 0.10.5.
+  * You can look at the complete [JIRA change log for this release][HIVE_4_2_1_CL].
+
 ### 23 November 2025:  release 4.2.0 available
 
   * Apache Hive 4.2.x introduces support for JDK 21 and requires it as the minimum supported Java version.
@@ -316,6 +322,7 @@ Hive users for these two versions are encouraged to upgrade.
 
 [HIVE_DL]: http://www.apache.org/dyn/closer.cgi/hive/
 [HIVE_ARCHIVES]: https://archive.apache.org/dist/hive/
+[HIVE_4_2_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12357270&styleName=Text&projectId=12310843
 [HIVE_4_2_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12356025&styleName=Text&projectId=12310843
 [HIVE_4_1_0_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12353994&styleName=Text&projectId=12310843
 [HIVE_4_0_1_CL]: https://issues.apache.org/jira/secure/ReleaseNote.jspa?version=12354786&styleName=Text&projectId=12310843
