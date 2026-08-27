@@ -23,7 +23,7 @@ Delete a database.
 | **group** | The user group to use | Optional | None |
 | **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -67,7 +67,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [PUT ddl/database/:db]({{< ref "webhcat-reference-putdb" >}}) Next: [GET ddl/database/:db/table]({{< ref "webhcat-reference-gettables" >}})
+Previous: [PUT ddl/database/:db]({{% ref "webhcat-reference-putdb" %}}) Next: [GET ddl/database/:db/table]({{% ref "webhcat-reference-gettables" %}})
 
 
 

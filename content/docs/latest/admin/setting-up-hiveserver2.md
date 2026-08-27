@@ -5,12 +5,12 @@ date: 2024-12-12
 
 # Apache Hive : Setting Up HiveServer2
 
-[HiveServer2](/docs/latest/user/hiveserver2-overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](/docs/latest/user/hiveserver2-overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{< ref "hiveserver" >}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
+[HiveServer2](/docs/latest/user/hiveserver2-overview) (HS2) is a server interface that enables remote clients to execute queries against Hive and retrieve the results (a more detailed intro [here](/docs/latest/user/hiveserver2-overview)). The current implementation, based on Thrift RPC, is an improved version of [HiveServer]({{% ref "hiveserver" %}}) and supports multi-client concurrency and authentication. It is designed to provide better support for open API clients like JDBC and ODBC.
 
 * The Thrift interface definition language (IDL) for HiveServer2 is available at <https://github.com/apache/hive/blob/trunk/service/if/TCLIService.thrift>.
 * Thrift documentation is available at <http://thrift.apache.org/docs/>.
 
-This document describes how to set up the server. How to use a client with this server is described in the [HiveServer2 Clients document]({{< ref "hiveserver2-clients" >}}).
+This document describes how to set up the server. How to use a client with this server is described in the [HiveServer2 Clients document]({{% ref "hiveserver2-clients" %}}).
 
 ## Version information
 
@@ -28,7 +28,7 @@ hive.server2.thrift.port – TCP port number to listen on, default 10000.
 
 hive.server2.thrift.bind.host – TCP interface to bind to.
 
-See [HiveServer2 in the Configuration Properties document]({{< ref "#hiveserver2-in-the-configuration-properties-document" >}}) for additional properties that can be set for HiveServer2.
+See [HiveServer2 in the Configuration Properties document]({{% ref "#hiveserver2-in-the-configuration-properties-document" %}}) for additional properties that can be set for HiveServer2.
 
 **Optional Environment Settings**
 
@@ -41,11 +41,11 @@ HiveServer2 provides support for sending Thrift RPC messages over HTTP transport
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| [hive.server2.transport.mode]({{< ref "#hive-server2-transport-mode" >}}) | binary | Set to http to enable HTTP transport mode |
-| [hive.server2.thrift.http.port]({{< ref "#hive-server2-thrift-http-port" >}}) | 10001 | HTTP port number to listen on |
-| [hive.server2.thrift.http.max.worker.threads]({{< ref "#hive-server2-thrift-http-max-worker-threads" >}}) | 500 | Maximum worker threads in the server pool |
-| [hive.server2.thrift.http.min.worker.threads]({{< ref "#hive-server2-thrift-http-min-worker-threads" >}}) | 5 | Minimum worker threads in the server pool |
-| [hive.server2.thrift.http.path]({{< ref "#hive-server2-thrift-http-path" >}}) | cliservice | The service endpoint |
+| [hive.server2.transport.mode]({{% ref "#hive-server2-transport-mode" %}}) | binary | Set to http to enable HTTP transport mode |
+| [hive.server2.thrift.http.port]({{% ref "#hive-server2-thrift-http-port" %}}) | 10001 | HTTP port number to listen on |
+| [hive.server2.thrift.http.max.worker.threads]({{% ref "#hive-server2-thrift-http-max-worker-threads" %}}) | 500 | Maximum worker threads in the server pool |
+| [hive.server2.thrift.http.min.worker.threads]({{% ref "#hive-server2-thrift-http-min-worker-threads" %}}) | 5 | Minimum worker threads in the server pool |
+| [hive.server2.thrift.http.path]({{% ref "#hive-server2-thrift-http-path" %}}) | cliservice | The service endpoint |
 
 ##### Cookie Based Authentication
 
@@ -61,10 +61,10 @@ The init file lists a set of commands that will run for users of this HiveServer
 
 HiveServer2 operation logs are available for Beeline clients (Hive 0.14 onward). These parameters configure logging:
 
-* [hive.server2.logging.operation.enabled]({{< ref "#hive-server2-logging-operation-enabled" >}})
-* [hive.server2.logging.operation.log.location]({{< ref "#hive-server2-logging-operation-log-location" >}})
-* [hive.server2.logging.operation.verbose]({{< ref "#hive-server2-logging-operation-verbose" >}}) (Hive 0.14 to 1.1)
-* [hive.server2.logging.operation.level]({{< ref "#hive-server2-logging-operation-level" >}}) (Hive 1.2 onward)
+* [hive.server2.logging.operation.enabled]({{% ref "#hive-server2-logging-operation-enabled" %}})
+* [hive.server2.logging.operation.log.location]({{% ref "#hive-server2-logging-operation-log-location" %}})
+* [hive.server2.logging.operation.verbose]({{% ref "#hive-server2-logging-operation-verbose" %}}) (Hive 0.14 to 1.1)
+* [hive.server2.logging.operation.level]({{% ref "#hive-server2-logging-operation-level" %}}) (Hive 1.2 onward)
 
 ## How to Start
 
@@ -110,19 +110,19 @@ hive.server2.authentication.kerberos.keytab – Keytab for server principal.
 
 Set following for LDAP mode:
 
-[hive.server2.authentication.ldap.url]({{< ref "#hive-server2-authentication-ldap-url" >}}) – LDAP URL (for example, ldap://hostname.com:389).
+[hive.server2.authentication.ldap.url]({{% ref "#hive-server2-authentication-ldap-url" %}}) – LDAP URL (for example, ldap://hostname.com:389).
 
-[hive.server2.authentication.ldap.baseDN]({{< ref "#hive-server2-authentication-ldap-basedn" >}}) – LDAP base DN. (Optional for AD.)
+[hive.server2.authentication.ldap.baseDN]({{% ref "#hive-server2-authentication-ldap-basedn" %}}) – LDAP base DN. (Optional for AD.)
 
-[hive.server2.authentication.ldap.Domain]({{< ref "#hive-server2-authentication-ldap-domain" >}}) – LDAP domain. (Hive 0.12.0 and later.)
+[hive.server2.authentication.ldap.Domain]({{% ref "#hive-server2-authentication-ldap-domain" %}}) – LDAP domain. (Hive 0.12.0 and later.)
 
-See [User and Group Filter Support with LDAP Atn Provider in HiveServer2]({{< ref "user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2" >}}) for other LDAP configuration parameters in Hive 1.3.0 and later.
+See [User and Group Filter Support with LDAP Atn Provider in HiveServer2]({{% ref "user-and-group-filter-support-with-ldap-atn-provider-in-hiveserver2" %}}) for other LDAP configuration parameters in Hive 1.3.0 and later.
 
 Set following for CUSTOM mode:
 
 hive.server2.custom.authentication.class – Custom authentication class that implements the `org.apache.hive.service.auth.PasswdAuthenticationProvider` interface.
 
-For PAM mode, see details in [section on PAM]({{< ref "#section-on-pam" >}}) below.
+For PAM mode, see details in [section on PAM]({{% ref "#section-on-pam" %}}) below.
 
 #### **Impersonation**
 
@@ -219,10 +219,10 @@ HiveServer2 allows the configuration of various aspects of scratch directories, 
 
 The following are the properties that can be configured related to scratch directories:
 
-* [hive.scratchdir.lock]({{< ref "#hive-scratchdir-lock" >}})
-* [hive.exec.scratchdir]({{< ref "#hive-exec-scratchdir" >}})
-* [hive.scratch.dir.permission]({{< ref "#hive-scratch-dir-permission" >}})
-* [hive.start.cleanup.scratchdir]({{< ref "#hive-start-cleanup-scratchdir" >}})
+* [hive.scratchdir.lock]({{% ref "#hive-scratchdir-lock" %}})
+* [hive.exec.scratchdir]({{% ref "#hive-exec-scratchdir" %}})
+* [hive.scratch.dir.permission]({{% ref "#hive-scratch-dir-permission" %}})
+* [hive.start.cleanup.scratchdir]({{% ref "#hive-start-cleanup-scratchdir" %}})
 
 ### ClearDanglingScratchDir Tool
 
@@ -245,9 +245,9 @@ Introduced in Hive 2.0.0. See [HIVE-12338](https://issues.apache.org/jira/browse
 
 A Web User Interface (UI) for HiveServer2 provides configuration, logging, metrics and active session information. The Web UI is available at port 10002 (127.0.0.1:10002) by default.  
 
-* [Configuration properties]({{< ref "#configuration-properties" >}}) for the Web UI can be [customized in hive-site.xml]({{< ref "#customized-in-hive-site-xml" >}}), including hive.server2.webui.host, hive.server2.webui.port, hive.server2.webui.max.threads, and others.
-* [Hive Metrics]({{< ref "hive-metrics" >}}) can by viewed by using the "Metrics Dump" tab.
-* [Logs]({{< ref "#logs" >}})can be viewed by using the "Local logs" tab.
+* [Configuration properties]({{% ref "#configuration-properties" %}}) for the Web UI can be [customized in hive-site.xml]({{% ref "#customized-in-hive-site-xml" %}}), including hive.server2.webui.host, hive.server2.webui.port, hive.server2.webui.max.threads, and others.
+* [Hive Metrics]({{% ref "hive-metrics" %}}) can by viewed by using the "Metrics Dump" tab.
+* [Logs]({{% ref "#logs" %}})can be viewed by using the "Local logs" tab.
 
 The interface is currently under development with [HIVE-12338](https://issues.apache.org/jira/browse/HIVE-12338).
 

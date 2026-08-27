@@ -16,7 +16,7 @@ Hadoop already has a long tradition of being run on EC2 and S3. These are well d
 * [Hadoop and S3](http://wiki.apache.org/hadoop/AmazonS3)
 * [Amazon and EC2](http://wiki.apache.org/hadoop/AmazonEC2)
 
-The second document also has pointers on how to get started using EC2 and S3. For people who are new to S3 - there's a few helpful notes in [S3 for n00bs section]({{< ref "#s3-for-n00bs-section" >}}) below. The rest of the documentation below assumes that the reader can launch a hadoop cluster in EC2, copy files into and out of S3 and run some simple Hadoop jobs.
+The second document also has pointers on how to get started using EC2 and S3. For people who are new to S3 - there's a few helpful notes in [S3 for n00bs section]({{% ref "#s3-for-n00bs-section" %}}) below. The rest of the documentation below assumes that the reader can launch a hadoop cluster in EC2, copy files into and out of S3 and run some simple Hadoop jobs.
 
 ## Introduction to Hive and AWS
 
@@ -52,7 +52,7 @@ However - the one downside of Option 2 is that jar files are copied over to the 
 It is useful to go over the main storage choices for Hadoop/EC2 environment:
 
 * S3 is an excellent place to store data for the long term. There are a couple of choices on how S3 can be used:
-	+ Data can be either stored as files within S3 using tools like aws and s3curl as detailed in [S3 for n00bs section]({{< ref "#s3-for-n00bs-section" >}}). This suffers from the restriction of 5G limit on file size in S3. But the nice thing is that there are probably scores of tools that can help in copying/replicating data to S3 in this manner. Hadoop is able to read/write such files using the S3N filesystem.
+	+ Data can be either stored as files within S3 using tools like aws and s3curl as detailed in [S3 for n00bs section]({{% ref "#s3-for-n00bs-section" %}}). This suffers from the restriction of 5G limit on file size in S3. But the nice thing is that there are probably scores of tools that can help in copying/replicating data to S3 in this manner. Hadoop is able to read/write such files using the S3N filesystem.
 	+ Alternatively Hadoop provides a block based file system using S3 as a backing store. This does not suffer from the 5G max file size restriction. However - Hadoop utilities and libraries must be used for reading/writing such files.
 
 * HDFS instance on the local drives of the machines in the Hadoop cluster. The lifetime of this is restricted to that of the Hadoop instance - hence this is not suitable for long lived data. However it should provide data that can be accessed much faster and hence is a good choice for intermediate/tmp data.

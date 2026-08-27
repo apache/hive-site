@@ -11,17 +11,17 @@ WebHCat and HCatalog are installed with Hive, starting with Hive release 0.11.0.
 
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the `hcatalog/sbin` directory.
 
-Hive installation is documented [here]({{< ref "adminmanual-installation" >}}).
+Hive installation is documented [here]({{% ref "adminmanual-installation" %}}).
 
 ## WebHCat Installation Procedure
 
 **Note:** WebHCat was originally called Templeton. For backward compatibility the name still appears in URLs, log file names, variable names, etc.
 
-1. Ensure that the [required related installations]({{< ref "#required-related-installations" >}}) are in place, and place required files into the [Hadoop distributed cache]({{< ref "#hadoop-distributed-cache" >}}).
+1. Ensure that the [required related installations]({{% ref "#required-related-installations" %}}) are in place, and place required files into the [Hadoop distributed cache]({{% ref "#hadoop-distributed-cache" %}}).
 2. Download and unpack the HCatalog distribution.
 3. Set the `TEMPLETON_HOME` environment variable to the base of the HCatalog REST server installation. This will usually be same as `HCATALOG_HOME`. This is used to find the WebHCat (Templeton) configuration.
 4. Set `JAVA_HOME`, `HADOOP_PREFIX`, and `HIVE_HOME` environment variables.
-5. Review the [configuration]({{< ref "webhcat-configure" >}}) and update or create `webhcat-site.xml` as required. Ensure that site-specific component installation locations are accurate, especially the Hadoop configuration path. Configuration variables that use a filesystem path try to have reasonable defaults, but it's always safe to specify a full and complete path.
+5. Review the [configuration]({{% ref "webhcat-configure" %}}) and update or create `webhcat-site.xml` as required. Ensure that site-specific component installation locations are accurate, especially the Hadoop configuration path. Configuration variables that use a filesystem path try to have reasonable defaults, but it's always safe to specify a full and complete path.
 6. Verify that HCatalog is installed and that the `hcat` executable is in the `PATH`.
 7. Build HCatalog using the command `ant jar` from the top level HCatalog directory.
 8. Start the REST server with the command "`hcatalog/sbin/webhcat_server.sh start`" for Hive 0.11.0 releases and later, or "`sbin/webhcat_server.sh start`" for installations prior to HCatalog merging with Hive.
@@ -51,11 +51,11 @@ Server: Jetty(7.6.0.v20120127)
 
 * [Ant](http://ant.apache.org/), version 1.8 or higher
 * [Hadoop](http://hadoop.apache.org/), version 1.0.3 or higher
-* [ZooKeeper](http://zookeeper.apache.org/) is required if you are using the ZooKeeper storage class. (Be sure to review and update the ZooKeeper-related [WebHCat configuration]({{< ref "#webhcat-configuration" >}}).)
-* HCatalog, version 0.5.0 or higher. The `hcat` executable must be both in the `PATH` and properly configured in the [WebHCat configuration]({{< ref "#webhcat-configuration" >}}).
+* [ZooKeeper](http://zookeeper.apache.org/) is required if you are using the ZooKeeper storage class. (Be sure to review and update the ZooKeeper-related [WebHCat configuration]({{% ref "#webhcat-configuration" %}}).)
+* HCatalog, version 0.5.0 or higher. The `hcat` executable must be both in the `PATH` and properly configured in the [WebHCat configuration]({{% ref "#webhcat-configuration" %}}).
 * Permissions must be given to the user running the server. (See below.)
 * If running a secure cluster, Kerberos keys and principals must be created. (See below.)
-* [Hadoop Distributed Cache]({{< ref "#hadoop-distributed-cache" >}}). To use [Hive](http://hive.apache.org/), [Pig](http://pig.apache.org/), or [Hadoop Streaming](http://hadoop.apache.org/docs/stable/streaming.html) resources, see instructions below for placing the required files in the Hadoop Distributed Cache.
+* [Hadoop Distributed Cache]({{% ref "#hadoop-distributed-cache" %}}). To use [Hive](http://hive.apache.org/), [Pig](http://pig.apache.org/), or [Hadoop Streaming](http://hadoop.apache.org/docs/stable/streaming.html) resources, see instructions below for placing the required files in the Hadoop Distributed Cache.
 
 ## Hadoop Distributed Cache
 
@@ -101,7 +101,7 @@ hadoop fs -put ugi.jar /apps/templeton/ugi.jar
 
 ```
 
-The location of these files in the cache, and the location of the installations inside the archives, can be specified using the following WebHCat configuration variables. (See the [Configuration]({{< ref "webhcat-configure" >}}) documentation for more information on changing WebHCat configuration parameters.) Some default values vary depending on release number; defaults shown below are for the version of WebHCat that is included in Hive release 0.11.0. Defaults for the previous release are shown in the [HCatalog 0.5.0 documentation](http://hive.apache.org/docs/hcat_r0.5.0/rest_server_install.html#Hadoop+Distributed+Cache).
+The location of these files in the cache, and the location of the installations inside the archives, can be specified using the following WebHCat configuration variables. (See the [Configuration]({{% ref "webhcat-configure" %}}) documentation for more information on changing WebHCat configuration parameters.) Some default values vary depending on release number; defaults shown below are for the version of WebHCat that is included in Hive release 0.11.0. Defaults for the previous release are shown in the [HCatalog 0.5.0 documentation](http://hive.apache.org/docs/hcat_r0.5.0/rest_server_install.html#Hadoop+Distributed+Cache).
 
 | Name | Default (Hive 0.11.0) | Description |
 | --- | --- | --- |
@@ -116,7 +116,7 @@ The location of these files in the cache, and the location of the installations 
 
 Permission must be given for the user running the WebHCat executable to run jobs for other users. That is, the WebHCat server will impersonate users on the Hadoop cluster.
 
-Create (or assign) a Unix user who will run the WebHCat server. Call this USER. See the [Secure Cluster]({{< ref "#secure-cluster" >}}) section below for choosing a user on a Kerberos cluster.
+Create (or assign) a Unix user who will run the WebHCat server. Call this USER. See the [Secure Cluster]({{% ref "#secure-cluster" %}}) section below for choosing a user on a Kerberos cluster.
 
 Modify the Hadoop core-site.xml file and set these properties:
 
@@ -127,7 +127,7 @@ Modify the Hadoop core-site.xml file and set these properties:
 
 ## Secure Cluster
 
-To run WebHCat on a secure cluster follow the [Permissions]({{< ref "#permissions" >}}) instructions above but create a Kerberos principal for the WebHCat server with the name `USER/host@realm`.
+To run WebHCat on a secure cluster follow the [Permissions]({{% ref "#permissions" %}}) instructions above but create a Kerberos principal for the WebHCat server with the name `USER/host@realm`.
 
 Also, set the WebHCat configuration variables `templeton.kerberos.principal` and `templeton.kerberos.keytab`.
 
@@ -163,11 +163,11 @@ In core-site.xml, make sure the following are also set:
 | hadoop.proxyuser.hcat.hosts | A comma-separated list of the hosts which are allowed to submit requests by 'hcat'. |
 
 **Navigation Links**
-Previous: [Using WebHCat]({{< ref "webhcat-usingwebhcat" >}})  
- Next: [Configuration]({{< ref "webhcat-configure" >}})
+Previous: [Using WebHCat]({{% ref "webhcat-usingwebhcat" %}})  
+ Next: [Configuration]({{% ref "webhcat-configure" %}})
 
-Hive installation: [Installing Hive]({{< ref "adminmanual-installation" >}})  
- HCatalog installation: [Installation from Tarball]({{< ref "hcatalog-installhcat" >}})
+Hive installation: [Installing Hive]({{% ref "adminmanual-installation" %}})  
+ HCatalog installation: [Installation from Tarball]({{% ref "hcatalog-installhcat" %}})
 
 
 

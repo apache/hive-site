@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## Description
 
-Return the version of Hadoop being run when WebHCat creates a MapReduce job ([POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar" >}}) or [mapreduce/streaming]({{< ref "webhcat-reference-mapreducestream" >}})).
+Return the version of Hadoop being run when WebHCat creates a MapReduce job ([POST mapreduce/jar]({{% ref "webhcat-reference-mapreducejar" %}}) or [mapreduce/streaming]({{% ref "webhcat-reference-mapreducestream" %}})).
 
 Version: Hive 0.13.0 and later
 
@@ -19,7 +19,7 @@ Version: Hive 0.13.0 and later
 
 ## Parameters
 
-Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
+Only the [standard parameters]({{% ref "#standard-parameters" %}}) are accepted.
 
 ## Results
 
@@ -50,12 +50,12 @@ Returns the Hadoop version.
  
 
 **Navigation Links**
-Previous: [GET version/hive]({{< ref "webhcat-reference-versionhive" >}})  
-Next: [POST ddl]({{< ref "webhcat-reference-ddl" >}})
+Previous: [GET version/hive]({{% ref "webhcat-reference-versionhive" %}})  
+Next: [POST ddl]({{% ref "webhcat-reference-ddl" %}})
 
 
 
-Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids" >}})
+Replaces deprecated resource: [GET queue]({{% ref "webhcat-reference-jobids" %}})
 
  
 

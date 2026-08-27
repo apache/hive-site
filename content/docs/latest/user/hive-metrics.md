@@ -7,7 +7,7 @@ date: 2024-12-12
 
   
 
-The metrics that Hive collects can be viewed in the [HiveServer2 Web UI]({{< ref "#hiveserver2-web-ui" >}}) by using the "Metrics Dump" tab.
+The metrics that Hive collects can be viewed in the [HiveServer2 Web UI]({{% ref "#hiveserver2-web-ui" %}}) by using the "Metrics Dump" tab.
 
 The metrics dump will display any metric available over JMX encoded in JSON: 
 
@@ -147,9 +147,9 @@ These metrics include:
 * compaction_oldest_cleaning_age_in_sec ([Hive 4.0.0](https://issues.apache.org/jira/browse/HIVE-25737))
 * compaction_num_obsolete_deltas ([Hive 4.0.0](https://issues.apache.org/jira/browse/HIVE-24974))
 
-Configuration properties for metrics can be found here:  [Metrics]({{< ref "#metrics" >}}).
+Configuration properties for metrics can be found here:  [Metrics]({{% ref "#metrics" %}}).
 
-See [HiveServer2 Overview]({{< ref "hiveserver2-overview" >}}) for more information about HiveServer2.
+See [HiveServer2 Overview]({{% ref "hiveserver2-overview" %}}) for more information about HiveServer2.
 
 ## Attachments:
 

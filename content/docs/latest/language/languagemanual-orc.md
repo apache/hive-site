@@ -54,7 +54,7 @@ Having relatively frequent row index entries enables row-skipping within a strip
 
 With the ability to skip large sets of rows based on filter predicates, you can sort a table on its secondary keys to achieve a big reduction in execution time. For example, if the primary partition is transaction date, the table can be sorted on state, zip code, and last name. Then looking for records in one state will skip the records of all other states.
 
-A complete specification of the format is given in the [ORC specification]({{< ref "#orc-specification" >}}).
+A complete specification of the format is given in the [ORC specification]({{% ref "#orc-specification" %}}).
 
 ## HiveQL Syntax
 
@@ -64,7 +64,7 @@ File formats are specified at the table (or partition) level. You can specify th
 * `ALTER TABLE ... [PARTITION partition_spec] SET FILEFORMAT ORC`
 * `SET hive.default.fileformat=Orc`
 
-The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{< ref "#create-table" >}})). They are:
+The parameters are all placed in the TBLPROPERTIES (see [Create Table]({{% ref "#create-table" %}})). They are:
 
 | Key | Default | Notes |
 | --- | --- | --- |
@@ -91,7 +91,7 @@ create table Addresses (
 
 Version 0.14.0+: CONCATENATE
 
-`[ALTER TABLE table_name [PARTITION partition_spec] CONCATENATE]({{< ref "#alter-table-table_name-[partition-partition_spec]-concatenate" >}})` can be used to merge small ORC files into a larger file, starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7509). The merge happens at the stripe level, which avoids decompressing and decoding the data.
+`[ALTER TABLE table_name [PARTITION partition_spec] CONCATENATE]({{% ref "#alter-table-table_name-[partition-partition_spec]-concatenate" %}})` can be used to merge small ORC files into a larger file, starting in [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-7509). The merge happens at the stripe level, which avoids decompressing and decoding the data.
 
 ## Serialization and Compression
 
@@ -163,7 +163,7 @@ hive --orcfiledump [-j] [-p] [-d] [-t] [--rowindex <col_ids>] [--recover] [--ski
 
 Specifying `-d` in the command will cause it to dump the ORC file data rather than the metadata (Hive [1.1.0](https://issues.apache.org/jira/browse/HIVE-7896) and later).
 
-Specifying `--rowindex` with a comma separated list of column ids will cause it to print [row indexes]({{< ref "#row-indexes" >}}) for the specified columns, where 0 is the top level struct containing all of the columns and 1 is the first column id (Hive [1.1.0](https://issues.apache.org/jira/browse/HIVE-7896) and later).
+Specifying `--rowindex` with a comma separated list of column ids will cause it to print [row indexes]({{% ref "#row-indexes" %}}) for the specified columns, where 0 is the top level struct containing all of the columns and 1 is the first column id (Hive [1.1.0](https://issues.apache.org/jira/browse/HIVE-7896) and later).
 
 Specifying `-t` in the command will print the timezone id of the writer.
 
@@ -181,7 +181,7 @@ Specifying `--backup-path` with a *new-path* will let the recovery tool move 
 
 ## ORC Configuration Parameters
 
-The ORC configuration parameters are described in [Hive Configuration Properties – ORC File Format]({{< ref "#hive-configuration-properties –-orc-file-format" >}}).
+The ORC configuration parameters are described in [Hive Configuration Properties – ORC File Format]({{% ref "#hive-configuration-properties –-orc-file-format" %}}).
 
 # ORC Format Specification
 

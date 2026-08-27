@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Design
 
-This page contains details about the Hive design and architecture. A brief technical report about Hive is available at [hive.pdf]({{< ref "#hive-pdf" >}}).
+This page contains details about the Hive design and architecture. A brief technical report about Hive is available at [hive.pdf]({{% ref "#hive-pdf" %}}).
 
 ## Hive Architecture
 
@@ -77,7 +77,7 @@ More plan transformations are performed by the optimizer. The optimizer is an ev
 
 ## Hive APIs
 
-[Hive APIs Overview]({{< ref "hive-apis-overview" >}}) describes various public-facing APIs that Hive provides.
+[Hive APIs Overview]({{% ref "hive-apis-overview" %}}) describes various public-facing APIs that Hive provides.
 
 ## Attachments:
 

@@ -7,13 +7,13 @@ date: 2024-12-12
 
 ## Overview
 
-This lists all supported data types in Hive. See [Type System]({{< ref "#type-system" >}}) in the [Tutorial]({{< ref "tutorial" >}}) for additional information.
+This lists all supported data types in Hive. See [Type System]({{% ref "#type-system" %}}) in the [Tutorial]({{% ref "tutorial" %}}) for additional information.
 
 For data types supported by HCatalog, see:
 
-* [HCatLoader Data Types]({{< ref "#hcatloader-data-types" >}})
-* [HCatStorer Data Types]({{< ref "#hcatstorer-data-types" >}})
-* [HCatRecord Data Types]({{< ref "#hcatrecord-data-types" >}})
+* [HCatLoader Data Types]({{% ref "#hcatloader-data-types" %}})
+* [HCatStorer Data Types]({{% ref "#hcatstorer-data-types" %}})
+* [HCatRecord Data Types]({{% ref "#hcatrecord-data-types" %}})
 
 ### Numeric Types
 
@@ -115,14 +115,14 @@ Supported conversions:
 * Floating point numeric types: Interpreted as UNIX timestamp in seconds with decimal precision
 * Strings: JDBC compliant java.sql.Timestamp format "`YYYY-MM-DD HH:MM:SS.fffffffff`" (9 decimal place precision)
 
-Timestamps are interpreted to be timezoneless and stored as an offset from the UNIX epoch. Convenience [UDFs]({{< ref "#udfs" >}}) for conversion to and from timezones are provided (`to_utc_timestamp`, `from_utc_timestamp`).  
-All existing datetime [UDFs]({{< ref "#udfs" >}}) (month, day, year, hour, etc.) work with the `TIMESTAMP` data type.
+Timestamps are interpreted to be timezoneless and stored as an offset from the UNIX epoch. Convenience [UDFs]({{% ref "#udfs" %}}) for conversion to and from timezones are provided (`to_utc_timestamp`, `from_utc_timestamp`).  
+All existing datetime [UDFs]({{% ref "#udfs" %}}) (month, day, year, hour, etc.) work with the `TIMESTAMP` data type.
 
 Timestamps in text files have to use the format `yyyy-mm-dd hh:mm:ss[.f...]`. If they are in another format, declare them as the appropriate type (INT, FLOAT, STRING, etc.) and use a UDF to convert them to timestamps.
 
 Timestamps in Parquet files may be stored as int64 (as opposed to int96) by setting `hive.parquet.write.int64.timestamp=true` and `hive.parquet.timestamp.time.unit` to a default storage time unit. (`"nanos", "micros",` `"millis"`; default: `"micros"`). Note that because only 64 bits are stored, int64 timestamps stored as `"nanos"` will be stored as NULL if outside the range of 1677-09-21T00:12:43.15 and 2262-04-11T23:47:16.8.
 
-On the table level, alternative timestamp formats can be supported by providing the format to the [SerDe property]({{< ref "#serde-property" >}}) "timestamp.formats" (as of release 1.2.0 with [HIVE-9298](https://issues.apache.org/jira/browse/HIVE-9298)). For example, `yyyy-MM-dd'T'HH:mm:ss.SSS,yyyy-MM-dd'T'HH:mm:ss.`
+On the table level, alternative timestamp formats can be supported by providing the format to the [SerDe property]({{% ref "#serde-property" %}}) "timestamp.formats" (as of release 1.2.0 with [HIVE-9298](https://issues.apache.org/jira/browse/HIVE-9298)). For example, `yyyy-MM-dd'T'HH:mm:ss.SSS,yyyy-MM-dd'T'HH:mm:ss.`
 
 Version
 
@@ -138,7 +138,7 @@ Dates were introduced in Hive 0.12.0 ([HIVE-4055](https://issues.apache.org/jira
 
 #### Casting Dates
 
-Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{< ref "cast-format-with-sql2016-datetime-formats" >}}).
+Date types can only be converted to/from Date, Timestamp, or String types. Casting with user-specified formats is documented [here]({{% ref "cast-format-with-sql2016-datetime-formats" %}}).
 
 | Valid casts to/from Date type | Result |
 | --- | --- |
@@ -199,7 +199,7 @@ With the changes in the Decimal data type in Hive 0.13.0, the pre-Hive 0.13.0 co
 If the user was on Hive 0.12.0 or earlier and created tables with decimal columns, they should perform the following steps on these tables **after** upgrading to Hive 0.13.0 or later.
 
 1. Determine what precision/scale you would like to set for the decimal column in the table.
-2. For each decimal column in the table, update the column definition to the desired precision/scale using the [ALTER TABLE]({{< ref "#alter-table" >}}) command:
+2. For each decimal column in the table, update the column definition to the desired precision/scale using the [ALTER TABLE]({{% ref "#alter-table" %}}) command:
 
 ```
 ALTER TABLE foo CHANGE COLUMN dec_column_name dec_column_name DECIMAL(38,18);
@@ -217,7 +217,7 @@ ds=2008-04-08/hr=12
 ```
 4. Each existing partition in the table must also have its DECIMAL column changed to add the desired precision/scale.
 
-This can be done with a single [ALTER TABLE CHANGE COLUMN]({{< ref "#alter-table-change-column" >}}) by using dynamic partitioning (available for ALTER TABLE CHANGE COLUMN in Hive 0.14 or later, with [HIVE-8411](https://issues.apache.org/jira/browse/HIVE-8411)):
+This can be done with a single [ALTER TABLE CHANGE COLUMN]({{% ref "#alter-table-change-column" %}}) by using dynamic partitioning (available for ALTER TABLE CHANGE COLUMN in Hive 0.14 or later, with [HIVE-8411](https://issues.apache.org/jira/browse/HIVE-8411)):
 
 ```
 SET hive.exec.dynamic.partition = true;
@@ -328,7 +328,7 @@ select cast(t as boolean) from decimal_2;
 
 ##### Mathematical UDFs
 
-Decimal also supports many [arithmetic operators]({{< ref "#arithmetic-operators" >}}), [mathematical UDFs]({{< ref "#mathematical-udfs" >}}) and [UDAFs]({{< ref "#udafs" >}}) with the same syntax as used in the case of DOUBLE.
+Decimal also supports many [arithmetic operators]({{% ref "#arithmetic-operators" %}}), [mathematical UDFs]({{% ref "#mathematical-udfs" %}}) and [UDAFs]({{% ref "#udafs" %}}) with the same syntax as used in the case of DOUBLE.
 
 Basic mathematical operations that can use decimal types include:
 
@@ -384,7 +384,7 @@ Missing values are represented by the special value NULL. To import data with NU
 
 ## Change Types
 
-When [hive.metastore.disallow.incompatible.col.type.changes]({{< ref "#hive-metastore-disallow-incompatible-col-type-changes" >}}) is set to false, the types of columns in Metastore can be changed from any type to any other type. After such a type change, if the data can be shown correctly with the new type, the data will be displayed. Otherwise, the data will be displayed as NULL.
+When [hive.metastore.disallow.incompatible.col.type.changes]({{% ref "#hive-metastore-disallow-incompatible-col-type-changes" %}}) is set to false, the types of columns in Metastore can be changed from any type to any other type. After such a type change, if the data can be shown correctly with the new type, the data will be displayed. Otherwise, the data will be displayed as NULL.
 
 ## Allowed Implicit Conversions
 

@@ -96,10 +96,10 @@ Default values prior to Hive 0.11 are listed in the HCatalog 0.5.0 documentation
  
 
 **Navigation Links**
-Previous: [Installation]({{< ref "webhcat-installwebhcat" >}})  
- Next: [Reference]({{< ref "webhcat-reference" >}})
+Previous: [Installation]({{% ref "webhcat-installwebhcat" %}})  
+ Next: [Reference]({{% ref "webhcat-reference" %}})
 
-Hive configuration: [Configuring Hive]({{< ref "adminmanual-configuration" >}}), [Hive Configuration Properties](/docs/latest/user/configuration-properties), [Thrift Server Setup]({{< ref "#thrift-server-setup" >}})
+Hive configuration: [Configuring Hive]({{% ref "adminmanual-configuration" %}}), [Hive Configuration Properties](/docs/latest/user/configuration-properties), [Thrift Server Setup]({{% ref "#thrift-server-setup" %}})
 
 
 

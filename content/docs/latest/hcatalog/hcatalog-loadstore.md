@@ -21,7 +21,7 @@ To bring in the appropriate jars for working with HCatalog, simply include the f
 pig -useHCatalog
 ```
 
-See section [Running Pig with HCatalog]({{< ref "#running-pig-with-hcatalog" >}}) below for details.
+See section [Running Pig with HCatalog]({{% ref "#running-pig-with-hcatalog" %}}) below for details.
 
 Stale Content Warning
 
@@ -54,13 +54,13 @@ You must specify the table name in single quotes: LOAD 'tablename'. If you are u
 
 The Hive metastore lets you create tables without specifying a database; if you created tables this way, then the database name is 'default' and is not required when specifying the table for HCatLoader.
 
-If the table is partitioned, you can indicate which partitions to scan by immediately following the load statement with a partition filter statement (see [Load Examples]({{< ref "#load-examples" >}}) below).
+If the table is partitioned, you can indicate which partitions to scan by immediately following the load statement with a partition filter statement (see [Load Examples]({{% ref "#load-examples" %}}) below).
 
 ### HCatLoader Data Types
 
 Restrictions apply to the types of columns HCatLoader can read from HCatalog-managed tables. HCatLoader can read ***only*** the Hive data types listed below. 
 
-The tables in [Data Type Mappings]({{< ref "#data-type-mappings" >}}) show how Pig will interpret each Hive data type.
+The tables in [Data Type Mappings]({{% ref "#data-type-mappings" %}}) show how Pig will interpret each Hive data type.
 
 #### Types in Hive 0.12.0 and Earlier
 
@@ -92,7 +92,7 @@ Hive 0.13.0 added support for reading these Hive data types with HCatLoader ([HI
 * char(x)
 * varchar(x)
 
-See [Data Type Mappings]({{< ref "#data-type-mappings" >}}) below for details of the mappings between Hive and Pig types.
+See [Data Type Mappings]({{% ref "#data-type-mappings" %}}) below for details of the mappings between Hive and Pig types.
 
 Note
 
@@ -314,7 +314,7 @@ store z into 'web_data' using org.apache.hive.hcatalog.pig.HCatStorer();
 
 Restrictions apply to the types of columns HCatStorer can write to HCatalog-managed tables. HCatStorer can write ***only*** the data types listed below.
 
-The tables in [Data Type Mappings]({{< ref "#data-type-mappings" >}}) show how HCatalog will interpret each Pig data type.
+The tables in [Data Type Mappings]({{% ref "#data-type-mappings" %}}) show how HCatalog will interpret each Pig data type.
 
 #### Types in Hive 0.12.0 and Earlier
 
@@ -342,7 +342,7 @@ Hive 0.13.0 added support for writing these Pig data types with HCatStorer ([HIV
 * datetime
 * bigdecimal
 
-and added more Hive data types that the Pig types can be written to. See [Data Type Mappings]({{< ref "#data-type-mappings" >}}) below for details of the mappings between Pig and Hive types.
+and added more Hive data types that the Pig types can be written to. See [Data Type Mappings]({{% ref "#data-type-mappings" %}}) below for details of the mappings between Pig and Hive types.
 
 Note
 
@@ -350,7 +350,7 @@ Hive does not have a data type corresponding to the biginteger type in Pig.
 
 ## Data Type Mappings
 
-The tables below show the mappings between data types in HCatalog-managed Hive tables and Pig. For general information about Hive data types, see [Hive Data Types]({{< ref "languagemanual-types" >}}) and [Type System]({{< ref "#type-system" >}}).
+The tables below show the mappings between data types in HCatalog-managed Hive tables and Pig. For general information about Hive data types, see [Hive Data Types]({{% ref "languagemanual-types" %}}) and [Type System]({{% ref "#type-system" %}}).
 
 Any type mapping not listed here is not supported and will throw an exception. The user is expected to cast the value to a compatible type first (in a Pig script, for example).
 
@@ -391,8 +391,8 @@ Hive does not have a data type corresponding to the BIGINTEGER type in Pig (java
  
 
 **Navigation Links**
-Previous: [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}})  
- Next: [Input and Output Interfaces]({{< ref "hcatalog-inputoutput" >}})
+Previous: [HCatalog Configuration Properties]({{% ref "hcatalog-configuration-properties" %}})  
+ Next: [Input and Output Interfaces]({{% ref "hcatalog-inputoutput" %}})
 
 
 

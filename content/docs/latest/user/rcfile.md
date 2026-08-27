@@ -14,7 +14,7 @@ RCFile combines the advantages of both row-store and column-store to satisfy th
 * As row-store, RCFile guarantees that data in the same row are located in the same node.
 * As column-store, RCFile can exploit column-wise data compression and skip unnecessary column reads.
 
-A shell utility is available for reading RCFile data and metadata: see [RCFileCat]({{< ref "rcfilecat" >}}).
+A shell utility is available for reading RCFile data and metadata: see [RCFileCat]({{% ref "rcfilecat" %}}).
 
 For details about the RCFile format, see:
 

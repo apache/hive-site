@@ -7,20 +7,20 @@ date: 2024-12-12
 
 # Thrift Hive Server
 
-HiveServer is an optional service that allows a remote [client]({{< ref "hiveclient" >}}) to submit requests to Hive, using a variety of programming languages, and retrieve results. HiveServer is built on Apache ThriftTM (<http://thrift.apache.org/>), therefore it is sometimes called the *Thrift server* although this can lead to confusion because a newer service named [HiveServer2]({{< ref "#hiveserver2" >}}) is also built on Thrift. Since the introduction of HiveServer2, HiveServer has also been called *HiveServer1*.
+HiveServer is an optional service that allows a remote [client]({{% ref "hiveclient" %}}) to submit requests to Hive, using a variety of programming languages, and retrieve results. HiveServer is built on Apache ThriftTM (<http://thrift.apache.org/>), therefore it is sometimes called the *Thrift server* although this can lead to confusion because a newer service named [HiveServer2]({{% ref "#hiveserver2" %}}) is also built on Thrift. Since the introduction of HiveServer2, HiveServer has also been called *HiveServer1*.
 
 WARNING!
 
 HiveServer cannot handle concurrent requests from more than one client. This is actually a limitation imposed by the Thrift interface that HiveServer exports, and can't be resolved by modifying the HiveServer code.   
-[HiveServer2]({{< ref "hiveserver2-clients" >}}) is a rewrite of HiveServer that addresses these problems, starting with Hive 0.11.0. Use of HiveServer2 is recommended.
+[HiveServer2]({{% ref "hiveserver2-clients" %}}) is a rewrite of HiveServer that addresses these problems, starting with Hive 0.11.0. Use of HiveServer2 is recommended.
 
-**HiveServer was [removed](https://issues.apache.org/jira/browse/HIVE-6977) from Hive releases starting in Hive 1.0.0 (**[formerly called 0.14.1]({{< ref "#formerly-called-0-14-1" >}})**). ****Please switch over to HiveServer2.******
+**HiveServer was [removed](https://issues.apache.org/jira/browse/HIVE-6977) from Hive releases starting in Hive 1.0.0 (**[formerly called 0.14.1]({{% ref "#formerly-called-0-14-1" %}})**). ****Please switch over to HiveServer2.******
 
-Previously its removal had been scheduled for [Hive 0.15 (now called 1.1.0)]({{< ref "#hive-0-15--now-called-1-1-0-" >}}). See [HIVE-6977](https://issues.apache.org/jira/browse/HIVE-6977).
+Previously its removal had been scheduled for [Hive 0.15 (now called 1.1.0)]({{% ref "#hive-0-15--now-called-1-1-0-" %}}). See [HIVE-6977](https://issues.apache.org/jira/browse/HIVE-6977).
 
 Thrift's interface definition language (IDL) file for HiveServer is `hive_service.thrift`, which is installed in `$HIVE_HOME/service/if/`.
 
-Once Hive has been built using steps in [Getting Started]({{< ref "gettingstarted-latest" >}}), the Thrift server can be started by running the following:
+Once Hive has been built using steps in [Getting Started]({{% ref "gettingstarted-latest" %}}), the Thrift server can be started by running the following:
 
 **0.8 and Later**
 
@@ -59,7 +59,7 @@ $ ant test -Dtestcase=TestHiveServer -Dstandalone=true
 
 ```
 
-The service supports clients in multiple languages. For more details see [Hive Client]({{< ref "hiveclient" >}}).
+The service supports clients in multiple languages. For more details see [Hive Client]({{% ref "hiveclient" %}}).
 
 Troubleshooting: Connection Error
 

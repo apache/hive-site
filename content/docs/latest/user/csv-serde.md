@@ -48,7 +48,7 @@ DEFAULT_QUOTE_CHARACTER  "
 DEFAULT_SEPARATOR        ,
 ```
 
-For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}}) in the Developer Guide. Also see [SerDe]({{< ref "serde" >}}) for details about input and output processing.
+For general information about SerDes, see [Hive SerDe]({{% ref "#hive-serde" %}}) in the Developer Guide. Also see [SerDe]({{% ref "serde" %}}) for details about input and output processing.
 
 ### Versions
 

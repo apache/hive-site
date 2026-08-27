@@ -15,7 +15,7 @@ fromClause: FROM baseTable (lateralView)*
 
 ## Description
 
-Lateral view is used in conjunction with user-defined table generating functions such as `explode()`. As mentioned in [Built-in Table-Generating Functions]({{< ref "#built-in-table-generating-functions" >}}), a UDTF generates zero or more output rows for each input row. A lateral view first applies the UDTF to each row of base table and then joins resulting output rows to the input rows to form a virtual table having the supplied table alias.
+Lateral view is used in conjunction with user-defined table generating functions such as `explode()`. As mentioned in [Built-in Table-Generating Functions]({{% ref "#built-in-table-generating-functions" %}}), a UDTF generates zero or more output rows for each input row. A lateral view first applies the UDTF to each row of base table and then joins resulting output rows to the input rows to form a virtual table having the supplied table alias.
 
 Version
 
@@ -43,7 +43,7 @@ An example table with two rows:
 
 and the user would like to count the total number of times an ad appears across all pages.
 
-A lateral view with [explode()]({{< ref "#explode--" >}}) can be used to convert `adid_list` into separate rows using the query:
+A lateral view with [explode()]({{% ref "#explode--" %}}) can be used to convert `adid_list` into separate rows using the query:
 
 ```
 SELECT pageid, adid

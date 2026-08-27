@@ -21,7 +21,7 @@ Describe a single partition in an HCatalog table.
 | **:table** | The table name | Required | None |
 | **:partition** | The partition name, col_name='value' list. Be careful to properly encode the quote for http, for example, country=%27algeria%27. | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -88,7 +88,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table/partition]({{< ref "webhcat-reference-getpartitions" >}}) Next: [PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-putpartition" >}})
+Previous: [GET ddl/database/:db/table/:table/partition]({{% ref "webhcat-reference-getpartitions" %}}) Next: [PUT ddl/database/:db/table/:table/partition/:partition]({{% ref "webhcat-reference-putpartition" %}})
 
 
 

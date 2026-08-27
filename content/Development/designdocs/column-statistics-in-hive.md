@@ -15,11 +15,11 @@ Column statistics are introduced in Hive 0.10.0 by [HIVE-1362](https://issues.ap
 
 Column statistics auto gather is introduced in Hive 2.3 by [HIVE-11160](https://issues.apache.org/jira/browse/HIVE-11160). This is also the design document.
 
-For general information about Hive statistics, see [Statistics in Hive]({{< ref "statsdev" >}}). For information about top K statistics, see [Column Level Top K Statistics]({{< ref "top-k-stats" >}}).
+For general information about Hive statistics, see [Statistics in Hive]({{% ref "statsdev" %}}). For information about top K statistics, see [Column Level Top K Statistics]({{% ref "top-k-stats" %}}).
 
 ### **HiveQL changes**
 
-HiveQL currently supports the [analyze command]({{< ref "#analyze-command" >}}) to compute statistics on tables and partitions. HiveQL’s analyze command will be extended to trigger statistics computation on one or more column in a Hive table/partition. The necessary changes to HiveQL are as below,
+HiveQL currently supports the [analyze command]({{% ref "#analyze-command" %}}) to compute statistics on tables and partitions. HiveQL’s analyze command will be extended to trigger statistics computation on one or more column in a Hive table/partition. The necessary changes to HiveQL are as below,
 
 `analyze table t [partition p] compute statistics for [columns c,...];`
 

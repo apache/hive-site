@@ -14,13 +14,13 @@ The HCatalog project graduated from the Apache incubator and merged with the Hiv
 
 This document describes the HCatalog REST API, *WebHCat*, which was previously called *Templeton*.
 
-As shown in the figure below, developers make HTTP requests to access [Hadoop](http://hadoop.apache.org/) [MapReduce](http://hadoop.apache.org/docs/stable/mapred_tutorial.html) (or [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)), [Pig](http://pig.apache.org/), [Hive](http://hive.apache.org/), and [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) from within applications. Data and code used by this API are maintained in [HDFS](http://hadoop.apache.org/docs/stable/hdfs_user_guide.html). HCatalog DDL commands are executed directly when requested. MapReduce, Pig, and Hive jobs are placed in queue by WebHCat (Templeton) servers and can be monitored for progress or stopped as required. Developers specify a location in HDFS into which Pig, Hive, and MapReduce results should be placed.
+As shown in the figure below, developers make HTTP requests to access [Hadoop](http://hadoop.apache.org/) [MapReduce](http://hadoop.apache.org/docs/stable/mapred_tutorial.html) (or [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)), [Pig](http://pig.apache.org/), [Hive](http://hive.apache.org/), and [HCatalog DDL]({{% ref "#hcatalog-ddl" %}}) from within applications. Data and code used by this API are maintained in [HDFS](http://hadoop.apache.org/docs/stable/hdfs_user_guide.html). HCatalog DDL commands are executed directly when requested. MapReduce, Pig, and Hive jobs are placed in queue by WebHCat (Templeton) servers and can be monitored for progress or stopped as required. Developers specify a location in HDFS into which Pig, Hive, and MapReduce results should be placed.
 
 ![](/attachments/34015492/34177184.jpg)
 
 WebHCat or Templeton?
 
-For backward compatibility, the original name Templeton is still used for WebHCat in some contexts. See [#Project Name]({{< ref "##project-name" >}}) below.
+For backward compatibility, the original name Templeton is still used for WebHCat in some contexts. See [#Project Name]({{% ref "##project-name" %}}) below.
 
 ## URL Format
 
@@ -34,7 +34,7 @@ For example, to check if the server is running you could access the following UR
 
 `ht``tp://www.myserver.com/templeton/v1/status`
 
-See [Reference: WebHCat Resources]({{< ref "webhcat-reference" >}}) for information about the individual REST resources.
+See [Reference: WebHCat Resources]({{% ref "webhcat-reference" %}}) for information about the individual REST resources.
 
 ## Security
 
@@ -108,7 +108,7 @@ The server creates three log files when in operation:
 
 In the tempelton-log4j.properties file you can set the location of these logs using the variable templeton.log.dir. This log4j.properties file is set in the server startup script.
 
-Hive log files are described in the [Hive Logging]({{< ref "#hive-logging" >}}) section of [Getting Started]({{< ref "gettingstarted-latest" >}}).
+Hive log files are described in the [Hive Logging]({{% ref "#hive-logging" %}}) section of [Getting Started]({{% ref "gettingstarted-latest" %}}).
 
 ## Project Name
 
@@ -117,7 +117,7 @@ The original work to add REST APIs to HCatalog was called Templeton. For backwar
  
 
 **Navigation Links**
-Next: [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}})
+Next: [WebHCat Installation]({{% ref "webhcat-installwebhcat" %}})
 
 
 

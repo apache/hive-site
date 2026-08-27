@@ -9,7 +9,7 @@ date: 2024-12-12
 
 All Hive keywords are case-insensitive, including the names of Hive operators and functions.
 
-In [Beeline]({{< ref "#beeline" >}}) or the [CLI]({{< ref "languagemanual-cli" >}}), use the commands below to show the latest documentation:
+In [Beeline]({{% ref "#beeline" %}}) or the [CLI]({{% ref "languagemanual-cli" %}}), use the commands below to show the latest documentation:
 
 ```
 SHOW FUNCTIONS;
@@ -20,7 +20,7 @@ DESCRIBE FUNCTION EXTENDED <function_name>;
 
 Bug for expression caching when UDF nested in UDF or function
 
-When [hive.cache.expr.evaluation]({{< ref "#hive-cache-expr-evaluation" >}}) is set to true (which is the default) a UDF can give incorrect results if it is nested in another UDF or a Hive function. This bug affects releases 0.12.0, 0.13.0, and 0.13.1. Release 0.14.0 fixed the bug ([HIVE-7314](https://issues.apache.org/jira/browse/HIVE-7314)).
+When [hive.cache.expr.evaluation]({{% ref "#hive-cache-expr-evaluation" %}}) is set to true (which is the default) a UDF can give incorrect results if it is nested in another UDF or a Hive function. This bug affects releases 0.12.0, 0.13.0, and 0.13.1. Release 0.14.0 fixed the bug ([HIVE-7314](https://issues.apache.org/jira/browse/HIVE-7314)).
 
 The problem relates to the UDF's implementation of the getDisplayString method, as [discussed](http://mail-archives.apache.org/mod_mbox/hive-user/201407.mbox/%3cCAEWg7THU-Pr1Dfv_A8VS3Uz5t3ZyJvL0f-bebg4Zb3hXkK-CGQ@mail.gmail.com%3e) in the Hive user mailing list.
 
@@ -72,7 +72,7 @@ The following operators support various common arithmetic operations on the oper
 | A + B | All number types | Gives the result of adding A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. For example since every integer is a float, therefore float is a containing type of integer so the + operator on a float and an int will result in a float. |
 | A - B | All number types | Gives the result of subtracting B from A. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. |
 | A * B | All number types | Gives the result of multiplying A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. Note that if the multiplication causing overflow, you will have to cast one of the operators to a type higher in the type hierarchy. |
-| A / B | All number types | Gives the result of dividing A by B. The result is a double type in most cases. When A and B are both integers, the result is a double type except when the [hive.compat]({{< ref "#hive-compat" >}}) configuration parameter is set to "0.13" or "latest" in which case the result is a decimal type. |
+| A / B | All number types | Gives the result of dividing A by B. The result is a double type in most cases. When A and B are both integers, the result is a double type except when the [hive.compat]({{% ref "#hive-compat" %}}) configuration parameter is set to "0.13" or "latest" in which case the result is a decimal type. |
 | A DIV B | Integer types | Gives the integer part resulting from dividing A by B. E.g 17 div 3 results in 5. |
 | A % B | All number types | Gives the reminder resulting from dividing A by B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. |
 | A & B | All number types | Gives the result of bitwise AND of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. |
@@ -90,9 +90,9 @@ The following operators provide support for creating logical expressions. All of
 | A OR B | boolean | TRUE if either A or B or both are TRUE, FALSE OR NULL is NULL, otherwise FALSE. |
 | NOT A | boolean | TRUE if A is FALSE or NULL if A is NULL. Otherwise FALSE. |
 | ! A | boolean | Same as NOT A. |
-| A IN (val1, val2, ...) | boolean | TRUE if A is equal to any of the values. As of Hive 0.13 [subqueries]({{< ref "languagemanual-subqueries" >}}) are supported in IN statements. |
-| A NOT IN (val1, val2, ...) | boolean | TRUE if A is not equal to any of the values. As of Hive 0.13 [subqueries]({{< ref "languagemanual-subqueries" >}}) are supported in NOT IN statements. |
-| [NOT] EXISTS (subquery) |  | TRUE if the the subquery returns at least one row. Supported as of [Hive 0.13]({{< ref "languagemanual-subqueries" >}}). |
+| A IN (val1, val2, ...) | boolean | TRUE if A is equal to any of the values. As of Hive 0.13 [subqueries]({{% ref "languagemanual-subqueries" %}}) are supported in IN statements. |
+| A NOT IN (val1, val2, ...) | boolean | TRUE if A is not equal to any of the values. As of Hive 0.13 [subqueries]({{% ref "languagemanual-subqueries" %}}) are supported in NOT IN statements. |
+| [NOT] EXISTS (subquery) |  | TRUE if the the subquery returns at least one row. Supported as of [Hive 0.13]({{% ref "languagemanual-subqueries" %}}). |
 
 ### String Operators
 
@@ -272,7 +272,7 @@ The following built-in String functions are supported in Hive:
 | int | character_length(string str) | Returns the number of UTF-8 characters contained in str (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). The function char_length is shorthand for this function. |
 | string | chr(bigint|double A) | Returns the ASCII character having the binary equivalent to A (as of Hive [1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13063)). If A is larger than 256 the result is equivalent to chr(A % 256). Example: select chr(88); returns "X". |
 | string | concat(string|binary A, string|binary B...) | Returns the string or bytes resulting from concatenating the strings or bytes passed in as parameters in order. For example, concat('foo', 'bar') results in 'foobar'. Note that this function can take any number of input strings. |
-| array\<struct\<string,double\>\> | context_ngrams(array\<array\<string\>\>, array\<string\>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| array\<struct\<string,double\>\> | context_ngrams(array\<array\<string\>\>, array\<string\>, int K, int pf) | Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of "context". See [StatisticsAndDataMining]({{% ref "statisticsanddatamining" %}}) for more information. |
 | string | concat_ws(string SEP, string A, string B...) | Like concat() above, but with custom separator SEP. |
 | string | concat_ws(string SEP, array\<string\>) | Like concat_ws() above, but taking an array of strings. (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2203)) |
 | string | decode(binary bin, string charset) | Decodes the first argument into a String using the provided character set (one of 'US-ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. (As of Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-2482).) |
@@ -289,7 +289,7 @@ The following built-in String functions are supported in Hive:
 | string | lower(string A) lcase(string A) | Returns the string resulting from converting all characters of B to lower case. For example, lower('fOoBaR') results in 'foobar'. |
 | string | lpad(string str, int len, string pad) | Returns str, left-padded with pad to a length of len. If str is longer than len, the return value is shortened to len characters. In case of empty pad string, the return value is null. |
 | string | ltrim(string A) | Returns the string resulting from trimming spaces from the beginning(left hand side) of A. For example, ltrim(' foobar ') results in 'foobar '. |
-| array\<struct\<string,double\>\> | ngrams(array\<array\<string\>\>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{< ref "statisticsanddatamining" >}}) for more information. |
+| array\<struct\<string,double\>\> | ngrams(array\<array\<string\>\>, int N, int K, int pf) | Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See [StatisticsAndDataMining]({{% ref "statisticsanddatamining" %}}) for more information. |
 | int | octet_length(string str) | Returns the number of octets required to hold the string str in UTF-8 encoding (since Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-15979)). Note that octet_length(str) can be larger than character_length(str). |
 | string | parse_url(string urlString, string partToExtract [, string keyToExtract]) | Returns the specified part from the URL. Valid values for partToExtract include HOST, PATH, QUERY, REF, PROTOCOL, AUTHORITY, FILE, and USERINFO. For example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'HOST') returns 'facebook.com'. Also a value of a particular key in QUERY can be extracted by providing the key as the third argument, for example, parse_url('http://facebook.com/path1/p.php?k1=v1&k2=v2#Ref1', 'QUERY', 'k1') returns 'v1'. |
 | string | printf(String format, Obj... args) | Returns the input formatted according do printf-style format strings (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2695)). |
@@ -344,7 +344,7 @@ The following built-in data masking functions are supported in Hive:
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
 | varies | java_method(class, method[, arg1[, arg2..]]) | Synonym for `reflect`. (As of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-1877).) |
-| varies | reflect(class, method[, arg1[, arg2..]]) | Calls a Java method by matching the argument signature, using reflection. (As of Hive [0.7.0](https://issues.apache.org/jira/browse/HIVE-471).) See [Reflect (Generic) UDF]({{< ref "reflectudf" >}}) for examples. |
+| varies | reflect(class, method[, arg1[, arg2..]]) | Calls a Java method by matching the argument signature, using reflection. (As of Hive [0.7.0](https://issues.apache.org/jira/browse/HIVE-471).) See [Reflect (Generic) UDF]({{% ref "reflectudf" %}}) for examples. |
 | int | hash(a1[, a2...]) | Returns a hash value of the arguments. (As of Hive 0.4.) |
 | string | current_user() | Returns current user name from the configured authenticator manager (as of Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-9143)). Could be the same as the user provided when connecting, but with some authentication managers (for example HadoopDefaultAuthenticator) it could be different. |
 | string | logged_in_user() | Returns current user name from the session state (as of Hive [2.2.0](https://issues.apache.org/jira/browse/HIVE-14100)). This is the username provided when connecting to Hive. |
@@ -360,7 +360,7 @@ The following built-in data masking functions are supported in Hive:
 
 #### xpath
 
-The following functions are described in [LanguageManual XPathUDF]({{< ref "languagemanual-xpathudf" >}}):
+The following functions are described in [LanguageManual XPathUDF]({{% ref "languagemanual-xpathudf" %}}):
 
 * xpath, xpath_short, xpath_int, xpath_long, xpath_float, xpath_double, xpath_number, xpath_string
 
@@ -420,7 +420,7 @@ The following built-in aggregate functions are supported in Hive:
 
 | **Return Type** | **Name(Signature)** | **Description** |
 | --- | --- | --- |
-| BIGINT | count(*), count(expr), count(DISTINCT expr[, expr...]) | count(*) - Returns the total number of retrieved rows, including rows containing NULL values.count(expr) - Returns the number of rows for which the supplied expression is non-NULL.count(DISTINCT expr[, expr]) - Returns the number of rows for which the supplied expression(s) are unique and non-NULL. Execution of this can be optimized with [hive.optimize.distinct.rewrite]({{< ref "#hive-optimize-distinct-rewrite" >}}). |
+| BIGINT | count(*), count(expr), count(DISTINCT expr[, expr...]) | count(*) - Returns the total number of retrieved rows, including rows containing NULL values.count(expr) - Returns the number of rows for which the supplied expression is non-NULL.count(DISTINCT expr[, expr]) - Returns the number of rows for which the supplied expression(s) are unique and non-NULL. Execution of this can be optimized with [hive.optimize.distinct.rewrite]({{% ref "#hive-optimize-distinct-rewrite" %}}). |
 | DOUBLE | sum(col), sum(DISTINCT col) | Returns the sum of the elements in the group or the sum of the distinct values of the column in the group. |
 | DOUBLE | avg(col), avg(DISTINCT col) | Returns the average of the elements in the group or the average of the distinct values of the column in the group. |
 | DOUBLE | min(col) | Returns the minimum of the column in the group. |
@@ -566,9 +566,9 @@ Using the syntax "SELECT udtf(col) AS colAlias..." has a few limitations:
 * GROUP BY / CLUSTER BY / DISTRIBUTE BY / SORT BY is not supported
 	+ SELECT explode(adid_list) AS myCol ... GROUP BY myCol is not supported
 
-Please see [LanguageManual LateralView]({{< ref "languagemanual-lateralview" >}}) for an alternative syntax that does not have these limitations.
+Please see [LanguageManual LateralView]({{% ref "languagemanual-lateralview" %}}) for an alternative syntax that does not have these limitations.
 
-Also see [Writing UDTFs]({{< ref "developerguide-udtf" >}}) if you want to create a custom UDTF.
+Also see [Writing UDTFs]({{% ref "developerguide-udtf" %}}) if you want to create a custom UDTF.
 
 ### explode
 
@@ -640,7 +640,7 @@ will produce:
 
 ### json_tuple
 
-A new json_tuple() UDTF is introduced in Hive 0.7. It takes a set of names (keys) and a JSON string, and returns a tuple of values using one function. This is much more efficient than calling GET_JSON_OBJECT to retrieve more than one key from a single JSON string. In any case where a single JSON string would be parsed more than once, your query will be more efficient if you parse it once, which is what JSON_TUPLE is for. As JSON_TUPLE is a UDTF, you will need to use the [LATERAL VIEW]({{< ref "languagemanual-lateralview" >}}) syntax in order to achieve the same goal.
+A new json_tuple() UDTF is introduced in Hive 0.7. It takes a set of names (keys) and a JSON string, and returns a tuple of values using one function. This is much more efficient than calling GET_JSON_OBJECT to retrieve more than one key from a single JSON string. In any case where a single JSON string would be parsed more than once, your query will be more efficient if you parse it once, which is what JSON_TUPLE is for. As JSON_TUPLE is a UDTF, you will need to use the [LATERAL VIEW]({{% ref "languagemanual-lateralview" %}}) syntax in order to achieve the same goal.
 
 For example,
 
@@ -719,7 +719,7 @@ SELECT length(string_col) FROM table_name;
 
 would evaluate the length of each of the string_col's values in the map portion of the job. The side effect of the UDF being evaluated on the map-side is that you can't control the order of rows which get sent to the mapper. It is the same order in which the file split sent to the mapper gets deserialized. Any reduce side operation (such as SORT BY, ORDER BY, regular JOIN, etc.) would apply to the UDFs output as if it is just another column of the table. This is fine since the context of the UDF's evaluate method is meant to be one row at a time.
 
-If you would like to control which rows get sent to the same UDF (and possibly in what order), you will have the urge to make the UDF evaluate during the reduce phase. This is achievable by making use of [DISTRIBUTE BY, DISTRIBUTE BY + SORT BY, CLUSTER BY]({{< ref "languagemanual-sortby" >}}). An example query would be:
+If you would like to control which rows get sent to the same UDF (and possibly in what order), you will have the urge to make the UDF evaluate during the reduce phase. This is achievable by making use of [DISTRIBUTE BY, DISTRIBUTE BY + SORT BY, CLUSTER BY]({{% ref "languagemanual-sortby" %}}). An example query would be:
 
 ```
 SELECT reducer_udf(my_col, distribute_col, sort_col) FROM
@@ -727,11 +727,11 @@ SELECT reducer_udf(my_col, distribute_col, sort_col) FROM
 
 ```
 
-However, one could argue that the very premise of your requirement to control the set of rows sent to the same UDF is to do aggregation in that UDF. In such a case, using a User Defined Aggregate Function (UDAF) is a better choice. You can read more about writing a UDAF [here]({{< ref "genericudafcasestudy" >}}). Alternatively, you can user a custom reduce script to accomplish the same using [Hive's Transform functionality]({{< ref "languagemanual-transform" >}}). Both of these options would do aggregations on the reduce side.
+However, one could argue that the very premise of your requirement to control the set of rows sent to the same UDF is to do aggregation in that UDF. In such a case, using a User Defined Aggregate Function (UDAF) is a better choice. You can read more about writing a UDAF [here]({{% ref "genericudafcasestudy" %}}). Alternatively, you can user a custom reduce script to accomplish the same using [Hive's Transform functionality]({{% ref "languagemanual-transform" %}}). Both of these options would do aggregations on the reduce side.
 
 ## Creating Custom UDFs
 
-For information about how to create a custom UDF, see [Hive Plugins]({{< ref "hiveplugins" >}}) and [Create Function]({{< ref "#create-function" >}}).
+For information about how to create a custom UDF, see [Hive Plugins]({{% ref "hiveplugins" %}}) and [Create Function]({{% ref "#create-function" %}}).
 
   
 

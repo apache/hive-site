@@ -148,7 +148,7 @@ You may find it useful, though it's not necessary, to set `HIVE_HOME`:
 
 #### Running Hive CLI
 
-To use the Hive [command line interface]({{< ref "languagemanual-cli" >}}) (CLI) from the shell:
+To use the Hive [command line interface]({{% ref "languagemanual-cli" %}}) (CLI) from the shell:
 
 ```
   $ $HIVE_HOME/bin/hive
@@ -164,7 +164,7 @@ Starting from Hive 2.1, we need to run the schematool command below as an initia
 
 ```
 
-[HiveServer2]({{< ref "setting-up-hiveserver2" >}}) (introduced in Hive 0.11) has its own CLI called [Beeline]({{< ref "hiveserver2-clients" >}}).  HiveCLI is now deprecated in favor of Beeline, as it lacks the multi-user, security, and other capabilities of HiveServer2.  To run HiveServer2 and Beeline from shell:
+[HiveServer2]({{% ref "setting-up-hiveserver2" %}}) (introduced in Hive 0.11) has its own CLI called [Beeline]({{% ref "hiveserver2-clients" %}}).  HiveCLI is now deprecated in favor of Beeline, as it lacks the multi-user, security, and other capabilities of HiveServer2.  To run HiveServer2 and Beeline from shell:
 
 ```
   $ $HIVE_HOME/bin/hiveserver2
@@ -197,7 +197,7 @@ To use the HCatalog command line interface (CLI) in Hive release 0.11.0 and late
 
 ```
 
-For more information, see [HCatalog Installation from Tarball]({{< ref "hcatalog-installhcat" >}}) and [HCatalog CLI]({{< ref "hcatalog-cli" >}}) in the [HCatalog manual]({{< ref "hcatalog-base" >}}).
+For more information, see [HCatalog Installation from Tarball]({{% ref "hcatalog-installhcat" %}}) and [HCatalog CLI]({{% ref "hcatalog-cli" %}}) in the [HCatalog manual]({{% ref "hcatalog-base" %}}).
 
 #### Running WebHCat (Templeton)
 
@@ -208,7 +208,7 @@ To run the WebHCat server from the shell in Hive release 0.11.0 and later:
 
 ```
 
-For more information, see [WebHCat Installation]({{< ref "webhcat-installwebhcat" >}}) in the [WebHCat manual]({{< ref "webhcat-base" >}}).
+For more information, see [WebHCat Installation]({{% ref "webhcat-installwebhcat" %}}) in the [WebHCat manual]({{% ref "webhcat-base" %}}).
 
 ### Configuration Management Overview
 
@@ -305,21 +305,21 @@ Another option for logging is TimeBasedRollingPolicy (applicable for Hive 1.1.0�
 
 Note that setting `hive.root.logger` via the 'set' command does not change logging properties since they are determined at initialization time.
 
-Hive also stores query logs on a per Hive session basis in `/tmp/<user.name>/`, but can be configured in [hive-site.xml]({{< ref "adminmanual-configuration" >}}) with the `[hive.querylog.location]({{< ref "#hive-querylog-location" >}})` property.  Starting with Hive 1.1.0, [EXPLAIN EXTENDED]({{< ref "#explain-extended" >}}) output for queries can be logged at the INFO level by setting the `[hive.log.explain.output]({{< ref "#hive-log-explain-output" >}})` property to true.
+Hive also stores query logs on a per Hive session basis in `/tmp/<user.name>/`, but can be configured in [hive-site.xml]({{% ref "adminmanual-configuration" %}}) with the `[hive.querylog.location]({{% ref "#hive-querylog-location" %}})` property.  Starting with Hive 1.1.0, [EXPLAIN EXTENDED]({{% ref "#explain-extended" %}}) output for queries can be logged at the INFO level by setting the `[hive.log.explain.output]({{% ref "#hive-log-explain-output" %}})` property to true.
 
 Logging during Hive execution on a Hadoop cluster is controlled by Hadoop configuration. Usually Hadoop will produce one log file per map and reduce task stored on the cluster machine(s) where the task was executed. The log files can be obtained by clicking through to the Task Details page from the Hadoop JobTracker Web UI.
 
 When using local mode (using `mapreduce.framework.name=local`), Hadoop/Hive execution logs are produced on the client machine itself. Starting with release 0.6 – Hive uses the `hive-exec-log4j.properties` (falling back to `hive-log4j.properties` only if it's missing) to determine where these logs are delivered by default. The default configuration file produces one log file per query executed in local mode and stores it under `/tmp/<user.name>`. The intent of providing a separate configuration file is to enable administrators to centralize execution log capture if desired (on a NFS file server for example). Execution logs are invaluable for debugging run-time errors.
 
-For information about WebHCat errors and logging, see [Error Codes and Responses]({{< ref "#error-codes-and-responses" >}}) and [Log Files]({{< ref "#log-files" >}}) in the [WebHCat manual]({{< ref "webhcat-base" >}}).
+For information about WebHCat errors and logging, see [Error Codes and Responses]({{% ref "#error-codes-and-responses" %}}) and [Log Files]({{% ref "#log-files" %}}) in the [WebHCat manual]({{% ref "webhcat-base" %}}).
 
 Error logs are very useful to debug problems. Please send them with any bugs (of which there are many!) to `hive-dev@hadoop.apache.org`.
 
-From Hive 2.1.0 onwards (with [HIVE-13027](https://issues.apache.org/jira/browse/HIVE-13027)), Hive uses Log4j2's asynchronous logger by default. Setting [hive.async.log.enabled]({{< ref "#hive-async-log-enabled" >}}) to false will disable asynchronous logging and fallback to synchronous logging. Asynchronous logging can give significant performance improvement as logging will be handled in a separate thread that uses the LMAX disruptor queue for buffering log messages. Refer to <https://logging.apache.org/log4j/2.x/manual/async.html> for benefits and drawbacks.
+From Hive 2.1.0 onwards (with [HIVE-13027](https://issues.apache.org/jira/browse/HIVE-13027)), Hive uses Log4j2's asynchronous logger by default. Setting [hive.async.log.enabled]({{% ref "#hive-async-log-enabled" %}}) to false will disable asynchronous logging and fallback to synchronous logging. Asynchronous logging can give significant performance improvement as logging will be handled in a separate thread that uses the LMAX disruptor queue for buffering log messages. Refer to <https://logging.apache.org/log4j/2.x/manual/async.html> for benefits and drawbacks.
 
 #### HiveServer2 Logs
 
-HiveServer2 operation logs are available to clients starting in Hive 0.14. See [HiveServer2 Logging]({{< ref "#hiveserver2-logging" >}}) for configuration.
+HiveServer2 operation logs are available to clients starting in Hive 0.14. See [HiveServer2 Logging]({{% ref "#hiveserver2-logging" %}}) for configuration.
 
 #### Audit Logs
 
@@ -339,7 +339,7 @@ If the logger level has already been set to DEBUG at root via hive.root.logger, 
 
 ## DDL Operations
 
- The Hive DDL operations are documented in [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}}).
+ The Hive DDL operations are documented in [Hive Data Definition Language]({{% ref "languagemanual-ddl" %}}).
 
 ### Creating Hive Tables
 
@@ -384,7 +384,7 @@ shows the list of columns.
 
 ### Altering and Dropping Tables
 
-Table names can be [changed]({{< ref "#changed" >}}) and columns can be [added or replaced]({{< ref "#added-or-replaced" >}}):
+Table names can be [changed]({{% ref "#changed" %}}) and columns can be [added or replaced]({{% ref "#added-or-replaced" %}}):
 
 ```
   hive> ALTER TABLE events RENAME TO 3koobecaf;
@@ -418,11 +418,11 @@ Metastore can be stored in any database that is supported by JPOX. The location 
 
 In the future, the metastore itself can be a standalone server.
 
-If you want to run the metastore as a network server so it can be accessed from multiple nodes, see [Hive Using Derby in Server Mode]({{< ref "hivederbyservermode" >}}).
+If you want to run the metastore as a network server so it can be accessed from multiple nodes, see [Hive Using Derby in Server Mode]({{% ref "hivederbyservermode" %}}).
 
 ## DML Operations
 
-The Hive DML operations are documented in [Hive Data Manipulation Language]({{< ref "languagemanual-dml" >}}).
+The Hive DML operations are documented in [Hive Data Manipulation Language]({{% ref "languagemanual-dml" %}}).
 
 Loading data from flat files into Hive:
 
@@ -459,7 +459,7 @@ Note that loading data from HDFS will result in moving the file/directory. As a 
 
 ## SQL Operations
 
-The Hive query operations are documented in [Select]({{< ref "languagemanual-select" >}}).
+The Hive query operations are documented in [Select]({{% ref "languagemanual-select" %}}).
 
 ### Example Queries
 

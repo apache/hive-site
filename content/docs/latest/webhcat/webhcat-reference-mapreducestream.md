@@ -11,7 +11,7 @@ Create and queue a [Hadoop streaming MapReduce](http://hadoop.apache.org/docs/st
 
 Version: Hive 0.13.0 and later
 
-As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop" >}}) displays the Hadoop version used for the MapReduce job.
+As of Hive 0.13.0, [GET version/hadoop]({{% ref "webhcat-reference-versionhadoop" %}}) displays the Hadoop version used for the MapReduce job.
 
 ## URL
 
@@ -22,7 +22,7 @@ As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop
 | Name | Description | Required? | Default |
 | --- | --- | --- | --- |
 | **input** | Location of the input data in Hadoop. | Required | None |
-| **output** | Location in which to store the output data. If not specified, WebHCat will store the output in a location that can be discovered using the [queue]({{< ref "webhcat-reference-jobinfo" >}}) resource. | Optional | See description |
+| **output** | Location in which to store the output data. If not specified, WebHCat will store the output in a location that can be discovered using the [queue]({{% ref "webhcat-reference-jobinfo" %}}) resource. | Optional | See description |
 | **mapper** | Location of the mapper program in Hadoop. | Required | None |
 | **reducer** | Location of the reducer program in Hadoop. | Required | None |
 | **file** | Add an HDFS file to the distributed cache. | Optional | None |
@@ -33,7 +33,7 @@ As of Hive 0.13.0, [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop
 | **enablelog** | If **statusdir** is set and **enablelog** is "true", collect Hadoop job configuration and logs into a directory named `$statusdir/logs` after the job finishes. Both completed and failed attempts are logged. The layout of subdirectories in `$statusdir/logs` is: `logs/$job_id` *(directory for $job_id)* `logs/$job_id/job.xml.html` `logs/$job_id/$attempt_id` *(directory for $attempt_id)* `logs/$job_id/$attempt_id/stderr` `logs/$job_id/$attempt_id/stdout` `logs/$job_id/$attempt_id/syslog` This parameter was introduced in Hive 0.12.0. (See [HIVE-4531](https://issues.apache.org/jira/browse/HIVE-4531).) | Optional in Hive 0.12.0+ | None |
 | **callback** | Define a URL to be called upon job completion. You may embed a specific job ID into this URL using `$jobId`. This tag will be replaced in the callback URL with this job's job ID. | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -110,8 +110,8 @@ drwxr-xr-x   - ctdean supergroup          0 2011-11-11 13:26 /user/ctdean/mycoun
 ```
 
 **Navigation Links**
-Previous: [PUT ddl/database/:db/table/:table/property/:property]({{< ref "webhcat-reference-putproperty" >}})  
- Next: [POST mapreduce/jar]({{< ref "webhcat-reference-mapreducejar" >}})
+Previous: [PUT ddl/database/:db/table/:table/property/:property]({{% ref "webhcat-reference-putproperty" %}})  
+ Next: [POST mapreduce/jar]({{% ref "webhcat-reference-mapreducejar" %}})
 
 
 

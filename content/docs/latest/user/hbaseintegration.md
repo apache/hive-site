@@ -23,7 +23,7 @@ Hive 1.x will remain compatible with HBase 0.98.x and lower versions. Hive 2.x w
 
 ## Storage Handlers
 
-Before proceeding, please read [StorageHandlers]({{< ref "storagehandlers" >}}) for an overview of the generic storage handler framework on which HBase integration depends.
+Before proceeding, please read [StorageHandlers]({{% ref "storagehandlers" %}}) for an overview of the generic storage handler framework on which HBase integration depends.
 
 ## Usage
 
@@ -80,7 +80,7 @@ ROW                          COLUMN+CELL
 
 Notice that even though a column name "val" is specified in the mapping, only the column family name "cf1" appears in the DESCRIBE output in the HBase shell. This is because in HBase, only column families (not columns) are known in the table-level metadata; column names within a column family are only present at the per-row level.
 
-Here's how to move data from Hive into the HBase table (see [GettingStarted]({{< ref "gettingstarted-latest" >}}) for how to create the example table `pokes` in Hive first):
+Here's how to move data from Hive into the HBase table (see [GettingStarted]({{% ref "gettingstarted-latest" %}}) for how to create the example table `pokes` in Hive first):
 
 ```
 INSERT OVERWRITE TABLE hbase_table_1 SELECT * FROM pokes WHERE foo=98;
@@ -145,7 +145,7 @@ The column mapping support currently available is somewhat cumbersome and restri
 	+ If no type specification is given the value from `hbase.table.default.storage.type` will be used
 	+ Any prefixes of the valid values are valid too (i.e. `#b` instead of `#binary`)
 	+ If you specify a column as `binary` the bytes in the corresponding HBase cells are expected to be of the form that HBase's `Bytes` class yields.
-* there must be exactly one `:key` mapping (this can be mapped either to a string or struct column–see [Simple Composite Keys]({{< ref "#simple-composite-keys" >}}) and [Complex Composite Keys]({{< ref "#complex-composite-keys" >}}))
+* there must be exactly one `:key` mapping (this can be mapped either to a string or struct column–see [Simple Composite Keys]({{% ref "#simple-composite-keys" %}}) and [Complex Composite Keys]({{% ref "#complex-composite-keys" %}}))
 * (note that before [HIVE-1228](https://issues.apache.org/jira/browse/HIVE-1228) in Hive 0.6, `:key` was not supported, and the first Hive column implicitly mapped to the key; as of Hive 0.6, it is now strongly recommended that you always specify the key explictly; we will drop support for implicit key mapping in the future)
 * if no column-name is given, then the Hive column will map to all columns in the corresponding HBase column family, and the Hive MAP datatype must be used to allow access to these (possibly sparse) columns
 * Since HBase 1.1 ([HBASE-2828](https://issues.apache.org/jira/browse/HIVE-2828)) there is a way to access the HBase timestamp attribute using the special `:timestamp` mapping. It needs to be either `bigint` or `timestamp`.
@@ -465,7 +465,7 @@ There are a number of areas where Hive/HBase integration could definitely use mo
 
 * more flexible column mapping (HIVE-806, HIVE-1245)
 * default column mapping in cases where no mapping spec is given
-* filter pushdown and indexing (see [FilterPushdownDev]({{< ref "filterpushdowndev" >}}) and [IndexDev]({{< ref "indexdev" >}}))
+* filter pushdown and indexing (see [FilterPushdownDev]({{% ref "filterpushdowndev" %}}) and [IndexDev]({{% ref "indexdev" %}}))
 * expose timestamp attribute, possibly also with support for treating it as a partition key
 * allow per-table hbase.master configuration
 * run profiler and minimize any per-row overhead in column mapping
@@ -495,7 +495,7 @@ An Eclipse launch template remains to be defined.
 
 ## Links
 
-* For information on how to bulk load data from Hive into HBase, see [HBaseBulkLoad]({{< ref "hbasebulkload" >}}).
+* For information on how to bulk load data from Hive into HBase, see [HBaseBulkLoad]({{% ref "hbasebulkload" %}}).
 * For another project which adds SQL-like query language support on top of HBase, see [HBQL](http://www.hbql.com) (unrelated to Hive).
 
 ## Acknowledgements

@@ -7,19 +7,19 @@ date: 2024-12-12
 
 This page describes the different clients supported by Hive. The command line client currently only supports an embedded server. The JDBC and Thrift-Java clients support both embedded and standalone servers. Clients in other languages only support standalone servers.
 
-For details about the standalone server see [Hive Server]({{< ref "hiveserver" >}}) or [HiveServer2]({{< ref "setting-up-hiveserver2" >}}).
+For details about the standalone server see [Hive Server]({{% ref "hiveserver" %}}) or [HiveServer2]({{% ref "setting-up-hiveserver2" %}}).
 
 # Command Line
 
-Operates in embedded mode only, that is, it needs to have access to the Hive libraries. For more details see [Getting Started]({{< ref "gettingstarted-latest" >}}) and [Hive CLI]({{< ref "languagemanual-cli" >}}).
+Operates in embedded mode only, that is, it needs to have access to the Hive libraries. For more details see [Getting Started]({{% ref "gettingstarted-latest" %}}) and [Hive CLI]({{% ref "languagemanual-cli" %}}).
 
 # JDBC
 
-**This document describes the JDBC client for the original [Hive Server]({{< ref "hiveserver" >}}) (sometimes called *Thrift server* or *HiveServer1*). For information about the HiveServer2 JDBC client, see [JDBC in the HiveServer2 Clients document]({{< ref "#jdbc-in-the-hiveserver2-clients-document" >}}). HiveServer2 use is recommended; the original HiveServer has several concurrency issues and lacks several features available in HiveServer2.**
+**This document describes the JDBC client for the original [Hive Server]({{% ref "hiveserver" %}}) (sometimes called *Thrift server* or *HiveServer1*). For information about the HiveServer2 JDBC client, see [JDBC in the HiveServer2 Clients document]({{% ref "#jdbc-in-the-hiveserver2-clients-document" %}}). HiveServer2 use is recommended; the original HiveServer has several concurrency issues and lacks several features available in HiveServer2.**
 
 Version information
 
-The original [Hive Server]({{< ref "hiveserver" >}}) was removed from Hive releases starting in [version 1.0.0]({{< ref "#version-1-0-0" >}}). See [HIVE-6977](https://issues.apache.org/jira/browse/HIVE-6977).
+The original [Hive Server]({{% ref "hiveserver" %}}) was removed from Hive releases starting in [version 1.0.0]({{% ref "#version-1-0-0" %}}). See [HIVE-6977](https://issues.apache.org/jira/browse/HIVE-6977).
 
 For embedded mode, uri is just "jdbc:hive://". For standalone server, uri is "jdbc:hive://host:port/dbname" where host and port are determined by where the Hive server is run. For example, "jdbc:hive://localhost:10000/default". Currently, the only dbname supported is "default".
 
@@ -219,7 +219,7 @@ $transport->close();
 
 # ODBC
 
-Operates only on a standalone server. The Hive ODBC client provides a set of C-compatible library functions to interact with Hive Server in a pattern similar to those dictated by the ODBC specification. See [Hive ODBC Driver]({{< ref "hiveodbc" >}}).
+Operates only on a standalone server. The Hive ODBC client provides a set of C-compatible library functions to interact with Hive Server in a pattern similar to those dictated by the ODBC specification. See [Hive ODBC Driver]({{% ref "hiveodbc" %}}).
 
 # Thrift
 

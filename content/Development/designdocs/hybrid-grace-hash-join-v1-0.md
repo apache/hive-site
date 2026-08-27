@@ -69,7 +69,7 @@ It’s obvious that GRACE Hash Join uses main memory as a staging area during th
 
 This feature tries to avoid the unnecessary write-back of partitions to disk as much as possible, and will only do that when necessary. The idea is to fully utilize the main memory to hold existing partitions of hash tables.
 
-The key factor that will impact the performance of this algorithm is whether the data can be evenly distributed into different hash partitions. If we have skewed values, which will result in a few very big partitions, then an extra partitioning step is needed to divide the big partitions down to many. This can happen recursively. Refer to [Recursive Hashing and Spilling]({{< ref "#recursive-hashing-and-spilling" >}}) below for more details. 
+The key factor that will impact the performance of this algorithm is whether the data can be evenly distributed into different hash partitions. If we have skewed values, which will result in a few very big partitions, then an extra partitioning step is needed to divide the big partitions down to many. This can happen recursively. Refer to [Recursive Hashing and Spilling]({{% ref "#recursive-hashing-and-spilling" %}}) below for more details. 
 
 # Algorithm
 

@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : HiveReplicationv2Development
 
-This document describes the second version of Hive Replication. Please refer to the [first version of Hive Replication]({{< ref "hivereplicationdevelopment" >}}) for details on prior implementation.
+This document describes the second version of Hive Replication. Please refer to the [first version of Hive Replication]({{% ref "hivereplicationdevelopment" %}}) for details on prior implementation.
 
 This work is under development and interfaces are subject to change. This has been designed for use in conjunction with external orchestration tools, which would be responsible for co-ordinating the right sequence of commands between source and target clusters, fault tolerance/failure handling, and also providing correct configuration options that are necessary to be able to do cross cluster replication.
 
@@ -15,7 +15,7 @@ As of Hive 3.0.0 release : only managed table replication where Hive user owns t
 
 # Issues with the Current Replication System
 
-Some of the observed issues with the [current replication implementation]({{< ref "hivereplicationdevelopment" >}}) are as follows:
+Some of the observed issues with the [current replication implementation]({{% ref "hivereplicationdevelopment" %}}) are as follows:
 
 1. Slowness
 2. Requiring staging dirs with full copies (4xcopy problem)

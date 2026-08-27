@@ -25,7 +25,7 @@ Create a partition in an HCatalog table.
 | **location** | The location for partition creation | Required | None |
 | **ifNotExists** | If true, return an error if the partition already exists. | Optional | False |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -59,7 +59,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-getpartition" >}}) Next: [DELETE ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-deletepartition" >}})
+Previous: [GET ddl/database/:db/table/:table/partition/:partition]({{% ref "webhcat-reference-getpartition" %}}) Next: [DELETE ddl/database/:db/table/:table/partition/:partition]({{% ref "webhcat-reference-deletepartition" %}})
 
 
 

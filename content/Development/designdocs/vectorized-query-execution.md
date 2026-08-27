@@ -13,7 +13,7 @@ Vectorized query execution is a Hive feature that greatly reduces the CPU usage 
 
 ## Enabling vectorized execution
 
-To use vectorized query execution, you must store your data in [ORC]({{< ref "languagemanual-orc" >}}) format, and set the following variable as shown in Hive SQL (see [Configuring Hive]({{< ref "#configuring-hive" >}})):
+To use vectorized query execution, you must store your data in [ORC]({{% ref "languagemanual-orc" %}}) format, and set the following variable as shown in Hive SQL (see [Configuring Hive]({{% ref "#configuring-hive" %}})):
 
 `set hive.vectorized.execution.enabled = true;`
 
@@ -21,7 +21,7 @@ Vectorized execution is off by default, so your queries only utilize it if this 
 
 `set hive.vectorized.execution.enabled = false;`
 
-Additional configuration variables for vectorized execution are documented in [Configuration Properties – Vectorization]({{< ref "#configuration-properties –-vectorization" >}}).
+Additional configuration variables for vectorized execution are documented in [Configuration Properties – Vectorization]({{% ref "#configuration-properties –-vectorization" %}}).
 
 ## Supported data types and operations
 
@@ -36,7 +36,7 @@ The following data types are currently supported for vectorized execution:
 * `double`
 * `decimal`
 * `date`
-* `timestamp` (see [Limitations]({{< ref "#limitations" >}}) below)
+* `timestamp` (see [Limitations]({{% ref "#limitations" %}}) below)
 * `string`
 
 Using other data types will cause your query to execute using standard, row-at-a-time execution.
@@ -71,7 +71,7 @@ Vectorized support continues to be added for additional functions and expression
 
 ## Seeing whether vectorization is used for a query
 
-You can verify which parts of your query are being vectorized using the **[explain]({{< ref "languagemanual-explain" >}})** feature. For example, when Fetch is used in the plan instead of Map, it does not vectorize and the explain output will not include the "`Vectorized execution: true`" notation:
+You can verify which parts of your query are being vectorized using the **[explain]({{% ref "languagemanual-explain" %}})** feature. For example, when Fetch is used in the plan instead of Map, it does not vectorize and the explain output will not include the "`Vectorized execution: true`" notation:
 
 ```
 create table vectorizedtable(state string,id int) stored as orc;

@@ -24,7 +24,7 @@ Delete (drop) a partition in an HCatalog table.
 | **group** | The user group to use | Optional | None |
 | **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -58,7 +58,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [PUT ddl/database/:db/table/:table/partition/:partition]({{< ref "webhcat-reference-putpartition" >}}) Next: [GET ddl/database/:db/table/:table/column]({{< ref "webhcat-reference-getcolumns" >}})
+Previous: [PUT ddl/database/:db/table/:table/partition/:partition]({{% ref "webhcat-reference-putpartition" %}}) Next: [GET ddl/database/:db/table/:table/column]({{% ref "webhcat-reference-getcolumns" %}})
 
 
 

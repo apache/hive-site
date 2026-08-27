@@ -21,7 +21,7 @@ Describe a single column in an HCatalog table.
 | **:table** | The table name | Required | None |
 | **:column** | The column name | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -58,7 +58,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table/column]({{< ref "webhcat-reference-getcolumns" >}}) Next: [PUT ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-putcolumn" >}})
+Previous: [GET ddl/database/:db/table/:table/column]({{% ref "webhcat-reference-getcolumns" %}}) Next: [PUT ddl/database/:db/table/:table/column/:column]({{% ref "webhcat-reference-putcolumn" %}})
 
 
 

@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual Commands
 
-Commands are non-SQL statements such as setting a property or adding a resource. They can be used in HiveQL scripts or directly in the [CLI]({{< ref "languagemanual-cli" >}}) or [Beeline]({{< ref "#beeline" >}}).
+Commands are non-SQL statements such as setting a property or adding a resource. They can be used in HiveQL scripts or directly in the [CLI]({{% ref "languagemanual-cli" %}}) or [Beeline]({{% ref "#beeline" %}}).
 
 | Command | Description |
 | --- | --- |
@@ -14,12 +14,12 @@ Commands are non-SQL statements such as setting a property or adding a resource.
 | `set <key>=<value>` | Sets the value of a particular configuration variable (key).  **Note:** If you misspell the variable name, the CLI will not show an error. |
 | `set` | Prints a list of configuration variables that are overridden by the user or Hive. |
 | `set -v` | Prints all Hadoop and Hive configuration variables. |
-| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| `add FILE[S] <ivyurl> <ivyurl>*` `add JAR[S] <ivyurl> <ivyurl>*` `add ARCHIVE[S]<ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| `list FILE[S]`  `list JAR[S]`  `list ARCHIVE[S]` | Lists the resources already added to the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
-| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `add FILE[S] <filepath> <filepath>*`  `add JAR[S] <filepath> <filepath>*`  `add ARCHIVE[S] <filepath> <filepath>*` | Adds one or more files, jars, or archives to the list of resources in the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) for more information. |
+| `add FILE[S] <ivyurl> <ivyurl>*` `add JAR[S] <ivyurl> <ivyurl>*` `add ARCHIVE[S]<ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), adds one or more files, jars or archives to the list of resources in the distributed cache using an [Ivy](http://ant.apache.org/ivy/) URL of the form ivy://group:module:version?query_string. See [Hive Resources]({{% ref "#hive-resources" %}}) for more information. |
+| `list FILE[S]`  `list JAR[S]`  `list ARCHIVE[S]` | Lists the resources already added to the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) for more information. |
+| `list FILE[S] <filepath>*`  `list JAR[S] <filepath>*`  `list ARCHIVE[S] <filepath>*` | Checks whether the given resources are already added to the distributed cache or not. See [Hive Resources]({{% ref "#hive-resources" %}}) for more information. |
 | `delete FILE[S] <filepath>*`  `delete JAR[S] <filepath>*`  `delete ARCHIVE[S] <filepath>*` | Removes the resource(s) from the distributed cache. |
-| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{< ref "#hive-resources" >}}) for more information. |
+| `delete FILE[S] <ivyurl> <ivyurl>*`  `delete JAR[S] <ivyurl> <ivyurl>*`  `delete ARCHIVE[S] <ivyurl> <ivyurl>*` | As of [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-9664), removes the resource(s) which were added using the \<ivyurl\> from the distributed cache. See [Hive Resources]({{% ref "#hive-resources" %}}) for more information. |
 | `! <command>` | Executes a shell command from the Hive shell. |
 | `dfs <dfs command>` | Executes a dfs command from the Hive shell. |
 | `<query string>` | Executes a Hive query and prints results to standard output. |

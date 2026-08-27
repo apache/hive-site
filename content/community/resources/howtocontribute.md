@@ -11,7 +11,7 @@ This page describes the mechanics of *how* to contribute software to Apache Hive
 
 First of all, you need the Hive source code.
 
-Get the source code on your local drive using git. See [Understanding Hive Branches]({{< ref "#understanding-hive-branches" >}}) below to understand which branch you should be using.
+Get the source code on your local drive using git. See [Understanding Hive Branches]({{% ref "#understanding-hive-branches" %}}) below to understand which branch you should be using.
 
 ```
 git clone https://github.com/apache/hive
@@ -22,7 +22,7 @@ Setting Up Eclipse Development Environment (Optional)
 
 This is an optional step. Eclipse has a lot of advanced features for Java development, and it makes the life much easier for Hive developers as well.
 
-[How do I import into eclipse?]({{< ref "#how-do-i-import-into-eclipse?" >}})
+[How do I import into eclipse?]({{% ref "#how-do-i-import-into-eclipse?" %}})
 
 ## Becoming a Contributor
 
@@ -32,7 +32,7 @@ This checklist tells you how to create accounts and obtain permissions needed by
 	+ The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
 	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
-* To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{< ref "#about-this-wiki" >}}).
+* To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{% ref "#about-this-wiki" %}}).
 * To edit the Hive website, follow the instructions in [How to edit the website](https://github.com/apache/hive-site/blob/main/README.md).
 * Join the [Hive mailing lists](http://hive.apache.org/mailing_lists.html) to receive email about issues and discussions.
 
@@ -78,7 +78,7 @@ Hive is a **multi-module** Maven project. If you are new to [Maven](http://maven
 
 Additionally, Hive actually has two projects, "core" and "itests". The reason that itests is not connected to the core reactor is that itests requires the packages to be built.
 
-The actual Maven commands you will need are discussed on the [HiveDeveloperFAQ]({{< ref "hivedeveloperfaq" >}}) page.
+The actual Maven commands you will need are discussed on the [HiveDeveloperFAQ]({{% ref "hivedeveloperfaq" %}}) page.
 
 ### Understanding Hive Branches
 
@@ -92,7 +92,7 @@ Release branches are made from branch-1 (for 1.x) or master (for 2.x) when the c
 
 Feature branches are used to develop new features without destabilizing the rest of Hive. The intent of a feature branch is that it will be merged back into master once the feature has stabilized.
 
-For general information about Hive branches, see [Hive Versions and Branches]({{< ref "#hive-versions-and-branches" >}}).
+For general information about Hive branches, see [Hive Versions and Branches]({{% ref "#hive-versions-and-branches" %}}).
 
 ### Hadoop Dependencies
 
@@ -102,7 +102,7 @@ Hadoop dependencies are handled differently in master and branch-1.
 
 In branch-1 both Hadoop 1.x and 2.x are supported. The Hive build downloads a number of different Hadoop versions via Maven in order to compile "shims" which allow for compatibility with these Hadoop versions. However, the rest of Hive is only built and tested against a single Hadoop version.
 
-The Maven build has two profiles, `hadoop-1` for Hadoop 1.x and `hadoop-2` for Hadoop 2.x. When building, you must specify which profile you wish to use via Maven's `-P` command line option (see [How to build all source]({{< ref "#how-to-build-all-source" >}})).
+The Maven build has two profiles, `hadoop-1` for Hadoop 1.x and `hadoop-2` for Hadoop 2.x. When building, you must specify which profile you wish to use via Maven's `-P` command line option (see [How to build all source]({{% ref "#how-to-build-all-source" %}})).
 
 On this page we assume you are building from the master branch and do not include the profile in the example Maven commands. If you are building on branch-1 you will need to select the appropriate profile for the version of Hadoop you are building against.
 
@@ -112,7 +112,7 @@ Hadoop 1.x is no longer supported in Hive's master branch. There is no need to s
 
 ### Unit Tests
 
-When submitting a patch it's highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by [hive-precommit on Jenkins](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity). [Hive Developer FAQ]({{< ref "hivedeveloperfaq" >}}) describes how to execute a specific set of tests.
+When submitting a patch it's highly recommended you execute tests locally which you believe will be impacted in addition to any new tests. The full test suite can be executed by [hive-precommit on Jenkins](https://ci.hive.apache.org/blue/organizations/jenkins/hive-precommit/activity). [Hive Developer FAQ]({{% ref "hivedeveloperfaq" %}}) describes how to execute a specific set of tests.
 
 ```
 mvn clean install -DskipTests
@@ -187,7 +187,7 @@ Please do:
 
 * try to adhere to the coding style of files you edit;
 * comment code whose function or rationale is not obvious;
-* add one or more unit tests (see [Add a Unit Test]({{< ref "#add-a-unit-test" >}}) above);
+* add one or more unit tests (see [Add a Unit Test]({{% ref "#add-a-unit-test" %}}) above);
 * update documentation (such as Javadocs including *package.html* files and this wiki).
 
 ### Fetching a PR from Github

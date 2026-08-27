@@ -19,7 +19,7 @@ Returns a list of the response types supported by WebHCat (Templeton).
 | --- | --- | --- | --- |
 | **:version** | The WebHCat version number. (Currently this must be "v1".) | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -59,8 +59,8 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [Reference: WebHCat Resources]({{< ref "webhcat-reference" >}})   
-Next: [GET status]({{< ref "webhcat-reference-status" >}})
+Previous: [Reference: WebHCat Resources]({{% ref "webhcat-reference" %}})   
+Next: [GET status]({{% ref "webhcat-reference-status" %}})
 
 
 

@@ -5,12 +5,12 @@ date: 2024-12-12
 
 # Apache Hive : Storage Based Authorization in the Metastore Server
 
-The metastore server security feature with storage based authorization was added to Hive in release 0.10. This feature was introduced previously in [HCatalog]({{< ref "hcatalog-authorization" >}}).
+The metastore server security feature with storage based authorization was added to Hive in release 0.10. This feature was introduced previously in [HCatalog]({{% ref "hcatalog-authorization" %}}).
 
 [HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705) added metastore server security to Hive in release 0.10.0.
 
-* For additional information about storage based authorization in the metastore server, see the HCatalog document [Storage Based Authorization]({{< ref "hcatalog-authorization" >}}).
-* For an overview of Hive authorization models and other security options, see the [Authorization]({{< ref "languagemanual-authorization" >}}) document.
+* For additional information about storage based authorization in the metastore server, see the HCatalog document [Storage Based Authorization]({{% ref "hcatalog-authorization" %}}).
+* For an overview of Hive authorization models and other security options, see the [Authorization]({{% ref "languagemanual-authorization" %}}) document.
 
 ## The Need for Metastore Server Security
 
@@ -22,7 +22,7 @@ Also, when a Hive metastore server uses Thrift to communicate with clients and h
 
 When metastore server security is configured to use Storage Based Authorization, it uses the file system permissions for folders corresponding to the different metadata objects as the source of truth for the authorization policy. Use of Storage Based Authorization in metastore is recommended.
 
-See details in the HCatalog [Storage Based Authorization document]({{< ref "hcatalog-authorization" >}}).
+See details in the HCatalog [Storage Based Authorization document]({{% ref "hcatalog-authorization" %}}).
 
 Starting in Hive 0.14, storage based authorization authorizes read privilege on database and tables. The `get_database` api call needs database directory read privilege. The `get_table_*` calls that fetch table information and `get_partition_*` calls to list the partitions of a table require read privilege on the table directory. It is enabled by default with storage based authorization. See hive.security.metastore.authorization.auth.reads in the next section on configuration.
 

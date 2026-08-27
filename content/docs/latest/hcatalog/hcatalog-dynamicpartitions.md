@@ -56,17 +56,17 @@ Each dynamic partition column must be present in the custom location path in the
 * ${year}­‐${month}­‐${day}/country=${country}
 * output/yr=${year}/mon=${month}/day=${day}/geo=${country}
 
-See [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}}) for another example. Also see the [PDF attachment to HIVE-6019](https://issues.apache.org/jira/secure/attachment/12622686/HIVE-6109.pdf) for details of the implementation.
+See [HCatalog Configuration Properties]({{% ref "hcatalog-configuration-properties" %}}) for another example. Also see the [PDF attachment to HIVE-6019](https://issues.apache.org/jira/secure/attachment/12622686/HIVE-6109.pdf) for details of the implementation.
 
 ### Hive Dynamic Partitions
 
 Information about Hive dynamic partitions is available here:
 
-* [Design Document for Dynamic Partitions]({{< ref "dynamicpartitions" >}})
+* [Design Document for Dynamic Partitions]({{% ref "dynamicpartitions" %}})
 	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
 	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
-* [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
-* [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
+* [Tutorial: Dynamic-Partition Insert]({{% ref "#tutorial:-dynamic-partition-insert" %}})
+* [Hive DML: Dynamic Partition Inserts]({{% ref "#hive-dml:-dynamic-partition-inserts" %}})
 
 ## Usage with Pig
 
@@ -141,12 +141,12 @@ With dynamic partitioning, we simply specify only as many keys as we know about,
  
 
 **Navigation Links**
-Previous: [Storage Formats]({{< ref "hcatalog-storageformats" >}})  
- Next: [Notification]({{< ref "hcatalog-notification" >}})
+Previous: [Storage Formats]({{% ref "hcatalog-storageformats" %}})  
+ Next: [Notification]({{% ref "hcatalog-notification" %}})
 
-Hive design document: [Dynamic Partitions]({{< ref "dynamicpartitions" >}})  
- Hive tutorial: [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})  
- Hive DML: [Dynamic Partition Inserts]({{< ref "#dynamic-partition-inserts" >}})
+Hive design document: [Dynamic Partitions]({{% ref "dynamicpartitions" %}})  
+ Hive tutorial: [Dynamic-Partition Insert]({{% ref "#dynamic-partition-insert" %}})  
+ Hive DML: [Dynamic Partition Inserts]({{% ref "#dynamic-partition-inserts" %}})
 
 
 

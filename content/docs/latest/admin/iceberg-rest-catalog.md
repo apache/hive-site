@@ -25,7 +25,7 @@ Hive Metastore's Iceberg REST API supports four authentication methods.
 
 ### OAuth 2
 
-OAuth 2 is the industry standard for authenticating Iceberg client usernames. You can integrate Hive Metastore with your Authorization Server, e.g., Keycloak, to protect Iceberg resources. See [Apache Hive : Setting Up OAuth 2]({{< relref "oauth2/_index.md" >}}) for further details.
+OAuth 2 is the industry standard for authenticating Iceberg client usernames. You can integrate Hive Metastore with your Authorization Server, e.g., Keycloak, to protect Iceberg resources. See [Apache Hive : Setting Up OAuth 2]({{% relref "oauth2/_index.md" %}}) for further details.
 
 ### JWT
 
@@ -41,7 +41,7 @@ When `metastore.catalog.servlet.auth=none`, Hive Metastore does not enforce any 
 
 ## Authorization
 
-You can apply database-level or table-level authorization in Hive Metastore. See also: [Apache Hive : LanguageManual Authorization]({{< relref "../language/languagemanual-authorization.md" >}}).
+You can apply database-level or table-level authorization in Hive Metastore. See also: [Apache Hive : LanguageManual Authorization]({{% relref "../language/languagemanual-authorization.md" %}}).
 
 For example, you can secure Iceberg REST API using Apache Ranger.
 

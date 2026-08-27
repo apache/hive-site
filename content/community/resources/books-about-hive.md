@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Books about Hive
 
-These books describe Apache Hive and explain how to use its features. If you know of others that should be listed here, or newer editions, please send a message to the [Hive user mailing list](http://hive.apache.org/mailing_lists.html) or add the information yourself if you have [wiki edit privileges]({{< ref "#wiki-edit-privileges" >}}). Most links go to the publishers although you can also buy most of these books from bookstores, either online or brick-and-mortar.
+These books describe Apache Hive and explain how to use its features. If you know of others that should be listed here, or newer editions, please send a message to the [Hive user mailing list](http://hive.apache.org/mailing_lists.html) or add the information yourself if you have [wiki edit privileges]({{% ref "#wiki-edit-privileges" %}}). Most links go to the publishers although you can also buy most of these books from bookstores, either online or brick-and-mortar.
 
 * *[Programming Hive](http://shop.oreilly.com/product/0636920023555.do)* by Edward Capriolo, Dean Wampler, and Jason Rutherglen – O'Reilly Media, 2012
 * *[Apache Hive Essentials](https://www.packtpub.com/application-development/apache-hive-essentials-second-edition)* by Dayong Du – Packt Publishing, [2015](http://bit.ly/1QVANQA) and [2018 (second edition)](https://www.packtpub.com/application-development/apache-hive-essentials-second-edition)

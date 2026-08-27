@@ -7,15 +7,15 @@ date: 2024-12-12
 
 ### SerDes and Storage Formats
 
-HCatalog uses Hive's SerDe class to serialize and deserialize data. SerDes are provided for RCFile, CSV text, JSON text, and SequenceFile formats. Check the [SerDe documentation]({{< ref "serde" >}}) for additional SerDes that might be included in new versions. For example, the [Avro SerDe]({{< ref "avroserde" >}}) was added in Hive 0.9.1, the [ORC]({{< ref "languagemanual-orc" >}}) file format was added in Hive 0.11.0, and [Parquet]({{< ref "parquet" >}}) was added in Hive 0.10.0 (plug-in) and Hive 0.13.0 (native).
+HCatalog uses Hive's SerDe class to serialize and deserialize data. SerDes are provided for RCFile, CSV text, JSON text, and SequenceFile formats. Check the [SerDe documentation]({{% ref "serde" %}}) for additional SerDes that might be included in new versions. For example, the [Avro SerDe]({{% ref "avroserde" %}}) was added in Hive 0.9.1, the [ORC]({{% ref "languagemanual-orc" %}}) file format was added in Hive 0.11.0, and [Parquet]({{% ref "parquet" %}}) was added in Hive 0.10.0 (plug-in) and Hive 0.13.0 (native).
 
 Users can write SerDes for custom formats using these instructions:
 
-* [How to Write Your Own SerDe]({{< ref "#how-to-write-your-own-serde" >}}) in the Developer Guide
+* [How to Write Your Own SerDe]({{% ref "#how-to-write-your-own-serde" %}}) in the Developer Guide
 * [Hive User Group Meeting August 2009](http://www.slideshare.net/ragho/hive-user-meeting-august-2009-facebook) pages 64-70
-* also see [SerDe]({{< ref "serde" >}}) for details about input and output processing
+* also see [SerDe]({{% ref "serde" %}}) for details about input and output processing
 
-For information about how to create a table with a custom or native SerDe, see [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}).
+For information about how to create a table with a custom or native SerDe, see [Row Format, Storage Format, and SerDe]({{% ref "#row-format,-storage-format,-and-serde" %}}).
 
 ### Usage from Hive
 
@@ -37,12 +37,12 @@ See [HCATALOG-436](https://issues.apache.org/jira/browse/HCATALOG-436) for detai
  
 
 **Navigation Links**
-Previous: [Command Line Interface]({{< ref "hcatalog-cli" >}})  
- Next: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
+Previous: [Command Line Interface]({{% ref "hcatalog-cli" %}})  
+ Next: [Dynamic Partitioning]({{% ref "hcatalog-dynamicpartitions" %}})
 
-SerDe general information: [Hive SerDe]({{< ref "#hive-serde" >}})  
- SerDe details: [SerDe]({{< ref "serde" >}})  
- SerDe DDL: [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}})
+SerDe general information: [Hive SerDe]({{% ref "#hive-serde" %}})  
+ SerDe details: [SerDe]({{% ref "serde" %}})  
+ SerDe DDL: [Row Format, Storage Format, and SerDe]({{% ref "#row-format,-storage-format,-and-serde" %}})
 
 
 

@@ -69,7 +69,7 @@ The uncompressed data should look like this:
 * If the keyword LOCAL is not given, *filepath* must refer to files within the same filesystem as the table's (or partition's) location.
 * Hive does some minimal checks to make sure that the files being loaded match the target table. Currently it checks that if the table is stored in sequencefile format, the files being loaded are also sequencefiles, and vice versa.
 * A bug that prevented loading a file when its name includes the "+" character is fixed in release 0.13.0 ([HIVE-6048](https://issues.apache.org/jira/browse/HIVE-6048)).
-* Please read [CompressedStorage]({{< ref "compressedstorage" >}}) if your datafile is compressed.
+* Please read [CompressedStorage]({{% ref "compressedstorage" %}}) if your datafile is compressed.
 
 ### Inserting data into Hive Tables from queries
 
@@ -101,16 +101,16 @@ INSERT INTO TABLE tablename PARTITION (partcol1[=val1], partcol2[=val2] ...) sel
 
 * INSERT OVERWRITE will overwrite any existing data in the table or partition
 	+ unless `IF NOT EXISTS` is provided for a partition (as of Hive [0.9.0](https://issues.apache.org/jira/browse/HIVE-2612)).
-	+ As of Hive 2.3.0 ([HIVE-15880](https://issues.apache.org/jira/browse/HIVE-15880)), if the table has `TBLPROPERTIES ("auto.purge"="true")` the previous data of the table is not moved to Trash when INSERT OVERWRITE query is run against the table. This functionality is applicable only for managed tables (see [managed tables]({{< ref "#managed-tables" >}})) and is turned off when "auto.purge" property is unset or set to false.
+	+ As of Hive 2.3.0 ([HIVE-15880](https://issues.apache.org/jira/browse/HIVE-15880)), if the table has `TBLPROPERTIES ("auto.purge"="true")` the previous data of the table is not moved to Trash when INSERT OVERWRITE query is run against the table. This functionality is applicable only for managed tables (see [managed tables]({{% ref "#managed-tables" %}})) and is turned off when "auto.purge" property is unset or set to false.
 * INSERT INTO will append to the table or partition, keeping the existing data intact. (Note: INSERT INTO syntax is only available starting in version 0.8.)
 	+ As of Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-6406), a table can be made ***immutable*** by creating it with `TBLPROPERTIES ("immutable"="true")`. The default is "immutable"="false".  
 	INSERT INTO behavior into an immutable table is disallowed if any data is already present, although INSERT INTO still works if the immutable table is empty. The behavior of INSERT OVERWRITE is not affected by the "immutable" table property.  
 	An immutable table is protected against accidental updates due to a script loading data into it being run multiple times by mistake. The first insert into an immutable table succeeds and successive inserts fail, resulting in only one set of data in the table, instead of silently succeeding with multiple copies of the data in the table.
-* Inserts can be done to a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns. If [hive.typecheck.on.insert]({{< ref "#hive-typecheck-on-insert" >}}) is set to true, these values are validated, converted and normalized to conform to their column types (Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-5297) onward).
+* Inserts can be done to a table or a partition. If the table is partitioned, then one must specify a specific partition of the table by specifying values for all of the partitioning columns. If [hive.typecheck.on.insert]({{% ref "#hive-typecheck-on-insert" %}}) is set to true, these values are validated, converted and normalized to conform to their column types (Hive [0.12.0](https://issues.apache.org/jira/browse/HIVE-5297) onward).
 * Multiple insert clauses (also known as *Multi Table Insert*) can be specified in the same query.
 * The output of each of the select statements is written to the chosen table (or partition). Currently the OVERWRITE keyword is mandatory and implies that the contents of the chosen table or partition are replaced with the output of corresponding select statement.
 * The output format and serialization class is determined by the table's metadata (as specified via DDL commands on the table).
-* As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317), if a table has an OutputFormat that implements AcidOutputFormat and the system is configured to use a [transaction]({{< ref "hive-transactions" >}}) manager that implements ACID, then INSERT OVERWRITE will be disabled for that table.  This is to avoid users unintentionally overwriting transaction history.  The same functionality can be achieved by using [TRUNCATE TABLE]({{< ref "#truncate-table" >}}) (for non-partitioned tables) or [DROP PARTITION]({{< ref "#drop-partition" >}}) followed by INSERT INTO.
+* As of [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317), if a table has an OutputFormat that implements AcidOutputFormat and the system is configured to use a [transaction]({{% ref "hive-transactions" %}}) manager that implements ACID, then INSERT OVERWRITE will be disabled for that table.  This is to avoid users unintentionally overwriting transaction history.  The same functionality can be achieved by using [TRUNCATE TABLE]({{% ref "#truncate-table" %}}) (for non-partitioned tables) or [DROP PARTITION]({{% ref "#drop-partition" %}}) followed by INSERT INTO.
 * As of Hive [1.1.0](https://issues.apache.org/jira/browse/HIVE-9353) the TABLE keyword is optional.
 * As of Hive [1.2.0](https://issues.apache.org/jira/browse/HIVE-9481) each INSERT INTO T can take a column list like INSERT INTO T (z, x, c1).  See Description of [HIVE-9481](https://issues.apache.org/jira/browse/HIVE-9481) for examples.
 * As of Hive [3.1.0](https://issues.apache.org/jira/browse/HIVE-19908) INSERT OVERWRITE from a source with UNION ALL on full CRUD ACID tables is not allowed.
@@ -152,13 +152,13 @@ Here the `country` partition will be dynamically created by the last column from
 
 ###### Additional Documentation
 
-* [Design Document]({{< ref "dynamicpartitions" >}})
+* [Design Document]({{% ref "dynamicpartitions" %}})
 	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
 	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
-* [Tutorial: Dynamic-Partition Insert]({{< ref "#tutorial:-dynamic-partition-insert" >}})
-* [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+* [Tutorial: Dynamic-Partition Insert]({{% ref "#tutorial:-dynamic-partition-insert" %}})
+* [HCatalog Dynamic Partitioning]({{% ref "hcatalog-dynamicpartitions" %}})
+	+ [Usage with Pig]({{% ref "#usage-with-pig" %}})
+	+ [Usage from MapReduce]({{% ref "#usage-from-mapreduce" %}})
 
 ### Writing data into the filesystem from queries
 
@@ -196,7 +196,7 @@ row_format
 * INSERT OVERWRITE statements to HDFS filesystem directories are the best way to extract large amounts of data from Hive. Hive can write to HDFS directories in parallel from within a map-reduce job.
 * The directory is, as you would expect, OVERWRITten; in other words, if the specified path exists, it is clobbered and replaced with the output.
 * As of Hive [0.11.0](https://issues.apache.org/jira/browse/HIVE-3682) the separator used can be specified; in earlier versions it was always the ^A character (\001). However, custom separators are only supported for LOCAL writes in Hive versions 0.11.0 to 1.1.0 – this bug is fixed in version 1.2.0 (see [HIVE-5672](https://issues.apache.org/jira/browse/HIVE-5672)).
-* In [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317), inserts into [ACID]({{< ref "hive-transactions" >}}) compliant tables will deactivate vectorization for the duration of the select and insert.  This will be done automatically.  ACID tables that have data inserted into them can still be queried using vectorization.
+* In [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317), inserts into [ACID]({{% ref "hive-transactions" %}}) compliant tables will deactivate vectorization for the duration of the select and insert.  This will be done automatically.  ACID tables that have data inserted into them can still be queried using vectorization.
 
 ### Inserting values into tables from SQL
 
@@ -222,7 +222,7 @@ where a value is either null or any valid SQL literal
 * Each row listed in the VALUES clause is inserted into table *tablename*.
 * Values must be provided for every column in the table. The standard SQL syntax that allows the user to insert values into only some columns is not yet supported. To mimic the standard SQL, nulls can be provided for columns the user does not wish to assign a value to.
 * Dynamic partitioning is supported in the same way as for [INSERT...SELECT](/docs/latest/language/languagemanual-dml#dynamic-partition-inserts).
-* If the table being inserted into supports [ACID]({{< ref "hive-transactions" >}}) and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.
+* If the table being inserted into supports [ACID]({{% ref "hive-transactions" %}}) and a transaction manager that supports ACID is in use, this operation will be auto-committed upon successful completion.
 * Hive does not support literals for complex types (array, map, struct, union), so it is not possible to use them in INSERT INTO...VALUES clauses. This means that the user cannot insert data into a complex datatype column using the INSERT INTO...VALUES clause.
 
 ##### Examples
@@ -253,7 +253,7 @@ Version Information
 
 UPDATE is available starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317).
 
-Updates can only be performed on tables that support ACID. See [Hive Transactions]({{< ref "hive-transactions" >}}) for details.
+Updates can only be performed on tables that support ACID. See [Hive Transactions]({{% ref "hive-transactions" %}}) for details.
 
 ##### Syntax
 
@@ -274,7 +274,7 @@ UPDATE tablename SET column = value [, column = value ...] [WHERE expression]
 ##### Notes
 
 * Vectorization will be turned off for update operations.  This is automatic and requires no action on the part of the user.  Non-update operations are not affected.  Updated tables can still be queried using vectorization.
-* In version 0.14 it is recommended that you set [hive.optimize.sort.dynamic.partition]({{< ref "#hive-optimize-sort-dynamic-partition" >}})=false when doing updates, as this produces more efficient execution plans.
+* In version 0.14 it is recommended that you set [hive.optimize.sort.dynamic.partition]({{% ref "#hive-optimize-sort-dynamic-partition" %}})=false when doing updates, as this produces more efficient execution plans.
 
 ### Delete
 
@@ -282,7 +282,7 @@ Version Information
 
 DELETE is available starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317).
 
-Deletes can only be performed on tables that support ACID. See [Hive Transactions]({{< ref "hive-transactions" >}}) for details.
+Deletes can only be performed on tables that support ACID. See [Hive Transactions]({{% ref "hive-transactions" %}}) for details.
 
 ##### Syntax
 
@@ -299,7 +299,7 @@ DELETE FROM tablename [WHERE expression]
 ##### Notes
 
 * Vectorization will be turned off for delete operations.  This is automatic and requires no action on the part of the user.  Non-delete operations are not affected.  Tables with deleted data can still be queried using vectorization.
-* In version 0.14 it is recommended that you set [hive.optimize.sort.dynamic.partition]({{< ref "#hive-optimize-sort-dynamic-partition" >}})=false when doing deletes, as this produces more efficient execution plans.
+* In version 0.14 it is recommended that you set [hive.optimize.sort.dynamic.partition]({{% ref "#hive-optimize-sort-dynamic-partition" %}})=false when doing deletes, as this produces more efficient execution plans.
 
 ### Merge
 
@@ -307,7 +307,7 @@ Version Information
 
 MERGE is available starting in [Hive 2.2](https://issues.apache.org/jira/browse/HIVE-10924).
 
-Merge can only be performed on tables that support ACID. See [Hive Transactions]({{< ref "hive-transactions" >}}) for details.
+Merge can only be performed on tables that support ACID. See [Hive Transactions]({{% ref "hive-transactions" %}}) for details.
 
 ##### Syntax
 
@@ -327,7 +327,7 @@ WHEN NOT MATCHED [AND <boolean expression4>] THEN INSERT VALUES<value list>
 
 ##### Performance Note
 
-SQL Standard requires that an error is raised if the ON clause is such that more than 1 row in source matches a row in target.  This check is computationally expensive and may affect the overall runtime of a MERGE statement significantly.  [hive.merge.cardinality.check]({{< ref "#hive-merge-cardinality-check" >}})=false may be used to disable the check at your own risk.  If the check is disabled, but the statement has such a cross join effect, it may lead to data corruption.
+SQL Standard requires that an error is raised if the ON clause is such that more than 1 row in source matches a row in target.  This check is computationally expensive and may affect the overall runtime of a MERGE statement significantly.  [hive.merge.cardinality.check]({{% ref "#hive-merge-cardinality-check" %}})=false may be used to disable the check at your own risk.  If the check is disabled, but the statement has such a cross join effect, it may lead to data corruption.
 
 ##### Notes
 
