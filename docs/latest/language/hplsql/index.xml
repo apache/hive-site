@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Hive : HPL/SQL Reference on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/</link><description>Recent content in Apache Hive : HPL/SQL Reference on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - Get Started</title><link>https://hive.apache.org/docs/latest/language/hplsql/start/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/start/</guid><description>&lt;h1 id="apache-hive--hplsql---get-started"&gt;Apache Hive : HPL/SQL - Get Started&lt;/h1&gt;
+&lt;p&gt;Quick guide how to start using HPL/SQL.&lt;/p&gt;
+&lt;p&gt;You can enable and use HPL/SQL from any host or third-party tool that can make a JDBC connection to HiveServer. Beeline is a popular client for use with HPL/SQL because other third-party tools do not show you some of the error messages about syntax mistakes.&lt;/p&gt;
+&lt;h2 id="enabling-hplsql-in-the-beeline-connection-string"&gt;Enabling HPL/SQL in the beeline connection string&lt;/h2&gt;
+&lt;p&gt;After setting up a client to connect to HiveServer, you append &lt;em&gt;&lt;strong&gt;mode=hplsql&lt;/strong&gt;&lt;/em&gt; to the JDBC URL that connects the client to HiveServer.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Key Features</title><link>https://hive.apache.org/docs/latest/language/hplsql/features/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/features/</guid><description>&lt;h1 id="apache-hive--hplsql---key-features"&gt;Apache Hive : HPL/SQL - Key Features&lt;/h1&gt;
+&lt;p&gt;HPL/SQL key features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flow of Control Statements (FOR, WHILE, IF, CASE, LOOP, LEAVE, RETURN)&lt;/li&gt;
+&lt;li&gt;Functions, procedures, and packages&lt;/li&gt;
+&lt;li&gt;Built-in functions (string manipulations, datetime functions, conversions)&lt;/li&gt;
+&lt;li&gt;Exception handling and conditions&lt;/li&gt;
+&lt;li&gt;Constants and variable, assignment (DECLARE count INT := 1)&lt;/li&gt;
+&lt;li&gt;Processing results using a CURSOR&lt;/li&gt;
+&lt;li&gt;On-the-fly SQL Conversion&lt;/li&gt;
+&lt;li&gt;UDF to run HPL/SQL scripts from Hive queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;(SELECT hplsql(&amp;#39;mycustomfunc(:1)&amp;#39;, name) FROM users;)
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Apache Hive : Why HPL/SQL</title><link>https://hive.apache.org/docs/latest/language/hplsql/why/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/why/</guid><description>&lt;h1 id="apache-hive--why-hplsql"&gt;Apache Hive : Why HPL/SQL&lt;/h1&gt;
+&lt;p&gt;The role of Hadoop in Data Warehousing is huge. But to implement comprehensive ETL, reporting, analytics and data mining processes you not only need distributed processing engines such as MapReduce, Spark or Tez, you also need a way to express comprehensive business rules.&lt;/p&gt;
+&lt;h2 id="1-business-logic-driver-and-advanced-error-handling"&gt;1. Business Logic Driver and Advanced Error Handling&lt;/h2&gt;
+&lt;p&gt;HPL/SQL allows you to implement business logic using variables, expressions, flow-of-control statements and iterations. HPL/SQL supports error handling using exceptions and condition handlers. You can develop programs that manages and controls distributed processes but at the same time is not a bottleneck of the system.&lt;/p&gt;</description></item></channel></rss>

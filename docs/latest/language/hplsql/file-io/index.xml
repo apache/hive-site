@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>File I/O Operations on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/file-io/</link><description>Recent content in File I/O Operations on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/file-io/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - UTL_FILE Package</title><link>https://hive.apache.org/docs/latest/language/hplsql/file-io/utl-file/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/file-io/utl-file/</guid><description>&lt;h1 id="apache-hive--hplsql---utl_file-package"&gt;Apache Hive : HPL/SQL - UTL_FILE Package&lt;/h1&gt;
+&lt;p&gt;UTL_FILE package allows you to read and write HDFS files:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE
+ f UTL_FILE.FILE_TYPE;
+BEGIN
+ f := UTL_FILE.FOPEN(&amp;#39;/user/dm&amp;#39;, &amp;#39;hello.txt&amp;#39;, &amp;#39;w&amp;#39;);
+ UTL_FILE.PUT_LINE(f, &amp;#39;Hello, world!&amp;#39;);
+ UTL_FILE.FCLOSE(f);
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example we create &lt;em&gt;/user/dm/hello.txt&lt;/em&gt; in HDFS, write a single line and close the file.&lt;/p&gt;
+&lt;h2 id="utl_filefile_type-type"&gt;UTL_FILE.FILE_TYPE Type&lt;/h2&gt;
+&lt;p&gt;Before you can work with a file using UTL_FILE package you have to declare a variable of UTL_FILE.FILE_TYPE. You assign a value to this variable using UTL_FILE.FOPEN function and then use it in all other functions as an argument.&lt;/p&gt;</description></item></channel></rss>

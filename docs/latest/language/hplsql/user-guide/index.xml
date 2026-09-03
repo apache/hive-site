@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User Guide on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/</link><description>Recent content in User Guide on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - Configurations</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/</guid><description>&lt;h1 id="apache-hive--hplsql---configurations"&gt;Apache Hive : HPL/SQL - Configurations&lt;/h1&gt;
+&lt;p&gt;You can set all options dynamically using the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/assign/"&gt;SET&lt;/a&gt; statement in a HPL/SQL script: &lt;code&gt;SET option=value;&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="hplsqlonerror"&gt;hplsql.onerror&lt;/h2&gt;
+&lt;p&gt;The &lt;em&gt;hplsql.onerror&lt;/em&gt; option defines how HPL/SQL handles errors.&lt;/p&gt;
+&lt;p&gt;Values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;exception&lt;/strong&gt; - HPL/SQL raises an exception when an error occurs. This is the default.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;seterror&lt;/strong&gt; - HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;stop&lt;/strong&gt; - HPL/SQL stops executing the script and exits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Error Handling</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/</guid><description>&lt;h1 id="apache-hive--hplsql---error-handling"&gt;Apache Hive : HPL/SQL - Error Handling&lt;/h1&gt;
+&lt;p&gt;HPL/SQL allows you to use exceptions, condition handlers and error code to handle errors. The &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqlonerror"&gt;hplsql.onerror&lt;/a&gt; configuration option defines how HPL/SQL handles errors. It accepts the following values:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Exception&lt;/strong&gt; (default)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this case when an error occurs, HPL/SQL raises an exception. If there is an exception or condition handler for this error, it is executed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Seterror&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When Seterror is specified, HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</guid><description>&lt;h1 id="apache-hive--hplsql---hive-udf-to-run-hplsql-scripts-from-beeline-in-non-hplsql-mode"&gt;Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode&lt;/h1&gt;
+&lt;p&gt;HPL/SQL includes a Hive UDF function(&lt;em&gt;&lt;strong&gt;hplsql&lt;/strong&gt;&lt;/em&gt;) that allows you to execute HPL/SQL scripts (user-defined functions written in HPL/SQL language) in Hive queries.&lt;/p&gt;
+&lt;p&gt;For example, let&amp;rsquo;s call the following function from a Hive query:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE FUNCTION hello(text STRING)
+ RETURNS STRING
+BEGIN
+ RETURN &amp;#39;Hello, &amp;#39; || text || &amp;#39;!&amp;#39;;
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="running-hplsql-scripts-from-beeline-in-non-hplsql-mode"&gt;Running HPL/SQL scripts from Beeline in non-hplsql mode&lt;/h2&gt;
+&lt;p&gt;Now let&amp;rsquo;s use &lt;em&gt;hello&lt;/em&gt; function written in HPL/SQL language in Hive query:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Native and Managed Temporary Tables</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/temporary-tables/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/temporary-tables/</guid><description>&lt;h1 id="apache-hive--hplsql---native-and-managed-temporary-tables"&gt;Apache Hive : HPL/SQL - Native and Managed Temporary Tables&lt;/h1&gt;
+&lt;p&gt;HPL/SQL provides you with two options to work with temporary tables: native and managed.&lt;/p&gt;
+&lt;p&gt;Use the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqltemptables"&gt;hplsql.temp.tables&lt;/a&gt; option to define how to handle temporary tables, the default value is &lt;strong&gt;native&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="native-temporary-tables"&gt;Native Temporary Tables&lt;/h2&gt;
+&lt;p&gt;When native temporary tables are used HPL/SQL relies on the underlying HiveServer to manage temporary tables.&lt;/p&gt;
+&lt;p&gt;HPL/SQL converts DECLARE TEMPORARY TABLE statement to CREATE TEMPORARY TABLE in Hive.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - On-the-Fly SQL Conversion in Hive</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/conversion/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/conversion/</guid><description>&lt;h1 id="apache-hive--hplsql---on-the-fly-sql-conversion-in-hive"&gt;Apache Hive : HPL/SQL - On-the-Fly SQL Conversion in Hive&lt;/h1&gt;
+&lt;p&gt;HPL/SQL supports many procedural dialects that allows you to reuse your existing code without changes. But not all statements are executed by HPL/SQL, some of them must be executed by the HiveServer.&lt;/p&gt;
+&lt;p&gt;Consider the following example:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;IF code = &amp;#39;A&amp;#39; THEN
+ CREATE TABLE dept 
+ (
+ deptno NUMBER(2,0),
+ dname NUMBER(14),
+ loc VARCHAR2(13),
+ CONSTRAINT pk_dept PRIMARY KEY (deptno)
+ );
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, IF statement is executed by HPL/SQL itself. It checks the value of &lt;em&gt;code&lt;/em&gt; variable and if it is equal to &amp;lsquo;A&amp;rsquo;, HPL/SQL executes the CREATE TABLE statement.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - User-Defined Functions and Stored Procedures</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf-sproc/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf-sproc/</guid><description>&lt;h1 id="apache-hive--hplsql---user-defined-functions-and-stored-procedures"&gt;Apache Hive : HPL/SQL - User-Defined Functions and Stored Procedures&lt;/h1&gt;
+&lt;p&gt;HPL/SQL allows you to defined user-defined functions and stored procedures using &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/create-function/"&gt;CREATE FUNCTION&lt;/a&gt; and &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/create-procedure/"&gt;CREATE PROCEDURE&lt;/a&gt; statements, respectively.&lt;/p&gt;
+&lt;h2 id="define-functions-and-procedures-in-the-current-script"&gt;Define Functions and Procedures in the Current Script&lt;/h2&gt;
+&lt;p&gt;The easiest way to use HPL/SQL functions and procedures is to define them in the current script before their actual use.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE FUNCTION hello(text STRING)
+ RETURNS STRING
+BEGIN
+ RETURN &amp;#39;Hello, &amp;#39; || text || &amp;#39;!&amp;#39;;
+END;
+
+CREATE PROCEDURE set_message(IN name STRING, OUT result STRING)
+BEGIN
+ SET result = &amp;#39;Hello, &amp;#39; || name || &amp;#39;!&amp;#39;;
+END;
+
+-- Invoke the function
+PRINT hello(&amp;#39;world&amp;#39;);
+
+-- Call the procedure and print the results
+DECLARE str STRING;
+CALL set_message(&amp;#39;world&amp;#39;, str);
+PRINT str;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once defined the function/procedure, the metadata of the function/procedure will be stored in the HMS permanently and they can be used in any HPL/SQL and HQL expression as a built-in function. You can invoke a procedure using the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/call/"&gt;CALL&lt;/a&gt; statement.&lt;/p&gt;</description></item></channel></rss>

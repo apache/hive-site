@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Attributes and Built-in Variables on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/</link><description>Recent content in Attributes and Built-in Variables on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - ACTIVITY_COUNT Variable</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/activity_count/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/activity_count/</guid><description>&lt;h1 id="apache-hive--hplsql---activity_count-variable"&gt;Apache Hive : HPL/SQL - ACTIVITY_COUNT Variable&lt;/h1&gt;
+&lt;p&gt;ACTIVITY_COUNT built-in variable contains the number of rows affected by the last SQL statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important Note:&lt;/strong&gt; Currently Hive does not support JDBC Statement.getUpdateCount(), so for INSERT statements ACTIVITY_COUNT will return 0 for Hive 0.13 and earlier and -1 for Hive 0.14 and later. See &lt;a href="https://issues.apache.org/jira/browse/HIVE-7680"&gt;HIVE-7680&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Currently you can use ACTIVITY_COUNT only with SELECT statements in Hive. If SELECT INTO returns a row ACTIVITY_COUNT is set to 1. Also if you use a cursor each FETCH statement increments ACTIVITY_COUNT by 1.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - HOSTCODE</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/hostcode/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/hostcode/</guid><description>&lt;h1 id="apache-hive--hplsql---hostcode"&gt;Apache Hive : HPL/SQL - HOSTCODE&lt;/h1&gt;
+&lt;p&gt;HOSTCODE built-in variable contains the return code of the last OS command.&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SET hplsql.onerror = SETERROR;
+
+HOST &amp;#39;echo hello, world&amp;#39;;
+IF HOSTCODE &amp;lt;&amp;gt; 0 THEN
+ PRINT &amp;#39;Error&amp;#39;;
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Typically HOSTCODE is 0 when the process terminated successfully, and 1 if it terminated with an error.&lt;/li&gt;
+&lt;li&gt;By default &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqlonerror"&gt;hplsql.onerror&lt;/a&gt; is set to EXCEPTION, so if the OS command cannot be executed (the process does not exist, no permissions i.e.) the exception is raised and you are not be able to check HOSTCODE in IF statement.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - SQLCODE</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlcode/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlcode/</guid><description>&lt;h1 id="apache-hive--hplsql---sqlcode"&gt;Apache Hive : HPL/SQL - SQLCODE&lt;/h1&gt;
+&lt;p&gt;SQLCODE built-in variable contains the return code of the last SQL statement. The code can be zero (0), negative or positive:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;SQLCODE&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Result&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;0&lt;/td&gt;
+ &lt;td&gt;Successful execution&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Positive values&lt;/td&gt;
+ &lt;td&gt;Warning&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;Negative values&lt;/td&gt;
+ &lt;td&gt;Error&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SQLCODE 100 means row not found or end of cursor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE id INT;
+DECLARE cur CURSOR FOR &amp;#39;SELECT id FROM db.orders&amp;#39;;
+OPEN cur;
+FETCH cur INTO id;
+WHILE SQLCODE = 0 THEN
+ FETCH cur INTO id;
+END WHILE;
+CLOSE cur;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - SQLSTATE</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlstate/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlstate/</guid><description>&lt;h1 id="apache-hive--hplsql---sqlstate"&gt;Apache Hive : HPL/SQL - SQLSTATE&lt;/h1&gt;
+&lt;p&gt;SQLSTATE built-in variable contains a 5-character return status of the last SQL statement.&lt;/p&gt;
+&lt;p&gt;SQLSTATE status code consists of a 2-character class code followed by a 3-character subclass code. Class code 00 (SQLSTATE &amp;lsquo;00000&amp;rsquo; i.e.) means the successful completion.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SET hplsql.onerror = seterror; -- Prevent raising an exception
+
+SELECT 1 FROM abc.abc;
+PRINT SQLSTATE;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlcode/"&gt;SQLCODE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/get-diagnostics/"&gt;GET DIAGNOSTICS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/resignal/"&gt;RESIGNAL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

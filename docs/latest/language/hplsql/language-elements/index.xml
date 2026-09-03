@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Language Elements on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/</link><description>Recent content in Language Elements on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - %ROWTYPE Attribute</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/rowtype-attribute/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/rowtype-attribute/</guid><description>&lt;h1 id="apache-hive--hplsql---rowtype-attribute"&gt;Apache Hive : HPL/SQL - %ROWTYPE Attribute&lt;/h1&gt;
+&lt;p&gt;%ROWTYPE attribute lets you declare a record variable that has the same columns and data types as the specified database table.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;var_name [schema.]table_name%ROWTYPE
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE 
+ v orders%ROWTYPE;
+BEGIN
+ SELECT * INTO v FROM orders LIMIT 1;
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Item: &amp;#39; || v.name || &amp;#39; - &amp;#39; || v.description);
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE 
+ v orders%ROWTYPE;
+ CURSOR c IS SELECT * FROM orders;
+BEGIN
+ OPEN c1;
+ FETCH c1 INTO v1;
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Item: &amp;#39; || v.name || &amp;#39; - &amp;#39; || v.description);
+ CLOSE c1;
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;BEGIN
+ FOR v IN (SELECT * FROM orders)
+ LOOP
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Item: &amp;#39; || v.name || &amp;#39; - &amp;#39; || v.description);
+ END LOOP;
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE
+ v orders%ROWTYPE;
+BEGIN
+ EXECUTE IMMEDIATE &amp;#39;SELECT * FROM orders LIMIT 1&amp;#39; INTO v;
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Item: &amp;#39; || v.name || &amp;#39; - &amp;#39; || v.description);
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - %TYPE Attribute</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/type-attribute/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/type-attribute/</guid><description>&lt;h1 id="apache-hive--hplsql---type-attribute"&gt;Apache Hive : HPL/SQL - %TYPE Attribute&lt;/h1&gt;
+&lt;p&gt;%TYPE attribute lets you declare a variable that has the same data type as the specified referenced column.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;var_name [schema.]table.column_name%TYPE
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;If &lt;em&gt;table.column_name&lt;/em&gt; cannot be found, the data type is derived from the first assignment expression.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE 
+ i orders.item%TYPE;
+BEGIN
+ SELECT item INTO i FROM orders LIMIT 1;
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Item: &amp;#39; || i);
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Assignment</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/assign/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/assign/</guid><description>&lt;h1 id="apache-hive--hplsql---assignment"&gt;Apache Hive : HPL/SQL - Assignment&lt;/h1&gt;
+&lt;p&gt;You can use the assignment operator or statement to set a new value to variable in HPL/SQL.&lt;/p&gt;
+&lt;p&gt;If the variable was not explicitly declared before the assignment, a new variable is created and its data type is derived from the assignment expression.&lt;/p&gt;
+&lt;h2 id="assignment-operator"&gt;Assignment Operator&lt;/h2&gt;
+&lt;p&gt;Values can be set using the assignment operator := or =&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;var [:= | = ] expression;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;code := &amp;#39;A&amp;#39;;
+status := 1;
+count = 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle PL/SQL, PostgreSQL PL/pgSQL and Netezza NZPLSQL.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CASE Expression</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/case/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/case/</guid><description>&lt;h1 id="apache-hive--hplsql---case-expression"&gt;Apache Hive : HPL/SQL - CASE Expression&lt;/h1&gt;
+&lt;p&gt;CASE expression allows you to implement IF-THEN-ELSE logic in expressions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Simple CASE expression:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CASE expr
+ WHEN expr THEN expr
+ ...
+ [ELSE expr] 
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Searched CASE expression:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CASE 
+ WHEN boolean_expr THEN expr
+ ...
+ [ELSE expr] 
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NULL is returned if none of the WHEN expressions is matched and ELSE clause is not specified&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Simple CASE expression:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; CASE state
+ WHEN &amp;#39;AZ&amp;#39; THEN &amp;#39;Arizona&amp;#39;
+ WHEN &amp;#39;CA&amp;#39; THEN &amp;#39;California&amp;#39;
+ ELSE &amp;#39;N/A&amp;#39;
+ END 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Searched CASE expression:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Cursor Attributes</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/cursor-attributes/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/cursor-attributes/</guid><description>&lt;h1 id="apache-hive--hplsql---cursor-attributes"&gt;Apache Hive : HPL/SQL - Cursor Attributes&lt;/h1&gt;
+&lt;p&gt;Cursor attributes allow you to get information about the current cursor state.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cursor_name%ISOPEN
+
+cursor_name%FOUND
+
+cursor_name%NOTFOUND
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;cursor_name&lt;/em&gt; is the name of a declared cursor or cursor variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="isopen-attribute"&gt;%ISOPEN Attribute&lt;/h2&gt;
+&lt;p&gt;%ISOPEN returns &lt;em&gt;true&lt;/em&gt; if the cursor is open, otherwise it returns &lt;em&gt;false&lt;/em&gt;;&lt;/p&gt;
+&lt;h2 id="found-attribute"&gt;%FOUND Attribute&lt;/h2&gt;
+&lt;p&gt;%FOUND returns NULL before the first fetch from the cursor, &lt;em&gt;true&lt;/em&gt; if the last fetch returned a row, and &lt;em&gt;false&lt;/em&gt; otherwise.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Data Types</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/data-types/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/data-types/</guid><description>&lt;h1 id="apache-hive--hplsql---data-types"&gt;Apache Hive : HPL/SQL - Data Types&lt;/h1&gt;
+&lt;p&gt;You can use the following data types in HPL/SQL programs:&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Data Type&lt;/th&gt;
+ &lt;th&gt;Aliases&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BIGINT&lt;/td&gt;
+ &lt;td&gt;INT8&lt;/td&gt;
+ &lt;td&gt;64-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BINARY_DOUBLE&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Double precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BINARY_FLOAT&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Single precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BINARY_INTEGER&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BIT&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;0, 1 or NULL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;BOOL&lt;/td&gt;
+ &lt;td&gt;BOOLEAN&lt;/td&gt;
+ &lt;td&gt;True or false&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;CHAR(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;CHARACTER(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;Fixed-length string&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DECIMAL(&lt;em&gt;p,s&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Fixed-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DATE&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Date (year, month and day)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DATETIME&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Date and time&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;DOUBLE&lt;/td&gt;
+ &lt;td&gt;DOUBLE PRECISION&lt;/td&gt;
+ &lt;td&gt;Double precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FLOAT&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Single precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INT&lt;/td&gt;
+ &lt;td&gt;INTEGER, INT4&lt;/td&gt;
+ &lt;td&gt;32-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NCHAR(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Fixed-length string&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NVARCHAR(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Variable-length string&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NUMERIC(&lt;em&gt;p,s&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Fixed-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;NUMBER(&lt;em&gt;p,s&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Fixed-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;PLS_INTEGER&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;REAL&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Single precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;RECORD&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Arbitrary record&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SIMPLE_DOUBLE&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Double precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SIMPLE_FLOAT&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Single precision floating-point number&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SIMPLE_INTEGER&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SMALLINT&lt;/td&gt;
+ &lt;td&gt;INT2&lt;/td&gt;
+ &lt;td&gt;16-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;SYS_REFCURSOR&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Cursor variable&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;TIMESTAMP&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Date and time&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;TINYINT&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;8-bit integer&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;VARCHAR(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;VARCHAR(max)&lt;/td&gt;
+ &lt;td&gt;Variable-length string&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;VARCHAR2(&lt;em&gt;n&lt;/em&gt;)&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Variable-length string&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;UTL_FILE.FILE_TYPE&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;File handle&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="data-type-conversion"&gt;Data Type Conversion&lt;/h2&gt;
+&lt;p&gt;If CREATE TABLE contains a data type that is not supported by Hive, it is automatically converted by HPL/SQL.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DATE Literal</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/date-literal/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/date-literal/</guid><description>&lt;h1 id="apache-hive--hplsql---date-literal"&gt;Apache Hive : HPL/SQL - DATE Literal&lt;/h1&gt;
+&lt;p&gt;DATE literal allows you to specify a date constant using a string in &amp;lsquo;YYYY-MM-DD&amp;rsquo; format. Then you can use this date value in any expression that expects a DATE data type.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DATE &amp;#39;2014-12-20&amp;#39;
+DATE &amp;#39;2014-12-20&amp;#39; + 1 -- Result: 2014-12-21 of type DATE
+DATE &amp;#39;2014-12-20&amp;#39; - 1 -- 2014-12-19 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2 and Teradata&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/timestamp-literal/"&gt;TIMESTAMP Literal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/interval/"&gt;INTERVAL Expressions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - Declarations</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/declare/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/declare/</guid><description>&lt;h1 id="apache-hive--hplsql---declarations"&gt;Apache Hive : HPL/SQL - Declarations&lt;/h1&gt;
+&lt;p&gt;You can declare variables using DECLARE block or statement.&lt;/p&gt;
+&lt;p&gt;Note that you can mix both syntaxes in a single program. DECLARE blocks and statements can appear in any part of the program.&lt;/p&gt;
+&lt;h2 id="declare-block"&gt;DECLARE Block&lt;/h2&gt;
+&lt;p&gt;DECLARE block has the following syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE 
+ var datatype [NOT NULL] [:= | = | DEFAULT expression];
+ ...
+BEGIN
+ ...
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HPL/SQL also allows you to define a constant:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; var CONSTANT datatype := | DEFAULT expression
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Exceptions</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</guid><description>&lt;h1 id="apache-hive--hplsql---exceptions"&gt;Apache Hive : HPL/SQL - Exceptions&lt;/h1&gt;
+&lt;p&gt;HPL/SQL allows you to handle exceptions in your programs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;BEGIN
+ -- Statements that can raise an exception
+EXCEPTION
+ WHEN condition THEN 
+ -- Statements
+ WHEN condition2 THEN
+ -- Statements2
+ ...
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE 
+ v VARCHAR(200);
+BEGIN
+ OPEN cur FOR &amp;#39;SELECT c1 FROM t1&amp;#39;;
+ FETCH cur INTO v;
+ CLOSE cur;
+EXCEPTION WHEN OTHERS THEN
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Error&amp;#39;);
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Oracle, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Interval Expressions</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/interval/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/interval/</guid><description>&lt;h1 id="apache-hive--hplsql---interval-expressions"&gt;Apache Hive : HPL/SQL - Interval Expressions&lt;/h1&gt;
+&lt;p&gt;Interval expressions allow you to add or subtract interval values to DATE and TIMESTAMP values.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[INTERVAL] expression DAYS | DAY | MICROSECONDS | MICROSECOND 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MICROSECOND expressions are converted to millisecond expressions due to Java limitations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Add 1 day to DATE and TIMESTAMP values:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DATE &amp;#39;2015-03-12&amp;#39; + 1 DAY;
+--
+2015-03-13
+
+TIMESTAMP &amp;#39;2015-03-12&amp;#39; + 1 DAY;
+--
+2015-03-13 00:00:00
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 2&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Add the result of expression to to DATE and TIMESTAMP values:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - TIMESTAMP Literal</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/timestamp-literal/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/timestamp-literal/</guid><description>&lt;h1 id="apache-hive--hplsql---timestamp-literal"&gt;Apache Hive : HPL/SQL - TIMESTAMP Literal&lt;/h1&gt;
+&lt;p&gt;TIMESTAMP literal allows you to specify a timestamp constant using a string in &amp;lsquo;YYYY-MM-DD HH:MI:SS.FFF&amp;rsquo; or &amp;lsquo;YYYY-MM-DD-HH.MI.SS.FFF&amp;rsquo; format.&lt;/p&gt;
+&lt;p&gt;You can use this timestamp value in any expression that expects a TIMESTAMP data type.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;TIMESTAMP &amp;#39;2015-03-03 11:39:31.123&amp;#39;
+
+TIMESTAMP &amp;#39;2015-03-03-11.39.31.123&amp;#39; -- DB2 syntax
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fractional part is optional&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2.&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/date-literal/"&gt;DATE Literal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/language-elements/interval/"&gt;INTERVAL Expressions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/functions/timestamp-iso/"&gt;TIMESTAMP_ISO Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/functions/to-timestamp/"&gt;TO_TIMESTAMP Function&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Statements on Hive Site</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/</link><description>Recent content in Statements on Hive Site</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://hive.apache.org/docs/latest/language/hplsql/statements/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache Hive : HPL/SQL - ALLOCATE CURSOR Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/allocate-cursor/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/allocate-cursor/</guid><description>&lt;h1 id="apache-hive--hplsql---allocate-cursor-statement"&gt;Apache Hive : HPL/SQL - ALLOCATE CURSOR Statement&lt;/h1&gt;
+&lt;p&gt;ALLOCATE CURSOR statement allows you to declare a cursor and associate it with a result set returned from a stored procedure.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ALLOCATE cursor_name CURSOR FOR PROCEDURE procedure_name; -- Teradata compatibility
+|
+ALLOCATE cursor_name CURSOR FOR RESULT SET locator_name; -- DB2 compatibility
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sample stored procedure returning a single result set:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE PROCEDURE spOpenIssues 
+ DYNAMIC RESULT SETS 1
+BEGIN
+ DECLARE cur CURSOR WITH RETURN FOR
+ SELECT id, name FROM issues;
+ OPEN cur;
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Call a stored procedure and process the returned result set (Teradata compatibility):&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - ASSOCIATE LOCATOR Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/associate-locator/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/associate-locator/</guid><description>&lt;h1 id="apache-hive--associate-locator-statement"&gt;Apache Hive : ASSOCIATE LOCATOR Statement&lt;/h1&gt;
+&lt;p&gt;ASSOCIATE LOCATOR statement allows you to associate locator variable with a result set returned from a stored procedure.&lt;/p&gt;
+&lt;p&gt;Then you can use &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/allocate-cursor/"&gt;ALLOCATE CURSOR&lt;/a&gt; statement to assign a cursor for the locator and fetch data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ASSOCIATE [RESULT SET] LOCATOR | LOCATORS (loc [, locN, ...]) 
+ WITH PROCEDURE procedure_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For examples, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/allocate-cursor/"&gt;ALLOCATE CURSOR&lt;/a&gt; statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - BREAK Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/break/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/break/</guid><description>&lt;h1 id="apache-hive--hplsql---break-statement"&gt;Apache Hive : HPL/SQL - BREAK Statement&lt;/h1&gt;
+&lt;p&gt;BREAK statement exits the innermost loop.&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;BREAK;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE count INT DEFAULT 3;
+WHILE 1=1 BEGIN
+ SET count = count - 1;
+ IF count = 0
+ BREAK;
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Microsoft SQL Server.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CALL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/call/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/call/</guid><description>&lt;h1 id="apache-hive--hplsql---call-statement"&gt;Apache Hive : HPL/SQL - CALL Statement&lt;/h1&gt;
+&lt;p&gt;CALL statement allows you to execute a stored procedure.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CALL procedure_name [(parameter, ...)]; 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Define a procedure and then call passing a parameter:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE PROCEDURE set_message(IN name STRING, OUT result STRING)
+BEGIN
+ SET result = &amp;#39;Hello, &amp;#39; || name || &amp;#39;!&amp;#39;;
+END;
+
+-- Now call the procedure and print the results
+DECLARE str STRING;
+CALL set_message(&amp;#39;world&amp;#39;, str);
+PRINT str;
+
+Result:
+--
+Hello, world!
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Teradata, IBM DB2 and MySQL&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CLOSE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/close/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/close/</guid><description>&lt;h1 id="apache-hive--hplsql---close-statement"&gt;Apache Hive : HPL/SQL - CLOSE Statement&lt;/h1&gt;
+&lt;p&gt;CLOSE statement closes a cursor.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CLOSE cursor_name;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;cursor_name&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Identifier&lt;/td&gt;
+ &lt;td&gt;The name of the previously opened cursor&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE id INT;
+DECLARE cur CURSOR FOR &amp;#39;SELECT id FROM db.orders&amp;#39;;
+OPEN cur;
+FETCH cur INTO id;
+CLOSE cur;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2, Teradata, SQL Server, PostgreSQL, MySQL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See also:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/declare-cursor/"&gt;DECLARE CURSOR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/open/"&gt;OPEN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/fetch/"&gt;FETCH&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/sqlcode/"&gt;SQLCODE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - CMP Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/cmp/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/cmp/</guid><description>&lt;h1 id="apache-hive--hplsql---cmp-statement"&gt;Apache Hive : HPL/SQL - CMP Statement&lt;/h1&gt;
+&lt;p&gt;CMP statement helps you compare data in tables that can be located in the same or different databases.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Compare the total number of rows:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CMP ROW_COUNT table1 [where_clause1] | (select_stmt1) [AT conn1], 
+ table2 [where_clause2] | (select_stmt2) [AT conn2]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Compare the column summary (COUNT, SUM, MIN and MAX applied to columns):&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CMP SUM table1 [where_clause1] [AT conn1], table2 [where_clause2] [AT conn2]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When data are equal, the CMP statement sets SQLCODE to 0. If data are not equal, SQLCODE is set to 1. In case of any SQL error, SQLCODE is set to -1&lt;/li&gt;
+&lt;li&gt;When the connection profile is not specified, the default connection profile is used for the specified table&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY FROM FTP Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-ftp/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-ftp/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-from-ftp-statement"&gt;Apache Hive : HPL/SQL - COPY FROM FTP Statement&lt;/h1&gt;
+&lt;p&gt;COPY FROM FTP statement allows to copy files from a FTP server to local or any Hadoop compatible file system. Using this statement you can easily copy FTP subdirectories into HDFS i.e.&lt;/p&gt;
+&lt;p&gt;The NEW option helps you build a ETL process and download only new files from FTP.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;COPY FROM FTP host [USER user [PWD password]] [DIR directory] [FILES files_wildcard] 
+ [TO [LOCAL] target_directory] [options]
+
+options:
+ OVERWRITE | NEW
+ SUBDIR
+ SESSIONS num 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY FROM LOCAL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-local/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-local/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-from-local-statement"&gt;Apache Hive : HPL/SQL - COPY FROM LOCAL Statement&lt;/h1&gt;
+&lt;p&gt;COPY FROM LOCAL statement allows to copy local directories and files to Hadoop compatible file system. Using this statement you can easily copy subdirectories into HDFS i.e.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;COPY FROM LOCAL src [, src2, ...] TO tgt [options]
+
+options:
+ OVERWRITE
+ DELETE
+ IGNORE
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;srcN&lt;/em&gt; specifies a file or directory. If a directory is specified all subdirectories and their files are copied as well.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;srcN&lt;/em&gt; can be an expression, variable, quoted or unquoted string.&lt;/li&gt;
+&lt;li&gt;If a single file is copied &lt;em&gt;tgt&lt;/em&gt; must specify a path including the target file name.&lt;/li&gt;
+&lt;li&gt;If multiple files are copied &lt;em&gt;tgt&lt;/em&gt; must specify a directory.&lt;/li&gt;
+&lt;li&gt;If the target directory does not exist it is created.&lt;/li&gt;
+&lt;li&gt;OVERWRITE specifies to overwrite the target files if they exist.&lt;/li&gt;
+&lt;li&gt;DELETE specifies to delete the source file upon successfull copy.&lt;/li&gt;
+&lt;li&gt;IGNORE specifies to ignore errors when copying a file and proceed to copy the remaining files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-statement"&gt;Apache Hive : HPL/SQL - COPY Statement&lt;/h1&gt;
+&lt;p&gt;COPY statement allows to transfer data between tables and files. Use it to transfer relatively small volumes of data i.e. query results, look-up and dimension tables.&lt;/p&gt;
+&lt;p&gt;When you copy data between tables they can be located in different databases.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Export data to a file:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;COPY table_name | (select_stmt) TO [HDFS] file_name [options]
+
+options:
+ DELIMITER &amp;#39;char&amp;#39;
+| SQLINSERT target_table_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Copy data between existing tables:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE DATABASE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</guid><description>&lt;h1 id="apache-hive--hplsql---create-database-statement"&gt;Apache Hive : HPL/SQL - CREATE DATABASE Statement&lt;/h1&gt;
+&lt;p&gt;CREATE DATABASE statement allows you to create a database.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE DATABASE | SCHEMA [IF NOT EXISTS] dbname_expr
+ [COMMENT comment_expr]
+ [LOCATION path_expr]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Create a database named &lt;em&gt;testYYYYMMDD&lt;/em&gt; (current date):&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;create database &amp;#39;test&amp;#39; || replace(current_date, &amp;#39;-&amp;#39;, &amp;#39;&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; MySQL, MariaDB, Hive&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/drop-database/"&gt;DROP DATABASE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/use/"&gt;USE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE FUNCTION Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-function/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-function/</guid><description>&lt;h1 id="apache-hive--hplsql---create-function-statement"&gt;Apache Hive : HPL/SQL - CREATE FUNCTION Statement&lt;/h1&gt;
+&lt;p&gt;CREATE FUNCTION statement allows you to create a user-defined SQL function.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ALTER | CREATE [OR REPLACE] | REPLACE FUNCTION function_name ( [parameters] )
+ RETURNS | RETURN data_type
+ [AS | IS] 
+ body
+
+parameters:
+ [IN] name data_type, ...
+ |
+ name [IN] data_type, ...
+
+body:
+ statement | expression | BEGIN statements END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 1&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Create a function without parameters:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE FUNCTION hello()
+ RETURNS STRING
+BEGIN
+ RETURN &amp;#39;Hello, world&amp;#39;;
+END;
+
+-- Call the function
+PRINT hello();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 2&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE LOCAL TEMPORARY TABLE</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-local-temporary-table/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-local-temporary-table/</guid><description>&lt;h1 id="apache-hive--hplsql---create-local-temporary-table"&gt;Apache Hive : HPL/SQL - CREATE LOCAL TEMPORARY TABLE&lt;/h1&gt;
+&lt;p&gt;CREATE LOCAL TEMPORARY TABLE statement allows you to create a temporary table for the current session.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE LOCAL TEMPORARY TABLE table_name
+(
+ column_name data_type [NULL | NOT NULL]
+ [, ...]
+)
+[ ON COMMIT DELETE ROWS | ON COMMIT PRESERVE ROWS]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The local temporary table is automatically dropped at the end of session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more details how temporary table support is implemented in HPL/SQL, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/temporary-tables/"&gt;Native and Managed Temporary Tables&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE PACKAGE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-package/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-package/</guid><description>&lt;h1 id="apache-hive--hplsql---create-package-statement"&gt;Apache Hive : HPL/SQL - CREATE PACKAGE Statement&lt;/h1&gt;
+&lt;p&gt;CREATE PACKAGE statement allows you to define a collection of related variables, procedures and functions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Package specification:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[CREATE [OR REPLACE] | REPLACE] PACKAGE package_name AS | IS package_spec END
+
+package_spec:
+ variable declaration |
+ function declaration |
+ procedure declaration
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Package body:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[CREATE [OR REPLACE] | REPLACE] PACKAGE BODY package_name AS | IS package_body END
+
+package_body:
+ private variable declaration |
+ function definition |
+ procedure definition
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE PROCEDURE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-procedure/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-procedure/</guid><description>&lt;h1 id="apache-hive--hplsql---create-procedure-statement"&gt;Apache Hive : HPL/SQL - CREATE PROCEDURE Statement&lt;/h1&gt;
+&lt;p&gt;CREATE PROCEDURE statement allows you to create a user-defined SQL procedure (stored procedure).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[ALTER | CREATE [OR REPLACE] | REPLACE] PROCEDURE | PROC procedure_name [parameters] 
+ [AS | IS] 
+ body
+
+parameters:
+ ([IN | OUT | INOUT | IN OUT] name data_type, ...)
+ |
+ (name [IN | OUT | INOUT | IN OUT] data_type, ...)
+
+body:
+ statement | expression | BEGIN statements END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE TABLE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-table/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-table/</guid><description>&lt;h1 id="apache-hive--hplsql---create-table-statement"&gt;Apache Hive : HPL/SQL - CREATE TABLE Statement&lt;/h1&gt;
+&lt;p&gt;CREATE TABLE statement create a table in the database.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE TABLE [IF NOT EXISTS] table_name
+(
+ column_name data_type [NULL | NOT NULL]
+ [, constraint ...]
+ [, ...]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="create-table-conversion"&gt;CREATE TABLE Conversion&lt;/h2&gt;
+&lt;p&gt;If the CREATE TABLE statement is defined using the syntax not supported by Hive, it is automatically converted to conform to Hive syntax.&lt;/p&gt;
+&lt;p&gt;Currently HPL/SQL converts data types, removes NOT NULL/NULL, constraints and default values. For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/conversion/"&gt;On-the-Fly Conversion&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE VOLATILE TABLE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-volatile-table/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-volatile-table/</guid><description>&lt;h1 id="apache-hive--hplsql---create-volatile-table-statement"&gt;Apache Hive : HPL/SQL - CREATE VOLATILE TABLE Statement&lt;/h1&gt;
+&lt;p&gt;CREATE VOLATILE TABLE statement allows you to create a temporary table for the current session.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;CREATE [SET | MULTISET] VOLATILE TABLE table_name
+(
+ column_name data_type [NULL | NOT NULL]
+ [, ...]
+)
+[ ON COMMIT DELETE ROWS | ON COMMIT PRESERVE ROWS]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The volatile table is automatically dropped at the end of session.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more details how temporary table support is implemented in HPL/SQL, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/temporary-tables/"&gt;Native and Managed Temporary Tables&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DECLARE CONDITION Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-condition/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-condition/</guid><description>&lt;h1 id="apache-hive--hplsql---declare-condition-statement"&gt;Apache Hive : HPL/SQL - DECLARE CONDITION Statement&lt;/h1&gt;
+&lt;p&gt;You can use DECLARE CONDITION statement to declare a user-defined condition.&lt;/p&gt;
+&lt;p&gt;Then you can define a handler for this condition using &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/declare-handler/"&gt;DECLARE HANDLER&lt;/a&gt;, and raise the condition using the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/signal/"&gt;SIGNAL&lt;/a&gt; statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE condition_name CONDITION;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Raise a condition if the number of rows is not equal to the specified number:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE cnt INT DEFAULT 0; 
+DECLARE wrong_cnt_condition CONDITION;
+
+DECLARE EXIT HANDLER FOR wrong_cnt_condition
+ PRINT &amp;#39;Wrong number of rows&amp;#39;; 
+
+SELECT COUNT(*) INTO cnt FROM TABLE (VALUES (1,2));
+
+IF cnt &amp;lt;&amp;gt; 1 THEN
+ SIGNAL wrong_cnt_condition;
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2, Teradata and MySQL.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DECLARE CURSOR Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-cursor/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-cursor/</guid><description>&lt;h1 id="apache-hive--hplsql---declare-cursor-statement"&gt;Apache Hive : HPL/SQL - DECLARE CURSOR Statement&lt;/h1&gt;
+&lt;p&gt;You can use DECLARE CURSOR statement to declare a cursor using a dynamic SQL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE name CURSOR FOR | AS | IS dynamic_sql_string | select_statement;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;dynamic_sql_string&lt;/td&gt;
+ &lt;td&gt;VARCHAR&lt;/td&gt;
+ &lt;td&gt;Variable or expression&lt;/td&gt;
+ &lt;td&gt;Dynamic SQL to define the cursor&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;select_statement&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;SQL SELECT statement to define the cursor&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;dynamic_sql_string&lt;/em&gt; expression is evaluated at cursor open time, not declare time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example 1:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DECLARE HANDLER Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-handler/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-handler/</guid><description>&lt;h1 id="apache-hive--hplsql---declare-handler-statement"&gt;Apache Hive : HPL/SQL - DECLARE HANDLER Statement&lt;/h1&gt;
+&lt;p&gt;You can use DECLARE HANDLER statement to define one or more HPL/SQL statements to execute when a condition occurs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE [CONTINUE | EXIT] HANDLER FOR 
+ [SQLEXCEPTION | NOT FOUND | user_condition] code_block;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Parameter&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;CONTINUE&lt;/td&gt;
+ &lt;td&gt;When the handler completes, control is returned to HPL/SQL statement following the statement that raised the condition&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;EXIT&lt;/td&gt;
+ &lt;td&gt;After the handler completes, control is returned to the end of the block that declared the handler&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;em&gt;code_block&lt;/em&gt;&lt;/td&gt;
+ &lt;td&gt;HPL/SQL statement(s) to execute when the specified condition occurs&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DECLARE TEMPORARY TABLE</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-temporary-table/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/declare-temporary-table/</guid><description>&lt;h1 id="apache-hive--hplsql---declare-temporary-table"&gt;Apache Hive : HPL/SQL - DECLARE TEMPORARY TABLE&lt;/h1&gt;
+&lt;p&gt;DECLARE TEMPORARY TABLE statement allows you to define a temporary table for the current session.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE [GLOBAL] TEMPORARY TABLE table_name
+(
+ column_name data_type [NULL | NOT NULL]
+ [, ...]
+)
+[ ON COMMIT DELETE ROWS | ON COMMIT PRESERVE ROWS]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="compatibility-options"&gt;Compatibility Options&lt;/h3&gt;
+&lt;p&gt;The following options are supported for compatibility with other databases:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IBM DB2:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;IN tablespace_name
+WITH REPLACE
+DISTRIBUTE BY HASH (col, ...) 
+LOGGED | NOT LOGGED
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For more details how temporary table support is implemented in HPL/SQL, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/temporary-tables/"&gt;Native and Managed Temporary Tables&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DESCRIBE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/describe/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/describe/</guid><description>&lt;h1 id="apache-hive--hplsql---describe-statement"&gt;Apache Hive : HPL/SQL - DESCRIBE Statement&lt;/h1&gt;
+&lt;p&gt;DESCRIBE statement allows you to print a metadata information for the specified database object.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DESCRIBE | DESC [TABLE] table_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Describe &lt;em&gt;src&lt;/em&gt; table in Hive:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;desc src;
+--
+key string default
+value string default
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2, Hive, MySQL, MariaDB.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - DROP DATABASE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/drop-database/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/drop-database/</guid><description>&lt;h1 id="apache-hive--hplsql---drop-database-statement"&gt;Apache Hive : HPL/SQL - DROP DATABASE Statement&lt;/h1&gt;
+&lt;p&gt;DROP DATABASE statement allows you to drop a database.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DROP DATABASE | SCHEMA [IF EXISTS] dbname_expr
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Drop a database named &lt;em&gt;testYYYYMMDD&lt;/em&gt; (current date):&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;drop database if exists &amp;#39;test&amp;#39; || replace(current_date, &amp;#39;-&amp;#39;, &amp;#39;&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Hive&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/"&gt;CREATE DATABASE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/use/"&gt;USE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - DROP TABLE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/drop-table/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/drop-table/</guid><description>&lt;h1 id="apache-hive--hplsql---drop-table-statement"&gt;Apache Hive : HPL/SQL - DROP TABLE Statement&lt;/h1&gt;
+&lt;p&gt;DROP TABLE statement drops a table.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DROP TABLE [IF EXISTS] table_name 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, Microsoft SQL Server, IBM DB2, Teradata, PostgreSQL, MySQL, Hive&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/truncate/"&gt;TRUNCATE TABLE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - Execute OS Command or External Process</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/host/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/host/</guid><description>&lt;h1 id="apache-hive--hplsql---execute-os-command-or-external-process"&gt;Apache Hive : HPL/SQL - Execute OS Command or External Process&lt;/h1&gt;
+&lt;p&gt;HPL/SQL allows you to execute an OS command or external process from a HPL/SQL script:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;! command:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;!cmd [arguments];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HOST statement:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;HOST string_expr
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;cmd&lt;/td&gt;
+ &lt;td&gt;Any OS command or process&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;arguments&lt;/td&gt;
+ &lt;td&gt;Optional argument list&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;string_expr&lt;/td&gt;
+ &lt;td&gt;Command line for HOST statement&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Blank characters are allowed between ! and cmd&lt;/li&gt;
+&lt;li&gt;The ! command must be terminated by a semicolon (;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - EXECUTE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</guid><description>&lt;h1 id="apache-hive--hplsql---execute-statement"&gt;Apache Hive : HPL/SQL - EXECUTE Statement&lt;/h1&gt;
+&lt;p&gt;EXECUTE (EXEC or EXECUTE IMMEDIATE) statement executes a dynamic SQL statement and can return the scalar result to local variables.&lt;/p&gt;
+&lt;p&gt;You can also use this statement to call a stored procedure.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;EXEC | EXECUTE | EXECUTE IMMEDIATE dynamic_sql_string [INTO var1, var2, ...];
+|
+EXEC | EXECUTE proc_name [parm1 = val1, ... ]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;dynamic_sql_string&lt;/td&gt;
+ &lt;td&gt;VARCHAR&lt;/td&gt;
+ &lt;td&gt;Variable or expression&lt;/td&gt;
+ &lt;td&gt;Dynamic SQL to execute&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;INTO var1, var2, &amp;hellip;&lt;/td&gt;
+ &lt;td&gt;Any&lt;/td&gt;
+ &lt;td&gt;Variable&lt;/td&gt;
+ &lt;td&gt;Variables to assign, optional&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - EXIT WHEN Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/exit/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/exit/</guid><description>&lt;h1 id="apache-hive--hplsql---exit-when-statement"&gt;Apache Hive : HPL/SQL - EXIT WHEN Statement&lt;/h1&gt;
+&lt;p&gt;EXIT WHEN statement exits the loop or block marked by the given label. If the label is not specified, EXIT leaves the innermost loop.&lt;/p&gt;
+&lt;p&gt;If a boolean expression is specified, and it evaluates to &lt;em&gt;true&lt;/em&gt; then EXIT statement is executed, otherwise it is ignored and the execution continues from the statement following EXIT.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;EXIT [label] [WHEN boolean_expression];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;WHILE count &amp;gt; 0 LOOP
+ count := count - 1;
+ EXIT WHEN count = 0;
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;&amp;lt;&amp;lt;lbl&amp;gt;&amp;gt;
+WHILE 1=1 LOOP
+ &amp;lt;&amp;lt;lbl1&amp;gt;&amp;gt;
+ WHILE 1=1 LOOP
+ EXIT lbl;
+ END LOOP;
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - FETCH Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/fetch/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/fetch/</guid><description>&lt;h1 id="apache-hive--hplsql---fetch-statement"&gt;Apache Hive : HPL/SQL - FETCH Statement&lt;/h1&gt;
+&lt;p&gt;FETCH statement retrieve the next row from a cursor and assigns column values to local variable.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;FETCH [FROM] cursor_name INTO var1 [, var2, ...];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;cursor_name&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Identifier&lt;/td&gt;
+ &lt;td&gt;The name of the previously opened cursor&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;varN&lt;/td&gt;
+ &lt;td&gt;&lt;/td&gt;
+ &lt;td&gt;Variable&lt;/td&gt;
+ &lt;td&gt;A local variable&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE tabname VARCHAR DEFAULT &amp;#39;db.orders&amp;#39;;
+DECLARE id INT;
+DECLARE cur CURSOR FOR &amp;#39;SELECT id FROM &amp;#39; || tabname;
+OPEN cur;
+FETCH cur INTO id;
+WHILE SQLCODE=0 THEN
+ PRINT id;
+ FETCH cur INTO id;
+END WHILE;
+CLOSE cur;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2, Teradata, SQL Server, MySQL, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - FOR Statement (Cursor Loop)</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/for-cursor/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/for-cursor/</guid><description>&lt;h1 id="apache-hive--hplsql---for-statement-cursor-loop"&gt;Apache Hive : HPL/SQL - FOR Statement (Cursor Loop)&lt;/h1&gt;
+&lt;p&gt;FOR statement opens a cursor, executes one or more statements repeatedly for each row and closes the cursor.&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;FOR cur_name IN [(] select_stmt [)] LOOP
+ statements
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can refer to the cursor columns using &lt;em&gt;cur_name.col_name&lt;/em&gt; syntax&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;FOR item IN (
+ SELECT dname, loc as location
+ FROM dept
+ WHERE dname LIKE &amp;#39;%A%&amp;#39;
+ AND deptno &amp;gt; 10
+ ORDER BY location)
+LOOP
+ DBMS_OUTPUT.PUT_LINE(&amp;#39;Name = &amp;#39; || item.dname || &amp;#39;, Location = &amp;#39; || item.location);
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, PostgreSQL and Netezza&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - FOR Statement (Integer Range)</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/for-range/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/for-range/</guid><description>&lt;h1 id="apache-hive--hplsql---for-statement-integer-range"&gt;Apache Hive : HPL/SQL - FOR Statement (Integer Range)&lt;/h1&gt;
+&lt;p&gt;FOR statement executes one or more statements repeatedly for the specified range of integer values.&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;FOR index IN [REVERSE] lower_bound..upper_bound [BY | STEP increment] LOOP
+ statements
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;index&lt;/em&gt; - Implicitly declared integer variable&lt;/li&gt;
+&lt;li&gt;If REVERSE is specified the index is decreased&lt;/li&gt;
+&lt;li&gt;If specified, BY (or STEP) define the iteration step, default is 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;FOR i IN 1..10 LOOP
+ -- i will have values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;FOR i IN REVERSE 10..1 LOOP
+ -- i will have values: 10, 9, 8, 7, 6, 5, 4, 3, 1, 1
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;FOR i IN 1..10 BY 2 LOOP
+ -- i will have values: 1, 3, 5, 7, 9
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - GET DIAGNOSTICS Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/get-diagnostics/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/get-diagnostics/</guid><description>&lt;h1 id="apache-hive--hplsql---get-diagnostics-statement"&gt;Apache Hive : HPL/SQL - GET DIAGNOSTICS Statement&lt;/h1&gt;
+&lt;p&gt;GET DIAGNOSTICS statement allows you to retrieve the error message, the number of rows about the previous SQL statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Get the error text:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;GET DIAGNOSTICS EXCEPTION 1 var_name = MESSAGE_TEXT;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Get the number of rows associate with the previous SQL statement:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;GET DIAGNOSTICS var_name = ROW_COUNT;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Important Note:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hive does not support JDBC Statement.getUpdateCount() for INSERT statements, so GET DIAGNOSTICS ROW_COUNT will return 0 for Hive 0.13 and earlier and -1 for Hive 0.14 and later. See &lt;a href="https://issues.apache.org/jira/browse/HIVE-7680"&gt;HIVE-7680&lt;/a&gt; for more details.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - IF Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</guid><description>&lt;h1 id="apache-hive--hplsql---if-statement"&gt;Apache Hive : HPL/SQL - IF Statement&lt;/h1&gt;
+&lt;p&gt;IF statement executes a set of statements depending on the value of a boolean expression.&lt;/p&gt;
+&lt;p&gt;HPL/SQL supports multiple syntaxes for IF statement.&lt;/p&gt;
+&lt;h2 id="if---then---elsifelseif---else---end-if"&gt;IF - THEN - ELSIF/ELSEIF - ELSE - END IF&lt;/h2&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;IF boolean_expression THEN
+ statements
+[ELSIF | ELSEIF THEN
+ statements
+...]
+[ELSE
+ statements]
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;IF state = &amp;#39;CA&amp;#39; THEN
+ code := 1;
+ELSIF state = &amp;#39;NY&amp;#39; THEN
+ code := 2;
+ELSIF state = &amp;#39;MA&amp;#39; THEN
+ code := 3;
+ELSE
+ code := 5;
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, Teradata, IBM DB2, MySQL, PostgreSQL, Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - INCLUDE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/include/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/include/</guid><description>&lt;h1 id="apache-hive--hplsql---include-statement"&gt;Apache Hive : HPL/SQL - INCLUDE Statement&lt;/h1&gt;
+&lt;p&gt;INCLUDE statement allows you to include statements from another HPL/SQL script.&lt;/p&gt;
+&lt;p&gt;You can define user-defined functions and stored procedures in separate HPL/SQL scripts and then use INCLUDE statements to make them available in the current script.&lt;/p&gt;
+&lt;p&gt;Additionally you can put INCLUDE statements to &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/##hplsqlrc-file"&gt;.hplsqlrc&lt;/a&gt; configuration file, so these functions and procedures are always available to users similar to persistent objects in the database.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - INSERT DIRECTORY Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/insert-directory/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/insert-directory/</guid><description>&lt;h1 id="apache-hive--hplsql---insert-directory-statement"&gt;Apache Hive : HPL/SQL - INSERT DIRECTORY Statement&lt;/h1&gt;
+&lt;p&gt;INSERT DIRECTORY statement allows you to write the query results to a local or HDFS-compatible file system.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;INSERT OVERWRITE [LOCAL] DIRECTORY directory select_statement
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;directory&lt;/em&gt; specifies the target directory (path, variable or expression)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;select_statement&lt;/em&gt; specifies the query (you can also use dynamic SQL string)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Export sales data:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;insert overwrite directory &amp;#39;/data/sales_daily&amp;#39; select * from sales_daily;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Export sales data from the specified table and put to the directory for the current date:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - INSERT Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/insert/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/insert/</guid><description>&lt;h1 id="apache-hive--hplsql---insert-statement"&gt;Apache Hive : HPL/SQL - INSERT Statement&lt;/h1&gt;
+&lt;p&gt;INSERT statement inserts rows into a table.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Insert from SELECT:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;INSERT OVERWRITE TABLE table_name select_statement
+| 
+INSERT INTO [TABLE] table_name select_statement
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Insert values:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;INSERT INTO [TABLE] table_name VALUES (exrp, expr2, ...) [, (exrp, expr2, ...), ...] 
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="insert-values"&gt;INSERT VALUES&lt;/h2&gt;
+&lt;p&gt;HPL/SQL provides you with two options to run INSERT VALUES statement: &lt;strong&gt;native&lt;/strong&gt; and &lt;strong&gt;select&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Use the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqlinsertvalues"&gt;hplsql.insert.values&lt;/a&gt; option to define how to handle INSERT VALUES statement, the default value is &lt;strong&gt;native&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - LEAVE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/leave/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/leave/</guid><description>&lt;h1 id="apache-hive--hplsql---leave-statement"&gt;Apache Hive : HPL/SQL - LEAVE Statement&lt;/h1&gt;
+&lt;p&gt;LEAVE statement exits the loop or block marked by the given label. If the label is not specified, LEAVE exists the innermost loop.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;LEAVE [label];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;lbl:
+WHILE count &amp;gt; 0 DO
+ SET count = count - 1;
+ IF count = 0 THEN
+ LEAVE lbl;
+ END IF;
+END WHILE;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;lbl:
+WHILE 1=1 DO
+ lbl1:
+ WHILE 1=1 DO
+ LEAVE lbl;
+ END WHILE;
+END WHILE;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Teradata, IBM DB2 and MySQL.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - LOOP Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/loop/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/loop/</guid><description>&lt;h1 id="apache-hive--hplsql---loop-statement"&gt;Apache Hive : HPL/SQL - LOOP Statement&lt;/h1&gt;
+&lt;p&gt;LOOP statement executes one or more statements until you exit the loop using EXIT, LEAVE or BREAK statements, or raising an exception.&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[&amp;lt;&amp;lt;label&amp;gt;&amp;gt; | label:]
+LOOP
+ statements
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;-- Oracle, PostgreSQL, Netezza
+LOOP
+ count := count - 1;
+ EXIT WHEN count = 0;
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;-- DB2, Teradata, MySQL
+lbl:
+LOOP
+ SET count = count - 1;
+ IF count = 0 THEN
+ LEAVE lbl;
+ END IF;
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, Teradata, IBM DB2, MySQL, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - MAP OBJECT Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/map-object/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/map-object/</guid><description>&lt;h1 id="apache-hive--hplsql---map-object-statement"&gt;Apache Hive : HPL/SQL - MAP OBJECT Statement&lt;/h1&gt;
+&lt;p&gt;MAP OBJECT statement allows you to map an object (table or view) to a connection profile. You can also use this statement to map an object name used in a HPL/SQL script to the actual object name in the database.&lt;/p&gt;
+&lt;p&gt;Depending on the connection profile linked to the object, HPL/SQL can work with multiple databases to access different objects in a single HPL/SQL script.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - NULL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/null/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/null/</guid><description>&lt;h1 id="apache-hive--hplsql---null-statement"&gt;Apache Hive : HPL/SQL - NULL Statement&lt;/h1&gt;
+&lt;p&gt;NULL statement is a no operation statement (no-op), it just passes control to the next statement.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;NULL;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;declare 
+ code char(1) := &amp;#39;a&amp;#39;;
+begin
+ null;
+end;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - OPEN Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/open/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/open/</guid><description>&lt;h1 id="apache-hive--hplsql---open-statement"&gt;Apache Hive : HPL/SQL - OPEN Statement&lt;/h1&gt;
+&lt;p&gt;OPEN statement opens a cursor.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;OPEN cursor_name [FOR expression | select_statement];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Parameter&lt;/th&gt;
+ &lt;th&gt;Description&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;cursor_name&lt;/td&gt;
+ &lt;td&gt;The name of the previously declared cursor if FOR clause is not specified&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FOR expression&lt;/td&gt;
+ &lt;td&gt;Variable or expression that contains a dynamic SQL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;FOR select_statement&lt;/td&gt;
+ &lt;td&gt;SELECT statement&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Open the previously declared cursor:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE tabname VARCHAR(20) DEFAULT &amp;#39;db.orders&amp;#39;;
+DECLARE id INT;
+DECLARE cur CURSOR FOR &amp;#39;SELECT id FROM &amp;#39; || tabname;
+OPEN cur;
+FETCH cur INTO id;
+WHILE SQLCODE=0 THEN 
+ PRINT id;
+ FETCH cur INTO id;
+END WHILE;
+CLOSE cur;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Open a cursor using a dynamic SQL:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - PRINT Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/print/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/print/</guid><description>&lt;h1 id="apache-hive--hplsql---print-statement"&gt;Apache Hive : HPL/SQL - PRINT Statement&lt;/h1&gt;
+&lt;p&gt;PRINT statement prints a line and can be helpful to debug programs. The statement appends a line terminator.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;PRINT exp
+or
+PRINT(exp)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;exp&lt;/td&gt;
+ &lt;td&gt;VARCHAR&lt;/td&gt;
+ &lt;td&gt;Text string or expression&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Return Value:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;PRINT &amp;#39;Hello, world!&amp;#39;;
+PRINT &amp;#39;Hello, &amp;#39; || &amp;#39;world!&amp;#39;;
+PRINT(&amp;#39;Hello, world!&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Microsoft SQL Server&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - RESIGNAL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/resignal/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/resignal/</guid><description>&lt;h1 id="apache-hive--resignal-statement---hplsql-reference"&gt;Apache Hive : RESIGNAL Statement - HPL/SQL Reference&lt;/h1&gt;
+&lt;p&gt;RESIGNAL statement in used in a condition or exception handler to re-raise an error so it can be processed at a higher level.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RESIGNAL
+|
+RESIGNAL SQLSTATE [VALUE] sqlstate [SET MESSAGE_TEXT = message_text]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Re-raise the same error:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;BEGIN
+ DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+ BEGIN
+ PRINT &amp;#39;Error raised&amp;#39;;
+ RESIGNAL;
+ END;
+ PRINT &amp;#39;Before executing SQL&amp;#39;;
+ SELECT * FROM abc.abc; -- Table does not exist, error will be raised
+ PRINT &amp;#39;After executing SQL - will not be printed in case of error&amp;#39;;
+END;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - RETURN Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/return/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/return/</guid><description>&lt;h1 id="apache-hive--hplsql---return-statement"&gt;Apache Hive : HPL/SQL - RETURN Statement&lt;/h1&gt;
+&lt;p&gt;RETURN statement is used to return from a routine.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RETURN [expr];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Type&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Value&lt;/strong&gt;&lt;/th&gt;
+ &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;expr&lt;/td&gt;
+ &lt;td&gt;INT&lt;/td&gt;
+ &lt;td&gt;Variable or expression&lt;/td&gt;
+ &lt;td&gt;Return value&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the return value is not specified, 0 is returned&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RETURN;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Return the result of an expression:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RETURN NVL(v1, 1);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, IBM DB2, SQL Server, Teradata, PostgreSQL, MySQL, Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - SELECT INTO Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/select-into/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/select-into/</guid><description>&lt;h1 id="apache-hive--hplsql---select-into-statement"&gt;Apache Hive : HPL/SQL - SELECT INTO Statement&lt;/h1&gt;
+&lt;p&gt;SELECT INTO statement allows you to assign values to variables using a SQL SELECT query.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE cnt INT = 0;
+SELECT COUNT(*) INTO cnt FROM users;
+PRINT &amp;#39;Users: &amp;#39; || cnt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Oracle, IBM DB2, Teradata, PostgreSQL, MySQL and Netezza.&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/select/"&gt;SELECT&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - SELECT Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/select/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/select/</guid><description>&lt;h1 id="apache-hive--hplsql---select-statement"&gt;Apache Hive : HPL/SQL - SELECT Statement&lt;/h1&gt;
+&lt;p&gt;SELECT statement allows you to run queries.&lt;/p&gt;
+&lt;h2 id="select-top-n"&gt;SELECT TOP n&lt;/h2&gt;
+&lt;p&gt;You can specify a SELECT statement with the TOP clause. PL/SQL automatically converts it to LIMIT clause for Hive.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SELECT TOP 3 name FROM sales; -- SELECT name FROM sales LIMIT 3 is executed
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Microsoft SQL Server.&lt;/p&gt;
+&lt;h2 id="select-without-from-clause"&gt;SELECT Without FROM Clause&lt;/h2&gt;
+&lt;p&gt;You can specify a SELECT statement without FROM. PL/SQL automatically adds the FROM clause using the table name defined by the &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqldualtable"&gt;hplsql.dual.table&lt;/a&gt; option.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - SET Session Option</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/set-session/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/set-session/</guid><description>&lt;h1 id="apache-hive--hplsql---set-session-option"&gt;Apache Hive : HPL/SQL - SET Session Option&lt;/h1&gt;
+&lt;p&gt;SET statement allows you to set various session-level options.&lt;/p&gt;
+&lt;h2 id="current-schema"&gt;CURRENT SCHEMA&lt;/h2&gt;
+&lt;p&gt;Changing the current schema (database):&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SET [CURRENT] SCHEMA [=] schema_name;
+|
+SET CURRENT_SCHEMA [=] schema_name;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;schema_name&lt;/em&gt; is an identifier, string literal or expression.&lt;/li&gt;
+&lt;li&gt;HPL/SQL converts this statement to USE &lt;em&gt;schema_name&lt;/em&gt; statement in Hive.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SET CURRENT SCHEMA = default;
+SET SCHEMA = &amp;#39;default&amp;#39;;
+SET SCHEMA &amp;#39;def&amp;#39; || &amp;#39;ault&amp;#39;;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - SIGNAL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/signal/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/signal/</guid><description>&lt;h1 id="apache-hive--hplsql---signal-statement"&gt;Apache Hive : HPL/SQL - SIGNAL Statement&lt;/h1&gt;
+&lt;p&gt;SIGNAL statement raises a user-defined condition (exception).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SIGNAL condition_name;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Raise a condition if the number of rows is not equal to the specified number:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;DECLARE cnt INT DEFAULT 0; 
+DECLARE wrong_cnt_condition CONDITION;
+
+DECLARE EXIT HANDLER FOR wrong_cnt_condition
+ PRINT &amp;#39;Wrong number of rows&amp;#39;; 
+
+SELECT COUNT(*) INTO cnt FROM TABLE (VALUES (1,2));
+
+IF cnt &amp;lt;&amp;gt; 1 THEN
+ SIGNAL wrong_cnt_condition;
+END IF;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: IBM DB2, Teradata and MySQL&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - TRUNCATE TABLE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/truncate/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/truncate/</guid><description>&lt;h1 id="apache-hive--hplsql---truncate-table-statement"&gt;Apache Hive : HPL/SQL - TRUNCATE TABLE Statement&lt;/h1&gt;
+&lt;p&gt;TRUNCATE TABLE statement removes all rows in the specified table.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;TRUNCATE [TABLE] table_name 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Remove all rows in &lt;em&gt;users2015&lt;/em&gt; table:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;truncate table users2015;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, Microsoft SQL Server, IBM DB2, MySQL, Hive&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/drop-table/"&gt;DROP TABLE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - UPDATE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/update/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/update/</guid><description>&lt;h1 id="apache-hive--hplsql---update-statement"&gt;Apache Hive : HPL/SQL - UPDATE Statement&lt;/h1&gt;
+&lt;p&gt;UPDATE statement allows you to update columns of existing rows in the specified table.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;UPDATE table_name
+ SET col = expr [, coln = exprn] ...
+ [WHERE condition]
+
+UPDATE table_name
+ SET (col [, coln] ...) = (expr [, exprn] ... | select_statement)
+ [WHERE condition]
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Apache Hive : HPL/SQL - USE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/use/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/use/</guid><description>&lt;h1 id="apache-hive--hplsql---use-statement"&gt;Apache Hive : HPL/SQL - USE Statement&lt;/h1&gt;
+&lt;p&gt;USE statement allows you to change the default database used in SQL statements for the current connection.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;USE database_expr;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: HPL/SQL allows you to use an expression to specify the database name&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;USE sales;
+
+USE SUBSTR(var, 1, 3);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Hive, MySQL, MariaDB&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/"&gt;CREATE DATABASE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hive.apache.org/docs/latest/language/hplsql/statements/drop-database/"&gt;DROP DATABASE&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Apache Hive : HPL/SQL - VALUES INTO Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/values-into/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/values-into/</guid><description>&lt;h1 id="apache-hive--hplsql---values-into-statement"&gt;Apache Hive : HPL/SQL - VALUES INTO Statement&lt;/h1&gt;
+&lt;p&gt;You can use the VALUES INTO statement to assign values to variables in HPL/SQL.&lt;/p&gt;
+&lt;p&gt;If the variable was not explicitly declared before the assignment, a new variable is created and its data type is derived from the assignment expression.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;VALUES expression INTO var;
+|
+VALUES (expression [, expression2, ...]) INTO (var [, var2, ...]); 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;VALUES &amp;#39;A&amp;#39; INTO code;
+VALUES (0, 100) INTO (count, limit); 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; IBM DB2&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - WHILE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/while/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/while/</guid><description>&lt;h1 id="apache-hive--hplsql---while-statement"&gt;Apache Hive : HPL/SQL - WHILE Statement&lt;/h1&gt;
+&lt;p&gt;WHILE statement executes one or more statements while the condition is true.&lt;/p&gt;
+&lt;p&gt;Syntax:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[&amp;lt;&amp;lt;label&amp;gt;&amp;gt; | label:]
+WHILE boolean_expression LOOP | DO | BEGIN
+ statements
+END [LOOP | WHILE;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;-- Oracle, PostgreSQL, Netezza
+WHILE count &amp;gt; 0 LOOP
+ count := count - 1;
+END LOOP;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;-- DB2, Teradata, MySQL
+WHILE count &amp;gt; 0 DO
+ SET count = count - 1;
+END WHILE;
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex="0"&gt;&lt;code&gt;-- SQL Server
+WHILE count &amp;gt; 0 BEGIN
+ SET count = count - 1;
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility:&lt;/strong&gt; Oracle, Teradata, IBM DB2, Microsoft SQL Server, MySQL, PostgreSQL and Netezza.&lt;/p&gt;</description></item></channel></rss>
