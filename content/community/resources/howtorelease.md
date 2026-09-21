@@ -302,9 +302,9 @@ svn commit -m "Hive X.Y.Z release"
 
 Run a **full** `mvn deploy` from the release tag for the whole reactor. Do not skip handler or Iceberg modules with `-pl` exclusions during the initial release deploy; a partial deploy can leave artifacts off Maven Central while the vote still passes (see [HIVE-30010](https://issues.apache.org/jira/browse/HIVE-30010)).
 
-After you close and release the staging repository in Nexus, verify Maven Central (see [Verify Maven Central artifacts](#verify-maven-central-artifacts) below).
+9. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and **Close** the staged repository. This makes the artifacts available at a temporary URL (for example `https://repository.apache.org/content/repositories/orgapachehive-121/`).
 
-9. Login to the [Apache Nexus server](https://repository.apache.org/index.html#stagingRepositories) and "close" the staged repository. This makes the artifacts available at a temporary URL.
+10. Before opening the RC vote, run the [Maven artifact verification](#verify-maven-artifacts) script against that **staging** URL. Fix any missing modules and redeploy while the staging repository is still open. Do **not** click **Release** in Nexus until after the vote passes (Publishing step 11).
 
 ### Voting
 
@@ -348,6 +348,8 @@ are encouraged to cast non-binding votes.)
 [ ] -1 Do not release this because...
 
 Please download, verify, and test.
+
+Optional Maven check (after the staging repository is closed): compare module coverage with the previous GA using the script at https://hive.apache.org/scripts/verify-maven-central-release.sh — for example `./verify-maven-central-release.sh <previous-ga> X.Y.Z https://repository.apache.org/content/repositories/orgapachehive-NNN/` (use the staging URL from the vote thread above).
 
 Thanks.
 ```
@@ -486,7 +488,7 @@ git clone https://github.com/apache/hive-site.git
 
 As you can see, you will need a release note link for this release as created previously for this section.
 
-9. Merge your `hive-site` changes to the <https://github.com/apache/hive-site/tree/main> branch. The site is built and deployed automatically via GitHub Actions to the `asf-site` branch and published at <https://hive.apache.org/>. (The old `gh-pages` preview flow is no longer used.)
+9. Open a pull request with your `hive-site` changes against <https://github.com/apache/hive-site/tree/main>. Wait for green CI, then merge. The site is built and deployed automatically via GitHub Actions to the `asf-site` branch and published at <https://hive.apache.org/>.
 10. Update JIRA
 	1. Ensure that only issues in the "Fixed" state have a "Fix Version" set to release X.Y.Z.
 	2. Release the version. Visit the [releases page](https://issues.apache.org/jira/projects/HIVE?selectedItem=com.atlassian.jira.jira-projects-plugin%3Arelease-page&status=unreleased).  Select the version number you are releasing, and hit the release button. You need to have the "Admin" role in Hive's Jira for this step and the next.
@@ -534,27 +536,32 @@ Regards,
 The Apache Hive Team
 ```
 
-### Verify Maven Central artifacts
+### Verify Maven artifacts
 
-After Nexus release (and again before the `[ANNOUNCE]` mail), confirm that Maven Central has the modules users expect. Maintenance releases should publish the same `org.apache.hive` modules as the previous GA in that line (handlers, Iceberg, JDBC, and so on).
+Use this check on the **Nexus staging repository** after Close (Building step 10) and **before** Release to Maven Central. Catching gaps there is much easier than fixing Central after the fact.
 
-Download and run the checker script from this repository (or copy it from your `hive-site` clone):
+Maintenance releases usually publish the same `org.apache.hive` **JAR** modules as the previous GA in that line (handlers, Iceberg, JDBC, and so on). The script discovers artifacts from Maven Search for the previous GA on Central and checks that each required artifact exists for the new version in the repository you specify. POM-only aggregator modules are skipped. **Intentional removals are fine** — if a module is no longer part of the release (for example a retired handler), expect the script to report it as missing and treat that as acceptable.
+
+Download and run the checker script from this repository (or from your `hive-site` clone):
 
 ```
 curl -O https://hive.apache.org/scripts/verify-maven-central-release.sh
 chmod +x verify-maven-central-release.sh
+./verify-maven-central-release.sh 4.2.0 4.2.1 \
+  https://repository.apache.org/content/repositories/orgapachehive-121/
+```
+
+Replace versions and the staging URL with your release. Omit the third argument to check Maven Central instead (for example after Nexus **Release** and before the `[ANNOUNCE]` mail):
+
+```
 ./verify-maven-central-release.sh 4.2.0 4.2.1
 ```
 
-Replace versions with the previous GA and the release you just shipped. The script discovers `org.apache.hive` artifacts from Maven Search for the previous version and checks that each **JAR** artifact is also published for the new version (POM-only aggregator modules are skipped). It exits with a non-zero status if anything is missing.
-
-You can also run it from a local `hive-site` checkout:
+From a local `hive-site` checkout:
 
 ```
-./static/scripts/verify-maven-central-release.sh <previous-version> <new-version>
+./static/scripts/verify-maven-central-release.sh <previous-ga> <new-version> [staging-or-central-base-url]
 ```
-
-Include a note in the RC vote thread that voters may run this check after artifacts are staged.
 
 ### Republishing missing Maven modules
 
@@ -564,18 +571,9 @@ If verification finds gaps (as in [HIVE-30010](https://issues.apache.org/jira/br
 2. Identify modules published for the previous GA but missing for the new version (the script above, or compare Central manually).
 3. Build only the missing modules: `mvn install -pl <module-list> -am -DskipTests`. **Iceberg modules require `-PerrorProne`** (Immutables annotation processing in `iceberg/pom.xml`).
 4. Deploy only those modules: `mvn deploy -pl <module-list> -Papache-release -DskipTests -Dmaven.javadoc.skip=true` (do not use `-am` on deploy, to avoid republishing artifacts already on Central).
-5. Close and release the new staging repository in Nexus, then re-run the verification script.
+5. Close the new staging repository in Nexus, verify on the staging URL, then **Release** to Maven Central and re-run the script without a staging URL if desired.
 
 Keep release helper scripts **outside** the `hive` source tree (for example next to your clone). Scripts in the Hive repo root without Apache license headers will fail `mvn apache-rat:check`.
-
-### Release notes for website updates
-
-When updating `hive-site` for a new version, remember:
-
-* `content/general/downloads.md` — news entry and JIRA changelog link (look up the Fix Version id in JIRA).
-* `content/docs/javadocs.md` — link to `/javadocs/rX.Y.Z/api/index.html` on the ASF javadoc SVN path.
-* `config.toml` — `[params.release].version` and the `announcements` anchor under `[params.navbar]`.
-* `themes/hive/layouts/partials/release-banner.html` — homepage “new release” banner text (easy to forget after `downloads.md` is updated).
 
 ### Archive old releases
 

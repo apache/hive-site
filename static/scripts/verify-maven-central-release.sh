@@ -19,23 +19,36 @@
 # release as for the previous release in the line (maintenance release check).
 #
 # Usage:
-#   ./verify-maven-central-release.sh <previous-version> <new-version>
+#   ./verify-maven-central-release.sh <previous-version> <new-version> [repo-base-url]
 #
-# Example (after publishing 4.2.1):
+# Examples:
+#   # After closing a Nexus staging repo (before Release to Central):
+#   ./verify-maven-central-release.sh 4.2.0 4.2.1 \
+#     https://repository.apache.org/content/repositories/orgapachehive-121/
+#
+#   # After artifacts have synced to Maven Central:
 #   ./verify-maven-central-release.sh 4.2.0 4.2.1
 #
-# Exit code 0 if every artifact published for PREVIOUS also exists for NEW.
-# Exit code 1 if any are missing on Maven Central.
+# PREVIOUS is always checked on Maven Central. NEW is checked on repo-base-url
+# (defaults to Maven Central). New modules that appear only in NEW are not
+# validated yet; only artifacts present for PREVIOUS are required for NEW.
+#
+# Exit code 0 if every required artifact exists for NEW.
+# Exit code 1 if any are missing.
 
 set -euo pipefail
 
 PREV="${1:?Previous GA version (e.g. 4.2.0)}"
 NEW="${2:?New release version (e.g. 4.2.1)}"
+NEW_REPO_BASE="${3:-https://repo1.maven.org/maven2}"
 
 CENTRAL="https://repo1.maven.org/maven2"
 GROUP="org/apache/hive"
 
-echo "Checking Maven Central: org.apache.hive artifacts in ${PREV} -> ${NEW}"
+# Trim trailing slash for consistent URL joining.
+NEW_REPO_BASE="${NEW_REPO_BASE%/}"
+
+echo "Checking org.apache.hive artifacts: ${PREV} (Maven Central) -> ${NEW} (${NEW_REPO_BASE})"
 echo
 
 artifact_ids="$(python3 - "$PREV" << 'PY'
@@ -98,10 +111,11 @@ PY
 )"
 
 artifact_present() {
-  local artifact="$1"
-  local version="$2"
-  local jar_url="${CENTRAL}/${GROUP}/${artifact}/${version}/${artifact}-${version}.jar"
-  local pom_url="${CENTRAL}/${GROUP}/${artifact}/${version}/${artifact}-${version}.pom"
+  local repo_base="$1"
+  local artifact="$2"
+  local version="$3"
+  local jar_url="${repo_base}/${GROUP}/${artifact}/${version}/${artifact}-${version}.jar"
+  local pom_url="${repo_base}/${GROUP}/${artifact}/${version}/${artifact}-${version}.pom"
   local jar_code pom_code
   jar_code="$(curl -s -o /dev/null -w '%{http_code}' "$jar_url")"
   if [[ "$jar_code" == "200" ]]; then
@@ -124,7 +138,7 @@ total=0
 while IFS= read -r artifact; do
   [[ -z "$artifact" ]] && continue
   total=$((total + 1))
-  prev_kind="$(artifact_present "$artifact" "$PREV" || true)"
+  prev_kind="$(artifact_present "$CENTRAL" "$artifact" "$PREV" || true)"
   if [[ "$prev_kind" == "missing" ]]; then
     printf "  SKIP %s (not on Central for %s)\n" "$artifact" "$PREV"
     total=$((total - 1))
@@ -136,7 +150,7 @@ while IFS= read -r artifact; do
     total=$((total - 1))
     continue
   fi
-  new_kind="$(artifact_present "$artifact" "$NEW" || true)"
+  new_kind="$(artifact_present "$NEW_REPO_BASE" "$artifact" "$NEW" || true)"
   if [[ "$new_kind" != "missing" ]]; then
     present=$((present + 1))
     printf "  OK   %s (%s -> %s)\n" "$artifact" "$prev_kind" "$new_kind"
@@ -147,7 +161,7 @@ while IFS= read -r artifact; do
 done <<< "$artifact_ids"
 
 echo
-echo "Summary: ${present}/${total} artifacts from ${PREV} are on Maven Central for ${NEW}"
+echo "Summary: ${present}/${total} artifacts from ${PREV} are present for ${NEW}"
 
 if ((${#missing[@]} > 0)); then
   echo
@@ -156,8 +170,11 @@ if ((${#missing[@]} > 0)); then
     echo "  - ${a}"
   done
   echo
-  echo "If the release is already staged, check https://repository.apache.org/content/repositories/releases/"
-  echo "and allow time for sync to Maven Central after Nexus release."
+  if [[ "$NEW_REPO_BASE" != "$CENTRAL" ]]; then
+    echo "Fix missing artifacts in the staging repository before clicking Release in Nexus."
+  else
+    echo "If you just released from Nexus, allow time for sync to Maven Central."
+  fi
   exit 1
 fi
 
