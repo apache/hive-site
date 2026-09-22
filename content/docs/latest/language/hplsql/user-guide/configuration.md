@@ -272,7 +272,7 @@ The *hplsql.onerror* option defines how HPL/SQL handles errors.
 Values:
 
 - **exception** - HPL/SQL raises an exception when an error occurs. This is the default.
-- **seterror** - HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution
+- **seterror** - HPL/SQL sets the error code to SQLCODE variables and continues execution
 - **stop** - HPL/SQL stops executing the script and exits. 
 
 For more information, see [Error Handling]({{< ref "error-handling" >}}).

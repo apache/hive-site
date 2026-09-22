@@ -38,6 +38,3 @@ insert overwrite directory '/data/sales_' || current_date
 
 <!-- **Version**: HPL/SQL 0.3.17 -->
 
-See also:
-- [COPY]({{< ref "copy" >}})
-- [COPY FROM LOCAL]({{< ref "copy-from-local" >}})

@@ -62,7 +62,6 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 | Name | Description |
 | --- | --- |
 | [ACTIVITY_COUNT]({{< ref "activity_count" >}}) | Number of rows affected by last SQL statement |
-| [HOSTCODE]({{< ref "hostcode" >}}) | Return code of the last OS command |
 | [SQLCODE]({{< ref "sqlcode" >}}) | Return code of the last SQL statement |
 | [SQLSTATE]({{< ref "sqlstate" >}}) | Return status of the last SQL statement |
 
@@ -76,9 +75,6 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 | [CALL]({{< ref "call" >}}) | Execute a stored procedure |
 | [CLOSE]({{< ref "close" >}}) | Close a cursor |
 | [CMP]({{< ref "cmp" >}}) | Compare data in tables |
-| [COPY]({{< ref "copy" >}}) | Copy data between tables and files |
-| [COPY FROM FTP]({{< ref "copy-from-ftp" >}}) | Copy FTP files to Hadoop compatible file system |
-| [COPY FROM LOCAL]({{< ref "copy-from-local" >}}) | Copy local files to Hadoop compatible file system |
 | [CREATE DATABASE]({{< ref "create-database" >}}) | Create a database |
 | [CREATE FUNCTION]({{< ref "create-function" >}}) | Create a user-defined SQL function |
 | [CREATE LOCAL TEMPORARY TABLE]({{< ref "create-local-temporary-table" >}}) | Create a session-level temporary table |
@@ -100,7 +96,6 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 | [FOR cursor]({{< ref "for-cursor" >}}) | FOR statement (Cursor loop) |
 | [FOR range]({{< ref "for-range" >}}) | FOR statement (Integer range) |
 | [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}}) | Get execution information |
-| [HOST]({{< ref "host" >}}) | Execute an OS command or run an external process |
 | [IF]({{< ref "if" >}}) | IF statement |
 | [INCLUDE]({{< ref "include" >}}) | Include statements from another script |
 | [INSERT]({{< ref "insert" >}}) | INSERT statement |
@@ -167,11 +162,6 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 | [UPPER]({{< ref "upper" >}}) | Convert a string to upper case |
 | [USER]({{< ref "functions/user.md" >}}) | Get the current user name |
 
-## Commands
-
-| Command | Description |
-| --- | --- |
-| [! cmd;]({{< ref "host" >}}) | Execute an OS command or run an external process |
 
 ## File I/O Operations
 

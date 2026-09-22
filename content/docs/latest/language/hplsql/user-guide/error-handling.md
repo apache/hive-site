@@ -13,7 +13,7 @@ In this case when an error occurs, HPL/SQL raises an exception. If there is an e
 
 - **Seterror** 
 
-When Seterror is specified, HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution.
+When Seterror is specified, HPL/SQL sets the error code to SQLCODE variables and continues execution.
 
 - **Stop**
 
