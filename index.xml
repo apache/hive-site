@@ -301,51 +301,10 @@ CLOSE cur;
 &lt;p&gt;Values:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;exception&lt;/strong&gt; - HPL/SQL raises an exception when an error occurs. This is the default.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;seterror&lt;/strong&gt; - HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;seterror&lt;/strong&gt; - HPL/SQL sets the error code to SQLCODE variables and continues execution&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;stop&lt;/strong&gt; - HPL/SQL stops executing the script and exits.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY FROM FTP Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-ftp/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-ftp/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-from-ftp-statement"&gt;Apache Hive : HPL/SQL - COPY FROM FTP Statement&lt;/h1&gt;
-&lt;p&gt;COPY FROM FTP statement allows to copy files from a FTP server to local or any Hadoop compatible file system. Using this statement you can easily copy FTP subdirectories into HDFS i.e.&lt;/p&gt;
-&lt;p&gt;The NEW option helps you build a ETL process and download only new files from FTP.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;COPY FROM FTP host [USER user [PWD password]] [DIR directory] [FILES files_wildcard] 
- [TO [LOCAL] target_directory] [options]
-
-options:
- OVERWRITE | NEW
- SUBDIR
- SESSIONS num 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY FROM LOCAL Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-local/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy-from-local/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-from-local-statement"&gt;Apache Hive : HPL/SQL - COPY FROM LOCAL Statement&lt;/h1&gt;
-&lt;p&gt;COPY FROM LOCAL statement allows to copy local directories and files to Hadoop compatible file system. Using this statement you can easily copy subdirectories into HDFS i.e.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;COPY FROM LOCAL src [, src2, ...] TO tgt [options]
-
-options:
- OVERWRITE
- DELETE
- IGNORE
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;srcN&lt;/em&gt; specifies a file or directory. If a directory is specified all subdirectories and their files are copied as well.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;srcN&lt;/em&gt; can be an expression, variable, quoted or unquoted string.&lt;/li&gt;
-&lt;li&gt;If a single file is copied &lt;em&gt;tgt&lt;/em&gt; must specify a path including the target file name.&lt;/li&gt;
-&lt;li&gt;If multiple files are copied &lt;em&gt;tgt&lt;/em&gt; must specify a directory.&lt;/li&gt;
-&lt;li&gt;If the target directory does not exist it is created.&lt;/li&gt;
-&lt;li&gt;OVERWRITE specifies to overwrite the target files if they exist.&lt;/li&gt;
-&lt;li&gt;DELETE specifies to delete the source file upon successfull copy.&lt;/li&gt;
-&lt;li&gt;IGNORE specifies to ignore errors when copying a file and proceed to copy the remaining files.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - COPY Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/copy/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/copy/</guid><description>&lt;h1 id="apache-hive--hplsql---copy-statement"&gt;Apache Hive : HPL/SQL - COPY Statement&lt;/h1&gt;
-&lt;p&gt;COPY statement allows to transfer data between tables and files. Use it to transfer relatively small volumes of data i.e. query results, look-up and dimension tables.&lt;/p&gt;
-&lt;p&gt;When you copy data between tables they can be located in different databases.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;Export data to a file:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;COPY table_name | (select_stmt) TO [HDFS] file_name [options]
-
-options:
- DELIMITER &amp;#39;char&amp;#39;
-| SQLINSERT target_table_name
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Copy data between existing tables:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE DATABASE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</guid><description>&lt;h1 id="apache-hive--hplsql---create-database-statement"&gt;Apache Hive : HPL/SQL - CREATE DATABASE Statement&lt;/h1&gt;
+&lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - CREATE DATABASE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/create-database/</guid><description>&lt;h1 id="apache-hive--hplsql---create-database-statement"&gt;Apache Hive : HPL/SQL - CREATE DATABASE Statement&lt;/h1&gt;
 &lt;p&gt;CREATE DATABASE statement allows you to create a database.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;CREATE DATABASE | SCHEMA [IF NOT EXISTS] dbname_expr
@@ -959,7 +918,7 @@ value string default
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Seterror&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;When Seterror is specified, HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Exceptions</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</guid><description>&lt;h1 id="apache-hive--hplsql---exceptions"&gt;Apache Hive : HPL/SQL - Exceptions&lt;/h1&gt;
+&lt;p&gt;When Seterror is specified, HPL/SQL sets the error code to SQLCODE variables and continues execution.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Exceptions</title><link>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/language-elements/exceptions/</guid><description>&lt;h1 id="apache-hive--hplsql---exceptions"&gt;Apache Hive : HPL/SQL - Exceptions&lt;/h1&gt;
 &lt;p&gt;HPL/SQL allows you to handle exceptions in your programs.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;BEGIN
@@ -981,42 +940,7 @@ BEGIN
 EXCEPTION WHEN OTHERS THEN
  DBMS_OUTPUT.PUT_LINE(&amp;#39;Error&amp;#39;);
 END
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Oracle, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Execute OS Command or External Process</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/host/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/host/</guid><description>&lt;h1 id="apache-hive--hplsql---execute-os-command-or-external-process"&gt;Apache Hive : HPL/SQL - Execute OS Command or External Process&lt;/h1&gt;
-&lt;p&gt;HPL/SQL allows you to execute an OS command or external process from a HPL/SQL script:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Syntax&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;! command:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;!cmd [arguments];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HOST statement:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;HOST string_expr
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;&lt;strong&gt;Parameter&lt;/strong&gt;&lt;/th&gt;
- &lt;th&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;cmd&lt;/td&gt;
- &lt;td&gt;Any OS command or process&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;arguments&lt;/td&gt;
- &lt;td&gt;Optional argument list&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;string_expr&lt;/td&gt;
- &lt;td&gt;Command line for HOST statement&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Blank characters are allowed between ! and cmd&lt;/li&gt;
-&lt;li&gt;The ! command must be terminated by a semicolon (;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - EXECUTE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</guid><description>&lt;h1 id="apache-hive--hplsql---execute-statement"&gt;Apache Hive : HPL/SQL - EXECUTE Statement&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;: Oracle, PostgreSQL and Netezza.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - EXECUTE Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/execute/</guid><description>&lt;h1 id="apache-hive--hplsql---execute-statement"&gt;Apache Hive : HPL/SQL - EXECUTE Statement&lt;/h1&gt;
 &lt;p&gt;EXECUTE (EXEC or EXECUTE IMMEDIATE) statement executes a dynamic SQL statement and can return the scalar result to local variables.&lt;/p&gt;
 &lt;p&gt;You can also use this statement to call a stored procedure.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Syntax:&lt;/strong&gt;&lt;/p&gt;
@@ -1199,20 +1123,7 @@ BEGIN
  RETURN &amp;#39;Hello, &amp;#39; || text || &amp;#39;!&amp;#39;;
 END;
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id="running-hplsql-scripts-from-beeline-in-non-hplsql-mode"&gt;Running HPL/SQL scripts from Beeline in non-hplsql mode&lt;/h2&gt;
-&lt;p&gt;Now let&amp;rsquo;s use &lt;em&gt;hello&lt;/em&gt; function written in HPL/SQL language in Hive query:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - HOSTCODE</title><link>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/hostcode/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/built-in-variables/hostcode/</guid><description>&lt;h1 id="apache-hive--hplsql---hostcode"&gt;Apache Hive : HPL/SQL - HOSTCODE&lt;/h1&gt;
-&lt;p&gt;HOSTCODE built-in variable contains the return code of the last OS command.&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;SET hplsql.onerror = SETERROR;
-
-HOST &amp;#39;echo hello, world&amp;#39;;
-IF HOSTCODE &amp;lt;&amp;gt; 0 THEN
- PRINT &amp;#39;Error&amp;#39;;
-END IF;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Typically HOSTCODE is 0 when the process terminated successfully, and 1 if it terminated with an error.&lt;/li&gt;
-&lt;li&gt;By default &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/configuration/#hplsqlonerror"&gt;hplsql.onerror&lt;/a&gt; is set to EXCEPTION, so if the OS command cannot be executed (the process does not exist, no permissions i.e.) the exception is raised and you are not be able to check HOSTCODE in IF statement.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - IF Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</guid><description>&lt;h1 id="apache-hive--hplsql---if-statement"&gt;Apache Hive : HPL/SQL - IF Statement&lt;/h1&gt;
+&lt;p&gt;Now let&amp;rsquo;s use &lt;em&gt;hello&lt;/em&gt; function written in HPL/SQL language in Hive query:&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - IF Statement</title><link>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/statements/if/</guid><description>&lt;h1 id="apache-hive--hplsql---if-statement"&gt;Apache Hive : HPL/SQL - IF Statement&lt;/h1&gt;
 &lt;p&gt;IF statement executes a set of statements depending on the value of a boolean expression.&lt;/p&gt;
 &lt;p&gt;HPL/SQL supports multiple syntaxes for IF statement.&lt;/p&gt;
 &lt;h2 id="if---then---elsifelseif---else---end-if"&gt;IF - THEN - ELSIF/ELSEIF - ELSE - END IF&lt;/h2&gt;

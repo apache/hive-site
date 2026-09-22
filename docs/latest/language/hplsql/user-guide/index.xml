@@ -5,7 +5,7 @@
 &lt;p&gt;Values:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;exception&lt;/strong&gt; - HPL/SQL raises an exception when an error occurs. This is the default.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;seterror&lt;/strong&gt; - HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;seterror&lt;/strong&gt; - HPL/SQL sets the error code to SQLCODE variables and continues execution&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;stop&lt;/strong&gt; - HPL/SQL stops executing the script and exits.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For more information, see &lt;a href="https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/"&gt;Error Handling&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Error Handling</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/error-handling/</guid><description>&lt;h1 id="apache-hive--hplsql---error-handling"&gt;Apache Hive : HPL/SQL - Error Handling&lt;/h1&gt;
@@ -17,7 +17,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Seterror&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;When Seterror is specified, HPL/SQL sets the error code to SQLCODE or HOSTCODE variables and continues execution.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</guid><description>&lt;h1 id="apache-hive--hplsql---hive-udf-to-run-hplsql-scripts-from-beeline-in-non-hplsql-mode"&gt;Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode&lt;/h1&gt;
+&lt;p&gt;When Seterror is specified, HPL/SQL sets the error code to SQLCODE variables and continues execution.&lt;/p&gt;</description></item><item><title>Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode</title><link>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</link><pubDate>Wed, 12 Aug 2026 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/hplsql/user-guide/udf/</guid><description>&lt;h1 id="apache-hive--hplsql---hive-udf-to-run-hplsql-scripts-from-beeline-in-non-hplsql-mode"&gt;Apache Hive : HPL/SQL - Hive UDF to Run HPL/SQL Scripts from Beeline in non-hplsql mode&lt;/h1&gt;
 &lt;p&gt;HPL/SQL includes a Hive UDF function(&lt;em&gt;&lt;strong&gt;hplsql&lt;/strong&gt;&lt;/em&gt;) that allows you to execute HPL/SQL scripts (user-defined functions written in HPL/SQL language) in Hive queries.&lt;/p&gt;
 &lt;p&gt;For example, let&amp;rsquo;s call the following function from a Hive query:&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;CREATE FUNCTION hello(text STRING)
