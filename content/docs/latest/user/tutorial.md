@@ -19,9 +19,9 @@ Hive is not designed for online transaction processing.  It is best used for tr
 
 ## Getting Started
 
-For details on setting up Hive, HiveServer2, and Beeline, please refer to the [GettingStarted]({{< ref "gettingstarted-latest" >}}) guide.
+For details on setting up Hive, HiveServer2, and Beeline, please refer to the [GettingStarted]({{% ref "gettingstarted-latest" %}}) guide.
 
-[Books about Hive]({{< ref "books-about-hive" >}}) lists some books that may also be helpful for getting started with Hive.
+[Books about Hive]({{% ref "books-about-hive" %}}) lists some books that may also be helpful for getting started with Hive.
 
 In the following sections we provide a tutorial on the capabilities of the system. We start by describing the concepts of data types, tables, and partitions (which are very similar to what you would find in a traditional relational DBMS) and then illustrate the capabilities of Hive with the help of some examples.
 
@@ -43,7 +43,7 @@ Note that it is not necessary for tables to be partitioned or bucketed, but thes
 
 ## Type System
 
-Hive supports primitive and complex data types, as described below. See [Hive Data Types]({{< ref "languagemanual-types" >}}) for additional information.
+Hive supports primitive and complex data types, as described below. See [Hive Data Types]({{% ref "languagemanual-types" %}}) for additional information.
 
 ### Primitive Types
 
@@ -156,7 +156,7 @@ Other definitions:
 
 ## Built In Operators and Functions
 
-The operators and functions listed below are not necessarily up to date. ([Hive Operators and UDFs]({{< ref "languagemanual-udf" >}}) has more current information.) In [Beeline]({{< ref "#beeline" >}}) or the Hive [CLI]({{< ref "languagemanual-cli" >}}), use these commands to show the latest documentation:
+The operators and functions listed below are not necessarily up to date. ([Hive Operators and UDFs]({{% ref "languagemanual-udf" %}}) has more current information.) In [Beeline]({{% ref "#beeline" %}}) or the Hive [CLI]({{% ref "languagemanual-cli" %}}), use these commands to show the latest documentation:
 
 ```
 SHOW FUNCTIONS;
@@ -264,7 +264,7 @@ All Hive keywords are case-insensitive, including the names of Hive operators an
 
 ## Language Capabilities
 
-[Hive's SQL]({{< ref "languagemanual" >}}) provides the basic SQL operations. These operations work on tables or partitions. These operations are:
+[Hive's SQL]({{% ref "languagemanual" %}}) provides the basic SQL operations. These operations work on tables or partitions. These operations are:
 
 * Ability to filter rows from a table using a WHERE clause.
 * Ability to select certain columns from the table using a SELECT clause.
@@ -278,17 +278,17 @@ All Hive keywords are case-insensitive, including the names of Hive operators an
 
 # Usage and Examples
 
-**NOTE: Many of the following examples are out of date.  More up to date information can be found in the [LanguageManual]({{< ref "languagemanual" >}}).**
+**NOTE: Many of the following examples are out of date.  More up to date information can be found in the [LanguageManual]({{% ref "languagemanual" %}}).**
 
 The following examples highlight some salient features of the system. A detailed set of query test cases can be found at [Hive Query Test Cases](http://svn.apache.org/viewvc/hive/trunk/ql/src/test/queries/clientpositive/) and the corresponding results can be found at [Query Test Case Results](http://svn.apache.org/viewvc/hive/trunk/ql/src/test/results/clientpositive/).
 
-* [Creating, Showing, Altering, and Dropping Tables]({{< ref "#creating-showing-altering-and-dropping-tables" >}})
-* [Loading Data]({{< ref "#loading-data" >}})
-* [Querying and Inserting Data]({{< ref "#querying-and-inserting-data" >}})
+* [Creating, Showing, Altering, and Dropping Tables]({{% ref "#creating-showing-altering-and-dropping-tables" %}})
+* [Loading Data]({{% ref "#loading-data" %}})
+* [Querying and Inserting Data]({{% ref "#querying-and-inserting-data" %}})
 
 ## Creating, Showing, Altering, and Dropping Tables
 
-See [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}}) for detailed information about creating, showing, altering, and dropping tables.
+See [Hive Data Definition Language]({{% ref "languagemanual-ddl" %}}) for detailed information about creating, showing, altering, and dropping tables.
 
 ### Creating Tables
 
@@ -513,25 +513,25 @@ In the case that the input file /tmp/pv_2008-06-08_us.txt is very large, the use
 
 It is assumed that the array and map fields in the input.txt files are null fields for these examples.
 
-See [Hive Data Manipulation Language]({{< ref "languagemanual-dml" >}}) for more information about loading data into Hive tables, and see [External Tables]({{< ref "#external-tables" >}}) for another example of creating an external table.
+See [Hive Data Manipulation Language]({{% ref "languagemanual-dml" %}}) for more information about loading data into Hive tables, and see [External Tables]({{% ref "#external-tables" %}}) for another example of creating an external table.
 
 ## Querying and Inserting Data
 
-* [Simple Query]({{< ref "#simple-query" >}})
-* [Partition Based Query]({{< ref "#partition-based-query" >}})
-* [Joins]({{< ref "#joins" >}})
-* [Aggregations]({{< ref "#aggregations" >}})
-* [Multi Table/File Inserts]({{< ref "#multi-tablefile-inserts" >}})
-* [Dynamic-Partition Insert]({{< ref "#dynamic-partition-insert" >}})
-* [Inserting into Local Files]({{< ref "#inserting-into-local-files" >}})
-* [Sampling]({{< ref "#sampling" >}})
-* [Union All]({{< ref "#union-all" >}})
-* [Array Operations]({{< ref "#array-operations" >}})
-* [Map (Associative Arrays) Operations]({{< ref "#map-associative-arrays-operations" >}})
-* [Custom Map/Reduce Scripts]({{< ref "#custom-mapreduce-scripts" >}})
-* [Co-Groups]({{< ref "#co-groups" >}})
+* [Simple Query]({{% ref "#simple-query" %}})
+* [Partition Based Query]({{% ref "#partition-based-query" %}})
+* [Joins]({{% ref "#joins" %}})
+* [Aggregations]({{% ref "#aggregations" %}})
+* [Multi Table/File Inserts]({{% ref "#multi-tablefile-inserts" %}})
+* [Dynamic-Partition Insert]({{% ref "#dynamic-partition-insert" %}})
+* [Inserting into Local Files]({{% ref "#inserting-into-local-files" %}})
+* [Sampling]({{% ref "#sampling" %}})
+* [Union All]({{% ref "#union-all" %}})
+* [Array Operations]({{% ref "#array-operations" %}})
+* [Map (Associative Arrays) Operations]({{% ref "#map-associative-arrays-operations" %}})
+* [Custom Map/Reduce Scripts]({{% ref "#custom-mapreduce-scripts" %}})
+* [Co-Groups]({{% ref "#co-groups" %}})
 
-The Hive query operations are documented in [Select]({{< ref "languagemanual-select" >}}), and the insert operations are documented in [Inserting data into Hive Tables from queries]({{< ref "#inserting-data-into-hive-tables-from-queries" >}}) and [Writing data into the filesystem from queries]({{< ref "#writing-data-into-the-filesystem-from-queries" >}}).
+The Hive query operations are documented in [Select]({{% ref "languagemanual-select" %}}), and the insert operations are documented in [Inserting data into Hive Tables from queries]({{% ref "#inserting-data-into-hive-tables-from-queries" %}}) and [Writing data into the filesystem from queries]({{% ref "#writing-data-into-the-filesystem-from-queries" %}}).
 
 ### Simple Query
 
@@ -545,7 +545,7 @@ For all the active users, one can use the query of the following form:
 
 ```
 
-Note that unlike SQL, we always insert the results into a table. We will illustrate later how the user can inspect these results and even dump them to a local file. You can also run the following query in [Beeline]({{< ref "#beeline" >}}) or the Hive [CLI]({{< ref "languagemanual-cli" >}}):
+Note that unlike SQL, we always insert the results into a table. We will illustrate later how the user can inspect these results and even dump them to a local file. You can also run the following query in [Beeline]({{% ref "#beeline" %}}) or the Hive [CLI]({{% ref "languagemanual-cli" %}}):
 
 ```
     SELECT user.*
@@ -680,7 +680,7 @@ In the previous examples, the user has to know which partition to insert into an
 
 In order to load data into all country partitions in a particular day, you have to add an insert statement for each country in the input data. This is very inconvenient since you have to have the priori knowledge of the list of countries exist in the input data and create the partitions beforehand. If the list changed for another day, you have to modify your insert DML as well as the partition creation DDLs. It is also inefficient since each insert statement may be turned into a MapReduce Job.
 
-*[Dynamic-partition insert]({{< ref "#dynamic-partition-insert" >}})* (or multi-partition insert) is designed to solve this problem by dynamically determining which partitions should be created and populated while scanning the input table. This is a newly added feature that is only available from version 0.6.0. In the dynamic partition insert, the input column values are evaluated to determine which partition this row should be inserted into. If that partition has not been created, it will create that partition automatically. Using this feature you need only one insert statement to create and populate all necessary partitions. In addition, since there is only one insert statement, there is only one corresponding MapReduce job. This significantly improves performance and reduce the Hadoop cluster workload comparing to the multiple insert case.
+*[Dynamic-partition insert]({{% ref "#dynamic-partition-insert" %}})* (or multi-partition insert) is designed to solve this problem by dynamically determining which partitions should be created and populated while scanning the input table. This is a newly added feature that is only available from version 0.6.0. In the dynamic partition insert, the input column values are evaluated to determine which partition this row should be inserted into. If that partition has not been created, it will create that partition automatically. Using this feature you need only one insert statement to create and populate all necessary partitions. In addition, since there is only one insert statement, there is only one corresponding MapReduce job. This significantly improves performance and reduce the Hadoop cluster workload comparing to the multiple insert case.
 
 Below is an example of loading data to all country partitions using one insert statement:
 
@@ -743,13 +743,13 @@ This query will generate a MapReduce job rather than Map-only job. The SELECT-cl
 
 Additional documentation:
 
-* [Design Document for Dynamic Partitions]({{< ref "dynamicpartitions" >}})
+* [Design Document for Dynamic Partitions]({{% ref "dynamicpartitions" %}})
 	+ [Original design doc](https://issues.apache.org/jira/secure/attachment/12437909/dp_design.txt)
 	+ [HIVE-936](https://issues.apache.org/jira/browse/HIVE-936)
-* [Hive DML: Dynamic Partition Inserts]({{< ref "#hive-dml:-dynamic-partition-inserts" >}})
-* [HCatalog Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})
-	+ [Usage with Pig]({{< ref "#usage-with-pig" >}})
-	+ [Usage from MapReduce]({{< ref "#usage-from-mapreduce" >}})
+* [Hive DML: Dynamic Partition Inserts]({{% ref "#hive-dml:-dynamic-partition-inserts" %}})
+* [HCatalog Dynamic Partitioning]({{% ref "hcatalog-dynamicpartitions" %}})
+	+ [Usage with Pig]({{% ref "#usage-with-pig" %}})
+	+ [Usage from MapReduce]({{% ref "#usage-from-mapreduce" %}})
 
 ### Inserting into Local Files
 

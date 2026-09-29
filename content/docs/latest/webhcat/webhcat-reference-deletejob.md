@@ -12,12 +12,12 @@ Kill a job given its job ID. Substitute ":jobid" with the job ID received when t
 Version: Deprecated in 0.12.0
 
 `DELETE queue/:jobid` is deprecated starting in Hive release 0.12.0. Users are encouraged to use `DELETE jobs/:jobid` instead. (See [HIVE-4443](https://issues.apache.org/jira/browse/HIVE-4443).)  
-`DELETE queue/:jobid` is equivalent to `DELETE jobs/:jobid` – check `[DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})` for documentation.
+`DELETE queue/:jobid` is equivalent to `DELETE jobs/:jobid` – check `[DELETE jobs/:jobid]({{% ref "webhcat-reference-deletejobid" %}})` for documentation.
 
 Version: Obsolete in 0.14.0
 
 `DELETE queue/:jobid` will be removed in Hive release 0.14.0. (See [HIVE-6432](https://issues.apache.org/jira/browse/HIVE-6432).)  
-Use `[DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})` instead.
+Use `[DELETE jobs/:jobid]({{% ref "webhcat-reference-deletejobid" %}})` instead.
 
 ## URL
 
@@ -29,7 +29,7 @@ Use `[DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})` instead.
 | --- | --- | --- | --- |
 | **:jobid** | The job ID to delete. This is the ID received when the job was created. | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -99,15 +99,15 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 Note
 
-The job is not immediately deleted, therefore the information returned may not reflect deletion, as in our example. Use [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo" >}}) to monitor the job and confirm that it is eventually deleted.
+The job is not immediately deleted, therefore the information returned may not reflect deletion, as in our example. Use [GET queue/:jobid]({{% ref "webhcat-reference-jobinfo" %}}) to monitor the job and confirm that it is eventually deleted.
 
 **Navigation Links**
-Previous: [GET queue/:jobid]({{< ref "webhcat-reference-jobinfo" >}})  
- Next: [GET jobs]({{< ref "webhcat-reference-jobs" >}})
+Previous: [GET queue/:jobid]({{% ref "webhcat-reference-jobinfo" %}})  
+ Next: [GET jobs]({{% ref "webhcat-reference-jobs" %}})
 
 
 
-Replaced in Hive 0.12.0 by: [DELETE jobs/:jobid]({{< ref "webhcat-reference-deletejobid" >}})
+Replaced in Hive 0.12.0 by: [DELETE jobs/:jobid]({{% ref "webhcat-reference-deletejobid" %}})
 
  
 

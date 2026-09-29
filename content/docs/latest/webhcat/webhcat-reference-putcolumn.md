@@ -25,7 +25,7 @@ Create a column in an HCatalog table.
 | **type** | The type of column to add, like "string" or "int" | Required | None |
 | **comment** | The column comment, like a description | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -61,7 +61,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table/column/:column]({{< ref "webhcat-reference-getcolumn" >}}) Next: [GET ddl/database/:db/table/:table/property]({{< ref "webhcat-reference-getproperties" >}})
+Previous: [GET ddl/database/:db/table/:table/column/:column]({{% ref "webhcat-reference-getcolumn" %}}) Next: [GET ddl/database/:db/table/:table/property]({{% ref "webhcat-reference-getproperties" %}})
 
 
 

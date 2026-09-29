@@ -96,7 +96,7 @@ yarn.resourcemanager.scheduler.class=org.apache.hadoop.yarn.server.resourcemanag
 set hive.execution.engine=spark;
 ```
 
-See the [Spark section of Hive Configuration Properties]({{< ref "#spark-section-of-hive-configuration-properties" >}}) for other properties for configuring Hive and the Remote Spark Driver.
+See the [Spark section of Hive Configuration Properties]({{% ref "#spark-section-of-hive-configuration-properties" %}}) for other properties for configuring Hive and the Remote Spark Driver.
 3. Configure Spark-application configs for Hive.  See: <http://spark.apache.org/docs/latest/configuration.html>.  This can be done either by adding a file "spark-defaults.conf" with these properties to the Hive classpath, or by setting them on Hive configuration (`hive-site.xml`). For instance:
 
 ```
@@ -171,8 +171,8 @@ On this 9 node cluster we’ll have two executors per host. As such we can confi
 
 | Issue | Cause | Resolution |
 | --- | --- | --- |
-| Error: Could not find or load main class org.apache.spark.deploy.SparkSubmit | Spark dependency not correctly set. | Add Spark dependency to Hive, see Step 1 [above]({{< ref "#above" >}}). |
-| org.apache.spark.SparkException: Job aborted due to stage failure: Task 5.0:0 had a not serializable result: java.io.NotSerializableException: org.apache.hadoop.io.BytesWritable | Spark serializer not set to Kryo. | Set spark.serializer to be org.apache.spark.serializer.KryoSerializer, see Step 3 [above]({{< ref "#above" >}}). |
+| Error: Could not find or load main class org.apache.spark.deploy.SparkSubmit | Spark dependency not correctly set. | Add Spark dependency to Hive, see Step 1 [above]({{% ref "#above" %}}). |
+| org.apache.spark.SparkException: Job aborted due to stage failure: Task 5.0:0 had a not serializable result: java.io.NotSerializableException: org.apache.hadoop.io.BytesWritable | Spark serializer not set to Kryo. | Set spark.serializer to be org.apache.spark.serializer.KryoSerializer, see Step 3 [above]({{% ref "#above" %}}). |
 | [ERROR] Terminal initialization failed; falling back to unsupportedjava.lang.IncompatibleClassChangeError: Found class jline.Terminal, but interface was expected | Hive has upgraded to Jline2 but jline 0.94 exists in the Hadoop lib. | 1. Delete jline from the Hadoop lib directory (it's only pulled in transitively from ZooKeeper). 2. export HADOOP_USER_CLASSPATH_FIRST=true 3. If this error occurs during mvn test, perform a mvn clean install on the root project and itests directory. |
 | Spark executor gets killed all the time and Spark keeps retrying the failed stage; you may find similar information in the YARN nodemanager log.WARN org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl: Container [pid=217989,containerID=container_1421717252700_0716_01_50767235] is running beyond physical memory limits. Current usage: 43.1 GB of 43 GB physical memory used; 43.9 GB of 90.3 GB virtual memory used. Killing container. | For Spark on YARN, nodemanager would kill Spark executor if it used more memory than the configured size of "spark.executor.memory" + "spark.yarn.executor.memoryOverhead". | Increase "spark.yarn.executor.memoryOverhead" to make sure it covers the executor off-heap memory usage. |
 | Run query and get an error like:FAILED: Execution Error, return code 3 from org.apache.hadoop.hive.ql.exec.spark.SparkTaskIn Hive logs, it shows:java.lang.NoClassDefFoundError: Could not initialize class org.xerial.snappy.Snappy  at org.xerial.snappy.SnappyOutputStream.&lt;init&gt;(SnappyOutputStream.java:79) | Happens on Mac (not officially supported).This is a general Snappy issue with Mac and is not unique to Hive on Spark, but workaround is noted here because it is needed for startup of Spark client. | Run this command before starting Hive or HiveServer2:export HADOOP_OPTS="-Dorg.xerial.snappy.tempdir=/tmp -Dorg.xerial.snappy.lib.name=libsnappyjava.jnilib $HADOOP_OPTS" |

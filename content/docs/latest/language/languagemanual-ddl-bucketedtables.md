@@ -5,11 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : LanguageManual DDL BucketedTables
 
-This is a brief example on creating and populating bucketed tables. (For another example, see [Bucketed Sorted Tables]({{< ref "#bucketed-sorted-tables" >}}).)
+This is a brief example on creating and populating bucketed tables. (For another example, see [Bucketed Sorted Tables]({{% ref "#bucketed-sorted-tables" %}}).)
 
-Bucketed tables are fantastic in that they allow much more efficient [sampling]({{< ref "languagemanual-sampling" >}}) than do non-bucketed tables, and they may later allow for time saving operations such as mapside joins. However, the bucketing specified at table creation is not enforced when the table is written to, and so it is possible for the table's metadata to advertise properties which are not upheld by the table's actual layout. This should obviously be avoided. Here's how to do it right.
+Bucketed tables are fantastic in that they allow much more efficient [sampling]({{% ref "languagemanual-sampling" %}}) than do non-bucketed tables, and they may later allow for time saving operations such as mapside joins. However, the bucketing specified at table creation is not enforced when the table is written to, and so it is possible for the table's metadata to advertise properties which are not upheld by the table's actual layout. This should obviously be avoided. Here's how to do it right.
 
-First, [table creation]({{< ref "#table-creation" >}}):
+First, [table creation]({{% ref "#table-creation" %}}):
 
 ```
 CREATE TABLE user_info_bucketed(user_id BIGINT, firstname STRING, lastname STRING)

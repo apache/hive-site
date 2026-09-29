@@ -45,7 +45,7 @@ The assumption is that B has few rows with keys which are skewed in A. So these 
 
 ### Hive Enhancements
 
-*Original plan:*  ~~The skew data will be obtained from list bucketing (see the [List Bucketing]({{< ref "listbucketing" >}})~~~~design document). There will be no additions to the Hive grammar.~~
+*Original plan:*  ~~The skew data will be obtained from list bucketing (see the [List Bucketing]({{% ref "listbucketing" %}})~~~~design document). There will be no additions to the Hive grammar.~~
 
-*Implementation:*  Starting in Hive 0.10.0, tables can be created as skewed or altered to be skewed (in which case partitions created after the ALTER statement will be skewed). In addition, skewed tables can use the list bucketing feature by specifying the STORED AS DIRECTORIES option. See the DDL documentation for details: [Create Table]({{< ref "#create-table" >}}), [Skewed Tables]({{< ref "#skewed-tables" >}}), and [Alter Table Skewed or Stored as Directories]({{< ref "#alter-table-skewed-or-stored-as-directories" >}}).
+*Implementation:*  Starting in Hive 0.10.0, tables can be created as skewed or altered to be skewed (in which case partitions created after the ALTER statement will be skewed). In addition, skewed tables can use the list bucketing feature by specifying the STORED AS DIRECTORIES option. See the DDL documentation for details: [Create Table]({{% ref "#create-table" %}}), [Skewed Tables]({{% ref "#skewed-tables" %}}), and [Alter Table Skewed or Stored as Directories]({{% ref "#alter-table-skewed-or-stored-as-directories" %}}).
 

@@ -475,13 +475,13 @@ For the below tablescan; the estimation was 500 rows; but actually the scan only
 
 ### User-level Explain Output
 
-Since [HIVE-8600](https://issues.apache.org/jira/browse/HIVE-8600) in Hive 1.1.0, we support a user-level explain extended output for any query at the log4j INFO level after **set [**h**ive.log.explain.output]({{< ref "#**h**ive-log-explain-output" >}})****=true** (default is **false**).
+Since [HIVE-8600](https://issues.apache.org/jira/browse/HIVE-8600) in Hive 1.1.0, we support a user-level explain extended output for any query at the log4j INFO level after **set [**h**ive.log.explain.output]({{% ref "#**h**ive-log-explain-output" %}})****=true** (default is **false**).
 
-Since [HIVE-18469](https://issues.apache.org/jira/browse/HIVE-18469) in Hive 3.1.0, the user-level explain extended output for any query will be shown in the WebUI / Drilldown / Query Plan after **set [hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})=true** (default is **false**).
+Since [HIVE-18469](https://issues.apache.org/jira/browse/HIVE-18469) in Hive 3.1.0, the user-level explain extended output for any query will be shown in the WebUI / Drilldown / Query Plan after **set [hive.server2.webui.explain.output]({{% ref "#hive-server2-webui-explain-output" %}})=true** (default is **false**).
 
-Since [HIVE-9780](https://issues.apache.org/jira/browse/HIVE-9780) in Hive 1.2.0, we support a user-level explain for Hive on Tez users. After **set [hive.explain.user]({{< ref "#hive-explain-user" >}})=true** (default is **false**) if the following query is sent, the user can see a much more clearly readable tree of operations.
+Since [HIVE-9780](https://issues.apache.org/jira/browse/HIVE-9780) in Hive 1.2.0, we support a user-level explain for Hive on Tez users. After **set [hive.explain.user]({{% ref "#hive-explain-user" %}})=true** (default is **false**) if the following query is sent, the user can see a much more clearly readable tree of operations.
 
-Since [HIVE-11133](https://issues.apache.org/jira/browse/HIVE-11133) in Hive 3.0.0, we support a user-level explain for Hive on Spark users. A separate configuration is used for Hive-on-Spark, **[hive.spark.explain.user]({{< ref "#hive-spark-explain-user" >}})** which is set to false by default.
+Since [HIVE-11133](https://issues.apache.org/jira/browse/HIVE-11133) in Hive 3.0.0, we support a user-level explain for Hive on Spark users. A separate configuration is used for Hive-on-Spark, **[hive.spark.explain.user]({{% ref "#hive-spark-explain-user" %}})** which is set to false by default.
 
 ```
 EXPLAIN select sum(hash(key)), sum(hash(value)) from src_orc_merge_test_part where ds='2012-01-03' and ts='2012-01-03+14:46:31'

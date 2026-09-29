@@ -18,9 +18,9 @@ Another consequence is that data is attached to the Hive entities. So, whenever 
 
 For external tables Hive assumes that it does *not* manage the data.
 
-Managed or external tables can be identified using the [DESCRIBE FORMATTED table_name]({{< ref "#describe-formatted-table_name" >}}) command, which will display either MANAGED_TABLE or EXTERNAL_TABLE depending on table type.
+Managed or external tables can be identified using the [DESCRIBE FORMATTED table_name]({{% ref "#describe-formatted-table_name" %}}) command, which will display either MANAGED_TABLE or EXTERNAL_TABLE depending on table type.
 
-[Statistics]({{< ref "statsdev" >}}) can be managed on internal and external tables and partitions for query optimization. 
+[Statistics]({{% ref "statsdev" %}}) can be managed on internal and external tables and partitions for query optimization. 
 
 ## Feature comparison
 
@@ -35,13 +35,13 @@ This means that there are lots of features which are only available for one of t
 
 ## Managed tables
 
-A managed table is stored under the [hive.metastore.warehouse.dir]({{< ref "#hive-metastore-warehouse-dir" >}}) path property, by default in a folder path similar to `/user/hive/warehouse/databasename.db/tablename/`. The default location can be overridden by the `location` property during table creation. If a managed table or partition is dropped, the data and metadata associated with that table or partition are deleted. If the PURGE option is not specified, the data is moved to a trash folder for a defined duration.
+A managed table is stored under the [hive.metastore.warehouse.dir]({{% ref "#hive-metastore-warehouse-dir" %}}) path property, by default in a folder path similar to `/user/hive/warehouse/databasename.db/tablename/`. The default location can be overridden by the `location` property during table creation. If a managed table or partition is dropped, the data and metadata associated with that table or partition are deleted. If the PURGE option is not specified, the data is moved to a trash folder for a defined duration.
 
 Use managed tables when Hive should manage the lifecycle of the table, or when generating temporary tables.
 
 ## External tables
 
-An external table describes the metadata / schema on external files. External table files can be accessed and managed by processes outside of Hive. External tables can access data stored in sources such as Azure Storage Volumes (ASV) or remote HDFS locations. If the structure or partitioning of an external table is changed, an [MSCK REPAIR TABLE table_name]({{< ref "#msck-repair-table-table_name" >}}) statement can be used to refresh metadata information.
+An external table describes the metadata / schema on external files. External table files can be accessed and managed by processes outside of Hive. External tables can access data stored in sources such as Azure Storage Volumes (ASV) or remote HDFS locations. If the structure or partitioning of an external table is changed, an [MSCK REPAIR TABLE table_name]({{% ref "#msck-repair-table-table_name" %}}) statement can be used to refresh metadata information.
 
 Use external tables when files are already present or in remote locations, and the files should remain even if the table is dropped.
 

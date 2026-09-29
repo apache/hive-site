@@ -32,7 +32,7 @@ This captured in the following table:
 |  Join  Predicate  |  Case J1:  Not Pushed  |  Case J2:  Pushed  |
 |  Where  Predicate  |  Case W1:  Pushed  |  Case W2:  Not Pushed  |
 
-See [Examples]({{< ref "#examples" >}}) below for illustrations of cases J1, J2, W1, and W2.
+See [Examples]({{% ref "#examples" %}}) below for illustrations of cases J1, J2, W1, and W2.
 
 ### Hive Implementation
 

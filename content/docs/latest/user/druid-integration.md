@@ -30,7 +30,7 @@ Druid is an open-source analytics data store designed for business intelligence 
 
 ## Storage Handlers
 
-You can find an overview of Hive Storage Handlers [here]({{< ref "storagehandlers" >}}); the integration of Druid with Hive depends upon that framework.
+You can find an overview of Hive Storage Handlers [here]({{% ref "storagehandlers" %}}); the integration of Druid with Hive depends upon that framework.
 
 # Usage
 

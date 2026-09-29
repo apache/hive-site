@@ -51,11 +51,11 @@ Many `hcat` commands can be issued as `hive` commands, including all HCatalog DD
  For example, "`hcat -DA=B`" versus "`hive -d A=B`".
 * `hcat` without any flags prints a help message but `hive` uses the `-H` flag or `--help`.
 
-The Hive CLI is documented [here]({{< ref "languagemanual-cli" >}}).
+The Hive CLI is documented [here]({{% ref "languagemanual-cli" %}}).
 
 ## HCatalog DDL
 
-HCatalog supports all [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}}) except those operations that require running a MapReduce job. For commands that are supported, any variances are noted below.
+HCatalog supports all [Hive Data Definition Language]({{% ref "languagemanual-ddl" %}}) except those operations that require running a MapReduce job. For commands that are supported, any variances are noted below.
 
 HCatalog does not support the following Hive DDL and other HiveQL commands:
 
@@ -67,7 +67,7 @@ HCatalog does not support the following Hive DDL and other HiveQL commands:
 * IMPORT FROM ...
 * EXPORT TABLE
 
-For information about using WebHCat for DDL commands, see [URL Format]({{< ref "#url-format" >}}) and [WebHCat Reference: DDL Resources]({{< ref "webhcat-reference-allddl" >}}).
+For information about using WebHCat for DDL commands, see [URL Format]({{% ref "#url-format" %}}) and [WebHCat Reference: DDL Resources]({{% ref "webhcat-reference-allddl" %}}).
 
 ### Create/Drop/Alter Table
 
@@ -152,12 +152,12 @@ If other errors occur while using the HCatalog CLI, more detailed messages are w
   
 
 **Navigation Links**
-Previous: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter" >}})  
- Next: [Storage Formats]({{< ref "hcatalog-storageformats" >}})
+Previous: [Reader and Writer Interfaces]({{% ref "hcatalog-readerwriter" %}})  
+ Next: [Storage Formats]({{% ref "hcatalog-storageformats" %}})
 
-Hive command line interface: [Hive CLI]({{< ref "languagemanual-cli" >}})  
- Hive DDL commands: [Hive Data Definition Language]({{< ref "languagemanual-ddl" >}})  
- WebHCat DDL resources: [WebHCat Reference: DDL]({{< ref "webhcat-reference-allddl" >}})
+Hive command line interface: [Hive CLI]({{% ref "languagemanual-cli" %}})  
+ Hive DDL commands: [Hive Data Definition Language]({{% ref "languagemanual-ddl" %}})  
+ WebHCat DDL resources: [WebHCat Reference: DDL]({{% ref "webhcat-reference-allddl" %}})
 
 
 

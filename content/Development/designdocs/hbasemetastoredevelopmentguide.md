@@ -73,7 +73,7 @@ hive --service hbaseimport 
 
 [Overall Approach](https://issues.apache.org/jira/secure/attachment/12697601/HBaseMetastoreApproach.pdf)
 
-[Hbase execution plans for RawStore partition filter condition]({{< ref "hbase-execution-plans-for-rawstore-partition-filter-condition" >}})
+[Hbase execution plans for RawStore partition filter condition]({{% ref "hbase-execution-plans-for-rawstore-partition-filter-condition" %}})
 
  
 

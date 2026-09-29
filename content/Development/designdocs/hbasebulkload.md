@@ -9,7 +9,7 @@ This page explains how to use Hive to bulk load data into a new (empty) HBase ta
 
 ## Overview
 
-Ideally, bulk load from Hive into HBase would be part of [HBaseIntegration]({{< ref "hbaseintegration" >}}), making it as simple as this:
+Ideally, bulk load from Hive into HBase would be part of [HBaseIntegration]({{% ref "hbaseintegration" %}}), making it as simple as this:
 
 ```
 CREATE TABLE new_hbase_table(rowkey string, x int, y int) 

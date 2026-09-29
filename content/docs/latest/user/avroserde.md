@@ -25,7 +25,7 @@ The AvroSerde allows users to read or write [Avro data](http://avro.apache.org/)
 * Has worked reliably against our most convoluted Avro schemas in our ETL process.
 * Starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-7446), columns can be added to an Avro backed Hive table using the [Alter Table](/docs/latest/language/languagemanual-ddl#addreplace-columns) statement.
 
-For general information about SerDes, see [Hive SerDe]({{< ref "#hive-serde" >}}) in the Developer Guide. Also see [SerDe]({{< ref "serde" >}}) for details about input and output processing.
+For general information about SerDes, see [Hive SerDe]({{% ref "#hive-serde" %}}) in the Developer Guide. Also see [SerDe]({{% ref "serde" %}}) for details about input and output processing.
 
 ### Requirements
 
@@ -81,7 +81,7 @@ CREATE TABLE kst
 
 In this example we're pulling the source-of-truth reader schema from a webserver. Other options for providing the schema are described below.
 
-Add the Avro files to the database (or create an external table) using standard Hive operations ([http://wiki.apache.org/hadoop/Hive/LanguageManual/DML]({{< ref "languagemanual-dml" >}})).
+Add the Avro files to the database (or create an external table) using standard Hive operations ([http://wiki.apache.org/hadoop/Hive/LanguageManual/DML]({{% ref "languagemanual-dml" %}})).
 
 This table might result in a description as below:
 
@@ -353,7 +353,7 @@ Hive does not provide an easy way to unset or remove a property. If you wish to 
 
 ### HBase Integration
 
-Hive 0.14.0 onward supports storing and querying Avro objects in HBase columns by making them visible as structs to Hive. This allows Hive to perform ad hoc analysis of HBase data which can be deeply structured. Prior to 0.14.0, the HBase Hive integration only supported querying primitive data types in columns. See [Avro Data Stored in HBase Columns]({{< ref "#avro-data-stored-in-hbase-columns" >}}) for details.
+Hive 0.14.0 onward supports storing and querying Avro objects in HBase columns by making them visible as structs to Hive. This allows Hive to perform ad hoc analysis of HBase data which can be deeply structured. Prior to 0.14.0, the HBase Hive integration only supported querying primitive data types in columns. See [Avro Data Stored in HBase Columns]({{% ref "#avro-data-stored-in-hbase-columns" %}}) for details.
 
 ### If something goes wrong
 

@@ -50,7 +50,7 @@ On the other hand the tablesample clause
 
 would pick out half of the 3rd cluster as each bucket would be composed of (32/64)=1/2 of a cluster.
 
-For information about creating bucketed tables with the CLUSTERED BY clause, see [Create Table]({{< ref "#create-table" >}}) (especially [Bucketed Sorted Tables]({{< ref "#bucketed-sorted-tables" >}})) and [Bucketed Tables]({{< ref "languagemanual-ddl-bucketedtables" >}}).
+For information about creating bucketed tables with the CLUSTERED BY clause, see [Create Table]({{% ref "#create-table" %}}) (especially [Bucketed Sorted Tables]({{% ref "#bucketed-sorted-tables" %}})) and [Bucketed Tables]({{% ref "languagemanual-ddl-bucketedtables" %}}).
 
 ### Block Sampling
 

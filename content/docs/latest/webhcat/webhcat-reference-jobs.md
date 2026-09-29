@@ -11,7 +11,7 @@ Return a list of all job IDs.
 
 Version: Hive 0.12.0 and later
 
-`GET jobs` is introduced in Hive release 0.12.0. It is equivalent to `[GET queue]({{< ref "webhcat-reference-jobids" >}})` in prior releases.   
+`GET jobs` is introduced in Hive release 0.12.0. It is equivalent to `[GET queue]({{% ref "webhcat-reference-jobids" %}})` in prior releases.   
 `GET queue` is now deprecated ([HIVE-4443](https://issues.apache.org/jira/browse/HIVE-4443)) and will be removed in Hive 0.14.0 ([HIVE-6432](https://issues.apache.org/jira/browse/HIVE-6432)).
 
 ## URL
@@ -27,7 +27,7 @@ Version: Hive 0.12.0 and later
 | **jobid** | If **jobid** is present, only the records whose job ID is lexicographically greater than **jobid** are returned. For example, if **jobid** = "job_201312091733_0001", the jobs whose job ID is greater than "job_201312091733_0001" are returned. The number of records returned depends on the value of **numrecords**.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | None |
 | **numrecords** | If the **jobid** and **numrecords** parameters are present, the top *numrecords* records appearing after **jobid** will be returned after sorting the job ID list lexicographically. If the **jobid** parameter is missing and **numrecords** is present, the top *numrecords* will be returned after lexicographically sorting the job ID list. If the **jobid** parameter is present and **numrecords** is missing, all the records whose job ID is greater than **jobid** are returned.This parameter is not available in releases prior to Hive 0.13.0. (See [HIVE-5519](https://issues.apache.org/jira/browse/HIVE-5519).) | Optional in Hive 0.13.0+ | All |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also accepted.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also accepted.
 
 ## Results
 
@@ -38,7 +38,7 @@ Every element inside the array includes:
 | Name | Description |
 | --- | --- |
 | **id** | Job ID. |
-| **detail** | Job details if **showall** is set to "true"; otherwise "null". For more information about what details it contains, check `[GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})`. |
+| **detail** | Job details if **showall** is set to "true"; otherwise "null". For more information about what details it contains, check `[GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})`. |
 
 ## Examples
 
@@ -140,12 +140,12 @@ In release 0.12.0 the first line of JSON output for the fields parameter gives t
  
 
 **Navigation Links**
-Previous: [DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob" >}})  
- Next: [GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})
+Previous: [DELETE queue/:jobid]({{% ref "webhcat-reference-deletejob" %}})  
+ Next: [GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})
 
 
 
-Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids" >}})
+Replaces deprecated resource: [GET queue]({{% ref "webhcat-reference-jobids" %}})
 
  
 

@@ -37,7 +37,7 @@ At a high-level, there are two parts to implementing a Generic UDAF. The first i
 
 The resolver handles type checking and operator overloading for UDAF queries. The type checking ensures that the user isn't passing a **double** expression where an **integer** is expected, for example, and the operator overloading allows you to have different UDAF logic for different types of arguments. 
 
-The resolver class must extend **org.apache.hadoop.hive.ql.udf.GenericUDAFResolver2** (see [#Resolver Interface Evolution]({{< ref "##resolver-interface-evolution" >}}) for backwards compatibility information). We recommend that you extend the AbstractGenericUDAFResolver base class in order to insulate your UDAF from future interface changes in Hive.
+The resolver class must extend **org.apache.hadoop.hive.ql.udf.GenericUDAFResolver2** (see [#Resolver Interface Evolution]({{% ref "##resolver-interface-evolution" %}}) for backwards compatibility information). We recommend that you extend the AbstractGenericUDAFResolver base class in order to insulate your UDAF from future interface changes in Hive.
 
 Look at one of the existing UDAFs for the *import*s you will need.
 

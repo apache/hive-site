@@ -21,12 +21,12 @@ SELECT [ALL | DISTINCT] select_expr, select_expr, ...
 
 ```
 
-* A SELECT statement can be part of a [union]({{< ref "languagemanual-union" >}}) query or a [subquery]({{< ref "languagemanual-subqueries" >}}) of another query.
-* `table_reference` indicates the input to the query. It can be a regular table, [a view]({{< ref "#a-view" >}}), a [join construct]({{< ref "languagemanual-joins" >}}) or a [subquery]({{< ref "languagemanual-subqueries" >}}).
+* A SELECT statement can be part of a [union]({{% ref "languagemanual-union" %}}) query or a [subquery]({{% ref "languagemanual-subqueries" %}}) of another query.
+* `table_reference` indicates the input to the query. It can be a regular table, [a view]({{% ref "#a-view" %}}), a [join construct]({{% ref "languagemanual-joins" %}}) or a [subquery]({{% ref "languagemanual-subqueries" %}}).
 * Table names and column names are case insensitive.
 	+ In Hive 0.12 and earlier, only alphanumeric and underscore characters are allowed in table and column names.
 	+ In Hive 0.13 and later, column names can contain any [Unicode](http://en.wikipedia.org/wiki/List_of_Unicode_characters) character (see [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Any column name that is specified within backticks (```) is treated literally. Within a backtick string, use double backticks (````) to represent a backtick character.
-	+ To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html) (attached to [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Also see [REGEX Column Specification]({{< ref "#regex-column-specification" >}}) below.
+	+ To revert to pre-0.13.0 behavior and restrict column names to alphanumeric and underscore characters, set the configuration property `[hive.support.quoted.identifiers]({{% ref "#hive-support-quoted-identifiers" %}})` to `none`. In this configuration, backticked names are interpreted as regular expressions. For details, see [Supporting Quoted Identifiers in Column Names](https://issues.apache.org/jira/secure/attachment/12618321/QuotedIdentifier.html) (attached to [HIVE-6013](https://issues.apache.org/jira/browse/HIVE-6013)). Also see [REGEX Column Specification]({{% ref "#regex-column-specification" %}}) below.
 * Simple query. For example, the following query retrieves all columns and all rows from table t1.
 
 ```
@@ -36,12 +36,12 @@ SELECT * FROM t1 
 Note
 
 As of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144), FROM is optional (for example, `SELECT 1+1`).
-* To get the current database (as of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)), use the [current_database() function]({{< ref "#current_database---function" >}}):
+* To get the current database (as of [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-4144)), use the [current_database() function]({{% ref "#current_database---function" %}}):
 
 ```
 SELECT current_database()
 ```
-* To specify a database, either qualify the table names with database names ("`db_name.table_name`" starting in [Hive 0.7](https://issues.apache.org/jira/browse/HIVE-1517)) or issue the [USE statement]({{< ref "#use-statement" >}}) before the query statement (starting in [Hive 0.6](https://issues.apache.org/jira/browse/HIVE-675)).
+* To specify a database, either qualify the table names with database names ("`db_name.table_name`" starting in [Hive 0.7](https://issues.apache.org/jira/browse/HIVE-1517)) or issue the [USE statement]({{% ref "#use-statement" %}}) before the query statement (starting in [Hive 0.6](https://issues.apache.org/jira/browse/HIVE-675)).
 
 "`db_name.table_name`" allows a query to access tables in different databases.
 
@@ -55,14 +55,14 @@ USE default;
 
 ### WHERE Clause
 
-The WHERE condition is a [boolean]({{< ref "languagemanual-types" >}}) expression. For example, the following query returns only those sales records which have an amount greater than 10 from the US region. Hive supports a number of [operators and UDFs]({{< ref "languagemanual-udf" >}}) in the WHERE clause:
+The WHERE condition is a [boolean]({{% ref "languagemanual-types" %}}) expression. For example, the following query returns only those sales records which have an amount greater than 10 from the US region. Hive supports a number of [operators and UDFs]({{% ref "languagemanual-udf" %}}) in the WHERE clause:
 
 ```
 SELECT * FROM sales WHERE amount > 10 AND region = "US"
 
 ```
 
-As of Hive 0.13 some types of [subqueries]({{< ref "languagemanual-subqueries" >}}) are supported in the WHERE clause.
+As of Hive 0.13 some types of [subqueries]({{% ref "languagemanual-subqueries" %}}) are supported in the WHERE clause.
 
 ### ALL and DISTINCT Clauses
 
@@ -84,11 +84,11 @@ hive> SELECT DISTINCT col1 FROM t1
 
 ```
 
-ALL and DISTINCT can also be used in a UNION clause – see [Union Syntax]({{< ref "#union-syntax" >}}) for more information.
+ALL and DISTINCT can also be used in a UNION clause – see [Union Syntax]({{% ref "#union-syntax" %}}) for more information.
 
 ### Partition Based Queries
 
-In general, a SELECT query scans the entire table (other than for [sampling]({{< ref "languagemanual-sampling" >}})). If a table created using the [PARTITIONED BY]({{< ref "#partitioned-by" >}}) clause, a query can do **partition pruning** and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.
+In general, a SELECT query scans the entire table (other than for [sampling]({{% ref "languagemanual-sampling" %}})). If a table created using the [PARTITIONED BY]({{% ref "#partitioned-by" %}}) clause, a query can do **partition pruning** and scan only a fraction of the table relevant to the partitions specified by the query. Hive currently does partition pruning if the partition predicates are specified in the WHERE clause or the ON clause in a JOIN. For example, if table page_views is partitioned on column date, the following query retrieves rows for just days between 2008-03-01 and 2008-03-31.
 
 ```
     SELECT page_views.*
@@ -106,9 +106,9 @@ If a table page_views is joined with another table dim_users, you can specify a 
 
 ```
 
-* See also [Partition Filter Syntax]({{< ref "partition-filter-syntax" >}}).
-* See also [Group By]({{< ref "languagemanual-groupby" >}}).
-* See also [Sort By / Cluster By / Distribute By / Order By]({{< ref "languagemanual-sortby" >}}).
+* See also [Partition Filter Syntax]({{% ref "partition-filter-syntax" %}}).
+* See also [Group By]({{% ref "languagemanual-groupby" %}}).
+* See also [Sort By / Cluster By / Distribute By / Order By]({{% ref "languagemanual-sortby" %}}).
 
 ### HAVING Clause
 
@@ -161,7 +161,7 @@ SELECT * FROM customers ORDER BY create_date LIMIT 2,5
 
 ### REGEX Column Specification
 
-A SELECT statement can take regex-based column specification in Hive releases prior to 0.13.0, or in 0.13.0 and later releases if the configuration property `[hive.support.quoted.identifiers]({{< ref "#hive-support-quoted-identifiers" >}})` is set to `none`. 
+A SELECT statement can take regex-based column specification in Hive releases prior to 0.13.0, or in 0.13.0 and later releases if the configuration property `[hive.support.quoted.identifiers]({{% ref "#hive-support-quoted-identifiers" %}})` is set to `none`. 
 
 * We use Java regex syntax. Try <http://www.fileformat.info/tool/regex.htm> for testing purposes.
 * The following query selects all columns except ds and hr.
@@ -175,20 +175,20 @@ SELECT `(ds|hr)?+.+` FROM sales
 
 See the following documents for additional syntax and features of SELECT statements:
 
-* [GROUP BY]({{< ref "languagemanual-groupby" >}})
-* [SORT/ORDER/CLUSTER/DISTRIBUTE BY]({{< ref "languagemanual-sortby" >}})
-* [JOIN]({{< ref "languagemanual-joins" >}})
-	+ [Hive Joins]({{< ref "languagemanual-joins" >}})
-	+ [Join Optimization]({{< ref "languagemanual-joinoptimization" >}})
-	+ [Outer Join Behavior]({{< ref "outerjoinbehavior" >}})
-* [UNION]({{< ref "languagemanual-union" >}})
-* [TABLESAMPLE]({{< ref "languagemanual-sampling" >}})
-* [Subqueries]({{< ref "languagemanual-subqueries" >}})
-* [Virtual Columns]({{< ref "languagemanual-virtualcolumns" >}})
-* [Operators and UDFs]({{< ref "languagemanual-udf" >}})
-* [LATERAL VIEW]({{< ref "languagemanual-lateralview" >}})
-* [Windowing, OVER, and Analytics]({{< ref "languagemanual-windowingandanalytics" >}})
-* [Common Table Expressions]({{< ref "common-table-expression" >}})
+* [GROUP BY]({{% ref "languagemanual-groupby" %}})
+* [SORT/ORDER/CLUSTER/DISTRIBUTE BY]({{% ref "languagemanual-sortby" %}})
+* [JOIN]({{% ref "languagemanual-joins" %}})
+	+ [Hive Joins]({{% ref "languagemanual-joins" %}})
+	+ [Join Optimization]({{% ref "languagemanual-joinoptimization" %}})
+	+ [Outer Join Behavior]({{% ref "outerjoinbehavior" %}})
+* [UNION]({{% ref "languagemanual-union" %}})
+* [TABLESAMPLE]({{% ref "languagemanual-sampling" %}})
+* [Subqueries]({{% ref "languagemanual-subqueries" %}})
+* [Virtual Columns]({{% ref "languagemanual-virtualcolumns" %}})
+* [Operators and UDFs]({{% ref "languagemanual-udf" %}})
+* [LATERAL VIEW]({{% ref "languagemanual-lateralview" %}})
+* [Windowing, OVER, and Analytics]({{% ref "languagemanual-windowingandanalytics" %}})
+* [Common Table Expressions]({{% ref "common-table-expression" %}})
 
  
 

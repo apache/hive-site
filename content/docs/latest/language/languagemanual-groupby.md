@@ -18,8 +18,8 @@ groupByQuery: SELECT expression (, expression)* FROM src groupByClause?
 
 In `groupByExpression` columns are specified by name, not by position number. However in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-581) and later, columns can be specified by position when configured as follows:
 
-* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias]({{< ref "#hive-groupby-orderby-position-alias" >}}) to true (the default is false).
-* For Hive 2.2.0 and later, set [hive.groupby.position.alias]({{< ref "#hive-groupby-position-alias" >}}) to true (the default is false).
+* For Hive 0.11.0 through 2.1.x, set [hive.groupby.orderby.position.alias]({{% ref "#hive-groupby-orderby-position-alias" %}}) to true (the default is false).
+* For Hive 2.2.0 and later, set [hive.groupby.position.alias]({{% ref "#hive-groupby-position-alias" %}}) to true (the default is false).
 
 ### Simple Examples
 
@@ -151,7 +151,7 @@ Version
 
 Grouping sets, CUBE and ROLLUP operators, and the GROUPING__ID function were added in Hive release 0.10.0.
 
-See [Enhanced Aggregation, Cube, Grouping and Rollup]({{< ref "enhanced-aggregation-cube-grouping-and-rollup" >}}) for information about these aggregation operators.
+See [Enhanced Aggregation, Cube, Grouping and Rollup]({{% ref "enhanced-aggregation-cube-grouping-and-rollup" %}}) for information about these aggregation operators.
 
 Also see the JIRAs:
 

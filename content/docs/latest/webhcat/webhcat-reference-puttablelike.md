@@ -26,7 +26,7 @@ Create a new HCatalog table like an existing one.
 | **ifNotExists** | If true, you will not receive an error if the table already exists. | Optional | false |
 | **location** | The HDFS path | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -58,7 +58,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable" >}}) Next: [GET ddl/database/:db/table/:table/partition]({{< ref "webhcat-reference-getpartitions" >}})
+Previous: [DELETE ddl/database/:db/table/:table]({{% ref "webhcat-reference-deletetable" %}}) Next: [GET ddl/database/:db/table/:table/partition]({{% ref "webhcat-reference-getpartitions" %}})
 
 
 

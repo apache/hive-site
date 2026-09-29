@@ -9,11 +9,11 @@ This document describes the Hive user configuration properties (sometimes called
 
 The canonical list of configuration properties is managed in the `HiveConf` Java class, so refer to the `HiveConf.java` file for a complete list of configuration properties available in your Hive release.
 
-For information about how to use these configuration properties, see [Configuring Hive]({{< ref "#configuring-hive" >}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{< ref "#configuration-variables" >}}) section. [Hive Metastore Administration](/docs/latest/admin/adminmanual-metastore-administration) describes additional configuration properties for the metastore.
+For information about how to use these configuration properties, see [Configuring Hive]({{% ref "#configuring-hive" %}}). That document also describes administrative configuration properties for setting up Hive in the [Configuration Variables]({{% ref "#configuration-variables" %}}) section. [Hive Metastore Administration](/docs/latest/admin/adminmanual-metastore-administration) describes additional configuration properties for the metastore.
 
 Version information
 
-As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{< ref "#hiveconfvalidation" >}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
+As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211) ), a configuration name that starts with "hive." is regarded as a Hive system property.  With the [hive.conf.validation]({{% ref "#hiveconfvalidation" %}}) option true (default), any attempts to set a configuration property that starts with "hive." which is not registered to the Hive system will throw an exception.
 
 ## Query and DDL Execution
 
@@ -22,11 +22,11 @@ As of Hive 0.14.0 ( [HIVE-7211](https://issues.apache.org/jira/browse/HIVE-7211)
 * Default Value: `mr` (deprecated in Hive 2.0.0 – see below)
 * Added In: Hive 0.13.0 with [HIVE-6103](https://issues.apache.org/jira/browse/HIVE-6103) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)
 
-Chooses execution engine. Options are: `mr` (Map Reduce, default), `tez` ([Tez]({{< ref "hive-on-tez" >}}) execution, for Hadoop 2 only), or `spark` ([Spark]({{< ref "hive-on-spark" >}}) execution, for Hive 1.1.0 onward).
+Chooses execution engine. Options are: `mr` (Map Reduce, default), `tez` ([Tez]({{% ref "hive-on-tez" %}}) execution, for Hadoop 2 only), or `spark` ([Spark]({{% ref "hive-on-spark" %}}) execution, for Hive 1.1.0 onward).
 
 While `mr` remains the default engine for historical reasons, it is itself a historical engine and is deprecated in the Hive 2 line ([HIVE-12300](https://issues.apache.org/jira/browse/HIVE-12300)). It may be removed without further warning.
 
-See [Hive on Tez]({{< ref "hive-on-tez" >}}) and [Hive on Spark]({{< ref "hive-on-spark-getting-started" >}}) for more information, and see the [Tez section]({{< ref "#tez-section" >}}) and the [Spark section]({{< ref "#spark-section" >}}) below for their configuration properties.
+See [Hive on Tez]({{% ref "hive-on-tez" %}}) and [Hive on Spark]({{% ref "hive-on-spark-getting-started" %}}) for more information, and see the [Tez section]({{% ref "#tez-section" %}}) and the [Spark section]({{% ref "#spark-section" %}}) below for their configuration properties.
 
 ##### hive.execution.mode
 
@@ -56,7 +56,7 @@ Size per reducer. The default in Hive 0.14.0 and earlier is 1 GB, that is, if th
 * Default Value: `999` prior to Hive 0.14.0; `1009`  in Hive 0.14.0 and later
 * Added In: Hive 0.2.0; default changed in 0.14.0 with [HIVE-7158](https://issues.apache.org/jira/browse/HIVE-7158) (and [HIVE-7917](https://issues.apache.org/jira/browse/HIVE-7917))
 
-Maximum number of reducers that will be used. If the one specified in the configuration property  **[mapred.reduce.tasks]({{< ref "#mapredreducetasks" >}})**  is negative, Hive will use this as the maximum number of reducers when automatically determining the number of reducers.
+Maximum number of reducers that will be used. If the one specified in the configuration property  **[mapred.reduce.tasks]({{% ref "#mapredreducetasks" %}})**  is negative, Hive will use this as the maximum number of reducers when automatically determining the number of reducers.
 
 ##### hive.jar.path
 
@@ -77,7 +77,7 @@ The location of the plugin jars that contain implementations of user defined fu
 * Default Value: (empty)
 * Added In: Hive 0.14.0 with [HIVE-7553](https://issues.apache.org/jira/browse/HIVE-7553)
 
-The locations of the plugin jars, which can be comma-separated folders or jars. They can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{< ref "#beeline-reload-command" >}}) without having to restart HiveServer2. These jars can be  used just like the auxiliary classes in  [**hive.aux.jars.path**]({{< ref "#**hive-aux-jars-path**" >}}) for creating UDFs or SerDes.
+The locations of the plugin jars, which can be comma-separated folders or jars. They can be renewed (added, removed, or updated) by executing the [Beeline reload command]({{% ref "#beeline-reload-command" %}}) without having to restart HiveServer2. These jars can be  used just like the auxiliary classes in  [**hive.aux.jars.path**]({{% ref "#**hive-aux-jars-path**" %}}) for creating UDFs or SerDes.
 
 ##### hive.exec.scratchdir
 
@@ -86,23 +86,23 @@ The locations of the plugin jars, which can be comma-separated folders or jars. 
 
 Scratch space for Hive jobs. This directory is used by Hive to store the plans for different map/reduce stages for the query as well as to stored the intermediate outputs of these stages.
 
-*Hive 0.14.0 and later:*  HDFS root scratch directory for Hive jobs, which gets created with write all (733) permission.  For each connecting user, an HDFS scratch directory ${**hive.exec.scratchdir**}/\<username\> is created  with ${ **[hive.scratch.dir.permission]({{< ref "#hivescratchdirpermission" >}})** }.
+*Hive 0.14.0 and later:*  HDFS root scratch directory for Hive jobs, which gets created with write all (733) permission.  For each connecting user, an HDFS scratch directory ${**hive.exec.scratchdir**}/\<username\> is created  with ${ **[hive.scratch.dir.permission]({{% ref "#hivescratchdirpermission" %}})** }.
 
-Also see  [**hive.start.cleanup.scratchdir**]({{< ref "#**hive-start-cleanup-scratchdir**" >}}) and  **[hive.scratchdir.lock]({{< ref "#hivescratchdirlock" >}})** .  When running Hive in local mode, see  [**hive.exec.local.scratchdir**]({{< ref "#**hive-exec-local-scratchdir**" >}}).
+Also see  [**hive.start.cleanup.scratchdir**]({{% ref "#**hive-start-cleanup-scratchdir**" %}}) and  **[hive.scratchdir.lock]({{% ref "#hivescratchdirlock" %}})** .  When running Hive in local mode, see  [**hive.exec.local.scratchdir**]({{% ref "#**hive-exec-local-scratchdir**" %}}).
 
 ##### hive.scratch.dir.permission
 
 * Default Value: `700`
 * Added In: Hive 0.12.0 with [HIVE-4487](https://issues.apache.org/jira/browse/HIVE-4487)
 
-The permission for the user-specific scratch directories that get created in the root scratch directory. (See  [**hive.exec.scratchdir**]({{< ref "#**hive-exec-scratchdir**" >}}).)
+The permission for the user-specific scratch directories that get created in the root scratch directory. (See  [**hive.exec.scratchdir**]({{% ref "#**hive-exec-scratchdir**" %}}).)
 
 ##### hive.exec.local.scratchdir
 
 * Default Value: `/tmp/${user.name`}
 * Added In: Hive 0.10.0 with [HIVE-1577](https://issues.apache.org/jira/browse/HIVE-1577)
 
-Scratch space for Hive jobs when Hive runs in local mode.  Also see  [**hive.exec.scratchdir**]({{< ref "#**hive-exec-scratchdir**" >}}).
+Scratch space for Hive jobs when Hive runs in local mode.  Also see  [**hive.exec.scratchdir**]({{% ref "#**hive-exec-scratchdir**" %}}).
 
 ##### hive.hadoop.supports.splittable.combineinputformat
 
@@ -197,7 +197,7 @@ Whether to remove an extra join with sq_count_check UDF for scalar subqueries wi
 
 * Default Value: `false`
 * Added In: Hive 0.8.0 with [HIVE-2056](https://issues.apache.org/jira/browse/HIVE-2056)
-* Removed In: Hive 0.9.0 by [HIVE-2621](https://issues.apache.org/jira/browse/HIVE-2621) (see  **[hive.multigroupby.singlereducer]({{< ref "#hivemultigroupbysinglereducer" >}})** )
+* Removed In: Hive 0.9.0 by [HIVE-2621](https://issues.apache.org/jira/browse/HIVE-2621) (see  **[hive.multigroupby.singlereducer]({{% ref "#hivemultigroupbysinglereducer" %}})** )
 
 Whether to optimize multi group by query to generate a single M/R job plan. If the multi group by query has common group by keys, it will be optimized to generate a single M/R job. (This configuration property was removed in release 0.9.0.)
 
@@ -223,7 +223,7 @@ Whether to enable column pruner. (This configuration property was removed in rel
 
 Whether to enable automatic use of indexes.
 
-Note:  See [Indexing]({{< ref "#indexing" >}}) for more configuration properties related to Hive indexes.
+Note:  See [Indexing]({{% ref "#indexing" %}}) for more configuration properties related to Hive indexes.
 
 ##### hive.optimize.ppd
 
@@ -232,7 +232,7 @@ Note:  See [Indexing]({{< ref "#indexing" >}}) for more configuration propertie
 
 Whether to enable predicate pushdown (PPD). 
 
-Note: Turn on  **[hive.optimize.index.filter]({{< ref "#hiveoptimizeindexfilter" >}})**  as well to use file format specific indexes with PPD.
+Note: Turn on  **[hive.optimize.index.filter]({{% ref "#hiveoptimizeindexfilter" %}})**  as well to use file format specific indexes with PPD.
 
 ##### hive.optimize.ppd.storage
 
@@ -274,7 +274,7 @@ should be cached in memory.
 ##### hive.mapjoin.bucket.cache.size
 
 * Default Value: `100`
-* Added In: Hive 0.5.0 (replaced by  **[hive.smbjoin.cache.rows]({{< ref "#hivesmbjoincacherows" >}})**  in Hive 0.12.0)
+* Added In: Hive 0.5.0 (replaced by  **[hive.smbjoin.cache.rows]({{% ref "#hivesmbjoincacherows" %}})**  in Hive 0.12.0)
 
 How many values in each key in the map-joined table should be cached in memory.
 
@@ -324,7 +324,7 @@ Whether Hive ignores the mapjoin hint.
 ##### hive.smbjoin.cache.rows
 
 * Default Value: `10000`
-* Added In: Hive 0.12.0 with [HIVE-4440](https://issues.apache.org/jira/browse/HIVE-4440) (replaces  **[hive.mapjoin.bucket.cache.size]({{< ref "#hivemapjoinbucketcachesize" >}})** )
+* Added In: Hive 0.12.0 with [HIVE-4440](https://issues.apache.org/jira/browse/HIVE-4440) (replaces  **[hive.mapjoin.bucket.cache.size]({{% ref "#hivemapjoinbucketcachesize" %}})** )
 
 How many rows with the same key value should be cached in memory per sort-merge-bucket joined table.
 
@@ -341,14 +341,14 @@ Whether a MapJoin hashtable should use optimized (size-wise) keys, allowing the 
 * Default Value: `true`
 * Added In: Hive 0.14.0 with [HIVE-6430](https://issues.apache.org/jira/browse/HIVE-6430)
 
-Whether Hive should use a memory-optimized hash table for MapJoin. Only works on [Tez]({{< ref "#tez" >}}) and [Spark]({{< ref "#spark" >}}), because memory-optimized hash table cannot be serialized. (Spark is supported starting from Hive 1.3.0, with [HIVE-11180](https://issues.apache.org/jira/browse/HIVE-11180).)
+Whether Hive should use a memory-optimized hash table for MapJoin. Only works on [Tez]({{% ref "#tez" %}}) and [Spark]({{% ref "#spark" %}}), because memory-optimized hash table cannot be serialized. (Spark is supported starting from Hive 1.3.0, with [HIVE-11180](https://issues.apache.org/jira/browse/HIVE-11180).)
 
 ##### hive.mapjoin.optimized.hashtable.wbsize
 
 * Default Value: `10485760 (10 * 1024 * 1024)`
 * Added In: Hive 0.14.0 with [HIVE-6430](https://issues.apache.org/jira/browse/HIVE-6430)
 
-Optimized hashtable (see  **[hive.mapjoin.optimized.hashtable]({{< ref "#hivemapjoinoptimizedhashtable" >}})** ) uses a chain of buffers to store data. This is one buffer size. Hashtable may be slightly faster if this is larger, but for small joins unnecessary memory will be allocated and then trimmed.
+Optimized hashtable (see  **[hive.mapjoin.optimized.hashtable]({{% ref "#hivemapjoinoptimizedhashtable" %}})** ) uses a chain of buffers to store data. This is one buffer size. Hashtable may be slightly faster if this is larger, but for small joins unnecessary memory will be allocated and then trimmed.
 
 ##### hive.mapjoin.lazy.hashtable
 
@@ -363,14 +363,14 @@ Whether a MapJoin hashtable should deserialize values on demand. Depending on ho
 * Default Value: `100000`
 * Added In: Hive 0.7.0 with [HIVE-1642](https://issues.apache.org/jira/browse/HIVE-1642)
 
-Initial capacity of mapjoin hashtable if statistics are absent, or if  **[hive.hashtable.key.count.adjustment]({{< ref "#hivehashtablekeycountadjustment" >}})**  is set to 0.
+Initial capacity of mapjoin hashtable if statistics are absent, or if  **[hive.hashtable.key.count.adjustment]({{% ref "#hivehashtablekeycountadjustment" %}})**  is set to 0.
 
 ##### hive.hashtable.key.count.adjustment
 
 * Default Value: `1.0`
 * Added In: Hive 0.14.0 with [HIVE-7616](https://issues.apache.org/jira/browse/HIVE-7616)
 
-Adjustment to mapjoin hashtable size derived from table and column statistics; the estimate  of the number of keys is divided by this value. If the value is 0, statistics are not used  and  **[hive.hashtable.initialCapacity]({{< ref "#hivehashtableinitialcapacity" >}})**  is used instead.
+Adjustment to mapjoin hashtable size derived from table and column statistics; the estimate  of the number of keys is divided by this value. If the value is 0, statistics are not used  and  **[hive.hashtable.initialCapacity]({{% ref "#hivehashtableinitialcapacity" %}})**  is used instead.
 
 ##### hive.hashtable.loadfactor
 
@@ -395,7 +395,7 @@ In the process of Mapjoin, the key/value will be held in the hashtable. This val
 * Default Value: `false`
 * Added In: Hive 0.6.0
 
-Whether to enable skew join optimization.  (Also see  **[hive.optimize.skewjoin.compiletime]({{< ref "#hiveoptimizeskewjoincompiletime" >}})** .)
+Whether to enable skew join optimization.  (Also see  **[hive.optimize.skewjoin.compiletime]({{% ref "#hiveoptimizeskewjoincompiletime" %}})** .)
 
 ##### hive.skewjoin.key
 
@@ -409,14 +409,14 @@ Determine if we get a skew key in join. If we see more than the specified number
 * Default Value: `10000`
 * Added In: Hive 0.6.0
 
-Determine the number of map task used in the follow up map join job for a skew join. It should be used together with  **[hive.skewjoin.mapjoin.min.split]({{< ref "#hiveskewjoinmapjoinminsplit" >}})**  to perform a fine grained control.
+Determine the number of map task used in the follow up map join job for a skew join. It should be used together with  **[hive.skewjoin.mapjoin.min.split]({{% ref "#hiveskewjoinmapjoinminsplit" %}})**  to perform a fine grained control.
 
 ##### hive.skewjoin.mapjoin.min.split
 
 * Default Value: `33554432`
 * Added In: Hive 0.6.0
 
-Determine the number of map task at most used in the follow up map join job for a skew join by specifying the minimum split size. It should be used together with  **[hive.skewjoin.mapjoin.map.tasks]({{< ref "#hiveskewjoinmapjoinmaptasks" >}})**  to perform a fine grained control.
+Determine the number of map task at most used in the follow up map join job for a skew join by specifying the minimum split size. It should be used together with  **[hive.skewjoin.mapjoin.map.tasks]({{% ref "#hiveskewjoinmapjoinmaptasks" %}})**  to perform a fine grained control.
 
 ##### hive.optimize.skewjoin.compiletime
 
@@ -425,19 +425,19 @@ Determine the number of map task at most used in the follow up map join job for 
 
 Whether to create a separate plan for skewed keys for the tables in the join. This is based on the skewed keys stored in the metadata. At compile time, the plan is broken into different joins: one for the skewed keys, and the other for the remaining keys. And then, a union is performed for the two joins generated above. So unless the same skewed key is present in both the joined tables, the join for the skewed key will be performed as a map-side join.
 
-The main difference between this paramater and  **[hive.optimize.skewjoin]({{< ref "#hiveoptimizeskewjoin" >}})**  is that this parameter uses the skew information stored in the metastore to optimize the plan at compile time itself. If there is no skew information in the metadata, this parameter will not have any effect.  
-Both **hive.optimize.skewjoin.compiletime** and  **[hive.optimize.skewjoin]({{< ref "#hiveoptimizeskewjoin" >}})**  should be set to true. (Ideally,  **[hive.optimize.skewjoin]({{< ref "#hiveoptimizeskewjoin" >}})**  should be renamed as  ***hive.optimize.skewjoin.runtime*** , but for backward compatibility that has not been done.)
+The main difference between this paramater and  **[hive.optimize.skewjoin]({{% ref "#hiveoptimizeskewjoin" %}})**  is that this parameter uses the skew information stored in the metastore to optimize the plan at compile time itself. If there is no skew information in the metadata, this parameter will not have any effect.  
+Both **hive.optimize.skewjoin.compiletime** and  **[hive.optimize.skewjoin]({{% ref "#hiveoptimizeskewjoin" %}})**  should be set to true. (Ideally,  **[hive.optimize.skewjoin]({{% ref "#hiveoptimizeskewjoin" %}})**  should be renamed as  ***hive.optimize.skewjoin.runtime*** , but for backward compatibility that has not been done.)
 
-If the skew information is correctly stored in the metadata, **hive.optimize.skewjoin.compiletime** will change the query plan to take care of it, and  **[hive.optimize.skewjoin]({{< ref "#hiveoptimizeskewjoin" >}})**  will be a no-op.
+If the skew information is correctly stored in the metadata, **hive.optimize.skewjoin.compiletime** will change the query plan to take care of it, and  **[hive.optimize.skewjoin]({{% ref "#hiveoptimizeskewjoin" %}})**  will be a no-op.
 
 ##### hive.optimize.union.remove
 
 * Default Value: `false`
 * Added In: Hive 0.10.0 with [HIVE-3276](https://issues.apache.org/jira/browse/HIVE-3276)
 
-Whether to remove the union and push the operators between union and the filesink above union. This avoids an extra scan of the output by union. This is independently useful for union queries, and especially useful when  **[hive.optimize.skewjoin.compiletime]({{< ref "#hiveoptimizeskewjoincompiletime" >}})**  is set to true, since an extra union is inserted.
+Whether to remove the union and push the operators between union and the filesink above union. This avoids an extra scan of the output by union. This is independently useful for union queries, and especially useful when  **[hive.optimize.skewjoin.compiletime]({{% ref "#hiveoptimizeskewjoincompiletime" %}})**  is set to true, since an extra union is inserted.
 
-The merge is triggered if either of  **[hive.merge.mapfiles]({{< ref "#hivemergemapfiles" >}})**  or  **[hive.merge.mapredfiles]({{< ref "#hivemergemapredfiles" >}})**  is set to true. If the user has set  **[hive.merge.mapfiles]({{< ref "#hivemergemapfiles" >}})**  to true and  **[hive.merge.mapredfiles]({{< ref "#hivemergemapredfiles" >}})**  to false, the idea was that the number of reducers are few, so the number of files anyway is small. However, with this optimization, we are increasing the number of files possibly by a big margin. So, we merge aggresively.
+The merge is triggered if either of  **[hive.merge.mapfiles]({{% ref "#hivemergemapfiles" %}})**  or  **[hive.merge.mapredfiles]({{% ref "#hivemergemapredfiles" %}})**  is set to true. If the user has set  **[hive.merge.mapfiles]({{% ref "#hivemergemapfiles" %}})**  to true and  **[hive.merge.mapredfiles]({{% ref "#hivemergemapredfiles" %}})**  to false, the idea was that the number of reducers are few, so the number of files anyway is small. However, with this optimization, we are increasing the number of files possibly by a big margin. So, we merge aggresively.
 
 ##### hive.mapred.supports.subdirectories
 
@@ -454,7 +454,7 @@ Whether the version of Hadoop which is running supports sub-directories for tabl
 	+ Hive 2.x: `strict` ([HIVE-12413](https://issues.apache.org/jira/browse/HIVE-12413))
 * Added In: Hive 0.3.0
 
-The mode in which the Hive operations are being performed. In `strict` mode, some risky queries are not allowed to run. For example, full table scans are prevented (see [HIVE-10454](https://issues.apache.org/jira/browse/HIVE-10454)) and [ORDER BY]({{< ref "#order-by" >}}) requires a LIMIT clause.
+The mode in which the Hive operations are being performed. In `strict` mode, some risky queries are not allowed to run. For example, full table scans are prevented (see [HIVE-10454](https://issues.apache.org/jira/browse/HIVE-10454)) and [ORDER BY]({{% ref "#order-by" %}}) requires a LIMIT clause.
 
 ##### hive.exec.script.maxerrsize
 
@@ -489,11 +489,11 @@ Name of the environment variable that holds the unique script operator ID in the
 * Default Value: `hive.txn.valid.txns,hive.script.operator.env.blacklist`
 * Added In: Hive 0.14.0 with [HIVE-8341](https://issues.apache.org/jira/browse/HIVE-8341)
 
-By default all values in the HiveConf object are converted to environment variables of the same name as the key (with '.' (dot) converted to '_' (underscore)) and set as part of the script operator's environment.  However, some values can grow large or are not amenable to translation to environment variables.  This value gives a comma separated list of configuration values that will not be set in the environment when calling a script operator.  By default the valid [transaction]({{< ref "hive-transactions" >}}) list is excluded, as it can grow large and is sometimes compressed, which does not translate well to an environment variable.
+By default all values in the HiveConf object are converted to environment variables of the same name as the key (with '.' (dot) converted to '_' (underscore)) and set as part of the script operator's environment.  However, some values can grow large or are not amenable to translation to environment variables.  This value gives a comma separated list of configuration values that will not be set in the environment when calling a script operator.  By default the valid [transaction]({{% ref "hive-transactions" %}}) list is excluded, as it can grow large and is sometimes compressed, which does not translate well to an environment variable.
 
 ##### Also see:
 
-* **[SerDes]({{< ref "#serdes" >}})**  for more **hive.script.*** configuration properties
+* **[SerDes]({{% ref "#serdes" %}})**  for more **hive.script.*** configuration properties
 ##### hive.exec.compress.output
 
 * Default Value: `false`
@@ -535,7 +535,7 @@ Whether to provide the row offset virtual column.
 * Added In: Hive 0.5.0
 * Removed In: Hive 0.13.0 with [HIVE-4518](https://issues.apache.org/jira/browse/HIVE-4518)
 
-Whether Hive should periodically update task progress counters during execution. Enabling this allows task progress to be monitored more closely in the job tracker, but may impose a performance penalty. This flag is automatically set to true for jobs with  **[hive.exec.dynamic.partition]({{< ref "#hiveexecdynamicpartition" >}})**  set to true. (This configuration property was removed in release 0.13.0.)
+Whether Hive should periodically update task progress counters during execution. Enabling this allows task progress to be monitored more closely in the job tracker, but may impose a performance penalty. This flag is automatically set to true for jobs with  **[hive.exec.dynamic.partition]({{% ref "#hiveexecdynamicpartition" %}})**  set to true. (This configuration property was removed in release 0.13.0.)
 
 ##### hive.counters.group.name
 
@@ -672,9 +672,9 @@ The interval with which to poll the JobTracker for the counters the running job.
 	+ Hive 2.x: removed, which effectively makes it always true ([HIVE-12331](https://issues.apache.org/jira/browse/HIVE-12331))
 * Added In: Hive 0.6.0
 
-Whether [bucketing]({{< ref "languagemanual-ddl-bucketedtables" >}}) is enforced. If `true`, while inserting into the table, bucketing is enforced.
+Whether [bucketing]({{% ref "languagemanual-ddl-bucketedtables" %}}) is enforced. If `true`, while inserting into the table, bucketing is enforced.
 
-Set to `true` to support [INSERT ... VALUES, UPDATE, and DELETE]({{< ref "hive-transactions" >}}) transactions in Hive 0.14.0 and 1.x.x. For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+Set to `true` to support [INSERT ... VALUES, UPDATE, and DELETE]({{% ref "hive-transactions" %}}) transactions in Hive 0.14.0 and 1.x.x. For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 ##### hive.enforce.sorting
 
@@ -691,11 +691,11 @@ Whether sorting is enforced. If true, while inserting into the table, sorting is
 * Default Value: `true`
 * Added In: Hive 0.11.0 with [HIVE-4240](https://issues.apache.org/jira/browse/HIVE-4240)
 
-If  **[hive.enforce.bucketing]({{< ref "#hiveenforcebucketing" >}})**  or  **[hive.enforce.sorting]({{< ref "#hiveenforcesorting" >}})**  is true, don't create a reducer for enforcing bucketing/sorting for queries of the form:
+If  **[hive.enforce.bucketing]({{% ref "#hiveenforcebucketing" %}})**  or  **[hive.enforce.sorting]({{% ref "#hiveenforcesorting" %}})**  is true, don't create a reducer for enforcing bucketing/sorting for queries of the form:
 
 `insert overwrite table T2 select * from T1;`
 
-where T1 and T2 are bucketed/sorted by the same keys into the same number of buckets. (In Hive 2.0.0 and later, this parameter does not depend on  **[hive.enforce.bucketing]({{< ref "#hiveenforcebucketing" >}})**  or  **[hive.enforce.sorting]({{< ref "#hiveenforcesorting" >}})** .)
+where T1 and T2 are bucketed/sorted by the same keys into the same number of buckets. (In Hive 2.0.0 and later, this parameter does not depend on  **[hive.enforce.bucketing]({{% ref "#hiveenforcebucketing" %}})**  or  **[hive.enforce.sorting]({{% ref "#hiveenforcesorting" %}})** .)
 
 ##### hive.optimize.reducededuplication
 
@@ -716,28 +716,28 @@ Reduce deduplication merges two RSs (*reduce sink operators*) by moving key/part
 * Default Value: `false`
 * Added In: Hive 0.12.0 with [HIVE-2206](https://issues.apache.org/jira/browse/HIVE-2206)
 
-Exploit intra-query correlations. For details see the [Correlation Optimizer]({{< ref "correlation-optimizer" >}}) design document.
+Exploit intra-query correlations. For details see the [Correlation Optimizer]({{% ref "correlation-optimizer" %}}) design document.
 
 ##### hive.optimize.limittranspose
 
 * Default Value: `false`
 * Added In: Hive 2.0.0 with [HIVE-11684](https://issues.apache.org/jira/browse/HIVE-11684), modified by [HIVE-11775](https://issues.apache.org/jira/browse/HIVE-11775)
 
-Whether to push a limit through left/right outer join or union. If the value is true and the size of the outer input is reduced enough (as specified in  [**hive.optimize.limittranspose.reductionpercentage**]({{< ref "#**hive-optimize-limittranspose-reductionpercentage**" >}}) and  [**hive.optimize.limittranspose.reductiontuples**]({{< ref "#**hive-optimize-limittranspose-reductiontuples**" >}})), the limit is pushed to the outer input or union; to remain semantically correct, the limit is kept on top of the join or the union too.
+Whether to push a limit through left/right outer join or union. If the value is true and the size of the outer input is reduced enough (as specified in  [**hive.optimize.limittranspose.reductionpercentage**]({{% ref "#**hive-optimize-limittranspose-reductionpercentage**" %}}) and  [**hive.optimize.limittranspose.reductiontuples**]({{% ref "#**hive-optimize-limittranspose-reductiontuples**" %}})), the limit is pushed to the outer input or union; to remain semantically correct, the limit is kept on top of the join or the union too.
 
 ##### hive.optimize.limittranspose.reductionpercentage
 
 * Default Value: `1.0`
 * Added In: Hive 2.0.0 with [HIVE-11684](https://issues.apache.org/jira/browse/HIVE-11684), modified by [HIVE-11775](https://issues.apache.org/jira/browse/HIVE-11775)
 
-When  [**hive.optimize.limittranspose**]({{< ref "#**hive-optimize-limittranspose**" >}}) is true, this variable specifies the minimal percentage (fractional) reduction of the size of the outer input of the join or input of the union that the optimizer should get in order to apply the rule.
+When  [**hive.optimize.limittranspose**]({{% ref "#**hive-optimize-limittranspose**" %}}) is true, this variable specifies the minimal percentage (fractional) reduction of the size of the outer input of the join or input of the union that the optimizer should get in order to apply the rule.
 
 ##### hive.optimize.limittranspose.reductiontuples
 
 * Default Value: `0`
 * Added In: Hive 2.0.0 with [HIVE-11684](https://issues.apache.org/jira/browse/HIVE-11684), modified by [HIVE-11775](https://issues.apache.org/jira/browse/HIVE-11775)
 
-When  [**hive.optimize.limittranspose**]({{< ref "#**hive-optimize-limittranspose**" >}}) is true, this variable specifies the minimal reduction in the number of tuples of the outer input of the join or input of the union that the optimizer should get in order to apply the rule.
+When  [**hive.optimize.limittranspose**]({{% ref "#**hive-optimize-limittranspose**" %}}) is true, this variable specifies the minimal reduction in the number of tuples of the outer input of the join or input of the union that the optimizer should get in order to apply the rule.
 
 ##### hive.optimize.filter.stats.reduction
 
@@ -757,10 +757,10 @@ When enabled, dynamic partitioning column will be globally sorted. This way we c
 
 ##### hive.cbo.enable
 
-* Default Value: `false` in Hive 0.14.*; `true` in Hive [1.1.0]({{< ref "#1-1-0" >}}) and later ( [HIVE-8395](https://issues.apache.org/jira/browse/HIVE-8395) )
+* Default Value: `false` in Hive 0.14.*; `true` in Hive [1.1.0]({{% ref "#1-1-0" %}}) and later ( [HIVE-8395](https://issues.apache.org/jira/browse/HIVE-8395) )
 * Added In: Hive 0.14.0 with [HIVE-5775](https://issues.apache.org/jira/browse/HIVE-5775) and [HIVE-7946](https://issues.apache.org/jira/browse/HIVE-7946)
 
-When true, the [cost based optimizer]({{< ref "cost-based-optimization-in-hive" >}}), which uses the Calcite framework, will be enabled.
+When true, the [cost based optimizer]({{% ref "cost-based-optimization-in-hive" %}}), which uses the Calcite framework, will be enabled.
 
 ##### hive.cbo.fallback.strategy
 
@@ -800,30 +800,30 @@ When true, this optimization will try to not scan any rows from tables which can
 * Default Value: `false` prior to Hive 0.9.0; `true` in Hive 0.9.0 and later ([HIVE-2835](https://issues.apache.org/jira/browse/HIVE-2835))
 * Added In: Hive 0.6.0
 
-Whether or not to allow [dynamic partitions]({{< ref "#dynamic-partitions" >}}) in DML/DDL.
+Whether or not to allow [dynamic partitions]({{% ref "#dynamic-partitions" %}}) in DML/DDL.
 
 ##### hive.exec.dynamic.partition.mode
 
 * Default Value: `strict`
 * Added In: Hive 0.6.0
 
-In `strict` mode, the user must specify at least one static partition in case the user accidentally overwrites all partitions. In `nonstrict` mode all partitions are allowed to be [dynamic]({{< ref "#dynamic" >}}).
+In `strict` mode, the user must specify at least one static partition in case the user accidentally overwrites all partitions. In `nonstrict` mode all partitions are allowed to be [dynamic]({{% ref "#dynamic" %}}).
 
-Set to `nonstrict` to support [INSERT ... VALUES, UPDATE, and DELETE]({{< ref "hive-transactions" >}}) transactions (Hive 0.14.0 and later). For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+Set to `nonstrict` to support [INSERT ... VALUES, UPDATE, and DELETE]({{% ref "hive-transactions" %}}) transactions (Hive 0.14.0 and later). For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 ##### hive.exec.max.dynamic.partitions
 
 * Default Value: `1000`
 * Added In: Hive 0.6.0
 
-Maximum number of [dynamic partitions]({{< ref "#dynamic-partitions" >}}) allowed to be created in total.
+Maximum number of [dynamic partitions]({{% ref "#dynamic-partitions" %}}) allowed to be created in total.
 
 ##### hive.exec.max.dynamic.partitions.pernode
 
 * Default Value: `100`
 * Added In: Hive 0.6.0
 
-Maximum number of [dynamic partitions]({{< ref "#dynamic-partitions" >}}) allowed to be created in each mapper/reducer node.
+Maximum number of [dynamic partitions]({{% ref "#dynamic-partitions" %}}) allowed to be created in each mapper/reducer node.
 
 ##### hive.exec.max.created.files
 
@@ -858,7 +858,7 @@ Lets Hive determine whether to run in local mode automatically.
 * Default Value: `134217728`
 * Added In: Hive 0.7.0 with [HIVE-1408](https://issues.apache.org/jira/browse/HIVE-1408)
 
-When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is true, input bytes should be less than this for local mode.
+When  **[hive.exec.mode.local.auto]({{% ref "#hiveexecmodelocalauto" %}})**  is true, input bytes should be less than this for local mode.
 
 ##### hive.exec.mode.local.auto.tasks.max
 
@@ -866,21 +866,21 @@ When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is 
 * Added In: Hive 0.7.0 with [HIVE-1408](https://issues.apache.org/jira/browse/HIVE-1408)
 * Removed In: Hive 0.9.0 with [HIVE-2651](https://issues.apache.org/jira/browse/HIVE-2651)
 
-When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is true, the number of tasks should be less than this for local mode. Replaced in Hive 0.9.0 by   **[hive.exec.mode.local.auto.input.files.max]({{< ref "#hive-exec-mode-local-auto-input-files-max" >}}).** 
+When  **[hive.exec.mode.local.auto]({{% ref "#hiveexecmodelocalauto" %}})**  is true, the number of tasks should be less than this for local mode. Replaced in Hive 0.9.0 by   **[hive.exec.mode.local.auto.input.files.max]({{% ref "#hive-exec-mode-local-auto-input-files-max" %}}).** 
 
 ##### hive.exec.mode.local **.auto.input.files.max**
 
 * Default Value: `4`
 * Added In: Hive 0.9.0 with [HIVE-2651](https://issues.apache.org/jira/browse/HIVE-2651)
 
-When  **[hive.exec.mode.local.auto]({{< ref "#hiveexecmodelocalauto" >}})**  is true, the number of tasks should be less than this for local mode.
+When  **[hive.exec.mode.local.auto]({{% ref "#hiveexecmodelocalauto" %}})**  is true, the number of tasks should be less than this for local mode.
 
 ##### hive.exec.drop.ignorenonexistent
 
 * Default Value: `true`
 * Added In: Hive 0.7.0 with [HIVE-1856](https://issues.apache.org/jira/browse/HIVE-1856) and [HIVE-1858](https://issues.apache.org/jira/browse/HIVE-1858)
 
-Do not report an error if DROP TABLE/VIEW/PARTITION/INDEX/TEMPORARY FUNCTION specifies a non-existent table/view. Also applies to [permanent functions]({{< ref "#permanent-functions" >}}) as of Hive 0.13.0.
+Do not report an error if DROP TABLE/VIEW/PARTITION/INDEX/TEMPORARY FUNCTION specifies a non-existent table/view. Also applies to [permanent functions]({{% ref "#permanent-functions" %}}) as of Hive 0.13.0.
 
 ##### hive.exec.show.job.failure.debug.info
 
@@ -908,14 +908,14 @@ Default property values for newly created tables.
 * Default Value: `true`
 * Added In: Hive 0.7.0
 
-This enables [substitution]({{< ref "languagemanual-variablesubstitution" >}}) using syntax like `${var`} `${system:var`} and `${env:var`}.
+This enables [substitution]({{% ref "languagemanual-variablesubstitution" %}}) using syntax like `${var`} `${system:var`} and `${env:var`}.
 
 ##### hive.error.on.empty.partition
 
 * Default Value: `false`
 * Added In: Hive 0.7.0
 
-Whether to throw an exception if [dynamic partition insert]({{< ref "#dynamic-partition-insert" >}}) generates empty results.
+Whether to throw an exception if [dynamic partition insert]({{% ref "#dynamic-partition-insert" %}}) generates empty results.
 
 ##### hive.exim.uri.scheme.whitelist
 
@@ -993,16 +993,16 @@ The class responsible logging client side performance metrics. Must be a subclas
 * Added In: Hive 0.8.1 with [HIVE-2181](https://issues.apache.org/jira/browse/HIVE-2181)
 * Fixed In:  Hive 1.3.0 with [HIVE-10415](https://issues.apache.org/jira/browse/HIVE-10415)
 
-To clean up the Hive [scratch directory]({{< ref "#scratch-directory" >}}) while starting the Hive server (or HiveServer2). This is not an option for a multi-user environment since it will accidentally remove the scratch directory in use.
+To clean up the Hive [scratch directory]({{% ref "#scratch-directory" %}}) while starting the Hive server (or HiveServer2). This is not an option for a multi-user environment since it will accidentally remove the scratch directory in use.
 
 ##### hive.scratchdir.lock
 
 * Default Value: `false`
 * Added In: Hive 1.3.0 and 2.1.0 (but not 2.0.x) with [HIVE-13429](https://issues.apache.org/jira/browse/HIVE-13429)
 
-When true, holds a lock file in the scratch directory. If a Hive process dies and accidentally leaves a dangling scratchdir behind, the [cleardanglingscratchdir tool]({{< ref "#cleardanglingscratchdir-tool" >}}) will remove it.
+When true, holds a lock file in the scratch directory. If a Hive process dies and accidentally leaves a dangling scratchdir behind, the [cleardanglingscratchdir tool]({{% ref "#cleardanglingscratchdir-tool" %}}) will remove it.
 
-When false, does not create a lock file and therefore the [cleardanglingscratchdir tool]({{< ref "#cleardanglingscratchdir-tool" >}}) cannot remove any dangling scratch directories.
+When false, does not create a lock file and therefore the [cleardanglingscratchdir tool]({{% ref "#cleardanglingscratchdir-tool" %}}) cannot remove any dangling scratch directories.
 
 ##### hive.output.file.extension
 
@@ -1071,21 +1071,21 @@ If the bucketing/sorting properties of the table exactly match the grouping key,
 * Added In: Hive 0.11.0 with [HIVE-581](https://issues.apache.org/jira/browse/HIVE-581)
 * Deprecated In: Hive 2.2.0 with [HIVE-15797](https://issues.apache.org/jira/browse/HIVE-15797)
 
-Whether to enable using Column Position Alias in [GROUP BY]({{< ref "languagemanual-groupby" >}}) and [ORDER BY]({{< ref "#order-by" >}}) clauses of queries (deprecated as of Hive 2.2.0; use [hive.groupby.position.alias]({{< ref "#hivegroupbypositionalias" >}}) and [hive.orderby.position.alias]({{< ref "#hiveorderbypositionalias" >}}) instead).
+Whether to enable using Column Position Alias in [GROUP BY]({{% ref "languagemanual-groupby" %}}) and [ORDER BY]({{% ref "#order-by" %}}) clauses of queries (deprecated as of Hive 2.2.0; use [hive.groupby.position.alias]({{% ref "#hivegroupbypositionalias" %}}) and [hive.orderby.position.alias]({{% ref "#hiveorderbypositionalias" %}}) instead).
 
 ##### hive.groupby.position.alias
 
 * Default Value: `false`
 * Added In: Hive 2.2.0 with [HIVE-15797](https://issues.apache.org/jira/browse/HIVE-15797)
 
-Whether to enable using Column Position Alias in [GROUP BY]({{< ref "languagemanual-groupby" >}}).
+Whether to enable using Column Position Alias in [GROUP BY]({{% ref "languagemanual-groupby" %}}).
 
 ##### hive.orderby.position.alias
 
 * Default Value: `true`
 * Added In: Hive 2.2.0 with [HIVE-15797](https://issues.apache.org/jira/browse/HIVE-15797)
 
-Whether to enable using Column Position Alias in [ORDER BY]({{< ref "#order-by" >}}).
+Whether to enable using Column Position Alias in [ORDER BY]({{% ref "#order-by" %}}).
 
 ##### hive.fetch.task.aggr
 
@@ -1099,7 +1099,7 @@ Aggregation queries with no group-by clause (for example, `select count(*) from 
 * Default Value: ``-1``  in Hive 0.13.0 and 0.13.1,  `1073741824` (1 GB) in Hive 0.14.0 and later
 * Added In: Hive 0.13.0 with [HIVE-3990](https://issues.apache.org/jira/browse/HIVE-3990); default changed in Hive 0.14.0 with [HIVE-7397](https://issues.apache.org/jira/browse/HIVE-7397)
 
-Input threshold (in bytes) for applying  [**hive.fetch.task.conversion**]({{< ref "#**hive-fetch-task-conversion**" >}}). If target table is native, input length is calculated by summation of file lengths. If it's not native, the storage handler for the table can optionally implement the org.apache.hadoop.hive.ql.metadata.InputEstimator interface. A negative threshold means  [**hive.fetch.task.conversion**]({{< ref "#**hive-fetch-task-conversion**" >}}) is applied without any input length threshold.
+Input threshold (in bytes) for applying  [**hive.fetch.task.conversion**]({{% ref "#**hive-fetch-task-conversion**" %}}). If target table is native, input length is calculated by summation of file lengths. If it's not native, the storage handler for the table can optionally implement the org.apache.hadoop.hive.ql.metadata.InputEstimator interface. A negative threshold means  [**hive.fetch.task.conversion**]({{% ref "#**hive-fetch-task-conversion**" %}}) is applied without any input length threshold.
 
 ##### hive.limit.pushdown.memory.usage
 
@@ -1153,13 +1153,13 @@ Check if a query plan contains a cross product. If there is one, output a warnin
 * Default Value: `true`
 * Added In: Hive 0.13.0 with [HIVE-6689](https://issues.apache.org/jira/browse/HIVE-6689)
 
-In older Hive versions (0.10 and earlier) no distinction was made between partition columns or non-partition columns while displaying columns in [DESCRIBE TABLE]({{< ref "#describe-table" >}}). From version 0.12 onwards, they are displayed separately. This flag will let you get the old behavior, if desired. See test-case in [patch for HIVE-6689](https://issues.apache.org/jira/secure/attachment/12635956/HIVE-6689.2.patch).
+In older Hive versions (0.10 and earlier) no distinction was made between partition columns or non-partition columns while displaying columns in [DESCRIBE TABLE]({{% ref "#describe-table" %}}). From version 0.12 onwards, they are displayed separately. This flag will let you get the old behavior, if desired. See test-case in [patch for HIVE-6689](https://issues.apache.org/jira/secure/attachment/12635956/HIVE-6689.2.patch).
 
 ##### hive.limit.query.max.table.partition
 
 * Default Value: `-1`
 * Added In: Hive 0.13.0 with [HIVE-6492](https://issues.apache.org/jira/browse/HIVE-6492)
-* Deprecated In: Hive 2.2.0 with [HIVE-13884](https://issues.apache.org/jira/browse/HIVE-13884) (See  **[hive.metastore.limit.partition.request]({{< ref "#hivemetastorelimitpartitionrequest" >}})** .)
+* Deprecated In: Hive 2.2.0 with [HIVE-13884](https://issues.apache.org/jira/browse/HIVE-13884) (See  **[hive.metastore.limit.partition.request]({{% ref "#hivemetastorelimitpartitionrequest" %}})** .)
 * Removed In: Hive 3.0.0 with [HIVE-17965](https://issues.apache.org/jira/browse/HIVE-17965)
 
 To protect the cluster, this controls how many partitions can be scanned for each partitioned table. The default value "-1" means no limit. The limit on partitions does not affect metadata-only queries.
@@ -1168,7 +1168,7 @@ To protect the cluster, this controls how many partitions can be scanned for eac
 
 * Default Value: `0002`
 * Added In: (none, but temporarily in patches for [HIVE-2504](https://issues.apache.org/jira/browse/HIVE-2504) before release 0.9.0)
-* Removed In: Hive 0.9.0 ([HIVE-2504-1.patch](https://issues.apache.org/jira/secure/attachment/12521986/HIVE-2504-1.patch)), replaced by  **[hive.warehouse.subdir.inherit.perms]({{< ref "#hivewarehousesubdirinheritperms" >}})**
+* Removed In: Hive 0.9.0 ([HIVE-2504-1.patch](https://issues.apache.org/jira/secure/attachment/12521986/HIVE-2504-1.patch)), replaced by  **[hive.warehouse.subdir.inherit.perms]({{% ref "#hivewarehousesubdirinheritperms" %}})**
 
 Obsolete:  The `dfs.umask` value for the Hive-created folders.
 
@@ -1217,7 +1217,7 @@ Whether to enable the [constant propagation](http://en.wikipedia.org/wiki/Const
 ##### **hive.entity.capture.transform**
 
 * Default Value: `false`
-* Added In: Hive [1.1.0]({{< ref "#1-1-0" >}}) with [HIVE-8938](https://issues.apache.org/jira/browse/HIVE-8938)
+* Added In: Hive [1.1.0]({{% ref "#1-1-0" %}}) with [HIVE-8938](https://issues.apache.org/jira/browse/HIVE-8938)
 
 Enable capturing compiler read entity of transform URI which can be introspected in the semantic and exec hooks.
 
@@ -1226,23 +1226,23 @@ Enable capturing compiler read entity of transform URI which can be introspected
 * Default Value: `true`
 * Added In: Hive 1.2.0 with [HIVE-6617](https://issues.apache.org/jira/browse/HIVE-6617)
 
-Whether to  enable support for SQL2011 reserved keywords.  When enabled, will support (part of) SQL2011 [reserved keywords]({{< ref "#reserved-keywords" >}}).
+Whether to  enable support for SQL2011 reserved keywords.  When enabled, will support (part of) SQL2011 [reserved keywords]({{% ref "#reserved-keywords" %}}).
 
 ##### **hive.log.explain.output**
 
 * Default Value: `false`
-* Added In: [1.1.0]({{< ref "#1-1-0" >}}) with [HIVE-8600](https://issues.apache.org/jira/browse/HIVE-8600)
+* Added In: [1.1.0]({{% ref "#1-1-0" %}}) with [HIVE-8600](https://issues.apache.org/jira/browse/HIVE-8600)
 
-When enabled, will log [EXPLAIN EXTENDED]({{< ref "#explain-extended" >}}) output for the query at log4j INFO level and in HiveServer2 WebUI / Drilldown / Query Plan.
+When enabled, will log [EXPLAIN EXTENDED]({{% ref "#explain-extended" %}}) output for the query at log4j INFO level and in HiveServer2 WebUI / Drilldown / Query Plan.
 
-From [Hive 3.1.0](https://issues.apache.org/jira/browse/HIVE-18469) onwards, this configuration property only logs to the log4j INFO. T o log the [EXPLAIN EXTENDED]({{< ref "#explain-extended" >}}) output in WebUI / Drilldown / Query Plan from Hive 3.1.0 onwards, use  **[hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})** .  
+From [Hive 3.1.0](https://issues.apache.org/jira/browse/HIVE-18469) onwards, this configuration property only logs to the log4j INFO. T o log the [EXPLAIN EXTENDED]({{% ref "#explain-extended" %}}) output in WebUI / Drilldown / Query Plan from Hive 3.1.0 onwards, use  **[hive.server2.webui.explain.output]({{% ref "#hive-server2-webui-explain-output" %}})** .  
 
 ##### **hive.explain.user**
 
 * Default Value: `false`
 * Added In: Hive 1.2.0 with [HIVE-9780](https://issues.apache.org/jira/browse/HIVE-9780)
 
-Whether to [show explain result at user level]({{< ref "#show-explain-result-at-user-level" >}}).  When enabled, will log EXPLAIN output for the query at user level. (Tez only.  For Spark, see  [**hive.spark.explain.user**]({{< ref "#hivesparkexplainuser" >}}).)
+Whether to [show explain result at user level]({{% ref "#show-explain-result-at-user-level" %}}).  When enabled, will log EXPLAIN output for the query at user level. (Tez only.  For Spark, see  [**hive.spark.explain.user**]({{% ref "#hivesparkexplainuser" %}}).)
 
 ##### **hive.typecheck.on.insert**
 
@@ -1259,14 +1259,14 @@ Whether to check, convert, and normalize partition value specified in partition 
 
 Expects one of [`memory`, `ssd`, `default`].
 
-Define the storage policy for [temporary tables]({{< ref "#temporary-tables" >}}). Choices between memory, ssd and default. See [HDFS Storage Types and Storage Policies](http://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-hdfs/ArchivalStorage.html#Storage_Types_and_Storage_Policies).
+Define the storage policy for [temporary tables]({{% ref "#temporary-tables" %}}). Choices between memory, ssd and default. See [HDFS Storage Types and Storage Policies](http://hadoop.apache.org/docs/r2.6.0/hadoop-project-dist/hadoop-hdfs/ArchivalStorage.html#Storage_Types_and_Storage_Policies).
 
 ##### **hive.optimize.distinct.rewrite**
 
 * Default Value: `true`
 * Added In: Hive 1.2.0 with [HIVE-10568](https://issues.apache.org/jira/browse/HIVE-10568)
 
-When applicable, this optimization rewrites  [distinct aggregates]({{< ref "#distinct-aggregates" >}})  from a single-stage to multi-stage aggregation. This may not be optimal in all cases. Ideally, whether to trigger it or not should be a cost-based decision. Until Hive formalizes the cost model for this, this is config driven.
+When applicable, this optimization rewrites  [distinct aggregates]({{% ref "#distinct-aggregates" %}})  from a single-stage to multi-stage aggregation. This may not be optimal in all cases. Ideally, whether to trigger it or not should be a cost-based decision. Until Hive formalizes the cost model for this, this is config driven.
 
 ##### **hive.optimize.point.lookup**
 
@@ -1303,7 +1303,7 @@ Refer to  <https://logging.apache.org/log4j/2.x/manual/async.html>  for benefit
 * Default Value: 0
 * Added In: Hive 2.2.0 with [HIVE-12077](https://issues.apache.org/jira/browse/HIVE-12077)
 
-To run the [MSCK REPAIR TABLE]({{< ref "#msck-repair-table" >}}) command batch-wise. If there is a large number of untracked partitions, by configuring a value to the property it will execute in batches internally. The default value of the property is zero, which means it will execute all the partitions at once.
+To run the [MSCK REPAIR TABLE]({{% ref "#msck-repair-table" %}}) command batch-wise. If there is a large number of untracked partitions, by configuring a value to the property it will execute in batches internally. The default value of the property is zero, which means it will execute all the partitions at once.
 
 #####  ****hive.exec.copyfile.maxnumfiles****
 
@@ -1409,14 +1409,14 @@ The default record writer for writing data to the user scripts.
 
 The default SerDe Hive will use for storage formats that do not specify a SerDe.  Storage formats that currently do not specify a SerDe include 'TextFile, RcFile'.  
 
-See [Registration of Native SerDes]({{< ref "#registration-of-native-serdes" >}}) for more information for storage formats and SerDes.
+See [Registration of Native SerDes]({{% ref "#registration-of-native-serdes" %}}) for more information for storage formats and SerDes.
 
 ##### hive.lazysimple.extended_boolean_literal
 
 * Default Value: `false`
 * Added in: Hive 0.14 with [HIVE-3635](https://issues.apache.org/jira/browse/HIVE-3635)
 
- [LazySimpleSerDe]({{< ref "#lazysimpleserde" >}}) uses this property to determine if it treats 'T', 't', 'F', 'f',  '1', and '0' as extended, legal boolean literals, in addition to 'TRUE' and 'FALSE'.  The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal  boolean literals.
+ [LazySimpleSerDe]({{% ref "#lazysimpleserde" %}}) uses this property to determine if it treats 'T', 't', 'F', 'f',  '1', and '0' as extended, legal boolean literals, in addition to 'TRUE' and 'FALSE'.  The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal  boolean literals.
 
 #### I/O
 
@@ -1436,7 +1436,7 @@ The default input format. Set this to HiveInputFormat if you encounter problems 
 
 ##### Also see:
 
-* **[hive.tez.input.format]({{< ref "#hivetezinputformat" >}})**
+* **[hive.tez.input.format]({{% ref "#hivetezinputformat" %}})**
 ### File Formats
 
 ##### hive.default.fileformat
@@ -1446,14 +1446,14 @@ The default input format. Set this to HiveInputFormat if you encounter problems 
 
 Default file format for CREATE TABLE statement. Options are TextFile, SequenceFile, RCfile, ORC, and Parquet.
 
-Users can explicitly say [CREATE TABLE]({{< ref "#create-table" >}})... STORED AS TEXTFILE|SEQUENCEFILE|RCFILE|ORC|AVRO|INPUTFORMAT...OUTPUTFORMAT... to override. (RCFILE was added in Hive 0.6.0, ORC in 0.11.0, AVRO in 0.14.0, and Parquet in 2.3.0) See [Row Format, Storage Format, and SerDe]({{< ref "#row-format,-storage-format,-and-serde" >}}) for details.
+Users can explicitly say [CREATE TABLE]({{% ref "#create-table" %}})... STORED AS TEXTFILE|SEQUENCEFILE|RCFILE|ORC|AVRO|INPUTFORMAT...OUTPUTFORMAT... to override. (RCFILE was added in Hive 0.6.0, ORC in 0.11.0, AVRO in 0.14.0, and Parquet in 2.3.0) See [Row Format, Storage Format, and SerDe]({{% ref "#row-format,-storage-format,-and-serde" %}}) for details.
 
 ##### hive.default.fileformat.managed
 
 * Default Value: `none`
 * Added In: Hive 1.2.0 with [HIVE-9915](https://issues.apache.org/jira/browse/HIVE-9915)
 
-Default file format for CREATE TABLE statement applied to managed tables only. External tables will be created with format specified by [hive.default.fileformat]({{< ref "#hivedefaultfileformat" >}}). Options are none, TextFile, SequenceFile, RCfile, ORC, and Parquet (as of Hive 2.3.0). Leaving this null will result in using hive.default.fileformat for all native tables. For non-native tables the file format is determined by the storage handler, as shown below (see the  [StorageHandlers]({{< ref "#storagehandlers" >}})  section for more information on managed/external and native/non-native terminology).
+Default file format for CREATE TABLE statement applied to managed tables only. External tables will be created with format specified by [hive.default.fileformat]({{% ref "#hivedefaultfileformat" %}}). Options are none, TextFile, SequenceFile, RCfile, ORC, and Parquet (as of Hive 2.3.0). Leaving this null will result in using hive.default.fileformat for all native tables. For non-native tables the file format is determined by the storage handler, as shown below (see the  [StorageHandlers]({{% ref "#storagehandlers" %}})  section for more information on managed/external and native/non-native terminology).
 
 |  | Native | Non-Native |
 | --- | --- | --- |
@@ -1500,12 +1500,12 @@ File format to use for a query's intermediate results. Options are TextFile, Seq
 
 #### ORC File Format
 
-The ORC file format was introduced in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-3874). See [ORC Files]({{< ref "languagemanual-orc" >}}) for details.
+The ORC file format was introduced in [Hive 0.11.0](https://issues.apache.org/jira/browse/HIVE-3874). See [ORC Files]({{% ref "languagemanual-orc" %}}) for details.
 
 Besides the configuration properties listed in this section, some properties in other sections are also related to ORC:
 
-* [hive.default.fileformat]({{< ref "#hivedefaultfileformat" >}})
-* [hive.stats.gather.num.threads]({{< ref "#hivestatsgathernumthreads" >}})
+* [hive.default.fileformat]({{% ref "#hivedefaultfileformat" %}})
+* [hive.stats.gather.num.threads]({{% ref "#hivestatsgathernumthreads" %}})
 
 ##### hive.exec.orc.memory.pool
 
@@ -1599,14 +1599,14 @@ Define the encoding strategy to use while writing data. Changing this will only
 * Default Value: `false`
 * Added In: Hive 0.13.0 with [HIVE-6125](https://issues.apache.org/jira/browse/HIVE-6125) and [HIVE-6128](https://issues.apache.org/jira/browse/HIVE-6128)
 
-If turned on, splits generated by [ORC]({{< ref "languagemanual-orc" >}}) will include metadata about the stripes in the file. This data is read remotely (from the client or HiveServer2 machine) and sent to all the tasks.
+If turned on, splits generated by [ORC]({{% ref "languagemanual-orc" %}}) will include metadata about the stripes in the file. This data is read remotely (from the client or HiveServer2 machine) and sent to all the tasks.
 
 ##### hive.orc.cache.stripe.details.size
 
 * Default Value: `10000`
 * Added In: Hive 0.13.0 with [HIVE-6125](https://issues.apache.org/jira/browse/HIVE-6125) and [HIVE-6128](https://issues.apache.org/jira/browse/HIVE-6128)
 
-Cache size for keeping meta information about [ORC]({{< ref "languagemanual-orc" >}}) splits cached in the client.
+Cache size for keeping meta information about [ORC]({{% ref "languagemanual-orc" %}}) splits cached in the client.
 
 ##### hive.orc.cache.use.soft.references
 
@@ -1627,14 +1627,14 @@ The maximum weight allowed for the SearchArgument Cache, in megabytes. By defaul
 * Default Value: `10`
 * Added In: Hive 0.13.0 with [HIVE-6125](https://issues.apache.org/jira/browse/HIVE-6125) and [HIVE-6128](https://issues.apache.org/jira/browse/HIVE-6128)
 
-How many threads [ORC]({{< ref "languagemanual-orc" >}}) should use to create splits in parallel.
+How many threads [ORC]({{% ref "languagemanual-orc" %}}) should use to create splits in parallel.
 
 ##### hive.exec.orc.split.strategy
 
 * Default Value: HYBRID
 * Added In: Hive 1.2.0 with [HIVE-10114](https://issues.apache.org/jira/browse/HIVE-10114)
 
-What strategy [ORC]({{< ref "languagemanual-orc" >}}) should use to create splits for execution. The available options are "BI", "ETL" and "HYBRID".  
+What strategy [ORC]({{% ref "languagemanual-orc" %}}) should use to create splits for execution. The available options are "BI", "ETL" and "HYBRID".  
   
 The HYBRID mode reads the footers for all files if there are fewer files than expected mapper count, switching over to generating 1 split per file if the average file sizes are smaller than the default HDFS blocksize. ETL strategy always reads the ORC footers before generating splits, while the BI strategy generates per-file splits fast without reading any data from HDFS.
 
@@ -1657,7 +1657,7 @@ Use zerocopy reads with ORC. (This requires Hadoop 2.3 or later.)
 * Default Value: `true`
 * Added In: Hive 0.14.0 with [HIVE-7509](https://issues.apache.org/jira/browse/HIVE-7509)
 
-When  **[hive.merge.mapfiles]({{< ref "#hivemergemapfiles" >}})** ,  **[hive.merge.mapredfiles]({{< ref "#hivemergemapredfiles" >}})**  or  **[hive.merge.tezfiles]({{< ref "#hivemergetezfiles" >}})**  is enabled while writing a table with ORC file format, enabling this configuration property will do stripe-level fast merge for small ORC files. Note that enabling this configuration property will not honor the padding tolerance configuration ( **[hive.exec.orc.block.padding.tolerance]({{< ref "#hiveexecorcblockpaddingtolerance" >}})** ).
+When  **[hive.merge.mapfiles]({{% ref "#hivemergemapfiles" %}})** ,  **[hive.merge.mapredfiles]({{% ref "#hivemergemapredfiles" %}})**  or  **[hive.merge.tezfiles]({{% ref "#hivemergetezfiles" %}})**  is enabled while writing a table with ORC file format, enabling this configuration property will do stripe-level fast merge for small ORC files. Note that enabling this configuration property will not honor the padding tolerance configuration ( **[hive.exec.orc.block.padding.tolerance]({{% ref "#hiveexecorcblockpaddingtolerance" %}})** ).
 
 ##### hive.orc.row.index.stride.dictionary.check
 
@@ -1677,7 +1677,7 @@ Value can be `SPEED` or `COMPRESSION`.
 
 #### Parquet
 
-Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later. See [Parquet]({{< ref "parquet" >}}) for details.  
+Parquet is supported by a plugin in Hive 0.10, 0.11, and 0.12 and natively in Hive 0.13 and later. See [Parquet]({{% ref "parquet" %}}) for details.  
 
 ##### hive.parquet.timestamp.skip.conversion
 
@@ -1702,7 +1702,7 @@ NOTE: This property will influence how HBase files using the AvroSerDe and times
 
 ### Vectorization
 
-Hive added vectorized query execution in release 0.13.0 ([HIVE-4160](https://issues.apache.org/jira/browse/HIVE-4160), [HIVE-5283](https://issues.apache.org/jira/browse/HIVE-5283)). For more information see the design document  [Vectorized Query Execution]({{< ref "vectorized-query-execution" >}}) .
+Hive added vectorized query execution in release 0.13.0 ([HIVE-4160](https://issues.apache.org/jira/browse/HIVE-4160), [HIVE-5283](https://issues.apache.org/jira/browse/HIVE-5283)). For more information see the design document  [Vectorized Query Execution]({{% ref "vectorized-query-execution" %}}) .
 
 ##### hive.vectorized.execution.enabled
 
@@ -1808,19 +1808,19 @@ This flag should be set to true to enable vectorizing using row deserialize. The
 * Default Value: (empty)
 * Added in: Hive 2.4.0 with [HIVE-17534](https://issues.apache.org/jira/browse/HIVE-17534)
 
-This flag should be used to provide a comma separated list of fully qualified classnames to exclude certain FileInputFormats from vectorized execution using the vectorized file inputformat. Note that vectorized execution could still occur for that input format based on whether  **[hive.vectorized.use.vector.serde.deserialize]({{< ref "#hivevectorizedusevectorserdedeserialize" >}})**  or  **[hive.vectorized.use.row.serde.deserialize]({{< ref "#hivevectorizeduserowserdedeserialize" >}})**  is enabled or not.  
+This flag should be used to provide a comma separated list of fully qualified classnames to exclude certain FileInputFormats from vectorized execution using the vectorized file inputformat. Note that vectorized execution could still occur for that input format based on whether  **[hive.vectorized.use.vector.serde.deserialize]({{% ref "#hivevectorizedusevectorserdedeserialize" %}})**  or  **[hive.vectorized.use.row.serde.deserialize]({{% ref "#hivevectorizeduserowserdedeserialize" %}})**  is enabled or not.  
 
 ## MetaStore
 
 In addition to the Hive metastore properties listed in this section, some properties are listed in other sections:
 
-* [Hive Metastore Security]({{< ref "#hive-metastore-security" >}})
-	+ **[hive.metastore.pre.event.listeners]({{< ref "#hivemetastorepreeventlisteners" >}})**
-	+ **[hive.security.metastore.authorization.manager]({{< ref "#hivesecuritymetastoreauthorizationmanager" >}})**
-	+ **[hive.security.metastore.authenticator.manager]({{< ref "#hivesecuritymetastoreauthenticatormanager" >}})**
-	+ **[hive.security.metastore.authorization.auth.reads]({{< ref "#hivesecuritymetastoreauthorizationauthreads" >}})**
-* [Metrics]({{< ref "#metrics" >}})
-	+ [**hive.metastore.metrics.enabled**]({{< ref "#**hive-metastore-metrics-enabled**" >}})
+* [Hive Metastore Security]({{% ref "#hive-metastore-security" %}})
+	+ **[hive.metastore.pre.event.listeners]({{% ref "#hivemetastorepreeventlisteners" %}})**
+	+ **[hive.security.metastore.authorization.manager]({{% ref "#hivesecuritymetastoreauthorizationmanager" %}})**
+	+ **[hive.security.metastore.authenticator.manager]({{% ref "#hivesecuritymetastoreauthenticatormanager" %}})**
+	+ **[hive.security.metastore.authorization.auth.reads]({{% ref "#hivesecuritymetastoreauthorizationauthreads" %}})**
+* [Metrics]({{% ref "#metrics" %}})
+	+ [**hive.metastore.metrics.enabled**]({{% ref "#**hive-metastore-metrics-enabled**" %}})
 
 ##### hive.metastore.local
 
@@ -1828,7 +1828,7 @@ In addition to the Hive metastore properties listed in this section, some proper
 * Added In: Hive 0.8.1
 * Removed In: Hive 0.10 with [HIVE-2585](https://issues.apache.org/jira/browse/HIVE-2585)
 
-Controls whether to connect to remote metastore server or open a new metastore server in Hive Client JVM. As of Hive 0.10 this is no longer used. Instead if  **`[hive.metastore.uris]({{< ref "#hive-metastore-uris" >}})`**  is set then `remote` mode is assumed otherwise `local`.
+Controls whether to connect to remote metastore server or open a new metastore server in Hive Client JVM. As of Hive 0.10 this is no longer used. Instead if  **`[hive.metastore.uris]({{% ref "#hive-metastore-uris" %}})`**  is set then `remote` mode is assumed otherwise `local`.
 
 ##### hive.metastore.uri.selection
 
@@ -1886,7 +1886,7 @@ Username to use against metastore database.
 
 Password to use against metastore database.
 
-For an alternative configuration, see [Removing Hive Metastore Password from Hive Configuration]({{< ref "#removing-hive-metastore-password-from-hive-configuration" >}}).
+For an alternative configuration, see [Removing Hive Metastore Password from Hive Configuration]({{% ref "#removing-hive-metastore-password-from-hive-configuration" %}}).
 
 ##### javax.jdo.option.Multithreaded
 
@@ -1925,14 +1925,14 @@ configured with embedded metastore. To get optimal performance, set config to me
 
 * Default Value: `false`
 * Added In: Hive 0.7.0
-* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateTables]({{< ref "#datanucleusschemavalidatetables" >}})**
+* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateTables]({{% ref "#datanucleusschemavalidatetables" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
 ##### datanucleus.schema.validateTables
 
 * Default Value: `false`
-* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateTables]({{< ref "#datanucleusvalidatetables" >}})**
+* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateTables]({{% ref "#datanucleusvalidatetables" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
@@ -1940,14 +1940,14 @@ Validates existing schema against code. Turn this on if you want to verify exist
 
 * Default Value: `false`
 * Added In: Hive 0.7.0
-* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateColumns]({{< ref "#datanucleusschemavalidatecolumns" >}})**
+* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateColumns]({{% ref "#datanucleusschemavalidatecolumns" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
 ##### datanucleus.schema.validateColumns
 
 * Default Value: `false`
-* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateColumns]({{< ref "#datanucleusvalidatecolumns" >}})**
+* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateColumns]({{% ref "#datanucleusvalidatecolumns" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
@@ -1955,14 +1955,14 @@ Validates existing schema against code. Turn this on if you want to verify exist
 
 * Default Value: `false`
 * Added In: Hive 0.7.0
-* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateConstraints]({{< ref "#datanucleusschemavalidateconstraints" >}})**
+* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.validateConstraints]({{% ref "#datanucleusschemavalidateconstraints" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
 ##### datanucleus.schema.validateConstraints
 
 * Default Value: `false`
-* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateConstraints]({{< ref "#datanucleusvalidateconstraints" >}})**
+* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.validateConstraints]({{% ref "#datanucleusvalidateconstraints" %}})**
 
 Validates existing schema against code. Turn this on if you want to verify existing schema.
 
@@ -1987,20 +1987,20 @@ Dictates whether to allow updates to schema or not.
 
 * Default Value: `true`
 * Added In: Hive 0.7.0
-* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.autoCreateAll]({{< ref "#datanucleusschemaautocreateall" >}})**
+* Removed In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaced by  **[datanucleus.schema.autoCreateAll]({{% ref "#datanucleusschemaautocreateall" %}})**
 
 Creates necessary schema on a startup if one does not exist. Set this to false, after creating it once.
 
-In Hive 0.12.0 and later releases, **datanucleus.autoCreateSchema** is disabled if  **[hive.metastore.schema.verification]({{< ref "#hivemetastoreschemaverification" >}})**  is `true`.
+In Hive 0.12.0 and later releases, **datanucleus.autoCreateSchema** is disabled if  **[hive.metastore.schema.verification]({{% ref "#hivemetastoreschemaverification" %}})**  is `true`.
 
 ##### datanucleus.schema.autoCreateAll
 
 * Default Value: `false`
-* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.autoCreateSchema]({{< ref "#datanucleusautocreateschema" >}})**  (with different default value)
+* Added In: Hive 2.0.0 with [HIVE-6113](https://issues.apache.org/jira/browse/HIVE-6113), replaces  **[datanucleus.autoCreateSchema]({{% ref "#datanucleusautocreateschema" %}})**  (with different default value)
 
 Creates necessary schema on a startup if one does not exist. Reset this to false, after creating it once.
 
-**datanucleus.schema.autoCreateAll** is disabled if  **[hive.metastore.schema.verification]({{< ref "#hivemetastoreschemaverification" >}})**  is `true`.
+**datanucleus.schema.autoCreateAll** is disabled if  **[hive.metastore.schema.verification]({{% ref "#hivemetastoreschemaverification" %}})**  is `true`.
 
 ##### datanucleus.autoStartMechanismMode
 
@@ -2022,7 +2022,7 @@ Default transaction isolation level for identity generation.
 * Added In: Hive 0.7.0
 
 This parameter does nothing.  
-*Warning note:* For most installations, Hive should not enable the DataNucleus L2 cache, since this can cause correctness issues. Thus, some people set this parameter to false assuming that this disables the cache – unfortunately, it does not. To actually disable the cache, set  **[datanucleus.cache.level2.type]({{< ref "#datanucleuscachelevel2type" >}})**  to "none".
+*Warning note:* For most installations, Hive should not enable the DataNucleus L2 cache, since this can cause correctness issues. Thus, some people set this parameter to false assuming that this disables the cache – unfortunately, it does not. To actually disable the cache, set  **[datanucleus.cache.level2.type]({{% ref "#datanucleuscachelevel2type" %}})**  to "none".
 
 ##### datanucleus.cache.level2.type
 
@@ -2059,9 +2059,9 @@ Location of default database for the warehouse.
 * Added In: Hive 0.9.0 with [HIVE-2504](https://issues.apache.org/jira/browse/HIVE-2504).
 * Removed In: Hive 3.0.0 with [HIVE-16392](https://issues.apache.org/jira/browse/HIVE-16392)
 
-Set this to true if table directories should inherit the permissions of the warehouse or database directory instead of being created with permissions derived from dfs umask. (This configuration property replaced  **[hive.files.umask.value]({{< ref "#hivefilesumaskvalue" >}})**  before Hive 0.9.0 was released) (This configuration property was removed in release 3.0.0, more details in [Permission Inheritance in Hive]({{< ref "permission-inheritance-in-hive" >}}))
+Set this to true if table directories should inherit the permissions of the warehouse or database directory instead of being created with permissions derived from dfs umask. (This configuration property replaced  **[hive.files.umask.value]({{% ref "#hivefilesumaskvalue" %}})**  before Hive 0.9.0 was released) (This configuration property was removed in release 3.0.0, more details in [Permission Inheritance in Hive]({{% ref "permission-inheritance-in-hive" %}}))
 
-Behavior of the flag is changed with Hive-0.14.0 in [HIVE-6892](https://issues.apache.org/jira/browse/HIVE-6892) and sub-JIRA's. More details in [Permission Inheritance in Hive]({{< ref "permission-inheritance-in-hive" >}}).
+Behavior of the flag is changed with Hive-0.14.0 in [HIVE-6892](https://issues.apache.org/jira/browse/HIVE-6892) and sub-JIRA's. More details in [Permission Inheritance in Hive]({{% ref "permission-inheritance-in-hive" %}}).
 
 ##### hive.metastore.execute.setugi
 
@@ -2260,9 +2260,9 @@ Note: This principal is used by the metastore process for authentication with ot
 * Default Value: (empty)
 * Added In: Hive 2.2.1, 2.4.0 ([HIVE-17489](https://issues.apache.org/jira/browse/HIVE-17489))
 
-The client-facing Kerberos service principal for the Hive metastore. If unset, it defaults to the value set for  [**hive.metastore.kerberos.principal**]({{< ref "#**hive-metastore-kerberos-principal**" >}}), for backward compatibility.
+The client-facing Kerberos service principal for the Hive metastore. If unset, it defaults to the value set for  [**hive.metastore.kerberos.principal**]({{% ref "#**hive-metastore-kerberos-principal**" %}}), for backward compatibility.
 
-Also see  [**hive.server2.authentication.client.kerberos.principal**]({{< ref "#**hive-server2-authentication-client-kerberos-principal**" >}}).
+Also see  [**hive.server2.authentication.client.kerberos.principal**]({{% ref "#**hive-server2-authentication-client-kerberos-principal**" %}}).
 
 ##### hive.metastore.client.cache.v2.enabled
 
@@ -2312,10 +2312,10 @@ If true, the metastore Thrift interface will use TFramedTransport. When false (d
 * Added In: Hive 0.12.0 with [HIVE-3764](https://issues.apache.org/jira/browse/HIVE-3764)
 
 Enforce metastore schema version consistency.  
-True: Verify that version information stored in metastore matches with one from Hive jars. Also disable automatic schema migration attempt (see  **[datanucleus.autoCreateSchema]({{< ref "#datanucleusautocreateschema" >}})**  and  **[datanucleus.schema.autoCreateAll]({{< ref "#datanucleusschemaautocreateall" >}})** ). Users are required to manually migrate schema after Hive upgrade which ensures proper metastore schema migration.  
+True: Verify that version information stored in metastore matches with one from Hive jars. Also disable automatic schema migration attempt (see  **[datanucleus.autoCreateSchema]({{% ref "#datanucleusautocreateschema" %}})**  and  **[datanucleus.schema.autoCreateAll]({{% ref "#datanucleusschemaautocreateall" %}})** ). Users are required to manually migrate schema after Hive upgrade which ensures proper metastore schema migration.  
 False: Warn if the version information stored in metastore doesn't match with one from Hive jars.
 
-For more information, see [Metastore Schema Consistency and Upgrades]({{< ref "#metastore-schema-consistency-and-upgrades" >}}).
+For more information, see [Metastore Schema Consistency and Upgrades]({{% ref "#metastore-schema-consistency-and-upgrades" %}}).
 
 ##### hive.metastore.disallow.incompatible.col.type.changes
 
@@ -2335,7 +2335,7 @@ See [HIVE-4409](https://issues.apache.org/jira/browse/HIVE-4409) for more detail
 * Default Value: `false`
 * Added In: Hive 0.13.0 with [HIVE-6052](https://issues.apache.org/jira/browse/HIVE-6052)
 
-Allow JDO query pushdown for integral partition columns in metastore. Off by default. This improves metastore performance for integral columns, especially if there's a large number of partitions. However, it doesn't work correctly with integral values that are not normalized (for example, if they have leading zeroes like 0012). If metastore direct SQL is enabled and works ( **[hive.metastore.try.direct.sql]({{< ref "#hivemetastoretrydirectsql" >}})** ), this optimization is also irrelevant.
+Allow JDO query pushdown for integral partition columns in metastore. Off by default. This improves metastore performance for integral columns, especially if there's a large number of partitions. However, it doesn't work correctly with integral values that are not normalized (for example, if they have leading zeroes like 0012). If metastore direct SQL is enabled and works ( **[hive.metastore.try.direct.sql]({{% ref "#hivemetastoretrydirectsql" %}})** ), this optimization is also irrelevant.
 
 ##### hive.metastore.try.direct.sql
 
@@ -2351,7 +2351,7 @@ This can be configured on a per client basis by using the `set metaconf:hive.met
 * Default Value: `true`
 * Added In: Hive 0.13.0 with [HIVE-5626](https://issues.apache.org/jira/browse/HIVE-5626)
 
-Same as  **[hive.metastore.try.direct.sql]({{< ref "#hivemetastoretrydirectsql" >}})** , for read statements within a transaction that modifies metastore data. Due to non-standard behavior in Postgres, if a direct SQL select query has incorrect syntax or something similar inside a transaction, the entire transaction will fail and fall-back to DataNucleus will not be possible. You should disable the usage of direct SQL inside [transactions]({{< ref "hive-transactions" >}}) if that happens in your case.
+Same as  **[hive.metastore.try.direct.sql]({{% ref "#hivemetastoretrydirectsql" %}})** , for read statements within a transaction that modifies metastore data. Due to non-standard behavior in Postgres, if a direct SQL select query has incorrect syntax or something similar inside a transaction, the entire transaction will fail and fall-back to DataNucleus will not be possible. You should disable the usage of direct SQL inside [transactions]({{% ref "hive-transactions" %}}) if that happens in your case.
 
 This can be configured on a per client basis by using the `set metaconf:hive.metastore.try.direct.sql.ddl=<value>` command, starting with Hive 0.14.0 ( [HIVE-7532](https://issues.apache.org/jira/browse/HIVE-7532)).
 
@@ -2402,7 +2402,7 @@ Enable a metadata count at metastore startup for metrics.
 * Default value: -1
 * Added In: Hive 2.2.0 with [HIVE-13884](https://issues.apache.org/jira/browse/HIVE-13884)
 
-This limits the number of partitions that can be requested from the Metastore for a given table. A query will not be executed if it attempts to fetch more partitions per table than the limit configured. A value of "-1" means unlimited. This parameter is preferred over  **[hive.limit.query.max.table.partition]({{< ref "#hivelimitquerymaxtablepartition" >}})**  (deprecated; removed in 3.0.0).
+This limits the number of partitions that can be requested from the Metastore for a given table. A query will not be executed if it attempts to fetch more partitions per table than the limit configured. A value of "-1" means unlimited. This parameter is preferred over  **[hive.limit.query.max.table.partition]({{% ref "#hivelimitquerymaxtablepartition" %}})**  (deprecated; removed in 3.0.0).
 
 ##### **hive.metastore.fastpath**
 
@@ -2426,7 +2426,7 @@ Added in: Hive 3.0.0 with [HIVE-17318](https://issues.apache.org/jira/browse/HI
 
 ### Hive Metastore HBase
 
-Development of an [HBase metastore]({{< ref "hbasemetastoredevelopmentguide" >}}) for Hive started in release 2.0.0 ([HIVE-9452](https://issues.apache.org/jira/browse/HIVE-9452)) but the work has been stopped and the code was removed from Hive in release 3.0.0 ([HIVE-17234](https://issues.apache.org/jira/browse/HIVE-17234)).
+Development of an [HBase metastore]({{% ref "hbasemetastoredevelopmentguide" %}}) for Hive started in release 2.0.0 ([HIVE-9452](https://issues.apache.org/jira/browse/HIVE-9452)) but the work has been stopped and the code was removed from Hive in release 3.0.0 ([HIVE-17234](https://issues.apache.org/jira/browse/HIVE-17234)).
 
 Many more configuration properties were created for the HBase metastore in releases 2.x.x – they are not documented here.  For a full list, see the [doc note on HIVE-17234](https://issues.apache.org/jira/browse/HIVE-17234?focusedCommentId=16117879&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-16117879).
 
@@ -2451,13 +2451,13 @@ Number of threads to use to read file metadata in background to cache it.
 
 ## HiveServer2
 
-HiveServer2 was added in Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).  For more information see [HiveServer2 Overview]({{< ref "hiveserver2-overview" >}}), [Setting Up HiveServer2]({{< ref "setting-up-hiveserver2" >}}), and [HiveServer2 Clients]({{< ref "hiveserver2-clients" >}}).
+HiveServer2 was added in Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935).  For more information see [HiveServer2 Overview]({{% ref "hiveserver2-overview" %}}), [Setting Up HiveServer2]({{% ref "setting-up-hiveserver2" %}}), and [HiveServer2 Clients]({{% ref "hiveserver2-clients" %}}).
 
 Besides the configuration properties listed in this section, some HiveServer2 properties are listed in other sections:
 
-* **[hive.server2.builtin.udf.whitelist]({{< ref "#hiveserver2builtinudfwhitelist" >}})**
-* **[hive.server2.builtin.udf.blacklist]({{< ref "#hiveserver2builtinudfblacklist" >}})**
-* **[hive.server2.metrics.enabled]({{< ref "#hiveserver2metricsenabled" >}})**
+* **[hive.server2.builtin.udf.whitelist]({{% ref "#hiveserver2builtinudfwhitelist" %}})**
+* **[hive.server2.builtin.udf.blacklist]({{% ref "#hiveserver2builtinudfblacklist" %}})**
+* **[hive.server2.metrics.enabled]({{% ref "#hiveserver2metricsenabled" %}})**
 
 ##### hive.server2.support.dynamic.service.discovery
 
@@ -2518,7 +2518,7 @@ Client authentication types.
 NONE: no authentication check – plain SASL transport  
 LDAP: LDAP/AD based authentication  
 KERBEROS: Kerberos/GSSAPI authentication  
-CUSTOM: Custom authentication provider (use with property  **[hive.server2.custom.authentication.class]({{< ref "#hiveserver2customauthenticationclass" >}})** )  
+CUSTOM: Custom authentication provider (use with property  **[hive.server2.custom.authentication.class]({{% ref "#hiveserver2customauthenticationclass" %}})** )  
 PAM: Pluggable authentication module (added in Hive 0.13.0 with [HIVE-6466](https://issues.apache.org/jira/browse/HIVE-6466))  
 NOSASL:  Raw transport (added in Hive 0.13.0) 
 
@@ -2541,14 +2541,14 @@ Kerberos server principal.
 * Default Value: (empty)
 * Added In: Hive 2.1.1, 2.4.0 with [HIVE-17489](https://issues.apache.org/jira/browse/HIVE-17489)
 
-Kerberos server principal used by the HA HiveServer2. Also see  [**hive.metastore.client.kerberos.principal**]({{< ref "#**hive-metastore-client-kerberos-principal**" >}}).
+Kerberos server principal used by the HA HiveServer2. Also see  [**hive.metastore.client.kerberos.principal**]({{% ref "#**hive-metastore-client-kerberos-principal**" %}}).
 
 ##### hive.server2.custom.authentication.class
 
 * Default Value: (empty)
 * Added In: Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)
 
-Custom authentication class. Used when property  **[hive.server2.authentication]({{< ref "#hiveserver2authentication" >}})**  is set to 'CUSTOM'. Provided class must be a proper implementation of the interface org.apache.hive.service.auth.PasswdAuthenticationProvider. HiveServer2 will call its Authenticate(user, passed) method to authenticate requests. The implementation may optionally extend Hadoop's org.apache.hadoop.conf.Configured class to grab Hive's Configuration object.
+Custom authentication class. Used when property  **[hive.server2.authentication]({{% ref "#hiveserver2authentication" %}})**  is set to 'CUSTOM'. Provided class must be a proper implementation of the interface org.apache.hive.service.auth.PasswdAuthenticationProvider. HiveServer2 will call its Authenticate(user, passed) method to authenticate requests. The implementation may optionally extend Hadoop's org.apache.hadoop.conf.Configured class to grab Hive's Configuration object.
 
 ##### hive.server2.enable.doAs
 
@@ -2590,7 +2590,7 @@ LDAP domain.
 * Default Value: (empty)
 * Added In: Hive 1.3 with [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193)
 
-A COLON-separated list of string patterns to represent the base DNs for LDAP Groups. Use "%s" where the actual group name is to be plugged in. See [Group Membership]({{< ref "#group-membership" >}}) for details.
+A COLON-separated list of string patterns to represent the base DNs for LDAP Groups. Use "%s" where the actual group name is to be plugged in. See [Group Membership]({{% ref "#group-membership" %}}) for details.
 
 Example of one string pattern: *uid=%s,OU=Groups,DC=apache,DC=org* 
 
@@ -2599,7 +2599,7 @@ Example of one string pattern: *uid=%s,OU=Groups,DC=apache,DC=org*
 * Default Value: (empty)
 * Added In: Hive 1.3 with [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193)
 
-A COMMA-separated list of group names that the users should belong to (at least one of the groups) for authentication to succeed. See [Group Membership]({{< ref "#group-membership" >}}) for details.
+A COMMA-separated list of group names that the users should belong to (at least one of the groups) for authentication to succeed. See [Group Membership]({{% ref "#group-membership" %}}) for details.
 
 ##### hive.server2.authentication.ldap.groupMembershipKey
 
@@ -2611,9 +2611,9 @@ LDAP attribute name on the group object that contains the list of distinguished 
 
 This property is used in LDAP search queries when finding LDAP group names that a particular user belongs to. The value of the LDAP attribute, indicated by this property, should be a full DN for the user or the short username or userid. For example, a group entry for "fooGroup" containing "member : uid=fooUser,ou=Users,dc=domain,dc=com" will help determine that  "fooUser" belongs to LDAP group "fooGroup".
 
-See [Group Membership]({{< ref "#group-membership" >}}) for a detailed example.
+See [Group Membership]({{% ref "#group-membership" %}}) for a detailed example.
 
-This property can also be used to find the users if a custom-configured LDAP query returns a group instead of a user (as of [Hive 2.1.1](https://issues.apache.org/jira/browse/HIVE-14513)). For details, see [Support for Groups in Custom LDAP Query]({{< ref "#support-for-groups-in-custom-ldap-query" >}}).
+This property can also be used to find the users if a custom-configured LDAP query returns a group instead of a user (as of [Hive 2.1.1](https://issues.apache.org/jira/browse/HIVE-14513)). For details, see [Support for Groups in Custom LDAP Query]({{% ref "#support-for-groups-in-custom-ldap-query" %}}).
 
 ##### hive.server2.authentication.ldap.userMembershipKey
 
@@ -2629,14 +2629,14 @@ LDAP attribute name on the user object that contains groups of which the user is
 
 This property is used in LDAP search queries for finding LDAP group names a user belongs to. The value of this property is used to construct LDAP group search query and is used to indicate what a group's objectClass is. Every LDAP group has certain objectClass. For example: group, groupOfNames, groupOfUniqueNames etc.
 
-See [Group Membership]({{< ref "#group-membership" >}}) for a detailed example.
+See [Group Membership]({{% ref "#group-membership" %}}) for a detailed example.
 
 ##### hive.server2.authentication.ldap.userDNPattern
 
 * Default Value: (empty)
 * Added In: Hive 1.3 with [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193)
 
-A COLON-separated list of string patterns to represent the base DNs for LDAP Users. Use "%s" where the actual username is to be plugged in. See [User Search List]({{< ref "#user-search-list" >}}) for details.
+A COLON-separated list of string patterns to represent the base DNs for LDAP Users. Use "%s" where the actual username is to be plugged in. See [User Search List]({{% ref "#user-search-list" %}}) for details.
 
 Example of one string pattern: *uid=%s,OU=Users,DC=apache,DC=org*
 
@@ -2645,14 +2645,14 @@ Example of one string pattern: *uid=%s,OU=Users,DC=apache,DC=org*
 * Default Value: (empty)
 * Added In: Hive 1.3 with [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193)
 
-A COMMA-separated list of usernames for whom authentication will succeed if the user is found in LDAP. See [User Search List]({{< ref "#user-search-list" >}}) for details.
+A COMMA-separated list of usernames for whom authentication will succeed if the user is found in LDAP. See [User Search List]({{% ref "#user-search-list" %}}) for details.
 
 ##### hive.server2.authentication.ldap.customLDAPQuery
 
 * Default Value: (empty)
 * Added In: Hive 1.3 with [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-7193)
 
-A user-specified custom LDAP query that will be used to grant/deny an authentication request. If the user is part of the query's result set, authentication succeeds. See [Custom Query String]({{< ref "#custom-query-string" >}}) for details.
+A user-specified custom LDAP query that will be used to grant/deny an authentication request. If the user is part of the query's result set, authentication succeeds. See [Custom Query String]({{% ref "#custom-query-string" %}}) for details.
 
 ##### hive.server2.authentication.ldap.binddn
 
@@ -2681,7 +2681,7 @@ Either the location of a HiveServer2 global init file or a directory containing 
 
 * Default Value: `binary`
 * Added In: Hive 0.12.0
-* Deprecated In: Hive 0.14.0 with [HIVE-6972](https://issues.apache.org/jira/browse/HIVE-6972) (see [Connection URL When HiveServer2 Is Running in HTTP Mode]({{< ref "#connection-url-when-hiveserver2-is-running-in-http-mode" >}})) but only for clients. This setting is still in use and not deprecated for the HiveServer2 itself.
+* Deprecated In: Hive 0.14.0 with [HIVE-6972](https://issues.apache.org/jira/browse/HIVE-6972) (see [Connection URL When HiveServer2 Is Running in HTTP Mode]({{% ref "#connection-url-when-hiveserver2-is-running-in-http-mode" %}})) but only for clients. This setting is still in use and not deprecated for the HiveServer2 itself.
 
 Server transport mode. Value can be "binary" or "http".
 
@@ -2696,7 +2696,7 @@ Port number when in HTTP mode.
 
 * Default Value: `cliservice`
 * Added In: Hive 0.12.0
-* Deprecated In: Hive 0.14.0 with [HIVE-6972](https://issues.apache.org/jira/browse/HIVE-6972) (see [Connection URL When HiveServer2 Is Running in HTTP Mode]({{< ref "#connection-url-when-hiveserver2-is-running-in-http-mode" >}}))
+* Deprecated In: Hive 0.14.0 with [HIVE-6972](https://issues.apache.org/jira/browse/HIVE-6972) (see [Connection URL When HiveServer2 Is Running in HTTP Mode]({{% ref "#connection-url-when-hiveserver2-is-running-in-http-mode" %}}))
 
 Path component of URL endpoint when in HTTP mode.
 
@@ -2830,7 +2830,7 @@ SPNEGO service principal, optional. A typical value would look like `HTTP/_HOST
 * Default Value: (empty)
 * Added In: Hive 0.13.0 with [HIVE-6466](https://issues.apache.org/jira/browse/HIVE-6466)
 
-List of the underlying PAM services that should be used when  **[hive.server2.authentication]({{< ref "#hiveserver2authentication" >}})**  type is PAM. A file with the same name must exist in /etc/pam.d.
+List of the underlying PAM services that should be used when  **[hive.server2.authentication]({{% ref "#hiveserver2authentication" %}})**  type is PAM. A file with the same name must exist in /etc/pam.d.
 
 ##### hive.server2.use.SSL
 
@@ -2865,7 +2865,7 @@ A list of comma separated values corresponding to YARN queues of the same name.�
 * Default Value: `1`
 * Added In: Hive 0.13.0 with [HIVE-6325](https://issues.apache.org/jira/browse/HIVE-6325)
 
-A positive integer that determines the number of Tez sessions that should be launched on each of the queues specified by  **[hive.server2.tez.default.queues]({{< ref "#hiveserver2tezdefaultqueues" >}})** . Determines the parallelism on each queue.
+A positive integer that determines the number of Tez sessions that should be launched on each of the queues specified by  **[hive.server2.tez.default.queues]({{% ref "#hiveserver2tezdefaultqueues" %}})** . Determines the parallelism on each queue.
 
 ##### hive.server2.tez.initialize.default.sessions
 
@@ -2891,14 +2891,14 @@ The check interval for session/operation timeout, which can be disabled by setti
 	+ Hive 1.2.1+, 1.3+, 2.x+: 7d ([HIVE-9842](https://issues.apache.org/jira/browse/HIVE-9842))
 * Added In: Hive 0.14.0 with [HIVE-5799](https://issues.apache.org/jira/browse/HIVE-5799)
 
-With  [**hive.server2.session.check.interval**]({{< ref "#**hive-server2-session-check-interval**" >}}) set to a positive time value, session will be closed when it's not accessed for this duration of time, which can be disabled by setting to zero or negative value.
+With  [**hive.server2.session.check.interval**]({{% ref "#**hive-server2-session-check-interval**" %}}) set to a positive time value, session will be closed when it's not accessed for this duration of time, which can be disabled by setting to zero or negative value.
 
 ##### hive.server2.idle.operation.timeout
 
 * Default Value: 0ms
 * Added In: Hive 0.14.0 with [HIVE-5799](https://issues.apache.org/jira/browse/HIVE-5799)
 
-With  [**hive.server2.session.check.interval**]({{< ref "#**hive-server2-session-check-interval**" >}}) set to a positive time value, operation will be closed when it's not accessed for this duration of time, which can be disabled by setting to zero value.
+With  [**hive.server2.session.check.interval**]({{% ref "#**hive-server2-session-check-interval**" %}}) set to a positive time value, operation will be closed when it's not accessed for this duration of time, which can be disabled by setting to zero value.
 
 With positive value, it's checked for operations in terminal state only (FINISHED, CANCELED, CLOSED, ERROR).  
 With negative value, it's checked for all of the operations regardless of state.
@@ -2923,7 +2923,7 @@ Top level directory where operation logs are stored if logging functionality is 
 * Added In: Hive 0.14.0 with [HIVE-8785](https://issues.apache.org/jira/browse/HIVE-8785)
 * Removed In: Hive 1.2.0 with [HIVE-10119](https://issues.apache.org/jira/browse/HIVE-10119)
 
-When `true`, HiveServer2 operation logs available for clients will be verbose. Replaced in Hive 1.2.0 by  [**hive.server2.logging.operation.level**]({{< ref "#**hive-server2-logging-operation-level**" >}}).
+When `true`, HiveServer2 operation logs available for clients will be verbose. Replaced in Hive 1.2.0 by  [**hive.server2.logging.operation.level**]({{% ref "#**hive-server2-logging-operation-level**" %}}).
 
 ##### hive.server2.logging.operation.level
 
@@ -2932,7 +2932,7 @@ When `true`, HiveServer2 operation logs available for clients will be verbose. R
 
 HiveServer2 operation logging mode available to clients to be set at session level.
 
-For this to work,  **[hive.server2.logging.operation.enabled]({{< ref "#hiveserver2loggingoperationenabled" >}})**  should be set to true. The allowed values are:
+For this to work,  **[hive.server2.logging.operation.enabled]({{% ref "#hiveserver2loggingoperationenabled" %}})**  should be set to true. The allowed values are:
 
 * NONE: Ignore any logging.
 * EXECUTION: Log completion of tasks.
@@ -3007,7 +3007,7 @@ This configuration property enables the user to provide a comma-separated list o
 * Default Value: `true`
 * Added In: Hive 2.2.0 with [HIVE-15473](https://issues.apache.org/jira/browse/HIVE-15473)
 
-Allows HiveServer2 to send progress bar update information. This is currently available only if the [execution engine]({{< ref "#execution-engine" >}}) is **tez.** 
+Allows HiveServer2 to send progress bar update information. This is currently available only if the [execution engine]({{% ref "#execution-engine" %}}) is **tez.** 
 
 ##### hive.hadoop.classpath
 
@@ -3018,7 +3018,7 @@ For the Windows operating system, Hive needs to pass the HIVE_HADOOP_CLASSPATH J
 
 ### HiveServer2 Web UI
 
-A web interface for HiveServer2 is introduced in release 2.0.0 (see [Web UI for HiveServer2]({{< ref "#web-ui-for-hiveserver2" >}})).
+A web interface for HiveServer2 is introduced in release 2.0.0 (see [Web UI for HiveServer2]({{% ref "#web-ui-for-hiveserver2" %}})).
 
 ##### hive.server2.webui.host
 
@@ -3088,47 +3088,47 @@ The path to the Kerberos Keytab file containing the HiveServer2 WebUI SPNEGO ser
 * Default Value: `HTTP/_HOST@EXAMPLE.COM`
 * Added In: Hive 2.0.0 with [HIVE-12485](https://issues.apache.org/jira/browse/HIVE-12485)
 
-The HiveServer2 WebUI SPNEGO service principal. The special string _HOST will be replaced automatically with the value of  **[hive.server2.webui.host]({{< ref "#hiveserver2webuihost" >}})**  or the correct host name.
+The HiveServer2 WebUI SPNEGO service principal. The special string _HOST will be replaced automatically with the value of  **[hive.server2.webui.host]({{% ref "#hiveserver2webuihost" %}})**  or the correct host name.
 
 #####   hive.server2.webui. explain.out put
 
 * Default Value: `false`
 * Added in: Hive 3.1.0 with [HIVE-18469](https://issues.apache.org/jira/browse/HIVE-18469)
 
-The [EXPLAIN EXTENDED]({{< ref "#explain-extended" >}}) output for the query will be shown in the WebUI / Drilldown / Query Plan tab when this configuration property is set to true.
+The [EXPLAIN EXTENDED]({{% ref "#explain-extended" %}}) output for the query will be shown in the WebUI / Drilldown / Query Plan tab when this configuration property is set to true.
 
-Prior to Hive 3.1.0, you can use  **[hive.log.explain.output]({{< ref "#hive-log-explain-output" >}})**  instead of this configuration property.
+Prior to Hive 3.1.0, you can use  **[hive.log.explain.output]({{% ref "#hive-log-explain-output" %}})**  instead of this configuration property.
 
 ##### hive.server2.webui.show.graph
 
 * Default Value: `false`
 * Added in: Hive 4.0.0 with [HIVE-17300](https://issues.apache.org/jira/browse/HIVE-17300)
 
-Set this to true to to display query plan as a graph instead of text in the WebUI. Only works with  **[hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})**  set to true.
+Set this to true to to display query plan as a graph instead of text in the WebUI. Only works with  **[hive.server2.webui.explain.output]({{% ref "#hive-server2-webui-explain-output" %}})**  set to true.
 
 ##### hive.server2.webui.max.graph.size
 
 * Default Value: `25`
 * Added in: Hive 4.0.0 with [HIVE-17300](https://issues.apache.org/jira/browse/HIVE-17300)
 
-Max number of stages graph can display. If number of stages exceeds this, no query plan will be shown. Only works when  **[hive.server2.webui.show.graph]({{< ref "#hiveserver2webuishowgraph" >}})**  and  **[hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})**  set to true.
+Max number of stages graph can display. If number of stages exceeds this, no query plan will be shown. Only works when  **[hive.server2.webui.show.graph]({{% ref "#hiveserver2webuishowgraph" %}})**  and  **[hive.server2.webui.explain.output]({{% ref "#hive-server2-webui-explain-output" %}})**  set to true.
 
 ##### hive.server2.webui.show.stats
 
 * Default Value: `false`
 * Added in: Hive 4.0.0 with [HIVE-17300](https://issues.apache.org/jira/browse/HIVE-17300)
 
-Set this to true to to display statistics and log file for MapReduce tasks in the WebUI. Only works when  **[hive.server2.webui.show.graph]({{< ref "#hiveserver2webuishowgraph" >}})**  and  **[hive.server2.webui.explain.output]({{< ref "#hive-server2-webui-explain-output" >}})**  set to true.
+Set this to true to to display statistics and log file for MapReduce tasks in the WebUI. Only works when  **[hive.server2.webui.show.graph]({{% ref "#hiveserver2webuishowgraph" %}})**  and  **[hive.server2.webui.explain.output]({{% ref "#hive-server2-webui-explain-output" %}})**  set to true.
 
    
 
 ## Spark
 
-[Apache Spark](http://spark.apache.org/) was added in Hive [1.1.0]({{< ref "#1-1-0" >}}) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292) and the merge-to-trunk JIRA's [HIVE-9257](https://issues.apache.org/jira/browse/HIVE-9257), [9352](https://issues.apache.org/jira/browse/HIVE-9352), [9448](https://issues.apache.org/jira/browse/HIVE-9448)). For information see the design document [Hive on Spark]({{< ref "hive-on-spark" >}}) and [Hive on Spark: Getting Started.]({{< ref "hive-on-spark-getting-started" >}})
+[Apache Spark](http://spark.apache.org/) was added in Hive [1.1.0]({{% ref "#1-1-0" %}}) ([HIVE-7292](https://issues.apache.org/jira/browse/HIVE-7292) and the merge-to-trunk JIRA's [HIVE-9257](https://issues.apache.org/jira/browse/HIVE-9257), [9352](https://issues.apache.org/jira/browse/HIVE-9352), [9448](https://issues.apache.org/jira/browse/HIVE-9448)). For information see the design document [Hive on Spark]({{% ref "hive-on-spark" %}}) and [Hive on Spark: Getting Started.]({{% ref "hive-on-spark-getting-started" %}})
 
 To configure Hive execution to Spark, set the following property to "`spark`":
 
-* [hive.execution.engine]({{< ref "#hiveexecutionengine" >}})
+* [hive.execution.engine]({{% ref "#hiveexecutionengine" %}})
 
 Besides the configuration properties listed in this section, some properties in other sections are also related to Spark:
 
@@ -3140,7 +3140,7 @@ Besides the configuration properties listed in this section, some properties in 
 hive.spark.job.monitor.timeout
 
 * Default Value: `60` seconds
-* Added In: Hive [1.1.0]({{< ref "#1-1-0" >}}) with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive [1.1.0]({{% ref "#1-1-0" %}}) with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Timeout for job monitor to get Spark job state.
 
@@ -3176,14 +3176,14 @@ Updates Spark job execution progress in-place in the terminal.
 
 * Default Value: `false`
 * Added In: Hive 2.3.0 with [HIVE-15489](https://issues.apache.org/jira/browse/HIVE-15489)
-* Removed In: Hive 3.0.0 with [HIVE-16336](https://issues.apache.org/jira/browse/HIVE-16336), replaced by  **[hive.spark.use.ts.stats.for.mapjoin]({{< ref "#hivesparkusetsstatsformapjoin" >}})**
+* Removed In: Hive 3.0.0 with [HIVE-16336](https://issues.apache.org/jira/browse/HIVE-16336), replaced by  **[hive.spark.use.ts.stats.for.mapjoin]({{% ref "#hivesparkusetsstatsformapjoin" %}})**
 
 If this is set to true, mapjoin optimization in Hive/Spark will use source file sizes associated with the TableScan operator on the root of the operator tree, instead of using operator statistics.
 
 ##### hive.spark.use.ts.stats.for.mapjoin
 
 * Default Value: `false`
-* Added In: Hive 3.0.0 with [HIVE-16336](https://issues.apache.org/jira/browse/HIVE-16336), replaces  **[hive.spark.use.file.size.for.mapjoin]({{< ref "#hivesparkusefilesizeformapjoin" >}})**
+* Added In: Hive 3.0.0 with [HIVE-16336](https://issues.apache.org/jira/browse/HIVE-16336), replaces  **[hive.spark.use.file.size.for.mapjoin]({{% ref "#hivesparkusefilesizeformapjoin" %}})**
 
 If this is set to true, mapjoin optimization in Hive/Spark will use statistics from TableScan operators at the root of the operator tree, instead of parent ReduceSink operators of the Join operator.
 
@@ -3192,19 +3192,19 @@ If this is set to true, mapjoin optimization in Hive/Spark will use statistics f
 * Default Value: `false`
 * Added In: Hive 3.0.0 with [HIVE-11133](https://issues.apache.org/jira/browse/HIVE-11133)
 
-Whether to [show explain result at user level]({{< ref "#show-explain-result-at-user-level" >}}) for Hive-on-Spark queries. When enabled, will log EXPLAIN output for the query at user level.
+Whether to [show explain result at user level]({{% ref "#show-explain-result-at-user-level" %}}) for Hive-on-Spark queries. When enabled, will log EXPLAIN output for the query at user level.
 
 ##### hive.prewarm.spark.timeout
 
 * Default Value: 5000ms
 * Added In: Hive 3.0.0 with [HIVE-17362](https://issues.apache.org/jira/browse/HIVE-17362)
 
-Time to wait to finish prewarming Spark executors when   **[hive.prewarm.enabled]({{< ref "#hiveprewarmenabled" >}})**   is true.
+Time to wait to finish prewarming Spark executors when   **[hive.prewarm.enabled]({{% ref "#hiveprewarmenabled" %}})**   is true.
 
-Note:  These configuration properties for Hive on Spark are documented in the  [Tez section]({{< ref "#tez-section" >}})  because they can also affect Tez:
+Note:  These configuration properties for Hive on Spark are documented in the  [Tez section]({{% ref "#tez-section" %}})  because they can also affect Tez:
 
-* **[hive.prewarm.enabled]({{< ref "#hiveprewarmenabled" >}})**
-* **[hive.prewarm.numcontainers]({{< ref "#hiveprewarmnumcontainers" >}})**
+* **[hive.prewarm.enabled]({{% ref "#hiveprewarmenabled" %}})**
+* **[hive.prewarm.numcontainers]({{% ref "#hiveprewarmnumcontainers" %}})**
 
 ##### hive.spark.optimize.shuffle.serde
 
@@ -3271,28 +3271,28 @@ The remote Spark driver is the application launched in the Spark cluster, that s
 ##### hive.spark.client.future.timeout
 
 * Default Value: `60` seconds
-* Added In: Hive [1.1.0]({{< ref "#1-1-0" >}}) with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive [1.1.0]({{% ref "#1-1-0" %}}) with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Timeout for requests from Hive client to remote Spark driver.
 
 ##### hive.spark.client.connect.timeout
 
 * Default Value: `1000` miliseconds
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Timeout for remote Spark driver in connecting back to Hive client.
 
 ##### hive.spark.client.server.connect.timeout
 
 * Default Value: `90000` miliseconds
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337), default changed in same release with [HIVE-9519](https://issues.apache.org/jira/browse/HIVE-9519)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337), default changed in same release with [HIVE-9519](https://issues.apache.org/jira/browse/HIVE-9519)
 
 Timeout for handshake between Hive client and remote Spark driver. Checked by both processes.
 
 ##### hive.spark.client.secret.bits
 
 * Default Value: `256`
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Number of bits of randomness in the generated secret for communication between Hive client and remote Spark driver. Rounded down to nearest multiple of 8.
 
@@ -3306,62 +3306,62 @@ The server address of HiverServer2 host to be used for communication between Hiv
 ##### hive.spark.client.rpc.threads
 
 * Default Value: `8`
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Maximum number of threads for remote Spark driver's RPC event loop.
 
 ##### hive.spark.client.rpc.max.size
 
 * Default Value: `52,428,800`(50 * 1024 * 1024, or 50 MB)
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Maximum message size in bytes for communication between Hive client and remote Spark driver. Default is 50 MB.
 
 ##### hive.spark.client.channel.log.level
 
 * Default Value: (empty)
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-9337](https://issues.apache.org/jira/browse/HIVE-9337)
 
 Channel logging level for remote Spark driver. One of DEBUG, ERROR, INFO, TRACE, WARN. If unset, TRACE is chosen.
 
 ## Tez
 
-[Apache Tez](http://incubator.apache.org/projects/tez.html) was added in Hive 0.13.0 ([HIVE-4660](https://issues.apache.org/jira/browse/HIVE-4660) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)).  For information see the design document [Hive on Tez]({{< ref "hive-on-tez" >}}), especially the [Installation and Configuration]({{< ref "#installation-and-configuration" >}}) section.
+[Apache Tez](http://incubator.apache.org/projects/tez.html) was added in Hive 0.13.0 ([HIVE-4660](https://issues.apache.org/jira/browse/HIVE-4660) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)).  For information see the design document [Hive on Tez]({{% ref "hive-on-tez" %}}), especially the [Installation and Configuration]({{% ref "#installation-and-configuration" %}}) section.
 
 Besides the configuration properties listed in this section, some properties in other sections are also related to Tez:
 
-* **[hive.execution.engine]({{< ref "#hiveexecutionengine" >}})**
-* ##### [hive.mapjoin.optimized.hashtable]({{< ref "#hivemapjoinoptimizedhashtable" >}})
-* ##### [hive.mapjoin.optimized.hashtable.wbsize]({{< ref "#hivemapjoinoptimizedhashtablewbsize" >}})
-* **[hive.server2.tez.default.queues]({{< ref "#hiveserver2tezdefaultqueues" >}})**
-* **[hive.server2.tez.sessions.per.default.queue]({{< ref "#hiveserver2tezsessionsperdefaultqueue" >}})**
-* **[hive.server2.tez.initialize.default.sessions]({{< ref "#hiveserver2tezinitializedefaultsessions" >}})**
-* **[hive.stats.max.variable.length]({{< ref "#hivestatsmaxvariablelength" >}})**
-* **[hive.stats.list.num.entries]({{< ref "#hivestatslistnumentries" >}})**
-* **[hive.stats.map.num.entries]({{< ref "#hivestatsmapnumentries" >}})**
-* **[hive.stats.map.parallelism]({{< ref "#hivestatsmapparallelism" >}})**  (Hive 0.13 only; removed in Hive 0.14)
-* **[hive.stats.join.factor]({{< ref "#hivestatsjoinfactor" >}})**
-* **[hive.stats.deserialization.factor]({{< ref "#hivestatsdeserializationfactor" >}})**
-* **[hive.tez.dynamic.semijoin.reduction]({{< ref "#hivetezdynamicsemijoinreduction" >}})**
-* **[hive.tez.min.bloom.filter.entries]({{< ref "#hivetezminbloomfilterentries" >}})**
-* **[hive.tez.max.bloom.filter.entries]({{< ref "#hivetezmaxbloomfilterentries" >}})**
-* **[hive.tez.bloom.filter.factor]({{< ref "#hivetezbloomfilterfactor" >}})**
-* **[hive.tez.bigtable.minsize.semijoin.reduction]({{< ref "#hivetezbigtableminsizesemijoinreduction" >}})**
-* **[hive.explain.user]({{< ref "#hive-explain-user" >}})**
+* **[hive.execution.engine]({{% ref "#hiveexecutionengine" %}})**
+* ##### [hive.mapjoin.optimized.hashtable]({{% ref "#hivemapjoinoptimizedhashtable" %}})
+* ##### [hive.mapjoin.optimized.hashtable.wbsize]({{% ref "#hivemapjoinoptimizedhashtablewbsize" %}})
+* **[hive.server2.tez.default.queues]({{% ref "#hiveserver2tezdefaultqueues" %}})**
+* **[hive.server2.tez.sessions.per.default.queue]({{% ref "#hiveserver2tezsessionsperdefaultqueue" %}})**
+* **[hive.server2.tez.initialize.default.sessions]({{% ref "#hiveserver2tezinitializedefaultsessions" %}})**
+* **[hive.stats.max.variable.length]({{% ref "#hivestatsmaxvariablelength" %}})**
+* **[hive.stats.list.num.entries]({{% ref "#hivestatslistnumentries" %}})**
+* **[hive.stats.map.num.entries]({{% ref "#hivestatsmapnumentries" %}})**
+* **[hive.stats.map.parallelism]({{% ref "#hivestatsmapparallelism" %}})**  (Hive 0.13 only; removed in Hive 0.14)
+* **[hive.stats.join.factor]({{% ref "#hivestatsjoinfactor" %}})**
+* **[hive.stats.deserialization.factor]({{% ref "#hivestatsdeserializationfactor" %}})**
+* **[hive.tez.dynamic.semijoin.reduction]({{% ref "#hivetezdynamicsemijoinreduction" %}})**
+* **[hive.tez.min.bloom.filter.entries]({{% ref "#hivetezminbloomfilterentries" %}})**
+* **[hive.tez.max.bloom.filter.entries]({{% ref "#hivetezmaxbloomfilterentries" %}})**
+* **[hive.tez.bloom.filter.factor]({{% ref "#hivetezbloomfilterfactor" %}})**
+* **[hive.tez.bigtable.minsize.semijoin.reduction]({{% ref "#hivetezbigtableminsizesemijoinreduction" %}})**
+* **[hive.explain.user]({{% ref "#hive-explain-user" %}})**
 
 ##### hive.jar.directory
 
 * Default Value: `null`
 * Added In: Hive 0.13.0 with [HIVE-5003](https://issues.apache.org/jira/browse/HIVE-5003) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098), default changed in [HIVE-6636](https://issues.apache.org/jira/browse/HIVE-6636)
 
-This is the location that Hive in Tez mode will look for to find a site-wide installed Hive instance.  See  **[hive.user.install.directory]({{< ref "#hiveuserinstalldirectory" >}})**  for the default behavior.
+This is the location that Hive in Tez mode will look for to find a site-wide installed Hive instance.  See  **[hive.user.install.directory]({{% ref "#hiveuserinstalldirectory" %}})**  for the default behavior.
 
 ##### hive.user.install.directory
 
 * Default Value: `hdfs:///user/`
 * Added In: Hive 0.13.0 with [HIVE-5003](https://issues.apache.org/jira/browse/HIVE-5003) and [HIVE-6098](https://issues.apache.org/jira/browse/HIVE-6098)
 
-If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{< ref "#hivejardirectory" >}})** , it will upload the Hive jar to <**hive.user.install.directory**>/\<*user_name*\> and use it to run queries.
+If Hive (in Tez mode only) cannot find a usable Hive jar in  **[hive.jar.directory]({{% ref "#hivejardirectory" %}})** , it will upload the Hive jar to <**hive.user.install.directory**>/\<*user_name*\> and use it to run queries.
 
 ##### [hive.compute.splits.in.am](http://hive.compute.splits.in.am)
 
@@ -3435,14 +3435,14 @@ By default Tez will use the Java options from map tasks. This can be used to ove
 * Default Value: `false`
 * Added In: Hive 0.13.0 with [HIVE-6447](https://issues.apache.org/jira/browse/HIVE-6447)
 
-Whether joins can be automatically converted to bucket map joins in Hive when Tez is used as the execution engine ( **[hive.execution.engine]({{< ref "#hiveexecutionengine" >}})**  is set to "`tez`").
+Whether joins can be automatically converted to bucket map joins in Hive when Tez is used as the execution engine ( **[hive.execution.engine]({{% ref "#hiveexecutionengine" %}})**  is set to "`tez`").
 
 ##### hive.tez.log.level
 
 * Default Value: `INFO`
 * Added In: Hive 0.13.0 with [HIVE-6743](https://issues.apache.org/jira/browse/HIVE-6743)
 
-The log level to use for tasks executing as part of the DAG. Used only if  **[hive.tez.java.opts]({{< ref "#hivetezjavaopts" >}})**  is used to configure Java options.
+The log level to use for tasks executing as part of the DAG. Used only if  **[hive.tez.java.opts]({{% ref "#hivetezjavaopts" %}})**  is used to configure Java options.
 
 ##### hive.localize.resource.wait.interval
 
@@ -3484,32 +3484,32 @@ Turn on Tez' auto reducer parallelism feature. When enabled, Hive will still est
 * Default Value: `2`
 * Added In: Hive 0.14.0 with [HIVE-7158](https://issues.apache.org/jira/browse/HIVE-7158)
 
-When [auto reducer parallelism]({{< ref "#auto-reducer-parallelism" >}}) is enabled this factor will be used to over-partition data in shuffle  edges.
+When [auto reducer parallelism]({{% ref "#auto-reducer-parallelism" %}}) is enabled this factor will be used to over-partition data in shuffle  edges.
 
 ##### hive.tez.min.partition.factor
 
 * Default Value: `0.25`
 * Added In: Hive 0.14.0 with [HIVE-7158](https://issues.apache.org/jira/browse/HIVE-7158)
 
-When [auto reducer parallelism]({{< ref "#auto-reducer-parallelism" >}}) is enabled this factor will be used to put a lower limit to the number  of reducers that Tez specifies.
+When [auto reducer parallelism]({{% ref "#auto-reducer-parallelism" %}}) is enabled this factor will be used to put a lower limit to the number  of reducers that Tez specifies.
 
 ##### hive.tez.exec.print.summary
 
 * Default Value: `false`
 * Added In: Hive 0.14.0 with [HIVE-8495](https://issues.apache.org/jira/browse/HIVE-8495)
 
-If true, displays breakdown of execution steps for every query executed on [Hive CLI]({{< ref "languagemanual-cli" >}}) or [Beeline]({{< ref "#beeline" >}}) client.
+If true, displays breakdown of execution steps for every query executed on [Hive CLI]({{% ref "languagemanual-cli" %}}) or [Beeline]({{% ref "#beeline" %}}) client.
 
 ##### hive.tez.exec.inplace.progress
 
 * Default Value: `true`
 * Added In: Hive 0.14.0 with [HIVE-8495](https://issues.apache.org/jira/browse/HIVE-8495)
 
-Updates Tez job execution progress in-place in the terminal when [Hive CLI]({{< ref "languagemanual-cli" >}}) is used.
+Updates Tez job execution progress in-place in the terminal when [Hive CLI]({{% ref "languagemanual-cli" %}}) is used.
 
 ## LLAP
 
-Live Long and Process (LLAP) functionality was added in Hive 2.0 ([HIVE-7926](https://issues.apache.org/jira/browse/HIVE-7926) and associated tasks). For details see [LLAP in Hive]({{< ref "llap" >}}).
+Live Long and Process (LLAP) functionality was added in Hive 2.0 ([HIVE-7926](https://issues.apache.org/jira/browse/HIVE-7926) and associated tasks). For details see [LLAP in Hive]({{% ref "llap" %}}).
 
 LLAP adds the following configuration properties. 
 
@@ -3838,20 +3838,20 @@ LLAP delegation token lifetime, in seconds if specified without a unit.
 
 ## Transactions and Compactor
 
-Hive transactions with row-level ACID functionality were added in Hive 0.13.0 ([HIVE-5317](https://issues.apache.org/jira/browse/HIVE-5317) and its subtasks). For details see [ACID and Transactions in Hive]({{< ref "hive-transactions" >}}).
+Hive transactions with row-level ACID functionality were added in Hive 0.13.0 ([HIVE-5317](https://issues.apache.org/jira/browse/HIVE-5317) and its subtasks). For details see [ACID and Transactions in Hive]({{% ref "hive-transactions" %}}).
 
 To turn on Hive transactions, change the values of these parameters from their defaults, as described below:
 
-* **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})**
-* **[hive.compactor.initiator.on]({{< ref "#hivecompactorinitiatoron" >}})**
-* **[hive.compactor.cleaner.on]({{< ref "#hivecompactorcleaneron" >}})**
-* **[hive.compactor.worker.threads]({{< ref "#hivecompactorworkerthreads" >}})**
+* **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})**
+* **[hive.compactor.initiator.on]({{% ref "#hivecompactorinitiatoron" %}})**
+* **[hive.compactor.cleaner.on]({{% ref "#hivecompactorcleaneron" %}})**
+* **[hive.compactor.worker.threads]({{% ref "#hivecompactorworkerthreads" %}})**
 
 These parameters must also have non-default values to turn on Hive transactions:
 
-* **[hive.support.concurrency]({{< ref "#hivesupportconcurrency" >}})**
-* **[hive.enforce.bucketing]({{< ref "#hiveenforcebucketing" >}})**  (Hive 0.x and 1.x only)
-* **[hive.exec.dynamic.partition.mode]({{< ref "#hiveexecdynamicpartitionmode" >}})**
+* **[hive.support.concurrency]({{% ref "#hivesupportconcurrency" %}})**
+* **[hive.enforce.bucketing]({{% ref "#hiveenforcebucketing" %}})**  (Hive 0.x and 1.x only)
+* **[hive.exec.dynamic.partition.mode]({{% ref "#hiveexecdynamicpartitionmode" %}})**
 
 ### Transactions
 
@@ -3863,7 +3863,7 @@ These parameters must also have non-default values to turn on Hive transactions:
 
 Set this to org.apache.hadoop.hive.ql.lockmgr.DbTxnManager as part of turning on Hive transactions. The default DummyTxnManager replicates pre-Hive-0.13 behavior and provides no transactions.
 
-Turning on Hive transactions also requires appropriate settings for  ****[hive.compactor.initiator.on]({{< ref "#hivecompactorinitiatoron" >}})**** ,  **[hive.compactor.cleaner.on]({{< ref "#hivecompactorcleaneron" >}}),**  ******[hive.compactor.worker.threads]({{< ref "#hivecompactorworkerthreads" >}})****** ,  ********[hive.support.concurrency]({{< ref "#hivesupportconcurrency" >}})******** , ************[hive.enforce.bucketing]({{< ref "#hiveenforcebucketing" >}})************  (Hive 0.x and 1.x only), and ********[hive.exec.dynamic.partition.mode]({{< ref "#hiveexecdynamicpartitionmode" >}})******** .
+Turning on Hive transactions also requires appropriate settings for  ****[hive.compactor.initiator.on]({{% ref "#hivecompactorinitiatoron" %}})**** ,  **[hive.compactor.cleaner.on]({{% ref "#hivecompactorcleaneron" %}}),**  ******[hive.compactor.worker.threads]({{% ref "#hivecompactorworkerthreads" %}})****** ,  ********[hive.support.concurrency]({{% ref "#hivesupportconcurrency" %}})******** , ************[hive.enforce.bucketing]({{% ref "#hiveenforcebucketing" %}})************  (Hive 0.x and 1.x only), and ********[hive.exec.dynamic.partition.mode]({{% ref "#hiveexecdynamicpartitionmode" %}})******** .
 
 ##### hive.txn.strict.locking.mode
 
@@ -3914,7 +3914,7 @@ Frequency of WriteSet reaper runs.
 
 Maximum number of transactions that can be fetched in one call to open_txns().
 
-This controls how many transactions streaming agents such as [Flume](http://flume.apache.org/) or [Storm](https://storm.incubator.apache.org/) open simultaneously. The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt). Thus increasing this value decreases the number of [delta files]({{< ref "#delta-files" >}}) created by streaming agents. But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.
+This controls how many transactions streaming agents such as [Flume](http://flume.apache.org/) or [Storm](https://storm.incubator.apache.org/) open simultaneously. The streaming agent then writes that number of entries into a single file (per Flume agent or Storm bolt). Thus increasing this value decreases the number of [delta files]({{% ref "#delta-files" %}}) created by streaming agents. But it also increases the number of open transactions that Hive has to track at any given time, which may negatively affect read performance.
 
 ##### hive.max.open.txns
 
@@ -3951,7 +3951,7 @@ ex.getMessage() + " (SQLState=" + ex.getSQLState() + ", ErrorCode=" + ex.getErro
 * Hive Transactions Value: `true` (for exactly one instance of the Thrift metastore service)
 * Added In: Hive 0.13.0 with [HIVE-5843](https://issues.apache.org/jira/browse/HIVE-5843)
 
-Whether to run the initiator thread on this metastore instance. Set this to true on one instance of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+Whether to run the initiator thread on this metastore instance. Set this to true on one instance of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 Before [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) it's critical that this is enabled on exactly one metastore service instance. As of   [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388)   this property may be enabled on any number of standalone metastore instances.
 
@@ -3961,7 +3961,7 @@ Before [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) it's crit
 * Hive Transactions Value: `true` (for exactly one instance of the Thrift metastore service)
 * Added In: Hive 4.0.0 with [HIVE-26908](https://issues.apache.org/jira/browse/HIVE-26908)
 
-Whether to run the Cleaner thread on this metastore instance. Set this to true on one instance of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+Whether to run the Cleaner thread on this metastore instance. Set this to true on one instance of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 Before Hive 4.0.0 Cleaner thread can be started/stopped with config hive.compactor.initiator.on. This config helps to enable/disable initiator/cleaner threads independently
 
@@ -3971,7 +3971,7 @@ Before Hive 4.0.0 Cleaner thread can be started/stopped with config hive.compact
 * Hive Transactions Value: greater than `0` on at least one instance of the Thrift metastore service
 * Added In: Hive 0.13.0 with [HIVE-5843](https://issues.apache.org/jira/browse/HIVE-5843)
 
-How many compactor worker threads to run on this metastore instance. Set this to a positive number on one or more instances of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+How many compactor worker threads to run on this metastore instance. Set this to a positive number on one or more instances of the Thrift metastore service as part of turning on Hive transactions. For a complete list of parameters required for turning on transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 Worker threads spawn MapReduce jobs to do compactions. They do not do the compactions themselves. Increasing the number of worker threads will decrease the time it takes tables or partitions to be compacted once they are determined to need compaction. It will also increase the background load on the Hadoop cluster as more MapReduce jobs will be running in the background.
 
@@ -4067,11 +4067,11 @@ Controls how often the process to purge historical record of compactions runs.
 * Default Value: `2`
 * Added In: Hive 1.3.0 and 2.0.0 with [HIVE-12353](https://issues.apache.org/jira/browse/HIVE-12353)
 
-Number of consecutive failed compactions for a given partition after which the Initiator will stop attempting to schedule compactions automatically. It is still possible to use [ALTER TABLE]({{< ref "#alter-table" >}}) to initiate compaction. Once a manually-initiated compaction succeeds, auto-initiated compactions will resume. Note that this must be less than  **[hive.compactor.history.retention.failed]({{< ref "#hivecompactorhistoryretentionfailed" >}})** .
+Number of consecutive failed compactions for a given partition after which the Initiator will stop attempting to schedule compactions automatically. It is still possible to use [ALTER TABLE]({{% ref "#alter-table" %}}) to initiate compaction. Once a manually-initiated compaction succeeds, auto-initiated compactions will resume. Note that this must be less than  **[hive.compactor.history.retention.failed]({{% ref "#hivecompactorhistoryretentionfailed" %}})** .
 
 ## Indexing
 
-Indexing was added in Hive 0.7.0 with [HIVE-417](https://issues.apache.org/jira/browse/HIVE-417), and bitmap indexing was added in Hive 0.8.0 with [HIVE-1803](https://issues.apache.org/jira/browse/HIVE-1803). For more information see [Indexing]({{< ref "languagemanual-indexing" >}}).
+Indexing was added in Hive 0.7.0 with [HIVE-417](https://issues.apache.org/jira/browse/HIVE-417), and bitmap indexing was added in Hive 0.8.0 with [HIVE-1803](https://issues.apache.org/jira/browse/HIVE-1803). For more information see [Indexing]({{% ref "languagemanual-indexing" %}}).
 
 ##### hive.index.compact.file.ignore.hdfs
 
@@ -4144,7 +4144,7 @@ Whether or not to use a binary search to find the entries in an index table that
 
 ## Statistics
 
-See [Statistics in Hive]({{< ref "statsdev" >}}) for information about how to collect and use Hive table, partition, and column statistics.
+See [Statistics in Hive]({{% ref "statsdev" %}}) for information about how to collect and use Hive table, partition, and column statistics.
 
 ##### hive.stats.dbclass
 
@@ -4161,7 +4161,7 @@ Hive 0.13 and later:  The storage that stores temporary Hive statistics. In fi
 * Default Value: `true`
 * Added In: Hive 0.7 with [HIVE-1361](https://issues.apache.org/jira/browse/HIVE-1361)
 
-This flag enables gathering and updating statistics automatically during Hive [DML]({{< ref "languagemanual-dml" >}}) operations.
+This flag enables gathering and updating statistics automatically during Hive [DML]({{% ref "languagemanual-dml" %}}) operations.
 
 Statistics are not gathered for `LOAD DATA` statements.
 
@@ -4184,14 +4184,14 @@ The default connection string for the database that stores temporary Hive statis
 * Default Value: (empty)
 * Added In: Hive 0.7 with [HIVE-1923](https://issues.apache.org/jira/browse/HIVE-1923)
 
-The Java class (implementing the StatsPublisher interface) that is used by default if  **[hive.stats.dbclass]({{< ref "#hivestatsdbclass" >}})**  is not JDBC or HBase (Hive 0.12.0 and earlier), or if  **[hive.stats.dbclass]({{< ref "#hivestatsdbclass" >}})**  is a custom type (Hive 0.13.0 and later:  [HIVE-4632](https://issues.apache.org/jira/browse/HIVE-4632)).
+The Java class (implementing the StatsPublisher interface) that is used by default if  **[hive.stats.dbclass]({{% ref "#hivestatsdbclass" %}})**  is not JDBC or HBase (Hive 0.12.0 and earlier), or if  **[hive.stats.dbclass]({{% ref "#hivestatsdbclass" %}})**  is a custom type (Hive 0.13.0 and later:  [HIVE-4632](https://issues.apache.org/jira/browse/HIVE-4632)).
 
 ##### hive.stats.default.aggregator
 
 * Default Value: (empty)
 * Added In: Hive 0.7 with [HIVE-1923](https://issues.apache.org/jira/browse/HIVE-1923)
 
-The Java class (implementing the StatsAggregator interface) that is used by default if  **[hive.stats.dbclass]({{< ref "#hivestatsdbclass" >}})**  is not JDBC or HBase (Hive 0.12.0 and earlier), or if  **[hive.stats.dbclass]({{< ref "#hivestatsdbclass" >}})**  is a custom type (Hive 0.13.0 and later:  [HIVE-4632](https://issues.apache.org/jira/browse/HIVE-4632)).
+The Java class (implementing the StatsAggregator interface) that is used by default if  **[hive.stats.dbclass]({{% ref "#hivestatsdbclass" %}})**  is not JDBC or HBase (Hive 0.12.0 and earlier), or if  **[hive.stats.dbclass]({{% ref "#hivestatsdbclass" %}})**  is a custom type (Hive 0.13.0 and later:  [HIVE-4632](https://issues.apache.org/jira/browse/HIVE-4632)).
 
 ##### hive.stats.jdbc.timeout
 
@@ -4240,7 +4240,7 @@ Comma-separated list of statistics publishers to be invoked on counters on each 
 * Default Value: (empty)
 * Added In: Hive 0.8.1 with [HIVE-2446](https://issues.apache.org/jira/browse/HIVE-2446) ([patch 2](https://issues.apache.org/jira/secure/attachment/12494853/HIVE-2446.2.patch))
 
-Subset of counters that should be of interest for  **[hive.client.stats.publishers]({{< ref "configuration-properties" >}})**  (when one wants to limit their publishing). Non-display names should be used.
+Subset of counters that should be of interest for  **[hive.client.stats.publishers]({{% ref "configuration-properties" %}})**  (when one wants to limit their publishing). Non-display names should be used.
 
 ##### hive.stats.reliable
 
@@ -4287,7 +4287,7 @@ Determines if, when the prefix of the key used for intermediate statistics colle
 * Default Value: `24`
 * Added In: Hive 0.13 with [HIVE-6229](https://issues.apache.org/jira/browse/HIVE-6229)
 
-Reserved length for postfix of statistics key. Currently only meaningful for counter type statistics which should keep the length of the full statistics key smaller than the maximum length configured by  **[hive.stats.key.prefix.max.length]({{< ref "#hivestatskeyprefixmaxlength" >}})** . For counter type statistics, it should be bigger than the length of LB spec if exists.
+Reserved length for postfix of statistics key. Currently only meaningful for counter type statistics which should keep the length of the full statistics key smaller than the maximum length configured by  **[hive.stats.key.prefix.max.length]({{% ref "#hivestatskeyprefixmaxlength" %}})** . For counter type statistics, it should be bigger than the length of LB spec if exists.
 
 ##### hive.stats.max.variable.length
 
@@ -4369,14 +4369,14 @@ In the absence of table/partition statistics, average row size will be used to 
 * Default Value: `false`
 * Added In: Hive 0.13.0 with [HIVE-5483](https://issues.apache.org/jira/browse/HIVE-5483)
 
-When set to true Hive will answer a few queries like min, max, and count(1) purely using statistics stored in the metastore. For basic statistics collection, set the configuration property  **[hive.stats.autogather]({{< ref "#hivestatsautogather" >}})**  to true. For more advanced statistics collection, run ANALYZE TABLE queries.
+When set to true Hive will answer a few queries like min, max, and count(1) purely using statistics stored in the metastore. For basic statistics collection, set the configuration property  **[hive.stats.autogather]({{% ref "#hivestatsautogather" %}})**  to true. For more advanced statistics collection, run ANALYZE TABLE queries.
 
 ##### hive.stats.gather.num.threads
 
 * Default Value: `10`
 * Added In: Hive 0.13.0 with [HIVE-6578](https://issues.apache.org/jira/browse/HIVE-6578)
 
-Number of threads used by partialscan/noscan analyze command for partitioned tables. This is applicable only for file formats that implement the StatsProvidingRecordReader interface (like [ORC]({{< ref "#orc" >}})).
+Number of threads used by partialscan/noscan analyze command for partitioned tables. This is applicable only for file formats that implement the StatsProvidingRecordReader interface (like [ORC]({{% ref "#orc" %}})).
 
 ##### hive.stats.fetch.bitvector
 
@@ -4414,12 +4414,12 @@ Whether Hive fetches bitvector when computing number of distinct values (ndv). K
 
 ## Authentication and Authorization
 
-* [Restricted/Hidden/Internal List and Whitelist]({{< ref "#restrictedhiddeninternal-list-and-whitelist" >}})
-* [Hive Client Security]({{< ref "#hive-client-security" >}})
-* [Hive Metastore Security]({{< ref "#hive-metastore-security" >}})
-* [SQL Standard Based Authorization]({{< ref "#sql-standard-based-authorization" >}})
+* [Restricted/Hidden/Internal List and Whitelist]({{% ref "#restrictedhiddeninternal-list-and-whitelist" %}})
+* [Hive Client Security]({{% ref "#hive-client-security" %}})
+* [Hive Metastore Security]({{% ref "#hive-metastore-security" %}})
+* [SQL Standard Based Authorization]({{% ref "#sql-standard-based-authorization" %}})
 
-For an overview of authorization modes, see [Hive Authorization]({{< ref "languagemanual-authorization" >}}).
+For an overview of authorization modes, see [Hive Authorization]({{% ref "languagemanual-authorization" %}}).
 
 ### Restricted/Hidden/Internal List and Whitelist
 
@@ -4435,7 +4435,7 @@ For an overview of authorization modes, see [Hive Authorization]({{< ref "langua
 	+ Hive 3.0.0: *all of the above, plus these:* `hive.spark.client.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.server.connect.timeout` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.channel.log.level` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.max.size` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.threads` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.secret.bits` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.address` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hive.spark.client.rpc.server.port` ([HIVE-16876](https://issues.apache.org/jira/browse/HIVE-16876)), `hikari.*` ([HIVE-17318](https://issues.apache.org/jira/browse/HIVE-17318)), `dbcp.*` ([HIVE-17319](https://issues.apache.org/jira/browse/HIVE-17319)), hadoop.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248)), yarn.bin.path ([HIVE-18248](https://issues.apache.org/jira/browse/HIVE-18248))
 * Added In: Hive 0.11.0 with [HIVE-2935](https://issues.apache.org/jira/browse/HIVE-2935)
 
-Comma separated list of configuration properties which are immutable at runtime. For example, if  **[hive.security.authorization.enabled]({{< ref "#hivesecurityauthorizationenabled" >}})**  is set to true, it should be included in this list to prevent a client from changing it to false at runtime.
+Comma separated list of configuration properties which are immutable at runtime. For example, if  **[hive.security.authorization.enabled]({{% ref "#hivesecurityauthorizationenabled" %}})**  is set to true, it should be included in this list to prevent a client from changing it to false at runtime.
 
 ##### hive.conf.hidden.list
 
@@ -4467,7 +4467,7 @@ Comma separated list of non-SQL Hive commands that users are authorized to execu
 
 #### Whitelist for SQL Standard Based Hive Authorization
 
-See  **[hive.security.authorization.sqlstd.confwhitelist]({{< ref "#hivesecurityauthorizationsqlstdconfwhitelist" >}})**  below for information about the whitelist property that authorizes set commands in SQL standard based authorization.
+See  **[hive.security.authorization.sqlstd.confwhitelist]({{% ref "#hivesecurityauthorizationsqlstdconfwhitelist" %}})**  below for information about the whitelist property that authorizes set commands in SQL standard based authorization.
 
 ### Hive Client Security
 
@@ -4522,9 +4522,9 @@ The privileges automatically granted to the owner whenever a table gets created.
 
 ### Hive Metastore Security
 
-Metastore-side security was added in Hive 0.10.0 ([HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705)).  For more information, see the [overview in Authorization]({{< ref "#overview-in authorization" >}}) and details in [Storage Based Authorization in the Metastore Server]({{< ref "storage-based-authorization-in-the-metastore-server" >}}).
+Metastore-side security was added in Hive 0.10.0 ([HIVE-3705](https://issues.apache.org/jira/browse/HIVE-3705)).  For more information, see the [overview in Authorization]({{% ref "#overview-in authorization" %}}) and details in [Storage Based Authorization in the Metastore Server]({{% ref "storage-based-authorization-in-the-metastore-server" %}}).
 
-For general metastore configuration properties, see [MetaStore]({{< ref "#metastore" >}}).
+For general metastore configuration properties, see [MetaStore]({{% ref "#metastore" %}}).
 
 ##### hive.metastore.pre.event.listeners
 
@@ -4560,7 +4560,7 @@ The authenticator manager class name to be used in the metastore for authenticat
 * Default Value: `true`
 * Added In: Hive 0.14.0 with [HIVE-8221](https://issues.apache.org/jira/browse/HIVE-8221)
 
-If this is true, the metastore authorizer authorizes read actions on database and table. See [Storage Based Authorization]({{< ref "#storage-based-authorization" >}}).
+If this is true, the metastore authorizer authorizes read actions on database and table. See [Storage Based Authorization]({{% ref "#storage-based-authorization" %}}).
 
 ##### hive.metastore.token.signature
 
@@ -4573,7 +4573,7 @@ The delegation token service name to match when selecting a token from the curre
 
 Version
 
-Hive 0.13.0 introduces fine-grained authorization based on the [SQL standard authorization]({{< ref "sql-standard-based-hive-authorization" >}}) model. See [HIVE-5837](https://issues.apache.org/jira/browse/HIVE-5837) for the functional specification and list of subtasks.
+Hive 0.13.0 introduces fine-grained authorization based on the [SQL standard authorization]({{% ref "sql-standard-based-hive-authorization" %}}) model. See [HIVE-5837](https://issues.apache.org/jira/browse/HIVE-5837) for the functional specification and list of subtasks.
 
 ##### hive.users.in.admin.role
 
@@ -4587,7 +4587,7 @@ A comma separated list of users which will be added to the ADMIN role when the m
 * Default Value: (empty, but includes list shown below implicitly)
 * Added In: Hive 0.13.0 with [HIVE-6846](https://issues.apache.org/jira/browse/HIVE-6846); updated in Hive 0.14.0 with [HIVE-8534](https://issues.apache.org/jira/browse/HIVE-8534) and in subsequent releases with several JIRA issues
 
-A Java regex. Configuration properties that match this regex can be modified by user when [SQL standard base authorization]({{< ref "sql-standard-based-hive-authorization" >}}) is used.
+A Java regex. Configuration properties that match this regex can be modified by user when [SQL standard base authorization]({{% ref "sql-standard-based-hive-authorization" %}}) is used.
 
 If this parameter is not set, the default list is added by the SQL standard authorizer. To display the default list for the current release, use the command '`set hive.security.authorization.sqlstd.confwhitelist`'.
 
@@ -4609,41 +4609,41 @@ Hive 3.0.0 fixes a parameter added in 1.2.1, changing mapred.job.queuename to ma
 
 Some parameters are added automatically when they match one of the regex specifications for the white list in HiveConf.java (for example, **hive.log.trace.id** in Hive 2.0.0 –  see  [HIVE-12419](https://issues.apache.org/jira/browse/HIVE-12419) ).
 
-Note that the  **[hive.conf.restricted.list]({{< ref "#hiveconfrestrictedlist" >}})**  checks are still enforced after the white list check.
+Note that the  **[hive.conf.restricted.list]({{% ref "#hiveconfrestrictedlist" %}})**  checks are still enforced after the white list check.
 
 ##### hive.security.authorization.sqlstd.confwhitelist.append
 
 * Default Value: (empty)
 * Added In: Hive 0.14.0  with [HIVE-8534](https://issues.apache.org/jira/browse/HIVE-8534)
 
-Second Java regex that the whitelist of configuration properties would match in addition to  [**hive.security.authorization.sqlstd.confwhitelist**]({{< ref "#**hive-security-authorization-sqlstd-confwhitelist**" >}}). Do not include a starting `|` in the value.
+Second Java regex that the whitelist of configuration properties would match in addition to  [**hive.security.authorization.sqlstd.confwhitelist**]({{% ref "#**hive-security-authorization-sqlstd-confwhitelist**" %}}). Do not include a starting `|` in the value.
 
-Using this regex instead of updating the original regex for  [**hive.security.authorization.sqlstd.confwhitelist**]({{< ref "#**hive-security-authorization-sqlstd-confwhitelist**" >}}) means that you can append to the default that is set by SQL standard authorization instead of replacing it entirely.
+Using this regex instead of updating the original regex for  [**hive.security.authorization.sqlstd.confwhitelist**]({{% ref "#**hive-security-authorization-sqlstd-confwhitelist**" %}}) means that you can append to the default that is set by SQL standard authorization instead of replacing it entirely.
 
 ##### hive.server2.builtin.udf.whitelist
 
 * Default Value: (empty, treated as not set – all UDFs allowed)
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-8893](https://issues.apache.org/jira/browse/HIVE-8893)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-8893](https://issues.apache.org/jira/browse/HIVE-8893)
 
 A comma separated list of builtin UDFs that are allowed to be executed. A UDF that is not included in the list will return an error if invoked from a query. If set to empty, then treated as wildcard character – all UDFs will be allowed. Note that this configuration is read at the startup time by HiveServer2 and changing this using a 'set' command in a session won't change the behavior.
 
 ##### hive.server2.builtin.udf.blacklist
 
 * Default Value: (empty)
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-8893](https://issues.apache.org/jira/browse/HIVE-8893)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-8893](https://issues.apache.org/jira/browse/HIVE-8893)
 
 A comma separated list of builtin UDFs that are not allowed to be executed. A UDF that is included in the list will return an error if invoked from a query.  Note that this configuration is read at the startup time by HiveServer2 and changing this using a 'set' command in a session won't change the behavior.
 
 ##### hive.security.authorization.task.factory
 
 * Default Value: `org.apache.hadoop.hive.ql.parse.authorization.HiveAuthorizationTaskFactoryImpl`
-* Added In: Hive  [1.1.0]({{< ref "#1-1-0" >}})  with [HIVE-8611](https://issues.apache.org/jira/browse/HIVE-8611)
+* Added In: Hive  [1.1.0]({{% ref "#1-1-0" %}})  with [HIVE-8611](https://issues.apache.org/jira/browse/HIVE-8611)
 
 To override the default authorization DDL handling, set **hive.security.authorization.task.factory** to a class that implements the org.apache.hadoop.hive.ql.parse.authorization.HiveAuthorizationTaskFactory interface.
 
 ## Archiving
 
-See [Archiving for File Count Reduction]({{< ref "languagemanual-archiving" >}}) for general information about Hive support for [Hadoop archives](http://hadoop.apache.org/docs/stable1/hadoop_archives.html).
+See [Archiving for File Count Reduction]({{% ref "languagemanual-archiving" %}}) for general information about Hive support for [Hadoop archives](http://hadoop.apache.org/docs/stable1/hadoop_archives.html).
 
 ##### fs.har.impl
 
@@ -4669,7 +4669,7 @@ In new Hadoop versions, the parent directory must be set while creating a HAR. B
 
 ## Locking
 
-See [Hive Concurrency Model]({{< ref "locking" >}}) for general information about locking.
+See [Hive Concurrency Model]({{% ref "locking" %}}) for general information about locking.
 
 ##### hive.support.concurrency
 
@@ -4678,14 +4678,14 @@ See [Hive Concurrency Model]({{< ref "locking" >}}) for general information abou
 
 Whether Hive supports concurrency or not. A [ZooKeeper](https://zookeeper.apache.org) instance must be up and running for the default Hive lock manager to support read-write locks.
 
-Set to `true` to support [INSERT ... VALUES, UPDATE, and DELETE]({{< ref "hive-transactions" >}}) transactions (Hive 0.14.0 and later). For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{< ref "#hivetxnmanager" >}})** .
+Set to `true` to support [INSERT ... VALUES, UPDATE, and DELETE]({{% ref "hive-transactions" %}}) transactions (Hive 0.14.0 and later). For a complete list of parameters required for turning on Hive transactions, see  **[hive.txn.manager]({{% ref "#hivetxnmanager" %}})** .
 
 ##### hive.lock.manager
 
 * Default Value: `org.apache.hadoop.hive.ql.lockmgr.zookeeper.ZooKeeperHiveLockManager`
 * Added In: Hive 0.7.0 with [HIVE-1293](https://issues.apache.org/jira/browse/HIVE-1293)
 
-The lock manager to use when  [**hive.support.concurrency**]({{< ref "#**hive-support-concurrency**" >}}) is set to `true`.
+The lock manager to use when  [**hive.support.concurrency**]({{% ref "#**hive-support-concurrency**" %}}) is set to `true`.
 
 ##### hive.lock.mapred.only.operation
 
@@ -4766,18 +4766,18 @@ Clean extra nodes at the end of the session.
 * Default Value: `__HIVE_DEFAULT_ZOOKEEPER_PARTITION__`
 * Added In: Hive 0.7.0 with [HIVE-1293](https://issues.apache.org/jira/browse/HIVE-1293)
 
-The default partition name when ZooKeeperHiveLockManager is the  [**hive lock manager**]({{< ref "#**hive-lock-manager**" >}}) .
+The default partition name when ZooKeeperHiveLockManager is the  [**hive lock manager**]({{% ref "#**hive-lock-manager**" %}}) .
 
 ## Metrics
 
-The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2). For more information, see [Hive Metrics]({{< ref "hive-metrics" >}}).  
+The metrics that Hive collects can be viewed in the [HiveServer2 Web UI](https://hive.apache.org/docs/latest/admin/setting-up-hiveserver2#web-ui-for-hiveserver2). For more information, see [Hive Metrics]({{% ref "hive-metrics" %}}).  
 
 ##### hive.metastore.metrics.enabled
 
 * Default Value: `false`
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-Enable metrics on the Hive Metastore Service. (For other metastore configuration properties, see the [Metastore]({{< ref "#metastore" >}}) and [Hive Metastore Security]({{< ref "#hive-metastore-security" >}}) sections.)
+Enable metrics on the Hive Metastore Service. (For other metastore configuration properties, see the [Metastore]({{% ref "#metastore" %}}) and [Hive Metastore Security]({{% ref "#hive-metastore-security" %}}) sections.)
 
 ##### hive.metastore.acidmetrics.thread.on
 
@@ -4791,7 +4791,7 @@ Whether to run acid related metrics collection on this metastore instance.
 * Default Value: `false`
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-Enable metrics on HiveServer2. (For other HiveServer2 configuration properties, see the [HiveServer2]({{< ref "#hiveserver2" >}}) section.)
+Enable metrics on HiveServer2. (For other HiveServer2 configuration properties, see the [HiveServer2]({{% ref "#hiveserver2" %}}) section.)
 
 ##### hive.service.metrics.class
 
@@ -4822,28 +4822,28 @@ Comma separated list of reporter implementation classes for metric class org.apa
 * Default Value:  "`/tmp/report.json`"
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON_FILE, this is the location of the local JSON metrics file dump. This file will get overwritten at every interval of  [**hive.service.metrics.file.frequency**]({{< ref "#**hive-service-metrics-file-frequency**" >}}).
+For  [**hive.service.metrics.class**]({{% ref "#**hive-service-metrics-class**" %}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{% ref "#**hive-service-metrics-reporter**" %}}) JSON_FILE, this is the location of the local JSON metrics file dump. This file will get overwritten at every interval of  [**hive.service.metrics.file.frequency**]({{% ref "#**hive-service-metrics-file-frequency**" %}}).
 
 ##### hive.service.metrics.file.frequency
 
 * Default Value:  5 seconds
 * Added in: Hive 1.3.0 and 2.0.0 with [HIVE-10761](https://issues.apache.org/jira/browse/HIVE-10761)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) JSON_FILE, this is the frequency of updating the JSON metrics file.
+For  [**hive.service.metrics.class**]({{% ref "#**hive-service-metrics-class**" %}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{% ref "#**hive-service-metrics-reporter**" %}}) JSON_FILE, this is the frequency of updating the JSON metrics file.
 
 ##### hive.service.metrics.hadoop2.component
 
 * Default Value:  "`hive`"
 * Added in: Hive 2.1.0 with [HIVE-13480](https://issues.apache.org/jira/browse/HIVE-13480)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) HADOOP2, this is the component name to provide to the HADOOP2 metrics system. Ideally 'hivemetastore' for the MetaStore and 'hiveserver2' for HiveServer2. The metrics will be updated at every interval of  [**hive.service.metrics.hadoop2.frequency**]({{< ref "#**hive-service-metrics-hadoop2-frequency**" >}}).
+For  [**hive.service.metrics.class**]({{% ref "#**hive-service-metrics-class**" %}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{% ref "#**hive-service-metrics-reporter**" %}}) HADOOP2, this is the component name to provide to the HADOOP2 metrics system. Ideally 'hivemetastore' for the MetaStore and 'hiveserver2' for HiveServer2. The metrics will be updated at every interval of  [**hive.service.metrics.hadoop2.frequency**]({{% ref "#**hive-service-metrics-hadoop2-frequency**" %}}).
 
 ##### hive.service.metrics.hadoop2.frequency
 
 * Default Value:  30 seconds
 * Added in: Hive 2.1.0 with [HIVE-13480](https://issues.apache.org/jira/browse/HIVE-13480)
 
-For  [**hive.service.metrics.class**]({{< ref "#**hive-service-metrics-class**" >}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{< ref "#**hive-service-metrics-reporter**" >}}) HADOOP2, this is the frequency of updating the HADOOP2 metrics system.
+For  [**hive.service.metrics.class**]({{% ref "#**hive-service-metrics-class**" %}}) org.apache.hadoop.hive.common.metrics.metrics2.CodahaleMetrics and  [**hive.service.metrics.reporter**]({{% ref "#**hive-service-metrics-reporter**" %}}) HADOOP2, this is the frequency of updating the HADOOP2 metrics system.
 
 ## Clustering
 
@@ -4983,7 +4983,7 @@ Indicates whether the REPL DUMP command dumps only metadata information (`true`)
 * Default Value: `false`
 * Added in: Hive 3.0.0 with [HIVE-18352](https://issues.apache.org/jira/browse/HIVE-18352)
 
-Indicates whether replication dump should include information about ACID tables. It should be used in conjunction with  [**hive.repl.dump.metadata.only**]({{< ref "#**hive-repl-dump-metadata-only**" >}}) to enable copying of metadata for ACID tables which do not require the corresponding transaction semantics to be applied on target. This can be removed when ACID table replication is supported.
+Indicates whether replication dump should include information about ACID tables. It should be used in conjunction with  [**hive.repl.dump.metadata.only**]({{% ref "#**hive-repl-dump-metadata-only**" %}}) to enable copying of metadata for ACID tables which do not require the corresponding transaction semantics to be applied on target. This can be removed when ACID table replication is supported.
 
 ##### hive.repl.add.raw.reserved.namespace
 
@@ -5009,7 +5009,7 @@ List of supported blobstore schemes that Hive uses to apply special read/write p
 * Added In: Hive 2.2.0 with [HIVE-15121](https://issues.apache.org/jira/browse/HIVE-15121)
 
 This parameter is a global variable that enables a number of optimizations when running on blobstores.  
-Some of the optimizations, such as  **[hive.blobstore.use.blobstore.as.scratchdir]({{< ref "#hiveblobstoreuseblobstoreasscratchdir" >}})** , won't be used if this variable is set to false.
+Some of the optimizations, such as  **[hive.blobstore.use.blobstore.as.scratchdir]({{% ref "#hiveblobstoreuseblobstoreasscratchdir" %}})** , won't be used if this variable is set to false.
 
 ##### hive.blobstore.use.blobstore.as.scratchdir
 
@@ -5027,7 +5027,7 @@ Set this to a maximum number of threads that Hive will use to list file informat
 
 ## Test Properties
 
-Note:  This is an incomplete list of configuration properties used by developers when running Hive tests. For other test properties, search for "hive.test." in [hive-default.xml.template or HiveConf.java]({{< ref "#hive-default-xml-template or-hiveconf-java" >}}). Also see [Beeline Query Unit Test]({{< ref "#beeline-query-unit-test" >}}).
+Note:  This is an incomplete list of configuration properties used by developers when running Hive tests. For other test properties, search for "hive.test." in [hive-default.xml.template or HiveConf.java]({{% ref "#hive-default-xml-template or-hiveconf-java" %}}). Also see [Beeline Query Unit Test]({{% ref "#beeline-query-unit-test" %}}).
 
 ##### hive.test.mode
 
@@ -5066,11 +5066,11 @@ Determines whether local tasks (typically mapjoin hashtable generation phase) ru
 
 # HCatalog Configuration Properties
 
-Starting in Hive release 0.11.0, HCatalog is installed and configured with Hive. The HCatalog server is the same as the Hive metastore. See [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}) for metastore configuration properties. For Hive releases prior to 0.11.0, see the "Thrift Server Setup" section in the HCatalog 0.5.0 document [Installation from Tarball](http://hive.apache.org/docs/hcat_r0.5.0/install.html) for information about setting the Hive metastore configuration properties.
+Starting in Hive release 0.11.0, HCatalog is installed and configured with Hive. The HCatalog server is the same as the Hive metastore. See [Hive Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}) for metastore configuration properties. For Hive releases prior to 0.11.0, see the "Thrift Server Setup" section in the HCatalog 0.5.0 document [Installation from Tarball](http://hive.apache.org/docs/hcat_r0.5.0/install.html) for information about setting the Hive metastore configuration properties.
 
-Jobs submitted to HCatalog can specify configuration properties that affect storage, error tolerance, and other kinds of behavior during the job.  See [HCatalog Configuration Properties]({{< ref "hcatalog-configuration-properties" >}}) for details.
+Jobs submitted to HCatalog can specify configuration properties that affect storage, error tolerance, and other kinds of behavior during the job.  See [HCatalog Configuration Properties]({{% ref "hcatalog-configuration-properties" %}}) for details.
 
 # WebHCat Configuration Properties
 
-For WebHCat configuration, see [Configuration Variables]({{< ref "#configuration-variables" >}}) in the WebHCat manual.
+For WebHCat configuration, see [Configuration Variables]({{% ref "#configuration-variables" %}}) in the WebHCat manual.
 

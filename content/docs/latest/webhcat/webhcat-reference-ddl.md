@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## Description
 
-Performs an [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the [Hive resource]({{< ref "webhcat-reference-hive" >}}) as an alternative.
+Performs an [HCatalog DDL]({{% ref "#hcatalog-ddl" %}}) command. The command is executed immediately upon request. Responses are limited to 1 MB. For requests which may return longer results consider using the [Hive resource]({{% ref "webhcat-reference-hive" %}}) as an alternative.
 
 ## URL
 
@@ -21,7 +21,7 @@ Performs an [HCatalog DDL]({{< ref "#hcatalog-ddl" >}}) command. The command is 
 | **group** | The user group to use when creating a table | Optional | None |
 | **permissions** | The permissions string to use when creating a table. The format is "`rwxrw-r-x`". | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -83,8 +83,8 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 
 **Navigation Links**
-Previous: [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop" >}})  
- Next: [GET ddl/database]({{< ref "webhcat-reference-getdbs" >}})
+Previous: [GET version/hadoop]({{% ref "webhcat-reference-versionhadoop" %}})  
+ Next: [GET ddl/database]({{% ref "webhcat-reference-getdbs" %}})
 
 
 

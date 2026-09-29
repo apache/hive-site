@@ -31,7 +31,7 @@ By modularising processes implemented using Hive they become easier to test effe
 
 ### Encapsulation of column level logic
 
-In the case of column level logic Hive provides both [UDFs](/docs/latest/language/hiveplugins#creating-custom-udfs) and [macros]({{< ref "#macros" >}}) that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample `SELECT` statements.
+In the case of column level logic Hive provides both [UDFs](/docs/latest/language/hiveplugins#creating-custom-udfs) and [macros]({{% ref "#macros" %}}) that allow the user to extract and reuse the expressions applied to columns. Once defined, UDFs and Macros can be readily isolated for testing. UDFs can be simply tested with existing Java/Python unit test tools such as JUnit whereas Macros require a Hive command line interface to execute the macro declaration and then exercise it with some sample `SELECT` statements.
 
 ### Encapsulation of set level logic
 

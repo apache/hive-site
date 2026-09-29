@@ -179,7 +179,7 @@ mvn clean install -DskipTests
 
 ## Testing
 
-For general information, see [Unit Tests and Debugging]({{< ref "#unit-tests-and-debugging" >}}) in the Developer Guide.
+For general information, see [Unit Tests and Debugging]({{% ref "#unit-tests-and-debugging" %}}) in the Developer Guide.
 
 ### How do I run precommit tests on a patch?
 
@@ -276,7 +276,7 @@ java.lang.NullPointerException: null
 
 ### How do I debug into a single test in Eclipse?
 
-You can debug into a single JUnit test in [Eclipse](https://www.eclipse.org/users/) by first making sure you've built the Eclipse files and imported the project into Eclipse as described [here]({{< ref "#here" >}}). Then set one or more breakpoints, highlight the method name of the JUnit test method you want to debug into, and do `Run->Debug`.
+You can debug into a single JUnit test in [Eclipse](https://www.eclipse.org/users/) by first making sure you've built the Eclipse files and imported the project into Eclipse as described [here]({{% ref "#here" %}}). Then set one or more breakpoints, highlight the method name of the JUnit test method you want to debug into, and do `Run->Debug`.
 
 Another useful method to debug these tests is to attach a remote debugger. When you run the test, enable the debug mode for surefire by passing in "`-Dmaven.surefire.debug`". Additional details on how to turning on debugging for surefire can be found [here](http://maven.apache.org/surefire/maven-surefire-plugin/examples/debugging.html). Now when you run the tests, it will wait with a message similar to
 
@@ -288,7 +288,7 @@ Note that this assumes that you are still using the default port 5005 for surefi
 
 ### How do I debug my queries in Hive?
 
-You can also interactively debug your queries in Hive by attaching a remote debugger. To do so, start [Beeline]({{< ref "#beeline" >}}) with the "`--debug`" option.
+You can also interactively debug your queries in Hive by attaching a remote debugger. To do so, start [Beeline]({{% ref "#beeline" %}}) with the "`--debug`" option.
 
 ```
 $ beeline --debug

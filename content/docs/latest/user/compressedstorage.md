@@ -42,7 +42,7 @@ The value for io.seqfile.compression.type determines how the compression is perf
 
 ### LZO Compression
 
-See [LZO Compression]({{< ref "languagemanual-lzo" >}}) for information about using LZO with Hive.
+See [LZO Compression]({{% ref "languagemanual-lzo" %}}) for information about using LZO with Hive.
 
  
 

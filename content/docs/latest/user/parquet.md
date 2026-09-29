@@ -47,11 +47,11 @@ To use Parquet with Hive 0.10-0.12 you must [download](http://search.maven.org/
 
 ### Hive 0.13
 
-Native Parquet support was added ([HIVE-5783)](https://issues.apache.org/jira/browse/HIVE-5783). Please note that not all Parquet data types are supported in this version (see [Versions and Limitations]({{< ref "#versions-and-limitations" >}}) below).
+Native Parquet support was added ([HIVE-5783)](https://issues.apache.org/jira/browse/HIVE-5783). Please note that not all Parquet data types are supported in this version (see [Versions and Limitations]({{% ref "#versions-and-limitations" %}}) below).
 
 ## **HiveQL Syntax**
 
-A [CREATE TABLE]({{< ref "#create-table" >}}) statement can specify the Parquet storage format with syntax that depends on the Hive version.
+A [CREATE TABLE]({{% ref "#create-table" %}}) statement can specify the Parquet storage format with syntax that depends on the Hive version.
 
 ### Hive 0.10 - 0.12
 

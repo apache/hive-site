@@ -19,7 +19,7 @@ Describe a database. (Note: This resource has a "format=extended" parameter howe
 | --- | --- | --- | --- |
 | **:db** | The database name | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -64,7 +64,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database]({{< ref "webhcat-reference-getdbs" >}}) Next: [PUT ddl/database/:db]({{< ref "webhcat-reference-putdb" >}})
+Previous: [GET ddl/database]({{% ref "webhcat-reference-getdbs" %}}) Next: [PUT ddl/database/:db]({{% ref "webhcat-reference-putdb" %}})
 
 
 

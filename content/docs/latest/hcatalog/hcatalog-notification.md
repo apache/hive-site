@@ -89,7 +89,7 @@ msc.markPartitionForEvent("mydb", "mytbl", partMap, PartitionEventType.LOAD_DONE
 
 To receive this notification, the consumer needs to do the following:
 
-1. Repeat steps one and two from [above]({{< ref "#above" >}}) to establish the connection to the notification system and to subscribe to the topic.
+1. Repeat steps one and two from [above]({{% ref "#above" %}}) to establish the connection to the notification system and to subscribe to the topic.
 2. Receive the notification as shown in this example:
 
 ```
@@ -209,8 +209,8 @@ You then need to configure your ActiveMQ Consumer(s) to listen for messages on t
   
 
 **Navigation Links**
-Previous: [Dynamic Partitioning]({{< ref "hcatalog-dynamicpartitions" >}})  
-Next: [Storage Based Authorization]({{< ref "hcatalog-authorization" >}})
+Previous: [Dynamic Partitioning]({{% ref "hcatalog-dynamicpartitions" %}})  
+Next: [Storage Based Authorization]({{% ref "hcatalog-authorization" %}})
 
 
 
