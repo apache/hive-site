@@ -24,6 +24,7 @@ Online book:
 
 * + *[The Free Hive Book](https://github.com/Prokopp/the-free-hive-book)* by Christian Prokopp – GitHub
 * **Blogs:**
+    + [Z-Order in Apache Hive: Multi-Dimensional Write Ordering for Hive Iceberg Tables](https://medium.com/@kokilanarayanan95/z-order-in-apache-hive-multi-dimensional-write-ordering-for-hive-iceberg-tables-bad5928c148c) by Kokila N
 	+ [Apache Hive 4.x With Apache Iceberg (Part-I)](https://link.medium.com/WUuuzhdtxBb) by Ayush Saxena
 	+ [Apache Hive-4.x with Iceberg Branches & Tags](https://medium.com/@ayushtkn/apache-hive-4-x-with-iceberg-branches-tags-3d52293ac0bf) by Ayush Saxena
 	+ [Data Federation with Apache Hive](https://link.medium.com/JKRi6qMGmBb) by Akshat Mathur
