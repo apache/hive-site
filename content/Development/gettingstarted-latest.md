@@ -66,7 +66,6 @@ To build the current Hive code from the master branch:
   LICENSE
   NOTICE
   README.txt
-  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
@@ -101,7 +100,6 @@ Prior to Hive 0.13, Hive was built using [Apache Ant](http://ant.apache.org/). 
   LICENSE
   NOTICE
   README.txt
-  RELEASE_NOTES.txt
   bin/ (all the shell scripts)
   lib/ (required jar files)
   conf/ (configuration files)
