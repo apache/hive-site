@@ -202,15 +202,13 @@ mvn versions:set -DnewVersion=0.7.0 -DgenerateBackupPoms=false
 Make sure to update the version property in standalone-metastore/pom.xml and upgrade-acid/pom.xml.
 
 3. Remove the storage-api from the list of modules to build in the top level pom.xml. Set the storage-api.version property to the release of storage-api that you are using for your release. Make sure to set the storage-api.version property in standalone-metastore/pom.xml as well.
-4. Update the the value of the `TRACKING_BRANCH` field in the `.reviewboardrc` file to point to the `origin/branch-X.Y`.
-5. Verify that the build is working with changes.
-6. Commit these changes with a comment "Preparing for X.Y.Z release".
-7. If not already done, merge desired patches from trunk into the branch and commit these changes. Avoid usage of "git merge" to avoid too many merge commits. Either request the committer who committed that patch in master to commit to this branch, or commit it yourself, or try doing a git cherry-pick for trivial patches. Specifics of this step can be laid down by the release manager.
-8. You probably also want to commit a patch (on both trunk and branch) which updates README.txt to bring it up to date (at a minimum, search+replacing references to the version number). Also check NOTICE to see if anything needs to be updated for recent library dependency changes or additions.
+4. Verify that the build is working with changes.
+5. Commit these changes with a comment "Preparing for X.Y.Z release".
+6. If not already done, merge desired patches from trunk into the branch and commit these changes. Avoid usage of "git merge" to avoid too many merge commits. Either request the committer who committed that patch in master to commit to this branch, or commit it yourself, or try doing a git cherry-pick for trivial patches. Specifics of this step can be laid down by the release manager.
+7. You probably also want to commit a patch (on both trunk and branch) which updates README.txt to bring it up to date (at a minimum, search+replacing references to the version number). Also check NOTICE to see if anything needs to be updated for recent library dependency changes or additions.
 	1. Select all of the JIRAs for the current release that aren't FIXED and do bulk update to clear the 'Fixed Version' field.
-	2. Likewise, use JIRA's [Release Notes](https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310843) link to generate content for the RELEASE_NOTES.txt file. Be sure to select 'Text' format. (It's OK to do this with a direct commit rather than a patch.)
-	3. Update the release notes in trunk with the release notes in branch.
-9. Tag the release candidate (R is the release candidate number, and also starts from 0):
+	2. Use JIRA's [Release Notes](https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310843) link to verify and finalize the release notes for version X.Y.Z. These notes are published from JIRA and linked from the website.
+8. Tag the release candidate (R is the release candidate number, and also starts from 0):
 
 ```
 git tag -a release-X.Y.Z-rcR -m "Hive X.Y.Z-rcR release."
