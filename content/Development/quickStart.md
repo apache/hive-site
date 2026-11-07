@@ -34,13 +34,13 @@ export HIVE_VERSION={{< hive-version >}}
 This is lightweight and for a quick setup, it uses Derby as metastore db.
 
 ```shell
-docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 --name hive4 apache/hive:${HIVE_VERSION}
+docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 --name hiveserver2 apache/hive:${HIVE_VERSION}
 ```
 
 ##### **STEP 4: Connect to beeline**
 
 ```shell
-docker exec -it hiveserver2 beeline -u 'jdbc:hive2://hiveserver2:10000/'
+docker exec -it hiveserver2 beeline -u 'jdbc:hive2://localhost:10000/'
 ```
 
 ##### Note: Launch Standalone Metastore To use standalone Metastore with Derby,
