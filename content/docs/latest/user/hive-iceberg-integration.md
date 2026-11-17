@@ -172,3 +172,10 @@ ALL_FILES                      SELECT * from db_name.tbl_name.all_files;
 
 Iceberg tables supports branches & tags, the details around the feature can be read [here](https://medium.com/@ayushtkn/apache-hive-4-x-with-iceberg-branches-tags-3d52293ac0bf)
 
+
+## External Ingestion into Hive Iceberg Tables
+
+Iceberg tables managed by the Hive Metastore can also be populated by external tools that write directly to object storage and register metadata through the Hive Metastore Thrift API. Tables written this way are queryable by Hive like any other Iceberg table.
+
+[OLake Go](https://olake.io/docs/writers/iceberg/catalog/hive/) is a high-performance, open-source EL (Extract–Load) platform that bridges operational databases and open lakehouse storage, writing Apache Iceberg tables or Parquet files on Amazon S3 and supporting Hive Metastore as an Iceberg catalog. See the [OLake Go Hive Catalog documentation](https://olake.io/docs/writers/iceberg/catalog/hive/) for configuration and setup details.
+
