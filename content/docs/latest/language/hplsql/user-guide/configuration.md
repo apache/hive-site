@@ -41,7 +41,7 @@ The *hplsql.conn.default* option specifies the default connection profile. The d
 SET hplsql.conn.default = <new_connection_profile>;
 ```
 
-For information about connection profiles, see [Connections]({{< ref "connections" >}}) and [Working with Multiple Databases]({{< ref "multiple-databases" >}}).
+For information about connection profiles, see [Connections](ref "connections") and [Working with Multiple Databases](ref "multiple-databases").
 
 Version: HPL/SQL 0.1
 
@@ -218,7 +218,7 @@ For example:
 </property>
 ```
 
-For information about connection profiles, see [Connections]({{< ref "connections" >}}) and [Working with Multiple Databases]({{< ref "multiple-databases" >}}).
+For information about connection profiles, see [Connections](ref "connections") and [Working with Multiple Databases](ref "multiple-databases").
 
 Version: HPL/SQL 0.3.1
 
