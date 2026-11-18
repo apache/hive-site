@@ -45,6 +45,18 @@ jobs:
           hugo-version: '0.155.1'
           # extended: true
 
+      - name: Verify ref or relref shortcodes are using '{{%', not '{{<'
+        run: |
+          FILES=$(grep -rnEl '\{\{<\s*(rel)?ref' content/ | head -n 10)
+          if [ -n "$FILES" ]; then
+            {
+              echo "::error:: {{<rel or {{<relref shortcodes are not allowed because they break link validation.";
+              echo "Example offending files:";
+              echo "$FILES" | sed 's/^/- /';
+            }
+            exit 1
+          fi
+
       - name: Build
         run: hugo --minify --panicOnWarning
 
