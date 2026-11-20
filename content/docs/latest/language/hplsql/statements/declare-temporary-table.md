@@ -31,7 +31,7 @@ DISTRIBUTE BY HASH (col, ...)
 LOGGED | NOT LOGGED
 ```
 
-For more details how temporary table support is implemented in HPL/SQL, see [Native and Managed Temporary Tables]({{< ref "temporary-tables" >}}).
+For more details how temporary table support is implemented in HPL/SQL, see [Native and Managed Temporary Tables]({{% ref "temporary-tables" %}}).
 
 **Example**:
 
@@ -56,6 +56,6 @@ SELECT * FROM temp1;
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [Native and Managed Temporary Tables]({{< ref "temporary-tables" >}})
-- [CREATE LOCAL TEMPORARY TABLE]({{< ref "create-local-temporary-table" >}})
-- [CREATE VOLATILE TABLE]({{< ref "create-volatile-table" >}})
+- [Native and Managed Temporary Tables]({{% ref "temporary-tables" %}})
+- [CREATE LOCAL TEMPORARY TABLE]({{% ref "create-local-temporary-table" %}})
+- [CREATE VOLATILE TABLE]({{% ref "create-volatile-table" %}})

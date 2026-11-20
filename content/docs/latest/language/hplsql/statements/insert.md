@@ -27,15 +27,15 @@ INSERT INTO [TABLE] table_name VALUES (exrp, expr2, ...) [, (exrp, expr2, ...), 
 
 HPL/SQL provides you with two options to run INSERT VALUES statement: **native** and **select**.
 
-Use the [hplsql.insert.values]({{< ref "configuration#hplsqlinsertvalues" >}}) option to define how to handle INSERT VALUES statement, the default value is **native**.
+Use the [hplsql.insert.values]({{% ref "configuration#hplsqlinsertvalues" %}}) option to define how to handle INSERT VALUES statement, the default value is **native**.
 
 ### Native INSERT VALUES
 
-If [hplsql.insert.values]({{< ref "configuration#hplsqlinsertvalues" >}}) is set to **native** HPL/SQL relies on the database that must support INSERT VALUES syntax. Note that INSERT VALUES is available in Hive since version 0.14 only and can only be performed on tables that support ACID.
+If [hplsql.insert.values]({{% ref "configuration#hplsqlinsertvalues" %}}) is set to **native** HPL/SQL relies on the database that must support INSERT VALUES syntax. Note that INSERT VALUES is available in Hive since version 0.14 only and can only be performed on tables that support ACID.
 
 ### Transform into INSERT SELECT
 
-If [hplsql.insert.values]({{< ref "configuration#hplsqlinsertvalues" >}}) is set to **select** HPL/SQL transforms VALUES clause to the list of SELECT FROM dual UNION ALL ... clauses.
+If [hplsql.insert.values]({{% ref "configuration#hplsqlinsertvalues" %}}) is set to **select** HPL/SQL transforms VALUES clause to the list of SELECT FROM dual UNION ALL ... clauses.
 
 For example, if you execute the following INSERT statement:
 
@@ -60,7 +60,7 @@ UNION ALL
 SELECT 40, 'OPERATIONS', 'BOSTON' FROM default.dual;
 ```
 
-You can specify the single row, single column dual table using [hplsql.dual.table]({{< ref "configuration#hplsqldualtable" >}}) option.
+You can specify the single row, single column dual table using [hplsql.dual.table]({{% ref "configuration#hplsqldualtable" %}}) option.
 
 **Important Note:** Such approach leads to creating one HDFS file **per** INSERT statement, and must not be used to insert large number of rows. 
 

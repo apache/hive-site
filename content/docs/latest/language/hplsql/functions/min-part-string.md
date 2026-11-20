@@ -77,8 +77,8 @@ Result: DE
 
 See also:
 
-- [MAX_PART_STRING(table, colname, partition_spec)]({{< ref "max-part-string" >}})
-- [MAX_PART_INT(table, colname, partition_spec)]({{< ref "max-part-int" >}})
-- [MIN_PART_INT(table, colname, partition_spec)]({{< ref "min-part-int" >}})
-- [MAX_PART_DATE(table, colname, partition_spec)]({{< ref "max-part-date" >}})
-- [MIN_PART_DATE(table, colname, partition_spec)]({{< ref "min-part-date" >}})
+- [MAX_PART_STRING(table, colname, partition_spec)]({{% ref "max-part-string" %}})
+- [MAX_PART_INT(table, colname, partition_spec)]({{% ref "max-part-int" %}})
+- [MIN_PART_INT(table, colname, partition_spec)]({{% ref "min-part-int" %}})
+- [MAX_PART_DATE(table, colname, partition_spec)]({{% ref "max-part-date" %}})
+- [MIN_PART_DATE(table, colname, partition_spec)]({{% ref "min-part-date" %}})

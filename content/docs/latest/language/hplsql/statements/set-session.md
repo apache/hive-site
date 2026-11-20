@@ -36,4 +36,4 @@ SET SCHEMA 'def' || 'ault';
 <!-- **Version:** HPL/SQL 0.3.11 -->
 
 **See also:**
-- [USE]({{< ref "use" >}})
+- [USE]({{% ref "use" %}})

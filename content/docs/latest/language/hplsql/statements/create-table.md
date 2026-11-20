@@ -22,7 +22,7 @@ CREATE TABLE [IF NOT EXISTS] table_name
 
 If the CREATE TABLE statement is defined using the syntax not supported by Hive, it is automatically converted to conform to Hive syntax. 
 
-Currently HPL/SQL converts data types, removes NOT NULL/NULL, constraints and default values. For more information, see [On-the-Fly Conversion]({{< ref "conversion" >}})
+Currently HPL/SQL converts data types, removes NOT NULL/NULL, constraints and default values. For more information, see [On-the-Fly Conversion]({{% ref "conversion" %}})
 
 **Example**:
 

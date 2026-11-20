@@ -78,7 +78,7 @@ This approach does not scale in the following scenarios:
 * *Skewed Table* is a table which has skewed information.
 * *List Bucketing Table* is a skewed table. In addition, it tells Hive to use the list bucketing feature on the skewed table: create sub-directories for skewed values.
 
-A normal skewed table can be used for skewed join, etc. (See the [Skewed Join Optimization]({{< ref "skewed-join-optimization" >}}) design document.) You don't need to define it as a list bucketing table if you don't use the list bucketing feature.
+A normal skewed table can be used for skewed join, etc. (See the [Skewed Join Optimization]({{% ref "skewed-join-optimization" %}}) design document.) You don't need to define it as a list bucketing table if you don't use the list bucketing feature.
 
 ## List Bucketing Validation
 
@@ -211,5 +211,5 @@ List bucketing was added in Hive 0.10.0 and 0.11.0.
 * [HIVE-3072](https://issues.apache.org/jira/browse/HIVE-3072):  Hive List Bucketing - DDL support (release 0.10.0)
 * [HIVE-3073](https://issues.apache.org/jira/browse/HIVE-3073):  Hive List Bucketing - DML support (release 0.11.0)
 
-For more information, see [Skewed Tables in the DDL document]({{< ref "#skewed-tables-in-the-ddl-document" >}}).
+For more information, see [Skewed Tables in the DDL document]({{% ref "#skewed-tables-in-the-ddl-document" %}}).
 

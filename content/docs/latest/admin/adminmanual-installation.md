@@ -46,13 +46,13 @@ Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 Version information
 
-To build Hive 1.2.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{< ref "#getting-started:-building-hive-from-source" >}}). You will need Java 1.7 or newer.
+To build Hive 1.2.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "#getting-started:-building-hive-from-source" %}}). You will need Java 1.7 or newer.
 
 ## Installing from Source Code (Hive 0.13.0 and Later)
 
 Version information
 
-To build Hive 0.13.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{< ref "#getting-started:-building-hive-from-source" >}}).
+To build Hive 0.13.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "#getting-started:-building-hive-from-source" %}}).
 
 ## Installing from Source Code (Hive 0.12.0 and Earlier)
 
@@ -98,7 +98,7 @@ You can begin using Hive as soon as it is installed, although you will probably 
 
 ## Hive CLI and Beeline CLI
 
-To use the Hive [command line interface]({{< ref "languagemanual-cli" >}}) (CLI) go to the Hive home directory and execute the following command:
+To use the Hive [command line interface]({{% ref "languagemanual-cli" %}}) (CLI) go to the Hive home directory and execute the following command:
 
 ```
 $ bin/hive
@@ -117,11 +117,11 @@ $ bin/beeline
 
 Metadata is stored in an embedded Derby database whose disk storage location is determined by the Hive configuration variable named javax.jdo.option.ConnectionURL. By default, this location is ./metastore_db (see conf/hive-default.xml).
 
-Using Derby in embedded mode allows at most one user at a time. To configure Derby to run in server mode, see [Hive Using Derby in Server Mode]({{< ref "hivederbyservermode" >}}).
+Using Derby in embedded mode allows at most one user at a time. To configure Derby to run in server mode, see [Hive Using Derby in Server Mode]({{% ref "hivederbyservermode" %}}).
 
-To configure a database other than Derby for the Hive metastore, see [Hive Metastore Administration]({{< ref "adminmanual-metastore-administration" >}}).
+To configure a database other than Derby for the Hive metastore, see [Hive Metastore Administration]({{% ref "adminmanual-metastore-administration" %}}).
 
-**Next Step:** [Configuring Hive]({{< ref "adminmanual-configuration" >}}).
+**Next Step:** [Configuring Hive]({{% ref "adminmanual-configuration" %}}).
 
 # HCatalog and WebHCat
 
@@ -131,9 +131,9 @@ Version
 
 HCatalog is installed with Hive, starting with Hive release 0.11.0.
 
-If you install Hive from the binary tarball, the `hcat` command is available in the `hcatalog/bin` directory. However, most `hcat` commands can be issued as `hive` commands except for "`hcat -g`" and "`hcat -p`". Note that the `hcat` command uses the `-p` flag for permissions but `hive` uses it to specify a port number. The HCatalog CLI is documented [here]({{< ref "hcatalog-cli" >}}) and the Hive CLI is documented [here]({{< ref "languagemanual-cli" >}}).
+If you install Hive from the binary tarball, the `hcat` command is available in the `hcatalog/bin` directory. However, most `hcat` commands can be issued as `hive` commands except for "`hcat -g`" and "`hcat -p`". Note that the `hcat` command uses the `-p` flag for permissions but `hive` uses it to specify a port number. The HCatalog CLI is documented [here]({{% ref "hcatalog-cli" %}}) and the Hive CLI is documented [here]({{% ref "languagemanual-cli" %}}).
 
-HCatalog installation is documented [here]({{< ref "hcatalog-installhcat" >}}).
+HCatalog installation is documented [here]({{% ref "hcatalog-installhcat" %}}).
 
 ## WebHCat (Templeton)
 
@@ -143,7 +143,7 @@ WebHCat is installed with Hive, starting with Hive release 0.11.0.
 
 If you install Hive from the binary tarball, the WebHCat server command `webhcat_server.sh` is in the `hcatalog/sbin` directory.
 
-WebHCat installation is documented [here]({{< ref "webhcat-installwebhcat" >}}).
+WebHCat installation is documented [here]({{% ref "webhcat-installwebhcat" %}}).
 
  
 

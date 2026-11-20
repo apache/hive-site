@@ -41,7 +41,7 @@ TO_TIMESTAMP('2015-04-02 13:51:31', 'YYYY-MM-DD HH24:MI:SS');
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [DATE Literal]({{< ref "date-literal" >}})
-- [TIMESTAMP Literal]({{< ref "timestamp-literal" >}})
-- [DATE Function]({{< ref "date" >}})
-- [TIMESTAMP_ISO]({{< ref "timestamp-iso" >}}) function
+- [DATE Literal]({{% ref "date-literal" %}})
+- [TIMESTAMP Literal]({{% ref "timestamp-literal" %}})
+- [DATE Function]({{% ref "date" %}})
+- [TIMESTAMP_ISO]({{% ref "timestamp-iso" %}}) function

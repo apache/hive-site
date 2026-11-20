@@ -23,8 +23,8 @@ DATE
 
 See also:
 
-- [CURRENT_TIMESTAMP]({{< ref "current-timestamp" >}})
-- [FROM_UNIXTIME]({{< ref "from-unixtime" >}})
-- [NOW]({{< ref "now" >}})
-- [SYSDATE]({{< ref "sysdate" >}})
-- [UNIX_TIMESTAMP]({{< ref "unix-timestamp" >}})
+- [CURRENT_TIMESTAMP]({{% ref "current-timestamp" %}})
+- [FROM_UNIXTIME]({{% ref "from-unixtime" %}})
+- [NOW]({{% ref "now" %}})
+- [SYSDATE]({{% ref "sysdate" %}})
+- [UNIX_TIMESTAMP]({{% ref "unix-timestamp" %}})

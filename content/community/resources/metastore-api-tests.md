@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : MetaStore API Tests
 
-* [IMetaStoreClient Tests]({{< ref "#imetastoreclient-tests" >}})
+* [IMetaStoreClient Tests]({{% ref "#imetastoreclient-tests" %}})
 
 # IMetaStoreClient Tests
 

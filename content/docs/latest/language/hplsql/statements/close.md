@@ -32,7 +32,7 @@ CLOSE cur;
 **Compatibility:** Oracle, IBM DB2, Teradata, SQL Server, PostgreSQL, MySQL.
 
 **See also:**
-- [DECLARE CURSOR]({{< ref "declare-cursor" >}})
-- [OPEN]({{< ref "open" >}})
-- [FETCH]({{< ref "fetch" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
+- [DECLARE CURSOR]({{% ref "declare-cursor" %}})
+- [OPEN]({{% ref "open" %}})
+- [FETCH]({{% ref "fetch" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})

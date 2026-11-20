@@ -62,7 +62,7 @@ CLOSE cur;
 <!-- **Version:** HPL/SQL 0.01 -->
 
 **See also:**
-- [OPEN]({{< ref "open" >}})
-- [FETCH]({{< ref "fetch" >}})
-- [CLOSE]({{< ref "close" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
+- [OPEN]({{% ref "open" %}})
+- [FETCH]({{% ref "fetch" %}})
+- [CLOSE]({{% ref "close" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})

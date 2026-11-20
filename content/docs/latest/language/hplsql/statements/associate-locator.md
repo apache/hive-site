@@ -7,7 +7,7 @@ date: 2026-08-12
 
 ASSOCIATE LOCATOR statement allows you to associate locator variable with a result set returned from a stored procedure. 
 
-Then you can use [ALLOCATE CURSOR]({{< ref "allocate-cursor" >}}) statement to assign a cursor for the locator and fetch data.
+Then you can use [ALLOCATE CURSOR]({{% ref "allocate-cursor" %}}) statement to assign a cursor for the locator and fetch data.
 
 **Syntax**:
 
@@ -16,7 +16,7 @@ ASSOCIATE [RESULT SET] LOCATOR | LOCATORS (loc [, locN, ...])
   WITH PROCEDURE procedure_name
 ```
 
-For examples, see [ALLOCATE CURSOR]({{< ref "allocate-cursor" >}}) statement.
+For examples, see [ALLOCATE CURSOR]({{% ref "allocate-cursor" %}}) statement.
 
 **Compatibility:** IBM DB2
 

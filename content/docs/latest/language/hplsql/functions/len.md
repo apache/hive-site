@@ -30,4 +30,4 @@ LEN('Abc ');
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [LENGTH]({{< ref "length" >}})
+- [LENGTH]({{% ref "length" %}})

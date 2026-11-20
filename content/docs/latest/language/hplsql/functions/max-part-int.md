@@ -80,8 +80,8 @@ Result: 2
 
 See also:
 
-- [MIN_PART_INT(table, colname, partition_spec)]({{< ref "min-part-int" >}})
-- [MAX_PART_STRING(table, colname, partition_spec)]({{< ref "max-part-string" >}})
-- [MIN_PART_STRING(table, colname, partition_spec)]({{< ref "min-part-string" >}})
-- [MAX_PART_DATE(table, colname, partition_spec)]({{< ref "max-part-date" >}})
-- [MIN_PART_DATE(table, colname, partition_spec)]({{< ref "min-part-date" >}})
+- [MIN_PART_INT(table, colname, partition_spec)]({{% ref "min-part-int" %}})
+- [MAX_PART_STRING(table, colname, partition_spec)]({{% ref "max-part-string" %}})
+- [MIN_PART_STRING(table, colname, partition_spec)]({{% ref "min-part-string" %}})
+- [MAX_PART_DATE(table, colname, partition_spec)]({{% ref "max-part-date" %}})
+- [MIN_PART_DATE(table, colname, partition_spec)]({{% ref "min-part-date" %}})

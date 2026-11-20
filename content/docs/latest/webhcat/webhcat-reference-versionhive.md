@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## Description
 
-Return the version of Hive being run when WebHCat issues Hive queries or commands ([POST hive]({{< ref "webhcat-reference-hive" >}})).
+Return the version of Hive being run when WebHCat issues Hive queries or commands ([POST hive]({{% ref "webhcat-reference-hive" %}})).
 
 Version: Hive 0.13.0 and later
 
@@ -19,7 +19,7 @@ Version: Hive 0.13.0 and later
 
 ## Parameters
 
-Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
+Only the [standard parameters]({{% ref "#standard-parameters" %}}) are accepted.
 
 ## Results
 
@@ -50,12 +50,12 @@ Returns the Hive version.
  
 
 **Navigation Links**
-Previous: [GET version]({{< ref "webhcat-reference-version" >}})  
-Next: [GET version/hadoop]({{< ref "webhcat-reference-versionhadoop" >}})
+Previous: [GET version]({{% ref "webhcat-reference-version" %}})  
+Next: [GET version/hadoop]({{% ref "webhcat-reference-versionhadoop" %}})
 
 
 
-Replaces deprecated resource: [GET queue]({{< ref "webhcat-reference-jobids" >}})
+Replaces deprecated resource: [GET queue]({{% ref "webhcat-reference-jobids" %}})
 
  
 

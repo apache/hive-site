@@ -38,7 +38,7 @@ CLOSE cur;
 **Compatibility:** Oracle, IBM DB2, Teradata, SQL Server, MySQL, PostgreSQL and Netezza.
 
 **See also:**
-- [DECLARE CURSOR]({{< ref "declare-cursor" >}})
-- [OPEN]({{< ref "open" >}})
-- [CLOSE]({{< ref "close" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
+- [DECLARE CURSOR]({{% ref "declare-cursor" %}})
+- [OPEN]({{% ref "open" %}})
+- [CLOSE]({{% ref "close" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})

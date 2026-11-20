@@ -33,7 +33,7 @@ CLOSE cur;
 <!-- **Version:** HPL/SQL 0.01 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [RESIGNAL]({{< ref "resignal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [RESIGNAL]({{% ref "resignal" %}})

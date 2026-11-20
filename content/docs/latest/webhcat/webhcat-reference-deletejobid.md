@@ -11,7 +11,7 @@ Kill a job given its job ID. Substitute ":jobid" with the job ID received when t
 
 Version: Hive 0.12.0 and later
 
-`DELETE jobs/:jobid` is introduced in Hive release 0.12.0. It is equivalent to `[DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob" >}})` in prior releases.  
+`DELETE jobs/:jobid` is introduced in Hive release 0.12.0. It is equivalent to `[DELETE queue/:jobid]({{% ref "webhcat-reference-deletejob" %}})` in prior releases.  
 `DELETE queue/:jobid` is now deprecated ([HIVE-4443](https://issues.apache.org/jira/browse/HIVE-4443)) and will be removed in Hive 0.14.0 ([HIVE-6432](https://issues.apache.org/jira/browse/HIVE-6432)).
 
 ## URL
@@ -24,7 +24,7 @@ Version: Hive 0.12.0 and later
 | --- | --- | --- | --- |
 | **:jobid** | The job ID to delete. This is the ID received when the job was created. | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -94,14 +94,14 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
 
 Note
 
-The job is not immediately deleted, therefore the information returned may not reflect deletion, as in our example. Use [GET jobs/:jobid]({{< ref "webhcat-reference-job" >}}) to monitor the job and confirm that it is eventually deleted.
+The job is not immediately deleted, therefore the information returned may not reflect deletion, as in our example. Use [GET jobs/:jobid]({{% ref "webhcat-reference-job" %}}) to monitor the job and confirm that it is eventually deleted.
 
 **Navigation Links**
-Previous: [GET jobs/:jobid]({{< ref "webhcat-reference-job" >}})
+Previous: [GET jobs/:jobid]({{% ref "webhcat-reference-job" %}})
 
 
 
-Replaces deprecated resource: [DELETE queue/:jobid]({{< ref "webhcat-reference-deletejob" >}})
+Replaces deprecated resource: [DELETE queue/:jobid]({{% ref "webhcat-reference-deletejob" %}})
 
  
 

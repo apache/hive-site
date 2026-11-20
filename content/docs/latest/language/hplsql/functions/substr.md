@@ -24,7 +24,7 @@ SUBSTR(string, start_pos [, substring_len])
 **Notes**:
 
 - If start_pos is 0 then it is treated as 1
-- SUBSTR and [SUBSTRING]({{< ref "substring" >}}) functions are synonyms
+- SUBSTR and [SUBSTRING]({{% ref "substring" %}}) functions are synonyms
 
 **Return Type:**
 
@@ -49,6 +49,6 @@ Result: 'mar'
 **Compatibility**: Oracle, IBM DB2 and MySQL.
 
 **See also**:
-- [SUBSTRING]({{< ref "substring" >}})
+- [SUBSTRING]({{% ref "substring" %}})
 
 <!-- **Version**: HPL/SQL 0.1 -->

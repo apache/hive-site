@@ -19,7 +19,7 @@ Oracle PL/SQL language elements supported by HPL/SQL:
 | NOT NULL | Variable constraint | Parser only | 0.3.13 |
 | CONSTANT | Constant variable | Yes | 0.3.13 |
 | := or DEFAULT | Default clause | Yes | 0.1 |
-| [%TYPE]({{< ref "type-attribute" >}}) | Data type attribute | Yes | 0.3.13 |
+| [%TYPE]({{% ref "type-attribute" %}}) | Data type attribute | Yes | 0.3.13 |
 | SUBTYPE *subtype* IS *type* | Subtype | No | |
 
 ## Data Types and Declarations
@@ -72,7 +72,7 @@ Oracle PL/SQL operators and expressions supported by HPL/SQL:
 
 | Operator | Description | Supported | Since |
 | --- | --- | --- | --- |
-| [&#124;&#124; Operator]({{< ref "twopipes" >}}) | String concatenation | Yes | 0.1 |
+| [&#124;&#124; Operator]({{% ref "twopipes" %}}) | String concatenation | Yes | 0.1 |
 
 ## Statements
 
@@ -80,9 +80,9 @@ Oracle PL/SQL statements supported by HPL/SQL:
 
 | Statement | Description | Supported | Since |
 | --- | --- | --- | --- |
-| [:=]({{< ref "assign" >}}) | Assignment statement | Yes | 0.1 |
-| [CREATE FUNCTION]({{< ref "create-function" >}}) | Create a user-defined function | Yes | 0.3.1 |
-| [CREATE PACKAGE]({{< ref "create-package" >}}) | Create a package | Yes | 0.3.13 |
-| [CREATE PROCEDURE]({{< ref "create-procedure" >}}) | Create a stored procedure | Yes | 0.3.1 |
-| [NULL]({{< ref "null" >}}) | No operation | Yes | 0.3.13 |
-| [SELECT INTO]({{< ref "select-into" >}}) | Assign values from query | Yes | 0.1 |
+| [:=]({{% ref "assign" %}}) | Assignment statement | Yes | 0.1 |
+| [CREATE FUNCTION]({{% ref "create-function" %}}) | Create a user-defined function | Yes | 0.3.1 |
+| [CREATE PACKAGE]({{% ref "create-package" %}}) | Create a package | Yes | 0.3.13 |
+| [CREATE PROCEDURE]({{% ref "create-procedure" %}}) | Create a stored procedure | Yes | 0.3.1 |
+| [NULL]({{% ref "null" %}}) | No operation | Yes | 0.3.13 |
+| [SELECT INTO]({{% ref "select-into" %}}) | Assign values from query | Yes | 0.1 |

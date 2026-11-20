@@ -21,5 +21,5 @@ DATE '2014-12-20' - 1    --         2014-12-19
 
 See also:
 
-- [TIMESTAMP Literal]({{< ref "timestamp-literal" >}})
-- [INTERVAL Expressions]({{< ref "interval" >}})
+- [TIMESTAMP Literal]({{% ref "timestamp-literal" %}})
+- [INTERVAL Expressions]({{% ref "interval" %}})

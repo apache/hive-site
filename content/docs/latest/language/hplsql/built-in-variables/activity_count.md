@@ -28,6 +28,6 @@ END IF;
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 **See also:**
-- [GET DIAGNOSTICS ROW_COUNT]({{< ref "get-diagnostics" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
+- [GET DIAGNOSTICS ROW_COUNT]({{% ref "get-diagnostics" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})

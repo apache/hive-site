@@ -41,8 +41,8 @@ from_unixtime(1447141681, 'yyyy-MM-dd');
 
 See also:
 
-- [CURRENT_DATE]({{< ref "current-date" >}})
-- [CURRENT_TIMESTAMP]({{< ref "current-timestamp" >}})
-- [NOW]({{< ref "now" >}})
-- [SYSDATE]({{< ref "sysdate" >}})
-- [UNIX_TIMESTAMP]({{< ref "unix-timestamp" >}})
+- [CURRENT_DATE]({{% ref "current-date" %}})
+- [CURRENT_TIMESTAMP]({{% ref "current-timestamp" %}})
+- [NOW]({{% ref "now" %}})
+- [SYSDATE]({{% ref "sysdate" %}})
+- [UNIX_TIMESTAMP]({{% ref "unix-timestamp" %}})

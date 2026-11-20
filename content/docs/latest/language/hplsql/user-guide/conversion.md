@@ -47,7 +47,7 @@ Conversions for data types in CREATE TABLE statements:
 | VARCHAR2 | STRING |
 | NUMBER | DECIMAL |
 
-For more details, see [Data Type Conversion]({{< ref "data-types#data_type_conversion" >}}).
+For more details, see [Data Type Conversion]({{% ref "data-types#data_type_conversion" %}}).
 
 ## Language Elements and Operators
 
@@ -57,7 +57,7 @@ Conversions for language elements and operators in SQL DDL and DML statements:
 | --- | --- | --- |
 | "identifier", [identifier] | Identifier | `` `identifier` `` |
 | dbo, [dbo] | Schema name | Removed |
-| [expr &#124;&#124; expr2 &#124;&#124; ...]({{< ref "twopipes" >}}) | String concatenation | [CONCAT(expr, expr2, ...)]({{< ref "concat" >}}) |
+| [expr &#124;&#124; expr2 &#124;&#124; ...]({{% ref "twopipes" %}}) | String concatenation | [CONCAT(expr, expr2, ...)]({{% ref "concat" %}}) |
 
 ## Built-In SQL Functions
 
@@ -79,7 +79,7 @@ Conversions of SQL SELECT statements:
 | SELECT TOP n ... FROM ... | Row limit | SELECT ... FROM ... LIMIT n |
 | FROM TABLE (VALUES ... ) clause | Row constructor | SELECT UNION ALL subquery |
 
-For more information, see [SELECT Statement]({{< ref "select" >}}).
+For more information, see [SELECT Statement]({{% ref "select" %}}).
 
 ## SQL Statements
 
@@ -87,4 +87,4 @@ Conversion of SQL statements:
 
 | Source | Description | Hive SQL |
 | --- | --- | --- |
-| [SET CURRENT SCHEMA = name]({{< ref "set-session#current-schema" >}}) | | [USE name]({{< ref "use" >}}) |
+| [SET CURRENT SCHEMA = name]({{% ref "set-session#current-schema" %}}) | | [USE name]({{% ref "use" %}}) |

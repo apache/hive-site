@@ -15,7 +15,7 @@ Returns a list of supported versions and the current version.
 
 ## Parameters
 
-Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
+Only the [standard parameters]({{% ref "#standard-parameters" %}}) are accepted.
 
 ## Results
 
@@ -46,8 +46,8 @@ Only the [standard parameters]({{< ref "#standard-parameters" >}}) are accepted.
 ```
 
 **Navigation Links**
-Previous: [GET status]({{< ref "webhcat-reference-status" >}})  
- Next: [GET version/hive]({{< ref "webhcat-reference-versionhive" >}})
+Previous: [GET status]({{% ref "webhcat-reference-status" %}})  
+ Next: [GET version/hive]({{% ref "webhcat-reference-versionhive" %}})
 
 
 

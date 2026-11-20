@@ -7,7 +7,7 @@ date: 2026-08-12
 
 HPL/SQL provides you with two options to work with temporary tables: native and managed. 
 
-Use the [hplsql.temp.tables]({{< ref "configuration#hplsqltemptables" >}}) option to define how to handle temporary tables, the default value is **native**.
+Use the [hplsql.temp.tables]({{% ref "configuration#hplsqltemptables" %}}) option to define how to handle temporary tables, the default value is **native**.
 
 ## Native Temporary Tables
 
@@ -17,9 +17,9 @@ HPL/SQL converts DECLARE TEMPORARY TABLE statement to CREATE TEMPORARY TABLE in 
 
 ## Managed Temporary Tables
 
-When [hplsql.temp.tables]({{< ref "configuration#hplsqltemptables" >}}) is set to **managed**, HPL/SQL creates a regular table in the HiveServer and automatically drops it at the end of the session. 
+When [hplsql.temp.tables]({{% ref "configuration#hplsqltemptables" %}}) is set to **managed**, HPL/SQL creates a regular table in the HiveServer and automatically drops it at the end of the session. 
 
-Note that the schema name and location are defined by [hplsql.temp.tables.schema]({{< ref "configuration#hplsqltemptablesschema" >}}) and [hplsql.temp.tables.location]({{< ref "configuration#hplsqltemptableslocation" >}}) options, respectively.
+Note that the schema name and location are defined by [hplsql.temp.tables.schema]({{% ref "configuration#hplsqltemptablesschema" %}}) and [hplsql.temp.tables.location]({{% ref "configuration#hplsqltemptableslocation" %}}) options, respectively.
 
 Also UUID is added to the table name to prevent name conflicts between multiple sessions. 
 
@@ -44,6 +44,6 @@ SELECT * FROM temp1;
 ```
 
 See also:
-- [CREATE LOCAL TEMPORARY TABLE]({{< ref "create-local-temporary-table" >}})
-- [CREATE VOLATILE TABLE]({{< ref "create-volatile-table" >}})
-- [DECLARE TEMPORARY TABLE]({{< ref "declare-temporary-table" >}})
+- [CREATE LOCAL TEMPORARY TABLE]({{% ref "create-local-temporary-table" %}})
+- [CREATE VOLATILE TABLE]({{% ref "create-volatile-table" %}})
+- [DECLARE TEMPORARY TABLE]({{% ref "declare-temporary-table" %}})

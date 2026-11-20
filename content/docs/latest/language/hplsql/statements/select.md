@@ -23,7 +23,7 @@ SELECT TOP 3 name FROM sales;    -- SELECT name FROM sales LIMIT 3 is executed
 
 ## SELECT Without FROM Clause
 
-You can specify a SELECT statement without FROM. PL/SQL automatically adds the FROM clause using the table name defined by the [hplsql.dual.table]({{< ref "configuration#hplsqldualtable" >}}) option.  
+You can specify a SELECT statement without FROM. PL/SQL automatically adds the FROM clause using the table name defined by the [hplsql.dual.table]({{% ref "configuration#hplsqldualtable" %}}) option.  
 
 By default, HPL/SQL uses *default.dual* table name. Make sure such table exists in the database and contains exactly one row and one column only.
 
@@ -82,11 +82,11 @@ SELECT * FROM
  SELECT 3 AS c1, 3 AS c2 FROM default.dual) rn
 ```
 
-You can specify the single row, single column dual table using [hplsql.dual.table]({{< ref "configuration#hplsqldualtable" >}}) option.
+You can specify the single row, single column dual table using [hplsql.dual.table]({{% ref "configuration#hplsqldualtable" %}}) option.
 
 **Compatibility**: IBM DB2, Microsoft SQL Server
 
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [SELECT INTO]({{< ref "select-into" >}})
+- [SELECT INTO]({{% ref "select-into" %}})

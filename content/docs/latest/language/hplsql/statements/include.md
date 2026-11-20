@@ -9,7 +9,7 @@ INCLUDE statement allows you to include statements from another HPL/SQL script.
 
 You can define user-defined functions and stored procedures in separate HPL/SQL scripts and then use INCLUDE statements to make them available in the current script. 
 
-Additionally you can put INCLUDE statements to [.hplsqlrc]({{< ref "configuration##hplsqlrc-file" >}}) configuration file, so these functions and procedures are always available to users similar to persistent objects in the database.  
+Additionally you can put INCLUDE statements to [.hplsqlrc]({{% ref "configuration##hplsqlrc-file" %}}) configuration file, so these functions and procedures are always available to users similar to persistent objects in the database.  
 
 **Syntax**:
 
@@ -50,6 +50,6 @@ Hello, world!
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [CALL]({{< ref "call" >}})
-- [CREATE FUNCTION]({{< ref "create-function" >}})
-- [CREATE PROCEDURE]({{< ref "create-procedure" >}})
+- [CALL]({{% ref "call" %}})
+- [CREATE FUNCTION]({{% ref "create-function" %}})
+- [CREATE PROCEDURE]({{% ref "create-procedure" %}})

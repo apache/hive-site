@@ -35,4 +35,4 @@ Result: abc
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [|| Operator]({{< ref "twopipes" >}})
+- [|| Operator]({{% ref "twopipes" %}})

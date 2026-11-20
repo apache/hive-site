@@ -30,8 +30,8 @@ GET DIAGNOSTICS var_name = ROW_COUNT;
 <!-- **Version**: HPL/SQL 0.03 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [DECLARE HANDLER]({{< ref "declare-handler" >}})
-- [ACTIVITY_COUNT]({{< ref "activity_count" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [DECLARE HANDLER]({{% ref "declare-handler" %}})
+- [ACTIVITY_COUNT]({{% ref "activity_count" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})

@@ -5,11 +5,11 @@ date: 2024-12-12
 
 # Apache Hive : Hive deprecated authorization mode / Legacy Mode
 
-This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to [SQL Standard authorization]({{< ref "sql-standard-based-hive-authorization" >}}) in Hive 2.0 ([HIVE-12429](https://issues.apache.org/jira/browse/HIVE-12429)).
+This document describes Hive security using the basic authorization scheme, which regulates access to Hive metadata on the client side. This was the default authorization mode used when authorization was enabled. The default was changed to [SQL Standard authorization]({{% ref "sql-standard-based-hive-authorization" %}}) in Hive 2.0 ([HIVE-12429](https://issues.apache.org/jira/browse/HIVE-12429)).
 
 ### Disclaimer
 
-Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.  See the [Hive authorization main page]({{< ref "languagemanual-authorization" >}}) for the secure options.
+Hive authorization is not completely secure. The basic authorization scheme is intended primarily to prevent good users from accidentally doing bad things, but makes no promises about preventing malicious users from doing malicious things.  See the [Hive authorization main page]({{% ref "languagemanual-authorization" %}}) for the secure options.
 
 ### Prerequisites
 
@@ -31,7 +31,7 @@ In order to use Hive authorization, there are two parameters that should be set 
 
 ```
 
-Note that, by default, the [hive.security.authorization.createtable.owner.grants]({{< ref "#hive-security-authorization-createtable-owner-grants" >}}) are set to null, which would result in the creator of a table having no access to the table.
+Note that, by default, the [hive.security.authorization.createtable.owner.grants]({{% ref "#hive-security-authorization-createtable-owner-grants" %}}) are set to null, which would result in the creator of a table having no access to the table.
 
 ### Users, Groups, and Roles
 

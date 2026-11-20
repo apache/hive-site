@@ -5,7 +5,7 @@ date: 2026-08-12
 
 # Apache Hive : HPL/SQL - User-Defined Functions and Stored Procedures
 
-HPL/SQL allows you to defined user-defined functions and stored procedures using [CREATE FUNCTION]({{< ref "create-function" >}}) and [CREATE PROCEDURE]({{< ref "create-procedure" >}}) statements, respectively.
+HPL/SQL allows you to defined user-defined functions and stored procedures using [CREATE FUNCTION]({{% ref "create-function" %}}) and [CREATE PROCEDURE]({{% ref "create-procedure" %}}) statements, respectively.
 
 ## Define Functions and Procedures in the Current Script
 
@@ -34,7 +34,7 @@ CALL set_message('world', str);
 PRINT str;
 ```
 
-Once defined the function/procedure, the metadata of the function/procedure will be stored in the HMS permanently and they can be used in any HPL/SQL and HQL expression as a built-in function. You can invoke a procedure using the [CALL]({{< ref "call" >}}) statement.
+Once defined the function/procedure, the metadata of the function/procedure will be stored in the HMS permanently and they can be used in any HPL/SQL and HQL expression as a built-in function. You can invoke a procedure using the [CALL]({{% ref "call" %}}) statement.
 
 Use drop procedure/function to delete them permanently.
 ```
@@ -46,6 +46,6 @@ DROP FUNCTION hello;
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [CALL]({{< ref "call" >}})
-- [CREATE FUNCTION]({{< ref "create-function" >}})
-- [CREATE PROCEDURE]({{< ref "create-procedure" >}})
+- [CALL]({{% ref "call" %}})
+- [CREATE FUNCTION]({{% ref "create-function" %}})
+- [CREATE PROCEDURE]({{% ref "create-procedure" %}})

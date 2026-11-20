@@ -13,9 +13,9 @@ In certain data processing use cases it is necessary to modify existing data whe
 
 The availability of ACID tables in Hive provides a mechanism that both enables concurrent access to data stored in HDFS (so long as it's in the ORC+ACID format) and also permits row level mutations on records within a table, without the need to rewrite the existing data. But while Hive itself supports `INSERT`, `UPDATE` and `DELETE` commands, and the ORC format can support large batches of mutations in a transaction, Hive's execution engine currently submits each individual mutation operation in a separate transaction and issues table scans (M/R jobs) to execute them. It does not currently scale to the demands of processing large deltas in an atomic manner. Furthermore it would be advantageous to extend atomic batch mutation capabilities beyond Hive by making them available to other data processing frameworks. The Streaming Mutation API does just this.
 
-The Streaming Mutation API, although similar to the [Streaming API]({{< ref "streaming-data-ingest" >}}), has a number of differences and is built to enable very different use cases. Superficially, the Streaming API can only write new data whereas the mutation API can also modify existing data. However the two APIs are also based on very different transaction models. The Streaming API focuses on surfacing a continuous stream of new data into a Hive table and does so by batching small sets of writes into multiple short-lived transactions. Conversely the mutation API is designed to infrequently apply large sets of mutations to a data set in an atomic fashion: either all or none of the mutations will be applied. This instead mandates the use of a single long-lived transaction. This table summarises the attributes of each API:
+The Streaming Mutation API, although similar to the [Streaming API]({{% ref "streaming-data-ingest" %}}), has a number of differences and is built to enable very different use cases. Superficially, the Streaming API can only write new data whereas the mutation API can also modify existing data. However the two APIs are also based on very different transaction models. The Streaming API focuses on surfacing a continuous stream of new data into a Hive table and does so by batching small sets of writes into multiple short-lived transactions. Conversely the mutation API is designed to infrequently apply large sets of mutations to a data set in an atomic fashion: either all or none of the mutations will be applied. This instead mandates the use of a single long-lived transaction. This table summarises the attributes of each API:
 
-| Attribute | [Streaming API]({{< ref "streaming-data-ingest" >}}) | Mutation API |
+| Attribute | [Streaming API]({{% ref "streaming-data-ingest" %}}) | Mutation API |
 | --- | --- | --- |
 | Ingest type | Data arrives continuously. | Ingests are performed periodically and the mutations are applied in a single batch. |
 | Transaction scope | Transactions are created for small batches of writes. | The entire set of mutations should be applied within a single transaction. |
@@ -55,10 +55,10 @@ Update operations should not attempt to modify values of partition or bucketing 
 
 A few things are currently required to use streaming. 
 
-1. Currently, only [ORC storage format]({{< ref "languagemanual-orc" >}}) is supported. So '`stored as orc`' must be specified during table creation.
-2. The Hive table must be bucketed, but not sorted. So something like '`clustered by (colName) into 10 buckets`' must be specified during table creation. See [Bucketed Tables]({{< ref "languagemanual-ddl-bucketedtables" >}}) for a detailed example.
+1. Currently, only [ORC storage format]({{% ref "languagemanual-orc" %}}) is supported. So '`stored as orc`' must be specified during table creation.
+2. The Hive table must be bucketed, but not sorted. So something like '`clustered by (colName) into 10 buckets`' must be specified during table creation. See [Bucketed Tables]({{% ref "languagemanual-ddl-bucketedtables" %}}) for a detailed example.
 3. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
-4. Hive transactions must be configured for each table (see [Hive Transactions – Table Properties]({{< ref "#hive-transactions – table-properties" >}})) as well as in `hive-site.xml` (see [Hive Transactions – Configuration]({{< ref "#hive-transactions-–-configuration" >}})).
+4. Hive transactions must be configured for each table (see [Hive Transactions – Table Properties]({{% ref "#hive-transactions – table-properties" %}})) as well as in `hive-site.xml` (see [Hive Transactions – Configuration]({{% ref "#hive-transactions-–-configuration" %}})).
 
 **Note:** Hive also supports streaming mutations to **unpartitioned** tables.
 

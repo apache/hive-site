@@ -26,4 +26,4 @@ truncate table users2015;
 <!-- **Version**: HPL/SQL 0.3.17 -->
 
 See also:
-- [DROP TABLE]({{< ref "drop-table" >}})
+- [DROP TABLE]({{% ref "drop-table" %}})

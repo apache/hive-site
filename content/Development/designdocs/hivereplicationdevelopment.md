@@ -11,11 +11,11 @@ Replication in the context of databases and warehouses is the process of duplica
 
 In Hive, replication (introduced in [Hive 1.2.0](https://issues.apache.org/jira/browse/HIVE-7973)) focuses on disaster recovery, using a lazy, primary-copy model. It uses notifications and export/import statements to implement an API for replication that can then be executed by other tools such as [Falcon](https://falcon.apache.org/).
 
-See [Hive Replication]({{< ref "replication" >}}) for usage information.
+See [Hive Replication]({{% ref "replication" %}}) for usage information.
 
 ###### Version 2 of Hive Replication
 
-This document describes the initial version of Hive Replication.  A second version is also available:  see [HiveReplicationv2Development]({{< ref "hivereplicationv2development" >}}) for details.
+This document describes the initial version of Hive Replication.  A second version is also available:  see [HiveReplicationv2Development]({{% ref "hivereplicationv2development" %}}) for details.
 
 ## Purposes of Replication
 
@@ -37,7 +37,7 @@ Replication is the process of making a duplicate copy of some object such as a d
 
 ## Replication Taxonomy
 
-Replication systems are frequently classified by their transaction source (“where”) and their synchronization strategy (“when”) [[1]({{< ref "#1" >}})].
+Replication systems are frequently classified by their transaction source (“where”) and their synchronization strategy (“when”) [[1]({{% ref "#1" %}})].
 
 ### Transaction Source
 
@@ -79,7 +79,7 @@ Since replication in Hive focuses on disaster recovery, the read-only load balan
 
 ### Eager vs Lazy
 
-Eager replication requires a guaranteed delta log for every update on the primary. This poses a problem when [external tables]({{< ref "#external-tables" >}}) are used in Hive. External tables allow data to be managed completely outside of Hive, and therefore may not provide Hive with a complete and accurate delta log. With ACID tables, such a log does exist and will be made use of in future development, but currently replication in Hive works only with traditional tables.
+Eager replication requires a guaranteed delta log for every update on the primary. This poses a problem when [external tables]({{% ref "#external-tables" %}}) are used in Hive. External tables allow data to be managed completely outside of Hive, and therefore may not provide Hive with a complete and accurate delta log. With ACID tables, such a log does exist and will be made use of in future development, but currently replication in Hive works only with traditional tables.
 
 Instead, Hive uses lazy replication. Unlike eager replication, lazy replication is asynchronous and non-blocking which allows for better resource utilization. This is prioritized in Hive with the acknowledgement that there is some complexity involved with events being processed out of order, including destructive events such as `DROP`.
 
@@ -96,9 +96,9 @@ In addition to the taxonomy choices listed above, a number of other factors infl
 
 ## Basic Approach
 
-Hive already supports [EXPORT and IMPORT commands]({{< ref "languagemanual-importexport" >}}) which can be used to dump out tables, DistCp them to another cluster, and import/create from that. A mechanism which automates exports/imports would establish a base on which replication could be developed. With the aid of HiveMetaStoreEventHandler mechanisms, such automation can be developed to generate notifications when certain changes are committed to the metastore and then translate those notifications to export actions, DistCp actions, and import actions.
+Hive already supports [EXPORT and IMPORT commands]({{% ref "languagemanual-importexport" %}}) which can be used to dump out tables, DistCp them to another cluster, and import/create from that. A mechanism which automates exports/imports would establish a base on which replication could be developed. With the aid of HiveMetaStoreEventHandler mechanisms, such automation can be developed to generate notifications when certain changes are committed to the metastore and then translate those notifications to export actions, DistCp actions, and import actions.
 
-This already partially exists with the [notification system]({{< ref "hcatalog-notification" >}}) that is part of the hcatalog-server-extensions jar. Initially, this was developed to be able to trigger a JMS notification, which an Oozie workflow could use to start off actions keyed on the finishing of a job that used HCatalog to write to a table. While this currently lives under HCatalog, the primary reason for its existence has a scope well past HCatalog alone and can be used as-is without the use of [HCatalog IF/OF]({{< ref "hcatalog-inputoutput" >}}). This can be extended with the help of a library which does that aforementioned translation of notifications to actions.
+This already partially exists with the [notification system]({{% ref "hcatalog-notification" %}}) that is part of the hcatalog-server-extensions jar. Initially, this was developed to be able to trigger a JMS notification, which an Oozie workflow could use to start off actions keyed on the finishing of a job that used HCatalog to write to a table. While this currently lives under HCatalog, the primary reason for its existence has a scope well past HCatalog alone and can be used as-is without the use of [HCatalog IF/OF]({{% ref "hcatalog-inputoutput" %}}). This can be extended with the help of a library which does that aforementioned translation of notifications to actions.
 
 # Implementation
 

@@ -23,7 +23,7 @@ Describe an HCatalog table. Normally returns a simple list of columns (using "de
 | **:table** | The table name | Required | None |
 | **format** | Set "`format=extended`" to see additional information (using "show table extended like") | Optional | Not extended |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -131,7 +131,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table]({{< ref "webhcat-reference-gettables" >}}) Next: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttable" >}})
+Previous: [GET ddl/database/:db/table]({{% ref "webhcat-reference-gettables" %}}) Next: [PUT ddl/database/:db/table/:table]({{% ref "webhcat-reference-puttable" %}})
 
 
 

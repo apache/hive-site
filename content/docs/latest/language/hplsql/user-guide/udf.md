@@ -33,6 +33,6 @@ When you run HPL/SQL scripts from Beeline in hplsql mode, you can just use user-
 SELECT hello(name) FROM users;
 ```
 
-For more information, see [User-Defined Functions and Stored Procedures]({{< ref "udf-sproc" >}}).
+For more information, see [User-Defined Functions and Stored Procedures]({{% ref "udf-sproc" %}}).
 
 <!-- **Version**: HPL/SQL 0.3.1 -->

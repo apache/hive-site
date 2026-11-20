@@ -84,7 +84,7 @@ The default Hive behavior will not be changed, and concurrency will not be suppo
 
 ## Turn Off Concurrency
 
-You can turn off concurrency by setting the following variable to false: [hive.support.concurrency]({{< ref "#hive-support-concurrency" >}}).
+You can turn off concurrency by setting the following variable to false: [hive.support.concurrency]({{% ref "#hive-support-concurrency" %}}).
 
 ## Debugging
 
@@ -95,18 +95,18 @@ You can see the locks on a table by issuing the following command:
 * SHOW LOCKS <TABLE_NAME> PARTITION (<PARTITION_DESC>);
 * SHOW LOCKS <TABLE_NAME> PARTITION (<PARTITION_DESC>) EXTENDED;
 
-See also [EXPLAIN LOCKS]({{< ref "#explain-locks" >}}).
+See also [EXPLAIN LOCKS]({{% ref "#explain-locks" %}}).
 
 ## Configuration
 
-Configuration properties for Hive locking are described in [Locking]({{< ref "#locking" >}}).
+Configuration properties for Hive locking are described in [Locking]({{% ref "#locking" %}}).
 
 # Locking in Hive Transactions
 
 Hive [0.13.0](https://issues.apache.org/jira/browse/HIVE-5317) adds transactions with row-level ACID semantics, using a new lock manager. For more information, see:
 
-* [ACID and Transactions in Hive]({{< ref "hive-transactions" >}})
-* [Lock Manager]({{< ref "#lock-manager" >}})
+* [ACID and Transactions in Hive]({{% ref "hive-transactions" %}})
+* [Lock Manager]({{% ref "#lock-manager" %}})
 
  
 

@@ -10,7 +10,7 @@ date: 2024-12-12
 There are alternate options which might work similarily to indexing:
 
 * Materialized views with automatic rewriting can result in very similar results.  [Hive 2.3.0](https://issues.apache.org/jira/browse/HIVE-14249) adds support for materialzed views.
-* Using columnar file formats ([Parquet]({{< ref "parquet" >}}), [ORC](https://orc.apache.org/docs/indexes.html)) – they can do selective scanning; they may even skip entire files/blocks.
+* Using columnar file formats ([Parquet]({{% ref "parquet" %}}), [ORC](https://orc.apache.org/docs/indexes.html)) – they can do selective scanning; they may even skip entire files/blocks.
 
 Indexing has been **removed** in version 3.0 ([HIVE-18448](https://issues.apache.org/jira/browse/HIVE-18448)).
 
@@ -29,7 +29,7 @@ Hive indexing was added in version 0.7.0, and bitmap indexing was added in versi
 Documentation and examples of how to use Hive indexes can be found here:
 
 * [Indexes](/development/designdocs/indexdev) – design document (lists indexing JIRAs with current status, starting with [HIVE-417](https://issues.apache.org/jira/browse/HIVE-417))
-* [Create/Drop/Alter Index]({{< ref "#create/drop/alter-index" >}}) – [HiveQL Language Manual DDL](/docs/latest/language/languagemanual-ddl)
+* [Create/Drop/Alter Index]({{% ref "#create/drop/alter-index" %}}) – [HiveQL Language Manual DDL](/docs/latest/language/languagemanual-ddl)
 * [Show Indexes](/docs/latest/language/languagemanual-ddl#show-indexes) – [HiveQL Language Manual DDL](/docs/latest/language/languagemanual-ddl)
 * [Bitmap indexes](/development/designdocs/indexdev-bitmap) – added in Hive version 0.8.0 ([HIVE-1803](https://issues.apache.org/jira/browse/HIVE-1803))
 * [Indexed Hive](http://www.slideshare.net/NikhilDeshpande/indexed-hive) – overview and examples by Prafulla Tekawade and Nikhil Deshpande, October 2010
@@ -37,7 +37,7 @@ Documentation and examples of how to use Hive indexes can be found here:
 
 ### Configuration Parameters for Hive Indexes
 
-The [Configuration Properties]({{< ref "#configuration-properties" >}}) document describes parameters that configure Hive indexes.
+The [Configuration Properties]({{% ref "#configuration-properties" %}}) document describes parameters that configure Hive indexes.
 
 ## Simple Examples
 

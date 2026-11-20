@@ -101,7 +101,7 @@ Using index tables greatly improve performance of non-rowId predicate queries by
 | --- | --- |
 | **accumulo.indextable.name** | **(Required) The name of the index table in Accumulo.** |
 | **accumulo.indexed.columns** | (Optional) A comma separated list of hive columns to index, or * which indexes all columns (default: *) |
-| **accumulo.index.rows.max** | (Optional) The maximum number of predicate values to scan from the index for each search predicate (default: 20000) *[See this note about this value]({{< ref "#see-this-note-about-this-value" >}})* |
+| **accumulo.index.rows.max** | (Optional) The maximum number of predicate values to scan from the index for each search predicate (default: 20000) *[See this note about this value]({{% ref "#see-this-note-about-this-value" %}})* |
 | **accumulo.index.scanner** | (Optional) The index scanner implementation. (default: org.apache.hadoop.hive.accumulo.AccumuloDefaultIndexScanner) |
 
 The indexes are stored in the index table using the following format:

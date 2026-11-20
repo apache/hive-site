@@ -7,7 +7,7 @@ date: 2026-08-12
 
 You can use DECLARE CONDITION statement to declare a user-defined condition. 
 
-Then you can define a handler for this condition using [DECLARE HANDLER]({{< ref "declare-handler" >}}), and raise the condition using the [SIGNAL]({{< ref "signal" >}}) statement.
+Then you can define a handler for this condition using [DECLARE HANDLER]({{% ref "declare-handler" %}}), and raise the condition using the [SIGNAL]({{% ref "signal" %}}) statement.
 
 **Syntax**:
 
@@ -38,10 +38,10 @@ END IF;
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [DECLARE HANDLER]({{< ref "declare-handler" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [SIGNAL]({{< ref "signal" >}})
-- [RESIGNAL]({{< ref "resignal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [DECLARE HANDLER]({{% ref "declare-handler" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [SIGNAL]({{% ref "signal" %}})
+- [RESIGNAL]({{% ref "resignal" %}})

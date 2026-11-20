@@ -15,7 +15,7 @@ Starting in Hive 1.3.0, [HIVE-7193](https://issues.apache.org/jira/browse/HIVE-
 
 Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.
 
-See [Authentication/Security Configuration]({{< ref "#authentication/security-configuration" >}}) for general information about configuring authentication for HiveServer2. Also see [Hive Configuration Properties – HiveServer2]({{< ref "#hive-configuration-properties –-hiveserver2" >}}) for individual configuration parameters discussed below.
+See [Authentication/Security Configuration]({{% ref "#authentication/security-configuration" %}}) for general information about configuring authentication for HiveServer2. Also see [Hive Configuration Properties – HiveServer2]({{% ref "#hive-configuration-properties –-hiveserver2" %}}) for individual configuration parameters discussed below.
 
 ### Group Membership
 
@@ -230,7 +230,7 @@ will return the entries
 ```
 but there is no means to form a query that would return just the values of "member" attributes. (LDAP APIs allow filtering of the attributes on the result set.)
 
-To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property [hive.server2.authentication.ldap.groupMembershipKey]({{< ref "#hiveserver2authenticationldapgroupmembershipkey" >}}). This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is "*member*".
+To allow for such queries to return user DNs for the members of the group instead of the group DN itself, as of Hive release 2.1.1 the LDAP authentication provider will (re)use the configuration property [hive.server2.authentication.ldap.groupMembershipKey]({{% ref "#hiveserver2authenticationldapgroupmembershipkey" %}}). This property represents the attribute name that represents the user DN on the Group entry. In the example from above, that attribute is "*member*".
 
 This allows the Hive LDAP authentication provider to specify a query that returns groups and individual users as below (all users of `group1` + the user `user4` will be allowed to authenticate):
 

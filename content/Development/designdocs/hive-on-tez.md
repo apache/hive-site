@@ -91,7 +91,7 @@ hive.execution.engine (changed in [HIVE-6103](https://issues.apache.org/jira/bro
 	tez: Submit native TEZ dags, optimized for MRR/MPJ
 	+ ~~False~~   
 	mr (default): Submit single map, single reduce plans
-* Update:  Several configuration variables were introduced in Hive 0.13.0.  See the [Tez section]({{< ref "#tez-section" >}}) in Configuration Properties.
+* Update:  Several configuration variables were introduced in Hive 0.13.0.  See the [Tez section]({{% ref "#tez-section" %}}) in Configuration Properties.
 
 Note: It is possible to execute an MR plan against TEZ. In order to do so, one simply has to change the following variable (assuming Tez is installed on the cluster):
 
@@ -299,11 +299,11 @@ Mini Tez Cluster will initially be the only way to run Tez during unit tests. Lo
 
 For information about how to set up Tez on a Hadoop 2 cluster, see <https://github.com/apache/incubator-tez/blob/branch-0.2.0/INSTALL.txt>. 
 
-For information about how to configure Hive 0.13.0+ for Tez, see the release notes for [HIVE-6098, Merge Tez branch into trunk](https://issues.apache.org/jira/browse/HIVE-6098).  Also see [Configuration Properties: Tez]({{< ref "#configuration-properties:-tez" >}}) for descriptions of all the Tez parameters.
+For information about how to configure Hive 0.13.0+ for Tez, see the release notes for [HIVE-6098, Merge Tez branch into trunk](https://issues.apache.org/jira/browse/HIVE-6098).  Also see [Configuration Properties: Tez]({{% ref "#configuration-properties:-tez" %}}) for descriptions of all the Tez parameters.
 
 ### Hive-Tez Compatibility
 
-For a list of Hive and Tez releases that are compatible with each other, see [Hive-Tez Compatibility]({{< ref "hive-tez-compatibility" >}}).
+For a list of Hive and Tez releases that are compatible with each other, see [Hive-Tez Compatibility]({{% ref "hive-tez-compatibility" %}}).
 
  
 

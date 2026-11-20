@@ -5,7 +5,7 @@ date: 2024-12-12
 
 # Apache Hive : Streaming Data Ingest V2
 
-Starting in release Hive 3.0.0, [Streaming Data Ingest]({{< ref "streaming-data-ingest" >}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
+Starting in release Hive 3.0.0, [Streaming Data Ingest]({{% ref "streaming-data-ingest" %}}) is deprecated and is replaced by newer V2 API ([HIVE-19205](https://issues.apache.org/jira/browse/HIVE-19205)). 
 
 # Hive Streaming API
 
@@ -13,7 +13,7 @@ Traditionally adding new data into Hive requires gathering a large amount of dat
 
 Hive Streaming API allows data to be pumped continuously into Hive. The incoming data can be continuously committed in small batches of records into an existing Hive partition or table. Once data is committed it becomes immediately visible to all Hive queries initiated subsequently.
 
-This API is intended for streaming clients such as [NiFi](https://nifi.apache.org/), [Flume](http://flume.apache.org/) and [Storm](https://storm.incubator.apache.org/), which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see [Hive Transactions]({{< ref "hive-transactions" >}})).
+This API is intended for streaming clients such as [NiFi](https://nifi.apache.org/), [Flume](http://flume.apache.org/) and [Storm](https://storm.incubator.apache.org/), which continuously generate data. Streaming support is built on top of ACID based insert/update support in Hive (see [Hive Transactions]({{% ref "hive-transactions" %}})).
 
 The Classes and interfaces part of the Hive streaming API are broadly categorized into two sets. The first set provides support for connection and transaction management while the second set provides I/O support. Transactions are managed by the metastore. Writes are performed directly to destination filesystem defined by the table (HDFS, S3A etc.).
 
@@ -34,7 +34,7 @@ A few things are required to use streaming.
 	2. **hive.compactor.initiator.on = true**(See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
 	3. **hive.compactor.cleaner.on = true** (From Hive 4.0.0 onwards. See more important details [here](/docs/latest/user/hive-transactions#new-configuration-parameters-for-transactions))
 	4. **hive.compactor.worker.threads** > **0**
-2. *“stored as orc”* must be specified during [table creation]({{< ref "#table-creation" >}}). Only [ORC storage format]({{< ref "languagemanual-orc" >}}) is supported currently.
+2. *“stored as orc”* must be specified during [table creation]({{% ref "#table-creation" %}}). Only [ORC storage format]({{% ref "languagemanual-orc" %}}) is supported currently.
 3. tblproperties("transactional"="true") must be set on the table during creation.
 4. User of the client streaming process must have the necessary permissions to write to the table or partition and create partitions in the table.
 
@@ -89,7 +89,7 @@ The HiveStreamingConnection is highly optimized for write throughput ([Delta Str
 
 ### Notes about the HiveConf Object
 
-HiveStreamingConnect builder API accepts a HiveConf argument. This can either be set to null, or a pre-created HiveConf object can be provided. If this is null, a HiveConf object will be created internally and used for the connection. When a HiveConf object is instantiated, if the directory containing the hive-site.xml is part of the java classpath, then the HiveConf object will be initialized with values from it. If no hive-site.xml is found, then the object will be initialized with defaults. Pre-creating this object and reusing it across multiple connections may have a noticeable impact on performance if connections are being opened very frequently (for example several times a second). Secure connection relies on '[metastore.kerberos.principal]({{< ref "#metastore-kerberos-principal" >}})' being set correctly in the HiveConf object.
+HiveStreamingConnect builder API accepts a HiveConf argument. This can either be set to null, or a pre-created HiveConf object can be provided. If this is null, a HiveConf object will be created internally and used for the connection. When a HiveConf object is instantiated, if the directory containing the hive-site.xml is part of the java classpath, then the HiveConf object will be initialized with values from it. If no hive-site.xml is found, then the object will be initialized with defaults. Pre-creating this object and reusing it across multiple connections may have a noticeable impact on performance if connections are being opened very frequently (for example several times a second). Secure connection relies on '[metastore.kerberos.principal]({{% ref "#metastore-kerberos-principal" %}})' being set correctly in the HiveConf object.
 
 Regardless of what values are set in hive-site.xml or custom HiveConf, the API will internally override some settings in it to ensure correct streaming behavior. The below is the list of settings that are overridden:
 
@@ -111,7 +111,7 @@ RecordWriter is the base interface implemented by all Writers. A Writer is respo
 A RecordWriter's primary functions are:
 
 1. Modify input record: This may involve dropping fields from input data if they don’t have corresponding table columns, adding nulls in case of missing fields for certain columns, and adding __HIVE_DEFAULT_PARTITION__ if partition column value is null or empty. Dynamically creating partitions requires understanding of incoming data format to extract last columns to extract partition values.
-2. Encode modified record: The encoding involves serialization using an appropriate [Hive SerDe]({{< ref "serde" >}}).
+2. Encode modified record: The encoding involves serialization using an appropriate [Hive SerDe]({{% ref "serde" %}}).
 3. For bucketed tables, extract bucket column values from the record to identify the bucket where the record belongs.
 4. For partitioned tables, in dynamic partitioning mode, extract the partition column values from last N columns (where N is number of partitions) of the record to identify the partition where the record belongs.
 5. Write encoded record to Hive using the [AcidOutputFormat](https://hive.apache.org/javadocs/r1.2.1/api/org/apache/hadoop/hive/ql/io/AcidOutputFormat.html)'s record updater for the appropriate bucket.

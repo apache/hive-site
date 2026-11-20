@@ -7,13 +7,13 @@ date: 2024-12-12
 
 ## Overview
 
-Hive Replication builds on the [metastore event]({{< ref "hcatalog-notification" >}}) and [ExIm]({{< ref "languagemanual-importexport" >}}) features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly 'light touch', exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an 'out of the box' solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.
+Hive Replication builds on the [metastore event]({{% ref "hcatalog-notification" %}}) and [ExIm]({{% ref "languagemanual-importexport" %}}) features to provide a framework for replicating Hive metadata and data changes between clusters. There is no requirement for the source cluster and replica to run the same Hadoop distribution, Hive version, or metastore RDBMS. The replication system has a fairly 'light touch', exhibiting a low degree of coupling and using the Hive-metastore Thrift service as an integration point. However, the current implementation is not an 'out of the box' solution. In particular it is necessary to provide some kind of orchestration service that is responsible for requesting replication tasks and executing them.
 
-See [HiveReplicationDevelopment]({{< ref "hivereplicationdevelopment" >}}) for information on the design of replication in Hive.
+See [HiveReplicationDevelopment]({{% ref "hivereplicationdevelopment" %}}) for information on the design of replication in Hive.
 
  
 
-**A more advanced replication mechanism is being implemented in Hive to address some of the limitations of this mode. See [HiveReplicationv2Development]({{< ref "hivereplicationv2development" >}}) for details.**
+**A more advanced replication mechanism is being implemented in Hive to address some of the limitations of this mode. See [HiveReplicationv2Development]({{% ref "hivereplicationv2development" %}}) for details.**
 
 ## Potential Uses
 
@@ -34,7 +34,7 @@ See [HiveReplicationDevelopment]({{< ref "hivereplicationdevelopment" >}}) for i
 
 ## Configuration
 
-To configure the persistence of metastore notification events it is necessary to set the following `[hive-site.xml]({{< ref "#hive-site-xml" >}})` properties on the source cluster. A restart of the metastore service will be required for the settings to take effect.
+To configure the persistence of metastore notification events it is necessary to set the following `[hive-site.xml]({{% ref "#hive-site-xml" %}})` properties on the source cluster. A restart of the metastore service will be required for the settings to take effect.
 
 **hive-site.xml Configuration for Replication**
 
