@@ -137,7 +137,7 @@ The types in an HCatalog table schema determine the types of objects returned fo
 | ARRAY | java.util.List | values of one data type |
 | MAP | java.util.Map | key-value pairs |
 
-For general information about Hive data types, see [Hive Data Types]({{< ref "languagemanual-types" >}}) and [Type System]({{< ref "#type-system" >}}).
+For general information about Hive data types, see [Hive Data Types]({{% ref "languagemanual-types" %}}) and [Type System]({{% ref "#type-system" %}}).
 
 ## Running MapReduce with HCatalog
 
@@ -352,8 +352,8 @@ To write multiple partitions simultaneously you can leave the Map null, but all 
  
 
 **Navigation Links**
-Previous: [Load and Store Interfaces]({{< ref "hcatalog-loadstore" >}})  
- Next: [Reader and Writer Interfaces]({{< ref "hcatalog-readerwriter" >}})
+Previous: [Load and Store Interfaces]({{% ref "hcatalog-loadstore" %}})  
+ Next: [Reader and Writer Interfaces]({{% ref "hcatalog-readerwriter" %}})
 
 
 

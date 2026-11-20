@@ -48,8 +48,8 @@ Hello, world!
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [User-Defined Functions and Stored Procedures]({{< ref "udf-sproc" >}})
-- [CALL]({{< ref "call" >}})
-- [CREATE PACKAGE]({{< ref "create-package" >}})
-- [CREATE FUNCTION]({{< ref "create-function" >}})
-- [INCLUDE]({{< ref "include" >}})
+- [User-Defined Functions and Stored Procedures]({{% ref "udf-sproc" %}})
+- [CALL]({{% ref "call" %}})
+- [CREATE PACKAGE]({{% ref "create-package" %}})
+- [CREATE FUNCTION]({{% ref "create-function" %}})
+- [INCLUDE]({{% ref "include" %}})

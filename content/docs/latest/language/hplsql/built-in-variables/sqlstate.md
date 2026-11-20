@@ -23,7 +23,7 @@ PRINT SQLSTATE;
 <!-- **Version:** HPL/SQL 0.03 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [RESIGNAL]({{< ref "resignal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [RESIGNAL]({{% ref "resignal" %}})

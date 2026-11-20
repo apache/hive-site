@@ -70,5 +70,5 @@ region=3    1
 <!-- **Version:** HPL/SQL 0.3.13 -->
 
 See also:
-- [PART_COUNT]({{< ref "part-count" >}}) - Get the number of partitions
-- [PART_LOC]({{< ref "part-loc" >}}) - Get the location of a partition
+- [PART_COUNT]({{% ref "part-count" %}}) - Get the number of partitions
+- [PART_LOC]({{% ref "part-loc" %}}) - Get the location of a partition

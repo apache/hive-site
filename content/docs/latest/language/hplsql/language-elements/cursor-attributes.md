@@ -64,6 +64,6 @@ END;
 <!-- **Version:** HPL/SQL 0.3.11 -->
 
 **See also:**
-- [OPEN]({{< ref "open" >}})
-- [FETCH]({{< ref "fetch" >}})
-- [CLOSE]({{< ref "close" >}})
+- [OPEN]({{% ref "open" %}})
+- [FETCH]({{% ref "fetch" %}})
+- [CLOSE]({{% ref "close" %}})

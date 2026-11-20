@@ -29,4 +29,4 @@ VALUES (0, 100) INTO (count, limit);
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [SET Statement]({{< ref "assign" >}})
+- [SET Statement]({{% ref "assign" %}})

@@ -38,7 +38,7 @@ Hello, world!
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [User-Defined Functions and Stored Procedures]({{< ref "udf-sproc" >}})
-- [CREATE FUNCTION]({{< ref "create-function" >}})
-- [CREATE PROCEDURE]({{< ref "create-procedure" >}})
-- [INCLUDE]({{< ref "include" >}})
+- [User-Defined Functions and Stored Procedures]({{% ref "udf-sproc" %}})
+- [CREATE FUNCTION]({{% ref "create-function" %}})
+- [CREATE PROCEDURE]({{% ref "create-procedure" %}})
+- [INCLUDE]({{% ref "include" %}})

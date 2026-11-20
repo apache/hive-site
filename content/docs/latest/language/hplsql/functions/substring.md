@@ -26,7 +26,7 @@ SUBSTRING(string FROM start_pos [FOR substring_len])
 **Notes**:
 
 - If start_pos is 0 then it is treated as 1
-- SUBSTRING and [SUBSTR]({{< ref "substr" >}}) functions are synonyms
+- SUBSTRING and [SUBSTR]({{% ref "substr" %}}) functions are synonyms
 
 **Return Type:**
 
@@ -51,7 +51,7 @@ Result: 'mar'
 **Compatibility**: IBM DB2, Teradata and Microsoft SQL Server.
 
 **See also**:
-- [SUBSTR]({{< ref "substr" >}})
+- [SUBSTR]({{% ref "substr" %}})
 
 <!-- **Version**: 
 - HPL/SQL 0.3.11 SUBSTRING FROM FOR syntax added

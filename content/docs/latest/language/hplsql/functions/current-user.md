@@ -33,4 +33,4 @@ paul
 
 See also:
 
-- [USER]({{< ref "user" >}})
+- [USER]({{% ref "user" %}})

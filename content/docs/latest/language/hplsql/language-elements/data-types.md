@@ -62,4 +62,4 @@ Currently HPL/SQL performs the following conversions:
 | VARCHAR(MAX) | STRING |
 | VARCHAR2(n) | STRING |
 
-For more information, see [On-the-Fly Conversion]({{< ref "conversion" >}})
+For more information, see [On-the-Fly Conversion]({{% ref "conversion" %}})

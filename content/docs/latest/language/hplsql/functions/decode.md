@@ -35,4 +35,4 @@ PRINT DECODE (var1, 1, 'A', 2, 'B', NULL, 'C');    -- Result: C
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [CASE Expression]({{< ref "case" >}})
+- [CASE Expression]({{% ref "case" %}})

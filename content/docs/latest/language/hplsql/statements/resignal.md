@@ -105,10 +105,10 @@ Text: Some error
 <!-- **Version**: HPL/SQL 0.03 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [DECLARE CONDITION]({{< ref "declare-condition" >}})
-- [DECLARE HANDLER]({{< ref "declare-handler" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [SIGNAL]({{< ref "signal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [DECLARE CONDITION]({{% ref "declare-condition" %}})
+- [DECLARE HANDLER]({{% ref "declare-handler" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [SIGNAL]({{% ref "signal" %}})

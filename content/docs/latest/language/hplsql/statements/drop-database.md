@@ -26,5 +26,5 @@ drop database if exists 'test' || replace(current_date, '-', '');
 <!-- **Version:** HPL/SQL 0.3.17 -->
 
 See also:
-- [CREATE DATABASE]({{< ref "create-database" >}})
-- [USE]({{< ref "use" >}})
+- [CREATE DATABASE]({{% ref "create-database" %}})
+- [USE]({{% ref "use" %}})

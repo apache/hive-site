@@ -45,7 +45,7 @@ Time taken: 0.754 seconds
 
 ```
 
-For general information about Hive command line options, see [Hive CLI]({{< ref "languagemanual-cli" >}}).
+For general information about Hive command line options, see [Hive CLI]({{% ref "languagemanual-cli" %}}).
 
 Version information
 
@@ -123,7 +123,7 @@ Hive substitutes the value for a variable when a query is constructed with the v
 
 # Disabling Variable Substitution
 
-Variable substitution is on by default ([hive.variable.substitute]({{< ref "#hive-variable-substitute" >}})=true). If this causes an issue with an already existing script, disable it using the following command:
+Variable substitution is on by default ([hive.variable.substitute]({{% ref "#hive-variable-substitute" %}})=true). If this causes an issue with an already existing script, disable it using the following command:
 
 ```
 set hive.variable.substitute=false;

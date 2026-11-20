@@ -11,7 +11,7 @@ SerDe is short for Serializer/Deserializer. Hive uses the SerDe interface for I
 
 A SerDe allows Hive to read in data from a table, and write it back out to HDFS in any custom format. Anyone can write their own SerDe for their own data formats.
 
-See [Hive SerDe]({{< ref "#hive-serde" >}}) for an introduction to SerDes.
+See [Hive SerDe]({{% ref "#hive-serde" %}}) for an introduction to SerDes.
 
 ## Built-in and Custom SerDes
 
@@ -19,23 +19,23 @@ The Hive SerDe library is in org.apache.hadoop.hive.serde2. (The old SerDe lib
 
 ### Built-in SerDes
 
-* [Avro]({{< ref "avroserde" >}}) (Hive 0.9.1 and later)
-* [ORC]({{< ref "languagemanual-orc" >}}) (Hive 0.11 and later)
-* [RegEx]({{< ref "#regex" >}})
+* [Avro]({{% ref "avroserde" %}}) (Hive 0.9.1 and later)
+* [ORC]({{% ref "languagemanual-orc" %}}) (Hive 0.11 and later)
+* [RegEx]({{% ref "#regex" %}})
 * [Thrift](http://thrift.apache.org/)
-* [Parquet]({{< ref "parquet" >}}) (Hive 0.13 and later)
+* [Parquet]({{% ref "parquet" %}}) (Hive 0.13 and later)
 * [CSV](/docs/latest/user/csv-serde) (Hive 0.14 and later)
-* [JsonSerDe]({{< ref "#jsonserde" >}}) (Hive 0.12 and later in [hcatalog-core](https://github.com/apache/hive/blob/master/hcatalog/core/src/main/java/org/apache/hive/hcatalog/data/JsonSerDe.java))
+* [JsonSerDe]({{% ref "#jsonserde" %}}) (Hive 0.12 and later in [hcatalog-core](https://github.com/apache/hive/blob/master/hcatalog/core/src/main/java/org/apache/hive/hcatalog/data/JsonSerDe.java))
 
 Note: For Hive releases prior to 0.12, Amazon provides a JSON SerDe available at `s3://elasticmapreduce/samples/hive-ads/libs/jsonserde.jar`.
 
 ### Custom SerDes
 
-For information about custom SerDes, see [How to Write Your Own SerDe]({{< ref "#how-to-write-your-own-serde" >}}) in the [Developer Guide]({{< ref "developerguide" >}}).
+For information about custom SerDes, see [How to Write Your Own SerDe]({{% ref "#how-to-write-your-own-serde" %}}) in the [Developer Guide]({{% ref "developerguide" %}}).
 
 ## HiveQL for SerDes
 
-For the HiveQL statements that specify SerDes and their properties, see [Create Table]({{< ref "#create-table" >}}) (particularly [Row Formats & SerDe]({{< ref "#row-formats-&-serde" >}})) and [Alter Table]({{< ref "#alter-table" >}}) ([Add SerDe Properties]({{< ref "#add-serde-properties" >}})).
+For the HiveQL statements that specify SerDes and their properties, see [Create Table]({{% ref "#create-table" %}}) (particularly [Row Formats & SerDe]({{% ref "#row-formats-&-serde" %}})) and [Alter Table]({{% ref "#alter-table" %}}) ([Add SerDe Properties]({{% ref "#add-serde-properties" %}})).
 
 # Input Processing
 

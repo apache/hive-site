@@ -82,5 +82,5 @@ SELECT @count = count, @limit = limit FROM conf WHERE name = 'A';
 <!-- **Version**: HPL/SQL 0.3.7 -->
 
 See also:
-- [SELECT INTO]({{< ref "select-into" >}})
-- [VALUES INTO]({{< ref "values-into" >}})
+- [SELECT INTO]({{% ref "select-into" %}})
+- [VALUES INTO]({{% ref "values-into" %}})

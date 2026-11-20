@@ -45,7 +45,7 @@ hive> set fs.s3n.awsAccessKeyId=1B5JYHPQCXW13GWKHAG2
 
 ```
 
-**The values assigned to s3n keys are just an example and need to be filled in by the user as per their account details.** Explanation for the rest of the values can be found in [Configuration Guide]({{< ref "#configuration-guide" >}}) section below.
+**The values assigned to s3n keys are just an example and need to be filled in by the user as per their account details.** Explanation for the rest of the values can be found in [Configuration Guide]({{% ref "#configuration-guide" %}}) section below.
 
 Instead of specifying these command lines each time the CLI is bought up - we can store these persistently within `hive-site.xml` in the `conf/` directory of the Hive installation (from where they will be picked up each time the CLI is launched.
 
@@ -100,7 +100,7 @@ hive> select * from kv limit 10;
 
 `select *` queries with limit clauses can be performed locally on the Hive CLI itself. If you are doing this - please note that:
 
-* `fs.default.name` should be set to `[file:///![](images/icons/linkext7.gif)]({{< ref "file:///" >}})` in case CLI is not configured to use a working Hadoop cluster
+* `fs.default.name` should be set to `[file:///![](images/icons/linkext7.gif)]({{% ref "file:///" %}})` in case CLI is not configured to use a working Hadoop cluster
 * **Please Please do not select all the rows from large data sets**. This will cause large amount of data to be downloaded from S3 to outside AWS and incur charges on the host account for these data sets!
 
 Of course - the real fun is in doing some non-trivial queries using map-reduce. For this we will need a Hadoop cluster (finally!):

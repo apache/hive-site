@@ -150,7 +150,7 @@ CLOSE c2;
 <!-- **Version:** HPL/SQL 0.3.11 -->
 
 **See also:**
-- [OPEN]({{< ref "open" >}})
-- [FETCH]({{< ref "fetch" >}})
-- [CLOSE]({{< ref "close" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
+- [OPEN]({{% ref "open" %}})
+- [FETCH]({{% ref "fetch" %}})
+- [CLOSE]({{% ref "close" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})

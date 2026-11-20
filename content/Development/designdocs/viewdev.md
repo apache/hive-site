@@ -14,7 +14,7 @@ Views (<http://issues.apache.org/jira/browse/HIVE-972>) are a standard DBMS feat
 At a minimum, we want to 
 
 * add queryable view support at the SQL language level (specifics of the scoping are under discussion in the Issues section below)
-	+ updatable views will not be supported (see the [Updatable Views]({{< ref "updatableviews" >}}) proposal)
+	+ updatable views will not be supported (see the [Updatable Views]({{% ref "updatableviews" %}}) proposal)
 * make sure views and their definitions show up anywhere tables can currently be enumerated/searched/described
 * where relevant, provide additional metadata to allow views to be distinguished from tables
 
@@ -147,7 +147,7 @@ SQL:200n prohibits ORDER BY in a view definition, since a view is supposed to be
 
 **Update 30-Dec-2009**: Prasad pointed out that even without supporting materialized views, it may be necessary to provide users with metadata about data dependencies between views and underlying table partitions so that users can avoid seeing inconsistent results during the window when not all partitions have been refreshed with the latest data. One option is to attempt to derive this information automatically (using an overconservative guess in cases where the dependency analysis can't be made smart enough); another is to allow view creators to declare the dependency rules in some fashion as part of the view definition. Based on a design review meeting, we will probably go with the automatic analysis approach once dependency tracking is implemented. The analysis will be performed on-demand, perhaps as part of describing the view or submitting a query job against it. Until this becomes available, users may be able to do their own analysis either via empirical lineage tools or via view->table dependency tracking metadata once it is implemented. See HIVE-1079.
 
-**Update 1-Feb-2011**: For the latest on this, see [PartitionedViews]({{< ref "partitionedviews" >}}).
+**Update 1-Feb-2011**: For the latest on this, see [PartitionedViews]({{% ref "partitionedviews" %}}).
 
 ## Metastore Upgrades
 

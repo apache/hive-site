@@ -18,4 +18,4 @@ DROP TABLE [IF EXISTS] table_name
 <!-- **Version**: HPL/SQL 0.3 -->
 
 See also:
-- [TRUNCATE TABLE]({{< ref "truncate" >}})
+- [TRUNCATE TABLE]({{% ref "truncate" %}})

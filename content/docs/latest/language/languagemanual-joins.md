@@ -30,7 +30,7 @@ join_condition:
 
 ```
 
-See [Select Syntax]({{< ref "#select-syntax" >}}) for the context of this join syntax.
+See [Select Syntax]({{% ref "#select-syntax" %}}) for the context of this join syntax.
 
 Version 0.13.0+: Implicit join notation
 
@@ -169,7 +169,7 @@ will join a on b, producing a list of a.val and b.val. The WHERE clause, however
 
 ...first joins a on b, throwing away everything in a or b that does not have a corresponding key in the other table. The reduced table is then joined on c. This provides unintuitive results if there is a key that exists in both a and c but not b: The whole row (including a.val1, a.val2, and a.key) is dropped in the "a JOIN b" step because it is not in b. The result does not have a.key in it, so when it is LEFT OUTER JOINed with c, c.val does not make it in because there is no c.key that matches an a.key (because that row from a was removed). Similarly, if this were a RIGHT OUTER JOIN (instead of LEFT), we would end up with an even weirder effect: NULL, NULL, NULL, c.val, because even though we specified a.key=c.key as the join key, we dropped all rows of a that did not match the first JOIN.  
  To achieve the more intuitive effect, we should instead do FROM c LEFT OUTER JOIN a ON (c.key = a.key) LEFT OUTER JOIN b ON (c.key = b.key).
-* LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. As of Hive 0.13 the IN/NOT IN/EXISTS/NOT EXISTS operators are supported using [subqueries]({{< ref "languagemanual-subqueries" >}}) so most of these JOINs don't have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN are that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.
+* LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. As of Hive 0.13 the IN/NOT IN/EXISTS/NOT EXISTS operators are supported using [subqueries]({{% ref "languagemanual-subqueries" %}}) so most of these JOINs don't have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN are that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.
 
 ```
   SELECT a.key, a.value
@@ -268,7 +268,7 @@ The above query is not supported. Without the mapjoin hint, the above query woul
 
 ### Predicate Pushdown in Outer Joins
 
-See [Hive Outer Join Behavior]({{< ref "outerjoinbehavior" >}}) for information about predicate pushdown in outer joins.
+See [Hive Outer Join Behavior]({{% ref "outerjoinbehavior" %}}) for information about predicate pushdown in outer joins.
 
 ### Enhancements in Hive Version 0.11
 

@@ -7,7 +7,7 @@ date: 2024-12-12
 
 The current JDBC interface for Hive only supports running queries and fetching results. Only a small subset of the metadata calls are supported.
 
-To see how the JDBC interface can be used, see [sample code]({{< ref "hiveclient" >}}).
+To see how the JDBC interface can be used, see [sample code]({{% ref "hiveclient" %}}).
 
 ### Integration with Pentaho
 
@@ -30,8 +30,8 @@ echo java -XX:MaxPermSize=512m -cp $CLASSPATH -jar launcher.jar
 java -XX:MaxPermSize=512m -cp $CLASSPATH org.pentaho.commons.launcher.Launcher
 
 ```
-3. Build and start the hive server with instructions from [HiveServer]({{< ref "hiveserver" >}}).
-4. Compile and run the Hive JDBC client code to load some data (I haven't figured out how to do this in report designer yet). See [sample code]({{< ref "hiveclient" >}}) for loading the data.
+3. Build and start the hive server with instructions from [HiveServer]({{% ref "hiveserver" %}}).
+4. Compile and run the Hive JDBC client code to load some data (I haven't figured out how to do this in report designer yet). See [sample code]({{% ref "hiveclient" %}}) for loading the data.
 5. Run the report designer (note step 2).
 
 ```

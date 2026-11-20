@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## Description
 
-Create a new HCatalog table. For more information, please refer to the Hive documentation for [CREATE TABLE]({{< ref "#create-table" >}}).
+Create a new HCatalog table. For more information, please refer to the Hive documentation for [CREATE TABLE]({{% ref "#create-table" %}}).
 
 ## URL
 
@@ -26,12 +26,12 @@ Create a new HCatalog table. For more information, please refer to the Hive docu
 | **comment** | Comment for the table. | Optional | None |
 | **columns** | A list of column descriptions, including name, type, and an optional comment. | Optional | None |
 | **partitionedBy** | A list of column descriptions used to partition the table. Like the **columns** parameter this is a list of name, type, and comment fields. | Optional | None |
-| **clusteredBy** | An object describing how to cluster the table including the parameters columnNames, sortedBy, and numberOfBuckets. The sortedBy parameter includes the parameters columnName and order (ASC for ascending or DESC for descending). For further information please refer to the examples below or to the [Hive documentation]({{< ref "#hive-documentation" >}}). | Optional | None |
-| **format** | Storage format description including parameters for rowFormat, storedAs, and storedBy. For further information please refer to the examples below or to the [Hive documentation]({{< ref "#hive-documentation" >}}). | Optional | None |
+| **clusteredBy** | An object describing how to cluster the table including the parameters columnNames, sortedBy, and numberOfBuckets. The sortedBy parameter includes the parameters columnName and order (ASC for ascending or DESC for descending). For further information please refer to the examples below or to the [Hive documentation]({{% ref "#hive-documentation" %}}). | Optional | None |
+| **format** | Storage format description including parameters for rowFormat, storedAs, and storedBy. For further information please refer to the examples below or to the [Hive documentation]({{% ref "#hive-documentation" %}}). | Optional | None |
 | **location** | The HDFS path. | Optional | None |
 | **tableProperties** | A list of table property names and values (key/value pairs). | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -121,7 +121,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table]({{< ref "webhcat-reference-gettable" >}}) Next: [POST ddl/database/:db/table/:table]({{< ref "webhcat-reference-posttable" >}})
+Previous: [GET ddl/database/:db/table/:table]({{% ref "webhcat-reference-gettable" %}}) Next: [POST ddl/database/:db/table/:table]({{% ref "webhcat-reference-posttable" %}})
 
 
 

@@ -48,10 +48,10 @@ CLOSE cur;
 - HPL/SQL 0.01 - Introduced -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [DECLARE CONDITION]({{< ref "declare-condition" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [SIGNAL]({{< ref "signal" >}})
-- [RESIGNAL]({{< ref "resignal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [DECLARE CONDITION]({{% ref "declare-condition" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [SIGNAL]({{% ref "signal" %}})
+- [RESIGNAL]({{% ref "resignal" %}})

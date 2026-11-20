@@ -20,4 +20,4 @@ PRINT 'Users: ' || cnt;
 <!-- **Version**: HPL/SQL 0.1 -->
 
 See also:
-- [SELECT]({{< ref "select" >}})
+- [SELECT]({{% ref "select" %}})

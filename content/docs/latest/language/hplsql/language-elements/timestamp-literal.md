@@ -27,7 +27,7 @@ TIMESTAMP '2015-03-03-11.39.31.123'   -- DB2 syntax
 
 See also:
 
-- [DATE Literal]({{< ref "date-literal" >}})
-- [INTERVAL Expressions]({{< ref "interval" >}})
-- [TIMESTAMP_ISO Function]({{< ref "timestamp-iso" >}})
-- [TO_TIMESTAMP Function]({{< ref "to-timestamp" >}})
+- [DATE Literal]({{% ref "date-literal" %}})
+- [INTERVAL Expressions]({{% ref "interval" %}})
+- [TIMESTAMP_ISO Function]({{% ref "timestamp-iso" %}})
+- [TO_TIMESTAMP Function]({{% ref "to-timestamp" %}})

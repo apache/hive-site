@@ -30,4 +30,4 @@ CHAR(1000);
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [TO_CHAR Function]({{< ref "to-char" >}})
+- [TO_CHAR Function]({{% ref "to-char" %}})

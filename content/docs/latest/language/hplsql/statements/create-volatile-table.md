@@ -21,7 +21,7 @@ CREATE [SET | MULTISET] VOLATILE TABLE table_name
 Notes:
 - The volatile table is automatically dropped at the end of session.
 
-For more details how temporary table support is implemented in HPL/SQL, see [Native and Managed Temporary Tables]({{< ref "temporary-tables" >}}).
+For more details how temporary table support is implemented in HPL/SQL, see [Native and Managed Temporary Tables]({{% ref "temporary-tables" %}}).
 
 **Example**:
 
@@ -46,6 +46,6 @@ SELECT * FROM temp1;
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [Native and Managed Temporary Tables]({{< ref "temporary-tables" >}})
-- [CREATE LOCAL TEMPORARY TABLE]({{< ref "create-local-temporary-table" >}})
-- [DECLARE TEMPORARY TABLE]({{< ref "declare-temporary-table" >}})
+- [Native and Managed Temporary Tables]({{% ref "temporary-tables" %}})
+- [CREATE LOCAL TEMPORARY TABLE]({{% ref "create-local-temporary-table" %}})
+- [DECLARE TEMPORARY TABLE]({{% ref "declare-temporary-table" %}})

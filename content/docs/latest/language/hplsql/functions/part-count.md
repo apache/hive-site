@@ -70,5 +70,5 @@ part_count(db.orders, region='1');
 <!-- **Version:** HPL/SQL 0.3.13 -->
 
 See also:
-- [PART_COUNT_BY]({{< ref "part-count-by" >}}) - Get the number of partitions (group by)
-- [PART_LOC]({{< ref "part-loc" >}}) - Get the location of a partition
+- [PART_COUNT_BY]({{% ref "part-count-by" %}}) - Get the number of partitions (group by)
+- [PART_LOC]({{% ref "part-loc" %}}) - Get the location of a partition

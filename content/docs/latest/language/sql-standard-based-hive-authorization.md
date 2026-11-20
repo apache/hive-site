@@ -7,9 +7,9 @@ date: 2024-12-12
 
 # Status of Hive Authorization before Hive 0.13
 
-The [default authorization in Hive]({{< ref "#default-authorization-in-hive" >}}) is not designed with the intent to protect against malicious users accessing data they should not be accessing. It only helps in preventing users from accidentally doing operations they are not supposed to do. It is also incomplete because it does not have authorization checks for many operations including the grant statement. The authorization checks happen during Hive query compilation. But as the user is allowed to execute dfs commands, user-defined functions and shell commands, it is possible to bypass the client security checks.
+The [default authorization in Hive]({{% ref "#default-authorization-in-hive" %}}) is not designed with the intent to protect against malicious users accessing data they should not be accessing. It only helps in preventing users from accidentally doing operations they are not supposed to do. It is also incomplete because it does not have authorization checks for many operations including the grant statement. The authorization checks happen during Hive query compilation. But as the user is allowed to execute dfs commands, user-defined functions and shell commands, it is possible to bypass the client security checks.
 
-Hive also has support for storage based authorization, which is commonly used to add authorization to metastore server API calls (see [Storage Based Authorization in the Metastore Server]({{< ref "#storage-based-authorization-in-the-metastore-server" >}})). As of Hive 0.12.0 it can be used on the client side as well. While it can protect the metastore against changes by malicious users, it does not support fine grained access control (column or row level).
+Hive also has support for storage based authorization, which is commonly used to add authorization to metastore server API calls (see [Storage Based Authorization in the Metastore Server]({{% ref "#storage-based-authorization-in-the-metastore-server" %}})). As of Hive 0.12.0 it can be used on the client side as well. While it can protect the metastore against changes by malicious users, it does not support fine grained access control (column or row level).
 
 The default authorization model in Hive can be used to provide fine grained access control by creating views and granting access to views instead of the underlying tables.
 
@@ -23,7 +23,7 @@ This authorization mode can be used in conjunction with storage based authorizat
 
 The goal of this work has been to comply with the SQL standard as far as possible, but there are deviations from the standard in the implementation. Some deviations were made to make it easier for existing Hive users to migrate to this authorization model, and some were made considering ease of use (in such cases we also looked at what many widely used databases do).
 
-Under this authorization model, users who have access to the Hive CLI, HDFS commands, Pig command line, 'hadoop jar' command, etc., are considered privileged users. In an organization, it is typically only the teams that work on [ETL](http://en.wikipedia.org/wiki/Extract,_transform,_load) workloads that need such access. These tools don't access the data through HiveServer2, and as a result their access is not authorized through this model. For Hive CLI, Pig, and MapReduce users access to Hive tables can be controlled using [storage based authorization]({{< ref "hcatalog-authorization" >}}) enabled on the metastore server.
+Under this authorization model, users who have access to the Hive CLI, HDFS commands, Pig command line, 'hadoop jar' command, etc., are considered privileged users. In an organization, it is typically only the teams that work on [ETL](http://en.wikipedia.org/wiki/Extract,_transform,_load) workloads that need such access. These tools don't access the data through HiveServer2, and as a result their access is not authorized through this model. For Hive CLI, Pig, and MapReduce users access to Hive tables can be controlled using [storage based authorization]({{% ref "hcatalog-authorization" %}}) enabled on the metastore server.
 
 Most users such as business analysts tend to use SQL and ODBC/JDBC through HiveServer2 and their access can be controlled using this authorization model.
 
@@ -31,13 +31,13 @@ Most users such as business analysts tend to use SQL and ODBC/JDBC through HiveS
 
 Commands such as dfs, add, delete, compile, and reset are disabled when this authorization is enabled.
 
-The set commands used to change Hive configuration are restricted to a smaller safe set. This is controlled using the [hive.security.authorization.sqlstd.confwhitelist]({{< ref "#hive-security-authorization-sqlstd-confwhitelist" >}}) configuration parameter. If this set needs to be customized, the HiveServer2 administrator can set a value for this configuration parameter in its hive-site.xml.
+The set commands used to change Hive configuration are restricted to a smaller safe set. This is controlled using the [hive.security.authorization.sqlstd.confwhitelist]({{% ref "#hive-security-authorization-sqlstd-confwhitelist" %}}) configuration parameter. If this set needs to be customized, the HiveServer2 administrator can set a value for this configuration parameter in its hive-site.xml.
 
 Privileges to add or drop functions and macros are restricted to the **admin** role.
 
 To enable users to use functions, the ability to create [permanent functions](/docs/latest/language/languagemanual-ddl#create-function) has been added. A user in the **admin** role can run commands to create these functions, which all users can then use.
 
-The Hive [transform clause]({{< ref "languagemanual-transform" >}}) is also disabled when this authorization is enabled.
+The Hive [transform clause]({{% ref "languagemanual-transform" %}}) is also disabled when this authorization is enabled.
 
 ## Privileges
 
@@ -63,7 +63,7 @@ For certain actions, the ownership of the object (table/view/database) determine
 
 The user who creates the table, view or database becomes its owner. In the case of tables and views, the owner gets all the privileges with grant option.
 
-A role can also be the owner of a database. The "`[alter database]({{< ref "#alter-database" >}})`" command can be used to set the owner of a database to a role.
+A role can also be the owner of a database. The "`[alter database]({{% ref "#alter-database" %}})`" command can be used to set the owner of a database to a role.
 
 ## Users and Roles
 
@@ -118,7 +118,7 @@ Drops the given role. Only the **admin** role has privilege for this.
 SHOW CURRENT ROLES;
 ```
 
-Shows the list of the user's [current roles]({{< ref "#current-roles" >}}). All actions of the user are authorized by looking at the privileges of the user and all current roles of the user.
+Shows the list of the user's [current roles]({{% ref "#current-roles" %}}). All actions of the user are authorized by looking at the privileges of the user and all current roles of the user.
 
 The default current roles has all roles for the user except for the **admin** role (even if the user belongs to the **admin** role as well).
 
@@ -402,7 +402,7 @@ As of Hive 3.0.0 ([HIVE-12408](https://issues.apache.org/jira/browse/HIVE-12408)
 **Set the following in hive-site.xml:**
 
 * hive.server2.enable.doAs to false.
-* hive.users.in.admin.role to the list of comma-separated users who need to be added to **admin** role. Note that a user who belongs to the **admin** role needs to run the "`[set role]({{< ref "#set-role" >}})`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
+* hive.users.in.admin.role to the list of comma-separated users who need to be added to **admin** role. Note that a user who belongs to the **admin** role needs to run the "`[set role]({{% ref "#set-role" %}})`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
 
 **Start HiveServer2 with the following additional command-line options:**
 
@@ -416,7 +416,7 @@ As of Hive 3.0.0 ([HIVE-12408](https://issues.apache.org/jira/browse/HIVE-12408)
 **Set the following in hive-site.xml:**
 
 * **hive.server2.enable.doAs** to false.
-* **hive.users.in.admin.role** to the list of comma-separated users who need to be added to **admin** role. Note that a user who belongs to the **admin** role needs to run the "`[set role]({{< ref "#set-role" >}})`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
+* **hive.users.in.admin.role** to the list of comma-separated users who need to be added to **admin** role. Note that a user who belongs to the **admin** role needs to run the "`[set role]({{% ref "#set-role" %}})`" command before getting the privileges of the **admin** role, as this role is not in current roles by default.
 * Add org.apache.hadoop.hive.ql.security.authorization.MetaStoreAuthzAPIAuthorizerEmbedOnly to **hive.security.metastore.authorization.manager**. (It takes a comma separated list, so you can add it along with StorageBasedAuthorization parameter, if you want to enable that as well).  
 This setting disallows any of the authorization api calls to be invoked in a remote metastore. HiveServer2 can be configured to use embedded metastore, and that will allow it to invoke metastore authorization api. Hive cli and any other remote metastore users would be denied authorization when they try to make authorization api calls. This restricts the authorization api to privileged HiveServer2 process. You should also ensure that the metastore rdbms access is restricted to the metastore server and hiverserver2.
 * **hive.security.authorization.manager** to org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory. This will ensure that any table or views created by hive-cli have default privileges granted for the owner.
@@ -457,9 +457,9 @@ For information on the SQL standard for security see:
 
 ***Problem:***  My user name is in hive.users.in.admin.role in hive-site.xml, but I still get the error that user is not an **admin**. What could be wrong?
 
-***Do This:***  Ensure that you have restarted HiveServer2 after a configuration change and that you have used the HiveServer2 command line options as described in [Configuration]({{< ref "#configuration" >}}) above.
+***Do This:***  Ensure that you have restarted HiveServer2 after a configuration change and that you have used the HiveServer2 command line options as described in [Configuration]({{% ref "#configuration" %}}) above.
 
-***Do This:***  Ensure that you have run a '`[set role]({{< ref "#set-role" >}}) admin;`' command to get the **admin** role.
+***Do This:***  Ensure that you have run a '`[set role]({{% ref "#set-role" %}}) admin;`' command to get the **admin** role.
 
 ## Attachments:
 

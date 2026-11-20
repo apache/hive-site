@@ -24,19 +24,19 @@ HCatalog is built on top of the Hive metastore and incorporates Hive's DDL. HCat
 
 ### Interfaces
 
-The HCatalog interface for Pig consists of HCatLoader and HCatStorer, which implement the Pig load and store interfaces respectively. HCatLoader accepts a table to read data from; you can indicate which partitions to scan by immediately following the load statement with a partition filter statement. HCatStorer accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the STORE clause; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. HCatLoader is implemented on top of HCatInputFormat and HCatStorer is implemented on top of HCatOutputFormat. (See [Load and Store Interfaces]({{< ref "hcatalog-loadstore" >}}).)
+The HCatalog interface for Pig consists of HCatLoader and HCatStorer, which implement the Pig load and store interfaces respectively. HCatLoader accepts a table to read data from; you can indicate which partitions to scan by immediately following the load statement with a partition filter statement. HCatStorer accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the STORE clause; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. HCatLoader is implemented on top of HCatInputFormat and HCatStorer is implemented on top of HCatOutputFormat. (See [Load and Store Interfaces]({{% ref "hcatalog-loadstore" %}}).)
 
-The HCatalog interface for MapReduce — HCatInputFormat and HCatOutputFormat — is an implementation of Hadoop InputFormat and OutputFormat. HCatInputFormat accepts a table to read data from and optionally a selection predicate to indicate which partitions to scan. HCatOutputFormat accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the setOutput method; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. (See [Input and Output Interfaces]({{< ref "hcatalog-inputoutput" >}}).)
+The HCatalog interface for MapReduce — HCatInputFormat and HCatOutputFormat — is an implementation of Hadoop InputFormat and OutputFormat. HCatInputFormat accepts a table to read data from and optionally a selection predicate to indicate which partitions to scan. HCatOutputFormat accepts a table to write to and optionally a specification of partition keys to create a new partition. You can write to a single partition by specifying the partition key(s) and value(s) in the setOutput method; and you can write to multiple partitions if the partition key(s) are columns in the data being stored. (See [Input and Output Interfaces]({{% ref "hcatalog-inputoutput" %}}).)
 
 **Note:** There is no Hive-specific interface. Since HCatalog uses Hive's metastore, Hive can read data in HCatalog directly.
 
-Data is defined using HCatalog's command line interface (CLI). The HCatalog CLI supports all Hive DDL that does not require MapReduce to execute, allowing users to create, alter, drop tables, etc. The CLI also supports the data exploration part of the Hive command line, such as SHOW TABLES, DESCRIBE TABLE, and so on. Unsupported Hive DDL includes import/export, the REBUILD and CONCATENATE options of ALTER TABLE, CREATE TABLE AS SELECT, and ANALYZE TABLE ... COMPUTE STATISTICS. (See [Command Line Interface]({{< ref "hcatalog-cli" >}}).)
+Data is defined using HCatalog's command line interface (CLI). The HCatalog CLI supports all Hive DDL that does not require MapReduce to execute, allowing users to create, alter, drop tables, etc. The CLI also supports the data exploration part of the Hive command line, such as SHOW TABLES, DESCRIBE TABLE, and so on. Unsupported Hive DDL includes import/export, the REBUILD and CONCATENATE options of ALTER TABLE, CREATE TABLE AS SELECT, and ANALYZE TABLE ... COMPUTE STATISTICS. (See [Command Line Interface]({{% ref "hcatalog-cli" %}}).)
 
 ### Data Model
 
 HCatalog presents a relational view of data. Data is stored in tables and these tables can be placed in databases. Tables can also be hash partitioned on one or more keys; that is, for a given value of a key (or set of keys) there will be one partition that contains all rows with that value (or set of values). For example, if a table is partitioned on date and there are three days of data in the table, there will be three partitions in the table. New partitions can be added to a table, and partitions can be dropped from a table. Partitioned tables have no partitions at create time. Unpartitioned tables effectively have one default partition that must be created at table creation time. There is no guaranteed read consistency when a partition is dropped.
 
-Partitions contain records. Once a partition is created records cannot be added to it, removed from it, or updated in it. Partitions are multi-dimensional and not hierarchical. Records are divided into columns. Columns have a name and a datatype. HCatalog supports the same datatypes as Hive. See [Load and Store Interfaces]({{< ref "hcatalog-loadstore" >}}) for more information about datatypes.
+Partitions contain records. Once a partition is created records cannot be added to it, removed from it, or updated in it. Partitions are multi-dimensional and not hierarchical. Records are divided into columns. Columns have a name and a datatype. HCatalog supports the same datatypes as Hive. See [Load and Store Interfaces]({{% ref "hcatalog-loadstore" %}}) for more information about datatypes.
 
 ## Data Flow Example
 
@@ -105,12 +105,12 @@ group by advertiser_id;
 
 ## HCatalog Web API
 
-*WebHCat* is a REST API for HCatalog. (REST stands for "[representational state transfer](http://en.wikipedia.org/wiki/Representational_state_transfer)", a style of API based on HTTP verbs).  The original name of WebHCat was *Templeton*. For more information, see the [WebHCat manual]({{< ref "webhcat-base" >}}).
+*WebHCat* is a REST API for HCatalog. (REST stands for "[representational state transfer](http://en.wikipedia.org/wiki/Representational_state_transfer)", a style of API based on HTTP verbs).  The original name of WebHCat was *Templeton*. For more information, see the [WebHCat manual]({{% ref "webhcat-base" %}}).
 
  
 
 **Navigation Links**
-Next: [HCatalog Installation]({{< ref "hcatalog-installhcat" >}})
+Next: [HCatalog Installation]({{% ref "hcatalog-installhcat" %}})
 
 
 

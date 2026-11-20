@@ -83,5 +83,5 @@ date '2016-01-27' - interval '3' day;
 
 See also:
 
-- [DATE Literal]({{< ref "date-literal" >}})
-- [TIMESTAMP Literal]({{< ref "timestamp-literal" >}})
+- [DATE Literal]({{% ref "date-literal" %}})
+- [TIMESTAMP Literal]({{% ref "timestamp-literal" %}})

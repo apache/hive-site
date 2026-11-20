@@ -60,4 +60,4 @@ Searched CASE expression:
 <!-- **Version**: HPL/SQL 0.01 -->
 
 See also:
-- [DECODE Function]({{< ref "decode" >}})
+- [DECODE Function]({{% ref "decode" %}})

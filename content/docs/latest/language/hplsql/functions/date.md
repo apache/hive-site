@@ -32,6 +32,6 @@ DATE(TIMESTAMP '2015-03-12 10:58:34.111');
 <!-- **Version**: HPL/SQL 0.03 -->
 
 See also:
-- [DATE Literal]({{< ref "date-literal" >}})
-- [TIMESTAMP Literal]({{< ref "timestamp-literal" >}})
-- [TIMESTAMP_ISO Function]({{< ref "timestamp-iso" >}})
+- [DATE Literal]({{% ref "date-literal" %}})
+- [TIMESTAMP Literal]({{% ref "timestamp-literal" %}})
+- [TIMESTAMP_ISO Function]({{% ref "timestamp-iso" %}})

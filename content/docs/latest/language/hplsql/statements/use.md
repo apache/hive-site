@@ -28,5 +28,5 @@ USE SUBSTR(var, 1, 3);
 <!-- **Version**: HPL/SQL 0.1 -->
 
 See also:
-- [CREATE DATABASE]({{< ref "create-database" >}})
-- [DROP DATABASE]({{< ref "drop-database" >}})
+- [CREATE DATABASE]({{% ref "create-database" %}})
+- [DROP DATABASE]({{% ref "drop-database" %}})

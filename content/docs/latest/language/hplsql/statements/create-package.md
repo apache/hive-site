@@ -77,8 +77,8 @@ print 'Number of users: ' || users.get_count();
 <!-- **Version**: HPL/SQL 0.3.13 -->
 
 See also:
-- [User-Defined Functions and Stored Procedures]({{< ref "udf-sproc" >}})
-- [CALL]({{< ref "call" >}})
-- [CREATE FUNCTION]({{< ref "create-function" >}})
-- [CREATE PROCEDURE]({{< ref "create-procedure" >}})
-- [INCLUDE]({{< ref "include" >}})
+- [User-Defined Functions and Stored Procedures]({{% ref "udf-sproc" %}})
+- [CALL]({{% ref "call" %}})
+- [CREATE FUNCTION]({{% ref "create-function" %}})
+- [CREATE PROCEDURE]({{% ref "create-procedure" %}})
+- [INCLUDE]({{% ref "include" %}})

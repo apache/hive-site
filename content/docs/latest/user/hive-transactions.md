@@ -25,12 +25,12 @@ Transactions with ACID semantics have been added to Hive to address the followin
 ## Limitations
 
 * *BEGIN*, *COMMIT*, and *ROLLBACK* are not yet supported.  All language operations are auto-commit.  The plan is to support these in a future release.
-* Only [ORC file format]({{< ref "languagemanual-orc" >}}) is supported in this first release.  The feature has been built such that transactions can be used by any storage format that can determine how updates or deletes apply to base records (basically, that has an explicit or implicit row id), but so far the integration work has only been done for ORC.
-* By default transactions are configured to be off.  See the [Configuration]({{< ref "#configuration" >}}) section below for a discussion of which values need to be set to configure it.
-* Tables must be [bucketed]({{< ref "languagemanual-ddl-bucketedtables" >}}) to make use of these features.  Tables in the same system not using transactions and ACID do not need to be bucketed. External tables cannot be made ACID tables since the changes on external tables are beyond the control of the compactor ([HIVE-13175](https://issues.apache.org/jira/browse/HIVE-13175)).
+* Only [ORC file format]({{% ref "languagemanual-orc" %}}) is supported in this first release.  The feature has been built such that transactions can be used by any storage format that can determine how updates or deletes apply to base records (basically, that has an explicit or implicit row id), but so far the integration work has only been done for ORC.
+* By default transactions are configured to be off.  See the [Configuration]({{% ref "#configuration" %}}) section below for a discussion of which values need to be set to configure it.
+* Tables must be [bucketed]({{% ref "languagemanual-ddl-bucketedtables" %}}) to make use of these features.  Tables in the same system not using transactions and ACID do not need to be bucketed. External tables cannot be made ACID tables since the changes on external tables are beyond the control of the compactor ([HIVE-13175](https://issues.apache.org/jira/browse/HIVE-13175)).
 * Reading/writing to an ACID table from a non-ACID session is not allowed. In other words, the Hive transaction manager must be set to org.apache.hadoop.hive.ql.lockmgr.DbTxnManager in order to work with ACID tables.
 * At this time only snapshot level isolation is supported.  When a given query starts it will be provided with a consistent snapshot of the data.  There is no support for dirty read, read committed, repeatable read, or serializable.  With the introduction of BEGIN the intention is to support snapshot isolation for the duration of transaction rather than just a single query.  Other isolation levels may be added depending on user requests.
-* The existing ZooKeeper and in-memory lock managers are not compatible with transactions.  There is no intention to address this issue.  See [Basic Design]({{< ref "#basic-design" >}}) below for a discussion of how locks are stored for transactions.
+* The existing ZooKeeper and in-memory lock managers are not compatible with transactions.  There is no intention to address this issue.  See [Basic Design]({{% ref "#basic-design" %}}) below for a discussion of how locks are stored for transactions.
 * ~~Schema changes using ALTER TABLE is NOT supported for ACID tables. [HIVE-11421](https://issues.apache.org/jira/browse/HIVE-11421) is tracking it.~~  Fixed in 1.3.0/2.0.0.
 * Using Oracle as the Metastore DB and "datanucleus.connectionPoolingType=BONECP" may generate intermittent "No such lock.." and "No such transaction..." errors.  Setting "datanucleus.connectionPoolingType=DBCP" is recommended in this case.
 * [LOAD DATA...](/docs/latest/language/languagemanual-dml#loading-files-into-tables) statement is not supported with transactional tables.  (This was not properly enforced until [HIVE-16732](https://issues.apache.org/jira/browse/HIVE-16732))
@@ -39,25 +39,25 @@ Transactions with ACID semantics have been added to Hive to address the followin
 
 Hive offers APIs for streaming data ingest and streaming mutation:
 
-* [Hive HCatalog Streaming API]({{< ref "streaming-data-ingest" >}})
+* [Hive HCatalog Streaming API]({{% ref "streaming-data-ingest" %}})
 * [Hive Streaming API](/docs/latest/user/streaming-data-ingest-v2) (Since Hive 3)
-* [HCatalog Streaming Mutation API]({{< ref "hcatalog-streaming-mutation-api" >}}) (available in Hive 2.0.0 and later)
+* [HCatalog Streaming Mutation API]({{% ref "hcatalog-streaming-mutation-api" %}}) (available in Hive 2.0.0 and later)
 
-A comparison of these two APIs is available in the [Background]({{< ref "#background" >}}) section of the Streaming Mutation document.
+A comparison of these two APIs is available in the [Background]({{% ref "#background" %}}) section of the Streaming Mutation document.
 
 ## Grammar Changes
 
-*INSERT...VALUES, UPDATE*, and *DELETE* have been added to the SQL grammar, starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317).  See [LanguageManual DML]({{< ref "languagemanual-dml" >}}) for details.
+*INSERT...VALUES, UPDATE*, and *DELETE* have been added to the SQL grammar, starting in [Hive 0.14](https://issues.apache.org/jira/browse/HIVE-5317).  See [LanguageManual DML]({{% ref "languagemanual-dml" %}}) for details.
 
 Several new commands have been added to Hive's DDL in support of ACID and transactions, plus some existing DDL has been modified.  
 
-A new command *SHOW TRANSACTIONS* has been added, see [Show Transactions]({{< ref "#show-transactions" >}}) for details.
+A new command *SHOW TRANSACTIONS* has been added, see [Show Transactions]({{% ref "#show-transactions" %}}) for details.
 
-A new command *SHOW COMPACTIONS* has been added, see [Show Compactions]({{< ref "#show-compactions" >}}) for details.
+A new command *SHOW COMPACTIONS* has been added, see [Show Compactions]({{% ref "#show-compactions" %}}) for details.
 
-The *SHOW LOCKS* command has been altered to provide information about the new locks associated with transactions.  If you are using the ZooKeeper or in-memory lock managers you will notice no difference in the output of this command.  See [Show Locks]({{< ref "#show-locks" >}}) for details.
+The *SHOW LOCKS* command has been altered to provide information about the new locks associated with transactions.  If you are using the ZooKeeper or in-memory lock managers you will notice no difference in the output of this command.  See [Show Locks]({{% ref "#show-locks" %}}) for details.
 
-A new option has been added to *ALTER TABLE* to request a compaction of a table or partition.  In general users do not need to request compactions, as the system will detect the need for them and initiate the compaction.  However, if [compaction is turned off]({{< ref "#compaction-is-turned-off" >}}) for a table or a user wants to compact the table at a time the system would not choose to, *ALTER TABLE* can be used to initiate the compaction.  See [Alter Table/Partition Compact]({{< ref "#alter-table/partition-compact" >}}) for details.  This will enqueue a request for compaction and return.  To watch the progress of the compaction the user can use *SHOW COMPACTIONS*.
+A new option has been added to *ALTER TABLE* to request a compaction of a table or partition.  In general users do not need to request compactions, as the system will detect the need for them and initiate the compaction.  However, if [compaction is turned off]({{% ref "#compaction-is-turned-off" %}}) for a table or a user wants to compact the table at a time the system would not choose to, *ALTER TABLE* can be used to initiate the compaction.  See [Alter Table/Partition Compact]({{% ref "#alter-table/partition-compact" %}}) for details.  This will enqueue a request for compaction and return.  To watch the progress of the compaction the user can use *SHOW COMPACTIONS*.
 
 A new command *ABORT TRANSACTIONS* has been added, see [Abort Transactions](/docs/latest/language/languagemanual-ddl#abort-transactions) for details.
 
@@ -91,17 +91,17 @@ As operations modify the table more and more delta files are created and need to
 
 * Minor compaction takes a set of existing delta files and rewrites them to a single delta file per bucket.
 * Major compaction takes one or more delta files and the base file for the bucket and rewrites them into a new base file per bucket.  Major compaction is more expensive but is more effective.
-* More information about rebalance compaction can be found here: [Rebalance compaction]({{< ref "rebalance-compaction" >}})
+* More information about rebalance compaction can be found here: [Rebalance compaction]({{% ref "rebalance-compaction" %}})
 
 All compactions are done in the background. Minor and major compactions do not prevent concurrent reads and writes of the data. Rebalance compaction uses exclusive write lock, therefore it prevents concurrent writes. After a compaction the system waits until all readers of the old files have finished and then removes the old files.
 
 #### Initiator
 
-This module is responsible for discovering which tables or partitions are due for compaction.  This should be enabled in a Metastore using [hive.compactor.initiator.on]({{< ref "#hive-compactor-initiator-on" >}}).  There are several properties of the form *.threshold in "New Configuration Parameters for Transactions" table below that control when a compaction task is created and which type of compaction is performed.  Each compaction task handles 1 partition (or whole table if the table is unpartitioned).  If the number of consecutive compaction failures for a given partition exceeds hive.compactor.initiator.failed.compacts.threshold, automatic compaction scheduling will stop for this partition.  See Configuration Parameters table for more info.
+This module is responsible for discovering which tables or partitions are due for compaction.  This should be enabled in a Metastore using [hive.compactor.initiator.on]({{% ref "#hive-compactor-initiator-on" %}}).  There are several properties of the form *.threshold in "New Configuration Parameters for Transactions" table below that control when a compaction task is created and which type of compaction is performed.  Each compaction task handles 1 partition (or whole table if the table is unpartitioned).  If the number of consecutive compaction failures for a given partition exceeds hive.compactor.initiator.failed.compacts.threshold, automatic compaction scheduling will stop for this partition.  See Configuration Parameters table for more info.
 
 #### Worker
 
-Each Worker handles a single compaction task.  A compaction is a MapReduce job with name in the following form: \<hostname\>-compactor-\<db\>.\<table\>.\<partition\>.  Each worker submits the job to the cluster (via [hive.compactor.job.queue]({{< ref "#hive-compactor-job-queue" >}}) if defined) and waits for the job to finish.  [hive.compactor.worker.threads]({{< ref "#hive-compactor-worker-threads" >}}) determines the number of Workers in each Metastore.  The total number of Workers in the Hive Warehouse determines the maximum number of concurrent compactions.
+Each Worker handles a single compaction task.  A compaction is a MapReduce job with name in the following form: \<hostname\>-compactor-\<db\>.\<table\>.\<partition\>.  Each worker submits the job to the cluster (via [hive.compactor.job.queue]({{% ref "#hive-compactor-job-queue" %}}) if defined) and waits for the job to finish.  [hive.compactor.worker.threads]({{% ref "#hive-compactor-worker-threads" %}}) determines the number of Workers in each Metastore.  The total number of Workers in the Hive Warehouse determines the maximum number of concurrent compactions.
 
 #### Cleaner
 
@@ -109,13 +109,13 @@ This process is a process that deletes delta files after compaction and after it
 
 #### AcidHouseKeeperService
 
-This process looks for transactions that have not heartbeated in [hive.txn.timeout]({{< ref "#hive-txn-timeout" >}}) time and aborts them.  The system assumes that a client that initiated a transaction stopped heartbeating crashed and the resources it locked should be released.
+This process looks for transactions that have not heartbeated in [hive.txn.timeout]({{% ref "#hive-txn-timeout" %}}) time and aborts them.  The system assumes that a client that initiated a transaction stopped heartbeating crashed and the resources it locked should be released.
 
 #### SHOW COMPACTIONS
 
 This commands displays information about currently running compaction and recent history (configurable retention period) of compactions.  This history display is available since [HIVE-12353](https://issues.apache.org/jira/browse/HIVE-12353).
 
-Also see [LanguageManual DDL#ShowCompactions]({{< ref "#languagemanual-ddl#showcompactions" >}}) for more information on the output of this command and [NewConfigurationParametersforTransactions]({{< ref "#newconfigurationparametersfortransactions" >}})/Compaction History for configuration properties affecting the output of this command.  The system retains the last N entries of each type: failed, succeeded, attempted (where N is configurable for each type).
+Also see [LanguageManual DDL#ShowCompactions]({{% ref "#languagemanual-ddl#showcompactions" %}}) for more information on the output of this command and [NewConfigurationParametersforTransactions]({{% ref "#newconfigurationparametersfortransactions" %}})/Compaction History for configuration properties affecting the output of this command.  The system retains the last N entries of each type: failed, succeeded, attempted (where N is configurable for each type).
 
   
 
@@ -135,18 +135,18 @@ Minimally, these configuration parameters must be set appropriately to turn on t
 
 Client Side
 
-* [hive.support.concurrency]({{< ref "#hive-support-concurrency" >}}) – true
-* [hive.enforce.bucketing]({{< ref "#hive-enforce-bucketing" >}}) – true (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331))
-* [hive.exec.dynamic.partition.mode]({{< ref "#hive-exec-dynamic-partition-mode" >}}) – nonstrict
-* [hive.txn.manager]({{< ref "#hive-txn-manager" >}}) – org.apache.hadoop.hive.ql.lockmgr.DbTxnManager
+* [hive.support.concurrency]({{% ref "#hive-support-concurrency" %}}) – true
+* [hive.enforce.bucketing]({{% ref "#hive-enforce-bucketing" %}}) – true (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331))
+* [hive.exec.dynamic.partition.mode]({{% ref "#hive-exec-dynamic-partition-mode" %}}) – nonstrict
+* [hive.txn.manager]({{% ref "#hive-txn-manager" %}}) – org.apache.hadoop.hive.ql.lockmgr.DbTxnManager
 
 Server Side (Metastore)
 
-* [hive.compactor.initiator.on]({{< ref "#hive-compactor-initiator-on" >}}) – true (See table below for more details)
-* [hive.compactor.cleaner.on]({{< ref "#hive-compactor-cleaner-on" >}}) – true (See table below for more details)
-* [hive.compactor.worker.threads]({{< ref "#hive-compactor-worker-threads" >}}) – a positive number on at least one instance of the Thrift metastore service
+* [hive.compactor.initiator.on]({{% ref "#hive-compactor-initiator-on" %}}) – true (See table below for more details)
+* [hive.compactor.cleaner.on]({{% ref "#hive-compactor-cleaner-on" %}}) – true (See table below for more details)
+* [hive.compactor.worker.threads]({{% ref "#hive-compactor-worker-threads" %}}) – a positive number on at least one instance of the Thrift metastore service
 
-The following sections list all of the configuration parameters that affect Hive transactions and compaction.  Also see [Limitations]({{< ref "#limitations" >}}) above and [Table Properties]({{< ref "#table-properties" >}}) below.
+The following sections list all of the configuration parameters that affect Hive transactions and compaction.  Also see [Limitations]({{% ref "#limitations" %}}) above and [Table Properties]({{% ref "#table-properties" %}}) below.
 
 ### New Configuration Parameters for Transactions
 
@@ -154,21 +154,21 @@ A number of new configuration parameters have been added to the system to suppor
 
 | **Configuration key** | **Values** | **Location** | **Notes** |
 | --- | --- | --- | --- |
-| [hive.txn.manager]({{< ref "#hive-txn-manager" >}})  | *Default:* org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager*Value required for transactions:* org.apache.hadoop.hive.ql.lockmgr.DbTxnManager | Client/HiveServer2 | DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions. |
-| [hive.txn.strict.locking.mode]({{< ref "#hive-txn-strict-locking-mode" >}}) | *Default:* true | Client/ HiveServer2 | In strict mode non-ACID resources use standard R/W lock semantics, e.g. INSERT will acquire exclusive lock. In non-strict mode, for non-ACID resources, INSERT will only acquire shared lock, which allows two concurrent writes to the same partition but still lets lock manager prevent DROP TABLE etc. when the table is being written to (as of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15774)). |
-| [hive.txn.timeout]({{< ref "#hive-txn-timeout" >}}) deprecated. Use metastore.txn.timeout instead | *Default:* 300 | Client/HiveServer2/Metastore  | Time after which transactions are declared aborted if the client has not sent a heartbeat, in seconds. It's critical that this property has the same value for all components/services.5 |
+| [hive.txn.manager]({{% ref "#hive-txn-manager" %}})  | *Default:* org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager*Value required for transactions:* org.apache.hadoop.hive.ql.lockmgr.DbTxnManager | Client/HiveServer2 | DummyTxnManager replicates pre Hive-0.13 behavior and provides no transactions. |
+| [hive.txn.strict.locking.mode]({{% ref "#hive-txn-strict-locking-mode" %}}) | *Default:* true | Client/ HiveServer2 | In strict mode non-ACID resources use standard R/W lock semantics, e.g. INSERT will acquire exclusive lock. In non-strict mode, for non-ACID resources, INSERT will only acquire shared lock, which allows two concurrent writes to the same partition but still lets lock manager prevent DROP TABLE etc. when the table is being written to (as of [Hive 2.2.0](https://issues.apache.org/jira/browse/HIVE-15774)). |
+| [hive.txn.timeout]({{% ref "#hive-txn-timeout" %}}) deprecated. Use metastore.txn.timeout instead | *Default:* 300 | Client/HiveServer2/Metastore  | Time after which transactions are declared aborted if the client has not sent a heartbeat, in seconds. It's critical that this property has the same value for all components/services.5 |
 | [hive.txn.heartbeat.threadpool.size](/docs/latest/user/configuration-properties#hivetxnheartbeatthreadpoolsize) deprecated - but still in use | *Default:* 5 | Client/HiveServer2 | The number of threads to use for heartbeating (as of [Hive 1.3.0 and 2.0.0](https://issues.apache.org/jira/browse/HIVE-12366)). |
-| [hive.timedout.txn.reaper.start]({{< ref "#hive-timedout-txn-reaper-start" >}}) deprecated | *Default:* 100s | Metastore | Time delay of first reaper (the process which aborts timed-out transactions) run after the metastore starts (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
-| [hive.timedout.txn.reaper.interval]({{< ref "#hive-timedout-txn-reaper-interval" >}}) deprecated | *Default:* 180s | Metastore | Time interval describing how often the reaper (the process which aborts timed-out transactions) runs (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
-| [hive.txn.max.open.batch]({{< ref "#hive-txn-max-open-batch" >}}) deprecated. Use metastore.txn.max.open.batch instead | *Default:* 1000 | Client | Maximum number of transactions that can be fetched in one call to open_txns().1 |
-| [hive.max.open.txns]({{< ref "#hive-max-open-txns" >}}) deprecated. Use metastore.max.open.txns instead. | *Default:* 100000 | HiveServer2/ Metastore | Maximum number of open transactions. If current open transactions reach this limit, future open transaction requests will be rejected, until the number goes below the limit. (As of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249).) |
-| [hive.count.open.txns.interval]({{< ref "#hive-count-open-txns-interval" >}}) deprecated. Use metastore.count.open.txns.interval instead. | *Default:* 1s | HiveServer2/ Metastore | Time in seconds between checks to count open transactions (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249)). |
-| [hive.txn.retryable.sqlex.regex]({{< ref "#hive-txn-retryable-sqlex-regex" >}}) deprecated. Use metastore.txn.retryable.sqlex.regex instead. | *Default:* "" (empty string) | HiveServer2/ Metastore | Comma separated list of regular expression patterns for SQL state, error code, and error message of retryable SQLExceptions, that's suitable for the Hive metastore database (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-12637)).For an example, see [Configuration Properties]({{< ref "#configuration-properties" >}}). |
+| [hive.timedout.txn.reaper.start]({{% ref "#hive-timedout-txn-reaper-start" %}}) deprecated | *Default:* 100s | Metastore | Time delay of first reaper (the process which aborts timed-out transactions) run after the metastore starts (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
+| [hive.timedout.txn.reaper.interval]({{% ref "#hive-timedout-txn-reaper-interval" %}}) deprecated | *Default:* 180s | Metastore | Time interval describing how often the reaper (the process which aborts timed-out transactions) runs (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11317)). Controls AcidHouseKeeperServcie above. |
+| [hive.txn.max.open.batch]({{% ref "#hive-txn-max-open-batch" %}}) deprecated. Use metastore.txn.max.open.batch instead | *Default:* 1000 | Client | Maximum number of transactions that can be fetched in one call to open_txns().1 |
+| [hive.max.open.txns]({{% ref "#hive-max-open-txns" %}}) deprecated. Use metastore.max.open.txns instead. | *Default:* 100000 | HiveServer2/ Metastore | Maximum number of open transactions. If current open transactions reach this limit, future open transaction requests will be rejected, until the number goes below the limit. (As of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249).) |
+| [hive.count.open.txns.interval]({{% ref "#hive-count-open-txns-interval" %}}) deprecated. Use metastore.count.open.txns.interval instead. | *Default:* 1s | HiveServer2/ Metastore | Time in seconds between checks to count open transactions (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13249)). |
+| [hive.txn.retryable.sqlex.regex]({{% ref "#hive-txn-retryable-sqlex-regex" %}}) deprecated. Use metastore.txn.retryable.sqlex.regex instead. | *Default:* "" (empty string) | HiveServer2/ Metastore | Comma separated list of regular expression patterns for SQL state, error code, and error message of retryable SQLExceptions, that's suitable for the Hive metastore database (as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-12637)).For an example, see [Configuration Properties]({{% ref "#configuration-properties" %}}). |
 | hive.compaction.merge.enabled | *Default:* false | HiveServer2 | Enables merge-based compaction which is a compaction optimization when few ORC delta files are present |
 | hive.compactor.initiator.duration.update.interval | *Default:* 60s | HiveServer2 | Time in seconds that drives the update interval of compaction_initiator_duration metric.Smaller value results in a fine grained metric update.This updater can be turned off if its value less than or equals to zero.In this case the above metric will be update only after the initiator completed one cycle.The hive.compactor.initiator.on must be turned on (true) in-order to enable the Initiator,otherwise this setting has no effect. |
-| [hive.compactor.initiator.on]({{< ref "#hive-compactor-initiator-on" >}}) deprecated. Use metastore.compactor.initiator.on instead. | *Default:* false*Value required for transactions:* true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the initiator thread on this metastore instance. Prior to [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) it's critical that this is enabled on exactly one standalone metastore service instance (not enforced yet).As of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) this property may be enabled on any number of standalone metastore instances. |
+| [hive.compactor.initiator.on]({{% ref "#hive-compactor-initiator-on" %}}) deprecated. Use metastore.compactor.initiator.on instead. | *Default:* false*Value required for transactions:* true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the initiator thread on this metastore instance. Prior to [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) it's critical that this is enabled on exactly one standalone metastore service instance (not enforced yet).As of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11388) this property may be enabled on any number of standalone metastore instances. |
 | hive.compactor.cleaner.duration.update.interval | *Default:* 60s | HiveServer2 | Time in seconds that drives the update interval of compaction_cleaner_duration metric.Smaller value results in a fine grained metric update.This updater can be turned off if its value less than or equals to zero.In this case the above metric will be update only after the cleaner completed one cycle. |
-| [hive.compactor.cleaner.on]({{< ref "#hive-compactor-cleaner-on" >}}) deprecated. Use metastore.compactor.cleaner.on instead. | *Default:* false*Value required for transactions:* true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the cleaner thread on this metastore instance. Before **Hive 4.0.0** Cleaner thread can be started/stopped with config hive.compactor.initiator.on. This config helps to enable/disable initiator/cleaner threads independently |
+| [hive.compactor.cleaner.on]({{% ref "#hive-compactor-cleaner-on" %}}) deprecated. Use metastore.compactor.cleaner.on instead. | *Default:* false*Value required for transactions:* true (for exactly one instance of the Thrift metastore service) | Metastore | Whether to run the cleaner thread on this metastore instance. Before **Hive 4.0.0** Cleaner thread can be started/stopped with config hive.compactor.initiator.on. This config helps to enable/disable initiator/cleaner threads independently |
 | hive.compactor.cleaner.threads.num | *Default:* 1 | HiveServer2 | Enables parallelization of the cleaning directories after compaction, that includes many file related checks and may be expensive |
 | hive.compactor.compact.insert.only | *Default:* true | HiveServer2 | Whether the compactor should compact insert-only tables. A safety switch. |
 | hive.compactor.crud.query.based | *Default*: false | HiveServer2 | Means compaction on full CRUD tables is done via queries. Compactions on insert-only tables will always run via queries regardless of the value of this configuration. |
@@ -178,16 +178,16 @@ A number of new configuration parameters have been added to the system to suppor
 | metastore.compactor.long.running.initiator.threshold.error | *Default:* 12h | Metastore | Initiator cycle duration after which an error will be logged. Default time unit is: hours |
 | hive.compactor.worker.sleep.time | *Default:*10800ms | HiveServer2 | Time in milliseconds for which a worker threads goes into sleep before starting another iteration in case of no launched job or error |
 | hive.compactor.worker.max.sleep.time | *Default:* 320000ms | HiveServer2 | Max time in milliseconds for which a worker threads goes into sleep before starting another iteration used for backoff in case of no launched job or error |
-| [hive.compactor.worker.threads]({{< ref "#hive-compactor-worker-threads" >}}) deprecated. Use metastore.compactor.worker.threads instead. | *Default:* 0*Value required for transactions:* \> 0 on at least one instance of the Thrift metastore service | Metastore | How many compactor worker threads to run on this metastore instance.2 |
-| [hive.compactor.worker.timeout]({{< ref "#hive-compactor-worker-timeout" >}}) | *Default:* 86400s | Metastore | Time in seconds after which a compaction job will be declared failed and the compaction re-queued. |
-| [hive.compactor.cleaner.run.interval]({{< ref "#hive-compactor-cleaner-run-interval" >}}) | *Default*: 5000ms | Metastore | Time in milliseconds between runs of the cleaner thread. ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-8258) and later.) |
-| [hive.compactor.check.interval]({{< ref "#hive-compactor-check-interval" >}}) | *Default:* 300s | Metastore | Time in seconds between checks to see if any tables or partitions need to be compacted.3 |
-| [hive.compactor.delta.num.threshold]({{< ref "#hive-compactor-delta-num-threshold" >}}) | *Default:* 10 | Metastore | Number of delta directories in a table or partition that will trigger a minor compaction. |
-| [hive.compactor.delta.pct.threshold]({{< ref "#hive-compactor-delta-pct-threshold" >}}) | *Default:* 0.1 | Metastore | Percentage (fractional) size of the delta files relative to the base that will trigger a major compaction. 1 = 100%, so the default 0.1 = 10%. |
-| [hive.compactor.abortedtxn.threshold]({{< ref "#hive-compactor-abortedtxn-threshold" >}}) | *Default:* 1000 | Metastore | Number of aborted transactions involving a given table or partition that will trigger a major compaction. |
-| [hive.compactor.aborted.txn.time.threshold]({{< ref "#hive-compactor-aborted-txn-time-threshold" >}}) | *Default*: 12h | Metastore | Age of table/partition's oldest aborted transaction when compaction will be triggered. Default time unit is: hours. Set to a negative number to disable. |
-| [hive.compactor.max.num.delta]({{< ref "#hive-compactor-max-num-delta" >}}) | Default: 500 | Metastore | Maximum number of delta files that the compactor will attempt to handle in a single job (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11540)).4 |
-| [hive.compactor.job.queue]({{< ref "#hive-compactor-job-queue" >}}) | *Default*: "" (empty string) |  Metastore |  Used to specify name of Hadoop queue to which Compaction jobs will be submitted. Set to empty string to let Hadoop choose the queue (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11997)). |
+| [hive.compactor.worker.threads]({{% ref "#hive-compactor-worker-threads" %}}) deprecated. Use metastore.compactor.worker.threads instead. | *Default:* 0*Value required for transactions:* \> 0 on at least one instance of the Thrift metastore service | Metastore | How many compactor worker threads to run on this metastore instance.2 |
+| [hive.compactor.worker.timeout]({{% ref "#hive-compactor-worker-timeout" %}}) | *Default:* 86400s | Metastore | Time in seconds after which a compaction job will be declared failed and the compaction re-queued. |
+| [hive.compactor.cleaner.run.interval]({{% ref "#hive-compactor-cleaner-run-interval" %}}) | *Default*: 5000ms | Metastore | Time in milliseconds between runs of the cleaner thread. ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-8258) and later.) |
+| [hive.compactor.check.interval]({{% ref "#hive-compactor-check-interval" %}}) | *Default:* 300s | Metastore | Time in seconds between checks to see if any tables or partitions need to be compacted.3 |
+| [hive.compactor.delta.num.threshold]({{% ref "#hive-compactor-delta-num-threshold" %}}) | *Default:* 10 | Metastore | Number of delta directories in a table or partition that will trigger a minor compaction. |
+| [hive.compactor.delta.pct.threshold]({{% ref "#hive-compactor-delta-pct-threshold" %}}) | *Default:* 0.1 | Metastore | Percentage (fractional) size of the delta files relative to the base that will trigger a major compaction. 1 = 100%, so the default 0.1 = 10%. |
+| [hive.compactor.abortedtxn.threshold]({{% ref "#hive-compactor-abortedtxn-threshold" %}}) | *Default:* 1000 | Metastore | Number of aborted transactions involving a given table or partition that will trigger a major compaction. |
+| [hive.compactor.aborted.txn.time.threshold]({{% ref "#hive-compactor-aborted-txn-time-threshold" %}}) | *Default*: 12h | Metastore | Age of table/partition's oldest aborted transaction when compaction will be triggered. Default time unit is: hours. Set to a negative number to disable. |
+| [hive.compactor.max.num.delta]({{% ref "#hive-compactor-max-num-delta" %}}) | Default: 500 | Metastore | Maximum number of delta files that the compactor will attempt to handle in a single job (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11540)).4 |
+| [hive.compactor.job.queue]({{% ref "#hive-compactor-job-queue" %}}) | *Default*: "" (empty string) |  Metastore |  Used to specify name of Hadoop queue to which Compaction jobs will be submitted. Set to empty string to let Hadoop choose the queue (as of [Hive 1.3.0](https://issues.apache.org/jira/browse/HIVE-11997)). |
 | hive.compactor.request.queue | *Default:* 1 | HiveServer2 | Enables parallelization of the checkForCompaction operation, that includes many file metadata checksand may be expensive |
 | hive.split.grouping.mode | *Default:* query (Allowed values: query, compactor) | HiveServer2 | This is set to compactor from within the query based compactor. This enables the Tez SplitGrouper to group splits based on their bucket number, so that all rows from different bucket files  for the same bucket number can end up in the same bucket file after the compaction. |
 | hive.txn.xlock.iow | Default: true | HiveServer2 | Ensures commands with OVERWRITE (such as INSERT OVERWRITE) acquire Exclusive locks fortransactional tables. This ensures that inserts (w/o overwrite) running concurrentlyare not hidden by the INSERT OVERWRITE. |
@@ -224,9 +224,9 @@ In addition to the new parameters listed above, some existing parameters need to
 
 | Configuration key | Must be set to |
 | --- | --- |
-| [hive.support.concurrency]({{< ref "#hive-support-concurrency" >}}) | true (default is false) |
-| [hive.enforce.bucketing]({{< ref "#hive-enforce-bucketing" >}}) | true (default is false) (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331)) |
-| [hive.exec.dynamic.partition.mode]({{< ref "#hive-exec-dynamic-partition-mode" >}}) | nonstrict (default is strict) |
+| [hive.support.concurrency]({{% ref "#hive-support-concurrency" %}}) | true (default is false) |
+| [hive.enforce.bucketing]({{% ref "#hive-enforce-bucketing" %}}) | true (default is false) (Not required as of [Hive 2.0](https://issues.apache.org/jira/browse/HIVE-12331)) |
+| [hive.exec.dynamic.partition.mode]({{% ref "#hive-exec-dynamic-partition-mode" %}}) | nonstrict (default is strict) |
 
 ### Configuration Values to Set for Compaction
 
@@ -238,11 +238,11 @@ More in formation on compaction pooling can be found here: [Compaction pooling](
 
 ## Table Properties
 
-If a table is to be used in ACID writes (insert, update, delete) then the table property "`transactional=true`" must be set on that table, starting with [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-8290). Note, once a table has been defined as an ACID table via TBLPROPERTIES ("transactional"="true"), it cannot be converted back to a non-ACID table, i.e., changing TBLPROPERTIES ("transactional"="false") is not allowed. Also, [hive.txn.manager]({{< ref "#hive-txn-manager" >}}) must be set to org.apache.hadoop.hive.ql.lockmgr.DbTxnManager either in hive-site.xml or in the beginning of the session before any query is run. Without those, inserts will be done in the old style; updates and deletes will be prohibited prior to HIVE-11716.  Since HIVE-11716 operations on ACID tables without DbTxnManager are not allowed.  However, this does not apply to Hive 0.13.0.
+If a table is to be used in ACID writes (insert, update, delete) then the table property "`transactional=true`" must be set on that table, starting with [Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-8290). Note, once a table has been defined as an ACID table via TBLPROPERTIES ("transactional"="true"), it cannot be converted back to a non-ACID table, i.e., changing TBLPROPERTIES ("transactional"="false") is not allowed. Also, [hive.txn.manager]({{% ref "#hive-txn-manager" %}}) must be set to org.apache.hadoop.hive.ql.lockmgr.DbTxnManager either in hive-site.xml or in the beginning of the session before any query is run. Without those, inserts will be done in the old style; updates and deletes will be prohibited prior to HIVE-11716.  Since HIVE-11716 operations on ACID tables without DbTxnManager are not allowed.  However, this does not apply to Hive 0.13.0.
 
-If a table owner does not wish the system to automatically determine when to compact, then the table property "`NO_AUTO_COMPACTION`" can be set.  This will prevent all automatic compactions.  Manual compactions can still be done with [Alter Table/Partition Compact]({{< ref "#alter-table/partition-compact" >}}) statements.
+If a table owner does not wish the system to automatically determine when to compact, then the table property "`NO_AUTO_COMPACTION`" can be set.  This will prevent all automatic compactions.  Manual compactions can still be done with [Alter Table/Partition Compact]({{% ref "#alter-table/partition-compact" %}}) statements.
 
-Table properties are set with the TBLPROPERTIES clause when a table is created or altered, as described in the [Create Table]({{< ref "#create-table" >}}) and [Alter Table Properties]({{< ref "#alter-table-properties" >}}) sections of Hive Data Definition Language. The "`transactional`" and "`NO_AUTO_COMPACTION`" table properties are case-sensitive in Hive releases 0.x and 1.0, but they are case-insensitive starting with release 1.1.0 ([HIVE-8308](https://issues.apache.org/jira/browse/HIVE-8308)).
+Table properties are set with the TBLPROPERTIES clause when a table is created or altered, as described in the [Create Table]({{% ref "#create-table" %}}) and [Alter Table Properties]({{% ref "#alter-table-properties" %}}) sections of Hive Data Definition Language. The "`transactional`" and "`NO_AUTO_COMPACTION`" table properties are case-sensitive in Hive releases 0.x and 1.0, but they are case-insensitive starting with release 1.1.0 ([HIVE-8308](https://issues.apache.org/jira/browse/HIVE-8308)).
 
 More compaction related options can be set via TBLPROPERTIES as of [Hive 1.3.0 and 2.1.0](https://issues.apache.org/jira/browse/HIVE-13354). They can be set at both table-level via [CREATE TABLE](/docs/latest/language/languagemanual-ddl#createdroptruncate-table), and on request-level via [ALTER TABLE/PARTITION COMPACT](/docs/latest/language/languagemanual-ddl#alter-tablepartition-compact).  These are used to override the Warehouse/table wide settings.  For example, to override an MR property to affect a compaction job, one can add "compactor.\<mr property name\>=\<value\>" in either CREATE TABLE statement or when launching a compaction explicitly via ALTER TABLE.  The "\<mr property name\>=\<value\>" will be set on JobConf of the compaction MR job.   Similarly, "tblprops.\<prop name\>=\<value\>" can be used to set/override any table property which is interpreted by the code running on the cluster.  Finally, "compactorthreshold.\<prop name\>=\<value\>" can be used to override properties from the "New Configuration Parameters for Transactions" table above that end with ".threshold" and control when compactions are triggered by the system.  Examples:
 

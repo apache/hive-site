@@ -23,7 +23,7 @@ Rename an HCatalog table.
 | **group** | The user group to use | Optional | None |
 | **permissions** | The permissions string to use. The format is "`rwxrw-r-x`". | Optional | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -71,8 +71,8 @@ In [Hive 0.13.0](https://issues.apache.org/jira/browse/HIVE-6576) onward, user.n
 ```
 
 **Navigation Links**
-Previous: [PUT ddl/database/:db/table/:table]({{< ref "webhcat-reference-puttable" >}})  
- Next: [DELETE ddl/database/:db/table/:table]({{< ref "webhcat-reference-deletetable" >}})
+Previous: [PUT ddl/database/:db/table/:table]({{% ref "webhcat-reference-puttable" %}})  
+ Next: [DELETE ddl/database/:db/table/:table]({{% ref "webhcat-reference-deletetable" %}})
 
 
 

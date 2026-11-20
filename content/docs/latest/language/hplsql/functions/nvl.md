@@ -22,7 +22,7 @@ NVL(expr1, expr2 [, expr3, ...]);
 **Notes**:
 
 - When first non-NULL expression is found the following expressions are not evaluated
-- NVL and [COALESCE]({{< ref "coalesce" >}}) functions are synonyms
+- NVL and [COALESCE]({{% ref "coalesce" %}}) functions are synonyms
 
 **Return Value:**
 
@@ -46,4 +46,4 @@ Result: 1
 <!-- **Version**: HPL/SQL 0.01 -->
 
 See also:
-- [COALESCE]({{< ref "coalesce" >}})
+- [COALESCE]({{% ref "coalesce" %}})

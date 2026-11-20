@@ -27,7 +27,7 @@ Operation based Java API that presents a number of DDL type operations, however 
 
 ## HCatalog Storage Handlers (Java)
 
-Operation based Java API. This is well [documented on the wiki]({{< ref "hcatalog-inputoutput" >}}).
+Operation based Java API. This is well [documented on the wiki]({{% ref "hcatalog-inputoutput" %}}).
 
 TODO
 
@@ -35,7 +35,7 @@ Requires overview.
 
 ## HCatalog CLI (Command Line)
 
-Query based API. This is well [documented on the wiki]({{< ref "hcatalog-cli" >}}).
+Query based API. This is well [documented on the wiki]({{% ref "hcatalog-cli" %}}).
 
 Hive community has been working deprecating Hive Cli. Hcatalog Cli is similar to Hive Cli and will be deprecated.
 
@@ -49,17 +49,17 @@ There are numerous ways of instantiating the metastore API including: `HCatUtil.
 
 ## WebHCat (REST)
 
-WebHCat is a REST operation based API for [HCatalog]({{< ref "hcatalog-base" >}}). This is well [documented on the wiki]({{< ref "webhcat-reference" >}}).
+WebHCat is a REST operation based API for [HCatalog]({{% ref "hcatalog-base" %}}). This is well [documented on the wiki]({{% ref "webhcat-reference" %}}).
 
 This not actively maintained and likely not be supported in future releases. For job submission, consider using Oozie or similar tools. For DDL, use JDBC.
 
 ## Streaming Data Ingest (Java)
 
-Operation based Java API focused on the writing of continuous streams of data into transactional tables using Hive’s [ACID]({{< ref "hive-transactions" >}}) feature. New data is inserted into tables using small batches and short-lived transactions. Documented [on the wiki]({{< ref "streaming-data-ingest" >}}) and has [package level Javadoc](http://htmlpreview.github.io/?https://github.com/apache/hive/blob/master/hcatalog/streaming/src/java/org/apache/hive/hcatalog/streaming/package.html). Introduced in Hive version 0.13.0 ([HIVE-5687](https://issues.apache.org/jira/browse/HIVE-5687)).
+Operation based Java API focused on the writing of continuous streams of data into transactional tables using Hive’s [ACID]({{% ref "hive-transactions" %}}) feature. New data is inserted into tables using small batches and short-lived transactions. Documented [on the wiki]({{% ref "streaming-data-ingest" %}}) and has [package level Javadoc](http://htmlpreview.github.io/?https://github.com/apache/hive/blob/master/hcatalog/streaming/src/java/org/apache/hive/hcatalog/streaming/package.html). Introduced in Hive version 0.13.0 ([HIVE-5687](https://issues.apache.org/jira/browse/HIVE-5687)).
 
 ## Streaming Mutation (Java)
 
-Operation based Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s [ACID]({{< ref "hive-transactions" >}}) feature. Large volumes of mutations are applied atomically in a single long-lived transaction. Documented [on the wiki]({{< ref "hcatalog-streaming-mutation-api" >}}). Scheduled for release in Hive version 2.0.0 ([HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)[).](https://issues.apache.org/jira/browse/HIVE-5687)
+Operation based Java API focused on mutating (insert/update/delete) records into transactional tables using Hive’s [ACID]({{% ref "hive-transactions" %}}) feature. Large volumes of mutations are applied atomically in a single long-lived transaction. Documented [on the wiki]({{% ref "hcatalog-streaming-mutation-api" %}}). Scheduled for release in Hive version 2.0.0 ([HIVE-10165](https://issues.apache.org/jira/browse/HIVE-10165)[).](https://issues.apache.org/jira/browse/HIVE-5687)
 
 ## hive-jdbc (JDBC)
 

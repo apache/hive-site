@@ -28,4 +28,4 @@ TO_CHAR(CURRENT_DATE);
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 See also:
-- [CHAR Function]({{< ref "char" >}})
+- [CHAR Function]({{% ref "char" %}})

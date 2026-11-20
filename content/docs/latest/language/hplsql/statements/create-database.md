@@ -28,5 +28,5 @@ create database 'test' || replace(current_date, '-', '');
 <!-- **Version:** HPL/SQL 0.3.17 -->
 
 See also:
-- [DROP DATABASE]({{< ref "drop-database" >}})
-- [USE]({{< ref "use" >}})
+- [DROP DATABASE]({{% ref "drop-database" %}})
+- [USE]({{% ref "use" %}})

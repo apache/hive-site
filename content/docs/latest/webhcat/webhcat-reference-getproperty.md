@@ -21,7 +21,7 @@ Return the value of a single table property.
 | **:table** | The table name | Required | None |
 | **:property** | The property name | Required | None |
 
-The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported.
+The [standard parameters]({{% ref "#standard-parameters" %}}) are also supported.
 
 ## Results
 
@@ -68,7 +68,7 @@ The [standard parameters]({{< ref "#standard-parameters" >}}) are also supported
   
 
 **Navigation Links**
-Previous: [GET ddl/database/:db/table/:table/property]({{< ref "webhcat-reference-getproperties" >}}) Next: [PUT ddl/database/:db/table/:table/property/:property]({{< ref "webhcat-reference-putproperty" >}})
+Previous: [GET ddl/database/:db/table/:table/property]({{% ref "webhcat-reference-getproperties" %}}) Next: [PUT ddl/database/:db/table/:table/property/:property]({{% ref "webhcat-reference-putproperty" %}})
 
 
 

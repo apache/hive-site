@@ -36,10 +36,10 @@ END IF;
 <!-- **Version**: HPL/SQL 0.3.1 -->
 
 **See also:**
-- [Error Handling]({{< ref "error-handling" >}})
-- [DECLARE CONDITION]({{< ref "declare-condition" >}})
-- [DECLARE HANDLER]({{< ref "declare-handler" >}})
-- [SQLCODE]({{< ref "sqlcode" >}})
-- [SQLSTATE]({{< ref "sqlstate" >}})
-- [GET DIAGNOSTICS]({{< ref "get-diagnostics" >}})
-- [RESIGNAL]({{< ref "resignal" >}})
+- [Error Handling]({{% ref "error-handling" %}})
+- [DECLARE CONDITION]({{% ref "declare-condition" %}})
+- [DECLARE HANDLER]({{% ref "declare-handler" %}})
+- [SQLCODE]({{% ref "sqlcode" %}})
+- [SQLSTATE]({{% ref "sqlstate" %}})
+- [GET DIAGNOSTICS]({{% ref "get-diagnostics" %}})
+- [RESIGNAL]({{% ref "resignal" %}})

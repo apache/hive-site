@@ -33,8 +33,8 @@ UNIX_TIMESTAMP()
 
 See also:
 
-- [CURRENT_DATE]({{< ref "current-date" >}})
-- [CURRENT_TIMESTAMP]({{< ref "current-timestamp" >}})
-- [FROM_UNIXTIME]({{< ref "from-unixtime" >}})
-- [NOW]({{< ref "now" >}})
-- [SYSDATE]({{< ref "sysdate" >}})
+- [CURRENT_DATE]({{% ref "current-date" %}})
+- [CURRENT_TIMESTAMP]({{% ref "current-timestamp" %}})
+- [FROM_UNIXTIME]({{% ref "from-unixtime" %}})
+- [NOW]({{% ref "now" %}})
+- [SYSDATE]({{% ref "sysdate" %}})

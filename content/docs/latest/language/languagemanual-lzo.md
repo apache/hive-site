@@ -7,7 +7,7 @@ date: 2024-12-12
 
 ## General LZO Concepts
 
-LZO is a lossless data compression library that favors speed over compression ratio. See <http://www.oberhumer.com/opensource/lzo> and <http://www.lzop.org> for general information about LZO and see [Compressed Data Storage]({{< ref "compressedstorage" >}}) for information about compression in Hive.
+LZO is a lossless data compression library that favors speed over compression ratio. See <http://www.oberhumer.com/opensource/lzo> and <http://www.lzop.org> for general information about LZO and see [Compressed Data Storage]({{% ref "compressedstorage" %}}) for information about compression in Hive.
 
 Imagine a simple data file that has three columns
 
@@ -80,7 +80,7 @@ hive -e "CREATE EXTERNAL TABLE IF NOT EXISTS hive_table_name (column_1  datatype
 
 Note: The double quotes have to be escaped so that the '`hive -e`' command works correctly.
 
-See [CREATE TABLE]({{< ref "#create-table" >}}) and [Hive CLI]({{< ref "languagemanual-cli" >}}) for information about command syntax.
+See [CREATE TABLE]({{% ref "#create-table" %}}) and [Hive CLI]({{% ref "languagemanual-cli" %}}) for information about command syntax.
 
 ## Hive Queries
 
