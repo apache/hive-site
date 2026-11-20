@@ -38,8 +38,6 @@ CREATE TABLE dept
 );
 ```
 
-<!-- On-the-fly conversion is enabled by default and set using [hplsql.conn.convert.default]({{< ref "configuration#hplsqlconnconvertdefault" >}}) option. -->
-
 ## Data Types
 
 Conversions for data types in CREATE TABLE statements:

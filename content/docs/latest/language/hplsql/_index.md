@@ -22,14 +22,10 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 - [Why HPL/SQL]({{< ref "why" >}})
 - [Key Features]({{< ref "features" >}})
 - [Get Started]({{< ref "start" >}})
-<!-- - [What's New]({{< ref "new" >}}) -->
 
 ## User Guide
 
-<!-- - [Command Line]({{< ref "cli" >}}) -->
 - [Configuration]({{< ref "configuration" >}})
-<!-- - [Connections]({{< ref "connections" >}}) -->
-<!-- - [Working with Multiple Databases]({{< ref "multiple-databases" >}}) -->
 - [User-Defined Functions and Stored Procedures]({{< ref "udf-sproc" >}})
 - [On-the-Fly SQL Conversion]({{< ref "conversion" >}})
 - [UDF to Run HPL/SQL Scripts from Hive Queries]({{< ref "udf" >}})
@@ -166,10 +162,6 @@ Initially it was provided as a stand alone command line tool. As a part of ([HIV
 ## File I/O Operations
 
 - [UTL_FILE Package]({{< ref "utl-file" >}})
-
-<!-- ## Troubleshooting
-
-- [Troubleshooting]({{< ref "troubleshooting" >}}) -->
 
 ## Compatibility
 
