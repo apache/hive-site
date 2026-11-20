@@ -227,4 +227,4 @@ There is no ODBC driver available for &lt;a href="https://hive.apache.org/docs/l
 &lt;li&gt;Custom LDAP Query support.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.&lt;/p&gt;
-&lt;p&gt;See &lt;a href="#authentication/security-configuration"&gt;Authentication/Security Configuration&lt;/a&gt; for general information about configuring authentication for HiveServer2. Also see &lt;a href="#hive-configuration-properties –-hiveserver2"&gt;Hive Configuration Properties – HiveServer2&lt;/a&gt; for individual configuration parameters discussed below.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;See &lt;a href="#authentication/security-configuration"&gt;Authentication/Security Configuration&lt;/a&gt; for general information about configuring authentication for HiveServer2. Also see &lt;a href="#hive-configuration-properties%C2%A0%E2%80%93-hiveserver2"&gt;Hive Configuration Properties – HiveServer2&lt;/a&gt; for individual configuration parameters discussed below.&lt;/p&gt;</description></item></channel></rss>

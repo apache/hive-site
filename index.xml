@@ -6170,7 +6170,7 @@ TBLPROPERTIES (
 &lt;p&gt;$HIVE_HOME/bin/hive is a shell utility which can be used to run Hive queries in either interactive or batch mode.&lt;/p&gt;
 &lt;h1 id="deprecation-in-favor-of-beeline-cli"&gt;Deprecation in favor of Beeline CLI&lt;/h1&gt;
 &lt;p&gt;HiveServer2 (introduced in Hive 0.11) has its own CLI called &lt;a href="#beeline"&gt;Beeline&lt;/a&gt;, which is a JDBC client based on SQLLine.  Due to new development being focused on HiveServer2, &lt;a href="https://issues.apache.org/jira/browse/HIVE-10304"&gt;Hive CLI will soon be deprecated&lt;/a&gt; in favor of Beeline (&lt;a href="https://issues.apache.org/jira/browse/HIVE-10511"&gt;HIVE-10511&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;See &lt;a href="https://hive.apache.org/docs/latest/user/replacing-the-implementation-of-hive-cli-using-beeline/"&gt;Replacing the Implementation of Hive CLI Using Beeline&lt;/a&gt; and &lt;a href="#beeline-–-new-command-line-shell"&gt;Beeline – New Command Line Shell&lt;/a&gt; in the HiveServer2 documentation.&lt;/p&gt;</description></item><item><title>Apache Hive : LanguageManual Commands</title><link>https://hive.apache.org/docs/latest/language/languagemanual-commands/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/languagemanual-commands/</guid><description>&lt;h1 id="apache-hive--languagemanual-commands"&gt;Apache Hive : LanguageManual Commands&lt;/h1&gt;
+&lt;p&gt;See &lt;a href="https://hive.apache.org/docs/latest/user/replacing-the-implementation-of-hive-cli-using-beeline/"&gt;Replacing the Implementation of Hive CLI Using Beeline&lt;/a&gt; and &lt;a href="#beeline-%E2%80%93-new-command-line-shell"&gt;Beeline – New Command Line Shell&lt;/a&gt; in the HiveServer2 documentation.&lt;/p&gt;</description></item><item><title>Apache Hive : LanguageManual Commands</title><link>https://hive.apache.org/docs/latest/language/languagemanual-commands/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/language/languagemanual-commands/</guid><description>&lt;h1 id="apache-hive--languagemanual-commands"&gt;Apache Hive : LanguageManual Commands&lt;/h1&gt;
 &lt;p&gt;Commands are non-SQL statements such as setting a property or adding a resource. They can be used in HiveQL scripts or directly in the &lt;a href="https://hive.apache.org/docs/latest/language/languagemanual-cli/"&gt;CLI&lt;/a&gt; or &lt;a href="#beeline"&gt;Beeline&lt;/a&gt;.&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -10751,8 +10751,8 @@ FROM customer
 &lt;h1 id="hive-testing-documents"&gt;Hive Testing Documents&lt;/h1&gt;
 &lt;p&gt;The following documents describe aspects of testing for Hive:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#hive-developer-faq:- testing"&gt;Hive Developer FAQ:  Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#developer-guide:- unit-tests"&gt;Developer Guide:  Unit Tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hive-developer-faq:-%C2%A0testing"&gt;Hive Developer FAQ:  Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#developer-guide:-%C2%A0unit-tests"&gt;Developer Guide:  Unit Tests&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/unit-testing-hive-sql/"&gt;Unit Testing Hive SQL&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/running-yetus/"&gt;Running Yetus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/metastore-api-tests/"&gt;MetaStore API Tests&lt;/a&gt;&lt;/li&gt;
@@ -10820,7 +10820,7 @@ Error in semantic analysis: No Partition Predicate Found for Alias &amp;#34;invi
 &lt;li&gt;Custom LDAP Query support.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Filters greatly enhance the functionality of the LDAP Authentication provider. They allow Hive to restrict the set of users allowed to connect to HiveServer2.&lt;/p&gt;
-&lt;p&gt;See &lt;a href="#authentication/security-configuration"&gt;Authentication/Security Configuration&lt;/a&gt; for general information about configuring authentication for HiveServer2. Also see &lt;a href="#hive-configuration-properties –-hiveserver2"&gt;Hive Configuration Properties – HiveServer2&lt;/a&gt; for individual configuration parameters discussed below.&lt;/p&gt;</description></item><item><title>Apache Hive : User FAQ</title><link>https://hive.apache.org/docs/latest/user/user-faq/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/user/user-faq/</guid><description>&lt;h1 id="apache-hive--user-faq"&gt;Apache Hive : User FAQ&lt;/h1&gt;
+&lt;p&gt;See &lt;a href="#authentication/security-configuration"&gt;Authentication/Security Configuration&lt;/a&gt; for general information about configuring authentication for HiveServer2. Also see &lt;a href="#hive-configuration-properties%C2%A0%E2%80%93-hiveserver2"&gt;Hive Configuration Properties – HiveServer2&lt;/a&gt; for individual configuration parameters discussed below.&lt;/p&gt;</description></item><item><title>Apache Hive : User FAQ</title><link>https://hive.apache.org/docs/latest/user/user-faq/</link><pubDate>Thu, 12 Dec 2024 00:00:00 +0000</pubDate><guid>https://hive.apache.org/docs/latest/user/user-faq/</guid><description>&lt;h1 id="apache-hive--user-faq"&gt;Apache Hive : User FAQ&lt;/h1&gt;
 &lt;h2 id="general"&gt;General&lt;/h2&gt;
 &lt;h3 id="i-see-errors-like-server-access-error-connection-timed-out-url"&gt;I see errors like: Server access Error: Connection timed out url=&lt;a href="http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz"&gt;http://archive.apache.org/dist/hadoop/core/hadoop-0.20.1/hadoop-0.20.1.tar.gz&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Run the following commands:&lt;br&gt;

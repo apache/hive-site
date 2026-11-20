@@ -240,8 +240,8 @@
 &lt;h1 id="hive-testing-documents"&gt;Hive Testing Documents&lt;/h1&gt;
 &lt;p&gt;The following documents describe aspects of testing for Hive:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#hive-developer-faq:- testing"&gt;Hive Developer FAQ:  Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#developer-guide:- unit-tests"&gt;Developer Guide:  Unit Tests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#hive-developer-faq:-%C2%A0testing"&gt;Hive Developer FAQ:  Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#developer-guide:-%C2%A0unit-tests"&gt;Developer Guide:  Unit Tests&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/unit-testing-hive-sql/"&gt;Unit Testing Hive SQL&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/running-yetus/"&gt;Running Yetus&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://hive.apache.org/community/resources/metastore-api-tests/"&gt;MetaStore API Tests&lt;/a&gt;&lt;/li&gt;
