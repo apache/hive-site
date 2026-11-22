@@ -65,7 +65,7 @@ CREATE [EXTERNAL] TABLE [IF NOT EXISTS] table_name
 
 When STORED BY is specified, then row_format (DELIMITED or SERDE) and STORED AS cannot be specified, however starting from [Hive 4.0](/docs/latest/user/hive-iceberg-integration), they can coexist to create the Iceberg table, this is the only exception. Optional SERDEPROPERTIES can be specified as part of the STORED BY clause and will be passed to the serde provided by the storage handler.
 
-See [CREATE TABLE]({{% ref "#create-table" %}}) and [Row Format, Storage Format, and SerDe]({{% ref "#row-format,-storage-format,-and-serde" %}}) for more information.
+See [CREATE TABLE]({{% ref "languagemanual-ddl#create-table" %}}), [Storage Format]({{% ref "languagemanual-ddl#storage-formats" %}}), and [Row Format and SerDe]({{% ref "languagemanual-ddl#row-formats--serde" %}}) for more information.
 
 Example:
 

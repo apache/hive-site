@@ -9,7 +9,7 @@ This page only documents the MetaStore in Hive 2.x and earlier. For 3.x and late
 
 ### Introduction
 
-All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using [JPOX](http://www.datanucleus.org/) ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of [supported databases]({{% ref "#supported-databases" %}}) in section below.
+All the metadata for Hive tables and partitions are accessed through the Hive Metastore. Metadata is persisted using [JPOX](http://www.datanucleus.org/) ORM solution (Data Nucleus) so any database that is supported by it can be used by Hive. Most of the commercial relational databases and many open source databases are supported. See the list of [supported databases]({{% ref "#supported-backend-databases-for-metastore" %}}) in section below.
 
 You can find an E/R diagram for the metastore [here](https://issues.apache.org/jira/secure/attachment/12471108/HiveMetaStore.pdf).
 
@@ -111,7 +111,7 @@ In local/embedded metastore setup, the metastore server component is used like a
 | Config Param | Config Value | Comment |
 | --- | --- | --- |
 | hive.metastore.uris | *not needed because this is local store* |   |
-| hive.metastore.local | `true` | this is local store (removed in Hive 0.10, see [configuration description]({{% ref "#configuration-description" %}}) section) |
+| hive.metastore.local | `true` | this is local store (removed in Hive 0.10, see [configuration description]({{% ref "#basic-configuration-parameters" %}}) section) |
 | hive.metastore.warehouse.dir | `<base hdfs path>` | Points to default location of non-external Hive tables in HDFS. |
 
 ### Remote Metastore Server
@@ -186,7 +186,7 @@ hive --service metastore -p <port_num>
 | --- | --- | --- | --- |
 | MySQL | 5.6.17 | `mysql` |  |
 | Postgres | 9.1.13 | ``` postgres ``` |  |
-| Oracle | 11g | `oracle` | [hive.metastore.orm.retrieveMapNullsAsEmptyStrings]({{% ref "#hive-metastore-orm-retrievemapnullsasemptystrings" %}}) |
+| Oracle | 11g | `oracle` | [hive.metastore.orm.retrieveMapNullsAsEmptyStrings]({{% ref "configuration-properties#hivemetastoreormretrievemapnullsasemptystrings" %}}) |
 | MS SQL Server | 2008 R2 | `mssql` |  |
 
 ### Metastore Schema Consistency and Upgrades

@@ -37,7 +37,7 @@ Replication is the process of making a duplicate copy of some object such as a d
 
 ## Replication Taxonomy
 
-Replication systems are frequently classified by their transaction source (“where”) and their synchronization strategy (“when”) [[1]({{% ref "#1" %}})].
+Replication systems are frequently classified by their transaction source (“where”) and their synchronization strategy (“when”) [[1]({{% ref "#references" %}})].
 
 ### Transaction Source
 
@@ -79,7 +79,7 @@ Since replication in Hive focuses on disaster recovery, the read-only load balan
 
 ### Eager vs Lazy
 
-Eager replication requires a guaranteed delta log for every update on the primary. This poses a problem when [external tables]({{% ref "#external-tables" %}}) are used in Hive. External tables allow data to be managed completely outside of Hive, and therefore may not provide Hive with a complete and accurate delta log. With ACID tables, such a log does exist and will be made use of in future development, but currently replication in Hive works only with traditional tables.
+Eager replication requires a guaranteed delta log for every update on the primary. This poses a problem when [external tables]({{% ref "languagemanual-ddl#external-tables" %}}) are used in Hive. External tables allow data to be managed completely outside of Hive, and therefore may not provide Hive with a complete and accurate delta log. With ACID tables, such a log does exist and will be made use of in future development, but currently replication in Hive works only with traditional tables.
 
 Instead, Hive uses lazy replication. Unlike eager replication, lazy replication is asynchronous and non-blocking which allows for better resource utilization. This is prioritized in Hive with the acknowledgement that there is some complexity involved with events being processed out of order, including destructive events such as `DROP`.
 

@@ -46,13 +46,13 @@ Finally, add `$HIVE_HOME/bin` to your `PATH`:
 
 Version information
 
-To build Hive 1.2.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "#getting-started:-building-hive-from-source" %}}). You will need Java 1.7 or newer.
+To build Hive 1.2.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "gettingstarted-latest#building-hive-from-source" %}}). You will need Java 1.7 or newer.
 
 ## Installing from Source Code (Hive 0.13.0 and Later)
 
 Version information
 
-To build Hive 0.13.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "#getting-started:-building-hive-from-source" %}}).
+To build Hive 0.13.0 and later releases with [Apache Maven](http://maven.apache.org/), see [Getting Started: Building Hive from Source]({{% ref "gettingstarted-latest#building-hive-from-source" %}}).
 
 ## Installing from Source Code (Hive 0.12.0 and Earlier)
 

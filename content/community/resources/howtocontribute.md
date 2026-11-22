@@ -22,17 +22,17 @@ Setting Up Eclipse Development Environment (Optional)
 
 This is an optional step. Eclipse has a lot of advanced features for Java development, and it makes the life much easier for Hive developers as well.
 
-[How do I import into eclipse?]({{% ref "#how-do-i-import-into-eclipse?" %}})
+[How do I import into eclipse?]({{% ref "hivedeveloperfaq#how-do-i-import-into-eclipse" %}})
 
 ## Becoming a Contributor
 
 This checklist tells you how to create accounts and obtain permissions needed by Hive contributors. See the [Hive website](http://hive.apache.org/) for additional information.
 
-* Request an Apache Software Foundation [JIRA account](/community/resources/howtocontribute#request-account), if you do not already have one.
+* Request an Apache Software Foundation [JIRA account](https://issues.apache.org/jira), if you do not already have one.
 	+ The ASF JIRA system dashboard is [here](https://issues.apache.org/jira/secure/Dashboard.jspa).
 	+ The Hive JIRA is [here](https://issues.apache.org/jira/browse/HIVE).
 * To review patches check the open [pull requests on GitHub](https://github.com/apache/hive/pulls)
-* To contribute to the Hive wiki, follow the instructions in [About This Wiki]({{% ref "#about-this-wiki" %}}).
+* To contribute to the Hive documentation, make a [pull request to hive-site](https://github.com/apache/hive-site/).
 * To edit the Hive website, follow the instructions in [How to edit the website](https://github.com/apache/hive-site/blob/main/README.md).
 * Join the [Hive mailing lists](http://hive.apache.org/mailing_lists.html) to receive email about issues and discussions.
 
