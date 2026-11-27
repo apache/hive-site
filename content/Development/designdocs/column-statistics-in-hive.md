@@ -19,7 +19,7 @@ For general information about Hive statistics, see [Statistics in Hive]({{% ref
 
 ### **HiveQL changes**
 
-HiveQL currently supports the [analyze command]({{% ref "#analyze-command" %}}) to compute statistics on tables and partitions. HiveQL’s analyze command will be extended to trigger statistics computation on one or more column in a Hive table/partition. The necessary changes to HiveQL are as below,
+HiveQL currently supports the [analyze command]({{% ref "statsdev#existing-tables-analyze" %}}) to compute statistics on tables and partitions. HiveQL’s analyze command will be extended to trigger statistics computation on one or more column in a Hive table/partition. The necessary changes to HiveQL are as below,
 
 `analyze table t [partition p] compute statistics for [columns c,...];`
 

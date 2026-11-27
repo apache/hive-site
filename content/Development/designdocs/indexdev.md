@@ -44,7 +44,7 @@ AS 'index.handler.class.name'
 
 ```
 
-For the details of the various clauses such as ROW FORMAT, see [Create Table]({{% ref "#create-table" %}}).
+For the details of the various clauses such as ROW FORMAT, see [Create Table]({{% ref "languagemanual-ddl#create-table" %}}).
 
 By default, index partitioning matches the partitioning of the base table. The PARTITIONED BY clause may be used to specify a subset of the table's partitioning columns (this column list may be empty to indicate that the index spans all partitions of the table). For example, a table may be partitioned by date+region even though the index is partitioned by date alone (each index partition spanning all regions).
 
@@ -151,7 +151,7 @@ ALTER INDEX index_name ON table_name [PARTITION (...)] REBUILD
 
 ```
 
-For the PARTITION clause syntax, see [LanguageManual DDL#Add_Partitions]({{% ref "#languagemanual-ddl#add_partitions" %}}).
+For the PARTITION clause syntax, see [LanguageManual DDL#Add_Partitions]({{% ref "languagemanual-ddl#add-partitions" %}}).
 
 If WITH DEFERRED REBUILD is specified on CREATE INDEX, then the newly created index is initially empty (regardless of whether the table contains any data). The ALTER INDEX ... REBUILD command can be used to build the index structure for all partitions or a single partition.
 

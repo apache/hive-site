@@ -61,7 +61,7 @@ Hive currently uses these SerDe classes to serialize and deserialize data:
 ALTER TABLE person SET SERDEPROPERTIES ('serialization.encoding'='GBK');
 ```
 
-LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended_boolean_literal]({{% ref "#hive-lazysimple-extended_boolean_literal" %}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
+LazySimpleSerDe can treat 'T', 't', 'F', 'f', '1', and '0' as extended, legal boolean literals if the configuration property [hive.lazysimple.extended_boolean_literal]({{% ref "configuration-properties#hive.lazysimple.extended_boolean_literal" %}}) is set to `true` ([Hive 0.14.0](https://issues.apache.org/jira/browse/HIVE-3635) and later). The default is `false`, which means only 'TRUE' and 'FALSE' are treated as legal boolean literals.
 * ThriftSerDe: This SerDe is used to read/write Thrift serialized objects. The class file for the Thrift object must be loaded first.
 * DynamicSerDe: This SerDe also read/write Thrift serialized objects, but it understands Thrift DDL so the schema of the object can be provided at runtime. Also it supports a lot of different protocols, including TBinaryProtocol, TJSONProtocol, TCTLSeparatedProtocol (which writes data in delimited records).
 
